@@ -16,20 +16,59 @@ namespace ToolGood.Algorithm
             addFunc("FALSE", FALSE);//返回逻辑值FALSE
             addFunc("TRUE", TRUE);//返回逻辑值TRUE
             addFunc("IFERROR", IFERROR);//指定要执行的逻辑检测
+            addFunc("IFNUMBER", IFNUMBER);//指定要执行的逻辑检测
+            addFunc("IFTEXT", IFTEXT);//指定要执行的逻辑检测
+
 
             addFunc("ISNUMBER", ISNUMBER);//指定要执行的逻辑检测
             addFunc("ISTEXT", ISTEXT);//指定要执行的逻辑检测
 
 
         }
+        private Operand IFTEXT(List<Operand> arg)
+        {
+            if (arg.Count < 2) return throwError("ISSTRING中参数不足", new List<Operand>());
+            if (arg[0].Type == OperandType.STRING) {
+                return arg[1];
+            } else if (arg[0].Type == OperandType.STRING) {
+                if (arg[0].DateValue.srcText != null) {
+                    return arg[1];
+                } else {
+                    if (arg.Count == 3) return arg[2];
+                }
+            }
+            if (arg.Count == 3) return arg[2];
+            return new Operand(OperandType.BOOLEAN, false);
+        }
+
+
+        private Operand IFNUMBER(List<Operand> arg)
+        {
+            if (arg.Count < 2) return throwError("IFNUMBER中参数不足", new List<Operand>());
+            var b = false;
+            if (arg[0].Type == OperandType.NUMBER) {
+                b = arg[0].IntValue != 0;
+            } else if (arg[0].Type == OperandType.DATE) {
+                b = true;
+            }
+
+            if (b) {
+                return arg[1];
+            }
+            if (arg.Count == 3) {
+                return arg[2];
+            }
+            return new Operand(OperandType.BOOLEAN, b);
+        }
+
 
         private Operand ISTEXT(List<Operand> arg)
         {
             if (arg.Count < 1) return throwError("ISSTRING中参数不足", new List<Operand>());
-            if (arg[0].Type== OperandType.STRING) {
+            if (arg[0].Type == OperandType.STRING) {
                 return new Operand(OperandType.BOOLEAN, true);
             } else if (arg[0].Type == OperandType.STRING) {
-                return new Operand(OperandType.BOOLEAN, arg[0].DateValue.srcText!=null);
+                return new Operand(OperandType.BOOLEAN, arg[0].DateValue.srcText != null);
             }
             return new Operand(OperandType.BOOLEAN, false);
         }
@@ -73,7 +112,7 @@ namespace ToolGood.Algorithm
             } else if (arg[0].Type == OperandType.NUMBER) {
                 b = arg[0].IntValue != 0;
             }
-     
+
             if (b) {
                 if (arg.Count > 1) {
                     return arg[1];
@@ -84,7 +123,7 @@ namespace ToolGood.Algorithm
                 return arg[2];
             }
             return new Operand(OperandType.BOOLEAN, b);
-            
+
         }
 
         private Operand NOT(List<Operand> arg)

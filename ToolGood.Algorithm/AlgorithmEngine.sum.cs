@@ -198,7 +198,7 @@ namespace ToolGood.Algorithm
 
         private Operand COUNTIF(List<Operand> arg)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
 
 
             if (arg.Count < 2) return throwError("COUNTIF中参数不足", new List<Operand>());

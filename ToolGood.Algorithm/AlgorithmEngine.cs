@@ -20,6 +20,14 @@ namespace ToolGood.Algorithm
             AddSumFunction();
 
         }
+        private void addFunc(string name, Func<List<Operand>, Operand> func)
+        {
+            name = name.ToLower();
+            m_Operators.Add(name);
+            funcDict[name] = func;
+        }
+
+
 
         #region 可重写的方法
 
@@ -29,12 +37,7 @@ namespace ToolGood.Algorithm
         }
 
         #endregion
-        private void addFunc(string name, Func<List<Operand>, Operand> func)
-        {
-            name = name.ToLower();
-            m_Operators.Add(name);
-            funcDict[name] = func;
-        }
+
 
         #region Parse
 
@@ -464,6 +467,95 @@ namespace ToolGood.Algorithm
             }
             return value;
         }
+
+        #region TryEvaluate
+        public short TryEvaluate(string exp, short def)
+        {
+            if (Parse(exp)) {
+                return (short)(double)Evaluate();
+            }
+            return def;
+        }
+        public int TryEvaluate(string exp, int def)
+        {
+            if (Parse(exp)) {
+                return (int)(double)Evaluate();
+            }
+            return def;
+        }
+        public long TryEvaluate(string exp, long def)
+        {
+            if (Parse(exp)) {
+                return (long)(double)Evaluate();
+            }
+            return def;
+        }
+
+        public ushort TryEvaluate(string exp, ushort def)
+        {
+            if (Parse(exp)) {
+                return (ushort)(double)Evaluate();
+            }
+            return def;
+        }
+        public uint TryEvaluate(string exp, uint def)
+        {
+            if (Parse(exp)) {
+                return (uint)(double)Evaluate();
+            }
+            return def;
+        }
+        public ulong TryEvaluate(string exp, ulong def)
+        {
+            if (Parse(exp)) {
+                return (ulong)(double)Evaluate();
+            }
+            return def;
+        }
+
+        public float TryEvaluate(string exp, float def)
+        {
+            if (Parse(exp)) {
+                return (float)(double)Evaluate();
+            }
+            return def;
+        }
+        public double TryEvaluate(string exp, double def)
+        {
+            if (Parse(exp)) {
+                return (double)Evaluate();
+            }
+            return def;
+        }
+
+        public string TryEvaluate(string exp, string def)
+        {
+            if (Parse(exp)) {
+                return Evaluate().ToString();
+            }
+            return def;
+        }
+        public bool TryEvaluate(string exp, bool def)
+        {
+            if (Parse(exp)) {
+                return (bool)Evaluate();
+            }
+            return def;
+        }
+
+        public DateTime TryEvaluate(string exp, DateTime def)
+        {
+            if (Parse(exp)) {
+                return (DateTime)Evaluate();
+            }
+            return def;
+        }
+
+        #endregion
+
+
+
+
         private Operand doFunc(Operator curOpt, List<Operand> ops)
         {
             try {
@@ -479,7 +571,6 @@ namespace ToolGood.Algorithm
                 return new Operand(OperandType.ERROR, curOpt.ToString() + "Error:" + ex.Message);
             }
         }
-
 
         private Operand hasError(List<Operand> ops)
         {
