@@ -49,7 +49,7 @@ namespace ToolGood.Algorithm
             addFunc("RANDBETWEEN", RANDBETWEEN);//返回指定数字之间的随机数
             //addFunc("ROMAN", ROMAN);//将阿拉伯数字转换为文本形式的罗马数字
             addFunc("ROUND", ROUND);//将数字舍入到指定位数
-            addFunc("ROUNDDOW", ROUNDDOW);//将数字朝零的方向舍入
+            addFunc("ROUNDDOWN", ROUNDDOWN);//将数字朝零的方向舍入
             addFunc("ROUNDUP", ROUNDUP);//将数朝远离零的方向舍入
             //addFunc("SERIESSUM", SERIESSUM);//返回基于公式的幂级数的和
             addFunc("SIGN", SIGN);//返回数字的符号
@@ -67,7 +67,7 @@ namespace ToolGood.Algorithm
             //addFunc("SUMXMY2", SUMXMY2);//返回两数组中对应值的平方和之和
             addFunc("TAN", TAN);//返回数字的正切值
             addFunc("TANH", TANH);//返回数字的双曲正切值
-            addFunc("TRUNC", ROUNDDOW);//将数字截尾取整
+            addFunc("TRUNC", ROUNDDOWN);//将数字截尾取整
 
         }
 
@@ -159,7 +159,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, b);
         }
 
-        private Operand ROUNDDOW(List<Operand> arg)
+        private Operand ROUNDDOWN(List<Operand> arg)
         {
             if (arg.Count < 1) return throwError("ROUNDDOW中参数不足", new List<Operand>());
             var a = Math.Pow(10, (int)arg[1].NumberValue);

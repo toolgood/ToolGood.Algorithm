@@ -13,12 +13,10 @@ namespace ToolGood.Algorithm
             addFunc("ASC", ASC); //将字符串内的全角（双字节）英文字母或片假名更改为半角（单字节）字符
             addFunc("jis", jis); //将字符串中的半角（单字节）英文字符或片假名更改为全角（双字节）字符。
 
-
             addFunc("CHAR", CHAR); //返回由代码数字指定的字符
             addFunc("CLEAN", CLEAN); //删除文本中所有打印不出的字符
             addFunc("CODE", CODE); //返回文本字符串中第一个字符的数字代码
             addFunc("CONCATENATE", CONCATENATE); //将若干文本项合并到一个文本项中
-            //addFunc("DOLLAR", DOLLAR); //按 $（美元）货币格式将数字转换为文本
             addFunc("EXACT", EXACT); //检查两个文本值是否完全相同
             addFunc("FIND", FIND); //在一文本值内查找另一文本值（区分大小写） 
             addFunc("FIXED", FIXED); //将数字设置为具有固定小数位的文本格式
@@ -30,7 +28,7 @@ namespace ToolGood.Algorithm
             addFunc("REPLACE", REPLACE); //替换文本内的字符
             addFunc("REPT", REPT); //按给定次数重复文本
             addFunc("RIGHT", RIGHT); //返回文本值最右边的字符
-            //addFunc("RMB", RMB); //按 ￥(RMB)货币格式将数字转换为文本
+            addFunc("RMB", RMB); //按 ￥(RMB)货币格式将数字转换为文本
             addFunc("SEARCH", FIND); //在一文本值中查找另一文本值（不区分大小写） 
             addFunc("SUBSTITUTE", SUBSTITUTE); //在文本字符串中以新文本替换旧文本 
             addFunc("T", T); //将参数转换为文本 
@@ -40,6 +38,20 @@ namespace ToolGood.Algorithm
             addFunc("VALUE", VALUE); //将文本参数转换为数字 
 
         }
+
+        private Operand RMB(List<Operand> arg)
+        {
+            if (arg.Count < 1) return throwError("RMB中参数不足", new List<Operand>());
+            return new Operand(OperandType.STRING, ToChineseRMB(arg[0].NumberValue));
+        }
+        private string ToChineseRMB(double x)
+        {
+            string s = x.ToString("#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A");
+            string d = Regex.Replace(s, @"((?<=-|^)[^1-9]*)|((?'z'0)[0A-E]*((?=[1-9])|(?'-z'(?=[F-L\.]|$))))|((?'b'[F-L])(?'z'0)[0A-L]*((?=[1-9])|(?'-z'(?=[\.]|$))))", "${b}${z}");
+            return Regex.Replace(d, ".", m => "负元空零壹贰叁肆伍陆柒捌玖空空空空空空空分角拾佰仟萬億兆京垓秭穰"[m.Value[0] - '-'].ToString());
+        }
+
+
 
         private Operand jis(List<Operand> arg)
         {

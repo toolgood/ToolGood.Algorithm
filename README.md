@@ -211,23 +211,156 @@ ToolGood.Algorithm
         <td></td>
     </tr>
     <tr>
-        <td>ROUNDDOW</td><td>将数字朝零的方向舍入</td>
+        <td>ROUNDDOWN</td><td>将数字朝零的方向舍入</td>
         <td></td>
     </tr>
     <tr>
         <td>ROUNDUP</td><td>将数朝远离零的方向舍入</td>
         <td></td>
     </tr>
-
+    <tr>
+        <td>SIGN</td><td>返回数字的符号</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>SIN</td><td>返回给定角度的正弦值</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>SINH</td><td>返回数字的双曲正弦值</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>SQRTPI</td><td>返回某数与 PI 的乘积的平方根</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>SQRT</td><td>返回正平方根</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>SUM</td><td>将参数求和</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>SUMSQ</td><td>返回参数的平方和</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>TAN</td><td>返回数字的正切值</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>TANH</td><td>返回数字的双曲正切值</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>TRUNC</td><td>将数字截尾取整</td>
+        <td></td>
+    </tr>
 </table>
-
 
 #### 字符串公式
 <table>
     <tr><td>公式名</td><td>说明</td><td>示例</td></tr>
     <tr>
+        <td>ASC</td><td>将字符串内的全角（双字节）英文字母更改为半角（单字节）字符</td>
         <td></td>
+    </tr>
+    <tr>
+        <td>JIS</td><td>将字符串中的半角（单字节）英文字符更改为全角（双字节）字符</td>
         <td></td>
+    </tr>
+    <tr>
+        <td>CHAR</td><td>返回由代码数字指定的字符</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>CLEAN</td><td>删除文本中所有打印不出的字符</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>CODE</td><td>返回文本字符串中第一个字符的数字代码</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>CONCATENATE</td><td>将若干文本项合并到一个文本项中</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>EXACT</td><td>检查两个文本值是否完全相同</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>FIND</td><td>在一文本值内查找另一文本值（区分大小写） </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>FIXED</td><td>将数字设置为具有固定小数位的文本格式</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>LEFT</td><td>返回文本值最左边的字符</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>LEN</td><td>返回文本字符串中的字符个数</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>LOWER</td><td>将文本转换为小写形式</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>MID</td><td>从文本字符串中的指定位置起返回特定个数的字符</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>PROPER</td><td>将文本值中每一个单词的首字母设置为大写</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>REPLACE</td><td>替换文本内的字符</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>REPT</td><td>按给定次数重复文本</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>RIGHT</td><td>返回文本值最右边的字符</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>RMB</td><td>将数字转换为大写数字文本</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>SEARCH</td><td>在一文本值中查找另一文本值（不区分大小写）</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>SUBSTITUTE</td><td>在文本字符串中以新文本替换旧文本</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>T</td><td>将参数转换为文本</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>TEXT</td><td>设置数字的格式并将数字转换为文本</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>TRIM</td><td>删除文本中的空格</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>UPPER</td><td>将文本转换为大写形式</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>VALUE</td><td>将文本参数转换为数字</td>
         <td></td>
     </tr>
 </table>
