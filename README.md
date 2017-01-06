@@ -1,7 +1,7 @@
 ToolGood.Algorithm
 ===================
 
-#### 开始
+#### 快速上手
 ``` csharp
     AlgorithmEngine engine = new AlgorithmEngine();
     double t=0.0;
@@ -16,20 +16,64 @@ ToolGood.Algorithm
 公式：`流程`、`数学`、`字符串`
 
 ##### 流程公式
-| 公式名               | 说明                                   | 示例                     | 
-|: ------------------ :|: ------------------------------------ :|: ---------------------  :|
-| IF                   | 指定要执行的逻辑检测                   | if(1=1,1,2) ->1          |
-| IFERROR              | 指定要执行的逻辑检测                   | iferror(1/0,1,2) ->1     |
-| IFNUMBER             | 指定要执行的逻辑检测                   | ifnumber(4,1,2) ->1      |
-| IFTEXT               | 指定要执行的逻辑检测                   | iftext('a',1,2) ->1      |
-| ISNUMBER             | 判断是否数字                           | ISNUMBER(1) ->true       |
-| ISTEXT               | 判断是否文字                           | istext('1') ->true       |
-| AND                  | 如果所有参数均为TRUE，则返回TRUE       | and(1,2=2) ->true        |
-| OR                   | 如果任一参数为TRUE，则返回TRUE         | or(1,2=3) ->true         |
-| NOT                  | 对参数的逻辑值求反                     | NOT(true()) ->false      |
-| TRUE                 | 返回逻辑值TRUE                         | true() ->true            |
-| FALSE                | 返回逻辑值FALSE                        | false() ->false          |
-
+<table>
+    <tr><td>公式名</td><td>说明</td><td>示例</td></tr>
+    <tr>
+        <td>IF</td>
+        <td>指定要执行的逻辑检测</td>
+        <td>if(1=1,1,2) ->1</td>
+    </tr>
+    <tr>
+        <td>IFERROR</td>
+        <td>指定要执行的逻辑检测</td>
+        <td>iferror(1/0,1,2) ->1</td>
+    </tr>
+    <tr>
+        <td>IFNUMBER</td>
+        <td>指定要执行的逻辑检测</td>
+        <td>ifnumber(4,1,2) ->1</td>
+    </tr>
+    <tr>
+        <td>IFTEXT</td>
+        <td>指定要执行的逻辑检测</td>
+        <td>iftext('a',1,2) ->1</td>
+    </tr>
+    <tr>
+        <td>ISNUMBER</td>
+        <td>判断是否数字</td>
+        <td>ISNUMBER(1) ->true</td>
+    </tr>
+    <tr>
+        <td>ISTEXT</td>
+        <td>判断是否文字</td>
+        <td>istext('1') ->true </td>
+    </tr>
+    <tr>
+        <td>AND</td>
+        <td>如果所有参数均为TRUE，则返回TRUE</td>
+        <td>and(1,2=2) ->true</td>
+    </tr>
+    <tr>
+        <td>OR</td>
+        <td>如果任一参数为TRUE，则返回TRUE</td>
+        <td>or(1,2=3) ->true</td>
+    </tr>
+    <tr>
+        <td>NOT</td>
+        <td>对参数的逻辑值求反</td>
+        <td>NOT(true()) ->false</td>
+    </tr>
+    <tr>
+        <td>TRUE</td>
+        <td>返回逻辑值TRUE</td>
+        <td>true() ->true</td>
+    </tr>
+    <tr>
+        <td>FALSE</td>
+        <td>返回逻辑值FALSE</td>
+        <td>false() ->false</td>
+    </tr>
+</table>
 
 #### 数学公式
 | 公式名               | 说明                 | 示例                 |
