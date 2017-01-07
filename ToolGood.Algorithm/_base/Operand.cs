@@ -27,6 +27,12 @@ namespace ToolGood.Algorithm
             } else if (lopd=="e") {
                 this.Type = OperandType.NUMBER;
                 this.Value = Math.E;
+            } else if (lopd == "true") {
+                this.Type = OperandType.BOOLEAN;
+                this.Value = true;
+            } else if (lopd == "false") {
+                this.Type = OperandType.BOOLEAN;
+                this.Value = false;
             } else {
                 this.Type = ConvertOperand(opd);
                 if (this.Type == OperandType.STRING) {

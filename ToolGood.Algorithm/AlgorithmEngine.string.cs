@@ -12,6 +12,9 @@ namespace ToolGood.Algorithm
         {
             addFunc("ASC", ASC); //将字符串内的全角（双字节）英文字母或片假名更改为半角（单字节）字符
             addFunc("jis", jis); //将字符串中的半角（单字节）英文字符或片假名更改为全角（双字节）字符。
+            addFunc("WIDECHAR", jis); //将字符串中的半角（单字节）英文字符或片假名更改为全角（双字节）字符。
+
+
 
             addFunc("CHAR", CHAR); //返回由代码数字指定的字符
             addFunc("CLEAN", CLEAN); //删除文本中所有打印不出的字符
@@ -44,14 +47,6 @@ namespace ToolGood.Algorithm
             if (arg.Count < 1) return throwError("RMB中参数不足", new List<Operand>());
             return new Operand(OperandType.STRING, ToChineseRMB(arg[0].NumberValue));
         }
-        private string ToChineseRMB(double x)
-        {
-            string s = x.ToString("#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A");
-            string d = Regex.Replace(s, @"((?<=-|^)[^1-9]*)|((?'z'0)[0A-E]*((?=[1-9])|(?'-z'(?=[F-L\.]|$))))|((?'b'[F-L])(?'z'0)[0A-L]*((?=[1-9])|(?'-z'(?=[\.]|$))))", "${b}${z}");
-            return Regex.Replace(d, ".", m => "负元空零壹贰叁肆伍陆柒捌玖空空空空空空空分角拾佰仟萬億兆京垓秭穰"[m.Value[0] - '-'].ToString());
-        }
-
-
 
         private Operand jis(List<Operand> arg)
         {
@@ -64,7 +59,7 @@ namespace ToolGood.Algorithm
             if (arg.Count < 1) return throwError("VALUE中参数不足", new List<Operand>());
             double d;
 
-            if (double.TryParse(arg[0].StringValue,out d)) {
+            if (double.TryParse(arg[0].StringValue, out d)) {
                 return new Operand(OperandType.STRING, d);
             }
             return throwError("无法转成数字", arg);
@@ -87,9 +82,9 @@ namespace ToolGood.Algorithm
             if (arg.Count < 2) return throwError("TEXT中参数不足", new List<Operand>());
             var f = arg[1].StringValue;
             var a = arg[0];
-            if (a.Type== OperandType.STRING) {
+            if (a.Type == OperandType.STRING) {
                 return a;
-            } else if (a.Type== OperandType.BOOLEAN) {
+            } else if (a.Type == OperandType.BOOLEAN) {
                 return new Operand(OperandType.STRING, a.BooleanValue.ToString());
             } else if (a.Type == OperandType.NUMBER) {
                 return new Operand(OperandType.STRING, a.NumberValue.ToString(f));
@@ -104,37 +99,6 @@ namespace ToolGood.Algorithm
             if (arg.Count < 1) return throwError("ASC中参数不足", new List<Operand>());
             return new Operand(OperandType.STRING, ToDBC(arg[0].StringValue));
         }
-
-        private String ToSBC(String input)
-        {
-            // 半角转全角：
-            char[] c = input.ToCharArray();
-            for (int i = 0; i < c.Length; i++) {
-                if (c[i] == 32) {
-                    c[i] = (char)12288;
-                    continue;
-                }
-                if (c[i] < 127)
-                    c[i] = (char)(c[i] + 65248);
-            }
-            return new String(c);
-        }
-
-        private String ToDBC(String input)
-        {
-            //转半角的函数
-            char[] c = input.ToCharArray();
-            for (int i = 0; i < c.Length; i++) {
-                if (c[i] == 12288) {
-                    c[i] = (char)32;
-                    continue;
-                }
-                if (c[i] > 65280 && c[i] < 65375)
-                    c[i] = (char)(c[i] - 65248);
-            }
-            return new String(c);
-        }
-
 
         private Operand T(List<Operand> arg)
         {
@@ -272,9 +236,16 @@ namespace ToolGood.Algorithm
 
         private Operand FIXED(List<Operand> arg)
         {
-            if (arg.Count < 2) return throwError("FIXED中参数不足", new List<Operand>());
-            var s = Math.Round(arg[0].NumberValue, (int)arg[1].NumberValue).ToString();
-            return new Operand(OperandType.NUMBER, s);
+            if (arg.Count < 1) return throwError("FIXED中参数不足", new List<Operand>());
+            var num = 2;
+            if (arg.Count > 1) num = arg[1].IntValue;
+            var s = Math.Round(arg[0].NumberValue, num);//.ToString();
+            var no = false;
+            if (arg.Count == 3) no = arg[2].BooleanValue;
+            if (no == false) {
+                return new Operand(OperandType.STRING, s.ToString("N" + num));
+            }
+            return new Operand(OperandType.STRING, s.ToString());
         }
 
         private Operand FIND(List<Operand> arg)
@@ -282,11 +253,11 @@ namespace ToolGood.Algorithm
             if (arg.Count < 2) return throwError("FIND中参数不足", new List<Operand>());
 
             if (arg.Count == 2) {
-                var p = arg[0].StringValue.IndexOf(arg[1].StringValue) + 1;
-                return new Operand(OperandType.NUMBER, p);
+                var p = arg[1].StringValue.IndexOf(arg[0].StringValue) + 1;
+                return new Operand(OperandType.NUMBER, (double)p);
             }
-            var p2 = arg[0].StringValue.IndexOf(arg[1].StringValue, (int)arg[2].NumberValue) + 1;
-            return new Operand(OperandType.NUMBER, p2);
+            var p2 = arg[1].StringValue.IndexOf(arg[0].StringValue, (int)arg[2].NumberValue) + 1;
+            return new Operand(OperandType.NUMBER, (double)p2);
         }
 
         private Operand EXACT(List<Operand> arg)
@@ -301,10 +272,9 @@ namespace ToolGood.Algorithm
             if (arg.Count < 1) return throwError("CONCATENATE中参数不足", new List<Operand>());
             StringBuilder sb = new StringBuilder();
             foreach (var item in arg) {
-                sb.Insert(0, item.StringValue);
+                sb.Append(item.StringValue);
             }
             return new Operand(OperandType.STRING, sb.ToString());
-
         }
 
         private Operand CODE(List<Operand> arg)
@@ -314,14 +284,14 @@ namespace ToolGood.Algorithm
             if (t.Length == 0) {
                 return throwError("字符串长度为0", arg);
             }
-            return new Operand(OperandType.NUMBER, (int)(char)t[0]);
+            return new Operand(OperandType.NUMBER, (double)(int)(char)t[0]);
         }
 
         private Operand CLEAN(List<Operand> arg)
         {
             if (arg.Count < 1) return throwError("CLEAN中参数不足", new List<Operand>());
             var t = arg[0].StringValue;
-            t = Regex.Replace(t, @"[\f\n\r\t\v]。", "");
+            t = Regex.Replace(t, @"[\f\n\r\t\v]", "");
             return new Operand(OperandType.STRING, t);
         }
 
@@ -331,5 +301,10 @@ namespace ToolGood.Algorithm
             char c = (char)(int)arg[0].NumberValue;
             return new Operand(OperandType.STRING, c.ToString());
         }
+
+
+
+
+
     }
 }

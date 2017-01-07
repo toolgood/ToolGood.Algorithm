@@ -270,39 +270,39 @@ ToolGood.Algorithm
     <tr><td>公式名</td><td>说明</td><td>示例</td></tr>
     <tr>
         <td>ASC</td><td>将字符串内的全角英文字母更改为半角字符</td>
-        <td></td>
+        <td>asc('ａｂｃＡＢＣ１２３') ->abcABC123</td>
     </tr>
     <tr>
-        <td>JIS</td><td>将字符串中的半角英文字符更改为全角字符</td>
-        <td></td>
+        <td>JIS / WIDECHAR</td><td>将字符串中的半角英文字符更改为全角字符</td>
+        <td>jis('abcABC123') ->ａｂｃＡＢＣ１２３</td>
     </tr>
     <tr>
         <td>CHAR</td><td>返回由代码数字指定的字符</td>
-        <td></td>
+        <td>char(49) ->1</td>
     </tr>
     <tr>
         <td>CLEAN</td><td>删除文本中所有打印不出的字符</td>
-        <td></td>
+        <td>clean('\r112\t') ->112</td>
     </tr>
     <tr>
         <td>CODE</td><td>返回文本字符串中第一个字符的数字代码</td>
-        <td></td>
+        <td>CODE("1") ->49</td>
     </tr>
     <tr>
         <td>CONCATENATE</td><td>将若干文本项合并到一个文本项中</td>
-        <td></td>
+        <td>CONCATENATE('tt','11') ->tt11</td>
     </tr>
     <tr>
         <td>EXACT</td><td>检查两个文本值是否完全相同</td>
-        <td></td>
+        <td>EXACT("11","22") ->false</td>
     </tr>
     <tr>
         <td>FIND</td><td>在一文本值内查找另一文本值（区分大小写） </td>
-        <td></td>
+        <td>FIND("11","12221122") ->5</td>
     </tr>
     <tr>
         <td>FIXED</td><td>将数字设置为具有固定小数位的文本格式</td>
-        <td></td>
+        <td>FIXED(4567.89,1) ->4,567.9</td>
     </tr>
     <tr>
         <td>LEFT</td><td>返回文本值最左边的字符</td>
