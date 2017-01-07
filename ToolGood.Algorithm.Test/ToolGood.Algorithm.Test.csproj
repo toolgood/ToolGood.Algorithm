@@ -45,6 +45,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlgorithmEngine\AlgorithmEngineTest.cs" />
+    <Compile Include="AlgorithmEngine\AlgorithmEngineTest_dateTime.cs" />
+    <Compile Include="AlgorithmEngine\AlgorithmEngineTest_flow.cs" />
+    <Compile Include="AlgorithmEngine\AlgorithmEngineTest_math.cs" />
+    <Compile Include="AlgorithmEngine\AlgorithmEngineTest_string.cs" />
+    <Compile Include="AlgorithmEngine\AlgorithmEngineTest_sum.cs" />
     <Compile Include="PetaTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

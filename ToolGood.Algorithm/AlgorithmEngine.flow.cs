@@ -30,7 +30,7 @@ namespace ToolGood.Algorithm
             if (arg.Count < 2) return throwError("ISSTRING中参数不足", new List<Operand>());
             if (arg[0].Type == OperandType.STRING) {
                 return arg[1];
-            } else if (arg[0].Type == OperandType.STRING) {
+            } else if (arg[0].Type == OperandType.DATE) {
                 if (arg[0].DateValue.srcText != null) {
                     return arg[1];
                 } else {
@@ -67,7 +67,7 @@ namespace ToolGood.Algorithm
             if (arg.Count < 1) return throwError("ISSTRING中参数不足", new List<Operand>());
             if (arg[0].Type == OperandType.STRING) {
                 return new Operand(OperandType.BOOLEAN, true);
-            } else if (arg[0].Type == OperandType.STRING) {
+            } else if (arg[0].Type == OperandType.DATE) {
                 return new Operand(OperandType.BOOLEAN, arg[0].DateValue.srcText != null);
             }
             return new Operand(OperandType.BOOLEAN, false);

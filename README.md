@@ -12,10 +12,10 @@ ToolGood.Algorithm
 ```
 
 
-## 类Excel公式
-公式：`流程`、`数学`、`字符串`、`统计`、`日期`
+## 类Excel函数
+函数：`逻辑函数`、`数学与三角函数`、`文本函数`、`统计函数`、`日期与时间函数`
 
-#### 流程公式
+#### 逻辑函数
 <table>
     <tr><td>公式名</td><td>说明</td><td>示例</td></tr>
     <tr>
@@ -75,7 +75,7 @@ ToolGood.Algorithm
     </tr>
 </table>
 
-#### 数学公式
+#### 数学与三角函数
 <table>
     <tr><td>分类</td><td>公式名</td><td>说明</td><td>示例</td></tr>
     <tr>
@@ -183,7 +183,7 @@ ToolGood.Algorithm
     </tr>
     <tr>
         <td>ROUNDDOWN</td><td>靠近零值，向下（绝对值减小的方向）舍入数字。</td>
-        <td>ROUNDDOWN(4.333,2) ->4.33(</td>
+        <td>ROUNDDOWN(4.333,2) ->4.33</td>
     </tr>
     <tr>
         <td>ROUNDUP</td><td>远离零值，向上（绝对值增长的方向）舍入数字。</td>
@@ -265,7 +265,7 @@ ToolGood.Algorithm
     </tr>
 </table>
 
-#### 字符串公式
+#### 文本函数
 <table>
     <tr><td>公式名</td><td>说明</td><td>示例</td></tr>
     <tr>
@@ -370,16 +370,80 @@ ToolGood.Algorithm
     </tr>
 </table>
 
-#### 日期公式
+#### 日期与时间函数
 <table>
     <tr><td>公式名</td><td>说明</td><td>示例</td></tr>
     <tr>
-        <td></td><td></td>
+        <td>DATE</td><td>返回特定日期的序列号</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>NOW</td><td>返回当前日期和时间的序列号</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>TODAY</td><td>返回今天日期的序列号</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>YEAR</td><td>将序列号转换为年</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>MONTH</td><td>将序列号转换为月</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>DAY</td><td>将序列号转换为月份中的日</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>HOUR</td><td>将序列号转换为小时</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>MINUTE</td><td>将序列号转换为分钟</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>SECOND</td><td>将序列号转换为秒</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>WEEKDAY</td><td>将序列号转换为星期几</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>TIME</td><td>返回特定时间的序列号</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>TIMEVALUE</td><td>将文本格式的时间转换为序列号</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>DATEVALUE</td><td>将文本格式的日期转换为序列号</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>DATEDIF</td><td>返回两个日期之间的相隔天数</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>DAYS360</td><td>以一年 360 天为基准计算两个日期间的天数</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>EDATE</td><td>返回用于表示开始日期之前或之后月数的日期的序列号</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>EOMONTH</td><td>返回指定月数之前或之后的月份的最后一天的序列号</td>
         <td></td>
     </tr>
 </table>
 
-#### 统计公式
+#### 统计函数
 <table>
     <tr><td>公式名</td><td>说明</td><td>示例</td></tr>
     <tr>

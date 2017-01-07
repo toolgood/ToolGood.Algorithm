@@ -749,16 +749,16 @@ namespace ToolGood.Algorithm
             int r = 0;
             if (a.Type == b.Type) {
                 if (a.Type == OperandType.STRING) {
-                    r = compare(a.StringValue, a.StringValue);
+                    r = compare(a.StringValue, b.StringValue);
                 } else {
-                    r = compare(a.NumberValue, a.NumberValue);
+                    r = compare(a.NumberValue, b.NumberValue);
                 }
             } else if ((a.Type == OperandType.DATE && b.Type == OperandType.STRING) || (b.Type == OperandType.DATE && a.Type == OperandType.STRING)) {
-                r = compare(a.StringValue, a.StringValue);
+                r = compare(a.StringValue, b.StringValue);
             } else if (a.Type == OperandType.STRING || b.Type == OperandType.STRING) {
                 return new Operand(OperandType.ERROR, "两个类型无法比较");
             } else {
-                r = compare(a.NumberValue, a.NumberValue);
+                r = compare(a.NumberValue, b.NumberValue);
             }
             if (type == OperatorType.LT) {
                 return new Operand(OperandType.BOOLEAN, r == -1);
