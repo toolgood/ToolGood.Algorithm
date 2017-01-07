@@ -1,7 +1,7 @@
 ToolGood.Algorithm
 ===================
 
-#### 快速上手
+## 快速上手
 ``` csharp
     AlgorithmEngine engine = new AlgorithmEngine();
     double t=0.0;
@@ -12,10 +12,10 @@ ToolGood.Algorithm
 ```
 
 
-#### 类Excel公式
+## 类Excel公式
 公式：`流程`、`数学`、`字符串`、`统计`、`日期`
 
-##### 流程公式
+#### 流程公式
 <table>
     <tr><td>公式名</td><td>说明</td><td>示例</td></tr>
     <tr>
@@ -77,10 +77,84 @@ ToolGood.Algorithm
 
 #### 数学公式
 <table>
-    <tr><td>公式名</td><td>说明</td><td>示例</td></tr>
+    <tr><td>分类</td><td>公式名</td><td>说明</td><td>示例</td></tr>
+    <tr>
+        <td rowspan="11">基础数学</td>
+        <td>PI</td><td>返回 PI 值</td>
+        <td>pi() ->3.141592654</td>
+    </tr>
     <tr>
         <td>abs</td><td>返回数字的绝对值</td>
-        <td>abs(-1)=1</td>
+        <td>abs(-1) ->1</td>
+    </tr>
+    <tr>
+        <td>QUOTIENT</td><td>返回商的整数部分，该函数可用于舍掉商的小数部分。</td>
+        <td>QUOTIENT(7,3) ->2</td>
+    </tr>
+    <tr>
+        <td>mod</td><td>返回两数相除的余数</td>
+        <td>MOD(7,3) ->1</td>
+    </tr>
+    <tr>
+        <td>SIGN</td><td>返回数字的符号。当数字为正数时返回 1，为零时返回 0，为负数时返回 -1。</td>
+        <td>SIGN(-9) ->-1</td>
+    </tr>
+   <tr>
+        <td>SQRT</td><td>返回正平方根</td>
+        <td>SQRT(9) ->3</td>
+    </tr>
+    <tr>
+        <td>SUM</td><td>返回所有数字之和。</td>
+        <td>SUM(1,2,3,4) ->10</td>
+    </tr>
+    <tr>
+        <td>TRUNC</td><td>将数字截尾取整</td>
+        <td>TRUNC(9.222) ->9  TRUNC(-9.222) ->-9 </td>
+    </tr>
+    <tr>
+        <td>int</td><td>将数字向下舍入到最接近的整数。</td>
+        <td>int(9.222) ->9   int(-9.222) ->-10</td>
+    </tr>
+    <tr>
+        <td>gcd</td><td>返回最大公约数</td>
+        <td>GCD(3,5,7) ->1</td>
+    </tr>
+    <tr>
+        <td>LCM</td><td>返回整数参数的最小公倍数</td>
+        <td>LCM(3,5,7) ->105</td>
+    </tr>
+    <tr>
+    <td rowspan="13">三角函数</td>
+        <td>degrees</td><td>将弧度转换为度</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>RADIANS</td><td>将度转换为弧度</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>cos</td><td>返回数字的余弦值</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>cosh</td><td>返回数字的双曲余弦值</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>SIN</td><td>返回给定角度的正弦值</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>SINH</td><td>返回数字的双曲正弦值</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>TAN</td><td>返回数字的正切值</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>TANH</td><td>返回数字的双曲正切值</td>
+        <td></td>
     </tr>
     <tr>
         <td>acos</td><td>返回数字的反余弦值</td>
@@ -103,160 +177,91 @@ ToolGood.Algorithm
         <td></td>
     </tr>
     <tr>
-        <td>ceiling</td><td>将数字舍入,取天花板值</td>
-        <td></td>
+        <td rowspan="8">四舍五入</td>
+        <td>ROUND</td><td>返回某个数字按指定位数取整后的数字。</td>
+        <td>ROUND(4.333,2) ->4.33</td>
     </tr>
     <tr>
-        <td>cos</td><td>返回数字的余弦值</td>
-        <td></td>
+        <td>ROUNDDOWN</td><td>靠近零值，向下（绝对值减小的方向）舍入数字。</td>
+        <td>ROUNDDOWN(4.333,2) ->4.33(</td>
     </tr>
     <tr>
-        <td>cosh</td><td>返回数字的双曲余弦值</td>
-        <td></td>
+        <td>ROUNDUP</td><td>远离零值，向上（绝对值增长的方向）舍入数字。</td>
+        <td>ROUNDUP(4.333,2) ->4.34</td>
     </tr>
     <tr>
-        <td>degrees</td><td>将弧度转换为度</td>
-        <td></td>
+        <td>ceiling</td><td>向上舍入（沿绝对值增大的方向）为最接近的 舍入基数 的倍数。</td>
+        <td>CEILING(4.333,0.1) ->4.4</td>
     </tr>
     <tr>
-        <td>even</td><td>将数字向上舍入为最接近的偶型整数</td>
-        <td></td>
+        <td>floor</td><td>向下舍入，使其等于最接近的 Significance 的倍数。</td>
+        <td>FLOOR(4.333,0.1) ->4.3</td>
     </tr>
     <tr>
-        <td>exp</td><td>返回e的指定数乘幂</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>fact</td><td>返回数字的阶乘</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>factdouble</td><td>返回数字的双倍阶乘</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>floor</td><td>将数字舍入为最接近的整数，取地板值</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>gcd</td><td>返回最大公约数</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>int</td><td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>lgm</td><td>返回整数参数的最小公倍数</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>ln</td><td>返回数字的自然对数</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>log</td><td>返回数字的常用对数</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>LOG10</td><td>返回数字的10对数</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>MULTINOMIAL</td><td>返回参数和的阶乘与各参数阶乘乘积的比值</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>mod</td><td>返回两数相除的余数</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>MROUND</td><td>返回一个舍入到所需倍数的数字</td>
-        <td></td>
+        <td>even</td><td>返回沿绝对值增大方向取整后最接近的偶数。</td>
+        <td>EVEN(3) ->4</td>
     </tr>
     <tr>
         <td>ODD</td><td>将数字向上舍入为最接近的奇型整数</td>
-        <td></td>
+        <td>ODD(3.1) ->5</td>
     </tr>
     <tr>
-        <td>PI</td><td>返回 PI 值</td>
-        <td></td>
+        <td>MROUND</td><td>返回一个舍入到所需倍数的数字</td>
+        <td>MROUND(13,5) ->15</td>
+    </tr>
+    <tr>
+        <td rowspan="2">随机数</td>
+        <td>RAND</td><td>返回 0 到 1 之间的随机数 </td>
+        <td>RAND() ->0.2</td>
+    </tr>
+    <tr>
+        <td>RANDBETWEEN</td><td>返回大于等于指定的最小值，小于指定最大值之间的一个随机整数。</td>
+        <td>RANDBETWEEN(2,44) ->9</td>
+    </tr>
+    <tr>
+        <td rowspan="11">幂/对数/阶乘</td>
+        <td>fact</td><td>返回数的阶乘，一个数的阶乘等于 1*2*3*…* 该数。</td>
+        <td>FACT(3) ->6</td>
+    </tr>
+    <tr>
+        <td>factdouble</td><td>返回数字的双倍阶乘</td>
+        <td>FACTDOUBLE(10) ->3840</td>
     </tr>
     <tr>
         <td>POWER</td><td>返回数的乘幂结果</td>
-        <td></td>
+        <td>POWER(10,2) ->100</td>
     </tr>
     <tr>
-        <td>PRODUCT</td><td>将所有以参数形式给出的数字相乘</td>
-        <td></td>
+        <td>exp</td><td>返回e的指定数乘幂</td>
+        <td>exp(2) ->7.389056099</td>
     </tr>
     <tr>
-        <td>QUOTIENT</td><td>返回商的整数部分，该函数可用于舍掉商的小数部分。</td>
-        <td></td>
+        <td>ln</td><td>返回数字的自然对数</td>
+        <td>LN(4) ->1.386294361</td>
     </tr>
     <tr>
-        <td>RADIANS</td><td>将度转换为弧度</td>
-        <td></td>
+        <td>log</td><td>返回数字的常用对数</td>
+        <td>LOG(100,10) ->2</td>
     </tr>
     <tr>
-        <td>RAND</td><td>返回 0 到 1 之间的随机数 </td>
-        <td></td>
+        <td>LOG10</td><td>返回数字的10对数</td>
+        <td>LOG10(100) ->2</td>
     </tr>
     <tr>
-        <td>RANDBETWEEN</td><td>返回指定数字之间的随机数</td>
-        <td></td>
+        <td>MULTINOMIAL</td><td>返回参数和的阶乘与各参数阶乘乘积的比值</td>
+        <td>MULTINOMIAL(1,2,3) ->60</td>
     </tr>
     <tr>
-        <td>ROUND</td><td>将数字舍入到指定位数</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>ROUNDDOWN</td><td>将数字朝零的方向舍入</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>ROUNDUP</td><td>将数朝远离零的方向舍入</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>SIGN</td><td>返回数字的符号</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>SIN</td><td>返回给定角度的正弦值</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>SINH</td><td>返回数字的双曲正弦值</td>
-        <td></td>
+        <td>PRODUCT</td><td>将所有以参数形式给出的数字相乘，并返回乘积值。</td>
+        <td>PRODUCT(1,2,3,4) ->24</td>
     </tr>
     <tr>
         <td>SQRTPI</td><td>返回某数与 PI 的乘积的平方根</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>SQRT</td><td>返回正平方根</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>SUM</td><td>将参数求和</td>
-        <td></td>
+        <td>SQRTPI(3) ->3.069980124</td>
     </tr>
     <tr>
         <td>SUMSQ</td><td>返回参数的平方和</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>TAN</td><td>返回数字的正切值</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>TANH</td><td>返回数字的双曲正切值</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>TRUNC</td><td>将数字截尾取整</td>
-        <td></td>
+        <td>SUMSQ(1,2) ->5</td>
     </tr>
 </table>
 
@@ -264,11 +269,11 @@ ToolGood.Algorithm
 <table>
     <tr><td>公式名</td><td>说明</td><td>示例</td></tr>
     <tr>
-        <td>ASC</td><td>将字符串内的全角（双字节）英文字母更改为半角（单字节）字符</td>
+        <td>ASC</td><td>将字符串内的全角英文字母更改为半角字符</td>
         <td></td>
     </tr>
     <tr>
-        <td>JIS</td><td>将字符串中的半角（单字节）英文字符更改为全角（双字节）字符</td>
+        <td>JIS</td><td>将字符串中的半角英文字符更改为全角字符</td>
         <td></td>
     </tr>
     <tr>
@@ -365,6 +370,14 @@ ToolGood.Algorithm
     </tr>
 </table>
 
+#### 日期公式
+<table>
+    <tr><td>公式名</td><td>说明</td><td>示例</td></tr>
+    <tr>
+        <td></td><td></td>
+        <td></td>
+    </tr>
+</table>
 
 #### 统计公式
 <table>
@@ -376,12 +389,4 @@ ToolGood.Algorithm
     </tr>
 </table>
 
-#### 日期公式
-<table>
-    <tr><td>公式名</td><td>说明</td><td>示例</td></tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-</table>
+

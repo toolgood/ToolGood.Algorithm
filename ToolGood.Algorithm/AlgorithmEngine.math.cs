@@ -29,7 +29,7 @@ namespace ToolGood.Algorithm
             addFunc("floor", floor);//返回数字的双倍阶乘
             addFunc("GCD", gcd);//返回最大公约数
             addFunc("INT", @int);//返回最大公约数
-            addFunc("LGM", lgm);//返回整数参数的最小公倍数。 
+            addFunc("LCM", LCM);//返回整数参数的最小公倍数。 
             addFunc("ln", ln);//返回数字的自然对数
             addFunc("log", log);//返回数字的自然对数
             addFunc("LOG10", log10);//返回数字的常用对数
@@ -308,7 +308,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, Math.Log(arg[0].NumberValue));
         }
 
-        private Operand lgm(List<Operand> arg)
+        private Operand LCM(List<Operand> arg)
         {
             if (arg.Count < 2) return throwError("lgm中没有参数不足", new List<Operand>());
             List<int> list = new List<int>();
