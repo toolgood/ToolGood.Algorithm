@@ -419,7 +419,7 @@ ToolGood.Algorithm
     </tr>
     <tr>
         <td>SECOND</td><td>将序列号转换为秒</td>
-        <td>MINUTE(NOW()) ->34</td>
+        <td>SECOND(NOW()) ->34</td>
     </tr>
     <tr>
         <td>WEEKDAY</td><td>将序列号转换为星期几</td>
@@ -431,15 +431,27 @@ ToolGood.Algorithm
     </tr>
     <tr>
         <td>DAYS360</td><td>以一年 360 天为基准计算两个日期间的天数</td>
-        <td></td>
+        <td>DAYS360('1975-1-30','2017-1-7') ->15097</td>
     </tr>
     <tr>
         <td>EDATE</td><td>返回用于表示开始日期之前或之后月数的日期的序列号</td>
-        <td></td>
+        <td>EDATE("2012-1-31",32) ->2014-09-30</td>
     </tr>
     <tr>
         <td>EOMONTH</td><td>返回指定月数之前或之后的月份的最后一天的序列号</td>
-        <td></td>
+        <td>EOMONTH("2012-2-1",32) ->2014-10-31</td>
+    </tr>
+    <tr>
+        <td>NETWORKDAYS</td><td>返回两个日期之间的全部工作日数</td>
+        <td>NETWORKDAYS("2012-1-1","2013-1-1") ->262</td>
+    </tr>
+    <tr>
+        <td>WORKDAY</td><td>返回指定的若干个工作日之前或之后的日期的序列号</td>
+        <td>WORKDAY("2012-1-2",145) ->2012-07-23</td>
+    </tr>
+    <tr>
+        <td>WEEKNUM</td><td>将序列号转换为一年中相应的周数</td>
+        <td>WEEKNUM("2016-1-3") ->2</td>
     </tr>
 </table>
 

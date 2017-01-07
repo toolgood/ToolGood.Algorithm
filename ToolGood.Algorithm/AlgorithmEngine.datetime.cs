@@ -19,18 +19,72 @@ namespace ToolGood.Algorithm
             addFunc("HOUR", HOUR);//将序列号转换为小时 
             addFunc("MINUTE", MINUTE);//将序列号转换为分钟 
             addFunc("MONTH", MONTH);//将序列号转换为月 
-            //addFunc("NETWORKDAYS", NETWORKDAYS);//返回两个日期之间的全部工作日数 
+            addFunc("NETWORKDAYS", NETWORKDAYS);//返回两个日期之间的全部工作日数 
             addFunc("NOW", NOW);//返回当前日期和时间的序列号 
             addFunc("SECOND", SECOND);//将序列号转换为秒 
             addFunc("TIME", TIME);//返回特定时间的序列号 
             addFunc("TIMEVALUE", TIMEVALUE);//将文本格式的时间转换为序列号 
             addFunc("TODAY", TODAY);//返回今天日期的序列号 
             addFunc("WEEKDAY", WEEKDAY);//将序列号转换为星期几 
-            //addFunc("WEEKNUM", WEEKNUM);//将序列号转换为一年中相应的周数 
-            //addFunc("WORKDAY", WORKDAY);//返回指定的若干个工作日之前或之后的日期的序列号 
+            addFunc("WEEKNUM", WEEKNUM);//将序列号转换为一年中相应的周数 
+            addFunc("WORKDAY", WORKDAY);//返回指定的若干个工作日之前或之后的日期的序列号 
             addFunc("YEAR", YEAR);//将序列号转换为年 
             //addFunc("YEARFRAC", YEARFRAC);//返回代表 start_date 和 end_date 之间整天天数的年分数 
         }
+
+        private Operand WEEKNUM(List<Operand> arg)
+        {
+            if (arg.Count < 1) return throwError("WEEKNUM中参数不足", new List<Operand>());
+            var startDate = (DateTime)arg[0].DateValue;
+
+            var days = startDate.DayOfYear + (int)(new DateTime(startDate.Year, 1, 1).DayOfWeek);
+            if (arg.Count == 2 && arg[1].IntValue ==2) days--;
+
+            var week = Math.Ceiling(days / 7.0);
+            return new Operand(OperandType.DATE, week);
+        }
+
+
+        private Operand WORKDAY(List<Operand> arg)
+        {
+            if (arg.Count < 2) return throwError("WORKDAY中参数不足", new List<Operand>());
+            var startDate = (DateTime)arg[0].DateValue;
+            var days = arg[1].IntValue;
+            List<DateTime> list = new List<DateTime>();
+            for (int i = 2; i < arg.Count; i++) {
+                list.Add(arg[i].DateValue);
+            }
+            while (days > 0) {
+                startDate = startDate.AddDays(1);
+                if (startDate.DayOfWeek == DayOfWeek.Saturday) continue;
+                if (startDate.DayOfWeek == DayOfWeek.Sunday) continue;
+                if (list.Contains(startDate)) continue;
+                days--;
+            }
+            return new Operand(OperandType.DATE, (Date)startDate);
+        }
+
+        private Operand NETWORKDAYS(List<Operand> arg)
+        {
+            if (arg.Count < 2) return throwError("NETWORKDAYS中参数不足", new List<Operand>());
+            var startDate = (DateTime)arg[0].DateValue;
+            var endDate = (DateTime)arg[1].DateValue;
+            List<DateTime> list = new List<DateTime>();
+            for (int i = 3; i < arg.Count; i++) {
+                list.Add(arg[i].DateValue);
+            }
+            var days = 0;
+            while (startDate <= endDate) {
+                if (startDate.DayOfWeek != DayOfWeek.Sunday && startDate.DayOfWeek != DayOfWeek.Saturday) {
+                    if (list.Contains(startDate) == false) {
+                        days++;
+                    }
+                }
+                startDate = startDate.AddDays(1);
+            }
+            return new Operand(OperandType.DATE, (double)days);
+        }
+
 
         private Operand EOMONTH(List<Operand> arg)
         {
@@ -55,12 +109,33 @@ namespace ToolGood.Algorithm
         private Operand DAYS360(List<Operand> arg)
         {
             if (arg.Count < 2) return throwError("DAYS360中参数不足", new List<Operand>());
-            var startDate = arg[0].DateValue;
-            var endDate = arg[1].DateValue;
+            var startDate = (DateTime)arg[0].DateValue;
+            var endDate = (DateTime)arg[1].DateValue;
 
-            var days = startDate.Year * 360 + startDate.Month * 30 + startDate.Day
-                 - endDate.Year * 360 - endDate.Month * 30 - endDate.Day;
-            return new Operand(OperandType.NUMBER, days);
+            var method = false;
+            if (arg.Count == 3) method = arg[2].BooleanValue;
+            var days = endDate.Year * 360 + (endDate.Month - 1) * 30
+                        - startDate.Year * 360 - (startDate.Month - 1) * 30;
+            if (method) {
+                if (endDate.Day == 31) days += 30;
+                if (startDate.Day == 31) days -= 30;
+            } else {
+                if (startDate.Day == new DateTime(startDate.Year, startDate.Month + 1, 1).AddDays(-1).Day) {
+                    days -= 30;
+                } else {
+                    days -= startDate.Day;
+                }
+                if (endDate.Day == new DateTime(endDate.Year, endDate.Month + 1, 1).AddDays(-1).Day) {
+                    if (startDate.Day < 30) {
+                        days += 31;
+                    } else {
+                        days += 30;
+                    }
+                } else {
+                    days += endDate.Day;
+                }
+            }
+            return new Operand(OperandType.NUMBER, (double)days);
         }
 
         private Operand TIME(List<Operand> arg)
@@ -140,13 +215,10 @@ namespace ToolGood.Algorithm
             if (arg.Count < 3) return throwError("DATEDIF中参数不足", new List<Operand>());
             var startDate = (DateTime)arg[0].DateValue;
             var endDate = (DateTime)arg[1].DateValue;
-            //if (startDate> endDate) {
-            //    var dt = startDate;
-            //    startDate = endDate;
-            //    endDate = dt;
-            //}
             var t = arg[2].StringValue.ToLower();
+
             if (t == "y") {
+                #region y
                 bool b = false;
                 if (startDate.Month < endDate.Month) {
                     b = true;
@@ -158,7 +230,9 @@ namespace ToolGood.Algorithm
                 } else {
                     return new Operand(OperandType.NUMBER, (double)(endDate.Year - startDate.Year - 1));
                 }
+                #endregion
             } else if (t == "m") {
+                #region m
                 bool b = false;
                 if (startDate.Day <= endDate.Day) b = true;
                 if (b) {
@@ -166,17 +240,34 @@ namespace ToolGood.Algorithm
                 } else {
                     return new Operand(OperandType.NUMBER, (double)(endDate.Year * 12 + endDate.Month - startDate.Year * 12 - startDate.Month - 1));
                 }
+                #endregion
             } else if (t == "d") {
                 return new Operand(OperandType.NUMBER, (double)(endDate - startDate).Days);
             } else if (t == "yd") {
+                #region yd
                 var day = endDate.DayOfYear - startDate.DayOfYear;
-                return new Operand(OperandType.NUMBER, (double)(Math.Abs(day)));
+                if (endDate.Year > startDate.Year && day < 0) {
+                    var days = new DateTime(startDate.Year, 12, 31).DayOfYear;
+                    day = days + day;
+                }
+                return new Operand(OperandType.NUMBER, (double)(day));
+                #endregion
             } else if (t == "md") {
+                #region md
                 var mo = endDate.Day - startDate.Day;
-                return new Operand(OperandType.NUMBER, (double)(Math.Abs(mo)));
+                if (mo < 0) {
+                    var days = new DateTime(startDate.Year, startDate.Month + 1, 1).AddDays(-1).Day;
+                    mo += days;
+                }
+                return new Operand(OperandType.NUMBER, (double)(mo));
+                #endregion
             } else if (t == "ym") {
+                #region ym
                 var mo = endDate.Month - startDate.Month;
-                return new Operand(OperandType.NUMBER, (double)(Math.Abs(mo)));
+                if (endDate.Day < startDate.Day) mo = mo - 1;
+                if (mo < 0) mo += 12;
+                return new Operand(OperandType.NUMBER, (double)(mo));
+                #endregion
             }
             return throwError("DATE比较类型错误", new List<Operand>());
         }

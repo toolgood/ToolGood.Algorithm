@@ -21,21 +21,21 @@ namespace ToolGood.Algorithm
         {
             AlgorithmEngine engine = new AlgorithmEngine();
             var dt = engine.TryEvaluate("TIMEVALUE('12:12:12')", TimeSpan.MinValue);
-            Assert.AreEqual(dt, new DateTime(2016, 1, 1,12,12,12).TimeOfDay);
+            Assert.AreEqual(dt, new DateTime(2016, 1, 1, 12, 12, 12).TimeOfDay);
         }
         [Test]
         public void DATE_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
             var dt = engine.TryEvaluate("DATE(2016,1,1)", DateTime.MinValue);
-            Assert.AreEqual(dt, new DateTime(2016,1,1));
+            Assert.AreEqual(dt, new DateTime(2016, 1, 1));
         }
         [Test]
         public void time_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
             var dt = engine.TryEvaluate("time(11,12,13)", TimeSpan.MinValue);
-            Assert.AreEqual(dt, new DateTime(2016, 1, 1,11,12,13).TimeOfDay);
+            Assert.AreEqual(dt, new DateTime(2016, 1, 1, 11, 12, 13).TimeOfDay);
         }
         [Test]
         public void Now_test()
@@ -128,6 +128,75 @@ namespace ToolGood.Algorithm
             AlgorithmEngine engine = new AlgorithmEngine();
             var dt = engine.TryEvaluate("DATEDIF('1975-1-30','2017-1-7','y')", 0);
             Assert.AreEqual(dt, 41);
+
+            dt = engine.TryEvaluate("DATEDIF('1975-1-30','2017-1-7','m')", 0);
+            Assert.AreEqual(dt, 503);
+
+            dt = engine.TryEvaluate("DATEDIF('1975-1-30','2017-1-7','d')", 0);
+            Assert.AreEqual(dt, 15318);
+
+
+            dt = engine.TryEvaluate("DATEDIF('1975-1-30','2017-1-7','yd')", 0);
+            Assert.AreEqual(dt, 342);
+
+            dt = engine.TryEvaluate("DATEDIF('1975-1-30','2017-1-7','ym')", 0);
+            Assert.AreEqual(dt, 11);
+
+            dt = engine.TryEvaluate("DATEDIF('1975-1-30','2017-1-7','md')", 0);
+            Assert.AreEqual(dt, 8);
+        }
+        [Test]
+        public void DAYS360_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("DAYS360('1975-1-30','2017-1-7')", 0);
+            Assert.AreEqual(dt, 15097);
+        }
+        [Test]
+        public void EDATE_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("EDATE(\"2012-1-31\",32)", DateTime.MinValue);
+            Assert.AreEqual(dt, DateTime.Parse("2014-09-30"));
+        }
+        [Test]
+        public void EOMONTH_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("EOMONTH(\"2012-2-1\",32)", DateTime.MinValue);
+            Assert.AreEqual(dt, DateTime.Parse("2014-10-31"));
+        }
+
+        [Test]
+        public void NETWORKDAYS_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("NETWORKDAYS(\"2012-1-1\",\"2013-1-1\")", 0);
+            Assert.AreEqual(dt, 262);
+        }
+        [Test]
+        public void WORKDAY_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("WORKDAY(\"2012-1-2\",145)", DateTime.MinValue);
+            Assert.AreEqual(dt, DateTime.Parse("2012-07-23"));
+        }
+
+        [Test]
+        public void WEEKNUM_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("WEEKNUM(\"2016-1-3\")", 0);
+            Assert.AreEqual(dt, 2);
+            dt = engine.TryEvaluate("WEEKNUM(\"2016-1-2\")", 0);
+            Assert.AreEqual(dt, 1);
+
+            dt = engine.TryEvaluate("WEEKNUM(\"2016-1-4\",2)", 0);
+            Assert.AreEqual(dt, 2);
+            dt = engine.TryEvaluate("WEEKNUM(\"2016-1-3\",2)", 0);
+            Assert.AreEqual(dt, 1);
+            dt = engine.TryEvaluate("WEEKNUM(\"2016-1-2\",2)", 0);
+            Assert.AreEqual(dt, 1);
         }
 
 
