@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm
 {
-    public class Date
+     class Date
     {
         public Date(string str)
         {
@@ -122,8 +122,12 @@ namespace ToolGood.Algorithm
         public static implicit operator DateTime(Date date)
         {
             return new DateTime(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second);
-
         }
+        public static implicit operator TimeSpan(Date date)
+        {
+            return new TimeSpan( date.Hour, date.Minute, date.Second);
+        }
+
         public static implicit operator Date(double days)
         {
             var dt = DateTime.MinValue.AddDays((int)days);

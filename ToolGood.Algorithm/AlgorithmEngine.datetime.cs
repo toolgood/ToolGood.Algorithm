@@ -11,7 +11,7 @@ namespace ToolGood.Algorithm
         {
             addFunc("DATE", DATE);//返回特定日期的序列号 
             addFunc("DATEVALUE", DATEVALUE);//将文本格式的日期转换为序列号 
-            addFunc("DATEDIF ", DATEDIF);//返回两个日期之间的隔数　 天数
+            addFunc("DATEDIF", DATEDIF);//返回两个日期之间的隔数　 天数
             addFunc("DAY", DAY);//将序列号转换为月份中的日 
             addFunc("DAYS360", DAYS360);//以一年 360 天为基准计算两个日期间的天数 
             addFunc("EDATE", EDATE);//返回用于表示开始日期之前或之后月数的日期的序列号 
@@ -34,27 +34,27 @@ namespace ToolGood.Algorithm
 
         private Operand EOMONTH(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("DATEDIF中参数不足", new List<Operand>());
-            var dt = ((DateTime)arg[0].DateValue).AddMonths(arg[1].IntValue+1);
+            if (arg.Count < 1) return throwError("EOMONTH中参数不足", new List<Operand>());
+            var dt = ((DateTime)arg[0].DateValue).AddMonths(arg[1].IntValue + 1);
             dt = new DateTime(dt.Year, dt.Month, 1).AddDays(-1);
             return new Operand(OperandType.DATE, (Date)dt);
         }
 
         private Operand EDATE(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("DATEDIF中参数不足", new List<Operand>());
+            if (arg.Count < 1) return throwError("EDATE中参数不足", new List<Operand>());
             return new Operand(OperandType.DATE, (Date)(((DateTime)arg[0].DateValue).AddMonths(arg[1].IntValue)));
         }
 
         private Operand TIMEVALUE(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("DATEDIF中参数不足", new List<Operand>());
+            if (arg.Count < 1) return throwError("TIMEVALUE中参数不足", new List<Operand>());
             return new Operand(OperandType.DATE, new Date(TimeSpan.Parse(arg[0].StringValue)));
         }
 
         private Operand DAYS360(List<Operand> arg)
         {
-            if (arg.Count < 2) return throwError("DATEDIF中参数不足", new List<Operand>());
+            if (arg.Count < 2) return throwError("DAYS360中参数不足", new List<Operand>());
             var startDate = arg[0].DateValue;
             var endDate = arg[1].DateValue;
 
@@ -84,69 +84,109 @@ namespace ToolGood.Algorithm
         private Operand WEEKDAY(List<Operand> arg)
         {
             if (arg.Count < 1) return throwError("YEAR中参数不足", new List<Operand>());
-            return new Operand(OperandType.NUMBER, ((DateTime)arg[0].DateValue).DayOfWeek + 1);
+            var type = 1;
+            if (arg.Count == 2) type = arg[1].IntValue;
+            var t = ((DateTime)arg[0].DateValue).DayOfWeek;
+            if (type == 1) {
+                return new Operand(OperandType.NUMBER, (double)(t + 1));
+            } else if (type == 2) {
+                if (t == 0) return new Operand(OperandType.NUMBER, 7d);
+                return new Operand(OperandType.NUMBER, (double)t);
+            }
+            if (t == 0) {
+                return new Operand(OperandType.NUMBER, 6d);
+            }
+            return new Operand(OperandType.NUMBER, (double)(t - 1));
         }
 
         private Operand YEAR(List<Operand> arg)
         {
             if (arg.Count < 1) return throwError("YEAR中参数不足", new List<Operand>());
-            return new Operand(OperandType.NUMBER, arg[0].DateValue.Year);
+            return new Operand(OperandType.NUMBER, (double)arg[0].DateValue.Year);
         }
 
         private Operand SECOND(List<Operand> arg)
         {
             if (arg.Count < 1) return throwError("SECOND中参数不足", new List<Operand>());
-            return new Operand(OperandType.NUMBER, arg[0].DateValue.Second);
+            return new Operand(OperandType.NUMBER, (double)arg[0].DateValue.Second);
         }
 
         private Operand MONTH(List<Operand> arg)
         {
             if (arg.Count < 1) return throwError("MONTH中参数不足", new List<Operand>());
-            return new Operand(OperandType.NUMBER, arg[0].DateValue.Month);
+            return new Operand(OperandType.NUMBER, (double)arg[0].DateValue.Month);
         }
 
         private Operand MINUTE(List<Operand> arg)
         {
             if (arg.Count < 1) return throwError("MINUTE中参数不足", new List<Operand>());
-            return new Operand(OperandType.NUMBER, arg[0].DateValue.Minute);
+            return new Operand(OperandType.NUMBER, (double)arg[0].DateValue.Minute);
         }
 
         private Operand HOUR(List<Operand> arg)
         {
             if (arg.Count < 1) return throwError("HOUR中参数不足", new List<Operand>());
-            return new Operand(OperandType.NUMBER, arg[0].DateValue.Hour);
+            return new Operand(OperandType.NUMBER, (double)arg[0].DateValue.Hour);
         }
 
         private Operand DAY(List<Operand> arg)
         {
             if (arg.Count < 1) return throwError("DAY中参数不足", new List<Operand>());
-            return new Operand(OperandType.NUMBER, arg[0].DateValue.Day);
+            return new Operand(OperandType.NUMBER, (double)arg[0].DateValue.Day);
         }
 
         private Operand DATEDIF(List<Operand> arg)
         {
-            if (arg.Count < 2) return throwError("DATEDIF中参数不足", new List<Operand>());
-            var startDate = arg[0].DateValue;
-            var endDate = arg[1].DateValue;
-            return new Operand(OperandType.NUMBER, (int)((double)startDate - (double)endDate));
-
-
-            ////var t = arg[2].StringValue;
-            //if (t == "y") {
-            //    return new Operand(OperandType.NUMBER, (int)(double)(startDate - endDate) / 365);
-            //} else if (t == "m") {
-            //    return new Operand(OperandType.NUMBER, (int)(double)(startDate - endDate) / 30);
-            //} else if (t == "d") {
-            //    return new Operand(OperandType.NUMBER, (int)(double)(startDate - endDate));
+            if (arg.Count < 3) return throwError("DATEDIF中参数不足", new List<Operand>());
+            var startDate = (DateTime)arg[0].DateValue;
+            var endDate = (DateTime)arg[1].DateValue;
+            //if (startDate> endDate) {
+            //    var dt = startDate;
+            //    startDate = endDate;
+            //    endDate = dt;
             //}
-            //return throwError("DATE比较类型错误", new List<Operand>());
+            var t = arg[2].StringValue.ToLower();
+            if (t == "y") {
+                bool b = false;
+                if (startDate.Month < endDate.Month) {
+                    b = true;
+                } else if (startDate.Month == endDate.Month) {
+                    if (startDate.Day <= endDate.Day) b = true;
+                }
+                if (b) {
+                    return new Operand(OperandType.NUMBER, (double)(endDate.Year - startDate.Year));
+                } else {
+                    return new Operand(OperandType.NUMBER, (double)(endDate.Year - startDate.Year - 1));
+                }
+            } else if (t == "m") {
+                bool b = false;
+                if (startDate.Day <= endDate.Day) b = true;
+                if (b) {
+                    return new Operand(OperandType.NUMBER, (double)(endDate.Year * 12 + endDate.Month - startDate.Year * 12 - startDate.Month));
+                } else {
+                    return new Operand(OperandType.NUMBER, (double)(endDate.Year * 12 + endDate.Month - startDate.Year * 12 - startDate.Month - 1));
+                }
+            } else if (t == "d") {
+                return new Operand(OperandType.NUMBER, (double)(endDate - startDate).Days);
+            } else if (t == "yd") {
+                var day = endDate.DayOfYear - startDate.DayOfYear;
+                return new Operand(OperandType.NUMBER, (double)(Math.Abs(day)));
+            } else if (t == "md") {
+                var mo = endDate.Day - startDate.Day;
+                return new Operand(OperandType.NUMBER, (double)(Math.Abs(mo)));
+            } else if (t == "ym") {
+                var mo = endDate.Month - startDate.Month;
+                return new Operand(OperandType.NUMBER, (double)(Math.Abs(mo)));
+            }
+            return throwError("DATE比较类型错误", new List<Operand>());
         }
 
         private Operand DATEVALUE(List<Operand> arg)
         {
-            if (arg.Count < 3) return throwError("DATE中参数不足", new List<Operand>());
-            var d = new Date(arg[0].StringValue);
-            return new Operand(OperandType.DATE, d);
+            if (arg.Count < 1) return throwError("DATE中参数不足", new List<Operand>());
+            var d = DateTime.Parse(arg[0].StringValue).Date;
+
+            return new Operand(OperandType.DATE, (Date)d);
         }
 
         private Operand DATE(List<Operand> arg)

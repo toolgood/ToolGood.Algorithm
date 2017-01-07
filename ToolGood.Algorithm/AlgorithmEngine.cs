@@ -22,7 +22,7 @@ namespace ToolGood.Algorithm
         }
         private void addFunc(string name, Func<List<Operand>, Operand> func)
         {
-            name = name.ToLower();
+            name = name.ToLower().Trim();
             m_Operators.Add(name);
             funcDict[name] = func;
         }
@@ -472,21 +472,27 @@ namespace ToolGood.Algorithm
         public short TryEvaluate(string exp, short def)
         {
             if (Parse(exp)) {
-                return (short)(double)Evaluate();
+                var obj = Evaluate();
+                if (obj is Date) return (short)(double)(Date)obj;
+                return (short)(double)obj;
             }
             return def;
         }
         public int TryEvaluate(string exp, int def)
         {
             if (Parse(exp)) {
-                return (int)(double)Evaluate();
+                var obj = Evaluate();
+                if (obj is Date) return (int)(double)(Date)Evaluate();
+                return (int)(double)obj;
             }
             return def;
         }
         public long TryEvaluate(string exp, long def)
         {
             if (Parse(exp)) {
-                return (long)(double)Evaluate();
+                var obj = Evaluate();
+                if (obj is Date) return (long)(double)(Date)obj;
+                return (long)(double)obj;
             }
             return def;
         }
@@ -494,21 +500,27 @@ namespace ToolGood.Algorithm
         public ushort TryEvaluate(string exp, ushort def)
         {
             if (Parse(exp)) {
-                return (ushort)(double)Evaluate();
+                var obj = Evaluate();
+                if (obj is Date) return (ushort)(double)(Date)obj;
+                return (ushort)(double)obj;
             }
             return def;
         }
         public uint TryEvaluate(string exp, uint def)
         {
             if (Parse(exp)) {
-                return (uint)(double)Evaluate();
+                var obj = Evaluate();
+                if (obj is Date) return (uint)(double)(Date)obj;
+                return (uint)(double)obj;
             }
             return def;
         }
         public ulong TryEvaluate(string exp, ulong def)
         {
             if (Parse(exp)) {
-                return (ulong)(double)Evaluate();
+                var obj = Evaluate();
+                if (obj is Date) return (ulong)(double)(Date)obj;
+                return (ulong)(double)obj;
             }
             return def;
         }
@@ -516,14 +528,18 @@ namespace ToolGood.Algorithm
         public float TryEvaluate(string exp, float def)
         {
             if (Parse(exp)) {
-                return (float)(double)Evaluate();
+                var obj = Evaluate();
+                if (obj is Date) return (float)(double)(Date)obj;
+                return (float)(double)obj;
             }
             return def;
         }
         public double TryEvaluate(string exp, double def)
         {
             if (Parse(exp)) {
-                return (double)Evaluate();
+                var obj = Evaluate();
+                if (obj is Date) return (double)(Date)obj;
+                return (double)obj;
             }
             return def;
         }
@@ -546,10 +562,36 @@ namespace ToolGood.Algorithm
         public DateTime TryEvaluate(string exp, DateTime def)
         {
             if (Parse(exp)) {
-                return (DateTime)Evaluate();
+                var obj = Evaluate();
+                if (obj is string) {
+                    DateTime dt;
+                    if (DateTime.TryParse(obj.ToString(),out dt)) {
+                        return dt;
+                    }
+                    return def;
+                }
+                return (DateTime)(Date)Evaluate();
             }
             return def;
         }
+
+        public TimeSpan TryEvaluate(string exp, TimeSpan def)
+        {
+            if (Parse(exp)) {
+                var obj = Evaluate();
+                if (obj is string) {
+                    TimeSpan dt;
+                    if (TimeSpan.TryParse(obj.ToString(), out dt)) {
+                        return dt;
+                    }
+                    return def;
+                }
+                return (TimeSpan)(Date)Evaluate();
+            }
+            return def;
+        }
+
+
 
         #endregion
 

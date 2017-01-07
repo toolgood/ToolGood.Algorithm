@@ -20,12 +20,12 @@ ToolGood.Algorithm
     <tr><td>公式名</td><td>说明</td><td>示例</td></tr>
     <tr>
         <td>IF</td>
-        <td>指定要执行的逻辑检测</td>
+        <td>执行真假值判断，根据逻辑计算的真假值，返回不同结果。</td>
         <td>if(1=1,1,2) ->1</td>
     </tr>
     <tr>
         <td>IFERROR</td>
-        <td>指定要执行的逻辑检测</td>
+        <td>如果公式计算出错误则返回您指定的值；否则返回公式结果。</td>
         <td>iferror(1/0,1,2) ->1</td>
     </tr>
     <tr>
@@ -374,60 +374,60 @@ ToolGood.Algorithm
 <table>
     <tr><td>公式名</td><td>说明</td><td>示例</td></tr>
     <tr>
-        <td>DATE</td><td>返回特定日期的序列号</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>NOW</td><td>返回当前日期和时间的序列号</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>TODAY</td><td>返回今天日期的序列号</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>YEAR</td><td>将序列号转换为年</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>MONTH</td><td>将序列号转换为月</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>DAY</td><td>将序列号转换为月份中的日</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>HOUR</td><td>将序列号转换为小时</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>MINUTE</td><td>将序列号转换为分钟</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>SECOND</td><td>将序列号转换为秒</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>WEEKDAY</td><td>将序列号转换为星期几</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>TIME</td><td>返回特定时间的序列号</td>
-        <td></td>
+        <td>DATEVALUE</td><td>将文本格式的日期转换为序列号</td>
+        <td>DATEVALUE("2017-01-02") ->2017-01-02</td>
     </tr>
     <tr>
         <td>TIMEVALUE</td><td>将文本格式的时间转换为序列号</td>
-        <td></td>
+        <td>TIMEVALUE("12:12:12") ->12:12:12</td>
     </tr>
     <tr>
-        <td>DATEVALUE</td><td>将文本格式的日期转换为序列号</td>
-        <td></td>
+        <td>DATE</td><td>返回特定日期的序列号</td>
+        <td>DATE(2016,1,1) ->2016-01-01</td>
+    </tr>
+    <tr>
+        <td>TIME</td><td>返回特定时间的序列号</td>
+        <td>TIME(12,13,14) ->12:13:14</td>
+    </tr>
+    <tr>
+        <td>NOW</td><td>返回当前日期和时间的序列号</td>
+        <td>NOW() ->2017-01-07 11:00:00</td>
+    </tr>
+    <tr>
+        <td>TODAY</td><td>返回今天日期的序列号</td>
+        <td>TODAY() ->2017-01-07</td>
+    </tr>
+    <tr>
+        <td>YEAR</td><td>将序列号转换为年</td>
+        <td>YEAR(NOW()) ->2017</td>
+    </tr>
+    <tr>
+        <td>MONTH</td><td>将序列号转换为月</td>
+        <td>MONTH(NOW()) ->1</td>
+    </tr>
+    <tr>
+        <td>DAY</td><td>将序列号转换为月份中的日</td>
+        <td>DAY(NOW()) ->7</td>
+    </tr>
+    <tr>
+        <td>HOUR</td><td>将序列号转换为小时</td>
+        <td>HOUR(NOW()) ->11</td>
+    </tr>
+    <tr>
+        <td>MINUTE</td><td>将序列号转换为分钟</td>
+        <td>MINUTE(NOW()) ->12</td>
+    </tr>
+    <tr>
+        <td>SECOND</td><td>将序列号转换为秒</td>
+        <td>MINUTE(NOW()) ->34</td>
+    </tr>
+    <tr>
+        <td>WEEKDAY</td><td>将序列号转换为星期几</td>
+        <td>WEEKDAY(date(2017,1,7)) ->7</td>
     </tr>
     <tr>
         <td>DATEDIF</td><td>返回两个日期之间的相隔天数</td>
-        <td></td>
+        <td>DATEDIF("1975-1-30","2017-1-7","Y") ->41</td>
     </tr>
     <tr>
         <td>DAYS360</td><td>以一年 360 天为基准计算两个日期间的天数</td>
