@@ -306,67 +306,67 @@ ToolGood.Algorithm
     </tr>
     <tr>
         <td>LEFT</td><td>返回文本值最左边的字符</td>
-        <td></td>
+        <td>LEFT('123222',3) ->123</td>
     </tr>
     <tr>
         <td>LEN</td><td>返回文本字符串中的字符个数</td>
-        <td></td>
+        <td>LEN('123222') ->6</td>
     </tr>
     <tr>
         <td>LOWER</td><td>将文本转换为小写形式</td>
-        <td></td>
+        <td>LOWER('ABC') ->abc</td>
     </tr>
     <tr>
         <td>MID</td><td>从文本字符串中的指定位置起返回特定个数的字符</td>
-        <td></td>
+        <td>MID('ABCDEF',2,3) ->BCD</td>
     </tr>
     <tr>
         <td>PROPER</td><td>将文本值中每一个单词的首字母设置为大写</td>
-        <td></td>
+        <td>PROPER('abc abc') ->Abc Abc</td>
     </tr>
     <tr>
         <td>REPLACE</td><td>替换文本内的字符</td>
-        <td></td>
+        <td>REPLACE("abccd",2,3,"2") ->a2d</td>
     </tr>
     <tr>
         <td>REPT</td><td>按给定次数重复文本</td>
-        <td></td>
+        <td>REPT("q",3) ->qqq</td>
     </tr>
     <tr>
         <td>RIGHT</td><td>返回文本值最右边的字符</td>
-        <td></td>
+        <td>RIGHT("123q",3) ->23q</td>
     </tr>
     <tr>
         <td>RMB</td><td>将数字转换为大写数字文本</td>
-        <td></td>
+        <td>rmb(12.3) ->壹拾贰元叁角</td>
     </tr>
     <tr>
         <td>SEARCH</td><td>在一文本值中查找另一文本值（不区分大小写）</td>
-        <td></td>
+        <td>SEARCH("aa","abbAaddd") ->4</td>
     </tr>
     <tr>
         <td>SUBSTITUTE</td><td>在文本字符串中以新文本替换旧文本</td>
-        <td></td>
+        <td>SUBSTITUTE("ababcc","ab","12") ->1212cc</td>
     </tr>
     <tr>
         <td>T</td><td>将参数转换为文本</td>
-        <td></td>
+        <td>T('123') ->123</td>
     </tr>
     <tr>
         <td>TEXT</td><td>设置数字的格式并将数字转换为文本</td>
-        <td></td>
+        <td>TEXT(123,"0.00") ->123.00</td>
     </tr>
     <tr>
         <td>TRIM</td><td>删除文本中的空格</td>
-        <td></td>
+        <td>TRIM(" 123 123 ")->123 123</td>
     </tr>
     <tr>
         <td>UPPER</td><td>将文本转换为大写形式</td>
-        <td></td>
+        <td>UPPER("abc") ->ABC</td>
     </tr>
     <tr>
         <td>VALUE</td><td>将文本参数转换为数字</td>
-        <td></td>
+        <td>VALUE("123") ->123</td>
     </tr>
 </table>
 

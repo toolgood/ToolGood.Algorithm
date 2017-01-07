@@ -77,7 +77,7 @@ namespace ToolGood.Algorithm
         public void FIXED_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("FIXED(4567.89,1)","");
+            var t = engine.TryEvaluate("FIXED(4567.89,1)", "");
             Assert.AreEqual(t, "4,567.9");
             //t = engine.TryEvaluate(" FIXED(4567.89,-1)", "");//iserror
             //Assert.AreEqual(t, "4,570.0");
@@ -87,7 +87,123 @@ namespace ToolGood.Algorithm
             Assert.AreEqual(t, "77.89");
         }
 
+        [Test]
+        public void LEFT_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("LEFT('123222',3)", "");
+            Assert.AreEqual(t, "123");
+        }
+        [Test]
+        public void LEN_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("LEN('123222')", 0);
+            Assert.AreEqual(t, 6);
+        }
+        [Test]
+        public void LOWER_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("LOWER('ABC')", "");
+            Assert.AreEqual(t, "abc");
+        }
+        [Test]
+        public void MID_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("MID('ABCDEF',2,3)", "");
+            Assert.AreEqual(t, "BCD");
+        }
+        [Test]
+        public void PROPER_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("PROPER('abc abc')", "");
+            Assert.AreEqual(t, "Abc Abc");
+        }
+        [Test]
+        public void REPLACE_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("REPLACE(\"abccd\",2,3,\"2\")", "");
+            Assert.AreEqual(t, "a2d");
+        }
+        [Test]
+        public void REPT_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("REPT(\"q\",3)", "");
+            Assert.AreEqual(t, "qqq");
+        }
+        [Test]
+        public void RIGHT_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("RIGHT(\"123q\",3)", "");
+            Assert.AreEqual(t, "23q");
+        }
+        [Test]
+        public void RMB_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("rmb(12.3)", "");
+            Assert.AreEqual(t, "壹拾贰元叁角");
+        }
+        [Test]
+        public void SEARCH_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("SEARCH(\"aa\",\"abbAaddd\")", 0);
+            Assert.AreEqual(t, 4);
+        }
+        [Test]
+        public void SUBSTITUTE_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("SUBSTITUTE(\"ababcc\",\"ab\",\"12\")", "");
+            Assert.AreEqual(t, "1212cc");
+            t = engine.TryEvaluate("SUBSTITUTE(\"ababcc\",\"ab\",\"12\",2)", "");
+            Assert.AreEqual(t, "ab12cc");
+        }
+        [Test]
+        public void T_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("T(12)", "");
+            Assert.AreEqual(t, "");
+            t = engine.TryEvaluate("T('123')", "");
+            Assert.AreEqual(t, "123");
+        }
+        [Test]
+        public void TEXT_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("TEXT(123,\"0.00\")", "");
+            Assert.AreEqual(t, "123.00");
+        }
+        [Test]
+        public void TRIM_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("TRIM(\" 123 123 \")", "");
+            Assert.AreEqual(t, "123 123");
+        }
+        [Test]
+        public void UPPER_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("UPPER(\"abc\")", "");
+            Assert.AreEqual(t, "ABC");
+        }
 
+        [Test]
+        public void VALUE_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("VALUE(\"123\")", 0);
+            Assert.AreEqual(t, 123);
+        }
 
 
     }

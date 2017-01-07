@@ -32,7 +32,7 @@ namespace ToolGood.Algorithm
             addFunc("REPT", REPT); //按给定次数重复文本
             addFunc("RIGHT", RIGHT); //返回文本值最右边的字符
             addFunc("RMB", RMB); //按 ￥(RMB)货币格式将数字转换为文本
-            addFunc("SEARCH", FIND); //在一文本值中查找另一文本值（不区分大小写） 
+            addFunc("SEARCH", SEARCH); //在一文本值中查找另一文本值（不区分大小写） 
             addFunc("SUBSTITUTE", SUBSTITUTE); //在文本字符串中以新文本替换旧文本 
             addFunc("T", T); //将参数转换为文本 
             addFunc("TEXT", TEXT); //设置数字的格式并将数字转换为文本 
@@ -103,6 +103,9 @@ namespace ToolGood.Algorithm
         private Operand T(List<Operand> arg)
         {
             if (arg.Count < 1) return throwError("T中参数不足", new List<Operand>());
+            if (arg[0].Type== OperandType.NUMBER || arg[0].Type== OperandType.BOOLEAN) {
+                return new Operand(OperandType.STRING, "");
+            }
             return new Operand(OperandType.STRING, arg[0].StringValue);
         }
 
@@ -131,12 +134,12 @@ namespace ToolGood.Algorithm
                         break;
                     }
                 }
-
                 if (b) {
                     index2++;
                 }
                 if (b && index2 == index) {
                     sb.Append(newtext);
+                    i += oldtext.Length - 1;
                 } else {
                     sb.Append(text[i]);
                 }
@@ -191,17 +194,15 @@ namespace ToolGood.Algorithm
         {
             if (arg.Count < 1) return throwError("PROPER中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder(text);
             bool isFirst = true;
             for (int i = 0; i < text.Length; i++) {
                 var t = text[i];
                 if (t == ' ' || t == '\r' || t == '\n' || t == '\t' || t == '.') {
                     isFirst = true;
-                    sb.Append(t);
                 } else if (isFirst) {
-                    sb.Append(t.ToString().ToUpper());
-                } else {
-                    sb.Append(t);
+                    sb[i] = char.ToUpper(t);
+                    isFirst = false;
                 }
             }
             return new Operand(OperandType.STRING, sb.ToString());
@@ -210,7 +211,7 @@ namespace ToolGood.Algorithm
         private Operand MID(List<Operand> arg)
         {
             if (arg.Count < 3) return throwError("MID中参数不足", new List<Operand>());
-            return new Operand(OperandType.STRING, arg[0].StringValue.Substring(arg[1].IntValue + 1, arg[2].IntValue));
+            return new Operand(OperandType.STRING, arg[0].StringValue.Substring(arg[1].IntValue - 1, arg[2].IntValue));
         }
 
         private Operand LOWER(List<Operand> arg)
@@ -222,7 +223,7 @@ namespace ToolGood.Algorithm
         private Operand LEN(List<Operand> arg)
         {
             if (arg.Count < 1) return throwError("LEN中参数不足", new List<Operand>());
-            return new Operand(OperandType.NUMBER, arg[0].StringValue.Length);
+            return new Operand(OperandType.NUMBER, (double)arg[0].StringValue.Length);
         }
 
         private Operand LEFT(List<Operand> arg)
@@ -246,6 +247,17 @@ namespace ToolGood.Algorithm
                 return new Operand(OperandType.STRING, s.ToString("N" + num));
             }
             return new Operand(OperandType.STRING, s.ToString());
+        }
+        private Operand SEARCH(List<Operand> arg)
+        {
+            if (arg.Count < 2) return throwError("FIND中参数不足", new List<Operand>());
+
+            if (arg.Count == 2) {
+                var p = arg[1].StringValue.ToLower().IndexOf(arg[0].StringValue.ToLower()) + 1;
+                return new Operand(OperandType.NUMBER, (double)p);
+            }
+            var p2 = arg[1].StringValue.ToLower().IndexOf(arg[0].StringValue.ToLower(), arg[2].IntValue) + 1;
+            return new Operand(OperandType.NUMBER, (double)p2);
         }
 
         private Operand FIND(List<Operand> arg)
