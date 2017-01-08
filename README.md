@@ -21,57 +21,57 @@ ToolGood.Algorithm
     <tr>
         <td>IF</td>
         <td>执行真假值判断，根据逻辑计算的真假值，返回不同结果。</td>
-        <td>if(1=1,1,2) ->1</td>
+        <td>if(1=1,1,2) >>1</td>
     </tr>
     <tr>
         <td>IFERROR</td>
         <td>如果公式计算出错误则返回您指定的值；否则返回公式结果。</td>
-        <td>iferror(1/0,1,2) ->1</td>
+        <td>iferror(1/0,1,2) >>1</td>
     </tr>
     <tr>
         <td>IFNUMBER</td>
         <td>指定要执行的逻辑检测</td>
-        <td>ifnumber(4,1,2) ->1</td>
+        <td>ifnumber(4,1,2) >>1</td>
     </tr>
     <tr>
         <td>IFTEXT</td>
         <td>指定要执行的逻辑检测</td>
-        <td>iftext('a',1,2) ->1</td>
+        <td>iftext('a',1,2) >>1</td>
     </tr>
     <tr>
         <td>ISNUMBER</td>
         <td>判断是否数字</td>
-        <td>ISNUMBER(1) ->true</td>
+        <td>ISNUMBER(1) >>true</td>
     </tr>
     <tr>
         <td>ISTEXT</td>
         <td>判断是否文字</td>
-        <td>istext('1') ->true </td>
+        <td>istext('1') >>true </td>
     </tr>
     <tr>
         <td>AND</td>
         <td>如果所有参数均为TRUE，则返回TRUE</td>
-        <td>and(1,2=2) ->true</td>
+        <td>and(1,2=2) >>true</td>
     </tr>
     <tr>
         <td>OR</td>
         <td>如果任一参数为TRUE，则返回TRUE</td>
-        <td>or(1,2=3) ->true</td>
+        <td>or(1,2=3) >>true</td>
     </tr>
     <tr>
         <td>NOT</td>
         <td>对参数的逻辑值求反</td>
-        <td>NOT(true()) ->false</td>
+        <td>NOT(true()) >>false</td>
     </tr>
     <tr>
         <td>TRUE</td>
         <td>返回逻辑值TRUE</td>
-        <td>true() ->true</td>
+        <td>true() >>true</td>
     </tr>
     <tr>
         <td>FALSE</td>
         <td>返回逻辑值FALSE</td>
-        <td>false() ->false</td>
+        <td>false() >>false</td>
     </tr>
 </table>
 
@@ -81,195 +81,195 @@ ToolGood.Algorithm
     <tr>
         <td rowspan="11">基础数学</td>
         <td>PI</td><td>返回 PI 值</td>
-        <td>pi() ->3.141592654</td>
+        <td>pi() >>3.141592654</td>
     </tr>
     <tr>
         <td>abs</td><td>返回数字的绝对值</td>
-        <td>abs(-1) ->1</td>
+        <td>abs(-1) >>1</td>
     </tr>
     <tr>
         <td>QUOTIENT</td><td>返回商的整数部分，该函数可用于舍掉商的小数部分。</td>
-        <td>QUOTIENT(7,3) ->2</td>
+        <td>QUOTIENT(7,3) >>2</td>
     </tr>
     <tr>
         <td>mod</td><td>返回两数相除的余数</td>
-        <td>MOD(7,3) ->1</td>
+        <td>MOD(7,3) >>1</td>
     </tr>
     <tr>
         <td>SIGN</td><td>返回数字的符号。当数字为正数时返回 1，为零时返回 0，为负数时返回 -1。</td>
-        <td>SIGN(-9) ->-1</td>
+        <td>SIGN(-9) >>-1</td>
     </tr>
    <tr>
         <td>SQRT</td><td>返回正平方根</td>
-        <td>SQRT(9) ->3</td>
+        <td>SQRT(9) >>3</td>
     </tr>
     <tr>
         <td>SUM</td><td>返回所有数字之和。</td>
-        <td>SUM(1,2,3,4) ->10</td>
+        <td>SUM(1,2,3,4) >>10</td>
     </tr>
     <tr>
         <td>TRUNC</td><td>将数字截尾取整</td>
-        <td>TRUNC(9.222) ->9  TRUNC(-9.222) ->-9 </td>
+        <td>TRUNC(9.222) >>9  TRUNC(-9.222) >>-9 </td>
     </tr>
     <tr>
         <td>int</td><td>将数字向下舍入到最接近的整数。</td>
-        <td>int(9.222) ->9   int(-9.222) ->-10</td>
+        <td>int(9.222) >>9   int(-9.222) >>-10</td>
     </tr>
     <tr>
         <td>gcd</td><td>返回最大公约数</td>
-        <td>GCD(3,5,7) ->1</td>
+        <td>GCD(3,5,7) >>1</td>
     </tr>
     <tr>
         <td>LCM</td><td>返回整数参数的最小公倍数</td>
-        <td>LCM(3,5,7) ->105</td>
+        <td>LCM(3,5,7) >>105</td>
     </tr>
     <tr>
     <td rowspan="15">三角函数</td>
         <td>degrees</td><td>将弧度转换为度</td>
-        <td>degrees(pi()) ->180</td>
+        <td>degrees(pi()) >>180</td>
     </tr>
     <tr>
         <td>RADIANS</td><td>将度转换为弧度</td>
-        <td>RADIANS(180) ->3.141592654</td>
+        <td>RADIANS(180) >>3.141592654</td>
     </tr>
     <tr>
         <td>cos</td><td>返回数字的余弦值</td>
-        <td>cos(1) ->0.54030230586813977</td>
+        <td>cos(1) >>0.54030230586813977</td>
     </tr>
     <tr>
         <td>cosh</td><td>返回数字的双曲余弦值</td>
-        <td>cosh(1) ->1.5430806348152437</td>
+        <td>cosh(1) >>1.5430806348152437</td>
     </tr>
     <tr>
         <td>SIN</td><td>返回给定角度的正弦值</td>
-        <td>sin(1) ->0.8414709848078965</td>
+        <td>sin(1) >>0.8414709848078965</td>
     </tr>
     <tr>
         <td>SINH</td><td>返回数字的双曲正弦值</td>
-        <td>sinh(1) ->1.1752011936438014</td>
+        <td>sinh(1) >>1.1752011936438014</td>
     </tr>
     <tr>
         <td>TAN</td><td>返回数字的正切值</td>
-        <td>tan(1) ->1.5574077246549023</td>
+        <td>tan(1) >>1.5574077246549023</td>
     </tr>
     <tr>
         <td>TANH</td><td>返回数字的双曲正切值</td>
-        <td>tanh(1) ->0.76159415595576485</td>
+        <td>tanh(1) >>0.76159415595576485</td>
     </tr>
     <tr>
         <td>acos</td><td>返回数字的反余弦值</td>
-        <td>acos(0.5) ->1.0471975511965979</td>
+        <td>acos(0.5) >>1.0471975511965979</td>
     </tr>
     <tr>
         <td>acosh</td><td>返回数字的反双曲余弦值</td>
-        <td>acosh(1.5) ->0.96242365011920694</td>
+        <td>acosh(1.5) >>0.96242365011920694</td>
     </tr>
     <tr>
         <td>asin</td><td>返回数字的反正弦值</td>
-        <td>asin(0.5) ->0.52359877559829893</td>
+        <td>asin(0.5) >>0.52359877559829893</td>
     </tr>
     <tr>
         <td>asinh</td><td>返回数字的反双曲正弦值。</td>
-        <td>asinh(1.5) ->1.1947632172871094</td>
+        <td>asinh(1.5) >>1.1947632172871094</td>
     </tr>
     <tr>
         <td>atan</td><td>返回数字的反正切值</td>
-        <td>atan(1) ->0.78539816339744828</td>
+        <td>atan(1) >>0.78539816339744828</td>
     </tr>
    <tr>
         <td>atanh</td><td>返回参数的反双曲正切值</td>
-        <td>atanh(1) ->0.54930614433405489</td>
+        <td>atanh(1) >>0.54930614433405489</td>
     </tr>
     <tr>
         <td>atan2</td><td>从X和Y坐标返回反正切</td>
-        <td>atan2(1,2) ->1.1071487177940904</td>
+        <td>atan2(1,2) >>1.1071487177940904</td>
     </tr>
     <tr>
         <td rowspan="8">四舍五入</td>
         <td>ROUND</td><td>返回某个数字按指定位数取整后的数字。</td>
-        <td>ROUND(4.333,2) ->4.33</td>
+        <td>ROUND(4.333,2) >>4.33</td>
     </tr>
     <tr>
         <td>ROUNDDOWN</td><td>靠近零值，向下（绝对值减小的方向）舍入数字。</td>
-        <td>ROUNDDOWN(4.333,2) ->4.33</td>
+        <td>ROUNDDOWN(4.333,2) >>4.33</td>
     </tr>
     <tr>
         <td>ROUNDUP</td><td>远离零值，向上（绝对值增长的方向）舍入数字。</td>
-        <td>ROUNDUP(4.333,2) ->4.34</td>
+        <td>ROUNDUP(4.333,2) >>4.34</td>
     </tr>
     <tr>
         <td>CEILING</td><td>向上舍入（沿绝对值增大的方向）为最接近的 舍入基数 的倍数。</td>
-        <td>CEILING(4.333,0.1) ->4.4</td>
+        <td>CEILING(4.333,0.1) >>4.4</td>
     </tr>
     <tr>
         <td>floor</td><td>向下舍入，使其等于最接近的 Significance 的倍数。</td>
-        <td>FLOOR(4.333,0.1) ->4.3</td>
+        <td>FLOOR(4.333,0.1) >>4.3</td>
     </tr>
     <tr>
         <td>even</td><td>返回沿绝对值增大方向取整后最接近的偶数。</td>
-        <td>EVEN(3) ->4</td>
+        <td>EVEN(3) >>4</td>
     </tr>
     <tr>
         <td>ODD</td><td>将数字向上舍入为最接近的奇型整数</td>
-        <td>ODD(3.1) ->5</td>
+        <td>ODD(3.1) >>5</td>
     </tr>
     <tr>
         <td>MROUND</td><td>返回一个舍入到所需倍数的数字</td>
-        <td>MROUND(13,5) ->15</td>
+        <td>MROUND(13,5) >>15</td>
     </tr>
     <tr>
         <td rowspan="2">随机数</td>
         <td>RAND</td><td>返回 0 到 1 之间的随机数 </td>
-        <td>RAND() ->0.2</td>
+        <td>RAND() >>0.2</td>
     </tr>
     <tr>
         <td>RANDBETWEEN</td><td>返回大于等于指定的最小值，小于指定最大值之间的一个随机整数。</td>
-        <td>RANDBETWEEN(2,44) ->9</td>
+        <td>RANDBETWEEN(2,44) >>9</td>
     </tr>
     <tr>
         <td rowspan="11">幂/对数/阶乘</td>
         <td>fact</td><td>返回数的阶乘，一个数的阶乘等于 1*2*3*…* 该数。</td>
-        <td>FACT(3) ->6</td>
+        <td>FACT(3) >>6</td>
     </tr>
     <tr>
         <td>factdouble</td><td>返回数字的双倍阶乘</td>
-        <td>FACTDOUBLE(10) ->3840</td>
+        <td>FACTDOUBLE(10) >>3840</td>
     </tr>
     <tr>
         <td>POWER</td><td>返回数的乘幂结果</td>
-        <td>POWER(10,2) ->100</td>
+        <td>POWER(10,2) >>100</td>
     </tr>
     <tr>
         <td>exp</td><td>返回e的指定数乘幂</td>
-        <td>exp(2) ->7.389056099</td>
+        <td>exp(2) >>7.389056099</td>
     </tr>
     <tr>
         <td>ln</td><td>返回数字的自然对数</td>
-        <td>LN(4) ->1.386294361</td>
+        <td>LN(4) >>1.386294361</td>
     </tr>
     <tr>
         <td>log</td><td>返回数字的常用对数</td>
-        <td>LOG(100,10) ->2</td>
+        <td>LOG(100,10) >>2</td>
     </tr>
     <tr>
         <td>LOG10</td><td>返回数字的10对数</td>
-        <td>LOG10(100) ->2</td>
+        <td>LOG10(100) >>2</td>
     </tr>
     <tr>
         <td>MULTINOMIAL</td><td>返回参数和的阶乘与各参数阶乘乘积的比值</td>
-        <td>MULTINOMIAL(1,2,3) ->60</td>
+        <td>MULTINOMIAL(1,2,3) >>60</td>
     </tr>
     <tr>
         <td>PRODUCT</td><td>将所有以参数形式给出的数字相乘，并返回乘积值。</td>
-        <td>PRODUCT(1,2,3,4) ->24</td>
+        <td>PRODUCT(1,2,3,4) >>24</td>
     </tr>
     <tr>
         <td>SQRTPI</td><td>返回某数与 PI 的乘积的平方根</td>
-        <td>SQRTPI(3) ->3.069980124</td>
+        <td>SQRTPI(3) >>3.069980124</td>
     </tr>
     <tr>
         <td>SUMSQ</td><td>返回参数的平方和</td>
-        <td>SUMSQ(1,2) ->5</td>
+        <td>SUMSQ(1,2) >>5</td>
     </tr>
 </table>
 
@@ -278,103 +278,103 @@ ToolGood.Algorithm
     <tr><td>公式名</td><td>说明</td><td>示例</td></tr>
     <tr>
         <td>ASC</td><td>将字符串内的全角英文字母更改为半角字符</td>
-        <td>asc('ａｂｃＡＢＣ１２３') ->abcABC123</td>
+        <td>asc('ａｂｃＡＢＣ１２３') >>abcABC123</td>
     </tr>
     <tr>
         <td>JIS / WIDECHAR</td><td>将字符串中的半角英文字符更改为全角字符</td>
-        <td>jis('abcABC123') ->ａｂｃＡＢＣ１２３</td>
+        <td>jis('abcABC123') >>ａｂｃＡＢＣ１２３</td>
     </tr>
     <tr>
         <td>CHAR</td><td>返回由代码数字指定的字符</td>
-        <td>char(49) ->1</td>
+        <td>char(49) >>1</td>
     </tr>
     <tr>
         <td>CLEAN</td><td>删除文本中所有打印不出的字符</td>
-        <td>clean('\r112\t') ->112</td>
+        <td>clean('\r112\t') >>112</td>
     </tr>
     <tr>
         <td>CODE</td><td>返回文本字符串中第一个字符的数字代码</td>
-        <td>CODE("1") ->49</td>
+        <td>CODE("1") >>49</td>
     </tr>
     <tr>
         <td>CONCATENATE</td><td>将若干文本项合并到一个文本项中</td>
-        <td>CONCATENATE('tt','11') ->tt11</td>
+        <td>CONCATENATE('tt','11') >>tt11</td>
     </tr>
     <tr>
         <td>EXACT</td><td>检查两个文本值是否完全相同</td>
-        <td>EXACT("11","22") ->false</td>
+        <td>EXACT("11","22") >>false</td>
     </tr>
     <tr>
         <td>FIND</td><td>在一文本值内查找另一文本值（区分大小写） </td>
-        <td>FIND("11","12221122") ->5</td>
+        <td>FIND("11","12221122") >>5</td>
     </tr>
     <tr>
         <td>FIXED</td><td>将数字设置为具有固定小数位的文本格式</td>
-        <td>FIXED(4567.89,1) ->4,567.9</td>
+        <td>FIXED(4567.89,1) >>4,567.9</td>
     </tr>
     <tr>
         <td>LEFT</td><td>返回文本值最左边的字符</td>
-        <td>LEFT('123222',3) ->123</td>
+        <td>LEFT('123222',3) >>123</td>
     </tr>
     <tr>
         <td>LEN</td><td>返回文本字符串中的字符个数</td>
-        <td>LEN('123222') ->6</td>
+        <td>LEN('123222') >>6</td>
     </tr>
     <tr>
         <td>LOWER</td><td>将文本转换为小写形式</td>
-        <td>LOWER('ABC') ->abc</td>
+        <td>LOWER('ABC') >>abc</td>
     </tr>
     <tr>
         <td>MID</td><td>从文本字符串中的指定位置起返回特定个数的字符</td>
-        <td>MID('ABCDEF',2,3) ->BCD</td>
+        <td>MID('ABCDEF',2,3) >>BCD</td>
     </tr>
     <tr>
         <td>PROPER</td><td>将文本值中每一个单词的首字母设置为大写</td>
-        <td>PROPER('abc abc') ->Abc Abc</td>
+        <td>PROPER('abc abc') >>Abc Abc</td>
     </tr>
     <tr>
         <td>REPLACE</td><td>替换文本内的字符</td>
-        <td>REPLACE("abccd",2,3,"2") ->a2d</td>
+        <td>REPLACE("abccd",2,3,"2") >>a2d</td>
     </tr>
     <tr>
         <td>REPT</td><td>按给定次数重复文本</td>
-        <td>REPT("q",3) ->qqq</td>
+        <td>REPT("q",3) >>qqq</td>
     </tr>
     <tr>
         <td>RIGHT</td><td>返回文本值最右边的字符</td>
-        <td>RIGHT("123q",3) ->23q</td>
+        <td>RIGHT("123q",3) >>23q</td>
     </tr>
     <tr>
         <td>RMB</td><td>将数字转换为大写数字文本</td>
-        <td>rmb(12.3) ->壹拾贰元叁角</td>
+        <td>rmb(12.3) >>壹拾贰元叁角</td>
     </tr>
     <tr>
         <td>SEARCH</td><td>在一文本值中查找另一文本值（不区分大小写）</td>
-        <td>SEARCH("aa","abbAaddd") ->4</td>
+        <td>SEARCH("aa","abbAaddd") >>4</td>
     </tr>
     <tr>
         <td>SUBSTITUTE</td><td>在文本字符串中以新文本替换旧文本</td>
-        <td>SUBSTITUTE("ababcc","ab","12") ->1212cc</td>
+        <td>SUBSTITUTE("ababcc","ab","12") >>1212cc</td>
     </tr>
     <tr>
         <td>T</td><td>将参数转换为文本</td>
-        <td>T('123') ->123</td>
+        <td>T('123') >>123</td>
     </tr>
     <tr>
         <td>TEXT</td><td>设置数字的格式并将数字转换为文本</td>
-        <td>TEXT(123,"0.00") ->123.00</td>
+        <td>TEXT(123,"0.00") >>123.00</td>
     </tr>
     <tr>
         <td>TRIM</td><td>删除文本中的空格</td>
-        <td>TRIM(" 123 123 ")->123 123</td>
+        <td>TRIM(" 123 123 ")>>123 123</td>
     </tr>
     <tr>
         <td>UPPER</td><td>将文本转换为大写形式</td>
-        <td>UPPER("abc") ->ABC</td>
+        <td>UPPER("abc") >>ABC</td>
     </tr>
     <tr>
         <td>VALUE</td><td>将文本参数转换为数字</td>
-        <td>VALUE("123") ->123</td>
+        <td>VALUE("123") >>123</td>
     </tr>
 </table>
 
@@ -383,83 +383,83 @@ ToolGood.Algorithm
     <tr><td>公式名</td><td>说明</td><td>示例</td></tr>
     <tr>
         <td>DATEVALUE</td><td>将文本格式的日期转换为序列号</td>
-        <td>DATEVALUE("2017-01-02") ->2017-01-02</td>
+        <td>DATEVALUE("2017-01-02") >>2017-01-02</td>
     </tr>
     <tr>
         <td>TIMEVALUE</td><td>将文本格式的时间转换为序列号</td>
-        <td>TIMEVALUE("12:12:12") ->12:12:12</td>
+        <td>TIMEVALUE("12:12:12") >>12:12:12</td>
     </tr>
     <tr>
         <td>DATE</td><td>返回特定日期的序列号</td>
-        <td>DATE(2016,1,1) ->2016-01-01</td>
+        <td>DATE(2016,1,1) >>2016-01-01</td>
     </tr>
     <tr>
         <td>TIME</td><td>返回特定时间的序列号</td>
-        <td>TIME(12,13,14) ->12:13:14</td>
+        <td>TIME(12,13,14) >>12:13:14</td>
     </tr>
     <tr>
         <td>NOW</td><td>返回当前日期和时间的序列号</td>
-        <td>NOW() ->2017-01-07 11:00:00</td>
+        <td>NOW() >>2017-01-07 11:00:00</td>
     </tr>
     <tr>
         <td>TODAY</td><td>返回今天日期的序列号</td>
-        <td>TODAY() ->2017-01-07</td>
+        <td>TODAY() >>2017-01-07</td>
     </tr>
     <tr>
         <td>YEAR</td><td>将序列号转换为年</td>
-        <td>YEAR(NOW()) ->2017</td>
+        <td>YEAR(NOW()) >>2017</td>
     </tr>
     <tr>
         <td>MONTH</td><td>将序列号转换为月</td>
-        <td>MONTH(NOW()) ->1</td>
+        <td>MONTH(NOW()) >>1</td>
     </tr>
     <tr>
         <td>DAY</td><td>将序列号转换为月份中的日</td>
-        <td>DAY(NOW()) ->7</td>
+        <td>DAY(NOW()) >>7</td>
     </tr>
     <tr>
         <td>HOUR</td><td>将序列号转换为小时</td>
-        <td>HOUR(NOW()) ->11</td>
+        <td>HOUR(NOW()) >>11</td>
     </tr>
     <tr>
         <td>MINUTE</td><td>将序列号转换为分钟</td>
-        <td>MINUTE(NOW()) ->12</td>
+        <td>MINUTE(NOW()) >>12</td>
     </tr>
     <tr>
         <td>SECOND</td><td>将序列号转换为秒</td>
-        <td>SECOND(NOW()) ->34</td>
+        <td>SECOND(NOW()) >>34</td>
     </tr>
     <tr>
         <td>WEEKDAY</td><td>将序列号转换为星期几</td>
-        <td>WEEKDAY(date(2017,1,7)) ->7</td>
+        <td>WEEKDAY(date(2017,1,7)) >>7</td>
     </tr>
     <tr>
         <td>DATEDIF</td><td>返回两个日期之间的相隔天数</td>
-        <td>DATEDIF("1975-1-30","2017-1-7","Y") ->41</td>
+        <td>DATEDIF("1975-1-30","2017-1-7","Y") >>41</td>
     </tr>
     <tr>
         <td>DAYS360</td><td>以一年 360 天为基准计算两个日期间的天数</td>
-        <td>DAYS360('1975-1-30','2017-1-7') ->15097</td>
+        <td>DAYS360('1975-1-30','2017-1-7') >>15097</td>
     </tr>
     <tr>
         <td>EDATE</td><td>返回用于表示开始日期之前或之后月数的日期的序列号</td>
-        <td>EDATE("2012-1-31",32) ->2014-09-30</td>
+        <td>EDATE("2012-1-31",32) >>2014-09-30</td>
     </tr>
     <tr>
         <td>EOMONTH</td><td>返回指定月数之前或之后的月份的最后一天的序列号</td>
-        <td>EOMONTH("2012-2-1",32) ->2014-10-31</td>
+        <td>EOMONTH("2012-2-1",32) >>2014-10-31</td>
     </tr>
     <tr>
         <td>NETWORKDAYS</td><td>返回两个日期之间的全部工作日数</td>
-        <td>NETWORKDAYS("2012-1-1","2013-1-1") ->262</td>
+        <td>NETWORKDAYS("2012-1-1","2013-1-1") >>262</td>
     </tr>
     <tr>
         <td>WORKDAY</td><td>返回指定的若干个工作日之前或之后的日期的序列号</td>
-        <td>WORKDAY("2012-1-2",145) ->2012-07-23</td>
+        <td>WORKDAY("2012-1-2",145) >>2012-07-23</td>
     </tr>
     <tr>
         <td>WEEKNUM</td><td>将序列号转换为一年中相应的周数</td>
-        <td>WEEKNUM("2016-1-3") ->2</td>
+        <td>WEEKNUM("2016-1-3") >>2</td>
     </tr>
 </table>
 
@@ -467,39 +467,79 @@ ToolGood.Algorithm
 <table>
     <tr><td>公式名</td><td>说明</td><td>示例</td></tr>
     <tr>
+        <td>MAX</td><td>返回参数列表中的最大值</td>
+        <td>max(1,2,3,4,2,2,1,4) >>4</td>
+    </tr>
+    <tr>
+        <td>MEDIAN</td><td>返回给定数字的中值</td>
+        <td>MEDIAN(1,2,3,4,2,2,1,4) >>2</td>
+    </tr>
+    <tr>
+        <td>MIN</td><td>返回参数列表中的最小值</td>
+        <td>MIN(1,2,3,4,2,2,1,4) >>1</td>
+    </tr>
+    <tr>
+        <td>QUARTILE</td><td>返回数据集的四分位数</td>
+        <td>QUARTILE({1,2,3,4,2,2,1,4},0) >>1</td>
+    </tr>
+    <tr>
+        <td>MODE</td><td>返回数据集中出现最多的值间的概率</td>
+        <td>MODE(1,2,3,4,2,2,1,4) >>2</td>
+    </tr>
+    <tr>
         <td>AVERAGE</td><td>返回参数的平均值</td>
+        <td>AVERAGE(1,2,3,4,2,2,1,4) >>2.375</td>
+    </tr>
+    <tr>
+        <td>AVERAGEIF</td><td></td>
         <td></td>
     </tr>
     <tr>
         <td>COUNT</td><td>计算参数列表中数字的个数</td>
-        <td></td>
+        <td>COUNT(1,2,3,4,2,2,1,4) >>8</td>
     </tr>
     <tr>
         <td>COUNTIF</td><td>计算参数列表中数字的个数</td>
         <td></td>
     </tr>
     <tr>
-        <td>MAX</td><td>返回参数列表中的最大值</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>MEDIAN</td><td>返回给定数字的中值</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>MIN</td><td>返回参数列表中的最小值</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>NormSDist</td><td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>QUARTILE</td><td>返回数据集的四分位数</td>
+        <td>SUMIF</td><td></td>
         <td></td>
     </tr>
     <tr>
         <td>AVEDEV</td><td>返回数据点与其平均值的绝对偏差的平均值</td>
+        <td>AVEDEV(1,2,3,4,2,2,1,4) >>0.96875</td>
+    </tr>
+    <tr>
+        <td>STDEV</td><td>基于样本估算标准偏差</td>
+        <td>STDEV(1,2,3,4,2,2,1,4) >>1.1877349391654208</td>
+    </tr>
+    <tr>
+        <td>STDEVP</td><td>计算基于整个样本总体的标准偏差</td>
+        <td>STDEVP(1,2,3,4,2,2,1,4) >>1.1110243021644486</td>
+    </tr>
+    <tr>
+        <td>VAR</td><td>基于样本估算方差</td>
+        <td>VAR(1,2,3,4,2,2,1,4) >>1.4107142857142858</td>
+    </tr>
+    <tr>
+        <td>VARP</td><td>基于整个样本总体计算方差</td>
+        <td>VARP(1,2,3,4,2,2,1,4) >>1.234375</td>
+    </tr>
+    <tr>
+        <td>NormSDist</td><td>返回标准正态累积分布函数，该分布的平均值为 0，标准偏差为 1。</td>
+        <td>NORMSDIST(1) >>0.841344746</td>
+    </tr>
+    <tr>
+        <td>NORMDIST</td><td>返回正态累积分布</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>NORMINV</td><td>返回反正态累积分布</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>NORMSINV</td><td>返回反标准正态累积分布</td>
         <td></td>
     </tr>
     <tr>
@@ -551,23 +591,7 @@ ToolGood.Algorithm
         <td></td>
     </tr>
     <tr>
-        <td>MODE</td><td>返回数据集中出现最多的值间的概率</td>
-        <td></td>
-    </tr>
-    <tr>
         <td>NEGBINOMDIST</td><td>返回负二项式分布</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>NORMDIST</td><td>返回正态累积分布</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>NORMINV</td><td>返回反正态累积分布</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>NORMSINV</td><td>返回反标准正态累积分布</td>
         <td></td>
     </tr>
     <tr>
@@ -583,14 +607,6 @@ ToolGood.Algorithm
         <td></td>
     </tr>
     <tr>
-        <td>STDEV</td><td>基于样本估算标准偏差</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>STDEVP</td><td>计算基于整个样本总体的标准偏差</td>
-        <td></td>
-    </tr>
-    <tr>
         <td>TDIST</td><td>返回学生的 t 分布</td>
         <td></td>
     </tr>
@@ -599,25 +615,10 @@ ToolGood.Algorithm
         <td></td>
     </tr>
     <tr>
-        <td>VAR</td><td>基于样本估算方差</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>VARP</td><td>基于整个样本总体计算方差</td>
-        <td></td>
-    </tr>
-    <tr>
         <td>WEIBULL</td><td>返回 Weibull 分布</td>
         <td></td>
     </tr>
-    <tr>
-        <td>SUMIF</td><td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>AVERAGEIF</td><td></td>
-        <td></td>
-    </tr>
+
 </table>
 
 

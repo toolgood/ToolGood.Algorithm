@@ -94,7 +94,7 @@ namespace ToolGood.Algorithm
         {
             if (arg.Count < 4) return throwError("WEIBULL中参数不足", new List<Operand>());
 
-            return new Operand(OperandType.NUMBER, ExcelFunctions.WEIBULL(arg[0].NumberValue, arg[1].NumberValue, arg[2].NumberValue,arg[3].BooleanValue));
+            return new Operand(OperandType.NUMBER, ExcelFunctions.WEIBULL(arg[0].NumberValue, arg[1].NumberValue, arg[2].NumberValue, arg[3].BooleanValue));
         }
 
         private Operand POISSON(List<Operand> arg)
@@ -109,7 +109,7 @@ namespace ToolGood.Algorithm
         {
             if (arg.Count < 4) return throwError("BINOMDIST中参数不足", new List<Operand>());
 
-            return new Operand(OperandType.NUMBER, ExcelFunctions.BinomDist(arg[0].IntValue, arg[1].IntValue, arg[2].NumberValue,arg[3].BooleanValue));
+            return new Operand(OperandType.NUMBER, ExcelFunctions.BinomDist(arg[0].IntValue, arg[1].IntValue, arg[2].NumberValue, arg[3].BooleanValue));
         }
 
         private Operand LOGINV(List<Operand> arg)
@@ -139,14 +139,14 @@ namespace ToolGood.Algorithm
         {
             if (arg.Count < 4) return throwError("HYPGEOMDIST中参数不足", new List<Operand>());
 
-            return new Operand(OperandType.NUMBER, ExcelFunctions.HypgeomDist(arg[0].IntValue, arg[1].IntValue, arg[2].IntValue,arg[3].IntValue));
+            return new Operand(OperandType.NUMBER, ExcelFunctions.HypgeomDist(arg[0].IntValue, arg[1].IntValue, arg[2].IntValue, arg[3].IntValue));
         }
 
         private Operand EXPONDIST(List<Operand> arg)
         {
             if (arg.Count < 3) return throwError("EXPONDIST中参数不足", new List<Operand>());
 
-            return new Operand(OperandType.NUMBER, ExcelFunctions.ExponDist(arg[0].NumberValue,arg[1].NumberValue,arg[2].BooleanValue));
+            return new Operand(OperandType.NUMBER, ExcelFunctions.ExponDist(arg[0].NumberValue, arg[1].NumberValue, arg[2].BooleanValue));
 
         }
 
@@ -321,7 +321,7 @@ namespace ToolGood.Algorithm
 
         private Operand QUARTILE(List<Operand> arg)
         {
-            if (arg.Count < 3) return throwError("QUARTILE中参数不足", new List<Operand>());
+            if (arg.Count < 2) return throwError("QUARTILE中参数不足", new List<Operand>());
             var array = (arg[0].GetNumberList()).ToArray();
             var quant = arg[1].IntValue;
             return new Operand(OperandType.NUMBER, ExcelFunctions.Quartile(array, quant));
@@ -438,9 +438,9 @@ namespace ToolGood.Algorithm
             double sum = 0;
             double avg = list.Average();
             for (int i = 0; i < list.Count; i++) {
-                sum += avg * avg - list[i] * list[i];
+                sum += (avg - list[i]) * (avg - list[i]);
             }
-            return new Operand(OperandType.NUMBER, sum / (list.Count * list.Count));
+            return new Operand(OperandType.NUMBER, sum / list.Count);
         }
 
         private Operand VAR(List<Operand> arg)
@@ -448,11 +448,13 @@ namespace ToolGood.Algorithm
             List<double> list = GetList(arg);
             if (list.Count < 1) return throwError("VAR中参数不足", new List<Operand>());
             double sum = 0;
+            double sum2 = 0;
             double avg = list.Average();
             for (int i = 0; i < list.Count; i++) {
-                sum += avg * avg - list[i] * list[i];
+                sum += list[i] * list[i];
+                sum2 += list[i];
             }
-            return new Operand(OperandType.NUMBER, sum / ((list.Count - 1) * list.Count));
+            return new Operand(OperandType.NUMBER, (list.Count * sum - sum2 * sum2) / list.Count / (list.Count - 1));
         }
 
         private Operand STDEVP(List<Operand> arg)
@@ -527,7 +529,7 @@ namespace ToolGood.Algorithm
                     }
                 }
             }
-            return new Operand(OperandType.NUMBER, dict.OrderByDescending(q => q.Value).Select(q => q.Key));
+            return new Operand(OperandType.NUMBER, dict.OrderByDescending(q => q.Value).First().Key);
         }
 
         private Operand MIN(List<Operand> arg)
