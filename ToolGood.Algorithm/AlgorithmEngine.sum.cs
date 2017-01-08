@@ -94,21 +94,21 @@ namespace ToolGood.Algorithm
         {
             if (arg.Count < 2) return throwError("SMALL中参数不足", new List<Operand>());
             var list = arg[0].GetNumberList().OrderBy(q => q).ToList();
-            return new Operand(OperandType.NUMBER, list[arg[1].IntValue-1]);
+            return new Operand(OperandType.NUMBER, list[arg[1].IntValue - 1]);
         }
 
         private Operand LARGE(List<Operand> arg)
         {
             if (arg.Count < 2) return throwError("LARGE中参数不足", new List<Operand>());
-            var list = arg[0].GetNumberList().OrderByDescending(q=>q).ToList();
-            return new Operand(OperandType.NUMBER, list[arg[1].IntValue-1]);
+            var list = arg[0].GetNumberList().OrderByDescending(q => q).ToList();
+            return new Operand(OperandType.NUMBER, list[arg[1].IntValue - 1]);
         }
 
         private Operand FISHERINV(List<Operand> arg)
         {
             if (arg.Count < 1) return throwError("FISHER中参数不足", new List<Operand>());
             var x = arg[0].NumberValue;
-            var n = (Math.Exp(2*x) - 1) / (Math.Exp(2*x) + 1);
+            var n = (Math.Exp(2 * x) - 1) / (Math.Exp(2 * x) + 1);
             return new Operand(OperandType.NUMBER, n);
         }
 
@@ -183,54 +183,55 @@ namespace ToolGood.Algorithm
         #region SUMIF COUNTIF 
         private Operand AVERAGEIF(List<Operand> arg)
         {
-            throw new NotImplementedException();
+            if (arg.Count < 2) return throwError("SUMIF中参数不足", new List<Operand>());
+            var dbs = arg[0].GetNumberList();
+            List<double> sumdbs = dbs;
+            if (arg.Count == 3) sumdbs = arg[2].GetNumberList();
+
+            double sum = 0;
+            int count = 0;
+            if (arg[1].Type == OperandType.NUMBER) {
+                count = countif(dbs, arg[1].NumberValue);
+                sum = count * arg[1].NumberValue;
+            } else {
+                double d;
+                if (double.TryParse(arg[1].StringValue.Trim(), out d)) {
+                    count = countif(dbs, arg[1].NumberValue);
+                    sum = sumif(dbs, "=" + arg[1].StringValue.Trim(), sumdbs);
+                } else {
+                    count = countif(dbs, arg[1].StringValue.Trim());
+                    sum = sumif(dbs, arg[1].StringValue.Trim(), sumdbs);
+                }
+            }
+            return new Operand(OperandType.NUMBER, sum / count);
+
         }
 
 
         private Operand SUMIF(List<Operand> arg)
         {
-            throw new NotImplementedException();
-
             if (arg.Count < 2) return throwError("SUMIF中参数不足", new List<Operand>());
             var dbs = arg[0].GetNumberList();
+            var sumdbs = dbs;
+            if (arg.Count == 3) sumdbs = arg[2].GetNumberList();
             double sum = 0;
             if (arg[1].Type == OperandType.NUMBER) {
                 sum = countif(dbs, arg[1].NumberValue) * arg[1].NumberValue;
             } else {
                 double d;
                 if (double.TryParse(arg[1].StringValue.Trim(), out d)) {
-                    sum = countif(dbs, arg[1].NumberValue) * arg[1].NumberValue;
+                    sum = sumif(dbs, "=" + arg[1].StringValue.Trim(), sumdbs);
                 } else {
-                    //sum = countif(dbs, arg[1].StringValue.Trim());
+                    sum = sumif(dbs, arg[1].StringValue.Trim(), sumdbs);
                 }
             }
             return new Operand(OperandType.NUMBER, sum);
         }
-        private double sumif(List<double> dbs, string s)
-        {
-            Regex re = new Regex(@"(<|<=|>|>=|=|==|!=|<>) *([-+]?\d+(\.(\d+)?)?)");
-            if (re.IsMatch(s) == false) {
-                return 0;
-            }
-            var m = re.Match(s);
-            var d = double.Parse(m.Groups[2].Value);
-            var ss = m.Groups[1].Value;
-            double sum = 0;
 
-            foreach (var item in dbs) {
-                if (compare(item, d, s)) {
-                    sum += item;
-                }
-            }
-            return sum;
-        }
 
 
         private Operand COUNTIF(List<Operand> arg)
         {
-            //throw new NotImplementedException();
-
-
             if (arg.Count < 2) return throwError("COUNTIF中参数不足", new List<Operand>());
             var dbs = arg[0].GetNumberList();
             int count = 0;
@@ -247,53 +248,10 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, count);
         }
 
-        private bool compare(double a, double b, string ss)
-        {
-            if (ss == "<") {
-                return a < b;
-            } else if (ss == "<=") {
-                return a <= b;
-            } else if (ss == ">") {
-                return a > b;
-            } else if (ss == ">=") {
-                return a >= b;
-            } else if (ss == "=" || ss == "==") {
-                return a == b;
-            }
-            return a != b;
-        }
-
-        private int countif(List<double> dbs, string s)
-        {
-            Regex re = new Regex(@"(<|<=|>|>=|=|==|!=|<>) *([-+]?\d+(\.(\d+)?)?)");
-            if (re.IsMatch(s) == false) {
-                return 0;
-            }
-            var m = re.Match(s);
-            var d = double.Parse(m.Groups[2].Value);
-            var ss = m.Groups[1].Value;
-            int count = 0;
-
-            foreach (var item in dbs) {
-                if (compare(item, d, s)) {
-                    count++;
-                }
-            }
-            return count;
-        }
 
 
-        private int countif(List<double> dbs, double d)
-        {
-            int count = 0;
-            d = Math.Round(d, 12);
-            foreach (var item in dbs) {
-                if (Math.Round(item, 12) == d) {
-                    count++;
-                }
-            }
-            return count;
-        }
+
+
 
         #endregion
 
@@ -616,26 +574,11 @@ namespace ToolGood.Algorithm
 
         private Operand AVERAGE(List<Operand> arg)
         {
-            //if (arg.Count < 1) return throwError("AVERAGE中参数不足", new List<Operand>());
+            if (arg.Count < 1) return throwError("AVERAGE中参数不足", new List<Operand>());
             List<double> list = GetList(arg);
             return new Operand(OperandType.NUMBER, list.Average());
         }
 
-        private List<double> GetList(List<Operand> arg)
-        {
-            List<double> list = new List<double>();
-            foreach (var item in arg) {
-                if (item.Type == OperandType.NUMBER) {
-                    list.Add(item.NumberValue);
-                } else if (item.Type == OperandType.ARRARY) {
-                    var ls = item.GetNumberList();
-                    if (ls == null) continue;
-                    foreach (var d in ls) {
-                        list.Add(d);
-                    }
-                }
-            }
-            return list;
-        }
+
     }
 }

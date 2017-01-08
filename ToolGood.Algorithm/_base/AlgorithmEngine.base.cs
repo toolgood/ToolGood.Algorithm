@@ -86,5 +86,88 @@ namespace ToolGood.Algorithm
         }
 
 
+
+        private double sumif(List<double> dbs, string s, List<double> sumdbs)
+        {
+            Regex re = new Regex(@"(<|<=|>|>=|=|==|!=|<>) *([-+]?\d+(\.(\d+)?)?)");
+            if (re.IsMatch(s) == false) {
+                return 0;
+            }
+            var m = re.Match(s);
+            var d = double.Parse(m.Groups[2].Value);
+            var ss = m.Groups[1].Value;
+            double sum = 0;
+
+            for (int i = 0; i < dbs.Count; i++) {
+                if (compare(dbs[i], d, s)) {
+                    sum += sumdbs[i];
+                }
+            }
+            return sum;
+        }
+
+        private int countif(List<double> dbs, double d)
+        {
+            int count = 0;
+            d = Math.Round(d, 12);
+            foreach (var item in dbs) {
+                if (Math.Round(item, 12) == d) {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        private bool compare(double a, double b, string ss)
+        {
+            if (ss == "<") {
+                return a < b;
+            } else if (ss == "<=") {
+                return a <= b;
+            } else if (ss == ">") {
+                return a > b;
+            } else if (ss == ">=") {
+                return a >= b;
+            } else if (ss == "=" || ss == "==") {
+                return a == b;
+            }
+            return a != b;
+        }
+
+        private int countif(List<double> dbs, string s)
+        {
+            Regex re = new Regex(@"(<|<=|>|>=|=|==|!=|<>) *([-+]?\d+(\.(\d+)?)?)");
+            if (re.IsMatch(s) == false) {
+                return 0;
+            }
+            var m = re.Match(s);
+            var d = double.Parse(m.Groups[2].Value);
+            var ss = m.Groups[1].Value;
+            int count = 0;
+
+            foreach (var item in dbs) {
+                if (compare(item, d, s)) {
+                    count++;
+                }
+            }
+            return count;
+        }
+        private List<double> GetList(List<Operand> arg)
+        {
+            List<double> list = new List<double>();
+            foreach (var item in arg) {
+                if (item.Type == OperandType.NUMBER) {
+                    list.Add(item.NumberValue);
+                } else if (item.Type == OperandType.ARRARY) {
+                    var ls = item.GetNumberList();
+                    if (ls == null) continue;
+                    foreach (var d in ls) {
+                        list.Add(d);
+                    }
+                }
+            }
+            return list;
+        }
+
     }
 }

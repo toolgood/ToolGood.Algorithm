@@ -507,8 +507,8 @@ ToolGood.Algorithm
         <td>AVERAGE(1,2,3,4,2,2,1,4) >>2.375</td>
     </tr>
     <tr>
-        <td>AVERAGEIF</td><td></td>
-        <td></td>
+        <td>AVERAGEIF</td><td>返回参数的平均值</td>
+        <td>AVERAGEIF({1,2,3,4,2,2,1,4},'>1') >>2.833333333</td>
     </tr>
     <tr>
         <td>COUNT</td><td>计算参数列表中数字的个数</td>
@@ -516,11 +516,11 @@ ToolGood.Algorithm
     </tr>
     <tr>
         <td>COUNTIF</td><td>计算参数列表中数字的个数</td>
-        <td></td>
+        <td>COUNTIF({1,2,3,4,2,2,1,4},'>1') >>6</td>
     </tr>
     <tr>
         <td>SUMIF</td><td></td>
-        <td></td>
+        <td>SUMIF({1,2,3,4,2,2,1,4},'>1') >>17</td>
     </tr>
     <tr>
         <td>AVEDEV</td><td>返回数据点与其平均值的绝对偏差的平均值</td>

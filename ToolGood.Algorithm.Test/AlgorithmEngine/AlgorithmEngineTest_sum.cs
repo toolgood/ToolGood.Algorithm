@@ -317,6 +317,36 @@ namespace ToolGood.Algorithm
 
         #endregion
 
+        #region if
+        [Test]
+        public void COUNTIF_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("COUNTIF({1,2,3,4,2,2,1,4},'>1')", 0.0);
+            Assert.AreEqual(t, 6.0);
+        }
+        
+       [Test]
+        public void SUMIF_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("SUMIF({1,2,3,4,2,2,1,4},'>1')", 0.0);
+            Assert.AreEqual(t, 17);
+            t = engine.TryEvaluate("SUMIF({1,2,3,4,2,2,1,4},'>1',{1,1,1,1,1,1,1,1})", 0.0);
+            Assert.AreEqual(t, 6);
+        }
+        [Test]
+        public void AVERAGEIF_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("AVERAGEIF({1,2,3,4,2,2,1,4},'>1')", 0.0);
+            Assert.AreEqual(Math.Round(t, 6), Math.Round(2.833333333, 6));
+            t = engine.TryEvaluate("AVERAGEIF({1,2,3,4,2,2,1,4},'>1',{1,1,1,1,1,1,1,1})", 0.0);
+            Assert.AreEqual(t, 1);
+        }
 
+
+
+        #endregion
     }
 }
