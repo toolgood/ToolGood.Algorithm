@@ -124,7 +124,7 @@ ToolGood.Algorithm
         <td>LCM(3,5,7) ->105</td>
     </tr>
     <tr>
-    <td rowspan="13">三角函数</td>
+    <td rowspan="15">三角函数</td>
         <td>degrees</td><td>将弧度转换为度</td>
         <td>degrees(pi()) ->180</td>
     </tr>
