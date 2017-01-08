@@ -467,8 +467,155 @@ ToolGood.Algorithm
 <table>
     <tr><td>公式名</td><td>说明</td><td>示例</td></tr>
     <tr>
+        <td>AVERAGE</td><td>返回参数的平均值</td>
         <td></td>
+    </tr>
+    <tr>
+        <td>COUNT</td><td>计算参数列表中数字的个数</td>
         <td></td>
+    </tr>
+    <tr>
+        <td>COUNTIF</td><td>计算参数列表中数字的个数</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>MAX</td><td>返回参数列表中的最大值</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>MEDIAN</td><td>返回给定数字的中值</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>MIN</td><td>返回参数列表中的最小值</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>NormSDist</td><td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>QUARTILE</td><td>返回数据集的四分位数</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>AVEDEV</td><td>返回数据点与其平均值的绝对偏差的平均值</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>BETADIST</td><td>返回 Beta 累积分布函数</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>BETAINV</td><td>返回指定 Beta 分布的累积分布函数的反函数</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>BINOMDIST</td><td>返回一元二项式分布概率</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>DEVSQ</td><td>返回偏差的平方和</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>EXPONDIST</td><td>返回指数分布</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>FDIST</td><td>返回 F 概率分布</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>FINV</td><td>返回 F 概率分布的反函数</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>GAMMADIST</td><td>返回 γ 分布</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>GAMMAINV</td><td>返回 γ 累积分布函数的反函数</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>HYPGEOMDIST</td><td>返回超几何分布</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>LOGINV</td><td>返回反对数正态分布</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>LognormDist</td><td>返回反对数正态分布</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>MODE</td><td>返回数据集中出现最多的值间的概率</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>NEGBINOMDIST</td><td>返回负二项式分布</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>NORMDIST</td><td>返回正态累积分布</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>NORMINV</td><td>返回反正态累积分布</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>NORMSINV</td><td>返回反标准正态累积分布</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>PERCENTILE</td><td>返回区域中的第 k 个百分位值</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>PERCENTRANK</td><td>返回数据集中值的百分比排位</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>POISSON</td><td>返回 Poisson 分布</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>STDEV</td><td>基于样本估算标准偏差</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>STDEVP</td><td>计算基于整个样本总体的标准偏差</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>TDIST</td><td>返回学生的 t 分布</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>TINV</td><td>返回学生的 t 分布的反分布</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>VAR</td><td>基于样本估算方差</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>VARP</td><td>基于整个样本总体计算方差</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>WEIBULL</td><td>返回 Weibull 分布</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>SUMIF</td><td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>AVERAGEIF</td><td></td>
         <td></td>
     </tr>
 </table>
