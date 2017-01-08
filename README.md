@@ -536,7 +536,7 @@ ToolGood.Algorithm
     </tr>
     <tr>
         <td>DEVSQ</td><td>返回偏差的平方和</td>
-        <td></td>
+        <td>DEVSQ(1,2,3,4,2,2,1,4) >>9.875</td>
     </tr>
     <tr>
         <td>VAR</td><td>基于样本估算方差</td>
