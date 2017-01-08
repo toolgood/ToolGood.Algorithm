@@ -92,7 +92,11 @@ namespace ToolGood.Algorithm
                 }
                 #endregion
 
-                optType = Operator.ConvertOperator(curOpt);
+                optType = Operator.ConvertOperator(curOpt, texts[curPos]);
+                if (optType== OperatorType.PARAMETER) {
+                    operands.Push(new Operand(curOpt));
+                    continue;
+                }
                 funcCount = optType != OperatorType.FUNC ? 0 : getFunctionCount(texts, curPos);
 
                 //若运算符堆栈为空,或者若运算符堆栈栈顶为左括号,则将当前运算符直接存入运算符堆栈.

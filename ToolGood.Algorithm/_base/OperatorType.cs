@@ -8,7 +8,7 @@ namespace ToolGood.Algorithm
     /// <summary>
     /// 运算符类型(从上到下优先级依次递减)，数值越大，优先级越低
     /// </summary>
-    public enum OperatorType
+    internal enum OperatorType
     {
         /// <summary>
         /// 左括号:(,left bracket
@@ -30,7 +30,10 @@ namespace ToolGood.Algorithm
         /// </summary>
         FUNC,
 
-
+        /// <summary>
+        /// 参数
+        /// </summary>
+        PARAMETER,
         ///// <summary>
         ///// 逻辑非,!,NOT
         ///// </summary>

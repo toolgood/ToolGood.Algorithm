@@ -8,7 +8,7 @@ namespace ToolGood.Algorithm
     /// <summary>
     /// 运算符
     /// </summary>
-    public class Operator
+    internal class Operator
     {
         public Operator(OperatorType type, string value)
         {
@@ -16,7 +16,7 @@ namespace ToolGood.Algorithm
             this.Value = value;
         }
 
-        public Operator(OperatorType type, string value,int argsCount)
+        public Operator(OperatorType type, string value, int argsCount)
         {
             this.Type = type;
             this.Value = value;
@@ -115,7 +115,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="opt">运算符</param>
         /// <returns>返回指定的运算符类型</returns>
-        public static OperatorType ConvertOperator(string opt)
+        public static OperatorType ConvertOperator(string opt, string next)
         {
             switch (opt) {
                 //case "!": return OperatorType.NOT;
@@ -135,8 +135,19 @@ namespace ToolGood.Algorithm
                 case "&": return OperatorType.StringADD;
                 case "|": return OperatorType.OR;
                 case ",": return OperatorType.CA;
-                default: return OperatorType.FUNC;
+                default:break; // return OperatorType.FUNC;
             }
+            switch (opt) {
+                case "pi":
+                case "e":
+                case "true":
+                case "false":
+                    if (next == "(") {
+                        return OperatorType.FUNC;
+                    }
+                    return OperatorType.PARAMETER;
+            }
+            return OperatorType.FUNC;
         }
 
         /// <summary>

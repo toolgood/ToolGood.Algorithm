@@ -32,6 +32,16 @@ namespace ToolGood.Algorithm
             b = engine.TryEvaluate("false", false);
             Assert.AreEqual(false, b);
 
+            var b1 = engine.TryEvaluate("if(true,1,2)", 0);
+            Assert.AreEqual(1, b1);
+
+            b1 = engine.TryEvaluate("if(false,1,2)", 0);
+            Assert.AreEqual(2, b1);
+
+            var b2 = engine.TryEvaluate("pi*4", 0.0);
+            Assert.AreEqual(Math.PI * 4, b2);
+            b2 = engine.TryEvaluate("e*4", 0.0);
+            Assert.AreEqual(Math.E * 4, b2);
         }
 
         [Test]
