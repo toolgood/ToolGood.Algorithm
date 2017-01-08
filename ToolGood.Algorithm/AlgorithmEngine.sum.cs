@@ -249,10 +249,6 @@ namespace ToolGood.Algorithm
         }
 
 
-
-
-
-
         #endregion
 
         private Operand array(List<Operand> ops)
