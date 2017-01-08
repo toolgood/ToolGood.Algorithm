@@ -668,10 +668,9 @@ namespace ToolGood.Algorithm
                     return new Operand(OperandType.NUMBER, (ops[0].BooleanValue ? 1.0 : 0.0) + ops[1].DateValue);
                 }
             }
-
-            if (ops[1].Type == OperandType.STRING || ops[0].Type == OperandType.STRING) {
-                return new Operand(OperandType.STRING, ops[0].StringValue + ops[1].StringValue);
-            }
+            //if (ops[1].Type == OperandType.STRING || ops[0].Type == OperandType.STRING) {
+            //    return new Operand(OperandType.STRING, ops[0].StringValue + ops[1].StringValue);
+            //}
             return throwError("两个参数不能相加", ops);
         }
         private Operand sub(List<Operand> ops)

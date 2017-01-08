@@ -487,6 +487,22 @@ ToolGood.Algorithm
         <td>MODE(1,2,3,4,2,2,1,4) >>2</td>
     </tr>
     <tr>
+        <td>LARGE</td><td>返回数据集中第 k 个最大值</td>
+        <td>LARGE({1,2,3,4,2,2,1,4},3) >>3</td>
+    </tr>
+    <tr>
+        <td>SMALL</td><td>返回数据集中第 k 个最小值</td>
+        <td>SMALL({1,2,3,4,2,2,1,4},3) >>2</td>
+    </tr>
+    <tr>
+        <td>PERCENTILE</td><td>返回区域中的第 k 个百分位值</td>
+        <td>PERCENTILE({1,2,3,4,2,2,1,4}，0.4) >>2</td>
+    </tr>
+    <tr>
+        <td>PERCENTRANK</td><td>返回数据集中值的百分比排位</td>
+        <td>PERCENTRANK({1,2,3,4,2,2,1,4}，3) >>0.714</td>
+    </tr>
+    <tr>
         <td>AVERAGE</td><td>返回参数的平均值</td>
         <td>AVERAGE(1,2,3,4,2,2,1,4) >>2.375</td>
     </tr>
@@ -519,6 +535,10 @@ ToolGood.Algorithm
         <td>STDEVP(1,2,3,4,2,2,1,4) >>1.1110243021644486</td>
     </tr>
     <tr>
+        <td>DEVSQ</td><td>返回偏差的平方和</td>
+        <td></td>
+    </tr>
+    <tr>
         <td>VAR</td><td>基于样本估算方差</td>
         <td>VAR(1,2,3,4,2,2,1,4) >>1.4107142857142858</td>
     </tr>
@@ -532,91 +552,87 @@ ToolGood.Algorithm
     </tr>
     <tr>
         <td>NORMDIST</td><td>返回正态累积分布</td>
-        <td></td>
+        <td>NORMDIST(3,8,4,1) >>0.105649774</td>
     </tr>
     <tr>
         <td>NORMINV</td><td>返回反正态累积分布</td>
-        <td></td>
+        <td>NORMINV(0.8,8,3) >>10.5248637</td>
     </tr>
     <tr>
         <td>NORMSINV</td><td>返回反标准正态累积分布</td>
-        <td></td>
+        <td>NORMSINV(0.3) >>-0.524400513</td>
     </tr>
     <tr>
-        <td>BETADIST</td><td>返回 Beta 累积分布函数</td>
-        <td></td>
+        <td>BETADIST</td><td>返回 Beta 累积分布函数，不支持上下界</td>
+        <td>BETADIST(0.5,11,22) >>0.97494877</td>
     </tr>
     <tr>
-        <td>BETAINV</td><td>返回指定 Beta 分布的累积分布函数的反函数</td>
-        <td></td>
+        <td>BETAINV</td><td>返回指定 Beta 分布的累积分布函数的反函数,不支持上下界</td>
+        <td>BETAINV(0.5,23,45) >>0.336640759</td>
     </tr>
     <tr>
         <td>BINOMDIST</td><td>返回一元二项式分布概率</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>DEVSQ</td><td>返回偏差的平方和</td>
-        <td></td>
+        <td>BINOMDIST(12,45,0.5,0) >>0.000817409</td>
     </tr>
     <tr>
         <td>EXPONDIST</td><td>返回指数分布</td>
-        <td></td>
+        <td>EXPONDIST(3,1,0) >>0.049787068</td>
     </tr>
     <tr>
         <td>FDIST</td><td>返回 F 概率分布</td>
-        <td></td>
+        <td>FDIST(0.4,2,3) >>0.701465776</td>
     </tr>
     <tr>
         <td>FINV</td><td>返回 F 概率分布的反函数</td>
-        <td></td>
+        <td>FINV(0.7,2,3) >>0.402651432</td>
+    </tr>
+    <tr>
+        <td>FISHER</td><td>返回点 x 的 Fisher 变换。该变换生成一个正态分布而非偏斜的函数</td>
+        <td>FISHER(0.68) >>0.8291140383</td>
+    </tr>
+    <tr>
+        <td>FISHERINV</td><td>返回 Fisher 变换的反函数值。</td>
+        <td>FISHERINV(0.6) >>0.537049567</td>
     </tr>
     <tr>
         <td>GAMMADIST</td><td>返回 γ 分布</td>
-        <td></td>
+        <td>GAMMADIST(0.5,3,4,0) >>0.001723627</td>
     </tr>
     <tr>
         <td>GAMMAINV</td><td>返回 γ 累积分布函数的反函数</td>
-        <td></td>
+        <td>GAMMAINV(0.2,3,4) >>6.140176811</td>
     </tr>
     <tr>
         <td>HYPGEOMDIST</td><td>返回超几何分布</td>
-        <td></td>
+        <td>HYPGEOMDIST(23,45,45,100) >>0.08715016</td>
     </tr>
     <tr>
-        <td>LOGINV</td><td>返回反对数正态分布</td>
-        <td></td>
+        <td>LOGINV</td><td>返回 x 的对数累积分布函数的反函数</td>
+        <td>LOGINV(0.1,45,33) >>15.01122624</td>
     </tr>
     <tr>
         <td>LognormDist</td><td>返回反对数正态分布</td>
-        <td></td>
+        <td>LOGNORMDIST(15,23,45) >>0.326019201</td>
     </tr>
     <tr>
         <td>NEGBINOMDIST</td><td>返回负二项式分布</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>PERCENTILE</td><td>返回区域中的第 k 个百分位值</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>PERCENTRANK</td><td>返回数据集中值的百分比排位</td>
-        <td></td>
+        <td>NEGBINOMDIST(23,45,0.7) >>0.053463314</td>
     </tr>
     <tr>
         <td>POISSON</td><td>返回 Poisson 分布</td>
-        <td></td>
+        <td>POISSON(23,23,0) >>0.082884384</td>
     </tr>
     <tr>
         <td>TDIST</td><td>返回学生的 t 分布</td>
-        <td></td>
+        <td>TDIST(1.2,24,1) >>0.120925677</td>
     </tr>
     <tr>
         <td>TINV</td><td>返回学生的 t 分布的反分布</td>
-        <td></td>
+        <td>TINV(0.12,23) >>1.614756561</td>
     </tr>
     <tr>
         <td>WEIBULL</td><td>返回 Weibull 分布</td>
-        <td></td>
+        <td>WEIBULL(1,2,3,1) >>0.105160683</td>
     </tr>
 
 </table>

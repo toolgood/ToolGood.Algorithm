@@ -33,8 +33,8 @@ namespace ToolGood.Algorithm
             addFunc("EXPONDIST", EXPONDIST);//返回指数分布。
             addFunc("FDIST", FDIST);//返回 F 概率分布。
             addFunc("FINV", FINV);//返回 F 概率分布的反函数。
-            //addFunc("FISHER", FISHER);//返回 Fisher 变换值。
-            //addFunc("FISHERINV", FISHERINV);//返回 Fisher 变换的反函数。
+            addFunc("FISHER", FISHER);//返回 Fisher 变换值。
+            addFunc("FISHERINV", FISHERINV);//返回 Fisher 变换的反函数。
             //addFunc("FORECAST", FORECAST);//根据线性趋势返回值。
             //addFunc("FTEST", FTEST);//返回 F 检验的结果。
             //addFunc("FREQUENCY", FREQUENCY);//以垂直数组的形式返回频率分布。
@@ -47,7 +47,7 @@ namespace ToolGood.Algorithm
             addFunc("HYPGEOMDIST", HYPGEOMDIST);//返回超几何分布
             //addFunc("INTERCEPT", INTERCEPT);//返回线性回归线截距
             //addFunc("KURT", KURT);//返回数据集的峰值
-            //addFunc("LARGE", LARGE);//返回数据集中第k个最大值
+            addFunc("LARGE", LARGE);//返回数据集中第k个最大值
             //addFunc("LINEST", LINEST);//返回线性趋势的参数
 
             addFunc("LOGINV", LOGINV);//返回反对数正态分布
@@ -72,7 +72,7 @@ namespace ToolGood.Algorithm
             //addFunc("RANK", RANK);//返回某数在数字列表中的排位
             //addFunc("RSQ", RSQ);//返回 Pearson 乘积矩相关系数的平方
             //addFunc("SLOPE", SLOPE);//返回线性回归直线的斜率
-            //addFunc("SMALL", SMALL);//返回数据集中的第k个最小值
+            addFunc("SMALL", SMALL);//返回数据集中的第k个最小值
             //addFunc("STANDARDIZE", STANDARDIZE);//返回正态化数值
             addFunc("STDEV", STDEV);//基于样本估算标准偏差
             addFunc("STDEVP", STDEVP);//计算基于整个样本总体的标准偏差
@@ -88,6 +88,36 @@ namespace ToolGood.Algorithm
             addFunc("SUMIF", SUMIF);//返回 z 检验的单尾概率值
             addFunc("AVERAGEIF", AVERAGEIF);//返回参数的平均值
 
+        }
+
+        private Operand SMALL(List<Operand> arg)
+        {
+            if (arg.Count < 2) return throwError("SMALL中参数不足", new List<Operand>());
+            var list = arg[0].GetNumberList().OrderBy(q => q).ToList();
+            return new Operand(OperandType.NUMBER, list[arg[1].IntValue-1]);
+        }
+
+        private Operand LARGE(List<Operand> arg)
+        {
+            if (arg.Count < 2) return throwError("LARGE中参数不足", new List<Operand>());
+            var list = arg[0].GetNumberList().OrderByDescending(q=>q).ToList();
+            return new Operand(OperandType.NUMBER, list[arg[1].IntValue-1]);
+        }
+
+        private Operand FISHERINV(List<Operand> arg)
+        {
+            if (arg.Count < 1) return throwError("FISHER中参数不足", new List<Operand>());
+            var x = arg[0].NumberValue;
+            var n = (Math.Exp(2*x) - 1) / (Math.Exp(2*x) + 1);
+            return new Operand(OperandType.NUMBER, n);
+        }
+
+        private Operand FISHER(List<Operand> arg)
+        {
+            if (arg.Count < 1) return throwError("FISHER中参数不足", new List<Operand>());
+            var x = arg[0].NumberValue;
+            var n = 0.5 * Math.Log((1 + x) / (1 - x));
+            return new Operand(OperandType.NUMBER, n);
         }
 
         private Operand WEIBULL(List<Operand> arg)
@@ -308,7 +338,10 @@ namespace ToolGood.Algorithm
             if (arg.Count < 2) return throwError("PERCENTRANK中参数不足", new List<Operand>());
             var array = (arg[0].GetNumberList()).ToArray();
             var k = arg[1].NumberValue;
-            return new Operand(OperandType.NUMBER, ExcelFunctions.PercentRank(array, k));
+            var v = ExcelFunctions.PercentRank(array, k);
+            var d = 3;
+            if (arg.Count == 3) d = arg[3].IntValue;
+            return new Operand(OperandType.NUMBER, Math.Round(v, d));
         }
 
         private Operand PERCENTILE(List<Operand> arg)
@@ -410,7 +443,7 @@ namespace ToolGood.Algorithm
             var avg = arg[1].NumberValue;
             var STDEV = arg[2].NumberValue;
 
-            return new Operand(OperandType.NUMBER, ExcelFunctions.NormInv(avg, STDEV, num));
+            return new Operand(OperandType.NUMBER, ExcelFunctions.NormInv(num, avg, STDEV));
         }
 
         private Operand NORMDIST(List<Operand> arg)
@@ -421,13 +454,6 @@ namespace ToolGood.Algorithm
             var STDEV = arg[2].NumberValue;
             var b = arg[3].BooleanValue;
             return new Operand(OperandType.NUMBER, ExcelFunctions.NormDist(num, avg, STDEV, b));
-
-
-            //if (b) {
-            //    var d = (num - avg) / STDEV;
-            //    return new Operand(OperandType.NUMBER, MathEx.NormDist(d));
-            //}
-            //return new Operand(OperandType.NUMBER, MathEx.NormDistDensity(num, avg, STDEV));
         }
 
         private Operand VARP(List<Operand> arg)
