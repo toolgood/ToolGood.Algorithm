@@ -53,5 +53,38 @@ namespace ToolGood.Algorithm
             string d = Regex.Replace(s, @"((?<=-|^)[^1-9]*)|((?'z'0)[0A-E]*((?=[1-9])|(?'-z'(?=[F-L\.]|$))))|((?'b'[F-L])(?'z'0)[0A-L]*((?=[1-9])|(?'-z'(?=[\.]|$))))", "${b}${z}");
             return Regex.Replace(d, ".", m => "负元空零壹贰叁肆伍陆柒捌玖空空空空空空空分角拾佰仟萬億兆京垓秭穰"[m.Value[0] - '-'].ToString());
         }
+
+
+        private int gcd(List<int> list)
+        {
+            list = list.OrderBy(q => q).ToList();
+            var g = gcd(list[1], list[0]);
+            for (int i = 2; i < list.Count; i++) {
+                g = gcd(list[i], g);
+            }
+            return g;
+        }
+        private int gcd(int a, int b)
+        {
+            if (b == 1) { return 1; }
+            if (b == 0) { return a; }
+            return gcd(b, a % b);
+        }
+
+        private int lgm(List<int> list)
+        {
+            list = list.OrderBy(q => q).ToList();
+            list.RemoveAll(q => q <= 1);
+
+            var a = list[0];
+            for (int i = 1; i < list.Count; i++) {
+                var b = list[i];
+                int g = b > a ? gcd(b, a) : gcd(a, b);
+                a = a / g * b;
+            }
+            return a;
+        }
+
+
     }
 }

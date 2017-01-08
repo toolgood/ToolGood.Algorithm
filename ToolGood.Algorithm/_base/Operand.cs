@@ -17,6 +17,14 @@ namespace ToolGood.Algorithm
 
             this.Value = value;
         }
+        public Operand(OperandType type, int value)
+        {
+            this.Type = type;
+
+            this.Value = (double)value;
+        }
+
+
 
         public Operand(string opd)
         {

@@ -15,7 +15,11 @@ namespace ToolGood.Algorithm
             addFunc("acos", acos);//返回数字的反余弦值 
             addFunc("acosh", acosh);//返回数字的反双曲余弦值 
             addFunc("asin", asin);//返回数字的反正弦值 
+            addFunc("asinh", asinh);//返回数字的反正弦值 
             addFunc("atan", atan);//返回数字的反正切值
+            addFunc("atanh", atanh);//返回数字的反正切值
+
+
             addFunc("atan2", atan2);//从 X 和 Y 坐标返回反正切
             addFunc("ceiling", ceiling);//将数字舍入为最接近的整数，或最接近的有效数字的倍数
             //addFunc("combin", combin);//计算从给定数目的对象集合中提取若干对象的组合数
@@ -67,9 +71,15 @@ namespace ToolGood.Algorithm
             //addFunc("SUMXMY2", SUMXMY2);//返回两数组中对应值的平方和之和
             addFunc("TAN", TAN);//返回数字的正切值
             addFunc("TANH", TANH);//返回数字的双曲正切值
-            addFunc("TRUNC", ROUNDDOWN);//将数字截尾取整
+            addFunc("TRUNC", TRUNC);//将数字截尾取整
 
         }
+        private Operand TRUNC(List<Operand> arg)
+        {
+            if (arg.Count < 1) return throwError("TRUNC中参数不足", new List<Operand>());
+            return new Operand(OperandType.NUMBER, (double)(int)(arg[0].NumberValue));
+        }
+
 
         private Operand TANH(List<Operand> arg)
         {
@@ -145,7 +155,7 @@ namespace ToolGood.Algorithm
         private Operand SIGN(List<Operand> arg)
         {
             if (arg.Count < 1) return throwError("SIGN中参数不足", new List<Operand>());
-            return new Operand(OperandType.NUMBER, Math.Sign(arg[0].NumberValue));
+            return new Operand(OperandType.NUMBER, (double)Math.Sign(arg[0].NumberValue));
         }
 
         private Operand ROUNDUP(List<Operand> arg)
@@ -201,7 +211,7 @@ namespace ToolGood.Algorithm
         {
             if (arg.Count == 0) return throwError("MROUND中参数不足", new List<Operand>());
             var r = (int)(arg[0].NumberValue / arg[1].NumberValue);
-            return new Operand(OperandType.NUMBER, r);
+            return new Operand(OperandType.NUMBER, (double)r);
         }
 
         private Operand PRODUCT(List<Operand> arg)
@@ -322,35 +332,22 @@ namespace ToolGood.Algorithm
                     }
                 }
             }
-            return new Operand(OperandType.NUMBER, lgm(list));
-        }
-        private int lgm(List<int> list)
-        {
-            list = list.OrderBy(q => q).ToList();
-            list.RemoveAll(q => q <= 1);
-
-            var a = list[0];
-            for (int i = 1; i < list.Count; i++) {
-                var b = list[i];
-                int g = b > a ? gcd(b, a) : gcd(a, b);
-                a = a / g * b;
-            }
-            return a;
+            return new Operand(OperandType.NUMBER, (double)lgm(list));
         }
 
         private Operand @int(List<Operand> arg)
         {
             if (arg.Count < 1) return throwError("int中没有参数不足", new List<Operand>());
             if (arg[0].Type == OperandType.DATE) {
-                return new Operand(OperandType.NUMBER, (int)arg[0].NumberValue);
+                return new Operand(OperandType.NUMBER, (double)(int)arg[0].NumberValue);
             } else if (arg[0].Type == OperandType.NUMBER) {
-                return new Operand(OperandType.NUMBER, (int)arg[0].NumberValue);
+                return new Operand(OperandType.NUMBER, (double)(int)arg[0].NumberValue);
             } else if (arg[0].Type == OperandType.BOOLEAN) {
                 return new Operand(OperandType.NUMBER, arg[0].BooleanValue ? 1 : 0);
             }
             double d;
             if (double.TryParse(arg[0].StringValue, out d)) {
-                return new Operand(OperandType.NUMBER, (int)d);
+                return new Operand(OperandType.NUMBER, (double)(int)d);
             }
             return throwError("无法转成整数", arg);
         }
@@ -369,23 +366,9 @@ namespace ToolGood.Algorithm
                     }
                 }
             }
-            return new Operand(OperandType.NUMBER, gcd(list));
+            return new Operand(OperandType.NUMBER, (double)gcd(list));
         }
-        private int gcd(List<int> list)
-        {
-            list = list.OrderBy(q => q).ToList();
-            var g = gcd(list[1], list[0]);
-            for (int i = 2; i < list.Count; i++) {
-                g = gcd(list[i], g);
-            }
-            return g;
-        }
-        private int gcd(int a, int b)
-        {
-            if (b == 1) { return 1; }
-            if (b == 0) { return a; }
-            return gcd(b, a % b);
-        }
+
 
         private Operand floor(List<Operand> arg)
         {
@@ -481,14 +464,27 @@ namespace ToolGood.Algorithm
         {
             if (arg.Count == 0) return throwError("atan2中没有参数", new List<Operand>());
 
-            return new Operand(OperandType.NUMBER, Math.Atan2(arg[0].NumberValue, arg[1].NumberValue));
+            return new Operand(OperandType.NUMBER, Math.Atan2(arg[1].NumberValue, arg[0].NumberValue));
         }
-
+        private Operand atanh(List<Operand> arg)
+        {
+            if (arg.Count == 0) return throwError("atanh中没有参数", new List<Operand>());
+            var x = arg[0].NumberValue;
+            var d = Math.Log((1 + x) / (1 - x)) / 2;
+            return new Operand(OperandType.NUMBER, d);
+        }
         private Operand atan(List<Operand> arg)
         {
             if (arg.Count == 0) return throwError("atan中没有参数", new List<Operand>());
 
             return new Operand(OperandType.NUMBER, Math.Atan(arg[0].NumberValue));
+        }
+        private Operand asinh(List<Operand> arg)
+        {
+            if (arg.Count == 0) return throwError("asinh中没有参数", new List<Operand>());
+            var x = arg[0].NumberValue;
+            var d = Math.Log(x + Math.Sqrt(x * x + 1));
+            return new Operand(OperandType.NUMBER, d);
         }
 
         private Operand asin(List<Operand> arg)

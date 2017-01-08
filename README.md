@@ -126,7 +126,7 @@ ToolGood.Algorithm
     <tr>
     <td rowspan="13">三角函数</td>
         <td>degrees</td><td>将弧度转换为度</td>
-        <td></td>
+        <td>degrees(pi()) ->180</td>
     </tr>
     <tr>
         <td>RADIANS</td><td>将度转换为弧度</td>
@@ -134,47 +134,55 @@ ToolGood.Algorithm
     </tr>
     <tr>
         <td>cos</td><td>返回数字的余弦值</td>
-        <td></td>
+        <td>cos(1) ->0.54030230586813977</td>
     </tr>
     <tr>
         <td>cosh</td><td>返回数字的双曲余弦值</td>
-        <td></td>
+        <td>cosh(1) ->1.5430806348152437</td>
     </tr>
     <tr>
         <td>SIN</td><td>返回给定角度的正弦值</td>
-        <td></td>
+        <td>sin(1) ->0.8414709848078965</td>
     </tr>
     <tr>
         <td>SINH</td><td>返回数字的双曲正弦值</td>
-        <td></td>
+        <td>sinh(1) ->1.1752011936438014</td>
     </tr>
     <tr>
         <td>TAN</td><td>返回数字的正切值</td>
-        <td></td>
+        <td>tan(1) ->1.5574077246549023</td>
     </tr>
     <tr>
         <td>TANH</td><td>返回数字的双曲正切值</td>
-        <td></td>
+        <td>tanh(1) ->0.76159415595576485</td>
     </tr>
     <tr>
         <td>acos</td><td>返回数字的反余弦值</td>
-        <td></td>
+        <td>acos(0.5) ->1.0471975511965979</td>
     </tr>
     <tr>
         <td>acosh</td><td>返回数字的反双曲余弦值</td>
-        <td></td>
+        <td>acosh(1.5) ->0.96242365011920694</td>
     </tr>
     <tr>
         <td>asin</td><td>返回数字的反正弦值</td>
-        <td></td>
+        <td>asin(0.5) ->0.52359877559829893</td>
+    </tr>
+    <tr>
+        <td>asinh</td><td>返回数字的反双曲正弦值。</td>
+        <td>asinh(1.5) ->1.1947632172871094</td>
     </tr>
     <tr>
         <td>atan</td><td>返回数字的反正切值</td>
-        <td></td>
+        <td>atan(1) ->0.78539816339744828</td>
+    </tr>
+   <tr>
+        <td>atanh</td><td>返回参数的反双曲正切值</td>
+        <td>atanh(1) ->0.54930614433405489</td>
     </tr>
     <tr>
         <td>atan2</td><td>从X和Y坐标返回反正切</td>
-        <td></td>
+        <td>atan2(1,2) ->1.1071487177940904</td>
     </tr>
     <tr>
         <td rowspan="8">四舍五入</td>
