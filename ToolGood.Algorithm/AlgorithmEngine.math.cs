@@ -165,8 +165,9 @@ namespace ToolGood.Algorithm
             var a = Math.Pow(10, (int)arg[1].NumberValue);
             var b = arg[0].NumberValue;
 
-            b = (Math.Ceiling(b * a)) / a;
-            return new Operand(OperandType.NUMBER, b);
+            var t = (Math.Ceiling(Math.Abs(b) * a)) / a;
+            if (b > 0) return new Operand(OperandType.NUMBER, t);
+            return new Operand(OperandType.NUMBER, -t);
         }
 
         private Operand ROUNDDOWN(List<Operand> arg)
@@ -271,14 +272,16 @@ namespace ToolGood.Algorithm
         {
             if (arg.Count == 0) return throwError("multinomial中没有参数", new List<Operand>());
             int sum = 0;
-            int n = 0;
+            int n = 1;
             foreach (var item in arg) {
                 if (item.Type == OperandType.NUMBER) {
-                    n += factorial(item.IntValue);
+                    n *= factorial(item.IntValue);
+                    sum += item.IntValue;
                 } else if (item.Type == OperandType.ARRARY) {
                     var ls = item.GetNumberList();
                     foreach (var d in ls) {
-                        n += factorial((int)d);
+                        n *= factorial((int)d);
+                        sum += (int)d;
                     }
                 }
             }
@@ -289,7 +292,7 @@ namespace ToolGood.Algorithm
         private int factorial(int a)
         {
             int r = 1;
-            for (int i = 2; i <= a; i++) {
+            for (int i = a; i > 0; i--) {
                 r *= i;
             }
             return r;
@@ -306,9 +309,9 @@ namespace ToolGood.Algorithm
         {
             if (arg.Count == 0) return throwError("log中没有参数", new List<Operand>());
             if (arg.Count > 1) {
-                return new Operand(OperandType.NUMBER, Math.Log(arg[1].NumberValue, arg[0].NumberValue));
+                return new Operand(OperandType.NUMBER, Math.Log(arg[0].NumberValue, arg[1].NumberValue));
             }
-            return new Operand(OperandType.NUMBER, Math.Log(arg[0].NumberValue));
+            return new Operand(OperandType.NUMBER, Math.Log(arg[0].NumberValue,10));
         }
 
         private Operand ln(List<Operand> arg)
@@ -373,8 +376,11 @@ namespace ToolGood.Algorithm
         private Operand floor(List<Operand> arg)
         {
             if (arg.Count == 0) return throwError("exp中没有参数", new List<Operand>());
-
-            return new Operand(OperandType.NUMBER, Math.Floor(arg[0].NumberValue));
+            if (arg.Count == 1) return new Operand(OperandType.NUMBER, Math.Floor(arg[0].NumberValue));
+            var a = arg[0].NumberValue;
+            var b = arg[1].NumberValue;
+            var d = Math.Floor(a / b) * b;
+            return new Operand(OperandType.NUMBER, d);
         }
 
         private Operand factdouble(List<Operand> arg)
@@ -385,7 +391,7 @@ namespace ToolGood.Algorithm
                 if (arg.Count == 0) return throwError("factdouble中参数小于0", new List<Operand>());
             }
             double d = 1;
-            for (int i = 1; i <= z; i += 2) {
+            for (int i = z; i > 0; i -= 2) {
                 d *= i;
             }
             return new Operand(OperandType.NUMBER, d);
@@ -456,8 +462,11 @@ namespace ToolGood.Algorithm
         private Operand ceiling(List<Operand> arg)
         {
             if (arg.Count == 0) return throwError("ceiling中没有参数", new List<Operand>());
-
-            return new Operand(OperandType.NUMBER, Math.Ceiling(arg[0].NumberValue));
+            if (arg.Count == 1) return new Operand(OperandType.NUMBER, Math.Ceiling(arg[0].NumberValue));
+            var a = arg[0].NumberValue;
+            var b = arg[1].NumberValue;
+            var d = Math.Ceiling(a / b) * b;
+            return new Operand(OperandType.NUMBER, d);
         }
 
         private Operand atan2(List<Operand> arg)

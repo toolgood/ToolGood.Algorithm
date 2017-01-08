@@ -225,10 +225,198 @@ namespace ToolGood.Algorithm
         #endregion
 
         #region 四舍五入
+        [Test]
+        public void ROUND_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("ROUND(4.333,2)", 0.0);
+            Assert.AreEqual(4.33, t);
+        }
+        [Test]
+        public void ROUNDDOWN_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("ROUNDDOWN(4.333,2)", 0.0);
+            Assert.AreEqual(4.33, t);
 
+            t = engine.TryEvaluate("ROUNDDOWN(-3.141592, 3)", 0.0);
+            Assert.AreEqual(-3.141, t);
+        }
+        [Test]
+        public void ROUNDUP_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("ROUNDUP(4.333,2)", 0.0);
+            Assert.AreEqual(4.34, t);
+
+            t = engine.TryEvaluate("ROUNDUP(-3.141592, 3)", 0.0);
+            Assert.AreEqual(-3.142, t);
+        }
+        [Test]
+        public void CEILING_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("CEILING(4.333,0.1)", 0.0);
+            Assert.AreEqual(4.4, t);
+
+            t = engine.TryEvaluate("CEILING(4.333)", 0.0);
+            Assert.AreEqual(5, t);
+        }
+        [Test]
+        public void FLOOR_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("FLOOR(4.363,0.1)", 0.0);
+            Assert.AreEqual(4.3, t);
+
+            t = engine.TryEvaluate("FLOOR(4.333)", 0.0);
+            Assert.AreEqual(4, t);
+        }
+        [Test]
+        public void even_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("even(4.363)", 0.0);
+            Assert.AreEqual(6.0, t);
+        }
+        [Test]
+        public void odd_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("odd(4.363)", 0.0);
+            Assert.AreEqual(5, t);
+        }
+        [Test]
+        public void MROUND_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("MROUND(4.363,2)", 0.0);
+            Assert.AreEqual(4, t);
+            t = engine.TryEvaluate("MROUND(5.363,2)", 0.0);
+            Assert.AreEqual(6, t);
+        }
 
 
         #endregion
+
+        #region 随机数
+        [Test]
+        public void Rand_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("RAND()", 0.0);
+            Assert.Greater(t, 0);
+            Assert.LessOrEqual(t, 1);
+        }
+        [Test]
+        public void RANDBETWEEN_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("RANDBETWEEN(2,99)", 0.0);
+            Assert.Greater(t, 2);
+            Assert.LessOrEqual(t, 99);
+        }
+
+        #endregion
+
+        #region 幂/对数/阶乘
+        [Test]
+        public void fact_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("fact(6)", 0.0);
+            Assert.AreEqual(720.0, t);
+            t = engine.TryEvaluate("fact(3)", 0.0);
+            Assert.AreEqual(6.0, t);
+        }
+        [Test]
+        public void factdouble_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("factdouble(10)", 0.0);
+            Assert.AreEqual(3840.0, t);
+        }
+        [Test]
+        public void POWER_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("POWER(10,2)", 0.0);
+            Assert.AreEqual(100.0, t);
+        }
+        [Test]
+        public void exp_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("exp(2)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(Math.Round(7.389056099, 6), t);
+        }
+        [Test]
+        public void ln_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("ln(4)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(Math.Round(1.386294361, 6), t);
+        }
+        [Test]
+        public void log_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("log(10)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(Math.Round(1.0, 6), t);
+
+            t = engine.TryEvaluate("log(8,2)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(Math.Round(3.0, 6), t);
+        }
+        [Test]
+        public void log10_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("log10(10)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(Math.Round(1.0, 6), t);
+        }
+        [Test]
+        public void MULTINOMIAL_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("MULTINOMIAL(1,2,3)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(Math.Round(60.0, 6), t);
+            t = engine.TryEvaluate("MULTINOMIAL(1,2,3,4)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(Math.Round(12600.0, 6), t);
+        }
+        [Test]
+        public void PRODUCT_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("PRODUCT(1,2,3,4)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(Math.Round(24.0, 6), t);
+        }
+        [Test]
+        public void SQRTPI_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("SQRTPI(3)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(Math.Round(3.069980124, 6), t);
+        }
+        [Test]
+        public void SUMSQ_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("SUMSQ(1,2)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(Math.Round(5.0, 6), t);
+        }
+
+        #endregion
+
 
 
 

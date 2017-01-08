@@ -130,7 +130,7 @@ ToolGood.Algorithm
     </tr>
     <tr>
         <td>RADIANS</td><td>将度转换为弧度</td>
-        <td></td>
+        <td>RADIANS(180) ->3.141592654</td>
     </tr>
     <tr>
         <td>cos</td><td>返回数字的余弦值</td>
@@ -198,7 +198,7 @@ ToolGood.Algorithm
         <td>ROUNDUP(4.333,2) ->4.34</td>
     </tr>
     <tr>
-        <td>ceiling</td><td>向上舍入（沿绝对值增大的方向）为最接近的 舍入基数 的倍数。</td>
+        <td>CEILING</td><td>向上舍入（沿绝对值增大的方向）为最接近的 舍入基数 的倍数。</td>
         <td>CEILING(4.333,0.1) ->4.4</td>
     </tr>
     <tr>
