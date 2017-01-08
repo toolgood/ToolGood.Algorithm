@@ -1,5 +1,6 @@
 ToolGood.Algorithm
 ===================
+ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
 
 ## 快速上手
 ``` csharp
@@ -10,9 +11,42 @@ ToolGood.Algorithm
     }
     var c = engine.TryEvaluate("2+3", 0);
 ```
+## 自定义参数
+``` csharp
+    //定义圆柱信息
+    public class Cylinder : AlgorithmEngine
+    {
+        private int _radius;
+        private int _height;
+        public Cylinder(int radius, int height)
+        {
+            _radius = radius;
+            _height = height;
+        }
+
+        protected override Operand GetParameter(Operand curOpd)
+        {
+            if (curOpd.Parameter == "[半径]") {
+                return new Operand(OperandType.NUMBER, _radius);
+            }
+            if (curOpd.Parameter == "[直径]") {
+                return new Operand(OperandType.NUMBER, _radius * 2);
+            }
+            if (curOpd.Parameter == "[高]") {
+                return new Operand(OperandType.NUMBER, _height);
+            }
+            return base.GetParameter(curOpd);
+        }
+    }
+    //调用方法
+    Cylinder c = new Cylinder(3, 10);
+    c.TryEvaluate("[半径]*[半径]*pi()", 0.0);      //圆底面积
+    c.TryEvaluate("[直径]*pi()", 0.0);            //圆的长
+    c.TryEvaluate("[半径]*[半径]*pi()*[高]", 0.0); //圆的体积
+```
 
 
-## 类Excel函数
+## Excel函数
 函数：`逻辑函数`、`数学与三角函数`、`文本函数`、`统计函数`、`日期与时间函数`
 
 #### 逻辑函数

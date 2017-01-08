@@ -17,22 +17,80 @@ namespace ToolGood.Algorithm
 
             this.Value = value;
         }
+        public Operand(OperandType type, short value)
+        {
+            this.Type = type;
+            this.Value = (double)value;
+        }
         public Operand(OperandType type, int value)
         {
             this.Type = type;
-
             this.Value = (double)value;
+        }
+        public Operand(OperandType type, long value)
+        {
+            this.Type = type;
+            this.Value = (double)value;
+        }
+        public Operand(OperandType type, ushort value)
+        {
+            this.Type = type;
+            this.Value = (double)value;
+        }
+        public Operand(OperandType type, uint value)
+        {
+            this.Type = type;
+            this.Value = (double)value;
+        }
+        public Operand(OperandType type, ulong value)
+        {
+            this.Type = type;
+            this.Value = (double)value;
+        }
+        public Operand(OperandType type, float value)
+        {
+            this.Type = type;
+            this.Value = (double)value;
+        }
+        public Operand(OperandType type, double value)
+        {
+            this.Type = type;
+            this.Value = (double)value;
+        }
+        public Operand(OperandType type, DateTime value)
+        {
+            this.Type = type;
+            this.Value = (Date)value;
+        }
+        internal Operand(OperandType type, Date value)
+        {
+            this.Type = type;
+            this.Value = (Date)value;
+        }
+        public Operand(OperandType type, string value)
+        {
+            this.Type = type;
+            this.Value = value;
+        }
+        public Operand(OperandType type, bool value)
+        {
+            this.Type = type;
+            this.Value = value;
+        }
+        public Operand(List<Operand> value)
+        {
+            this.Type = OperandType.ARRARY;
+            this.Value = value;
         }
 
 
-
-        public Operand(string opd)
+        internal Operand(string opd)
         {
             var lopd = opd.ToLower();
             if (lopd == "pi") {
                 this.Type = OperandType.NUMBER;
                 this.Value = Math.PI;
-            } else if (lopd=="e") {
+            } else if (lopd == "e") {
                 this.Type = OperandType.NUMBER;
                 this.Value = Math.E;
             } else if (lopd == "true") {
@@ -62,6 +120,9 @@ namespace ToolGood.Algorithm
         #endregion
 
         #region Variable &　Property
+
+
+
         /// <summary>
         /// 操作数类型
         /// </summary>
@@ -70,7 +131,16 @@ namespace ToolGood.Algorithm
         /// <summary>
         /// 操作数值
         /// </summary>
-        public object Value { get; set; }
+        internal object Value { get; private set; }
+
+        public string Parameter
+        {
+            get
+            {
+                return Value.ToString().TrimEnd();
+            }
+        }
+
         internal double NumberValue
         {
             get
