@@ -98,6 +98,20 @@ namespace ToolGood.Algorithm
             Assert.AreEqual(105.0, t);
 
         }
+        [Test]
+        public void combin_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("combin(10,2)", 0.0);
+            Assert.AreEqual(45.0, t);
+        }
+        [Test]
+        public void PERMUT_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("PERMUT(10,2)", 0.0);
+            Assert.AreEqual(90.0, t);
+        }
 
         #endregion
 

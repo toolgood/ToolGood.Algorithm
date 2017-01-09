@@ -51,6 +51,7 @@
     <Compile Include="AlgorithmEngine.math.cs" />
     <Compile Include="AlgorithmEngine.string.cs" />
     <Compile Include="AlgorithmEngine.sum.cs" />
+    <Compile Include="MathNet\Distributions\ChiSquared.cs" />
     <Compile Include="_base\AlgorithmEngine.base.cs" />
     <Compile Include="_base\Date.cs" />
     <Compile Include="MathNet\Constants.cs" />

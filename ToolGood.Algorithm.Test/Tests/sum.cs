@@ -11,10 +11,21 @@ namespace ToolGood.Algorithm.Test.Tests
     [TestFixture]
     class sum
     {
+        [Test]
         public void d()
         {
             Dictionary<int, double> dict = new Dictionary<int, double>();
             int index = 0;
+
+            //dict[index++] = Chi.CDF(3.5, 3.5);
+            //dict[index++] = Chi.PDF(3.5, 3.5);
+            //dict[index++] = Chi.PDFLn(3.5, 0.5);
+            //dict[index++] = ChiSquared.CDF(3.5, 3.5);
+            //dict[index++] = ChiSquared.InvCDF(3.5, 0.5);
+            //dict[index++] = ChiSquared.PDF(3.5, 0.5);
+            //dict[index++] = ChiSquared.PDFLn(0.5, 3.5);
+
+
             //=EXPONDIST(0.6,2,1)
             //0.698805788
             dict[index++] = ExcelFunctions.ExponDist(0.6, 2, true);

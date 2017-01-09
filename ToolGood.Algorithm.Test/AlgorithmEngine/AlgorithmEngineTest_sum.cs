@@ -76,6 +76,22 @@ namespace ToolGood.Algorithm
             Assert.AreEqual(t, 2.375);
         }
         [Test]
+        public void GEOMEAN_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("GEOMEAN(1,2,3,4)", 0.0);
+            Assert.AreEqual(Math.Round(t, 6), Math.Round(2.213363839, 6));
+        }
+        [Test]
+        public void HARMEAN_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("HARMEAN(1,2,3,4)", 0.0);
+            Assert.AreEqual(Math.Round(t, 6), Math.Round(1.92, 6));
+        }
+
+
+        [Test]
         public void COUNT_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
@@ -221,6 +237,14 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("GAMMAINV(0.2,3,4)", 0.0);
             Assert.AreEqual(Math.Round(t, 6), Math.Round(6.140176811, 6));
         }
+        [Test]
+        public void GAMMALN_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("GAMMALN(4)", 0.0);
+            Assert.AreEqual(Math.Round(t, 6), Math.Round(1.791759469, 6));
+        }
+
         [Test]
         public void HYPGEOMDIST_test()
         {

@@ -8,6 +8,11 @@ namespace ToolGood.Algorithm.MathNet.Numerics
 {
     public static partial class ExcelFunctions
     {
+        public static double GAMMALN(double z)
+        {
+            return SpecialFunctions.GammaLn(z);
+        }
+
         //public static double ChiDist(double x, double freedom)
         //{
         //    return Chi.PDF(x, freedom);//Is Error

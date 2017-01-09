@@ -40,10 +40,10 @@ namespace ToolGood.Algorithm
             //addFunc("FREQUENCY", FREQUENCY);//以垂直数组的形式返回频率分布。
             addFunc("GAMMADIST", GAMMADIST);//返回 γ 分布。
             addFunc("GAMMAINV", GAMMAINV);//返回 γ 累积分布函数的反函数。
-            //addFunc("GAMMALN", GAMMALN);//返回 γ 函数的自然对数，Γ(x)。
-            //addFunc("GEOMEAN", GEOMEAN);//返回正数数组或区域的几何平均值
+            addFunc("GAMMALN", GAMMALN);//返回 γ 函数的自然对数，Γ(x)。
+            addFunc("GEOMEAN", GEOMEAN);//返回正数数组或区域的几何平均值
             //addFunc("GROWTH", GROWTH);//根据指数趋势返回值
-            //addFunc("HARMEAN", HARMEAN);//返回数据集合的调和平均值
+            addFunc("HARMEAN", HARMEAN);//返回数据集合的调和平均值
             addFunc("HYPGEOMDIST", HYPGEOMDIST);//返回超几何分布
             //addFunc("INTERCEPT", INTERCEPT);//返回线性回归线截距
             //addFunc("KURT", KURT);//返回数据集的峰值
@@ -65,7 +65,6 @@ namespace ToolGood.Algorithm
             //addFunc("PEARSON", PEARSON);//返回 Pearson 乘积矩相关系数
             addFunc("PERCENTILE", PERCENTILE);//返回区域中的第 k 个百分位值
             addFunc("PERCENTRANK", PERCENTRANK);//返回数据集中值的百分比排位
-            //addFunc("PERMUT", PERMUT);//返回从给定数目的对象集合中选取的若干对象的排列数
             addFunc("POISSON", POISSON);//返回 Poisson 分布
             //addFunc("PROB", PROB);//返回区域中的数值落在指定区间内的对应概率
             addFunc("QUARTILE", QUARTILE);//返回数据集的四分位数
@@ -88,6 +87,36 @@ namespace ToolGood.Algorithm
             addFunc("SUMIF", SUMIF);//返回 z 检验的单尾概率值
             addFunc("AVERAGEIF", AVERAGEIF);//返回参数的平均值
 
+        }
+
+        private Operand HARMEAN(List<Operand> arg)
+        {
+            if (arg.Count < 1) return throwError("HARMEAN中参数不足", new List<Operand>());
+            if (arg.Count == 1) return arg[0];
+            var dbs = GetList(arg);
+            double sum = 0;
+            foreach (var db in dbs) {
+                sum += 1 / db;
+            }
+            return new Operand(OperandType.NUMBER, dbs.Count / sum);
+        }
+
+        private Operand GEOMEAN(List<Operand> arg)
+        {
+            if (arg.Count < 1) return throwError("GAMMALN中参数不足", new List<Operand>());
+            if (arg.Count == 1) return arg[0];
+            var dbs = GetList(arg);
+            double sum = 1;
+            foreach (var db in dbs) {
+                sum *= db;
+            }
+            return new Operand(OperandType.NUMBER, Math.Pow(sum, 1.0 / dbs.Count));
+        }
+
+        private Operand GAMMALN(List<Operand> arg)
+        {
+            if (arg.Count < 1) return throwError("GAMMALN中参数不足", new List<Operand>());
+            return new Operand(OperandType.NUMBER, ExcelFunctions.GAMMALN(arg[0].NumberValue));
         }
 
         private Operand SMALL(List<Operand> arg)

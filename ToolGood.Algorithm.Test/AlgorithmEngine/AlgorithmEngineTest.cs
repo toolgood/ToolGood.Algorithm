@@ -42,6 +42,11 @@ namespace ToolGood.Algorithm
             Assert.AreEqual(Math.PI * 4, b2);
             b2 = engine.TryEvaluate("e*4", 0.0);
             Assert.AreEqual(Math.E * 4, b2);
+
+            var s = engine.TryEvaluate("'aa'&'bb'", "");
+            Assert.AreEqual("aabb", s);
+
+
         }
 
         [Test]

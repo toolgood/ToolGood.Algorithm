@@ -3,7 +3,7 @@
 //using System.Linq;
 //using System.Text;
 
-//namespace MathNet.Numerics.Distributions
+//namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
 //{
 //    /// <summary>
 //    /// Continuous Univariate Chi distribution.
@@ -14,6 +14,29 @@
 //    /// </summary>
 //    public class Chi
 //    {
+//        /// <summary>
+//        /// Computes the cumulative distribution (CDF) of the distribution at x, i.e. P(X ≤ x).
+//        /// </summary>
+//        /// <param name="x">The location at which to compute the cumulative distribution function.</param>
+//        /// <param name="freedom">The degrees of freedom (k) of the distribution. Range: k > 0.</param>
+//        /// <returns>the cumulative distribution at location <paramref name="x"/>.</returns>
+//        /// <seealso cref="CumulativeDistribution"/>
+//        public static double CDF(double freedom, double x)
+//        {
+//            if (freedom <= 0.0) {
+//                throw new ArgumentException("InvalidDistributionParameters");
+//            }
+
+//            if (double.IsPositiveInfinity(x)) {
+//                return 1.0;
+//            }
+
+//            if (double.IsPositiveInfinity(freedom)) {
+//                return 1.0;
+//            }
+
+//            return SpecialFunctions.GammaLowerRegularized(freedom / 2.0, x * x / 2.0);
+//        }
 
 //        public static double PDF(double freedom, double x)
 //        {

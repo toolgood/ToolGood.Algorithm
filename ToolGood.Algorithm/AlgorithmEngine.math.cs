@@ -22,7 +22,7 @@ namespace ToolGood.Algorithm
 
             addFunc("atan2", atan2);//从 X 和 Y 坐标返回反正切
             addFunc("ceiling", ceiling);//将数字舍入为最接近的整数，或最接近的有效数字的倍数
-            //addFunc("combin", combin);//计算从给定数目的对象集合中提取若干对象的组合数
+            addFunc("combin", combin);//计算从给定数目的对象集合中提取若干对象的组合数
             addFunc("cos", cos);//返回数字的余弦值
             addFunc("cosh", cosh);//返回数字的双曲余弦值
             addFunc("degrees", degrees);//将弧度转换为度
@@ -72,8 +72,37 @@ namespace ToolGood.Algorithm
             addFunc("TAN", TAN);//返回数字的正切值
             addFunc("TANH", TANH);//返回数字的双曲正切值
             addFunc("TRUNC", TRUNC);//将数字截尾取整
+            addFunc("PERMUT", PERMUT);//返回从给定数目的对象集合中选取的若干对象的排列数
+
 
         }
+
+        private Operand PERMUT(List<Operand> arg)
+        {
+            if (arg.Count < 2) return throwError("TRUNC中参数不足", new List<Operand>());
+            var total = arg[0].IntValue;
+            var count = arg[1].IntValue;
+            double sum = 1;
+            for (int i = 0; i < count; i++) {
+                sum *= (total - i);
+            }
+            return new Operand(OperandType.NUMBER, sum);
+        }
+
+        private Operand combin(List<Operand> arg)
+        {
+            if (arg.Count < 2) return throwError("TRUNC中参数不足", new List<Operand>());
+            var total = arg[0].IntValue;
+            var count = arg[1].IntValue;
+            double sum = 1;
+            double sum2 = 1;
+            for (int i = 0; i < count; i++) {
+                sum *= (total - i);
+                sum2 *= (i + 1);
+            }
+            return new Operand(OperandType.NUMBER, sum / sum2);
+        }
+
         private Operand TRUNC(List<Operand> arg)
         {
             if (arg.Count < 1) return throwError("TRUNC中参数不足", new List<Operand>());
@@ -311,7 +340,7 @@ namespace ToolGood.Algorithm
             if (arg.Count > 1) {
                 return new Operand(OperandType.NUMBER, Math.Log(arg[0].NumberValue, arg[1].NumberValue));
             }
-            return new Operand(OperandType.NUMBER, Math.Log(arg[0].NumberValue,10));
+            return new Operand(OperandType.NUMBER, Math.Log(arg[0].NumberValue, 10));
         }
 
         private Operand ln(List<Operand> arg)

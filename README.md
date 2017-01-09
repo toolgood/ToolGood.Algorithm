@@ -115,7 +115,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
 <table>
     <tr><td>分类</td><td>公式名</td><td>说明</td><td>示例</td></tr>
     <tr>
-        <td rowspan="11">基础数学</td>
+        <td rowspan="12">基础数学</td>
         <td>PI</td><td>返回 PI 值</td>
         <td>pi() >>3.141592654</td>
     </tr>
@@ -140,10 +140,6 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>SQRT(9) >>3</td>
     </tr>
     <tr>
-        <td>SUM</td><td>返回所有数字之和。</td>
-        <td>SUM(1,2,3,4) >>10</td>
-    </tr>
-    <tr>
         <td>TRUNC</td><td>将数字截尾取整</td>
         <td>TRUNC(9.222) >>9  TRUNC(-9.222) >>-9 </td>
     </tr>
@@ -158,6 +154,14 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
     <tr>
         <td>LCM</td><td>返回整数参数的最小公倍数</td>
         <td>LCM(3,5,7) >>105</td>
+    </tr>
+    <tr>
+        <td>combin</td><td>计算从给定数目的对象集合中提取若干对象的组合数</td>
+        <td>combin(10,2) >>45</td>
+    </tr>
+    <tr>
+        <td>PERMUT</td><td>返回从给定数目的对象集合中选取的若干对象的排列数</td>
+        <td>PERMUT(10,2) >>990</td>
     </tr>
     <tr>
     <td rowspan="15">三角函数</td>
@@ -547,6 +551,14 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>AVERAGEIF({1,2,3,4,2,2,1,4},'>1') >>2.833333333</td>
     </tr>
     <tr>
+        <td>GEOMEAN</td><td>返回正数数组或区域的几何平均值</td>
+        <td>GEOMEAN(1,2,3,4) >>2.213363839</td>
+    </tr>
+    <tr>
+        <td>HARMEAN</td><td>返回数据集合的调和平均值</td>
+        <td>HARMEAN(1,2,3,4) >>1.92</td>
+    </tr>
+    <tr>
         <td>COUNT</td><td>计算参数列表中数字的个数</td>
         <td>COUNT(1,2,3,4,2,2,1,4) >>8</td>
     </tr>
@@ -555,7 +567,11 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>COUNTIF({1,2,3,4,2,2,1,4},'>1') >>6</td>
     </tr>
     <tr>
-        <td>SUMIF</td><td></td>
+        <td>SUM</td><td>返回所有数字之和。</td>
+        <td>SUM(1,2,3,4) >>10</td>
+    </tr>
+    <tr>
+        <td>SUMIF</td><td>返回所有数字之和</td>
         <td>SUMIF({1,2,3,4,2,2,1,4},'>1') >>17</td>
     </tr>
     <tr>
@@ -637,6 +653,10 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
     <tr>
         <td>GAMMAINV</td><td>返回 γ 累积分布函数的反函数</td>
         <td>GAMMAINV(0.2,3,4) >>6.140176811</td>
+    </tr>
+    <tr>
+        <td>GEOMEAN</td><td>返回 γ 累积分布函数的反函数</td>
+        <td>GEOMEAN(4) >>1.791759469</td>
     </tr>
     <tr>
         <td>HYPGEOMDIST</td><td>返回超几何分布</td>
