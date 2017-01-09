@@ -130,11 +130,11 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
     </tr>
     <tr>
         <td>TRUNC</td><td>trunc(数字)<br>将数字截尾取整</td>
-        <td>TRUNC(9.222) <br>>>9  TRUNC(-9.222) <br>>>-9 </td>
+        <td>TRUNC(9.222) <br>>>9</td>
     </tr>
     <tr>
         <td>int</td><td>int(数字)<br>将数字向下舍入到最接近的整数。</td>
-        <td>int(9.222) <br>>>9   int(-9.222) <br>>>-10</td>
+        <td>int(9.222) <br>>>9</td>
     </tr>
     <tr>
         <td>gcd</td><td>gcd(数字1，...)<br>返回最大公约数</td>
@@ -215,89 +215,89 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
     </tr>
     <tr>
         <td rowspan="8">四舍五入</td>
-        <td>ROUND</td><td>返回某个数字按指定位数取整后的数字。</td>
+        <td>ROUND</td><td>round(数值,小数位数)<br>返回某个数字按指定位数取整后的数字。</td>
         <td>ROUND(4.333,2) <br>>>4.33</td>
     </tr>
     <tr>
-        <td>ROUNDDOWN</td><td>靠近零值，向下（绝对值减小的方向）舍入数字。</td>
+        <td>ROUNDDOWN</td><td>rounddown(数值,小数位数)<br>靠近零值，向下（绝对值减小的方向）舍入数字。</td>
         <td>ROUNDDOWN(4.333,2) <br>>>4.33</td>
     </tr>
     <tr>
-        <td>ROUNDUP</td><td>远离零值，向上（绝对值增长的方向）舍入数字。</td>
+        <td>ROUNDUP</td><td>roundup(数值,小数位数)<br>远离零值，向上（绝对值增长的方向）舍入数字。</td>
         <td>ROUNDUP(4.333,2) <br>>>4.34</td>
     </tr>
     <tr>
-        <td>CEILING</td><td>向上舍入（沿绝对值增大的方向）为最接近的 舍入基数 的倍数。</td>
+        <td>CEILING</td><td>ceiling(数值,舍入基数)<br>向上舍入（沿绝对值增大的方向）为最接近的 舍入基数 的倍数。</td>
         <td>CEILING(4.333,0.1) <br>>>4.4</td>
     </tr>
     <tr>
-        <td>floor</td><td>向下舍入，使其等于最接近的 Significance 的倍数。</td>
+        <td>floor</td><td>floor(数值,舍入基数)<br>向下舍入，使其等于最接近的 Significance 的倍数。</td>
         <td>FLOOR(4.333,0.1) <br>>>4.3</td>
     </tr>
     <tr>
-        <td>even</td><td>返回沿绝对值增大方向取整后最接近的偶数。</td>
+        <td>even</td><td>even(数值)<br>返回沿绝对值增大方向取整后最接近的偶数。</td>
         <td>EVEN(3) <br>>>4</td>
     </tr>
     <tr>
-        <td>ODD</td><td>将数字向上舍入为最接近的奇型整数</td>
+        <td>ODD</td><td>odd(数值)<br>将数字向上舍入为最接近的奇型整数</td>
         <td>ODD(3.1) <br>>>5</td>
     </tr>
     <tr>
-        <td>MROUND</td><td>返回一个舍入到所需倍数的数字</td>
+        <td>MROUND</td><td>mround(数值,舍入基数)<br>返回一个舍入到所需倍数的数字</td>
         <td>MROUND(13,5) <br>>>15</td>
     </tr>
     <tr>
         <td rowspan="2">随机数</td>
-        <td>RAND</td><td>返回 0 到 1 之间的随机数 </td>
+        <td>RAND</td><td>rand()<br>返回 0 到 1 之间的随机数 </td>
         <td>RAND() <br>>>0.2</td>
     </tr>
     <tr>
-        <td>RANDBETWEEN</td><td>返回大于等于指定的最小值，小于指定最大值之间的一个随机整数。</td>
+        <td>RANDBETWEEN</td><td>randbetween(最小整数，最大整数)<br>返回大于等于指定的最小值，小于指定最大值之间的一个随机整数。</td>
         <td>RANDBETWEEN(2,44) <br>>>9</td>
     </tr>
     <tr>
         <td rowspan="11">幂/对数/阶乘</td>
-        <td>fact</td><td>返回数的阶乘，一个数的阶乘等于 1*2*3*…* 该数。</td>
+        <td>fact</td><td>fact(数值)<br>返回数的阶乘，一个数的阶乘等于 1*2*3*…* 该数。</td>
         <td>FACT(3) <br>>>6</td>
     </tr>
     <tr>
-        <td>factdouble</td><td>返回数字的双倍阶乘</td>
+        <td>factdouble</td><td>factdouble(数值)<br>返回数字的双倍阶乘</td>
         <td>FACTDOUBLE(10) <br>>>3840</td>
     </tr>
     <tr>
-        <td>POWER</td><td>返回数的乘幂结果</td>
+        <td>POWER</td><td>power(数值,幂)<br>返回数的乘幂结果</td>
         <td>POWER(10,2) <br>>>100</td>
     </tr>
     <tr>
-        <td>exp</td><td>返回e的指定数乘幂</td>
+        <td>exp</td><td>exp(幂)<br>返回e的指定数乘幂</td>
         <td>exp(2) <br>>>7.389056099</td>
     </tr>
     <tr>
-        <td>ln</td><td>返回数字的自然对数</td>
+        <td>ln</td><td>ln(数值)<br>返回数字的自然对数</td>
         <td>LN(4) <br>>>1.386294361</td>
     </tr>
     <tr>
-        <td>log</td><td>返回数字的常用对数</td>
+        <td>log</td><td>log(数值,[底数])<br>返回数字的常用对数，如省略底数，默认为10</td>
         <td>LOG(100,10) <br>>>2</td>
     </tr>
     <tr>
-        <td>LOG10</td><td>返回数字的10对数</td>
+        <td>LOG10</td><td>log10(数值)<br>返回数字的10对数</td>
         <td>LOG10(100) <br>>>2</td>
     </tr>
     <tr>
-        <td>MULTINOMIAL</td><td>返回参数和的阶乘与各参数阶乘乘积的比值</td>
+        <td>MULTINOMIAL</td><td>multinomial(数值1，...)<br>返回参数和的阶乘与各参数阶乘乘积的比值</td>
         <td>MULTINOMIAL(1,2,3) <br>>>60</td>
     </tr>
     <tr>
-        <td>PRODUCT</td><td>将所有以参数形式给出的数字相乘，并返回乘积值。</td>
+        <td>PRODUCT</td><td>product(数值1，...)<br>将所有以参数形式给出的数字相乘，并返回乘积值。</td>
         <td>PRODUCT(1,2,3,4) <br>>>24</td>
     </tr>
     <tr>
-        <td>SQRTPI</td><td>返回某数与 PI 的乘积的平方根</td>
+        <td>SQRTPI</td><td>sqrtpi(数值)<br>返回某数与 PI 的乘积的平方根</td>
         <td>SQRTPI(3) <br>>>3.069980124</td>
     </tr>
     <tr>
-        <td>SUMSQ</td><td>返回参数的平方和</td>
+        <td>SUMSQ</td><td>sumsq(数值，...)<br>返回参数的平方和</td>
         <td>SUMSQ(1,2) <br>>>5</td>
     </tr>
 </table>
@@ -306,103 +306,103 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
 <table>
     <tr><td>公式名</td><td>说明</td><td>示例</td></tr>
     <tr>
-        <td>ASC</td><td>将字符串内的全角英文字母更改为半角字符</td>
+        <td>ASC</td><td>asc(字符串)<br>将字符串内的全角英文字母更改为半角字符</td>
         <td>asc('ａｂｃＡＢＣ１２３') <br>>>abcABC123</td>
     </tr>
     <tr>
-        <td>JIS / WIDECHAR</td><td>将字符串中的半角英文字符更改为全角字符</td>
+        <td>JIS / WIDECHAR</td><td>jis(字符串)<br>将字符串中的半角英文字符更改为全角字符</td>
         <td>jis('abcABC123') <br>>>ａｂｃＡＢＣ１２３</td>
     </tr>
     <tr>
-        <td>CHAR</td><td>返回由代码数字指定的字符</td>
+        <td>CHAR</td><td>jis(数值)<br>返回由代码数字指定的字符</td>
         <td>char(49) <br>>>1</td>
     </tr>
     <tr>
-        <td>CLEAN</td><td>删除文本中所有打印不出的字符</td>
+        <td>CLEAN</td><td>clean(字符串)<br>删除文本中所有打印不出的字符</td>
         <td>clean('\r112\t') <br>>>112</td>
     </tr>
     <tr>
-        <td>CODE</td><td>返回文本字符串中第一个字符的数字代码</td>
+        <td>CODE</td><td>code(字符串)<br>返回文本字符串中第一个字符的数字代码</td>
         <td>CODE("1") <br>>>49</td>
     </tr>
     <tr>
-        <td>CONCATENATE</td><td>将若干文本项合并到一个文本项中</td>
+        <td>CONCATENATE</td><td>concatenate(字符串1，...)<br>将若干文本项合并到一个文本项中</td>
         <td>CONCATENATE('tt','11') <br>>>tt11</td>
     </tr>
     <tr>
-        <td>EXACT</td><td>检查两个文本值是否完全相同</td>
+        <td>EXACT</td><td>exact(字符串1，字符串2)<br>检查两个文本值是否完全相同</td>
         <td>EXACT("11","22") <br>>>false</td>
     </tr>
     <tr>
-        <td>FIND</td><td>在一文本值内查找另一文本值（区分大小写） </td>
+        <td>FIND</td><td>find(要查找的字符串，被查找的字符串，[开始位置])<br>在一文本值内查找另一文本值（区分大小写） </td>
         <td>FIND("11","12221122") <br>>>5</td>
     </tr>
     <tr>
-        <td>FIXED</td><td>将数字设置为具有固定小数位的文本格式</td>
+        <td>FIXED</td><td>fixed(数值，[小数位数]，[有无逗号分隔符])<br>将数字设置为具有固定小数位的文本格式</td>
         <td>FIXED(4567.89,1) <br>>>4,567.9</td>
     </tr>
     <tr>
-        <td>LEFT</td><td>返回文本值最左边的字符</td>
+        <td>LEFT</td><td>left(字符串，[字符个数])<br>返回文本值最左边的字符</td>
         <td>LEFT('123222',3) <br>>>123</td>
     </tr>
     <tr>
-        <td>LEN</td><td>返回文本字符串中的字符个数</td>
+        <td>LEN</td><td>len(字符串)<br>返回文本字符串中的字符个数</td>
         <td>LEN('123222') <br>>>6</td>
     </tr>
     <tr>
-        <td>LOWER</td><td>将文本转换为小写形式</td>
+        <td>LOWER</td><td>lower(字符串)<br>将文本转换为小写形式</td>
         <td>LOWER('ABC') <br>>>abc</td>
     </tr>
     <tr>
-        <td>MID</td><td>从文本字符串中的指定位置起返回特定个数的字符</td>
+        <td>MID</td><td>mid(字符串，开始位置，字符个数)<br>从文本字符串中的指定位置起返回特定个数的字符</td>
         <td>MID('ABCDEF',2,3) <br>>>BCD</td>
     </tr>
     <tr>
-        <td>PROPER</td><td>将文本值中每一个单词的首字母设置为大写</td>
+        <td>PROPER</td><td>proper(字符串)<br>将文本值中每一个单词的首字母设置为大写</td>
         <td>PROPER('abc abc') <br>>>Abc Abc</td>
     </tr>
     <tr>
-        <td>REPLACE</td><td>替换文本内的字符</td>
+        <td>REPLACE</td><td>replace(原字符串,开始位置，字符个数，新字符串)<br>替换文本内的字符</td>
         <td>REPLACE("abccd",2,3,"2") <br>>>a2d</td>
     </tr>
     <tr>
-        <td>REPT</td><td>按给定次数重复文本</td>
+        <td>REPT</td><td>rept(字符串，重复次数)<br>按给定次数重复文本</td>
         <td>REPT("q",3) <br>>>qqq</td>
     </tr>
     <tr>
-        <td>RIGHT</td><td>返回文本值最右边的字符</td>
+        <td>RIGHT</td><td>right(字符串，字符个数)<br>返回文本值最右边的字符</td>
         <td>RIGHT("123q",3) <br>>>23q</td>
     </tr>
     <tr>
-        <td>RMB</td><td>将数字转换为大写数字文本</td>
+        <td>RMB</td><td>rmb(数值)<br>将数字转换为大写数字文本</td>
         <td>rmb(12.3) <br>>>壹拾贰元叁角</td>
     </tr>
     <tr>
-        <td>SEARCH</td><td>在一文本值中查找另一文本值（不区分大小写）</td>
+        <td>SEARCH</td><td>search(要找的字符串，被查找的字符串，[开始位置])<br>在一文本值中查找另一文本值（不区分大小写）</td>
         <td>SEARCH("aa","abbAaddd") <br>>>4</td>
     </tr>
     <tr>
-        <td>SUBSTITUTE</td><td>在文本字符串中以新文本替换旧文本</td>
+        <td>SUBSTITUTE</td><td>substitute(字符串，原字符串，新字符串，[替换序号])<br>在文本字符串中以新文本替换旧文本</td>
         <td>SUBSTITUTE("ababcc","ab","12") <br>>>1212cc</td>
     </tr>
     <tr>
-        <td>T</td><td>将参数转换为文本</td>
+        <td>T</td><td>t(数值)<br>将参数转换为文本</td>
         <td>T('123') <br>>>123</td>
     </tr>
     <tr>
-        <td>TEXT</td><td>设置数字的格式并将数字转换为文本</td>
+        <td>TEXT</td><td>text(数值，数值格式)<br>设置数字的格式并将数字转换为文本</td>
         <td>TEXT(123,"0.00") <br>>>123.00</td>
     </tr>
     <tr>
-        <td>TRIM</td><td>删除文本中的空格</td>
+        <td>TRIM</td><td>trim(字符串)<br>删除文本中的空格</td>
         <td>TRIM(" 123 123 ")<br>>>123 123</td>
     </tr>
     <tr>
-        <td>UPPER</td><td>将文本转换为大写形式</td>
+        <td>UPPER</td><td>upper(字符串)<br>将文本转换为大写形式</td>
         <td>UPPER("abc") <br>>>ABC</td>
     </tr>
     <tr>
-        <td>VALUE</td><td>将文本参数转换为数字</td>
+        <td>VALUE</td><td>value(字符串)<br>将文本参数转换为数字</td>
         <td>VALUE("123") <br>>>123</td>
     </tr>
 </table>
