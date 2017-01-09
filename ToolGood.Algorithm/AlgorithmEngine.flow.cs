@@ -86,7 +86,7 @@ namespace ToolGood.Algorithm
 
         private Operand IFERROR(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("IFERROR中参数不足", new List<Operand>());
+            if (arg.Count < 2) return throwError("IFERROR中参数不足", new List<Operand>());
             var b = false;
             if (arg[0].Type == OperandType.ERROR) {
                 b = true;
@@ -105,7 +105,7 @@ namespace ToolGood.Algorithm
 
         private Operand IF(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("IF中参数不足", new List<Operand>());
+            if (arg.Count < 2) return throwError("IF中参数不足", new List<Operand>());
             var b = true;
             if (arg[0].Type == OperandType.BOOLEAN) {
                 b = arg[0].BooleanValue;

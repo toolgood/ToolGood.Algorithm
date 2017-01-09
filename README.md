@@ -55,58 +55,47 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
 <table>
     <tr><td>公式名</td><td>说明</td><td>示例</td></tr>
     <tr>
-        <td>IF</td>
-        <td>执行真假值判断，根据逻辑计算的真假值，返回不同结果。</td>
+        <td>IF</td><td>if(测试条件,真值,[假值])<br>执行真假值判断，根据逻辑计算的真假值，返回不同结果。</td>
         <td>if(1=1,1,2) >>1</td>
     </tr>
     <tr>
-        <td>IFERROR</td>
-        <td>如果公式计算出错误则返回您指定的值；否则返回公式结果。</td>
+        <td>IFERROR</td><td>iferror(测试条件,真值,[假值])<br>如果公式计算出错误则返回您指定的值；否则返回公式结果。</td>
         <td>iferror(1/0,1,2) >>1</td>
     </tr>
     <tr>
-        <td>IFNUMBER</td>
-        <td>指定要执行的逻辑检测</td>
+        <td>IFNUMBER</td><td>ifnumber(测试条件,真值,[假值])<br>指定要执行的逻辑检测</td>
         <td>ifnumber(4,1,2) >>1</td>
     </tr>
     <tr>
-        <td>IFTEXT</td>
-        <td>指定要执行的逻辑检测</td>
+        <td>IFTEXT</td><td>iftext(测试条件,真值,[假值])<br>指定要执行的逻辑检测</td>
         <td>iftext('a',1,2) >>1</td>
     </tr>
     <tr>
-        <td>ISNUMBER</td>
-        <td>判断是否数字</td>
+        <td>ISNUMBER</td><td>isnumber(值)<br>判断是否数字,返回 TRUE 或 FALSE</td>
         <td>ISNUMBER(1) >>true</td>
     </tr>
     <tr>
-        <td>ISTEXT</td>
-        <td>判断是否文字</td>
+        <td>ISTEXT</td><td>istext(值)<br>判断是否文字,返回 TRUE 或 FALSE</td>
         <td>istext('1') >>true </td>
     </tr>
     <tr>
-        <td>AND</td>
-        <td>如果所有参数均为TRUE，则返回TRUE</td>
+        <td>AND</td><td>and(逻辑值1，...)<br>如果所有参数均为TRUE，则返回TRUE</td>
         <td>and(1,2=2) >>true</td>
     </tr>
     <tr>
-        <td>OR</td>
-        <td>如果任一参数为TRUE，则返回TRUE</td>
+        <td>OR</td><td>or(逻辑值1，...)<br>如果任一参数为TRUE，则返回TRUE</td>
         <td>or(1,2=3) >>true</td>
     </tr>
     <tr>
-        <td>NOT</td>
-        <td>对参数的逻辑值求反</td>
+        <td>NOT</td><td>not(逻辑值)<br>对参数的逻辑值求反</td>
         <td>NOT(true()) >>false</td>
     </tr>
     <tr>
-        <td>TRUE</td>
-        <td>返回逻辑值TRUE</td>
+        <td>TRUE</td><td>true()<br>返回逻辑值TRUE</td>
         <td>true() >>true</td>
     </tr>
     <tr>
-        <td>FALSE</td>
-        <td>返回逻辑值FALSE</td>
+        <td>FALSE</td><td>false()<br>返回逻辑值FALSE</td>
         <td>false() >>false</td>
     </tr>
 </table>
@@ -116,7 +105,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
     <tr><td>分类</td><td>公式名</td><td>说明</td><td>示例</td></tr>
     <tr>
         <td rowspan="12">基础数学</td>
-        <td>PI</td><td>返回 PI 值</td>
+        <td>PI</td><td>pi()<br>返回 PI 值</td>
         <td>pi() >>3.141592654</td>
     </tr>
     <tr>
@@ -148,11 +137,11 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>int(9.222) >>9   int(-9.222) >>-10</td>
     </tr>
     <tr>
-        <td>gcd</td><td>gcd(数字1,数字2,...)<br>返回最大公约数</td>
+        <td>gcd</td><td>gcd(数字1，...)<br>返回最大公约数</td>
         <td>GCD(3,5,7) >>1</td>
     </tr>
     <tr>
-        <td>LCM</td><td>lcm(数字1,数字2,...)<br>返回整数参数的最小公倍数</td>
+        <td>LCM</td><td>lcm(数字1，...)<br>返回整数参数的最小公倍数</td>
         <td>LCM(3,5,7) >>105</td>
     </tr>
     <tr>

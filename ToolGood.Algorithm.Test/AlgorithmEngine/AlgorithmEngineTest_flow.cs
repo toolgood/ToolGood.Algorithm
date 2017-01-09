@@ -15,6 +15,9 @@ namespace ToolGood.Algorithm
             AlgorithmEngine engine = new AlgorithmEngine();
             var t = engine.TryEvaluate("if(1=1,1,2)", 0);
             Assert.AreEqual(1, t);
+            t = engine.TryEvaluate("if(1=1,1)", 0);
+            Assert.AreEqual(1, t);
+
             t = engine.TryEvaluate("if(3,1,2)", 0);
             Assert.AreEqual(1, t);
             t = engine.TryEvaluate("if('1',1,2)", 0);
