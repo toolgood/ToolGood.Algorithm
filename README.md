@@ -655,8 +655,8 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>GAMMAINV(0.2,3,4) >>6.140176811</td>
     </tr>
     <tr>
-        <td>GEOMEAN</td><td>返回 γ 累积分布函数的反函数</td>
-        <td>GEOMEAN(4) >>1.791759469</td>
+        <td>GAMMALN</td><td>返回 γ 累积分布函数的反函数</td>
+        <td>GAMMALN(4) >>1.791759469</td>
     </tr>
     <tr>
         <td>HYPGEOMDIST</td><td>返回超几何分布</td>
