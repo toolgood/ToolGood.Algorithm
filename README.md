@@ -154,64 +154,64 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
     </tr>
     <tr>
     <td rowspan="15">三角函数</td>
-        <td>degrees</td><td>将弧度转换为度</td>
+        <td>degrees</td>degrees(弧度)<br><td>将弧度转换为度</td>
         <td>degrees(pi()) <br>>>180</td>
     </tr>
     <tr>
-        <td>RADIANS</td><td>将度转换为弧度</td>
+        <td>RADIANS</td><td>radians(度)<br>将度转换为弧度</td>
         <td>RADIANS(180) <br>>>3.141592654</td>
     </tr>
     <tr>
-        <td>cos</td><td>返回数字的余弦值</td>
-        <td>cos(1) <br>>>0.54030230586813977</td>
+        <td>cos</td><td>cos(弧度)<br>返回数字的余弦值</td>
+        <td>cos(1) <br>>>0.540302305868</td>
     </tr>
     <tr>
-        <td>cosh</td><td>返回数字的双曲余弦值</td>
-        <td>cosh(1) <br>>>1.5430806348152437</td>
+        <td>cosh</td><td>cosh(弧度)<br>返回数字的双曲余弦值</td>
+        <td>cosh(1) <br>>>1.54308063481</td>
     </tr>
     <tr>
-        <td>SIN</td><td>返回给定角度的正弦值</td>
-        <td>sin(1) <br>>>0.8414709848078965</td>
+        <td>SIN</td><td>sin(弧度)<br>返回给定角度的正弦值</td>
+        <td>sin(1) <br>>>0.84147098480</td>
     </tr>
     <tr>
-        <td>SINH</td><td>返回数字的双曲正弦值</td>
-        <td>sinh(1) <br>>>1.1752011936438014</td>
+        <td>SINH</td><td>sinh(弧度)<br>返回数字的双曲正弦值</td>
+        <td>sinh(1) <br>>>1.1752011936</td>
     </tr>
     <tr>
-        <td>TAN</td><td>返回数字的正切值</td>
-        <td>tan(1) <br>>>1.5574077246549023</td>
+        <td>TAN</td><td>tan(弧度)<br>返回数字的正切值</td>
+        <td>tan(1) <br>>>1.55740772465</td>
     </tr>
     <tr>
-        <td>TANH</td><td>返回数字的双曲正切值</td>
-        <td>tanh(1) <br>>>0.76159415595576485</td>
+        <td>TANH</td><td>tanh(弧度)<br>返回数字的双曲正切值</td>
+        <td>tanh(1) <br>>>0.761594155955</td>
     </tr>
     <tr>
-        <td>acos</td><td>返回数字的反余弦值</td>
-        <td>acos(0.5) <br>>>1.0471975511965979</td>
+        <td>acos</td><td>acos(数值)<br>返回数字的反余弦值</td>
+        <td>acos(0.5) <br>>>1.04719755119</td>
     </tr>
     <tr>
-        <td>acosh</td><td>返回数字的反双曲余弦值</td>
-        <td>acosh(1.5) <br>>>0.96242365011920694</td>
+        <td>acosh</td><td>acosh(数值)<br>返回数字的反双曲余弦值</td>
+        <td>acosh(1.5) <br>>>0.962423650119</td>
     </tr>
     <tr>
-        <td>asin</td><td>返回数字的反正弦值</td>
-        <td>asin(0.5) <br>>>0.52359877559829893</td>
+        <td>asin</td><td>asin(数值)<br>返回数字的反正弦值</td>
+        <td>asin(0.5) <br>>>0.523598775598</td>
     </tr>
     <tr>
-        <td>asinh</td><td>返回数字的反双曲正弦值。</td>
-        <td>asinh(1.5) <br>>>1.1947632172871094</td>
+        <td>asinh</td><td>asinh(数值)<br>返回数字的反双曲正弦值。</td>
+        <td>asinh(1.5) <br>>>1.1947632172</td>
     </tr>
     <tr>
-        <td>atan</td><td>返回数字的反正切值</td>
-        <td>atan(1) <br>>>0.78539816339744828</td>
+        <td>atan</td><td>atan(数值)<br>返回数字的反正切值</td>
+        <td>atan(1) <br>>>0.785398163397</td>
     </tr>
    <tr>
-        <td>atanh</td><td>返回参数的反双曲正切值</td>
-        <td>atanh(1) <br>>>0.54930614433405489</td>
+        <td>atanh</td><td>atanh(数值)<br>返回参数的反双曲正切值</td>
+        <td>atanh(1) <br>>>0.549306144334</td>
     </tr>
     <tr>
-        <td>atan2</td><td>从X和Y坐标返回反正切</td>
-        <td>atan2(1,2) <br>>>1.1071487177940904</td>
+        <td>atan2</td><td>atan2(数值)<br>从X和Y坐标返回反正切</td>
+        <td>atan2(1,2) <br>>>1.10714871779</td>
     </tr>
     <tr>
         <td rowspan="8">四舍五入</td>
