@@ -120,47 +120,47 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>pi() >>3.141592654</td>
     </tr>
     <tr>
-        <td>abs</td><td>返回数字的绝对值</td>
+        <td>abs</td><td>abs(数字)<br>返回数字的绝对值</td>
         <td>abs(-1) >>1</td>
     </tr>
     <tr>
-        <td>QUOTIENT</td><td>返回商的整数部分，该函数可用于舍掉商的小数部分。</td>
+        <td>QUOTIENT</td><td>quotient(除数,被除数)<br>返回商的整数部分，该函数可用于舍掉商的小数部分。</td>
         <td>QUOTIENT(7,3) >>2</td>
     </tr>
     <tr>
-        <td>mod</td><td>返回两数相除的余数</td>
+        <td>mod</td><td>mod(除数,被除数)<br>返回两数相除的余数</td>
         <td>MOD(7,3) >>1</td>
     </tr>
     <tr>
-        <td>SIGN</td><td>返回数字的符号。当数字为正数时返回 1，为零时返回 0，为负数时返回 -1。</td>
+        <td>SIGN</td><td>sign(数字)<br>返回数字的符号。当数字为正数时返回 1，为零时返回 0，为负数时返回 -1。</td>
         <td>SIGN(-9) >>-1</td>
     </tr>
    <tr>
-        <td>SQRT</td><td>返回正平方根</td>
+        <td>SQRT</td><td>sqrt(数字)<br>返回正平方根</td>
         <td>SQRT(9) >>3</td>
     </tr>
     <tr>
-        <td>TRUNC</td><td>将数字截尾取整</td>
+        <td>TRUNC</td><td>trunc(数字)<br>将数字截尾取整</td>
         <td>TRUNC(9.222) >>9  TRUNC(-9.222) >>-9 </td>
     </tr>
     <tr>
-        <td>int</td><td>将数字向下舍入到最接近的整数。</td>
+        <td>int</td><td>int(数字)<br>将数字向下舍入到最接近的整数。</td>
         <td>int(9.222) >>9   int(-9.222) >>-10</td>
     </tr>
     <tr>
-        <td>gcd</td><td>返回最大公约数</td>
+        <td>gcd</td><td>gcd(数字1,数字2,...)<br>返回最大公约数</td>
         <td>GCD(3,5,7) >>1</td>
     </tr>
     <tr>
-        <td>LCM</td><td>返回整数参数的最小公倍数</td>
+        <td>LCM</td><td>lcm(数字1,数字2,...)<br>返回整数参数的最小公倍数</td>
         <td>LCM(3,5,7) >>105</td>
     </tr>
     <tr>
-        <td>combin</td><td>计算从给定数目的对象集合中提取若干对象的组合数</td>
+        <td>combin</td><td>combin(总数,排列数)<br>计算从给定数目的对象集合中提取若干对象的组合数</td>
         <td>combin(10,2) >>45</td>
     </tr>
     <tr>
-        <td>PERMUT</td><td>返回从给定数目的对象集合中选取的若干对象的排列数</td>
+        <td>PERMUT</td><td>permut(总数,排列数)<br>返回从给定数目的对象集合中选取的若干对象的排列数</td>
         <td>PERMUT(10,2) >>990</td>
     </tr>
     <tr>
