@@ -51,9 +51,10 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
 ## Excel函数
 函数：`逻辑函数`、`数学与三角函数`、`文本函数`、`统计函数`、`日期与时间函数`
 
+注：函数名不分大小写，带方括号的参数可省略，示例的返回值，可能为近似值。
 #### 逻辑函数
 <table>
-    <tr><td>公式名</td><td>说明</td><td>示例</td></tr>
+    <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
         <td>IF</td><td>if(测试条件,真值,[假值])<br>执行真假值判断，根据逻辑计算的真假值，返回不同结果。</td>
         <td>if(1=1,1,2) <br>>>1</td>
@@ -102,7 +103,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
 
 #### 数学与三角函数
 <table>
-    <tr><td>分类</td><td>公式名</td><td>说明</td><td>示例</td></tr>
+    <tr><td>分类</td><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
         <td rowspan="12">基础数学</td>
         <td>PI</td><td>pi()<br>返回 PI 值</td>
@@ -304,7 +305,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
 
 #### 文本函数
 <table>
-    <tr><td>公式名</td><td>说明</td><td>示例</td></tr>
+    <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
         <td>ASC</td><td>asc(字符串)<br>将字符串内的全角英文字母更改为半角字符</td>
         <td>asc('ａｂｃＡＢＣ１２３') <br>>>abcABC123</td>
@@ -370,7 +371,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>REPT("q",3) <br>>>qqq</td>
     </tr>
     <tr>
-        <td>RIGHT</td><td>right(字符串，字符个数)<br>返回文本值最右边的字符</td>
+        <td>RIGHT</td><td>right(字符串，[字符个数])<br>返回文本值最右边的字符</td>
         <td>RIGHT("123q",3) <br>>>23q</td>
     </tr>
     <tr>
@@ -409,7 +410,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
 
 #### 日期与时间函数
 <table>
-    <tr><td>公式名</td><td>说明</td><td>示例</td></tr>
+    <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
         <td>DATEVALUE</td><td>将文本格式的日期转换为序列号</td>
         <td>DATEVALUE("2017-01-02") <br>>>2017-01-02</td>
@@ -494,7 +495,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
 
 #### 统计函数
 <table>
-    <tr><td>公式名</td><td>说明</td><td>示例</td></tr>
+    <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
         <td>MAX</td><td>返回参数列表中的最大值</td>
         <td>max(1,2,3,4,2,2,1,4) <br>>>4</td>
