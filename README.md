@@ -65,23 +65,23 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>if(1=1,1,2) <br>>>1</td>
     </tr>
     <tr>
-        <td>IFERROR</td><td>iferror(测试条件,真值,[假值])<br>如果公式计算出错误则返回您指定的值；否则返回公式结果。</td>
+        <td>IFERROR</td><td>ifError(测试条件,真值,[假值])<br>如果公式计算出错误则返回您指定的值；否则返回公式结果。</td>
         <td>iferror(1/0,1,2) <br>>>1</td>
     </tr>
     <tr>
-        <td>IFNUMBER</td><td>ifnumber(测试条件,真值,[假值])<br>指定要执行的逻辑检测</td>
+        <td>IFNUMBER</td><td>ifNumber(测试条件,真值,[假值])<br>指定要执行的逻辑检测</td>
         <td>ifnumber(4,1,2) <br>>>1</td>
     </tr>
     <tr>
-        <td>IFTEXT</td><td>iftext(测试条件,真值,[假值])<br>指定要执行的逻辑检测</td>
+        <td>IFTEXT</td><td>ifText(测试条件,真值,[假值])<br>指定要执行的逻辑检测</td>
         <td>iftext('a',1,2) <br>>>1</td>
     </tr>
     <tr>
-        <td>ISNUMBER</td><td>isnumber(值)<br>判断是否数字,返回 TRUE 或 FALSE</td>
+        <td>ISNUMBER</td><td>isNumber(值)<br>判断是否数字,返回 TRUE 或 FALSE</td>
         <td>ISNUMBER(1) <br>>>true</td>
     </tr>
     <tr>
-        <td>ISTEXT</td><td>istext(值)<br>判断是否文字,返回 TRUE 或 FALSE</td>
+        <td>ISTEXT</td><td>isText(值)<br>判断是否文字,返回 TRUE 或 FALSE</td>
         <td>istext('1') <br>>>true </td>
     </tr>
     <tr>
@@ -225,11 +225,11 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>ROUND(4.333,2) <br>>>4.33</td>
     </tr>
     <tr>
-        <td>ROUNDDOWN</td><td>rounddown(数值,小数位数)<br>靠近零值，向下（绝对值减小的方向）舍入数字。</td>
+        <td>ROUNDDOWN</td><td>roundDown(数值,小数位数)<br>靠近零值，向下（绝对值减小的方向）舍入数字。</td>
         <td>ROUNDDOWN(4.333,2) <br>>>4.33</td>
     </tr>
     <tr>
-        <td>ROUNDUP</td><td>roundup(数值,小数位数)<br>远离零值，向上（绝对值增长的方向）舍入数字。</td>
+        <td>ROUNDUP</td><td>roundUp(数值,小数位数)<br>远离零值，向上（绝对值增长的方向）舍入数字。</td>
         <td>ROUNDUP(4.333,2) <br>>>4.34</td>
     </tr>
     <tr>
@@ -258,7 +258,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>RAND() <br>>>0.2</td>
     </tr>
     <tr>
-        <td>RANDBETWEEN</td><td>randbetween(最小整数，最大整数)<br>返回大于等于指定的最小值，小于指定最大值之间的一个随机整数。</td>
+        <td>RANDBETWEEN</td><td>randBetween(最小整数，最大整数)<br>返回大于等于指定的最小值，小于指定最大值之间的一个随机整数。</td>
         <td>RANDBETWEEN(2,44) <br>>>9</td>
     </tr>
     <tr>
@@ -267,7 +267,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>FACT(3) <br>>>6</td>
     </tr>
     <tr>
-        <td>factdouble</td><td>factdouble(数值)<br>返回数字的双倍阶乘</td>
+        <td>factdouble</td><td>factDouble(数值)<br>返回数字的双倍阶乘</td>
         <td>FACTDOUBLE(10) <br>>>3840</td>
     </tr>
     <tr>
@@ -299,11 +299,11 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>PRODUCT(1,2,3,4) <br>>>24</td>
     </tr>
     <tr>
-        <td>SQRTPI</td><td>sqrtpi(数值)<br>返回某数与 PI 的乘积的平方根</td>
+        <td>SQRTPI</td><td>sqrtPi(数值)<br>返回某数与 PI 的乘积的平方根</td>
         <td>SQRTPI(3) <br>>>3.069980124</td>
     </tr>
     <tr>
-        <td>SUMSQ</td><td>sumsq(数值，...)<br>返回参数的平方和</td>
+        <td>SUMSQ</td><td>sumQq(数值，...)<br>返回参数的平方和</td>
         <td>SUMSQ(1,2) <br>>>5</td>
     </tr>
 </table>
@@ -582,7 +582,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>STDEVP(1,2,3,4,2,2,1,4) <br>>>1.1110243021644486</td>
     </tr>
     <tr>
-        <td>DEVSQ</td><td>DevSq(数值1，...)<br>返回偏差的平方和</td>
+        <td>DEVSQ</td><td>devSq(数值1，...)<br>返回偏差的平方和</td>
         <td>DEVSQ(1,2,3,4,2,2,1,4) <br>>>9.875</td>
     </tr>
     <tr>
@@ -594,27 +594,27 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>VARP(1,2,3,4,2,2,1,4) <br>>>1.234375</td>
     </tr>
     <tr>
-        <td>NORMDIST</td><td>NormDist(数值，算术平均值，标准偏差，返回类型：0/1)<br>返回正态累积分布</td>
+        <td>NORMDIST</td><td>normDist(数值，算术平均值，标准偏差，返回类型：0/1)<br>返回正态累积分布</td>
         <td>NORMDIST(3,8,4,1) <br>>>0.105649774</td>
     </tr>
     <tr>
-        <td>NORMINV</td><td>NormInv(分布概率，算术平均值，标准偏差)<br>返回反正态累积分布</td>
+        <td>NORMINV</td><td>normInv(分布概率，算术平均值，标准偏差)<br>返回反正态累积分布</td>
         <td>NORMINV(0.8,8,3) <br>>>10.5248637</td>
     </tr>
     <tr>
-        <td>NormSDist</td><td>NormSDist(数值)<br>返回标准正态累积分布函数，该分布的平均值为 0，标准偏差为 1。</td>
+        <td>NormSDist</td><td>normSDist(数值)<br>返回标准正态累积分布函数，该分布的平均值为 0，标准偏差为 1。</td>
         <td>NORMSDIST(1) <br>>>0.841344746</td>
     </tr>
     <tr>
-        <td>NORMSINV</td><td>NormInv(数值)<br>返回反标准正态累积分布</td>
+        <td>NORMSINV</td><td>normInv(数值)<br>返回反标准正态累积分布</td>
         <td>NORMSINV(0.3) <br>>>-0.524400513</td>
     </tr>
     <tr>
-        <td>BETADIST</td><td>betaDist(数值，分布参数α，分布参数β)<br>返回 Beta 累积分布函数，不支持上下界</td>
+        <td>BETADIST</td><td>betaDist(数值，分布参数α，分布参数β)<br>返回 Beta 累积分布函数</td>
         <td>BETADIST(0.5,11,22) <br>>>0.97494877</td>
     </tr>
     <tr>
-        <td>BETAINV</td><td>betaInv(数值，分布参数α，分布参数β)<br>返回指定 Beta 分布的累积分布函数的反函数,不支持上下界</td>
+        <td>BETAINV</td><td>betaInv(数值，分布参数α，分布参数β)<br>返回指定 Beta 分布的累积分布函数的反函数</td>
         <td>BETAINV(0.5,23,45) <br>>>0.336640759</td>
     </tr>
     <tr>
@@ -662,7 +662,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>LOGINV(0.1,45,33) <br>>>15.01122624</td>
     </tr>
     <tr>
-        <td>LognormDist</td><td>LognormDist(数值，算法平均数，标准偏差)<br>返回反对数正态分布</td>
+        <td>LognormDist</td><td>lognormDist(数值，算法平均数，标准偏差)<br>返回反对数正态分布</td>
         <td>LOGNORMDIST(15,23,45) <br>>>0.326019201</td>
     </tr>
     <tr>
@@ -670,7 +670,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>NEGBINOMDIST(23,45,0.7) <br>>>0.053463314</td>
     </tr>
     <tr>
-        <td>POISSON</td><td>Poisson(数值，算法平均数，返回类型：0/1)<br>返回 Poisson 分布</td>
+        <td>POISSON</td><td>poisson(数值，算法平均数，返回类型：0/1)<br>返回 Poisson 分布</td>
         <td>POISSON(23,23,0) <br>>>0.082884384</td>
     </tr>
     <tr>
