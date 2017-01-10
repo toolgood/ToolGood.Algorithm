@@ -110,7 +110,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
 <table>
     <tr><td>分类</td><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
-        <td rowspan="12">基础数学</td>
+        <td rowspan="12">基<br><br>础<br><br>数<br><br>学</td>
         <td>PI</td><td>pi()<br>返回 PI 值</td>
         <td>pi() <br>>>3.141592654</td>
     </tr>
@@ -159,8 +159,8 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>PERMUT(10,2) <br>>>990</td>
     </tr>
     <tr>
-    <td rowspan="15">三角函数</td>
-        <td>degrees</td>degrees(弧度)<br><td>将弧度转换为度</td>
+    <td rowspan="15">三<br><br>角<br><br>函<br><br>数</td>
+        <td>degrees</td><td>degrees(弧度)<br>将弧度转换为度</td>
         <td>degrees(pi()) <br>>>180</td>
     </tr>
     <tr>
@@ -220,7 +220,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>atan2(1,2) <br>>>1.10714871779</td>
     </tr>
     <tr>
-        <td rowspan="8">四舍五入</td>
+        <td rowspan="8">四<br><br>舍<br><br>五<br><br>入</td>
         <td>ROUND</td><td>round(数值,小数位数)<br>返回某个数字按指定位数取整后的数字。</td>
         <td>ROUND(4.333,2) <br>>>4.33</td>
     </tr>
@@ -253,7 +253,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>MROUND(13,5) <br>>>15</td>
     </tr>
     <tr>
-        <td rowspan="2">随机数</td>
+        <td rowspan="2">随<br><br>机<br><br>数</td>
         <td>RAND</td><td>rand()<br>返回 0 到 1 之间的随机数 </td>
         <td>RAND() <br>>>0.2</td>
     </tr>
@@ -262,7 +262,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>RANDBETWEEN(2,44) <br>>>9</td>
     </tr>
     <tr>
-        <td rowspan="11">幂/对数/阶乘</td>
+        <td rowspan="11">幂<br><br>/<br><br>对<br><br>数<br><br>/<br><br>阶<br><br>乘</td>
         <td>fact</td><td>fact(数值)<br>返回数的阶乘，一个数的阶乘等于 1*2*3*…* 该数。</td>
         <td>FACT(3) <br>>>6</td>
     </tr>
