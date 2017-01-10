@@ -46,7 +46,19 @@ namespace ToolGood.Algorithm
             var s = engine.TryEvaluate("'aa'&'bb'", "");
             Assert.AreEqual("aabb", s);
 
+            var r = engine.TryEvaluate("count({ 1,2,3,4})", 0);
+            Assert.AreEqual(4, r);
 
+
+            r = engine.TryEvaluate("(1=1)*9+2", 0);
+            Assert.AreEqual(11, r); ;
+            r = engine.TryEvaluate("(1=2)*9+2", 0);
+            Assert.AreEqual(2, r); ;
+
+            var dt = engine.TryEvaluate("'2016-1-1'+1", DateTime.MinValue);
+            Assert.AreEqual(DateTime.Parse("2016-1-2"), dt); ;
+            dt = engine.TryEvaluate("'2016-1-1'+9*'1:0'", DateTime.MinValue);
+            Assert.AreEqual(DateTime.Parse("2016-1-1 9:0"), dt); ;
         }
 
         [Test]

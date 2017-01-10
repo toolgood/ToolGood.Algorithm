@@ -5,11 +5,16 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
 ## 快速上手
 ``` csharp
     AlgorithmEngine engine = new AlgorithmEngine();
-    double t=0.0;
+    double a=0.0;
     if (engine.Parse("1+2")) {
-        t = (double)engine.Evaluate();
+        a = (double)engine.Evaluate();
     }
     var c = engine.TryEvaluate("2+3", 0);
+    var d = engine.TryEvaluate("count({1,2,3,4})", 0);//{}代表数组，返回:4
+    var s = engine.TryEvaluate("'aa'&'bb'", ""); //字符串连接，返回:aabb
+    var r = engine.TryEvaluate("(1=1)*9+2", 0); //返回:11
+    var d = engine.TryEvaluate("'2016-1-1'+1", DateTime.MinValue); //返回日期:2016-1-2
+    var t = engine.TryEvaluate("'2016-1-1'+9*'1:0'", DateTime.MinValue);//返回日期:2016-1-1 9:0
 ```
 支持常量`pi`,`e`,`true`,`false`
 
@@ -412,83 +417,83 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
 <table>
     <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
-        <td>DATEVALUE</td><td>将文本格式的日期转换为序列号</td>
+        <td>DATEVALUE</td><td>dateValue(字符串)<br>将文本格式的日期转换为序列号</td>
         <td>DATEVALUE("2017-01-02") <br>>>2017-01-02</td>
     </tr>
     <tr>
-        <td>TIMEVALUE</td><td>将文本格式的时间转换为序列号</td>
+        <td>TIMEVALUE</td><td>timeValue(字符串)<br>将文本格式的时间转换为序列号</td>
         <td>TIMEVALUE("12:12:12") <br>>>12:12:12</td>
     </tr>
     <tr>
-        <td>DATE</td><td>返回特定日期的序列号</td>
+        <td>DATE</td><td>date(年，月，日，[时]，[分]，[秒])<br>返回特定日期的序列号</td>
         <td>DATE(2016,1,1) <br>>>2016-01-01</td>
     </tr>
     <tr>
-        <td>TIME</td><td>返回特定时间的序列号</td>
+        <td>TIME</td><td>time(时，分，秒)<br>返回特定时间的序列号</td>
         <td>TIME(12,13,14) <br>>>12:13:14</td>
     </tr>
     <tr>
-        <td>NOW</td><td>返回当前日期和时间的序列号</td>
+        <td>NOW</td><td>now()<br>返回当前日期和时间的序列号</td>
         <td>NOW() <br>>>2017-01-07 11:00:00</td>
     </tr>
     <tr>
-        <td>TODAY</td><td>返回今天日期的序列号</td>
+        <td>TODAY</td><td>today()<br>返回今天日期的序列号</td>
         <td>TODAY() <br>>>2017-01-07</td>
     </tr>
     <tr>
-        <td>YEAR</td><td>将序列号转换为年</td>
+        <td>YEAR</td><td>year(日期)<br>将序列号转换为年</td>
         <td>YEAR(NOW()) <br>>>2017</td>
     </tr>
     <tr>
-        <td>MONTH</td><td>将序列号转换为月</td>
+        <td>MONTH</td><td>month(日期)<br>将序列号转换为月</td>
         <td>MONTH(NOW()) <br>>>1</td>
     </tr>
     <tr>
-        <td>DAY</td><td>将序列号转换为月份中的日</td>
+        <td>DAY</td><td>day(日期)<br>将序列号转换为月份中的日</td>
         <td>DAY(NOW()) <br>>>7</td>
     </tr>
     <tr>
-        <td>HOUR</td><td>将序列号转换为小时</td>
+        <td>HOUR</td><td>hour(日期)<br>将序列号转换为小时</td>
         <td>HOUR(NOW()) <br>>>11</td>
     </tr>
     <tr>
-        <td>MINUTE</td><td>将序列号转换为分钟</td>
+        <td>MINUTE</td><td>minute(日期)<br>将序列号转换为分钟</td>
         <td>MINUTE(NOW()) <br>>>12</td>
     </tr>
     <tr>
-        <td>SECOND</td><td>将序列号转换为秒</td>
+        <td>SECOND</td><td>second(日期)<br>将序列号转换为秒</td>
         <td>SECOND(NOW()) <br>>>34</td>
     </tr>
     <tr>
-        <td>WEEKDAY</td><td>将序列号转换为星期几</td>
+        <td>WEEKDAY</td><td>second(日期)<br>将序列号转换为星期几</td>
         <td>WEEKDAY(date(2017,1,7)) <br>>>7</td>
     </tr>
     <tr>
-        <td>DATEDIF</td><td>返回两个日期之间的相隔天数</td>
+        <td>DATEDIF</td><td>dateDif(开始日期，结束日期，类型Y/M/D/YD/MD/YM)<br>返回两个日期之间的相隔天数</td>
         <td>DATEDIF("1975-1-30","2017-1-7","Y") <br>>>41</td>
     </tr>
     <tr>
-        <td>DAYS360</td><td>以一年 360 天为基准计算两个日期间的天数</td>
+        <td>DAYS360</td><td>days360(开始日期，结束日期,[选项0/1])<br>以一年 360 天为基准计算两个日期间的天数</td>
         <td>DAYS360('1975-1-30','2017-1-7') <br>>>15097</td>
     </tr>
     <tr>
-        <td>EDATE</td><td>返回用于表示开始日期之前或之后月数的日期的序列号</td>
+        <td>EDATE</td><td>eDate(开始日期，月数)<br>返回用于表示开始日期之前或之后月数的日期的序列号</td>
         <td>EDATE("2012-1-31",32) <br>>>2014-09-30</td>
     </tr>
     <tr>
-        <td>EOMONTH</td><td>返回指定月数之前或之后的月份的最后一天的序列号</td>
+        <td>EOMONTH</td><td>eoMonth(开始日期，月数)<br>返回指定月数之前或之后的月份的最后一天的序列号</td>
         <td>EOMONTH("2012-2-1",32) <br>>>2014-10-31</td>
     </tr>
     <tr>
-        <td>NETWORKDAYS</td><td>返回两个日期之间的全部工作日数</td>
+        <td>NETWORKDAYS</td><td>netWorkdays(开始日期，结束日期，[假日])<br>返回两个日期之间的全部工作日数</td>
         <td>NETWORKDAYS("2012-1-1","2013-1-1") <br>>>262</td>
     </tr>
     <tr>
-        <td>WORKDAY</td><td>返回指定的若干个工作日之前或之后的日期的序列号</td>
+        <td>WORKDAY</td><td>workday(开始日期，天数，[假日])<br>返回指定的若干个工作日之前或之后的日期的序列号</td>
         <td>WORKDAY("2012-1-2",145) <br>>>2012-07-23</td>
     </tr>
     <tr>
-        <td>WEEKNUM</td><td>将序列号转换为一年中相应的周数</td>
+        <td>WEEKNUM</td><td>weekNum(日期，[类型：1/2])<br>将序列号转换为一年中相应的周数</td>
         <td>WEEKNUM("2016-1-3") <br>>>2</td>
     </tr>
 </table>
@@ -497,187 +502,187 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
 <table>
     <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
-        <td>MAX</td><td>返回参数列表中的最大值</td>
+        <td>MAX</td><td>max(数值)<br>返回参数列表中的最大值</td>
         <td>max(1,2,3,4,2,2,1,4) <br>>>4</td>
     </tr>
     <tr>
-        <td>MEDIAN</td><td>返回给定数字的中值</td>
+        <td>MEDIAN</td><td>median(数值)<br>返回给定数字的中值</td>
         <td>MEDIAN(1,2,3,4,2,2,1,4) <br>>>2</td>
     </tr>
     <tr>
-        <td>MIN</td><td>返回参数列表中的最小值</td>
+        <td>MIN</td><td>min(数值)<br>返回参数列表中的最小值</td>
         <td>MIN(1,2,3,4,2,2,1,4) <br>>>1</td>
     </tr>
     <tr>
-        <td>QUARTILE</td><td>返回数据集的四分位数</td>
+        <td>QUARTILE</td><td>quartile(数值，四分位：0-4)<br>返回数据集的四分位数</td>
         <td>QUARTILE({1,2,3,4,2,2,1,4},0) <br>>>1</td>
     </tr>
     <tr>
-        <td>MODE</td><td>返回数据集中出现最多的值间的概率</td>
+        <td>MODE</td><td>mode(数值1，...)<br>返回在数组中出现频率最多的数值</td>
         <td>MODE(1,2,3,4,2,2,1,4) <br>>>2</td>
     </tr>
     <tr>
-        <td>LARGE</td><td>返回数据集中第 k 个最大值</td>
+        <td>LARGE</td><td>large(数组，K)<br>返回数据集中第 k 个最大值</td>
         <td>LARGE({1,2,3,4,2,2,1,4},3) <br>>>3</td>
     </tr>
     <tr>
-        <td>SMALL</td><td>返回数据集中第 k 个最小值</td>
+        <td>SMALL</td><td>small(数值，K)<br>返回数据集中第 k 个最小值</td>
         <td>SMALL({1,2,3,4,2,2,1,4},3) <br>>>2</td>
     </tr>
     <tr>
-        <td>PERCENTILE</td><td>返回区域中的第 k 个百分位值</td>
+        <td>PERCENTILE</td><td>percentile(数值，K)<br>返回区域中的第 k 个百分位值</td>
         <td>PERCENTILE({1,2,3,4,2,2,1,4}，0.4) <br>>>2</td>
     </tr>
     <tr>
-        <td>PERCENTRANK</td><td>返回数据集中值的百分比排位</td>
+        <td>PERCENTRANK</td><td>percentRank(数值，K)<br>返回数据集中值的百分比排位</td>
         <td>PERCENTRANK({1,2,3,4,2,2,1,4}，3) <br>>>0.714</td>
     </tr>
     <tr>
-        <td>AVERAGE</td><td>返回参数的平均值</td>
+        <td>AVERAGE</td><td>average(数值1，...)<br>返回参数的平均值</td>
         <td>AVERAGE(1,2,3,4,2,2,1,4) <br>>>2.375</td>
     </tr>
     <tr>
-        <td>AVERAGEIF</td><td>返回参数的平均值</td>
+        <td>AVERAGEIF</td><td>averageIf(数值1，...)<br>返回参数的平均值</td>
         <td>AVERAGEIF({1,2,3,4,2,2,1,4},'>1') <br>>>2.833333333</td>
     </tr>
     <tr>
-        <td>GEOMEAN</td><td>返回正数数组或区域的几何平均值</td>
+        <td>GEOMEAN</td><td>geoMean(数值1，...)<br>返回正数数组或区域的几何平均值</td>
         <td>GEOMEAN(1,2,3,4) <br>>>2.213363839</td>
     </tr>
     <tr>
-        <td>HARMEAN</td><td>返回数据集合的调和平均值</td>
+        <td>HARMEAN</td><td>harMean(数值1，...)<br>返回数据集合的调和平均值</td>
         <td>HARMEAN(1,2,3,4) <br>>>1.92</td>
     </tr>
     <tr>
-        <td>COUNT</td><td>计算参数列表中数字的个数</td>
+        <td>COUNT</td><td>count(数值1，...)<br>计算参数列表中数字的个数</td>
         <td>COUNT(1,2,3,4,2,2,1,4) <br>>>8</td>
     </tr>
     <tr>
-        <td>COUNTIF</td><td>计算参数列表中数字的个数</td>
+        <td>COUNTIF</td><td>countIf(数值1，...)<br>计算参数列表中数字的个数</td>
         <td>COUNTIF({1,2,3,4,2,2,1,4},'>1') <br>>>6</td>
     </tr>
     <tr>
-        <td>SUM</td><td>返回所有数字之和。</td>
+        <td>SUM</td><td>sum(数值1，...)<br>返回所有数字之和。</td>
         <td>SUM(1,2,3,4) <br>>>10</td>
     </tr>
     <tr>
-        <td>SUMIF</td><td>返回所有数字之和</td>
+        <td>SUMIF</td><td>sumIf(数值1，...)<br>返回所有数字之和</td>
         <td>SUMIF({1,2,3,4,2,2,1,4},'>1') <br>>>17</td>
     </tr>
     <tr>
-        <td>AVEDEV</td><td>返回数据点与其平均值的绝对偏差的平均值</td>
+        <td>AVEDEV</td><td>aveDev(数值1，...)<br>返回数据点与其平均值的绝对偏差的平均值</td>
         <td>AVEDEV(1,2,3,4,2,2,1,4) <br>>>0.96875</td>
     </tr>
     <tr>
-        <td>STDEV</td><td>基于样本估算标准偏差</td>
+        <td>STDEV</td><td>stDev(数值1，...)<br>基于样本估算标准偏差</td>
         <td>STDEV(1,2,3,4,2,2,1,4) <br>>>1.1877349391654208</td>
     </tr>
     <tr>
-        <td>STDEVP</td><td>计算基于整个样本总体的标准偏差</td>
+        <td>STDEVP</td><td>stDevp(数值1，...)<br>计算基于整个样本总体的标准偏差</td>
         <td>STDEVP(1,2,3,4,2,2,1,4) <br>>>1.1110243021644486</td>
     </tr>
     <tr>
-        <td>DEVSQ</td><td>返回偏差的平方和</td>
+        <td>DEVSQ</td><td>DevSq(数值1，...)<br>返回偏差的平方和</td>
         <td>DEVSQ(1,2,3,4,2,2,1,4) <br>>>9.875</td>
     </tr>
     <tr>
-        <td>VAR</td><td>基于样本估算方差</td>
+        <td>VAR</td><td>var(数值1，...)<br>基于样本估算方差</td>
         <td>VAR(1,2,3,4,2,2,1,4) <br>>>1.4107142857142858</td>
     </tr>
     <tr>
-        <td>VARP</td><td>基于整个样本总体计算方差</td>
+        <td>VARP</td><td>varp(数值1，...)<br>基于整个样本总体计算方差</td>
         <td>VARP(1,2,3,4,2,2,1,4) <br>>>1.234375</td>
     </tr>
     <tr>
-        <td>NormSDist</td><td>返回标准正态累积分布函数，该分布的平均值为 0，标准偏差为 1。</td>
-        <td>NORMSDIST(1) <br>>>0.841344746</td>
-    </tr>
-    <tr>
-        <td>NORMDIST</td><td>返回正态累积分布</td>
+        <td>NORMDIST</td><td>NormDist(数值，算术平均值，标准偏差，返回类型：0/1)<br>返回正态累积分布</td>
         <td>NORMDIST(3,8,4,1) <br>>>0.105649774</td>
     </tr>
     <tr>
-        <td>NORMINV</td><td>返回反正态累积分布</td>
+        <td>NORMINV</td><td>NormInv(分布概率，算术平均值，标准偏差)<br>返回反正态累积分布</td>
         <td>NORMINV(0.8,8,3) <br>>>10.5248637</td>
     </tr>
     <tr>
-        <td>NORMSINV</td><td>返回反标准正态累积分布</td>
+        <td>NormSDist</td><td>NormSDist(数值)<br>返回标准正态累积分布函数，该分布的平均值为 0，标准偏差为 1。</td>
+        <td>NORMSDIST(1) <br>>>0.841344746</td>
+    </tr>
+    <tr>
+        <td>NORMSINV</td><td>NormInv(数值)<br>返回反标准正态累积分布</td>
         <td>NORMSINV(0.3) <br>>>-0.524400513</td>
     </tr>
     <tr>
-        <td>BETADIST</td><td>返回 Beta 累积分布函数，不支持上下界</td>
+        <td>BETADIST</td><td>betaDist(数值，分布参数α，分布参数β)<br>返回 Beta 累积分布函数，不支持上下界</td>
         <td>BETADIST(0.5,11,22) <br>>>0.97494877</td>
     </tr>
     <tr>
-        <td>BETAINV</td><td>返回指定 Beta 分布的累积分布函数的反函数,不支持上下界</td>
+        <td>BETAINV</td><td>betaInv(数值，分布参数α，分布参数β)<br>返回指定 Beta 分布的累积分布函数的反函数,不支持上下界</td>
         <td>BETAINV(0.5,23,45) <br>>>0.336640759</td>
     </tr>
     <tr>
-        <td>BINOMDIST</td><td>返回一元二项式分布概率</td>
+        <td>BINOMDIST</td><td>binomDist(试验成功次数，试验次数，成功概率，返回类型：0/1)<br>返回一元二项式分布概率</td>
         <td>BINOMDIST(12,45,0.5,0) <br>>>0.000817409</td>
     </tr>
     <tr>
-        <td>EXPONDIST</td><td>返回指数分布</td>
+        <td>EXPONDIST</td><td>exponDist(函数值，参数值，返回类型：0/1)<br>返回指数分布</td>
         <td>EXPONDIST(3,1,0) <br>>>0.049787068</td>
     </tr>
     <tr>
-        <td>FDIST</td><td>返回 F 概率分布</td>
+        <td>FDIST</td><td>fDist(数值X，分子自由度，分母自由度)<br>返回 F 概率分布</td>
         <td>FDIST(0.4,2,3) <br>>>0.701465776</td>
     </tr>
     <tr>
-        <td>FINV</td><td>返回 F 概率分布的反函数</td>
+        <td>FINV</td><td>fInv(分布概率，分子自由度，分母自由度)<br>返回 F 概率分布的反函数</td>
         <td>FINV(0.7,2,3) <br>>>0.402651432</td>
     </tr>
     <tr>
-        <td>FISHER</td><td>返回点 x 的 Fisher 变换。该变换生成一个正态分布而非偏斜的函数</td>
+        <td>FISHER</td><td>fisher(数值)<br>返回点 x 的 Fisher 变换。该变换生成一个正态分布而非偏斜的函数</td>
         <td>FISHER(0.68) <br>>>0.8291140383</td>
     </tr>
     <tr>
-        <td>FISHERINV</td><td>返回 Fisher 变换的反函数值。</td>
+        <td>FISHERINV</td><td>fisherInv(数值)<br>返回 Fisher 变换的反函数值。</td>
         <td>FISHERINV(0.6) <br>>>0.537049567</td>
     </tr>
     <tr>
-        <td>GAMMADIST</td><td>返回 γ 分布</td>
+        <td>GAMMADIST</td><td>gammaDist(数值，分布参数α，分布参数β,返回类型：0/1)<br>返回 γ 分布</td>
         <td>GAMMADIST(0.5,3,4,0) <br>>>0.001723627</td>
     </tr>
     <tr>
-        <td>GAMMAINV</td><td>返回 γ 累积分布函数的反函数</td>
+        <td>GAMMAINV</td><td>gammaInv(分布概率，分布参数α，分布参数β)<br>返回 γ 累积分布函数的反函数</td>
         <td>GAMMAINV(0.2,3,4) <br>>>6.140176811</td>
     </tr>
     <tr>
-        <td>GAMMALN</td><td>返回 γ 累积分布函数的反函数</td>
+        <td>GAMMALN</td><td>gammaLn(数值)<br>返回 γ 累积分布函数的反函数</td>
         <td>GAMMALN(4) <br>>>1.791759469</td>
     </tr>
     <tr>
-        <td>HYPGEOMDIST</td><td>返回超几何分布</td>
+        <td>HYPGEOMDIST</td><td>hypgeomDist(样本成功次数，样本容量，样本总体成功次数，样本总体容量)<br>返回超几何分布</td>
         <td>HYPGEOMDIST(23,45,45,100) <br>>>0.08715016</td>
     </tr>
     <tr>
-        <td>LOGINV</td><td>返回 x 的对数累积分布函数的反函数</td>
+        <td>LOGINV</td><td>logInv(分布概率，算法平均数，标准偏差)<br>返回 x 的对数累积分布函数的反函数</td>
         <td>LOGINV(0.1,45,33) <br>>>15.01122624</td>
     </tr>
     <tr>
-        <td>LognormDist</td><td>返回反对数正态分布</td>
+        <td>LognormDist</td><td>LognormDist(数值，算法平均数，标准偏差)<br>返回反对数正态分布</td>
         <td>LOGNORMDIST(15,23,45) <br>>>0.326019201</td>
     </tr>
     <tr>
-        <td>NEGBINOMDIST</td><td>返回负二项式分布</td>
+        <td>NEGBINOMDIST</td><td>negbinomDist(失败次数，成功极限次数，成功概率)<br>返回负二项式分布</td>
         <td>NEGBINOMDIST(23,45,0.7) <br>>>0.053463314</td>
     </tr>
     <tr>
-        <td>POISSON</td><td>返回 Poisson 分布</td>
+        <td>POISSON</td><td>Poisson(数值，算法平均数，返回类型：0/1)<br>返回 Poisson 分布</td>
         <td>POISSON(23,23,0) <br>>>0.082884384</td>
     </tr>
     <tr>
-        <td>TDIST</td><td>返回学生的 t 分布</td>
+        <td>TDIST</td><td>tDist(数值，自由度，返回类型：1/2)<br>返回学生的 t 分布</td>
         <td>TDIST(1.2,24,1) <br>>>0.120925677</td>
     </tr>
     <tr>
-        <td>TINV</td><td>返回学生的 t 分布的反分布</td>
+        <td>TINV</td><td>tDist(分布概率，自由度)<br>返回学生的 t 分布的反分布</td>
         <td>TINV(0.12,23) <br>>>1.614756561</td>
     </tr>
     <tr>
-        <td>WEIBULL</td><td>返回 Weibull 分布</td>
+        <td>WEIBULL</td><td>weibull(数值，分布参数α，分布参数β,返回类型：0/1)<br>返回 Weibull 分布</td>
         <td>WEIBULL(1,2,3,1) <br>>>0.105160683</td>
     </tr>
 

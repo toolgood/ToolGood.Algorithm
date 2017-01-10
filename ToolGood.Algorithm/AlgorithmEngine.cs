@@ -469,6 +469,14 @@ namespace ToolGood.Algorithm
                 }
                 value = outopd.Value;
             }
+            //if (value is Date) {
+            //    var v = (Date)value;
+            //    if (v.Year>0) {
+            //        return (DateTime)v;
+            //    }
+            //    return (TimeSpan)v;
+            //}
+
             return value;
         }
 
