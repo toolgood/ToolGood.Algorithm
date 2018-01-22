@@ -61,7 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ToolGood.Algorithm\ToolGood.Algorithm.csproj">
-      <Project>{f79d1349-805c-46c9-bb99-3fb5caac3e2d}</Project>
+      <Project>{3c8ae2a1-a7c0-42e3-8082-a95407c6e59e}</Project>
       <Name>ToolGood.Algorithm</Name>
     </ProjectReference>
   </ItemGroup>

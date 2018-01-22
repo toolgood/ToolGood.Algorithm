@@ -528,7 +528,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
         /// <exception cref="ArgumentOutOfRangeException">
         ///     Thrown if <paramref name="b"/> is <c>double.NaN</c>.
         /// </exception>
-        [CLSCompliant(false)]
+        //[CLSCompliant(false)]
         public static ulong NumbersBetween(this double a, double b)
         {
             if (double.IsNaN(a) || double.IsInfinity(a)) {

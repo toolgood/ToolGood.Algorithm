@@ -111,6 +111,7 @@ namespace ToolGood.Algorithm
             AlgorithmEngine engine = new AlgorithmEngine();
             var t = engine.TryEvaluate("PERMUT(10,2)", 0.0);
             Assert.AreEqual(90.0, t);
+            
         }
 
         #endregion
