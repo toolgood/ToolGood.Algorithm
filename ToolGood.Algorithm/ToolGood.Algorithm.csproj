@@ -23,8 +23,8 @@
     <RootNamespace>ToolGood.Algorithm</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <FileVersion>1.2.1.0</FileVersion>
-    <Version>1.2.1.0</Version>
+    <FileVersion>1.2.1.1</FileVersion>
+    <Version>1.2.1.1</Version>
     <PackageReleaseNotes></PackageReleaseNotes>
     <Product>ToolGood.Algorithm</Product>
   </PropertyGroup>

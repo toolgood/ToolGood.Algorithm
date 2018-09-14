@@ -128,6 +128,9 @@ namespace ToolGood.Algorithm
             AlgorithmEngine engine = new AlgorithmEngine();
             var t = engine.TryEvaluate("REPLACE(\"abccd\",2,3,\"2\")", "");
             Assert.AreEqual(t, "a2d");
+
+            var t1 = engine.TryEvaluate("REPLACE(\"abccd\",'bc',\"2\")", "");
+            Assert.AreEqual(t1, "a2cd");
         }
         [Test]
         public void REPT_test()

@@ -159,7 +159,7 @@ namespace ToolGood.Algorithm
 
         private Operand REPT(List<Operand> arg)
         {
-            if (arg.Count < 2) return throwError("REPLACE中参数不足", new List<Operand>());
+            if (arg.Count < 2) return throwError("REPT中参数不足", new List<Operand>());
             var newtext = arg[0].StringValue;
             var length = arg[1].IntValue;
             StringBuilder sb = new StringBuilder();
@@ -171,7 +171,13 @@ namespace ToolGood.Algorithm
 
         private Operand REPLACE(List<Operand> arg)
         {
-            if (arg.Count < 4) return throwError("REPLACE中参数不足", new List<Operand>());
+            if (arg.Count==3 && arg[1].Type == OperandType.STRING && arg[2].Type == OperandType.STRING) {
+                var srcText = arg[0].StringValue;
+                var old= arg[1].StringValue;
+                var newstr = arg[2].StringValue;
+                return new Operand(OperandType.STRING, srcText.Replace(old, newstr));
+            }
+            if (arg.Count < 4) return throwError("REPLACE中参数不足或不正确", new List<Operand>());
             var oldtext = arg[0].StringValue;
             var start = arg[1].IntValue - 1;
             var length = arg[2].IntValue;

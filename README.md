@@ -1,6 +1,6 @@
 ToolGood.Algorithm
 ===================
-ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
+ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数`。
 
 ## 快速上手
 ``` csharp
@@ -10,8 +10,8 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         a = (double)engine.Evaluate();
     }
     var c = engine.TryEvaluate("2+3", 0);
-    var d = engine.TryEvaluate("count({1,2,3,4})", 0);//{}代表数组，返回:4
-    var s = engine.TryEvaluate("'aa'&'bb'", ""); //字符串连接，返回:aabb
+    var d = engine.TryEvaluate("count({1,2,3,4})", 0);//{}代表数组,返回:4
+    var s = engine.TryEvaluate("'aa'&'bb'", ""); //字符串连接,返回:aabb
     var r = engine.TryEvaluate("(1=1)*9+2", 0); //返回:11
     var d = engine.TryEvaluate("'2016-1-1'+1", DateTime.MinValue); //返回日期:2016-1-2
     var t = engine.TryEvaluate("'2016-1-1'+9*'1:0'", DateTime.MinValue);//返回日期:2016-1-1 9:0
@@ -56,12 +56,12 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
 ## Excel函数
 函数：`逻辑函数`、`数学与三角函数`、`文本函数`、`统计函数`、`日期与时间函数`
 
-注：函数名不分大小写，带方括号的参数可省略，示例的返回值，可能为近似值。
+注：函数名不分大小写,带方括号的参数可省略,示例的返回值,可能为近似值。
 #### 逻辑函数
 <table>
     <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
-        <td>IF</td><td>if(测试条件,真值,[假值])<br>执行真假值判断，根据逻辑计算的真假值，返回不同结果。</td>
+        <td>IF</td><td>if(测试条件,真值,[假值])<br>执行真假值判断,根据逻辑计算的真假值,返回不同结果。</td>
         <td>if(1=1,1,2) <br>>>1</td>
     </tr>
     <tr>
@@ -85,11 +85,11 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>istext('1') <br>>>true </td>
     </tr>
     <tr>
-        <td>AND</td><td>and(逻辑值1，...)<br>如果所有参数均为TRUE，则返回TRUE</td>
+        <td>AND</td><td>and(逻辑值1,...)<br>如果所有参数均为TRUE,则返回TRUE</td>
         <td>and(1,2=2) <br>>>true</td>
     </tr>
     <tr>
-        <td>OR</td><td>or(逻辑值1，...)<br>如果任一参数为TRUE，则返回TRUE</td>
+        <td>OR</td><td>or(逻辑值1,...)<br>如果任一参数为TRUE,则返回TRUE</td>
         <td>or(1,2=3) <br>>>true</td>
     </tr>
     <tr>
@@ -119,7 +119,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>abs(-1) <br>>>1</td>
     </tr>
     <tr>
-        <td>QUOTIENT</td><td>quotient(除数,被除数)<br>返回商的整数部分，该函数可用于舍掉商的小数部分。</td>
+        <td>QUOTIENT</td><td>quotient(除数,被除数)<br>返回商的整数部分,该函数可用于舍掉商的小数部分。</td>
         <td>QUOTIENT(7,3) <br>>>2</td>
     </tr>
     <tr>
@@ -127,7 +127,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>MOD(7,3) <br>>>1</td>
     </tr>
     <tr>
-        <td>SIGN</td><td>sign(数字)<br>返回数字的符号。当数字为正数时返回 1，为零时返回 0，为负数时返回 -1。</td>
+        <td>SIGN</td><td>sign(数字)<br>返回数字的符号。当数字为正数时返回 1,为零时返回 0,为负数时返回 -1。</td>
         <td>SIGN(-9) <br>>>-1</td>
     </tr>
    <tr>
@@ -143,11 +143,11 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>int(9.222) <br>>>9</td>
     </tr>
     <tr>
-        <td>gcd</td><td>gcd(数字1，...)<br>返回最大公约数</td>
+        <td>gcd</td><td>gcd(数字1,...)<br>返回最大公约数</td>
         <td>GCD(3,5,7) <br>>>1</td>
     </tr>
     <tr>
-        <td>LCM</td><td>lcm(数字1，...)<br>返回整数参数的最小公倍数</td>
+        <td>LCM</td><td>lcm(数字1,...)<br>返回整数参数的最小公倍数</td>
         <td>LCM(3,5,7) <br>>>105</td>
     </tr>
     <tr>
@@ -225,11 +225,11 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>ROUND(4.333,2) <br>>>4.33</td>
     </tr>
     <tr>
-        <td>ROUNDDOWN</td><td>roundDown(数值,小数位数)<br>靠近零值，向下（绝对值减小的方向）舍入数字。</td>
+        <td>ROUNDDOWN</td><td>roundDown(数值,小数位数)<br>靠近零值,向下（绝对值减小的方向）舍入数字。</td>
         <td>ROUNDDOWN(4.333,2) <br>>>4.33</td>
     </tr>
     <tr>
-        <td>ROUNDUP</td><td>roundUp(数值,小数位数)<br>远离零值，向上（绝对值增长的方向）舍入数字。</td>
+        <td>ROUNDUP</td><td>roundUp(数值,小数位数)<br>远离零值,向上（绝对值增长的方向）舍入数字。</td>
         <td>ROUNDUP(4.333,2) <br>>>4.34</td>
     </tr>
     <tr>
@@ -237,7 +237,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>CEILING(4.333,0.1) <br>>>4.4</td>
     </tr>
     <tr>
-        <td>floor</td><td>floor(数值,舍入基数)<br>向下舍入，使其等于最接近的 Significance 的倍数。</td>
+        <td>floor</td><td>floor(数值,舍入基数)<br>向下舍入,使其等于最接近的 Significance 的倍数。</td>
         <td>FLOOR(4.333,0.1) <br>>>4.3</td>
     </tr>
     <tr>
@@ -258,12 +258,12 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>RAND() <br>>>0.2</td>
     </tr>
     <tr>
-        <td>RANDBETWEEN</td><td>randBetween(最小整数，最大整数)<br>返回大于等于指定的最小值，小于指定最大值之间的一个随机整数。</td>
+        <td>RANDBETWEEN</td><td>randBetween(最小整数,最大整数)<br>返回大于等于指定的最小值,小于指定最大值之间的一个随机整数。</td>
         <td>RANDBETWEEN(2,44) <br>>>9</td>
     </tr>
     <tr>
         <td rowspan="11">幂<br><br>/<br><br>对<br><br>数<br><br>/<br><br>阶<br><br>乘</td>
-        <td>fact</td><td>fact(数值)<br>返回数的阶乘，一个数的阶乘等于 1*2*3*…* 该数。</td>
+        <td>fact</td><td>fact(数值)<br>返回数的阶乘,一个数的阶乘等于 1*2*3*…* 该数。</td>
         <td>FACT(3) <br>>>6</td>
     </tr>
     <tr>
@@ -283,7 +283,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>LN(4) <br>>>1.386294361</td>
     </tr>
     <tr>
-        <td>log</td><td>log(数值,[底数])<br>返回数字的常用对数，如省略底数，默认为10</td>
+        <td>log</td><td>log(数值,[底数])<br>返回数字的常用对数,如省略底数,默认为10</td>
         <td>LOG(100,10) <br>>>2</td>
     </tr>
     <tr>
@@ -291,11 +291,11 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>LOG10(100) <br>>>2</td>
     </tr>
     <tr>
-        <td>MULTINOMIAL</td><td>multinomial(数值1，...)<br>返回参数和的阶乘与各参数阶乘乘积的比值</td>
+        <td>MULTINOMIAL</td><td>multinomial(数值1,...)<br>返回参数和的阶乘与各参数阶乘乘积的比值</td>
         <td>MULTINOMIAL(1,2,3) <br>>>60</td>
     </tr>
     <tr>
-        <td>PRODUCT</td><td>product(数值1，...)<br>将所有以参数形式给出的数字相乘，并返回乘积值。</td>
+        <td>PRODUCT</td><td>product(数值1,...)<br>将所有以参数形式给出的数字相乘,并返回乘积值。</td>
         <td>PRODUCT(1,2,3,4) <br>>>24</td>
     </tr>
     <tr>
@@ -303,7 +303,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>SQRTPI(3) <br>>>3.069980124</td>
     </tr>
     <tr>
-        <td>SUMSQ</td><td>sumQq(数值，...)<br>返回参数的平方和</td>
+        <td>SUMSQ</td><td>sumQq(数值,...)<br>返回参数的平方和</td>
         <td>SUMSQ(1,2) <br>>>5</td>
     </tr>
 </table>
@@ -332,23 +332,23 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>CODE("1") <br>>>49</td>
     </tr>
     <tr>
-        <td>CONCATENATE</td><td>concatenate(字符串1，...)<br>将若干文本项合并到一个文本项中</td>
+        <td>CONCATENATE</td><td>concatenate(字符串1,...)<br>将若干文本项合并到一个文本项中</td>
         <td>CONCATENATE('tt','11') <br>>>tt11</td>
     </tr>
     <tr>
-        <td>EXACT</td><td>exact(字符串1，字符串2)<br>检查两个文本值是否完全相同</td>
+        <td>EXACT</td><td>exact(字符串1,字符串2)<br>检查两个文本值是否完全相同</td>
         <td>EXACT("11","22") <br>>>false</td>
     </tr>
     <tr>
-        <td>FIND</td><td>find(要查找的字符串，被查找的字符串，[开始位置])<br>在一文本值内查找另一文本值（区分大小写） </td>
+        <td>FIND</td><td>find(要查找的字符串,被查找的字符串,[开始位置])<br>在一文本值内查找另一文本值（区分大小写） </td>
         <td>FIND("11","12221122") <br>>>5</td>
     </tr>
     <tr>
-        <td>FIXED</td><td>fixed(数值，[小数位数]，[有无逗号分隔符])<br>将数字设置为具有固定小数位的文本格式</td>
+        <td>FIXED</td><td>fixed(数值,[小数位数],[有无逗号分隔符])<br>将数字设置为具有固定小数位的文本格式</td>
         <td>FIXED(4567.89,1) <br>>>4,567.9</td>
     </tr>
     <tr>
-        <td>LEFT</td><td>left(字符串，[字符个数])<br>返回文本值最左边的字符</td>
+        <td>LEFT</td><td>left(字符串,[字符个数])<br>返回文本值最左边的字符</td>
         <td>LEFT('123222',3) <br>>>123</td>
     </tr>
     <tr>
@@ -360,7 +360,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>LOWER('ABC') <br>>>abc</td>
     </tr>
     <tr>
-        <td>MID</td><td>mid(字符串，开始位置，字符个数)<br>从文本字符串中的指定位置起返回特定个数的字符</td>
+        <td>MID</td><td>mid(字符串,开始位置,字符个数)<br>从文本字符串中的指定位置起返回特定个数的字符</td>
         <td>MID('ABCDEF',2,3) <br>>>BCD</td>
     </tr>
     <tr>
@@ -368,15 +368,20 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>PROPER('abc abc') <br>>>Abc Abc</td>
     </tr>
     <tr>
-        <td>REPLACE</td><td>replace(原字符串,开始位置，字符个数，新字符串)<br>替换文本内的字符</td>
-        <td>REPLACE("abccd",2,3,"2") <br>>>a2d</td>
+        <td>REPLACE</td>
+        <td>replace(原字符串,开始位置,字符个数,新字符串)<br>
+        replace(原字符串,要替换的字符串, 新字符串)<br>
+        替换文本内的字符</td>
+        <td>REPLACE("abccd",2,3,"2") <br>>>a2d<br>
+        REPLACE("abccd","bc","2") <br>>>a2cd
+        </td>
     </tr>
     <tr>
-        <td>REPT</td><td>rept(字符串，重复次数)<br>按给定次数重复文本</td>
+        <td>REPT</td><td>rept(字符串,重复次数)<br>按给定次数重复文本</td>
         <td>REPT("q",3) <br>>>qqq</td>
     </tr>
     <tr>
-        <td>RIGHT</td><td>right(字符串，[字符个数])<br>返回文本值最右边的字符</td>
+        <td>RIGHT</td><td>right(字符串,[字符个数])<br>返回文本值最右边的字符</td>
         <td>RIGHT("123q",3) <br>>>23q</td>
     </tr>
     <tr>
@@ -384,11 +389,11 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>rmb(12.3) <br>>>壹拾贰元叁角</td>
     </tr>
     <tr>
-        <td>SEARCH</td><td>search(要找的字符串，被查找的字符串，[开始位置])<br>在一文本值中查找另一文本值（不区分大小写）</td>
+        <td>SEARCH</td><td>search(要找的字符串,被查找的字符串,[开始位置])<br>在一文本值中查找另一文本值（不区分大小写）</td>
         <td>SEARCH("aa","abbAaddd") <br>>>4</td>
     </tr>
     <tr>
-        <td>SUBSTITUTE</td><td>substitute(字符串，原字符串，新字符串，[替换序号])<br>在文本字符串中以新文本替换旧文本</td>
+        <td>SUBSTITUTE</td><td>substitute(字符串,原字符串,新字符串,[替换序号])<br>在文本字符串中以新文本替换旧文本</td>
         <td>SUBSTITUTE("ababcc","ab","12") <br>>>1212cc</td>
     </tr>
     <tr>
@@ -396,7 +401,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>T('123') <br>>>123</td>
     </tr>
     <tr>
-        <td>TEXT</td><td>text(数值，数值格式)<br>设置数字的格式并将数字转换为文本</td>
+        <td>TEXT</td><td>text(数值,数值格式)<br>设置数字的格式并将数字转换为文本</td>
         <td>TEXT(123,"0.00") <br>>>123.00</td>
     </tr>
     <tr>
@@ -425,11 +430,11 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>TIMEVALUE("12:12:12") <br>>>12:12:12</td>
     </tr>
     <tr>
-        <td>DATE</td><td>date(年，月，日，[时]，[分]，[秒])<br>返回特定日期的序列号</td>
+        <td>DATE</td><td>date(年,月,日,[时],[分],[秒])<br>返回特定日期的序列号</td>
         <td>DATE(2016,1,1) <br>>>2016-01-01</td>
     </tr>
     <tr>
-        <td>TIME</td><td>time(时，分，秒)<br>返回特定时间的序列号</td>
+        <td>TIME</td><td>time(时,分,秒)<br>返回特定时间的序列号</td>
         <td>TIME(12,13,14) <br>>>12:13:14</td>
     </tr>
     <tr>
@@ -469,31 +474,31 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>WEEKDAY(date(2017,1,7)) <br>>>7</td>
     </tr>
     <tr>
-        <td>DATEDIF</td><td>dateDif(开始日期，结束日期，类型Y/M/D/YD/MD/YM)<br>返回两个日期之间的相隔天数</td>
+        <td>DATEDIF</td><td>dateDif(开始日期,结束日期,类型Y/M/D/YD/MD/YM)<br>返回两个日期之间的相隔天数</td>
         <td>DATEDIF("1975-1-30","2017-1-7","Y") <br>>>41</td>
     </tr>
     <tr>
-        <td>DAYS360</td><td>days360(开始日期，结束日期,[选项0/1])<br>以一年 360 天为基准计算两个日期间的天数</td>
+        <td>DAYS360</td><td>days360(开始日期,结束日期,[选项0/1])<br>以一年 360 天为基准计算两个日期间的天数</td>
         <td>DAYS360('1975-1-30','2017-1-7') <br>>>15097</td>
     </tr>
     <tr>
-        <td>EDATE</td><td>eDate(开始日期，月数)<br>返回用于表示开始日期之前或之后月数的日期的序列号</td>
+        <td>EDATE</td><td>eDate(开始日期,月数)<br>返回用于表示开始日期之前或之后月数的日期的序列号</td>
         <td>EDATE("2012-1-31",32) <br>>>2014-09-30</td>
     </tr>
     <tr>
-        <td>EOMONTH</td><td>eoMonth(开始日期，月数)<br>返回指定月数之前或之后的月份的最后一天的序列号</td>
+        <td>EOMONTH</td><td>eoMonth(开始日期,月数)<br>返回指定月数之前或之后的月份的最后一天的序列号</td>
         <td>EOMONTH("2012-2-1",32) <br>>>2014-10-31</td>
     </tr>
     <tr>
-        <td>NETWORKDAYS</td><td>netWorkdays(开始日期，结束日期，[假日])<br>返回两个日期之间的全部工作日数</td>
+        <td>NETWORKDAYS</td><td>netWorkdays(开始日期,结束日期,[假日])<br>返回两个日期之间的全部工作日数</td>
         <td>NETWORKDAYS("2012-1-1","2013-1-1") <br>>>262</td>
     </tr>
     <tr>
-        <td>WORKDAY</td><td>workday(开始日期，天数，[假日])<br>返回指定的若干个工作日之前或之后的日期的序列号</td>
+        <td>WORKDAY</td><td>workday(开始日期,天数,[假日])<br>返回指定的若干个工作日之前或之后的日期的序列号</td>
         <td>WORKDAY("2012-1-2",145) <br>>>2012-07-23</td>
     </tr>
     <tr>
-        <td>WEEKNUM</td><td>weekNum(日期，[类型：1/2])<br>将序列号转换为一年中相应的周数</td>
+        <td>WEEKNUM</td><td>weekNum(日期,[类型：1/2])<br>将序列号转换为一年中相应的周数</td>
         <td>WEEKNUM("2016-1-3") <br>>>2</td>
     </tr>
 </table>
@@ -514,95 +519,95 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>MIN(1,2,3,4,2,2,1,4) <br>>>1</td>
     </tr>
     <tr>
-        <td>QUARTILE</td><td>quartile(数值，四分位：0-4)<br>返回数据集的四分位数</td>
+        <td>QUARTILE</td><td>quartile(数值,四分位：0-4)<br>返回数据集的四分位数</td>
         <td>QUARTILE({1,2,3,4,2,2,1,4},0) <br>>>1</td>
     </tr>
     <tr>
-        <td>MODE</td><td>mode(数值1，...)<br>返回在数组中出现频率最多的数值</td>
+        <td>MODE</td><td>mode(数值1,...)<br>返回在数组中出现频率最多的数值</td>
         <td>MODE(1,2,3,4,2,2,1,4) <br>>>2</td>
     </tr>
     <tr>
-        <td>LARGE</td><td>large(数组，K)<br>返回数据集中第 k 个最大值</td>
+        <td>LARGE</td><td>large(数组,K)<br>返回数据集中第 k 个最大值</td>
         <td>LARGE({1,2,3,4,2,2,1,4},3) <br>>>3</td>
     </tr>
     <tr>
-        <td>SMALL</td><td>small(数值，K)<br>返回数据集中第 k 个最小值</td>
+        <td>SMALL</td><td>small(数值,K)<br>返回数据集中第 k 个最小值</td>
         <td>SMALL({1,2,3,4,2,2,1,4},3) <br>>>2</td>
     </tr>
     <tr>
-        <td>PERCENTILE</td><td>percentile(数值，K)<br>返回区域中的第 k 个百分位值</td>
-        <td>PERCENTILE({1,2,3,4,2,2,1,4}，0.4) <br>>>2</td>
+        <td>PERCENTILE</td><td>percentile(数值,K)<br>返回区域中的第 k 个百分位值</td>
+        <td>PERCENTILE({1,2,3,4,2,2,1,4},0.4) <br>>>2</td>
     </tr>
     <tr>
-        <td>PERCENTRANK</td><td>percentRank(数值，K)<br>返回数据集中值的百分比排位</td>
-        <td>PERCENTRANK({1,2,3,4,2,2,1,4}，3) <br>>>0.714</td>
+        <td>PERCENTRANK</td><td>percentRank(数值,K)<br>返回数据集中值的百分比排位</td>
+        <td>PERCENTRANK({1,2,3,4,2,2,1,4},3) <br>>>0.714</td>
     </tr>
     <tr>
-        <td>AVERAGE</td><td>average(数值1，...)<br>返回参数的平均值</td>
+        <td>AVERAGE</td><td>average(数值1,...)<br>返回参数的平均值</td>
         <td>AVERAGE(1,2,3,4,2,2,1,4) <br>>>2.375</td>
     </tr>
     <tr>
-        <td>AVERAGEIF</td><td>averageIf(数值1，...)<br>返回参数的平均值</td>
+        <td>AVERAGEIF</td><td>averageIf(数值1,...)<br>返回参数的平均值</td>
         <td>AVERAGEIF({1,2,3,4,2,2,1,4},'>1') <br>>>2.833333333</td>
     </tr>
     <tr>
-        <td>GEOMEAN</td><td>geoMean(数值1，...)<br>返回正数数组或区域的几何平均值</td>
+        <td>GEOMEAN</td><td>geoMean(数值1,...)<br>返回正数数组或区域的几何平均值</td>
         <td>GEOMEAN(1,2,3,4) <br>>>2.213363839</td>
     </tr>
     <tr>
-        <td>HARMEAN</td><td>harMean(数值1，...)<br>返回数据集合的调和平均值</td>
+        <td>HARMEAN</td><td>harMean(数值1,...)<br>返回数据集合的调和平均值</td>
         <td>HARMEAN(1,2,3,4) <br>>>1.92</td>
     </tr>
     <tr>
-        <td>COUNT</td><td>count(数值1，...)<br>计算参数列表中数字的个数</td>
+        <td>COUNT</td><td>count(数值1,...)<br>计算参数列表中数字的个数</td>
         <td>COUNT(1,2,3,4,2,2,1,4) <br>>>8</td>
     </tr>
     <tr>
-        <td>COUNTIF</td><td>countIf(数值1，...)<br>计算参数列表中数字的个数</td>
+        <td>COUNTIF</td><td>countIf(数值1,...)<br>计算参数列表中数字的个数</td>
         <td>COUNTIF({1,2,3,4,2,2,1,4},'>1') <br>>>6</td>
     </tr>
     <tr>
-        <td>SUM</td><td>sum(数值1，...)<br>返回所有数字之和。</td>
+        <td>SUM</td><td>sum(数值1,...)<br>返回所有数字之和。</td>
         <td>SUM(1,2,3,4) <br>>>10</td>
     </tr>
     <tr>
-        <td>SUMIF</td><td>sumIf(数值1，...)<br>返回所有数字之和</td>
+        <td>SUMIF</td><td>sumIf(数值1,...)<br>返回所有数字之和</td>
         <td>SUMIF({1,2,3,4,2,2,1,4},'>1') <br>>>17</td>
     </tr>
     <tr>
-        <td>AVEDEV</td><td>aveDev(数值1，...)<br>返回数据点与其平均值的绝对偏差的平均值</td>
+        <td>AVEDEV</td><td>aveDev(数值1,...)<br>返回数据点与其平均值的绝对偏差的平均值</td>
         <td>AVEDEV(1,2,3,4,2,2,1,4) <br>>>0.96875</td>
     </tr>
     <tr>
-        <td>STDEV</td><td>stDev(数值1，...)<br>基于样本估算标准偏差</td>
+        <td>STDEV</td><td>stDev(数值1,...)<br>基于样本估算标准偏差</td>
         <td>STDEV(1,2,3,4,2,2,1,4) <br>>>1.1877349391654208</td>
     </tr>
     <tr>
-        <td>STDEVP</td><td>stDevp(数值1，...)<br>计算基于整个样本总体的标准偏差</td>
+        <td>STDEVP</td><td>stDevp(数值1,...)<br>计算基于整个样本总体的标准偏差</td>
         <td>STDEVP(1,2,3,4,2,2,1,4) <br>>>1.1110243021644486</td>
     </tr>
     <tr>
-        <td>DEVSQ</td><td>devSq(数值1，...)<br>返回偏差的平方和</td>
+        <td>DEVSQ</td><td>devSq(数值1,...)<br>返回偏差的平方和</td>
         <td>DEVSQ(1,2,3,4,2,2,1,4) <br>>>9.875</td>
     </tr>
     <tr>
-        <td>VAR</td><td>var(数值1，...)<br>基于样本估算方差</td>
+        <td>VAR</td><td>var(数值1,...)<br>基于样本估算方差</td>
         <td>VAR(1,2,3,4,2,2,1,4) <br>>>1.4107142857142858</td>
     </tr>
     <tr>
-        <td>VARP</td><td>varp(数值1，...)<br>基于整个样本总体计算方差</td>
+        <td>VARP</td><td>varp(数值1,...)<br>基于整个样本总体计算方差</td>
         <td>VARP(1,2,3,4,2,2,1,4) <br>>>1.234375</td>
     </tr>
     <tr>
-        <td>NORMDIST</td><td>normDist(数值，算术平均值，标准偏差，返回类型：0/1)<br>返回正态累积分布</td>
+        <td>NORMDIST</td><td>normDist(数值,算术平均值,标准偏差,返回类型：0/1)<br>返回正态累积分布</td>
         <td>NORMDIST(3,8,4,1) <br>>>0.105649774</td>
     </tr>
     <tr>
-        <td>NORMINV</td><td>normInv(分布概率，算术平均值，标准偏差)<br>返回反正态累积分布</td>
+        <td>NORMINV</td><td>normInv(分布概率,算术平均值,标准偏差)<br>返回反正态累积分布</td>
         <td>NORMINV(0.8,8,3) <br>>>10.5248637</td>
     </tr>
     <tr>
-        <td>NormSDist</td><td>normSDist(数值)<br>返回标准正态累积分布函数，该分布的平均值为 0，标准偏差为 1。</td>
+        <td>NormSDist</td><td>normSDist(数值)<br>返回标准正态累积分布函数,该分布的平均值为 0,标准偏差为 1。</td>
         <td>NORMSDIST(1) <br>>>0.841344746</td>
     </tr>
     <tr>
@@ -610,27 +615,27 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>NORMSINV(0.3) <br>>>-0.524400513</td>
     </tr>
     <tr>
-        <td>BETADIST</td><td>betaDist(数值，分布参数α，分布参数β)<br>返回 Beta 累积分布函数</td>
+        <td>BETADIST</td><td>betaDist(数值,分布参数α,分布参数β)<br>返回 Beta 累积分布函数</td>
         <td>BETADIST(0.5,11,22) <br>>>0.97494877</td>
     </tr>
     <tr>
-        <td>BETAINV</td><td>betaInv(数值，分布参数α，分布参数β)<br>返回指定 Beta 分布的累积分布函数的反函数</td>
+        <td>BETAINV</td><td>betaInv(数值,分布参数α,分布参数β)<br>返回指定 Beta 分布的累积分布函数的反函数</td>
         <td>BETAINV(0.5,23,45) <br>>>0.336640759</td>
     </tr>
     <tr>
-        <td>BINOMDIST</td><td>binomDist(试验成功次数，试验次数，成功概率，返回类型：0/1)<br>返回一元二项式分布概率</td>
+        <td>BINOMDIST</td><td>binomDist(试验成功次数,试验次数,成功概率,返回类型：0/1)<br>返回一元二项式分布概率</td>
         <td>BINOMDIST(12,45,0.5,0) <br>>>0.000817409</td>
     </tr>
     <tr>
-        <td>EXPONDIST</td><td>exponDist(函数值，参数值，返回类型：0/1)<br>返回指数分布</td>
+        <td>EXPONDIST</td><td>exponDist(函数值,参数值,返回类型：0/1)<br>返回指数分布</td>
         <td>EXPONDIST(3,1,0) <br>>>0.049787068</td>
     </tr>
     <tr>
-        <td>FDIST</td><td>fDist(数值X，分子自由度，分母自由度)<br>返回 F 概率分布</td>
+        <td>FDIST</td><td>fDist(数值X,分子自由度,分母自由度)<br>返回 F 概率分布</td>
         <td>FDIST(0.4,2,3) <br>>>0.701465776</td>
     </tr>
     <tr>
-        <td>FINV</td><td>fInv(分布概率，分子自由度，分母自由度)<br>返回 F 概率分布的反函数</td>
+        <td>FINV</td><td>fInv(分布概率,分子自由度,分母自由度)<br>返回 F 概率分布的反函数</td>
         <td>FINV(0.7,2,3) <br>>>0.402651432</td>
     </tr>
     <tr>
@@ -642,11 +647,11 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>FISHERINV(0.6) <br>>>0.537049567</td>
     </tr>
     <tr>
-        <td>GAMMADIST</td><td>gammaDist(数值，分布参数α，分布参数β,返回类型：0/1)<br>返回 γ 分布</td>
+        <td>GAMMADIST</td><td>gammaDist(数值,分布参数α,分布参数β,返回类型：0/1)<br>返回 γ 分布</td>
         <td>GAMMADIST(0.5,3,4,0) <br>>>0.001723627</td>
     </tr>
     <tr>
-        <td>GAMMAINV</td><td>gammaInv(分布概率，分布参数α，分布参数β)<br>返回 γ 累积分布函数的反函数</td>
+        <td>GAMMAINV</td><td>gammaInv(分布概率,分布参数α,分布参数β)<br>返回 γ 累积分布函数的反函数</td>
         <td>GAMMAINV(0.2,3,4) <br>>>6.140176811</td>
     </tr>
     <tr>
@@ -654,35 +659,35 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`，并支持`自定义参数`。
         <td>GAMMALN(4) <br>>>1.791759469</td>
     </tr>
     <tr>
-        <td>HYPGEOMDIST</td><td>hypgeomDist(样本成功次数，样本容量，样本总体成功次数，样本总体容量)<br>返回超几何分布</td>
+        <td>HYPGEOMDIST</td><td>hypgeomDist(样本成功次数,样本容量,样本总体成功次数,样本总体容量)<br>返回超几何分布</td>
         <td>HYPGEOMDIST(23,45,45,100) <br>>>0.08715016</td>
     </tr>
     <tr>
-        <td>LOGINV</td><td>logInv(分布概率，算法平均数，标准偏差)<br>返回 x 的对数累积分布函数的反函数</td>
+        <td>LOGINV</td><td>logInv(分布概率,算法平均数,标准偏差)<br>返回 x 的对数累积分布函数的反函数</td>
         <td>LOGINV(0.1,45,33) <br>>>15.01122624</td>
     </tr>
     <tr>
-        <td>LognormDist</td><td>lognormDist(数值，算法平均数，标准偏差)<br>返回反对数正态分布</td>
+        <td>LognormDist</td><td>lognormDist(数值,算法平均数,标准偏差)<br>返回反对数正态分布</td>
         <td>LOGNORMDIST(15,23,45) <br>>>0.326019201</td>
     </tr>
     <tr>
-        <td>NEGBINOMDIST</td><td>negbinomDist(失败次数，成功极限次数，成功概率)<br>返回负二项式分布</td>
+        <td>NEGBINOMDIST</td><td>negbinomDist(失败次数,成功极限次数,成功概率)<br>返回负二项式分布</td>
         <td>NEGBINOMDIST(23,45,0.7) <br>>>0.053463314</td>
     </tr>
     <tr>
-        <td>POISSON</td><td>poisson(数值，算法平均数，返回类型：0/1)<br>返回 Poisson 分布</td>
+        <td>POISSON</td><td>poisson(数值,算法平均数,返回类型：0/1)<br>返回 Poisson 分布</td>
         <td>POISSON(23,23,0) <br>>>0.082884384</td>
     </tr>
     <tr>
-        <td>TDIST</td><td>tDist(数值，自由度，返回类型：1/2)<br>返回学生的 t 分布</td>
+        <td>TDIST</td><td>tDist(数值,自由度,返回类型：1/2)<br>返回学生的 t 分布</td>
         <td>TDIST(1.2,24,1) <br>>>0.120925677</td>
     </tr>
     <tr>
-        <td>TINV</td><td>tDist(分布概率，自由度)<br>返回学生的 t 分布的反分布</td>
+        <td>TINV</td><td>tDist(分布概率,自由度)<br>返回学生的 t 分布的反分布</td>
         <td>TINV(0.12,23) <br>>>1.614756561</td>
     </tr>
     <tr>
-        <td>WEIBULL</td><td>weibull(数值，分布参数α，分布参数β,返回类型：0/1)<br>返回 Weibull 分布</td>
+        <td>WEIBULL</td><td>weibull(数值,分布参数α,分布参数β,返回类型：0/1)<br>返回 Weibull 分布</td>
         <td>WEIBULL(1,2,3,1) <br>>>0.105160683</td>
     </tr>
 
