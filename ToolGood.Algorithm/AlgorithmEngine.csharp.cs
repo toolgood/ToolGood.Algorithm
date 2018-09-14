@@ -40,6 +40,18 @@ namespace ToolGood.Algorithm
             addFunc("TrimEnd", TrimEnd);
             addFunc("RTrim", TrimEnd);
 
+            addFunc("IndexOf", IndexOf);
+            addFunc("LastIndexOf", LastIndexOf);
+            addFunc("Split", Split);
+
+            addFunc("Substring", Substring);
+            addFunc("StartsWith", StartsWith);
+            addFunc("EndsWith", EndsWith);
+            addFunc("IsNullOrEmpty", IsNullOrEmpty);
+            addFunc("IsNullOrWhiteSpace", IsNullOrWhiteSpace);
+
+            addFunc("ToUpper", UPPER); //将文本转换为大写形式 
+            addFunc("ToLower", LOWER); //将文本参数转换为数字 
         }
 
         private Operand UrlDecode(List<Operand> arg)
@@ -302,7 +314,80 @@ namespace ToolGood.Algorithm
         {
             if (arg.Count < 1) return throwError("TrimEnd中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
+            
             return new Operand(OperandType.STRING, text.TrimEnd());
+        }
+
+        private Operand IndexOf(List<Operand> arg)
+        {
+            if (arg.Count < 2) return throwError("IndexOf中参数不足", new List<Operand>());
+            var text = arg[0].StringValue;
+            if (arg.Count == 2) {
+                return new Operand(OperandType.NUMBER, text.IndexOf(arg[1].StringValue));
+            } else if (arg.Count == 3) {
+                return new Operand(OperandType.NUMBER, text.IndexOf(arg[1].StringValue, arg[2].IntValue));
+            } else {
+                return new Operand(OperandType.NUMBER, text.IndexOf(arg[1].StringValue, arg[2].IntValue, arg[3].IntValue));
+            }
+        }
+        private Operand LastIndexOf(List<Operand> arg)
+        {
+            if (arg.Count < 2) return throwError("IndexOf中参数不足", new List<Operand>());
+            var text = arg[0].StringValue;
+            if (arg.Count == 2) {
+                return new Operand(OperandType.NUMBER, text.LastIndexOf(arg[1].StringValue));
+            } else if (arg.Count == 3) {
+                return new Operand(OperandType.NUMBER, text.LastIndexOf(arg[1].StringValue, arg[2].IntValue));
+            } else {
+                return new Operand(OperandType.NUMBER, text.LastIndexOf(arg[1].StringValue, arg[2].IntValue, arg[3].IntValue));
+            }
+        }
+        private Operand Split(List<Operand> arg)
+        {
+            if (arg.Count < 2) return throwError("IndexOf中参数不足", new List<Operand>());
+            var text = arg[0].StringValue;
+                return new Operand(OperandType.ARRARY, text.Split(arg[1].StringValue.ToArray()));
+        }
+
+        private Operand Substring(List<Operand> arg)
+        {
+            if (arg.Count < 2) return throwError("Substring中参数不足", new List<Operand>());
+            var text = arg[0].StringValue;
+            if (arg.Count == 2) {
+                return new Operand(OperandType.NUMBER, text.Substring(arg[1].IntValue));
+            } else {
+                return new Operand(OperandType.NUMBER, text.Substring(arg[1].IntValue, arg[2].IntValue));
+            }
+        }
+        private Operand StartsWith(List<Operand> arg)
+        {
+            if (arg.Count < 2) return throwError("StartsWith中参数不足", new List<Operand>());
+            var text = arg[0].StringValue;
+            if (arg.Count == 2) {
+                return new Operand(OperandType.NUMBER, text.StartsWith(arg[1].StringValue));
+            } else {
+                return new Operand(OperandType.NUMBER, text.StartsWith(arg[1].StringValue, arg[2].BooleanValue? StringComparison.CurrentCultureIgnoreCase: StringComparison.CurrentCulture));
+            }
+        }
+        private Operand EndsWith(List<Operand> arg)
+        {
+            if (arg.Count < 2) return throwError("EndsWith中参数不足", new List<Operand>());
+            var text = arg[0].StringValue;
+            if (arg.Count == 2) {
+                return new Operand(OperandType.NUMBER, text.EndsWith(arg[1].StringValue));
+            } else {
+                return new Operand(OperandType.NUMBER, text.EndsWith(arg[1].StringValue, arg[2].BooleanValue ? StringComparison.CurrentCultureIgnoreCase : StringComparison.CurrentCulture));
+            }
+        }
+        private Operand IsNullOrEmpty(List<Operand> arg)
+        {
+            if (arg.Count < 1) return throwError("IsNullOrEmpty中参数不足", new List<Operand>());
+            return new Operand(OperandType.STRING, string.IsNullOrEmpty(arg[0].StringValue));
+        }
+        private Operand IsNullOrWhiteSpace(List<Operand> arg)
+        {
+            if (arg.Count < 1) return throwError("IsNullOrWhiteSpace中参数不足", new List<Operand>());
+            return new Operand(OperandType.STRING, string.IsNullOrWhiteSpace(arg[0].StringValue));
         }
 
     }
