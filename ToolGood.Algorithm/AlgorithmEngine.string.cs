@@ -309,7 +309,7 @@ namespace ToolGood.Algorithm
         {
             if (arg.Count < 1) return throwError("CLEAN中参数不足", new List<Operand>());
             var t = arg[0].StringValue;
-            t = Regex.Replace(t, @"[\f\n\r\t\v]", "");
+            t =System.Text.RegularExpressions.Regex.Replace(t, @"[\f\n\r\t\v]", "");
             return new Operand(OperandType.STRING, t);
         }
 

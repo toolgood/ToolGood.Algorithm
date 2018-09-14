@@ -18,7 +18,7 @@ namespace ToolGood.Algorithm
             AddMathFunction();
             AddStringFunction();
             AddSumFunction();
-
+            AddCSharp();
         }
         private void addFunc(string name, Func<List<Operand>, Operand> func)
         {
