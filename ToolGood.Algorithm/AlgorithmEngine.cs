@@ -9,12 +9,11 @@ namespace ToolGood.Algorithm
     {
         List<string> m_Operators = new List<string>() { "(", ")", "!", "*", "/", "%", "+", "-", "<", ">", "=", "&", "|", ",", "==", "!=", ">=", "<=", "<>", "@" };
         Stack<object> m_tokens = new Stack<object>();        //最终逆波兰式堆栈
-        Dictionary<String, Func<List<Operand>, Operand>> funcDict = new Dictionary<string, Func<List<Operand>, Operand>>();
+        Dictionary<string, Stack<object>> tokenDict = new Dictionary<string, Stack<object>>();
+        Dictionary<string, Func<List<Operand>, Operand>> funcDict = new Dictionary<string, Func<List<Operand>, Operand>>();
         private bool _useExcelIndex = true;
         private int excelIndex = 1;
-        public bool UseExcelIndex { get { return _useExcelIndex; }set { _useExcelIndex = value; excelIndex = value ? 1 : 0; } }
-
-
+        public bool UseExcelIndex { get { return _useExcelIndex; } set { _useExcelIndex = value; excelIndex = value ? 1 : 0; } }
 
         public AlgorithmEngine()
         {
@@ -24,12 +23,6 @@ namespace ToolGood.Algorithm
             AddStringFunction();
             AddSumFunction();
             AddCSharp();
-        }
-        private void addFunc(string name, Func<List<Operand>, Operand> func)
-        {
-            name = name.ToLower().Trim();
-            m_Operators.Add(name);
-            funcDict[name] = func;
         }
 
         #region 可重写的方法
@@ -49,7 +42,20 @@ namespace ToolGood.Algorithm
             if (string.IsNullOrEmpty(exp) || exp.Trim() == "" || !this.isMatching(exp)) {
                 return false;
             }
+            m_tokens = parse(exp);
+            return true;
+        }
+        public bool Parse(string name, string exp)
+        {
+            if (string.IsNullOrEmpty(exp) || exp.Trim() == "" || !this.isMatching(exp)) {
+                return false;
+            }
+            tokenDict[name]= parse(exp);
+            return true;
+        }
 
+        private Stack<object> parse(string exp)
+        {
             Stack<object> operands = new Stack<object>();             //操作数堆栈
             Stack<Operator> operators = new Stack<Operator>();      //运算符堆栈
             OperatorType optType = OperatorType.ERR;                //运算符类型
@@ -95,7 +101,7 @@ namespace ToolGood.Algorithm
                 #endregion
 
                 optType = Operator.ConvertOperator(curOpt, texts[curPos]);
-                if (optType== OperatorType.PARAMETER) {
+                if (optType == OperatorType.PARAMETER) {
                     operands.Push(new Operand(curOpt));
                     continue;
                 }
@@ -135,12 +141,14 @@ namespace ToolGood.Algorithm
             while (operators.Count > 0) {
                 operands.Push(operators.Pop());
             }
+            var tokens = new Stack<object>();
             //调整操作数栈中对象的顺序并输出到最终栈
             while (operands.Count > 0) {
-                m_tokens.Push(operands.Pop());
+                tokens.Push(operands.Pop());
             }
-            return true;
+            return tokens;
         }
+
         private int getFunctionCount(List<string> texts, int curPos)
         {
             var hasCount = 0;
@@ -349,7 +357,23 @@ namespace ToolGood.Algorithm
 
         #endregion
 
+        #region Evaluate
         public object Evaluate()
+        {
+            if (m_tokens.Count == 0) return null;
+            return evaluate(m_tokens);
+        }
+
+        public object Evaluate(string name)
+        {
+            Stack<object> tokens = null;
+            if (tokenDict.TryGetValue(name ,out tokens)) {
+                return evaluate(m_tokens);
+            }
+            return null;
+        }
+
+        private object evaluate(Stack<object> tokens)
         {
             /*
               逆波兰表达式求值算法：
@@ -360,13 +384,12 @@ namespace ToolGood.Algorithm
             、将运算结果重新压入堆栈。
             、重复步骤2-5，堆栈中即为结果值。
             */
-            if (m_tokens.Count == 0) return null;
 
             object value = null;
             Stack<Operand> opds = new Stack<Operand>();
             Stack<object> pars = new Stack<object>();
 
-            foreach (object item in m_tokens) {
+            foreach (object item in tokens) {
                 var curOpd = item as Operand;
                 if (curOpd != null) {
                     if (curOpd.Type == OperandType.PARAMETER) {
@@ -471,17 +494,12 @@ namespace ToolGood.Algorithm
                 }
                 value = outopd.Value;
             }
-            //if (value is Date) {
-            //    var v = (Date)value;
-            //    if (v.Year>0) {
-            //        return (DateTime)v;
-            //    }
-            //    return (TimeSpan)v;
-            //}
-
+      
             return value;
         }
 
+        #endregion
+ 
         #region TryEvaluate
         public short TryEvaluate(string exp, short def)
         {
@@ -579,7 +597,7 @@ namespace ToolGood.Algorithm
                 var obj = Evaluate();
                 if (obj is string) {
                     DateTime dt;
-                    if (DateTime.TryParse(obj.ToString(),out dt)) {
+                    if (DateTime.TryParse(obj.ToString(), out dt)) {
                         return dt;
                     }
                     return def;
@@ -605,11 +623,14 @@ namespace ToolGood.Algorithm
             return def;
         }
 
-
-
         #endregion
 
-
+        private void addFunc(string name, Func<List<Operand>, Operand> func)
+        {
+            name = name.ToLower().Trim();
+            m_Operators.Add(name);
+            funcDict[name] = func;
+        }
 
 
         private Operand doFunc(Operator curOpt, List<Operand> ops)

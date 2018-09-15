@@ -35,81 +35,6 @@ namespace ToolGood.Algorithm
         /// </summary>
         public string Value { get; set; }
 
-
-        ///// <summary>
-        ///// 对于>或者&lt;运算符，判断实际是否为>=,&lt;&gt;、&lt;=，并调整当前运算符位置
-        ///// </summary>
-        ///// <param name="currentOpt">当前运算符</param>
-        ///// <param name="currentExp">当前表达式</param>
-        ///// <param name="currentOptPos">当前运算符位置</param>
-        ///// <param name="adjustOptPos">调整后运算符位置</param>
-        ///// <returns>返回调整后的运算符</returns>
-        //public static string AdjustOperator(string currentOpt, string currentExp, ref int currentOptPos)
-        //{
-        //    switch (currentOpt) {
-        //        case "<":
-        //            if (currentExp.Substring(currentOptPos, 2) == "<=") {
-        //                currentOptPos++;
-        //                return "<=";
-        //            }
-        //            if (currentExp.Substring(currentOptPos, 2) == "<>") {
-        //                currentOptPos++;
-        //                return "<>";
-        //            }
-        //            return "<";
-
-        //        case ">":
-        //            if (currentExp.Substring(currentOptPos, 2) == ">=") {
-        //                currentOptPos++;
-        //                return ">=";
-        //            }
-        //            return ">";
-        //        case "t":
-        //            if (currentExp.Substring(currentOptPos, 3) == "tan") {
-        //                currentOptPos += 2;
-        //                return "tan";
-        //            }
-        //            return "error";
-        //        case "a":
-        //            if (currentExp.Substring(currentOptPos, 4) == "atan") {
-        //                currentOptPos += 3;
-        //                return "atan";
-        //            }
-        //            return "error";
-        //        default:
-        //            return currentOpt;
-        //    }
-        //}
-
-        ///// <summary>
-        ///// 转换运算符到指定的类型
-        ///// </summary>
-        ///// <param name="opt">运算符</param>
-        ///// <param name="isBinaryOperator">是否为二元运算符</param>
-        ///// <returns>返回指定的运算符类型</returns>
-        //public static OperatorType ConvertOperator(string opt, bool isBinaryOperator)
-        //{
-        //    switch (opt) {
-        //        case "!": return OperatorType.NOT;
-        //        case "+": return isBinaryOperator ? OperatorType.ADD : OperatorType.PS;
-        //        case "-": return isBinaryOperator ? OperatorType.SUB : OperatorType.NS;
-        //        case "*": return isBinaryOperator ? OperatorType.MUL : OperatorType.ERR;
-        //        case "/": return isBinaryOperator ? OperatorType.DIV : OperatorType.ERR;
-        //        case "%": return isBinaryOperator ? OperatorType.MOD : OperatorType.ERR;
-        //        case "<": return isBinaryOperator ? OperatorType.LT : OperatorType.ERR;
-        //        case ">": return isBinaryOperator ? OperatorType.GT : OperatorType.ERR;
-        //        case "<=": return isBinaryOperator ? OperatorType.LE : OperatorType.ERR;
-        //        case ">=": return isBinaryOperator ? OperatorType.GE : OperatorType.ERR;
-        //        case "<>": return isBinaryOperator ? OperatorType.UT : OperatorType.ERR;
-        //        case "=": return isBinaryOperator ? OperatorType.ET : OperatorType.ERR;
-        //        case "&": return isBinaryOperator ? OperatorType.StringADD : OperatorType.ERR;
-        //        case "|": return isBinaryOperator ? OperatorType.OR : OperatorType.ERR;
-        //        case ",": return isBinaryOperator ? OperatorType.CA : OperatorType.ERR;
-        //        case "@": return isBinaryOperator ? OperatorType.END : OperatorType.ERR;
-        //        default: return OperatorType.ERR;
-        //    }
-        //}
-
         /// <summary>
         /// 转换运算符到指定的类型
         /// </summary>
@@ -135,7 +60,7 @@ namespace ToolGood.Algorithm
                 case "&": return OperatorType.StringADD;
                 case "|": return OperatorType.OR;
                 case ",": return OperatorType.CA;
-                default:break; // return OperatorType.FUNC;
+                default: break; // return OperatorType.FUNC;
             }
             switch (opt) {
                 case "pi":
@@ -161,21 +86,12 @@ namespace ToolGood.Algorithm
         {
             if (currentOpd != "") {
                 return true;
+            }
+            object token = tokens.Peek();
+            if (token is Operand) {
+                return operators.Peek().Type != OperatorType.LB ;
             } else {
-                object token = tokens.Peek();
-                if (token is Operand) {
-                    if (operators.Peek().Type != OperatorType.LB) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                } else {
-                    if (((Operator)token).Type == OperatorType.RB) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
+                return ((Operator)token).Type == OperatorType.RB;
             }
         }
 
@@ -213,12 +129,6 @@ namespace ToolGood.Algorithm
                 return 0;
             }
 
-
-            ////三角函数
-            //if ((optA >= OperatorType.TAN && optA <= OperatorType.ATAN) &&
-            //        (optB >= OperatorType.TAN && optB <= OperatorType.ATAN)) {
-            //    return 0;
-            //}
 
             if (optA < optB) {
                 //A优先级高于B

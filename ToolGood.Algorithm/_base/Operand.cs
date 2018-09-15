@@ -242,16 +242,16 @@ namespace ToolGood.Algorithm
             return OperandType.PARAMETER;
         }
 
-        /// <summary>
-        /// 判断对象是否为Boolean
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static bool IsBoolean(object value)
-        {
-            bool v;
-            return bool.TryParse(value.ToString().ToLower(), out v);
-        }
+        ///// <summary>
+        ///// 判断对象是否为Boolean
+        ///// </summary>
+        ///// <param name="value"></param>
+        ///// <returns></returns>
+        //public static bool IsBoolean(object value)
+        //{
+        //    bool v;
+        //    return bool.TryParse(value.ToString().ToLower(), out v);
+        //}
 
         /// <summary>
         /// 判断对象是否为数字
