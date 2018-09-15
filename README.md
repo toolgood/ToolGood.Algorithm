@@ -16,7 +16,9 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数`。
     var d = engine.TryEvaluate("'2016-1-1'+1", DateTime.MinValue); //返回日期:2016-1-2
     var t = engine.TryEvaluate("'2016-1-1'+9*'1:0'", DateTime.MinValue);//返回日期:2016-1-1 9:0
 ```
-支持常量`pi`,`e`,`true`,`false`
+支持常量`pi`,`e`,`true`,`false`。
+
+索引默认为`Excel索引`，如果想用c#索引，请设置`UseExcelIndex`为`false`。
 
 ## 自定义参数
 ``` csharp
@@ -694,3 +696,117 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数`。
 </table>
 
 
+#### 增加函数 类C#方法
+<table>
+    <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
+    <tr>
+        <td>UrlEncode</td><td>UrlEncode(文本)<br> 对 URL 字符串进行编码。</td> <td></td>
+    </tr>
+	<tr>
+        <td>UrlDecode</td><td>UrlEncode(文本)<br> 将 URL 编码的字符串转换为已解码的字符串。</td> <td></td>
+    </tr>
+	<tr>
+        <td>HtmlEncode</td><td>HtmlEncode(文本)<br> 将字符串转换为 HTML 编码的字符串。</td> <td></td>
+    </tr>
+	<tr>
+        <td>HtmlEncode</td><td>HtmlEncode(文本)<br>  将字符串表示形式转换为 HTML 编码的字符串，并返回编码的字符串。</td> <td></td>
+    </tr>
+	<tr>
+        <td>Base64ToText</td><td>Base64ToText(文本)<br>Base64ToText(文本,编码类型)<br>   将Base64转换为字符串。</td> <td></td>
+    </tr>
+	<tr>
+        <td>Base64UrlToText</td><td>Base64UrlToText(文本)<br>Base64UrlToText(文本,编码类型)<br>   将Url类型的Base64 转换为字符串。</td> <td></td>
+    </tr>
+	<tr>
+        <td>TextToBase64</td><td>TextToBase64(文本)<br>TextToBase64(文本,编码类型)<br>   将字符串转换为Base64字符串。</td> <td></td>
+    </tr>
+	<tr>
+        <td>TextToBase64Url</td><td>TextToBase64Url(文本)<br>TextToBase64Url(文本,编码类型)<br>   将字符串 转换为Url类型的Base64 字符串。</td> <td></td>
+    </tr>
+	<tr>
+        <td>Regex</td><td>Regex(文本,匹配文本)<br>Regex(文本,匹配文本,索引)<br>Regex(文本,匹配文本,索引,组索引)<br>   并返回匹配的字符串。</td> <td></td>
+    </tr>
+	<tr>
+        <td>RegexRepalce</td><td>RegexRepalce(文本,匹配文本,替换文本)<br>  匹配替换字符串。</td> <td></td>
+    </tr>
+	<tr>
+        <td>IsRegex<br>IsMatch</td><td>IsRegex(文本,匹配文本)<br>IsMatch(文本,匹配文本)<br>  判断是否匹配。</td> <td></td>
+    </tr>
+	<tr>
+        <td>Guid</td><td>Guid()<br>  生成Guid字符串。</td> <td></td>
+    </tr>
+	<tr>
+        <td>Md5</td><td>Md5(文本)<br>Md5(文本,编码类型)<br> 返回Md5的Hash字符串。</td> <td></td>
+    </tr>
+	<tr>
+        <td>Sha1</td><td>Sha1(文本)<br>Sha1(文本,编码类型)<br> 返回Sha1的Hash字符串。</td> <td></td>
+    </tr>
+	<tr>
+        <td>Sha256</td><td>Sha256(文本)<br>Sha256(文本,编码类型)<br> 返回Sha256的Hash字符串。</td> <td></td>
+    </tr>
+	<tr>
+        <td>Sha512</td><td>Sha512(文本)<br>Sha512(文本,编码类型)<br> 返回Sha512的Hash字符串。</td> <td></td>
+    </tr>
+	<tr>
+        <td>Crc8</td><td>Crc8(文本)<br>Crc8(文本,编码类型)<br> 返回Crc8的Hash字符串。</td> <td></td>
+    </tr>
+	<tr>
+        <td>Crc16</td><td>Crc16(文本)<br>Crc16(文本,编码类型)<br> 返回Crc16的Hash字符串。</td> <td></td>
+    </tr>
+	<tr>
+        <td>Crc32</td><td>Crc32(文本)<br>Crc32(文本,编码类型)<br> 返回Crc32的Hash字符串。</td> <td></td>
+    </tr>
+	<tr>
+        <td>HmacMd5</td><td>HmacMd5(文本,secret)<br>HmacMd5(文本,secret,编码类型)<br> 返回HmacMd5的Hash字符串。</td> <td></td>
+    </tr>
+	<tr>
+        <td>HmacSha1</td><td>HmacSha1(文本,secret)<br>HmacSha1(文本,secret,编码类型)<br> 返回HmacSha1的Hash字符串。</td> <td></td>
+    </tr>
+	<tr>
+        <td>HmacSha256</td><td>HmacSha256(文本,secret)<br>HmacSha256(文本,secret,编码类型)<br> 返回HmacSha256的Hash字符串。</td> <td></td>
+    </tr>
+	<tr>
+        <td>HmacSha512</td><td>HmacSha512(文本,secret)<br>HmacSha512(文本,secret,编码类型)<br> 返回HmacSha512的Hash字符串。</td> <td></td>
+    </tr>
+	<tr>
+        <td>TrimStart<br>LTrim</td><td>TrimStart(文本)<br>LTrim(文本)<br>   消空字符串左边。</td> <td></td>
+    </tr>
+	<tr>
+        <td>TrimEnd<br>RTrim</td><td>TrimEnd(文本)<br>RTrim(文本)<br>   消空字符串右边。</td> <td></td>
+    </tr>
+	<tr>
+        <td>IndexOf</td><td>IndexOf(文本,查找文本)<br>IndexOf(文本,查找文本,开始位置)<br>IndexOf(文本,查找文本,开始位置,索引)<br>   查找字符串位置。</td> <td></td>
+    </tr>
+	<tr>
+        <td>LastIndexOf</td><td>LastIndexOf(文本,查找文本)<br>LastIndexOf(文本,查找文本,开始位置)<br>LastIndexOf(文本,查找文本,开始位置,索引)<br>   查找字符串位置。</td> <td></td>
+    </tr>
+	<tr>
+        <td>Split</td><td>Split(文本,分隔符)<br> 生成数组<br>Split(文本,分隔符,索引)<br>  返回分割后索引指向的字符串。</td> <td></td>
+    </tr>
+	<tr>
+        <td>Join</td><td>Join(文本1,文本2....)<br>  合并字符串。</td> <td></td>
+    </tr>
+	<tr>
+        <td>Substring</td><td>Substring(文本,位置)<br>Substring(文本,位置,数量)<br>  切割字符串。</td> <td></td>
+    </tr>
+	<tr>
+        <td>StartsWith</td><td>StartsWith(文本,开始文本)<br>StartsWith(文本,开始文本,是否忽略大小写:1/0)<br>  确定此字符串实例的开头是否与指定的字符串匹配。</td> <td></td>
+    </tr>
+	<tr>
+        <td>EndsWith</td><td>EndsWith(文本,开始文本)<br>EndsWith(文本,开始文本,是否忽略大小写:1/0)<br>  确定使用指定的比较选项进行比较时此字符串实例的结尾是否与指定的字符串匹配。</td> <td></td>
+    </tr>
+	<tr>
+        <td>IsNullOrEmpty</td><td>IsNullOrEmpty(文本)<br>  指示指定的字符串是 null 还是 空字符串。</td> <td></td>
+    </tr>	
+	<tr>
+        <td>IsNullOrWhiteSpace</td><td>IsNullOrWhiteSpace(文本)<br>  指示指定的字符串是 null、空还是仅由空白字符组成。</td> <td></td>
+    </tr>
+ 
+	<tr>
+        <td>ToUpper</td><td>ToUpper(文本)<br>  将文本转换为大写形式。</td> <td></td>
+    </tr>	
+	<tr>
+        <td>ToLower</td><td>ToLower(文本)<br>  将文本转换为小写形式。</td> <td></td>
+    </tr>
+
+</table>

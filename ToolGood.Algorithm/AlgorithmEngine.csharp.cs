@@ -408,9 +408,9 @@ namespace ToolGood.Algorithm
             if (arg.Count < 2) return throwError("StartsWith中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             if (arg.Count == 2) {
-                return new Operand(OperandType.NUMBER, text.StartsWith(arg[1].StringValue));
+                return new Operand(OperandType.BOOLEAN, text.StartsWith(arg[1].StringValue));
             } else {
-                return new Operand(OperandType.NUMBER, text.StartsWith(arg[1].StringValue, arg[2].BooleanValue ? StringComparison.CurrentCultureIgnoreCase : StringComparison.CurrentCulture));
+                return new Operand(OperandType.BOOLEAN, text.StartsWith(arg[1].StringValue, arg[2].BooleanValue ? StringComparison.CurrentCultureIgnoreCase : StringComparison.CurrentCulture));
             }
         }
         private Operand EndsWith(List<Operand> arg)
@@ -418,9 +418,9 @@ namespace ToolGood.Algorithm
             if (arg.Count < 2) return throwError("EndsWith中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             if (arg.Count == 2) {
-                return new Operand(OperandType.NUMBER, text.EndsWith(arg[1].StringValue));
+                return new Operand(OperandType.BOOLEAN, text.EndsWith(arg[1].StringValue));
             } else {
-                return new Operand(OperandType.NUMBER, text.EndsWith(arg[1].StringValue, arg[2].BooleanValue ? StringComparison.CurrentCultureIgnoreCase : StringComparison.CurrentCulture));
+                return new Operand(OperandType.BOOLEAN, text.EndsWith(arg[1].StringValue, arg[2].BooleanValue ? StringComparison.CurrentCultureIgnoreCase : StringComparison.CurrentCulture));
             }
         }
         private Operand IsNullOrEmpty(List<Operand> arg)
