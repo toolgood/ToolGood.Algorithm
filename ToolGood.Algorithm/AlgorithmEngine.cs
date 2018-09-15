@@ -10,6 +10,11 @@ namespace ToolGood.Algorithm
         List<string> m_Operators = new List<string>() { "(", ")", "!", "*", "/", "%", "+", "-", "<", ">", "=", "&", "|", ",", "==", "!=", ">=", "<=", "<>", "@" };
         Stack<object> m_tokens = new Stack<object>();        //最终逆波兰式堆栈
         Dictionary<String, Func<List<Operand>, Operand>> funcDict = new Dictionary<string, Func<List<Operand>, Operand>>();
+        private bool _useExcelIndex = true;
+        private int excelIndex = 1;
+        public bool UseExcelIndex { get { return _useExcelIndex; }set { _useExcelIndex = value; excelIndex = value ? 1 : 0; } }
+
+
 
         public AlgorithmEngine()
         {
@@ -27,8 +32,6 @@ namespace ToolGood.Algorithm
             funcDict[name] = func;
         }
 
-
-
         #region 可重写的方法
 
         protected virtual Operand GetParameter(Operand curOpd)
@@ -37,7 +40,6 @@ namespace ToolGood.Algorithm
         }
 
         #endregion
-
 
         #region Parse
 
@@ -853,10 +855,4 @@ namespace ToolGood.Algorithm
         #endregion
 
     }
-
-
-
-
-
-
 }

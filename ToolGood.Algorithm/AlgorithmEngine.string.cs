@@ -103,7 +103,7 @@ namespace ToolGood.Algorithm
         private Operand T(List<Operand> arg)
         {
             if (arg.Count < 1) return throwError("T中参数不足", new List<Operand>());
-            if (arg[0].Type== OperandType.NUMBER || arg[0].Type== OperandType.BOOLEAN) {
+            if (arg[0].Type == OperandType.NUMBER || arg[0].Type == OperandType.BOOLEAN) {
                 return new Operand(OperandType.STRING, "");
             }
             return new Operand(OperandType.STRING, arg[0].StringValue);
@@ -171,9 +171,9 @@ namespace ToolGood.Algorithm
 
         private Operand REPLACE(List<Operand> arg)
         {
-            if (arg.Count==3 && arg[1].Type == OperandType.STRING && arg[2].Type == OperandType.STRING) {
+            if (arg.Count == 3 && arg[1].Type == OperandType.STRING && arg[2].Type == OperandType.STRING) {
                 var srcText = arg[0].StringValue;
-                var old= arg[1].StringValue;
+                var old = arg[1].StringValue;
                 var newstr = arg[2].StringValue;
                 return new Operand(OperandType.STRING, srcText.Replace(old, newstr));
             }
@@ -259,10 +259,10 @@ namespace ToolGood.Algorithm
             if (arg.Count < 2) return throwError("FIND中参数不足", new List<Operand>());
 
             if (arg.Count == 2) {
-                var p = arg[1].StringValue.ToLower().IndexOf(arg[0].StringValue.ToLower()) + 1;
+                var p = arg[1].StringValue.ToLower().IndexOf(arg[0].StringValue.ToLower()) + excelIndex;
                 return new Operand(OperandType.NUMBER, (double)p);
             }
-            var p2 = arg[1].StringValue.ToLower().IndexOf(arg[0].StringValue.ToLower(), arg[2].IntValue) + 1;
+            var p2 = arg[1].StringValue.ToLower().IndexOf(arg[0].StringValue.ToLower(), arg[2].IntValue) + excelIndex;
             return new Operand(OperandType.NUMBER, (double)p2);
         }
 
@@ -271,10 +271,10 @@ namespace ToolGood.Algorithm
             if (arg.Count < 2) return throwError("FIND中参数不足", new List<Operand>());
 
             if (arg.Count == 2) {
-                var p = arg[1].StringValue.IndexOf(arg[0].StringValue) + 1;
+                var p = arg[1].StringValue.IndexOf(arg[0].StringValue) + excelIndex;
                 return new Operand(OperandType.NUMBER, (double)p);
             }
-            var p2 = arg[1].StringValue.IndexOf(arg[0].StringValue, (int)arg[2].NumberValue) + 1;
+            var p2 = arg[1].StringValue.IndexOf(arg[0].StringValue, (int)arg[2].NumberValue) + excelIndex;
             return new Operand(OperandType.NUMBER, (double)p2);
         }
 
@@ -309,7 +309,7 @@ namespace ToolGood.Algorithm
         {
             if (arg.Count < 1) return throwError("CLEAN中参数不足", new List<Operand>());
             var t = arg[0].StringValue;
-            t =System.Text.RegularExpressions.Regex.Replace(t, @"[\f\n\r\t\v]", "");
+            t = System.Text.RegularExpressions.Regex.Replace(t, @"[\f\n\r\t\v]", "");
             return new Operand(OperandType.STRING, t);
         }
 
