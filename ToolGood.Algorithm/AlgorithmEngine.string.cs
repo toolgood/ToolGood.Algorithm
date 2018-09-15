@@ -179,7 +179,7 @@ namespace ToolGood.Algorithm
             }
             if (arg.Count < 4) return throwError("REPLACE中参数不足或不正确", new List<Operand>());
             var oldtext = arg[0].StringValue;
-            var start = arg[1].IntValue - 1;
+            var start = arg[1].IntValue - excelIndex;
             var length = arg[2].IntValue;
             var newtext = arg[3].StringValue;
 
@@ -217,7 +217,7 @@ namespace ToolGood.Algorithm
         private Operand MID(List<Operand> arg)
         {
             if (arg.Count < 3) return throwError("MID中参数不足", new List<Operand>());
-            return new Operand(OperandType.STRING, arg[0].StringValue.Substring(arg[1].IntValue - 1, arg[2].IntValue));
+            return new Operand(OperandType.STRING, arg[0].StringValue.Substring(arg[1].IntValue - excelIndex, arg[2].IntValue));
         }
 
         private Operand LOWER(List<Operand> arg)

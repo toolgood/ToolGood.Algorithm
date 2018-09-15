@@ -133,7 +133,96 @@ namespace ToolGood.Algorithm.Test
         }
 
         //IndexOf
+        [Test]
+        public void IndexOf()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            engine.UseExcelIndex = false;
+            var dt = engine.TryEvaluate("IndexOf('abcd','cd')", -1);
+            Assert.AreEqual(dt, 2);
+            dt = engine.TryEvaluate("LastIndexOf('abcd','cd')", -1);
+            Assert.AreEqual(dt, 2);
+        }
 
+        [Test]
+        public void Split()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("Split('1,2,3,4',',',3)", null);
+            Assert.AreEqual(dt, "3");
+        }
 
+        [Test]
+        public void TrimStart()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("TrimStart(' 123 ')", null);
+            Assert.AreEqual(dt, "123 ");
+        }
+        [Test]
+        public void TrimEnd()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("TrimEnd(' 123 ')", null);
+            Assert.AreEqual(dt, " 123");
+        }
+
+        [Test]
+        public void Join()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("Join(',',1,2,5,6)", null);
+            Assert.AreEqual(dt, "1,2,5,6");
+            dt = engine.TryEvaluate("Join(',',1,2,5,6,split('7,8,9',','))", null);
+            Assert.AreEqual(dt, "1,2,5,6,7,8,9");
+        }
+
+        [Test]
+        public void Substring()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("Substring('123456789',1,2)", null);
+            Assert.AreEqual(dt, "12");
+        }
+        [Test]
+        public void StartsWith()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("StartsWith('123456789','12')", false);
+            Assert.AreEqual(dt, true);
+            dt = engine.TryEvaluate("StartsWith('123456789','127')", false);
+            Assert.AreEqual(dt, false);
+        }
+        [Test]
+        public void EndsWith()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("EndsWith('123456789','89')", false);
+            Assert.AreEqual(dt, true);
+            dt = engine.TryEvaluate("EndsWith('123456789','127')", false);
+            Assert.AreEqual(dt, false);
+        }
+
+        [Test]
+        public void IsNullOrEmpty()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("IsNullOrEmpty('')", false);
+            Assert.AreEqual(dt, true);
+            dt = engine.TryEvaluate("IsNullOrEmpty(' ')", false);
+            Assert.AreEqual(dt, false);
+        }
+        [Test]
+        public void IsNullOrWhiteSpace()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("IsNullOrWhiteSpace('')", false);
+            Assert.AreEqual(dt, true);
+            dt = engine.TryEvaluate("IsNullOrWhiteSpace('   ')", false);
+            Assert.AreEqual(dt, true);
+            dt = engine.TryEvaluate("IsNullOrWhiteSpace(' f ')", false);
+            Assert.AreEqual(dt, false);
+        }
     }
+
 }

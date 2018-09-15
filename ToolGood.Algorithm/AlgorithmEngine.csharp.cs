@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -44,6 +45,9 @@ namespace ToolGood.Algorithm
             addFunc("IndexOf", IndexOf);
             addFunc("LastIndexOf", LastIndexOf);
             addFunc("Split", Split);
+            addFunc("Join", Join);
+
+
 
             addFunc("Substring", Substring);
             addFunc("StartsWith", StartsWith);
@@ -145,17 +149,17 @@ namespace ToolGood.Algorithm
                 return new Operand(OperandType.STRING, b.Value);
             } else if (arg.Count == 3) {
                 var ms = System.Text.RegularExpressions.Regex.Matches(arg[0].StringValue, arg[1].StringValue);
-                if (ms.Count <= arg[2].IntValue + excelIndex) {
+                if (ms.Count <= arg[2].IntValue - excelIndex) {
                     return throwError("Regex匹配Index长度错误", new List<Operand>());
                 }
-                return new Operand(OperandType.STRING, ms[arg[2].IntValue + excelIndex].Value);
+                return new Operand(OperandType.STRING, ms[arg[2].IntValue - excelIndex].Value);
 
             } else {
                 var ms = System.Text.RegularExpressions.Regex.Matches(arg[0].StringValue, arg[1].StringValue);
                 if (ms.Count <= arg[2].IntValue + excelIndex) {
                     return throwError("Regex匹配Index长度错误", new List<Operand>());
                 }
-                return new Operand(OperandType.STRING, ms[arg[2].IntValue + excelIndex].Groups[arg[3].IntValue].Value);
+                return new Operand(OperandType.STRING, ms[arg[2].IntValue - excelIndex].Groups[arg[3].IntValue].Value);
             }
         }
         private Operand RegexRepalce(List<Operand> arg)
@@ -360,19 +364,43 @@ namespace ToolGood.Algorithm
         }
         private Operand Split(List<Operand> arg)
         {
-            if (arg.Count < 2) return throwError("IndexOf中参数不足", new List<Operand>());
+            if (arg.Count < 2) return throwError("Split中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
+            if (arg.Count == 3) {
+                return new Operand(OperandType.STRING, text.Split(arg[1].StringValue.ToArray())[arg[2].IntValue - excelIndex]);
+            }
             return new Operand(OperandType.ARRARY, text.Split(arg[1].StringValue.ToArray()));
         }
+
+        private Operand Join(List<Operand> arg)
+        {
+            if (arg.Count < 2) return throwError("Join中参数不足", new List<Operand>());
+            var text = arg[0].StringValue;
+
+            List<string> list = new List<string>();
+            for (int i = 1; i < arg.Count; i++) {
+                if (arg[i].Type == OperandType.ARRARY) {
+                    var ls = arg[i].Value as IList;
+                    foreach (var item in ls) {
+                        list.Add(item?.ToString());
+                    }
+                } else {
+                    list.Add(arg[i].StringValue);
+                }
+            }
+
+            return new Operand(OperandType.STRING, string.Join(text, list));
+        }
+
 
         private Operand Substring(List<Operand> arg)
         {
             if (arg.Count < 2) return throwError("Substring中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             if (arg.Count == 2) {
-                return new Operand(OperandType.NUMBER, text.Substring(arg[1].IntValue + excelIndex));
+                return new Operand(OperandType.NUMBER, text.Substring(arg[1].IntValue - excelIndex));
             } else {
-                return new Operand(OperandType.NUMBER, text.Substring(arg[1].IntValue + excelIndex, arg[2].IntValue));
+                return new Operand(OperandType.NUMBER, text.Substring(arg[1].IntValue - excelIndex, arg[2].IntValue));
             }
         }
         private Operand StartsWith(List<Operand> arg)
