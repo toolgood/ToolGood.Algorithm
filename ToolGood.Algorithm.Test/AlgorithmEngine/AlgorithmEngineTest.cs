@@ -100,6 +100,17 @@ namespace ToolGood.Algorithm
 
         }
 
+        [Test]
+        public void name_Test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            if (engine.Parse("a", "1+(3*2+2)/2")) {
+                var t = engine.Evaluate("a");
+                Assert.AreEqual(5, (int)(double)t);
+                return;
+            }
+            throw new Exception("");
+        }
 
 
 

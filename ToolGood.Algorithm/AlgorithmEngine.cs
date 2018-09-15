@@ -368,7 +368,7 @@ namespace ToolGood.Algorithm
         {
             Stack<object> tokens = null;
             if (tokenDict.TryGetValue(name ,out tokens)) {
-                return evaluate(m_tokens);
+                return evaluate(tokens);
             }
             return null;
         }
