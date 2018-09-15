@@ -801,7 +801,6 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数`。
 	<tr>
         <td>IsNullOrWhiteSpace</td><td>IsNullOrWhiteSpace(文本)<br>  指示指定的字符串是 null、空还是仅由空白字符组成。</td> <td></td>
     </tr>
- 
 	<tr>
         <td>ToUpper</td><td>ToUpper(文本)<br>  将文本转换为大写形式。</td> <td></td>
     </tr>	
