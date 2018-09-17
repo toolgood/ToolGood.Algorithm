@@ -55,6 +55,11 @@ namespace ToolGood.Algorithm
             addFunc("IsNullOrEmpty", IsNullOrEmpty);
             addFunc("IsNullOrWhiteSpace", IsNullOrWhiteSpace);
 
+            addFunc("RemoveStart", RemoveStart);
+            addFunc("RemoveEnd", RemoveEnd);
+            addFunc("RemoveBoth", RemoveBoth);
+
+
             addFunc("ToUpper", UPPER); //将文本转换为大写形式 
             addFunc("ToLower", LOWER); //将文本参数转换为数字 
         }
@@ -328,13 +333,18 @@ namespace ToolGood.Algorithm
         {
             if (arg.Count < 1) return throwError("TrimStart中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
+            if (arg.Count==2) {
+                return new Operand(OperandType.STRING, text.TrimStart(arg[1].StringValue.ToArray()));
+            }
             return new Operand(OperandType.STRING, text.TrimStart());
         }
         private Operand TrimEnd(List<Operand> arg)
         {
             if (arg.Count < 1) return throwError("TrimEnd中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
-
+            if (arg.Count == 2) {
+                return new Operand(OperandType.STRING, text.TrimEnd(arg[1].StringValue.ToArray()));
+            }
             return new Operand(OperandType.STRING, text.TrimEnd());
         }
 
@@ -398,9 +408,9 @@ namespace ToolGood.Algorithm
             if (arg.Count < 2) return throwError("Substring中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             if (arg.Count == 2) {
-                return new Operand(OperandType.NUMBER, text.Substring(arg[1].IntValue - excelIndex));
+                return new Operand(OperandType.STRING, text.Substring(arg[1].IntValue - excelIndex));
             } else {
-                return new Operand(OperandType.NUMBER, text.Substring(arg[1].IntValue - excelIndex, arg[2].IntValue));
+                return new Operand(OperandType.STRING, text.Substring(arg[1].IntValue - excelIndex, arg[2].IntValue));
             }
         }
         private Operand StartsWith(List<Operand> arg)
@@ -432,6 +442,46 @@ namespace ToolGood.Algorithm
         {
             if (arg.Count < 1) return throwError("IsNullOrWhiteSpace中参数不足", new List<Operand>());
             return new Operand(OperandType.STRING, string.IsNullOrWhiteSpace(arg[0].StringValue));
+        }
+
+        private Operand RemoveStart(List<Operand> arg)
+        {
+            if (arg.Count < 2) return throwError("RemoveStart中参数不足", new List<Operand>());
+            var text = arg[0].StringValue;
+            if (text.StartsWith(arg[1].StringValue)) {
+                text = text.Substring(arg[1].StringValue.Length);
+            }
+            return new Operand(OperandType.STRING, text);
+        }
+        private Operand RemoveEnd(List<Operand> arg)
+        {
+            if (arg.Count < 2) return throwError("RemoveEnd中参数不足", new List<Operand>());
+            var text = arg[0].StringValue;
+            if (text.EndsWith(arg[1].StringValue)) {
+                text = text.Substring(0, text.Length - arg[1].StringValue.Length);
+            }
+            return new Operand(OperandType.STRING, text);
+        }
+        private Operand RemoveBoth(List<Operand> arg)
+        {
+            if (arg.Count < 3) return throwError("RemoveBoth中参数不足", new List<Operand>());
+            var text = arg[0].StringValue;
+            if (arg.Count==4) {
+                if (arg[3].BooleanValue) {
+                    if (text.StartsWith(arg[1].StringValue) && text.EndsWith(arg[2].StringValue)) {
+                        text = text.Substring(arg[1].StringValue.Length);
+                        text = text.Substring(0, text.Length - arg[2].StringValue.Length);
+                    }
+                    return new Operand(OperandType.STRING, text);
+                }
+            }
+            if (text.StartsWith(arg[1].StringValue)) {
+                text = text.Substring(arg[1].StringValue.Length);
+            }
+            if (text.EndsWith(arg[2].StringValue)) {
+                text = text.Substring(0, text.Length - arg[2].StringValue.Length);
+            }
+            return new Operand(OperandType.STRING, text);
         }
 
     }

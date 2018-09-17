@@ -158,6 +158,9 @@ namespace ToolGood.Algorithm.Test
             AlgorithmEngine engine = new AlgorithmEngine();
             var dt = engine.TryEvaluate("TrimStart(' 123 ')", null);
             Assert.AreEqual(dt, "123 ");
+
+            dt = engine.TryEvaluate("TrimStart(' 123 ',' 1')", null);
+            Assert.AreEqual(dt, "23 ");
         }
         [Test]
         public void TrimEnd()
@@ -165,6 +168,9 @@ namespace ToolGood.Algorithm.Test
             AlgorithmEngine engine = new AlgorithmEngine();
             var dt = engine.TryEvaluate("TrimEnd(' 123 ')", null);
             Assert.AreEqual(dt, " 123");
+
+            dt = engine.TryEvaluate("TrimEnd(' 123 ','3 ')", null);
+            Assert.AreEqual(dt, " 12");
         }
 
         [Test]
@@ -223,6 +229,41 @@ namespace ToolGood.Algorithm.Test
             dt = engine.TryEvaluate("IsNullOrWhiteSpace(' f ')", false);
             Assert.AreEqual(dt, false);
         }
+
+        [Test]
+        public void RemoveStart()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("RemoveStart('123456789','12')", null);
+            Assert.AreEqual(dt, "3456789");
+            dt = engine.TryEvaluate("RemoveStart('123456789','127')", null);
+            Assert.AreEqual(dt, "123456789");
+        }
+        [Test]
+        public void RemoveEnd()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("RemoveEnd('123456789','89')", null);
+            Assert.AreEqual(dt, "1234567");
+            dt = engine.TryEvaluate("RemoveEnd('123456789','127')", null);
+            Assert.AreEqual(dt, "123456789");
+        }
+        [Test]
+        public void RemoveBoth()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("RemoveBoth('123456789','12','89')", null);
+            Assert.AreEqual(dt, "34567");
+            dt = engine.TryEvaluate("RemoveBoth('123456789','12','127')", null);
+            Assert.AreEqual(dt, "3456789");
+            dt = engine.TryEvaluate("RemoveBoth('123456789','125','89')", null);
+            Assert.AreEqual(dt, "1234567");
+
+            dt = engine.TryEvaluate("RemoveBoth('123456789','12','127',1)", null);
+            Assert.AreEqual(dt, "123456789");
+        }
+
+
     }
 
 }

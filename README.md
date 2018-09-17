@@ -769,10 +769,10 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数`。
         <td>HmacSha512</td><td>HmacSha512(文本,secret)<br>HmacSha512(文本,secret,编码类型)<br> 返回HmacSha512的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>TrimStart<br>LTrim</td><td>TrimStart(文本)<br>LTrim(文本)<br>   消空字符串左边。</td> <td></td>
+        <td>TrimStart<br>LTrim</td><td>TrimStart(文本)<br>LTrim(文本)<br>LTrim(文本,字符集)<br>   消空字符串左边。</td> <td></td>
     </tr>
 	<tr>
-        <td>TrimEnd<br>RTrim</td><td>TrimEnd(文本)<br>RTrim(文本)<br>   消空字符串右边。</td> <td></td>
+        <td>TrimEnd<br>RTrim</td><td>TrimEnd(文本)<br>RTrim(文本)<br>RTrim(文本,字符集)<br>   消空字符串右边。</td> <td></td>
     </tr>
 	<tr>
         <td>IndexOf</td><td>IndexOf(文本,查找文本)<br>IndexOf(文本,查找文本,开始位置)<br>IndexOf(文本,查找文本,开始位置,索引)<br>   查找字符串位置。</td> <td></td>
@@ -807,5 +807,13 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数`。
 	<tr>
         <td>ToLower</td><td>ToLower(文本)<br>  将文本转换为小写形式。</td> <td></td>
     </tr>
-
+	<tr>
+        <td>RemoveStart</td><td>RemoveStart(文本,左边文本)<br>匹配左边，成功则去除左边字符串。</td> <td></td>
+    </tr>
+	<tr>
+        <td>RemoveEnd</td><td>RemoveEnd(文本,右边文本)<br>匹配右边，成功则去除右边字符串。</td> <td></td>
+    </tr>
+	<tr>
+        <td>RemoveBoth</td><td>RemoveBoth(文本,左边文本,右边文本,同时匹配:0/1(默认0))<br>匹配方式, 匹配左边，成功则去除左边字符串。匹配右边，成功则去除右边字符串。</td> <td></td>
+    </tr>
 </table>
