@@ -217,6 +217,26 @@ namespace ToolGood.Algorithm
             return sb.ToString();
         }
 
+        public bool CanTransitionTo(OperandType operandType)
+        {
+            if (operandType == OperandType.Any) return true;
+            if (operandType == Type) return true;
+            if (operandType== OperandType.STRING) {
+                if (Type != OperandType.ERROR) return true;
+            }
+            if (operandType== OperandType.NUMBER) {
+                return IsNumber(this.Value);
+            }
+            if (operandType == OperandType.DATE) {
+                return IsDate(this.Value);
+            }
+            if (operandType == OperandType.BOOLEAN) {
+                if (Type == OperandType.NUMBER) return true;
+                return IsBoolean(this.Value);
+            }
+
+            return false;
+        }
 
         #region Public Method
         /// <summary>
@@ -244,16 +264,16 @@ namespace ToolGood.Algorithm
 
 
 
-        ///// <summary>
-        ///// 判断对象是否为Boolean
-        ///// </summary>
-        ///// <param name="value"></param>
-        ///// <returns></returns>
-        //public static bool IsBoolean(object value)
-        //{
-        //    bool v;
-        //    return bool.TryParse(value.ToString().ToLower(), out v);
-        //}
+        /// <summary>
+        /// 判断对象是否为Boolean
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool IsBoolean(object value)
+        {
+            bool v;
+            return bool.TryParse(value.ToString().ToLower(), out v);
+        }
 
         /// <summary>
         /// 判断对象是否为数字

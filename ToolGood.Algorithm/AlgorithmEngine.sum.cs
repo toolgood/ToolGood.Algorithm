@@ -361,7 +361,7 @@ namespace ToolGood.Algorithm
         private Operand Func_Percentile(List<Operand> arg)
         {
             CheckArgsCount("PERCENTILE", arg, new OperandType[][] {
-                new OperandType[] {  OperandType.NUMBER, OperandType.NUMBER  },
+                new OperandType[] {  OperandType.ARRARY, OperandType.NUMBER  },
                  });
             var array = (arg[0].GetNumberList()).ToArray();
             var k = arg[1].NumberValue;
@@ -371,7 +371,7 @@ namespace ToolGood.Algorithm
         private Operand Func_Quartile(List<Operand> arg)
         {
             CheckArgsCount("QUARTILE", arg, new OperandType[][] {
-                new OperandType[] {  OperandType.NUMBER, OperandType.NUMBER  },
+                new OperandType[] {  OperandType.ARRARY, OperandType.NUMBER  },
                  });
             var array = (arg[0].GetNumberList()).ToArray();
             var quant = arg[1].IntValue;

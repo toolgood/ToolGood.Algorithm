@@ -93,8 +93,7 @@ namespace ToolGood.Algorithm
         private Operand Func_IsNumber(List<Operand> arg)
         {
             CheckArgsCount("ISNUMBER", arg, new OperandType[][] {
-                new OperandType[] { OperandType.NUMBER },
-                new OperandType[] { OperandType.DATE },
+                new OperandType[] { OperandType.Any },
                  });
 
             if (arg[0].Type == OperandType.NUMBER) {

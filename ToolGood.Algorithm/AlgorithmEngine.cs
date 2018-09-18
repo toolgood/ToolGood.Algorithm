@@ -682,8 +682,16 @@ namespace ToolGood.Algorithm
 
             foreach (var operands in operandTypes) {
                 if (operands.Length != ops.Count) continue;
-
-                return;
+                var success = true;
+                for (int i = 0; i < operands.Length; i++) {
+                    if (ops[i].CanTransitionTo(operands[i])==false) {
+                        success = false;
+                        break;
+                    }
+                }
+                if (success) {
+                    return;
+                }
             }
             throw new FunctionException(ThrowError(funcName + "参数类型出错！", new List<Operand>()));
         }
