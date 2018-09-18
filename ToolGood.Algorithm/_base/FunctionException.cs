@@ -8,7 +8,7 @@ namespace ToolGood.Algorithm
     class FunctionException : Exception
     {
         public Operand Operand { get; private set; }
-        public FunctionException(Operand operand)
+        public FunctionException(Operand operand):base(operand.StringValue)
         {
             Operand = operand;
         }

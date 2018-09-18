@@ -261,6 +261,8 @@ namespace ToolGood.Algorithm.Test
 
             dt = engine.TryEvaluate("RemoveBoth('123456789','12','127',1)", null);
             Assert.AreEqual(dt, "123456789");
+            //dt = engine.TryEvaluate("RemoveBoth('123456789','12','127',1,2)", null);
+            //Assert.AreEqual(dt, "123456789");
         }
 
 

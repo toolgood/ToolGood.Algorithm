@@ -475,15 +475,7 @@ namespace ToolGood.Algorithm
                             for (int i = 0; i < curOpt.ArgsCount; i++) {
                                 list.Insert(0, opds.Pop());
                             }
-                            var fun = funcDict[curOpt.Value.ToLower()];
-                            if (curOpt.Value.ToLower() != "iferror") {
-                                var o = hasError(list);
-                                if (o != null) {
-                                    opds.Push(o);
-                                    break;
-                                }
-                            }
-                            opds.Push(fun(list));
+                            opds.Push(doFunc(curOpt, list));
                             break;
                             #endregion
 
