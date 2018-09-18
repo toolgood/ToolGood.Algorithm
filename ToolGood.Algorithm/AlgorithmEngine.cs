@@ -31,6 +31,10 @@ namespace ToolGood.Algorithm
         {
             return null;
         }
+        protected void AddFunction(string funName, Func<List<Operand>, Operand> function)
+        {
+            addFunc(funName, function);
+        }
 
         #endregion
 
@@ -425,7 +429,7 @@ namespace ToolGood.Algorithm
                         case OperatorType.MOD:
                             list.Insert(0, opds.Pop());
                             list.Insert(0, opds.Pop());
-                            opds.Push(mod(list));
+                            opds.Push(Func_Mod(list));
                             break;
                         #endregion
 
@@ -659,7 +663,7 @@ namespace ToolGood.Algorithm
             return null;
         }
 
-        private Operand throwError(string errMsg, List<Operand> ops)
+        private Operand ThrowError(string errMsg, List<Operand> ops)
         {
             foreach (var item in ops) {
                 if (item.Type == OperandType.ERROR) {
@@ -706,7 +710,7 @@ namespace ToolGood.Algorithm
             //if (ops[1].Type == OperandType.STRING || ops[0].Type == OperandType.STRING) {
             //    return new Operand(OperandType.STRING, ops[0].StringValue + ops[1].StringValue);
             //}
-            return throwError("两个参数不能相加", ops);
+            return ThrowError("两个参数不能相加", ops);
         }
         private Operand sub(List<Operand> ops)
         {
@@ -737,7 +741,7 @@ namespace ToolGood.Algorithm
                     return new Operand(OperandType.NUMBER, (ops[0].BooleanValue ? 1.0 : 0.0) - ops[1].DateValue);
                 }
             }
-            return throwError("两个参数不能相减", ops);
+            return ThrowError("两个参数不能相减", ops);
         }
         private Operand mul(List<Operand> ops)
         {
@@ -766,13 +770,13 @@ namespace ToolGood.Algorithm
                     return new Operand(OperandType.NUMBER, (ops[0].BooleanValue ? 1.0 : 0.0) * ops[1].DateValue);
                 }
             }
-            return throwError("两个参数不能相乘", ops);
+            return ThrowError("两个参数不能相乘", ops);
         }
         private Operand div(List<Operand> ops)
         {
             if (ops[1].Type == OperandType.NUMBER) {
                 if (ops[1].NumberValue == 0) {
-                    return throwError("无法除0", ops);
+                    return ThrowError("无法除0", ops);
                 }
 
                 if (ops[0].Type == OperandType.NUMBER) {
@@ -790,13 +794,13 @@ namespace ToolGood.Algorithm
                     return new Operand(OperandType.NUMBER, (ops[0].BooleanValue ? 1.0 : 0.0) / ops[1].DateValue);
                 }
             }
-            return throwError("两个参数不能相除", ops);
+            return ThrowError("两个参数不能相除", ops);
         }
-        private Operand mod(List<Operand> ops)
+        private Operand Func_Mod(List<Operand> ops)
         {
             if (ops[1].Type == OperandType.NUMBER) {
                 if (ops[1].NumberValue == 0) {
-                    return throwError("无法除0", ops);
+                    return ThrowError("无法除0", ops);
                 }
                 if (ops[0].Type == OperandType.NUMBER) {
                     return new Operand(OperandType.NUMBER, ops[0].NumberValue % ops[1].NumberValue);
@@ -813,7 +817,7 @@ namespace ToolGood.Algorithm
                     return new Operand(OperandType.NUMBER, (ops[0].BooleanValue ? 1.0 : 0.0) % ops[1].DateValue);
                 }
             }
-            return throwError("两个参数不能相除取余", ops);
+            return ThrowError("两个参数不能相除取余", ops);
         }
         #endregion
 

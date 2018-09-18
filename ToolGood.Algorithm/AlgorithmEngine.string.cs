@@ -10,76 +10,75 @@ namespace ToolGood.Algorithm
     {
         private void AddStringFunction()
         {
-            addFunc("ASC", ASC); //将字符串内的全角（双字节）英文字母或片假名更改为半角（单字节）字符
-            addFunc("jis", jis); //将字符串中的半角（单字节）英文字符或片假名更改为全角（双字节）字符。
-            addFunc("WIDECHAR", jis); //将字符串中的半角（单字节）英文字符或片假名更改为全角（双字节）字符。
+            addFunc("ASC", Func_Asc); //将字符串内的全角（双字节）英文字母或片假名更改为半角（单字节）字符
+            addFunc("jis", Func_jis); //将字符串中的半角（单字节）英文字符或片假名更改为全角（双字节）字符。
+            addFunc("WIDECHAR", Func_jis); //将字符串中的半角（单字节）英文字符或片假名更改为全角（双字节）字符。
 
 
 
-            addFunc("CHAR", CHAR); //返回由代码数字指定的字符
-            addFunc("CLEAN", CLEAN); //删除文本中所有打印不出的字符
-            addFunc("CODE", CODE); //返回文本字符串中第一个字符的数字代码
-            addFunc("CONCATENATE", CONCATENATE); //将若干文本项合并到一个文本项中
-            addFunc("EXACT", EXACT); //检查两个文本值是否完全相同
-            addFunc("FIND", FIND); //在一文本值内查找另一文本值（区分大小写） 
-            addFunc("FIXED", FIXED); //将数字设置为具有固定小数位的文本格式
-            addFunc("LEFT", LEFT); //返回文本值最左边的字符
-            addFunc("LEN", LEN); //返回文本字符串中的字符个数
-            addFunc("LOWER", LOWER); //将文本转换为小写形式
-            addFunc("MID", MID); //从文本字符串中的指定位置起返回特定个数的字符
-            addFunc("PROPER", PROPER); //将文本值中每一个单词的首字母设置为大写
-            addFunc("REPLACE", REPLACE); //替换文本内的字符
-            addFunc("REPT", REPT); //按给定次数重复文本
-            addFunc("RIGHT", RIGHT); //返回文本值最右边的字符
-            addFunc("RMB", RMB); //按 ￥(RMB)货币格式将数字转换为文本
-            addFunc("SEARCH", SEARCH); //在一文本值中查找另一文本值（不区分大小写） 
-            addFunc("SUBSTITUTE", SUBSTITUTE); //在文本字符串中以新文本替换旧文本 
-            addFunc("T", T); //将参数转换为文本 
-            addFunc("TEXT", TEXT); //设置数字的格式并将数字转换为文本 
-            addFunc("TRIM", TRIM); //删除文本中的空格 
-            addFunc("UPPER", UPPER); //将文本转换为大写形式 
-            addFunc("VALUE", VALUE); //将文本参数转换为数字 
+            addFunc("CHAR", Func_Char); //返回由代码数字指定的字符
+            addFunc("CLEAN", Func_Clean); //删除文本中所有打印不出的字符
+            addFunc("CODE", Func_Code); //返回文本字符串中第一个字符的数字代码
+            addFunc("CONCATENATE", Func_Concatenate); //将若干文本项合并到一个文本项中
+            addFunc("EXACT", Func_Exact); //检查两个文本值是否完全相同
+            addFunc("FIND", Func_Find); //在一文本值内查找另一文本值（区分大小写） 
+            addFunc("FIXED", Func_Fixed); //将数字设置为具有固定小数位的文本格式
+            addFunc("LEFT", Func_Left); //返回文本值最左边的字符
+            addFunc("LEN", Func_Len); //返回文本字符串中的字符个数
+            addFunc("LOWER", Func_Lower); //将文本转换为小写形式
+            addFunc("MID", Func_Mid); //从文本字符串中的指定位置起返回特定个数的字符
+            addFunc("PROPER", Func_Proper); //将文本值中每一个单词的首字母设置为大写
+            addFunc("REPLACE", Func_Replace); //替换文本内的字符
+            addFunc("REPT", Func_Rept); //按给定次数重复文本
+            addFunc("RIGHT", Func_Right); //返回文本值最右边的字符
+            addFunc("RMB", Func_Rmb); //按 ￥(RMB)货币格式将数字转换为文本
+            addFunc("SEARCH", Func_Search); //在一文本值中查找另一文本值（不区分大小写） 
+            addFunc("SUBSTITUTE", Func_Substitute); //在文本字符串中以新文本替换旧文本 
+            addFunc("T", Func_T); //将参数转换为文本 
+            addFunc("TEXT", Func_Text); //设置数字的格式并将数字转换为文本 
+            addFunc("TRIM", Func_Trim); //删除文本中的空格 
+            addFunc("UPPER", Func_Upper); //将文本转换为大写形式 
+            addFunc("VALUE", Func_Value); //将文本参数转换为数字 
 
         }
 
-        private Operand RMB(List<Operand> arg)
+        private Operand Func_Rmb(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("RMB中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("RMB中参数不足", new List<Operand>());
             return new Operand(OperandType.STRING, ToChineseRMB(arg[0].NumberValue));
         }
 
-        private Operand jis(List<Operand> arg)
+        private Operand Func_jis(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("jis中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("jis中参数不足", new List<Operand>());
             return new Operand(OperandType.STRING, ToSBC(arg[0].StringValue));
         }
 
-        private Operand VALUE(List<Operand> arg)
+        private Operand Func_Value(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("VALUE中参数不足", new List<Operand>());
-            double d;
+            if (arg.Count < 1) return ThrowError("VALUE中参数不足", new List<Operand>());
 
-            if (double.TryParse(arg[0].StringValue, out d)) {
+            if (double.TryParse(arg[0].StringValue, out double d)) {
                 return new Operand(OperandType.STRING, d);
             }
-            return throwError("无法转成数字", arg);
+            return ThrowError("无法转成数字", arg);
         }
 
-        private Operand UPPER(List<Operand> arg)
+        private Operand Func_Upper(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("TEXT中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("TEXT中参数不足", new List<Operand>());
             return new Operand(OperandType.STRING, arg[0].StringValue.ToUpper());
         }
 
-        private Operand TRIM(List<Operand> arg)
+        private Operand Func_Trim(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("TEXT中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("TEXT中参数不足", new List<Operand>());
             return new Operand(OperandType.STRING, arg[0].StringValue.Trim());
         }
 
-        private Operand TEXT(List<Operand> arg)
+        private Operand Func_Text(List<Operand> arg)
         {
-            if (arg.Count < 2) return throwError("TEXT中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("TEXT中参数不足", new List<Operand>());
             var f = arg[1].StringValue;
             var a = arg[0];
             if (a.Type == OperandType.STRING) {
@@ -94,24 +93,24 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, a.StringValue.ToString());
         }
 
-        private Operand ASC(List<Operand> arg)
+        private Operand Func_Asc(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("ASC中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("ASC中参数不足", new List<Operand>());
             return new Operand(OperandType.STRING, ToDBC(arg[0].StringValue));
         }
 
-        private Operand T(List<Operand> arg)
+        private Operand Func_T(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("T中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("T中参数不足", new List<Operand>());
             if (arg[0].Type == OperandType.NUMBER || arg[0].Type == OperandType.BOOLEAN) {
                 return new Operand(OperandType.STRING, "");
             }
             return new Operand(OperandType.STRING, arg[0].StringValue);
         }
 
-        private Operand SUBSTITUTE(List<Operand> arg)
+        private Operand Func_Substitute(List<Operand> arg)
         {
-            if (arg.Count < 3) return throwError("SUBSTITUTE中参数不足", new List<Operand>());
+            if (arg.Count < 3) return ThrowError("SUBSTITUTE中参数不足", new List<Operand>());
             if (arg.Count == 3) {
                 return new Operand(OperandType.STRING,
                     arg[0].StringValue.Replace(arg[1].StringValue, arg[2].StringValue)
@@ -147,9 +146,9 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, sb.ToString());
         }
 
-        private Operand RIGHT(List<Operand> arg)
+        private Operand Func_Right(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("LEFT中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("LEFT中参数不足", new List<Operand>());
             var t = arg[0].StringValue;
             if (arg.Count == 1) {
                 return new Operand(OperandType.STRING, t[t.Length - 1].ToString());
@@ -157,9 +156,9 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, t.Substring(t.Length - arg[1].IntValue, arg[1].IntValue));
         }
 
-        private Operand REPT(List<Operand> arg)
+        private Operand Func_Rept(List<Operand> arg)
         {
-            if (arg.Count < 2) return throwError("REPT中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("REPT中参数不足", new List<Operand>());
             var newtext = arg[0].StringValue;
             var length = arg[1].IntValue;
             StringBuilder sb = new StringBuilder();
@@ -169,7 +168,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, sb.ToString());
         }
 
-        private Operand REPLACE(List<Operand> arg)
+        private Operand Func_Replace(List<Operand> arg)
         {
             if (arg.Count == 3 && arg[1].Type == OperandType.STRING && arg[2].Type == OperandType.STRING) {
                 var srcText = arg[0].StringValue;
@@ -177,7 +176,7 @@ namespace ToolGood.Algorithm
                 var newstr = arg[2].StringValue;
                 return new Operand(OperandType.STRING, srcText.Replace(old, newstr));
             }
-            if (arg.Count < 4) return throwError("REPLACE中参数不足或不正确", new List<Operand>());
+            if (arg.Count < 4) return ThrowError("REPLACE中参数不足或不正确", new List<Operand>());
             var oldtext = arg[0].StringValue;
             var start = arg[1].IntValue - excelIndex;
             var length = arg[2].IntValue;
@@ -196,9 +195,9 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, sb.ToString());
         }
 
-        private Operand PROPER(List<Operand> arg)
+        private Operand Func_Proper(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("PROPER中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("PROPER中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             StringBuilder sb = new StringBuilder(text);
             bool isFirst = true;
@@ -214,36 +213,36 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, sb.ToString());
         }
 
-        private Operand MID(List<Operand> arg)
+        private Operand Func_Mid(List<Operand> arg)
         {
-            if (arg.Count < 3) return throwError("MID中参数不足", new List<Operand>());
+            if (arg.Count < 3) return ThrowError("MID中参数不足", new List<Operand>());
             return new Operand(OperandType.STRING, arg[0].StringValue.Substring(arg[1].IntValue - excelIndex, arg[2].IntValue));
         }
 
-        private Operand LOWER(List<Operand> arg)
+        private Operand Func_Lower(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("LOWER中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("LOWER中参数不足", new List<Operand>());
             return new Operand(OperandType.STRING, arg[0].StringValue.ToLower());
         }
 
-        private Operand LEN(List<Operand> arg)
+        private Operand Func_Len(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("LEN中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("LEN中参数不足", new List<Operand>());
             return new Operand(OperandType.NUMBER, (double)arg[0].StringValue.Length);
         }
 
-        private Operand LEFT(List<Operand> arg)
+        private Operand Func_Left(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("LEFT中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("LEFT中参数不足", new List<Operand>());
             if (arg.Count == 1) {
                 return new Operand(OperandType.STRING, arg[0].StringValue[0].ToString());
             }
             return new Operand(OperandType.STRING, arg[0].StringValue.Substring(0, arg[1].IntValue));
         }
 
-        private Operand FIXED(List<Operand> arg)
+        private Operand Func_Fixed(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("FIXED中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("FIXED中参数不足", new List<Operand>());
             var num = 2;
             if (arg.Count > 1) num = arg[1].IntValue;
             var s = Math.Round(arg[0].NumberValue, num);//.ToString();
@@ -254,9 +253,9 @@ namespace ToolGood.Algorithm
             }
             return new Operand(OperandType.STRING, s.ToString());
         }
-        private Operand SEARCH(List<Operand> arg)
+        private Operand Func_Search(List<Operand> arg)
         {
-            if (arg.Count < 2) return throwError("FIND中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("FIND中参数不足", new List<Operand>());
 
             if (arg.Count == 2) {
                 var p = arg[1].StringValue.ToLower().IndexOf(arg[0].StringValue.ToLower()) + excelIndex;
@@ -266,9 +265,9 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, (double)p2);
         }
 
-        private Operand FIND(List<Operand> arg)
+        private Operand Func_Find(List<Operand> arg)
         {
-            if (arg.Count < 2) return throwError("FIND中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("FIND中参数不足", new List<Operand>());
 
             if (arg.Count == 2) {
                 var p = arg[1].StringValue.IndexOf(arg[0].StringValue) + excelIndex;
@@ -278,16 +277,16 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, (double)p2);
         }
 
-        private Operand EXACT(List<Operand> arg)
+        private Operand Func_Exact(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("EXACT中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("EXACT中参数不足", new List<Operand>());
 
             return new Operand(OperandType.BOOLEAN, arg[0].StringValue == arg[1].StringValue);
         }
 
-        private Operand CONCATENATE(List<Operand> arg)
+        private Operand Func_Concatenate(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("CONCATENATE中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("CONCATENATE中参数不足", new List<Operand>());
             StringBuilder sb = new StringBuilder();
             foreach (var item in arg) {
                 sb.Append(item.StringValue);
@@ -295,27 +294,27 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, sb.ToString());
         }
 
-        private Operand CODE(List<Operand> arg)
+        private Operand Func_Code(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("CODE中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("CODE中参数不足", new List<Operand>());
             var t = arg[0].StringValue;
             if (t.Length == 0) {
-                return throwError("字符串长度为0", arg);
+                return ThrowError("字符串长度为0", arg);
             }
             return new Operand(OperandType.NUMBER, (double)(int)(char)t[0]);
         }
 
-        private Operand CLEAN(List<Operand> arg)
+        private Operand Func_Clean(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("CLEAN中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("CLEAN中参数不足", new List<Operand>());
             var t = arg[0].StringValue;
             t = System.Text.RegularExpressions.Regex.Replace(t, @"[\f\n\r\t\v]", "");
             return new Operand(OperandType.STRING, t);
         }
 
-        private Operand CHAR(List<Operand> arg)
+        private Operand Func_Char(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("SUM中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("SUM中参数不足", new List<Operand>());
             char c = (char)(int)arg[0].NumberValue;
             return new Operand(OperandType.STRING, c.ToString());
         }

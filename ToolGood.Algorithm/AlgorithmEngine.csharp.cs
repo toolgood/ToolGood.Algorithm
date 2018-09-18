@@ -11,83 +11,83 @@ namespace ToolGood.Algorithm
     {
         private void AddCSharp()
         {
-            addFunc("UrlDecode", UrlDecode);
-            addFunc("UrlEncode", UrlEncode);
-            addFunc("HtmlEncode", HtmlEncode);
-            addFunc("HtmlDecode", HtmlDecode);
-            addFunc("Base64ToText", Base64ToText);
-            addFunc("Base64UrlToText", Base64UrlToText);
-            addFunc("TextToBase64", TextToBase64);
-            addFunc("TextToBase64Url", TextToBase64Url);
-            addFunc("Regex", Regex);
-            addFunc("RegexRepalce", RegexRepalce);
-            addFunc("IsRegex", IsRegex);
-            addFunc("IsMatch", IsRegex);
-            addFunc("Guid", Guid);
-            addFunc("Md5", Md5);
-            addFunc("Sha1", Sha1);
-            addFunc("Sha256", Sha256);
-            addFunc("Sha512", Sha512);
-            addFunc("Crc8", Crc8);
-            addFunc("Crc16", Crc16);
-            addFunc("Crc32", Crc32);
-            addFunc("HmacMd5", HmacMd5);
-            addFunc("HmacSha1", HmacSha1);
-            addFunc("HmacSha256", HmacSha256);
-            addFunc("HmacSha512", HmacSha512);
+            addFunc("UrlDecode", Func_UrlDecode);
+            addFunc("UrlEncode", Func_UrlEncode);
+            addFunc("HtmlEncode", Func_HtmlEncode);
+            addFunc("HtmlDecode", Func_HtmlDecode);
+            addFunc("Base64ToText", Func_Base64ToText);
+            addFunc("Base64UrlToText", Func_Base64UrlToText);
+            addFunc("TextToBase64", Func_TextToBase64);
+            addFunc("TextToBase64Url", Func_TextToBase64Url);
+            addFunc("Regex", Func_Regex);
+            addFunc("RegexRepalce", Func_RegexRepalce);
+            addFunc("IsRegex", Func_IsRegex);
+            addFunc("IsMatch", Func_IsRegex);
+            addFunc("Guid", Func_Guid);
+            addFunc("Md5", Func_Md5);
+            addFunc("Sha1", Func_Sha1);
+            addFunc("Sha256", Func_Sha256);
+            addFunc("Sha512", Func_Sha512);
+            addFunc("Crc8", Func_Crc8);
+            addFunc("Crc16", Func_Crc16);
+            addFunc("Crc32", Func_Crc32);
+            addFunc("HmacMd5", Func_HmacMd5);
+            addFunc("HmacSha1", Func_HmacSha1);
+            addFunc("HmacSha256", Func_HmacSha256);
+            addFunc("HmacSha512", Func_HmacSha512);
 
-            addFunc("TrimStart", TrimStart);
-            addFunc("LTrim", TrimStart);
+            addFunc("TrimStart", Func_TrimStart);
+            addFunc("LTrim", Func_TrimStart);
 
-            addFunc("TrimEnd", TrimEnd);
-            addFunc("RTrim", TrimEnd);
+            addFunc("TrimEnd", Func_TrimEnd);
+            addFunc("RTrim", Func_TrimEnd);
 
-            addFunc("IndexOf", IndexOf);
-            addFunc("LastIndexOf", LastIndexOf);
-            addFunc("Split", Split);
-            addFunc("Join", Join);
-
-
-
-            addFunc("Substring", Substring);
-            addFunc("StartsWith", StartsWith);
-            addFunc("EndsWith", EndsWith);
-            addFunc("IsNullOrEmpty", IsNullOrEmpty);
-            addFunc("IsNullOrWhiteSpace", IsNullOrWhiteSpace);
-
-            addFunc("RemoveStart", RemoveStart);
-            addFunc("RemoveEnd", RemoveEnd);
-            addFunc("RemoveBoth", RemoveBoth);
+            addFunc("IndexOf", Func_IndexOf);
+            addFunc("LastIndexOf", Func_LastIndexOf);
+            addFunc("Split", Func_Split);
+            addFunc("Join", Func_Join);
 
 
-            addFunc("ToUpper", UPPER); //将文本转换为大写形式 
-            addFunc("ToLower", LOWER); //将文本参数转换为数字 
+
+            addFunc("Substring", Func_Substring);
+            addFunc("StartsWith", Func_StartsWith);
+            addFunc("EndsWith", Func_EndsWith);
+            addFunc("IsNullOrEmpty", Func_IsNullOrEmpty);
+            addFunc("IsNullOrWhiteSpace", Func_IsNullOrWhiteSpace);
+
+            addFunc("RemoveStart", Func_RemoveStart);
+            addFunc("RemoveEnd", Func_RemoveEnd);
+            addFunc("RemoveBoth", Func_RemoveBoth);
+
+
+            addFunc("ToUpper", Func_Upper); //将文本转换为大写形式 
+            addFunc("ToLower", Func_Lower); //将文本参数转换为数字 
         }
 
-        private Operand UrlDecode(List<Operand> arg)
+        private Operand Func_UrlDecode(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("UrlDecode中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("UrlDecode中参数不足", new List<Operand>());
 
             return new Operand(OperandType.STRING, HttpUtility.UrlDecode(arg[0].StringValue));
         }
-        private Operand UrlEncode(List<Operand> arg)
+        private Operand Func_UrlEncode(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("UrlEncode中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("UrlEncode中参数不足", new List<Operand>());
             return new Operand(OperandType.STRING, HttpUtility.UrlEncode(arg[0].StringValue));
         }
-        private Operand HtmlEncode(List<Operand> arg)
+        private Operand Func_HtmlEncode(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("HtmlEncode中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("HtmlEncode中参数不足", new List<Operand>());
             return new Operand(OperandType.STRING, HttpUtility.HtmlEncode(arg[0].StringValue));
         }
-        private Operand HtmlDecode(List<Operand> arg)
+        private Operand Func_HtmlDecode(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("HtmlDecode中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("HtmlDecode中参数不足", new List<Operand>());
             return new Operand(OperandType.STRING, HttpUtility.HtmlDecode(arg[0].StringValue));
         }
-        private Operand Base64ToText(List<Operand> arg)
+        private Operand Func_Base64ToText(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("Base64ToText中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("Base64ToText中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             var bytes = Base64.FromBase64String(text);
             Encoding encoding;
@@ -99,9 +99,9 @@ namespace ToolGood.Algorithm
             var t = encoding.GetString(bytes);
             return new Operand(OperandType.STRING, t);
         }
-        private Operand Base64UrlToText(List<Operand> arg)
+        private Operand Func_Base64UrlToText(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("Base64ToText中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("Base64ToText中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             var bytes = Base64.FromBase64ForUrlString(text);
             Encoding encoding;
@@ -114,9 +114,9 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, t);
         }
 
-        private Operand TextToBase64(List<Operand> arg)
+        private Operand Func_TextToBase64(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("TextToBase64中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("TextToBase64中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             Encoding encoding;
             if (arg.Count == 1) {
@@ -128,9 +128,9 @@ namespace ToolGood.Algorithm
             var t = Base64.ToBase64String(bytes);
             return new Operand(OperandType.STRING, t);
         }
-        private Operand TextToBase64Url(List<Operand> arg)
+        private Operand Func_TextToBase64Url(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("TextToBase64Url中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("TextToBase64Url中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             Encoding encoding;
             if (arg.Count == 1) {
@@ -143,50 +143,50 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, t);
         }
 
-        private Operand Regex(List<Operand> arg)
+        private Operand Func_Regex(List<Operand> arg)
         {
-            if (arg.Count < 2) return throwError("Regex中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("Regex中参数不足", new List<Operand>());
             if (arg.Count == 2) {
                 var b = System.Text.RegularExpressions.Regex.Match(arg[0].StringValue, arg[1].StringValue);
                 if (b.Success == false) {
-                    return throwError("Regex匹配失败", new List<Operand>());
+                    return ThrowError("Regex匹配失败", new List<Operand>());
                 }
                 return new Operand(OperandType.STRING, b.Value);
             } else if (arg.Count == 3) {
                 var ms = System.Text.RegularExpressions.Regex.Matches(arg[0].StringValue, arg[1].StringValue);
                 if (ms.Count <= arg[2].IntValue - excelIndex) {
-                    return throwError("Regex匹配Index长度错误", new List<Operand>());
+                    return ThrowError("Regex匹配Index长度错误", new List<Operand>());
                 }
                 return new Operand(OperandType.STRING, ms[arg[2].IntValue - excelIndex].Value);
 
             } else {
                 var ms = System.Text.RegularExpressions.Regex.Matches(arg[0].StringValue, arg[1].StringValue);
                 if (ms.Count <= arg[2].IntValue + excelIndex) {
-                    return throwError("Regex匹配Index长度错误", new List<Operand>());
+                    return ThrowError("Regex匹配Index长度错误", new List<Operand>());
                 }
                 return new Operand(OperandType.STRING, ms[arg[2].IntValue - excelIndex].Groups[arg[3].IntValue].Value);
             }
         }
-        private Operand RegexRepalce(List<Operand> arg)
+        private Operand Func_RegexRepalce(List<Operand> arg)
         {
-            if (arg.Count < 3) return throwError("RegexRepalce中参数不足", new List<Operand>());
+            if (arg.Count < 3) return ThrowError("RegexRepalce中参数不足", new List<Operand>());
             var b = System.Text.RegularExpressions.Regex.Replace(arg[0].StringValue, arg[1].StringValue, arg[2].StringValue);
             return new Operand(OperandType.STRING, b);
         }
-        private Operand IsRegex(List<Operand> arg)
+        private Operand Func_IsRegex(List<Operand> arg)
         {
-            if (arg.Count < 2) return throwError("IsRegex中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("IsRegex中参数不足", new List<Operand>());
             var b = System.Text.RegularExpressions.Regex.IsMatch(arg[0].StringValue, arg[1].StringValue);
             return new Operand(OperandType.BOOLEAN, b);
         }
 
-        private Operand Guid(List<Operand> arg)
+        private Operand Func_Guid(List<Operand> arg)
         {
             return new Operand(OperandType.STRING, System.Guid.NewGuid().ToString());
         }
-        private Operand Md5(List<Operand> arg)
+        private Operand Func_Md5(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("Md5中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("Md5中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             Encoding encoding;
             if (arg.Count == 1) {
@@ -197,9 +197,9 @@ namespace ToolGood.Algorithm
             var t = Hash.GetMd5String(encoding.GetBytes(text));
             return new Operand(OperandType.STRING, t);
         }
-        private Operand Sha1(List<Operand> arg)
+        private Operand Func_Sha1(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("Sha1中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("Sha1中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             Encoding encoding;
             if (arg.Count == 1) {
@@ -210,9 +210,9 @@ namespace ToolGood.Algorithm
             var t = Hash.GetSha1Bytes(encoding.GetBytes(text));
             return new Operand(OperandType.STRING, t);
         }
-        private Operand Sha256(List<Operand> arg)
+        private Operand Func_Sha256(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("Sha256中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("Sha256中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             Encoding encoding;
             if (arg.Count == 1) {
@@ -223,9 +223,9 @@ namespace ToolGood.Algorithm
             var t = Hash.GetSha256Bytes(encoding.GetBytes(text));
             return new Operand(OperandType.STRING, t);
         }
-        private Operand Sha512(List<Operand> arg)
+        private Operand Func_Sha512(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("Sha512中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("Sha512中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             Encoding encoding;
             if (arg.Count == 1) {
@@ -236,9 +236,9 @@ namespace ToolGood.Algorithm
             var t = Hash.GetSha512String(encoding.GetBytes(text));
             return new Operand(OperandType.STRING, t);
         }
-        private Operand Crc8(List<Operand> arg)
+        private Operand Func_Crc8(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("Crc8中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("Crc8中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             Encoding encoding;
             if (arg.Count == 1) {
@@ -249,9 +249,9 @@ namespace ToolGood.Algorithm
             var t = Hash.GetCrc8String(encoding.GetBytes(text));
             return new Operand(OperandType.STRING, t);
         }
-        private Operand Crc16(List<Operand> arg)
+        private Operand Func_Crc16(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("Crc16中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("Crc16中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             Encoding encoding;
             if (arg.Count == 1) {
@@ -262,9 +262,9 @@ namespace ToolGood.Algorithm
             var t = Hash.GetCrc16String(encoding.GetBytes(text));
             return new Operand(OperandType.STRING, t);
         }
-        private Operand Crc32(List<Operand> arg)
+        private Operand Func_Crc32(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("Crc32中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("Crc32中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             Encoding encoding;
             if (arg.Count == 1) {
@@ -276,9 +276,9 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, t);
         }
 
-        private Operand HmacMd5(List<Operand> arg)
+        private Operand Func_HmacMd5(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("HmacMd5中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("HmacMd5中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             Encoding encoding;
             if (arg.Count == 2) {
@@ -289,9 +289,9 @@ namespace ToolGood.Algorithm
             var t = Hash.GetHmacMd5String(encoding.GetBytes(text), arg[1].StringValue);
             return new Operand(OperandType.STRING, t);
         }
-        private Operand HmacSha1(List<Operand> arg)
+        private Operand Func_HmacSha1(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("HmacSha1中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("HmacSha1中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             Encoding encoding;
             if (arg.Count == 2) {
@@ -302,9 +302,9 @@ namespace ToolGood.Algorithm
             var t = Hash.GetHmacSha1String(encoding.GetBytes(text), arg[1].StringValue);
             return new Operand(OperandType.STRING, t);
         }
-        private Operand HmacSha256(List<Operand> arg)
+        private Operand Func_HmacSha256(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("HmacSha256中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("HmacSha256中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             Encoding encoding;
             if (arg.Count == 2) {
@@ -315,9 +315,9 @@ namespace ToolGood.Algorithm
             var t = Hash.GetHmacSha256String(encoding.GetBytes(text), arg[1].StringValue);
             return new Operand(OperandType.STRING, t);
         }
-        private Operand HmacSha512(List<Operand> arg)
+        private Operand Func_HmacSha512(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("HmacSha512中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("HmacSha512中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             Encoding encoding;
             if (arg.Count == 2) {
@@ -329,18 +329,18 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, t);
         }
 
-        private Operand TrimStart(List<Operand> arg)
+        private Operand Func_TrimStart(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("TrimStart中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("TrimStart中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             if (arg.Count==2) {
                 return new Operand(OperandType.STRING, text.TrimStart(arg[1].StringValue.ToArray()));
             }
             return new Operand(OperandType.STRING, text.TrimStart());
         }
-        private Operand TrimEnd(List<Operand> arg)
+        private Operand Func_TrimEnd(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("TrimEnd中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("TrimEnd中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             if (arg.Count == 2) {
                 return new Operand(OperandType.STRING, text.TrimEnd(arg[1].StringValue.ToArray()));
@@ -348,9 +348,9 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, text.TrimEnd());
         }
 
-        private Operand IndexOf(List<Operand> arg)
+        private Operand Func_IndexOf(List<Operand> arg)
         {
-            if (arg.Count < 2) return throwError("IndexOf中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("IndexOf中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             if (arg.Count == 2) {
                 return new Operand(OperandType.NUMBER, text.IndexOf(arg[1].StringValue) + excelIndex);
@@ -360,9 +360,9 @@ namespace ToolGood.Algorithm
                 return new Operand(OperandType.NUMBER, text.IndexOf(arg[1].StringValue, arg[2].IntValue, arg[3].IntValue) + excelIndex);
             }
         }
-        private Operand LastIndexOf(List<Operand> arg)
+        private Operand Func_LastIndexOf(List<Operand> arg)
         {
-            if (arg.Count < 2) return throwError("IndexOf中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("IndexOf中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             if (arg.Count == 2) {
                 return new Operand(OperandType.NUMBER, text.LastIndexOf(arg[1].StringValue) + excelIndex);
@@ -372,9 +372,9 @@ namespace ToolGood.Algorithm
                 return new Operand(OperandType.NUMBER, text.LastIndexOf(arg[1].StringValue, arg[2].IntValue, arg[3].IntValue) + excelIndex);
             }
         }
-        private Operand Split(List<Operand> arg)
+        private Operand Func_Split(List<Operand> arg)
         {
-            if (arg.Count < 2) return throwError("Split中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("Split中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             if (arg.Count == 3) {
                 return new Operand(OperandType.STRING, text.Split(arg[1].StringValue.ToArray())[arg[2].IntValue - excelIndex]);
@@ -382,9 +382,9 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.ARRARY, text.Split(arg[1].StringValue.ToArray()));
         }
 
-        private Operand Join(List<Operand> arg)
+        private Operand Func_Join(List<Operand> arg)
         {
-            if (arg.Count < 2) return throwError("Join中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("Join中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
 
             List<string> list = new List<string>();
@@ -403,9 +403,9 @@ namespace ToolGood.Algorithm
         }
 
 
-        private Operand Substring(List<Operand> arg)
+        private Operand Func_Substring(List<Operand> arg)
         {
-            if (arg.Count < 2) return throwError("Substring中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("Substring中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             if (arg.Count == 2) {
                 return new Operand(OperandType.STRING, text.Substring(arg[1].IntValue - excelIndex));
@@ -413,9 +413,9 @@ namespace ToolGood.Algorithm
                 return new Operand(OperandType.STRING, text.Substring(arg[1].IntValue - excelIndex, arg[2].IntValue));
             }
         }
-        private Operand StartsWith(List<Operand> arg)
+        private Operand Func_StartsWith(List<Operand> arg)
         {
-            if (arg.Count < 2) return throwError("StartsWith中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("StartsWith中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             if (arg.Count == 2) {
                 return new Operand(OperandType.BOOLEAN, text.StartsWith(arg[1].StringValue));
@@ -423,9 +423,9 @@ namespace ToolGood.Algorithm
                 return new Operand(OperandType.BOOLEAN, text.StartsWith(arg[1].StringValue, arg[2].BooleanValue ? StringComparison.CurrentCultureIgnoreCase : StringComparison.CurrentCulture));
             }
         }
-        private Operand EndsWith(List<Operand> arg)
+        private Operand Func_EndsWith(List<Operand> arg)
         {
-            if (arg.Count < 2) return throwError("EndsWith中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("EndsWith中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             if (arg.Count == 2) {
                 return new Operand(OperandType.BOOLEAN, text.EndsWith(arg[1].StringValue));
@@ -433,38 +433,38 @@ namespace ToolGood.Algorithm
                 return new Operand(OperandType.BOOLEAN, text.EndsWith(arg[1].StringValue, arg[2].BooleanValue ? StringComparison.CurrentCultureIgnoreCase : StringComparison.CurrentCulture));
             }
         }
-        private Operand IsNullOrEmpty(List<Operand> arg)
+        private Operand Func_IsNullOrEmpty(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("IsNullOrEmpty中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("IsNullOrEmpty中参数不足", new List<Operand>());
             return new Operand(OperandType.STRING, string.IsNullOrEmpty(arg[0].StringValue));
         }
-        private Operand IsNullOrWhiteSpace(List<Operand> arg)
+        private Operand Func_IsNullOrWhiteSpace(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("IsNullOrWhiteSpace中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("IsNullOrWhiteSpace中参数不足", new List<Operand>());
             return new Operand(OperandType.STRING, string.IsNullOrWhiteSpace(arg[0].StringValue));
         }
 
-        private Operand RemoveStart(List<Operand> arg)
+        private Operand Func_RemoveStart(List<Operand> arg)
         {
-            if (arg.Count < 2) return throwError("RemoveStart中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("RemoveStart中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             if (text.StartsWith(arg[1].StringValue)) {
                 text = text.Substring(arg[1].StringValue.Length);
             }
             return new Operand(OperandType.STRING, text);
         }
-        private Operand RemoveEnd(List<Operand> arg)
+        private Operand Func_RemoveEnd(List<Operand> arg)
         {
-            if (arg.Count < 2) return throwError("RemoveEnd中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("RemoveEnd中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             if (text.EndsWith(arg[1].StringValue)) {
                 text = text.Substring(0, text.Length - arg[1].StringValue.Length);
             }
             return new Operand(OperandType.STRING, text);
         }
-        private Operand RemoveBoth(List<Operand> arg)
+        private Operand Func_RemoveBoth(List<Operand> arg)
         {
-            if (arg.Count < 3) return throwError("RemoveBoth中参数不足", new List<Operand>());
+            if (arg.Count < 3) return ThrowError("RemoveBoth中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             if (arg.Count==4) {
                 if (arg[3].BooleanValue) {

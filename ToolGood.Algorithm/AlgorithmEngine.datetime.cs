@@ -9,32 +9,32 @@ namespace ToolGood.Algorithm
     {
         private void AddDateTimeFunction()
         {
-            addFunc("DATE", DATE);//返回特定日期的序列号 
-            addFunc("DATEVALUE", DATEVALUE);//将文本格式的日期转换为序列号 
-            addFunc("DATEDIF", DATEDIF);//返回两个日期之间的隔数　 天数
-            addFunc("DAY", DAY);//将序列号转换为月份中的日 
+            addFunc("DATE", Func_Date);//返回特定日期的序列号 
+            addFunc("DATEVALUE", Func_DateValue);//将文本格式的日期转换为序列号 
+            addFunc("DATEDIF", Func_DateDif);//返回两个日期之间的隔数　 天数
+            addFunc("DAY", Func_Day);//将序列号转换为月份中的日 
             addFunc("DAYS360", DAYS360);//以一年 360 天为基准计算两个日期间的天数 
-            addFunc("EDATE", EDATE);//返回用于表示开始日期之前或之后月数的日期的序列号 
-            addFunc("EOMONTH", EOMONTH);//返回指定月数之前或之后的月份的最后一天的序列号 
-            addFunc("HOUR", HOUR);//将序列号转换为小时 
-            addFunc("MINUTE", MINUTE);//将序列号转换为分钟 
-            addFunc("MONTH", MONTH);//将序列号转换为月 
-            addFunc("NETWORKDAYS", NETWORKDAYS);//返回两个日期之间的全部工作日数 
-            addFunc("NOW", NOW);//返回当前日期和时间的序列号 
-            addFunc("SECOND", SECOND);//将序列号转换为秒 
-            addFunc("TIME", TIME);//返回特定时间的序列号 
-            addFunc("TIMEVALUE", TIMEVALUE);//将文本格式的时间转换为序列号 
-            addFunc("TODAY", TODAY);//返回今天日期的序列号 
-            addFunc("WEEKDAY", WEEKDAY);//将序列号转换为星期几 
-            addFunc("WEEKNUM", WEEKNUM);//将序列号转换为一年中相应的周数 
-            addFunc("WORKDAY", WORKDAY);//返回指定的若干个工作日之前或之后的日期的序列号 
-            addFunc("YEAR", YEAR);//将序列号转换为年 
+            addFunc("EDATE", Func_EDate);//返回用于表示开始日期之前或之后月数的日期的序列号 
+            addFunc("EOMONTH", Func_EoMonth);//返回指定月数之前或之后的月份的最后一天的序列号 
+            addFunc("HOUR", Func_Hour);//将序列号转换为小时 
+            addFunc("MINUTE", Func_Minute);//将序列号转换为分钟 
+            addFunc("MONTH", Func_Month);//将序列号转换为月 
+            addFunc("NETWORKDAYS", Func_NetWorkDays);//返回两个日期之间的全部工作日数 
+            addFunc("NOW", Func_Now);//返回当前日期和时间的序列号 
+            addFunc("SECOND", Func_Second);//将序列号转换为秒 
+            addFunc("TIME", Func_Time);//返回特定时间的序列号 
+            addFunc("TIMEVALUE", Func_TimeValue);//将文本格式的时间转换为序列号 
+            addFunc("TODAY", Func_Today);//返回今天日期的序列号 
+            addFunc("WEEKDAY", Func_WeekDay);//将序列号转换为星期几 
+            addFunc("WEEKNUM", Func_WeekNum);//将序列号转换为一年中相应的周数 
+            addFunc("WORKDAY", Func_WorkDay);//返回指定的若干个工作日之前或之后的日期的序列号 
+            addFunc("YEAR", Func_Year);//将序列号转换为年 
             //addFunc("YEARFRAC", YEARFRAC);//返回代表 start_date 和 end_date 之间整天天数的年分数 
         }
 
-        private Operand WEEKNUM(List<Operand> arg)
+        private Operand Func_WeekNum(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("WEEKNUM中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("WEEKNUM中参数不足", new List<Operand>());
             var startDate = (DateTime)arg[0].DateValue;
 
             var days = startDate.DayOfYear + (int)(new DateTime(startDate.Year, 1, 1).DayOfWeek);
@@ -45,9 +45,9 @@ namespace ToolGood.Algorithm
         }
 
 
-        private Operand WORKDAY(List<Operand> arg)
+        private Operand Func_WorkDay(List<Operand> arg)
         {
-            if (arg.Count < 2) return throwError("WORKDAY中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("WORKDAY中参数不足", new List<Operand>());
             var startDate = (DateTime)arg[0].DateValue;
             var days = arg[1].IntValue;
             List<DateTime> list = new List<DateTime>();
@@ -64,9 +64,9 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.DATE, (Date)startDate);
         }
 
-        private Operand NETWORKDAYS(List<Operand> arg)
+        private Operand Func_NetWorkDays(List<Operand> arg)
         {
-            if (arg.Count < 2) return throwError("NETWORKDAYS中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("NETWORKDAYS中参数不足", new List<Operand>());
             var startDate = (DateTime)arg[0].DateValue;
             var endDate = (DateTime)arg[1].DateValue;
             List<DateTime> list = new List<DateTime>();
@@ -86,29 +86,29 @@ namespace ToolGood.Algorithm
         }
 
 
-        private Operand EOMONTH(List<Operand> arg)
+        private Operand Func_EoMonth(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("EOMONTH中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("EOMONTH中参数不足", new List<Operand>());
             var dt = ((DateTime)arg[0].DateValue).AddMonths(arg[1].IntValue + 1);
             dt = new DateTime(dt.Year, dt.Month, 1).AddDays(-1);
             return new Operand(OperandType.DATE, (Date)dt);
         }
 
-        private Operand EDATE(List<Operand> arg)
+        private Operand Func_EDate(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("EDATE中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("EDATE中参数不足", new List<Operand>());
             return new Operand(OperandType.DATE, (Date)(((DateTime)arg[0].DateValue).AddMonths(arg[1].IntValue)));
         }
 
-        private Operand TIMEVALUE(List<Operand> arg)
+        private Operand Func_TimeValue(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("TIMEVALUE中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("TIMEVALUE中参数不足", new List<Operand>());
             return new Operand(OperandType.DATE, new Date(TimeSpan.Parse(arg[0].StringValue)));
         }
 
         private Operand DAYS360(List<Operand> arg)
         {
-            if (arg.Count < 2) return throwError("DAYS360中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("DAYS360中参数不足", new List<Operand>());
             var startDate = (DateTime)arg[0].DateValue;
             var endDate = (DateTime)arg[1].DateValue;
 
@@ -138,27 +138,27 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, (double)days);
         }
 
-        private Operand TIME(List<Operand> arg)
+        private Operand Func_Time(List<Operand> arg)
         {
-            if (arg.Count < 3) return throwError("DATE中参数不足", new List<Operand>());
+            if (arg.Count < 3) return ThrowError("DATE中参数不足", new List<Operand>());
             Date d = new Date(0, 0, 0, arg[0].IntValue, arg[1].IntValue, arg[2].IntValue);
             return new Operand(OperandType.DATE, d);
         }
 
-        private Operand TODAY(List<Operand> arg)
+        private Operand Func_Today(List<Operand> arg)
         {
             return new Operand(OperandType.DATE, new Date(DateTime.Today));
         }
 
-        private Operand NOW(List<Operand> arg)
+        private Operand Func_Now(List<Operand> arg)
         {
             return new Operand(OperandType.DATE, new Date(DateTime.Now));
         }
 
 
-        private Operand WEEKDAY(List<Operand> arg)
+        private Operand Func_WeekDay(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("YEAR中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("YEAR中参数不足", new List<Operand>());
             var type = 1;
             if (arg.Count == 2) type = arg[1].IntValue;
             var t = ((DateTime)arg[0].DateValue).DayOfWeek;
@@ -174,45 +174,45 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, (double)(t - 1));
         }
 
-        private Operand YEAR(List<Operand> arg)
+        private Operand Func_Year(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("YEAR中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("YEAR中参数不足", new List<Operand>());
             return new Operand(OperandType.NUMBER, (double)arg[0].DateValue.Year);
         }
 
-        private Operand SECOND(List<Operand> arg)
+        private Operand Func_Second(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("SECOND中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("SECOND中参数不足", new List<Operand>());
             return new Operand(OperandType.NUMBER, (double)arg[0].DateValue.Second);
         }
 
-        private Operand MONTH(List<Operand> arg)
+        private Operand Func_Month(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("MONTH中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("MONTH中参数不足", new List<Operand>());
             return new Operand(OperandType.NUMBER, (double)arg[0].DateValue.Month);
         }
 
-        private Operand MINUTE(List<Operand> arg)
+        private Operand Func_Minute(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("MINUTE中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("MINUTE中参数不足", new List<Operand>());
             return new Operand(OperandType.NUMBER, (double)arg[0].DateValue.Minute);
         }
 
-        private Operand HOUR(List<Operand> arg)
+        private Operand Func_Hour(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("HOUR中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("HOUR中参数不足", new List<Operand>());
             return new Operand(OperandType.NUMBER, (double)arg[0].DateValue.Hour);
         }
 
-        private Operand DAY(List<Operand> arg)
+        private Operand Func_Day(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("DAY中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("DAY中参数不足", new List<Operand>());
             return new Operand(OperandType.NUMBER, (double)arg[0].DateValue.Day);
         }
 
-        private Operand DATEDIF(List<Operand> arg)
+        private Operand Func_DateDif(List<Operand> arg)
         {
-            if (arg.Count < 3) return throwError("DATEDIF中参数不足", new List<Operand>());
+            if (arg.Count < 3) return ThrowError("DATEDIF中参数不足", new List<Operand>());
             var startDate = (DateTime)arg[0].DateValue;
             var endDate = (DateTime)arg[1].DateValue;
             var t = arg[2].StringValue.ToLower();
@@ -269,20 +269,20 @@ namespace ToolGood.Algorithm
                 return new Operand(OperandType.NUMBER, (double)(mo));
                 #endregion
             }
-            return throwError("DATE比较类型错误", new List<Operand>());
+            return ThrowError("DATE比较类型错误", new List<Operand>());
         }
 
-        private Operand DATEVALUE(List<Operand> arg)
+        private Operand Func_DateValue(List<Operand> arg)
         {
-            if (arg.Count < 1) return throwError("DATE中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("DATE中参数不足", new List<Operand>());
             var d = DateTime.Parse(arg[0].StringValue).Date;
 
             return new Operand(OperandType.DATE, (Date)d);
         }
 
-        private Operand DATE(List<Operand> arg)
+        private Operand Func_Date(List<Operand> arg)
         {
-            if (arg.Count < 3) return throwError("DATE中参数不足", new List<Operand>());
+            if (arg.Count < 3) return ThrowError("DATE中参数不足", new List<Operand>());
             Date d;
             if (arg.Count == 3) {
                 d = new Date(arg[0].IntValue, arg[1].IntValue, arg[2].IntValue);
