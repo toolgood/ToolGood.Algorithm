@@ -58,10 +58,10 @@ namespace ToolGood.Algorithm
             addFunc("MIN", Func_Min);//返回参数列表中的最小值
             addFunc("MODE", Func_Mode);//返回数据集中出现最多的值间的概率
             //addFunc("PROB", PROB);//返回区域中的数值落在指定区间内的对应概率
-            addFunc("NEGBINOMDIST", Func_negbinomDist);//返回负二项式分布
-            addFunc("NORMDIST", Func_normDist);//返回正态累积分布
-            addFunc("NORMINV", Func_normInv);//返回反正态累积分布
-            addFunc("NORMSINV", Func_normsInv);//返回反标准正态累积分布
+            addFunc("NEGBINOMDIST", Func_NegbinomDist);//返回负二项式分布
+            addFunc("NORMDIST", Func_NormDist);//返回正态累积分布
+            addFunc("NORMINV", Func_NormInv);//返回反正态累积分布
+            addFunc("NORMSINV", Func_NormsInv);//返回反标准正态累积分布
             //addFunc("PEARSON", PEARSON);//返回 Pearson 乘积矩相关系数
             addFunc("PERCENTILE", Func_Percentile);//返回区域中的第 k 个百分位值
             addFunc("PERCENTRANK", Func_PercentRank);//返回数据集中值的百分比排位
@@ -80,7 +80,7 @@ namespace ToolGood.Algorithm
             //addFunc("TREND", TREND);//返回沿线性趋势的值
             //addFunc("TRIMMEAN", TRIMMEAN);//返回数据集的内部平均值
             //addFunc("TTEST", TTEST);//返回与学生的 t 检验相关的概率
-            addFunc("VAR", Func_var);//基于样本估算方差
+            addFunc("VAR", Func_Var);//基于样本估算方差
             addFunc("VARP", Func_Varp);//基于整个样本总体计算方差
             addFunc("WEIBULL", Func_weibull);//返回 Weibull 分布
             //addFunc("ZTEST", ZTEST);//返回 z 检验的单尾概率值
@@ -91,7 +91,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_harMean(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("HARMEAN中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("HARMEAN 中参数不足", new List<Operand>());
             if (arg.Count == 1) return arg[0];
             var dbs = GetList(arg);
             double sum = 0;
@@ -103,7 +103,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Geomean(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("GAMMALN中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("GAMMALN 中参数不足", new List<Operand>());
             if (arg.Count == 1) return arg[0];
             var dbs = GetList(arg);
             double sum = 1;
@@ -115,27 +115,27 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Gammaln(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("GAMMALN中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("GAMMALN 中参数不足", new List<Operand>());
             return new Operand(OperandType.NUMBER, ExcelFunctions.GAMMALN(arg[0].NumberValue));
         }
 
         private Operand Func_Small(List<Operand> arg)
         {
-            if (arg.Count < 2) return ThrowError("SMALL中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("SMALL 中参数不足", new List<Operand>());
             var list = arg[0].GetNumberList().OrderBy(q => q).ToList();
             return new Operand(OperandType.NUMBER, list[arg[1].IntValue - 1]);
         }
 
         private Operand Func_Large(List<Operand> arg)
         {
-            if (arg.Count < 2) return ThrowError("LARGE中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("LARGE 中参数不足", new List<Operand>());
             var list = arg[0].GetNumberList().OrderByDescending(q => q).ToList();
             return new Operand(OperandType.NUMBER, list[arg[1].IntValue - 1]);
         }
 
         private Operand Func_FisherInv(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("FISHER中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("FISHER 中参数不足", new List<Operand>());
             var x = arg[0].NumberValue;
             var n = (Math.Exp(2 * x) - 1) / (Math.Exp(2 * x) + 1);
             return new Operand(OperandType.NUMBER, n);
@@ -143,7 +143,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Fisher(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("FISHER中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("FISHER 中参数不足", new List<Operand>());
             var x = arg[0].NumberValue;
             var n = 0.5 * Math.Log((1 + x) / (1 - x));
             return new Operand(OperandType.NUMBER, n);
@@ -151,14 +151,14 @@ namespace ToolGood.Algorithm
 
         private Operand Func_weibull(List<Operand> arg)
         {
-            if (arg.Count < 4) return ThrowError("WEIBULL中参数不足", new List<Operand>());
+            if (arg.Count < 4) return ThrowError("WEIBULL 中参数不足", new List<Operand>());
 
             return new Operand(OperandType.NUMBER, ExcelFunctions.WEIBULL(arg[0].NumberValue, arg[1].NumberValue, arg[2].NumberValue, arg[3].BooleanValue));
         }
 
         private Operand Func_Poisson(List<Operand> arg)
         {
-            if (arg.Count < 3) return ThrowError("POISSON中参数不足", new List<Operand>());
+            if (arg.Count < 3) return ThrowError("POISSON 中参数不足", new List<Operand>());
 
             return new Operand(OperandType.NUMBER, ExcelFunctions.POISSON(arg[0].IntValue, arg[1].NumberValue, arg[2].BooleanValue));
 
@@ -166,29 +166,29 @@ namespace ToolGood.Algorithm
 
         private Operand Func_BinomDist(List<Operand> arg)
         {
-            if (arg.Count < 4) return ThrowError("BINOMDIST中参数不足", new List<Operand>());
+            if (arg.Count < 4) return ThrowError("BINOMDIST 中参数不足", new List<Operand>());
 
             return new Operand(OperandType.NUMBER, ExcelFunctions.BinomDist(arg[0].IntValue, arg[1].IntValue, arg[2].NumberValue, arg[3].BooleanValue));
         }
 
         private Operand Func_LogInv(List<Operand> arg)
         {
-            if (arg.Count < 3) return ThrowError("LOGINV中参数不足", new List<Operand>());
+            if (arg.Count < 3) return ThrowError("LOGINV 中参数不足", new List<Operand>());
 
             return new Operand(OperandType.NUMBER, ExcelFunctions.LogInv(arg[0].NumberValue, arg[1].NumberValue, arg[2].NumberValue));
         }
 
         private Operand Func_LognormDist(List<Operand> arg)
         {
-            if (arg.Count < 3) return ThrowError("LognormDist中参数不足", new List<Operand>());
+            if (arg.Count < 3) return ThrowError("LognormDist 中参数不足", new List<Operand>());
 
             return new Operand(OperandType.NUMBER, ExcelFunctions.LognormDist(arg[0].NumberValue, arg[1].NumberValue, arg[2].NumberValue));
 
         }
 
-        private Operand Func_negbinomDist(List<Operand> arg)
+        private Operand Func_NegbinomDist(List<Operand> arg)
         {
-            if (arg.Count < 3) return ThrowError("NEGBINOMDIST中参数不足", new List<Operand>());
+            if (arg.Count < 3) return ThrowError("NEGBINOMDIST 中参数不足", new List<Operand>());
 
             return new Operand(OperandType.NUMBER, ExcelFunctions.NegbinomDist(arg[0].IntValue, arg[1].NumberValue, arg[2].NumberValue));
 
@@ -196,14 +196,14 @@ namespace ToolGood.Algorithm
 
         private Operand Func_hypgeomDist(List<Operand> arg)
         {
-            if (arg.Count < 4) return ThrowError("HYPGEOMDIST中参数不足", new List<Operand>());
+            if (arg.Count < 4) return ThrowError("HYPGEOMDIST 中参数不足", new List<Operand>());
 
             return new Operand(OperandType.NUMBER, ExcelFunctions.HypgeomDist(arg[0].IntValue, arg[1].IntValue, arg[2].IntValue, arg[3].IntValue));
         }
 
         private Operand Func_ExponDist(List<Operand> arg)
         {
-            if (arg.Count < 3) return ThrowError("EXPONDIST中参数不足", new List<Operand>());
+            if (arg.Count < 3) return ThrowError("EXPONDIST 中参数不足", new List<Operand>());
 
             return new Operand(OperandType.NUMBER, ExcelFunctions.ExponDist(arg[0].NumberValue, arg[1].NumberValue, arg[2].BooleanValue));
 
@@ -212,7 +212,7 @@ namespace ToolGood.Algorithm
         #region SUMIF COUNTIF 
         private Operand Func_AverageIf(List<Operand> arg)
         {
-            if (arg.Count < 2) return ThrowError("SUMIF中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("SUMIF 中参数不足", new List<Operand>());
             var dbs = arg[0].GetNumberList();
             List<double> sumdbs = dbs;
             if (arg.Count == 3) sumdbs = arg[2].GetNumberList();
@@ -238,7 +238,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_SumIf(List<Operand> arg)
         {
-            if (arg.Count < 2) return ThrowError("SUMIF中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("SUMIF 中参数不足", new List<Operand>());
             var dbs = arg[0].GetNumberList();
             var sumdbs = dbs;
             if (arg.Count == 3) sumdbs = arg[2].GetNumberList();
@@ -259,7 +259,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_CountIf(List<Operand> arg)
         {
-            if (arg.Count < 2) return ThrowError("COUNTIF中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("COUNTIF 中参数不足", new List<Operand>());
             var dbs = arg[0].GetNumberList();
             int count = 0;
             if (arg[1].Type == OperandType.NUMBER) {
@@ -298,9 +298,9 @@ namespace ToolGood.Algorithm
         }
 
 
-        private Operand Func_normsInv(List<Operand> arg)
+        private Operand Func_NormsInv(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("NORMSINV中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("NORMSINV 中参数不足", new List<Operand>());
             var k = arg[0].NumberValue;
             return new Operand(OperandType.NUMBER, ExcelFunctions.NormSInv(k));
         }
@@ -308,14 +308,14 @@ namespace ToolGood.Algorithm
         private Operand Func_NormSDist(List<Operand> arg)
         {
             //public static double NormSDist(double z)
-            if (arg.Count < 1) return ThrowError("NormSDist中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("NormSDist 中参数不足", new List<Operand>());
             var k = arg[0].NumberValue;
             return new Operand(OperandType.NUMBER, ExcelFunctions.NormSDist(k));
         }
 
         private Operand Func_PercentRank(List<Operand> arg)
         {
-            if (arg.Count < 2) return ThrowError("PERCENTRANK中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("PERCENTRANK 中参数不足", new List<Operand>());
             var array = (arg[0].GetNumberList()).ToArray();
             var k = arg[1].NumberValue;
             var v = ExcelFunctions.PercentRank(array, k);
@@ -326,7 +326,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Percentile(List<Operand> arg)
         {
-            if (arg.Count < 2) return ThrowError("PERCENTILE中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("PERCENTILE 中参数不足", new List<Operand>());
             var array = (arg[0].GetNumberList()).ToArray();
             var k = arg[1].NumberValue;
             return new Operand(OperandType.NUMBER, ExcelFunctions.Percentile(array, k));
@@ -334,7 +334,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Quartile(List<Operand> arg)
         {
-            if (arg.Count < 2) return ThrowError("QUARTILE中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("QUARTILE 中参数不足", new List<Operand>());
             var array = (arg[0].GetNumberList()).ToArray();
             var quant = arg[1].IntValue;
             return new Operand(OperandType.NUMBER, ExcelFunctions.Quartile(array, quant));
@@ -342,7 +342,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_GammaInv(List<Operand> arg)
         {
-            if (arg.Count < 3) return ThrowError("GAMMAINV中参数不足", new List<Operand>());
+            if (arg.Count < 3) return ThrowError("GAMMAINV 中参数不足", new List<Operand>());
             var probability = arg[0].NumberValue;
             var alpha = arg[1].NumberValue;
             var beta = arg[2].NumberValue;
@@ -351,7 +351,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_GammadDist(List<Operand> arg)
         {
-            if (arg.Count < 4) return ThrowError("GAMMADIST中参数不足", new List<Operand>());
+            if (arg.Count < 4) return ThrowError("GAMMADIST 中参数不足", new List<Operand>());
             var x = arg[0].NumberValue;
             var alpha = arg[1].NumberValue;
             var beta = arg[2].NumberValue;
@@ -362,7 +362,7 @@ namespace ToolGood.Algorithm
         private Operand Func_BetaInv(List<Operand> arg)
         {
             //public static double BetaInv(double probability, double alpha, double beta)
-            if (arg.Count < 3) return ThrowError("BETAINV中参数不足", new List<Operand>());
+            if (arg.Count < 3) return ThrowError("BETAINV 中参数不足", new List<Operand>());
             var probability = arg[0].NumberValue;
             var alpha = arg[1].NumberValue;
             var beta = arg[2].NumberValue;
@@ -372,7 +372,7 @@ namespace ToolGood.Algorithm
         private Operand Func_BetaDist(List<Operand> arg)
         {
             //public static double BetaDist(double x, double alpha, double beta)
-            if (arg.Count < 3) return ThrowError("BETADIST中参数不足", new List<Operand>());
+            if (arg.Count < 3) return ThrowError("BETADIST 中参数不足", new List<Operand>());
             var x = arg[0].NumberValue;
             var alpha = arg[1].NumberValue;
             var beta = arg[2].NumberValue;
@@ -381,7 +381,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_FInv(List<Operand> arg)
         {
-            if (arg.Count < 3) return ThrowError("FINV中参数不足", new List<Operand>());
+            if (arg.Count < 3) return ThrowError("FINV 中参数不足", new List<Operand>());
 
             var probability = arg[0].NumberValue;
             var degreesFreedom = arg[1].IntValue;
@@ -391,7 +391,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_FDist(List<Operand> arg)
         {
-            if (arg.Count < 3) return ThrowError("FDIST中参数不足", new List<Operand>());
+            if (arg.Count < 3) return ThrowError("FDIST 中参数不足", new List<Operand>());
             var x = arg[0].NumberValue;
             var degreesFreedom = arg[1].IntValue;
             var degreesFreedom2 = arg[2].IntValue;
@@ -400,7 +400,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_TInv(List<Operand> arg)
         {
-            if (arg.Count < 2) return ThrowError("TDIST中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("TDIST 中参数不足", new List<Operand>());
             var probability = arg[0].NumberValue;
             var degreesFreedom = arg[1].IntValue;
 
@@ -409,16 +409,16 @@ namespace ToolGood.Algorithm
 
         private Operand Func_TDist(List<Operand> arg)
         {
-            if (arg.Count < 3) return ThrowError("TDIST中参数不足", new List<Operand>());
+            if (arg.Count < 3) return ThrowError("TDIST 中参数不足", new List<Operand>());
             var x = arg[0].NumberValue;
             var degreesFreedom = arg[1].IntValue;
             var tails = arg[2].IntValue;
             return new Operand(OperandType.NUMBER, ExcelFunctions.TDist(x, degreesFreedom, tails));
         }
 
-        private Operand Func_normInv(List<Operand> arg)
+        private Operand Func_NormInv(List<Operand> arg)
         {
-            if (arg.Count < 3) return ThrowError("NORMINV中参数不足", new List<Operand>());
+            if (arg.Count < 3) return ThrowError("NORMINV 中参数不足", new List<Operand>());
             var num = arg[0].NumberValue;
             var avg = arg[1].NumberValue;
             var STDEV = arg[2].NumberValue;
@@ -426,9 +426,9 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, ExcelFunctions.NormInv(num, avg, STDEV));
         }
 
-        private Operand Func_normDist(List<Operand> arg)
+        private Operand Func_NormDist(List<Operand> arg)
         {
-            if (arg.Count < 4) return ThrowError("NORMDIST中参数不足", new List<Operand>());
+            if (arg.Count < 4) return ThrowError("NORMDIST 中参数不足", new List<Operand>());
             var num = arg[0].NumberValue;
             var avg = arg[1].NumberValue;
             var STDEV = arg[2].NumberValue;
@@ -439,7 +439,7 @@ namespace ToolGood.Algorithm
         private Operand Func_Varp(List<Operand> arg)
         {
             List<double> list = GetList(arg);
-            if (list.Count < 1) return ThrowError("VARP中参数不足", new List<Operand>());
+            if (list.Count < 1) return ThrowError("VARP 中参数不足", new List<Operand>());
 
             double sum = 0;
             double avg = list.Average();
@@ -449,10 +449,10 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, sum / list.Count);
         }
 
-        private Operand Func_var(List<Operand> arg)
+        private Operand Func_Var(List<Operand> arg)
         {
             List<double> list = GetList(arg);
-            if (list.Count < 1) return ThrowError("VAR中参数不足", new List<Operand>());
+            if (list.Count < 1) return ThrowError("VAR 中参数不足", new List<Operand>());
             double sum = 0;
             double sum2 = 0;
             double avg = list.Average();
@@ -466,7 +466,7 @@ namespace ToolGood.Algorithm
         private Operand Func_Stdevp(List<Operand> arg)
         {
             List<double> list = GetList(arg);
-            if (list.Count < 1) return ThrowError("STDEVP中参数不足", new List<Operand>());
+            if (list.Count < 1) return ThrowError("STDEVP 中参数不足", new List<Operand>());
             double sum = 0;
             double avg = list.Average();
 
@@ -479,7 +479,7 @@ namespace ToolGood.Algorithm
         private Operand Func_Stdev(List<Operand> arg)
         {
             List<double> list = GetList(arg);
-            if (list.Count < 1) return ThrowError("STDEV中参数不足", new List<Operand>());
+            if (list.Count < 1) return ThrowError("STDEV 中参数不足", new List<Operand>());
             double avg = list.Average();
             double sum = 0;
             for (int i = 0; i < list.Count; i++) {
@@ -491,7 +491,7 @@ namespace ToolGood.Algorithm
         private Operand Func_DevSq(List<Operand> arg)
         {
             List<double> list = GetList(arg);
-            if (list.Count < 1) return ThrowError("DEVSQ中参数不足", new List<Operand>());
+            if (list.Count < 1) return ThrowError("DEVSQ 中参数不足", new List<Operand>());
             double avg = list.Average();
             double sum = 0;
             for (int i = 0; i < list.Count; i++) {
@@ -503,7 +503,7 @@ namespace ToolGood.Algorithm
         private Operand Func_Avedev(List<Operand> arg)
         {
             List<double> list = GetList(arg);
-            if (list.Count < 1) return ThrowError("AVEDEV中参数不足", new List<Operand>());
+            if (list.Count < 1) return ThrowError("AVEDEV 中参数不足", new List<Operand>());
             double avg = list.Average();
             double sum = 0;
             for (int i = 0; i < list.Count; i++) {
@@ -514,7 +514,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Mode(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("MODE中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("MODE 中参数不足", new List<Operand>());
             Dictionary<double, int> dict = new Dictionary<double, int>();
             foreach (var item in arg) {
                 if (item.Type == OperandType.NUMBER) {
@@ -540,7 +540,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Min(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("MIN中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("MIN 中参数不足", new List<Operand>());
             var min = double.MaxValue;
             foreach (var item in arg) {
                 if (item.Type == OperandType.NUMBER) {
@@ -561,7 +561,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Max(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("MAX中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("MAX 中参数不足", new List<Operand>());
             var max = double.MinValue;
             foreach (var item in arg) {
                 if (item.Type == OperandType.NUMBER) {
@@ -582,7 +582,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Median(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("MEDIAN中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("MEDIAN 中参数不足", new List<Operand>());
             List<double> list = GetList(arg);
             list = list.OrderBy(q => q).ToList();
             return new Operand(OperandType.NUMBER, list[list.Count / 2]);
@@ -596,7 +596,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Average(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("AVERAGE中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("AVERAGE 中参数不足", new List<Operand>());
             List<double> list = GetList(arg);
             return new Operand(OperandType.NUMBER, list.Average());
         }

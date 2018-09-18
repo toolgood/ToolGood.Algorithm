@@ -34,7 +34,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_WeekNum(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("WEEKNUM中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("WEEKNUM 中参数不足", new List<Operand>());
             var startDate = (DateTime)arg[0].DateValue;
 
             var days = startDate.DayOfYear + (int)(new DateTime(startDate.Year, 1, 1).DayOfWeek);
@@ -47,7 +47,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_WorkDay(List<Operand> arg)
         {
-            if (arg.Count < 2) return ThrowError("WORKDAY中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("WORKDAY 中参数不足", new List<Operand>());
             var startDate = (DateTime)arg[0].DateValue;
             var days = arg[1].IntValue;
             List<DateTime> list = new List<DateTime>();
@@ -66,7 +66,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_NetWorkDays(List<Operand> arg)
         {
-            if (arg.Count < 2) return ThrowError("NETWORKDAYS中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("NETWORKDAYS 中参数不足", new List<Operand>());
             var startDate = (DateTime)arg[0].DateValue;
             var endDate = (DateTime)arg[1].DateValue;
             List<DateTime> list = new List<DateTime>();
@@ -88,7 +88,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_EoMonth(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("EOMONTH中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("EOMONTH 中参数不足", new List<Operand>());
             var dt = ((DateTime)arg[0].DateValue).AddMonths(arg[1].IntValue + 1);
             dt = new DateTime(dt.Year, dt.Month, 1).AddDays(-1);
             return new Operand(OperandType.DATE, (Date)dt);
@@ -96,19 +96,19 @@ namespace ToolGood.Algorithm
 
         private Operand Func_EDate(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("EDATE中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("EDATE 中参数不足", new List<Operand>());
             return new Operand(OperandType.DATE, (Date)(((DateTime)arg[0].DateValue).AddMonths(arg[1].IntValue)));
         }
 
         private Operand Func_TimeValue(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("TIMEVALUE中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("TIMEVALUE 中参数不足", new List<Operand>());
             return new Operand(OperandType.DATE, new Date(TimeSpan.Parse(arg[0].StringValue)));
         }
 
         private Operand DAYS360(List<Operand> arg)
         {
-            if (arg.Count < 2) return ThrowError("DAYS360中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("DAYS360 中参数不足", new List<Operand>());
             var startDate = (DateTime)arg[0].DateValue;
             var endDate = (DateTime)arg[1].DateValue;
 
@@ -140,7 +140,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Time(List<Operand> arg)
         {
-            if (arg.Count < 3) return ThrowError("DATE中参数不足", new List<Operand>());
+            if (arg.Count < 3) return ThrowError("DATE 中参数不足", new List<Operand>());
             Date d = new Date(0, 0, 0, arg[0].IntValue, arg[1].IntValue, arg[2].IntValue);
             return new Operand(OperandType.DATE, d);
         }
@@ -158,7 +158,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_WeekDay(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("YEAR中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("YEAR 中参数不足", new List<Operand>());
             var type = 1;
             if (arg.Count == 2) type = arg[1].IntValue;
             var t = ((DateTime)arg[0].DateValue).DayOfWeek;
@@ -176,43 +176,43 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Year(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("YEAR中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("YEAR 中参数不足", new List<Operand>());
             return new Operand(OperandType.NUMBER, (double)arg[0].DateValue.Year);
         }
 
         private Operand Func_Second(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("SECOND中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("SECOND 中参数不足", new List<Operand>());
             return new Operand(OperandType.NUMBER, (double)arg[0].DateValue.Second);
         }
 
         private Operand Func_Month(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("MONTH中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("MONTH 中参数不足", new List<Operand>());
             return new Operand(OperandType.NUMBER, (double)arg[0].DateValue.Month);
         }
 
         private Operand Func_Minute(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("MINUTE中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("MINUTE 中参数不足", new List<Operand>());
             return new Operand(OperandType.NUMBER, (double)arg[0].DateValue.Minute);
         }
 
         private Operand Func_Hour(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("HOUR中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("HOUR 中参数不足", new List<Operand>());
             return new Operand(OperandType.NUMBER, (double)arg[0].DateValue.Hour);
         }
 
         private Operand Func_Day(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("DAY中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("DAY 中参数不足", new List<Operand>());
             return new Operand(OperandType.NUMBER, (double)arg[0].DateValue.Day);
         }
 
         private Operand Func_DateDif(List<Operand> arg)
         {
-            if (arg.Count < 3) return ThrowError("DATEDIF中参数不足", new List<Operand>());
+            if (arg.Count < 3) return ThrowError("DATEDIF 中参数不足", new List<Operand>());
             var startDate = (DateTime)arg[0].DateValue;
             var endDate = (DateTime)arg[1].DateValue;
             var t = arg[2].StringValue.ToLower();
@@ -274,7 +274,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_DateValue(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("DATE中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("DATE 中参数不足", new List<Operand>());
             var d = DateTime.Parse(arg[0].StringValue).Date;
 
             return new Operand(OperandType.DATE, (Date)d);
@@ -282,7 +282,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Date(List<Operand> arg)
         {
-            if (arg.Count < 3) return ThrowError("DATE中参数不足", new List<Operand>());
+            if (arg.Count < 3) return ThrowError("DATE 中参数不足", new List<Operand>());
             Date d;
             if (arg.Count == 3) {
                 d = new Date(arg[0].IntValue, arg[1].IntValue, arg[2].IntValue);

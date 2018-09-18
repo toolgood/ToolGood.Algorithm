@@ -79,7 +79,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Permut(List<Operand> arg)
         {
-            if (arg.Count < 2) return ThrowError("TRUNC中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("TRUNC 中参数不足", new List<Operand>());
             var total = arg[0].IntValue;
             var count = arg[1].IntValue;
             double sum = 1;
@@ -91,7 +91,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Combin(List<Operand> arg)
         {
-            if (arg.Count < 2) return ThrowError("TRUNC中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("TRUNC 中参数不足", new List<Operand>());
             var total = arg[0].IntValue;
             var count = arg[1].IntValue;
             double sum = 1;
@@ -105,26 +105,26 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Trunc(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("TRUNC中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("TRUNC 中参数不足", new List<Operand>());
             return new Operand(OperandType.NUMBER, (double)(int)(arg[0].NumberValue));
         }
 
 
         private Operand Func_Tanh(List<Operand> arg)
         {
-            if (arg.Count == 0) return ThrowError("TANH中参数不足", new List<Operand>());
+            if (arg.Count == 0) return ThrowError("TANH 中参数不足", new List<Operand>());
             return new Operand(OperandType.NUMBER, Math.Tanh(arg[0].NumberValue));
         }
 
         private Operand Func_Tan(List<Operand> arg)
         {
-            if (arg.Count == 0) return ThrowError("TAN中参数不足", new List<Operand>());
+            if (arg.Count == 0) return ThrowError("TAN 中参数不足", new List<Operand>());
             return new Operand(OperandType.NUMBER, Math.Tan(arg[0].NumberValue));
         }
 
         private Operand Func_SumSq(List<Operand> arg)
         {
-            if (arg.Count == 0) return ThrowError("SUMSQ中参数不足", new List<Operand>());
+            if (arg.Count == 0) return ThrowError("SUMSQ 中参数不足", new List<Operand>());
             double d = 0;
             for (int i = 0; i < arg.Count; i++) {
                 if (arg[i].Type == OperandType.NUMBER) {
@@ -142,7 +142,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Sum(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("SUM中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("SUM 中参数不足", new List<Operand>());
             List<double> list = new List<double>();
             for (int i = 0; i < arg.Count; i++) {
                 if (arg[i].Type == OperandType.NUMBER) {
@@ -159,37 +159,37 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Sqrt(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("SQRT中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("SQRT 中参数不足", new List<Operand>());
             return new Operand(OperandType.NUMBER, Math.Sqrt(arg[0].NumberValue));
         }
 
         private Operand Func_SqrtPi(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("SQRTPI中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("SQRTPI 中参数不足", new List<Operand>());
             return new Operand(OperandType.NUMBER, Math.Sqrt(arg[0].NumberValue * Math.PI));
         }
 
         private Operand Func_Sinh(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("SINH中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("SINH 中参数不足", new List<Operand>());
             return new Operand(OperandType.NUMBER, Math.Sinh(arg[0].NumberValue));
         }
 
         private Operand Func_Sin(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("SIN中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("SIN 中参数不足", new List<Operand>());
             return new Operand(OperandType.NUMBER, Math.Sin(arg[0].NumberValue));
         }
 
         private Operand Func_Sign(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("SIGN中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("SIGN 中参数不足", new List<Operand>());
             return new Operand(OperandType.NUMBER, (double)Math.Sign(arg[0].NumberValue));
         }
 
         private Operand Func_RoundUp(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("ROUNDUP中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("ROUNDUP 中参数不足", new List<Operand>());
 
             var a = Math.Pow(10, (int)arg[1].NumberValue);
             var b = arg[0].NumberValue;
@@ -201,7 +201,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_RoundDown(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("ROUNDDOW中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("ROUNDDOW 中参数不足", new List<Operand>());
             var a = Math.Pow(10, (int)arg[1].NumberValue);
             var b = arg[0].NumberValue;
 
@@ -211,7 +211,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Round(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("ROUND中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("ROUND 中参数不足", new List<Operand>());
             if (arg.Count == 1) {
                 return new Operand(OperandType.NUMBER, Math.Round(arg[0].NumberValue));
             }
@@ -220,7 +220,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Randbetween(List<Operand> arg)
         {
-            if (arg.Count < 2) return ThrowError("RANDBETWEEN中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("RANDBETWEEN 中参数不足", new List<Operand>());
             return new Operand(OperandType.NUMBER, rand.NextDouble() * (arg[1].NumberValue - arg[0].NumberValue) + arg[0].NumberValue);
 
         }
@@ -232,21 +232,21 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Radians(List<Operand> arg)
         {
-            if (arg.Count == 0) return ThrowError("MROUND中参数不足", new List<Operand>());
+            if (arg.Count == 0) return ThrowError("MROUND 中参数不足", new List<Operand>());
             var r = arg[0].NumberValue / 180 * Math.PI;
             return new Operand(OperandType.NUMBER, r);
         }
 
         private Operand Func_Quotient(List<Operand> arg)
         {
-            if (arg.Count == 0) return ThrowError("MROUND中参数不足", new List<Operand>());
+            if (arg.Count == 0) return ThrowError("MROUND 中参数不足", new List<Operand>());
             var r = (int)(arg[0].NumberValue / arg[1].NumberValue);
             return new Operand(OperandType.NUMBER, (double)r);
         }
 
         private Operand Func_Product(List<Operand> arg)
         {
-            if (arg.Count == 0) return ThrowError("MROUND中参数不足", new List<Operand>());
+            if (arg.Count == 0) return ThrowError("MROUND 中参数不足", new List<Operand>());
             double d = 1;
             for (int i = 0; i < arg.Count; i++) {
                 if (arg[i].Type == OperandType.NUMBER) {
@@ -263,7 +263,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Power(List<Operand> arg)
         {
-            if (arg.Count < 2) return ThrowError("MROUND中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("MROUND 中参数不足", new List<Operand>());
             return new Operand(OperandType.NUMBER, Math.Pow(arg[0].NumberValue, arg[1].NumberValue));
         }
 
@@ -274,7 +274,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Odd(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("ODD中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("ODD 中参数不足", new List<Operand>());
             var z = arg[0].NumberValue;
             if (z % 2 == 1) {
                 return arg[0];
@@ -289,7 +289,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Mround(List<Operand> arg)
         {
-            if (arg.Count < 2) return ThrowError("MROUND中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("MROUND 中参数不足", new List<Operand>());
             var a = arg[1].NumberValue;
             var b = arg[0].NumberValue;
             var r = Math.Round(b / a, 0) * a;

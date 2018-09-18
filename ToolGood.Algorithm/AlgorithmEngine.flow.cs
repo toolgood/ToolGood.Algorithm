@@ -27,7 +27,7 @@ namespace ToolGood.Algorithm
         }
         private Operand Func_IfText(List<Operand> arg)
         {
-            if (arg.Count < 2) return ThrowError("ISSTRING中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("ISSTRING 中参数不足", new List<Operand>());
             if (arg[0].Type == OperandType.STRING) {
                 return arg[1];
             } else if (arg[0].Type == OperandType.DATE) {
@@ -44,7 +44,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_IfNumber(List<Operand> arg)
         {
-            if (arg.Count < 2) return ThrowError("IFNUMBER中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("IFNUMBER 中参数不足", new List<Operand>());
             var b = false;
             if (arg[0].Type == OperandType.NUMBER) {
                 b = arg[0].IntValue != 0;
@@ -64,7 +64,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_IsText(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("ISSTRING中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("ISSTRING 中参数不足", new List<Operand>());
             if (arg[0].Type == OperandType.STRING) {
                 return new Operand(OperandType.BOOLEAN, true);
             } else if (arg[0].Type == OperandType.DATE) {
@@ -75,7 +75,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_IsNumber(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("ISNUMBER中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("ISNUMBER 中参数不足", new List<Operand>());
             if (arg[0].Type == OperandType.NUMBER) {
                 return new Operand(OperandType.BOOLEAN, true);
             } else if (arg[0].Type == OperandType.DATE) {
@@ -86,7 +86,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_IfError(List<Operand> arg)
         {
-            if (arg.Count < 2) return ThrowError("IFERROR中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("IFERROR 中参数不足", new List<Operand>());
             var b = false;
             if (arg[0].Type == OperandType.ERROR) {
                 b = true;
@@ -105,7 +105,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_If(List<Operand> arg)
         {
-            if (arg.Count < 2) return ThrowError("IF中参数不足", new List<Operand>());
+            if (arg.Count < 2) return ThrowError("IF 中参数不足", new List<Operand>());
             var b = true;
             if (arg[0].Type == OperandType.BOOLEAN) {
                 b = arg[0].BooleanValue;
@@ -128,7 +128,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Not(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("NOT中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("NOT 中参数不足", new List<Operand>());
             if (arg[0].Type == OperandType.BOOLEAN) {
                 return new Operand(OperandType.BOOLEAN, !arg[0].BooleanValue);
             } else if (arg[0].Type == OperandType.NUMBER) {
@@ -150,7 +150,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Or(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("OR中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("OR 中参数不足", new List<Operand>());
             var b = false;
 
             foreach (var item in arg) {
@@ -171,7 +171,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_And(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("AND中参数不足", new List<Operand>());
+            if (arg.Count < 1) return ThrowError("AND 中参数不足", new List<Operand>());
             var b = true;
 
             foreach (var item in arg) {

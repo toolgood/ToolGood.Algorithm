@@ -242,6 +242,8 @@ namespace ToolGood.Algorithm
             return OperandType.PARAMETER;
         }
 
+
+
         ///// <summary>
         ///// 判断对象是否为Boolean
         ///// </summary>
