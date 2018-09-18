@@ -11,6 +11,10 @@ namespace ToolGood.Algorithm
     public enum OperandType
     {
         /// <summary>
+        /// 任何
+        /// </summary>
+        Any,
+        /// <summary>
         /// 函数
         /// </summary>
         ERROR,

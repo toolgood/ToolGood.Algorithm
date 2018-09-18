@@ -648,6 +648,8 @@ namespace ToolGood.Algorithm
                     }
                 }
                 return fun(ops);
+            } catch (FunctionException ex) {
+                return ex.Operand;
             } catch (Exception ex) {
                 return new Operand(OperandType.ERROR, curOpt.ToString() + "Error:" + ex.Message);
             }
@@ -675,15 +677,15 @@ namespace ToolGood.Algorithm
 
         private void CheckArgsCount(string funcName, List<Operand> ops, OperandType[][] operandTypes)
         {
-            if (ops.Count < operandTypes.Min(q => q.Length)) ThrowError(funcName+"参数不足！", new List<Operand>());
-            if (ops.Count > operandTypes.Max(q => q.Length)) ThrowError(funcName+"参数过多！", new List<Operand>());
+            if (ops.Count < operandTypes.Min(q => q.Length)) throw new FunctionException(ThrowError(funcName+"参数不足！", new List<Operand>()));
+            if (ops.Count > operandTypes.Max(q => q.Length)) throw new FunctionException(ThrowError(funcName+"参数过多！", new List<Operand>()));
 
             foreach (var operands in operandTypes) {
                 if (operands.Length != ops.Count) continue;
 
                 return;
             }
-            ThrowError(funcName + "参数类型出错！", new List<Operand>());
+            throw new FunctionException(ThrowError(funcName + "参数类型出错！", new List<Operand>()));
         }
 
 

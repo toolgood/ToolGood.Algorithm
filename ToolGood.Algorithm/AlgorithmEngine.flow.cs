@@ -27,6 +27,12 @@ namespace ToolGood.Algorithm
         }
         private Operand Func_IfText(List<Operand> arg)
         {
+            CheckArgsCount("IfText", arg, new OperandType[][] {
+                new OperandType[] { OperandType.Any },
+                new OperandType[] { OperandType.Any, OperandType.Any },
+                new OperandType[] { OperandType.Any, OperandType.Any, OperandType.Any },
+                 });
+
             if (arg.Count < 2) return ThrowError("ISSTRING 中参数不足", new List<Operand>());
             if (arg[0].Type == OperandType.STRING) {
                 return arg[1];
@@ -44,6 +50,12 @@ namespace ToolGood.Algorithm
 
         private Operand Func_IfNumber(List<Operand> arg)
         {
+            CheckArgsCount("IFNUMBER", arg, new OperandType[][] {
+                new OperandType[] { OperandType.Any },
+                new OperandType[] { OperandType.Any, OperandType.Any },
+                new OperandType[] { OperandType.Any, OperandType.Any, OperandType.Any },
+                 });
+
             if (arg.Count < 2) return ThrowError("IFNUMBER 中参数不足", new List<Operand>());
             var b = false;
             if (arg[0].Type == OperandType.NUMBER) {
@@ -64,6 +76,11 @@ namespace ToolGood.Algorithm
 
         private Operand Func_IsText(List<Operand> arg)
         {
+            CheckArgsCount("IsText", arg, new OperandType[][] {
+                new OperandType[] { OperandType.STRING },
+                new OperandType[] { OperandType.DATE },
+                 });
+
             if (arg.Count < 1) return ThrowError("ISSTRING 中参数不足", new List<Operand>());
             if (arg[0].Type == OperandType.STRING) {
                 return new Operand(OperandType.BOOLEAN, true);
@@ -75,7 +92,11 @@ namespace ToolGood.Algorithm
 
         private Operand Func_IsNumber(List<Operand> arg)
         {
-            if (arg.Count < 1) return ThrowError("ISNUMBER 中参数不足", new List<Operand>());
+            CheckArgsCount("ISNUMBER", arg, new OperandType[][] {
+                new OperandType[] { OperandType.NUMBER },
+                new OperandType[] { OperandType.DATE },
+                 });
+
             if (arg[0].Type == OperandType.NUMBER) {
                 return new Operand(OperandType.BOOLEAN, true);
             } else if (arg[0].Type == OperandType.DATE) {
@@ -86,7 +107,12 @@ namespace ToolGood.Algorithm
 
         private Operand Func_IfError(List<Operand> arg)
         {
-            if (arg.Count < 2) return ThrowError("IFERROR 中参数不足", new List<Operand>());
+            CheckArgsCount("IFERROR", arg, new OperandType[][] {
+                new OperandType[] { OperandType.Any },
+                new OperandType[] { OperandType.Any, OperandType.Any },
+                new OperandType[] { OperandType.Any, OperandType.Any, OperandType.Any },
+                 });
+
             var b = false;
             if (arg[0].Type == OperandType.ERROR) {
                 b = true;
@@ -105,7 +131,12 @@ namespace ToolGood.Algorithm
 
         private Operand Func_If(List<Operand> arg)
         {
-            if (arg.Count < 2) return ThrowError("IF 中参数不足", new List<Operand>());
+            CheckArgsCount("IF", arg, new OperandType[][] {
+                new OperandType[] { OperandType.Any },
+                new OperandType[] { OperandType.Any, OperandType.Any },
+                new OperandType[] { OperandType.Any, OperandType.Any, OperandType.Any },
+                 });
+
             var b = true;
             if (arg[0].Type == OperandType.BOOLEAN) {
                 b = arg[0].BooleanValue;
@@ -128,6 +159,11 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Not(List<Operand> arg)
         {
+            CheckArgsCount("NOT", arg, new OperandType[][] {
+                new OperandType[] { OperandType.BOOLEAN },
+                new OperandType[] { OperandType.NUMBER },
+                 });
+
             if (arg.Count < 1) return ThrowError("NOT 中参数不足", new List<Operand>());
             if (arg[0].Type == OperandType.BOOLEAN) {
                 return new Operand(OperandType.BOOLEAN, !arg[0].BooleanValue);
