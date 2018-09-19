@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm
 {
-     class Date
+    class Date
     {
         public Date(string str)
         {
@@ -98,11 +98,11 @@ namespace ToolGood.Algorithm
                     ((DateTime)this).ToString("yyyy-MM-dd HH:mm:ss");
                 } else if (Year > 0 && Hour > 0) {
                     ((DateTime)this).ToString("yyyy-MM-dd HH:mm");
-                } else if (Year > 0 ) {
+                } else if (Year > 0) {
                     ((DateTime)this).ToString("yyyy-MM-dd");
                 } else if (Hour > 0 && Second > 0) {
                     ((DateTime)this).ToString("HH:mm:ss");
-                } else  {
+                } else {
                     ((DateTime)this).ToString("HH:mm:ss");
                 }
             }
@@ -125,7 +125,7 @@ namespace ToolGood.Algorithm
         }
         public static implicit operator TimeSpan(Date date)
         {
-            return new TimeSpan( date.Hour, date.Minute, date.Second);
+            return new TimeSpan(date.Hour, date.Minute, date.Second);
         }
 
         public static implicit operator Date(double days)

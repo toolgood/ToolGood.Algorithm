@@ -24,7 +24,7 @@ namespace ToolGood.Algorithm
         /// 创建数组
         /// </summary>
         CREATEARRARY,
-        
+
         /// <summary>
         /// 函数
         /// </summary>
@@ -126,7 +126,7 @@ namespace ToolGood.Algorithm
         /// <summary>
         /// 逻辑或,|,OR
         /// </summary>
-        OR, 
+        OR,
 
         /// <summary>
         /// 逗号,comma

@@ -18,10 +18,9 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数`。
 ```
 支持常量`pi`,`e`,`true`,`false`。
 
-数字转bool，非零为真
+数字转bool，非零为真,零为假。bool转数字，假为0，真为1。
 
 索引默认为`Excel索引`，如果想用c#索引，请设置`UseExcelIndex`为`false`。
-
 
 ## 自定义参数
 ``` csharp
@@ -55,7 +54,10 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数`。
     c.TryEvaluate("[半径]*[半径]*pi()", 0.0);      //圆底面积
     c.TryEvaluate("[直径]*pi()", 0.0);            //圆的长
     c.TryEvaluate("[半径]*[半径]*pi()*[高]", 0.0); //圆的体积
+
+	c.TryEvaluate("p('半径')*[半径]*pi()*[高]", 0.0); //圆的体积
 ```
+参数以方括号定义，如 `[参数名]`。变量参数可以用`p(参数名)`。
 
 
 ## Excel函数

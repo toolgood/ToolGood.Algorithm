@@ -23,7 +23,7 @@ namespace ToolGood.Algorithm
         /// 日期
         /// </summary>
         DATE,
-        
+
         /// <summary>
         /// 数组
         /// </summary>

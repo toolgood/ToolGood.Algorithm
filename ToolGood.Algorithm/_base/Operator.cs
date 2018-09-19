@@ -89,7 +89,7 @@ namespace ToolGood.Algorithm
             }
             object token = tokens.Peek();
             if (token is Operand) {
-                return operators.Peek().Type != OperatorType.LB ;
+                return operators.Peek().Type != OperatorType.LB;
             } else {
                 return ((Operator)token).Type == OperatorType.RB;
             }

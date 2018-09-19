@@ -133,18 +133,14 @@ namespace ToolGood.Algorithm
         /// </summary>
         internal object Value { get; private set; }
 
-        public string Parameter
-        {
-            get
-            {
+        public string Parameter {
+            get {
                 return Value.ToString().TrimEnd();
             }
         }
 
-        internal double NumberValue
-        {
-            get
-            {
+        internal double NumberValue {
+            get {
                 if (Type == OperandType.BOOLEAN) {
                     return (bool)Value ? 1 : 0;
                 }
@@ -152,10 +148,8 @@ namespace ToolGood.Algorithm
             }
         }
         internal string StringValue { get { return Value.ToString(); } }
-        internal bool BooleanValue
-        {
-            get
-            {
+        internal bool BooleanValue {
+            get {
                 if (Type == OperandType.NUMBER) {
                     if (Value is double) {
                         return (double)Value != 0;
@@ -226,8 +220,8 @@ namespace ToolGood.Algorithm
             if (operandType == Type) return true;
             if (Type == OperandType.ERROR) return false;
 
-            if (operandType== OperandType.STRING) return true;
-            if (operandType== OperandType.NUMBER) {
+            if (operandType == OperandType.STRING) return true;
+            if (operandType == OperandType.NUMBER) {
                 return IsNumber(this.Value);
             }
             if (operandType == OperandType.DATE) {
@@ -274,9 +268,9 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public static bool IsBoolean(object value)
         {
-            if (value is Int16|| value is Int32|| value is Int64||
-                value is UInt16|| value is UInt32|| value is UInt64||
-                value is double|| value is float|| value is decimal) {
+            if (value is Int16 || value is Int32 || value is Int64 ||
+                value is UInt16 || value is UInt32 || value is UInt64 ||
+                value is double || value is float || value is decimal) {
                 return true;
             }
 
