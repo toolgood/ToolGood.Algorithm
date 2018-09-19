@@ -62,6 +62,18 @@ namespace ToolGood.Algorithm
 
             addFunc("ToUpper", Func_Upper); //将文本转换为大写形式 
             addFunc("ToLower", Func_Lower); //将文本参数转换为数字 
+
+            addFunc("P", Func_P);
+            addFunc("param", Func_P);
+         }
+
+        private Operand Func_P(List<Operand> arg)
+        {
+            CheckArgsCount("P", arg, new OperandType[][] { new OperandType[] { OperandType.STRING } });
+            if (arg[0].StringValue.StartsWith("[")) {
+                return GetParameter(new Operand(OperandType.Any, arg[0].StringValue));
+            }
+            return GetParameter(new Operand(OperandType.Any, "[" + arg[0].StringValue + "]"));
         }
 
         private Operand Func_UrlDecode(List<Operand> arg)

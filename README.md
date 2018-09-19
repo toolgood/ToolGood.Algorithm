@@ -816,4 +816,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数`。
 	<tr>
         <td>RemoveBoth</td><td>RemoveBoth(文本,左边文本,右边文本,同时匹配:0/1(默认0))<br>匹配方式, 匹配左边，成功则去除左边字符串。匹配右边，成功则去除右边字符串。</td> <td></td>
     </tr>
+	<tr>
+        <td>P<br>param</td><td>P(文本)<br>动态查询参数。</td> <td></td>
+    </tr>
 </table>

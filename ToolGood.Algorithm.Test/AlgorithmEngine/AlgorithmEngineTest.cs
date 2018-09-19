@@ -121,7 +121,14 @@ namespace ToolGood.Algorithm
             c.TryEvaluate("[直径]*pi()", 0.0);            //圆的长
             c.TryEvaluate("[半径]*[半径]*pi()*[高]", 0.0); //圆的体积
 
-            var t= c.TryEvaluate("log([半径])", 0.0); 
+            if (c.Parse("[直径1]*pi()")==false) {
+                Assert.AreEqual("参数[直径1]无效!", c.LastError);
+            }
+
+            c.TryEvaluate("p('半径')*[半径]*pi()*[高]", 0.0); //圆的体积
+
+
+
         }
 
     }

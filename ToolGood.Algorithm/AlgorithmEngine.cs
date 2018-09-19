@@ -14,7 +14,14 @@ namespace ToolGood.Algorithm
         private Dictionary<string, Func<List<Operand>, Operand>> funcDict = new Dictionary<string, Func<List<Operand>, Operand>>();
         private bool _useExcelIndex = true;
         private int excelIndex = 1;
+        /// <summary>
+        /// 使用EXCEL索引
+        /// </summary>
         public bool UseExcelIndex { get { return _useExcelIndex; } set { _useExcelIndex = value; excelIndex = value ? 1 : 0; } }
+        /// <summary>
+        /// 最后一个错误
+        /// </summary>
+        public string LastError { get; private set; }
 
         public AlgorithmEngine()
         {
@@ -47,20 +54,61 @@ namespace ToolGood.Algorithm
 
         public bool Parse(string exp)
         {
-            m_tokens.Clear();//清空语法单元堆栈
             if (string.IsNullOrEmpty(exp) || exp.Trim() == "" || !this.isMatching(exp)) {
+                LastError = "exp无效";
                 return false;
             }
-            m_tokens = parse(exp);
+            string error;
+            m_tokens = parse(exp, out error);
             return true;
         }
+        public bool Parse(string exp ,out string error)
+        {
+            if (string.IsNullOrEmpty(exp) || exp.Trim() == "" || !this.isMatching(exp)) {
+                error = "exp无效";
+                LastError = "exp无效";
+                return false;
+            }
+            m_tokens = parse(exp, out error);
+            return true;
+        }
+
         public bool Parse(string name, string exp)
         {
             if (string.IsNullOrEmpty(exp) || exp.Trim() == "" || !this.isMatching(exp)) {
+                LastError = "exp无效";
                 return false;
             }
-            tokenDict[name] = parse(exp);
+            string error;
+            tokenDict[name] = parse(exp,out error);
+            LastError = error;
             return true;
+        }
+        public bool Parse(string name, string exp, out string error)
+        {
+            if (string.IsNullOrEmpty(exp) || exp.Trim() == "" || !this.isMatching(exp)) {
+                error = "exp无效";
+                LastError = "exp无效";
+                return false;
+            }
+            tokenDict[name] = parse(exp, out error);
+            LastError = error;
+            return true;
+        }
+
+
+        private Stack<object> parse(string exp,out string error)
+        {
+            error = null;
+            var tmp = parse(exp);
+            var names = GetParameterNames(tmp);
+            foreach (var item in names) {
+                if (GetParameter(new Operand(item)) == null) {
+                    error = $"参数{item}无效!";
+                    return null;
+                }
+            }
+            return tmp;
         }
 
         private Stack<object> parse(string exp)
@@ -351,8 +399,12 @@ namespace ToolGood.Algorithm
 
         public List<string> GetParameterNames()
         {
+            return GetParameterNames(m_tokens);
+        }
+        private List<string> GetParameterNames(Stack<object> tokens )
+        {
             List<string> list = new List<string>();
-            foreach (var item in m_tokens) {
+            foreach (var item in tokens) {
                 var curOpd = item as Operand;
                 if (curOpd != null) {
                     if (curOpd.Type == OperandType.PARAMETER) {
@@ -363,6 +415,7 @@ namespace ToolGood.Algorithm
             }
             return list;
         }
+
 
         #endregion
 
@@ -491,6 +544,7 @@ namespace ToolGood.Algorithm
             if (opds.Count == 1) {
                 var outopd = opds.Pop();
                 if (outopd.Type == OperandType.ERROR) {
+                    LastError = outopd.StringValue;
                     throw new Exception(outopd.StringValue);
                 }
                 value = outopd.Value;
