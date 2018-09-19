@@ -51,7 +51,11 @@ namespace ToolGood.Algorithm
         #endregion
 
         #region Parse
-
+        /// <summary>
+        /// 编译公式，默认
+        /// </summary>
+        /// <param name="exp">公式</param>
+        /// <returns></returns>
         public bool Parse(string exp)
         {
             if (string.IsNullOrEmpty(exp) || exp.Trim() == "" || !this.isMatching(exp)) {
@@ -62,7 +66,13 @@ namespace ToolGood.Algorithm
             m_tokens = parse(exp, out error);
             return true;
         }
-        public bool Parse(string exp ,out string error)
+        /// <summary>
+        /// 编译公式,并输出错误，默认
+        /// </summary>
+        /// <param name="exp">公式</param>
+        /// <param name="error">输出错误</param>
+        /// <returns></returns>
+        public bool Parse(string exp, out string error)
         {
             if (string.IsNullOrEmpty(exp) || exp.Trim() == "" || !this.isMatching(exp)) {
                 error = "exp无效";
@@ -72,7 +82,12 @@ namespace ToolGood.Algorithm
             m_tokens = parse(exp, out error);
             return true;
         }
-
+        /// <summary>
+        /// 编译公式
+        /// </summary>
+        /// <param name="name">名称</param>
+        /// <param name="exp">公式</param>
+        /// <returns></returns>
         public bool Parse(string name, string exp)
         {
             if (string.IsNullOrEmpty(exp) || exp.Trim() == "" || !this.isMatching(exp)) {
@@ -80,10 +95,17 @@ namespace ToolGood.Algorithm
                 return false;
             }
             string error;
-            tokenDict[name] = parse(exp,out error);
+            tokenDict[name] = parse(exp, out error);
             LastError = error;
             return true;
         }
+        /// <summary>
+        /// 编译公式,并输出错误
+        /// </summary>
+        /// <param name="name">名称</param>
+        /// <param name="exp">公式</param>
+        /// <param name="error">输出错误</param>
+        /// <returns></returns>
         public bool Parse(string name, string exp, out string error)
         {
             if (string.IsNullOrEmpty(exp) || exp.Trim() == "" || !this.isMatching(exp)) {
@@ -97,7 +119,7 @@ namespace ToolGood.Algorithm
         }
 
 
-        private Stack<object> parse(string exp,out string error)
+        private Stack<object> parse(string exp, out string error)
         {
             error = null;
             var tmp = parse(exp);
@@ -396,12 +418,16 @@ namespace ToolGood.Algorithm
         #endregion
 
         #region GetParameterNames
-
+        /// <summary>
+        /// 获取所有参数名称
+        /// </summary>
+        /// <returns></returns>
         public List<string> GetParameterNames()
         {
             return GetParameterNames(m_tokens);
         }
-        private List<string> GetParameterNames(Stack<object> tokens )
+
+        private List<string> GetParameterNames(Stack<object> tokens)
         {
             List<string> list = new List<string>();
             foreach (var item in tokens) {
@@ -420,19 +446,32 @@ namespace ToolGood.Algorithm
         #endregion
 
         #region Evaluate
+        /// <summary>
+        /// 执行,默认
+        /// </summary>
+        /// <returns></returns>
         public object Evaluate()
         {
-            if (m_tokens.Count == 0) return null;
+            if (m_tokens.Count == 0) {
+                LastError = "请编译公式！";
+                throw new Exception("请编译公式！");
+            }
             return evaluate(m_tokens);
         }
 
+        /// <summary>
+        /// 执行
+        /// </summary>
+        /// <param name="name">名称</param>
+        /// <returns></returns>
         public object Evaluate(string name)
         {
             Stack<object> tokens = null;
             if (tokenDict.TryGetValue(name, out tokens)) {
                 return evaluate(tokens);
             }
-            return null;
+            LastError = "请编译公式！";
+            throw new Exception("请编译公式！");
         }
 
         private object evaluate(Stack<object> tokens)
@@ -559,27 +598,34 @@ namespace ToolGood.Algorithm
         public short TryEvaluate(string exp, short def)
         {
             if (Parse(exp)) {
-                var obj = Evaluate();
-                if (obj is Date) return (short)(double)(Date)obj;
-                return (short)(double)obj;
+                try {
+                    var obj = Evaluate();
+                    if (obj is Date) return (short)(double)(Date)obj;
+                    return (short)(double)obj;
+                } catch (Exception) { }
             }
             return def;
         }
         public int TryEvaluate(string exp, int def)
         {
             if (Parse(exp)) {
-                var obj = Evaluate();
-                if (obj is Date) return (int)(double)(Date)Evaluate();
-                return (int)(double)obj;
+                try {
+                    var obj = Evaluate();
+                    if (obj is Date) return (int)(double)(Date)Evaluate();
+                    return (int)(double)obj;
+                } catch (Exception) { }
             }
             return def;
         }
         public long TryEvaluate(string exp, long def)
         {
             if (Parse(exp)) {
-                var obj = Evaluate();
-                if (obj is Date) return (long)(double)(Date)obj;
-                return (long)(double)obj;
+                try {
+                    var obj = Evaluate();
+                    if (obj is Date) return (long)(double)(Date)obj;
+                    return (long)(double)obj;
+                } catch (Exception) {
+                }
             }
             return def;
         }
@@ -587,27 +633,36 @@ namespace ToolGood.Algorithm
         public ushort TryEvaluate(string exp, ushort def)
         {
             if (Parse(exp)) {
-                var obj = Evaluate();
-                if (obj is Date) return (ushort)(double)(Date)obj;
-                return (ushort)(double)obj;
+                try {
+                    var obj = Evaluate();
+                    if (obj is Date) return (ushort)(double)(Date)obj;
+                    return (ushort)(double)obj;
+                } catch (Exception) {
+                }
             }
             return def;
         }
         public uint TryEvaluate(string exp, uint def)
         {
             if (Parse(exp)) {
-                var obj = Evaluate();
-                if (obj is Date) return (uint)(double)(Date)obj;
-                return (uint)(double)obj;
+                try {
+                    var obj = Evaluate();
+                    if (obj is Date) return (uint)(double)(Date)obj;
+                    return (uint)(double)obj;
+                } catch (Exception) {
+                }
             }
             return def;
         }
         public ulong TryEvaluate(string exp, ulong def)
         {
             if (Parse(exp)) {
-                var obj = Evaluate();
-                if (obj is Date) return (ulong)(double)(Date)obj;
-                return (ulong)(double)obj;
+                try {
+                    var obj = Evaluate();
+                    if (obj is Date) return (ulong)(double)(Date)obj;
+                    return (ulong)(double)obj;
+                } catch (Exception) {
+                }
             }
             return def;
         }
@@ -615,18 +670,24 @@ namespace ToolGood.Algorithm
         public float TryEvaluate(string exp, float def)
         {
             if (Parse(exp)) {
-                var obj = Evaluate();
-                if (obj is Date) return (float)(double)(Date)obj;
-                return (float)(double)obj;
+                try {
+                    var obj = Evaluate();
+                    if (obj is Date) return (float)(double)(Date)obj;
+                    return (float)(double)obj;
+                } catch (Exception) {
+                }
             }
             return def;
         }
         public double TryEvaluate(string exp, double def)
         {
             if (Parse(exp)) {
-                var obj = Evaluate();
-                if (obj is Date) return (double)(Date)obj;
-                return (double)obj;
+                try {
+                    var obj = Evaluate();
+                    if (obj is Date) return (double)(Date)obj;
+                    return (double)obj;
+                } catch (Exception) {
+                }
             }
             return def;
         }
@@ -634,14 +695,28 @@ namespace ToolGood.Algorithm
         public string TryEvaluate(string exp, string def)
         {
             if (Parse(exp)) {
-                return Evaluate().ToString();
+                try {
+                    return Evaluate().ToString();
+                } catch (Exception) {
+                }
             }
             return def;
         }
         public bool TryEvaluate(string exp, bool def)
         {
             if (Parse(exp)) {
-                return (bool)Evaluate();
+                try {
+                    var obj = Evaluate();
+                    if (obj is string) {
+                        return bool.Parse(obj.ToString());
+                    }
+                    if (obj is bool) {
+                        return (bool)obj;
+                    }
+                    if (obj is Date) return def;
+                    return decimal.Parse(obj.ToString()) != 0;
+                } catch (Exception) {
+                }
             }
             return def;
         }
@@ -649,15 +724,17 @@ namespace ToolGood.Algorithm
         public DateTime TryEvaluate(string exp, DateTime def)
         {
             if (Parse(exp)) {
-                var obj = Evaluate();
-                if (obj is string) {
-                    DateTime dt;
-                    if (DateTime.TryParse(obj.ToString(), out dt)) {
-                        return dt;
+                try {
+                    var obj = Evaluate();
+                    if (obj is string) {
+                        DateTime dt;
+                        if (DateTime.TryParse(obj.ToString(), out dt)) {
+                            return dt;
+                        }
+                        return def;
                     }
-                    return def;
-                }
-                return (DateTime)(Date)Evaluate();
+                    return (DateTime)(Date)Evaluate();
+                } catch (Exception) { }
             }
             return def;
         }
@@ -665,15 +742,18 @@ namespace ToolGood.Algorithm
         public TimeSpan TryEvaluate(string exp, TimeSpan def)
         {
             if (Parse(exp)) {
-                var obj = Evaluate();
-                if (obj is string) {
-                    TimeSpan dt;
-                    if (TimeSpan.TryParse(obj.ToString(), out dt)) {
-                        return dt;
+                try {
+                    var obj = Evaluate();
+                    if (obj is string) {
+                        TimeSpan dt;
+                        if (TimeSpan.TryParse(obj.ToString(), out dt)) {
+                            return dt;
+                        }
+                        return def;
                     }
-                    return def;
+                    return (TimeSpan)(Date)Evaluate();
+                } catch (Exception) {
                 }
-                return (TimeSpan)(Date)Evaluate();
             }
             return def;
         }

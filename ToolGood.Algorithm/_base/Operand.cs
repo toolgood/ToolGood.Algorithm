@@ -158,9 +158,9 @@ namespace ToolGood.Algorithm
             {
                 if (Type == OperandType.NUMBER) {
                     if (Value is double) {
-                        return (double)Value == 1;
+                        return (double)Value != 0;
                     }
-                    return decimal.Parse(Value.ToString()) == 1M;
+                    return decimal.Parse(Value.ToString()) != 0;
                 }
                 return (bool)Value;
             }

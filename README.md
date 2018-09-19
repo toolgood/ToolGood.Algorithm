@@ -18,7 +18,10 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数`。
 ```
 支持常量`pi`,`e`,`true`,`false`。
 
+数字转bool，非零为真
+
 索引默认为`Excel索引`，如果想用c#索引，请设置`UseExcelIndex`为`false`。
+
 
 ## 自定义参数
 ``` csharp
