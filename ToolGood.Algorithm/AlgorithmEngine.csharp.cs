@@ -567,7 +567,6 @@ namespace ToolGood.Algorithm
             CheckArgsCount("RemoveEnd", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING, OperandType.STRING },
                  });
-            if (arg.Count < 2) return ThrowError("RemoveEnd 中参数不足", new List<Operand>());
             var text = arg[0].StringValue;
             if (text.EndsWith(arg[1].StringValue)) {
                 text = text.Substring(0, text.Length - arg[1].StringValue.Length);

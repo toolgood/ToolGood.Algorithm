@@ -13,7 +13,7 @@ namespace ToolGood.Algorithm
             addFunc("DATEVALUE", Func_DateValue);//将文本格式的日期转换为序列号 
             addFunc("DATEDIF", Func_DateDif);//返回两个日期之间的隔数　 天数
             addFunc("DAY", Func_Day);//将序列号转换为月份中的日 
-            addFunc("DAYS360", DAYS360);//以一年 360 天为基准计算两个日期间的天数 
+            addFunc("DAYS360", Func_DAYS360);//以一年 360 天为基准计算两个日期间的天数 
             addFunc("EDATE", Func_EDate);//返回用于表示开始日期之前或之后月数的日期的序列号 
             addFunc("EOMONTH", Func_EoMonth);//返回指定月数之前或之后的月份的最后一天的序列号 
             addFunc("HOUR", Func_Hour);//将序列号转换为小时 
@@ -120,14 +120,13 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.DATE, new Date(TimeSpan.Parse(arg[0].StringValue)));
         }
 
-        private Operand DAYS360(List<Operand> arg)
+        private Operand Func_DAYS360(List<Operand> arg)
         {
-            CheckArgsCount("TIMEVALUE", arg, new OperandType[][] {
+            CheckArgsCount("DAYS360", arg, new OperandType[][] {
                 new OperandType[] { OperandType.DATE , OperandType.DATE},
                 new OperandType[] { OperandType.DATE , OperandType.DATE, OperandType.NUMBER},
                  });
 
-            if (arg.Count < 2) return ThrowError("DAYS360 中参数不足", new List<Operand>());
             var startDate = (DateTime)arg[0].DateValue;
             var endDate = (DateTime)arg[1].DateValue;
 

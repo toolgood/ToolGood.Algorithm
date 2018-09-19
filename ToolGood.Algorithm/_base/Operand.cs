@@ -157,7 +157,10 @@ namespace ToolGood.Algorithm
             get
             {
                 if (Type == OperandType.NUMBER) {
-                    return (double)Value == 1;
+                    if (Value is double) {
+                        return (double)Value == 1;
+                    }
+                    return decimal.Parse(Value.ToString()) == 1M;
                 }
                 return (bool)Value;
             }
@@ -221,9 +224,9 @@ namespace ToolGood.Algorithm
         {
             if (operandType == OperandType.Any) return true;
             if (operandType == Type) return true;
-            if (operandType== OperandType.STRING) {
-                if (Type != OperandType.ERROR) return true;
-            }
+            if (Type == OperandType.ERROR) return false;
+
+            if (operandType== OperandType.STRING) return true;
             if (operandType== OperandType.NUMBER) {
                 return IsNumber(this.Value);
             }
@@ -271,8 +274,13 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public static bool IsBoolean(object value)
         {
-            bool v;
-            return bool.TryParse(value.ToString().ToLower(), out v);
+            if (value is Int16|| value is Int32|| value is Int64||
+                value is UInt16|| value is UInt32|| value is UInt64||
+                value is double|| value is float|| value is decimal) {
+                return true;
+            }
+
+            return bool.TryParse(value.ToString().ToLower(), out bool v);
         }
 
         /// <summary>
@@ -282,8 +290,7 @@ namespace ToolGood.Algorithm
         /// <returns>是返回真,否返回假</returns>
         public static bool IsNumber(object value)
         {
-            double val;
-            return double.TryParse(value.ToString(), out val);
+            return double.TryParse(value.ToString(), out double val);
         }
 
         /// <summary>
@@ -293,8 +300,7 @@ namespace ToolGood.Algorithm
         /// <returns>是返回真,否返回假</returns>
         public static bool IsDate(object value)
         {
-            DateTime dt;
-            return DateTime.TryParse(value.ToString(), out dt);
+            return DateTime.TryParse(value.ToString(), out DateTime dt);
         }
         #endregion
     }

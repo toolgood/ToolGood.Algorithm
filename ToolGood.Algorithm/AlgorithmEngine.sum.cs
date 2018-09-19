@@ -93,7 +93,7 @@ namespace ToolGood.Algorithm
         {
             if (arg.Count < 1) return ThrowError("HARMEAN 中参数不足", new List<Operand>());
             if (arg.Count == 1) return arg[0];
-            var dbs = GetList(arg);
+            var dbs = Func_base_GetList(arg);
             double sum = 0;
             foreach (var db in dbs) {
                 sum += 1 / db;
@@ -105,7 +105,7 @@ namespace ToolGood.Algorithm
         {
             if (arg.Count < 1) return ThrowError("GAMMALN 中参数不足", new List<Operand>());
             if (arg.Count == 1) return arg[0];
-            var dbs = GetList(arg);
+            var dbs = Func_base_GetList(arg);
             double sum = 1;
             foreach (var db in dbs) {
                 sum *= db;
@@ -246,15 +246,15 @@ namespace ToolGood.Algorithm
             double sum = 0;
             int count = 0;
             if (arg[1].Type == OperandType.NUMBER) {
-                count = countif(dbs, arg[1].NumberValue);
+                count = Func_base_countif(dbs, arg[1].NumberValue);
                 sum = count * arg[1].NumberValue;
             } else {
                 if (double.TryParse(arg[1].StringValue.Trim(), out double d)) {
-                    count = countif(dbs, arg[1].NumberValue);
-                    sum = sumif(dbs, "=" + arg[1].StringValue.Trim(), sumdbs);
+                    count = Func_base_countif(dbs, arg[1].NumberValue);
+                    sum = Func_base_sumif(dbs, "=" + arg[1].StringValue.Trim(), sumdbs);
                 } else {
-                    count = countif(dbs, arg[1].StringValue.Trim());
-                    sum = sumif(dbs, arg[1].StringValue.Trim(), sumdbs);
+                    count = Func_base_countif(dbs, arg[1].StringValue.Trim());
+                    sum = Func_base_sumif(dbs, arg[1].StringValue.Trim(), sumdbs);
                 }
             }
             return new Operand(OperandType.NUMBER, sum / count);
@@ -270,12 +270,12 @@ namespace ToolGood.Algorithm
             if (arg.Count == 3) sumdbs = arg[2].GetNumberList();
             double sum = 0;
             if (arg[1].Type == OperandType.NUMBER) {
-                sum = countif(dbs, arg[1].NumberValue) * arg[1].NumberValue;
+                sum = Func_base_countif(dbs, arg[1].NumberValue) * arg[1].NumberValue;
             } else {
                 if (double.TryParse(arg[1].StringValue.Trim(), out double d)) {
-                    sum = sumif(dbs, "=" + arg[1].StringValue.Trim(), sumdbs);
+                    sum = Func_base_sumif(dbs, "=" + arg[1].StringValue.Trim(), sumdbs);
                 } else {
-                    sum = sumif(dbs, arg[1].StringValue.Trim(), sumdbs);
+                    sum = Func_base_sumif(dbs, arg[1].StringValue.Trim(), sumdbs);
                 }
             }
             return new Operand(OperandType.NUMBER, sum);
@@ -289,12 +289,12 @@ namespace ToolGood.Algorithm
             var dbs = arg[0].GetNumberList();
             int count = 0;
             if (arg[1].Type == OperandType.NUMBER) {
-                count = countif(dbs, arg[1].NumberValue);
+                count = Func_base_countif(dbs, arg[1].NumberValue);
             } else {
                 if (double.TryParse(arg[1].StringValue.Trim(), out double d)) {
-                    count = countif(dbs, arg[1].NumberValue);
+                    count = Func_base_countif(dbs, arg[1].NumberValue);
                 } else {
-                    count = countif(dbs, arg[1].StringValue.Trim());
+                    count = Func_base_countif(dbs, arg[1].StringValue.Trim());
                 }
             }
             return new Operand(OperandType.NUMBER, count);
@@ -307,21 +307,11 @@ namespace ToolGood.Algorithm
         {
             List<Operand> list = new List<Operand>();
             foreach (var op in ops) {
-                AddArrary(list, op);
+                Func_base_AddArrary(list, op);
             }
             return new Operand(OperandType.ARRARY, list);
         }
 
-        private void AddArrary(List<Operand> ops, Operand opd)
-        {
-            if (opd.Type == OperandType.ARRARY) {
-                foreach (var item in opd.Value as List<Operand>) {
-                    AddArrary(ops, item);
-                }
-            } else {
-                ops.Add(opd);
-            }
-        }
 
 
         private Operand Func_NormsInv(List<Operand> arg)
@@ -501,7 +491,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Varp(List<Operand> arg)
         {
-            List<double> list = GetList(arg);
+            List<double> list = Func_base_GetList(arg);
             if (list.Count < 1) return ThrowError("VARP 中参数不足", new List<Operand>());
 
             double sum = 0;
@@ -514,7 +504,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Var(List<Operand> arg)
         {
-            List<double> list = GetList(arg);
+            List<double> list = Func_base_GetList(arg);
             if (list.Count < 1) return ThrowError("VAR 中参数不足", new List<Operand>());
             double sum = 0;
             double sum2 = 0;
@@ -528,7 +518,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Stdevp(List<Operand> arg)
         {
-            List<double> list = GetList(arg);
+            List<double> list = Func_base_GetList(arg);
             if (list.Count < 1) return ThrowError("STDEVP 中参数不足", new List<Operand>());
             double sum = 0;
             double avg = list.Average();
@@ -541,7 +531,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Stdev(List<Operand> arg)
         {
-            List<double> list = GetList(arg);
+            List<double> list = Func_base_GetList(arg);
             if (list.Count < 1) return ThrowError("STDEV 中参数不足", new List<Operand>());
             double avg = list.Average();
             double sum = 0;
@@ -553,7 +543,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_DevSq(List<Operand> arg)
         {
-            List<double> list = GetList(arg);
+            List<double> list = Func_base_GetList(arg);
             if (list.Count < 1) return ThrowError("DEVSQ 中参数不足", new List<Operand>());
             double avg = list.Average();
             double sum = 0;
@@ -565,7 +555,7 @@ namespace ToolGood.Algorithm
 
         private Operand Func_Avedev(List<Operand> arg)
         {
-            List<double> list = GetList(arg);
+            List<double> list = Func_base_GetList(arg);
             if (list.Count < 1) return ThrowError("AVEDEV 中参数不足", new List<Operand>());
             double avg = list.Average();
             double sum = 0;
@@ -646,21 +636,21 @@ namespace ToolGood.Algorithm
         private Operand Func_Median(List<Operand> arg)
         {
             if (arg.Count < 1) return ThrowError("MEDIAN 中参数不足", new List<Operand>());
-            List<double> list = GetList(arg);
+            List<double> list = Func_base_GetList(arg);
             list = list.OrderBy(q => q).ToList();
             return new Operand(OperandType.NUMBER, list[list.Count / 2]);
         }
 
         private Operand Func_Count(List<Operand> arg)
         {
-            List<double> list = GetList(arg);
+            List<double> list = Func_base_GetList(arg);
             return new Operand(OperandType.NUMBER, list.Count);
         }
 
         private Operand Func_Average(List<Operand> arg)
         {
             if (arg.Count < 1) return ThrowError("AVERAGE 中参数不足", new List<Operand>());
-            List<double> list = GetList(arg);
+            List<double> list = Func_base_GetList(arg);
             return new Operand(OperandType.NUMBER, list.Average());
         }
 

@@ -7,7 +7,6 @@ namespace ToolGood.Algorithm
 {
     partial class AlgorithmEngine
     {
-        Random rand = new Random();
 
         private void AddMathFunction()
         {
@@ -360,28 +359,21 @@ namespace ToolGood.Algorithm
             int n = 1;
             foreach (var item in arg) {
                 if (item.Type == OperandType.NUMBER) {
-                    n *= Factorial(item.IntValue);
+                    n *= Func_base_Factorial(item.IntValue);
                     sum += item.IntValue;
                 } else if (item.Type == OperandType.ARRARY) {
                     var ls = item.GetNumberList();
                     foreach (var d in ls) {
-                        n *= Factorial((int)d);
+                        n *= Func_base_Factorial((int)d);
                         sum += (int)d;
                     }
                 }
             }
-            var r = Factorial(sum) / n;
+            var r = Func_base_Factorial(sum) / n;
             return new Operand(OperandType.NUMBER, r);
         }
 
-        private int Factorial(int a)
-        {
-            int r = 1;
-            for (int i = a; i > 0; i--) {
-                r *= i;
-            }
-            return r;
-        }
+ 
 
         private Operand Func_Log10(List<Operand> arg)
         {
@@ -429,7 +421,7 @@ namespace ToolGood.Algorithm
                     }
                 }
             }
-            return new Operand(OperandType.NUMBER, (double)lgm(list));
+            return new Operand(OperandType.NUMBER, (double)Func_base_lgm(list));
         }
 
         private Operand Func_Int(List<Operand> arg)
@@ -465,7 +457,7 @@ namespace ToolGood.Algorithm
                     }
                 }
             }
-            return new Operand(OperandType.NUMBER, (double)gcd(list));
+            return new Operand(OperandType.NUMBER, (double)Func_base_gcd(list));
         }
 
 

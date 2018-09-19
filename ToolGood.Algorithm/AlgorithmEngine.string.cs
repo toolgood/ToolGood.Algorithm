@@ -48,7 +48,7 @@ namespace ToolGood.Algorithm
                 new OperandType[] { OperandType.NUMBER },
                  });
 
-            return new Operand(OperandType.STRING, ToChineseRMB(arg[0].NumberValue));
+            return new Operand(OperandType.STRING, Func_base_ToChineseRMB(arg[0].NumberValue));
         }
 
         private Operand Func_Jis(List<Operand> arg)
@@ -57,7 +57,7 @@ namespace ToolGood.Algorithm
                 new OperandType[] { OperandType.STRING },
                  });
 
-            return new Operand(OperandType.STRING, ToSBC(arg[0].StringValue));
+            return new Operand(OperandType.STRING, Func_base_ToSBC(arg[0].StringValue));
         }
 
         private Operand Func_Value(List<Operand> arg)
@@ -116,7 +116,7 @@ namespace ToolGood.Algorithm
                 new OperandType[] {  OperandType.STRING },
                  });
 
-             return new Operand(OperandType.STRING, ToDBC(arg[0].StringValue));
+             return new Operand(OperandType.STRING, Func_base_ToDBC(arg[0].StringValue));
         }
 
         private Operand Func_T(List<Operand> arg)
@@ -312,6 +312,7 @@ namespace ToolGood.Algorithm
             }
             return new Operand(OperandType.STRING, s.ToString());
         }
+
         private Operand Func_Search(List<Operand> arg)
         {
             CheckArgsCount("Search", arg, new OperandType[][] {

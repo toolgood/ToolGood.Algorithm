@@ -7,16 +7,21 @@ namespace ToolGood.Algorithm
 {
     public partial class AlgorithmEngine
     {
-        List<string> m_Operators = new List<string>() { "(", ")", "!", "*", "/", "%", "+", "-", "<", ">", "=", "&", "|", ",", "==", "!=", ">=", "<=", "<>", "@" };
-        Stack<object> m_tokens = new Stack<object>();        //最终逆波兰式堆栈
-        Dictionary<string, Stack<object>> tokenDict = new Dictionary<string, Stack<object>>();
-        Dictionary<string, Func<List<Operand>, Operand>> funcDict = new Dictionary<string, Func<List<Operand>, Operand>>();
+        private Random rand;
+        private List<string> m_Operators = new List<string>() { "(", ")", "!", "*", "/", "%", "+", "-", "<", ">", "=", "&", "|", ",", "==", "!=", ">=", "<=", "<>", "@" };
+        private Stack<object> m_tokens = new Stack<object>();        //最终逆波兰式堆栈
+        private Dictionary<string, Stack<object>> tokenDict = new Dictionary<string, Stack<object>>();
+        private Dictionary<string, Func<List<Operand>, Operand>> funcDict = new Dictionary<string, Func<List<Operand>, Operand>>();
         private bool _useExcelIndex = true;
         private int excelIndex = 1;
         public bool UseExcelIndex { get { return _useExcelIndex; } set { _useExcelIndex = value; excelIndex = value ? 1 : 0; } }
 
         public AlgorithmEngine()
         {
+            var seed = Math.Abs(Guid.NewGuid().GetHashCode());
+            rand = new Random(seed);
+
+
             AddDateTimeFunction();
             AddFlowFunction();
             AddMathFunction();
@@ -54,7 +59,7 @@ namespace ToolGood.Algorithm
             if (string.IsNullOrEmpty(exp) || exp.Trim() == "" || !this.isMatching(exp)) {
                 return false;
             }
-            tokenDict[name]= parse(exp);
+            tokenDict[name] = parse(exp);
             return true;
         }
 
@@ -371,7 +376,7 @@ namespace ToolGood.Algorithm
         public object Evaluate(string name)
         {
             Stack<object> tokens = null;
-            if (tokenDict.TryGetValue(name ,out tokens)) {
+            if (tokenDict.TryGetValue(name, out tokens)) {
                 return evaluate(tokens);
             }
             return null;
@@ -490,12 +495,12 @@ namespace ToolGood.Algorithm
                 }
                 value = outopd.Value;
             }
-      
+
             return value;
         }
 
         #endregion
- 
+
         #region TryEvaluate
         public short TryEvaluate(string exp, short def)
         {
@@ -669,14 +674,14 @@ namespace ToolGood.Algorithm
 
         private void CheckArgsCount(string funcName, List<Operand> ops, OperandType[][] operandTypes)
         {
-            if (ops.Count < operandTypes.Min(q => q.Length)) throw new FunctionException(ThrowError(funcName+"参数不足！", new List<Operand>()));
-            if (ops.Count > operandTypes.Max(q => q.Length)) throw new FunctionException(ThrowError(funcName+"参数过多！", new List<Operand>()));
+            if (ops.Count < operandTypes.Min(q => q.Length)) throw new FunctionException(ThrowError(funcName + "参数不足！", new List<Operand>()));
+            if (ops.Count > operandTypes.Max(q => q.Length)) throw new FunctionException(ThrowError(funcName + "参数过多！", new List<Operand>()));
 
             foreach (var operands in operandTypes) {
                 if (operands.Length != ops.Count) continue;
                 var success = true;
                 for (int i = 0; i < operands.Length; i++) {
-                    if (ops[i].CanTransitionTo(operands[i])==false) {
+                    if (ops[i].CanTransitionTo(operands[i]) == false) {
                         success = false;
                         break;
                     }
