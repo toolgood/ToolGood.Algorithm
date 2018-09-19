@@ -727,8 +727,7 @@ namespace ToolGood.Algorithm
                 try {
                     var obj = Evaluate();
                     if (obj is string) {
-                        DateTime dt;
-                        if (DateTime.TryParse(obj.ToString(), out dt)) {
+                        if (DateTime.TryParse(obj.ToString(), out DateTime dt)) {
                             return dt;
                         }
                         return def;
@@ -745,8 +744,7 @@ namespace ToolGood.Algorithm
                 try {
                     var obj = Evaluate();
                     if (obj is string) {
-                        TimeSpan dt;
-                        if (TimeSpan.TryParse(obj.ToString(), out dt)) {
+                        if (TimeSpan.TryParse(obj.ToString(), out TimeSpan dt)) {
                             return dt;
                         }
                         return def;
