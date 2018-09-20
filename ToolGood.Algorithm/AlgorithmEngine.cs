@@ -63,7 +63,11 @@ namespace ToolGood.Algorithm
                 return false;
             }
             string error;
-            m_tokens = parse(exp, out error);
+            var obj = parse(exp, out error);
+            if (obj==null) {
+                return false;
+            }
+            m_tokens = obj;
             return true;
         }
         /// <summary>
@@ -79,7 +83,11 @@ namespace ToolGood.Algorithm
                 LastError = "exp无效";
                 return false;
             }
-            m_tokens = parse(exp, out error);
+            var obj = parse(exp, out error);
+            if (obj == null) {
+                return false;
+            }
+            m_tokens = obj;
             return true;
         }
         /// <summary>
@@ -95,8 +103,11 @@ namespace ToolGood.Algorithm
                 return false;
             }
             string error;
-            tokenDict[name] = parse(exp, out error);
-            LastError = error;
+            var obj = parse(exp, out error);
+            if (obj == null) {
+                return false;
+            }
+            tokenDict[name] = obj;
             return true;
         }
         /// <summary>
@@ -113,8 +124,11 @@ namespace ToolGood.Algorithm
                 LastError = "exp无效";
                 return false;
             }
-            tokenDict[name] = parse(exp, out error);
-            LastError = error;
+            var obj = parse(exp, out error);
+            if (obj == null) {
+                return false;
+            }
+            tokenDict[name] = obj;
             return true;
         }
 
@@ -127,6 +141,15 @@ namespace ToolGood.Algorithm
             foreach (var item in names) {
                 if (GetParameter(new Operand(item)) == null) {
                     error = $"参数{item}无效!";
+                    LastError = error;
+                    return null;
+                }
+            }
+            var funcnames = GetFunctionNames(tmp);
+            foreach (var item in funcnames) {
+                if (funcDict.ContainsKey(item.ToLower()) ==false) {
+                    error = $"方法{item}无效!";
+                    LastError = error;
                     return null;
                 }
             }
@@ -442,6 +465,20 @@ namespace ToolGood.Algorithm
             return list;
         }
 
+        private List<string> GetFunctionNames(Stack<object> tokens)
+        {
+            List<string> list = new List<string>();
+            foreach (var item in tokens) {
+                var curOpd = item as Operator;
+                if (curOpd != null) {
+                    if (curOpd.Type== OperatorType.FUNC) {
+                        var name = curOpd.Value;
+                        list.Add(name);
+                    }
+                }
+            }
+            return list;
+        }
 
         #endregion
 

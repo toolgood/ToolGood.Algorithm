@@ -714,7 +714,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数`。
         <td>HtmlEncode</td><td>HtmlEncode(文本)<br> 将字符串转换为 HTML 编码的字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>HtmlEncode</td><td>HtmlEncode(文本)<br>  将字符串表示形式转换为 HTML 编码的字符串，并返回编码的字符串。</td> <td></td>
+        <td>HtmlDecode</td><td>HtmlDecode(文本)<br>  将HTML 编码的字符串转解码。</td> <td></td>
     </tr>
 	<tr>
         <td>Base64ToText</td><td>Base64ToText(文本)<br>Base64ToText(文本,编码类型)<br>   将Base64转换为字符串。</td> <td></td>
