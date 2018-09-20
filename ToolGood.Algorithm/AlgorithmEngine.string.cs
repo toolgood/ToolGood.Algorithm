@@ -93,7 +93,7 @@ namespace ToolGood.Algorithm
         private Operand Func_Text(List<Operand> arg)
         {
             CheckArgsCount("Text", arg, new OperandType[][] {
-                new OperandType[] { OperandType.Any,OperandType.STRING },
+                new OperandType[] { OperandType.ANY,OperandType.STRING },
                  });
 
             var f = arg[1].StringValue;
@@ -122,7 +122,7 @@ namespace ToolGood.Algorithm
         private Operand Func_T(List<Operand> arg)
         {
             CheckArgsCount("ASC", arg, new OperandType[][] {
-                new OperandType[] {  OperandType.Any },
+                new OperandType[] {  OperandType.ANY },
                  });
 
             if (arg[0].Type == OperandType.NUMBER || arg[0].Type == OperandType.BOOLEAN) {

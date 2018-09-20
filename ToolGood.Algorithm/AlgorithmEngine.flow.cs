@@ -28,9 +28,9 @@ namespace ToolGood.Algorithm
         private Operand Func_IfText(List<Operand> arg)
         {
             CheckArgsCount("IfText", arg, new OperandType[][] {
-                new OperandType[] { OperandType.Any },
-                new OperandType[] { OperandType.Any, OperandType.Any },
-                new OperandType[] { OperandType.Any, OperandType.Any, OperandType.Any },
+                new OperandType[] { OperandType.ANY },
+                new OperandType[] { OperandType.ANY, OperandType.ANY },
+                new OperandType[] { OperandType.ANY, OperandType.ANY, OperandType.ANY },
                  });
 
             if (arg.Count < 2) return ThrowError("ISSTRING 中参数不足", new List<Operand>());
@@ -51,9 +51,9 @@ namespace ToolGood.Algorithm
         private Operand Func_IfNumber(List<Operand> arg)
         {
             CheckArgsCount("IFNUMBER", arg, new OperandType[][] {
-                new OperandType[] { OperandType.Any },
-                new OperandType[] { OperandType.Any, OperandType.Any },
-                new OperandType[] { OperandType.Any, OperandType.Any, OperandType.Any },
+                new OperandType[] { OperandType.ANY },
+                new OperandType[] { OperandType.ANY, OperandType.ANY },
+                new OperandType[] { OperandType.ANY, OperandType.ANY, OperandType.ANY },
                  });
 
             if (arg.Count < 2) return ThrowError("IFNUMBER 中参数不足", new List<Operand>());
@@ -93,7 +93,7 @@ namespace ToolGood.Algorithm
         private Operand Func_IsNumber(List<Operand> arg)
         {
             CheckArgsCount("ISNUMBER", arg, new OperandType[][] {
-                new OperandType[] { OperandType.Any },
+                new OperandType[] { OperandType.ANY },
                  });
 
             if (arg[0].Type == OperandType.NUMBER) {
@@ -107,9 +107,9 @@ namespace ToolGood.Algorithm
         private Operand Func_IfError(List<Operand> arg)
         {
             CheckArgsCount("IFERROR", arg, new OperandType[][] {
-                new OperandType[] { OperandType.Any },
-                new OperandType[] { OperandType.Any, OperandType.Any },
-                new OperandType[] { OperandType.Any, OperandType.Any, OperandType.Any },
+                new OperandType[] { OperandType.ANY },
+                new OperandType[] { OperandType.ANY, OperandType.ANY },
+                new OperandType[] { OperandType.ANY, OperandType.ANY, OperandType.ANY },
                  });
 
             var b = false;
@@ -131,9 +131,9 @@ namespace ToolGood.Algorithm
         private Operand Func_If(List<Operand> arg)
         {
             CheckArgsCount("IF", arg, new OperandType[][] {
-                new OperandType[] { OperandType.Any },
-                new OperandType[] { OperandType.Any, OperandType.Any },
-                new OperandType[] { OperandType.Any, OperandType.Any, OperandType.Any },
+                new OperandType[] { OperandType.ANY },
+                new OperandType[] { OperandType.ANY, OperandType.ANY },
+                new OperandType[] { OperandType.ANY, OperandType.ANY, OperandType.ANY },
                  });
 
             var b = true;

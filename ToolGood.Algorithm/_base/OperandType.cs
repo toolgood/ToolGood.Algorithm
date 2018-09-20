@@ -13,7 +13,7 @@ namespace ToolGood.Algorithm
         /// <summary>
         /// 任何
         /// </summary>
-        Any,
+        ANY,
         /// <summary>
         /// 函数
         /// </summary>

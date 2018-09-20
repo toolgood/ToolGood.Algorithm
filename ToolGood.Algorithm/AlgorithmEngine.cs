@@ -291,7 +291,7 @@ namespace ToolGood.Algorithm
         /// <param name="texts"></param>
         private void corrections(List<string> texts)
         {
-            for (int i = texts.Count - 1; i >= 1; i--) {
+            for (int i = texts.Count - 1; i >= 0; i--) {
                 var t = texts[i];
                 if (i > 0) {
                     var t2 = texts[i - 1];

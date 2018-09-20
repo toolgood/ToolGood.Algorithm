@@ -71,9 +71,9 @@ namespace ToolGood.Algorithm
         {
             CheckArgsCount("P", arg, new OperandType[][] { new OperandType[] { OperandType.STRING } });
             if (arg[0].StringValue.StartsWith("[")) {
-                return GetParameter(new Operand(OperandType.Any, arg[0].StringValue));
+                return GetParameter(new Operand(OperandType.ANY, arg[0].StringValue));
             }
-            return GetParameter(new Operand(OperandType.Any, "[" + arg[0].StringValue + "]"));
+            return GetParameter(new Operand(OperandType.ANY, "[" + arg[0].StringValue + "]"));
         }
 
         private Operand Func_UrlDecode(List<Operand> arg)

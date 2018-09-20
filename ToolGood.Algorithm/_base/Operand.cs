@@ -216,7 +216,7 @@ namespace ToolGood.Algorithm
 
         public bool CanTransitionTo(OperandType operandType)
         {
-            if (operandType == OperandType.Any) return true;
+            if (operandType == OperandType.ANY) return true;
             if (operandType == Type) return true;
             if (Type == OperandType.ERROR) return false;
 

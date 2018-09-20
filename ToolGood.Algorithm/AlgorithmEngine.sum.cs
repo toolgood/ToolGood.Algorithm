@@ -336,8 +336,8 @@ namespace ToolGood.Algorithm
         private Operand Func_PercentRank(List<Operand> arg)
         {
             CheckArgsCount("PERCENTRANK", arg, new OperandType[][] {
-                new OperandType[] {  OperandType.Any, OperandType.NUMBER  },
-                new OperandType[] {  OperandType.Any, OperandType.NUMBER, OperandType.NUMBER   },
+                new OperandType[] {  OperandType.ANY, OperandType.NUMBER  },
+                new OperandType[] {  OperandType.ANY, OperandType.NUMBER, OperandType.NUMBER   },
                  });
 
             var array = (arg[0].GetNumberList()).ToArray();

@@ -427,7 +427,7 @@ namespace ToolGood.Algorithm
         private Operand Func_Int(List<Operand> arg)
         {
             CheckArgsCount("int", arg, new OperandType[][] {
-                new OperandType[] { OperandType.Any},
+                new OperandType[] { OperandType.ANY},
                  });
 
             if (arg[0].Type == OperandType.DATE) {
