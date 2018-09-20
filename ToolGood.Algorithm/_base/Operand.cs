@@ -179,6 +179,23 @@ namespace ToolGood.Algorithm
             }
             return list;
         }
+        internal List<Operand> GetValueList()
+        {
+            List<Operand> list = new List<Operand>();
+            if (Value is List<Operand>) {
+                var ls = Value as List<Operand>;
+                foreach (var item in ls) {
+                     if (item.Type == OperandType.ARRARY) {
+                        list.AddRange(item.GetValueList());
+                    } else {
+                        list.Add(item);
+                    }
+                }
+            } else {
+                list.Add(this);
+            }
+            return list;
+        }
 
 
         #endregion

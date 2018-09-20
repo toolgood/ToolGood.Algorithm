@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace ToolGood.Algorithm
 {
     public partial class AlgorithmEngine
     {
         private Random rand;
-        private List<string> m_Operators = new List<string>() { "(", ")", "!", "*", "/", "%", "+", "-", "<", ">", "=", "&", "|", ",", "==", "!=", ">=", "<=", "<>", "@" };
+        private List<string> m_Operators = new List<string>() { ".", "(", ")", "!", "*", "/", "%", "+", "-", "<", ">", "=", "&", "|", ",", "==", "!=", ">=", "<=", "<>", "@" };
         private Stack<object> m_tokens = new Stack<object>();        //最终逆波兰式堆栈
         private Dictionary<string, Stack<object>> tokenDict = new Dictionary<string, Stack<object>>();
         private Dictionary<string, Func<List<Operand>, Operand>> funcDict = new Dictionary<string, Func<List<Operand>, Operand>>();
@@ -64,7 +65,7 @@ namespace ToolGood.Algorithm
             }
             string error;
             var obj = parse(exp, out error);
-            if (obj==null) {
+            if (obj == null) {
                 return false;
             }
             m_tokens = obj;
@@ -147,7 +148,7 @@ namespace ToolGood.Algorithm
             }
             var funcnames = GetFunctionNames(tmp);
             foreach (var item in funcnames) {
-                if (funcDict.ContainsKey(item.ToLower()) ==false) {
+                if (funcDict.ContainsKey(item.ToLower()) == false) {
                     error = $"方法{item}无效!";
                     LastError = error;
                     return null;
@@ -273,6 +274,9 @@ namespace ToolGood.Algorithm
         private string getOperand(List<string> texts, int curPos)
         {
             var t = texts[curPos];
+            if (t.StartsWith("[")) {
+                return t;
+            }
             if (curPos + 1 < texts.Count) {
                 var t2 = texts[curPos + 1];
                 if (t2 == "(") {
@@ -409,9 +413,18 @@ namespace ToolGood.Algorithm
                             list.Add(exp.Substring(start, end - start - 1).Trim());
                         }
                         start = end - 1;
+                    } else if (chr == '.') {
+                        if (end - start - 1 > 0) {
+                            var num = exp.Substring(start, end - start - 1).Trim();
+                            if (long.TryParse(num, out long d) == false) {
+                                TryAddList(list, num);
+                                start = end-1;
+                            }
+                        }  
                     } else if ("(){}*&%+-=/<>!|, ，（）".Contains(chr)) {
                         if (start < end - 1) {
-                            list.Add(exp.Substring(start, end - start - 1).Trim());
+                            var t = exp.Substring(start, end - start - 1).Trim();
+                            TryAddList(list, t);
                             start = end - 1;
                         }
                         if (start + 2 < exp.Length) {
@@ -436,6 +449,17 @@ namespace ToolGood.Algorithm
                 list.Add(exp.Substring(start, end - start).Trim());
             }
             return list;
+        }
+        private void TryAddList(List<string> list,string text)
+        {
+            //list.Add(text);
+
+            if (text.Length > 1 && text.StartsWith(".")) {
+                list.Add(".");
+                list.Add(text.Substring(1));
+            } else {
+                list.Add(text);
+            }
         }
 
         #endregion
@@ -471,7 +495,7 @@ namespace ToolGood.Algorithm
             foreach (var item in tokens) {
                 var curOpd = item as Operator;
                 if (curOpd != null) {
-                    if (curOpd.Type== OperatorType.FUNC) {
+                    if (curOpd.Type == OperatorType.FUNC) {
                         var name = curOpd.Value;
                         list.Add(name);
                     }
@@ -542,7 +566,11 @@ namespace ToolGood.Algorithm
                     var curOpt = (Operator)item;
                     List<Operand> list = new List<Operand>();
                     switch (curOpt.Type) {
-
+                        case OperatorType.POINT:
+                            list.Insert(0, opds.Pop());
+                            list.Insert(0, opds.Pop());
+                            opds.Push(getChild(list));
+                            break;
                         #region 乘,*,multiplication
                         case OperatorType.MUL:
                             list.Insert(0, opds.Pop());
@@ -862,6 +890,27 @@ namespace ToolGood.Algorithm
             throw new FunctionException(ThrowError(funcName + "参数类型出错！", new List<Operand>()));
         }
 
+        #region 取子数
+        private Operand getChild(List<Operand> ops)
+        {
+            var obj = ops[0];
+            var op = ops[1].StringValue;
+
+            if (ops[0].Type== OperandType.ARRARY) {
+                var list = ops[0].GetValueList();
+                if (op.ToLower()=="length") {
+                    return new Operand(OperandType.STRING, (double)list.Count);
+                }
+                if (int.TryParse(op,out int index)) {
+                    return list[index - excelIndex];
+                }
+            }
+
+            return new Operand(OperandType.ERROR, op+"操作无效！");
+        }
+
+
+        #endregion
 
         #region 加减乘除 连接 取余
         private Operand stringAdd(List<Operand> ops)

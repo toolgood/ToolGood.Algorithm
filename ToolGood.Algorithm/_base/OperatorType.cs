@@ -34,6 +34,12 @@ namespace ToolGood.Algorithm
         /// 参数
         /// </summary>
         PARAMETER,
+
+        /// <summary>
+        /// 下一级
+        /// </summary>
+        POINT,
+
         ///// <summary>
         ///// 逻辑非,!,NOT
         ///// </summary>

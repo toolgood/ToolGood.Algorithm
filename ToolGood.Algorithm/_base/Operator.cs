@@ -44,6 +44,7 @@ namespace ToolGood.Algorithm
         {
             switch (opt) {
                 //case "!": return OperatorType.NOT;
+                case ".": return OperatorType.POINT;
                 case "+": return OperatorType.ADD;
                 case "-": return OperatorType.SUB;
                 case "*": return OperatorType.MUL;
@@ -72,6 +73,9 @@ namespace ToolGood.Algorithm
                     }
                     return OperatorType.PARAMETER;
             }
+            //if (opt.StartsWith(".")) {
+            //    return OperatorType.POINT;
+            //}
             return OperatorType.FUNC;
         }
 
@@ -107,6 +111,12 @@ namespace ToolGood.Algorithm
                 //A、B优先级相等
                 return 0;
             }
+            //if (optA == OperatorType.POINT ) {
+            //    return 1;
+            //}
+            //if (optB == OperatorType.POINT) {
+            //    return -1;
+            //}
 
             //乘,除,余(*,/,%)
             if ((optA >= OperatorType.MUL && optA <= OperatorType.MOD) &&

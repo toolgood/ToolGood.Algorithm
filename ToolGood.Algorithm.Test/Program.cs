@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PetaTest;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,22 @@ namespace ToolGood.Algorithm.Test
     {
         static void Main(string[] args)
         {
+
+            AlgorithmEngine engine = new AlgorithmEngine();
+          var  e = engine.TryEvaluate("pi", 0.0);
+            Assert.AreEqual(Math.PI, e);
+
+            if (engine.Parse("1*1.1")) {
+                var t = engine.Evaluate();
+            }
+
+            if (engine.Parse("2+{1,2,3}.1*1.1")) {
+                var t = engine.Evaluate();
+                var a = t;
+            }
+
+
+
             PetaTest.Runner.RunMain(args);
 
 
