@@ -277,7 +277,7 @@ namespace ToolGood.Algorithm
             } else if (IsNumber(opd)) {
                 return OperandType.BOOLEAN;
             }
-            return OperandType.STRING;
+            return OperandType.ANY;
         }
 
 

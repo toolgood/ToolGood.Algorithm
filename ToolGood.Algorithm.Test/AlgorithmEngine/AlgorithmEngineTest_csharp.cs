@@ -264,8 +264,20 @@ namespace ToolGood.Algorithm.Test
             //dt = engine.TryEvaluate("RemoveBoth('123456789','12','127',1,2)", null);
             //Assert.AreEqual(dt, "123456789");
         }
+        [Test]
+        public void Json()
+        {
 
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Age", null);
+            Assert.AreEqual(dt.ToString(), "51");
+            dt = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Birthday", null);
+            Assert.AreEqual(dt, "04/26/1564 00:00:00");
 
+            dt = engine.TryEvaluate("json('[1,2,3]').1", null);
+            Assert.AreEqual(dt, "1");
+
+        }
     }
 
 }

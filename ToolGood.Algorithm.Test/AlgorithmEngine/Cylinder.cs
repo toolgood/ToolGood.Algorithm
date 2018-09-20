@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ToolGood.Algorithm.Test
+namespace ToolGood.Algorithm
 {
     //定义圆柱信息
     public class Cylinder : AlgorithmEngine

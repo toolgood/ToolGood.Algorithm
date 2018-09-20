@@ -49,7 +49,6 @@
     <Compile Include="AlgorithmEngine\AlgorithmEngineTest_dateTime.cs" />
     <Compile Include="AlgorithmEngine\AlgorithmEngineTest_flow.cs" />
     <Compile Include="AlgorithmEngine\AlgorithmEngineTest_math.cs" />
-    <Compile Include="AlgorithmEngine\AlgorithmEngineTest_object.cs" />
     <Compile Include="AlgorithmEngine\AlgorithmEngineTest_string.cs" />
     <Compile Include="AlgorithmEngine\AlgorithmEngineTest_sum.cs" />
     <Compile Include="AlgorithmEngine\Cylinder.cs" />

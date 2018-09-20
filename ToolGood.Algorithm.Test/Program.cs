@@ -14,17 +14,27 @@ namespace ToolGood.Algorithm.Test
         {
 
             AlgorithmEngine engine = new AlgorithmEngine();
-          var  e = engine.TryEvaluate("pi", 0.0);
+            var e = engine.TryEvaluate("pi", 0.0);
             Assert.AreEqual(Math.PI, e);
 
-            if (engine.Parse("1*1.1")) {
-                var t = engine.Evaluate();
-            }
+            //if (engine.Parse("1*1.1")) {
+            //    var t = engine.Evaluate();
+            //}
 
-            if (engine.Parse("2+{1,2,3}.1*1.1")) {
+            //if (engine.Parse("2+{1,2,3}.1*1.1")) {
+            //    var t = engine.Evaluate();
+            //    var a = t;
+            //}
+
+            if (engine.Parse("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Age")) {
                 var t = engine.Evaluate();
                 var a = t;
+
             }
+            //if (engine.Parse("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Birthday")) {
+            //    var t = engine.Evaluate();
+            //    var a = t;
+            //}
 
 
 
