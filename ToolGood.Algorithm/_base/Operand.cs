@@ -86,6 +86,10 @@ namespace ToolGood.Algorithm
 
         internal Operand(string opd)
         {
+            if (opd==null) {
+                this.Type = OperandType.STRING;
+                this.Value = opd;
+            }
             var lopd = opd.ToLower();
             if (lopd == "pi") {
                 this.Type = OperandType.NUMBER;
@@ -273,7 +277,7 @@ namespace ToolGood.Algorithm
             } else if (IsNumber(opd)) {
                 return OperandType.BOOLEAN;
             }
-            return OperandType.PARAMETER;
+            return OperandType.STRING;
         }
 
 

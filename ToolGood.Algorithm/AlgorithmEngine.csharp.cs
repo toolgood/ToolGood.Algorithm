@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
+using ToolGood.Algorithm.LitJson;
 
 namespace ToolGood.Algorithm
 {
@@ -65,7 +66,15 @@ namespace ToolGood.Algorithm
 
             addFunc("P", Func_P);
             addFunc("param", Func_P);
-         }
+            addFunc("json", Func_Json);
+        }
+        private Operand Func_Json(List<Operand> arg)
+        {
+            CheckArgsCount("Json", arg, new OperandType[][] { new OperandType[] { OperandType.STRING } });
+            var json = JsonMapper.ToObject(arg[0].StringValue);
+            return new Operand(OperandType.JSON, json);
+        }
+
 
         private Operand Func_P(List<Operand> arg)
         {

@@ -49,10 +49,10 @@ namespace ToolGood.Algorithm
         /// </summary>
         PARAMETER,
 
-        /// <summary>
-        /// 对象
-        /// </summary>
-        OBJECT,
+        ///// <summary>
+        ///// 对象
+        ///// </summary>
+        //OBJECT,
 
         /// <summary>
         /// JSON格式

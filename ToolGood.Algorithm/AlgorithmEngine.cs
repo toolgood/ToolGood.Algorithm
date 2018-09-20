@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using ToolGood.Algorithm.LitJson;
 
 namespace ToolGood.Algorithm
 {
@@ -418,9 +419,9 @@ namespace ToolGood.Algorithm
                             var num = exp.Substring(start, end - start - 1).Trim();
                             if (long.TryParse(num, out long d) == false) {
                                 TryAddList(list, num);
-                                start = end-1;
+                                start = end - 1;
                             }
-                        }  
+                        }
                     } else if ("(){}*&%+-=/<>!|, ，（）".Contains(chr)) {
                         if (start < end - 1) {
                             var t = exp.Substring(start, end - start - 1).Trim();
@@ -446,11 +447,12 @@ namespace ToolGood.Algorithm
                 }
             }
             if (end > start) {
-                list.Add(exp.Substring(start, end - start).Trim());
+                var t = exp.Substring(start, end - start).Trim();
+                TryAddList(list, t);
             }
             return list;
         }
-        private void TryAddList(List<string> list,string text)
+        private void TryAddList(List<string> list, string text)
         {
             //list.Add(text);
 
@@ -895,18 +897,56 @@ namespace ToolGood.Algorithm
         {
             var obj = ops[0];
             var op = ops[1].StringValue;
-
-            if (ops[0].Type== OperandType.ARRARY) {
-                var list = ops[0].GetValueList();
-                if (op.ToLower()=="length") {
-                    return new Operand(OperandType.STRING, (double)list.Count);
+            try {
+                if (obj.Type == OperandType.ARRARY) {
+                    var list = obj.GetValueList();
+                    if (op.ToLower() == "length") {
+                        return new Operand(OperandType.NUMBER, (double)list.Count);
+                    }
+                    if (int.TryParse(op, out int index)) {
+                        return list[index - excelIndex];
+                    }
                 }
-                if (int.TryParse(op,out int index)) {
-                    return list[index - excelIndex];
+                if (obj.Type == OperandType.JSON) {
+                    var json = obj.Value as JsonData;
+                    if (json.IsArray) {
+                        if (op.ToLower() == "length") {
+                            return new Operand(OperandType.NUMBER, (double)json.Count);
+                        } else if (int.TryParse(op, out int index)) {
+                            var v = json[index - excelIndex];
+                            if (v.IsString) {
+                                return new Operand(v.ToString());
+                            } else if (v.IsBoolean) {
+                                return new Operand(OperandType.BOOLEAN, bool.Parse(v.ToString()));
+                            } else if (v.IsDouble) {
+                                return new Operand(OperandType.NUMBER, double.Parse(v.ToString()));
+                            } else if (v.IsInt) {
+                                return new Operand(OperandType.NUMBER, double.Parse(v.ToString()));
+                            } else if (v.IsLong) {
+                                return new Operand(OperandType.NUMBER, double.Parse(v.ToString()));
+                            } else if (v.IsObject) {
+                                return new Operand(OperandType.JSON, v);
+                            }
+                        }
+                    } else {
+                        var v = json[op];
+                        if (v.IsString) {
+                            return new Operand(v.ToString());
+                        } else if (v.IsBoolean) {
+                            return new Operand(OperandType.BOOLEAN, bool.Parse(v.ToString()));
+                        } else if (v.IsDouble) {
+                            return new Operand(OperandType.NUMBER, double.Parse(v.ToString()));
+                        } else if (v.IsInt) {
+                            return new Operand(OperandType.NUMBER, double.Parse(v.ToString()));
+                        } else if (v.IsLong) {
+                            return new Operand(OperandType.NUMBER, double.Parse(v.ToString()));
+                        } else if (v.IsObject) {
+                            return new Operand(OperandType.JSON, v);
+                        }
+                    }
                 }
-            }
-
-            return new Operand(OperandType.ERROR, op+"操作无效！");
+            } catch (Exception) { }
+            return new Operand(OperandType.ERROR, op + "操作无效！");
         }
 
 
