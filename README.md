@@ -15,6 +15,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数`。
     var r = engine.TryEvaluate("(1=1)*9+2", 0); //返回:11
     var d = engine.TryEvaluate("'2016-1-1'+1", DateTime.MinValue); //返回日期:2016-1-2
     var t = engine.TryEvaluate("'2016-1-1'+9*'1:0'", DateTime.MinValue);//返回日期:2016-1-1 9:0
+	var j = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Age", null);//返回51
 ```
 支持常量`pi`,`e`,`true`,`false`。
 
@@ -820,6 +821,9 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数`。
     </tr>
 	<tr>
         <td>RemoveBoth</td><td>RemoveBoth(文本,左边文本,右边文本,同时匹配:0/1(默认0))<br>匹配方式, 匹配左边，成功则去除左边字符串。匹配右边，成功则去除右边字符串。</td> <td></td>
+    </tr>
+	<tr>
+        <td>json</td><td>json(文本)<br>动态json查询。</td> <td></td>
     </tr>
 	<tr>
         <td>P<br>param</td><td>P(文本)<br>动态查询参数。</td> <td></td>

@@ -915,9 +915,7 @@ namespace ToolGood.Algorithm
                         } else if (int.TryParse(op, out int index)) {
                             var v = json[index - excelIndex];
                             if (v.IsString) {
-
-
-                                return new Operand(v.ToString());
+                                return new Operand(OperandType.STRING, v.ToString());
                             } else if (v.IsBoolean) {
                                 return new Operand(OperandType.BOOLEAN, bool.Parse(v.ToString()));
                             } else if (v.IsDouble) {
