@@ -102,8 +102,6 @@ namespace ToolGood.Algorithm.LitJson
 
         private static readonly IDictionary<Type,
                 IDictionary<Type, ImporterFunc>> base_importers_table;
-        private static readonly IDictionary<Type,
-                IDictionary<Type, ImporterFunc>> custom_importers_table;
 
         private static readonly IDictionary<Type, ArrayMetadata> array_metadata;
         private static readonly object array_metadata_lock = new Object();
@@ -117,10 +115,7 @@ namespace ToolGood.Algorithm.LitJson
 
         private static readonly IDictionary<Type,
                 IList<PropertyMetadata>> type_properties;
-        private static readonly object type_properties_lock = new Object();
 
-        //private static readonly JsonWriter      static_writer;
-        private static readonly object static_writer_lock = new Object();
         #endregion
 
 
@@ -135,17 +130,10 @@ namespace ToolGood.Algorithm.LitJson
             type_properties = new Dictionary<Type,
                             IList<PropertyMetadata>>();
 
-            //static_writer = new JsonWriter ();
-
             datetime_format = DateTimeFormatInfo.InvariantInfo;
-
-            //base_exporters_table   = new Dictionary<Type, ExporterFunc> ();
-            //custom_exporters_table = new Dictionary<Type, ExporterFunc> ();
 
             base_importers_table = new Dictionary<Type,
                                  IDictionary<Type, ImporterFunc>>();
-            custom_importers_table = new Dictionary<Type,
-                                   IDictionary<Type, ImporterFunc>>();
 
              RegisterBaseImporters();
         }
@@ -272,15 +260,10 @@ namespace ToolGood.Algorithm.LitJson
             Type value_type = underlying_type ?? inst_type;
 
             if (reader.Token == JsonToken.Null) {
-#if NETSTANDARD1_5
-                if (inst_type.IsClass() || underlying_type != null) {
-                    return null;
-                }
-#else
+ 
                 if (inst_type.IsClass || underlying_type != null) {
                     return null;
                 }
-#endif
 
                 throw new JsonException(String.Format(
                             "Can't assign null to an instance of type {0}",
@@ -298,17 +281,6 @@ namespace ToolGood.Algorithm.LitJson
                 if (value_type.IsAssignableFrom(json_type))
                     return reader.Value;
 
-                // If there's a custom importer that fits, use it
-                if (custom_importers_table.ContainsKey(json_type) &&
-                    custom_importers_table[json_type].ContainsKey(
-                        value_type)) {
-
-                    ImporterFunc importer =
-                        custom_importers_table[json_type][value_type];
-
-                    return importer(reader.Value);
-                }
-
                 // Maybe there's a base importer that works
                 if (base_importers_table.ContainsKey(json_type) &&
                     base_importers_table[json_type].ContainsKey(
@@ -321,14 +293,10 @@ namespace ToolGood.Algorithm.LitJson
                 }
 
                 // Maybe it's an enum
-#if NETSTANDARD1_5
-                if (value_type.IsEnum())
-                    return Enum.ToObject (value_type, reader.Value);
-#else
+ 
                 if (value_type.IsEnum)
                     return Enum.ToObject(value_type, reader.Value);
-#endif
-                // Try using an implicit conversion operator
+                 // Try using an implicit conversion operator
                 MethodInfo conv_op = GetConvOp(value_type, json_type);
 
                 if (conv_op != null)

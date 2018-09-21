@@ -63,27 +63,10 @@ namespace ToolGood.Algorithm.LitJson
 
 
         #region Public Properties
-        public bool AllowComments {
-            get { return lexer.AllowComments; }
-            set { lexer.AllowComments = value; }
-        }
-
-        public bool AllowSingleQuotedStrings {
-            get { return lexer.AllowSingleQuotedStrings; }
-            set { lexer.AllowSingleQuotedStrings = value; }
-        }
-
+ 
         public bool SkipNonMembers {
             get { return skip_non_members; }
             set { skip_non_members = value; }
-        }
-
-        public bool EndOfInput {
-            get { return end_of_input; }
-        }
-
-        public bool EndOfJson {
-            get { return end_of_json; }
         }
 
         public JsonToken Token {
@@ -136,7 +119,6 @@ namespace ToolGood.Algorithm.LitJson
             reader_is_owned = owned;
         }
         #endregion
-
 
         #region Static Methods
         private static IDictionary<int, IDictionary<int, int[]>> PopulateParseTable()
