@@ -532,50 +532,6 @@ namespace ToolGood.Algorithm.LitJson
 
 
         #region IJsonWrapper Methods
-        bool IJsonWrapper.GetBoolean()
-        {
-            if (type != JsonType.Boolean)
-                throw new InvalidOperationException(
-                    "JsonData instance doesn't hold a boolean");
-
-            return inst_boolean;
-        }
-
-        double IJsonWrapper.GetDouble()
-        {
-            if (type != JsonType.Double)
-                throw new InvalidOperationException(
-                    "JsonData instance doesn't hold a double");
-
-            return inst_double;
-        }
-
-        int IJsonWrapper.GetInt()
-        {
-            if (type != JsonType.Int)
-                throw new InvalidOperationException(
-                    "JsonData instance doesn't hold an int");
-
-            return inst_int;
-        }
-
-        long IJsonWrapper.GetLong()
-        {
-            if (type != JsonType.Long)
-                throw new InvalidOperationException(
-                    "JsonData instance doesn't hold a long");
-
-            return inst_long;
-        }
-
-        string IJsonWrapper.GetString()
-        {
-            if (type != JsonType.String)
-                throw new InvalidOperationException(
-                    "JsonData instance doesn't hold a string");
-
-            return inst_string;
-        }
 
         void IJsonWrapper.SetBoolean(bool val)
         {

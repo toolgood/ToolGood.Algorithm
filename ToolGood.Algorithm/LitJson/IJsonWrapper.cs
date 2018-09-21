@@ -40,13 +40,6 @@ namespace ToolGood.Algorithm.LitJson
         bool IsObject { get; }
         bool IsString { get; }
 
-        bool GetBoolean();
-        double GetDouble();
-        int GetInt();
-        JsonType GetJsonType();
-        long GetLong();
-        string GetString();
-
         void SetBoolean(bool val);
         void SetDouble(double val);
         void SetInt(int val);
