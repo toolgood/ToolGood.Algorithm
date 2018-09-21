@@ -612,15 +612,6 @@ namespace ToolGood.Algorithm.LitJson
             json = null;
         }
 
-        //string IJsonWrapper.ToJson ()
-        //{
-        //    return ToJson ();
-        //}
-
-        //void IJsonWrapper.ToJson (JsonWriter writer)
-        //{
-        //    ToJson (writer);
-        //}
         #endregion
 
 
@@ -753,59 +744,6 @@ namespace ToolGood.Algorithm.LitJson
             return new JsonData(obj);
         }
 
-        //private static void WriteJson (IJsonWrapper obj, JsonWriter writer)
-        //{
-        //    if (obj == null) {
-        //        writer.Write (null);
-        //        return;
-        //    }
-
-        //    if (obj.IsString) {
-        //        writer.Write (obj.GetString ());
-        //        return;
-        //    }
-
-        //    if (obj.IsBoolean) {
-        //        writer.Write (obj.GetBoolean ());
-        //        return;
-        //    }
-
-        //    if (obj.IsDouble) {
-        //        writer.Write (obj.GetDouble ());
-        //        return;
-        //    }
-
-        //    if (obj.IsInt) {
-        //        writer.Write (obj.GetInt ());
-        //        return;
-        //    }
-
-        //    if (obj.IsLong) {
-        //        writer.Write (obj.GetLong ());
-        //        return;
-        //    }
-
-        //    if (obj.IsArray) {
-        //        writer.WriteArrayStart ();
-        //        foreach (object elem in (IList) obj)
-        //            WriteJson ((JsonData) elem, writer);
-        //        writer.WriteArrayEnd ();
-
-        //        return;
-        //    }
-
-        //    if (obj.IsObject) {
-        //        writer.WriteObjectStart ();
-
-        //        foreach (DictionaryEntry entry in ((IDictionary) obj)) {
-        //            writer.WritePropertyName ((string) entry.Key);
-        //            WriteJson ((JsonData) entry.Value, writer);
-        //        }
-        //        writer.WriteObjectEnd ();
-
-        //        return;
-        //    }
-        //}
         #endregion
 
 
@@ -931,32 +869,6 @@ namespace ToolGood.Algorithm.LitJson
 
             this.type = type;
         }
-
-        //public string ToJson ()
-        //{
-        //    if (json != null)
-        //        return json;
-
-        //    StringWriter sw = new StringWriter ();
-        //    JsonWriter writer = new JsonWriter (sw);
-        //    writer.Validate = false;
-
-        //    WriteJson (this, writer);
-        //    json = sw.ToString ();
-
-        //    return json;
-        //}
-
-        //public void ToJson (JsonWriter writer)
-        //{
-        //    bool old_validate = writer.Validate;
-
-        //    writer.Validate = false;
-
-        //    WriteJson (this, writer);
-
-        //    writer.Validate = old_validate;
-        //}
 
         public override string ToString()
         {

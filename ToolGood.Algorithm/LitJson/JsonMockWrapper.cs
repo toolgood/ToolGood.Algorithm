@@ -41,9 +41,6 @@ namespace ToolGood.Algorithm.LitJson
         public void SetLong(long val) { }
         public void SetString(string val) { }
 
-        //public string ToJson ()                  { return ""; }
-        //public void   ToJson (JsonWriter writer) {}
-
 
         bool IList.IsFixedSize { get { return true; } }
         bool IList.IsReadOnly { get { return true; } }

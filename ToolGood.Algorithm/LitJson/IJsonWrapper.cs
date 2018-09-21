@@ -54,7 +54,5 @@ namespace ToolGood.Algorithm.LitJson
         void SetLong(long val);
         void SetString(string val);
 
-        //string ToJson ();
-        //void   ToJson (JsonWriter writer);
     }
 }

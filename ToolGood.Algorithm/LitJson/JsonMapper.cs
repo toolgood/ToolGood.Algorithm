@@ -87,10 +87,6 @@ namespace ToolGood.Algorithm.LitJson
         }
     }
 
-
-    //internal delegate void ExporterFunc    (object obj, JsonWriter writer);
-    //public   delegate void ExporterFunc<T> (T obj, JsonWriter writer);
-
     internal delegate object ImporterFunc(object input);
     delegate TValue ImporterFunc<TJson, TValue>(TJson input);
 
@@ -103,9 +99,6 @@ namespace ToolGood.Algorithm.LitJson
         private static readonly int max_nesting_depth;
 
         private static readonly IFormatProvider datetime_format;
-
-        //private static readonly IDictionary<Type, ExporterFunc> base_exporters_table;
-        //private static readonly IDictionary<Type, ExporterFunc> custom_exporters_table;
 
         private static readonly IDictionary<Type,
                 IDictionary<Type, ImporterFunc>> base_importers_table;
@@ -704,175 +697,9 @@ namespace ToolGood.Algorithm.LitJson
             table[json_type][value_type] = importer;
         }
 
-        //private static void WriteValue (object obj, JsonWriter writer,
-        //                                bool writer_is_private,
-        //                                int depth)
-        //{
-        //    if (depth > max_nesting_depth)
-        //        throw new JsonException (
-        //            String.Format ("Max allowed object depth reached while " +
-        //                           "trying to export from type {0}",
-        //                           obj.GetType ()));
-
-        //    if (obj == null) {
-        //        writer.Write (null);
-        //        return;
-        //    }
-
-        //    if (obj is IJsonWrapper) {
-        //        if (writer_is_private)
-        //            writer.TextWriter.Write (((IJsonWrapper) obj).ToJson ());
-        //        else
-        //            ((IJsonWrapper) obj).ToJson (writer);
-
-        //        return;
-        //    }
-
-        //    if (obj is String) {
-        //        writer.Write ((string) obj);
-        //        return;
-        //    }
-
-        //    if (obj is Double) {
-        //        writer.Write ((double) obj);
-        //        return;
-        //    }
-
-        //    if (obj is Int32) {
-        //        writer.Write ((int) obj);
-        //        return;
-        //    }
-
-        //    if (obj is Boolean) {
-        //        writer.Write ((bool) obj);
-        //        return;
-        //    }
-
-        //    if (obj is Int64) {
-        //        writer.Write ((long) obj);
-        //        return;
-        //    }
-
-        //    if (obj is Array) {
-        //        writer.WriteArrayStart ();
-
-        //        foreach (object elem in (Array) obj)
-        //            WriteValue (elem, writer, writer_is_private, depth + 1);
-
-        //        writer.WriteArrayEnd ();
-
-        //        return;
-        //    }
-
-        //    if (obj is IList) {
-        //        writer.WriteArrayStart ();
-        //        foreach (object elem in (IList) obj)
-        //            WriteValue (elem, writer, writer_is_private, depth + 1);
-        //        writer.WriteArrayEnd ();
-
-        //        return;
-        //    }
-
-        //    if (obj is IDictionary) {
-        //        writer.WriteObjectStart ();
-        //        foreach (DictionaryEntry entry in (IDictionary) obj) {
-        //            writer.WritePropertyName ((string) entry.Key);
-        //            WriteValue (entry.Value, writer, writer_is_private,
-        //                        depth + 1);
-        //        }
-        //        writer.WriteObjectEnd ();
-
-        //        return;
-        //    }
-
-        //    Type obj_type = obj.GetType ();
-
-        //    // See if there's a custom exporter for the object
-        //    if (custom_exporters_table.ContainsKey (obj_type)) {
-        //        ExporterFunc exporter = custom_exporters_table[obj_type];
-        //        exporter (obj, writer);
-
-        //        return;
-        //    }
-
-        //    // If not, maybe there's a base exporter
-        //    if (base_exporters_table.ContainsKey (obj_type)) {
-        //        ExporterFunc exporter = base_exporters_table[obj_type];
-        //        exporter (obj, writer);
-
-        //        return;
-        //    }
-
-        //    // Last option, let's see if it's an enum
-        //    if (obj is Enum) {
-        //        Type e_type = Enum.GetUnderlyingType (obj_type);
-
-        //        if (e_type == typeof (long)
-        //            || e_type == typeof (uint)
-        //            || e_type == typeof (ulong))
-        //            writer.Write ((ulong) obj);
-        //        else
-        //            writer.Write ((int) obj);
-
-        //        return;
-        //    }
-
-        //    // Okay, so it looks like the input should be exported as an
-        //    // object
-        //    AddTypeProperties (obj_type);
-        //    IList<PropertyMetadata> props = type_properties[obj_type];
-
-        //    writer.WriteObjectStart ();
-        //    foreach (PropertyMetadata p_data in props) {
-        //        if (p_data.IsField) {
-        //            writer.WritePropertyName (p_data.Info.Name);
-        //            WriteValue (((FieldInfo) p_data.Info).GetValue (obj),
-        //                        writer, writer_is_private, depth + 1);
-        //        }
-        //        else {
-        //            PropertyInfo p_info = (PropertyInfo) p_data.Info;
-
-        //            if (p_info.CanRead) {
-        //                writer.WritePropertyName (p_data.Info.Name);
-        //                WriteValue (p_info.GetValue (obj, null),
-        //                            writer, writer_is_private, depth + 1);
-        //            }
-        //        }
-        //    }
-        //    writer.WriteObjectEnd ();
-        //}
         #endregion
 
 
-        //public static string ToJson (object obj)
-        //{
-        //    lock (static_writer_lock) {
-        //        static_writer.Reset ();
-
-        //        WriteValue (obj, static_writer, true, 0);
-
-        //        return static_writer.ToString ();
-        //    }
-        //}
-
-        //public static void ToJson (object obj, JsonWriter writer)
-        //{
-        //    WriteValue (obj, writer, false, 0);
-        //}
-
-        //public static JsonData ToObject (JsonReader reader)
-        //{
-        //    return (JsonData) ToWrapper (
-        //        delegate { return new JsonData (); }, reader);
-        //}
-
-        //public static JsonData ToObject (TextReader reader)
-        //{
-        //    JsonReader json_reader = new JsonReader (reader);
-
-        //    return (JsonData) ToWrapper (
-        //        delegate { return new JsonData (); }, json_reader);
-        //}
 
         public static JsonData ToObject(string json)
         {
@@ -880,31 +707,6 @@ namespace ToolGood.Algorithm.LitJson
                 delegate { return new JsonData(); }, json);
         }
 
-        //public static T ToObject<T> (JsonReader reader)
-        //{
-        //    return (T) ReadValue (typeof (T), reader);
-        //}
-
-        //public static T ToObject<T> (TextReader reader)
-        //{
-        //    JsonReader json_reader = new JsonReader (reader);
-
-        //    return (T) ReadValue (typeof (T), json_reader);
-        //}
-
-        //public static T ToObject<T> (string json)
-        //{
-        //    JsonReader reader = new JsonReader (json);
-
-        //    return (T) ReadValue (typeof (T), reader);
-        //}
-
-        //public static object ToObject(string json, Type ConvertType )
-        //{
-        //    JsonReader reader = new JsonReader(json);
-
-        //    return ReadValue(ConvertType, reader);
-        //}
 
         public static IJsonWrapper ToWrapper(WrapperFactory factory,
                                               JsonReader reader)
@@ -920,15 +722,6 @@ namespace ToolGood.Algorithm.LitJson
             return ReadValue(factory, reader);
         }
 
-        //public static void RegisterExporter<T> (ExporterFunc<T> exporter)
-        //{
-        //    ExporterFunc exporter_wrapper =
-        //        delegate (object obj, JsonWriter writer) {
-        //            exporter ((T) obj, writer);
-        //        };
-
-        //    custom_exporters_table[typeof (T)] = exporter_wrapper;
-        //}
 
         public static void RegisterImporter<TJson, TValue>(
             ImporterFunc<TJson, TValue> importer)
