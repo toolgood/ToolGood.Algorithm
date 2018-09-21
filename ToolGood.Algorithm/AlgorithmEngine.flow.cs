@@ -9,23 +9,23 @@ namespace ToolGood.Algorithm
     {
         private void AddFlowFunction()
         {
-            addFunc("AND", Func_And);//如果所有参数均为TRUE，则返回TRUE
-            addFunc("IF", Func_If);//指定要执行的逻辑检测
-            addFunc("NOT", Func_Not);//对参数的逻辑值求反
-            addFunc("OR", Func_Or);//如果任一参数为TRUE，则返回TRUE
-            addFunc("FALSE", Func_False);//返回逻辑值FALSE
-            addFunc("TRUE", Func_True);//返回逻辑值TRUE
-            addFunc("IFERROR", Func_IfError);//指定要执行的逻辑检测
-            addFunc("IFNUMBER", Func_IfNumber);//指定要执行的逻辑检测
-            addFunc("IFTEXT", Func_IfText);//指定要执行的逻辑检测
+            addFunc("AND", F_And);//如果所有参数均为TRUE，则返回TRUE
+            addFunc("IF", F_If);//指定要执行的逻辑检测
+            addFunc("NOT", F_Not);//对参数的逻辑值求反
+            addFunc("OR", F_Or);//如果任一参数为TRUE，则返回TRUE
+            addFunc("FALSE", F_False);//返回逻辑值FALSE
+            addFunc("TRUE", F_True);//返回逻辑值TRUE
+            addFunc("IFERROR", F_IfError);//指定要执行的逻辑检测
+            addFunc("IFNUMBER", F_IfNumber);//指定要执行的逻辑检测
+            addFunc("IFTEXT", F_IfText);//指定要执行的逻辑检测
 
 
-            addFunc("ISNUMBER", Func_IsNumber);//指定要执行的逻辑检测
-            addFunc("ISTEXT", Func_IsText);//指定要执行的逻辑检测
+            addFunc("ISNUMBER", F_IsNumber);//指定要执行的逻辑检测
+            addFunc("ISTEXT", F_IsText);//指定要执行的逻辑检测
 
 
         }
-        private Operand Func_IfText(List<Operand> arg)
+        private Operand F_IfText(List<Operand> arg)
         {
             CheckArgsCount("IfText", arg, new OperandType[][] {
                 new OperandType[] { OperandType.ANY },
@@ -48,7 +48,7 @@ namespace ToolGood.Algorithm
         }
 
 
-        private Operand Func_IfNumber(List<Operand> arg)
+        private Operand F_IfNumber(List<Operand> arg)
         {
             CheckArgsCount("IFNUMBER", arg, new OperandType[][] {
                 new OperandType[] { OperandType.ANY },
@@ -74,7 +74,7 @@ namespace ToolGood.Algorithm
         }
 
 
-        private Operand Func_IsText(List<Operand> arg)
+        private Operand F_IsText(List<Operand> arg)
         {
             CheckArgsCount("IsText", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING },
@@ -90,7 +90,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.BOOLEAN, false);
         }
 
-        private Operand Func_IsNumber(List<Operand> arg)
+        private Operand F_IsNumber(List<Operand> arg)
         {
             CheckArgsCount("ISNUMBER", arg, new OperandType[][] {
                 new OperandType[] { OperandType.ANY },
@@ -104,7 +104,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.BOOLEAN, false);
         }
 
-        private Operand Func_IfError(List<Operand> arg)
+        private Operand F_IfError(List<Operand> arg)
         {
             CheckArgsCount("IFERROR", arg, new OperandType[][] {
                 new OperandType[] { OperandType.ANY },
@@ -128,7 +128,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.BOOLEAN, b);
         }
 
-        private Operand Func_If(List<Operand> arg)
+        private Operand F_If(List<Operand> arg)
         {
             CheckArgsCount("IF", arg, new OperandType[][] {
                 new OperandType[] { OperandType.ANY },
@@ -156,7 +156,7 @@ namespace ToolGood.Algorithm
 
         }
 
-        private Operand Func_Not(List<Operand> arg)
+        private Operand F_Not(List<Operand> arg)
         {
             CheckArgsCount("NOT", arg, new OperandType[][] {
                 new OperandType[] { OperandType.BOOLEAN },
@@ -173,17 +173,17 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.BOOLEAN, false);
         }
 
-        private Operand Func_True(List<Operand> arg)
+        private Operand F_True(List<Operand> arg)
         {
             return new Operand(OperandType.BOOLEAN, true);
         }
 
-        private Operand Func_False(List<Operand> arg)
+        private Operand F_False(List<Operand> arg)
         {
             return new Operand(OperandType.BOOLEAN, false);
         }
 
-        private Operand Func_Or(List<Operand> arg)
+        private Operand F_Or(List<Operand> arg)
         {
             if (arg.Count < 1) return ThrowError("OR 中参数不足", new List<Operand>());
             var b = false;
@@ -204,7 +204,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.BOOLEAN, b);
         }
 
-        private Operand Func_And(List<Operand> arg)
+        private Operand F_And(List<Operand> arg)
         {
             if (arg.Count < 1) return ThrowError("AND 中参数不足", new List<Operand>());
             var b = true;

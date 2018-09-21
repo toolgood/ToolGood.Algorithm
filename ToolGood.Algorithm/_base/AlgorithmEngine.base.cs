@@ -13,7 +13,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        private String Func_base_ToSBC(String input)
+        private String F_base_ToSBC(String input)
         {
             StringBuilder sb = new StringBuilder(input);
             for (int i = 0; i < input.Length; i++) {
@@ -31,7 +31,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        private String Func_base_ToDBC(String input)
+        private String F_base_ToDBC(String input)
         {
             StringBuilder sb = new StringBuilder(input);
             for (int i = 0; i < input.Length; i++) {
@@ -47,7 +47,7 @@ namespace ToolGood.Algorithm
         }
 
 
-        private string Func_base_ToChineseRMB(double x)
+        private string F_base_ToChineseRMB(double x)
         {
             string s = x.ToString("#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A");
             string d = System.Text.RegularExpressions.Regex.Replace(s, @"((?<=-|^)[^1-9]*)|((?'z'0)[0A-E]*((?=[1-9])|(?'-z'(?=[F-L\.]|$))))|((?'b'[F-L])(?'z'0)[0A-L]*((?=[1-9])|(?'-z'(?=[\.]|$))))", "${b}${z}");
@@ -55,23 +55,23 @@ namespace ToolGood.Algorithm
         }
 
 
-        private int Func_base_gcd(List<int> list)
+        private int F_base_gcd(List<int> list)
         {
             list = list.OrderBy(q => q).ToList();
-            var g = Func_base_gcd(list[1], list[0]);
+            var g = F_base_gcd(list[1], list[0]);
             for (int i = 2; i < list.Count; i++) {
-                g = Func_base_gcd(list[i], g);
+                g = F_base_gcd(list[i], g);
             }
             return g;
         }
-        private int Func_base_gcd(int a, int b)
+        private int F_base_gcd(int a, int b)
         {
             if (b == 1) { return 1; }
             if (b == 0) { return a; }
-            return Func_base_gcd(b, a % b);
+            return F_base_gcd(b, a % b);
         }
 
-        private int Func_base_lgm(List<int> list)
+        private int F_base_lgm(List<int> list)
         {
             list = list.OrderBy(q => q).ToList();
             list.RemoveAll(q => q <= 1);
@@ -79,7 +79,7 @@ namespace ToolGood.Algorithm
             var a = list[0];
             for (int i = 1; i < list.Count; i++) {
                 var b = list[i];
-                int g = b > a ? Func_base_gcd(b, a) : Func_base_gcd(a, b);
+                int g = b > a ? F_base_gcd(b, a) : F_base_gcd(a, b);
                 a = a / g * b;
             }
             return a;
@@ -87,7 +87,7 @@ namespace ToolGood.Algorithm
 
 
 
-        private double Func_base_sumif(List<double> dbs, string s, List<double> sumdbs)
+        private double F_base_sumif(List<double> dbs, string s, List<double> sumdbs)
         {
             Regex re = new Regex(@"(<|<=|>|>=|=|==|!=|<>) *([-+]?\d+(\.(\d+)?)?)");
             if (re.IsMatch(s) == false) {
@@ -99,14 +99,14 @@ namespace ToolGood.Algorithm
             double sum = 0;
 
             for (int i = 0; i < dbs.Count; i++) {
-                if (Func_base_compare(dbs[i], d, s)) {
+                if (F_base_compare(dbs[i], d, s)) {
                     sum += sumdbs[i];
                 }
             }
             return sum;
         }
 
-        private int Func_base_countif(List<double> dbs, double d)
+        private int F_base_countif(List<double> dbs, double d)
         {
             int count = 0;
             d = Math.Round(d, 12);
@@ -118,7 +118,7 @@ namespace ToolGood.Algorithm
             return count;
         }
 
-        private bool Func_base_compare(double a, double b, string ss)
+        private bool F_base_compare(double a, double b, string ss)
         {
             if (ss == "<") {
                 return a < b;
@@ -134,7 +134,7 @@ namespace ToolGood.Algorithm
             return a != b;
         }
 
-        private int Func_base_countif(List<double> dbs, string s)
+        private int F_base_countif(List<double> dbs, string s)
         {
             Regex re = new Regex(@"(<|<=|>|>=|=|==|!=|<>) *([-+]?\d+(\.(\d+)?)?)");
             if (re.IsMatch(s) == false) {
@@ -146,13 +146,13 @@ namespace ToolGood.Algorithm
             int count = 0;
 
             foreach (var item in dbs) {
-                if (Func_base_compare(item, d, s)) {
+                if (F_base_compare(item, d, s)) {
                     count++;
                 }
             }
             return count;
         }
-        private List<double> Func_base_GetList(List<Operand> arg)
+        private List<double> F_base_GetList(List<Operand> arg)
         {
             List<double> list = new List<double>();
             foreach (var item in arg) {
@@ -169,7 +169,7 @@ namespace ToolGood.Algorithm
             return list;
         }
 
-        private int Func_base_Factorial(int a)
+        private int F_base_Factorial(int a)
         {
             int r = 1;
             for (int i = a; i > 0; i--) {
@@ -178,11 +178,11 @@ namespace ToolGood.Algorithm
             return r;
         }
 
-        private void Func_base_AddArrary(List<Operand> ops, Operand opd)
+        private void F_base_AddArrary(List<Operand> ops, Operand opd)
         {
             if (opd.Type == OperandType.ARRARY) {
                 foreach (var item in opd.Value as List<Operand>) {
-                    Func_base_AddArrary(ops, item);
+                    F_base_AddArrary(ops, item);
                 }
             } else {
                 ops.Add(opd);

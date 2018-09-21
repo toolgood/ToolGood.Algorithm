@@ -10,57 +10,57 @@ namespace ToolGood.Algorithm
     {
         private void AddStringFunction()
         {
-            addFunc("ASC", Func_Asc); //将字符串内的全角（双字节）英文字母或片假名更改为半角（单字节）字符
-            addFunc("jis", Func_Jis); //将字符串中的半角（单字节）英文字符或片假名更改为全角（双字节）字符。
-            addFunc("WIDECHAR", Func_Jis); //将字符串中的半角（单字节）英文字符或片假名更改为全角（双字节）字符。
+            addFunc("ASC", F_Asc); //将字符串内的全角（双字节）英文字母或片假名更改为半角（单字节）字符
+            addFunc("jis", F_Jis); //将字符串中的半角（单字节）英文字符或片假名更改为全角（双字节）字符。
+            addFunc("WIDECHAR", F_Jis); //将字符串中的半角（单字节）英文字符或片假名更改为全角（双字节）字符。
 
 
 
-            addFunc("CHAR", Func_Char); //返回由代码数字指定的字符
-            addFunc("CLEAN", Func_Clean); //删除文本中所有打印不出的字符
-            addFunc("CODE", Func_Code); //返回文本字符串中第一个字符的数字代码
-            addFunc("CONCATENATE", Func_Concatenate); //将若干文本项合并到一个文本项中
-            addFunc("EXACT", Func_Exact); //检查两个文本值是否完全相同
-            addFunc("FIND", Func_Find); //在一文本值内查找另一文本值（区分大小写） 
-            addFunc("FIXED", Func_Fixed); //将数字设置为具有固定小数位的文本格式
-            addFunc("LEFT", Func_Left); //返回文本值最左边的字符
-            addFunc("LEN", Func_Len); //返回文本字符串中的字符个数
-            addFunc("LOWER", Func_Lower); //将文本转换为小写形式
-            addFunc("MID", Func_Mid); //从文本字符串中的指定位置起返回特定个数的字符
-            addFunc("PROPER", Func_Proper); //将文本值中每一个单词的首字母设置为大写
-            addFunc("REPLACE", Func_Replace); //替换文本内的字符
-            addFunc("REPT", Func_Rept); //按给定次数重复文本
-            addFunc("RIGHT", Func_Right); //返回文本值最右边的字符
-            addFunc("RMB", Func_Rmb); //按 ￥(RMB)货币格式将数字转换为文本
-            addFunc("SEARCH", Func_Search); //在一文本值中查找另一文本值（不区分大小写） 
-            addFunc("SUBSTITUTE", Func_Substitute); //在文本字符串中以新文本替换旧文本 
-            addFunc("T", Func_T); //将参数转换为文本 
-            addFunc("TEXT", Func_Text); //设置数字的格式并将数字转换为文本 
-            addFunc("TRIM", Func_Trim); //删除文本中的空格 
-            addFunc("UPPER", Func_Upper); //将文本转换为大写形式 
-            addFunc("VALUE", Func_Value); //将文本参数转换为数字 
+            addFunc("CHAR", F_Char); //返回由代码数字指定的字符
+            addFunc("CLEAN", F_Clean); //删除文本中所有打印不出的字符
+            addFunc("CODE", F_Code); //返回文本字符串中第一个字符的数字代码
+            addFunc("CONCATENATE", F_Concatenate); //将若干文本项合并到一个文本项中
+            addFunc("EXACT", F_Exact); //检查两个文本值是否完全相同
+            addFunc("FIND", F_Find); //在一文本值内查找另一文本值（区分大小写） 
+            addFunc("FIXED", F_Fixed); //将数字设置为具有固定小数位的文本格式
+            addFunc("LEFT", F_Left); //返回文本值最左边的字符
+            addFunc("LEN", F_Len); //返回文本字符串中的字符个数
+            addFunc("LOWER", F_Lower); //将文本转换为小写形式
+            addFunc("MID", F_Mid); //从文本字符串中的指定位置起返回特定个数的字符
+            addFunc("PROPER", F_Proper); //将文本值中每一个单词的首字母设置为大写
+            addFunc("REPLACE", F_Replace); //替换文本内的字符
+            addFunc("REPT", F_Rept); //按给定次数重复文本
+            addFunc("RIGHT", F_Right); //返回文本值最右边的字符
+            addFunc("RMB", F_Rmb); //按 ￥(RMB)货币格式将数字转换为文本
+            addFunc("SEARCH", F_Search); //在一文本值中查找另一文本值（不区分大小写） 
+            addFunc("SUBSTITUTE", F_Substitute); //在文本字符串中以新文本替换旧文本 
+            addFunc("T", F_T); //将参数转换为文本 
+            addFunc("TEXT", F_Text); //设置数字的格式并将数字转换为文本 
+            addFunc("TRIM", F_Trim); //删除文本中的空格 
+            addFunc("UPPER", F_Upper); //将文本转换为大写形式 
+            addFunc("VALUE", F_Value); //将文本参数转换为数字 
 
         }
 
-        private Operand Func_Rmb(List<Operand> arg)
+        private Operand F_Rmb(List<Operand> arg)
         {
             CheckArgsCount("RMB", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER },
                  });
 
-            return new Operand(OperandType.STRING, Func_base_ToChineseRMB(arg[0].NumberValue));
+            return new Operand(OperandType.STRING, F_base_ToChineseRMB(arg[0].NumberValue));
         }
 
-        private Operand Func_Jis(List<Operand> arg)
+        private Operand F_Jis(List<Operand> arg)
         {
             CheckArgsCount("jis", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING },
                  });
 
-            return new Operand(OperandType.STRING, Func_base_ToSBC(arg[0].StringValue));
+            return new Operand(OperandType.STRING, F_base_ToSBC(arg[0].StringValue));
         }
 
-        private Operand Func_Value(List<Operand> arg)
+        private Operand F_Value(List<Operand> arg)
         {
             CheckArgsCount("VALUE", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING },
@@ -72,7 +72,7 @@ namespace ToolGood.Algorithm
             return ThrowError("无法转成数字", arg);
         }
 
-        private Operand Func_Upper(List<Operand> arg)
+        private Operand F_Upper(List<Operand> arg)
         {
             CheckArgsCount("TEXT", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING },
@@ -81,7 +81,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, arg[0].StringValue.ToUpper());
         }
 
-        private Operand Func_Trim(List<Operand> arg)
+        private Operand F_Trim(List<Operand> arg)
         {
             CheckArgsCount("Trim", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING },
@@ -90,7 +90,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, arg[0].StringValue.Trim());
         }
 
-        private Operand Func_Text(List<Operand> arg)
+        private Operand F_Text(List<Operand> arg)
         {
             CheckArgsCount("Text", arg, new OperandType[][] {
                 new OperandType[] { OperandType.ANY,OperandType.STRING },
@@ -110,16 +110,16 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, a.StringValue.ToString());
         }
 
-        private Operand Func_Asc(List<Operand> arg)
+        private Operand F_Asc(List<Operand> arg)
         {
             CheckArgsCount("ASC", arg, new OperandType[][] {
                 new OperandType[] {  OperandType.STRING },
                  });
 
-             return new Operand(OperandType.STRING, Func_base_ToDBC(arg[0].StringValue));
+             return new Operand(OperandType.STRING, F_base_ToDBC(arg[0].StringValue));
         }
 
-        private Operand Func_T(List<Operand> arg)
+        private Operand F_T(List<Operand> arg)
         {
             CheckArgsCount("ASC", arg, new OperandType[][] {
                 new OperandType[] {  OperandType.ANY },
@@ -131,7 +131,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, arg[0].StringValue);
         }
 
-        private Operand Func_Substitute(List<Operand> arg)
+        private Operand F_Substitute(List<Operand> arg)
         {
             CheckArgsCount("SUBSTITUTE", arg, new OperandType[][] {
                 new OperandType[] {  OperandType.STRING,OperandType.STRING,OperandType.STRING },
@@ -173,7 +173,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, sb.ToString());
         }
 
-        private Operand Func_Right(List<Operand> arg)
+        private Operand F_Right(List<Operand> arg)
         {
             CheckArgsCount("Right", arg, new OperandType[][] {
                 new OperandType[] {  OperandType.STRING },
@@ -187,7 +187,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, t.Substring(t.Length - arg[1].IntValue, arg[1].IntValue));
         }
 
-        private Operand Func_Rept(List<Operand> arg)
+        private Operand F_Rept(List<Operand> arg)
         {
             CheckArgsCount("REPT", arg, new OperandType[][] {
                 new OperandType[] {  OperandType.STRING, OperandType.NUMBER },
@@ -202,7 +202,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, sb.ToString());
         }
 
-        private Operand Func_Replace(List<Operand> arg)
+        private Operand F_Replace(List<Operand> arg)
         {
             CheckArgsCount("REPLACE", arg, new OperandType[][] {
                 new OperandType[] {  OperandType.STRING, OperandType.STRING, OperandType.STRING },
@@ -233,7 +233,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, sb.ToString());
         }
 
-        private Operand Func_Proper(List<Operand> arg)
+        private Operand F_Proper(List<Operand> arg)
         {
             CheckArgsCount("PROPER", arg, new OperandType[][] {
                 new OperandType[] {  OperandType.STRING  },
@@ -254,7 +254,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, sb.ToString());
         }
 
-        private Operand Func_Mid(List<Operand> arg)
+        private Operand F_Mid(List<Operand> arg)
         {
             CheckArgsCount("MID", arg, new OperandType[][] {
                 new OperandType[] {  OperandType.STRING , OperandType.NUMBER, OperandType.NUMBER },
@@ -262,7 +262,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, arg[0].StringValue.Substring(arg[1].IntValue - excelIndex, arg[2].IntValue));
         }
 
-        private Operand Func_Lower(List<Operand> arg)
+        private Operand F_Lower(List<Operand> arg)
         {
             CheckArgsCount("LOWER", arg, new OperandType[][] {
                 new OperandType[] {  OperandType.STRING  },
@@ -271,7 +271,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, arg[0].StringValue.ToLower());
         }
 
-        private Operand Func_Len(List<Operand> arg)
+        private Operand F_Len(List<Operand> arg)
         {
             CheckArgsCount("LEN", arg, new OperandType[][] {
                 new OperandType[] {  OperandType.STRING  },
@@ -280,7 +280,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, (double)arg[0].StringValue.Length);
         }
 
-        private Operand Func_Left(List<Operand> arg)
+        private Operand F_Left(List<Operand> arg)
         {
             CheckArgsCount("LEFT", arg, new OperandType[][] {
                 new OperandType[] {  OperandType.STRING  },
@@ -293,7 +293,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, arg[0].StringValue.Substring(0, arg[1].IntValue));
         }
 
-        private Operand Func_Fixed(List<Operand> arg)
+        private Operand F_Fixed(List<Operand> arg)
         {
             CheckArgsCount("Fixed", arg, new OperandType[][] {
                 new OperandType[] {  OperandType.NUMBER },
@@ -313,7 +313,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, s.ToString());
         }
 
-        private Operand Func_Search(List<Operand> arg)
+        private Operand F_Search(List<Operand> arg)
         {
             CheckArgsCount("Search", arg, new OperandType[][] {
                 new OperandType[] {  OperandType.STRING, OperandType.STRING  },
@@ -329,7 +329,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, (double)p2);
         }
 
-        private Operand Func_Find(List<Operand> arg)
+        private Operand F_Find(List<Operand> arg)
         {
             CheckArgsCount("FIND", arg, new OperandType[][] {
                 new OperandType[] {  OperandType.STRING, OperandType.STRING  },
@@ -346,7 +346,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, (double)p2);
         }
 
-        private Operand Func_Exact(List<Operand> arg)
+        private Operand F_Exact(List<Operand> arg)
         {
             CheckArgsCount("EXACT", arg, new OperandType[][] {
                 new OperandType[] {  OperandType.STRING, OperandType.STRING  },
@@ -355,7 +355,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.BOOLEAN, arg[0].StringValue == arg[1].StringValue);
         }
 
-        private Operand Func_Concatenate(List<Operand> arg)
+        private Operand F_Concatenate(List<Operand> arg)
         {
             if (arg.Count < 1) return ThrowError("CONCATENATE 中参数不足", new List<Operand>());
             StringBuilder sb = new StringBuilder();
@@ -365,7 +365,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, sb.ToString());
         }
 
-        private Operand Func_Code(List<Operand> arg)
+        private Operand F_Code(List<Operand> arg)
         {
             CheckArgsCount("CODE", arg, new OperandType[][] {
                 new OperandType[] {  OperandType.STRING  },
@@ -377,7 +377,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, (double)(int)(char)t[0]);
         }
 
-        private Operand Func_Clean(List<Operand> arg)
+        private Operand F_Clean(List<Operand> arg)
         {
             CheckArgsCount("CLEAN", arg, new OperandType[][] {
                 new OperandType[] {  OperandType.STRING  },
@@ -388,7 +388,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, t);
         }
 
-        private Operand Func_Char(List<Operand> arg)
+        private Operand F_Char(List<Operand> arg)
         {
             CheckArgsCount("Char", arg, new OperandType[][] {
                 new OperandType[] {  OperandType.STRING  },

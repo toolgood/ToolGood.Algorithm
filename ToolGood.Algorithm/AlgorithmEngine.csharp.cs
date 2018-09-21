@@ -12,63 +12,63 @@ namespace ToolGood.Algorithm
     {
         private void AddCSharp()
         {
-            addFunc("UrlDecode", Func_UrlDecode);
-            addFunc("UrlEncode", Func_UrlEncode);
-            addFunc("HtmlEncode", Func_HtmlEncode);
-            addFunc("HtmlDecode", Func_HtmlDecode);
-            addFunc("Base64ToText", Func_Base64ToText);
-            addFunc("Base64UrlToText", Func_Base64UrlToText);
-            addFunc("TextToBase64", Func_TextToBase64);
-            addFunc("TextToBase64Url", Func_TextToBase64Url);
-            addFunc("Regex", Func_Regex);
-            addFunc("RegexRepalce", Func_RegexRepalce);
-            addFunc("IsRegex", Func_IsRegex);
-            addFunc("IsMatch", Func_IsRegex);
-            addFunc("Guid", Func_Guid);
-            addFunc("Md5", Func_Md5);
-            addFunc("Sha1", Func_Sha1);
-            addFunc("Sha256", Func_Sha256);
-            addFunc("Sha512", Func_Sha512);
-            addFunc("Crc8", Func_Crc8);
-            addFunc("Crc16", Func_Crc16);
-            addFunc("Crc32", Func_Crc32);
-            addFunc("HmacMd5", Func_HmacMd5);
-            addFunc("HmacSha1", Func_HmacSha1);
-            addFunc("HmacSha256", Func_HmacSha256);
-            addFunc("HmacSha512", Func_HmacSha512);
+            addFunc("UrlDecode", F_UrlDecode);
+            addFunc("UrlEncode", F_UrlEncode);
+            addFunc("HtmlEncode", F_HtmlEncode);
+            addFunc("HtmlDecode", F_HtmlDecode);
+            addFunc("Base64ToText", F_Base64ToText);
+            addFunc("Base64UrlToText", F_Base64UrlToText);
+            addFunc("TextToBase64", F_TextToBase64);
+            addFunc("TextToBase64Url", F_TextToBase64Url);
+            addFunc("Regex", F_Regex);
+            addFunc("RegexRepalce", F_RegexRepalce);
+            addFunc("IsRegex", F_IsRegex);
+            addFunc("IsMatch", F_IsRegex);
+            addFunc("Guid", F_Guid);
+            addFunc("Md5", F_Md5);
+            addFunc("Sha1", F_Sha1);
+            addFunc("Sha256", F_Sha256);
+            addFunc("Sha512", F_Sha512);
+            addFunc("Crc8", F_Crc8);
+            addFunc("Crc16", F_Crc16);
+            addFunc("Crc32", F_Crc32);
+            addFunc("HmacMd5", F_HmacMd5);
+            addFunc("HmacSha1", F_HmacSha1);
+            addFunc("HmacSha256", F_HmacSha256);
+            addFunc("HmacSha512", F_HmacSha512);
 
-            addFunc("TrimStart", Func_TrimStart);
-            addFunc("LTrim", Func_TrimStart);
+            addFunc("TrimStart", F_TrimStart);
+            addFunc("LTrim", F_TrimStart);
 
-            addFunc("TrimEnd", Func_TrimEnd);
-            addFunc("RTrim", Func_TrimEnd);
+            addFunc("TrimEnd", F_TrimEnd);
+            addFunc("RTrim", F_TrimEnd);
 
-            addFunc("IndexOf", Func_IndexOf);
-            addFunc("LastIndexOf", Func_LastIndexOf);
-            addFunc("Split", Func_Split);
-            addFunc("Join", Func_Join);
-
-
-
-            addFunc("Substring", Func_Substring);
-            addFunc("StartsWith", Func_StartsWith);
-            addFunc("EndsWith", Func_EndsWith);
-            addFunc("IsNullOrEmpty", Func_IsNullOrEmpty);
-            addFunc("IsNullOrWhiteSpace", Func_IsNullOrWhiteSpace);
-
-            addFunc("RemoveStart", Func_RemoveStart);
-            addFunc("RemoveEnd", Func_RemoveEnd);
-            addFunc("RemoveBoth", Func_RemoveBoth);
+            addFunc("IndexOf", F_IndexOf);
+            addFunc("LastIndexOf", F_LastIndexOf);
+            addFunc("Split", F_Split);
+            addFunc("Join", F_Join);
 
 
-            addFunc("ToUpper", Func_Upper); //将文本转换为大写形式 
-            addFunc("ToLower", Func_Lower); //将文本参数转换为数字 
 
-            addFunc("P", Func_P);
-            addFunc("param", Func_P);
-            addFunc("json", Func_Json);
+            addFunc("Substring", F_Substring);
+            addFunc("StartsWith", F_StartsWith);
+            addFunc("EndsWith", F_EndsWith);
+            addFunc("IsNullOrEmpty", F_IsNullOrEmpty);
+            addFunc("IsNullOrWhiteSpace", F_IsNullOrWhiteSpace);
+
+            addFunc("RemoveStart", F_RemoveStart);
+            addFunc("RemoveEnd", F_RemoveEnd);
+            addFunc("RemoveBoth", F_RemoveBoth);
+
+
+            addFunc("ToUpper", F_Upper); //将文本转换为大写形式 
+            addFunc("ToLower", F_Lower); //将文本参数转换为数字 
+
+            addFunc("P", F_P);
+            addFunc("param", F_P);
+            addFunc("json", F_Json);
         }
-        private Operand Func_Json(List<Operand> arg)
+        private Operand F_Json(List<Operand> arg)
         {
             CheckArgsCount("Json", arg, new OperandType[][] { new OperandType[] { OperandType.STRING } });
             var json = JsonMapper.ToObject(arg[0].StringValue);
@@ -76,7 +76,7 @@ namespace ToolGood.Algorithm
         }
 
 
-        private Operand Func_P(List<Operand> arg)
+        private Operand F_P(List<Operand> arg)
         {
             CheckArgsCount("P", arg, new OperandType[][] { new OperandType[] { OperandType.STRING } });
             if (arg[0].StringValue.StartsWith("[")) {
@@ -85,30 +85,30 @@ namespace ToolGood.Algorithm
             return GetParameter(new Operand(OperandType.ANY, "[" + arg[0].StringValue + "]"));
         }
 
-        private Operand Func_UrlDecode(List<Operand> arg)
+        private Operand F_UrlDecode(List<Operand> arg)
         {
             CheckArgsCount("UrlDecode", arg, new OperandType[][] { new OperandType[] { OperandType.STRING } });
 
             return new Operand(OperandType.STRING, HttpUtility.UrlDecode(arg[0].StringValue));
         }
-        private Operand Func_UrlEncode(List<Operand> arg)
+        private Operand F_UrlEncode(List<Operand> arg)
         {
             CheckArgsCount("UrlEncode", arg, new OperandType[][] { new OperandType[] { OperandType.STRING } });
 
             return new Operand(OperandType.STRING, HttpUtility.UrlEncode(arg[0].StringValue));
         }
-        private Operand Func_HtmlEncode(List<Operand> arg)
+        private Operand F_HtmlEncode(List<Operand> arg)
         {
             CheckArgsCount("HtmlEncode", arg, new OperandType[][] { new OperandType[] { OperandType.STRING } });
             return new Operand(OperandType.STRING, HttpUtility.HtmlEncode(arg[0].StringValue));
         }
-        private Operand Func_HtmlDecode(List<Operand> arg)
+        private Operand F_HtmlDecode(List<Operand> arg)
         {
             CheckArgsCount("HtmlDecode", arg, new OperandType[][] { new OperandType[] { OperandType.STRING } });
 
             return new Operand(OperandType.STRING, HttpUtility.HtmlDecode(arg[0].StringValue));
         }
-        private Operand Func_Base64ToText(List<Operand> arg)
+        private Operand F_Base64ToText(List<Operand> arg)
         {
             CheckArgsCount("Base64ToText", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING },
@@ -126,7 +126,7 @@ namespace ToolGood.Algorithm
             var t = encoding.GetString(bytes);
             return new Operand(OperandType.STRING, t);
         }
-        private Operand Func_Base64UrlToText(List<Operand> arg)
+        private Operand F_Base64UrlToText(List<Operand> arg)
         {
             CheckArgsCount("Base64UrlToText", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING },
@@ -145,7 +145,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, t);
         }
 
-        private Operand Func_TextToBase64(List<Operand> arg)
+        private Operand F_TextToBase64(List<Operand> arg)
         {
             CheckArgsCount("TextToBase64", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING },
@@ -163,7 +163,7 @@ namespace ToolGood.Algorithm
             var t = Base64.ToBase64String(bytes);
             return new Operand(OperandType.STRING, t);
         }
-        private Operand Func_TextToBase64Url(List<Operand> arg)
+        private Operand F_TextToBase64Url(List<Operand> arg)
         {
             CheckArgsCount("TextToBase64Url", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING },
@@ -182,7 +182,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, t);
         }
 
-        private Operand Func_Regex(List<Operand> arg)
+        private Operand F_Regex(List<Operand> arg)
         {
             CheckArgsCount("Regex", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING, OperandType.STRING },
@@ -211,7 +211,7 @@ namespace ToolGood.Algorithm
                 return new Operand(OperandType.STRING, ms[arg[2].IntValue - excelIndex].Groups[arg[3].IntValue].Value);
             }
         }
-        private Operand Func_RegexRepalce(List<Operand> arg)
+        private Operand F_RegexRepalce(List<Operand> arg)
         {
             CheckArgsCount("RegexRepalce", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING, OperandType.STRING, OperandType.STRING },
@@ -221,7 +221,7 @@ namespace ToolGood.Algorithm
             var b = System.Text.RegularExpressions.Regex.Replace(arg[0].StringValue, arg[1].StringValue, arg[2].StringValue);
             return new Operand(OperandType.STRING, b);
         }
-        private Operand Func_IsRegex(List<Operand> arg)
+        private Operand F_IsRegex(List<Operand> arg)
         {
             CheckArgsCount("IsRegex", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING, OperandType.STRING },
@@ -231,11 +231,11 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.BOOLEAN, b);
         }
 
-        private Operand Func_Guid(List<Operand> arg)
+        private Operand F_Guid(List<Operand> arg)
         {
             return new Operand(OperandType.STRING, System.Guid.NewGuid().ToString());
         }
-        private Operand Func_Md5(List<Operand> arg)
+        private Operand F_Md5(List<Operand> arg)
         {
             CheckArgsCount("Md5", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING },
@@ -252,7 +252,7 @@ namespace ToolGood.Algorithm
             var t = Hash.GetMd5String(encoding.GetBytes(text));
             return new Operand(OperandType.STRING, t);
         }
-        private Operand Func_Sha1(List<Operand> arg)
+        private Operand F_Sha1(List<Operand> arg)
         {
             CheckArgsCount("Sha1", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING },
@@ -268,7 +268,7 @@ namespace ToolGood.Algorithm
             var t = Hash.GetSha1Bytes(encoding.GetBytes(text));
             return new Operand(OperandType.STRING, t);
         }
-        private Operand Func_Sha256(List<Operand> arg)
+        private Operand F_Sha256(List<Operand> arg)
         {
             CheckArgsCount("Sha256", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING },
@@ -285,7 +285,7 @@ namespace ToolGood.Algorithm
             var t = Hash.GetSha256Bytes(encoding.GetBytes(text));
             return new Operand(OperandType.STRING, t);
         }
-        private Operand Func_Sha512(List<Operand> arg)
+        private Operand F_Sha512(List<Operand> arg)
         {
             CheckArgsCount("Sha512", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING },
@@ -301,7 +301,7 @@ namespace ToolGood.Algorithm
             var t = Hash.GetSha512String(encoding.GetBytes(text));
             return new Operand(OperandType.STRING, t);
         }
-        private Operand Func_Crc8(List<Operand> arg)
+        private Operand F_Crc8(List<Operand> arg)
         {
             CheckArgsCount("Crc8", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING },
@@ -318,7 +318,7 @@ namespace ToolGood.Algorithm
             var t = Hash.GetCrc8String(encoding.GetBytes(text));
             return new Operand(OperandType.STRING, t);
         }
-        private Operand Func_Crc16(List<Operand> arg)
+        private Operand F_Crc16(List<Operand> arg)
         {
             CheckArgsCount("Crc16", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING },
@@ -335,7 +335,7 @@ namespace ToolGood.Algorithm
             var t = Hash.GetCrc16String(encoding.GetBytes(text));
             return new Operand(OperandType.STRING, t);
         }
-        private Operand Func_Crc32(List<Operand> arg)
+        private Operand F_Crc32(List<Operand> arg)
         {
             CheckArgsCount("Crc32", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING },
@@ -353,7 +353,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, t);
         }
 
-        private Operand Func_HmacMd5(List<Operand> arg)
+        private Operand F_HmacMd5(List<Operand> arg)
         {
             CheckArgsCount("HmacMd5", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING },
@@ -370,7 +370,7 @@ namespace ToolGood.Algorithm
             var t = Hash.GetHmacMd5String(encoding.GetBytes(text), arg[1].StringValue);
             return new Operand(OperandType.STRING, t);
         }
-        private Operand Func_HmacSha1(List<Operand> arg)
+        private Operand F_HmacSha1(List<Operand> arg)
         {
             CheckArgsCount("HmacSha1", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING },
@@ -387,7 +387,7 @@ namespace ToolGood.Algorithm
             var t = Hash.GetHmacSha1String(encoding.GetBytes(text), arg[1].StringValue);
             return new Operand(OperandType.STRING, t);
         }
-        private Operand Func_HmacSha256(List<Operand> arg)
+        private Operand F_HmacSha256(List<Operand> arg)
         {
             CheckArgsCount("HmacSha256", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING },
@@ -404,7 +404,7 @@ namespace ToolGood.Algorithm
             var t = Hash.GetHmacSha256String(encoding.GetBytes(text), arg[1].StringValue);
             return new Operand(OperandType.STRING, t);
         }
-        private Operand Func_HmacSha512(List<Operand> arg)
+        private Operand F_HmacSha512(List<Operand> arg)
         {
             CheckArgsCount("HmacSha512", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING },
@@ -422,7 +422,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, t);
         }
 
-        private Operand Func_TrimStart(List<Operand> arg)
+        private Operand F_TrimStart(List<Operand> arg)
         {
             CheckArgsCount("TrimStart", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING },
@@ -435,7 +435,7 @@ namespace ToolGood.Algorithm
             }
             return new Operand(OperandType.STRING, text.TrimStart());
         }
-        private Operand Func_TrimEnd(List<Operand> arg)
+        private Operand F_TrimEnd(List<Operand> arg)
         {
             CheckArgsCount("TrimEnd", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING },
@@ -448,7 +448,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, text.TrimEnd());
         }
 
-        private Operand Func_IndexOf(List<Operand> arg)
+        private Operand F_IndexOf(List<Operand> arg)
         {
             CheckArgsCount("IndexOf", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING, OperandType.STRING },
@@ -466,7 +466,7 @@ namespace ToolGood.Algorithm
                 return new Operand(OperandType.NUMBER, text.IndexOf(arg[1].StringValue, arg[2].IntValue, arg[3].IntValue) + excelIndex);
             }
         }
-        private Operand Func_LastIndexOf(List<Operand> arg)
+        private Operand F_LastIndexOf(List<Operand> arg)
         {
             CheckArgsCount("LastIndexOf", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING, OperandType.STRING },
@@ -483,7 +483,7 @@ namespace ToolGood.Algorithm
                 return new Operand(OperandType.NUMBER, text.LastIndexOf(arg[1].StringValue, arg[2].IntValue, arg[3].IntValue) + excelIndex);
             }
         }
-        private Operand Func_Split(List<Operand> arg)
+        private Operand F_Split(List<Operand> arg)
         {
             CheckArgsCount("Split", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING, OperandType.STRING },
@@ -497,7 +497,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.ARRARY, text.Split(arg[1].StringValue.ToArray()));
         }
 
-        private Operand Func_Join(List<Operand> arg)
+        private Operand F_Join(List<Operand> arg)
         {
             if (arg.Count < 2) return ThrowError("Join 参数不足", new List<Operand>());
             var text = arg[0].StringValue;
@@ -518,7 +518,7 @@ namespace ToolGood.Algorithm
         }
 
 
-        private Operand Func_Substring(List<Operand> arg)
+        private Operand F_Substring(List<Operand> arg)
         {
             CheckArgsCount("Substring", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING, OperandType.NUMBER },
@@ -531,7 +531,7 @@ namespace ToolGood.Algorithm
                 return new Operand(OperandType.STRING, text.Substring(arg[1].IntValue - excelIndex, arg[2].IntValue));
             }
         }
-        private Operand Func_StartsWith(List<Operand> arg)
+        private Operand F_StartsWith(List<Operand> arg)
         {
             CheckArgsCount("StartsWith", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING, OperandType.STRING },
@@ -544,7 +544,7 @@ namespace ToolGood.Algorithm
                 return new Operand(OperandType.BOOLEAN, text.StartsWith(arg[1].StringValue, arg[2].BooleanValue ? StringComparison.CurrentCultureIgnoreCase : StringComparison.CurrentCulture));
             }
         }
-        private Operand Func_EndsWith(List<Operand> arg)
+        private Operand F_EndsWith(List<Operand> arg)
         {
             CheckArgsCount("EndsWith", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING, OperandType.STRING },
@@ -557,14 +557,14 @@ namespace ToolGood.Algorithm
                 return new Operand(OperandType.BOOLEAN, text.EndsWith(arg[1].StringValue, arg[2].BooleanValue ? StringComparison.CurrentCultureIgnoreCase : StringComparison.CurrentCulture));
             }
         }
-        private Operand Func_IsNullOrEmpty(List<Operand> arg)
+        private Operand F_IsNullOrEmpty(List<Operand> arg)
         {
             CheckArgsCount("IsNullOrEmpty", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING },
                 });
             return new Operand(OperandType.STRING, string.IsNullOrEmpty(arg[0].StringValue));
         }
-        private Operand Func_IsNullOrWhiteSpace(List<Operand> arg)
+        private Operand F_IsNullOrWhiteSpace(List<Operand> arg)
         {
             CheckArgsCount("IsNullOrWhiteSpace", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING },
@@ -572,7 +572,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.STRING, string.IsNullOrWhiteSpace(arg[0].StringValue));
         }
 
-        private Operand Func_RemoveStart(List<Operand> arg)
+        private Operand F_RemoveStart(List<Operand> arg)
         {
             CheckArgsCount("RemoveStart", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING, OperandType.STRING },
@@ -583,7 +583,7 @@ namespace ToolGood.Algorithm
             }
             return new Operand(OperandType.STRING, text);
         }
-        private Operand Func_RemoveEnd(List<Operand> arg)
+        private Operand F_RemoveEnd(List<Operand> arg)
         {
             CheckArgsCount("RemoveEnd", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING, OperandType.STRING },
@@ -594,7 +594,7 @@ namespace ToolGood.Algorithm
             }
             return new Operand(OperandType.STRING, text);
         }
-        private Operand Func_RemoveBoth(List<Operand> arg)
+        private Operand F_RemoveBoth(List<Operand> arg)
         {
             CheckArgsCount("RemoveBoth", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING, OperandType.STRING, OperandType.STRING  },

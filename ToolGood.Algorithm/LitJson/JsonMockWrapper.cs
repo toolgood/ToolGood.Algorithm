@@ -27,13 +27,6 @@ namespace ToolGood.Algorithm.LitJson
         public bool IsObject { get { return false; } }
         public bool IsString { get { return false; } }
 
-        public bool GetBoolean() { return false; }
-        public double GetDouble() { return 0.0; }
-        public int GetInt() { return 0; }
-        public JsonType GetJsonType() { return JsonType.None; }
-        public long GetLong() { return 0L; }
-        public string GetString() { return ""; }
-
         public void SetBoolean(bool val) { }
         public void SetDouble(double val) { }
         public void SetInt(int val) { }

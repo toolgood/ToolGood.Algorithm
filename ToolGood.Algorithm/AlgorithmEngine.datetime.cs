@@ -9,30 +9,30 @@ namespace ToolGood.Algorithm
     {
         private void AddDateTimeFunction()
         {
-            addFunc("DATE", Func_Date);//返回特定日期的序列号 
-            addFunc("DATEVALUE", Func_DateValue);//将文本格式的日期转换为序列号 
-            addFunc("DATEDIF", Func_DateDif);//返回两个日期之间的隔数　 天数
-            addFunc("DAY", Func_Day);//将序列号转换为月份中的日 
-            addFunc("DAYS360", Func_DAYS360);//以一年 360 天为基准计算两个日期间的天数 
-            addFunc("EDATE", Func_EDate);//返回用于表示开始日期之前或之后月数的日期的序列号 
-            addFunc("EOMONTH", Func_EoMonth);//返回指定月数之前或之后的月份的最后一天的序列号 
-            addFunc("HOUR", Func_Hour);//将序列号转换为小时 
-            addFunc("MINUTE", Func_Minute);//将序列号转换为分钟 
-            addFunc("MONTH", Func_Month);//将序列号转换为月 
-            addFunc("NETWORKDAYS", Func_NetWorkDays);//返回两个日期之间的全部工作日数 
-            addFunc("NOW", Func_Now);//返回当前日期和时间的序列号 
-            addFunc("SECOND", Func_Second);//将序列号转换为秒 
-            addFunc("TIME", Func_Time);//返回特定时间的序列号 
-            addFunc("TIMEVALUE", Func_TimeValue);//将文本格式的时间转换为序列号 
-            addFunc("TODAY", Func_Today);//返回今天日期的序列号 
-            addFunc("WEEKDAY", Func_WeekDay);//将序列号转换为星期几 
-            addFunc("WEEKNUM", Func_WeekNum);//将序列号转换为一年中相应的周数 
-            addFunc("WORKDAY", Func_WorkDay);//返回指定的若干个工作日之前或之后的日期的序列号 
-            addFunc("YEAR", Func_Year);//将序列号转换为年 
+            addFunc("DATE", F_Date);//返回特定日期的序列号 
+            addFunc("DATEVALUE", F_DateValue);//将文本格式的日期转换为序列号 
+            addFunc("DATEDIF", F_DateDif);//返回两个日期之间的隔数　 天数
+            addFunc("DAY", F_Day);//将序列号转换为月份中的日 
+            addFunc("DAYS360", F_DAYS360);//以一年 360 天为基准计算两个日期间的天数 
+            addFunc("EDATE", F_EDate);//返回用于表示开始日期之前或之后月数的日期的序列号 
+            addFunc("EOMONTH", F_EoMonth);//返回指定月数之前或之后的月份的最后一天的序列号 
+            addFunc("HOUR", F_Hour);//将序列号转换为小时 
+            addFunc("MINUTE", F_Minute);//将序列号转换为分钟 
+            addFunc("MONTH", F_Month);//将序列号转换为月 
+            addFunc("NETWORKDAYS", F_NetWorkDays);//返回两个日期之间的全部工作日数 
+            addFunc("NOW", F_Now);//返回当前日期和时间的序列号 
+            addFunc("SECOND", F_Second);//将序列号转换为秒 
+            addFunc("TIME", F_Time);//返回特定时间的序列号 
+            addFunc("TIMEVALUE", F_TimeValue);//将文本格式的时间转换为序列号 
+            addFunc("TODAY", F_Today);//返回今天日期的序列号 
+            addFunc("WEEKDAY", F_WeekDay);//将序列号转换为星期几 
+            addFunc("WEEKNUM", F_WeekNum);//将序列号转换为一年中相应的周数 
+            addFunc("WORKDAY", F_WorkDay);//返回指定的若干个工作日之前或之后的日期的序列号 
+            addFunc("YEAR", F_Year);//将序列号转换为年 
             //addFunc("YEARFRAC", YEARFRAC);//返回代表 start_date 和 end_date 之间整天天数的年分数 
         }
 
-        private Operand Func_WeekNum(List<Operand> arg)
+        private Operand F_WeekNum(List<Operand> arg)
         {
             CheckArgsCount("WeekNum", arg, new OperandType[][] {
                 new OperandType[] { OperandType.DATE },
@@ -49,7 +49,7 @@ namespace ToolGood.Algorithm
         }
 
 
-        private Operand Func_WorkDay(List<Operand> arg)
+        private Operand F_WorkDay(List<Operand> arg)
         {
             if (arg.Count < 2) return ThrowError("WORKDAY 中参数不足", new List<Operand>());
             var startDate = (DateTime)arg[0].DateValue;
@@ -68,7 +68,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.DATE, (Date)startDate);
         }
 
-        private Operand Func_NetWorkDays(List<Operand> arg)
+        private Operand F_NetWorkDays(List<Operand> arg)
         {
             if (arg.Count < 2) return ThrowError("NETWORKDAYS 中参数不足", new List<Operand>());
             var startDate = (DateTime)arg[0].DateValue;
@@ -90,7 +90,7 @@ namespace ToolGood.Algorithm
         }
 
 
-        private Operand Func_EoMonth(List<Operand> arg)
+        private Operand F_EoMonth(List<Operand> arg)
         {
             CheckArgsCount("EOMONTH", arg, new OperandType[][] {
                 new OperandType[] { OperandType.DATE, OperandType.NUMBER },
@@ -102,7 +102,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.DATE, (Date)dt);
         }
 
-        private Operand Func_EDate(List<Operand> arg)
+        private Operand F_EDate(List<Operand> arg)
         {
             CheckArgsCount("EDATE", arg, new OperandType[][] {
                 new OperandType[] { OperandType.DATE, OperandType.NUMBER },
@@ -111,7 +111,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.DATE, (Date)(((DateTime)arg[0].DateValue).AddMonths(arg[1].IntValue)));
         }
 
-        private Operand Func_TimeValue(List<Operand> arg)
+        private Operand F_TimeValue(List<Operand> arg)
         {
             CheckArgsCount("TIMEVALUE", arg, new OperandType[][] {
                 new OperandType[] { OperandType.DATE },
@@ -120,7 +120,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.DATE, new Date(TimeSpan.Parse(arg[0].StringValue)));
         }
 
-        private Operand Func_DAYS360(List<Operand> arg)
+        private Operand F_DAYS360(List<Operand> arg)
         {
             CheckArgsCount("DAYS360", arg, new OperandType[][] {
                 new OperandType[] { OperandType.DATE , OperandType.DATE},
@@ -156,7 +156,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, (double)days);
         }
 
-        private Operand Func_Time(List<Operand> arg)
+        private Operand F_Time(List<Operand> arg)
         {
             CheckArgsCount("Time", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER, OperandType.NUMBER, OperandType.NUMBER },
@@ -166,18 +166,18 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.DATE, d);
         }
 
-        private Operand Func_Today(List<Operand> arg)
+        private Operand F_Today(List<Operand> arg)
         {
             return new Operand(OperandType.DATE, new Date(DateTime.Today));
         }
 
-        private Operand Func_Now(List<Operand> arg)
+        private Operand F_Now(List<Operand> arg)
         {
             return new Operand(OperandType.DATE, new Date(DateTime.Now));
         }
 
 
-        private Operand Func_WeekDay(List<Operand> arg)
+        private Operand F_WeekDay(List<Operand> arg)
         {
             CheckArgsCount("WeekDay", arg, new OperandType[][] {
                 new OperandType[] { OperandType.DATE},
@@ -199,7 +199,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, (double)(t - 1));
         }
 
-        private Operand Func_Year(List<Operand> arg)
+        private Operand F_Year(List<Operand> arg)
         {
             CheckArgsCount("Year", arg, new OperandType[][] {
                 new OperandType[] { OperandType.DATE},
@@ -208,7 +208,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, (double)arg[0].DateValue.Year);
         }
 
-        private Operand Func_Second(List<Operand> arg)
+        private Operand F_Second(List<Operand> arg)
         {
             CheckArgsCount("Second", arg, new OperandType[][] {
                 new OperandType[] { OperandType.DATE},
@@ -217,7 +217,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, (double)arg[0].DateValue.Second);
         }
 
-        private Operand Func_Month(List<Operand> arg)
+        private Operand F_Month(List<Operand> arg)
         {
             CheckArgsCount("Month", arg, new OperandType[][] {
                 new OperandType[] { OperandType.DATE},
@@ -226,7 +226,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, (double)arg[0].DateValue.Month);
         }
 
-        private Operand Func_Minute(List<Operand> arg)
+        private Operand F_Minute(List<Operand> arg)
         {
             CheckArgsCount("Minute", arg, new OperandType[][] {
                 new OperandType[] { OperandType.DATE},
@@ -235,7 +235,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, (double)arg[0].DateValue.Minute);
         }
 
-        private Operand Func_Hour(List<Operand> arg)
+        private Operand F_Hour(List<Operand> arg)
         {
             CheckArgsCount("Hour", arg, new OperandType[][] {
                 new OperandType[] { OperandType.DATE},
@@ -244,7 +244,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, (double)arg[0].DateValue.Hour);
         }
 
-        private Operand Func_Day(List<Operand> arg)
+        private Operand F_Day(List<Operand> arg)
         {
             CheckArgsCount("Day", arg, new OperandType[][] {
                 new OperandType[] { OperandType.DATE},
@@ -253,7 +253,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, (double)arg[0].DateValue.Day);
         }
 
-        private Operand Func_DateDif(List<Operand> arg)
+        private Operand F_DateDif(List<Operand> arg)
         {
             CheckArgsCount("DATEDIF", arg, new OperandType[][] {
                 new OperandType[] { OperandType.DATE,OperandType.DATE, OperandType.STRING},
@@ -318,7 +318,7 @@ namespace ToolGood.Algorithm
             return ThrowError("DATE比较类型错误", new List<Operand>());
         }
 
-        private Operand Func_DateValue(List<Operand> arg)
+        private Operand F_DateValue(List<Operand> arg)
         {
             CheckArgsCount("DateValue", arg, new OperandType[][] {
                 new OperandType[] { OperandType.STRING},
@@ -329,7 +329,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.DATE, (Date)d);
         }
 
-        private Operand Func_Date(List<Operand> arg)
+        private Operand F_Date(List<Operand> arg)
         {
             CheckArgsCount("DATE", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER, OperandType.NUMBER, OperandType.NUMBER},

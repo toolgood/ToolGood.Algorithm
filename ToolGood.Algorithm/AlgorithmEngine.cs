@@ -593,7 +593,7 @@ namespace ToolGood.Algorithm
                         case OperatorType.MOD:
                             list.Insert(0, opds.Pop());
                             list.Insert(0, opds.Pop());
-                            opds.Push(Func_Mod(list));
+                            opds.Push(F_Mod(list));
                             break;
                         #endregion
 
@@ -1077,7 +1077,7 @@ namespace ToolGood.Algorithm
             }
             return ThrowError("两个参数不能相除", ops);
         }
-        private Operand Func_Mod(List<Operand> ops)
+        private Operand F_Mod(List<Operand> ops)
         {
             if (ops[1].Type == OperandType.NUMBER) {
                 if (ops[1].NumberValue == 0) {

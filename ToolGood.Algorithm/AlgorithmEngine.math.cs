@@ -10,73 +10,73 @@ namespace ToolGood.Algorithm
 
         private void AddMathFunction()
         {
-            addFunc("abs", Func_Abs);//返回数字的绝对值 
-            addFunc("acos", Func_Acos);//返回数字的反余弦值 
-            addFunc("acosh", Func_Acosh);//返回数字的反双曲余弦值 
-            addFunc("asin", Func_Asin);//返回数字的反正弦值 
-            addFunc("asinh", Func_Asinh);//返回数字的反正弦值 
-            addFunc("atan", Func_Atan);//返回数字的反正切值
-            addFunc("atanh", Func_Atanh);//返回数字的反正切值
+            addFunc("abs", F_Abs);//返回数字的绝对值 
+            addFunc("acos", F_Acos);//返回数字的反余弦值 
+            addFunc("acosh", F_Acosh);//返回数字的反双曲余弦值 
+            addFunc("asin", F_Asin);//返回数字的反正弦值 
+            addFunc("asinh", F_Asinh);//返回数字的反正弦值 
+            addFunc("atan", F_Atan);//返回数字的反正切值
+            addFunc("atanh", F_Atanh);//返回数字的反正切值
 
 
-            addFunc("atan2", Func_Atan2);//从 X 和 Y 坐标返回反正切
-            addFunc("ceiling", Func_Ceiling);//将数字舍入为最接近的整数，或最接近的有效数字的倍数
-            addFunc("combin", Func_Combin);//计算从给定数目的对象集合中提取若干对象的组合数
-            addFunc("cos", Func_Cos);//返回数字的余弦值
-            addFunc("cosh", Func_Cosh);//返回数字的双曲余弦值
-            addFunc("degrees", Func_Degrees);//将弧度转换为度
-            addFunc("even", Func_Even);//将数字向上舍入为最接近的偶型整数
-            addFunc("exp", Func_Exp);//返回 e 的指定数乘幂
-            addFunc("fact", Func_Fact);//返回数字的阶乘
-            addFunc("factdouble", Func_Factdouble);//返回数字的双倍阶乘
-            addFunc("floor", Func_Floor);//返回数字的双倍阶乘
-            addFunc("GCD", Func_Gcd);//返回最大公约数
-            addFunc("INT", Func_Int);//返回最大公约数
-            addFunc("LCM", Func_Lcm);//返回整数参数的最小公倍数。 
-            addFunc("ln", Func_Ln);//返回数字的自然对数
-            addFunc("log", Func_Log);//返回数字的自然对数
-            addFunc("LOG10", Func_Log10);//返回数字的常用对数
-            addFunc("MULTINOMIAL", Func_Multinomial);//返回参数和的阶乘与各参数阶乘乘积的比值
+            addFunc("atan2", F_Atan2);//从 X 和 Y 坐标返回反正切
+            addFunc("ceiling", F_Ceiling);//将数字舍入为最接近的整数，或最接近的有效数字的倍数
+            addFunc("combin", F_Combin);//计算从给定数目的对象集合中提取若干对象的组合数
+            addFunc("cos", F_Cos);//返回数字的余弦值
+            addFunc("cosh", F_Cosh);//返回数字的双曲余弦值
+            addFunc("degrees", F_Degrees);//将弧度转换为度
+            addFunc("even", F_Even);//将数字向上舍入为最接近的偶型整数
+            addFunc("exp", F_Exp);//返回 e 的指定数乘幂
+            addFunc("fact", F_Fact);//返回数字的阶乘
+            addFunc("factdouble", F_Factdouble);//返回数字的双倍阶乘
+            addFunc("floor", F_Floor);//返回数字的双倍阶乘
+            addFunc("GCD", F_Gcd);//返回最大公约数
+            addFunc("INT", F_Int);//返回最大公约数
+            addFunc("LCM", F_Lcm);//返回整数参数的最小公倍数。 
+            addFunc("ln", F_Ln);//返回数字的自然对数
+            addFunc("log", F_Log);//返回数字的自然对数
+            addFunc("LOG10", F_Log10);//返回数字的常用对数
+            addFunc("MULTINOMIAL", F_Multinomial);//返回参数和的阶乘与各参数阶乘乘积的比值
             //addFunc("MINVERSE", minverse);//返回数组矩阵的逆距阵
             //addFunc("MDETERM", mdeterm);//返回一个数组的矩阵行列式的值
             //addFunc("MMULT", MMULT);//返回两个数组的矩阵乘积
-            addFunc("MOD", Func_Mod);//返回两数相除的余数
-            addFunc("MROUND", Func_Mround);//返回一个舍入到所需倍数的数字
-            addFunc("ODD", Func_Odd);//将数字向上舍入为最接近的奇型整数
-            addFunc("PI", Func_Pi);//返回 PI 值
-            addFunc("POWER", Func_Power);//返回数的乘幂结果
-            addFunc("PRODUCT", Func_Product);//将所有以参数形式给出的数字相乘
-            addFunc("QUOTIENT", Func_Quotient);//返回商的整数部分，该函数可用于舍掉商的小数部分。 
-            addFunc("RADIANS", Func_Radians);//将度转换为弧度 
-            addFunc("RAND", Func_Rand);//返回 0 到 1 之间的随机数 
-            addFunc("RANDBETWEEN", Func_Randbetween);//返回指定数字之间的随机数
+            addFunc("MOD", F_Mod);//返回两数相除的余数
+            addFunc("MROUND", F_Mround);//返回一个舍入到所需倍数的数字
+            addFunc("ODD", F_Odd);//将数字向上舍入为最接近的奇型整数
+            addFunc("PI", F_Pi);//返回 PI 值
+            addFunc("POWER", F_Power);//返回数的乘幂结果
+            addFunc("PRODUCT", F_Product);//将所有以参数形式给出的数字相乘
+            addFunc("QUOTIENT", F_Quotient);//返回商的整数部分，该函数可用于舍掉商的小数部分。 
+            addFunc("RADIANS", F_Radians);//将度转换为弧度 
+            addFunc("RAND", F_Rand);//返回 0 到 1 之间的随机数 
+            addFunc("RANDBETWEEN", F_Randbetween);//返回指定数字之间的随机数
             //addFunc("ROMAN", ROMAN);//将阿拉伯数字转换为文本形式的罗马数字
-            addFunc("ROUND", Func_Round);//将数字舍入到指定位数
-            addFunc("ROUNDDOWN", Func_RoundDown);//将数字朝零的方向舍入
-            addFunc("ROUNDUP", Func_RoundUp);//将数朝远离零的方向舍入
+            addFunc("ROUND", F_Round);//将数字舍入到指定位数
+            addFunc("ROUNDDOWN", F_RoundDown);//将数字朝零的方向舍入
+            addFunc("ROUNDUP", F_RoundUp);//将数朝远离零的方向舍入
             //addFunc("SERIESSUM", SERIESSUM);//返回基于公式的幂级数的和
-            addFunc("SIGN", Func_Sign);//返回数字的符号
-            addFunc("SIN", Func_Sin);//返回给定角度的正弦值
-            addFunc("SINH", Func_Sinh);//返回数字的双曲正弦值
-            addFunc("SQRTPI", Func_SqrtPi);//返回某数与 PI 的乘积的平方根
-            addFunc("SQRT", Func_Sqrt);//返回正平方根
+            addFunc("SIGN", F_Sign);//返回数字的符号
+            addFunc("SIN", F_Sin);//返回给定角度的正弦值
+            addFunc("SINH", F_Sinh);//返回数字的双曲正弦值
+            addFunc("SQRTPI", F_SqrtPi);//返回某数与 PI 的乘积的平方根
+            addFunc("SQRT", F_Sqrt);//返回正平方根
             //addFunc("SUBTOTAL", SUBTOTAL);//返回数据库清单或数据库中的分类汇总
-            addFunc("SUM", Func_Sum);//将参数求和
+            addFunc("SUM", F_Sum);//将参数求和
             //addFunc("SUMIF", SUMIF);//按给定条件将指定单元格求和
             //addFunc("SUMPRODUCT", SUMPRODUCT);//返回相对应的数组部分的乘积和
-            addFunc("SUMSQ", Func_SumSq);//返回参数的平方和
+            addFunc("SUMSQ", F_SumSq);//返回参数的平方和
             //addFunc("SUMX2MY2", SUMX2MY2);//返回两数组中对应值平方差之和
             //addFunc("SUMX2PY2", SUMX2PY2);//返回两数组中对应值的平方和之和
             //addFunc("SUMXMY2", SUMXMY2);//返回两数组中对应值的平方和之和
-            addFunc("TAN", Func_Tan);//返回数字的正切值
-            addFunc("TANH", Func_Tanh);//返回数字的双曲正切值
-            addFunc("TRUNC", Func_Trunc);//将数字截尾取整
-            addFunc("PERMUT", Func_Permut);//返回从给定数目的对象集合中选取的若干对象的排列数
+            addFunc("TAN", F_Tan);//返回数字的正切值
+            addFunc("TANH", F_Tanh);//返回数字的双曲正切值
+            addFunc("TRUNC", F_Trunc);//将数字截尾取整
+            addFunc("PERMUT", F_Permut);//返回从给定数目的对象集合中选取的若干对象的排列数
 
 
         }
 
-        private Operand Func_Permut(List<Operand> arg)
+        private Operand F_Permut(List<Operand> arg)
         {
             CheckArgsCount("Permut", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER, OperandType.NUMBER },
@@ -91,7 +91,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, sum);
         }
 
-        private Operand Func_Combin(List<Operand> arg)
+        private Operand F_Combin(List<Operand> arg)
         {
             CheckArgsCount("Combin", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER, OperandType.NUMBER },
@@ -108,7 +108,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, sum / sum2);
         }
 
-        private Operand Func_Trunc(List<Operand> arg)
+        private Operand F_Trunc(List<Operand> arg)
         {
             CheckArgsCount("TRUNC", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER },
@@ -118,7 +118,7 @@ namespace ToolGood.Algorithm
         }
 
 
-        private Operand Func_Tanh(List<Operand> arg)
+        private Operand F_Tanh(List<Operand> arg)
         {
             CheckArgsCount("TANH", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER },
@@ -127,7 +127,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, Math.Tanh(arg[0].NumberValue));
         }
 
-        private Operand Func_Tan(List<Operand> arg)
+        private Operand F_Tan(List<Operand> arg)
         {
             CheckArgsCount("TAN", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER },
@@ -136,7 +136,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, Math.Tan(arg[0].NumberValue));
         }
 
-        private Operand Func_SumSq(List<Operand> arg)
+        private Operand F_SumSq(List<Operand> arg)
         {
             if (arg.Count == 0) return ThrowError("SUMSQ 中参数不足", new List<Operand>());
             double d = 0;
@@ -154,7 +154,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, d);
         }
 
-        private Operand Func_Sum(List<Operand> arg)
+        private Operand F_Sum(List<Operand> arg)
         {
             if (arg.Count < 1) return ThrowError("SUM 中参数不足", new List<Operand>());
             List<double> list = new List<double>();
@@ -171,7 +171,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, list.Sum());
         }
 
-        private Operand Func_Sqrt(List<Operand> arg)
+        private Operand F_Sqrt(List<Operand> arg)
         {
             CheckArgsCount("SQRT", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER },
@@ -180,7 +180,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, Math.Sqrt(arg[0].NumberValue));
         }
 
-        private Operand Func_SqrtPi(List<Operand> arg)
+        private Operand F_SqrtPi(List<Operand> arg)
         {
             CheckArgsCount("SQRTPI", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER },
@@ -189,7 +189,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, Math.Sqrt(arg[0].NumberValue * Math.PI));
         }
 
-        private Operand Func_Sinh(List<Operand> arg)
+        private Operand F_Sinh(List<Operand> arg)
         {
             CheckArgsCount("SINH", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER },
@@ -198,7 +198,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, Math.Sinh(arg[0].NumberValue));
         }
 
-        private Operand Func_Sin(List<Operand> arg)
+        private Operand F_Sin(List<Operand> arg)
         {
             CheckArgsCount("SIN", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER },
@@ -207,7 +207,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, Math.Sin(arg[0].NumberValue));
         }
 
-        private Operand Func_Sign(List<Operand> arg)
+        private Operand F_Sign(List<Operand> arg)
         {
             CheckArgsCount("SIGN", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER },
@@ -216,7 +216,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, (double)Math.Sign(arg[0].NumberValue));
         }
 
-        private Operand Func_RoundUp(List<Operand> arg)
+        private Operand F_RoundUp(List<Operand> arg)
         {
             CheckArgsCount("ROUNDUP", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER, OperandType.NUMBER },
@@ -230,7 +230,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, -t);
         }
 
-        private Operand Func_RoundDown(List<Operand> arg)
+        private Operand F_RoundDown(List<Operand> arg)
         {
             CheckArgsCount("ROUNDDOW", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER, OperandType.NUMBER },
@@ -243,7 +243,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, b);
         }
 
-        private Operand Func_Round(List<Operand> arg)
+        private Operand F_Round(List<Operand> arg)
         {
             CheckArgsCount("ROUND", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER },
@@ -256,7 +256,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, Math.Round(arg[0].NumberValue, (int)arg[1].NumberValue));
         }
 
-        private Operand Func_Randbetween(List<Operand> arg)
+        private Operand F_Randbetween(List<Operand> arg)
         {
             CheckArgsCount("Randbetween", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER, OperandType.NUMBER },
@@ -266,12 +266,12 @@ namespace ToolGood.Algorithm
 
         }
 
-        private Operand Func_Rand(List<Operand> arg)
+        private Operand F_Rand(List<Operand> arg)
         {
             return new Operand(OperandType.NUMBER, rand.NextDouble());
         }
 
-        private Operand Func_Radians(List<Operand> arg)
+        private Operand F_Radians(List<Operand> arg)
         {
             CheckArgsCount("Radians", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER },
@@ -281,7 +281,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, r);
         }
 
-        private Operand Func_Quotient(List<Operand> arg)
+        private Operand F_Quotient(List<Operand> arg)
         {
             CheckArgsCount("Quotient", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER, OperandType.NUMBER },
@@ -291,7 +291,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, (double)r);
         }
 
-        private Operand Func_Product(List<Operand> arg)
+        private Operand F_Product(List<Operand> arg)
         {
             if (arg.Count == 0) return ThrowError("Product 参数不足", new List<Operand>());
             double d = 1;
@@ -308,7 +308,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, d);
         }
 
-        private Operand Func_Power(List<Operand> arg)
+        private Operand F_Power(List<Operand> arg)
         {
             CheckArgsCount("Quotient", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER, OperandType.NUMBER },
@@ -316,12 +316,12 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, Math.Pow(arg[0].NumberValue, arg[1].NumberValue));
         }
 
-        private Operand Func_Pi(List<Operand> arg)
+        private Operand F_Pi(List<Operand> arg)
         {
             return new Operand(OperandType.NUMBER, Math.PI);
         }
 
-        private Operand Func_Odd(List<Operand> arg)
+        private Operand F_Odd(List<Operand> arg)
         {
             CheckArgsCount("ODD", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER},
@@ -339,7 +339,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, z);
         }
 
-        private Operand Func_Mround(List<Operand> arg)
+        private Operand F_Mround(List<Operand> arg)
         {
             CheckArgsCount("MROUND", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER, OperandType.NUMBER},
@@ -352,30 +352,30 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, r);
         }
 
-        private Operand Func_Multinomial(List<Operand> arg)
+        private Operand F_Multinomial(List<Operand> arg)
         {
             if (arg.Count == 0) return ThrowError("multinomial 中没有参数", new List<Operand>());
             int sum = 0;
             int n = 1;
             foreach (var item in arg) {
                 if (item.Type == OperandType.NUMBER) {
-                    n *= Func_base_Factorial(item.IntValue);
+                    n *= F_base_Factorial(item.IntValue);
                     sum += item.IntValue;
                 } else if (item.Type == OperandType.ARRARY) {
                     var ls = item.GetNumberList();
                     foreach (var d in ls) {
-                        n *= Func_base_Factorial((int)d);
+                        n *= F_base_Factorial((int)d);
                         sum += (int)d;
                     }
                 }
             }
-            var r = Func_base_Factorial(sum) / n;
+            var r = F_base_Factorial(sum) / n;
             return new Operand(OperandType.NUMBER, r);
         }
 
  
 
-        private Operand Func_Log10(List<Operand> arg)
+        private Operand F_Log10(List<Operand> arg)
         {
             CheckArgsCount("log10", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER},
@@ -384,7 +384,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, Math.Log(arg[0].NumberValue, 10));
         }
 
-        private Operand Func_Log(List<Operand> arg)
+        private Operand F_Log(List<Operand> arg)
         {
             CheckArgsCount("log", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER},
@@ -397,7 +397,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, Math.Log(arg[0].NumberValue, 10));
         }
 
-        private Operand Func_Ln(List<Operand> arg)
+        private Operand F_Ln(List<Operand> arg)
         {
             CheckArgsCount("ln", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER},
@@ -407,7 +407,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, Math.Log(arg[0].NumberValue));
         }
 
-        private Operand Func_Lcm(List<Operand> arg)
+        private Operand F_Lcm(List<Operand> arg)
         {
             if (arg.Count < 1) return ThrowError("Lcm 中没有参数不足", new List<Operand>());
             List<int> list = new List<int>();
@@ -421,10 +421,10 @@ namespace ToolGood.Algorithm
                     }
                 }
             }
-            return new Operand(OperandType.NUMBER, (double)Func_base_lgm(list));
+            return new Operand(OperandType.NUMBER, (double)F_base_lgm(list));
         }
 
-        private Operand Func_Int(List<Operand> arg)
+        private Operand F_Int(List<Operand> arg)
         {
             CheckArgsCount("int", arg, new OperandType[][] {
                 new OperandType[] { OperandType.ANY},
@@ -443,7 +443,7 @@ namespace ToolGood.Algorithm
             return ThrowError("无法转成整数", arg);
         }
 
-        private Operand Func_Gcd(List<Operand> arg)
+        private Operand F_Gcd(List<Operand> arg)
         {
             if (arg.Count < 2) return ThrowError("gcd 中没有参数不足", new List<Operand>());
             List<int> list = new List<int>();
@@ -457,11 +457,11 @@ namespace ToolGood.Algorithm
                     }
                 }
             }
-            return new Operand(OperandType.NUMBER, (double)Func_base_gcd(list));
+            return new Operand(OperandType.NUMBER, (double)F_base_gcd(list));
         }
 
 
-        private Operand Func_Floor(List<Operand> arg)
+        private Operand F_Floor(List<Operand> arg)
         {
             CheckArgsCount("Floor", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER},
@@ -476,7 +476,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, d);
         }
 
-        private Operand Func_Factdouble(List<Operand> arg)
+        private Operand F_Factdouble(List<Operand> arg)
         {
             CheckArgsCount("factdouble", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER},
@@ -493,7 +493,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, d);
         }
 
-        private Operand Func_Fact(List<Operand> arg)
+        private Operand F_Fact(List<Operand> arg)
         {
             CheckArgsCount("fact", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER},
@@ -510,7 +510,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, d);
         }
 
-        private Operand Func_Exp(List<Operand> arg)
+        private Operand F_Exp(List<Operand> arg)
         {
             CheckArgsCount("exp", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER},
@@ -519,7 +519,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, Math.Exp(arg[0].NumberValue));
         }
 
-        private Operand Func_Even(List<Operand> arg)
+        private Operand F_Even(List<Operand> arg)
         {
             CheckArgsCount("even", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER},
@@ -537,7 +537,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, z);
         }
 
-        private Operand Func_Degrees(List<Operand> arg)
+        private Operand F_Degrees(List<Operand> arg)
         {
             CheckArgsCount("degrees", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER},
@@ -548,7 +548,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, r);
         }
 
-        private Operand Func_Cosh(List<Operand> arg)
+        private Operand F_Cosh(List<Operand> arg)
         {
             CheckArgsCount("cosh", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER},
@@ -557,7 +557,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, Math.Cosh(arg[0].NumberValue));
         }
 
-        private Operand Func_Cos(List<Operand> arg)
+        private Operand F_Cos(List<Operand> arg)
         {
             CheckArgsCount("cos", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER},
@@ -566,7 +566,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, Math.Cos(arg[0].NumberValue));
         }
 
-        private Operand Func_Ceiling(List<Operand> arg)
+        private Operand F_Ceiling(List<Operand> arg)
         {
             CheckArgsCount("ceiling", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER},
@@ -580,14 +580,14 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, d);
         }
 
-        private Operand Func_Atan2(List<Operand> arg)
+        private Operand F_Atan2(List<Operand> arg)
         {
             CheckArgsCount("atan2", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER, OperandType.NUMBER},
                  });
             return new Operand(OperandType.NUMBER, Math.Atan2(arg[1].NumberValue, arg[0].NumberValue));
         }
-        private Operand Func_Atanh(List<Operand> arg)
+        private Operand F_Atanh(List<Operand> arg)
         {
             CheckArgsCount("atanh", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER },
@@ -598,7 +598,7 @@ namespace ToolGood.Algorithm
             var d = Math.Log((1 + x) / (1 - x)) / 2;
             return new Operand(OperandType.NUMBER, d);
         }
-        private Operand Func_Atan(List<Operand> arg)
+        private Operand F_Atan(List<Operand> arg)
         {
             CheckArgsCount("atan", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER },
@@ -606,7 +606,7 @@ namespace ToolGood.Algorithm
 
             return new Operand(OperandType.NUMBER, Math.Atan(arg[0].NumberValue));
         }
-        private Operand Func_Asinh(List<Operand> arg)
+        private Operand F_Asinh(List<Operand> arg)
         {
             CheckArgsCount("asinh", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER },
@@ -617,7 +617,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, d);
         }
 
-        private Operand Func_Asin(List<Operand> arg)
+        private Operand F_Asin(List<Operand> arg)
         {
             CheckArgsCount("asin", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER },
@@ -626,7 +626,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, Math.Asin(arg[0].NumberValue));
         }
 
-        private Operand Func_Acosh(List<Operand> arg)
+        private Operand F_Acosh(List<Operand> arg)
         {
             CheckArgsCount("acosh", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER },
@@ -641,7 +641,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, r);
         }
 
-        private Operand Func_Acos(List<Operand> arg)
+        private Operand F_Acos(List<Operand> arg)
         {
             CheckArgsCount("acos", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER },
@@ -651,7 +651,7 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.NUMBER, Math.Acos(arg[0].NumberValue));
         }
 
-        private Operand Func_Abs(List<Operand> arg)
+        private Operand F_Abs(List<Operand> arg)
         {
             CheckArgsCount("abs", arg, new OperandType[][] {
                 new OperandType[] { OperandType.NUMBER },
