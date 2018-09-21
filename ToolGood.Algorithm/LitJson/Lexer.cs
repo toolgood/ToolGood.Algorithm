@@ -50,15 +50,15 @@ namespace ToolGood.Algorithm.LitJson
 
 
         #region Properties
-        public bool AllowComments {
-            get { return allow_comments; }
-            set { allow_comments = value; }
-        }
+        //public bool AllowComments {
+        //    get { return allow_comments; }
+        //    set { allow_comments = value; }
+        //}
 
-        public bool AllowSingleQuotedStrings {
-            get { return allow_single_quoted_strings; }
-            set { allow_single_quoted_strings = value; }
-        }
+        //public bool AllowSingleQuotedStrings {
+        //    get { return allow_single_quoted_strings; }
+        //    set { allow_single_quoted_strings = value; }
+        //}
 
         public bool EndOfInput {
             get { return end_of_input; }

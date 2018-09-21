@@ -88,7 +88,7 @@ namespace ToolGood.Algorithm.LitJson
     }
 
     internal delegate object ImporterFunc(object input);
-    delegate TValue ImporterFunc<TJson, TValue>(TJson input);
+    //delegate TValue ImporterFunc<TJson, TValue>(TJson input);
 
     delegate IJsonWrapper WrapperFactory();
 

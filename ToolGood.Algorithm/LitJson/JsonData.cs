@@ -321,30 +321,6 @@ namespace ToolGood.Algorithm.LitJson
         {
         }
 
-        public JsonData(bool boolean)
-        {
-            type = JsonType.Boolean;
-            inst_boolean = boolean;
-        }
-
-        public JsonData(double number)
-        {
-            type = JsonType.Double;
-            inst_double = number;
-        }
-
-        public JsonData(int number)
-        {
-            type = JsonType.Int;
-            inst_int = number;
-        }
-
-        public JsonData(long number)
-        {
-            type = JsonType.Long;
-            inst_long = number;
-        }
-
         public JsonData(object obj)
         {
             if (obj is Boolean) {
@@ -380,93 +356,8 @@ namespace ToolGood.Algorithm.LitJson
             throw new ArgumentException(
                 "Unable to wrap the given object with JsonData");
         }
-
-        public JsonData(string str)
-        {
-            type = JsonType.String;
-            inst_string = str;
-        }
+ 
         #endregion
-
-
-        #region Implicit Conversions
-        public static implicit operator JsonData(Boolean data)
-        {
-            return new JsonData(data);
-        }
-
-        public static implicit operator JsonData(Double data)
-        {
-            return new JsonData(data);
-        }
-
-        public static implicit operator JsonData(Int32 data)
-        {
-            return new JsonData(data);
-        }
-
-        public static implicit operator JsonData(Int64 data)
-        {
-            return new JsonData(data);
-        }
-
-        public static implicit operator JsonData(String data)
-        {
-            return new JsonData(data);
-        }
-        #endregion
-
-
-        #region Explicit Conversions
-        public static explicit operator Boolean(JsonData data)
-        {
-            if (data.type != JsonType.Boolean)
-                throw new InvalidCastException(
-                    "Instance of JsonData doesn't hold a double");
-
-            return data.inst_boolean;
-        }
-
-        public static explicit operator Double(JsonData data)
-        {
-            if (data.type != JsonType.Double)
-                throw new InvalidCastException(
-                    "Instance of JsonData doesn't hold a double");
-
-            return data.inst_double;
-        }
-
-        public static explicit operator Int32(JsonData data)
-        {
-            if (data.type != JsonType.Int && data.type != JsonType.Long) {
-                throw new InvalidCastException(
-                    "Instance of JsonData doesn't hold an int");
-            }
-
-            // cast may truncate data... but that's up to the user to consider
-            return data.type == JsonType.Int ? data.inst_int : (int)data.inst_long;
-        }
-
-        public static explicit operator Int64(JsonData data)
-        {
-            if (data.type != JsonType.Long && data.type != JsonType.Int) {
-                throw new InvalidCastException(
-                    "Instance of JsonData doesn't hold a long");
-            }
-
-            return data.type == JsonType.Long ? data.inst_long : data.inst_int;
-        }
-
-        public static explicit operator String(JsonData data)
-        {
-            if (data.type != JsonType.String)
-                throw new InvalidCastException(
-                    "Instance of JsonData doesn't hold a string");
-
-            return data.inst_string;
-        }
-        #endregion
-
 
         #region ICollection Methods
         void ICollection.CopyTo(Array array, int index)
