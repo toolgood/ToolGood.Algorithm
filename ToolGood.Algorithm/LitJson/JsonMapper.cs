@@ -147,8 +147,7 @@ namespace ToolGood.Algorithm.LitJson
             custom_importers_table = new Dictionary<Type,
                                    IDictionary<Type, ImporterFunc>>();
 
-            RegisterBaseExporters();
-            RegisterBaseImporters();
+             RegisterBaseImporters();
         }
         #endregion
 
@@ -232,40 +231,6 @@ namespace ToolGood.Algorithm.LitJson
             lock (object_metadata_lock) {
                 try {
                     object_metadata.Add(type, data);
-                } catch (ArgumentException) {
-                    return;
-                }
-            }
-        }
-
-        private static void AddTypeProperties(Type type)
-        {
-            if (type_properties.ContainsKey(type))
-                return;
-
-            IList<PropertyMetadata> props = new List<PropertyMetadata>();
-
-            foreach (PropertyInfo p_info in type.GetProperties()) {
-                if (p_info.Name == "Item")
-                    continue;
-
-                PropertyMetadata p_data = new PropertyMetadata();
-                p_data.Info = p_info;
-                p_data.IsField = false;
-                props.Add(p_data);
-            }
-
-            foreach (FieldInfo f_info in type.GetFields()) {
-                PropertyMetadata p_data = new PropertyMetadata();
-                p_data.Info = f_info;
-                p_data.IsField = true;
-
-                props.Add(p_data);
-            }
-
-            lock (type_properties_lock) {
-                try {
-                    type_properties.Add(type, props);
                 } catch (ArgumentException) {
                     return;
                 }
@@ -548,55 +513,7 @@ namespace ToolGood.Algorithm.LitJson
                 delegate { return new JsonMockWrapper(); }, reader);
         }
 
-        private static void RegisterBaseExporters()
-        {
-            //base_exporters_table[typeof (byte)] =
-            //    delegate (object obj, JsonWriter writer) {
-            //        writer.Write (Convert.ToInt32 ((byte) obj));
-            //    };
-
-            //base_exporters_table[typeof (char)] =
-            //    delegate (object obj, JsonWriter writer) {
-            //        writer.Write (Convert.ToString ((char) obj));
-            //    };
-
-            //base_exporters_table[typeof (DateTime)] =
-            //    delegate (object obj, JsonWriter writer) {
-            //        writer.Write (Convert.ToString ((DateTime) obj,
-            //                                        datetime_format));
-            //    };
-
-            //base_exporters_table[typeof (decimal)] =
-            //    delegate (object obj, JsonWriter writer) {
-            //        writer.Write ((decimal) obj);
-            //    };
-
-            //base_exporters_table[typeof (sbyte)] =
-            //    delegate (object obj, JsonWriter writer) {
-            //        writer.Write (Convert.ToInt32 ((sbyte) obj));
-            //    };
-
-            //base_exporters_table[typeof (short)] =
-            //    delegate (object obj, JsonWriter writer) {
-            //        writer.Write (Convert.ToInt32 ((short) obj));
-            //    };
-
-            //base_exporters_table[typeof (ushort)] =
-            //    delegate (object obj, JsonWriter writer) {
-            //        writer.Write (Convert.ToInt32 ((ushort) obj));
-            //    };
-
-            //base_exporters_table[typeof (uint)] =
-            //    delegate (object obj, JsonWriter writer) {
-            //        writer.Write (Convert.ToUInt64 ((uint) obj));
-            //    };
-
-            //base_exporters_table[typeof (ulong)] =
-            //    delegate (object obj, JsonWriter writer) {
-            //        writer.Write ((ulong) obj);
-            //    };
-        }
-
+ 
         private static void RegisterBaseImporters()
         {
             ImporterFunc importer;
@@ -723,26 +640,6 @@ namespace ToolGood.Algorithm.LitJson
         }
 
 
-        public static void RegisterImporter<TJson, TValue>(
-            ImporterFunc<TJson, TValue> importer)
-        {
-            ImporterFunc importer_wrapper =
-                delegate (object input) {
-                    return importer((TJson)input);
-                };
-
-            RegisterImporter(custom_importers_table, typeof(TJson),
-                              typeof(TValue), importer_wrapper);
-        }
-
-        public static void UnregisterExporters()
-        {
-            //custom_exporters_table.Clear ();
-        }
-
-        public static void UnregisterImporters()
-        {
-            custom_importers_table.Clear();
-        }
+ 
     }
 }
