@@ -240,16 +240,9 @@ namespace ToolGood.Algorithm
                 }
             }
 
-            //转换完成,若运算符堆栈中尚有运算符时,
-            //则依序取出运算符到操作数堆栈,直到运算符堆栈为空
             while (operators.Count > 0) {
                 operands.Add(operators.Pop());
             }
-            //var tokens = new List<object>();
-            ////调整操作数栈中对象的顺序并输出到最终栈
-            //while (operands.Count > 0) {
-            //    tokens.Add(operands.Pop());
-            //}
             return operands;
         }
 

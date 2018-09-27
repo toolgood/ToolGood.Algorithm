@@ -251,9 +251,9 @@ namespace ToolGood.Algorithm
                  });
 
             if (arg.Count == 1) {
-                return new Operand(OperandType.NUMBER, Math.Round(arg[0].NumberValue));
+                return new Operand(OperandType.NUMBER, Math.Round(arg[0].NumberValue, MidpointRounding.AwayFromZero));
             }
-            return new Operand(OperandType.NUMBER, Math.Round(arg[0].NumberValue, (int)arg[1].NumberValue));
+            return new Operand(OperandType.NUMBER, (double)Math.Round((decimal)arg[0].NumberValue, (int)arg[1].NumberValue, MidpointRounding.AwayFromZero));
         }
 
         private Operand F_Randbetween(List<Operand> arg)
