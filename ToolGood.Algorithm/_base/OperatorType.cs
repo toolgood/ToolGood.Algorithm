@@ -35,14 +35,18 @@ namespace ToolGood.Algorithm
         /// </summary>
         FUNC,
 
+
+        POINTCHILD,
+        /// <summary>
+        /// 
+        /// </summary>
+        POINTFUNC,
+
         /// <summary>
         /// 下一级
         /// </summary>
         POINT,
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //POINTFUNC,
+
 
         ///// <summary>
         ///// 逻辑非,!,NOT

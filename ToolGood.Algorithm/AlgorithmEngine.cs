@@ -176,6 +176,13 @@ namespace ToolGood.Algorithm
                 //获取 当前操作数
                 curOpd = getOperand(texts, curPos);
                 if (curOpd != "") {
+                    if (operators.Count > 0) {
+                        Operator op = operators.Pop();
+                        if (op.Type == OperatorType.POINT) {
+                            op.Type = OperatorType.POINTCHILD;
+                        }
+                        operators.Push(op);
+                    }
                     operands.Add(new Operand(curOpd));
                     curPos++;
                 }
@@ -210,6 +217,14 @@ namespace ToolGood.Algorithm
                     continue;
                 }
                 funcCount = optType != OperatorType.FUNC ? 0 : getFunctionCount(texts, curPos);
+                if (operators.Count > 0) {
+                    Operator op = operators.Pop();
+                    if (op.Type == OperatorType.POINT) {
+                        op.Type = OperatorType.POINTFUNC;
+                        funcCount++;
+                    }
+                    operators.Push(op);
+                }
 
                 //若运算符堆栈为空,或者若运算符堆栈栈顶为左括号,则将当前运算符直接存入运算符堆栈.
                 if (operators.Count == 0 || operators.Peek().Type == OperatorType.LB) {
@@ -561,8 +576,10 @@ namespace ToolGood.Algorithm
                     var curOpt = (Operator)item;
                     List<Operand> list = new List<Operand>();
                     switch (curOpt.Type) {
-                        //case OperatorType.POINTFUNC: break;
-                        case OperatorType.POINT:
+                        case OperatorType.POINTFUNC:
+
+                            break;
+                        case OperatorType.POINTCHILD:
                             list.Insert(0, opds.Pop());
                             list.Insert(0, opds.Pop());
                             opds.Push(getChild(list));
@@ -822,7 +839,7 @@ namespace ToolGood.Algorithm
         private void addFunc(string name, Func<List<Operand>, Operand> func)
         {
             name = name.ToLower().Trim();
-            m_Operators.Add(name);
+            //m_Operators.Add(name);
             funcDict[name] = func;
         }
 
