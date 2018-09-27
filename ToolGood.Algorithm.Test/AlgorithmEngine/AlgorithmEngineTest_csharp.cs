@@ -279,9 +279,11 @@ namespace ToolGood.Algorithm.Test
 
             dt = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Name.Trim()", null);
             Assert.AreEqual(dt, "William Shakespeare");
- 
+
+
+            dt = engine.TryEvaluate("json('{\"Name1\":\"William Shakespeare \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').（'Name'& 1）.Trim().substring(2,3)", null);
+            Assert.AreEqual(dt, "ill");
 
         }
     }
-
 }

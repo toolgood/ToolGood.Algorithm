@@ -26,11 +26,11 @@ namespace ToolGood.Algorithm.Test
             //    var a = t;
             //}
 
-            //if (engine.Parse("json('{\"Name\":\"William Shakespeare \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Name.Trim()")) {
-            //    var t = engine.Evaluate();
-            //    var a = t;
+            if (engine.Parse("json('{\"Name1\":\"William Shakespeare \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').（'Name'& 1）.Trim().substring(2,3)")) {
+                var t = engine.Evaluate();
+                var a = t;
 
-            //}
+            }
             //if (engine.Parse("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Birthday")) {
             //    var t = engine.Evaluate();
             //    var a = t;
