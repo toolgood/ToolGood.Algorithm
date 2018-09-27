@@ -20,15 +20,10 @@ namespace ToolGood.Algorithm
         /// </summary>
         RB,
 
-        /// <summary>
-        /// 创建数组
-        /// </summary>
-        CREATEARRARY,
-
-        /// <summary>
-        /// 函数
-        /// </summary>
-        FUNC,
+        ///// <summary>
+        ///// 创建数组
+        ///// </summary>
+        //CREATEARRARY,
 
         /// <summary>
         /// 参数
@@ -36,9 +31,18 @@ namespace ToolGood.Algorithm
         PARAMETER,
 
         /// <summary>
+        /// 函数
+        /// </summary>
+        FUNC,
+
+        /// <summary>
         /// 下一级
         /// </summary>
         POINT,
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //POINTFUNC,
 
         ///// <summary>
         ///// 逻辑非,!,NOT

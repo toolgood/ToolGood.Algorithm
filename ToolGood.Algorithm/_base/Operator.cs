@@ -111,6 +111,11 @@ namespace ToolGood.Algorithm
                 //A、B优先级相等
                 return 0;
             }
+            if ((optA >= OperatorType.FUNC && optA <= OperatorType.POINT) &&
+                  (optB >= OperatorType.FUNC && optB <= OperatorType.POINT)) {
+                return 0;
+            }
+
             //if (optA == OperatorType.POINT ) {
             //    return 1;
             //}

@@ -11,8 +11,8 @@ namespace ToolGood.Algorithm
     {
         private Random rand;
         private List<string> m_Operators = new List<string>() { ".", "(", ")", "!", "*", "/", "%", "+", "-", "<", ">", "=", "&", "|", ",", "==", "!=", ">=", "<=", "<>", "@" };
-        private Stack<object> m_tokens = new Stack<object>();        //最终逆波兰式堆栈
-        private Dictionary<string, Stack<object>> tokenDict = new Dictionary<string, Stack<object>>();
+        private List<object> m_tokens = new List<object>();        //最终逆波兰式堆栈
+        private Dictionary<string, List<object>> tokenDict = new Dictionary<string, List<object>>();
         private Dictionary<string, Func<List<Operand>, Operand>> funcDict = new Dictionary<string, Func<List<Operand>, Operand>>();
         private bool _useExcelIndex = true;
         private int excelIndex = 1;
@@ -135,7 +135,7 @@ namespace ToolGood.Algorithm
         }
 
 
-        private Stack<object> parse(string exp, out string error)
+        private List<object> parse(string exp, out string error)
         {
             error = null;
             var tmp = parse(exp);
@@ -158,9 +158,9 @@ namespace ToolGood.Algorithm
             return tmp;
         }
 
-        private Stack<object> parse(string exp)
+        private List<object> parse(string exp)
         {
-            Stack<object> operands = new Stack<object>();             //操作数堆栈
+            List<object> operands = new List<object>();             //操作数堆栈
             Stack<Operator> operators = new Stack<Operator>();      //运算符堆栈
             OperatorType optType = OperatorType.ERR;                //运算符类型
             string curOpd = "";                                 //当前操作数
@@ -176,7 +176,7 @@ namespace ToolGood.Algorithm
                 //获取 当前操作数
                 curOpd = getOperand(texts, curPos);
                 if (curOpd != "") {
-                    operands.Push(new Operand(curOpd));
+                    operands.Add(new Operand(curOpd));
                     curPos++;
                 }
                 // 获取 当前运算符
@@ -194,7 +194,7 @@ namespace ToolGood.Algorithm
                 if (curOpt == ")") {
                     while (operators.Count > 0) {
                         if (operators.Peek().Type != OperatorType.LB) {
-                            operands.Push(operators.Pop());
+                            operands.Add(operators.Pop());
                         } else {
                             operators.Pop();
                             break;
@@ -206,7 +206,7 @@ namespace ToolGood.Algorithm
 
                 optType = Operator.ConvertOperator(curOpt, texts[curPos]);
                 if (optType == OperatorType.PARAMETER) {
-                    operands.Push(new Operand(curOpt));
+                    operands.Add(new Operand(curOpt));
                     continue;
                 }
                 funcCount = optType != OperatorType.FUNC ? 0 : getFunctionCount(texts, curPos);
@@ -226,7 +226,7 @@ namespace ToolGood.Algorithm
                     //并将当前运算符压入运算符堆栈。
                     while (operators.Count > 0) {
                         if (Operator.ComparePriority(optType, operators.Peek().Type) <= 0 && operators.Peek().Type != OperatorType.LB) {
-                            operands.Push(operators.Pop());
+                            operands.Add(operators.Pop());
 
                             if (operators.Count == 0) {
                                 operators.Push(new Operator(optType, curOpt, funcCount));
@@ -243,14 +243,14 @@ namespace ToolGood.Algorithm
             //转换完成,若运算符堆栈中尚有运算符时,
             //则依序取出运算符到操作数堆栈,直到运算符堆栈为空
             while (operators.Count > 0) {
-                operands.Push(operators.Pop());
+                operands.Add(operators.Pop());
             }
-            var tokens = new Stack<object>();
-            //调整操作数栈中对象的顺序并输出到最终栈
-            while (operands.Count > 0) {
-                tokens.Push(operands.Pop());
-            }
-            return tokens;
+            //var tokens = new List<object>();
+            ////调整操作数栈中对象的顺序并输出到最终栈
+            //while (operands.Count > 0) {
+            //    tokens.Add(operands.Pop());
+            //}
+            return operands;
         }
 
         private int getFunctionCount(List<string> texts, int curPos)
@@ -476,7 +476,7 @@ namespace ToolGood.Algorithm
             return GetParameterNames(m_tokens);
         }
 
-        private List<string> GetParameterNames(Stack<object> tokens)
+        private List<string> GetParameterNames(List<object> tokens)
         {
             List<string> list = new List<string>();
             foreach (var item in tokens) {
@@ -491,7 +491,7 @@ namespace ToolGood.Algorithm
             return list;
         }
 
-        private List<string> GetFunctionNames(Stack<object> tokens)
+        private List<string> GetFunctionNames(List<object> tokens)
         {
             List<string> list = new List<string>();
             foreach (var item in tokens) {
@@ -529,7 +529,7 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public object Evaluate(string name)
         {
-            Stack<object> tokens = null;
+            List<object> tokens = null;
             if (tokenDict.TryGetValue(name, out tokens)) {
                 return evaluate(tokens);
             }
@@ -537,7 +537,7 @@ namespace ToolGood.Algorithm
             throw new Exception("请编译公式！");
         }
 
-        private object evaluate(Stack<object> tokens)
+        private object evaluate(List<object> tokens)
         {
             /*
               逆波兰表达式求值算法：
@@ -551,7 +551,7 @@ namespace ToolGood.Algorithm
 
             object value = null;
             Stack<Operand> opds = new Stack<Operand>();
-            Stack<object> pars = new Stack<object>();
+            //Stack<object> pars = new Stack<object>();
 
             foreach (object item in tokens) {
                 var curOpd = item as Operand;
@@ -568,6 +568,7 @@ namespace ToolGood.Algorithm
                     var curOpt = (Operator)item;
                     List<Operand> list = new List<Operand>();
                     switch (curOpt.Type) {
+                        //case OperatorType.POINTFUNC: break;
                         case OperatorType.POINT:
                             list.Insert(0, opds.Pop());
                             list.Insert(0, opds.Pop());
