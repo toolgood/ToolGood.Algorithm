@@ -15,7 +15,9 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数`。
     var r = engine.TryEvaluate("(1=1)*9+2", 0); //返回:11
     var d = engine.TryEvaluate("'2016-1-1'+1", DateTime.MinValue); //返回日期:2016-1-2
     var t = engine.TryEvaluate("'2016-1-1'+9*'1:0'", DateTime.MinValue);//返回日期:2016-1-1 9:0
-	var j = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Age", null);//返回51
+    var j = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Age", null);//返回51
+    var k = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Name.Trim()", null);//返回"William Shakespeare" (不带空格)
+
 ```
 支持常量`pi`,`e`,`true`,`false`。
 
