@@ -64,8 +64,7 @@ namespace ToolGood.Algorithm
                 LastError = "exp无效";
                 return false;
             }
-            string error;
-            var obj = parse(exp, out error);
+            var obj = parse(exp, out string error);
             if (obj == null) {
                 return false;
             }
@@ -104,8 +103,7 @@ namespace ToolGood.Algorithm
                 LastError = "exp无效";
                 return false;
             }
-            string error;
-            var obj = parse(exp, out error);
+            var obj = parse(exp, out string error);
             if (obj == null) {
                 return false;
             }
@@ -542,8 +540,7 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public object Evaluate(string name)
         {
-            List<object> tokens = null;
-            if (tokenDict.TryGetValue(name, out tokens)) {
+            if (tokenDict.TryGetValue(name, out List<object> tokens)) {
                 return evaluate(tokens);
             }
             LastError = "请编译公式！";
@@ -562,9 +559,7 @@ namespace ToolGood.Algorithm
             、重复步骤2-5，堆栈中即为结果值。
             */
 
-            object value = null;
             Stack<Operand> opds = new Stack<Operand>();
-            //Stack<object> pars = new Stack<object>();
 
             foreach (object item in tokens) {
                 var curOpd = item as Operand;
@@ -581,13 +576,16 @@ namespace ToolGood.Algorithm
                     var curOpt = (Operator)item;
                     List<Operand> list = new List<Operand>();
                     switch (curOpt.Type) {
+                        #region POINT POINTCHILD POINTFUNC
                         case OperatorType.POINTFUNC: break;
                         case OperatorType.POINT:
                         case OperatorType.POINTCHILD:
                             list.Insert(0, opds.Pop());
                             list.Insert(0, opds.Pop());
                             opds.Push(getChild(list));
-                            break;
+                            break; 
+                        #endregion
+
                         #region 乘,*,multiplication
                         case OperatorType.MUL:
                             list.Insert(0, opds.Pop());
@@ -661,7 +659,7 @@ namespace ToolGood.Algorithm
                     }
                 }
             }
-
+            object value = null;
             if (opds.Count == 1) {
                 var outopd = opds.Pop();
                 if (outopd.Type == OperandType.ERROR) {

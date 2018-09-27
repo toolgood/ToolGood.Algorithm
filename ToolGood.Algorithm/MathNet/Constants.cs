@@ -100,13 +100,11 @@ namespace ToolGood.Algorithm.MathNet.Numerics
         public const double TwoSqrtEOverPi = 1.8603827342052657173362492472666631120594218414085755;
 
         /// <summary>The number (pi)/180 - factor to convert from Degree (deg) to Radians (rad).</summary>
-        /// <seealso cref="Trig.DegreeToRadian"/>
-        /// <seealso cref="Trig.RadianToDegree"/>
         public const double Degree = 0.017453292519943295769236907684886127134428718885417d;
 
         /// <summary>The number (pi)/200 - factor to convert from NewGrad (grad) to Radians (rad).</summary>
-        /// <seealso cref="Trig.GradToRadian"/>
-        /// <seealso cref="Trig.RadianToGrad"/>
+        /////// <seealso cref="Trig.GradToRadian"/>
+        /////// <seealso cref="Trig.RadianToGrad"/>
         public const double Grad = 0.015707963267948966192313216916397514420985846996876d;
 
         /// <summary>The number ln(10)/20 - factor to convert from Power Decibel (dB) to Neper (Np). Use this version when the Decibel represent a power gain but the compared values are not powers (e.g. amplitude, current, voltage).</summary>

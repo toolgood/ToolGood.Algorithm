@@ -18,7 +18,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
         /// <param name="rate">The rate (λ) parameter of the distribution. Range: λ ≥ 0.</param>
         /// <param name="x">The location at which to compute the density.</param>
         /// <returns>the density at <paramref name="x"/>.</returns>
-        /// <seealso cref="Density"/>
+        ///// <seealso cref="Density"/>
         public static double PDF(double rate, double x)
         {
             if (rate < 0.0) {
@@ -34,7 +34,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
         /// <param name="rate">The rate (λ) parameter of the distribution. Range: λ ≥ 0.</param>
         /// <param name="x">The location at which to compute the density.</param>
         /// <returns>the log density at <paramref name="x"/>.</returns>
-        /// <seealso cref="DensityLn"/>
+        ///// <seealso cref="DensityLn"/>
         public static double PDFLn(double rate, double x)
         {
             if (rate < 0.0) {
@@ -50,7 +50,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
         /// <param name="x">The location at which to compute the cumulative distribution function.</param>
         /// <param name="rate">The rate (λ) parameter of the distribution. Range: λ ≥ 0.</param>
         /// <returns>the cumulative distribution at location <paramref name="x"/>.</returns>
-        /// <seealso cref="CumulativeDistribution"/>
+        ///// <seealso cref="CumulativeDistribution"/>
         public static double CDF(double rate, double x)
         {
             if (rate < 0.0) {
@@ -67,7 +67,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
         /// <param name="p">The location at which to compute the inverse cumulative density.</param>
         /// <param name="rate">The rate (λ) parameter of the distribution. Range: λ ≥ 0.</param>
         /// <returns>the inverse cumulative density at <paramref name="p"/>.</returns>
-        /// <seealso cref="InverseCumulativeDistribution"/>
+        ///// <seealso cref="InverseCumulativeDistribution"/>
         public static double InvCDF(double rate, double p)
         {
             if (rate < 0.0) {

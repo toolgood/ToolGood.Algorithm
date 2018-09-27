@@ -1,14 +1,3 @@
-#region Header
-/**
- * JsonMapper.cs
- *   JSON to .Net object and object to JSON conversions.
- *
- * The authors disclaim copyright to this source code. For more details, see
- * the COPYING file included with this distribution.
- **/
-#endregion
-
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -95,7 +84,7 @@ namespace ToolGood.Algorithm.LitJson
     class JsonMapper
     {
         #region Fields
-        private static readonly int max_nesting_depth;
+        //private static readonly int max_nesting_depth;
 
         private static readonly IFormatProvider datetime_format;
 
@@ -121,7 +110,7 @@ namespace ToolGood.Algorithm.LitJson
         #region Constructors
         static JsonMapper()
         {
-            max_nesting_depth = 100;
+            //max_nesting_depth = 100;
 
             array_metadata = new Dictionary<Type, ArrayMetadata>();
             conv_ops = new Dictionary<Type, IDictionary<Type, MethodInfo>>();
@@ -145,9 +134,9 @@ namespace ToolGood.Algorithm.LitJson
             if (array_metadata.ContainsKey(type))
                 return;
 
-            ArrayMetadata data = new ArrayMetadata();
-
-            data.IsArray = type.IsArray;
+            ArrayMetadata data = new ArrayMetadata {
+                IsArray = type.IsArray
+            };
 
             if (type.GetInterface("System.Collections.IList") != null)
                 data.IsList = true;
@@ -207,10 +196,11 @@ namespace ToolGood.Algorithm.LitJson
             }
 
             foreach (FieldInfo f_info in type.GetFields()) {
-                PropertyMetadata p_data = new PropertyMetadata();
-                p_data.Info = f_info;
-                p_data.IsField = true;
-                p_data.Type = f_info.FieldType;
+                PropertyMetadata p_data = new PropertyMetadata {
+                    Info = f_info,
+                    IsField = true,
+                    Type = f_info.FieldType
+                };
 
                 data.Properties.Add(f_info.Name, p_data);
             }

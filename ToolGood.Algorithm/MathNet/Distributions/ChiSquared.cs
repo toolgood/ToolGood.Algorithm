@@ -13,7 +13,7 @@
 //        /// <param name="freedom">The degrees of freedom (k) of the distribution. Range: k > 0.</param>
 //        /// <param name="x">The location at which to compute the density.</param>
 //        /// <returns>the density at <paramref name="x"/>.</returns>
-//        /// <seealso cref="Density"/>
+//        ///// <seealso cref="Density"/>
 //        public static double PDF(double freedom, double x)
 //        {
 //            if (freedom <= 0.0) {
@@ -37,7 +37,7 @@
 //        /// <param name="freedom">The degrees of freedom (k) of the distribution. Range: k > 0.</param>
 //        /// <param name="x">The location at which to compute the density.</param>
 //        /// <returns>the log density at <paramref name="x"/>.</returns>
-//        /// <seealso cref="DensityLn"/>
+//        ///// <seealso cref="DensityLn"/>
 //        public static double PDFLn(double freedom, double x)
 //        {
 //            if (freedom <= 0.0) {
@@ -57,7 +57,7 @@
 //        /// <param name="x">The location at which to compute the cumulative distribution function.</param>
 //        /// <param name="freedom">The degrees of freedom (k) of the distribution. Range: k > 0.</param>
 //        /// <returns>the cumulative distribution at location <paramref name="x"/>.</returns>
-//        /// <seealso cref="CumulativeDistribution"/>
+//        ///// <seealso cref="CumulativeDistribution"/>
 //        public static double CDF(double freedom, double x)
 //        {
 //            if (freedom <= 0.0) {

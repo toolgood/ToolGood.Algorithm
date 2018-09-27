@@ -557,7 +557,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
         /// Relative Epsilon (positive double or NaN).
         /// </returns>
         /// <remarks>Evaluates the <b>negative</b> epsilon. The more common positive epsilon is equal to two times this negative epsilon.</remarks>
-        /// <seealso cref="PositiveEpsilonOf(double)"/>
+        ///// <seealso cref="PositiveEpsilonOf(double)"/>
         public static double EpsilonOf(this double value)
         {
             if (double.IsInfinity(value) || double.IsNaN(value)) {
@@ -583,7 +583,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
         /// Relative Epsilon (positive float or NaN).
         /// </returns>
         /// <remarks>Evaluates the <b>negative</b> epsilon. The more common positive epsilon is equal to two times this negative epsilon.</remarks>
-        /// <seealso cref="PositiveEpsilonOf(float)"/>
+        ///// <seealso cref="PositiveEpsilonOf(float)"/>
         public static float EpsilonOf(this float value)
         {
             if (float.IsInfinity(value) || float.IsNaN(value)) {
@@ -607,7 +607,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
         /// <param name="value">The value used to determine the minimum distance.</param>
         /// <returns>Relative Epsilon (positive double or NaN)</returns>
         /// <remarks>Evaluates the <b>positive</b> epsilon. See also <see cref="EpsilonOf(double)"/></remarks>
-        /// <seealso cref="EpsilonOf(double)"/>
+        ///// <seealso cref="EpsilonOf(double)"/>
         public static double PositiveEpsilonOf(this double value)
         {
             return 2 * EpsilonOf(value);
@@ -619,7 +619,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
         /// <param name="value">The value used to determine the minimum distance.</param>
         /// <returns>Relative Epsilon (positive float or NaN)</returns>
         /// <remarks>Evaluates the <b>positive</b> epsilon. See also <see cref="EpsilonOf(float)"/></remarks>
-        /// <seealso cref="EpsilonOf(float)"/>
+        ///// <seealso cref="EpsilonOf(float)"/>
         public static float PositiveEpsilonOf(this float value)
         {
             return 2 * EpsilonOf(value);

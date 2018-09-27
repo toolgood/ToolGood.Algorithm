@@ -133,7 +133,7 @@ namespace ToolGood.Algorithm
         #endregion
 
         /// <summary>
-        /// 逻辑与,&,AND
+        /// 逻辑与, 逻辑和 ,AND
         /// </summary>
         AND,
 

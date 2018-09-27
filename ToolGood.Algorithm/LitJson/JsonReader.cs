@@ -1,14 +1,3 @@
-#region Header
-/**
- * JsonReader.cs
- *   Stream-like access to JSON text.
- *
- * The authors disclaim copyright to this source code. For more details, see
- * the COPYING file included with this distribution.
- **/
-#endregion
-
-
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -55,7 +44,7 @@ namespace ToolGood.Algorithm.LitJson
         private bool parser_return;
         private bool read_started;
         private TextReader reader;
-        private bool reader_is_owned;
+        private readonly bool reader_is_owned;
         private bool skip_non_members;
         private object token_value;
         private JsonToken token;
@@ -250,8 +239,7 @@ namespace ToolGood.Algorithm.LitJson
                 number.IndexOf('e') != -1 ||
                 number.IndexOf('E') != -1) {
 
-                double n_double;
-                if (double.TryParse(number, NumberStyles.Any, CultureInfo.InvariantCulture, out n_double)) {
+                if (double.TryParse(number, NumberStyles.Any, CultureInfo.InvariantCulture, out double n_double)) {
                     token = JsonToken.Double;
                     token_value = n_double;
 
@@ -259,24 +247,21 @@ namespace ToolGood.Algorithm.LitJson
                 }
             }
 
-            int n_int32;
-            if (int.TryParse(number, NumberStyles.Integer, CultureInfo.InvariantCulture, out n_int32)) {
+            if (int.TryParse(number, NumberStyles.Integer, CultureInfo.InvariantCulture, out int n_int32)) {
                 token = JsonToken.Int;
                 token_value = n_int32;
 
                 return;
             }
 
-            long n_int64;
-            if (long.TryParse(number, NumberStyles.Integer, CultureInfo.InvariantCulture, out n_int64)) {
+            if (long.TryParse(number, NumberStyles.Integer, CultureInfo.InvariantCulture, out long n_int64)) {
                 token = JsonToken.Long;
                 token_value = n_int64;
 
                 return;
             }
 
-            ulong n_uint64;
-            if (ulong.TryParse(number, NumberStyles.Integer, CultureInfo.InvariantCulture, out n_uint64)) {
+            if (ulong.TryParse(number, NumberStyles.Integer, CultureInfo.InvariantCulture, out ulong n_uint64)) {
                 token = JsonToken.Long;
                 token_value = n_uint64;
 

@@ -39,6 +39,7 @@ namespace ToolGood.Algorithm
         /// 转换运算符到指定的类型
         /// </summary>
         /// <param name="opt">运算符</param>
+        /// <param name="next"></param>
         /// <returns>返回指定的运算符类型</returns>
         public static OperatorType ConvertOperator(string opt, string next)
         {

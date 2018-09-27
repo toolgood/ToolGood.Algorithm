@@ -41,6 +41,9 @@ namespace ToolGood.Algorithm
             result.Replace('/', '_');
             return result.ToString();
         }
+
+        private const string base64 = "===========================================+=+=/0123456789=======ABCDEFGHIJKLMNOPQRSTUVWXYZ====/=abcdefghijklmnopqrstuvwxyz=====";
+
         /// <summary>
         /// Modified Base64 for URL applications ('base64url' encoding)
         /// 
@@ -49,7 +52,6 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="base64ForUrlInput"></param>
         /// <returns>Input base64ForUrl encoded string as the original byte array</returns>
-        private const string base64 = "===========================================+=+=/0123456789=======ABCDEFGHIJKLMNOPQRSTUVWXYZ====/=abcdefghijklmnopqrstuvwxyz=====";
         public static byte[] FromBase64ForUrlString(string base64ForUrlInput)
         {
             StringBuilder sb = new StringBuilder();

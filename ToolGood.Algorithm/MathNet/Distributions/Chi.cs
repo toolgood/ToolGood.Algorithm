@@ -20,7 +20,7 @@
 //        /// <param name="x">The location at which to compute the cumulative distribution function.</param>
 //        /// <param name="freedom">The degrees of freedom (k) of the distribution. Range: k > 0.</param>
 //        /// <returns>the cumulative distribution at location <paramref name="x"/>.</returns>
-//        /// <seealso cref="CumulativeDistribution"/>
+//        ///// <seealso cref="CumulativeDistribution"/>
 //        public static double CDF(double freedom, double x)
 //        {
 //            if (freedom <= 0.0) {

@@ -79,7 +79,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
         /// <param name="p">The success probability (p) in each trial. Range: 0 ≤ p ≤ 1.</param>
         /// <param name="n">The number of trials (n). Range: n ≥ 0.</param>
         /// <returns>the cumulative distribution at location <paramref name="x"/>.</returns>
-        /// <seealso cref="CumulativeDistribution"/>
+        ///// <seealso cref="CumulativeDistribution"/>
         public static double CDF(double p, int n, double x)
         {
             if (!(p >= 0.0 && p <= 1.0 && n >= 0)) {

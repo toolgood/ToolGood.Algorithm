@@ -1,16 +1,3 @@
-#region Header
-/**
- * IJsonWrapper.cs
- *   Interface that represents a type capable of handling all kinds of JSON
- *   data. This is mainly used when mapping objects through JsonMapper, and
- *   it's implemented by JsonData.
- *
- * The authors disclaim copyright to this source code. For more details, see
- * the COPYING file included with this distribution.
- **/
-#endregion
-
-
 using System.Collections;
 using System.Collections.Specialized;
 

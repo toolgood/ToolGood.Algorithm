@@ -22,7 +22,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
         /// <param name="scale">The scale (λ) of the Weibull distribution. Range: λ > 0.</param>
         /// <param name="x">The location at which to compute the density.</param>
         /// <returns>the density at <paramref name="x"/>.</returns>
-        /// <seealso cref="Density"/>
+        ///// <seealso cref="Density"/>
         public static double PDF(double shape, double scale, double x)
         {
             if (shape <= 0.0 || scale <= 0.0) {
@@ -50,7 +50,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
         /// <param name="scale">The scale (λ) of the Weibull distribution. Range: λ > 0.</param>
         /// <param name="x">The location at which to compute the density.</param>
         /// <returns>the log density at <paramref name="x"/>.</returns>
-        /// <seealso cref="DensityLn"/>
+        ///// <seealso cref="DensityLn"/>
         public static double PDFLn(double shape, double scale, double x)
         {
             if (shape <= 0.0 || scale <= 0.0) {
@@ -78,7 +78,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
         /// <param name="shape">The shape (k) of the Weibull distribution. Range: k > 0.</param>
         /// <param name="scale">The scale (λ) of the Weibull distribution. Range: λ > 0.</param>
         /// <returns>the cumulative distribution at location <paramref name="x"/>.</returns>
-        /// <seealso cref="CumulativeDistribution"/>
+        ///// <seealso cref="CumulativeDistribution"/>
         public static double CDF(double shape, double scale, double x)
         {
             if (shape <= 0.0 || scale <= 0.0) {

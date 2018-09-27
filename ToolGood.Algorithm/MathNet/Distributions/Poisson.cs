@@ -51,7 +51,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
         /// <param name="x">The location at which to compute the cumulative distribution function.</param>
         /// <param name="lambda">The lambda (λ) parameter of the Poisson distribution. Range: λ > 0.</param>
         /// <returns>the cumulative distribution at location <paramref name="x"/>.</returns>
-        /// <seealso cref="CumulativeDistribution"/>
+        ///// <seealso cref="CumulativeDistribution"/>
         public static double CDF(double lambda, double x)
         {
             if (!(lambda > 0.0)) {

@@ -1,15 +1,3 @@
-#region Header
-/**
- * JsonData.cs
- *   Generic type to hold JSON data (objects, arrays, and so on). This is
- *   the default type returned by JsonMapper.ToObject().
- *
- * The authors disclaim copyright to this source code. For more details, see
- * the COPYING file included with this distribution.
- **/
-#endregion
-
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,7 +17,7 @@ namespace ToolGood.Algorithm.LitJson
         private long inst_long;
         private IDictionary<string, JsonData> inst_object;
         private string inst_string;
-        private string json;
+        //private string json;
         private JsonType type;
 
         // Used to implement the IOrderedDictionary interface
@@ -282,7 +270,7 @@ namespace ToolGood.Algorithm.LitJson
 
                 inst_object[prop_name] = value;
 
-                json = null;
+                //json = null;
             }
         }
 
@@ -310,7 +298,7 @@ namespace ToolGood.Algorithm.LitJson
                     inst_object[entry.Key] = value;
                 }
 
-                json = null;
+                //json = null;
             }
         }
         #endregion
@@ -378,14 +366,14 @@ namespace ToolGood.Algorithm.LitJson
                 new KeyValuePair<string, JsonData>((string)key, data);
             object_list.Add(entry);
 
-            json = null;
+            //json = null;
         }
 
         void IDictionary.Clear()
         {
             EnsureDictionary().Clear();
             object_list.Clear();
-            json = null;
+            //json = null;
         }
 
         bool IDictionary.Contains(object key)
@@ -409,7 +397,7 @@ namespace ToolGood.Algorithm.LitJson
                 }
             }
 
-            json = null;
+            //json = null;
         }
         #endregion
 
@@ -428,35 +416,35 @@ namespace ToolGood.Algorithm.LitJson
         {
             type = JsonType.Boolean;
             inst_boolean = val;
-            json = null;
+            //json = null;
         }
 
         void IJsonWrapper.SetDouble(double val)
         {
             type = JsonType.Double;
             inst_double = val;
-            json = null;
+            //json = null;
         }
 
         void IJsonWrapper.SetInt(int val)
         {
             type = JsonType.Int;
             inst_int = val;
-            json = null;
+            //json = null;
         }
 
         void IJsonWrapper.SetLong(long val)
         {
             type = JsonType.Long;
             inst_long = val;
-            json = null;
+            //json = null;
         }
 
         void IJsonWrapper.SetString(string val)
         {
             type = JsonType.String;
             inst_string = val;
-            json = null;
+            //json = null;
         }
 
         #endregion
@@ -471,7 +459,7 @@ namespace ToolGood.Algorithm.LitJson
         void IList.Clear()
         {
             EnsureList().Clear();
-            json = null;
+            //json = null;
         }
 
         bool IList.Contains(object value)
@@ -487,19 +475,19 @@ namespace ToolGood.Algorithm.LitJson
         void IList.Insert(int index, object value)
         {
             EnsureList().Insert(index, value);
-            json = null;
+            //json = null;
         }
 
         void IList.Remove(object value)
         {
             EnsureList().Remove(value);
-            json = null;
+            //json = null;
         }
 
         void IList.RemoveAt(int index)
         {
             EnsureList().RemoveAt(index);
-            json = null;
+            //json = null;
         }
         #endregion
 
@@ -598,7 +586,7 @@ namespace ToolGood.Algorithm.LitJson
         {
             JsonData data = ToJsonData(value);
 
-            json = null;
+            //json = null;
 
             return EnsureList().Add(data);
         }
