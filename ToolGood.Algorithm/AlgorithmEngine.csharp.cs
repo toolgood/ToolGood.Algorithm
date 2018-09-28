@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using ToolGood.Algorithm.LitJson;
 
@@ -67,7 +68,19 @@ namespace ToolGood.Algorithm
             addFunc("P", F_P);
             addFunc("param", F_P);
             addFunc("json", F_Json);
+            addFunc("Tryjson", F_TryJson);
         }
+        private Operand F_TryJson(List<Operand> arg)
+        {
+            CheckArgsCount("TryJson", arg, new OperandType[][] { new OperandType[] { OperandType.STRING } });
+            var match = Regex.Match(arg[0].StringValue, @"\{.*\}|\[.*\]");
+            if (match.Success) {
+                var json = JsonMapper.ToObject(match.Value);
+                return new Operand(OperandType.JSON, json);
+            }
+            return new Operand(OperandType.ERROR, "无法转Json格式！");
+        }
+
         private Operand F_Json(List<Operand> arg)
         {
             CheckArgsCount("Json", arg, new OperandType[][] { new OperandType[] { OperandType.STRING } });

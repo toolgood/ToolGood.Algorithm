@@ -284,6 +284,8 @@ namespace ToolGood.Algorithm.Test
             dt = engine.TryEvaluate("json('{\"Name1\":\"William Shakespeare \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').（'Name'& 1）.Trim().substring(2,3)", null);
             Assert.AreEqual(dt, "ill");
 
+            dt = engine.TryEvaluate("tryjson('12346{\"Name1\":\"William Shakespeare \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').（'Name'& 1）.Trim().substring(2,3)", null);
+            Assert.AreEqual(dt, "ill");
         }
     }
 }

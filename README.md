@@ -829,6 +829,9 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数`。
         <td>json</td><td>json(文本)<br>动态json查询。</td> <td></td>
     </tr>
 	<tr>
+        <td>tryjson</td><td>tryjson(文本)<br>尝试转为json，再查询。</td> <td></td>
+    </tr>
+	<tr>
         <td>P<br>param</td><td>P(文本)<br>动态查询参数。</td> <td></td>
     </tr>
 </table>

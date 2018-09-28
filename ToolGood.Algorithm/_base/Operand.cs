@@ -143,7 +143,7 @@ namespace ToolGood.Algorithm
             }
         }
 
-        internal double NumberValue {
+        public double NumberValue {
             get {
                 if (Type == OperandType.BOOLEAN) {
                     return (bool)Value ? 1 : 0;
@@ -151,8 +151,8 @@ namespace ToolGood.Algorithm
                 return (double)Value;
             }
         }
-        internal string StringValue { get { return Value.ToString(); } }
-        internal bool BooleanValue {
+        public string StringValue { get { return Value.ToString(); } }
+        public bool BooleanValue {
             get {
                 if (Type == OperandType.NUMBER) {
                     if (Value is double) {
@@ -164,10 +164,10 @@ namespace ToolGood.Algorithm
             }
         }
         internal Date DateValue { get { return (Date)Value; } }
-        internal int IntValue { get { return (int)(double)Value; } }
+        public int IntValue { get { return (int)(double)Value; } }
 
 
-        internal List<double> GetNumberList()
+        public List<double> GetNumberList()
         {
             if (Type == OperandType.NUMBER) {
                 return new List<double>() { this.NumberValue };
@@ -183,7 +183,7 @@ namespace ToolGood.Algorithm
             }
             return list;
         }
-        internal List<Operand> GetValueList()
+        public List<Operand> GetValueList()
         {
             List<Operand> list = new List<Operand>();
             if (Value is List<Operand>) {

@@ -39,7 +39,7 @@ namespace ToolGood.Algorithm
             AddCSharp();
         }
 
-        #region 可重写的方法
+        #region protected
 
         protected virtual Operand GetParameter(Operand curOpd)
         {
@@ -48,6 +48,11 @@ namespace ToolGood.Algorithm
         protected void AddFunction(string funName, Func<List<Operand>, Operand> function)
         {
             addFunc(funName, function);
+        }
+
+        protected bool ContainsKey(string key)
+        {
+            return tokenDict.ContainsKey(key);
         }
 
         #endregion
@@ -836,6 +841,167 @@ namespace ToolGood.Algorithm
             return def;
         }
 
+
+        public short TryEvaluate(string name, string exp, short def)
+        {
+            if (ContainsKey(name) || Parse(name, exp)) {
+                try {
+                    var obj = Evaluate(name);
+                    if (obj is Date) return (short)(double)(Date)obj;
+                    return (short)(double)obj;
+                } catch (Exception) { }
+            }
+            return def;
+        }
+        public int TryEvaluate(string name, string exp, int def)
+        {
+            if (ContainsKey(name) || Parse(name, exp)) {
+                try {
+                    var obj = Evaluate(name);
+                    if (obj is Date) return (int)(double)(Date)Evaluate();
+                    return (int)(double)obj;
+                } catch (Exception) { }
+            }
+            return def;
+        }
+        public long TryEvaluate(string name, string exp, long def)
+        {
+            if (ContainsKey(name) || Parse(name, exp)) {
+                try {
+                    var obj = Evaluate(name);
+                    if (obj is Date) return (long)(double)(Date)obj;
+                    return (long)(double)obj;
+                } catch (Exception) {
+                }
+            }
+            return def;
+        }
+
+        public ushort TryEvaluate(string name, string exp, ushort def)
+        {
+            if (ContainsKey(name) || Parse(name, exp)) {
+                try {
+                    var obj = Evaluate(name);
+                    if (obj is Date) return (ushort)(double)(Date)obj;
+                    return (ushort)(double)obj;
+                } catch (Exception) {
+                }
+            }
+            return def;
+        }
+        public uint TryEvaluate(string name, string exp, uint def)
+        {
+            if (ContainsKey(name) || Parse(name, exp)) {
+                try {
+                    var obj = Evaluate(name);
+                    if (obj is Date) return (uint)(double)(Date)obj;
+                    return (uint)(double)obj;
+                } catch (Exception) {
+                }
+            }
+            return def;
+        }
+        public ulong TryEvaluate(string name, string exp, ulong def)
+        {
+            if (ContainsKey(name) || Parse(name, exp)) {
+                try {
+                    var obj = Evaluate(name);
+                    if (obj is Date) return (ulong)(double)(Date)obj;
+                    return (ulong)(double)obj;
+                } catch (Exception) {
+                }
+            }
+            return def;
+        }
+
+        public float TryEvaluate(string name, string exp, float def)
+        {
+            if (ContainsKey(name) || Parse(name, exp)) {
+                try {
+                    var obj = Evaluate(name);
+                    if (obj is Date) return (float)(double)(Date)obj;
+                    return (float)(double)obj;
+                } catch (Exception) {
+                }
+            }
+            return def;
+        }
+        public double TryEvaluate(string name, string exp, double def)
+        {
+            if (ContainsKey(name) || Parse(name, exp)) {
+                try {
+                    var obj = Evaluate(name);
+                    if (obj is Date) return (double)(Date)obj;
+                    return (double)obj;
+                } catch (Exception) {
+                }
+            }
+            return def;
+        }
+
+        public string TryEvaluate(string name, string exp, string def)
+        {
+            if (ContainsKey(name) || Parse(name, exp)) {
+                try {
+                    return Evaluate(name).ToString();
+                } catch (Exception) {
+                }
+            }
+            return def;
+        }
+        public bool TryEvaluate(string name, string exp, bool def)
+        {
+            if (ContainsKey(name) || Parse(name, exp)) {
+                try {
+                    var obj = Evaluate(name);
+                    if (obj is string) {
+                        return bool.Parse(obj.ToString());
+                    }
+                    if (obj is bool) {
+                        return (bool)obj;
+                    }
+                    if (obj is Date) return def;
+                    return decimal.Parse(obj.ToString()) != 0;
+                } catch (Exception) {
+                }
+            }
+            return def;
+        }
+
+        public DateTime TryEvaluate(string name, string exp, DateTime def)
+        {
+            if (ContainsKey(name) || Parse(name, exp)) {
+                try {
+                    var obj = Evaluate(name);
+                    if (obj is string) {
+                        if (DateTime.TryParse(obj.ToString(), out DateTime dt)) {
+                            return dt;
+                        }
+                        return def;
+                    }
+                    return (DateTime)(Date)Evaluate();
+                } catch (Exception) { }
+            }
+            return def;
+        }
+
+        public TimeSpan TryEvaluate(string name, string exp, TimeSpan def)
+        {
+            if (ContainsKey(name) || Parse(name, exp)) {
+                try {
+                    var obj = Evaluate(name);
+                    if (obj is string) {
+                        if (TimeSpan.TryParse(obj.ToString(), out TimeSpan dt)) {
+                            return dt;
+                        }
+                        return def;
+                    }
+                    return (TimeSpan)(Date)Evaluate();
+                } catch (Exception) {
+                }
+            }
+            return def;
+        }
         #endregion
 
         private void addFunc(string name, Func<List<Operand>, Operand> func)
@@ -844,7 +1010,6 @@ namespace ToolGood.Algorithm
             //m_Operators.Add(name);
             funcDict[name] = func;
         }
-
 
         private Operand doFunc(Operator curOpt, List<Operand> ops)
         {
