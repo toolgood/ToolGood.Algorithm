@@ -1,8 +1,8 @@
 ToolGood.Algorithm
 ===================
-ToolGood.AlgorithmÖ§³Ö`ËÄÔòÔËËã`¡¢`Excelº¯Êý`,²¢Ö§³Ö`×Ô¶¨Òå²ÎÊý`¡£
+ToolGood.Algorithmæ”¯æŒ`å››åˆ™è¿ç®—`ã€`Excelå‡½æ•°`,å¹¶æ”¯æŒ`è‡ªå®šä¹‰å‚æ•°`ã€‚
 
-## ¿ìËÙÉÏÊÖ
+## å¿«é€Ÿä¸Šæ‰‹
 ``` csharp
     AlgorithmEngine engine = new AlgorithmEngine();
     double a=0.0;
@@ -10,25 +10,25 @@ ToolGood.AlgorithmÖ§³Ö`ËÄÔòÔËËã`¡¢`Excelº¯Êý`,²¢Ö§³Ö`×Ô¶¨Òå²ÎÊý`¡£
         a = (double)engine.Evaluate();
     }
     var c = engine.TryEvaluate("2+3", 0);
-    var d = engine.TryEvaluate("count({1,2,3,4})", 0);//{}´ú±íÊý×é,·µ»Ø:4
-    var s = engine.TryEvaluate("'aa'&'bb'", ""); //×Ö·û´®Á¬½Ó,·µ»Ø:aabb
-    var r = engine.TryEvaluate("(1=1)*9+2", 0); //·µ»Ø:11
-    var d = engine.TryEvaluate("'2016-1-1'+1", DateTime.MinValue); //·µ»ØÈÕÆÚ:2016-1-2
-    var t = engine.TryEvaluate("'2016-1-1'+9*'1:0'", DateTime.MinValue);//·µ»ØÈÕÆÚ:2016-1-1 9:0
-    var j = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Age", null);//·µ»Ø51
-    var k = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Name.Trim()", null);//·µ»Ø"William Shakespeare" (²»´ø¿Õ¸ñ)
-	var l = engine.TryEvaluate("json('{\"Name1\":\"William Shakespeare \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').£¨'Name'& 1£©.Trim().substring(2,3)", null); ;//·µ»Ø"ill"
+    var d = engine.TryEvaluate("count({1,2,3,4})", 0);//{}ä»£è¡¨æ•°ç»„,è¿”å›ž:4
+    var s = engine.TryEvaluate("'aa'&'bb'", ""); //å­—ç¬¦ä¸²è¿žæŽ¥,è¿”å›ž:aabb
+    var r = engine.TryEvaluate("(1=1)*9+2", 0); //è¿”å›ž:11
+    var d = engine.TryEvaluate("'2016-1-1'+1", DateTime.MinValue); //è¿”å›žæ—¥æœŸ:2016-1-2
+    var t = engine.TryEvaluate("'2016-1-1'+9*'1:0'", DateTime.MinValue);//è¿”å›žæ—¥æœŸ:2016-1-1 9:0
+    var j = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Age", null);//è¿”å›ž51
+    var k = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Name.Trim()", null);//è¿”å›ž"William Shakespeare" (ä¸å¸¦ç©ºæ ¼)
+	var l = engine.TryEvaluate("json('{\"Name1\":\"William Shakespeare \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').ï¼ˆ'Name'& 1ï¼‰.Trim().substring(2,3)", null); ;//è¿”å›ž"ill"
 
 ```
-Ö§³Ö³£Á¿`pi`,`e`,`true`,`false`¡£
+æ”¯æŒå¸¸é‡`pi`,`e`,`true`,`false`ã€‚
 
-Êý×Ö×ªbool£¬·ÇÁãÎªÕæ,ÁãÎª¼Ù¡£bool×ªÊý×Ö£¬¼ÙÎª0£¬ÕæÎª1¡£
+æ•°å­—è½¬boolï¼Œéžé›¶ä¸ºçœŸ,é›¶ä¸ºå‡ã€‚boolè½¬æ•°å­—ï¼Œå‡ä¸º0ï¼ŒçœŸä¸º1ã€‚
 
-Ë÷ÒýÄ¬ÈÏÎª`ExcelË÷Òý`£¬Èç¹ûÏëÓÃc#Ë÷Òý£¬ÇëÉèÖÃ`UseExcelIndex`Îª`false`¡£
+ç´¢å¼•é»˜è®¤ä¸º`Excelç´¢å¼•`ï¼Œå¦‚æžœæƒ³ç”¨c#ç´¢å¼•ï¼Œè¯·è®¾ç½®`UseExcelIndex`ä¸º`false`ã€‚
 
-## ×Ô¶¨Òå²ÎÊý
+## è‡ªå®šä¹‰å‚æ•°
 ``` csharp
-    //¶¨ÒåÔ²ÖùÐÅÏ¢
+    //å®šä¹‰åœ†æŸ±ä¿¡æ¯
     public class Cylinder : AlgorithmEngine
     {
         private int _radius;
@@ -41,805 +41,797 @@ ToolGood.AlgorithmÖ§³Ö`ËÄÔòÔËËã`¡¢`Excelº¯Êý`,²¢Ö§³Ö`×Ô¶¨Òå²ÎÊý`¡£
 
         protected override Operand GetParameter(Operand curOpd)
         {
-            if (curOpd.Parameter == "[°ë¾¶]") {
+            if (curOpd.Parameter == "[åŠå¾„]") {
                 return new Operand(OperandType.NUMBER, _radius);
             }
-            if (curOpd.Parameter == "[Ö±¾¶]") {
+            if (curOpd.Parameter == "[ç›´å¾„]") {
                 return new Operand(OperandType.NUMBER, _radius * 2);
             }
-            if (curOpd.Parameter == "[¸ß]") {
+            if (curOpd.Parameter == "[é«˜]") {
                 return new Operand(OperandType.NUMBER, _height);
             }
             return base.GetParameter(curOpd);
         }
     }
-    //µ÷ÓÃ·½·¨
+    //è°ƒç”¨æ–¹æ³•
     Cylinder c = new Cylinder(3, 10);
-    c.TryEvaluate("[°ë¾¶]*[°ë¾¶]*pi()", 0.0);      //Ô²µ×Ãæ»ý
-    c.TryEvaluate("[Ö±¾¶]*pi()", 0.0);            //Ô²µÄ³¤
-    c.TryEvaluate("[°ë¾¶]*[°ë¾¶]*pi()*[¸ß]", 0.0); //Ô²µÄÌå»ý
+    c.TryEvaluate("[åŠå¾„]*[åŠå¾„]*pi()", 0.0);      //åœ†åº•é¢ç§¯
+    c.TryEvaluate("[ç›´å¾„]*pi()", 0.0);            //åœ†çš„é•¿
+    c.TryEvaluate("[åŠå¾„]*[åŠå¾„]*pi()*[é«˜]", 0.0); //åœ†çš„ä½“ç§¯
 
-	c.TryEvaluate("p('°ë¾¶')*[°ë¾¶]*pi()*[¸ß]", 0.0); //Ô²µÄÌå»ý
+	c.TryEvaluate("p('åŠå¾„')*[åŠå¾„]*pi()*[é«˜]", 0.0); //åœ†çš„ä½“ç§¯
 ```
-²ÎÊýÒÔ·½À¨ºÅ¶¨Òå£¬Èç `[²ÎÊýÃû]`¡£±äÁ¿²ÎÊý¿ÉÒÔÓÃ`p(²ÎÊýÃû)`¡£
+å‚æ•°ä»¥æ–¹æ‹¬å·å®šä¹‰ï¼Œå¦‚ `[å‚æ•°å]`ã€‚å˜é‡å‚æ•°å¯ä»¥ç”¨`p(å‚æ•°å)`ã€‚
 
 
-## Excelº¯Êý
-º¯Êý£º`Âß¼­º¯Êý`¡¢`ÊýÑ§ÓëÈý½Çº¯Êý`¡¢`ÎÄ±¾º¯Êý`¡¢`Í³¼Æº¯Êý`¡¢`ÈÕÆÚÓëÊ±¼äº¯Êý`
+## Excelå‡½æ•°
+å‡½æ•°ï¼š`é€»è¾‘å‡½æ•°`ã€`æ•°å­¦ä¸Žä¸‰è§’å‡½æ•°`ã€`æ–‡æœ¬å‡½æ•°`ã€`ç»Ÿè®¡å‡½æ•°`ã€`æ—¥æœŸä¸Žæ—¶é—´å‡½æ•°`
 
-×¢£ºº¯ÊýÃû²»·Ö´óÐ¡Ð´,´ø·½À¨ºÅµÄ²ÎÊý¿ÉÊ¡ÂÔ,Ê¾ÀýµÄ·µ»ØÖµ,¿ÉÄÜÎª½üËÆÖµ¡£
-#### Âß¼­º¯Êý
+æ³¨ï¼šå‡½æ•°åä¸åˆ†å¤§å°å†™,å¸¦æ–¹æ‹¬å·çš„å‚æ•°å¯çœç•¥,ç¤ºä¾‹çš„è¿”å›žå€¼,å¯èƒ½ä¸ºè¿‘ä¼¼å€¼ã€‚
+#### é€»è¾‘å‡½æ•°
 <table>
-    <tr><td>º¯ÊýÃû</td><td>ËµÃ÷</td><td>Ê¾Àý</td></tr>
+    <tr><td>å‡½æ•°å</td><td>è¯´æ˜Ž</td><td>ç¤ºä¾‹</td></tr>
     <tr>
-        <td>IF</td><td>if(²âÊÔÌõ¼þ,ÕæÖµ,[¼ÙÖµ])<br>Ö´ÐÐÕæ¼ÙÖµÅÐ¶Ï,¸ù¾ÝÂß¼­¼ÆËãµÄÕæ¼ÙÖµ,·µ»Ø²»Í¬½á¹û¡£</td>
+        <td>IF</td><td>if(æµ‹è¯•æ¡ä»¶,çœŸå€¼,[å‡å€¼])<br>æ‰§è¡ŒçœŸå‡å€¼åˆ¤æ–­,æ ¹æ®é€»è¾‘è®¡ç®—çš„çœŸå‡å€¼,è¿”å›žä¸åŒç»“æžœã€‚</td>
         <td>if(1=1,1,2) <br>>>1</td>
     </tr>
     <tr>
-        <td>IFERROR</td><td>ifError(²âÊÔÌõ¼þ,ÕæÖµ,[¼ÙÖµ])<br>Èç¹û¹«Ê½¼ÆËã³ö´íÎóÔò·µ»ØÄúÖ¸¶¨µÄÖµ£»·ñÔò·µ»Ø¹«Ê½½á¹û¡£</td>
+        <td>IFERROR</td><td>ifError(æµ‹è¯•æ¡ä»¶,çœŸå€¼,[å‡å€¼])<br>å¦‚æžœå…¬å¼è®¡ç®—å‡ºé”™è¯¯åˆ™è¿”å›žæ‚¨æŒ‡å®šçš„å€¼ï¼›å¦åˆ™è¿”å›žå…¬å¼ç»“æžœã€‚</td>
         <td>iferror(1/0,1,2) <br>>>1</td>
     </tr>
     <tr>
-        <td>IFNUMBER</td><td>ifNumber(²âÊÔÌõ¼þ,ÕæÖµ,[¼ÙÖµ])<br>Ö¸¶¨ÒªÖ´ÐÐµÄÂß¼­¼ì²â</td>
+        <td>IFNUMBER</td><td>ifNumber(æµ‹è¯•æ¡ä»¶,çœŸå€¼,[å‡å€¼])<br>æŒ‡å®šè¦æ‰§è¡Œçš„é€»è¾‘æ£€æµ‹</td>
         <td>ifnumber(4,1,2) <br>>>1</td>
     </tr>
     <tr>
-        <td>IFTEXT</td><td>ifText(²âÊÔÌõ¼þ,ÕæÖµ,[¼ÙÖµ])<br>Ö¸¶¨ÒªÖ´ÐÐµÄÂß¼­¼ì²â</td>
+        <td>IFTEXT</td><td>ifText(æµ‹è¯•æ¡ä»¶,çœŸå€¼,[å‡å€¼])<br>æŒ‡å®šè¦æ‰§è¡Œçš„é€»è¾‘æ£€æµ‹</td>
         <td>iftext('a',1,2) <br>>>1</td>
     </tr>
     <tr>
-        <td>ISNUMBER</td><td>isNumber(Öµ)<br>ÅÐ¶ÏÊÇ·ñÊý×Ö,·µ»Ø TRUE »ò FALSE</td>
+        <td>ISNUMBER</td><td>isNumber(å€¼)<br>åˆ¤æ–­æ˜¯å¦æ•°å­—,è¿”å›ž TRUE æˆ– FALSE</td>
         <td>ISNUMBER(1) <br>>>true</td>
     </tr>
     <tr>
-        <td>ISTEXT</td><td>isText(Öµ)<br>ÅÐ¶ÏÊÇ·ñÎÄ×Ö,·µ»Ø TRUE »ò FALSE</td>
+        <td>ISTEXT</td><td>isText(å€¼)<br>åˆ¤æ–­æ˜¯å¦æ–‡å­—,è¿”å›ž TRUE æˆ– FALSE</td>
         <td>istext('1') <br>>>true </td>
     </tr>
     <tr>
-        <td>AND</td><td>and(Âß¼­Öµ1,...)<br>Èç¹ûËùÓÐ²ÎÊý¾ùÎªTRUE,Ôò·µ»ØTRUE</td>
+        <td>AND</td><td>and(é€»è¾‘å€¼1,...)<br>å¦‚æžœæ‰€æœ‰å‚æ•°å‡ä¸ºTRUE,åˆ™è¿”å›žTRUE</td>
         <td>and(1,2=2) <br>>>true</td>
     </tr>
     <tr>
-        <td>OR</td><td>or(Âß¼­Öµ1,...)<br>Èç¹ûÈÎÒ»²ÎÊýÎªTRUE,Ôò·µ»ØTRUE</td>
+        <td>OR</td><td>or(é€»è¾‘å€¼1,...)<br>å¦‚æžœä»»ä¸€å‚æ•°ä¸ºTRUE,åˆ™è¿”å›žTRUE</td>
         <td>or(1,2=3) <br>>>true</td>
     </tr>
     <tr>
-        <td>NOT</td><td>not(Âß¼­Öµ)<br>¶Ô²ÎÊýµÄÂß¼­ÖµÇó·´</td>
+        <td>NOT</td><td>not(é€»è¾‘å€¼)<br>å¯¹å‚æ•°çš„é€»è¾‘å€¼æ±‚å</td>
         <td>NOT(true()) <br>>>false</td>
     </tr>
     <tr>
-        <td>TRUE</td><td>true()<br>·µ»ØÂß¼­ÖµTRUE</td>
+        <td>TRUE</td><td>true()<br>è¿”å›žé€»è¾‘å€¼TRUE</td>
         <td>true() <br>>>true</td>
     </tr>
     <tr>
-        <td>FALSE</td><td>false()<br>·µ»ØÂß¼­ÖµFALSE</td>
+        <td>FALSE</td><td>false()<br>è¿”å›žé€»è¾‘å€¼FALSE</td>
         <td>false() <br>>>false</td>
     </tr>
 </table>
 
-#### ÊýÑ§ÓëÈý½Çº¯Êý
+#### æ•°å­¦ä¸Žä¸‰è§’å‡½æ•°
 <table>
-    <tr><td>·ÖÀà</td><td>º¯ÊýÃû</td><td>ËµÃ÷</td><td>Ê¾Àý</td></tr>
+    <tr><td>åˆ†ç±»</td><td>å‡½æ•°å</td><td>è¯´æ˜Ž</td><td>ç¤ºä¾‹</td></tr>
     <tr>
-        <td rowspan="12">»ù<br><br>´¡<br><br>Êý<br><br>Ñ§</td>
-        <td>PI</td><td>pi()<br>·µ»Ø PI Öµ</td>
+        <td rowspan="12">åŸº<br><br>ç¡€<br><br>æ•°<br><br>å­¦</td>
+        <td>PI</td><td>pi()<br>è¿”å›ž PI å€¼</td>
         <td>pi() <br>>>3.141592654</td>
     </tr>
     <tr>
-        <td>abs</td><td>abs(Êý×Ö)<br>·µ»ØÊý×ÖµÄ¾ø¶ÔÖµ</td>
+        <td>abs</td><td>abs(æ•°å­—)<br>è¿”å›žæ•°å­—çš„ç»å¯¹å€¼</td>
         <td>abs(-1) <br>>>1</td>
     </tr>
     <tr>
-        <td>QUOTIENT</td><td>quotient(³ýÊý,±»³ýÊý)<br>·µ»ØÉÌµÄÕûÊý²¿·Ö,¸Ãº¯Êý¿ÉÓÃÓÚÉáµôÉÌµÄÐ¡Êý²¿·Ö¡£</td>
+        <td>QUOTIENT</td><td>quotient(é™¤æ•°,è¢«é™¤æ•°)<br>è¿”å›žå•†çš„æ•´æ•°éƒ¨åˆ†,è¯¥å‡½æ•°å¯ç”¨äºŽèˆæŽ‰å•†çš„å°æ•°éƒ¨åˆ†ã€‚</td>
         <td>QUOTIENT(7,3) <br>>>2</td>
     </tr>
     <tr>
-        <td>mod</td><td>mod(³ýÊý,±»³ýÊý)<br>·µ»ØÁ½ÊýÏà³ýµÄÓàÊý</td>
+        <td>mod</td><td>mod(é™¤æ•°,è¢«é™¤æ•°)<br>è¿”å›žä¸¤æ•°ç›¸é™¤çš„ä½™æ•°</td>
         <td>MOD(7,3) <br>>>1</td>
     </tr>
     <tr>
-        <td>SIGN</td><td>sign(Êý×Ö)<br>·µ»ØÊý×ÖµÄ·ûºÅ¡£µ±Êý×ÖÎªÕýÊýÊ±·µ»Ø 1,ÎªÁãÊ±·µ»Ø 0,Îª¸ºÊýÊ±·µ»Ø -1¡£</td>
+        <td>SIGN</td><td>sign(æ•°å­—)<br>è¿”å›žæ•°å­—çš„ç¬¦å·ã€‚å½“æ•°å­—ä¸ºæ­£æ•°æ—¶è¿”å›ž 1,ä¸ºé›¶æ—¶è¿”å›ž 0,ä¸ºè´Ÿæ•°æ—¶è¿”å›ž -1ã€‚</td>
         <td>SIGN(-9) <br>>>-1</td>
     </tr>
    <tr>
-        <td>SQRT</td><td>sqrt(Êý×Ö)<br>·µ»ØÕýÆ½·½¸ù</td>
+        <td>SQRT</td><td>sqrt(æ•°å­—)<br>è¿”å›žæ­£å¹³æ–¹æ ¹</td>
         <td>SQRT(9) <br>>>3</td>
     </tr>
     <tr>
-        <td>TRUNC</td><td>trunc(Êý×Ö)<br>½«Êý×Ö½ØÎ²È¡Õû</td>
+        <td>TRUNC</td><td>trunc(æ•°å­—)<br>å°†æ•°å­—æˆªå°¾å–æ•´</td>
         <td>TRUNC(9.222) <br>>>9</td>
     </tr>
     <tr>
-        <td>int</td><td>int(Êý×Ö)<br>½«Êý×ÖÏòÏÂÉáÈëµ½×î½Ó½üµÄÕûÊý¡£</td>
+        <td>int</td><td>int(æ•°å­—)<br>å°†æ•°å­—å‘ä¸‹èˆå…¥åˆ°æœ€æŽ¥è¿‘çš„æ•´æ•°ã€‚</td>
         <td>int(9.222) <br>>>9</td>
     </tr>
     <tr>
-        <td>gcd</td><td>gcd(Êý×Ö1,...)<br>·µ»Ø×î´ó¹«Ô¼Êý</td>
+        <td>gcd</td><td>gcd(æ•°å­—1,...)<br>è¿”å›žæœ€å¤§å…¬çº¦æ•°</td>
         <td>GCD(3,5,7) <br>>>1</td>
     </tr>
     <tr>
-        <td>LCM</td><td>lcm(Êý×Ö1,...)<br>·µ»ØÕûÊý²ÎÊýµÄ×îÐ¡¹«±¶Êý</td>
+        <td>LCM</td><td>lcm(æ•°å­—1,...)<br>è¿”å›žæ•´æ•°å‚æ•°çš„æœ€å°å…¬å€æ•°</td>
         <td>LCM(3,5,7) <br>>>105</td>
     </tr>
     <tr>
-        <td>combin</td><td>combin(×ÜÊý,ÅÅÁÐÊý)<br>¼ÆËã´Ó¸ø¶¨ÊýÄ¿µÄ¶ÔÏó¼¯ºÏÖÐÌáÈ¡Èô¸É¶ÔÏóµÄ×éºÏÊý</td>
+        <td>combin</td><td>combin(æ€»æ•°,æŽ’åˆ—æ•°)<br>è®¡ç®—ä»Žç»™å®šæ•°ç›®çš„å¯¹è±¡é›†åˆä¸­æå–è‹¥å¹²å¯¹è±¡çš„ç»„åˆæ•°</td>
         <td>combin(10,2) <br>>>45</td>
     </tr>
     <tr>
-        <td>PERMUT</td><td>permut(×ÜÊý,ÅÅÁÐÊý)<br>·µ»Ø´Ó¸ø¶¨ÊýÄ¿µÄ¶ÔÏó¼¯ºÏÖÐÑ¡È¡µÄÈô¸É¶ÔÏóµÄÅÅÁÐÊý</td>
+        <td>PERMUT</td><td>permut(æ€»æ•°,æŽ’åˆ—æ•°)<br>è¿”å›žä»Žç»™å®šæ•°ç›®çš„å¯¹è±¡é›†åˆä¸­é€‰å–çš„è‹¥å¹²å¯¹è±¡çš„æŽ’åˆ—æ•°</td>
         <td>PERMUT(10,2) <br>>>990</td>
     </tr>
     <tr>
-    <td rowspan="15">Èý<br><br>½Ç<br><br>º¯<br><br>Êý</td>
-        <td>degrees</td><td>degrees(»¡¶È)<br>½«»¡¶È×ª»»Îª¶È</td>
+    <td rowspan="15">ä¸‰<br><br>è§’<br><br>å‡½<br><br>æ•°</td>
+        <td>degrees</td><td>degrees(å¼§åº¦)<br>å°†å¼§åº¦è½¬æ¢ä¸ºåº¦</td>
         <td>degrees(pi()) <br>>>180</td>
     </tr>
     <tr>
-        <td>RADIANS</td><td>radians(¶È)<br>½«¶È×ª»»Îª»¡¶È</td>
+        <td>RADIANS</td><td>radians(åº¦)<br>å°†åº¦è½¬æ¢ä¸ºå¼§åº¦</td>
         <td>RADIANS(180) <br>>>3.141592654</td>
     </tr>
     <tr>
-        <td>cos</td><td>cos(»¡¶È)<br>·µ»ØÊý×ÖµÄÓàÏÒÖµ</td>
+        <td>cos</td><td>cos(å¼§åº¦)<br>è¿”å›žæ•°å­—çš„ä½™å¼¦å€¼</td>
         <td>cos(1) <br>>>0.540302305868</td>
     </tr>
     <tr>
-        <td>cosh</td><td>cosh(»¡¶È)<br>·µ»ØÊý×ÖµÄË«ÇúÓàÏÒÖµ</td>
+        <td>cosh</td><td>cosh(å¼§åº¦)<br>è¿”å›žæ•°å­—çš„åŒæ›²ä½™å¼¦å€¼</td>
         <td>cosh(1) <br>>>1.54308063481</td>
     </tr>
     <tr>
-        <td>SIN</td><td>sin(»¡¶È)<br>·µ»Ø¸ø¶¨½Ç¶ÈµÄÕýÏÒÖµ</td>
+        <td>SIN</td><td>sin(å¼§åº¦)<br>è¿”å›žç»™å®šè§’åº¦çš„æ­£å¼¦å€¼</td>
         <td>sin(1) <br>>>0.84147098480</td>
     </tr>
     <tr>
-        <td>SINH</td><td>sinh(»¡¶È)<br>·µ»ØÊý×ÖµÄË«ÇúÕýÏÒÖµ</td>
+        <td>SINH</td><td>sinh(å¼§åº¦)<br>è¿”å›žæ•°å­—çš„åŒæ›²æ­£å¼¦å€¼</td>
         <td>sinh(1) <br>>>1.1752011936</td>
     </tr>
     <tr>
-        <td>TAN</td><td>tan(»¡¶È)<br>·µ»ØÊý×ÖµÄÕýÇÐÖµ</td>
+        <td>TAN</td><td>tan(å¼§åº¦)<br>è¿”å›žæ•°å­—çš„æ­£åˆ‡å€¼</td>
         <td>tan(1) <br>>>1.55740772465</td>
     </tr>
     <tr>
-        <td>TANH</td><td>tanh(»¡¶È)<br>·µ»ØÊý×ÖµÄË«ÇúÕýÇÐÖµ</td>
+        <td>TANH</td><td>tanh(å¼§åº¦)<br>è¿”å›žæ•°å­—çš„åŒæ›²æ­£åˆ‡å€¼</td>
         <td>tanh(1) <br>>>0.761594155955</td>
     </tr>
     <tr>
-        <td>acos</td><td>acos(ÊýÖµ)<br>·µ»ØÊý×ÖµÄ·´ÓàÏÒÖµ</td>
+        <td>acos</td><td>acos(æ•°å€¼)<br>è¿”å›žæ•°å­—çš„åä½™å¼¦å€¼</td>
         <td>acos(0.5) <br>>>1.04719755119</td>
     </tr>
     <tr>
-        <td>acosh</td><td>acosh(ÊýÖµ)<br>·µ»ØÊý×ÖµÄ·´Ë«ÇúÓàÏÒÖµ</td>
+        <td>acosh</td><td>acosh(æ•°å€¼)<br>è¿”å›žæ•°å­—çš„ååŒæ›²ä½™å¼¦å€¼</td>
         <td>acosh(1.5) <br>>>0.962423650119</td>
     </tr>
     <tr>
-        <td>asin</td><td>asin(ÊýÖµ)<br>·µ»ØÊý×ÖµÄ·´ÕýÏÒÖµ</td>
+        <td>asin</td><td>asin(æ•°å€¼)<br>è¿”å›žæ•°å­—çš„åæ­£å¼¦å€¼</td>
         <td>asin(0.5) <br>>>0.523598775598</td>
     </tr>
     <tr>
-        <td>asinh</td><td>asinh(ÊýÖµ)<br>·µ»ØÊý×ÖµÄ·´Ë«ÇúÕýÏÒÖµ¡£</td>
+        <td>asinh</td><td>asinh(æ•°å€¼)<br>è¿”å›žæ•°å­—çš„ååŒæ›²æ­£å¼¦å€¼ã€‚</td>
         <td>asinh(1.5) <br>>>1.1947632172</td>
     </tr>
     <tr>
-        <td>atan</td><td>atan(ÊýÖµ)<br>·µ»ØÊý×ÖµÄ·´ÕýÇÐÖµ</td>
+        <td>atan</td><td>atan(æ•°å€¼)<br>è¿”å›žæ•°å­—çš„åæ­£åˆ‡å€¼</td>
         <td>atan(1) <br>>>0.785398163397</td>
     </tr>
    <tr>
-        <td>atanh</td><td>atanh(ÊýÖµ)<br>·µ»Ø²ÎÊýµÄ·´Ë«ÇúÕýÇÐÖµ</td>
+        <td>atanh</td><td>atanh(æ•°å€¼)<br>è¿”å›žå‚æ•°çš„ååŒæ›²æ­£åˆ‡å€¼</td>
         <td>atanh(1) <br>>>0.549306144334</td>
     </tr>
     <tr>
-        <td>atan2</td><td>atan2(ÊýÖµ)<br>´ÓXºÍY×ø±ê·µ»Ø·´ÕýÇÐ</td>
+        <td>atan2</td><td>atan2(æ•°å€¼)<br>ä»ŽXå’ŒYåæ ‡è¿”å›žåæ­£åˆ‡</td>
         <td>atan2(1,2) <br>>>1.10714871779</td>
     </tr>
     <tr>
-        <td rowspan="8">ËÄ<br><br>Éá<br><br>Îå<br><br>Èë</td>
-        <td>ROUND</td><td>round(ÊýÖµ,Ð¡ÊýÎ»Êý)<br>·µ»ØÄ³¸öÊý×Ö°´Ö¸¶¨Î»ÊýÈ¡ÕûºóµÄÊý×Ö¡£</td>
+        <td rowspan="8">å››<br><br>èˆ<br><br>äº”<br><br>å…¥</td>
+        <td>ROUND</td><td>round(æ•°å€¼,å°æ•°ä½æ•°)<br>è¿”å›žæŸä¸ªæ•°å­—æŒ‰æŒ‡å®šä½æ•°å–æ•´åŽçš„æ•°å­—ã€‚</td>
         <td>ROUND(4.333,2) <br>>>4.33</td>
     </tr>
     <tr>
-        <td>ROUNDDOWN</td><td>roundDown(ÊýÖµ,Ð¡ÊýÎ»Êý)<br>¿¿½üÁãÖµ,ÏòÏÂ£¨¾ø¶ÔÖµ¼õÐ¡µÄ·½Ïò£©ÉáÈëÊý×Ö¡£</td>
+        <td>ROUNDDOWN</td><td>roundDown(æ•°å€¼,å°æ•°ä½æ•°)<br>é è¿‘é›¶å€¼,å‘ä¸‹ï¼ˆç»å¯¹å€¼å‡å°çš„æ–¹å‘ï¼‰èˆå…¥æ•°å­—ã€‚</td>
         <td>ROUNDDOWN(4.333,2) <br>>>4.33</td>
     </tr>
     <tr>
-        <td>ROUNDUP</td><td>roundUp(ÊýÖµ,Ð¡ÊýÎ»Êý)<br>Ô¶ÀëÁãÖµ,ÏòÉÏ£¨¾ø¶ÔÖµÔö³¤µÄ·½Ïò£©ÉáÈëÊý×Ö¡£</td>
+        <td>ROUNDUP</td><td>roundUp(æ•°å€¼,å°æ•°ä½æ•°)<br>è¿œç¦»é›¶å€¼,å‘ä¸Šï¼ˆç»å¯¹å€¼å¢žé•¿çš„æ–¹å‘ï¼‰èˆå…¥æ•°å­—ã€‚</td>
         <td>ROUNDUP(4.333,2) <br>>>4.34</td>
     </tr>
     <tr>
-        <td>CEILING</td><td>ceiling(ÊýÖµ,ÉáÈë»ùÊý)<br>ÏòÉÏÉáÈë£¨ÑØ¾ø¶ÔÖµÔö´óµÄ·½Ïò£©Îª×î½Ó½üµÄ ÉáÈë»ùÊý µÄ±¶Êý¡£</td>
+        <td>CEILING</td><td>ceiling(æ•°å€¼,èˆå…¥åŸºæ•°)<br>å‘ä¸Šèˆå…¥ï¼ˆæ²¿ç»å¯¹å€¼å¢žå¤§çš„æ–¹å‘ï¼‰ä¸ºæœ€æŽ¥è¿‘çš„ èˆå…¥åŸºæ•° çš„å€æ•°ã€‚</td>
         <td>CEILING(4.333,0.1) <br>>>4.4</td>
     </tr>
     <tr>
-        <td>floor</td><td>floor(ÊýÖµ,ÉáÈë»ùÊý)<br>ÏòÏÂÉáÈë,Ê¹ÆäµÈÓÚ×î½Ó½üµÄ Significance µÄ±¶Êý¡£</td>
+        <td>floor</td><td>floor(æ•°å€¼,èˆå…¥åŸºæ•°)<br>å‘ä¸‹èˆå…¥,ä½¿å…¶ç­‰äºŽæœ€æŽ¥è¿‘çš„ Significance çš„å€æ•°ã€‚</td>
         <td>FLOOR(4.333,0.1) <br>>>4.3</td>
     </tr>
     <tr>
-        <td>even</td><td>even(ÊýÖµ)<br>·µ»ØÑØ¾ø¶ÔÖµÔö´ó·½ÏòÈ¡Õûºó×î½Ó½üµÄÅ¼Êý¡£</td>
+        <td>even</td><td>even(æ•°å€¼)<br>è¿”å›žæ²¿ç»å¯¹å€¼å¢žå¤§æ–¹å‘å–æ•´åŽæœ€æŽ¥è¿‘çš„å¶æ•°ã€‚</td>
         <td>EVEN(3) <br>>>4</td>
     </tr>
     <tr>
-        <td>ODD</td><td>odd(ÊýÖµ)<br>½«Êý×ÖÏòÉÏÉáÈëÎª×î½Ó½üµÄÆæÐÍÕûÊý</td>
+        <td>ODD</td><td>odd(æ•°å€¼)<br>å°†æ•°å­—å‘ä¸Šèˆå…¥ä¸ºæœ€æŽ¥è¿‘çš„å¥‡åž‹æ•´æ•°</td>
         <td>ODD(3.1) <br>>>5</td>
     </tr>
     <tr>
-        <td>MROUND</td><td>mround(ÊýÖµ,ÉáÈë»ùÊý)<br>·µ»ØÒ»¸öÉáÈëµ½ËùÐè±¶ÊýµÄÊý×Ö</td>
+        <td>MROUND</td><td>mround(æ•°å€¼,èˆå…¥åŸºæ•°)<br>è¿”å›žä¸€ä¸ªèˆå…¥åˆ°æ‰€éœ€å€æ•°çš„æ•°å­—</td>
         <td>MROUND(13,5) <br>>>15</td>
     </tr>
     <tr>
-        <td rowspan="2">Ëæ<br><br>»ú<br><br>Êý</td>
-        <td>RAND</td><td>rand()<br>·µ»Ø 0 µ½ 1 Ö®¼äµÄËæ»úÊý </td>
+        <td rowspan="2">éš<br><br>æœº<br><br>æ•°</td>
+        <td>RAND</td><td>rand()<br>è¿”å›ž 0 åˆ° 1 ä¹‹é—´çš„éšæœºæ•° </td>
         <td>RAND() <br>>>0.2</td>
     </tr>
     <tr>
-        <td>RANDBETWEEN</td><td>randBetween(×îÐ¡ÕûÊý,×î´óÕûÊý)<br>·µ»Ø´óÓÚµÈÓÚÖ¸¶¨µÄ×îÐ¡Öµ,Ð¡ÓÚÖ¸¶¨×î´óÖµÖ®¼äµÄÒ»¸öËæ»úÕûÊý¡£</td>
+        <td>RANDBETWEEN</td><td>randBetween(æœ€å°æ•´æ•°,æœ€å¤§æ•´æ•°)<br>è¿”å›žå¤§äºŽç­‰äºŽæŒ‡å®šçš„æœ€å°å€¼,å°äºŽæŒ‡å®šæœ€å¤§å€¼ä¹‹é—´çš„ä¸€ä¸ªéšæœºæ•´æ•°ã€‚</td>
         <td>RANDBETWEEN(2,44) <br>>>9</td>
     </tr>
     <tr>
-        <td rowspan="11">ÃÝ<br><br>/<br><br>¶Ô<br><br>Êý<br><br>/<br><br>½×<br><br>³Ë</td>
-        <td>fact</td><td>fact(ÊýÖµ)<br>·µ»ØÊýµÄ½×³Ë,Ò»¸öÊýµÄ½×³ËµÈÓÚ 1*2*3*¡­* ¸ÃÊý¡£</td>
+        <td rowspan="11">å¹‚<br><br>/<br><br>å¯¹<br><br>æ•°<br><br>/<br><br>é˜¶<br><br>ä¹˜</td>
+        <td>fact</td><td>fact(æ•°å€¼)<br>è¿”å›žæ•°çš„é˜¶ä¹˜,ä¸€ä¸ªæ•°çš„é˜¶ä¹˜ç­‰äºŽ 1*2*3*â€¦* è¯¥æ•°ã€‚</td>
         <td>FACT(3) <br>>>6</td>
     </tr>
     <tr>
-        <td>factdouble</td><td>factDouble(ÊýÖµ)<br>·µ»ØÊý×ÖµÄË«±¶½×³Ë</td>
+        <td>factdouble</td><td>factDouble(æ•°å€¼)<br>è¿”å›žæ•°å­—çš„åŒå€é˜¶ä¹˜</td>
         <td>FACTDOUBLE(10) <br>>>3840</td>
     </tr>
     <tr>
-        <td>POWER</td><td>power(ÊýÖµ,ÃÝ)<br>·µ»ØÊýµÄ³ËÃÝ½á¹û</td>
+        <td>POWER</td><td>power(æ•°å€¼,å¹‚)<br>è¿”å›žæ•°çš„ä¹˜å¹‚ç»“æžœ</td>
         <td>POWER(10,2) <br>>>100</td>
     </tr>
     <tr>
-        <td>exp</td><td>exp(ÃÝ)<br>·µ»ØeµÄÖ¸¶¨Êý³ËÃÝ</td>
+        <td>exp</td><td>exp(å¹‚)<br>è¿”å›žeçš„æŒ‡å®šæ•°ä¹˜å¹‚</td>
         <td>exp(2) <br>>>7.389056099</td>
     </tr>
     <tr>
-        <td>ln</td><td>ln(ÊýÖµ)<br>·µ»ØÊý×ÖµÄ×ÔÈ»¶ÔÊý</td>
+        <td>ln</td><td>ln(æ•°å€¼)<br>è¿”å›žæ•°å­—çš„è‡ªç„¶å¯¹æ•°</td>
         <td>LN(4) <br>>>1.386294361</td>
     </tr>
     <tr>
-        <td>log</td><td>log(ÊýÖµ,[µ×Êý])<br>·µ»ØÊý×ÖµÄ³£ÓÃ¶ÔÊý,ÈçÊ¡ÂÔµ×Êý,Ä¬ÈÏÎª10</td>
+        <td>log</td><td>log(æ•°å€¼,[åº•æ•°])<br>è¿”å›žæ•°å­—çš„å¸¸ç”¨å¯¹æ•°,å¦‚çœç•¥åº•æ•°,é»˜è®¤ä¸º10</td>
         <td>LOG(100,10) <br>>>2</td>
     </tr>
     <tr>
-        <td>LOG10</td><td>log10(ÊýÖµ)<br>·µ»ØÊý×ÖµÄ10¶ÔÊý</td>
+        <td>LOG10</td><td>log10(æ•°å€¼)<br>è¿”å›žæ•°å­—çš„10å¯¹æ•°</td>
         <td>LOG10(100) <br>>>2</td>
     </tr>
     <tr>
-        <td>MULTINOMIAL</td><td>multinomial(ÊýÖµ1,...)<br>·µ»Ø²ÎÊýºÍµÄ½×³ËÓë¸÷²ÎÊý½×³Ë³Ë»ýµÄ±ÈÖµ</td>
+        <td>MULTINOMIAL</td><td>multinomial(æ•°å€¼1,...)<br>è¿”å›žå‚æ•°å’Œçš„é˜¶ä¹˜ä¸Žå„å‚æ•°é˜¶ä¹˜ä¹˜ç§¯çš„æ¯”å€¼</td>
         <td>MULTINOMIAL(1,2,3) <br>>>60</td>
     </tr>
     <tr>
-        <td>PRODUCT</td><td>product(ÊýÖµ1,...)<br>½«ËùÓÐÒÔ²ÎÊýÐÎÊ½¸ø³öµÄÊý×ÖÏà³Ë,²¢·µ»Ø³Ë»ýÖµ¡£</td>
+        <td>PRODUCT</td><td>product(æ•°å€¼1,...)<br>å°†æ‰€æœ‰ä»¥å‚æ•°å½¢å¼ç»™å‡ºçš„æ•°å­—ç›¸ä¹˜,å¹¶è¿”å›žä¹˜ç§¯å€¼ã€‚</td>
         <td>PRODUCT(1,2,3,4) <br>>>24</td>
     </tr>
     <tr>
-        <td>SQRTPI</td><td>sqrtPi(ÊýÖµ)<br>·µ»ØÄ³ÊýÓë PI µÄ³Ë»ýµÄÆ½·½¸ù</td>
+        <td>SQRTPI</td><td>sqrtPi(æ•°å€¼)<br>è¿”å›žæŸæ•°ä¸Ž PI çš„ä¹˜ç§¯çš„å¹³æ–¹æ ¹</td>
         <td>SQRTPI(3) <br>>>3.069980124</td>
     </tr>
     <tr>
-        <td>SUMSQ</td><td>sumQq(ÊýÖµ,...)<br>·µ»Ø²ÎÊýµÄÆ½·½ºÍ</td>
+        <td>SUMSQ</td><td>sumQq(æ•°å€¼,...)<br>è¿”å›žå‚æ•°çš„å¹³æ–¹å’Œ</td>
         <td>SUMSQ(1,2) <br>>>5</td>
     </tr>
 </table>
 
-#### ÎÄ±¾º¯Êý
+#### æ–‡æœ¬å‡½æ•°
 <table>
-    <tr><td>º¯ÊýÃû</td><td>ËµÃ÷</td><td>Ê¾Àý</td></tr>
+    <tr><td>å‡½æ•°å</td><td>è¯´æ˜Ž</td><td>ç¤ºä¾‹</td></tr>
     <tr>
-        <td>ASC</td><td>asc(×Ö·û´®)<br>½«×Ö·û´®ÄÚµÄÈ«½ÇÓ¢ÎÄ×ÖÄ¸¸ü¸ÄÎª°ë½Ç×Ö·û</td>
-        <td>asc('£á£â£ã£Á£Â£Ã£±£²£³') <br>>>abcABC123</td>
+        <td>ASC</td><td>asc(å­—ç¬¦ä¸²)<br>å°†å­—ç¬¦ä¸²å†…çš„å…¨è§’è‹±æ–‡å­—æ¯æ›´æ”¹ä¸ºåŠè§’å­—ç¬¦</td>
+        <td>asc('ï½ï½‚ï½ƒï¼¡ï¼¢ï¼£ï¼‘ï¼’ï¼“') <br>>>abcABC123</td>
     </tr>
     <tr>
-        <td>JIS / WIDECHAR</td><td>jis(×Ö·û´®)<br>½«×Ö·û´®ÖÐµÄ°ë½ÇÓ¢ÎÄ×Ö·û¸ü¸ÄÎªÈ«½Ç×Ö·û</td>
-        <td>jis('abcABC123') <br>>>£á£â£ã£Á£Â£Ã£±£²£³</td>
+        <td>JIS / WIDECHAR</td><td>jis(å­—ç¬¦ä¸²)<br>å°†å­—ç¬¦ä¸²ä¸­çš„åŠè§’è‹±æ–‡å­—ç¬¦æ›´æ”¹ä¸ºå…¨è§’å­—ç¬¦</td>
+        <td>jis('abcABC123') <br>>>ï½ï½‚ï½ƒï¼¡ï¼¢ï¼£ï¼‘ï¼’ï¼“</td>
     </tr>
     <tr>
-        <td>CHAR</td><td>jis(ÊýÖµ)<br>·µ»ØÓÉ´úÂëÊý×ÖÖ¸¶¨µÄ×Ö·û</td>
+        <td>CHAR</td><td>jis(æ•°å€¼)<br>è¿”å›žç”±ä»£ç æ•°å­—æŒ‡å®šçš„å­—ç¬¦</td>
         <td>char(49) <br>>>1</td>
     </tr>
     <tr>
-        <td>CLEAN</td><td>clean(×Ö·û´®)<br>É¾³ýÎÄ±¾ÖÐËùÓÐ´òÓ¡²»³öµÄ×Ö·û</td>
+        <td>CLEAN</td><td>clean(å­—ç¬¦ä¸²)<br>åˆ é™¤æ–‡æœ¬ä¸­æ‰€æœ‰æ‰“å°ä¸å‡ºçš„å­—ç¬¦</td>
         <td>clean('\r112\t') <br>>>112</td>
     </tr>
     <tr>
-        <td>CODE</td><td>code(×Ö·û´®)<br>·µ»ØÎÄ±¾×Ö·û´®ÖÐµÚÒ»¸ö×Ö·ûµÄÊý×Ö´úÂë</td>
+        <td>CODE</td><td>code(å­—ç¬¦ä¸²)<br>è¿”å›žæ–‡æœ¬å­—ç¬¦ä¸²ä¸­ç¬¬ä¸€ä¸ªå­—ç¬¦çš„æ•°å­—ä»£ç </td>
         <td>CODE("1") <br>>>49</td>
     </tr>
     <tr>
-        <td>CONCATENATE</td><td>concatenate(×Ö·û´®1,...)<br>½«Èô¸ÉÎÄ±¾ÏîºÏ²¢µ½Ò»¸öÎÄ±¾ÏîÖÐ</td>
+        <td>CONCATENATE</td><td>concatenate(å­—ç¬¦ä¸²1,...)<br>å°†è‹¥å¹²æ–‡æœ¬é¡¹åˆå¹¶åˆ°ä¸€ä¸ªæ–‡æœ¬é¡¹ä¸­</td>
         <td>CONCATENATE('tt','11') <br>>>tt11</td>
     </tr>
     <tr>
-        <td>EXACT</td><td>exact(×Ö·û´®1,×Ö·û´®2)<br>¼ì²éÁ½¸öÎÄ±¾ÖµÊÇ·ñÍêÈ«ÏàÍ¬</td>
+        <td>EXACT</td><td>exact(å­—ç¬¦ä¸²1,å­—ç¬¦ä¸²2)<br>æ£€æŸ¥ä¸¤ä¸ªæ–‡æœ¬å€¼æ˜¯å¦å®Œå…¨ç›¸åŒ</td>
         <td>EXACT("11","22") <br>>>false</td>
     </tr>
     <tr>
-        <td>FIND</td><td>find(Òª²éÕÒµÄ×Ö·û´®,±»²éÕÒµÄ×Ö·û´®,[¿ªÊ¼Î»ÖÃ])<br>ÔÚÒ»ÎÄ±¾ÖµÄÚ²éÕÒÁíÒ»ÎÄ±¾Öµ£¨Çø·Ö´óÐ¡Ð´£© </td>
+        <td>FIND</td><td>find(è¦æŸ¥æ‰¾çš„å­—ç¬¦ä¸²,è¢«æŸ¥æ‰¾çš„å­—ç¬¦ä¸²,[å¼€å§‹ä½ç½®])<br>åœ¨ä¸€æ–‡æœ¬å€¼å†…æŸ¥æ‰¾å¦ä¸€æ–‡æœ¬å€¼ï¼ˆåŒºåˆ†å¤§å°å†™ï¼‰ </td>
         <td>FIND("11","12221122") <br>>>5</td>
     </tr>
     <tr>
-        <td>FIXED</td><td>fixed(ÊýÖµ,[Ð¡ÊýÎ»Êý],[ÓÐÎÞ¶ººÅ·Ö¸ô·û])<br>½«Êý×ÖÉèÖÃÎª¾ßÓÐ¹Ì¶¨Ð¡ÊýÎ»µÄÎÄ±¾¸ñÊ½</td>
+        <td>FIXED</td><td>fixed(æ•°å€¼,[å°æ•°ä½æ•°],[æœ‰æ— é€—å·åˆ†éš”ç¬¦])<br>å°†æ•°å­—è®¾ç½®ä¸ºå…·æœ‰å›ºå®šå°æ•°ä½çš„æ–‡æœ¬æ ¼å¼</td>
         <td>FIXED(4567.89,1) <br>>>4,567.9</td>
     </tr>
     <tr>
-        <td>LEFT</td><td>left(×Ö·û´®,[×Ö·û¸öÊý])<br>·µ»ØÎÄ±¾Öµ×î×ó±ßµÄ×Ö·û</td>
+        <td>LEFT</td><td>left(å­—ç¬¦ä¸²,[å­—ç¬¦ä¸ªæ•°])<br>è¿”å›žæ–‡æœ¬å€¼æœ€å·¦è¾¹çš„å­—ç¬¦</td>
         <td>LEFT('123222',3) <br>>>123</td>
     </tr>
     <tr>
-        <td>LEN</td><td>len(×Ö·û´®)<br>·µ»ØÎÄ±¾×Ö·û´®ÖÐµÄ×Ö·û¸öÊý</td>
+        <td>LEN</td><td>len(å­—ç¬¦ä¸²)<br>è¿”å›žæ–‡æœ¬å­—ç¬¦ä¸²ä¸­çš„å­—ç¬¦ä¸ªæ•°</td>
         <td>LEN('123222') <br>>>6</td>
     </tr>
     <tr>
-        <td>LOWER</td><td>lower(×Ö·û´®)<br>½«ÎÄ±¾×ª»»ÎªÐ¡Ð´ÐÎÊ½</td>
+        <td>LOWER</td><td>lower(å­—ç¬¦ä¸²)<br>å°†æ–‡æœ¬è½¬æ¢ä¸ºå°å†™å½¢å¼</td>
         <td>LOWER('ABC') <br>>>abc</td>
     </tr>
     <tr>
-        <td>MID</td><td>mid(×Ö·û´®,¿ªÊ¼Î»ÖÃ,×Ö·û¸öÊý)<br>´ÓÎÄ±¾×Ö·û´®ÖÐµÄÖ¸¶¨Î»ÖÃÆð·µ»ØÌØ¶¨¸öÊýµÄ×Ö·û</td>
+        <td>MID</td><td>mid(å­—ç¬¦ä¸²,å¼€å§‹ä½ç½®,å­—ç¬¦ä¸ªæ•°)<br>ä»Žæ–‡æœ¬å­—ç¬¦ä¸²ä¸­çš„æŒ‡å®šä½ç½®èµ·è¿”å›žç‰¹å®šä¸ªæ•°çš„å­—ç¬¦</td>
         <td>MID('ABCDEF',2,3) <br>>>BCD</td>
     </tr>
     <tr>
-        <td>PROPER</td><td>proper(×Ö·û´®)<br>½«ÎÄ±¾ÖµÖÐÃ¿Ò»¸öµ¥´ÊµÄÊ××ÖÄ¸ÉèÖÃÎª´óÐ´</td>
+        <td>PROPER</td><td>proper(å­—ç¬¦ä¸²)<br>å°†æ–‡æœ¬å€¼ä¸­æ¯ä¸€ä¸ªå•è¯çš„é¦–å­—æ¯è®¾ç½®ä¸ºå¤§å†™</td>
         <td>PROPER('abc abc') <br>>>Abc Abc</td>
     </tr>
     <tr>
         <td>REPLACE</td>
-        <td>replace(Ô­×Ö·û´®,¿ªÊ¼Î»ÖÃ,×Ö·û¸öÊý,ÐÂ×Ö·û´®)<br>
-        replace(Ô­×Ö·û´®,ÒªÌæ»»µÄ×Ö·û´®, ÐÂ×Ö·û´®)<br>
-        Ìæ»»ÎÄ±¾ÄÚµÄ×Ö·û</td>
+        <td>replace(åŽŸå­—ç¬¦ä¸²,å¼€å§‹ä½ç½®,å­—ç¬¦ä¸ªæ•°,æ–°å­—ç¬¦ä¸²)<br>
+        replace(åŽŸå­—ç¬¦ä¸²,è¦æ›¿æ¢çš„å­—ç¬¦ä¸², æ–°å­—ç¬¦ä¸²)<br>
+        æ›¿æ¢æ–‡æœ¬å†…çš„å­—ç¬¦</td>
         <td>REPLACE("abccd",2,3,"2") <br>>>a2d<br>
         REPLACE("abccd","bc","2") <br>>>a2cd
         </td>
     </tr>
     <tr>
-        <td>REPT</td><td>rept(×Ö·û´®,ÖØ¸´´ÎÊý)<br>°´¸ø¶¨´ÎÊýÖØ¸´ÎÄ±¾</td>
+        <td>REPT</td><td>rept(å­—ç¬¦ä¸²,é‡å¤æ¬¡æ•°)<br>æŒ‰ç»™å®šæ¬¡æ•°é‡å¤æ–‡æœ¬</td>
         <td>REPT("q",3) <br>>>qqq</td>
     </tr>
     <tr>
-        <td>RIGHT</td><td>right(×Ö·û´®,[×Ö·û¸öÊý])<br>·µ»ØÎÄ±¾Öµ×îÓÒ±ßµÄ×Ö·û</td>
+        <td>RIGHT</td><td>right(å­—ç¬¦ä¸²,[å­—ç¬¦ä¸ªæ•°])<br>è¿”å›žæ–‡æœ¬å€¼æœ€å³è¾¹çš„å­—ç¬¦</td>
         <td>RIGHT("123q",3) <br>>>23q</td>
     </tr>
     <tr>
-        <td>RMB</td><td>rmb(ÊýÖµ)<br>½«Êý×Ö×ª»»Îª´óÐ´Êý×ÖÎÄ±¾</td>
-        <td>rmb(12.3) <br>>>Ò¼Ê°·¡ÔªÈþ½Ç</td>
+        <td>RMB</td><td>rmb(æ•°å€¼)<br>å°†æ•°å­—è½¬æ¢ä¸ºå¤§å†™æ•°å­—æ–‡æœ¬</td>
+        <td>rmb(12.3) <br>>>å£¹æ‹¾è´°å…ƒåè§’</td>
     </tr>
     <tr>
-        <td>SEARCH</td><td>search(ÒªÕÒµÄ×Ö·û´®,±»²éÕÒµÄ×Ö·û´®,[¿ªÊ¼Î»ÖÃ])<br>ÔÚÒ»ÎÄ±¾ÖµÖÐ²éÕÒÁíÒ»ÎÄ±¾Öµ£¨²»Çø·Ö´óÐ¡Ð´£©</td>
+        <td>SEARCH</td><td>search(è¦æ‰¾çš„å­—ç¬¦ä¸²,è¢«æŸ¥æ‰¾çš„å­—ç¬¦ä¸²,[å¼€å§‹ä½ç½®])<br>åœ¨ä¸€æ–‡æœ¬å€¼ä¸­æŸ¥æ‰¾å¦ä¸€æ–‡æœ¬å€¼ï¼ˆä¸åŒºåˆ†å¤§å°å†™ï¼‰</td>
         <td>SEARCH("aa","abbAaddd") <br>>>4</td>
     </tr>
     <tr>
-        <td>SUBSTITUTE</td><td>substitute(×Ö·û´®,Ô­×Ö·û´®,ÐÂ×Ö·û´®,[Ìæ»»ÐòºÅ])<br>ÔÚÎÄ±¾×Ö·û´®ÖÐÒÔÐÂÎÄ±¾Ìæ»»¾ÉÎÄ±¾</td>
+        <td>SUBSTITUTE</td><td>substitute(å­—ç¬¦ä¸²,åŽŸå­—ç¬¦ä¸²,æ–°å­—ç¬¦ä¸²,[æ›¿æ¢åºå·])<br>åœ¨æ–‡æœ¬å­—ç¬¦ä¸²ä¸­ä»¥æ–°æ–‡æœ¬æ›¿æ¢æ—§æ–‡æœ¬</td>
         <td>SUBSTITUTE("ababcc","ab","12") <br>>>1212cc</td>
     </tr>
     <tr>
-        <td>T</td><td>t(ÊýÖµ)<br>½«²ÎÊý×ª»»ÎªÎÄ±¾</td>
+        <td>T</td><td>t(æ•°å€¼)<br>å°†å‚æ•°è½¬æ¢ä¸ºæ–‡æœ¬</td>
         <td>T('123') <br>>>123</td>
     </tr>
     <tr>
-        <td>TEXT</td><td>text(ÊýÖµ,ÊýÖµ¸ñÊ½)<br>ÉèÖÃÊý×ÖµÄ¸ñÊ½²¢½«Êý×Ö×ª»»ÎªÎÄ±¾</td>
+        <td>TEXT</td><td>text(æ•°å€¼,æ•°å€¼æ ¼å¼)<br>è®¾ç½®æ•°å­—çš„æ ¼å¼å¹¶å°†æ•°å­—è½¬æ¢ä¸ºæ–‡æœ¬</td>
         <td>TEXT(123,"0.00") <br>>>123.00</td>
     </tr>
     <tr>
-        <td>TRIM</td><td>trim(×Ö·û´®)<br>É¾³ýÎÄ±¾ÖÐµÄ¿Õ¸ñ</td>
+        <td>TRIM</td><td>trim(å­—ç¬¦ä¸²)<br>åˆ é™¤æ–‡æœ¬ä¸­çš„ç©ºæ ¼</td>
         <td>TRIM(" 123 123 ")<br>>>123 123</td>
     </tr>
     <tr>
-        <td>UPPER</td><td>upper(×Ö·û´®)<br>½«ÎÄ±¾×ª»»Îª´óÐ´ÐÎÊ½</td>
+        <td>UPPER</td><td>upper(å­—ç¬¦ä¸²)<br>å°†æ–‡æœ¬è½¬æ¢ä¸ºå¤§å†™å½¢å¼</td>
         <td>UPPER("abc") <br>>>ABC</td>
     </tr>
     <tr>
-        <td>VALUE</td><td>value(×Ö·û´®)<br>½«ÎÄ±¾²ÎÊý×ª»»ÎªÊý×Ö</td>
+        <td>VALUE</td><td>value(å­—ç¬¦ä¸²)<br>å°†æ–‡æœ¬å‚æ•°è½¬æ¢ä¸ºæ•°å­—</td>
         <td>VALUE("123") <br>>>123</td>
     </tr>
 </table>
 
-#### ÈÕÆÚÓëÊ±¼äº¯Êý
+#### æ—¥æœŸä¸Žæ—¶é—´å‡½æ•°
 <table>
-    <tr><td>º¯ÊýÃû</td><td>ËµÃ÷</td><td>Ê¾Àý</td></tr>
+    <tr><td>å‡½æ•°å</td><td>è¯´æ˜Ž</td><td>ç¤ºä¾‹</td></tr>
     <tr>
-        <td>DATEVALUE</td><td>dateValue(×Ö·û´®)<br>½«ÎÄ±¾¸ñÊ½µÄÈÕÆÚ×ª»»ÎªÐòÁÐºÅ</td>
+        <td>DATEVALUE</td><td>dateValue(å­—ç¬¦ä¸²)<br>å°†æ–‡æœ¬æ ¼å¼çš„æ—¥æœŸè½¬æ¢ä¸ºåºåˆ—å·</td>
         <td>DATEVALUE("2017-01-02") <br>>>2017-01-02</td>
     </tr>
     <tr>
-        <td>TIMEVALUE</td><td>timeValue(×Ö·û´®)<br>½«ÎÄ±¾¸ñÊ½µÄÊ±¼ä×ª»»ÎªÐòÁÐºÅ</td>
+        <td>TIMEVALUE</td><td>timeValue(å­—ç¬¦ä¸²)<br>å°†æ–‡æœ¬æ ¼å¼çš„æ—¶é—´è½¬æ¢ä¸ºåºåˆ—å·</td>
         <td>TIMEVALUE("12:12:12") <br>>>12:12:12</td>
     </tr>
     <tr>
-        <td>DATE</td><td>date(Äê,ÔÂ,ÈÕ,[Ê±],[·Ö],[Ãë])<br>·µ»ØÌØ¶¨ÈÕÆÚµÄÐòÁÐºÅ</td>
+        <td>DATE</td><td>date(å¹´,æœˆ,æ—¥,[æ—¶],[åˆ†],[ç§’])<br>è¿”å›žç‰¹å®šæ—¥æœŸçš„åºåˆ—å·</td>
         <td>DATE(2016,1,1) <br>>>2016-01-01</td>
     </tr>
     <tr>
-        <td>TIME</td><td>time(Ê±,·Ö,Ãë)<br>·µ»ØÌØ¶¨Ê±¼äµÄÐòÁÐºÅ</td>
+        <td>TIME</td><td>time(æ—¶,åˆ†,ç§’)<br>è¿”å›žç‰¹å®šæ—¶é—´çš„åºåˆ—å·</td>
         <td>TIME(12,13,14) <br>>>12:13:14</td>
     </tr>
     <tr>
-        <td>NOW</td><td>now()<br>·µ»Øµ±Ç°ÈÕÆÚºÍÊ±¼äµÄÐòÁÐºÅ</td>
+        <td>NOW</td><td>now()<br>è¿”å›žå½“å‰æ—¥æœŸå’Œæ—¶é—´çš„åºåˆ—å·</td>
         <td>NOW() <br>>>2017-01-07 11:00:00</td>
     </tr>
     <tr>
-        <td>TODAY</td><td>today()<br>·µ»Ø½ñÌìÈÕÆÚµÄÐòÁÐºÅ</td>
+        <td>TODAY</td><td>today()<br>è¿”å›žä»Šå¤©æ—¥æœŸçš„åºåˆ—å·</td>
         <td>TODAY() <br>>>2017-01-07</td>
     </tr>
     <tr>
-        <td>YEAR</td><td>year(ÈÕÆÚ)<br>½«ÐòÁÐºÅ×ª»»ÎªÄê</td>
+        <td>YEAR</td><td>year(æ—¥æœŸ)<br>å°†åºåˆ—å·è½¬æ¢ä¸ºå¹´</td>
         <td>YEAR(NOW()) <br>>>2017</td>
     </tr>
     <tr>
-        <td>MONTH</td><td>month(ÈÕÆÚ)<br>½«ÐòÁÐºÅ×ª»»ÎªÔÂ</td>
+        <td>MONTH</td><td>month(æ—¥æœŸ)<br>å°†åºåˆ—å·è½¬æ¢ä¸ºæœˆ</td>
         <td>MONTH(NOW()) <br>>>1</td>
     </tr>
     <tr>
-        <td>DAY</td><td>day(ÈÕÆÚ)<br>½«ÐòÁÐºÅ×ª»»ÎªÔÂ·ÝÖÐµÄÈÕ</td>
+        <td>DAY</td><td>day(æ—¥æœŸ)<br>å°†åºåˆ—å·è½¬æ¢ä¸ºæœˆä»½ä¸­çš„æ—¥</td>
         <td>DAY(NOW()) <br>>>7</td>
     </tr>
     <tr>
-        <td>HOUR</td><td>hour(ÈÕÆÚ)<br>½«ÐòÁÐºÅ×ª»»ÎªÐ¡Ê±</td>
+        <td>HOUR</td><td>hour(æ—¥æœŸ)<br>å°†åºåˆ—å·è½¬æ¢ä¸ºå°æ—¶</td>
         <td>HOUR(NOW()) <br>>>11</td>
     </tr>
     <tr>
-        <td>MINUTE</td><td>minute(ÈÕÆÚ)<br>½«ÐòÁÐºÅ×ª»»Îª·ÖÖÓ</td>
+        <td>MINUTE</td><td>minute(æ—¥æœŸ)<br>å°†åºåˆ—å·è½¬æ¢ä¸ºåˆ†é’Ÿ</td>
         <td>MINUTE(NOW()) <br>>>12</td>
     </tr>
     <tr>
-        <td>SECOND</td><td>second(ÈÕÆÚ)<br>½«ÐòÁÐºÅ×ª»»ÎªÃë</td>
+        <td>SECOND</td><td>second(æ—¥æœŸ)<br>å°†åºåˆ—å·è½¬æ¢ä¸ºç§’</td>
         <td>SECOND(NOW()) <br>>>34</td>
     </tr>
     <tr>
-        <td>WEEKDAY</td><td>second(ÈÕÆÚ)<br>½«ÐòÁÐºÅ×ª»»ÎªÐÇÆÚ¼¸</td>
+        <td>WEEKDAY</td><td>second(æ—¥æœŸ)<br>å°†åºåˆ—å·è½¬æ¢ä¸ºæ˜ŸæœŸå‡ </td>
         <td>WEEKDAY(date(2017,1,7)) <br>>>7</td>
     </tr>
     <tr>
-        <td>DATEDIF</td><td>dateDif(¿ªÊ¼ÈÕÆÚ,½áÊøÈÕÆÚ,ÀàÐÍY/M/D/YD/MD/YM)<br>·µ»ØÁ½¸öÈÕÆÚÖ®¼äµÄÏà¸ôÌìÊý</td>
+        <td>DATEDIF</td><td>dateDif(å¼€å§‹æ—¥æœŸ,ç»“æŸæ—¥æœŸ,ç±»åž‹Y/M/D/YD/MD/YM)<br>è¿”å›žä¸¤ä¸ªæ—¥æœŸä¹‹é—´çš„ç›¸éš”å¤©æ•°</td>
         <td>DATEDIF("1975-1-30","2017-1-7","Y") <br>>>41</td>
     </tr>
     <tr>
-        <td>DAYS360</td><td>days360(¿ªÊ¼ÈÕÆÚ,½áÊøÈÕÆÚ,[Ñ¡Ïî0/1])<br>ÒÔÒ»Äê 360 ÌìÎª»ù×¼¼ÆËãÁ½¸öÈÕÆÚ¼äµÄÌìÊý</td>
+        <td>DAYS360</td><td>days360(å¼€å§‹æ—¥æœŸ,ç»“æŸæ—¥æœŸ,[é€‰é¡¹0/1])<br>ä»¥ä¸€å¹´ 360 å¤©ä¸ºåŸºå‡†è®¡ç®—ä¸¤ä¸ªæ—¥æœŸé—´çš„å¤©æ•°</td>
         <td>DAYS360('1975-1-30','2017-1-7') <br>>>15097</td>
     </tr>
     <tr>
-        <td>EDATE</td><td>eDate(¿ªÊ¼ÈÕÆÚ,ÔÂÊý)<br>·µ»ØÓÃÓÚ±íÊ¾¿ªÊ¼ÈÕÆÚÖ®Ç°»òÖ®ºóÔÂÊýµÄÈÕÆÚµÄÐòÁÐºÅ</td>
+        <td>EDATE</td><td>eDate(å¼€å§‹æ—¥æœŸ,æœˆæ•°)<br>è¿”å›žç”¨äºŽè¡¨ç¤ºå¼€å§‹æ—¥æœŸä¹‹å‰æˆ–ä¹‹åŽæœˆæ•°çš„æ—¥æœŸçš„åºåˆ—å·</td>
         <td>EDATE("2012-1-31",32) <br>>>2014-09-30</td>
     </tr>
     <tr>
-        <td>EOMONTH</td><td>eoMonth(¿ªÊ¼ÈÕÆÚ,ÔÂÊý)<br>·µ»ØÖ¸¶¨ÔÂÊýÖ®Ç°»òÖ®ºóµÄÔÂ·ÝµÄ×îºóÒ»ÌìµÄÐòÁÐºÅ</td>
+        <td>EOMONTH</td><td>eoMonth(å¼€å§‹æ—¥æœŸ,æœˆæ•°)<br>è¿”å›žæŒ‡å®šæœˆæ•°ä¹‹å‰æˆ–ä¹‹åŽçš„æœˆä»½çš„æœ€åŽä¸€å¤©çš„åºåˆ—å·</td>
         <td>EOMONTH("2012-2-1",32) <br>>>2014-10-31</td>
     </tr>
     <tr>
-        <td>NETWORKDAYS</td><td>netWorkdays(¿ªÊ¼ÈÕÆÚ,½áÊøÈÕÆÚ,[¼ÙÈÕ])<br>·µ»ØÁ½¸öÈÕÆÚÖ®¼äµÄÈ«²¿¹¤×÷ÈÕÊý</td>
+        <td>NETWORKDAYS</td><td>netWorkdays(å¼€å§‹æ—¥æœŸ,ç»“æŸæ—¥æœŸ,[å‡æ—¥])<br>è¿”å›žä¸¤ä¸ªæ—¥æœŸä¹‹é—´çš„å…¨éƒ¨å·¥ä½œæ—¥æ•°</td>
         <td>NETWORKDAYS("2012-1-1","2013-1-1") <br>>>262</td>
     </tr>
     <tr>
-        <td>WORKDAY</td><td>workday(¿ªÊ¼ÈÕÆÚ,ÌìÊý,[¼ÙÈÕ])<br>·µ»ØÖ¸¶¨µÄÈô¸É¸ö¹¤×÷ÈÕÖ®Ç°»òÖ®ºóµÄÈÕÆÚµÄÐòÁÐºÅ</td>
+        <td>WORKDAY</td><td>workday(å¼€å§‹æ—¥æœŸ,å¤©æ•°,[å‡æ—¥])<br>è¿”å›žæŒ‡å®šçš„è‹¥å¹²ä¸ªå·¥ä½œæ—¥ä¹‹å‰æˆ–ä¹‹åŽçš„æ—¥æœŸçš„åºåˆ—å·</td>
         <td>WORKDAY("2012-1-2",145) <br>>>2012-07-23</td>
     </tr>
     <tr>
-        <td>WEEKNUM</td><td>weekNum(ÈÕÆÚ,[ÀàÐÍ£º1/2])<br>½«ÐòÁÐºÅ×ª»»ÎªÒ»ÄêÖÐÏàÓ¦µÄÖÜÊý</td>
+        <td>WEEKNUM</td><td>weekNum(æ—¥æœŸ,[ç±»åž‹ï¼š1/2])<br>å°†åºåˆ—å·è½¬æ¢ä¸ºä¸€å¹´ä¸­ç›¸åº”çš„å‘¨æ•°</td>
         <td>WEEKNUM("2016-1-3") <br>>>2</td>
     </tr>
 </table>
 
-#### Í³¼Æº¯Êý
+#### ç»Ÿè®¡å‡½æ•°
 <table>
-    <tr><td>º¯ÊýÃû</td><td>ËµÃ÷</td><td>Ê¾Àý</td></tr>
+    <tr><td>å‡½æ•°å</td><td>è¯´æ˜Ž</td><td>ç¤ºä¾‹</td></tr>
     <tr>
-        <td>MAX</td><td>max(ÊýÖµ)<br>·µ»Ø²ÎÊýÁÐ±íÖÐµÄ×î´óÖµ</td>
+        <td>MAX</td><td>max(æ•°å€¼)<br>è¿”å›žå‚æ•°åˆ—è¡¨ä¸­çš„æœ€å¤§å€¼</td>
         <td>max(1,2,3,4,2,2,1,4) <br>>>4</td>
     </tr>
     <tr>
-        <td>MEDIAN</td><td>median(ÊýÖµ)<br>·µ»Ø¸ø¶¨Êý×ÖµÄÖÐÖµ</td>
+        <td>MEDIAN</td><td>median(æ•°å€¼)<br>è¿”å›žç»™å®šæ•°å­—çš„ä¸­å€¼</td>
         <td>MEDIAN(1,2,3,4,2,2,1,4) <br>>>2</td>
     </tr>
     <tr>
-        <td>MIN</td><td>min(ÊýÖµ)<br>·µ»Ø²ÎÊýÁÐ±íÖÐµÄ×îÐ¡Öµ</td>
+        <td>MIN</td><td>min(æ•°å€¼)<br>è¿”å›žå‚æ•°åˆ—è¡¨ä¸­çš„æœ€å°å€¼</td>
         <td>MIN(1,2,3,4,2,2,1,4) <br>>>1</td>
     </tr>
     <tr>
-        <td>QUARTILE</td><td>quartile(ÊýÖµ,ËÄ·ÖÎ»£º0-4)<br>·µ»ØÊý¾Ý¼¯µÄËÄ·ÖÎ»Êý</td>
+        <td>QUARTILE</td><td>quartile(æ•°å€¼,å››åˆ†ä½ï¼š0-4)<br>è¿”å›žæ•°æ®é›†çš„å››åˆ†ä½æ•°</td>
         <td>QUARTILE({1,2,3,4,2,2,1,4},0) <br>>>1</td>
     </tr>
     <tr>
-        <td>MODE</td><td>mode(ÊýÖµ1,...)<br>·µ»ØÔÚÊý×éÖÐ³öÏÖÆµÂÊ×î¶àµÄÊýÖµ</td>
+        <td>MODE</td><td>mode(æ•°å€¼1,...)<br>è¿”å›žåœ¨æ•°ç»„ä¸­å‡ºçŽ°é¢‘çŽ‡æœ€å¤šçš„æ•°å€¼</td>
         <td>MODE(1,2,3,4,2,2,1,4) <br>>>2</td>
     </tr>
     <tr>
-        <td>LARGE</td><td>large(Êý×é,K)<br>·µ»ØÊý¾Ý¼¯ÖÐµÚ k ¸ö×î´óÖµ</td>
+        <td>LARGE</td><td>large(æ•°ç»„,K)<br>è¿”å›žæ•°æ®é›†ä¸­ç¬¬ k ä¸ªæœ€å¤§å€¼</td>
         <td>LARGE({1,2,3,4,2,2,1,4},3) <br>>>3</td>
     </tr>
     <tr>
-        <td>SMALL</td><td>small(ÊýÖµ,K)<br>·µ»ØÊý¾Ý¼¯ÖÐµÚ k ¸ö×îÐ¡Öµ</td>
+        <td>SMALL</td><td>small(æ•°å€¼,K)<br>è¿”å›žæ•°æ®é›†ä¸­ç¬¬ k ä¸ªæœ€å°å€¼</td>
         <td>SMALL({1,2,3,4,2,2,1,4},3) <br>>>2</td>
     </tr>
     <tr>
-        <td>PERCENTILE</td><td>percentile(ÊýÖµ,K)<br>·µ»ØÇøÓòÖÐµÄµÚ k ¸ö°Ù·ÖÎ»Öµ</td>
+        <td>PERCENTILE</td><td>percentile(æ•°å€¼,K)<br>è¿”å›žåŒºåŸŸä¸­çš„ç¬¬ k ä¸ªç™¾åˆ†ä½å€¼</td>
         <td>PERCENTILE({1,2,3,4,2,2,1,4},0.4) <br>>>2</td>
     </tr>
     <tr>
-        <td>PERCENTRANK</td><td>percentRank(ÊýÖµ,K)<br>·µ»ØÊý¾Ý¼¯ÖÐÖµµÄ°Ù·Ö±ÈÅÅÎ»</td>
+        <td>PERCENTRANK</td><td>percentRank(æ•°å€¼,K)<br>è¿”å›žæ•°æ®é›†ä¸­å€¼çš„ç™¾åˆ†æ¯”æŽ’ä½</td>
         <td>PERCENTRANK({1,2,3,4,2,2,1,4},3) <br>>>0.714</td>
     </tr>
     <tr>
-        <td>AVERAGE</td><td>average(ÊýÖµ1,...)<br>·µ»Ø²ÎÊýµÄÆ½¾ùÖµ</td>
+        <td>AVERAGE</td><td>average(æ•°å€¼1,...)<br>è¿”å›žå‚æ•°çš„å¹³å‡å€¼</td>
         <td>AVERAGE(1,2,3,4,2,2,1,4) <br>>>2.375</td>
     </tr>
     <tr>
-        <td>AVERAGEIF</td><td>averageIf(ÊýÖµ1,...)<br>·µ»Ø²ÎÊýµÄÆ½¾ùÖµ</td>
+        <td>AVERAGEIF</td><td>averageIf(æ•°å€¼1,...)<br>è¿”å›žå‚æ•°çš„å¹³å‡å€¼</td>
         <td>AVERAGEIF({1,2,3,4,2,2,1,4},'>1') <br>>>2.833333333</td>
     </tr>
     <tr>
-        <td>GEOMEAN</td><td>geoMean(ÊýÖµ1,...)<br>·µ»ØÕýÊýÊý×é»òÇøÓòµÄ¼¸ºÎÆ½¾ùÖµ</td>
+        <td>GEOMEAN</td><td>geoMean(æ•°å€¼1,...)<br>è¿”å›žæ­£æ•°æ•°ç»„æˆ–åŒºåŸŸçš„å‡ ä½•å¹³å‡å€¼</td>
         <td>GEOMEAN(1,2,3,4) <br>>>2.213363839</td>
     </tr>
     <tr>
-        <td>HARMEAN</td><td>harMean(ÊýÖµ1,...)<br>·µ»ØÊý¾Ý¼¯ºÏµÄµ÷ºÍÆ½¾ùÖµ</td>
+        <td>HARMEAN</td><td>harMean(æ•°å€¼1,...)<br>è¿”å›žæ•°æ®é›†åˆçš„è°ƒå’Œå¹³å‡å€¼</td>
         <td>HARMEAN(1,2,3,4) <br>>>1.92</td>
     </tr>
     <tr>
-        <td>COUNT</td><td>count(ÊýÖµ1,...)<br>¼ÆËã²ÎÊýÁÐ±íÖÐÊý×ÖµÄ¸öÊý</td>
+        <td>COUNT</td><td>count(æ•°å€¼1,...)<br>è®¡ç®—å‚æ•°åˆ—è¡¨ä¸­æ•°å­—çš„ä¸ªæ•°</td>
         <td>COUNT(1,2,3,4,2,2,1,4) <br>>>8</td>
     </tr>
     <tr>
-        <td>COUNTIF</td><td>countIf(ÊýÖµ1,...)<br>¼ÆËã²ÎÊýÁÐ±íÖÐÊý×ÖµÄ¸öÊý</td>
+        <td>COUNTIF</td><td>countIf(æ•°å€¼1,...)<br>è®¡ç®—å‚æ•°åˆ—è¡¨ä¸­æ•°å­—çš„ä¸ªæ•°</td>
         <td>COUNTIF({1,2,3,4,2,2,1,4},'>1') <br>>>6</td>
     </tr>
     <tr>
-        <td>SUM</td><td>sum(ÊýÖµ1,...)<br>·µ»ØËùÓÐÊý×ÖÖ®ºÍ¡£</td>
+        <td>SUM</td><td>sum(æ•°å€¼1,...)<br>è¿”å›žæ‰€æœ‰æ•°å­—ä¹‹å’Œã€‚</td>
         <td>SUM(1,2,3,4) <br>>>10</td>
     </tr>
     <tr>
-        <td>SUMIF</td><td>sumIf(ÊýÖµ1,...)<br>·µ»ØËùÓÐÊý×ÖÖ®ºÍ</td>
+        <td>SUMIF</td><td>sumIf(æ•°å€¼1,...)<br>è¿”å›žæ‰€æœ‰æ•°å­—ä¹‹å’Œ</td>
         <td>SUMIF({1,2,3,4,2,2,1,4},'>1') <br>>>17</td>
     </tr>
     <tr>
-        <td>AVEDEV</td><td>aveDev(ÊýÖµ1,...)<br>·µ»ØÊý¾ÝµãÓëÆäÆ½¾ùÖµµÄ¾ø¶ÔÆ«²îµÄÆ½¾ùÖµ</td>
+        <td>AVEDEV</td><td>aveDev(æ•°å€¼1,...)<br>è¿”å›žæ•°æ®ç‚¹ä¸Žå…¶å¹³å‡å€¼çš„ç»å¯¹åå·®çš„å¹³å‡å€¼</td>
         <td>AVEDEV(1,2,3,4,2,2,1,4) <br>>>0.96875</td>
     </tr>
     <tr>
-        <td>STDEV</td><td>stDev(ÊýÖµ1,...)<br>»ùÓÚÑù±¾¹ÀËã±ê×¼Æ«²î</td>
+        <td>STDEV</td><td>stDev(æ•°å€¼1,...)<br>åŸºäºŽæ ·æœ¬ä¼°ç®—æ ‡å‡†åå·®</td>
         <td>STDEV(1,2,3,4,2,2,1,4) <br>>>1.1877349391654208</td>
     </tr>
     <tr>
-        <td>STDEVP</td><td>stDevp(ÊýÖµ1,...)<br>¼ÆËã»ùÓÚÕû¸öÑù±¾×ÜÌåµÄ±ê×¼Æ«²î</td>
+        <td>STDEVP</td><td>stDevp(æ•°å€¼1,...)<br>è®¡ç®—åŸºäºŽæ•´ä¸ªæ ·æœ¬æ€»ä½“çš„æ ‡å‡†åå·®</td>
         <td>STDEVP(1,2,3,4,2,2,1,4) <br>>>1.1110243021644486</td>
     </tr>
     <tr>
-        <td>DEVSQ</td><td>devSq(ÊýÖµ1,...)<br>·µ»ØÆ«²îµÄÆ½·½ºÍ</td>
+        <td>DEVSQ</td><td>devSq(æ•°å€¼1,...)<br>è¿”å›žåå·®çš„å¹³æ–¹å’Œ</td>
         <td>DEVSQ(1,2,3,4,2,2,1,4) <br>>>9.875</td>
     </tr>
     <tr>
-        <td>VAR</td><td>var(ÊýÖµ1,...)<br>»ùÓÚÑù±¾¹ÀËã·½²î</td>
+        <td>VAR</td><td>var(æ•°å€¼1,...)<br>åŸºäºŽæ ·æœ¬ä¼°ç®—æ–¹å·®</td>
         <td>VAR(1,2,3,4,2,2,1,4) <br>>>1.4107142857142858</td>
     </tr>
     <tr>
-        <td>VARP</td><td>varp(ÊýÖµ1,...)<br>»ùÓÚÕû¸öÑù±¾×ÜÌå¼ÆËã·½²î</td>
+        <td>VARP</td><td>varp(æ•°å€¼1,...)<br>åŸºäºŽæ•´ä¸ªæ ·æœ¬æ€»ä½“è®¡ç®—æ–¹å·®</td>
         <td>VARP(1,2,3,4,2,2,1,4) <br>>>1.234375</td>
     </tr>
     <tr>
-        <td>NORMDIST</td><td>normDist(ÊýÖµ,ËãÊõÆ½¾ùÖµ,±ê×¼Æ«²î,·µ»ØÀàÐÍ£º0/1)<br>·µ»ØÕýÌ¬ÀÛ»ý·Ö²¼</td>
+        <td>NORMDIST</td><td>normDist(æ•°å€¼,ç®—æœ¯å¹³å‡å€¼,æ ‡å‡†åå·®,è¿”å›žç±»åž‹ï¼š0/1)<br>è¿”å›žæ­£æ€ç´¯ç§¯åˆ†å¸ƒ</td>
         <td>NORMDIST(3,8,4,1) <br>>>0.105649774</td>
     </tr>
     <tr>
-        <td>NORMINV</td><td>normInv(·Ö²¼¸ÅÂÊ,ËãÊõÆ½¾ùÖµ,±ê×¼Æ«²î)<br>·µ»Ø·´ÕýÌ¬ÀÛ»ý·Ö²¼</td>
+        <td>NORMINV</td><td>normInv(åˆ†å¸ƒæ¦‚çŽ‡,ç®—æœ¯å¹³å‡å€¼,æ ‡å‡†åå·®)<br>è¿”å›žåæ­£æ€ç´¯ç§¯åˆ†å¸ƒ</td>
         <td>NORMINV(0.8,8,3) <br>>>10.5248637</td>
     </tr>
     <tr>
-        <td>NormSDist</td><td>normSDist(ÊýÖµ)<br>·µ»Ø±ê×¼ÕýÌ¬ÀÛ»ý·Ö²¼º¯Êý,¸Ã·Ö²¼µÄÆ½¾ùÖµÎª 0,±ê×¼Æ«²îÎª 1¡£</td>
+        <td>NormSDist</td><td>normSDist(æ•°å€¼)<br>è¿”å›žæ ‡å‡†æ­£æ€ç´¯ç§¯åˆ†å¸ƒå‡½æ•°,è¯¥åˆ†å¸ƒçš„å¹³å‡å€¼ä¸º 0,æ ‡å‡†åå·®ä¸º 1ã€‚</td>
         <td>NORMSDIST(1) <br>>>0.841344746</td>
     </tr>
     <tr>
-        <td>NORMSINV</td><td>normInv(ÊýÖµ)<br>·µ»Ø·´±ê×¼ÕýÌ¬ÀÛ»ý·Ö²¼</td>
+        <td>NORMSINV</td><td>normInv(æ•°å€¼)<br>è¿”å›žåæ ‡å‡†æ­£æ€ç´¯ç§¯åˆ†å¸ƒ</td>
         <td>NORMSINV(0.3) <br>>>-0.524400513</td>
     </tr>
     <tr>
-        <td>BETADIST</td><td>betaDist(ÊýÖµ,·Ö²¼²ÎÊý¦Á,·Ö²¼²ÎÊý¦Â)<br>·µ»Ø Beta ÀÛ»ý·Ö²¼º¯Êý</td>
+        <td>BETADIST</td><td>betaDist(æ•°å€¼,åˆ†å¸ƒå‚æ•°Î±,åˆ†å¸ƒå‚æ•°Î²)<br>è¿”å›ž Beta ç´¯ç§¯åˆ†å¸ƒå‡½æ•°</td>
         <td>BETADIST(0.5,11,22) <br>>>0.97494877</td>
     </tr>
     <tr>
-        <td>BETAINV</td><td>betaInv(ÊýÖµ,·Ö²¼²ÎÊý¦Á,·Ö²¼²ÎÊý¦Â)<br>·µ»ØÖ¸¶¨ Beta ·Ö²¼µÄÀÛ»ý·Ö²¼º¯ÊýµÄ·´º¯Êý</td>
+        <td>BETAINV</td><td>betaInv(æ•°å€¼,åˆ†å¸ƒå‚æ•°Î±,åˆ†å¸ƒå‚æ•°Î²)<br>è¿”å›žæŒ‡å®š Beta åˆ†å¸ƒçš„ç´¯ç§¯åˆ†å¸ƒå‡½æ•°çš„åå‡½æ•°</td>
         <td>BETAINV(0.5,23,45) <br>>>0.336640759</td>
     </tr>
     <tr>
-        <td>BINOMDIST</td><td>binomDist(ÊÔÑé³É¹¦´ÎÊý,ÊÔÑé´ÎÊý,³É¹¦¸ÅÂÊ,·µ»ØÀàÐÍ£º0/1)<br>·µ»ØÒ»Ôª¶þÏîÊ½·Ö²¼¸ÅÂÊ</td>
+        <td>BINOMDIST</td><td>binomDist(è¯•éªŒæˆåŠŸæ¬¡æ•°,è¯•éªŒæ¬¡æ•°,æˆåŠŸæ¦‚çŽ‡,è¿”å›žç±»åž‹ï¼š0/1)<br>è¿”å›žä¸€å…ƒäºŒé¡¹å¼åˆ†å¸ƒæ¦‚çŽ‡</td>
         <td>BINOMDIST(12,45,0.5,0) <br>>>0.000817409</td>
     </tr>
     <tr>
-        <td>EXPONDIST</td><td>exponDist(º¯ÊýÖµ,²ÎÊýÖµ,·µ»ØÀàÐÍ£º0/1)<br>·µ»ØÖ¸Êý·Ö²¼</td>
+        <td>EXPONDIST</td><td>exponDist(å‡½æ•°å€¼,å‚æ•°å€¼,è¿”å›žç±»åž‹ï¼š0/1)<br>è¿”å›žæŒ‡æ•°åˆ†å¸ƒ</td>
         <td>EXPONDIST(3,1,0) <br>>>0.049787068</td>
     </tr>
     <tr>
-        <td>FDIST</td><td>fDist(ÊýÖµX,·Ö×Ó×ÔÓÉ¶È,·ÖÄ¸×ÔÓÉ¶È)<br>·µ»Ø F ¸ÅÂÊ·Ö²¼</td>
+        <td>FDIST</td><td>fDist(æ•°å€¼X,åˆ†å­è‡ªç”±åº¦,åˆ†æ¯è‡ªç”±åº¦)<br>è¿”å›ž F æ¦‚çŽ‡åˆ†å¸ƒ</td>
         <td>FDIST(0.4,2,3) <br>>>0.701465776</td>
     </tr>
     <tr>
-        <td>FINV</td><td>fInv(·Ö²¼¸ÅÂÊ,·Ö×Ó×ÔÓÉ¶È,·ÖÄ¸×ÔÓÉ¶È)<br>·µ»Ø F ¸ÅÂÊ·Ö²¼µÄ·´º¯Êý</td>
+        <td>FINV</td><td>fInv(åˆ†å¸ƒæ¦‚çŽ‡,åˆ†å­è‡ªç”±åº¦,åˆ†æ¯è‡ªç”±åº¦)<br>è¿”å›ž F æ¦‚çŽ‡åˆ†å¸ƒçš„åå‡½æ•°</td>
         <td>FINV(0.7,2,3) <br>>>0.402651432</td>
     </tr>
     <tr>
-        <td>FISHER</td><td>fisher(ÊýÖµ)<br>·µ»Øµã x µÄ Fisher ±ä»»¡£¸Ã±ä»»Éú³ÉÒ»¸öÕýÌ¬·Ö²¼¶ø·ÇÆ«Ð±µÄº¯Êý</td>
+        <td>FISHER</td><td>fisher(æ•°å€¼)<br>è¿”å›žç‚¹ x çš„ Fisher å˜æ¢ã€‚è¯¥å˜æ¢ç”Ÿæˆä¸€ä¸ªæ­£æ€åˆ†å¸ƒè€Œéžåæ–œçš„å‡½æ•°</td>
         <td>FISHER(0.68) <br>>>0.8291140383</td>
     </tr>
     <tr>
-        <td>FISHERINV</td><td>fisherInv(ÊýÖµ)<br>·µ»Ø Fisher ±ä»»µÄ·´º¯ÊýÖµ¡£</td>
+        <td>FISHERINV</td><td>fisherInv(æ•°å€¼)<br>è¿”å›ž Fisher å˜æ¢çš„åå‡½æ•°å€¼ã€‚</td>
         <td>FISHERINV(0.6) <br>>>0.537049567</td>
     </tr>
     <tr>
-        <td>GAMMADIST</td><td>gammaDist(ÊýÖµ,·Ö²¼²ÎÊý¦Á,·Ö²¼²ÎÊý¦Â,·µ»ØÀàÐÍ£º0/1)<br>·µ»Ø ¦Ã ·Ö²¼</td>
+        <td>GAMMADIST</td><td>gammaDist(æ•°å€¼,åˆ†å¸ƒå‚æ•°Î±,åˆ†å¸ƒå‚æ•°Î²,è¿”å›žç±»åž‹ï¼š0/1)<br>è¿”å›ž Î³ åˆ†å¸ƒ</td>
         <td>GAMMADIST(0.5,3,4,0) <br>>>0.001723627</td>
     </tr>
     <tr>
-        <td>GAMMAINV</td><td>gammaInv(·Ö²¼¸ÅÂÊ,·Ö²¼²ÎÊý¦Á,·Ö²¼²ÎÊý¦Â)<br>·µ»Ø ¦Ã ÀÛ»ý·Ö²¼º¯ÊýµÄ·´º¯Êý</td>
+        <td>GAMMAINV</td><td>gammaInv(åˆ†å¸ƒæ¦‚çŽ‡,åˆ†å¸ƒå‚æ•°Î±,åˆ†å¸ƒå‚æ•°Î²)<br>è¿”å›ž Î³ ç´¯ç§¯åˆ†å¸ƒå‡½æ•°çš„åå‡½æ•°</td>
         <td>GAMMAINV(0.2,3,4) <br>>>6.140176811</td>
     </tr>
     <tr>
-        <td>GAMMALN</td><td>gammaLn(ÊýÖµ)<br>·µ»Ø ¦Ã ÀÛ»ý·Ö²¼º¯ÊýµÄ·´º¯Êý</td>
+        <td>GAMMALN</td><td>gammaLn(æ•°å€¼)<br>è¿”å›ž Î³ ç´¯ç§¯åˆ†å¸ƒå‡½æ•°çš„åå‡½æ•°</td>
         <td>GAMMALN(4) <br>>>1.791759469</td>
     </tr>
     <tr>
-        <td>HYPGEOMDIST</td><td>hypgeomDist(Ñù±¾³É¹¦´ÎÊý,Ñù±¾ÈÝÁ¿,Ñù±¾×ÜÌå³É¹¦´ÎÊý,Ñù±¾×ÜÌåÈÝÁ¿)<br>·µ»Ø³¬¼¸ºÎ·Ö²¼</td>
+        <td>HYPGEOMDIST</td><td>hypgeomDist(æ ·æœ¬æˆåŠŸæ¬¡æ•°,æ ·æœ¬å®¹é‡,æ ·æœ¬æ€»ä½“æˆåŠŸæ¬¡æ•°,æ ·æœ¬æ€»ä½“å®¹é‡)<br>è¿”å›žè¶…å‡ ä½•åˆ†å¸ƒ</td>
         <td>HYPGEOMDIST(23,45,45,100) <br>>>0.08715016</td>
     </tr>
     <tr>
-        <td>LOGINV</td><td>logInv(·Ö²¼¸ÅÂÊ,Ëã·¨Æ½¾ùÊý,±ê×¼Æ«²î)<br>·µ»Ø x µÄ¶ÔÊýÀÛ»ý·Ö²¼º¯ÊýµÄ·´º¯Êý</td>
+        <td>LOGINV</td><td>logInv(åˆ†å¸ƒæ¦‚çŽ‡,ç®—æ³•å¹³å‡æ•°,æ ‡å‡†åå·®)<br>è¿”å›ž x çš„å¯¹æ•°ç´¯ç§¯åˆ†å¸ƒå‡½æ•°çš„åå‡½æ•°</td>
         <td>LOGINV(0.1,45,33) <br>>>15.01122624</td>
     </tr>
     <tr>
-        <td>LognormDist</td><td>lognormDist(ÊýÖµ,Ëã·¨Æ½¾ùÊý,±ê×¼Æ«²î)<br>·µ»Ø·´¶ÔÊýÕýÌ¬·Ö²¼</td>
+        <td>LognormDist</td><td>lognormDist(æ•°å€¼,ç®—æ³•å¹³å‡æ•°,æ ‡å‡†åå·®)<br>è¿”å›žåå¯¹æ•°æ­£æ€åˆ†å¸ƒ</td>
         <td>LOGNORMDIST(15,23,45) <br>>>0.326019201</td>
     </tr>
     <tr>
-        <td>NEGBINOMDIST</td><td>negbinomDist(Ê§°Ü´ÎÊý,³É¹¦¼«ÏÞ´ÎÊý,³É¹¦¸ÅÂÊ)<br>·µ»Ø¸º¶þÏîÊ½·Ö²¼</td>
+        <td>NEGBINOMDIST</td><td>negbinomDist(å¤±è´¥æ¬¡æ•°,æˆåŠŸæžé™æ¬¡æ•°,æˆåŠŸæ¦‚çŽ‡)<br>è¿”å›žè´ŸäºŒé¡¹å¼åˆ†å¸ƒ</td>
         <td>NEGBINOMDIST(23,45,0.7) <br>>>0.053463314</td>
     </tr>
     <tr>
-        <td>POISSON</td><td>poisson(ÊýÖµ,Ëã·¨Æ½¾ùÊý,·µ»ØÀàÐÍ£º0/1)<br>·µ»Ø Poisson ·Ö²¼</td>
+        <td>POISSON</td><td>poisson(æ•°å€¼,ç®—æ³•å¹³å‡æ•°,è¿”å›žç±»åž‹ï¼š0/1)<br>è¿”å›ž Poisson åˆ†å¸ƒ</td>
         <td>POISSON(23,23,0) <br>>>0.082884384</td>
     </tr>
     <tr>
-        <td>TDIST</td><td>tDist(ÊýÖµ,×ÔÓÉ¶È,·µ»ØÀàÐÍ£º1/2)<br>·µ»ØÑ§ÉúµÄ t ·Ö²¼</td>
+        <td>TDIST</td><td>tDist(æ•°å€¼,è‡ªç”±åº¦,è¿”å›žç±»åž‹ï¼š1/2)<br>è¿”å›žå­¦ç”Ÿçš„ t åˆ†å¸ƒ</td>
         <td>TDIST(1.2,24,1) <br>>>0.120925677</td>
     </tr>
     <tr>
-        <td>TINV</td><td>tDist(·Ö²¼¸ÅÂÊ,×ÔÓÉ¶È)<br>·µ»ØÑ§ÉúµÄ t ·Ö²¼µÄ·´·Ö²¼</td>
+        <td>TINV</td><td>tDist(åˆ†å¸ƒæ¦‚çŽ‡,è‡ªç”±åº¦)<br>è¿”å›žå­¦ç”Ÿçš„ t åˆ†å¸ƒçš„ååˆ†å¸ƒ</td>
         <td>TINV(0.12,23) <br>>>1.614756561</td>
     </tr>
     <tr>
-        <td>WEIBULL</td><td>weibull(ÊýÖµ,·Ö²¼²ÎÊý¦Á,·Ö²¼²ÎÊý¦Â,·µ»ØÀàÐÍ£º0/1)<br>·µ»Ø Weibull ·Ö²¼</td>
+        <td>WEIBULL</td><td>weibull(æ•°å€¼,åˆ†å¸ƒå‚æ•°Î±,åˆ†å¸ƒå‚æ•°Î²,è¿”å›žç±»åž‹ï¼š0/1)<br>è¿”å›ž Weibull åˆ†å¸ƒ</td>
         <td>WEIBULL(1,2,3,1) <br>>>0.105160683</td>
     </tr>
 
 </table>
 
 
-#### Ôö¼Óº¯Êý ÀàC#·½·¨
+#### å¢žåŠ å‡½æ•° ç±»C#æ–¹æ³•
 <table>
-    <tr><td>º¯ÊýÃû</td><td>ËµÃ÷</td><td>Ê¾Àý</td></tr>
+    <tr><td>å‡½æ•°å</td><td>è¯´æ˜Ž</td><td>ç¤ºä¾‹</td></tr>
     <tr>
-        <td>UrlEncode</td><td>UrlEncode(ÎÄ±¾)<br> ¶Ô URL ×Ö·û´®½øÐÐ±àÂë¡£</td> <td></td>
+        <td>UrlEncode</td><td>UrlEncode(æ–‡æœ¬)<br> å¯¹ URL å­—ç¬¦ä¸²è¿›è¡Œç¼–ç ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>UrlDecode</td><td>UrlEncode(ÎÄ±¾)<br> ½« URL ±àÂëµÄ×Ö·û´®×ª»»ÎªÒÑ½âÂëµÄ×Ö·û´®¡£</td> <td></td>
+        <td>UrlDecode</td><td>UrlEncode(æ–‡æœ¬)<br> å°† URL ç¼–ç çš„å­—ç¬¦ä¸²è½¬æ¢ä¸ºå·²è§£ç çš„å­—ç¬¦ä¸²ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>HtmlEncode</td><td>HtmlEncode(ÎÄ±¾)<br> ½«×Ö·û´®×ª»»Îª HTML ±àÂëµÄ×Ö·û´®¡£</td> <td></td>
+        <td>HtmlEncode</td><td>HtmlEncode(æ–‡æœ¬)<br> å°†å­—ç¬¦ä¸²è½¬æ¢ä¸º HTML ç¼–ç çš„å­—ç¬¦ä¸²ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>HtmlDecode</td><td>HtmlDecode(ÎÄ±¾)<br>  ½«HTML ±àÂëµÄ×Ö·û´®×ª½âÂë¡£</td> <td></td>
+        <td>HtmlDecode</td><td>HtmlDecode(æ–‡æœ¬)<br>  å°†HTML ç¼–ç çš„å­—ç¬¦ä¸²è½¬è§£ç ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>Base64ToText</td><td>Base64ToText(ÎÄ±¾)<br>Base64ToText(ÎÄ±¾,±àÂëÀàÐÍ)<br>   ½«Base64×ª»»Îª×Ö·û´®¡£</td> <td></td>
+        <td>Base64ToText</td><td>Base64ToText(æ–‡æœ¬)<br>Base64ToText(æ–‡æœ¬,ç¼–ç ç±»åž‹)<br>   å°†Base64è½¬æ¢ä¸ºå­—ç¬¦ä¸²ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>Base64UrlToText</td><td>Base64UrlToText(ÎÄ±¾)<br>Base64UrlToText(ÎÄ±¾,±àÂëÀàÐÍ)<br>   ½«UrlÀàÐÍµÄBase64 ×ª»»Îª×Ö·û´®¡£</td> <td></td>
+        <td>Base64UrlToText</td><td>Base64UrlToText(æ–‡æœ¬)<br>Base64UrlToText(æ–‡æœ¬,ç¼–ç ç±»åž‹)<br>   å°†Urlç±»åž‹çš„Base64 è½¬æ¢ä¸ºå­—ç¬¦ä¸²ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>TextToBase64</td><td>TextToBase64(ÎÄ±¾)<br>TextToBase64(ÎÄ±¾,±àÂëÀàÐÍ)<br>   ½«×Ö·û´®×ª»»ÎªBase64×Ö·û´®¡£</td> <td></td>
+        <td>TextToBase64</td><td>TextToBase64(æ–‡æœ¬)<br>TextToBase64(æ–‡æœ¬,ç¼–ç ç±»åž‹)<br>   å°†å­—ç¬¦ä¸²è½¬æ¢ä¸ºBase64å­—ç¬¦ä¸²ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>TextToBase64Url</td><td>TextToBase64Url(ÎÄ±¾)<br>TextToBase64Url(ÎÄ±¾,±àÂëÀàÐÍ)<br>   ½«×Ö·û´® ×ª»»ÎªUrlÀàÐÍµÄBase64 ×Ö·û´®¡£</td> <td></td>
+        <td>TextToBase64Url</td><td>TextToBase64Url(æ–‡æœ¬)<br>TextToBase64Url(æ–‡æœ¬,ç¼–ç ç±»åž‹)<br>   å°†å­—ç¬¦ä¸² è½¬æ¢ä¸ºUrlç±»åž‹çš„Base64 å­—ç¬¦ä¸²ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>Regex</td><td>Regex(ÎÄ±¾,Æ¥ÅäÎÄ±¾)<br>Regex(ÎÄ±¾,Æ¥ÅäÎÄ±¾,Ë÷Òý)<br>Regex(ÎÄ±¾,Æ¥ÅäÎÄ±¾,Ë÷Òý,×éË÷Òý)<br>   ²¢·µ»ØÆ¥ÅäµÄ×Ö·û´®¡£</td> <td></td>
+        <td>Regex</td><td>Regex(æ–‡æœ¬,åŒ¹é…æ–‡æœ¬)<br>Regex(æ–‡æœ¬,åŒ¹é…æ–‡æœ¬,ç´¢å¼•)<br>Regex(æ–‡æœ¬,åŒ¹é…æ–‡æœ¬,ç´¢å¼•,ç»„ç´¢å¼•)<br>   å¹¶è¿”å›žåŒ¹é…çš„å­—ç¬¦ä¸²ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>RegexRepalce</td><td>RegexRepalce(ÎÄ±¾,Æ¥ÅäÎÄ±¾,Ìæ»»ÎÄ±¾)<br>  Æ¥ÅäÌæ»»×Ö·û´®¡£</td> <td></td>
+        <td>RegexRepalce</td><td>RegexRepalce(æ–‡æœ¬,åŒ¹é…æ–‡æœ¬,æ›¿æ¢æ–‡æœ¬)<br>  åŒ¹é…æ›¿æ¢å­—ç¬¦ä¸²ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>IsRegex<br>IsMatch</td><td>IsRegex(ÎÄ±¾,Æ¥ÅäÎÄ±¾)<br>IsMatch(ÎÄ±¾,Æ¥ÅäÎÄ±¾)<br>  ÅÐ¶ÏÊÇ·ñÆ¥Åä¡£</td> <td></td>
+        <td>IsRegex<br>IsMatch</td><td>IsRegex(æ–‡æœ¬,åŒ¹é…æ–‡æœ¬)<br>IsMatch(æ–‡æœ¬,åŒ¹é…æ–‡æœ¬)<br>  åˆ¤æ–­æ˜¯å¦åŒ¹é…ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>Guid</td><td>Guid()<br>  Éú³ÉGuid×Ö·û´®¡£</td> <td></td>
+        <td>Guid</td><td>Guid()<br>  ç”ŸæˆGuidå­—ç¬¦ä¸²ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>Md5</td><td>Md5(ÎÄ±¾)<br>Md5(ÎÄ±¾,±àÂëÀàÐÍ)<br> ·µ»ØMd5µÄHash×Ö·û´®¡£</td> <td></td>
+        <td>Md5</td><td>Md5(æ–‡æœ¬)<br>Md5(æ–‡æœ¬,ç¼–ç ç±»åž‹)<br> è¿”å›žMd5çš„Hashå­—ç¬¦ä¸²ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>Sha1</td><td>Sha1(ÎÄ±¾)<br>Sha1(ÎÄ±¾,±àÂëÀàÐÍ)<br> ·µ»ØSha1µÄHash×Ö·û´®¡£</td> <td></td>
+        <td>Sha1</td><td>Sha1(æ–‡æœ¬)<br>Sha1(æ–‡æœ¬,ç¼–ç ç±»åž‹)<br> è¿”å›žSha1çš„Hashå­—ç¬¦ä¸²ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>Sha256</td><td>Sha256(ÎÄ±¾)<br>Sha256(ÎÄ±¾,±àÂëÀàÐÍ)<br> ·µ»ØSha256µÄHash×Ö·û´®¡£</td> <td></td>
+        <td>Sha256</td><td>Sha256(æ–‡æœ¬)<br>Sha256(æ–‡æœ¬,ç¼–ç ç±»åž‹)<br> è¿”å›žSha256çš„Hashå­—ç¬¦ä¸²ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>Sha512</td><td>Sha512(ÎÄ±¾)<br>Sha512(ÎÄ±¾,±àÂëÀàÐÍ)<br> ·µ»ØSha512µÄHash×Ö·û´®¡£</td> <td></td>
+        <td>Sha512</td><td>Sha512(æ–‡æœ¬)<br>Sha512(æ–‡æœ¬,ç¼–ç ç±»åž‹)<br> è¿”å›žSha512çš„Hashå­—ç¬¦ä¸²ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>Crc8</td><td>Crc8(ÎÄ±¾)<br>Crc8(ÎÄ±¾,±àÂëÀàÐÍ)<br> ·µ»ØCrc8µÄHash×Ö·û´®¡£</td> <td></td>
+        <td>Crc8</td><td>Crc8(æ–‡æœ¬)<br>Crc8(æ–‡æœ¬,ç¼–ç ç±»åž‹)<br> è¿”å›žCrc8çš„Hashå­—ç¬¦ä¸²ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>Crc16</td><td>Crc16(ÎÄ±¾)<br>Crc16(ÎÄ±¾,±àÂëÀàÐÍ)<br> ·µ»ØCrc16µÄHash×Ö·û´®¡£</td> <td></td>
+        <td>Crc16</td><td>Crc16(æ–‡æœ¬)<br>Crc16(æ–‡æœ¬,ç¼–ç ç±»åž‹)<br> è¿”å›žCrc16çš„Hashå­—ç¬¦ä¸²ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>Crc32</td><td>Crc32(ÎÄ±¾)<br>Crc32(ÎÄ±¾,±àÂëÀàÐÍ)<br> ·µ»ØCrc32µÄHash×Ö·û´®¡£</td> <td></td>
+        <td>Crc32</td><td>Crc32(æ–‡æœ¬)<br>Crc32(æ–‡æœ¬,ç¼–ç ç±»åž‹)<br> è¿”å›žCrc32çš„Hashå­—ç¬¦ä¸²ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>HmacMd5</td><td>HmacMd5(ÎÄ±¾,secret)<br>HmacMd5(ÎÄ±¾,secret,±àÂëÀàÐÍ)<br> ·µ»ØHmacMd5µÄHash×Ö·û´®¡£</td> <td></td>
+        <td>HmacMd5</td><td>HmacMd5(æ–‡æœ¬,secret)<br>HmacMd5(æ–‡æœ¬,secret,ç¼–ç ç±»åž‹)<br> è¿”å›žHmacMd5çš„Hashå­—ç¬¦ä¸²ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>HmacSha1</td><td>HmacSha1(ÎÄ±¾,secret)<br>HmacSha1(ÎÄ±¾,secret,±àÂëÀàÐÍ)<br> ·µ»ØHmacSha1µÄHash×Ö·û´®¡£</td> <td></td>
+        <td>HmacSha1</td><td>HmacSha1(æ–‡æœ¬,secret)<br>HmacSha1(æ–‡æœ¬,secret,ç¼–ç ç±»åž‹)<br> è¿”å›žHmacSha1çš„Hashå­—ç¬¦ä¸²ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>HmacSha256</td><td>HmacSha256(ÎÄ±¾,secret)<br>HmacSha256(ÎÄ±¾,secret,±àÂëÀàÐÍ)<br> ·µ»ØHmacSha256µÄHash×Ö·û´®¡£</td> <td></td>
+        <td>HmacSha256</td><td>HmacSha256(æ–‡æœ¬,secret)<br>HmacSha256(æ–‡æœ¬,secret,ç¼–ç ç±»åž‹)<br> è¿”å›žHmacSha256çš„Hashå­—ç¬¦ä¸²ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>HmacSha512</td><td>HmacSha512(ÎÄ±¾,secret)<br>HmacSha512(ÎÄ±¾,secret,±àÂëÀàÐÍ)<br> ·µ»ØHmacSha512µÄHash×Ö·û´®¡£</td> <td></td>
+        <td>HmacSha512</td><td>HmacSha512(æ–‡æœ¬,secret)<br>HmacSha512(æ–‡æœ¬,secret,ç¼–ç ç±»åž‹)<br> è¿”å›žHmacSha512çš„Hashå­—ç¬¦ä¸²ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>TrimStart<br>LTrim</td><td>TrimStart(ÎÄ±¾)<br>LTrim(ÎÄ±¾)<br>LTrim(ÎÄ±¾,×Ö·û¼¯)<br>   Ïû¿Õ×Ö·û´®×ó±ß¡£</td> <td></td>
+        <td>TrimStart<br>LTrim</td><td>TrimStart(æ–‡æœ¬)<br>LTrim(æ–‡æœ¬)<br>LTrim(æ–‡æœ¬,å­—ç¬¦é›†)<br>   æ¶ˆç©ºå­—ç¬¦ä¸²å·¦è¾¹ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>TrimEnd<br>RTrim</td><td>TrimEnd(ÎÄ±¾)<br>RTrim(ÎÄ±¾)<br>RTrim(ÎÄ±¾,×Ö·û¼¯)<br>   Ïû¿Õ×Ö·û´®ÓÒ±ß¡£</td> <td></td>
+        <td>TrimEnd<br>RTrim</td><td>TrimEnd(æ–‡æœ¬)<br>RTrim(æ–‡æœ¬)<br>RTrim(æ–‡æœ¬,å­—ç¬¦é›†)<br>   æ¶ˆç©ºå­—ç¬¦ä¸²å³è¾¹ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>IndexOf</td><td>IndexOf(ÎÄ±¾,²éÕÒÎÄ±¾)<br>IndexOf(ÎÄ±¾,²éÕÒÎÄ±¾,¿ªÊ¼Î»ÖÃ)<br>IndexOf(ÎÄ±¾,²éÕÒÎÄ±¾,¿ªÊ¼Î»ÖÃ,Ë÷Òý)<br>   ²éÕÒ×Ö·û´®Î»ÖÃ¡£</td> <td></td>
+        <td>IndexOf</td><td>IndexOf(æ–‡æœ¬,æŸ¥æ‰¾æ–‡æœ¬)<br>IndexOf(æ–‡æœ¬,æŸ¥æ‰¾æ–‡æœ¬,å¼€å§‹ä½ç½®)<br>IndexOf(æ–‡æœ¬,æŸ¥æ‰¾æ–‡æœ¬,å¼€å§‹ä½ç½®,ç´¢å¼•)<br>   æŸ¥æ‰¾å­—ç¬¦ä¸²ä½ç½®ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>LastIndexOf</td><td>LastIndexOf(ÎÄ±¾,²éÕÒÎÄ±¾)<br>LastIndexOf(ÎÄ±¾,²éÕÒÎÄ±¾,¿ªÊ¼Î»ÖÃ)<br>LastIndexOf(ÎÄ±¾,²éÕÒÎÄ±¾,¿ªÊ¼Î»ÖÃ,Ë÷Òý)<br>   ²éÕÒ×Ö·û´®Î»ÖÃ¡£</td> <td></td>
+        <td>LastIndexOf</td><td>LastIndexOf(æ–‡æœ¬,æŸ¥æ‰¾æ–‡æœ¬)<br>LastIndexOf(æ–‡æœ¬,æŸ¥æ‰¾æ–‡æœ¬,å¼€å§‹ä½ç½®)<br>LastIndexOf(æ–‡æœ¬,æŸ¥æ‰¾æ–‡æœ¬,å¼€å§‹ä½ç½®,ç´¢å¼•)<br>   æŸ¥æ‰¾å­—ç¬¦ä¸²ä½ç½®ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>Split</td><td>Split(ÎÄ±¾,·Ö¸ô·û)<br> Éú³ÉÊý×é<br>Split(ÎÄ±¾,·Ö¸ô·û,Ë÷Òý)<br>  ·µ»Ø·Ö¸îºóË÷ÒýÖ¸ÏòµÄ×Ö·û´®¡£</td> <td></td>
+        <td>Split</td><td>Split(æ–‡æœ¬,åˆ†éš”ç¬¦)<br> ç”Ÿæˆæ•°ç»„<br>Split(æ–‡æœ¬,åˆ†éš”ç¬¦,ç´¢å¼•)<br>  è¿”å›žåˆ†å‰²åŽç´¢å¼•æŒ‡å‘çš„å­—ç¬¦ä¸²ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>Join</td><td>Join(ÎÄ±¾1,ÎÄ±¾2....)<br>  ºÏ²¢×Ö·û´®¡£</td> <td></td>
+        <td>Join</td><td>Join(æ–‡æœ¬1,æ–‡æœ¬2....)<br>  åˆå¹¶å­—ç¬¦ä¸²ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>Substring</td><td>Substring(ÎÄ±¾,Î»ÖÃ)<br>Substring(ÎÄ±¾,Î»ÖÃ,ÊýÁ¿)<br>  ÇÐ¸î×Ö·û´®¡£</td> <td></td>
+        <td>Substring</td><td>Substring(æ–‡æœ¬,ä½ç½®)<br>Substring(æ–‡æœ¬,ä½ç½®,æ•°é‡)<br>  åˆ‡å‰²å­—ç¬¦ä¸²ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>StartsWith</td><td>StartsWith(ÎÄ±¾,¿ªÊ¼ÎÄ±¾)<br>StartsWith(ÎÄ±¾,¿ªÊ¼ÎÄ±¾,ÊÇ·ñºöÂÔ´óÐ¡Ð´:1/0)<br>  È·¶¨´Ë×Ö·û´®ÊµÀýµÄ¿ªÍ·ÊÇ·ñÓëÖ¸¶¨µÄ×Ö·û´®Æ¥Åä¡£</td> <td></td>
+        <td>StartsWith</td><td>StartsWith(æ–‡æœ¬,å¼€å§‹æ–‡æœ¬)<br>StartsWith(æ–‡æœ¬,å¼€å§‹æ–‡æœ¬,æ˜¯å¦å¿½ç•¥å¤§å°å†™:1/0)<br>  ç¡®å®šæ­¤å­—ç¬¦ä¸²å®žä¾‹çš„å¼€å¤´æ˜¯å¦ä¸ŽæŒ‡å®šçš„å­—ç¬¦ä¸²åŒ¹é…ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>EndsWith</td><td>EndsWith(ÎÄ±¾,¿ªÊ¼ÎÄ±¾)<br>EndsWith(ÎÄ±¾,¿ªÊ¼ÎÄ±¾,ÊÇ·ñºöÂÔ´óÐ¡Ð´:1/0)<br>  È·¶¨Ê¹ÓÃÖ¸¶¨µÄ±È½ÏÑ¡Ïî½øÐÐ±È½ÏÊ±´Ë×Ö·û´®ÊµÀýµÄ½áÎ²ÊÇ·ñÓëÖ¸¶¨µÄ×Ö·û´®Æ¥Åä¡£</td> <td></td>
+        <td>EndsWith</td><td>EndsWith(æ–‡æœ¬,å¼€å§‹æ–‡æœ¬)<br>EndsWith(æ–‡æœ¬,å¼€å§‹æ–‡æœ¬,æ˜¯å¦å¿½ç•¥å¤§å°å†™:1/0)<br>  ç¡®å®šä½¿ç”¨æŒ‡å®šçš„æ¯”è¾ƒé€‰é¡¹è¿›è¡Œæ¯”è¾ƒæ—¶æ­¤å­—ç¬¦ä¸²å®žä¾‹çš„ç»“å°¾æ˜¯å¦ä¸ŽæŒ‡å®šçš„å­—ç¬¦ä¸²åŒ¹é…ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>IsNullOrEmpty</td><td>IsNullOrEmpty(ÎÄ±¾)<br>  Ö¸Ê¾Ö¸¶¨µÄ×Ö·û´®ÊÇ null »¹ÊÇ ¿Õ×Ö·û´®¡£</td> <td></td>
+        <td>IsNullOrEmpty</td><td>IsNullOrEmpty(æ–‡æœ¬)<br>  æŒ‡ç¤ºæŒ‡å®šçš„å­—ç¬¦ä¸²æ˜¯ null è¿˜æ˜¯ ç©ºå­—ç¬¦ä¸²ã€‚</td> <td></td>
     </tr>	
 	<tr>
-        <td>IsNullOrWhiteSpace</td><td>IsNullOrWhiteSpace(ÎÄ±¾)<br>  Ö¸Ê¾Ö¸¶¨µÄ×Ö·û´®ÊÇ null¡¢¿Õ»¹ÊÇ½öÓÉ¿Õ°××Ö·û×é³É¡£</td> <td></td>
+        <td>IsNullOrWhiteSpace</td><td>IsNullOrWhiteSpace(æ–‡æœ¬)<br>  æŒ‡ç¤ºæŒ‡å®šçš„å­—ç¬¦ä¸²æ˜¯ nullã€ç©ºè¿˜æ˜¯ä»…ç”±ç©ºç™½å­—ç¬¦ç»„æˆã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>ToUpper</td><td>ToUpper(ÎÄ±¾)<br>  ½«ÎÄ±¾×ª»»Îª´óÐ´ÐÎÊ½¡£</td> <td></td>
+        <td>ToUpper</td><td>ToUpper(æ–‡æœ¬)<br>  å°†æ–‡æœ¬è½¬æ¢ä¸ºå¤§å†™å½¢å¼ã€‚</td> <td></td>
     </tr>	
 	<tr>
-        <td>ToLower</td><td>ToLower(ÎÄ±¾)<br>  ½«ÎÄ±¾×ª»»ÎªÐ¡Ð´ÐÎÊ½¡£</td> <td></td>
+        <td>ToLower</td><td>ToLower(æ–‡æœ¬)<br>  å°†æ–‡æœ¬è½¬æ¢ä¸ºå°å†™å½¢å¼ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>RemoveStart</td><td>RemoveStart(ÎÄ±¾,×ó±ßÎÄ±¾)<br>Æ¥Åä×ó±ß£¬³É¹¦ÔòÈ¥³ý×ó±ß×Ö·û´®¡£</td> <td></td>
+        <td>RemoveStart</td><td>RemoveStart(æ–‡æœ¬,å·¦è¾¹æ–‡æœ¬)<br>åŒ¹é…å·¦è¾¹ï¼ŒæˆåŠŸåˆ™åŽ»é™¤å·¦è¾¹å­—ç¬¦ä¸²ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>RemoveEnd</td><td>RemoveEnd(ÎÄ±¾,ÓÒ±ßÎÄ±¾)<br>Æ¥ÅäÓÒ±ß£¬³É¹¦ÔòÈ¥³ýÓÒ±ß×Ö·û´®¡£</td> <td></td>
+        <td>RemoveEnd</td><td>RemoveEnd(æ–‡æœ¬,å³è¾¹æ–‡æœ¬)<br>åŒ¹é…å³è¾¹ï¼ŒæˆåŠŸåˆ™åŽ»é™¤å³è¾¹å­—ç¬¦ä¸²ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>RemoveBoth</td><td>RemoveBoth(ÎÄ±¾,×ó±ßÎÄ±¾,ÓÒ±ßÎÄ±¾,Í¬Ê±Æ¥Åä:0/1(Ä¬ÈÏ0))<br>Æ¥Åä·½Ê½, Æ¥Åä×ó±ß£¬³É¹¦ÔòÈ¥³ý×ó±ß×Ö·û´®¡£Æ¥ÅäÓÒ±ß£¬³É¹¦ÔòÈ¥³ýÓÒ±ß×Ö·û´®¡£</td> <td></td>
+        <td>RemoveBoth</td><td>RemoveBoth(æ–‡æœ¬,å·¦è¾¹æ–‡æœ¬,å³è¾¹æ–‡æœ¬,åŒæ—¶åŒ¹é…:0/1(é»˜è®¤0))<br>åŒ¹é…æ–¹å¼, åŒ¹é…å·¦è¾¹ï¼ŒæˆåŠŸåˆ™åŽ»é™¤å·¦è¾¹å­—ç¬¦ä¸²ã€‚åŒ¹é…å³è¾¹ï¼ŒæˆåŠŸåˆ™åŽ»é™¤å³è¾¹å­—ç¬¦ä¸²ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>json</td><td>json(ÎÄ±¾)<br>¶¯Ì¬json²éÑ¯¡£</td> <td></td>
+        <td>json</td><td>json(æ–‡æœ¬)<br>åŠ¨æ€jsonæŸ¥è¯¢ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>tryjson</td><td>tryjson(ÎÄ±¾)<br>³¢ÊÔ×ªÎªjson£¬ÔÙ²éÑ¯¡£</td> <td></td>
+        <td>tryjson</td><td>tryjson(æ–‡æœ¬)<br>å°è¯•è½¬ä¸ºjsonï¼Œå†æŸ¥è¯¢ã€‚</td> <td></td>
     </tr>
 	<tr>
-        <td>P<br>param</td><td>P(ÎÄ±¾)<br>¶¯Ì¬²éÑ¯²ÎÊý¡£</td> <td></td>
+        <td>P<br>param</td><td>P(æ–‡æœ¬)<br>åŠ¨æ€æŸ¥è¯¢å‚æ•°ã€‚</td> <td></td>
     </tr>
 </table>
-
-
------------------------------------
-ÍÆ¼öÒ»¿î¶ùÍ¯½ÌÓýÐ¡³ÌÐò¡¶±¦±¦¼Æ·Ö°å¡·£¬¡¶±¦±¦¼Æ·Ö°å¡·²ÉÓÃ»ý·Ö½±³ÍÖÆ¶È£¬Á¿»¯½±Àø¡¢³Í·££¬¸øº¢×ÓÒ»¸öÃ÷È·¿ÉÊµÏÖµÄÄ¿±ê£¬º¢×ÓÍ¨¹ý×ö¼ÒÎñ¡¢Á·×Ö¡¢»­»­¡¢Ñ§³ª¸è¡¢ÅÜ²½µÈÈÎÎñÀ´»ñµÃ»ý·Ö£¬´ïµ½×ã¹»»ý·Ö¾Í¿ÉÒÔ¶Ò»»½±Æ·¡£
-
-![±¦±¦¼Æ·Ö°å](bbjfb.png)
-
-¡¶±¦±¦¼Æ·Ö°å¡··ûºÏÒÔÏÂ¼¸¸ö½ÌÓýÐÄÀíÑ§£¬£¨1£©¡¢½±ÀøºÍ³Í·££¨Ç¿»¯¶¯»úÀíÂÛ£©£¬£¨2£©¡¢±íÑïºÍ¹ÄÀø£¨¾ÀÕý¶¯»ú¡¢ÐÎ³ÉÄ¿±ê£©£¬£¨3£©¡¢¶àÑ§¶àÁ·£¨´ÓÁ¿±äµ½ÖÊ±ä£©£¬£¨4£©¡¢ÑÓ³ÙÂú×ã£¨ÌáÉý×ÔÎÒ¿ØÖÆÄÜÁ¦£©£¬£¨5£©Ï¸»¯Ð¡Ä¿±ê£¨Ä¿±êÔ½Ã÷È·£¬Ô½ÈÝÒ×ÊµÏÖ£©£¬£¨6£©ÅúÆÀ²»·­¾ÉÕË£¨¼õÉÙ¶þ´ÎÉËº¦£©¡£
