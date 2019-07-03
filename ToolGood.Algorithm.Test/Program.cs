@@ -13,9 +13,9 @@ namespace ToolGood.Algorithm.Test
         static void Main(string[] args)
         {
 
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var e = engine.TryEvaluate("pi", 0.0);
-            Assert.AreEqual(Math.PI, e);
+            //AlgorithmEngine engine = new AlgorithmEngine();
+            //var e = engine.TryEvaluate("pi", 0.0);
+            //Assert.AreEqual(Math.PI, e);
 
             //if (engine.Parse("1*1.1")) {
             //    var t = engine.Evaluate();
@@ -26,11 +26,11 @@ namespace ToolGood.Algorithm.Test
             //    var a = t;
             //}
 
-            if (engine.Parse("json('{\"Name1\":\"William Shakespeare \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').（'Name'& 1）.Trim().substring(2,3)")) {
-                var t = engine.Evaluate();
-                var a = t;
+            //if (engine.Parse("json('{\"Name1\":\"William Shakespeare \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').（'Name'& 1）.Trim().substring(2,3)")) {
+            //    var t = engine.Evaluate();
+            //    var a = t;
 
-            }
+            //}
             //if (engine.Parse("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Birthday")) {
             //    var t = engine.Evaluate();
             //    var a = t;

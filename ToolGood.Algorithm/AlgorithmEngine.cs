@@ -11,6 +11,7 @@ namespace ToolGood.Algorithm
     {
         private Random rand;
         private List<string> m_Operators = new List<string>() { ".", "(", ")", "!", "*", "/", "%", "+", "-", "<", ">", "=", "&", "|", ",", "==", "!=", ">=", "<=", "<>", "@" };
+        private List<string> m_Operators2 = new List<string>() { "<", ">", "=", "==", "!=", ">=", "<=", "<>" };
         private List<object> m_tokens = new List<object>();        //最终逆波兰式堆栈
         private Dictionary<string, List<object>> tokenDict = new Dictionary<string, List<object>>();
         private Dictionary<string, Func<List<Operand>, Operand>> funcDict = new Dictionary<string, Func<List<Operand>, Operand>>();
@@ -178,7 +179,7 @@ namespace ToolGood.Algorithm
 
             while (curPos < texts.Count) {
                 //获取 当前操作数
-                curOpd = getOperand(texts, curPos);
+                curOpd = getOperand(texts,ref curPos);
                 if (curOpd != "") {
                     if (operators.Count > 0 && hasPoint) {
                         Operator op = operators.Pop();
@@ -240,6 +241,24 @@ namespace ToolGood.Algorithm
                     continue;
                 }
 
+                //if (optType== OperatorType.SUB &&( operators.Peek().Type== OperatorType.LT || operators.Peek().Type == OperatorType.LE
+                //    || operators.Peek().Type== OperatorType.GT || operators.Peek().Type == OperatorType.GE
+                //    || operators.Peek().Type == OperatorType.ET || operators.Peek().Type == OperatorType.UT
+                //    )) {
+                //    while (operators.Count > 0) {
+                //        if (Operator.ComparePriority(optType, operators.Peek().Type) <= 0 && operators.Peek().Type != OperatorType.LB) {
+                //            operands.Add(operators.Pop());
+
+                //            if (operators.Count == 0) {
+                //                operators.Push(new Operator(optType, curOpt, funcCount));
+                //                break;
+                //            }
+                //        } else {
+                //            operators.Push(new Operator(optType, curOpt, funcCount));
+                //            break;
+                //        }
+                //    }
+                //} else
                 //若当前运算符优先级大于运算符栈顶的运算符,则将当前运算符直接存入运算符堆栈.
                 if (Operator.ComparePriority(optType, operators.Peek().Type) > 0) {
                     operators.Push(new Operator(optType, curOpt, funcCount));
@@ -288,7 +307,7 @@ namespace ToolGood.Algorithm
             }
             return count + hasCount;
         }
-        private string getOperand(List<string> texts, int curPos)
+        private string getOperand(List<string> texts,ref int curPos)
         {
             var t = texts[curPos];
             if (t.StartsWith("[")) {
@@ -300,6 +319,15 @@ namespace ToolGood.Algorithm
                     return "";
                 }
             }
+            if (curPos > 0 && t == "-" && curPos + 1 < texts.Count) {
+                if (m_Operators2.Contains(texts[curPos - 1])) {
+                    curPos++;
+                    return t + texts[curPos ];
+                }
+            }
+
+
+
             if (m_Operators.Contains(t.ToLower())) {
                 return "";
             }
@@ -588,7 +616,7 @@ namespace ToolGood.Algorithm
                             list.Insert(0, opds.Pop());
                             list.Insert(0, opds.Pop());
                             opds.Push(getChild(list));
-                            break; 
+                            break;
                         #endregion
 
                         #region 乘,*,multiplication

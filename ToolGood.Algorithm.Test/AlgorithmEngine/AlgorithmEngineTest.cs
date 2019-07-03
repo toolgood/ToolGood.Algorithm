@@ -13,6 +13,7 @@ namespace ToolGood.Algorithm
         public void Test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
+
             double t = 0.0;
             if (engine.Parse("1+2")) {
                 t = (double)engine.Evaluate();
@@ -61,6 +62,27 @@ namespace ToolGood.Algorithm
             Assert.AreEqual(DateTime.Parse("2016-1-2"), dt); ;
             dt = engine.TryEvaluate("'2016-1-1'+9*'1:0'", DateTime.MinValue);
             Assert.AreEqual(DateTime.Parse("2016-1-1 9:0"), dt); ;
+
+            var value = engine.TryEvaluate("1 > (-2)", false);
+            Assert.AreEqual(value, true);
+
+
+            value = engine.TryEvaluate("(-1) > (-2）", false);
+            Assert.AreEqual(value, true);
+
+
+            value = engine.TryEvaluate("-1 > (-2)", false);
+            Assert.AreEqual(value, true);
+
+            value = engine.TryEvaluate("-1 > -2", false);
+            Assert.AreEqual(value, true);
+
+            var value2 = engine.TryEvaluate("-1 > -2", false);
+            Assert.AreEqual(value2, true);
+
+
+            var value3 = engine.TryEvaluate("-7 < -2", false);
+            Assert.AreEqual(value2, true);
         }
 
         [Test]
