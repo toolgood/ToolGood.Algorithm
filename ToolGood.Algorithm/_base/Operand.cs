@@ -86,7 +86,7 @@ namespace ToolGood.Algorithm
 
         internal Operand(string opd)
         {
-            if (opd==null) {
+            if (opd == null) {
                 this.Type = OperandType.STRING;
                 this.Value = opd;
             }
@@ -148,6 +148,11 @@ namespace ToolGood.Algorithm
                 if (Type == OperandType.BOOLEAN) {
                     return (bool)Value ? 1 : 0;
                 }
+                if (Value is string) {
+                    if (double.TryParse(Value.ToString(), out double d)) {
+                        return d;
+                    }
+                }
                 return (double)Value;
             }
         }
@@ -189,7 +194,7 @@ namespace ToolGood.Algorithm
             if (Value is List<Operand>) {
                 var ls = Value as List<Operand>;
                 foreach (var item in ls) {
-                     if (item.Type == OperandType.ARRARY) {
+                    if (item.Type == OperandType.ARRARY) {
                         list.AddRange(item.GetValueList());
                     } else {
                         list.Add(item);

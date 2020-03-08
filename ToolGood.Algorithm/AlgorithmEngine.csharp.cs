@@ -88,6 +88,17 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.JSON, json);
         }
 
+        /// <summary>
+        /// json格式 返回值
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        protected Operand JsonOperand(string text)
+        {
+            var json = JsonMapper.ToObject(text);
+            return new Operand(OperandType.JSON, json);
+        }
+
 
         private Operand F_P(List<Operand> arg)
         {
