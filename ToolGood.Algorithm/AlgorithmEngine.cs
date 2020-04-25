@@ -179,7 +179,7 @@ namespace ToolGood.Algorithm
 
             while (curPos < texts.Count) {
                 //获取 当前操作数
-                curOpd = getOperand(texts,ref curPos);
+                curOpd = getOperand(texts, ref curPos);
                 if (curOpd != "") {
                     if (operators.Count > 0 && hasPoint) {
                         Operator op = operators.Pop();
@@ -307,7 +307,7 @@ namespace ToolGood.Algorithm
             }
             return count + hasCount;
         }
-        private string getOperand(List<string> texts,ref int curPos)
+        private string getOperand(List<string> texts, ref int curPos)
         {
             var t = texts[curPos];
             if (t.StartsWith("[")) {
@@ -322,7 +322,7 @@ namespace ToolGood.Algorithm
             if (curPos > 0 && t == "-" && curPos + 1 < texts.Count) {
                 if (m_Operators2.Contains(texts[curPos - 1])) {
                     curPos++;
-                    return t + texts[curPos ];
+                    return t + texts[curPos];
                 }
             }
 
@@ -1136,7 +1136,9 @@ namespace ToolGood.Algorithm
                         }
                     } else {
                         var v = json[op];
-                        if (v.IsString) {
+                        if (v == null) {
+                            return new Operand(OperandType.JSON, v);
+                        } else if (v.IsString) {
                             return new Operand(v.ToString());
                         } else if (v.IsBoolean) {
                             return new Operand(OperandType.BOOLEAN, bool.Parse(v.ToString()));
@@ -1147,6 +1149,8 @@ namespace ToolGood.Algorithm
                         } else if (v.IsLong) {
                             return new Operand(OperandType.NUMBER, double.Parse(v.ToString()));
                         } else if (v.IsObject) {
+                            return new Operand(OperandType.JSON, v);
+                        } else if (v.IsArray) {
                             return new Operand(OperandType.JSON, v);
                         }
                     }
