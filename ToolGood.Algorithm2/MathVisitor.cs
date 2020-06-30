@@ -387,30 +387,6 @@ namespace ToolGood.Algorithm
             return new Operand(OperandType.ERROR, t);
         }
 
-        private Operand CheckArgsCount(string funcName, List<Operand> ops, OperandType[][] operandTypes)
-        {
-            if (ops.Count < operandTypes.Min(q => q.Length)) return ThrowError(funcName + "参数不足！");
-            if (ops.Count > operandTypes.Max(q => q.Length)) return ThrowError(funcName + "参数过多！");
-
-            foreach (var operands in operandTypes)
-            {
-                if (operands.Length != ops.Count) continue;
-                var success = true;
-                for (int i = 0; i < operands.Length; i++)
-                {
-                    if (ops[i].CanTransitionTo(operands[i]) == false)
-                    {
-                        success = false;
-                        break;
-                    }
-                }
-                if (success)
-                {
-                    return null;
-                }
-            }
-            return ThrowError(funcName + "参数类型出错！");
-        }
         #endregion
 
         #region flow
@@ -519,12 +495,6 @@ namespace ToolGood.Algorithm
             var arg = new List<Operand>();
             foreach (var item in context.expr()) { arg.Add(this.Visit(item)); }
 
-            var op = CheckArgsCount("IfText", arg, new OperandType[][] {
-                new OperandType[] { OperandType.ANY },
-                new OperandType[] { OperandType.ANY, OperandType.ANY },
-                new OperandType[] { OperandType.ANY, OperandType.ANY, OperandType.ANY },
-                 });
-            if (op != null) { return op; }
 
             if (arg.Count < 2) return ThrowError("ISSTRING 中参数不足");
             if (arg[0].Type == OperandType.STRING)
@@ -676,15 +646,87 @@ namespace ToolGood.Algorithm
 
         public Operand VisitABS_fun([NotNull] mathParser.ABS_funContext context)
         {
+            var leftValue = this.Visit(context.expr()).ToNumber("ABS left value");
+            if (leftValue.Type == OperandType.ERROR) { return leftValue; }
+
+
+            return new Operand(OperandType.NUMBER, Math.Abs(leftValue.NumberValue));
+        }
+        public Operand VisitQUOTIENT_fun([NotNull] mathParser.QUOTIENT_funContext context)
+        {
+            var leftValue = this.Visit(context.expr(0)).ToNumber("ABS leftValue");
+            if (leftValue.Type == OperandType.ERROR) { return leftValue; }
+            var rightValue = this.Visit(context.expr(1)).ToNumber("ABS rightValue");
+            if (rightValue.Type == OperandType.ERROR) { return rightValue; }
+
+            if (rightValue.Type == OperandType.NUMBER || rightValue.Type == OperandType.BOOLEAN)
+            {
+                if (rightValue.NumberValue == 0)
+                {
+                    return ThrowError("div 0 error!");
+                }
+                if (leftValue.Type == OperandType.NUMBER || leftValue.Type == OperandType.BOOLEAN)
+                {
+                    return new Operand(OperandType.NUMBER, (double) (int) (leftValue.NumberValue / rightValue.NumberValue));
+                }
+                else if (leftValue.Type == OperandType.DATE)
+                {
+                    return new Operand(OperandType.DATE, (double) (int) (leftValue.DateValue / rightValue.NumberValue));
+                }
+            }
+            if (rightValue.Type == OperandType.DATE)
+            {
+                if (leftValue.Type == OperandType.NUMBER || leftValue.Type == OperandType.BOOLEAN)
+                {
+                    return new Operand(OperandType.NUMBER, (double) (int) (leftValue.NumberValue / rightValue.DateValue));
+                }
+            }
+            return ThrowError("两个参数不能相除取商的整数部分");
+
+        }
+        public Operand VisitMOD_fun([NotNull] mathParser.MOD_funContext context)
+        {
+            var leftValue = this.Visit(context.expr(0));
+            if (leftValue.Type == OperandType.ERROR) { return leftValue; }
+            var rightValue = this.Visit(context.expr(1));
+            if (rightValue.Type == OperandType.ERROR) { return rightValue; }
+
+            if (rightValue.Type == OperandType.NUMBER || rightValue.Type == OperandType.BOOLEAN)
+            {
+                if (rightValue.NumberValue == 0)
+                {
+                    return ThrowError("div 0 error!");
+                }
+                if (leftValue.Type == OperandType.NUMBER || leftValue.Type == OperandType.BOOLEAN)
+                {
+                    return new Operand(OperandType.NUMBER, leftValue.NumberValue % rightValue.NumberValue);
+                }
+                else if (leftValue.Type == OperandType.DATE)
+                {
+                    return new Operand(OperandType.DATE, leftValue.DateValue % rightValue.NumberValue);
+                }
+            }
+            if (rightValue.Type == OperandType.DATE)
+            {
+                if (leftValue.Type == OperandType.NUMBER || leftValue.Type == OperandType.BOOLEAN)
+                {
+                    return new Operand(OperandType.NUMBER, leftValue.NumberValue % rightValue.DateValue);
+                }
+
+            }
+            return ThrowError("两个参数不能相除取余");
+        }
+        public Operand VisitSIGN_fun([NotNull] mathParser.SIGN_funContext context)
+        {
             var leftValue = this.Visit(context.expr());
             if (leftValue.Type == OperandType.ERROR) { return leftValue; }
 
             if (Operand.IsNumber(leftValue))
             {
-                return new Operand(OperandType.NUMBER, Math.Abs(leftValue.NumberValue));
+                return new Operand(OperandType.NUMBER, (double) Math.Sign(leftValue.NumberValue));
             }
-            return ThrowError("ABS fun is error");
-        } 
+            return ThrowError("SIGN fun is error");
+        }
 
 
 
@@ -1177,10 +1219,7 @@ namespace ToolGood.Algorithm
             throw new NotImplementedException();
         }
 
-        public Operand VisitMOD_fun([NotNull] mathParser.MOD_funContext context)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public Operand VisitMONTH_fun([NotNull] mathParser.MONTH_funContext context)
         {
@@ -1294,10 +1333,7 @@ namespace ToolGood.Algorithm
             throw new NotImplementedException();
         }
 
-        public Operand VisitQUOTIENT_fun([NotNull] mathParser.QUOTIENT_funContext context)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public Operand VisitRADIANS_fun([NotNull] mathParser.RADIANS_funContext context)
         {
@@ -1404,10 +1440,6 @@ namespace ToolGood.Algorithm
             throw new NotImplementedException();
         }
 
-        public Operand VisitSIGN_fun([NotNull] mathParser.SIGN_funContext context)
-        {
-            throw new NotImplementedException();
-        }
 
         public Operand VisitSINH_fun([NotNull] mathParser.SINH_funContext context)
         {
