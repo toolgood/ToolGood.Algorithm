@@ -241,6 +241,13 @@ public interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitWORKDAY_fun([NotNull] mathParser.WORKDAY_funContext context);
 	/// <summary>
+	/// Visit a parse tree produced by the <c>ISERROR_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitISERROR_fun([NotNull] mathParser.ISERROR_funContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>JIS_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// </summary>

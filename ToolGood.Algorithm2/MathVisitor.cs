@@ -32,7 +32,9 @@ namespace ToolGood.Algorithm
         public Operand VisitMulDiv_fun([NotNull] mathParser.MulDiv_funContext context)
         {
             var leftValue = this.Visit(context.expr(0));
+            if (leftValue.Type == OperandType.ERROR) { return leftValue; }
             var rightValue = this.Visit(context.expr(1));
+            if (rightValue.Type == OperandType.ERROR) { return rightValue; }
 
             if (context.op.Type == mathLexer.MUL)
             {
@@ -154,7 +156,9 @@ namespace ToolGood.Algorithm
         public Operand VisitAddSub_fun([NotNull] mathParser.AddSub_funContext context)
         {
             var leftValue = this.Visit(context.expr(0));
+            if (leftValue.Type == OperandType.ERROR) { return leftValue; }
             var rightValue = this.Visit(context.expr(1));
+            if (rightValue.Type == OperandType.ERROR) { return rightValue; }
 
             if (context.op.Type == mathLexer.ADD)
             {
@@ -269,10 +273,86 @@ namespace ToolGood.Algorithm
         public Operand VisitJudge_fun([NotNull] mathParser.Judge_funContext context)
         {
             var leftValue = this.Visit(context.expr(0));
+            if (leftValue.Type == OperandType.ERROR) { return leftValue; }
             var rightValue = this.Visit(context.expr(1));
+            if (rightValue.Type == OperandType.ERROR) { return rightValue; }
+            int type = context.op.Type;
 
+            int r = 0;
+            if (leftValue.Type == rightValue.Type)
+            {
+                if (leftValue.Type == OperandType.STRING)
+                {
+                    r = compare(leftValue.StringValue, rightValue.StringValue);
+                }
+                else
+                {
+                    r = compare(leftValue.NumberValue, rightValue.NumberValue);
+                }
+            }
+            else if ((leftValue.Type == OperandType.DATE && rightValue.Type == OperandType.STRING) || (rightValue.Type == OperandType.DATE && leftValue.Type == OperandType.STRING))
+            {
+                r = compare(leftValue.StringValue, rightValue.StringValue);
+            }
+            else if (leftValue.Type == OperandType.STRING || rightValue.Type == OperandType.STRING)
+            {
+                return new Operand(OperandType.ERROR, "两个类型无法比较");
+            }
+            else
+            {
+                r = compare(leftValue.NumberValue, rightValue.NumberValue);
+            }
+            if (type == mathLexer.LT)
+            {
+                return new Operand(OperandType.BOOLEAN, r == -1);
+            }
+            else if (type == mathLexer.LE)
+            {
+                return new Operand(OperandType.BOOLEAN, r <= 0);
+            }
+            else if (type == mathLexer.GT)
+            {
+                return new Operand(OperandType.BOOLEAN, r == 1);
+            }
+            else if (type == mathLexer.GE)
+            {
+                return new Operand(OperandType.BOOLEAN, r >= 0);
+            }
+            else if (type == mathLexer.ET)
+            {
+                return new Operand(OperandType.BOOLEAN, r == 0);
+            }
+            return new Operand(OperandType.BOOLEAN, r != 0);
 
             throw new NotImplementedException();
+        }
+        private int compare(double t1, double t2)
+        {
+            t1 = Math.Round(t1, 12);
+            t2 = Math.Round(t2, 12);
+            if (t1 == t2)
+            {
+                return 0;
+            }
+            else if (t1 > t2)
+            {
+                return 1;
+            }
+            return -1;
+        }
+        private int compare(string t1, string t2)
+        {
+            if (t1 == t2)
+            {
+                return 0;
+            }
+            List<string> ts = new List<string>() { t1, t2 };
+            ts = ts.OrderBy(q => q).ToList();
+            if (t1 == ts[1])
+            {
+                return 1;
+            }
+            return -1;
         }
 
         public Operand VisitArray_fun([NotNull] mathParser.Array_funContext context)
@@ -306,6 +386,286 @@ namespace ToolGood.Algorithm
             }
             return new Operand(OperandType.ERROR, t);
         }
+
+        private Operand CheckArgsCount(string funcName, List<Operand> ops, OperandType[][] operandTypes)
+        {
+            if (ops.Count < operandTypes.Min(q => q.Length)) return ThrowError(funcName + "参数不足！");
+            if (ops.Count > operandTypes.Max(q => q.Length)) return ThrowError(funcName + "参数过多！");
+
+            foreach (var operands in operandTypes)
+            {
+                if (operands.Length != ops.Count) continue;
+                var success = true;
+                for (int i = 0; i < operands.Length; i++)
+                {
+                    if (ops[i].CanTransitionTo(operands[i]) == false)
+                    {
+                        success = false;
+                        break;
+                    }
+                }
+                if (success)
+                {
+                    return null;
+                }
+            }
+            return ThrowError(funcName + "参数类型出错！");
+        }
+        #endregion
+
+        #region flow
+        public Operand VisitIF_fun([NotNull] mathParser.IF_funContext context)
+        {
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { arg.Add(this.Visit(item)); }
+
+            var op = CheckArgsCount("IF", arg, new OperandType[][] {
+                new [] { OperandType.ANY },
+                new [] { OperandType.ANY, OperandType.ANY },
+                new [] { OperandType.ANY, OperandType.ANY, OperandType.ANY },
+                 });
+            if (op != null) { return op; }
+
+            var b = true;
+            if (arg[0].Type == OperandType.BOOLEAN)
+            {
+                b = arg[0].BooleanValue;
+            }
+            else if (arg[0].Type == OperandType.NUMBER)
+            {
+                b = arg[0].IntValue != 0;
+            }
+
+            if (b)
+            {
+                if (arg.Count > 1)
+                {
+                    return arg[1];
+                }
+                return new Operand(OperandType.BOOLEAN, true);
+            }
+            if (arg.Count == 3)
+            {
+                return arg[2];
+            }
+            return new Operand(OperandType.BOOLEAN, false);
+        }
+        public Operand VisitIFERROR_fun([NotNull] mathParser.IFERROR_funContext context)
+        {
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { arg.Add(this.Visit(item)); }
+
+            var op = CheckArgsCount("IFERROR", arg, new OperandType[][] {
+                new [] { OperandType.ANY },
+                new [] { OperandType.ANY, OperandType.ANY },
+                new [] { OperandType.ANY, OperandType.ANY, OperandType.ANY },
+                 });
+            if (op != null) { return op; }
+
+            if (arg[0].Type == OperandType.ERROR)
+            {
+                if (arg.Count > 1)
+                {
+                    return arg[1];
+                }
+                return new Operand(OperandType.BOOLEAN, true);
+            }
+            if (arg.Count == 3)
+            {
+                return arg[2];
+            }
+            return new Operand(OperandType.BOOLEAN, false);
+
+        }
+        public Operand VisitIFNUMBER_fun([NotNull] mathParser.IFNUMBER_funContext context)
+        {
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { arg.Add(this.Visit(item)); }
+
+            var op = CheckArgsCount("IFNUMBER", arg, new OperandType[][] {
+                new OperandType[] { OperandType.ANY },
+                new OperandType[] { OperandType.ANY, OperandType.ANY },
+                new OperandType[] { OperandType.ANY, OperandType.ANY, OperandType.ANY },
+                 });
+            if (op != null) { return op; }
+
+            if (arg.Count < 2) return ThrowError("IFNUMBER 中参数不足");
+            var b = false;
+            if (arg[0].Type == OperandType.NUMBER)
+            {
+                b = arg[0].IntValue != 0;
+            }
+            else if (arg[0].Type == OperandType.DATE)
+            {
+                b = true;
+            }
+
+            if (b)
+            {
+                if (arg.Count > 1)
+                {
+                    return arg[1];
+                }
+                return new Operand(OperandType.BOOLEAN, true);
+            }
+            if (arg.Count == 3)
+            {
+                return arg[2];
+            }
+            return new Operand(OperandType.BOOLEAN, false);
+        }
+        public Operand VisitIFTEXT_fun([NotNull] mathParser.IFTEXT_funContext context)
+        {
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { arg.Add(this.Visit(item)); }
+
+            var op = CheckArgsCount("IfText", arg, new OperandType[][] {
+                new OperandType[] { OperandType.ANY },
+                new OperandType[] { OperandType.ANY, OperandType.ANY },
+                new OperandType[] { OperandType.ANY, OperandType.ANY, OperandType.ANY },
+                 });
+            if (op != null) { return op; }
+
+            if (arg.Count < 2) return ThrowError("ISSTRING 中参数不足");
+            if (arg[0].Type == OperandType.STRING)
+            {
+                if (arg.Count > 1)
+                {
+                    return arg[1];
+                }
+                return new Operand(OperandType.BOOLEAN, true);
+            }
+            else if (arg[0].Type == OperandType.DATE)
+            {
+                if (arg[0].DateValue.srcText != null)
+                {
+                    if (arg.Count > 1)
+                    {
+                        return arg[1];
+                    }
+                    return new Operand(OperandType.BOOLEAN, true);
+                }
+            }
+            if (arg.Count == 3) return arg[2];
+            return new Operand(OperandType.BOOLEAN, false);
+        }
+        public Operand VisitISNUMBER_fun([NotNull] mathParser.ISNUMBER_funContext context)
+        {
+            var leftValue = this.Visit(context.expr());
+            if (leftValue.Type == OperandType.ERROR) { return leftValue; }
+
+            if (leftValue.Type == OperandType.NUMBER)
+            {
+                return new Operand(OperandType.BOOLEAN, true);
+            }
+            else if (leftValue.Type == OperandType.DATE)
+            {
+                return new Operand(OperandType.BOOLEAN, true);
+            }
+            return new Operand(OperandType.BOOLEAN, false);
+        }
+        public Operand VisitISTEXT_fun([NotNull] mathParser.ISTEXT_funContext context)
+        {
+            var leftValue = this.Visit(context.expr());
+            if (leftValue.Type == OperandType.ERROR) { return leftValue; }
+
+            if (leftValue.Type == OperandType.STRING)
+            {
+                return new Operand(OperandType.BOOLEAN, true);
+            }
+            else if (leftValue.Type == OperandType.DATE)
+            {
+                return new Operand(OperandType.BOOLEAN, leftValue.DateValue.srcText != null);
+            }
+            return new Operand(OperandType.BOOLEAN, false);
+        }
+        public Operand VisitISERROR_fun([NotNull] mathParser.ISERROR_funContext context)
+        {
+            var leftValue = this.Visit(context.expr());
+            if (leftValue.Type == OperandType.ERROR)
+            {
+                return new Operand(OperandType.BOOLEAN, true);
+            }
+            return new Operand(OperandType.BOOLEAN, false);
+        }
+        public Operand VisitAND_fun([NotNull] mathParser.AND_funContext context)
+        {
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { arg.Add(this.Visit(item)); }
+
+            var b = true;
+            foreach (var item in arg)
+            {
+                if (item.Type == OperandType.BOOLEAN)
+                {
+                    if (item.BooleanValue == false)
+                    {
+                        b = false;
+                        break;
+                    }
+                }
+                else if (item.Type == OperandType.NUMBER)
+                {
+                    if (item.IntValue == 0)
+                    {
+                        b = false;
+                        break;
+                    }
+                }
+            }
+            return new Operand(OperandType.BOOLEAN, b);
+        }
+        public Operand VisitOR_fun([NotNull] mathParser.OR_funContext context)
+        {
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { arg.Add(this.Visit(item)); }
+
+            var b = false;
+
+            foreach (var item in arg)
+            {
+                if (item.Type == OperandType.BOOLEAN)
+                {
+                    if (item.BooleanValue == true)
+                    {
+                        b = true;
+                        break;
+                    }
+                }
+                else if (item.Type == OperandType.NUMBER)
+                {
+                    if (item.IntValue != 0)
+                    {
+                        b = true;
+                        break;
+                    }
+                }
+            }
+            return new Operand(OperandType.BOOLEAN, b);
+        }
+        public Operand VisitNOT_fun([NotNull] mathParser.NOT_funContext context)
+        {
+            var leftValue = this.Visit(context.expr());
+            if (leftValue.Type == OperandType.ERROR) { return leftValue; }
+
+            if (leftValue.Type == OperandType.BOOLEAN)
+            {
+                return new Operand(OperandType.BOOLEAN, !leftValue.BooleanValue);
+            }
+            else if (leftValue.Type == OperandType.NUMBER)
+            {
+                return new Operand(OperandType.BOOLEAN, (leftValue.NumberValue == 0));
+            }
+            return new Operand(OperandType.BOOLEAN, false);
+        }
+        public Operand VisitTRUE_fun([NotNull] mathParser.TRUE_funContext context)
+        {
+            return new Operand(OperandType.BOOLEAN, true);
+        }
+        public Operand VisitFALSE_fun([NotNull] mathParser.FALSE_funContext context)
+        {
+            return new Operand(OperandType.BOOLEAN, false);
+        }
         #endregion
 
 
@@ -325,10 +685,6 @@ namespace ToolGood.Algorithm
             throw new NotImplementedException();
         }
 
-        public Operand VisitAND_fun([NotNull] mathParser.AND_funContext context)
-        {
-            throw new NotImplementedException();
-        }
 
 
 
@@ -548,10 +904,7 @@ namespace ToolGood.Algorithm
             throw new NotImplementedException();
         }
 
-        public Operand VisitFALSE_fun([NotNull] mathParser.FALSE_funContext context)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public Operand VisitFDIST_fun([NotNull] mathParser.FDIST_funContext context)
         {
@@ -663,25 +1016,10 @@ namespace ToolGood.Algorithm
             throw new NotImplementedException();
         }
 
-        public Operand VisitIFERROR_fun([NotNull] mathParser.IFERROR_funContext context)
-        {
-            throw new NotImplementedException();
-        }
 
-        public Operand VisitIFNUMBER_fun([NotNull] mathParser.IFNUMBER_funContext context)
-        {
-            throw new NotImplementedException();
-        }
 
-        public Operand VisitIFTEXT_fun([NotNull] mathParser.IFTEXT_funContext context)
-        {
-            throw new NotImplementedException();
-        }
 
-        public Operand VisitIF_fun([NotNull] mathParser.IF_funContext context)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public Operand VisitINDEXOF_fun([NotNull] mathParser.INDEXOF_funContext context)
         {
@@ -703,20 +1041,12 @@ namespace ToolGood.Algorithm
             throw new NotImplementedException();
         }
 
-        public Operand VisitISNUMBER_fun([NotNull] mathParser.ISNUMBER_funContext context)
-        {
-            throw new NotImplementedException();
-        }
 
         public Operand VisitISREGEX_fun([NotNull] mathParser.ISREGEX_funContext context)
         {
             throw new NotImplementedException();
         }
 
-        public Operand VisitISTEXT_fun([NotNull] mathParser.ISTEXT_funContext context)
-        {
-            throw new NotImplementedException();
-        }
 
         public Operand VisitJIS_fun([NotNull] mathParser.JIS_funContext context)
         {
@@ -880,10 +1210,7 @@ namespace ToolGood.Algorithm
             throw new NotImplementedException();
         }
 
-        public Operand VisitNOT_fun([NotNull] mathParser.NOT_funContext context)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public Operand VisitNOW_fun([NotNull] mathParser.NOW_funContext context)
         {
@@ -897,10 +1224,7 @@ namespace ToolGood.Algorithm
             throw new NotImplementedException();
         }
 
-        public Operand VisitOR_fun([NotNull] mathParser.OR_funContext context)
-        {
-            throw new NotImplementedException();
-        }
+
 
 
 
@@ -1217,10 +1541,7 @@ namespace ToolGood.Algorithm
             throw new NotImplementedException();
         }
 
-        public Operand VisitTRUE_fun([NotNull] mathParser.TRUE_funContext context)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public Operand VisitTRUNC_fun([NotNull] mathParser.TRUNC_funContext context)
         {
@@ -1291,5 +1612,7 @@ namespace ToolGood.Algorithm
         {
             throw new NotImplementedException();
         }
+
+
     }
 }
