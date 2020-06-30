@@ -1,6 +1,6 @@
 grammar math;
 
-prog : expr+;
+prog : expr;
 
 expr: expr op=('*'|'/'|'%') expr                        # MulDiv_fun
     | expr op=('+'|'-'|'&') expr                        # AddSub_fun
