@@ -668,12 +668,30 @@ namespace ToolGood.Algorithm
         }
         #endregion
 
-
+        #region math
+        public Operand VisitPI_fun([NotNull] mathParser.PI_funContext context)
+        {
+            return new Operand(OperandType.NUMBER, Math.PI);
+        }
 
         public Operand VisitABS_fun([NotNull] mathParser.ABS_funContext context)
         {
-            throw new NotImplementedException();
-        }
+            var leftValue = this.Visit(context.expr());
+            if (leftValue.Type == OperandType.ERROR) { return leftValue; }
+
+            if (Operand.IsNumber(leftValue))
+            {
+                return new Operand(OperandType.NUMBER, Math.Abs(leftValue.NumberValue));
+            }
+            return ThrowError("ABS fun is error");
+        } 
+
+
+
+        #endregion
+
+
+
 
         public Operand VisitACOSH_fun([NotNull] mathParser.ACOSH_funContext context)
         {
@@ -1243,10 +1261,7 @@ namespace ToolGood.Algorithm
             throw new NotImplementedException();
         }
 
-        public Operand VisitPI_fun([NotNull] mathParser.PI_funContext context)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public Operand VisitPOISSON_fun([NotNull] mathParser.POISSON_funContext context)
         {

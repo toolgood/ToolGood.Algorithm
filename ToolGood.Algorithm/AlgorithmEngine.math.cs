@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -437,7 +438,7 @@ namespace ToolGood.Algorithm
             } else if (arg[0].Type == OperandType.BOOLEAN) {
                 return new Operand(OperandType.NUMBER, arg[0].BooleanValue ? 1 : 0);
             }
-            if (double.TryParse(arg[0].StringValue, out double d)) {
+            if (double.TryParse(arg[0].StringValue, NumberStyles.Currency, CultureInfo.GetCultureInfo("en-US"), out double d)) {
                 return new Operand(OperandType.NUMBER, (double)(int)d);
             }
             return ThrowError("无法转成整数", arg);

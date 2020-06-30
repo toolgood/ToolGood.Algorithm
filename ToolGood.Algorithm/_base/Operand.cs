@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -149,7 +150,7 @@ namespace ToolGood.Algorithm
                     return (bool)Value ? 1 : 0;
                 }
                 if (Value is string) {
-                    if (double.TryParse(Value.ToString(), out double d)) {
+                    if (double.TryParse(Value.ToString(), NumberStyles.Currency, CultureInfo.GetCultureInfo("en-US"), out double d)) {
                         return d;
                     }
                 }
@@ -310,7 +311,7 @@ namespace ToolGood.Algorithm
         /// <returns>是返回真,否返回假</returns>
         public static bool IsNumber(object value)
         {
-            return double.TryParse(value.ToString(), out double val);
+            return double.TryParse(value.ToString(), NumberStyles.Currency, CultureInfo.GetCultureInfo("en-US"), out double val);
         }
 
         /// <summary>

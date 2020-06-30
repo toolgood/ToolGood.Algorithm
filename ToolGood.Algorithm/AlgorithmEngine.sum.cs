@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -249,7 +250,7 @@ namespace ToolGood.Algorithm
                 count = F_base_countif(dbs, arg[1].NumberValue);
                 sum = count * arg[1].NumberValue;
             } else {
-                if (double.TryParse(arg[1].StringValue.Trim(), out double d)) {
+                if (double.TryParse(arg[1].StringValue.Trim(), NumberStyles.Currency, CultureInfo.GetCultureInfo("en-US"), out double d)) {
                     count = F_base_countif(dbs, arg[1].NumberValue);
                     sum = F_base_sumif(dbs, "=" + arg[1].StringValue.Trim(), sumdbs);
                 } else {
@@ -272,7 +273,7 @@ namespace ToolGood.Algorithm
             if (arg[1].Type == OperandType.NUMBER) {
                 sum = F_base_countif(dbs, arg[1].NumberValue) * arg[1].NumberValue;
             } else {
-                if (double.TryParse(arg[1].StringValue.Trim(), out double d)) {
+                if (double.TryParse(arg[1].StringValue.Trim(), NumberStyles.Currency, CultureInfo.GetCultureInfo("en-US"), out double d)) {
                     sum = F_base_sumif(dbs, "=" + arg[1].StringValue.Trim(), sumdbs);
                 } else {
                     sum = F_base_sumif(dbs, arg[1].StringValue.Trim(), sumdbs);
@@ -291,7 +292,7 @@ namespace ToolGood.Algorithm
             if (arg[1].Type == OperandType.NUMBER) {
                 count = F_base_countif(dbs, arg[1].NumberValue);
             } else {
-                if (double.TryParse(arg[1].StringValue.Trim(), out double d)) {
+                if (double.TryParse(arg[1].StringValue.Trim(), NumberStyles.Currency, CultureInfo.GetCultureInfo("en-US"), out double d)) {
                     count = F_base_countif(dbs, arg[1].NumberValue);
                 } else {
                     count = F_base_countif(dbs, arg[1].StringValue.Trim());

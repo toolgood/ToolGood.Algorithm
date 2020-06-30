@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -66,7 +67,7 @@ namespace ToolGood.Algorithm
                 new OperandType[] { OperandType.STRING },
                  });
 
-            if (double.TryParse(arg[0].StringValue, out double d)) {
+            if (double.TryParse(arg[0].StringValue, NumberStyles.Currency, CultureInfo.GetCultureInfo("en-US"), out double d)) {
                 return new Operand(OperandType.STRING, d);
             }
             return ThrowError("无法转成数字", arg);
