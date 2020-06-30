@@ -94,7 +94,7 @@ namespace ToolGood.Algorithm
                 return 0;
             }
             var m = re.Match(s);
-            var d = double.Parse(m.Groups[2].Value);
+            var d = double.Parse(m.Groups[2].Value, cultureInfo);
             var ss = m.Groups[1].Value;
             double sum = 0;
 
@@ -141,7 +141,7 @@ namespace ToolGood.Algorithm
                 return 0;
             }
             var m = re.Match(s);
-            var d = double.Parse(m.Groups[2].Value);
+            var d = double.Parse(m.Groups[2].Value, cultureInfo);
             var ss = m.Groups[1].Value;
             int count = 0;
 
