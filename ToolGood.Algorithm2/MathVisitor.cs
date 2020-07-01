@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
+using ToolGood.Algorithm.MathNet.Numerics;
 
 namespace ToolGood.Algorithm
 {
@@ -1783,51 +1785,304 @@ namespace ToolGood.Algorithm
 
         public Operand VisitMAX_fun([NotNull] mathParser.MAX_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } arg.Add(a); }
+
+            var max = double.MinValue;
+
+            foreach (var item in arg) {
+                if (item.Type == OperandType.ARRARY) {
+                    foreach (var it in item.ArrayValue) {
+                        var a = it.ToNumber();
+                        if (a.IsError) { return a; }
+                        if (a.NumberValue > max) {
+                            max = a.NumberValue;
+                        }
+                    }
+                } else {
+                    var a = item.ToNumber();
+                    if (a.IsError) { return a; }
+                    if (a.NumberValue > max) {
+                        max = a.NumberValue;
+                    }
+                }
+            }
+            return Operand.Create(max);
         }
         public Operand VisitMEDIAN_fun([NotNull] mathParser.MEDIAN_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } arg.Add(a); }
+
+            List<int> list = new List<int>();
+            foreach (var item in arg) {
+                if (item.Type == OperandType.ARRARY) {
+                    foreach (var it in item.ArrayValue) {
+                        var a = it.ToNumber();
+                        if (a.IsError) { return a; }
+                        list.Add(a.IntValue);
+                    }
+                } else {
+                    var a = item.ToNumber();
+                    if (a.IsError) { return a; }
+                    list.Add(a.IntValue);
+                }
+            }
+
+            list = list.OrderBy(q => q).ToList();
+            return Operand.Create(list[list.Count / 2]);
         }
         public Operand VisitMIN_fun([NotNull] mathParser.MIN_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } arg.Add(a); }
+
+            var min = double.MaxValue;
+
+            foreach (var item in arg) {
+                if (item.Type == OperandType.ARRARY) {
+                    foreach (var it in item.ArrayValue) {
+                        var a = it.ToNumber();
+                        if (a.IsError) { return a; }
+                        if (a.NumberValue < min) {
+                            min = a.NumberValue;
+                        }
+                    }
+                } else {
+                    var a = item.ToNumber();
+                    if (a.IsError) { return a; }
+                    if (a.NumberValue < min) {
+                        min = a.NumberValue;
+                    }
+                }
+            }
+            return Operand.Create(min);
         }
         public Operand VisitQUARTILE_fun([NotNull] mathParser.QUARTILE_funContext context)
         {
-            throw new NotImplementedException();
+            var firstValue = this.Visit(context.expr(0)).ToArray();
+            if (firstValue.IsError) { return firstValue; }
+            var secondValue = this.Visit(context.expr(1)).ToNumber("MID left value");
+            if (secondValue.IsError) { return secondValue; }
+
+            List<double> list = new List<double>();
+            foreach (var item in firstValue.ArrayValue) {
+                if (item.Type == OperandType.ARRARY) {
+                    foreach (var it in item.ArrayValue) {
+                        var a = it.ToNumber();
+                        if (a.IsError) { return a; }
+                        list.Add(a.NumberValue);
+                    }
+                } else {
+                    var a = item.ToNumber();
+                    if (a.IsError) { return a; }
+                    list.Add(a.NumberValue);
+
+                }
+            }
+
+            var quant = secondValue.IntValue;
+            return Operand.Create(ExcelFunctions.Quartile(list.ToArray(), quant));
         }
         public Operand VisitMODE_fun([NotNull] mathParser.MODE_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } arg.Add(a); }
+
+            Dictionary<double, int> dict = new Dictionary<double, int>();
+            foreach (var item in arg) {
+                if (item.Type == OperandType.ARRARY) {
+                    foreach (var it in item.ArrayValue) {
+                        var a = it.ToNumber();
+                        if (a.IsError) { return a; }
+                        if (dict.ContainsKey(item.NumberValue)) {
+                            dict[item.NumberValue] += 1;
+                        } else {
+                            dict[item.NumberValue] = 1;
+                        }
+                    }
+                } else {
+                    var a = item.ToNumber();
+                    if (a.IsError) { return a; }
+                    if (dict.ContainsKey(item.NumberValue)) {
+                        dict[item.NumberValue] += 1;
+                    } else {
+                        dict[item.NumberValue] = 1;
+                    }
+                }
+            }
+            return Operand.Create(dict.OrderByDescending(q => q.Value).First().Key);
         }
         public Operand VisitLARGE_fun([NotNull] mathParser.LARGE_funContext context)
         {
-            throw new NotImplementedException();
+            var firstValue = this.Visit(context.expr(0)).ToArray();
+            if (firstValue.IsError) { return firstValue; }
+            var secondValue = this.Visit(context.expr(1)).ToNumber("MID left value");
+            if (secondValue.IsError) { return secondValue; }
+
+            List<double> list = new List<double>();
+            foreach (var item in firstValue.ArrayValue) {
+                if (item.Type == OperandType.ARRARY) {
+                    foreach (var it in item.ArrayValue) {
+                        var a = it.ToNumber();
+                        if (a.IsError) { return a; }
+                        list.Add(a.NumberValue);
+                    }
+                } else {
+                    var a = item.ToNumber();
+                    if (a.IsError) { return a; }
+                    list.Add(a.NumberValue);
+
+                }
+            }
+            list = list.OrderByDescending(q => q).ToList();
+            var quant = secondValue.IntValue;
+            return Operand.Create(list[secondValue.IntValue - excelIndex]);
         }
         public Operand VisitSMALL_fun([NotNull] mathParser.SMALL_funContext context)
         {
-            throw new NotImplementedException();
+            var firstValue = this.Visit(context.expr(0)).ToArray();
+            if (firstValue.IsError) { return firstValue; }
+            var secondValue = this.Visit(context.expr(1)).ToNumber("MID left value");
+            if (secondValue.IsError) { return secondValue; }
+
+            List<double> list = new List<double>();
+            foreach (var item in firstValue.ArrayValue) {
+                if (item.Type == OperandType.ARRARY) {
+                    foreach (var it in item.ArrayValue) {
+                        var a = it.ToNumber();
+                        if (a.IsError) { return a; }
+                        list.Add(a.NumberValue);
+                    }
+                } else {
+                    var a = item.ToNumber();
+                    if (a.IsError) { return a; }
+                    list.Add(a.NumberValue);
+
+                }
+            }
+            list = list.OrderBy(q => q).ToList();
+            var quant = secondValue.IntValue;
+            return Operand.Create(list[secondValue.IntValue - excelIndex]);
         }
         public Operand VisitPERCENTILE_fun([NotNull] mathParser.PERCENTILE_funContext context)
         {
-            throw new NotImplementedException();
+            var firstValue = this.Visit(context.expr(0)).ToArray();
+            if (firstValue.IsError) { return firstValue; }
+            var secondValue = this.Visit(context.expr(1)).ToNumber("MID left value");
+            if (secondValue.IsError) { return secondValue; }
+
+            List<double> list = new List<double>();
+            foreach (var item in firstValue.ArrayValue) {
+                if (item.Type == OperandType.ARRARY) {
+                    foreach (var it in item.ArrayValue) {
+                        var a = it.ToNumber();
+                        if (a.IsError) { return a; }
+                        list.Add(a.NumberValue);
+                    }
+                } else {
+                    var a = item.ToNumber();
+                    if (a.IsError) { return a; }
+                    list.Add(a.NumberValue);
+
+                }
+            }
+            var k = secondValue.NumberValue;
+            return Operand.Create(ExcelFunctions.Percentile(list.ToArray(), k));
         }
         public Operand VisitPERCENTRANK_fun([NotNull] mathParser.PERCENTRANK_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            var firstValue = arg[0].ToArray();
+            if (firstValue.IsError) { return firstValue; }
+            var secondValue = arg[1].ToNumber("MID left value");
+            if (secondValue.IsError) { return secondValue; }
+
+            List<double> list = new List<double>();
+            foreach (var item in firstValue.ArrayValue) {
+                if (item.Type == OperandType.ARRARY) {
+                    foreach (var it in item.ArrayValue) {
+                        var a = it.ToNumber();
+                        if (a.IsError) { return a; }
+                        list.Add(a.NumberValue);
+                    }
+                } else {
+                    var a = item.ToNumber();
+                    if (a.IsError) { return a; }
+                    list.Add(a.NumberValue);
+                }
+            }
+
+            var k = secondValue.NumberValue;
+            var v = ExcelFunctions.PercentRank(list.ToArray(), k);
+            var d = 3;
+            if (arg.Count == 3) {
+                var thirdValue = this.Visit(context.expr(2)).ToNumber("MID left value");
+                if (thirdValue.IsError) { return thirdValue; }
+                d = thirdValue.IntValue;
+            }
+            return Operand.Create(Math.Round(v, d));
         }
         public Operand VisitAVERAGE_fun([NotNull] mathParser.AVERAGE_funContext context)
         {
-            throw new NotImplementedException();
+            var firstValue = this.Visit(context.expr(0)).ToArray();
+            if (firstValue.IsError) { return firstValue; }
+
+            List<double> list = new List<double>();
+            foreach (var item in firstValue.ArrayValue) {
+                if (item.Type == OperandType.ARRARY) {
+                    foreach (var it in item.ArrayValue) {
+                        var a = it.ToNumber();
+                        if (a.IsError) { return a; }
+                        list.Add(a.NumberValue);
+                    }
+                } else {
+                    var a = item.ToNumber();
+                    if (a.IsError) { return a; }
+                    list.Add(a.NumberValue);
+                }
+            }
+            return Operand.Create(list.Average());
         }
         public Operand VisitAVERAGEIF_fun([NotNull] mathParser.AVERAGEIF_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            List<double> list = arg[0].GetNumberList();
+            List<double> sumdbs = list;
+            if (arg.Count == 3) sumdbs = arg[2].GetNumberList();
+
+            double sum;
+            int count;
+            if (arg[1].Type == OperandType.NUMBER) {
+                count = F_base_countif(list, arg[1].NumberValue);
+                sum = count * arg[1].NumberValue;
+            } else {
+                if (double.TryParse(arg[1].StringValue.Trim(), NumberStyles.Currency, CultureInfo.GetCultureInfo("en-US"), out double d)) {
+                    count = F_base_countif(list, arg[1].NumberValue);
+                    sum = F_base_sumif(list, "=" + arg[1].StringValue.Trim(), sumdbs);
+                } else {
+                    count = F_base_countif(list, arg[1].StringValue.Trim());
+                    sum = F_base_sumif(list, arg[1].StringValue.Trim(), sumdbs);
+                }
+            }
+            return Operand.Create(sum / count);
         }
         public Operand VisitGEOMEAN_fun([NotNull] mathParser.GEOMEAN_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            if (arg.Count == 1) return arg[0];
+            var dbs = F_base_GetList(arg);
+            double sum = 1;
+            foreach (var db in dbs) {
+                sum *= db;
+            }
+            return Operand.Create(Math.Pow(sum, 1.0 / dbs.Count));
         }
         public Operand VisitHARMEAN_fun([NotNull] mathParser.HARMEAN_funContext context)
         {
@@ -1966,6 +2221,84 @@ namespace ToolGood.Algorithm
             throw new NotImplementedException();
         }
 
+        private int F_base_countif(List<double> dbs, double d)
+        {
+            int count = 0;
+            d = Math.Round(d, 12);
+            foreach (var item in dbs) {
+                if (Math.Round(item, 12) == d) {
+                    count++;
+                }
+            }
+            return count;
+        }
+        private int F_base_countif(List<double> dbs, string s)
+        {
+            Regex re = new Regex(@"(<|<=|>|>=|=|==|!=|<>) *([-+]?\d+(\.(\d+)?)?)");
+            if (re.IsMatch(s) == false) {
+                return 0;
+            }
+            var m = re.Match(s);
+            var d = double.Parse(m.Groups[2].Value, CultureInfo.GetCultureInfo("en-US"));
+            var ss = m.Groups[1].Value;
+            int count = 0;
+
+            foreach (var item in dbs) {
+                if (F_base_compare(item, d, s)) {
+                    count++;
+                }
+            }
+            return count;
+        }
+        private double F_base_sumif(List<double> dbs, string s, List<double> sumdbs)
+        {
+            Regex re = new Regex(@"(<|<=|>|>=|=|==|!=|<>) *([-+]?\d+(\.(\d+)?)?)");
+            if (re.IsMatch(s) == false) {
+                return 0;
+            }
+            var m = re.Match(s);
+            var d = double.Parse(m.Groups[2].Value, CultureInfo.GetCultureInfo("en-US"));
+            var ss = m.Groups[1].Value;
+            double sum = 0;
+
+            for (int i = 0; i < dbs.Count; i++) {
+                if (F_base_compare(dbs[i], d, s)) {
+                    sum += sumdbs[i];
+                }
+            }
+            return sum;
+        }
+        private bool F_base_compare(double a, double b, string ss)
+        {
+            if (ss == "<") {
+                return a < b;
+            } else if (ss == "<=") {
+                return a <= b;
+            } else if (ss == ">") {
+                return a > b;
+            } else if (ss == ">=") {
+                return a >= b;
+            } else if (ss == "=" || ss == "==") {
+                return a == b;
+            }
+            return a != b;
+        }
+        private List<double> F_base_GetList(List<Operand> arg)
+        {
+            List<double> list = new List<double>();
+            foreach (var item in arg) {
+                if (item.Type == OperandType.NUMBER) {
+                    list.Add(item.NumberValue);
+                } else if (item.Type == OperandType.ARRARY) {
+                    var ls = item.GetNumberList();
+                    if (ls == null) continue;
+                    foreach (var d in ls) {
+                        list.Add(d);
+                    }
+                }
+            }
+            return list;
+        }
         #endregion
 
         #region csharp

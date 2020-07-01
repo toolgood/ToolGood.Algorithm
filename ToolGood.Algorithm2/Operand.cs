@@ -130,6 +130,30 @@ namespace ToolGood.Algorithm
             }
             return Error(title + "无法转成json！");
         }
+        public Operand ToArray(string title = "")
+        {
+            if (Type == OperandType.ARRARY) { return this; }
+            if (IsError) { return this; }
+            return Error(title + "无法转成 array！");
+        }
+
+
+
+        public List<double> GetNumberList()
+        {
+            if (Type == OperandType.NUMBER) {
+                return new List<double>() { this.NumberValue };
+            }
+            List<double> list = new List<double>();
+            foreach (var item in ArrayValue) {
+                if (item.Type == OperandType.NUMBER) {
+                    list.Add(item.NumberValue);
+                } else if (item.Type == OperandType.ARRARY) {
+                    list.AddRange(item.GetNumberList());
+                }
+            }
+            return list;
+        }
 
 
 
