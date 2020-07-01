@@ -7,6 +7,15 @@ namespace ToolGood.Algorithm
 {
     public class Date
     {
+        public Date(int year, int month, int day, int hour, int minute, int second)
+        {
+            Year = year;
+            Month = month;
+            Day = day;
+            Hour = hour;
+            Minute = minute;
+            Second = second;
+        }
         public Date(DateTime dt)
         {
             Year = dt.Year;
@@ -39,16 +48,15 @@ namespace ToolGood.Algorithm
         public override string ToString()
         {
             if (Year > 0 && Hour > 0 && Second > 0) {
-                ((DateTime)this).ToString("yyyy-MM-dd HH:mm:ss");
+                return ((DateTime)this).ToString("yyyy-MM-dd HH:mm:ss");
             } else if (Year > 0 && Hour > 0) {
-                ((DateTime)this).ToString("yyyy-MM-dd HH:mm");
+                return ((DateTime)this).ToString("yyyy-MM-dd HH:mm");
             } else if (Year > 0) {
-                ((DateTime)this).ToString("yyyy-MM-dd");
+                return ((DateTime)this).ToString("yyyy-MM-dd");
             } else if (Hour > 0 && Second > 0) {
-                ((DateTime)this).ToString("HH:mm:ss");
-            } else {
-                ((DateTime)this).ToString("HH:mm:ss");
+                return ((DateTime)this).ToString("HH:mm:ss");
             }
+            return ((DateTime)this).ToString("HH:mm:ss");
         }
 
         public string ToString(string f)

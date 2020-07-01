@@ -100,7 +100,7 @@ expr: expr op=('*'|'/'|'%') expr                        # MulDiv_fun
     | DATEVALUE '(' expr ')'  # DATEVALUE_fun 
     | TIMEVALUE '(' expr ')'  # TIMEVALUE_fun 
     | DATE '(' expr ',' expr ',' expr (',' expr (',' expr (',' expr)?)?)? ')'  # DATE_fun 
-    | TIME '(' expr ',' expr ',' expr ')'  # TIME_fun 
+    | TIME '(' expr ',' expr (',' expr)? ')'  # TIME_fun 
     | NOW '(' ')'  # NOW_fun 
     | TODAY '(' ')'  # TODAY_fun 
     | YEAR '(' expr ')'  # YEAR_fun 
@@ -109,7 +109,7 @@ expr: expr op=('*'|'/'|'%') expr                        # MulDiv_fun
     | HOUR '(' expr ')'  # HOUR_fun 
     | MINUTE '(' expr ')'  # MINUTE_fun 
     | SECOND '(' expr ')'  # SECOND_fun 
-    | WEEKDAY '(' expr ')'  # WEEKDAY_fun 
+    | WEEKDAY '(' expr (',' expr)? ')'  # WEEKDAY_fun 
     | DATEDIF '(' expr ',' expr ',' expr ')'  # DATEDIF_fun 
     | DAYS360 '(' expr ',' expr (',' expr)? ')'  # DAYS360_fun 
     | EDATE '(' expr ',' expr ')'  # EDATE_fun 

@@ -252,7 +252,7 @@ namespace ToolGood.Algorithm
         public Operand VisitArray_fun([NotNull] mathParser.Array_funContext context)
         {
             var arg = new List<Operand>();
-            foreach (var item in context.expr()) { arg.Add(this.Visit(item)); }
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
             return Operand.Create(arg);
         }
         public Operand VisitBracket_fun([NotNull] mathParser.Bracket_funContext context)
@@ -289,12 +289,12 @@ namespace ToolGood.Algorithm
         public Operand VisitIF_fun([NotNull] mathParser.IF_funContext context)
         {
             var arg = new List<Operand>();
-            foreach (var item in context.expr()) { arg.Add(this.Visit(item)); }
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
 
-            var a = arg[0].ToBoolean("");
-            if (a.IsError) { return a; }
+            var b = arg[0].ToBoolean("");
+            if (b.IsError) { return b; }
 
-            if (a.BooleanValue) {
+            if (b.BooleanValue) {
                 if (arg.Count > 1) {
                     return arg[1];
                 }
@@ -308,7 +308,7 @@ namespace ToolGood.Algorithm
         public Operand VisitIFERROR_fun([NotNull] mathParser.IFERROR_funContext context)
         {
             var arg = new List<Operand>();
-            foreach (var item in context.expr()) { arg.Add(this.Visit(item)); }
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
 
             if (arg[0].IsError) {
                 if (arg.Count > 1) {
@@ -325,7 +325,7 @@ namespace ToolGood.Algorithm
         public Operand VisitIFNUMBER_fun([NotNull] mathParser.IFNUMBER_funContext context)
         {
             var arg = new List<Operand>();
-            foreach (var item in context.expr()) { arg.Add(this.Visit(item)); }
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
 
             if (arg[0].Type == OperandType.NUMBER) {
                 return Operand.True;
@@ -342,7 +342,7 @@ namespace ToolGood.Algorithm
         public Operand VisitIFTEXT_fun([NotNull] mathParser.IFTEXT_funContext context)
         {
             var arg = new List<Operand>();
-            foreach (var item in context.expr()) { arg.Add(this.Visit(item)); }
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
 
             if (arg[0].Type == OperandType.STRING) {
                 if (arg.Count > 1) {
@@ -504,7 +504,7 @@ namespace ToolGood.Algorithm
         public Operand VisitGCD_fun([NotNull] mathParser.GCD_funContext context)
         {
             var arg = new List<Operand>();
-            foreach (var item in context.expr()) { arg.Add(this.Visit(item)); }
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
 
             List<int> list = new List<int>();
             foreach (var item in arg) {
@@ -525,7 +525,7 @@ namespace ToolGood.Algorithm
         public Operand VisitLCM_fun([NotNull] mathParser.LCM_funContext context)
         {
             var arg = new List<Operand>();
-            foreach (var item in context.expr()) { arg.Add(this.Visit(item)); }
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
 
             List<int> list = new List<int>();
             foreach (var item in arg) {
@@ -1114,7 +1114,7 @@ namespace ToolGood.Algorithm
         public Operand VisitFIND_fun([NotNull] mathParser.FIND_funContext context)
         {
             var arg = new List<Operand>();
-            foreach (var item in context.expr()) { arg.Add(this.Visit(item)); }
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
 
             var firstValue = arg[0].ToString("FIND left value");
             if (firstValue.IsError) { return firstValue; }
@@ -1134,7 +1134,7 @@ namespace ToolGood.Algorithm
         public Operand VisitFIXED_fun([NotNull] mathParser.FIXED_funContext context)
         {
             var arg = new List<Operand>();
-            foreach (var item in context.expr()) { arg.Add(this.Visit(item)); }
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
 
             var num = 2;
             if (arg.Count > 1) {
@@ -1160,7 +1160,7 @@ namespace ToolGood.Algorithm
         public Operand VisitLEFT_fun([NotNull] mathParser.LEFT_funContext context)
         {
             var arg = new List<Operand>();
-            foreach (var item in context.expr()) { arg.Add(this.Visit(item)); }
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
 
             var firstValue = arg[0].ToString("FIND left value");
             if (firstValue.IsError) { return firstValue; }
@@ -1199,55 +1199,200 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitPROPER_fun([NotNull] mathParser.PROPER_funContext context)
         {
+            var firstValue = this.Visit(context.expr()).ToString("MID left value");
+            if (firstValue.IsError) { return firstValue; }
 
-
-
-
-            throw new NotImplementedException();
+            var text = firstValue.StringValue;
+            StringBuilder sb = new StringBuilder(text);
+            bool isFirst = true;
+            for (int i = 0; i < text.Length; i++) {
+                var t = text[i];
+                if (t == ' ' || t == '\r' || t == '\n' || t == '\t' || t == '.') {
+                    isFirst = true;
+                } else if (isFirst) {
+                    sb[i] = char.ToUpper(t);
+                    isFirst = false;
+                }
+            }
+            return Operand.Create(sb.ToString());
         }
         public Operand VisitREPLACE_fun([NotNull] mathParser.REPLACE_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            arg[0] = arg[0].ToString("");
+            if (arg.Count == 3) {
+                arg[1] = arg[1].ToString("");
+                arg[2] = arg[2].ToString("");
+                var srcText = arg[0].StringValue;
+                var old = arg[1].StringValue;
+                var newstr = arg[2].StringValue;
+                return Operand.Create(srcText.Replace(old, newstr));
+            }
+
+            var oldtext = arg[0].StringValue;
+            arg[1] = arg[1].ToNumber("");
+            arg[2] = arg[2].ToNumber("");
+
+            var start = arg[1].IntValue - excelIndex;
+            var length = arg[2].IntValue;
+            var newtext = arg[3].StringValue;
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < oldtext.Length; i++) {
+                if (i < start) {
+                    sb.Append(oldtext[i]);
+                } else if (i == start) {
+                    sb.Append(newtext);
+                } else if (i >= start + length) {
+                    sb.Append(oldtext[i]);
+                }
+            }
+            return Operand.Create(sb.ToString());
         }
         public Operand VisitREPT_fun([NotNull] mathParser.REPT_funContext context)
         {
-            throw new NotImplementedException();
+            var firstValue = this.Visit(context.expr(0)).ToString("MID left value");
+            if (firstValue.IsError) { return firstValue; }
+            var secondValue = this.Visit(context.expr(1)).ToNumber("MID left value");
+            if (secondValue.IsError) { return secondValue; }
+
+            var newtext = firstValue.StringValue;
+            var length = secondValue.IntValue;
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < length; i++) {
+                sb.Append(newtext);
+            }
+            return Operand.Create(sb.ToString());
         }
         public Operand VisitRIGHT_fun([NotNull] mathParser.RIGHT_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            var firstValue = arg[0].ToString("FIND left value");
+            if (firstValue.IsError) { return firstValue; }
+
+            if (arg.Count == 1) {
+                return Operand.Create(firstValue.StringValue[firstValue.StringValue.Length - 1].ToString());
+            }
+            var secondValue = arg[1].ToNumber("FIND left value");
+            if (secondValue.IsError) { return secondValue; }
+            return Operand.Create(firstValue.StringValue.Substring(firstValue.StringValue.Length - secondValue.IntValue, secondValue.IntValue));
         }
         public Operand VisitRMB_fun([NotNull] mathParser.RMB_funContext context)
         {
-            throw new NotImplementedException();
+            var firstValue = this.Visit(context.expr()).ToNumber("MID left value");
+            if (firstValue.IsError) { return firstValue; }
+
+            return Operand.Create(F_base_ToChineseRMB(firstValue.NumberValue));
         }
         public Operand VisitSEARCH_fun([NotNull] mathParser.SEARCH_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            arg[0] = arg[0].ToString();
+            arg[1] = arg[1].ToString();
+            if (arg.Count == 2) {
+                var p = arg[1].StringValue.IndexOf(arg[0].StringValue, StringComparison.OrdinalIgnoreCase) + excelIndex;
+                return Operand.Create(p);
+            }
+            arg[2] = arg[2].ToNumber();
+            var p2 = arg[1].StringValue.IndexOf(arg[0].StringValue, arg[2].IntValue, StringComparison.OrdinalIgnoreCase) + excelIndex;
+            return Operand.Create(p2);
         }
         public Operand VisitSUBSTITUTE_fun([NotNull] mathParser.SUBSTITUTE_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+            arg[0] = arg[0].ToString();
+            arg[1] = arg[1].ToString();
+            arg[2] = arg[2].ToString();
+            if (arg.Count == 3) {
+                return Operand.Create(arg[0].StringValue.Replace(arg[1].StringValue, arg[2].StringValue));
+            }
+
+            arg[3] = arg[3].ToNumber();
+
+            string text = arg[0].StringValue;
+            string oldtext = arg[1].StringValue;
+            string newtext = arg[2].StringValue;
+            int index = arg[3].IntValue;
+
+            int index2 = 0;
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < text.Length; i++) {
+                bool b = true;
+                for (int j = 0; j < oldtext.Length; j++) {
+                    var t = text[i + j];
+                    var t2 = oldtext[j];
+                    if (t != t2) {
+                        b = false;
+                        break;
+                    }
+                }
+                if (b) {
+                    index2++;
+                }
+                if (b && index2 == index) {
+                    sb.Append(newtext);
+                    i += oldtext.Length - 1;
+                } else {
+                    sb.Append(text[i]);
+                }
+            }
+            return Operand.Create(sb.ToString());
         }
         public Operand VisitT_fun([NotNull] mathParser.T_funContext context)
         {
-            throw new NotImplementedException();
+            var firstValue = this.Visit(context.expr()).ToString("T left value");
+            return firstValue;
         }
         public Operand VisitTEXT_fun([NotNull] mathParser.TEXT_funContext context)
         {
-            throw new NotImplementedException();
+            var firstValue = this.Visit(context.expr(0));
+            if (firstValue.IsError) { return firstValue; }
+            var secondValue = this.Visit(context.expr(1)).ToString("MID left value");
+            if (secondValue.IsError) { return secondValue; }
+
+            var f = secondValue.StringValue;
+            var a = firstValue;
+            if (a.Type == OperandType.STRING) {
+                return a;
+            } else if (a.Type == OperandType.BOOLEAN) {
+                return Operand.Create(a.BooleanValue.ToString());
+            } else if (a.Type == OperandType.NUMBER) {
+                return Operand.Create(a.NumberValue.ToString(f));
+            } else if (a.Type == OperandType.DATE) {
+                return Operand.Create(a.DateValue.ToString(f));
+            }
+            return Operand.Create(a.StringValue.ToString());
         }
         public Operand VisitTRIM_fun([NotNull] mathParser.TRIM_funContext context)
         {
-            throw new NotImplementedException();
+            var firstValue = this.Visit(context.expr()).ToString("MID left value");
+            if (firstValue.IsError) { return firstValue; }
+
+            return Operand.Create(firstValue.StringValue.Trim());
         }
         public Operand VisitUPPER_fun([NotNull] mathParser.UPPER_funContext context)
         {
-            throw new NotImplementedException();
+            var firstValue = this.Visit(context.expr()).ToString("UPPER func");
+            if (firstValue.IsError) { return firstValue; }
+
+            return Operand.Create(firstValue.StringValue.ToUpper());
         }
         public Operand VisitVALUE_fun([NotNull] mathParser.VALUE_funContext context)
         {
-            throw new NotImplementedException();
+            var firstValue = this.Visit(context.expr()).ToString("UPPER func");
+            if (firstValue.IsError) { return firstValue; }
+
+            if (double.TryParse(firstValue.StringValue, NumberStyles.Currency, CultureInfo.GetCultureInfo("en-US"), out double d)) {
+                return Operand.Create(d);
+            }
+            return ThrowError("无法转成数字");
         }
 
         /// <summary>
@@ -1287,89 +1432,349 @@ namespace ToolGood.Algorithm
             }
             return sb.ToString();
         }
+        private string F_base_ToChineseRMB(double x)
+        {
+            string s = x.ToString("#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A");
+            string d = System.Text.RegularExpressions.Regex.Replace(s, @"((?<=-|^)[^1-9]*)|((?'z'0)[0A-E]*((?=[1-9])|(?'-z'(?=[F-L\.]|$))))|((?'b'[F-L])(?'z'0)[0A-L]*((?=[1-9])|(?'-z'(?=[\.]|$))))", "${b}${z}");
+            return System.Text.RegularExpressions.Regex.Replace(d, ".", m => "负元空零壹贰叁肆伍陆柒捌玖空空空空空空空分角拾佰仟万亿兆京垓秭穰"[m.Value[0] - '-'].ToString());
+        }
         #endregion
 
         #region date time
 
         public Operand VisitDATEVALUE_fun([NotNull] mathParser.DATEVALUE_funContext context)
         {
-            throw new NotImplementedException();
+            var firstValue = this.Visit(context.expr()).ToString("DATEVALUE left value");
+            if (firstValue.IsError) { return firstValue; }
+
+            var d = DateTime.Parse(firstValue.StringValue).Date;
+            return Operand.Create(d);
         }
         public Operand VisitTIMEVALUE_fun([NotNull] mathParser.TIMEVALUE_funContext context)
         {
-            throw new NotImplementedException();
+            var firstValue = this.Visit(context.expr()).ToString("TIMEVALUE left value");
+            if (firstValue.IsError) { return firstValue; }
+
+            return Operand.Create(new Date(TimeSpan.Parse(firstValue.StringValue)));
         }
         public Operand VisitDATE_fun([NotNull] mathParser.DATE_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } arg.Add(a); }
+
+            Date d;
+            if (arg.Count == 3) {
+                d = new Date(arg[0].IntValue, arg[1].IntValue, arg[2].IntValue, 0, 0, 0);
+            } else if (arg.Count == 4) {
+                d = new Date(arg[0].IntValue, arg[1].IntValue, arg[2].IntValue, arg[3].IntValue, 0, 0);
+            } else if (arg.Count == 5) {
+                d = new Date(arg[0].IntValue, arg[1].IntValue, arg[2].IntValue, arg[3].IntValue, arg[4].IntValue, 0);
+            } else {
+                d = new Date(arg[0].IntValue, arg[1].IntValue, arg[2].IntValue, arg[3].IntValue, arg[4].IntValue, arg[5].IntValue);
+            }
+            return Operand.Create(d);
         }
         public Operand VisitTIME_fun([NotNull] mathParser.TIME_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } arg.Add(a); }
+
+            Date d;
+            if (arg.Count == 3) {
+                d = new Date(0, 0, 0, arg[0].IntValue, arg[1].IntValue, arg[2].IntValue);
+            } else {
+                d = new Date(0, 0, 0, arg[0].IntValue, arg[1].IntValue, 0);
+            }
+            return Operand.Create(d);
         }
         public Operand VisitNOW_fun([NotNull] mathParser.NOW_funContext context)
         {
-            throw new NotImplementedException();
+            return Operand.Create(new Date(DateTime.Now));
         }
         public Operand VisitTODAY_fun([NotNull] mathParser.TODAY_funContext context)
         {
-            throw new NotImplementedException();
+            return Operand.Create(new Date(DateTime.Today));
         }
         public Operand VisitYEAR_fun([NotNull] mathParser.YEAR_funContext context)
         {
-            throw new NotImplementedException();
+            var firstValue = this.Visit(context.expr()).ToDate("YEAR left value");
+            if (firstValue.IsError) { return firstValue; }
+
+            return Operand.Create(firstValue.DateValue.Year);
         }
         public Operand VisitMONTH_fun([NotNull] mathParser.MONTH_funContext context)
         {
-            throw new NotImplementedException();
+            var firstValue = this.Visit(context.expr()).ToDate("YEAR left value");
+            if (firstValue.IsError) { return firstValue; }
+
+            return Operand.Create(firstValue.DateValue.Month);
         }
         public Operand VisitDAY_fun([NotNull] mathParser.DAY_funContext context)
         {
-            throw new NotImplementedException();
+            var firstValue = this.Visit(context.expr()).ToDate("YEAR left value");
+            if (firstValue.IsError) { return firstValue; }
+
+            return Operand.Create(firstValue.DateValue.Day);
         }
         public Operand VisitHOUR_fun([NotNull] mathParser.HOUR_funContext context)
         {
-            throw new NotImplementedException();
+            var firstValue = this.Visit(context.expr()).ToDate("YEAR left value");
+            if (firstValue.IsError) { return firstValue; }
+
+            return Operand.Create(firstValue.DateValue.Hour);
         }
         public Operand VisitMINUTE_fun([NotNull] mathParser.MINUTE_funContext context)
         {
-            throw new NotImplementedException();
+            var firstValue = this.Visit(context.expr()).ToDate("YEAR left value");
+            if (firstValue.IsError) { return firstValue; }
+
+            return Operand.Create(firstValue.DateValue.Minute);
         }
         public Operand VisitSECOND_fun([NotNull] mathParser.SECOND_funContext context)
         {
-            throw new NotImplementedException();
+            var firstValue = this.Visit(context.expr()).ToDate("YEAR left value");
+            if (firstValue.IsError) { return firstValue; }
+
+            return Operand.Create(firstValue.DateValue.Second);
         }
         public Operand VisitWEEKDAY_fun([NotNull] mathParser.WEEKDAY_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            arg[0] = arg[0].ToDate();
+            if (arg[0].IsError) { return arg[0]; }
+
+            var type = 1;
+            if (arg.Count == 2) {
+                arg[1] = arg[1].ToNumber();
+                if (arg[1].IsError) { return arg[1]; }
+                type = arg[1].IntValue;
+            }
+
+            var t = ((DateTime)arg[0].DateValue).DayOfWeek;
+            if (type == 1) {
+                return Operand.Create((double)(t + 1));
+            } else if (type == 2) {
+                if (t == 0) return Operand.Create(7d);
+                return Operand.Create((double)t);
+            }
+            if (t == 0) {
+                return Operand.Create(6d);
+            }
+            return Operand.Create((double)(t - 1));
         }
         public Operand VisitDATEDIF_fun([NotNull] mathParser.DATEDIF_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            arg[0] = arg[0].ToDate();
+            if (arg[0].IsError) { return arg[0]; }
+            arg[1] = arg[1].ToDate();
+            if (arg[1].IsError) { return arg[1]; }
+            arg[2] = arg[2].ToString();
+            if (arg[2].IsError) { return arg[2]; }
+
+            var startDate = (DateTime)arg[0].DateValue;
+            var endDate = (DateTime)arg[1].DateValue;
+            var t = arg[2].StringValue.ToLower();
+
+            if (t == "y") {
+                #region y
+                bool b = false;
+                if (startDate.Month < endDate.Month) {
+                    b = true;
+                } else if (startDate.Month == endDate.Month) {
+                    if (startDate.Day <= endDate.Day) b = true;
+                }
+                if (b) {
+                    return Operand.Create((endDate.Year - startDate.Year));
+                } else {
+                    return Operand.Create((endDate.Year - startDate.Year - 1));
+                }
+                #endregion
+            } else if (t == "m") {
+                #region m
+                bool b = false;
+                if (startDate.Day <= endDate.Day) b = true;
+                if (b) {
+                    return Operand.Create((endDate.Year * 12 + endDate.Month - startDate.Year * 12 - startDate.Month));
+                } else {
+                    return Operand.Create((endDate.Year * 12 + endDate.Month - startDate.Year * 12 - startDate.Month - 1));
+                }
+                #endregion
+            } else if (t == "d") {
+                return Operand.Create((endDate - startDate).Days);
+            } else if (t == "yd") {
+                #region yd
+                var day = endDate.DayOfYear - startDate.DayOfYear;
+                if (endDate.Year > startDate.Year && day < 0) {
+                    var days = new DateTime(startDate.Year, 12, 31).DayOfYear;
+                    day = days + day;
+                }
+                return Operand.Create((day));
+                #endregion
+            } else if (t == "md") {
+                #region md
+                var mo = endDate.Day - startDate.Day;
+                if (mo < 0) {
+                    var days = new DateTime(startDate.Year, startDate.Month + 1, 1).AddDays(-1).Day;
+                    mo += days;
+                }
+                return Operand.Create((mo));
+                #endregion
+            } else if (t == "ym") {
+                #region ym
+                var mo = endDate.Month - startDate.Month;
+                if (endDate.Day < startDate.Day) mo = mo - 1;
+                if (mo < 0) mo += 12;
+                return Operand.Create((mo));
+                #endregion
+            }
+            return ThrowError("DATE比较类型错误");
         }
         public Operand VisitDAYS360_fun([NotNull] mathParser.DAYS360_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            arg[0] = arg[0].ToDate();
+            if (arg[0].IsError) { return arg[0]; }
+            arg[1] = arg[1].ToDate();
+            if (arg[1].IsError) { return arg[1]; }
+
+            var startDate = (DateTime)arg[0].DateValue;
+            var endDate = (DateTime)arg[1].DateValue;
+
+            var method = false;
+            if (arg.Count == 3) {
+                arg[2] = arg[2].ToDate();
+                if (arg[2].IsError) { return arg[2]; }
+                method = arg[2].BooleanValue;
+            }
+            var days = endDate.Year * 360 + (endDate.Month - 1) * 30
+                        - startDate.Year * 360 - (startDate.Month - 1) * 30;
+            if (method) {
+                if (endDate.Day == 31) days += 30;
+                if (startDate.Day == 31) days -= 30;
+            } else {
+                if (startDate.Day == new DateTime(startDate.Year, startDate.Month + 1, 1).AddDays(-1).Day) {
+                    days -= 30;
+                } else {
+                    days -= startDate.Day;
+                }
+                if (endDate.Day == new DateTime(endDate.Year, endDate.Month + 1, 1).AddDays(-1).Day) {
+                    if (startDate.Day < 30) {
+                        days += 31;
+                    } else {
+                        days += 30;
+                    }
+                } else {
+                    days += endDate.Day;
+                }
+            }
+            return Operand.Create(days);
         }
         public Operand VisitEDATE_fun([NotNull] mathParser.EDATE_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            arg[0] = arg[0].ToDate();
+            if (arg[0].IsError) { return arg[0]; }
+            arg[1] = arg[1].ToNumber();
+            if (arg[1].IsError) { return arg[1]; }
+
+            return Operand.Create((Date)(((DateTime)arg[0].DateValue).AddMonths(arg[1].IntValue)));
         }
         public Operand VisitEOMONTH_fun([NotNull] mathParser.EOMONTH_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            arg[0] = arg[0].ToDate();
+            if (arg[0].IsError) { return arg[0]; }
+            arg[1] = arg[1].ToNumber();
+            if (arg[1].IsError) { return arg[1]; }
+
+            var dt = ((DateTime)arg[0].DateValue).AddMonths(arg[1].IntValue + 1);
+            dt = new DateTime(dt.Year, dt.Month, 1).AddDays(-1);
+            return Operand.Create(dt);
         }
         public Operand VisitNETWORKDAYS_fun([NotNull] mathParser.NETWORKDAYS_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToDate(); if (a.IsError) { return a; } arg.Add(a); }
+
+            var startDate = (DateTime)arg[0].DateValue;
+            var endDate = (DateTime)arg[1].DateValue;
+
+            List<DateTime> list = new List<DateTime>();
+            for (int i = 2; i < arg.Count; i++) {
+                list.Add(arg[i].DateValue);
+            }
+
+            var days = 0;
+            while (startDate <= endDate) {
+                if (startDate.DayOfWeek != DayOfWeek.Sunday && startDate.DayOfWeek != DayOfWeek.Saturday) {
+                    if (list.Contains(startDate) == false) {
+                        days++;
+                    }
+                }
+                startDate = startDate.AddDays(1);
+            }
+            return Operand.Create(days);
         }
         public Operand VisitWORKDAY_fun([NotNull] mathParser.WORKDAY_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            arg[0] = arg[0].ToDate();
+            if (arg[0].IsError) { return arg[0]; }
+            arg[1] = arg[1].ToNumber();
+            if (arg[1].IsError) { return arg[1]; }
+
+
+            var startDate = (DateTime)arg[0].DateValue;
+            var days = arg[1].IntValue;
+            List<DateTime> list = new List<DateTime>();
+            for (int i = 2; i < arg.Count; i++) {
+                arg[i] = arg[i].ToDate();
+                if (arg[i].IsError) { return arg[i]; }
+                list.Add(arg[i].DateValue);
+            }
+            while (days > 0) {
+                startDate = startDate.AddDays(1);
+                if (startDate.DayOfWeek == DayOfWeek.Saturday) continue;
+                if (startDate.DayOfWeek == DayOfWeek.Sunday) continue;
+                if (list.Contains(startDate)) continue;
+                days--;
+            }
+            return Operand.Create(startDate);
         }
         public Operand VisitWEEKNUM_fun([NotNull] mathParser.WEEKNUM_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            arg[0] = arg[0].ToDate();
+            if (arg[0].IsError) { return arg[0]; }
+
+            var startDate = (DateTime)arg[0].DateValue;
+
+            var days = startDate.DayOfYear + (int)(new DateTime(startDate.Year, 1, 1).DayOfWeek);
+            if (arg.Count == 2) {
+                arg[1] = arg[1].ToNumber();
+                if (arg[1].IsError) { return arg[1]; }
+                if (arg[1].IntValue == 2) {
+                    days--;
+                }
+            }
+
+            var week = Math.Ceiling(days / 7.0);
+            return Operand.Create(week);
         }
 
         #endregion
