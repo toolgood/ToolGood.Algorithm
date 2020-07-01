@@ -11,6 +11,7 @@ namespace ToolGood.Algorithm
     class MathVisitor : AbstractParseTreeVisitor<Operand>, ImathVisitor<Operand>
     {
         public event Func<string, Operand> GetParameter;
+        public int excelIndex;
 
         #region base
         private Operand ThrowError(string errMsg, params Operand[] ops)
@@ -1181,13 +1182,75 @@ namespace ToolGood.Algorithm
 
         #region string
 
-        public Operand VisitASC_fun([NotNull] mathParser.ASC_funContext context) { throw new NotImplementedException(); }
-        public Operand VisitJIS_fun([NotNull] mathParser.JIS_funContext context) { throw new NotImplementedException(); }
-        public Operand VisitCHAR_fun([NotNull] mathParser.CHAR_funContext context) { throw new NotImplementedException(); }
-        public Operand VisitCLEAN_fun([NotNull] mathParser.CLEAN_funContext context) { throw new NotImplementedException(); }
-        public Operand VisitCODE_fun([NotNull] mathParser.CODE_funContext context) { throw new NotImplementedException(); }
-        public Operand VisitCONCATENATE_fun([NotNull] mathParser.CONCATENATE_funContext context) { throw new NotImplementedException(); }
-        public Operand VisitEXACT_fun([NotNull] mathParser.EXACT_funContext context) { throw new NotImplementedException(); }
+        public Operand VisitASC_fun([NotNull] mathParser.ASC_funContext context)
+        {
+            var leftValue = this.Visit(context.expr()).ToString("DEGREES left value");
+            if (leftValue.IsError) { return leftValue; }
+
+            return Operand.Create(F_base_ToDBC(leftValue.StringValue));
+        }
+        public Operand VisitJIS_fun([NotNull] mathParser.JIS_funContext context)
+        {
+            var leftValue = this.Visit(context.expr()).ToString("DEGREES left value");
+            if (leftValue.IsError) { return leftValue; }
+
+            return Operand.Create(F_base_ToSBC(leftValue.StringValue));
+        }
+        public Operand VisitCHAR_fun([NotNull] mathParser.CHAR_funContext context)
+        {
+            var leftValue = this.Visit(context.expr()).ToNumber("DEGREES left value");
+            if (leftValue.IsError) { return leftValue; }
+
+            char c = (char) (int) leftValue.NumberValue;
+            return Operand.Create(c.ToString());
+        }
+        public Operand VisitCLEAN_fun([NotNull] mathParser.CLEAN_funContext context)
+        {
+            var leftValue = this.Visit(context.expr()).ToString("DEGREES left value");
+            if (leftValue.IsError) { return leftValue; }
+
+            var t = leftValue.StringValue;
+            t = System.Text.RegularExpressions.Regex.Replace(t, @"[\f\n\r\t\v]", "");
+            return Operand.Create(t);
+        }
+        public Operand VisitCODE_fun([NotNull] mathParser.CODE_funContext context)
+        {
+            var leftValue = this.Visit(context.expr()).ToString("DEGREES left value");
+            if (leftValue.IsError) { return leftValue; }
+
+            var t = leftValue.StringValue;
+            if (t.Length == 0)
+            {
+                return ThrowError("字符串长度为0");
+            }
+            return Operand.Create((double) (int) (char) t[0]);
+        }
+        public Operand VisitCONCATENATE_fun([NotNull] mathParser.CONCATENATE_funContext context)
+        {
+            var arg = new List<Operand>();
+            foreach (var item in context.expr())
+            {
+                var a = this.Visit(item).ToNumber();
+                if (a.IsError) { return a; }
+                arg.Add(a);
+            }
+
+            StringBuilder sb = new StringBuilder();
+            foreach (var item in arg)
+            {
+                sb.Append(item.StringValue);
+            }
+            return Operand.Create(sb.ToString());
+        }
+        public Operand VisitEXACT_fun([NotNull] mathParser.EXACT_funContext context)
+        {
+            var leftValue = this.Visit(context.expr(0)).ToString("DEGREES left value");
+            if (leftValue.IsError) { return leftValue; }
+            var rightValue = this.Visit(context.expr(1)).ToString("DEGREES left value");
+            if (rightValue.IsError) { return rightValue; }
+
+            return Operand.Create(leftValue.StringValue == rightValue.StringValue);
+        }
         public Operand VisitFIND_fun([NotNull] mathParser.FIND_funContext context) { throw new NotImplementedException(); }
         public Operand VisitFIXED_fun([NotNull] mathParser.FIXED_funContext context) { throw new NotImplementedException(); }
         public Operand VisitLEFT_fun([NotNull] mathParser.LEFT_funContext context) { throw new NotImplementedException(); }
@@ -1207,7 +1270,51 @@ namespace ToolGood.Algorithm
         public Operand VisitUPPER_fun([NotNull] mathParser.UPPER_funContext context) { throw new NotImplementedException(); }
         public Operand VisitVALUE_fun([NotNull] mathParser.VALUE_funContext context) { throw new NotImplementedException(); }
 
-
+        /// <summary>
+        /// 转成全角
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        private String F_base_ToSBC(String input)
+        {
+            StringBuilder sb = new StringBuilder(input);
+            for (int i = 0; i < input.Length; i++)
+            {
+                var c = input[i];
+                if (c == ' ')
+                {
+                    sb[i] = (char) 12288;
+                }
+                else if (c < 127)
+                {
+                    sb[i] = (char) (c + 65248);
+                }
+            }
+            return sb.ToString();
+        }
+        /// <summary>
+        /// 转成半角
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        private String F_base_ToDBC(String input)
+        {
+            StringBuilder sb = new StringBuilder(input);
+            for (int i = 0; i < input.Length; i++)
+            {
+                var c = input[i];
+                if (c == 12288)
+                {
+                    sb[i] = (char) 32;
+                    continue;
+                }
+                else if (c > 65280 && c < 65375)
+                {
+                    sb[i] = (char) (c - 65248);
+                }
+            }
+            return sb.ToString();
+        }
         #endregion
 
         #region date time
