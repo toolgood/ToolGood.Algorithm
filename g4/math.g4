@@ -118,9 +118,9 @@ expr: expr op=('*'|'/'|'%') expr                        # MulDiv_fun
     | WORKDAY '(' expr ',' expr (',' expr)? ')'  # WORKDAY_fun 
     | WEEKNUM '(' expr (',' expr)? ')'  # WEEKNUM_fun 
 
-    | MAX '(' expr ')'  # MAX_fun 
-    | MEDIAN '(' expr ')'  # MEDIAN_fun 
-    | MIN '(' expr ')'  # MIN_fun 
+    | MAX '(' expr (',' expr)+ ')'  # MAX_fun 
+    | MEDIAN '(' expr (',' expr)+ ')'  # MEDIAN_fun 
+    | MIN '(' expr (',' expr)+ ')'  # MIN_fun 
     | QUARTILE '(' expr ',' expr ')'  # QUARTILE_fun 
     | MODE '(' expr (',' expr)* ')'  # MODE_fun 
     | LARGE '(' expr ',' expr ')'  # LARGE_fun 

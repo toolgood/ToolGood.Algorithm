@@ -1397,11 +1397,6 @@ namespace ToolGood.Algorithm
             return ThrowError("无法转成数字");
         }
 
-        /// <summary>
-        /// 转成全角
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
         private String F_base_ToSBC(String input)
         {
             StringBuilder sb = new StringBuilder(input);
@@ -1415,11 +1410,6 @@ namespace ToolGood.Algorithm
             }
             return sb.ToString();
         }
-        /// <summary>
-        /// 转成半角
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
         private String F_base_ToDBC(String input)
         {
             StringBuilder sb = new StringBuilder(input);
@@ -2086,35 +2076,116 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitHARMEAN_fun([NotNull] mathParser.HARMEAN_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            if (arg.Count == 1) return arg[0];
+            var dbs = F_base_GetList(arg);
+            double sum = 0;
+            foreach (var db in dbs) {
+                sum += 1 / db;
+            }
+            return Operand.Create(dbs.Count / sum);
         }
         public Operand VisitCOUNT_fun([NotNull] mathParser.COUNT_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            List<double> list = F_base_GetList(arg);
+            return Operand.Create(list.Count);
         }
         public Operand VisitCOUNTIF_fun([NotNull] mathParser.COUNTIF_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            var dbs = arg[0].GetNumberList();
+            int count = 0;
+            if (arg[1].Type == OperandType.NUMBER) {
+                count = F_base_countif(dbs, arg[1].NumberValue);
+            } else {
+                if (double.TryParse(arg[1].StringValue.Trim(), NumberStyles.Currency, CultureInfo.GetCultureInfo("en-US"), out double d)) {
+                    count = F_base_countif(dbs, arg[1].NumberValue);
+                } else {
+                    count = F_base_countif(dbs, arg[1].StringValue.Trim());
+                }
+            }
+            return Operand.Create(count);
         }
         public Operand VisitSUM_fun([NotNull] mathParser.SUM_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            if (arg.Count == 1) return arg[0];
+            var dbs = F_base_GetList(arg);
+            double sum = 0;
+            foreach (var db in dbs) {
+                sum += db;
+            }
+            return Operand.Create(sum);
         }
         public Operand VisitSUMIF_fun([NotNull] mathParser.SUMIF_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            var dbs = arg[0].GetNumberList();
+            var sumdbs = dbs;
+            if (arg.Count == 3) sumdbs = arg[2].GetNumberList();
+            double sum;
+            if (arg[1].Type == OperandType.NUMBER) {
+                sum = F_base_countif(dbs, arg[1].NumberValue) * arg[1].NumberValue;
+            } else {
+                if (double.TryParse(arg[1].StringValue.Trim(), NumberStyles.Currency, CultureInfo.GetCultureInfo("en-US"), out _)) {
+                    sum = F_base_sumif(dbs, "=" + arg[1].StringValue.Trim(), sumdbs);
+                } else {
+                    sum = F_base_sumif(dbs, arg[1].StringValue.Trim(), sumdbs);
+                }
+            }
+            return Operand.Create(sum);
         }
         public Operand VisitAVEDEV_fun([NotNull] mathParser.AVEDEV_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            List<double> list = F_base_GetList(arg);
+            double avg = list.Average();
+            double sum = 0;
+            for (int i = 0; i < list.Count; i++) {
+                sum += Math.Abs(list[i] - avg);
+            }
+            return Operand.Create(sum / list.Count);
         }
         public Operand VisitSTDEV_fun([NotNull] mathParser.STDEV_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            List<double> list = F_base_GetList(arg);
+            double avg = list.Average();
+            double sum = 0;
+            for (int i = 0; i < list.Count; i++) {
+                sum += (list[i] - avg) * (list[i] - avg);
+            }
+            return Operand.Create(Math.Sqrt(sum / (list.Count - 1)));
         }
         public Operand VisitSTDEVP_fun([NotNull] mathParser.STDEVP_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+
+            List<double> list = F_base_GetList(arg);
+            double sum = 0;
+            double avg = list.Average();
+
+            for (int i = 0; i < list.Count; i++) {
+                sum += (list[i] - avg) * (list[i] - avg);
+            }
+            return Operand.Create(Math.Sqrt(sum / (list.Count)));
         }
         public Operand VisitDEVSQ_fun([NotNull] mathParser.DEVSQ_funContext context)
         {
