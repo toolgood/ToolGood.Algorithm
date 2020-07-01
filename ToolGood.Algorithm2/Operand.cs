@@ -3,168 +3,219 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using ToolGood.Algorithm.LitJson;
 
 namespace ToolGood.Algorithm
 {
     /// <summary>
     /// 操作数
     /// </summary>
-    public class Operand
+    public abstract class Operand : IDisposable
     {
-        #region Constructed Function
-        public Operand(OperandType type, object value)
-        {
-            this.Type = type;
+        public abstract bool IsError { get; }
+        public abstract string ErrorMsg { get; }
+        public abstract OperandType Type { get; }
 
-            this.Value = value;
-        }
-        public Operand(OperandType type, float value)
+        public abstract double NumberValue { get; }
+        public abstract double IntValue { get; }
+        public abstract string StringValue { get; }
+        public abstract bool BooleanValue { get; }
+        public abstract Date DateValue { get; }
+        public abstract List<Operand> ArrayValue { get; }
+        internal abstract JsonData JsonValue { get; }
+
+        #region Create
+
+        public static Operand Create(bool obj)
         {
-            this.Type = type;
-            this.Value = (double) value;
+            return new OperandBoolean(obj);
         }
-        public Operand(OperandType type, double value)
+        public static Operand Create(int obj)
         {
-            this.Type = type;
-            this.Value = (double) value;
+            return new OperandNumber(obj);
         }
-        internal Operand(OperandType type, Date value)
+        public static Operand Create(double obj)
         {
-            this.Type = type;
-            this.Value = (Date) value;
+            return new OperandNumber(obj);
         }
-        public Operand(OperandType type, string value)
+        public static Operand Create(string obj)
         {
-            this.Type = type;
-            this.Value = value;
+            return new OperandString(obj);
         }
-        public Operand(OperandType type, bool value)
+        public static Operand Create(Date obj)
         {
-            this.Type = type;
-            this.Value = value;
+            return new OperandDate(obj);
         }
-        public Operand(List<Operand> value)
+        public static Operand Create(DateTime obj)
         {
-            this.Type = OperandType.ARRARY;
-            this.Value = value;
+            return new OperandDate(new Date(obj));
+        }
+        public static Operand Create(TimeSpan obj)
+        {
+            return new OperandDate(new Date(obj));
         }
 
+        internal static Operand Create(JsonData obj)
+        {
+            return new OperandJson(obj);
+        }
+        public static Operand Create(List<Operand> obj)
+        {
+            return new OperandArray(obj);
+        }
+        public static Operand Error(string msg)
+        {
+            return new OperandError(msg);
+        }
+
+        public static Operand True = Operand.Create(true);
+        public static Operand False = Operand.Create(false);
         #endregion
-
-        #region Variable &　Property
-
-
-
-        /// <summary>
-        /// 操作数类型
-        /// </summary>
-        public OperandType Type { get; set; }
-
-        /// <summary>
-        /// 操作数值
-        /// </summary>
-        internal object Value { get; private set; }
-
-        public double NumberValue
+        public Operand ToNumber(string title = "")
         {
-            get
-            {
-                if (Type == OperandType.BOOLEAN)
-                {
-                    return (bool) Value ? 1 : 0;
-                }
-                if (Value is string)
-                {
-                    if (double.TryParse(Value.ToString(), NumberStyles.Currency, CultureInfo.GetCultureInfo("en-US"), out double d))
-                    {
-                        return d;
-                    }
-                }
-                return (double) Value;
-            }
-        }
-        public string StringValue { get { return Value.ToString(); } }
-        public bool BooleanValue
-        {
-            get
-            {
-                if (Type == OperandType.NUMBER)
-                {
-                    if (Value is double)
-                    {
-                        return (double) Value != 0;
-                    }
-                    return decimal.Parse(Value.ToString()) != 0;
-                }
-                return (bool) Value;
-            }
-        }
-        internal Date DateValue { get { return (Date) Value; } }
-        public int IntValue { get { return (int) (double) Value; } }
-
-        public List<Operand> GetValueList()
-        {
-            List<Operand> list = new List<Operand>();
-            if (Value is List<Operand>)
-            {
-                var ls = Value as List<Operand>;
-                foreach (var item in ls)
-                {
-                    if (item.Type == OperandType.ARRARY)
-                    {
-                        list.AddRange(item.GetValueList());
-                    }
-                    else
-                    {
-                        list.Add(item);
-                    }
-                }
-            }
-            else
-            {
-                list.Add(this);
-            }
-            return list;
-        }
-
-        #endregion
-
-
-        public Operand ToNumber(string title)
-        {
-            if (Type == OperandType.ERROR)
-            {
-                return this;
-            }
-            if (Type == OperandType.NUMBER)
-            {
-                return this;
-            }
-            if (Type == OperandType.BOOLEAN)
-            {
-                Type = OperandType.NUMBER;
-                Value = (bool) Value ? 1.0 : 0.0;
-                return this;
-            }
-            if (Type == OperandType.DATE)
-            {
-                Type = OperandType.NUMBER;
-                Value = (double) (Date) Value;
-                return this;
-            }
+            if (Type == OperandType.NUMBER) { return this; }
+            if (IsError) { return this; }
+            if (Type == OperandType.BOOLEAN) { return Create(BooleanValue ? 1.0 : 0.0); }
+            if (Type == OperandType.DATE) { return Create((double) DateValue); }
             if (Type == OperandType.STRING)
             {
-                if (double.TryParse(Value.ToString(), NumberStyles.Currency, CultureInfo.GetCultureInfo("en-US"), out double d))
+                if (double.TryParse(StringValue, NumberStyles.Currency, CultureInfo.GetCultureInfo("en-US"), out double d))
                 {
-                    Type = OperandType.NUMBER;
-                    Value = d;
-                    return this;
+                    return Create(d);
                 }
             }
-            return new Operand(OperandType.ERROR, title + "无法转成数字！");
+            return Error(title + "无法转成数字！");
+        }
+        public Operand ToBoolean(string title = "")
+        {
+            if (Type == OperandType.BOOLEAN) { return this; }
+            if (IsError) { return this; }
+            if (Type == OperandType.NUMBER) { return Create(NumberValue != 0); }
+            if (Type == OperandType.DATE) { return Create(((double) DateValue) != 0); }
+            if (Type == OperandType.STRING)
+            {
+                if (StringValue.Equals("true", StringComparison.OrdinalIgnoreCase)) { return Create(true); }
+                if (StringValue.Equals("false", StringComparison.OrdinalIgnoreCase)) { return Create(false); }
+            }
+            return Error(title + "无法转成bool！");
+        }
+        public Operand ToString(string title = "")
+        {
+            if (Type == OperandType.STRING) { return this; }
+            if (IsError) { return this; }
+            if (Type == OperandType.NUMBER) { return Create(NumberValue.ToString()); }
+            if (Type == OperandType.BOOLEAN) { return Create(BooleanValue ? "TRUE" : "FALSE"); }
+            if (Type == OperandType.DATE) { return Create(DateValue.ToString()); }
+            if (Type == OperandType.JSON) { return Create(JsonValue.ToString()); }
+
+            return Error(title + "无法转成string！");
+        }
+        public Operand ToDate(string title = "")
+        {
+            if (Type == OperandType.DATE) { return this; }
+            if (IsError) { return this; }
+            if (Type == OperandType.NUMBER) { return Create((Date) NumberValue); }
+            if (Type == OperandType.STRING)
+            {
+                if (DateTime.TryParse(StringValue, out DateTime d)) { return Create(new Date(d)); }
+                if (TimeSpan.TryParse(StringValue, out TimeSpan t)) { return Create(new Date(t)); }
+            }
+            return Error(title + "无法转成date！");
+        }
+        public Operand ToJson(string title = "")
+        {
+            if (Type == OperandType.JSON) { return this; }
+            if (IsError) { return this; }
+            if (Type == OperandType.STRING)
+            {
+                try
+                {
+                    var json = JsonMapper.ToObject(StringValue);
+                    return Create(json);
+                }
+                catch (Exception) { }
+            }
+            return Error(title + "无法转成json！");
         }
 
 
 
+        public void Dispose() { }
     }
+    public abstract class Operand<T> : Operand
+    {
+        public T Value { get; private set; }
+        public override bool IsError => false;
+        public override string ErrorMsg => null;
+        public override double NumberValue => throw new NotImplementedException();
+        public override double IntValue => throw new NotImplementedException();
+        public override string StringValue => throw new NotImplementedException();
+        public override bool BooleanValue => throw new NotImplementedException();
+        public override List<Operand> ArrayValue => throw new NotImplementedException();
+        internal override JsonData JsonValue => throw new NotImplementedException();
+        public override Date DateValue => throw new NotImplementedException();
+        public Operand(T obj)
+        {
+            Value = obj;
+        }
+
+    }
+
+    public class OperandNumber : Operand<double>
+    {
+        public OperandNumber(double obj) : base(obj) { }
+        public override OperandType Type => OperandType.NUMBER;
+        public override double IntValue => (int) Value;
+        public override double NumberValue => Value;
+    }
+    public class OperandBoolean : Operand<bool>
+    {
+        public OperandBoolean(bool obj) : base(obj) { }
+        public override OperandType Type => OperandType.BOOLEAN;
+        public override bool BooleanValue => Value;
+    }
+    public class OperandString : Operand<string>
+    {
+        public OperandString(string obj) : base(obj) { }
+        public override OperandType Type => OperandType.STRING;
+        public override string StringValue => Value;
+    }
+    public class OperandDate : Operand<Date>
+    {
+        public OperandDate(Date obj) : base(obj) { }
+        public override OperandType Type => OperandType.DATE;
+        public override Date DateValue => Value;
+    }
+    internal class OperandJson : Operand<JsonData>
+    {
+        public OperandJson(JsonData obj) : base(obj) { }
+        public override OperandType Type => OperandType.JSON;
+        internal override JsonData JsonValue => Value;
+    }
+    public class OperandArray : Operand<List<Operand>>
+    {
+        public OperandArray(List<Operand> obj) : base(obj) { }
+        public override OperandType Type => OperandType.ARRARY;
+        public override List<Operand> ArrayValue => Value;
+    }
+    public class OperandError : Operand
+    {
+        public override OperandType Type => OperandType.ERROR;
+        public override bool IsError => true;
+        private string _errorMsg;
+        public override string ErrorMsg => _errorMsg;
+        public override double NumberValue => throw new NotImplementedException();
+        public override string StringValue => throw new NotImplementedException();
+        public override bool BooleanValue => throw new NotImplementedException();
+        public override List<Operand> ArrayValue => throw new NotImplementedException();
+        internal override JsonData JsonValue => throw new NotImplementedException();
+        public override Date DateValue => throw new NotImplementedException();
+        public override double IntValue => throw new NotImplementedException();
+
+        public OperandError(string msg)
+        {
+            _errorMsg = msg;
+        }
+    }
+
 }

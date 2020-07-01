@@ -16,12 +16,12 @@ namespace ToolGood.Algorithm
         {
             foreach (var item in ops)
             {
-                if (item.Type == OperandType.ERROR)
+                if (item.IsError)
                 {
                     return item;
                 }
             }
-            return new Operand(OperandType.ERROR, errMsg);
+            return Operand.Error(errMsg);
         }
 
         public Operand VisitProg([NotNull] mathParser.ProgContext context)
@@ -32,123 +32,90 @@ namespace ToolGood.Algorithm
         public Operand VisitMulDiv_fun([NotNull] mathParser.MulDiv_funContext context)
         {
             var leftValue = this.Visit(context.expr(0));
-            if (leftValue.Type == OperandType.ERROR) { return leftValue; }
+            if (leftValue.IsError) { return leftValue; }
             var rightValue = this.Visit(context.expr(1));
-            if (rightValue.Type == OperandType.ERROR) { return rightValue; }
+            if (rightValue.IsError) { return rightValue; }
 
             if (context.op.Type == mathLexer.MUL)
             {
-                if (rightValue.Type == OperandType.NUMBER)
-                {
-                    if (leftValue.Type == OperandType.NUMBER)
-                    {
-                        return new Operand(OperandType.NUMBER, leftValue.NumberValue * rightValue.NumberValue);
-                    }
-                    else if (leftValue.Type == OperandType.DATE)
-                    {
-                        return new Operand(OperandType.DATE, leftValue.DateValue * rightValue.NumberValue);
-                    }
-                    else if (leftValue.Type == OperandType.BOOLEAN)
-                    {
-                        return new Operand(OperandType.NUMBER, (leftValue.BooleanValue ? 1.0 : 0.0) * rightValue.NumberValue);
-                    }
-                }
                 if (rightValue.Type == OperandType.BOOLEAN)
                 {
-                    if (leftValue.Type == OperandType.NUMBER)
-                    {
-                        return new Operand(OperandType.NUMBER, leftValue.NumberValue * (rightValue.BooleanValue ? 1.0 : 0.0));
-                    }
-                    else if (leftValue.Type == OperandType.DATE)
-                    {
-                        return new Operand(OperandType.DATE, leftValue.DateValue * (rightValue.BooleanValue ? 1.0 : 0.0));
-                    }
-                    else if (leftValue.Type == OperandType.BOOLEAN)
-                    {
-                        return new Operand(OperandType.NUMBER, (leftValue.BooleanValue ? 1.0 : 0.0) * (rightValue.BooleanValue ? 1.0 : 0.0));
-                    }
+                    if (rightValue.BooleanValue)
+                        return leftValue;
+                    else
+                        return Operand.Create(0);
+                }
+                else if (leftValue.Type == OperandType.BOOLEAN)
+                {
+                    if (leftValue.BooleanValue)
+                        return rightValue;
+                    else
+                        return Operand.Create(0);
+                }
+                if (leftValue.Type == OperandType.STRING)
+                {
+                    var a = leftValue.ToDate();
+                    if (a.IsError == false) leftValue = a;
+                }
+                if (leftValue.Type == OperandType.DATE)
+                {
+                    rightValue = rightValue.ToNumber();
+                    if (rightValue.IsError) { return rightValue; }
+                    return Operand.Create((Date) (leftValue.DateValue * rightValue.ToNumber().NumberValue));
+                }
+
+                if (rightValue.Type == OperandType.STRING)
+                {
+                    var a = rightValue.ToDate();
+                    if (a.IsError == false) rightValue = a;
                 }
                 if (rightValue.Type == OperandType.DATE)
                 {
-                    if (leftValue.Type == OperandType.NUMBER)
-                    {
-                        return new Operand(OperandType.NUMBER, leftValue.NumberValue * rightValue.DateValue);
-                    }
-                    else if (leftValue.Type == OperandType.BOOLEAN)
-                    {
-                        return new Operand(OperandType.NUMBER, (leftValue.BooleanValue ? 1.0 : 0.0) * rightValue.DateValue);
-                    }
+                    leftValue = leftValue.ToNumber();
+                    if (leftValue.IsError) { return leftValue; }
+                    return Operand.Create((Date) (leftValue.ToNumber().NumberValue * rightValue.DateValue));
                 }
-                return ThrowError("两个参数不能相乘");
+
+                leftValue = leftValue.ToNumber();
+                if (leftValue.IsError) { return leftValue; }
+                rightValue = rightValue.ToNumber();
+                if (rightValue.IsError) { return rightValue; }
+                return Operand.Create(leftValue.NumberValue * rightValue.NumberValue);
             }
             else if (context.op.Type == mathLexer.DIV)
             {
-                if (rightValue.Type == OperandType.NUMBER)
+                rightValue = rightValue.ToNumber("Div fun right value");
+                if (rightValue.NumberValue == 0)
                 {
-                    if (rightValue.NumberValue == 0)
-                    {
-                        return ThrowError("无法除0");
-                    }
+                    return ThrowError("无法除0");
+                }
+                if (leftValue.Type == OperandType.STRING)
+                {
+                    var a = leftValue.ToDate();
+                    if (a.IsError == false) leftValue = a;
+                }
+                if (leftValue.Type == OperandType.DATE)
+                {
+                    return Operand.Create(leftValue.DateValue / rightValue.NumberValue);
+                }
 
-                    if (leftValue.Type == OperandType.NUMBER)
-                    {
-                        return new Operand(OperandType.NUMBER, leftValue.NumberValue / rightValue.NumberValue);
-                    }
-                    else if (leftValue.Type == OperandType.DATE)
-                    {
-                        return new Operand(OperandType.DATE, leftValue.DateValue / rightValue.NumberValue);
-                    }
-                    else if (leftValue.Type == OperandType.BOOLEAN)
-                    {
-                        return new Operand(OperandType.NUMBER, (leftValue.BooleanValue ? 1.0 : 0.0) / rightValue.NumberValue);
-                    }
-                }
-                if (rightValue.Type == OperandType.DATE)
-                {
-                    if (leftValue.Type == OperandType.NUMBER)
-                    {
-                        return new Operand(OperandType.NUMBER, leftValue.NumberValue / rightValue.DateValue);
-                    }
-                    else if (leftValue.Type == OperandType.BOOLEAN)
-                    {
-                        return new Operand(OperandType.NUMBER, (leftValue.BooleanValue ? 1.0 : 0.0) / rightValue.DateValue);
-                    }
-                }
-                return ThrowError("两个参数不能相除");
+                leftValue = leftValue.ToNumber();
+                if (leftValue.IsError) { return leftValue; }
+                rightValue = rightValue.ToNumber();
+                if (rightValue.IsError) { return rightValue; }
+                return Operand.Create(leftValue.NumberValue / rightValue.NumberValue);
             }
             else if (context.op.Type == mathLexer.MOD_2)
             {
-                if (rightValue.Type == OperandType.NUMBER)
+                leftValue = leftValue.ToNumber("Div fun right value");
+                if (leftValue.IsError) { return leftValue; }
+                rightValue = rightValue.ToNumber("Div fun right value");
+                if (rightValue.IsError) { return rightValue; }
+                if (rightValue.NumberValue == 0)
                 {
-                    if (rightValue.NumberValue == 0)
-                    {
-                        return ThrowError("无法除0");
-                    }
-                    if (leftValue.Type == OperandType.NUMBER)
-                    {
-                        return new Operand(OperandType.NUMBER, leftValue.NumberValue % rightValue.NumberValue);
-                    }
-                    else if (leftValue.Type == OperandType.DATE)
-                    {
-                        return new Operand(OperandType.DATE, leftValue.DateValue % rightValue.NumberValue);
-                    }
-                    else if (leftValue.Type == OperandType.BOOLEAN)
-                    {
-                        return new Operand(OperandType.NUMBER, (leftValue.BooleanValue ? 1.0 : 0.0) % rightValue.NumberValue);
-                    }
+                    return ThrowError("无法除0");
                 }
-                if (rightValue.Type == OperandType.DATE)
-                {
-                    if (leftValue.Type == OperandType.NUMBER)
-                    {
-                        return new Operand(OperandType.NUMBER, leftValue.NumberValue % rightValue.DateValue);
-                    }
-                    else if (leftValue.Type == OperandType.BOOLEAN)
-                    {
-                        return new Operand(OperandType.NUMBER, (leftValue.BooleanValue ? 1.0 : 0.0) % rightValue.DateValue);
-                    }
-                }
-                return ThrowError("两个参数不能相除取余");
+                return Operand.Create(leftValue.NumberValue % rightValue.NumberValue);
             }
             return ThrowError("VisitMulDiv_fun出错了");
         }
@@ -156,176 +123,150 @@ namespace ToolGood.Algorithm
         public Operand VisitAddSub_fun([NotNull] mathParser.AddSub_funContext context)
         {
             var leftValue = this.Visit(context.expr(0));
-            if (leftValue.Type == OperandType.ERROR) { return leftValue; }
+            if (leftValue.IsError) { return leftValue; }
             var rightValue = this.Visit(context.expr(1));
-            if (rightValue.Type == OperandType.ERROR) { return rightValue; }
+            if (rightValue.IsError) { return rightValue; }
 
+            if (context.op.Type == mathLexer.MERGE)
+            {
+                return Operand.Create(leftValue.ToString("").StringValue + rightValue.ToString("").StringValue);
+            }
             if (context.op.Type == mathLexer.ADD)
             {
-                if (rightValue.Type == OperandType.NUMBER)
+                if (leftValue.Type == OperandType.STRING)
                 {
-                    if (leftValue.Type == OperandType.NUMBER)
-                    {
-                        return new Operand(OperandType.NUMBER, leftValue.NumberValue + rightValue.NumberValue);
-                    }
-                    else if (leftValue.Type == OperandType.DATE)
-                    {
-                        return new Operand(OperandType.DATE, leftValue.DateValue + rightValue.NumberValue);
-                    }
-                    else if (leftValue.Type == OperandType.BOOLEAN)
-                    {
-                        return new Operand(OperandType.NUMBER, (leftValue.BooleanValue ? 1.0 : 0.0) + rightValue.NumberValue);
-                    }
+                    var a = leftValue.ToDate();
+                    if (a.IsError == false) leftValue = a;
                 }
-                if (rightValue.Type == OperandType.BOOLEAN)
+                if (rightValue.Type == OperandType.STRING)
                 {
-                    if (leftValue.Type == OperandType.NUMBER)
-                    {
-                        return new Operand(OperandType.NUMBER, leftValue.NumberValue + (rightValue.BooleanValue ? 1.0 : 0.0));
-                    }
-                    else if (leftValue.Type == OperandType.DATE)
-                    {
-                        return new Operand(OperandType.DATE, leftValue.DateValue + (rightValue.BooleanValue ? 1.0 : 0.0));
-                    }
-                    else if (leftValue.Type == OperandType.BOOLEAN)
-                    {
-                        return new Operand(OperandType.NUMBER, (leftValue.BooleanValue ? 1.0 : 0.0) + (rightValue.BooleanValue ? 1.0 : 0.0));
-                    }
+                    var a = rightValue.ToDate();
+                    if (a.IsError == false) rightValue = a;
                 }
-                if (rightValue.Type == OperandType.DATE)
+                if (leftValue.Type == OperandType.DATE && rightValue.Type == OperandType.DATE)
                 {
-                    if (leftValue.Type == OperandType.NUMBER)
-                    {
-                        return new Operand(OperandType.NUMBER, leftValue.NumberValue + rightValue.DateValue);
-                    }
-                    else if (leftValue.Type == OperandType.DATE)
-                    {
-                        return new Operand(OperandType.DATE, leftValue.DateValue + rightValue.DateValue);
-                    }
-                    else if (leftValue.Type == OperandType.BOOLEAN)
-                    {
-                        return new Operand(OperandType.NUMBER, (leftValue.BooleanValue ? 1.0 : 0.0) + rightValue.DateValue);
-                    }
+                    return Operand.Create(leftValue.DateValue + rightValue.DateValue);
                 }
-                //if (rightValue.Type == OperandType.STRING || leftValue.Type == OperandType.STRING) {
-                //    return new Operand(OperandType.STRING, leftValue.StringValue + rightValue.StringValue);
-                //}
-                return ThrowError("两个参数不能相加");
+                else if (leftValue.Type == OperandType.DATE)
+                {
+                    rightValue = rightValue.ToNumber();
+                    if (rightValue.IsError) { return rightValue; }
+                    return Operand.Create(leftValue.DateValue + rightValue.NumberValue);
+                }
+                else if (rightValue.Type == OperandType.DATE)
+                {
+                    leftValue = leftValue.ToNumber();
+                    if (leftValue.IsError) { return leftValue; }
+                    return Operand.Create(rightValue.DateValue + leftValue.NumberValue);
+                }
+                leftValue = leftValue.ToNumber("");
+                if (leftValue.IsError) { return leftValue; }
+                rightValue = rightValue.ToNumber();
+                if (rightValue.IsError) { return rightValue; }
+                return Operand.Create(leftValue.NumberValue + rightValue.NumberValue);
             }
             else if (context.op.Type == mathLexer.SUB)
             {
-                if (rightValue.Type == OperandType.NUMBER)
+                if (leftValue.Type == OperandType.STRING)
                 {
-                    if (leftValue.Type == OperandType.NUMBER)
-                    {
-                        return new Operand(OperandType.NUMBER, leftValue.NumberValue - rightValue.NumberValue);
-                    }
-                    else if (leftValue.Type == OperandType.DATE)
-                    {
-                        return new Operand(OperandType.DATE, leftValue.DateValue - rightValue.NumberValue);
-                    }
-                    else if (leftValue.Type == OperandType.BOOLEAN)
-                    {
-                        return new Operand(OperandType.NUMBER, (leftValue.BooleanValue ? 1.0 : 0.0) - rightValue.NumberValue);
-                    }
+                    var a = leftValue.ToDate();
+                    if (a.IsError == false) leftValue = a;
                 }
-                if (rightValue.Type == OperandType.BOOLEAN)
+                if (rightValue.Type == OperandType.STRING)
                 {
-                    if (leftValue.Type == OperandType.NUMBER)
-                    {
-                        return new Operand(OperandType.NUMBER, leftValue.NumberValue - (rightValue.BooleanValue ? 1.0 : 0.0));
-                    }
-                    else if (leftValue.Type == OperandType.DATE)
-                    {
-                        return new Operand(OperandType.DATE, leftValue.DateValue - (rightValue.BooleanValue ? 1.0 : 0.0));
-                    }
-                    else if (leftValue.Type == OperandType.BOOLEAN)
-                    {
-                        return new Operand(OperandType.NUMBER, (leftValue.BooleanValue ? 1.0 : 0.0) - (rightValue.BooleanValue ? 1.0 : 0.0));
-                    }
+                    var a = rightValue.ToDate();
+                    if (a.IsError == false) rightValue = a;
                 }
-                if (rightValue.Type == OperandType.DATE)
+                if (leftValue.Type == OperandType.DATE && rightValue.Type == OperandType.DATE)
                 {
-                    if (leftValue.Type == OperandType.NUMBER)
-                    {
-                        return new Operand(OperandType.NUMBER, leftValue.NumberValue - rightValue.DateValue);
-                    }
-                    else if (leftValue.Type == OperandType.DATE)
-                    {
-                        return new Operand(OperandType.DATE, leftValue.DateValue - rightValue.DateValue);
-                    }
-                    else if (leftValue.Type == OperandType.BOOLEAN)
-                    {
-                        return new Operand(OperandType.NUMBER, (leftValue.BooleanValue ? 1.0 : 0.0) - rightValue.DateValue);
-                    }
+                    return Operand.Create(leftValue.DateValue - rightValue.DateValue);
                 }
-                return ThrowError("两个参数不能相减");
+                else if (leftValue.Type == OperandType.DATE)
+                {
+                    rightValue = rightValue.ToNumber();
+                    if (rightValue.IsError) { return rightValue; }
+                    return Operand.Create(leftValue.DateValue - rightValue.NumberValue);
+                }
+                else if (rightValue.Type == OperandType.DATE)
+                {
+                    leftValue = leftValue.ToNumber();
+                    if (leftValue.IsError) { return leftValue; }
+                    return Operand.Create(rightValue.DateValue - leftValue.NumberValue);
+                }
+                leftValue = leftValue.ToNumber("");
+                if (leftValue.IsError) { return leftValue; }
+                rightValue = rightValue.ToNumber();
+                if (rightValue.IsError) { return rightValue; }
+                return Operand.Create(leftValue.NumberValue - rightValue.NumberValue);
             }
-            else if (context.op.Type == mathLexer.MERGE)
-            {
-                return new Operand(OperandType.STRING, leftValue.StringValue + rightValue.StringValue);
-            }
-
-
             throw new NotImplementedException();
         }
 
         public Operand VisitJudge_fun([NotNull] mathParser.Judge_funContext context)
         {
             var leftValue = this.Visit(context.expr(0));
-            if (leftValue.Type == OperandType.ERROR) { return leftValue; }
+            if (leftValue.IsError) { return leftValue; }
             var rightValue = this.Visit(context.expr(1));
-            if (rightValue.Type == OperandType.ERROR) { return rightValue; }
+            if (rightValue.IsError) { return rightValue; }
             int type = context.op.Type;
 
-            int r = 0;
+            int r;
             if (leftValue.Type == rightValue.Type)
             {
-                if (leftValue.Type == OperandType.STRING)
+                if (leftValue.Type == OperandType.STRING || leftValue.Type == OperandType.JSON)
                 {
-                    r = compare(leftValue.StringValue, rightValue.StringValue);
+                    r = compare(leftValue.ToString("").StringValue, rightValue.ToString("").StringValue);
+                }
+                else if (leftValue.Type == OperandType.ARRARY)
+                {
+                    return Operand.Error("两个类型无法比较");
                 }
                 else
                 {
-                    r = compare(leftValue.NumberValue, rightValue.NumberValue);
+                    r = compare(leftValue.ToNumber("").NumberValue, rightValue.ToNumber("").NumberValue);
                 }
             }
-            else if ((leftValue.Type == OperandType.DATE && rightValue.Type == OperandType.STRING) || (rightValue.Type == OperandType.DATE && leftValue.Type == OperandType.STRING))
+            else if ((leftValue.Type == OperandType.DATE && rightValue.Type == OperandType.STRING) || (rightValue.Type == OperandType.DATE && leftValue.Type == OperandType.STRING)
+               || (leftValue.Type == OperandType.NUMBER && rightValue.Type == OperandType.STRING) || (rightValue.Type == OperandType.NUMBER && leftValue.Type == OperandType.STRING)
+               || (leftValue.Type == OperandType.BOOLEAN && rightValue.Type == OperandType.STRING) || (rightValue.Type == OperandType.BOOLEAN && leftValue.Type == OperandType.STRING)
+                )
             {
-                r = compare(leftValue.StringValue, rightValue.StringValue);
+                r = compare(leftValue.ToString().StringValue, rightValue.ToString().StringValue);
             }
-            else if (leftValue.Type == OperandType.STRING || rightValue.Type == OperandType.STRING)
+            else if (leftValue.Type == OperandType.STRING || rightValue.Type == OperandType.STRING
+                || leftValue.Type == OperandType.JSON || rightValue.Type == OperandType.JSON
+                || leftValue.Type == OperandType.ARRARY || rightValue.Type == OperandType.ARRARY
+                )
             {
-                return new Operand(OperandType.ERROR, "两个类型无法比较");
+                return Operand.Error("两个类型无法比较");
             }
             else
             {
-                r = compare(leftValue.NumberValue, rightValue.NumberValue);
+                r = compare(leftValue.ToNumber("").NumberValue, rightValue.ToNumber("").NumberValue);
             }
             if (type == mathLexer.LT)
             {
-                return new Operand(OperandType.BOOLEAN, r == -1);
+                return Operand.Create(r == -1);
             }
             else if (type == mathLexer.LE)
             {
-                return new Operand(OperandType.BOOLEAN, r <= 0);
+                return Operand.Create(r <= 0);
             }
             else if (type == mathLexer.GT)
             {
-                return new Operand(OperandType.BOOLEAN, r == 1);
+                return Operand.Create(r == 1);
             }
             else if (type == mathLexer.GE)
             {
-                return new Operand(OperandType.BOOLEAN, r >= 0);
+                return Operand.Create(r >= 0);
             }
             else if (type == mathLexer.ET)
             {
-                return new Operand(OperandType.BOOLEAN, r == 0);
+                return Operand.Create(r == 0);
             }
-            return new Operand(OperandType.BOOLEAN, r != 0);
-
-            throw new NotImplementedException();
+            return Operand.Create(r != 0);
         }
+
         private int compare(double t1, double t2)
         {
             t1 = Math.Round(t1, 12);
@@ -354,10 +295,26 @@ namespace ToolGood.Algorithm
             }
             return -1;
         }
+        private int compare2(string t1, string t2)
+        {
+            if (t1.Equals(t2, StringComparison.OrdinalIgnoreCase))
+            {
+                return 0;
+            }
+            List<string> ts = new List<string>() { t1, t2 };
+            ts = ts.OrderBy(q => q).ToList();
+            if (t1 == ts[1])
+            {
+                return 1;
+            }
+            return -1;
+        }
 
         public Operand VisitArray_fun([NotNull] mathParser.Array_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { arg.Add(this.Visit(item)); }
+            return Operand.Create(arg);
         }
         public Operand VisitBracket_fun([NotNull] mathParser.Bracket_funContext context)
         {
@@ -368,13 +325,13 @@ namespace ToolGood.Algorithm
         {
             var t = context.NUM().GetText();
             var d = double.Parse(t, CultureInfo.GetCultureInfo("en-US"));
-            return new Operand(OperandType.NUMBER, d);
+            return Operand.Create(d);
         }
         public Operand VisitSTRING_fun([NotNull] mathParser.STRING_funContext context)
         {
             var t = context.STRING().GetText();
             t = t.Substring(1, t.Length - 2);
-            return new Operand(OperandType.STRING, t);
+            return Operand.Create(t);
         }
         public Operand VisitPARAMETER_fun([NotNull] mathParser.PARAMETER_funContext context)
         {
@@ -384,7 +341,7 @@ namespace ToolGood.Algorithm
             {
                 return GetParameter(t);
             }
-            return new Operand(OperandType.ERROR, t);
+            return Operand.Error(t);
         }
 
         #endregion
@@ -395,62 +352,41 @@ namespace ToolGood.Algorithm
             var arg = new List<Operand>();
             foreach (var item in context.expr()) { arg.Add(this.Visit(item)); }
 
-            var op = CheckArgsCount("IF", arg, new OperandType[][] {
-                new [] { OperandType.ANY },
-                new [] { OperandType.ANY, OperandType.ANY },
-                new [] { OperandType.ANY, OperandType.ANY, OperandType.ANY },
-                 });
-            if (op != null) { return op; }
+            var a = arg[0].ToBoolean("");
+            if (a.IsError) { return a; }
 
-            var b = true;
-            if (arg[0].Type == OperandType.BOOLEAN)
-            {
-                b = arg[0].BooleanValue;
-            }
-            else if (arg[0].Type == OperandType.NUMBER)
-            {
-                b = arg[0].IntValue != 0;
-            }
-
-            if (b)
+            if (a.BooleanValue)
             {
                 if (arg.Count > 1)
                 {
                     return arg[1];
                 }
-                return new Operand(OperandType.BOOLEAN, true);
+                return Operand.True;
             }
             if (arg.Count == 3)
             {
                 return arg[2];
             }
-            return new Operand(OperandType.BOOLEAN, false);
+            return Operand.False;
         }
         public Operand VisitIFERROR_fun([NotNull] mathParser.IFERROR_funContext context)
         {
             var arg = new List<Operand>();
             foreach (var item in context.expr()) { arg.Add(this.Visit(item)); }
 
-            var op = CheckArgsCount("IFERROR", arg, new OperandType[][] {
-                new [] { OperandType.ANY },
-                new [] { OperandType.ANY, OperandType.ANY },
-                new [] { OperandType.ANY, OperandType.ANY, OperandType.ANY },
-                 });
-            if (op != null) { return op; }
-
-            if (arg[0].Type == OperandType.ERROR)
+            if (arg[0].IsError)
             {
                 if (arg.Count > 1)
                 {
                     return arg[1];
                 }
-                return new Operand(OperandType.BOOLEAN, true);
+                return Operand.True;
             }
             if (arg.Count == 3)
             {
                 return arg[2];
             }
-            return new Operand(OperandType.BOOLEAN, false);
+            return Operand.False;
 
         }
         public Operand VisitIFNUMBER_fun([NotNull] mathParser.IFNUMBER_funContext context)
@@ -458,274 +394,181 @@ namespace ToolGood.Algorithm
             var arg = new List<Operand>();
             foreach (var item in context.expr()) { arg.Add(this.Visit(item)); }
 
-            var op = CheckArgsCount("IFNUMBER", arg, new OperandType[][] {
-                new OperandType[] { OperandType.ANY },
-                new OperandType[] { OperandType.ANY, OperandType.ANY },
-                new OperandType[] { OperandType.ANY, OperandType.ANY, OperandType.ANY },
-                 });
-            if (op != null) { return op; }
-
-            if (arg.Count < 2) return ThrowError("IFNUMBER 中参数不足");
-            var b = false;
             if (arg[0].Type == OperandType.NUMBER)
             {
-                b = arg[0].IntValue != 0;
+                return Operand.True;
             }
-            else if (arg[0].Type == OperandType.DATE)
+            else if (arg[0].Type == OperandType.STRING)
             {
-                b = true;
-            }
-
-            if (b)
-            {
-                if (arg.Count > 1)
+                if (double.TryParse(arg[0].StringValue, NumberStyles.Currency, CultureInfo.GetCultureInfo("en-US"), out _))
                 {
-                    return arg[1];
+                    return Operand.True;
                 }
-                return new Operand(OperandType.BOOLEAN, true);
             }
             if (arg.Count == 3)
             {
                 return arg[2];
             }
-            return new Operand(OperandType.BOOLEAN, false);
+            return Operand.False;
         }
         public Operand VisitIFTEXT_fun([NotNull] mathParser.IFTEXT_funContext context)
         {
             var arg = new List<Operand>();
             foreach (var item in context.expr()) { arg.Add(this.Visit(item)); }
 
-
-            if (arg.Count < 2) return ThrowError("ISSTRING 中参数不足");
             if (arg[0].Type == OperandType.STRING)
             {
                 if (arg.Count > 1)
                 {
                     return arg[1];
                 }
-                return new Operand(OperandType.BOOLEAN, true);
-            }
-            else if (arg[0].Type == OperandType.DATE)
-            {
-                if (arg[0].DateValue.srcText != null)
-                {
-                    if (arg.Count > 1)
-                    {
-                        return arg[1];
-                    }
-                    return new Operand(OperandType.BOOLEAN, true);
-                }
+                return Operand.True;
             }
             if (arg.Count == 3) return arg[2];
-            return new Operand(OperandType.BOOLEAN, false);
+            return Operand.False;
         }
         public Operand VisitISNUMBER_fun([NotNull] mathParser.ISNUMBER_funContext context)
         {
             var leftValue = this.Visit(context.expr());
-            if (leftValue.Type == OperandType.ERROR) { return leftValue; }
+            if (leftValue.IsError) { return leftValue; }
 
             if (leftValue.Type == OperandType.NUMBER)
             {
-                return new Operand(OperandType.BOOLEAN, true);
+                return Operand.True;
             }
-            else if (leftValue.Type == OperandType.DATE)
+            else if (leftValue.Type == OperandType.STRING)
             {
-                return new Operand(OperandType.BOOLEAN, true);
+                if (double.TryParse(leftValue.StringValue, NumberStyles.Currency, CultureInfo.GetCultureInfo("en-US"), out _))
+                {
+                    return Operand.True;
+                }
             }
-            return new Operand(OperandType.BOOLEAN, false);
+            return Operand.False;
         }
         public Operand VisitISTEXT_fun([NotNull] mathParser.ISTEXT_funContext context)
         {
             var leftValue = this.Visit(context.expr());
-            if (leftValue.Type == OperandType.ERROR) { return leftValue; }
+            if (leftValue.IsError) { return leftValue; }
 
             if (leftValue.Type == OperandType.STRING)
             {
-                return new Operand(OperandType.BOOLEAN, true);
+                return Operand.True;
             }
-            else if (leftValue.Type == OperandType.DATE)
-            {
-                return new Operand(OperandType.BOOLEAN, leftValue.DateValue.srcText != null);
-            }
-            return new Operand(OperandType.BOOLEAN, false);
+            return Operand.False;
         }
         public Operand VisitISERROR_fun([NotNull] mathParser.ISERROR_funContext context)
         {
             var leftValue = this.Visit(context.expr());
             if (leftValue.Type == OperandType.ERROR)
             {
-                return new Operand(OperandType.BOOLEAN, true);
+                return Operand.True;
             }
-            return new Operand(OperandType.BOOLEAN, false);
+            return Operand.False;
         }
         public Operand VisitAND_fun([NotNull] mathParser.AND_funContext context)
         {
             var arg = new List<Operand>();
-            foreach (var item in context.expr()) { arg.Add(this.Visit(item)); }
+            foreach (var item in context.expr())
+            {
+                var a = this.Visit(item).ToBoolean();
+                if (a.IsError) { return a; }
+                arg.Add(a);
+            }
 
             var b = true;
             foreach (var item in arg)
             {
-                if (item.Type == OperandType.BOOLEAN)
+                if (item.BooleanValue == false)
                 {
-                    if (item.BooleanValue == false)
-                    {
-                        b = false;
-                        break;
-                    }
-                }
-                else if (item.Type == OperandType.NUMBER)
-                {
-                    if (item.IntValue == 0)
-                    {
-                        b = false;
-                        break;
-                    }
+                    b = false;
+                    break;
                 }
             }
-            return new Operand(OperandType.BOOLEAN, b);
+            return Operand.Create(b);
         }
         public Operand VisitOR_fun([NotNull] mathParser.OR_funContext context)
         {
             var arg = new List<Operand>();
-            foreach (var item in context.expr()) { arg.Add(this.Visit(item)); }
+            foreach (var item in context.expr())
+            {
+                var a = this.Visit(item).ToBoolean();
+                if (a.IsError) { return a; }
+                arg.Add(a);
+            }
 
             var b = false;
-
             foreach (var item in arg)
             {
-                if (item.Type == OperandType.BOOLEAN)
+                if (item.BooleanValue == true)
                 {
-                    if (item.BooleanValue == true)
-                    {
-                        b = true;
-                        break;
-                    }
-                }
-                else if (item.Type == OperandType.NUMBER)
-                {
-                    if (item.IntValue != 0)
-                    {
-                        b = true;
-                        break;
-                    }
+                    b = true;
+                    break;
                 }
             }
-            return new Operand(OperandType.BOOLEAN, b);
+            return Operand.Create(b);
         }
         public Operand VisitNOT_fun([NotNull] mathParser.NOT_funContext context)
         {
-            var leftValue = this.Visit(context.expr());
-            if (leftValue.Type == OperandType.ERROR) { return leftValue; }
-
-            if (leftValue.Type == OperandType.BOOLEAN)
-            {
-                return new Operand(OperandType.BOOLEAN, !leftValue.BooleanValue);
-            }
-            else if (leftValue.Type == OperandType.NUMBER)
-            {
-                return new Operand(OperandType.BOOLEAN, (leftValue.NumberValue == 0));
-            }
-            return new Operand(OperandType.BOOLEAN, false);
+            var leftValue = this.Visit(context.expr()).ToBoolean();
+            if (leftValue.IsError) { return leftValue; }
+            return Operand.Create(!leftValue.BooleanValue);
         }
         public Operand VisitTRUE_fun([NotNull] mathParser.TRUE_funContext context)
         {
-            return new Operand(OperandType.BOOLEAN, true);
+            return Operand.True;
         }
         public Operand VisitFALSE_fun([NotNull] mathParser.FALSE_funContext context)
         {
-            return new Operand(OperandType.BOOLEAN, false);
+            return Operand.False;
         }
         #endregion
 
         #region math
         public Operand VisitPI_fun([NotNull] mathParser.PI_funContext context)
         {
-            return new Operand(OperandType.NUMBER, Math.PI);
+            return Operand.Create(Math.PI);
         }
 
         public Operand VisitABS_fun([NotNull] mathParser.ABS_funContext context)
         {
             var leftValue = this.Visit(context.expr()).ToNumber("ABS left value");
-            if (leftValue.Type == OperandType.ERROR) { return leftValue; }
+            if (leftValue.IsError) { return leftValue; }
 
-
-            return new Operand(OperandType.NUMBER, Math.Abs(leftValue.NumberValue));
+            return Operand.Create(Math.Abs(leftValue.NumberValue));
         }
         public Operand VisitQUOTIENT_fun([NotNull] mathParser.QUOTIENT_funContext context)
         {
             var leftValue = this.Visit(context.expr(0)).ToNumber("ABS leftValue");
-            if (leftValue.Type == OperandType.ERROR) { return leftValue; }
+            if (leftValue.IsError) { return leftValue; }
             var rightValue = this.Visit(context.expr(1)).ToNumber("ABS rightValue");
-            if (rightValue.Type == OperandType.ERROR) { return rightValue; }
+            if (rightValue.IsError) { return rightValue; }
 
-            if (rightValue.Type == OperandType.NUMBER || rightValue.Type == OperandType.BOOLEAN)
+            if (rightValue.NumberValue == 0)
             {
-                if (rightValue.NumberValue == 0)
-                {
-                    return ThrowError("div 0 error!");
-                }
-                if (leftValue.Type == OperandType.NUMBER || leftValue.Type == OperandType.BOOLEAN)
-                {
-                    return new Operand(OperandType.NUMBER, (double) (int) (leftValue.NumberValue / rightValue.NumberValue));
-                }
-                else if (leftValue.Type == OperandType.DATE)
-                {
-                    return new Operand(OperandType.DATE, (double) (int) (leftValue.DateValue / rightValue.NumberValue));
-                }
+                return ThrowError("div 0 error!");
             }
-            if (rightValue.Type == OperandType.DATE)
-            {
-                if (leftValue.Type == OperandType.NUMBER || leftValue.Type == OperandType.BOOLEAN)
-                {
-                    return new Operand(OperandType.NUMBER, (double) (int) (leftValue.NumberValue / rightValue.DateValue));
-                }
-            }
-            return ThrowError("两个参数不能相除取商的整数部分");
-
+            return Operand.Create((double) (int) (leftValue.NumberValue / rightValue.NumberValue));
         }
         public Operand VisitMOD_fun([NotNull] mathParser.MOD_funContext context)
         {
-            var leftValue = this.Visit(context.expr(0));
-            if (leftValue.Type == OperandType.ERROR) { return leftValue; }
-            var rightValue = this.Visit(context.expr(1));
-            if (rightValue.Type == OperandType.ERROR) { return rightValue; }
+            var leftValue = this.Visit(context.expr(0)).ToNumber("Mod fun left value");
+            if (leftValue.IsError) { return leftValue; }
+            var rightValue = this.Visit(context.expr(1)).ToNumber("Mod fun right value");
+            if (rightValue.IsError) { return rightValue; }
 
-            if (rightValue.Type == OperandType.NUMBER || rightValue.Type == OperandType.BOOLEAN)
+            if (rightValue.NumberValue == 0)
             {
-                if (rightValue.NumberValue == 0)
-                {
-                    return ThrowError("div 0 error!");
-                }
-                if (leftValue.Type == OperandType.NUMBER || leftValue.Type == OperandType.BOOLEAN)
-                {
-                    return new Operand(OperandType.NUMBER, leftValue.NumberValue % rightValue.NumberValue);
-                }
-                else if (leftValue.Type == OperandType.DATE)
-                {
-                    return new Operand(OperandType.DATE, leftValue.DateValue % rightValue.NumberValue);
-                }
+                return ThrowError("div 0 error!");
             }
-            if (rightValue.Type == OperandType.DATE)
-            {
-                if (leftValue.Type == OperandType.NUMBER || leftValue.Type == OperandType.BOOLEAN)
-                {
-                    return new Operand(OperandType.NUMBER, leftValue.NumberValue % rightValue.DateValue);
-                }
+            return Operand.Create((int) (leftValue.NumberValue % rightValue.NumberValue));
 
-            }
-            return ThrowError("两个参数不能相除取余");
         }
         public Operand VisitSIGN_fun([NotNull] mathParser.SIGN_funContext context)
         {
-            var leftValue = this.Visit(context.expr());
-            if (leftValue.Type == OperandType.ERROR) { return leftValue; }
+            var leftValue = this.Visit(context.expr()).ToNumber("Sign func");
+            if (leftValue.IsError) { return leftValue; }
 
-            if (Operand.IsNumber(leftValue))
-            {
-                return new Operand(OperandType.NUMBER, (double) Math.Sign(leftValue.NumberValue));
-            }
-            return ThrowError("SIGN fun is error");
+            return Operand.Create(Math.Sign(leftValue.NumberValue));
         }
 
 
