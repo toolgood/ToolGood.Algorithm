@@ -472,6 +472,13 @@ public interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitFIXED_fun([NotNull] mathParser.FIXED_funContext context);
 	/// <summary>
+	/// Visit a parse tree produced by the <c>GetJsonValue_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitGetJsonValue_fun([NotNull] mathParser.GetJsonValue_funContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>TINV_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// </summary>
@@ -1465,4 +1472,10 @@ public interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitRAND_fun([NotNull] mathParser.RAND_funContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="mathParser.parameter"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitParameter([NotNull] mathParser.ParameterContext context);
 }
