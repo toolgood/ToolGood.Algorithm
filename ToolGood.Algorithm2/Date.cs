@@ -7,60 +7,6 @@ namespace ToolGood.Algorithm
 {
     public class Date
     {
-        public Date(string str)
-        {
-            srcText = str;
-            TimeSpan ts;
-            if (TimeSpan.TryParse(str, out ts))
-            {
-                Day = ts.Days;
-                Hour = ts.Hours;
-                Minute = ts.Minutes;
-                Second = ts.Seconds;
-                Millisecond = ts.Milliseconds;
-            }
-            else
-            {
-                DateTime dt = DateTime.Parse(str);
-                Year = dt.Year;
-                Month = dt.Month;
-                Day = dt.Day;
-                Hour = dt.Hour;
-                Minute = dt.Minute;
-                Second = dt.Second;
-                Millisecond = dt.Millisecond;
-            }
-        }
-        public Date(int year, int month, int day)
-        {
-            Year = year;
-            Month = month;
-            Day = day;
-        }
-        public Date(int year, int month, int day, int hour)
-        {
-            Year = year;
-            Month = month;
-            Day = day;
-            Hour = hour;
-        }
-        public Date(int year, int month, int day, int hour, int minute)
-        {
-            Year = year;
-            Month = month;
-            Day = day;
-            Hour = hour;
-            Minute = minute;
-        }
-        public Date(int year, int month, int day, int hour, int minute, int second)
-        {
-            Year = year;
-            Month = month;
-            Day = day;
-            Hour = hour;
-            Minute = minute;
-            Second = second;
-        }
         public Date(DateTime dt)
         {
             Year = dt.Year;
@@ -80,9 +26,6 @@ namespace ToolGood.Algorithm
             Millisecond = dt.Milliseconds;
         }
 
-
-        internal string srcText { get; set; }
-
         public int Year { get; set; }
         public int Month { get; set; }
         public int Day { get; set; }
@@ -95,35 +38,22 @@ namespace ToolGood.Algorithm
 
         public override string ToString()
         {
-            if (string.IsNullOrEmpty(srcText))
-            {
-                if (Year > 0 && Hour > 0 && Second > 0)
-                {
-                    ((DateTime) this).ToString("yyyy-MM-dd HH:mm:ss");
-                }
-                else if (Year > 0 && Hour > 0)
-                {
-                    ((DateTime) this).ToString("yyyy-MM-dd HH:mm");
-                }
-                else if (Year > 0)
-                {
-                    ((DateTime) this).ToString("yyyy-MM-dd");
-                }
-                else if (Hour > 0 && Second > 0)
-                {
-                    ((DateTime) this).ToString("HH:mm:ss");
-                }
-                else
-                {
-                    ((DateTime) this).ToString("HH:mm:ss");
-                }
+            if (Year > 0 && Hour > 0 && Second > 0) {
+                ((DateTime)this).ToString("yyyy-MM-dd HH:mm:ss");
+            } else if (Year > 0 && Hour > 0) {
+                ((DateTime)this).ToString("yyyy-MM-dd HH:mm");
+            } else if (Year > 0) {
+                ((DateTime)this).ToString("yyyy-MM-dd");
+            } else if (Hour > 0 && Second > 0) {
+                ((DateTime)this).ToString("HH:mm:ss");
+            } else {
+                ((DateTime)this).ToString("HH:mm:ss");
             }
-            return srcText;
         }
 
         public string ToString(string f)
         {
-            return ((DateTime) this).ToString(f);
+            return ((DateTime)this).ToString(f);
         }
 
         #region operator
@@ -142,17 +72,16 @@ namespace ToolGood.Algorithm
 
         public static implicit operator Date(double days)
         {
-            var dt = DateTime.MinValue.AddDays((int) days);
-            dt = dt.AddSeconds((days - (int) days) * 24 * 60 * 60);
+            var dt = DateTime.MinValue.AddDays((int)days);
+            dt = dt.AddSeconds((days - (int)days) * 24 * 60 * 60);
             return new Date(dt);
         }
         public static implicit operator double(Date date)
         {
 
-            if (date.Year > 1900)
-            {
+            if (date.Year > 1900) {
                 var dt = new DateTime(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second);
-                double days = (double) (dt - DateTime.MinValue).TotalDays;
+                double days = (double)(dt - DateTime.MinValue).TotalDays;
                 days += (date.Hour + (date.Minute + date.Second / 60.0) / 60) / 24;
                 return days;
             }
@@ -163,7 +92,7 @@ namespace ToolGood.Algorithm
 
         public static Date operator +(Date date, Date num)
         {
-            return (Date) ((double) date + (double) num);
+            return (Date)((double)date + (double)num);
         }
         public static Date operator -(Date date, Date num)
         {
@@ -177,23 +106,23 @@ namespace ToolGood.Algorithm
 
         public static Date operator +(Date date, double num)
         {
-            return (Date) ((double) date + (double) num);
+            return (Date)((double)date + (double)num);
         }
         public static Date operator -(Date date, double num)
         {
-            return (Date) ((double) date - (double) num);
+            return (Date)((double)date - (double)num);
         }
         public static Date operator *(Date date, double num)
         {
-            return (Date) ((double) date * (double) num);
+            return (Date)((double)date * (double)num);
         }
         public static Date operator /(Date date, double num)
         {
-            return (Date) ((double) date / (double) num);
+            return (Date)((double)date / (double)num);
         }
         public static Date operator %(Date date, double num)
         {
-            return (Date) ((double) date % (double) num);
+            return (Date)((double)date % (double)num);
         }
 
 
@@ -202,36 +131,36 @@ namespace ToolGood.Algorithm
 
         public static double operator +(double num, Date date)
         {
-            return num + (double) date;
+            return num + (double)date;
         }
         public static double operator -(double num, Date date)
         {
-            return num - (double) date;
+            return num - (double)date;
         }
         public static double operator *(double num, Date date)
         {
-            return num * (double) date;
+            return num * (double)date;
         }
         public static double operator /(double num, Date date)
         {
-            return num / (double) date;
+            return num / (double)date;
         }
         public static double operator %(double num, Date date)
         {
-            return num % (double) date;
+            return num % (double)date;
         }
 
         public static Date operator +(Date date, bool num)
         {
-            return (Date) ((double) date + (num ? 1 : 0));
+            return (Date)((double)date + (num ? 1 : 0));
         }
         public static Date operator -(Date date, bool num)
         {
-            return (Date) ((double) date - (num ? 1 : 0));
+            return (Date)((double)date - (num ? 1 : 0));
         }
         public static Date operator *(Date date, bool num)
         {
-            return (Date) ((double) date * (num ? 1 : 0));
+            return (Date)((double)date * (num ? 1 : 0));
         }
 
 

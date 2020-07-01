@@ -76,11 +76,9 @@ namespace ToolGood.Algorithm
             if (Type == OperandType.NUMBER) { return this; }
             if (IsError) { return this; }
             if (Type == OperandType.BOOLEAN) { return Create(BooleanValue ? 1.0 : 0.0); }
-            if (Type == OperandType.DATE) { return Create((double) DateValue); }
-            if (Type == OperandType.STRING)
-            {
-                if (double.TryParse(StringValue, NumberStyles.Currency, CultureInfo.GetCultureInfo("en-US"), out double d))
-                {
+            if (Type == OperandType.DATE) { return Create((double)DateValue); }
+            if (Type == OperandType.STRING) {
+                if (double.TryParse(StringValue, NumberStyles.Currency, CultureInfo.GetCultureInfo("en-US"), out double d)) {
                     return Create(d);
                 }
             }
@@ -91,9 +89,8 @@ namespace ToolGood.Algorithm
             if (Type == OperandType.BOOLEAN) { return this; }
             if (IsError) { return this; }
             if (Type == OperandType.NUMBER) { return Create(NumberValue != 0); }
-            if (Type == OperandType.DATE) { return Create(((double) DateValue) != 0); }
-            if (Type == OperandType.STRING)
-            {
+            if (Type == OperandType.DATE) { return Create(((double)DateValue) != 0); }
+            if (Type == OperandType.STRING) {
                 if (StringValue.Equals("true", StringComparison.OrdinalIgnoreCase)) { return Create(true); }
                 if (StringValue.Equals("false", StringComparison.OrdinalIgnoreCase)) { return Create(false); }
             }
@@ -114,9 +111,8 @@ namespace ToolGood.Algorithm
         {
             if (Type == OperandType.DATE) { return this; }
             if (IsError) { return this; }
-            if (Type == OperandType.NUMBER) { return Create((Date) NumberValue); }
-            if (Type == OperandType.STRING)
-            {
+            if (Type == OperandType.NUMBER) { return Create((Date)NumberValue); }
+            if (Type == OperandType.STRING) {
                 if (DateTime.TryParse(StringValue, out DateTime d)) { return Create(new Date(d)); }
                 if (TimeSpan.TryParse(StringValue, out TimeSpan t)) { return Create(new Date(t)); }
             }
@@ -126,14 +122,11 @@ namespace ToolGood.Algorithm
         {
             if (Type == OperandType.JSON) { return this; }
             if (IsError) { return this; }
-            if (Type == OperandType.STRING)
-            {
-                try
-                {
+            if (Type == OperandType.STRING) {
+                try {
                     var json = JsonMapper.ToObject(StringValue);
                     return Create(json);
-                }
-                catch (Exception) { }
+                } catch (Exception) { }
             }
             return Error(title + "无法转成json！");
         }
@@ -165,7 +158,7 @@ namespace ToolGood.Algorithm
     {
         public OperandNumber(double obj) : base(obj) { }
         public override OperandType Type => OperandType.NUMBER;
-        public override int IntValue => (int) Value;
+        public override int IntValue => (int)Value;
         public override double NumberValue => Value;
     }
     public class OperandBoolean : Operand<bool>

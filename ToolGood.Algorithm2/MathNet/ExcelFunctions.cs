@@ -31,12 +31,6 @@ using System;
 using ToolGood.Algorithm.MathNet.Numerics.Distributions;
 using ToolGood.Algorithm.MathNet.Numerics.Statistics;
 
-#if !PORTABLE
-using System.Runtime;
-#endif
-
-// ReSharper disable InconsistentNaming
-
 namespace ToolGood.Algorithm.MathNet.Numerics
 {
     /// <summary>
@@ -74,8 +68,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
         //[TargetedPatchingOptOut("Performance critical to inline this type of method across NGen image boundaries")]
         public static double TDist(double x, int degreesFreedom, int tails)
         {
-            switch (tails)
-            {
+            switch (tails) {
                 case 1:
                     return 1d - StudentT.CDF(0d, 1d, degreesFreedom, x);
                 case 2:
@@ -88,7 +81,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
         //[TargetedPatchingOptOut("Performance critical to inline this type of method across NGen image boundaries")]
         public static double TInv(double probability, int degreesFreedom)
         {
-            return -StudentT.InvCDF(0d, 1d, degreesFreedom, probability/2);
+            return -StudentT.InvCDF(0d, 1d, degreesFreedom, probability / 2);
         }
 
         //[TargetedPatchingOptOut("Performance critical to inline this type of method across NGen image boundaries")]
@@ -118,20 +111,19 @@ namespace ToolGood.Algorithm.MathNet.Numerics
         //[TargetedPatchingOptOut("Performance critical to inline this type of method across NGen image boundaries")]
         public static double GammaDist(double x, double alpha, double beta, bool cumulative)
         {
-            return cumulative ? Gamma.CDF(alpha, 1/beta, x) : Gamma.PDF(alpha, 1/beta, x);
+            return cumulative ? Gamma.CDF(alpha, 1 / beta, x) : Gamma.PDF(alpha, 1 / beta, x);
         }
 
         //[TargetedPatchingOptOut("Performance critical to inline this type of method across NGen image boundaries")]
         public static double GammaInv(double probability, double alpha, double beta)
         {
-            return Gamma.InvCDF(alpha, 1/beta, probability);
+            return Gamma.InvCDF(alpha, 1 / beta, probability);
         }
 
         //[TargetedPatchingOptOut("Performance critical to inline this type of method across NGen image boundaries")]
         public static double Quartile(double[] array, int quant)
         {
-            switch (quant)
-            {
+            switch (quant) {
                 case 0:
                     return ArrayStatistics.Minimum(array);
                 case 1:

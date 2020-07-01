@@ -52,7 +52,7 @@ namespace ToolGood.Algorithm.LitJson
 
 
         #region Public Properties
- 
+
         public bool SkipNonMembers {
             get { return skip_non_members; }
             set { skip_non_members = value; }

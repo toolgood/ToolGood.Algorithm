@@ -23,13 +23,11 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public bool Parse(string exp)
         {
-            if (string.IsNullOrEmpty(exp) || exp.Trim() == "")
-            {
+            if (string.IsNullOrEmpty(exp) || exp.Trim() == "") {
                 LastError = "exp无效";
                 return false;
             }
-            try
-            {
+            try {
                 ProgContext = null;
 
                 var stream = new CaseChangingCharStream(new AntlrInputStream(exp), true);
@@ -39,9 +37,7 @@ namespace ToolGood.Algorithm
                 ProgContext = parser.prog();
 
                 return true;
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 LastError = ex.Message;
                 return false;
             }
@@ -49,8 +45,7 @@ namespace ToolGood.Algorithm
 
         public Operand Evaluate()
         {
-            if (ProgContext == null)
-            {
+            if (ProgContext == null) {
                 LastError = "请编译公式！";
                 throw new Exception("请编译公式！");
             }
