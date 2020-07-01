@@ -63,7 +63,7 @@ expr: expr op=('*'|'/'|'%') expr                        # MulDiv_fun
     | POWER '(' expr ',' expr ')'  # POWER_fun 
     | EXP '(' expr ')'  # EXP_fun 
     | LN '(' expr ')'  # LN_fun 
-    | LOG '(' expr ')'  # LOG_fun 
+    | LOG '(' expr (',' expr)? ')'  # LOG_fun 
     | LOG10 '(' expr ')'  # LOG10_fun 
     | MULTINOMIAL '(' expr (',' expr )* ')'  # MULTINOMIAL_fun 
     | PRODUCT '(' expr (',' expr )* ')'  # PRODUCT_fun 

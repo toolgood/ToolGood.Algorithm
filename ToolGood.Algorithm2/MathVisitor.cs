@@ -850,33 +850,331 @@ namespace ToolGood.Algorithm
 
         #region rounding
 
-        public Operand VisitROUND_fun([NotNull] mathParser.ROUND_funContext context) { throw new NotImplementedException(); }
-        public Operand VisitROUNDDOWN_fun([NotNull] mathParser.ROUNDDOWN_funContext context) { throw new NotImplementedException(); }
-        public Operand VisitROUNDUP_fun([NotNull] mathParser.ROUNDUP_funContext context) { throw new NotImplementedException(); }
-        public Operand VisitCEILING_fun([NotNull] mathParser.CEILING_funContext context) { throw new NotImplementedException(); }
-        public Operand VisitFLOOR_fun([NotNull] mathParser.FLOOR_funContext context) { throw new NotImplementedException(); }
-        public Operand VisitEVEN_fun([NotNull] mathParser.EVEN_funContext context) { throw new NotImplementedException(); }
-        public Operand VisitODD_fun([NotNull] mathParser.ODD_funContext context) { throw new NotImplementedException(); }
-        public Operand VisitMROUND_fun([NotNull] mathParser.MROUND_funContext context) { throw new NotImplementedException(); }
+        public Operand VisitROUND_fun([NotNull] mathParser.ROUND_funContext context)
+        {
+            var leftValue = this.Visit(context.expr(0)).ToNumber("DEGREES left value");
+            if (leftValue.IsError) { return leftValue; }
+            var rightValue = this.Visit(context.expr(1)).ToNumber("DEGREES left value");
+            if (rightValue.IsError) { return rightValue; }
+
+            return Operand.Create((double) Math.Round((decimal) leftValue.NumberValue, rightValue.IntValue, MidpointRounding.AwayFromZero));
+        }
+        public Operand VisitROUNDDOWN_fun([NotNull] mathParser.ROUNDDOWN_funContext context)
+        {
+
+            var leftValue = this.Visit(context.expr(0)).ToNumber("DEGREES left value");
+            if (leftValue.IsError) { return leftValue; }
+            var rightValue = this.Visit(context.expr(1)).ToNumber("DEGREES left value");
+            if (rightValue.IsError) { return rightValue; }
+
+            var a = Math.Pow(10, rightValue.IntValue);
+            var b = leftValue.NumberValue;
+
+            b = ((double) (int) (b * a)) / a;
+            return Operand.Create(b);
+        }
+        public Operand VisitROUNDUP_fun([NotNull] mathParser.ROUNDUP_funContext context)
+        {
+            var leftValue = this.Visit(context.expr(0)).ToNumber("DEGREES left value");
+            if (leftValue.IsError) { return leftValue; }
+            var rightValue = this.Visit(context.expr(1)).ToNumber("DEGREES left value");
+            if (rightValue.IsError) { return rightValue; }
+
+            var a = Math.Pow(10, rightValue.IntValue);
+            var b = leftValue.NumberValue;
+
+            var t = (Math.Ceiling(Math.Abs(b) * a)) / a;
+            if (b > 0) return Operand.Create(t);
+            return Operand.Create(-t);
+        }
+        public Operand VisitCEILING_fun([NotNull] mathParser.CEILING_funContext context)
+        {
+            var leftValue = this.Visit(context.expr(0)).ToNumber("DEGREES left value");
+            if (leftValue.IsError) { return leftValue; }
+            var rightValue = this.Visit(context.expr(1)).ToNumber("DEGREES left value");
+            if (rightValue.IsError) { return rightValue; }
+
+            var a = leftValue.NumberValue;
+            var b = rightValue.NumberValue;
+            var d = Math.Ceiling(a / b) * b;
+            return Operand.Create(d);
+        }
+        public Operand VisitFLOOR_fun([NotNull] mathParser.FLOOR_funContext context)
+        {
+
+            var leftValue = this.Visit(context.expr(0)).ToNumber("DEGREES left value");
+            if (leftValue.IsError) { return leftValue; }
+            var rightValue = this.Visit(context.expr(1)).ToNumber("DEGREES left value");
+            if (rightValue.IsError) { return rightValue; }
+
+            var a = leftValue.NumberValue;
+            var b = rightValue.NumberValue;
+            var d = Math.Floor(a / b) * b;
+            return Operand.Create(d);
+        }
+        public Operand VisitEVEN_fun([NotNull] mathParser.EVEN_funContext context)
+        {
+
+            var leftValue = this.Visit(context.expr()).ToNumber("DEGREES left value");
+            if (leftValue.IsError) { return leftValue; }
+
+            var z = leftValue.NumberValue;
+            if (z % 2 == 0)
+            {
+                return leftValue;
+            }
+            z = Math.Ceiling(z);
+            if (z % 2 == 0)
+            {
+                return Operand.Create(z);
+            }
+            z = z + 1;
+            return Operand.Create(z);
+        }
+        public Operand VisitODD_fun([NotNull] mathParser.ODD_funContext context)
+        {
+
+            var leftValue = this.Visit(context.expr()).ToNumber("DEGREES left value");
+            if (leftValue.IsError) { return leftValue; }
+            var z = leftValue.NumberValue;
+            if (z % 2 == 1)
+            {
+                return leftValue;
+            }
+            z = Math.Ceiling(z);
+            if (z % 2 == 1)
+            {
+                return Operand.Create(z);
+            }
+            z = z + 1;
+            return Operand.Create(z);
+        }
+        public Operand VisitMROUND_fun([NotNull] mathParser.MROUND_funContext context)
+        {
+            var leftValue = this.Visit(context.expr(0)).ToNumber("DEGREES left value");
+            if (leftValue.IsError) { return leftValue; }
+            var rightValue = this.Visit(context.expr(1)).ToNumber("DEGREES left value");
+            if (rightValue.IsError) { return rightValue; }
+
+            var a = rightValue.NumberValue;
+            var b = leftValue.NumberValue;
+            var r = Math.Round(b / a, 0) * a;
+            return Operand.Create(r);
+        }
         #endregion
 
         #region RAND
-        public Operand VisitRAND_fun([NotNull] mathParser.RAND_funContext context) { throw new NotImplementedException(); }
-        public Operand VisitRANDBETWEEN_fun([NotNull] mathParser.RANDBETWEEN_funContext context) { throw new NotImplementedException(); }
+        public Operand VisitRAND_fun([NotNull] mathParser.RAND_funContext context)
+        {
+            var tick = DateTime.Now.Ticks;
+            Random rand = new Random((int) (tick & 0xffffffffL) | (int) (tick >> 32));
+            return Operand.Create(rand.NextDouble());
+        }
+        public Operand VisitRANDBETWEEN_fun([NotNull] mathParser.RANDBETWEEN_funContext context)
+        {
+            var leftValue = this.Visit(context.expr(0)).ToNumber("DEGREES left value");
+            if (leftValue.IsError) { return leftValue; }
+            var rightValue = this.Visit(context.expr(1)).ToNumber("DEGREES left value");
+            if (rightValue.IsError) { return rightValue; }
+
+            var tick = DateTime.Now.Ticks;
+            Random rand = new Random((int) (tick & 0xffffffffL) | (int) (tick >> 32));
+            return Operand.Create(rand.NextDouble() * (rightValue.NumberValue - leftValue.NumberValue) + leftValue.NumberValue);
+        }
         #endregion
 
         #region  power logarithm factorial
-        public Operand VisitFACT_fun([NotNull] mathParser.FACT_funContext context) { throw new NotImplementedException(); }
-        public Operand VisitFACTDOUBLE_fun([NotNull] mathParser.FACTDOUBLE_funContext context) { throw new NotImplementedException(); }
-        public Operand VisitPOWER_fun([NotNull] mathParser.POWER_funContext context) { throw new NotImplementedException(); }
-        public Operand VisitEXP_fun([NotNull] mathParser.EXP_funContext context) { throw new NotImplementedException(); }
-        public Operand VisitLN_fun([NotNull] mathParser.LN_funContext context) { throw new NotImplementedException(); }
-        public Operand VisitLOG_fun([NotNull] mathParser.LOG_funContext context) { throw new NotImplementedException(); }
-        public Operand VisitLOG10_fun([NotNull] mathParser.LOG10_funContext context) { throw new NotImplementedException(); }
-        public Operand VisitMULTINOMIAL_fun([NotNull] mathParser.MULTINOMIAL_funContext context) { throw new NotImplementedException(); }
-        public Operand VisitPRODUCT_fun([NotNull] mathParser.PRODUCT_funContext context) { throw new NotImplementedException(); }
-        public Operand VisitSQRTPI_fun([NotNull] mathParser.SQRTPI_funContext context) { throw new NotImplementedException(); }
-        public Operand VisitSUMSQ_fun([NotNull] mathParser.SUMSQ_funContext context) { throw new NotImplementedException(); }
+        public Operand VisitFACT_fun([NotNull] mathParser.FACT_funContext context)
+        {
+            var leftValue = this.Visit(context.expr()).ToNumber("DEGREES left value");
+            if (leftValue.IsError) { return leftValue; }
+
+            var z = leftValue.IntValue;
+            if (z < 0)
+            {
+                return ThrowError("fact中参数小于0");
+            }
+            double d = 1;
+            for (int i = 1; i <= z; i++)
+            {
+                d *= i;
+            }
+            return Operand.Create(d);
+        }
+        public Operand VisitFACTDOUBLE_fun([NotNull] mathParser.FACTDOUBLE_funContext context)
+        {
+            var leftValue = this.Visit(context.expr()).ToNumber("DEGREES left value");
+            if (leftValue.IsError) { return leftValue; }
+
+            var z = leftValue.IntValue;
+            if (z < 0)
+            {
+                return ThrowError("factdouble中参数小于0");
+            }
+            double d = 1;
+            for (int i = z; i > 0; i -= 2)
+            {
+                d *= i;
+            }
+            return Operand.Create(d);
+        }
+        public Operand VisitPOWER_fun([NotNull] mathParser.POWER_funContext context)
+        {
+            var leftValue = this.Visit(context.expr(0)).ToNumber("DEGREES left value");
+            if (leftValue.IsError) { return leftValue; }
+            var rightValue = this.Visit(context.expr(1)).ToNumber("DEGREES left value");
+            if (rightValue.IsError) { return rightValue; }
+
+            return Operand.Create(Math.Pow(leftValue.NumberValue, rightValue.NumberValue));
+        }
+        public Operand VisitEXP_fun([NotNull] mathParser.EXP_funContext context)
+        {
+            var leftValue = this.Visit(context.expr()).ToNumber("DEGREES left value");
+            if (leftValue.IsError) { return leftValue; }
+
+            return Operand.Create(Math.Exp(leftValue.NumberValue));
+        }
+        public Operand VisitLN_fun([NotNull] mathParser.LN_funContext context)
+        {
+            var leftValue = this.Visit(context.expr()).ToNumber("DEGREES left value");
+            if (leftValue.IsError) { return leftValue; }
+            return Operand.Create(Math.Log(leftValue.NumberValue));
+        }
+        public Operand VisitLOG_fun([NotNull] mathParser.LOG_funContext context)
+        {
+            var arg = new List<Operand>();
+            foreach (var item in context.expr())
+            {
+                var a = this.Visit(item).ToNumber();
+                if (a.IsError) { return a; }
+                arg.Add(a);
+            }
+
+            if (arg.Count > 1)
+            {
+                return Operand.Create(Math.Log(arg[0].NumberValue, arg[1].NumberValue));
+            }
+            return Operand.Create(Math.Log(arg[0].NumberValue, 10));
+        }
+        public Operand VisitLOG10_fun([NotNull] mathParser.LOG10_funContext context)
+        {
+            var leftValue = this.Visit(context.expr()).ToNumber("DEGREES left value");
+            if (leftValue.IsError) { return leftValue; }
+            return Operand.Create(Math.Log(leftValue.NumberValue, 10));
+        }
+        public Operand VisitMULTINOMIAL_fun([NotNull] mathParser.MULTINOMIAL_funContext context)
+        {
+            var arg = new List<Operand>();
+            foreach (var item in context.expr())
+            {
+                var a = this.Visit(item);
+                arg.Add(a);
+            }
+
+            int sum = 0;
+            int n = 1;
+            foreach (var item in arg)
+            {
+                if (item.Type == OperandType.ARRARY)
+                {
+                    foreach (var it in item.ArrayValue)
+                    {
+                        var a = it.ToNumber();
+                        if (a.IsError) { return a; }
+                        n *= F_base_Factorial(a.IntValue);
+                        sum += a.IntValue;
+                    }
+                }
+                else
+                {
+                    var a = item.ToNumber();
+                    if (a.IsError) { return a; }
+                    n *= F_base_Factorial(a.IntValue);
+                    sum += a.IntValue;
+                }
+            }
+            var r = F_base_Factorial(sum) / n;
+            return Operand.Create(r);
+        }
+        public Operand VisitPRODUCT_fun([NotNull] mathParser.PRODUCT_funContext context)
+        {
+            var arg = new List<Operand>();
+            foreach (var item in context.expr())
+            {
+                var a = this.Visit(item);
+                arg.Add(a);
+            }
+            double d = 1;
+            for (int i = 0; i < arg.Count; i++)
+            {
+                var item = arg[i];
+                if (item.Type == OperandType.ARRARY)
+                {
+                    foreach (var it in item.ArrayValue)
+                    {
+                        var a = it.ToNumber();
+                        if (a.IsError) { return a; }
+                        d *= a.NumberValue;
+                    }
+                }
+                else
+                {
+                    var a = item.ToNumber();
+                    if (a.IsError) { return a; }
+                    d *= a.NumberValue;
+                }
+            }
+            return Operand.Create(d);
+        }
+        public Operand VisitSQRTPI_fun([NotNull] mathParser.SQRTPI_funContext context)
+        {
+            var leftValue = this.Visit(context.expr()).ToNumber("DEGREES left value");
+            if (leftValue.IsError) { return leftValue; }
+            return Operand.Create(Math.Sqrt(leftValue.NumberValue * Math.PI));
+        }
+        public Operand VisitSUMSQ_fun([NotNull] mathParser.SUMSQ_funContext context)
+        {
+            var arg = new List<Operand>();
+            foreach (var item in context.expr())
+            {
+                var a = this.Visit(item);
+                arg.Add(a);
+            }
+            double d = 1;
+            for (int i = 0; i < arg.Count; i++)
+            {
+                var item = arg[i];
+                if (item.Type == OperandType.ARRARY)
+                {
+                    foreach (var it in item.ArrayValue)
+                    {
+                        var a = it.ToNumber();
+                        if (a.IsError) { return a; }
+                        d += a.NumberValue * a.NumberValue;
+                    }
+                }
+                else
+                {
+                    var a = item.ToNumber();
+                    if (a.IsError) { return a; }
+                    d += a.NumberValue * a.NumberValue;
+                }
+            }
+
+            return Operand.Create(d);
+        }
+
+
+
+        private int F_base_Factorial(int a)
+        {
+            int r = 1;
+            for (int i = a; i > 0; i--)
+            {
+                r *= i;
+            }
+            return r;
+        }
         #endregion
 
         #endregion

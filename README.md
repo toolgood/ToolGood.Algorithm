@@ -227,7 +227,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
         <td>atanh(1) <br>>>0.549306144334</td>
     </tr>
     <tr>
-        <td>atan2</td><td>atan2(数值)<br>从X和Y坐标返回反正切</td>
+        <td>atan2</td><td>atan2(数值,数值)<br>从X和Y坐标返回反正切</td>
         <td>atan2(1,2) <br>>>1.10714871779</td>
     </tr>
     <tr>
