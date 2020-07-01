@@ -17,7 +17,7 @@ namespace ToolGood.Algorithm
         public abstract OperandType Type { get; }
 
         public abstract double NumberValue { get; }
-        public abstract double IntValue { get; }
+        public abstract int IntValue { get; }
         public abstract string StringValue { get; }
         public abstract bool BooleanValue { get; }
         public abstract Date DateValue { get; }
@@ -148,7 +148,7 @@ namespace ToolGood.Algorithm
         public override bool IsError => false;
         public override string ErrorMsg => null;
         public override double NumberValue => throw new NotImplementedException();
-        public override double IntValue => throw new NotImplementedException();
+        public override int IntValue => throw new NotImplementedException();
         public override string StringValue => throw new NotImplementedException();
         public override bool BooleanValue => throw new NotImplementedException();
         public override List<Operand> ArrayValue => throw new NotImplementedException();
@@ -165,7 +165,7 @@ namespace ToolGood.Algorithm
     {
         public OperandNumber(double obj) : base(obj) { }
         public override OperandType Type => OperandType.NUMBER;
-        public override double IntValue => (int) Value;
+        public override int IntValue => (int) Value;
         public override double NumberValue => Value;
     }
     public class OperandBoolean : Operand<bool>
@@ -210,7 +210,7 @@ namespace ToolGood.Algorithm
         public override List<Operand> ArrayValue => throw new NotImplementedException();
         internal override JsonData JsonValue => throw new NotImplementedException();
         public override Date DateValue => throw new NotImplementedException();
-        public override double IntValue => throw new NotImplementedException();
+        public override int IntValue => throw new NotImplementedException();
 
         public OperandError(string msg)
         {

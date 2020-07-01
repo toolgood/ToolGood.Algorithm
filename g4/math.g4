@@ -28,6 +28,7 @@ expr: expr op=('*'|'/'|'%') expr                        # MulDiv_fun
     | SIGN '(' expr ')' # SIGN_fun 
     | SQRT '(' expr ')' # SQRT_fun 
     | TRUNC '(' expr ')'    # TRUNC_fun 
+    | INT '(' expr ')'    # INT_fun 
     | GCD '(' expr (',' expr )+ ')' # GCD_fun 
     | LCM '(' expr (',' expr )+ ')' # LCM_fun 
     | COMBIN '(' expr ',' expr ')'  # COMBIN_fun 
@@ -46,7 +47,7 @@ expr: expr op=('*'|'/'|'%') expr                        # MulDiv_fun
     | ASINH '(' expr ')'  # ASINH_fun 
     | ATAN '(' expr ')'  # ATAN_fun 
     | ATANH '(' expr ')'  # ATANH_fun 
-    | ATAN2 '(' expr ')'  # ATAN2_fun 
+    | ATAN2 '(' expr ',' expr ')'  # ATAN2_fun 
     | ROUND '(' expr ',' expr ')'  # ROUND_fun 
     | ROUNDDOWN '(' expr ',' expr ')'  # ROUNDDOWN_fun 
     | ROUNDUP '(' expr ',' expr ')'  # ROUNDUP_fun 

@@ -332,6 +332,13 @@ public interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitCRC8_fun([NotNull] mathParser.CRC8_funContext context);
 	/// <summary>
+	/// Visit a parse tree produced by the <c>INT_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitINT_fun([NotNull] mathParser.INT_funContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>SUMIF_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// </summary>
