@@ -108,13 +108,6 @@ public interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitFINV_fun([NotNull] mathParser.FINV_funContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>ISMATCH_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitISMATCH_fun([NotNull] mathParser.ISMATCH_funContext context);
-	/// <summary>
 	/// Visit a parse tree produced by the <c>NOT_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// </summary>
@@ -542,13 +535,6 @@ public interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitLEN_fun([NotNull] mathParser.LEN_funContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>RTRIM_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitRTRIM_fun([NotNull] mathParser.RTRIM_funContext context);
-	/// <summary>
 	/// Visit a parse tree produced by the <c>ACOS_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// </summary>
@@ -569,13 +555,6 @@ public interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitNUM_fun([NotNull] mathParser.NUM_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>LTRIM_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitLTRIM_fun([NotNull] mathParser.LTRIM_funContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>COSH_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.

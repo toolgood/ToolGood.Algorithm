@@ -175,8 +175,7 @@ expr: expr op=('*'|'/'|'%') expr                        # MulDiv_fun
     | TEXTTOBASE64URL '(' expr (',' expr)? ')'  # TEXTTOBASE64URL_fun 
     | REGEX '(' expr ',' expr (',' expr (',' expr)?)? ')'  # REGEX_fun 
     | REGEXREPALCE '(' expr ',' expr ',' expr ')'  # REGEXREPALCE_fun 
-    | ISREGEX '(' expr ',' expr ')'  # ISREGEX_fun 
-    | ISMATCH '(' expr ',' expr ')'  # ISMATCH_fun 
+    | (ISREGEX | ISMATCH) '(' expr ',' expr ')'  # ISREGEX_fun 
     | GUID '(' ')'  # GUID_fun 
     | MD5 '(' expr (',' expr)? ')'  # MD5_fun 
     | SHA1 '(' expr (',' expr)? ')'  # SHA1_fun 
@@ -189,10 +188,8 @@ expr: expr op=('*'|'/'|'%') expr                        # MulDiv_fun
     | HMACSHA1 '(' expr ',' expr (',' expr)? ')'  # HMACSHA1_fun 
     | HMACSHA256 '(' expr ',' expr (',' expr)? ')'  # HMACSHA256_fun 
     | HMACSHA512 '(' expr ',' expr (',' expr)? ')'  # HMACSHA512_fun 
-    | TRIMSTART '(' expr ')'  # TRIMSTART_fun 
-    | LTRIM '(' expr (',' expr)? ')'  # LTRIM_fun 
-    | TRIMEND '(' expr ')'  # TRIMEND_fun 
-    | RTRIM '(' expr (',' expr)? ')'  # RTRIM_fun 
+    | (TRIMSTART | LTRIM) '(' expr (',' expr)? ')'  # TRIMSTART_fun 
+    | (TRIMEND | RTRIM) '(' expr (',' expr)? ')'  # TRIMEND_fun 
     | INDEXOF '(' expr ',' expr (',' expr (',' expr)?)? ')'  # INDEXOF_fun 
     | LASTINDEXOF '(' expr ',' expr (',' expr (',' expr)?)? ')'  # LASTINDEXOF_fun 
     | SPLIT '(' expr ',' expr (',' expr)? ')'  # SPLIT_fun 

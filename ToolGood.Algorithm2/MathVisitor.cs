@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Web;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
 using ToolGood.Algorithm.MathNet.Numerics;
@@ -1075,7 +1076,7 @@ namespace ToolGood.Algorithm
             if (firstValue.IsError) { return firstValue; }
 
             var t = firstValue.StringValue;
-            t = System.Text.RegularExpressions.Regex.Replace(t, @"[\f\n\r\t\v]", "");
+            t = Regex.Replace(t, @"[\f\n\r\t\v]", "");
             return Operand.Create(t);
         }
         public Operand VisitCODE_fun([NotNull] mathParser.CODE_funContext context)
@@ -1427,8 +1428,8 @@ namespace ToolGood.Algorithm
         private string F_base_ToChineseRMB(double x)
         {
             string s = x.ToString("#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A");
-            string d = System.Text.RegularExpressions.Regex.Replace(s, @"((?<=-|^)[^1-9]*)|((?'z'0)[0A-E]*((?=[1-9])|(?'-z'(?=[F-L\.]|$))))|((?'b'[F-L])(?'z'0)[0A-L]*((?=[1-9])|(?'-z'(?=[\.]|$))))", "${b}${z}");
-            return System.Text.RegularExpressions.Regex.Replace(d, ".", m => "负元空零壹贰叁肆伍陆柒捌玖空空空空空空空分角拾佰仟万亿兆京垓秭穰"[m.Value[0] - '-'].ToString());
+            string d = Regex.Replace(s, @"((?<=-|^)[^1-9]*)|((?'z'0)[0A-E]*((?=[1-9])|(?'-z'(?=[F-L\.]|$))))|((?'b'[F-L])(?'z'0)[0A-L]*((?=[1-9])|(?'-z'(?=[\.]|$))))", "${b}${z}");
+            return Regex.Replace(d, ".", m => "负元空零壹贰叁肆伍陆柒捌玖空空空空空空空分角拾佰仟万亿兆京垓秭穰"[m.Value[0] - '-'].ToString());
         }
         #endregion
 
@@ -2376,119 +2377,367 @@ namespace ToolGood.Algorithm
 
         public Operand VisitURLENCODE_fun([NotNull] mathParser.URLENCODE_funContext context)
         {
-            throw new NotImplementedException();
+            var firstValue = this.Visit(context.expr()).ToString("");
+            if (firstValue.IsError) { return firstValue; }
+
+            return Operand.Create(HttpUtility.UrlEncode(firstValue.StringValue));
         }
         public Operand VisitURLDECODE_fun([NotNull] mathParser.URLDECODE_funContext context)
         {
-            throw new NotImplementedException();
+            var firstValue = this.Visit(context.expr()).ToString("");
+            if (firstValue.IsError) { return firstValue; }
+
+            return Operand.Create(HttpUtility.UrlDecode(firstValue.StringValue));
         }
         public Operand VisitHTMLENCODE_fun([NotNull] mathParser.HTMLENCODE_funContext context)
         {
-            throw new NotImplementedException();
+            var firstValue = this.Visit(context.expr()).ToString("");
+            if (firstValue.IsError) { return firstValue; }
+
+            return Operand.Create(HttpUtility.HtmlEncode(firstValue.StringValue));
         }
         public Operand VisitHTMLDECODE_fun([NotNull] mathParser.HTMLDECODE_funContext context)
         {
-            throw new NotImplementedException();
+            var firstValue = this.Visit(context.expr()).ToString("");
+            if (firstValue.IsError) { return firstValue; }
+
+            return Operand.Create(HttpUtility.HtmlDecode(firstValue.StringValue));
         }
         public Operand VisitBASE64TOTEXT_fun([NotNull] mathParser.BASE64TOTEXT_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } arg.Add(a); }
+
+            var text = arg[0].StringValue;
+            var bytes = Base64.FromBase64String(text);
+            Encoding encoding;
+            if (arg.Count == 1) {
+                encoding = Encoding.UTF8;
+            } else {
+                encoding = Encoding.GetEncoding(arg[1].StringValue);
+            }
+            var t = encoding.GetString(bytes);
+            return Operand.Create(t);
         }
         public Operand VisitBASE64URLTOTEXT_fun([NotNull] mathParser.BASE64URLTOTEXT_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } arg.Add(a); }
+
+            var text = arg[0].StringValue;
+            var bytes = Base64.FromBase64ForUrlString(text);
+            Encoding encoding;
+            if (arg.Count == 1) {
+                encoding = Encoding.UTF8;
+            } else {
+                encoding = Encoding.GetEncoding(arg[1].StringValue);
+            }
+            var t = encoding.GetString(bytes);
+            return Operand.Create(t);
         }
         public Operand VisitTEXTTOBASE64_fun([NotNull] mathParser.TEXTTOBASE64_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } arg.Add(a); }
+
+            var text = arg[0].StringValue;
+            Encoding encoding;
+            if (arg.Count == 1) {
+                encoding = Encoding.UTF8;
+            } else {
+                encoding = Encoding.GetEncoding(arg[1].StringValue);
+            }
+            var bytes = encoding.GetBytes(text);
+            var t = Base64.ToBase64String(bytes);
+            return Operand.Create(t);
         }
         public Operand VisitTEXTTOBASE64URL_fun([NotNull] mathParser.TEXTTOBASE64URL_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } arg.Add(a); }
+
+            var text = arg[0].StringValue;
+            Encoding encoding;
+            if (arg.Count == 1) {
+                encoding = Encoding.UTF8;
+            } else {
+                encoding = Encoding.GetEncoding(arg[1].StringValue);
+            }
+            var bytes = encoding.GetBytes(text);
+            var t = Base64.ToBase64ForUrlString(bytes);
+            return Operand.Create(t);
         }
         public Operand VisitREGEX_fun([NotNull] mathParser.REGEX_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            var firstValue = arg[0].ToString("");
+            if (firstValue.IsError) { return firstValue; }
+            var secondValue = arg[1].ToString("");
+            if (secondValue.IsError) { return secondValue; }
+
+            if (arg.Count == 2) {
+                var b = Regex.Match(arg[0].StringValue, arg[1].StringValue);
+                if (b.Success == false) {
+                    return ThrowError("Regex匹配失败");
+                }
+                return Operand.Create(b.Value);
+            } else if (arg.Count == 3) {
+                var ms = Regex.Matches(arg[0].StringValue, arg[1].StringValue);
+                if (ms.Count <= arg[2].IntValue - excelIndex) {
+                    return ThrowError("Regex匹配Index长度错误");
+                }
+                arg[2] = arg[2].ToNumber();
+                if (arg[2].IsError) { return arg[2]; }
+                return Operand.Create(ms[arg[2].IntValue - excelIndex].Value);
+
+            } else {
+                var ms = Regex.Matches(arg[0].StringValue, arg[1].StringValue);
+                if (ms.Count <= arg[2].IntValue + excelIndex) {
+                    return ThrowError("Regex匹配Index长度错误");
+                }
+                arg[2] = arg[2].ToNumber();
+                if (arg[2].IsError) { return arg[2]; }
+                arg[3] = arg[3].ToNumber();
+                if (arg[3].IsError) { return arg[3]; }
+                return Operand.Create(ms[arg[2].IntValue - excelIndex].Groups[arg[3].IntValue].Value);
+            }
         }
         public Operand VisitREGEXREPALCE_fun([NotNull] mathParser.REGEXREPALCE_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } arg.Add(a); }
+
+            var b = Regex.Replace(arg[0].StringValue, arg[1].StringValue, arg[2].StringValue);
+            return Operand.Create(b);
         }
         public Operand VisitISREGEX_fun([NotNull] mathParser.ISREGEX_funContext context)
         {
-            throw new NotImplementedException();
-        }
-        public Operand VisitISMATCH_fun([NotNull] mathParser.ISMATCH_funContext context)
-        {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } arg.Add(a); }
+
+
+            var b = System.Text.RegularExpressions.Regex.IsMatch(arg[0].StringValue, arg[1].StringValue);
+            return Operand.Create(b);
         }
         public Operand VisitGUID_fun([NotNull] mathParser.GUID_funContext context)
         {
-            throw new NotImplementedException();
+            return Operand.Create(System.Guid.NewGuid().ToString());
         }
         public Operand VisitMD5_fun([NotNull] mathParser.MD5_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } arg.Add(a); }
+
+            var text = arg[0].StringValue;
+            Encoding encoding;
+            if (arg.Count == 1) {
+                encoding = Encoding.UTF8;
+            } else {
+                encoding = Encoding.GetEncoding(arg[1].StringValue);
+            }
+            var t = Hash.GetMd5String(encoding.GetBytes(text));
+            return Operand.Create(t);
         }
         public Operand VisitSHA1_fun([NotNull] mathParser.SHA1_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } arg.Add(a); }
+
+            var text = arg[0].StringValue;
+            Encoding encoding;
+            if (arg.Count == 1) {
+                encoding = Encoding.UTF8;
+            } else {
+                encoding = Encoding.GetEncoding(arg[1].StringValue);
+            }
+            var t = Hash.GetSha1String(encoding.GetBytes(text));
+            return Operand.Create(t);
         }
         public Operand VisitSHA256_fun([NotNull] mathParser.SHA256_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } arg.Add(a); }
+
+            var text = arg[0].StringValue;
+            Encoding encoding;
+            if (arg.Count == 1) {
+                encoding = Encoding.UTF8;
+            } else {
+                encoding = Encoding.GetEncoding(arg[1].StringValue);
+            }
+            var t = Hash.GetSha256String(encoding.GetBytes(text));
+            return Operand.Create(t);
         }
         public Operand VisitSHA512_fun([NotNull] mathParser.SHA512_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } arg.Add(a); }
+
+            var text = arg[0].StringValue;
+            Encoding encoding;
+            if (arg.Count == 1) {
+                encoding = Encoding.UTF8;
+            } else {
+                encoding = Encoding.GetEncoding(arg[1].StringValue);
+            }
+            var t = Hash.GetSha512String(encoding.GetBytes(text));
+            return Operand.Create(t);
         }
         public Operand VisitCRC8_fun([NotNull] mathParser.CRC8_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } arg.Add(a); }
+
+            var text = arg[0].StringValue;
+            Encoding encoding;
+            if (arg.Count == 1) {
+                encoding = Encoding.UTF8;
+            } else {
+                encoding = Encoding.GetEncoding(arg[1].StringValue);
+            }
+            var t = Hash.GetCrc8String(encoding.GetBytes(text));
+            return Operand.Create(t);
         }
         public Operand VisitCRC16_fun([NotNull] mathParser.CRC16_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } arg.Add(a); }
+
+            var text = arg[0].StringValue;
+            Encoding encoding;
+            if (arg.Count == 1) {
+                encoding = Encoding.UTF8;
+            } else {
+                encoding = Encoding.GetEncoding(arg[1].StringValue);
+            }
+            var t = Hash.GetCrc16String(encoding.GetBytes(text));
+            return Operand.Create(t);
         }
         public Operand VisitCRC32_fun([NotNull] mathParser.CRC32_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } arg.Add(a); }
+
+            var text = arg[0].StringValue;
+            Encoding encoding;
+            if (arg.Count == 1) {
+                encoding = Encoding.UTF8;
+            } else {
+                encoding = Encoding.GetEncoding(arg[1].StringValue);
+            }
+            var t = Hash.GetCrc32String(encoding.GetBytes(text));
+            return Operand.Create(t);
         }
         public Operand VisitHMACMD5_fun([NotNull] mathParser.HMACMD5_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } arg.Add(a); }
+
+            var text = arg[0].StringValue;
+            Encoding encoding;
+            if (arg.Count == 2) {
+                encoding = Encoding.UTF8;
+            } else {
+                encoding = Encoding.GetEncoding(arg[2].StringValue);
+            }
+            var t = Hash.GetHmacMd5String(encoding.GetBytes(text), arg[1].StringValue);
+            return Operand.Create(t);
         }
         public Operand VisitHMACSHA1_fun([NotNull] mathParser.HMACSHA1_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } arg.Add(a); }
+
+            var text = arg[0].StringValue;
+            Encoding encoding;
+            if (arg.Count == 2) {
+                encoding = Encoding.UTF8;
+            } else {
+                encoding = Encoding.GetEncoding(arg[2].StringValue);
+            }
+            var t = Hash.GetHmacSha1String(encoding.GetBytes(text), arg[1].StringValue);
+            return Operand.Create(t);
         }
         public Operand VisitHMACSHA256_fun([NotNull] mathParser.HMACSHA256_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } arg.Add(a); }
+
+            var text = arg[0].StringValue;
+            Encoding encoding;
+            if (arg.Count == 2) {
+                encoding = Encoding.UTF8;
+            } else {
+                encoding = Encoding.GetEncoding(arg[2].StringValue);
+            }
+            var t = Hash.GetHmacSha256String(encoding.GetBytes(text), arg[1].StringValue);
+            return Operand.Create(t);
         }
         public Operand VisitHMACSHA512_fun([NotNull] mathParser.HMACSHA512_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } arg.Add(a); }
+
+            var text = arg[0].StringValue;
+            Encoding encoding;
+            if (arg.Count == 2) {
+                encoding = Encoding.UTF8;
+            } else {
+                encoding = Encoding.GetEncoding(arg[2].StringValue);
+            }
+            var t = Hash.GetHmacSha512String(encoding.GetBytes(text), arg[1].StringValue);
+            return Operand.Create(t);
         }
         public Operand VisitTRIMSTART_fun([NotNull] mathParser.TRIMSTART_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } arg.Add(a); }
+
+            var text = arg[0].StringValue;
+            if (arg.Count == 2) {
+
+                return Operand.Create(text.TrimStart(arg[1].StringValue.ToArray()));
+            }
+            return Operand.Create(text.TrimStart());
         }
-        public Operand VisitLTRIM_fun([NotNull] mathParser.LTRIM_funContext context)
-        {
-            throw new NotImplementedException();
-        }
+ 
         public Operand VisitTRIMEND_fun([NotNull] mathParser.TRIMEND_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } arg.Add(a); }
+
+            var text = arg[0].StringValue;
+            if (arg.Count == 2) {
+
+                return Operand.Create(text.TrimEnd(arg[1].StringValue.ToArray()));
+            }
+            return Operand.Create(text.TrimEnd());
         }
-        public Operand VisitRTRIM_fun([NotNull] mathParser.RTRIM_funContext context)
-        {
-            throw new NotImplementedException();
-        }
+ 
         public Operand VisitINDEXOF_fun([NotNull] mathParser.INDEXOF_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            arg[0] = arg[0].ToString();
+            if (arg[0].IsError) { return arg[0]; }
+            arg[1] = arg[1].ToString();
+            if (arg[1].IsError) { return arg[1]; }
+
+            var text = arg[0].StringValue;
+            if (arg.Count == 2) {
+                return Operand.Create(text.IndexOf(arg[1].StringValue) + excelIndex);
+            }
+            arg[2] = arg[2].ToString();
+            if (arg[2].IsError) { return arg[2]; }
+            if (arg.Count == 3) {
+
+                return Operand.Create(text.IndexOf(arg[1].StringValue, arg[2].IntValue) + excelIndex);
+            }
+            if (arg[3].IsError) { return arg[3]; }
+            return Operand.Create(text.IndexOf(arg[1].StringValue, arg[2].IntValue, arg[3].IntValue) + excelIndex);
         }
         public Operand VisitLASTINDEXOF_fun([NotNull] mathParser.LASTINDEXOF_funContext context)
         {
