@@ -10,11 +10,22 @@ namespace ToolGood.Algorithm
     public class AlgorithmEngine
     {
         /// <summary>
+        /// 使用EXCEL索引
+        /// </summary>
+        public bool UseExcelIndex { get; set; }
+        /// <summary>
         /// 最后一个错误
         /// </summary>
         public string LastError { get; private set; }
 
         private ProgContext ProgContext;
+
+        protected virtual Operand GetParameter(string parameter)
+        {
+            return Operand.Error($"{parameter}");
+        }
+
+
 
         /// <summary>
         /// 编译公式，默认
@@ -55,8 +66,13 @@ namespace ToolGood.Algorithm
                 throw new Exception("请编译公式！");
             }
             var visitor = new MathVisitor();
+            visitor.GetParameter += GetParameter;
+            visitor.excelIndex = UseExcelIndex ? 1 : 0;
             return visitor.Visit(ProgContext);
         }
+
+      
+
 
 
         #region TryEvaluate
@@ -73,7 +89,10 @@ namespace ToolGood.Algorithm
                         return def;
                     return obj.IntValue;
                 }
-                catch (Exception) { }
+                catch (Exception ex)
+                {
+                    LastError = ex.Message;
+                }
             }
             return def;
         }
@@ -90,7 +109,10 @@ namespace ToolGood.Algorithm
                         return def;
                     return obj.NumberValue;
                 }
-                catch (Exception) { }
+                catch (Exception ex)
+                {
+                    LastError = ex.Message;
+                }
             }
             return def;
         }
@@ -107,7 +129,10 @@ namespace ToolGood.Algorithm
                         return def;
                     return obj.StringValue;
                 }
-                catch (Exception) { }
+                catch (Exception ex)
+                {
+                    LastError = ex.Message;
+                }
             }
             return def;
         }
@@ -123,7 +148,10 @@ namespace ToolGood.Algorithm
                         return def;
                     return obj.BooleanValue;
                 }
-                catch (Exception) { }
+                catch (Exception ex)
+                {
+                    LastError = ex.Message;
+                }
             }
             return def;
         }
@@ -135,12 +163,14 @@ namespace ToolGood.Algorithm
                 try
                 {
                     var obj = Evaluate();
-                    obj = obj.ToBoolean();
+                    obj = obj.ToDate();
                     if (obj.IsError)
                         return def;
                     return (DateTime) obj.DateValue;
                 }
-                catch (Exception) { }
+                catch (Exception ex) {
+                    LastError = ex.Message;
+                }
             }
             return def;
         }
@@ -152,12 +182,15 @@ namespace ToolGood.Algorithm
                 try
                 {
                     var obj = Evaluate();
-                    obj = obj.ToBoolean();
+                    obj = obj.ToDate();
                     if (obj.IsError)
                         return def;
                     return (TimeSpan) obj.DateValue;
                 }
-                catch (Exception) { }
+                catch (Exception ex)
+                {
+                    LastError = ex.Message;
+                }
             }
             return def;
         }

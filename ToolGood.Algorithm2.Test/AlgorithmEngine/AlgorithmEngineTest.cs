@@ -125,7 +125,7 @@ namespace ToolGood.Algorithm
         }
 
 
-        [Test]
+        //[Test]
         public void Cylinder_Test()
         {
             Cylinder c = new Cylinder(3, 10);

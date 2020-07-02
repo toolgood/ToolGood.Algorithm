@@ -1074,6 +1074,13 @@ public interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitATAN_fun([NotNull] mathParser.ATAN_funContext context);
 	/// <summary>
+	/// Visit a parse tree produced by the <c>E_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitE_fun([NotNull] mathParser.E_funContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>TRIM_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// </summary>

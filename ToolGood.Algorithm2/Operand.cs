@@ -126,8 +126,8 @@ namespace ToolGood.Algorithm
             if (Type == OperandType.NUMBER) { return Create((Date) NumberValue); }
             if (Type == OperandType.STRING)
             {
-                if (DateTime.TryParse(StringValue, out DateTime d)) { return Create(new Date(d)); }
                 if (TimeSpan.TryParse(StringValue, out TimeSpan t)) { return Create(new Date(t)); }
+                if (DateTime.TryParse(StringValue, out DateTime d)) { return Create(new Date(d)); }
             }
             return Error(errorMessage);
         }

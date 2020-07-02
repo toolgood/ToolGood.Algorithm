@@ -33,20 +33,26 @@ namespace Antlr4.Runtime
             this.upper = upper;
         }
 
-        public int Index {
-            get {
+        public int Index
+        {
+            get
+            {
                 return stream.Index;
             }
         }
 
-        public int Size {
-            get {
+        public int Size
+        {
+            get
+            {
                 return stream.Size;
             }
         }
 
-        public string SourceName {
-            get {
+        public string SourceName
+        {
+            get
+            {
                 return stream.SourceName;
             }
         }
@@ -66,17 +72,21 @@ namespace Antlr4.Runtime
         {
             int c = stream.LA(i);
 
-            if (c <= 0) {
+            if (c <= 0)
+            {
                 return c;
             }
 
-            char o = (char)c;
+            char o = (char) c;
+            if (o == '（') { o = '('; }
+            if (o == '）') { o = ')'; }
 
-            if (upper) {
-                return (int)char.ToUpperInvariant(o);
+            if (upper)
+            {
+                return (int) char.ToUpperInvariant(o);
             }
 
-            return (int)char.ToLowerInvariant(o);
+            return (int) char.ToLowerInvariant(o);
         }
 
         public int Mark()

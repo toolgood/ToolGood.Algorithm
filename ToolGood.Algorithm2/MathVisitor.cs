@@ -67,7 +67,7 @@ namespace ToolGood.Algorithm
                 {
                     secondValue = secondValue.ToNumber();
                     if (secondValue.IsError) { return secondValue; }
-                    return Operand.Create((Date) (firstValue.DateValue * secondValue.ToNumber().NumberValue));
+                    return Operand.Create((Date) (firstValue.DateValue * secondValue.NumberValue));
                 }
 
                 if (secondValue.Type == OperandType.STRING)
@@ -79,7 +79,7 @@ namespace ToolGood.Algorithm
                 {
                     firstValue = firstValue.ToNumber();
                     if (firstValue.IsError) { return firstValue; }
-                    return Operand.Create((Date) (firstValue.ToNumber().NumberValue * secondValue.DateValue));
+                    return Operand.Create((Date) (secondValue.DateValue * firstValue.NumberValue));
                 }
 
                 firstValue = firstValue.ToNumber();
@@ -332,8 +332,9 @@ namespace ToolGood.Algorithm
 
         public Operand VisitNUM_fun([NotNull] mathParser.NUM_funContext context)
         {
+            var sub = context.SUB()?.GetText() ?? "";
             var t = context.NUM().GetText();
-            var d = double.Parse(t, CultureInfo.GetCultureInfo("en-US"));
+            var d = double.Parse(sub + t, CultureInfo.GetCultureInfo("en-US"));
             return Operand.Create(d);
         }
         public Operand VisitSTRING_fun([NotNull] mathParser.STRING_funContext context)
@@ -535,6 +536,11 @@ namespace ToolGood.Algorithm
         #region math
 
         #region base
+
+        public Operand VisitE_fun([NotNull] mathParser.E_funContext context)
+        {
+            return Operand.Create(Math.E);
+        }
         public Operand VisitPI_fun([NotNull] mathParser.PI_funContext context)
         {
             return Operand.Create(Math.PI);
@@ -3636,6 +3642,7 @@ namespace ToolGood.Algorithm
 
             throw new NotImplementedException();
         }
+
 
         #endregion
 

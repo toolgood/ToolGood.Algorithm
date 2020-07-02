@@ -16,21 +16,22 @@ namespace ToolGood.Algorithm
             _height = height;
         }
 
-        protected override Operand GetParameter(Operand curOpd)
+        protected override Operand GetParameter(string parameter)
         {
-            if (curOpd.Parameter == "[半径]")
+            if (parameter == "[半径]")
             {
                 return Operand.Create(_radius);
             }
-            if (curOpd.Parameter == "[直径]")
+            if (parameter == "[直径]")
             {
                 return Operand.Create(_radius * 2);
             }
-            if (curOpd.Parameter == "[高]")
+            if (parameter == "[高]")
             {
                 return Operand.Create(_height);
             }
-            return base.GetParameter(curOpd);
+            return base.GetParameter(parameter);
         }
+
     }
 }

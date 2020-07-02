@@ -6,7 +6,7 @@ using PetaTest;
 
 namespace ToolGood.Algorithm
 {
-    [TestFixture]
+    //[TestFixture]
     class AlgorithmEngineTest_flow
     {
         [Test]

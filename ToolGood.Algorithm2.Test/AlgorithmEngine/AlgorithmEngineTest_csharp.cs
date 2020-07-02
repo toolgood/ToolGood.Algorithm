@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Test
 {
-    [TestFixture]
+    //[TestFixture]
     partial class AlgorithmEngineTest_csharp
     {
 
