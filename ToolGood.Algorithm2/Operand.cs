@@ -105,6 +105,8 @@ namespace ToolGood.Algorithm
             {
                 if (StringValue.Equals("true", StringComparison.OrdinalIgnoreCase)) { return Create(true); }
                 if (StringValue.Equals("false", StringComparison.OrdinalIgnoreCase)) { return Create(false); }
+                if (StringValue.Equals("1", StringComparison.OrdinalIgnoreCase)) { return Create(true); }
+                if (StringValue.Equals("0", StringComparison.OrdinalIgnoreCase)) { return Create(false); }
             }
             return Error(errorMessage);
         }

@@ -382,15 +382,11 @@ namespace ToolGood.Algorithm
         public Operand VisitIFERROR_fun([NotNull] mathParser.IFERROR_funContext context)
         {
             var arg = new List<Operand>();
-            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+            foreach (var item in context.expr()) { var a = this.Visit(item); arg.Add(a); }
 
             if (arg[0].IsError)
             {
-                if (arg.Count > 1)
-                {
-                    return arg[1];
-                }
-                return Operand.True;
+                return arg[1];
             }
             if (arg.Count == 3)
             {
@@ -406,14 +402,7 @@ namespace ToolGood.Algorithm
 
             if (arg[0].Type == OperandType.NUMBER)
             {
-                return Operand.True;
-            }
-            else if (arg[0].Type == OperandType.STRING)
-            {
-                if (double.TryParse(arg[0].StringValue, NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out _))
-                {
-                    return Operand.True;
-                }
+                return arg[1];
             }
             if (arg.Count == 3)
             {
@@ -445,13 +434,6 @@ namespace ToolGood.Algorithm
             if (firstValue.Type == OperandType.NUMBER)
             {
                 return Operand.True;
-            }
-            else if (firstValue.Type == OperandType.STRING)
-            {
-                if (double.TryParse(firstValue.StringValue, NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out _))
-                {
-                    return Operand.True;
-                }
             }
             return Operand.False;
         }

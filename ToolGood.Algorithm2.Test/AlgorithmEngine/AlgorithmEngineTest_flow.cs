@@ -6,7 +6,7 @@ using PetaTest;
 
 namespace ToolGood.Algorithm
 {
-    //[TestFixture]
+    [TestFixture]
     class AlgorithmEngineTest_flow
     {
         [Test]
@@ -46,11 +46,12 @@ namespace ToolGood.Algorithm
 
             t = engine.TryEvaluate("IFNUMBER('e',1,2)", 0);
             Assert.AreEqual(2, t);
+
             t = engine.TryEvaluate("IFNUMBER('11',1,2)", 0);
             Assert.AreEqual(2, t);
 
             t = engine.TryEvaluate("IFNUMBER('2016-1-2',1,2)", 0);
-            Assert.AreEqual(1, t);
+            Assert.AreEqual(2, t);
         }
 
         [Test]
@@ -82,7 +83,7 @@ namespace ToolGood.Algorithm
             Assert.AreEqual(2, t);
 
             t = engine.TryEvaluate("if(ISNUMBER('2016-1-2'),1,2)", 0);
-            Assert.AreEqual(1, t);
+            Assert.AreEqual(2, t);
         }
 
         [Test]
