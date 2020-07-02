@@ -71,31 +71,55 @@ expr: expr op=('*'|'/'|'%') expr                        # MulDiv_fun
     | SUMSQ '(' expr (',' expr )* ')'  # SUMSQ_fun 
 
     | ASC '(' expr ')'  # ASC_fun 
+    | expr '.' ASC '(' ')'  # ASC_fun 
     | (JIS | WIDECHAR) '(' expr ')'  # JIS_fun 
+    | expr '.' (JIS | WIDECHAR) '(' ')'  # JIS_fun 
     | CHAR '(' expr ')'  # CHAR_fun 
+    | expr '.' CHAR '(' ')'  # CHAR_fun 
     | CLEAN '(' expr ')'  # CLEAN_fun 
+    | expr '.' CLEAN '(' ')'  # CLEAN_fun 
     | CODE '(' expr ')'  # CODE_fun 
+    | expr '.' CODE '(' ')'  # CODE_fun 
     | CONCATENATE '(' expr (',' expr )* ')'  # CONCATENATE_fun 
+    | expr '.' CONCATENATE '(' (expr (',' expr )*)? ')'  # CONCATENATE_fun 
     | EXACT '(' expr ',' expr ')'  # EXACT_fun 
+    | expr '.' EXACT '(' expr ')'  # EXACT_fun 
     | FIND '(' expr ',' expr (',' expr)? ')'  # FIND_fun 
+    | expr '.' FIND '(' expr (',' expr)? ')'  # FIND_fun 
     | FIXED '(' expr (',' expr (',' expr)?)? ')'  # FIXED_fun 
+    | expr '.' FIXED '(' (expr (',' expr)?)? ')'  # FIXED_fun 
     | LEFT '(' expr (',' expr )? ')'  # LEFT_fun 
+    | expr '.' LEFT '(' expr? ')'  # LEFT_fun 
     | LEN '(' expr ')'  # LEN_fun 
+    | expr '.' LEN '(' ')'  # LEN_fun 
     | LOWER '(' expr ')'  # LOWER_fun 
+    | expr '.' LOWER '(' ')'  # LOWER_fun 
     | MID '(' expr ',' expr ',' expr ')'  # MID_fun 
+    | expr '.' MID '(' expr ',' expr ')'  # MID_fun 
     | PROPER '(' expr ')'  # PROPER_fun 
-    | REPLACE '(' expr ',' expr ',' expr ',' expr ')'  # REPLACE_fun 
-    | REPLACE '(' expr ',' expr ',' expr ')'  # REPLACE_fun 
+    | expr '.' PROPER '(' ')'  # PROPER_fun 
+    | REPLACE '(' expr ',' expr ',' expr (',' expr)? ')'  # REPLACE_fun 
+    | expr '.' REPLACE '(' expr ',' expr (',' expr)? ')'  # REPLACE_fun 
     | REPT '(' expr ',' expr ')'  # REPT_fun 
+    | expr '.' REPT '(' expr ')'  # REPT_fun 
     | RIGHT '(' expr (',' expr)? ')'  # RIGHT_fun 
+    | expr '.' RIGHT '(' expr? ')'  # RIGHT_fun 
     | RMB '(' expr ')'  # RMB_fun 
+    | expr '.' RMB '(' ')'  # RMB_fun 
     | SEARCH '(' expr ',' expr (',' expr)? ')'  # SEARCH_fun 
+    | expr '.' SEARCH '(' expr (',' expr)? ')'  # SEARCH_fun 
     | SUBSTITUTE '(' expr ',' expr ',' expr (',' expr)? ')'  # SUBSTITUTE_fun 
+    | expr '.' SUBSTITUTE '(' expr ',' expr (',' expr)? ')'  # SUBSTITUTE_fun 
     | T '(' expr ')'  # T_fun 
+    | expr '.' T '(' ')'  # T_fun 
     | TEXT '(' expr ',' expr ')'  # TEXT_fun 
+    | expr '.' TEXT '(' expr ')'  # TEXT_fun 
     | TRIM '(' expr ')'  # TRIM_fun 
+    | expr '.' TRIM '(' ')'  # TRIM_fun 
     | UPPER '(' expr ')'  # UPPER_fun 
+    | expr '.' UPPER '(' ')'  # UPPER_fun 
     | VALUE '(' expr ')'  # VALUE_fun 
+    | expr '.' VALUE '(' ')'  # VALUE_fun 
 
     | DATEVALUE '(' expr ')'  # DATEVALUE_fun 
     | TIMEVALUE '(' expr ')'  # TIMEVALUE_fun 
@@ -166,44 +190,85 @@ expr: expr op=('*'|'/'|'%') expr                        # MulDiv_fun
     | WEIBULL '(' expr ',' expr ',' expr ')'  # WEIBULL_fun 
 
     | URLENCODE '(' expr ')'  # URLENCODE_fun 
+    | expr '.' URLENCODE '(' ')'  # URLENCODE_fun 
     | URLDECODE '(' expr ')'  # URLDECODE_fun 
+    | expr '.' URLDECODE '(' ')'  # URLDECODE_fun 
     | HTMLENCODE '(' expr ')'  # HTMLENCODE_fun 
+    | expr '.' HTMLENCODE '(' ')'  # HTMLENCODE_fun 
     | HTMLDECODE '(' expr ')'  # HTMLDECODE_fun 
+    | expr '.' HTMLDECODE '(' ')'  # HTMLDECODE_fun 
     | BASE64TOTEXT '(' expr (',' expr)? ')'  # BASE64TOTEXT_fun 
+    | expr '.' BASE64TOTEXT '(' expr? ')'  # BASE64TOTEXT_fun 
     | BASE64URLTOTEXT '(' expr (',' expr)? ')'  # BASE64URLTOTEXT_fun 
+    | expr '.' BASE64URLTOTEXT '(' expr? ')'  # BASE64URLTOTEXT_fun 
     | TEXTTOBASE64 '(' expr (',' expr)? ')'  # TEXTTOBASE64_fun 
+    | expr '.' TEXTTOBASE64 '(' expr? ')'  # TEXTTOBASE64_fun 
     | TEXTTOBASE64URL '(' expr (',' expr)? ')'  # TEXTTOBASE64URL_fun 
+    | expr '.' TEXTTOBASE64URL '(' expr? ')'  # TEXTTOBASE64URL_fun 
     | REGEX '(' expr ',' expr (',' expr (',' expr)?)? ')'  # REGEX_fun 
+    | expr '.' REGEX '(' expr (',' expr (',' expr)?)? ')'  # REGEX_fun 
     | REGEXREPALCE '(' expr ',' expr ',' expr ')'  # REGEXREPALCE_fun 
+    | expr '.' REGEXREPALCE '(' expr ',' expr ')'  # REGEXREPALCE_fun 
     | (ISREGEX | ISMATCH) '(' expr ',' expr ')'  # ISREGEX_fun 
+    | expr '.' (ISREGEX | ISMATCH) '(' expr ')'  # ISREGEX_fun 
     | GUID '(' ')'  # GUID_fun 
     | MD5 '(' expr (',' expr)? ')'  # MD5_fun 
+    | expr '.' MD5 '(' expr? ')'  # MD5_fun 
     | SHA1 '(' expr (',' expr)? ')'  # SHA1_fun 
+    | expr '.' SHA1 '(' expr? ')'  # SHA1_fun 
     | SHA256 '(' expr (',' expr)? ')'  # SHA256_fun 
+    | expr '.' SHA256 '(' expr? ')'  # SHA256_fun 
     | SHA512 '(' expr (',' expr)? ')'  # SHA512_fun 
+    | expr '.' SHA512 '(' expr? ')'  # SHA512_fun 
     | CRC8 '(' expr (',' expr)? ')'  # CRC8_fun 
+    | expr '.' CRC8 '(' expr? ')'  # CRC8_fun 
     | CRC16 '(' expr (',' expr)? ')'  # CRC16_fun 
+    | expr '.' CRC16 '(' expr? ')'  # CRC16_fun 
     | CRC32 '(' expr (',' expr)? ')'  # CRC32_fun 
+    | expr '.' CRC32 '(' expr? ')'  # CRC32_fun 
     | HMACMD5 '(' expr ',' expr (',' expr)? ')'  # HMACMD5_fun 
+    | expr '.' HMACMD5 '(' expr (',' expr)? ')'  # HMACMD5_fun 
     | HMACSHA1 '(' expr ',' expr (',' expr)? ')'  # HMACSHA1_fun 
+    | expr '.' HMACSHA1 '(' expr (',' expr)? ')'  # HMACSHA1_fun 
     | HMACSHA256 '(' expr ',' expr (',' expr)? ')'  # HMACSHA256_fun 
+    | expr '.' HMACSHA256 '(' expr (',' expr)? ')'  # HMACSHA256_fun 
     | HMACSHA512 '(' expr ',' expr (',' expr)? ')'  # HMACSHA512_fun 
+    | expr '.' HMACSHA512 '(' expr (',' expr)? ')'  # HMACSHA512_fun 
     | (TRIMSTART | LTRIM) '(' expr (',' expr)? ')'  # TRIMSTART_fun 
+    | expr '.' (TRIMSTART | LTRIM) '(' expr? ')'  # TRIMSTART_fun 
     | (TRIMEND | RTRIM) '(' expr (',' expr)? ')'  # TRIMEND_fun 
+    | expr '.' (TRIMEND | RTRIM) '(' expr? ')'  # TRIMEND_fun 
     | INDEXOF '(' expr ',' expr (',' expr (',' expr)?)? ')'  # INDEXOF_fun 
+    | expr '.' INDEXOF '(' expr (',' expr (',' expr)?)? ')'  # INDEXOF_fun 
     | LASTINDEXOF '(' expr ',' expr (',' expr (',' expr)?)? ')'  # LASTINDEXOF_fun 
+    | expr '.' LASTINDEXOF '(' expr (',' expr (',' expr)?)? ')'  # LASTINDEXOF_fun 
     | SPLIT '(' expr ',' expr (',' expr)? ')'  # SPLIT_fun 
+    | expr '.' SPLIT '(' expr (',' expr)? ')'  # SPLIT_fun 
     | JOIN '(' expr ',' expr ')'  # JOIN_fun 
+    | expr '.' JOIN '(' expr ')'  # JOIN_fun 
     | SUBSTRING '(' expr ',' expr (',' expr)? ')'  # SUBSTRING_fun 
+    | expr '.' SUBSTRING '(' expr (',' expr)? ')'  # SUBSTRING_fun 
     | STARTSWITH '(' expr ',' expr (',' expr)? ')'  # STARTSWITH_fun 
+    | expr '.' STARTSWITH '(' expr (',' expr)? ')'  # STARTSWITH_fun 
     | ENDSWITH '(' expr ',' expr (',' expr)? ')'  # ENDSWITH_fun 
+    | expr '.' ENDSWITH '(' expr (',' expr)? ')'  # ENDSWITH_fun 
     | ISNULLOREMPTY '(' expr ')'  # ISNULLOREMPTY_fun 
+    | expr '.' ISNULLOREMPTY '(' ')'  # ISNULLOREMPTY_fun 
     | ISNULLORWHITESPACE '(' expr ')'  # ISNULLORWHITESPACE_fun 
+    | expr '.' ISNULLORWHITESPACE '(' ')'  # ISNULLORWHITESPACE_fun 
     | TOUPPER '(' expr ')'  # TOUPPER_fun 
+    | expr '.' TOUPPER '(' ')'  # TOUPPER_fun 
     | TOLOWER '(' expr ')'  # TOLOWER_fun 
+    | expr '.' TOLOWER '(' ')'  # TOLOWER_fun 
     | REMOVESTART '(' expr ',' expr ')'  # REMOVESTART_fun 
+    | expr '.' REMOVESTART '(' expr ')'  # REMOVESTART_fun 
     | REMOVEEND '(' expr ',' expr ')'  # REMOVEEND_fun 
+    | expr '.' REMOVEEND '(' expr ')'  # REMOVEEND_fun 
+
+    
     | JSON '(' expr ')'  # JSON_fun 
+    | expr '.' JSON '(' ')'  # JSON_fun 
+
     | expr '[' parameter ']'  # GetJsonValue_fun
     | NUM         # NUM_fun
     | STRING  # STRING_fun

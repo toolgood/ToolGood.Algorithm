@@ -10,7 +10,7 @@ namespace ToolGood.Algorithm2.Test
             AlgorithmEngine engine = new AlgorithmEngine();
 
             //string input = @"1 + (2 - 3) * 4";
-            string input = @"'abcd' & '123'";
+            string input = @"'abcd'.md5()";
 
             var b = engine.Parse(input);
 
