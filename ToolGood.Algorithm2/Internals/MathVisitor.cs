@@ -1343,8 +1343,8 @@ namespace ToolGood.Algorithm
             if (args.Count == 3) {
                 return Operand.Create(args[0].StringValue.Replace(args[1].StringValue, args[2].StringValue));
             }
-
             args[3] = args[3].ToNumber();
+            if (args[3].IsError) { return args[3]; }
 
             string text = args[0].StringValue;
             string oldtext = args[1].StringValue;
@@ -1381,7 +1381,7 @@ namespace ToolGood.Algorithm
             if (firstValue.Type == OperandType.STRING) {
                 return firstValue;
             }
-            return Operand.Error("");
+            return Operand.Create("");
         }
         public Operand VisitTEXT_fun([NotNull] mathParser.TEXT_funContext context)
         {
@@ -1393,18 +1393,16 @@ namespace ToolGood.Algorithm
             var secondValue = args[1].ToString("MID left value");
             if (secondValue.IsError) { return secondValue; }
 
-            var f = secondValue.StringValue;
-            var a = firstValue;
-            if (a.Type == OperandType.STRING) {
-                return a;
-            } else if (a.Type == OperandType.BOOLEAN) {
-                return Operand.Create(a.BooleanValue.ToString());
-            } else if (a.Type == OperandType.NUMBER) {
-                return Operand.Create(a.NumberValue.ToString(f));
-            } else if (a.Type == OperandType.DATE) {
-                return Operand.Create(a.DateValue.ToString(f));
+            if (firstValue.Type == OperandType.STRING) {
+                return firstValue;
+            } else if (firstValue.Type == OperandType.BOOLEAN) {
+                return Operand.Create(firstValue.BooleanValue.ToString());
+            } else if (firstValue.Type == OperandType.NUMBER) {
+                return Operand.Create(firstValue.NumberValue.ToString(secondValue.StringValue));
+            } else if (firstValue.Type == OperandType.DATE) {
+                return Operand.Create(firstValue.DateValue.ToString(secondValue.StringValue));
             }
-            return Operand.Create(a.StringValue.ToString());
+            return Operand.Create(firstValue.StringValue.ToString());
         }
         public Operand VisitTRIM_fun([NotNull] mathParser.TRIM_funContext context)
         {
@@ -2633,15 +2631,13 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } args.Add(a); }
 
-            var text = args[0].StringValue;
-            var bytes = Base64.FromBase64String(text);
             Encoding encoding;
             if (args.Count == 1) {
                 encoding = Encoding.UTF8;
             } else {
                 encoding = Encoding.GetEncoding(args[1].StringValue);
             }
-            var t = encoding.GetString(bytes);
+            var t = encoding.GetString(Base64.FromBase64String(args[0].StringValue));
             return Operand.Create(t);
         }
         public Operand VisitBASE64URLTOTEXT_fun([NotNull] mathParser.BASE64URLTOTEXT_funContext context)
@@ -2649,15 +2645,13 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } args.Add(a); }
 
-            var text = args[0].StringValue;
-            var bytes = Base64.FromBase64ForUrlString(text);
             Encoding encoding;
             if (args.Count == 1) {
                 encoding = Encoding.UTF8;
             } else {
                 encoding = Encoding.GetEncoding(args[1].StringValue);
             }
-            var t = encoding.GetString(bytes);
+            var t = encoding.GetString(Base64.FromBase64ForUrlString(args[0].StringValue));
             return Operand.Create(t);
         }
         public Operand VisitTEXTTOBASE64_fun([NotNull] mathParser.TEXTTOBASE64_funContext context)
@@ -2665,14 +2659,13 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } args.Add(a); }
 
-            var text = args[0].StringValue;
             Encoding encoding;
             if (args.Count == 1) {
                 encoding = Encoding.UTF8;
             } else {
                 encoding = Encoding.GetEncoding(args[1].StringValue);
             }
-            var bytes = encoding.GetBytes(text);
+            var bytes = encoding.GetBytes(args[0].StringValue);
             var t = Base64.ToBase64String(bytes);
             return Operand.Create(t);
         }
@@ -2681,14 +2674,13 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } args.Add(a); }
 
-            var text = args[0].StringValue;
             Encoding encoding;
             if (args.Count == 1) {
                 encoding = Encoding.UTF8;
             } else {
                 encoding = Encoding.GetEncoding(args[1].StringValue);
             }
-            var bytes = encoding.GetBytes(text);
+            var bytes = encoding.GetBytes(args[0].StringValue);
             var t = Base64.ToBase64ForUrlString(bytes);
             return Operand.Create(t);
         }
@@ -2743,7 +2735,7 @@ namespace ToolGood.Algorithm
             foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } args.Add(a); }
 
 
-            var b = System.Text.RegularExpressions.Regex.IsMatch(args[0].StringValue, args[1].StringValue);
+            var b = Regex.IsMatch(args[0].StringValue, args[1].StringValue);
             return Operand.Create(b);
         }
         public Operand VisitGUID_fun([NotNull] mathParser.GUID_funContext context)
@@ -2755,14 +2747,13 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } args.Add(a); }
 
-            var text = args[0].StringValue;
             Encoding encoding;
             if (args.Count == 1) {
                 encoding = Encoding.UTF8;
             } else {
                 encoding = Encoding.GetEncoding(args[1].StringValue);
             }
-            var t = Hash.GetMd5String(encoding.GetBytes(text));
+            var t = Hash.GetMd5String(encoding.GetBytes(args[0].StringValue));
             return Operand.Create(t);
         }
         public Operand VisitSHA1_fun([NotNull] mathParser.SHA1_funContext context)
@@ -2770,14 +2761,13 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } args.Add(a); }
 
-            var text = args[0].StringValue;
             Encoding encoding;
             if (args.Count == 1) {
                 encoding = Encoding.UTF8;
             } else {
                 encoding = Encoding.GetEncoding(args[1].StringValue);
             }
-            var t = Hash.GetSha1String(encoding.GetBytes(text));
+            var t = Hash.GetSha1String(encoding.GetBytes(args[0].StringValue));
             return Operand.Create(t);
         }
         public Operand VisitSHA256_fun([NotNull] mathParser.SHA256_funContext context)
@@ -2785,14 +2775,13 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } args.Add(a); }
 
-            var text = args[0].StringValue;
             Encoding encoding;
             if (args.Count == 1) {
                 encoding = Encoding.UTF8;
             } else {
                 encoding = Encoding.GetEncoding(args[1].StringValue);
             }
-            var t = Hash.GetSha256String(encoding.GetBytes(text));
+            var t = Hash.GetSha256String(encoding.GetBytes(args[0].StringValue));
             return Operand.Create(t);
         }
         public Operand VisitSHA512_fun([NotNull] mathParser.SHA512_funContext context)
@@ -2800,14 +2789,13 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } args.Add(a); }
 
-            var text = args[0].StringValue;
             Encoding encoding;
             if (args.Count == 1) {
                 encoding = Encoding.UTF8;
             } else {
                 encoding = Encoding.GetEncoding(args[1].StringValue);
             }
-            var t = Hash.GetSha512String(encoding.GetBytes(text));
+            var t = Hash.GetSha512String(encoding.GetBytes(args[0].StringValue));
             return Operand.Create(t);
         }
         public Operand VisitCRC8_fun([NotNull] mathParser.CRC8_funContext context)
@@ -2815,14 +2803,13 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } args.Add(a); }
 
-            var text = args[0].StringValue;
             Encoding encoding;
             if (args.Count == 1) {
                 encoding = Encoding.UTF8;
             } else {
                 encoding = Encoding.GetEncoding(args[1].StringValue);
             }
-            var t = Hash.GetCrc8String(encoding.GetBytes(text));
+            var t = Hash.GetCrc8String(encoding.GetBytes(args[0].StringValue));
             return Operand.Create(t);
         }
         public Operand VisitCRC16_fun([NotNull] mathParser.CRC16_funContext context)
@@ -2830,14 +2817,13 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } args.Add(a); }
 
-            var text = args[0].StringValue;
             Encoding encoding;
             if (args.Count == 1) {
                 encoding = Encoding.UTF8;
             } else {
                 encoding = Encoding.GetEncoding(args[1].StringValue);
             }
-            var t = Hash.GetCrc16String(encoding.GetBytes(text));
+            var t = Hash.GetCrc16String(encoding.GetBytes(args[0].StringValue));
             return Operand.Create(t);
         }
         public Operand VisitCRC32_fun([NotNull] mathParser.CRC32_funContext context)
@@ -2845,14 +2831,13 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } args.Add(a); }
 
-            var text = args[0].StringValue;
             Encoding encoding;
             if (args.Count == 1) {
                 encoding = Encoding.UTF8;
             } else {
                 encoding = Encoding.GetEncoding(args[1].StringValue);
             }
-            var t = Hash.GetCrc32String(encoding.GetBytes(text));
+            var t = Hash.GetCrc32String(encoding.GetBytes(args[0].StringValue));
             return Operand.Create(t);
         }
         public Operand VisitHMACMD5_fun([NotNull] mathParser.HMACMD5_funContext context)
@@ -2860,14 +2845,13 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } args.Add(a); }
 
-            var text = args[0].StringValue;
             Encoding encoding;
             if (args.Count == 2) {
                 encoding = Encoding.UTF8;
             } else {
                 encoding = Encoding.GetEncoding(args[2].StringValue);
             }
-            var t = Hash.GetHmacMd5String(encoding.GetBytes(text), args[1].StringValue);
+            var t = Hash.GetHmacMd5String(encoding.GetBytes(args[0].StringValue), args[1].StringValue);
             return Operand.Create(t);
         }
         public Operand VisitHMACSHA1_fun([NotNull] mathParser.HMACSHA1_funContext context)
@@ -2875,14 +2859,13 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } args.Add(a); }
 
-            var text = args[0].StringValue;
             Encoding encoding;
             if (args.Count == 2) {
                 encoding = Encoding.UTF8;
             } else {
                 encoding = Encoding.GetEncoding(args[2].StringValue);
             }
-            var t = Hash.GetHmacSha1String(encoding.GetBytes(text), args[1].StringValue);
+            var t = Hash.GetHmacSha1String(encoding.GetBytes(args[0].StringValue), args[1].StringValue);
             return Operand.Create(t);
         }
         public Operand VisitHMACSHA256_fun([NotNull] mathParser.HMACSHA256_funContext context)
@@ -2890,14 +2873,13 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } args.Add(a); }
 
-            var text = args[0].StringValue;
             Encoding encoding;
             if (args.Count == 2) {
                 encoding = Encoding.UTF8;
             } else {
                 encoding = Encoding.GetEncoding(args[2].StringValue);
             }
-            var t = Hash.GetHmacSha256String(encoding.GetBytes(text), args[1].StringValue);
+            var t = Hash.GetHmacSha256String(encoding.GetBytes(args[0].StringValue), args[1].StringValue);
             return Operand.Create(t);
         }
         public Operand VisitHMACSHA512_fun([NotNull] mathParser.HMACSHA512_funContext context)
@@ -2905,14 +2887,13 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } args.Add(a); }
 
-            var text = args[0].StringValue;
             Encoding encoding;
             if (args.Count == 2) {
                 encoding = Encoding.UTF8;
             } else {
                 encoding = Encoding.GetEncoding(args[2].StringValue);
             }
-            var t = Hash.GetHmacSha512String(encoding.GetBytes(text), args[1].StringValue);
+            var t = Hash.GetHmacSha512String(encoding.GetBytes(args[0].StringValue), args[1].StringValue);
             return Operand.Create(t);
         }
         public Operand VisitTRIMSTART_fun([NotNull] mathParser.TRIMSTART_funContext context)

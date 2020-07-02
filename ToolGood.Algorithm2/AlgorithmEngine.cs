@@ -53,6 +53,7 @@ namespace ToolGood.Algorithm
             var tokens = new CommonTokenStream(lexer);
             var parser = new mathParser(tokens);
             var antlrErrorListener = new AntlrErrorListener();
+            parser.RemoveErrorListeners();
             parser.AddErrorListener(antlrErrorListener);
 
             var context = parser.prog();
