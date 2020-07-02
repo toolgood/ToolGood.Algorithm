@@ -47,6 +47,8 @@ namespace ToolGood.Algorithm
                 var lexer = new mathLexer(stream);
                 var tokens = new CommonTokenStream(lexer);
                 var parser = new mathParser(tokens);
+
+
                 ProgContext = parser.prog();
 
                 return true;

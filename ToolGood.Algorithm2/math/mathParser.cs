@@ -7856,7 +7856,6 @@ public partial class mathParser : Parser {
 		}
 		public ITerminalNode NUM() { return GetToken(mathParser.NUM, 0); }
 		public ITerminalNode E() { return GetToken(mathParser.E, 0); }
-		public ITerminalNode PARAMETER() { return GetToken(mathParser.PARAMETER, 0); }
 		public ITerminalNode IF() { return GetToken(mathParser.IF, 0); }
 		public ITerminalNode IFERROR() { return GetToken(mathParser.IFERROR, 0); }
 		public ITerminalNode IFNUMBER() { return GetToken(mathParser.IFNUMBER, 0); }
@@ -8049,6 +8048,7 @@ public partial class mathParser : Parser {
 		public ITerminalNode REMOVESTART() { return GetToken(mathParser.REMOVESTART, 0); }
 		public ITerminalNode REMOVEEND() { return GetToken(mathParser.REMOVEEND, 0); }
 		public ITerminalNode JSON() { return GetToken(mathParser.JSON, 0); }
+		public ITerminalNode PARAMETER() { return GetToken(mathParser.PARAMETER, 0); }
 		public ParameterContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{

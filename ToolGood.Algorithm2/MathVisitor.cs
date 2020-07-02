@@ -367,13 +367,14 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitPARAMETER_fun([NotNull] mathParser.PARAMETER_funContext context)
         {
-            return this.Visit(context.parameter());
-            //var t = context.PARAMETER().GetText();
-            //t = t.Substring(1, t.Length - 2);
-            //if (GetParameter != null) {
-            //    return GetParameter(t);
-            //}
-            //return Operand.Error(t);
+            var p = this.Visit(context.parameter()).ToString();
+            if (p.IsError) return p;
+
+            if (GetParameter != null)
+            {
+                return GetParameter(p.StringValue);
+            }
+            return Operand.Error("");
         }
 
         #endregion
@@ -3674,13 +3675,13 @@ namespace ToolGood.Algorithm
 
         public Operand VisitParameter([NotNull] mathParser.ParameterContext context)
         {
-            var expr= context.expr();
-            if (expr!=null)
+            var expr = context.expr();
+            if (expr != null)
             {
                 return this.Visit(expr);
             }
             var num = context.NUM();
-            if (num!=null)
+            if (num != null)
             {
                 return this.Visit(num);
             }
