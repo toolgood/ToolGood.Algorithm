@@ -23,11 +23,13 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public bool Parse(string exp)
         {
-            if (string.IsNullOrEmpty(exp) || exp.Trim() == "") {
+            if (string.IsNullOrEmpty(exp) || exp.Trim() == "")
+            {
                 LastError = "exp无效";
                 return false;
             }
-            try {
+            try
+            {
                 ProgContext = null;
 
                 var stream = new CaseChangingCharStream(new AntlrInputStream(exp), true);
@@ -37,7 +39,9 @@ namespace ToolGood.Algorithm
                 ProgContext = parser.prog();
 
                 return true;
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 LastError = ex.Message;
                 return false;
             }
@@ -45,7 +49,8 @@ namespace ToolGood.Algorithm
 
         public Operand Evaluate()
         {
-            if (ProgContext == null) {
+            if (ProgContext == null)
+            {
                 LastError = "请编译公式！";
                 throw new Exception("请编译公式！");
             }
@@ -54,6 +59,108 @@ namespace ToolGood.Algorithm
         }
 
 
+        #region TryEvaluate
 
+        public int TryEvaluate(string exp, int def)
+        {
+            if (Parse(exp))
+            {
+                try
+                {
+                    var obj = Evaluate();
+                    obj = obj.ToNumber();
+                    if (obj.IsError)
+                        return def;
+                    return obj.IntValue;
+                }
+                catch (Exception) { }
+            }
+            return def;
+        }
+
+        public double TryEvaluate(string exp, double def)
+        {
+            if (Parse(exp))
+            {
+                try
+                {
+                    var obj = Evaluate();
+                    obj = obj.ToNumber();
+                    if (obj.IsError)
+                        return def;
+                    return obj.NumberValue;
+                }
+                catch (Exception) { }
+            }
+            return def;
+        }
+
+        public string TryEvaluate(string exp, string def)
+        {
+            if (Parse(exp))
+            {
+                try
+                {
+                    var obj = Evaluate();
+                    obj = obj.ToString();
+                    if (obj.IsError)
+                        return def;
+                    return obj.StringValue;
+                }
+                catch (Exception) { }
+            }
+            return def;
+        }
+        public bool TryEvaluate(string exp, bool def)
+        {
+            if (Parse(exp))
+            {
+                try
+                {
+                    var obj = Evaluate();
+                    obj = obj.ToBoolean();
+                    if (obj.IsError)
+                        return def;
+                    return obj.BooleanValue;
+                }
+                catch (Exception) { }
+            }
+            return def;
+        }
+
+        public DateTime TryEvaluate(string exp, DateTime def)
+        {
+            if (Parse(exp))
+            {
+                try
+                {
+                    var obj = Evaluate();
+                    obj = obj.ToBoolean();
+                    if (obj.IsError)
+                        return def;
+                    return (DateTime) obj.DateValue;
+                }
+                catch (Exception) { }
+            }
+            return def;
+        }
+
+        public TimeSpan TryEvaluate(string exp, TimeSpan def)
+        {
+            if (Parse(exp))
+            {
+                try
+                {
+                    var obj = Evaluate();
+                    obj = obj.ToBoolean();
+                    if (obj.IsError)
+                        return def;
+                    return (TimeSpan) obj.DateValue;
+                }
+                catch (Exception) { }
+            }
+            return def;
+        }
+        #endregion
     }
 }

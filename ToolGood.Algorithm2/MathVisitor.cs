@@ -3628,7 +3628,7 @@ namespace ToolGood.Algorithm
                 }
             }
             catch (Exception) { }
-            return Operand.Create(op + "操作无效！");
+            return Operand.Error(op + "操作无效！");
         }
 
         public Operand VisitParameter([NotNull] mathParser.ParameterContext context)

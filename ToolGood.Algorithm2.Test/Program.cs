@@ -7,16 +7,8 @@ namespace ToolGood.Algorithm2.Test
     {
         static void Main(string[] args)
         {
-            AlgorithmEngine engine = new AlgorithmEngine();
+            PetaTest.Runner.RunMain(args);
 
-            //string input = @"1 + (2 - 3) * 4";
-            string input = @"'abcd'.md5()";
-
-            var b = engine.Parse(input);
-
-            var r = engine.Evaluate();
-
-            Console.WriteLine("Hello World!");
         }
     }
 }
