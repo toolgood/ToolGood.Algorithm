@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using Antlr4.Runtime;
@@ -22,10 +23,16 @@ namespace ToolGood.Algorithm
 
         protected virtual Operand GetParameter(string parameter)
         {
-            return Operand.Error($"{parameter}");
+            return Operand.Error($"Parameter [{parameter}] is missing.");
         }
 
-
+        class AntlrErrorListener : IAntlrErrorListener<IToken>
+        {
+            public void SyntaxError(TextWriter output, IRecognizer recognizer, IToken offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
+            {
+                throw new NotImplementedException();
+            }
+        }
 
         /// <summary>
         /// 编译公式，默认
@@ -34,65 +41,62 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public bool Parse(string exp)
         {
-            if (string.IsNullOrEmpty(exp) || exp.Trim() == "")
-            {
-                LastError = "exp无效";
+            if (string.IsNullOrEmpty(exp) || exp.Trim() == "") {
+                LastError = "Parameter exp invalid !";
                 return false;
             }
-            try
-            {
+            try {
                 ProgContext = null;
 
                 var stream = new CaseChangingCharStream(new AntlrInputStream(exp), true);
                 var lexer = new mathLexer(stream);
                 var tokens = new CommonTokenStream(lexer);
                 var parser = new mathParser(tokens);
+                parser.RemoveErrorListeners();
+                parser.AddErrorListener(new AntlrErrorListener());
 
-
-                ProgContext = parser.prog();
-
+                var context = parser.prog();
+                var end = context.Stop.StopIndex;
+                if (end + 1 < exp.Length) {
+                    LastError = "Parameter exp invalid !";
+                    return false;
+                }
+                ProgContext = context;
                 return true;
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 LastError = ex.Message;
                 return false;
             }
         }
 
+        /// <summary>
+        /// 执行函数
+        /// </summary>
+        /// <returns></returns>
         public Operand Evaluate()
         {
-            if (ProgContext == null)
-            {
-                LastError = "请编译公式！";
-                throw new Exception("请编译公式！");
+            if (ProgContext == null) {
+                LastError = "Please use Parse to compile formula !";
+                throw new Exception("Please use Parse to compile formula !");
             }
             var visitor = new MathVisitor();
             visitor.GetParameter += GetParameter;
             visitor.excelIndex = UseExcelIndex ? 1 : 0;
             return visitor.Visit(ProgContext);
         }
-
-      
-
-
-
+ 
         #region TryEvaluate
 
         public int TryEvaluate(string exp, int def)
         {
-            if (Parse(exp))
-            {
-                try
-                {
+            if (Parse(exp)) {
+                try {
                     var obj = Evaluate();
                     obj = obj.ToNumber();
                     if (obj.IsError)
                         return def;
                     return obj.IntValue;
-                }
-                catch (Exception ex)
-                {
+                } catch (Exception ex) {
                     LastError = ex.Message;
                 }
             }
@@ -101,18 +105,14 @@ namespace ToolGood.Algorithm
 
         public double TryEvaluate(string exp, double def)
         {
-            if (Parse(exp))
-            {
-                try
-                {
+            if (Parse(exp)) {
+                try {
                     var obj = Evaluate();
                     obj = obj.ToNumber();
                     if (obj.IsError)
                         return def;
                     return obj.NumberValue;
-                }
-                catch (Exception ex)
-                {
+                } catch (Exception ex) {
                     LastError = ex.Message;
                 }
             }
@@ -121,18 +121,14 @@ namespace ToolGood.Algorithm
 
         public string TryEvaluate(string exp, string def)
         {
-            if (Parse(exp))
-            {
-                try
-                {
+            if (Parse(exp)) {
+                try {
                     var obj = Evaluate();
                     obj = obj.ToString();
                     if (obj.IsError)
                         return def;
                     return obj.StringValue;
-                }
-                catch (Exception ex)
-                {
+                } catch (Exception ex) {
                     LastError = ex.Message;
                 }
             }
@@ -140,18 +136,14 @@ namespace ToolGood.Algorithm
         }
         public bool TryEvaluate(string exp, bool def)
         {
-            if (Parse(exp))
-            {
-                try
-                {
+            if (Parse(exp)) {
+                try {
                     var obj = Evaluate();
                     obj = obj.ToBoolean();
                     if (obj.IsError)
                         return def;
                     return obj.BooleanValue;
-                }
-                catch (Exception ex)
-                {
+                } catch (Exception ex) {
                     LastError = ex.Message;
                 }
             }
@@ -160,17 +152,14 @@ namespace ToolGood.Algorithm
 
         public DateTime TryEvaluate(string exp, DateTime def)
         {
-            if (Parse(exp))
-            {
-                try
-                {
+            if (Parse(exp)) {
+                try {
                     var obj = Evaluate();
                     obj = obj.ToDate();
                     if (obj.IsError)
                         return def;
-                    return (DateTime) obj.DateValue;
-                }
-                catch (Exception ex) {
+                    return (DateTime)obj.DateValue;
+                } catch (Exception ex) {
                     LastError = ex.Message;
                 }
             }
@@ -179,18 +168,14 @@ namespace ToolGood.Algorithm
 
         public TimeSpan TryEvaluate(string exp, TimeSpan def)
         {
-            if (Parse(exp))
-            {
-                try
-                {
+            if (Parse(exp)) {
+                try {
                     var obj = Evaluate();
                     obj = obj.ToDate();
                     if (obj.IsError)
                         return def;
-                    return (TimeSpan) obj.DateValue;
-                }
-                catch (Exception ex)
-                {
+                    return (TimeSpan)obj.DateValue;
+                } catch (Exception ex) {
                     LastError = ex.Message;
                 }
             }
