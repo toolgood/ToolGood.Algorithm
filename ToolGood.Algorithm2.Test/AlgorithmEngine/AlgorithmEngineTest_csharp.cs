@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Test
 {
-    //[TestFixture]
+    [TestFixture]
     partial class AlgorithmEngineTest_csharp
     {
 
@@ -148,7 +148,7 @@ namespace ToolGood.Algorithm.Test
         public void Split()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            var dt = engine.TryEvaluate("Split('1,2,3,4',',',3)", null);
+            var dt = engine.TryEvaluate("Split('1,2,3,4',',')[3]", null);
             Assert.AreEqual(dt, "3");
         }
 
@@ -248,44 +248,29 @@ namespace ToolGood.Algorithm.Test
             dt = engine.TryEvaluate("RemoveEnd('123456789','127')", null);
             Assert.AreEqual(dt, "123456789");
         }
-        [Test]
-        public void RemoveBoth()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var dt = engine.TryEvaluate("RemoveBoth('123456789','12','89')", null);
-            Assert.AreEqual(dt, "34567");
-            dt = engine.TryEvaluate("RemoveBoth('123456789','12','127')", null);
-            Assert.AreEqual(dt, "3456789");
-            dt = engine.TryEvaluate("RemoveBoth('123456789','125','89')", null);
-            Assert.AreEqual(dt, "1234567");
-
-            dt = engine.TryEvaluate("RemoveBoth('123456789','12','127',1)", null);
-            Assert.AreEqual(dt, "123456789");
-            //dt = engine.TryEvaluate("RemoveBoth('123456789','12','127',1,2)", null);
-            //Assert.AreEqual(dt, "123456789");
-        }
+ 
         [Test]
         public void Json()
         {
 
             AlgorithmEngine engine = new AlgorithmEngine();
-            var dt = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Age", null);
+            var dt = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')[Age]", null);
             Assert.AreEqual(dt.ToString(), "51");
-            dt = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Birthday", null);
+            dt = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')[Birthday]", null);
             Assert.AreEqual(dt, "04/26/1564 00:00:00");
 
-            dt = engine.TryEvaluate("json('[1,2,3]').1", null);
+            dt = engine.TryEvaluate("json('[1,2,3]')[1]", null);
             Assert.AreEqual(dt, "1");
 
-            dt = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Name.Trim()", null);
+            dt = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')[Name].Trim()", null);
             Assert.AreEqual(dt, "William Shakespeare");
 
 
-            dt = engine.TryEvaluate("json('{\"Name1\":\"William Shakespeare \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').（'Name'& 1）.Trim().substring(2,3)", null);
+            dt = engine.TryEvaluate("json('{\"Name1\":\"William Shakespeare \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')['Name'& 1].Trim().substring(2,3)", null);
             Assert.AreEqual(dt, "ill");
 
-            dt = engine.TryEvaluate("tryjson('12346{\"Name1\":\"William Shakespeare \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').（'Name'& 1）.Trim().substring(2,3)", null);
-            Assert.AreEqual(dt, "ill");
+            dt = engine.TryEvaluate("json('12346{\"Name1\":\"William Shakespeare \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')['Name'& 1].Trim().substring(2,3)", null);
+            Assert.AreEqual(dt, null);
         }
     }
 }

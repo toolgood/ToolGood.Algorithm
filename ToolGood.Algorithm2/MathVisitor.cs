@@ -3377,30 +3377,61 @@ namespace ToolGood.Algorithm
         public Operand VisitJOIN_fun([NotNull] mathParser.JOIN_funContext context)
         {
             var arg = new List<Operand>();
-            foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } arg.Add(a); }
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
 
-            var text = arg[0].StringValue;
-
-            List<string> list = new List<string>();
-            foreach (var item in arg)
+            if (arg[0].Type == OperandType.ARRARY)
             {
-                if (item.Type == OperandType.ARRARY)
+                arg[1] = arg[1].ToString("");
+                if (arg[1].IsError) { return arg[1]; }
+
+                List<string> list = new List<string>();
+                foreach (var item in arg[0].ArrayValue)
                 {
-                    foreach (var it in item.ArrayValue)
+                    if (item.Type == OperandType.ARRARY)
                     {
-                        var a = it.ToNumber();
+                        foreach (var it in item.ArrayValue)
+                        {
+                            var a = it.ToString();
+                            if (a.IsError) { return a; }
+                            list.Add(a.StringValue);
+                        }
+                    }
+                    else
+                    {
+                        var a = item.ToString();
                         if (a.IsError) { return a; }
                         list.Add(a.StringValue);
                     }
                 }
-                else
-                {
-                    var a = item.ToNumber();
-                    if (a.IsError) { return a; }
-                    list.Add(a.StringValue);
-                }
+                return Operand.Create(string.Join(arg[1].StringValue, list));
             }
-            return Operand.Create(string.Join(text, list));
+            else
+            {
+                arg[0] = arg[0].ToString("");
+                if (arg[0].IsError) { return arg[0]; }
+
+                List<string> list = new List<string>();
+                for (int i = 1; i < arg.Count; i++)
+                {
+                    var item = arg[i];
+                    if (item.Type == OperandType.ARRARY)
+                    {
+                        foreach (var it in item.ArrayValue)
+                        {
+                            var a = it.ToString();
+                            if (a.IsError) { return a; }
+                            list.Add(a.StringValue);
+                        }
+                    }
+                    else
+                    {
+                        var a = item.ToString();
+                        if (a.IsError) { return a; }
+                        list.Add(a.StringValue);
+                    }
+                }
+                return Operand.Create(string.Join(arg[0].StringValue, list));
+            }
         }
         public Operand VisitSUBSTRING_fun([NotNull] mathParser.SUBSTRING_funContext context)
         {
@@ -3409,7 +3440,7 @@ namespace ToolGood.Algorithm
 
             arg[0] = arg[0].ToString();
             if (arg[0].IsError) { return arg[0]; }
-            arg[1] = arg[1].ToString();
+            arg[1] = arg[1].ToNumber();
             if (arg[1].IsError) { return arg[1]; }
 
             var text = arg[0].StringValue;
@@ -3643,8 +3674,17 @@ namespace ToolGood.Algorithm
 
         public Operand VisitParameter([NotNull] mathParser.ParameterContext context)
         {
-
-            throw new NotImplementedException();
+            var expr= context.expr();
+            if (expr!=null)
+            {
+                return this.Visit(expr);
+            }
+            var num = context.NUM();
+            if (num!=null)
+            {
+                return this.Visit(num);
+            }
+            return Operand.Create(context.p.Text);
         }
 
 

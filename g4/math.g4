@@ -56,8 +56,8 @@ expr: expr op=('*'|'/'|'%') expr                        # MulDiv_fun
     | ROUND '(' expr ',' expr ')'  # ROUND_fun 
     | ROUNDDOWN '(' expr ',' expr ')'  # ROUNDDOWN_fun 
     | ROUNDUP '(' expr ',' expr ')'  # ROUNDUP_fun 
-    | CEILING '(' expr ',' expr ')'  # CEILING_fun 
-    | FLOOR '(' expr ',' expr ')'  # FLOOR_fun 
+    | CEILING '(' expr (',' expr)? ')'  # CEILING_fun 
+    | FLOOR '(' expr (',' expr)? ')'  # FLOOR_fun 
     | EVEN '(' expr ')'  # EVEN_fun 
     | ODD '(' expr ')'  # ODD_fun 
     | MROUND '(' expr ',' expr ')'  # MROUND_fun 
@@ -255,10 +255,10 @@ expr: expr op=('*'|'/'|'%') expr                        # MulDiv_fun
     | expr '.' INDEXOF '(' expr (',' expr (',' expr)?)? ')'  # INDEXOF_fun 
     | LASTINDEXOF '(' expr ',' expr (',' expr (',' expr)?)? ')'  # LASTINDEXOF_fun 
     | expr '.' LASTINDEXOF '(' expr (',' expr (',' expr)?)? ')'  # LASTINDEXOF_fun 
-    | SPLIT '(' expr ',' expr (',' expr)? ')'  # SPLIT_fun 
-    | expr '.' SPLIT '(' expr (',' expr)? ')'  # SPLIT_fun 
-    | JOIN '(' expr ',' expr ')'  # JOIN_fun 
-    | expr '.' JOIN '(' expr ')'  # JOIN_fun 
+    | SPLIT '(' expr ',' expr ')'  # SPLIT_fun 
+    | expr '.' SPLIT '(' expr ')'  # SPLIT_fun 
+    | JOIN '(' expr (',' expr)+ ')'  # JOIN_fun 
+    | expr '.' JOIN '(' expr (',' expr)* ')'  # JOIN_fun 
     | SUBSTRING '(' expr ',' expr (',' expr)? ')'  # SUBSTRING_fun 
     | expr '.' SUBSTRING '(' expr (',' expr)? ')'  # SUBSTRING_fun 
     | STARTSWITH '(' expr ',' expr (',' expr)? ')'  # STARTSWITH_fun 
@@ -289,6 +289,7 @@ expr: expr op=('*'|'/'|'%') expr                        # MulDiv_fun
 ;
 
 parameter: expr 
+    | NUM
     | p=( 
         E|PARAMETER|IF|IFERROR|IFNUMBER|IFTEXT|ISNUMBER|ISTEXT|AND|OR|NOT|TRUE|FALSE|PI|ABS|QUOTIENT|MOD|SIGN|SQRT|TRUNC|INT|GCD|LCM|COMBIN|PERMUT|DEGREES|RADIANS|COS|COSH|SIN|SINH|TAN|TANH|ACOS|ACOSH|ASIN|ASINH|ATAN|ATANH|ATAN2|ROUND|ROUNDDOWN|ROUNDUP|CEILING|FLOOR|EVEN|ODD|MROUND|RAND|RANDBETWEEN|FACT|FACTDOUBLE|POWER|EXP|LN|LOG|LOG10|MULTINOMIAL|PRODUCT|SQRTPI|SUMSQ|ASC|JIS|CHAR|CLEAN|CODE|CONCATENATE|EXACT|FIND|FIXED|LEFT|LEN|LOWER|MID|PROPER|REPLACE|REPT|RIGHT|RMB|SEARCH|SUBSTITUTE|T|TEXT|TRIM|UPPER|VALUE|DATEVALUE|TIMEVALUE|DATE|TIME|NOW|TODAY|YEAR|MONTH|DAY|HOUR|MINUTE|SECOND|WEEKDAY|DATEDIF|DAYS360|EDATE|EOMONTH|NETWORKDAYS|WORKDAY|WEEKNUM|MAX|MEDIAN|MIN|QUARTILE|MODE|LARGE|SMALL|PERCENTILE|PERCENTRANK|AVERAGE|AVERAGEIF|GEOMEAN|HARMEAN|COUNT|COUNTIF|SUM|SUMIF|AVEDEV|STDEV|STDEVP|DEVSQ|VAR|VARP|NORMDIST|NORMINV|NORMSDIST|NORMSINV|BETADIST|BETAINV|BINOMDIST|EXPONDIST|FDIST|FINV|FISHER|FISHERINV|GAMMADIST|GAMMAINV|GAMMALN|HYPGEOMDIST|LOGINV|LOGNORMDIST|NEGBINOMDIST|POISSON|TDIST|TINV|WEIBULL|URLENCODE|URLDECODE|HTMLENCODE|HTMLDECODE|BASE64TOTEXT|BASE64URLTOTEXT|TEXTTOBASE64|TEXTTOBASE64URL|REGEX|REGEXREPALCE|ISREGEX|ISMATCH|GUID|MD5|SHA1|SHA256|SHA512|CRC8|CRC16|CRC32|HMACMD5|HMACSHA1|HMACSHA256|HMACSHA512|TRIMSTART|LTRIM|TRIMEND|RTRIM|INDEXOF|LASTINDEXOF|SPLIT|JOIN|SUBSTRING|STARTSWITH|ENDSWITH|ISNULLOREMPTY|ISNULLORWHITESPACE|TOUPPER|TOLOWER|REMOVESTART|REMOVEEND|JSON
     )

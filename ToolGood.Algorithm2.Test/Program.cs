@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using ToolGood.Algorithm;
 
 namespace ToolGood.Algorithm2.Test
@@ -7,6 +8,7 @@ namespace ToolGood.Algorithm2.Test
     {
         static void Main(string[] args)
         {
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             PetaTest.Runner.RunMain(args);
 
         }
