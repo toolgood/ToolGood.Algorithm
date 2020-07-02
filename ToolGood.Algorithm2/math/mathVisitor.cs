@@ -28,8 +28,8 @@ using IToken = Antlr4.Runtime.IToken;
 /// by <see cref="mathParser"/>.
 /// </summary>
 /// <typeparam name="Result">The return type of the visit operation.</typeparam>
-//[System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.8")]
-//[System.CLSCompliant(false)]
+[System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.8")]
+[System.CLSCompliant(false)]
 public interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="mathParser.prog"/>.
