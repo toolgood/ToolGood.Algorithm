@@ -6,7 +6,7 @@ using PetaTest;
 
 namespace ToolGood.Algorithm
 {
-    //[TestFixture]
+    [TestFixture]
     class AlgorithmEngineTest_math
     {
         #region 基础数学

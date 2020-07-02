@@ -339,9 +339,31 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitSTRING_fun([NotNull] mathParser.STRING_funContext context)
         {
-            var t = context.STRING().GetText();
-            t = t.Substring(1, t.Length - 2);
-            return Operand.Create(t);
+            var opd = context.STRING().GetText();
+            StringBuilder sb = new StringBuilder();
+            int index = 1;
+            while (index < opd.Length - 1)
+            {
+                var c = opd[index++];
+                if (c == '\\')
+                {
+                    var c2 = opd[index++];
+                    if (c2 == 'n') sb.Append('\n');
+                    else if (c2 == 'r') sb.Append('\r');
+                    else if (c2 == 't') sb.Append('\t');
+                    else if (c2 == '0') sb.Append('\0');
+                    else if (c2 == 'v') sb.Append('\v');
+                    else if (c2 == 'a') sb.Append('\a');
+                    else if (c2 == 'b') sb.Append('\b');
+                    else if (c2 == 'f') sb.Append('\f');
+                    else sb.Append(opd[index++]);
+                }
+                else
+                {
+                    sb.Append(c);
+                }
+            }
+            return Operand.Create(sb.ToString());
         }
         public Operand VisitPARAMETER_fun([NotNull] mathParser.PARAMETER_funContext context)
         {
@@ -571,8 +593,10 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitSQRT_fun([NotNull] mathParser.SQRT_funContext context)
         {
+            var firstValue = this.Visit(context.expr()).ToNumber("ABS left value");
+            if (firstValue.IsError) { return firstValue; }
 
-            throw new NotImplementedException();
+            return Operand.Create(Math.Sqrt(firstValue.NumberValue));
         }
         public Operand VisitTRUNC_fun([NotNull] mathParser.TRUNC_funContext context)
         {
@@ -736,13 +760,7 @@ namespace ToolGood.Algorithm
             var firstValue = this.Visit(context.expr()).ToNumber("DEGREES left value");
             if (firstValue.IsError) { return firstValue; }
 
-            var z = firstValue.NumberValue;
-            if (z < 1)
-            {
-                return ThrowError("acosh中参数小于1");
-            }
-            var r = Math.Log(z + Math.Pow(z * z - 1, 0.5));
-            return Operand.Create(r);
+            return Operand.Create(Math.Cosh(firstValue.NumberValue));
         }
         public Operand VisitSIN_fun([NotNull] mathParser.SIN_funContext context)
         {
@@ -837,7 +855,7 @@ namespace ToolGood.Algorithm
             var secondValue = this.Visit(context.expr(1)).ToNumber("DEGREES left value");
             if (secondValue.IsError) { return secondValue; }
 
-            return Operand.Create(Math.Atan2(firstValue.NumberValue, secondValue.NumberValue));
+            return Operand.Create(Math.Atan2(secondValue.NumberValue, firstValue.NumberValue));
         }
 
         #endregion
@@ -885,6 +903,10 @@ namespace ToolGood.Algorithm
         {
             var firstValue = this.Visit(context.expr(0)).ToNumber("DEGREES left value");
             if (firstValue.IsError) { return firstValue; }
+
+            if (context.expr(1) == null)
+                return Operand.Create(Math.Ceiling(firstValue.NumberValue));
+
             var secondValue = this.Visit(context.expr(1)).ToNumber("DEGREES left value");
             if (secondValue.IsError) { return secondValue; }
 
@@ -898,6 +920,10 @@ namespace ToolGood.Algorithm
 
             var firstValue = this.Visit(context.expr(0)).ToNumber("DEGREES left value");
             if (firstValue.IsError) { return firstValue; }
+
+            if (context.expr(1) == null)
+                return Operand.Create(Math.Floor(firstValue.NumberValue));
+
             var secondValue = this.Visit(context.expr(1)).ToNumber("DEGREES left value");
             if (secondValue.IsError) { return secondValue; }
 
@@ -1134,7 +1160,7 @@ namespace ToolGood.Algorithm
                 var a = this.Visit(item);
                 arg.Add(a);
             }
-            double d = 1;
+            double d = 0;
             for (int i = 0; i < arg.Count; i++)
             {
                 var item = arg[i];
@@ -1223,7 +1249,7 @@ namespace ToolGood.Algorithm
             var arg = new List<Operand>();
             foreach (var item in context.expr())
             {
-                var a = this.Visit(item).ToNumber("CONCATENATE ");
+                var a = this.Visit(item).ToString("CONCATENATE ");
                 if (a.IsError) { return a; }
                 arg.Add(a);
             }
@@ -1284,7 +1310,7 @@ namespace ToolGood.Algorithm
             var no = false;
             if (arg.Count == 3)
             {
-                arg[2] = arg[2].ToNumber();
+                arg[2] = arg[2].ToBoolean();
                 if (arg[2].IsError) { return arg[2]; }
                 no = arg[2].BooleanValue;
             }
@@ -1507,8 +1533,12 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitT_fun([NotNull] mathParser.T_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToString("T left value");
-            return firstValue;
+            var firstValue = this.Visit(context.expr());
+            if (firstValue.Type == OperandType.STRING)
+            {
+                return firstValue;
+            }
+            return Operand.Error("");
         }
         public Operand VisitTEXT_fun([NotNull] mathParser.TEXT_funContext context)
         {

@@ -12,7 +12,7 @@ namespace ToolGood.Algorithm
         /// <summary>
         /// 使用EXCEL索引
         /// </summary>
-        public bool UseExcelIndex { get; set; }
+        public bool UseExcelIndex { get; set; } = true;
         /// <summary>
         /// 最后一个错误
         /// </summary>
