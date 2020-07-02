@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace ToolGood.Algorithm
+﻿namespace ToolGood.Algorithm
 {
     /// <summary>
     /// 操作数类型

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using Antlr4.Runtime;
 using static ToolGood.Algorithm.mathParser;
 
@@ -28,9 +25,13 @@ namespace ToolGood.Algorithm
 
         class AntlrErrorListener : IAntlrErrorListener<IToken>
         {
+            public bool IsError { get; private set; }
+            public string ErrorMsg { get; private set; }
+
             public void SyntaxError(TextWriter output, IRecognizer recognizer, IToken offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
             {
-                throw new NotImplementedException();
+                IsError = true;
+                ErrorMsg = msg;
             }
         }
 
@@ -45,28 +46,33 @@ namespace ToolGood.Algorithm
                 LastError = "Parameter exp invalid !";
                 return false;
             }
-            try {
+            //try {
+
+            var stream = new CaseChangingCharStream(new AntlrInputStream(exp), true);
+            var lexer = new mathLexer(stream);
+            var tokens = new CommonTokenStream(lexer);
+            var parser = new mathParser(tokens);
+            var antlrErrorListener = new AntlrErrorListener();
+            parser.AddErrorListener(antlrErrorListener);
+
+            var context = parser.prog();
+            var end = context.Stop.StopIndex;
+            if (end + 1 < exp.Length) {
                 ProgContext = null;
-
-                var stream = new CaseChangingCharStream(new AntlrInputStream(exp), true);
-                var lexer = new mathLexer(stream);
-                var tokens = new CommonTokenStream(lexer);
-                var parser = new mathParser(tokens);
-                parser.RemoveErrorListeners();
-                parser.AddErrorListener(new AntlrErrorListener());
-
-                var context = parser.prog();
-                var end = context.Stop.StopIndex;
-                if (end + 1 < exp.Length) {
-                    LastError = "Parameter exp invalid !";
-                    return false;
-                }
-                ProgContext = context;
-                return true;
-            } catch (Exception ex) {
-                LastError = ex.Message;
+                LastError = "Parameter exp invalid !";
                 return false;
             }
+            if (antlrErrorListener.IsError) {
+                ProgContext = null;
+                LastError = antlrErrorListener.ErrorMsg;
+                return false;
+            }
+            ProgContext = context;
+            return true;
+            //} catch (Exception ex) {
+            //    LastError = ex.Message;
+            //    return false;
+            //}
         }
 
         /// <summary>
@@ -84,7 +90,7 @@ namespace ToolGood.Algorithm
             visitor.excelIndex = UseExcelIndex ? 1 : 0;
             return visitor.Visit(ProgContext);
         }
- 
+
         #region TryEvaluate
 
         public int TryEvaluate(string exp, int def)
@@ -93,8 +99,10 @@ namespace ToolGood.Algorithm
                 try {
                     var obj = Evaluate();
                     obj = obj.ToNumber();
-                    if (obj.IsError)
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
                         return def;
+                    }
                     return obj.IntValue;
                 } catch (Exception ex) {
                     LastError = ex.Message;
@@ -109,8 +117,10 @@ namespace ToolGood.Algorithm
                 try {
                     var obj = Evaluate();
                     obj = obj.ToNumber();
-                    if (obj.IsError)
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
                         return def;
+                    }
                     return obj.NumberValue;
                 } catch (Exception ex) {
                     LastError = ex.Message;
@@ -125,8 +135,10 @@ namespace ToolGood.Algorithm
                 try {
                     var obj = Evaluate();
                     obj = obj.ToString();
-                    if (obj.IsError)
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
                         return def;
+                    }
                     return obj.StringValue;
                 } catch (Exception ex) {
                     LastError = ex.Message;
@@ -140,8 +152,10 @@ namespace ToolGood.Algorithm
                 try {
                     var obj = Evaluate();
                     obj = obj.ToBoolean();
-                    if (obj.IsError)
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
                         return def;
+                    }
                     return obj.BooleanValue;
                 } catch (Exception ex) {
                     LastError = ex.Message;
@@ -156,8 +170,10 @@ namespace ToolGood.Algorithm
                 try {
                     var obj = Evaluate();
                     obj = obj.ToDate();
-                    if (obj.IsError)
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
                         return def;
+                    }
                     return (DateTime)obj.DateValue;
                 } catch (Exception ex) {
                     LastError = ex.Message;
@@ -172,8 +188,10 @@ namespace ToolGood.Algorithm
                 try {
                     var obj = Evaluate();
                     obj = obj.ToDate();
-                    if (obj.IsError)
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
                         return def;
+                    }
                     return (TimeSpan)obj.DateValue;
                 } catch (Exception ex) {
                     LastError = ex.Message;

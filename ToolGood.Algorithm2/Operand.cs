@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using ToolGood.Algorithm.LitJson;
 
 namespace ToolGood.Algorithm
@@ -66,8 +64,7 @@ namespace ToolGood.Algorithm
         public static Operand Create(ICollection<string> obj)
         {
             var array = new List<Operand>();
-            foreach (var item in obj)
-            {
+            foreach (var item in obj) {
                 array.Add(Create(item));
             }
             return new OperandArray(array);
@@ -85,11 +82,9 @@ namespace ToolGood.Algorithm
             if (Type == OperandType.NUMBER) { return this; }
             if (IsError) { return this; }
             if (Type == OperandType.BOOLEAN) { return Create(BooleanValue ? 1.0 : 0.0); }
-            if (Type == OperandType.DATE) { return Create((double) DateValue); }
-            if (Type == OperandType.STRING)
-            {
-                if (double.TryParse(StringValue, NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out double d))
-                {
+            if (Type == OperandType.DATE) { return Create((double)DateValue); }
+            if (Type == OperandType.STRING) {
+                if (double.TryParse(StringValue, NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out double d)) {
                     return Create(d);
                 }
             }
@@ -100,9 +95,8 @@ namespace ToolGood.Algorithm
             if (Type == OperandType.BOOLEAN) { return this; }
             if (IsError) { return this; }
             if (Type == OperandType.NUMBER) { return Create(NumberValue != 0); }
-            if (Type == OperandType.DATE) { return Create(((double) DateValue) != 0); }
-            if (Type == OperandType.STRING)
-            {
+            if (Type == OperandType.DATE) { return Create(((double)DateValue) != 0); }
+            if (Type == OperandType.STRING) {
                 if (StringValue.Equals("true", StringComparison.OrdinalIgnoreCase)) { return Create(true); }
                 if (StringValue.Equals("false", StringComparison.OrdinalIgnoreCase)) { return Create(false); }
                 if (StringValue.Equals("1", StringComparison.OrdinalIgnoreCase)) { return Create(true); }
@@ -125,9 +119,8 @@ namespace ToolGood.Algorithm
         {
             if (Type == OperandType.DATE) { return this; }
             if (IsError) { return this; }
-            if (Type == OperandType.NUMBER) { return Create((Date) NumberValue); }
-            if (Type == OperandType.STRING)
-            {
+            if (Type == OperandType.NUMBER) { return Create((Date)NumberValue); }
+            if (Type == OperandType.STRING) {
                 if (TimeSpan.TryParse(StringValue, out TimeSpan t)) { return Create(new Date(t)); }
                 if (DateTime.TryParse(StringValue, out DateTime d)) { return Create(new Date(d)); }
             }
@@ -137,14 +130,11 @@ namespace ToolGood.Algorithm
         {
             if (Type == OperandType.JSON) { return this; }
             if (IsError) { return this; }
-            if (Type == OperandType.STRING)
-            {
-                try
-                {
+            if (Type == OperandType.STRING) {
+                try {
                     var json = JsonMapper.ToObject(StringValue);
                     return Create(json);
-                }
-                catch (Exception) { }
+                } catch (Exception) { }
             }
             return Error(errorMessage);
         }
@@ -159,19 +149,14 @@ namespace ToolGood.Algorithm
 
         public List<double> GetNumberList()
         {
-            if (Type == OperandType.NUMBER)
-            {
+            if (Type == OperandType.NUMBER) {
                 return new List<double>() { this.NumberValue };
             }
             List<double> list = new List<double>();
-            foreach (var item in ArrayValue)
-            {
-                if (item.Type == OperandType.NUMBER)
-                {
+            foreach (var item in ArrayValue) {
+                if (item.Type == OperandType.NUMBER) {
                     list.Add(item.NumberValue);
-                }
-                else if (item.Type == OperandType.ARRARY)
-                {
+                } else if (item.Type == OperandType.ARRARY) {
                     list.AddRange(item.GetNumberList());
                 }
             }
@@ -203,7 +188,7 @@ namespace ToolGood.Algorithm
     {
         public OperandNumber(double obj) : base(obj) { }
         public override OperandType Type => OperandType.NUMBER;
-        public override int IntValue => (int) Value;
+        public override int IntValue => (int)Value;
         public override double NumberValue => Value;
     }
     public class OperandBoolean : Operand<bool>
