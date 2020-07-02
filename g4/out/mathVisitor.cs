@@ -766,13 +766,6 @@ public interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitWEIBULL_fun([NotNull] mathParser.WEIBULL_funContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>TRYJSON_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitTRYJSON_fun([NotNull] mathParser.TRYJSON_funContext context);
-	/// <summary>
 	/// Visit a parse tree produced by the <c>HMACSHA256_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// </summary>
@@ -877,13 +870,6 @@ public interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitEXPONDIST_fun([NotNull] mathParser.EXPONDIST_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>REMOVEBOTH_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitREMOVEBOTH_fun([NotNull] mathParser.REMOVEBOTH_funContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>SMALL_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
@@ -1094,13 +1080,6 @@ public interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitTRIM_fun([NotNull] mathParser.TRIM_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>P_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitP_fun([NotNull] mathParser.P_funContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>RADIANS_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.

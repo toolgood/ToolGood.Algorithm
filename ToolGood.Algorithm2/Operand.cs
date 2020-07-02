@@ -63,6 +63,15 @@ namespace ToolGood.Algorithm
         {
             return new OperandArray(obj);
         }
+        public static Operand Create(ICollection<string> obj)
+        {
+            var array =new List<Operand>();
+            foreach (var item in obj)
+            {
+                array.Add(Create(item));
+            }
+            return new OperandArray(array);
+        }
         public static Operand Error(string msg)
         {
             return new OperandError(msg);
