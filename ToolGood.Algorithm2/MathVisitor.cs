@@ -2335,28 +2335,10 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitAVERAGE_fun([NotNull] mathParser.AVERAGE_funContext context)
         {
-            var firstValue = this.Visit(context.expr(0)).ToArray();
-            if (firstValue.IsError) { return firstValue; }
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
 
-            List<double> list = new List<double>();
-            foreach (var item in firstValue.ArrayValue)
-            {
-                if (item.Type == OperandType.ARRARY)
-                {
-                    foreach (var it in item.ArrayValue)
-                    {
-                        var a = it.ToNumber();
-                        if (a.IsError) { return a; }
-                        list.Add(a.NumberValue);
-                    }
-                }
-                else
-                {
-                    var a = item.ToNumber();
-                    if (a.IsError) { return a; }
-                    list.Add(a.NumberValue);
-                }
-            }
+            List<double> list = F_base_GetList(arg);
             return Operand.Create(list.Average());
         }
         public Operand VisitAVERAGEIF_fun([NotNull] mathParser.AVERAGEIF_funContext context)
@@ -2820,7 +2802,17 @@ namespace ToolGood.Algorithm
         public Operand VisitWEIBULL_fun([NotNull] mathParser.WEIBULL_funContext context)
         {
             var arg = new List<Operand>();
-            foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } arg.Add(a); }
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            arg[0] = arg[0].ToNumber();
+            if (arg[0].IsError) return arg[0];
+            arg[1] = arg[1].ToNumber();
+            if (arg[1].IsError) return arg[1];
+            arg[2] = arg[2].ToNumber();
+            if (arg[2].IsError) return arg[2];
+
+            arg[3] = arg[3].ToBoolean();
+            if (arg[3].IsError) return arg[3];
 
             return Operand.Create(ExcelFunctions.WEIBULL(arg[0].NumberValue, arg[1].NumberValue, arg[2].NumberValue, arg[3].BooleanValue));
         }

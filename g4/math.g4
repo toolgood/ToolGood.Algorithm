@@ -165,13 +165,13 @@ expr: expr op=('*'|'/'|'%') expr                        # MulDiv_fun
     | PERCENTILE '(' expr ',' expr ')'  # PERCENTILE_fun 
     | PERCENTRANK '(' expr ',' expr ')'  # PERCENTRANK_fun 
     | AVERAGE '(' expr (',' expr)* ')'  # AVERAGE_fun 
-    | AVERAGEIF '(' expr (',' expr)* ')'  # AVERAGEIF_fun 
+    | AVERAGEIF '(' expr ',' expr (',' expr)? ')'  # AVERAGEIF_fun 
     | GEOMEAN '(' expr (',' expr)* ')'  # GEOMEAN_fun 
     | HARMEAN '(' expr (',' expr)* ')'  # HARMEAN_fun 
     | COUNT '(' expr (',' expr)* ')'  # COUNT_fun 
     | COUNTIF '(' expr (',' expr)* ')'  # COUNTIF_fun 
     | SUM '(' expr (',' expr)* ')'  # SUM_fun 
-    | SUMIF '(' expr ',' expr ')'  # SUMIF_fun 
+    | SUMIF '(' expr ',' expr (',' expr)? ')'  # SUMIF_fun 
     | AVEDEV '(' expr (',' expr)* ')'  # AVEDEV_fun 
     | STDEV '(' expr (',' expr)* ')'  # STDEV_fun 
     | STDEVP '(' expr (',' expr)* ')'  # STDEVP_fun 
@@ -200,7 +200,7 @@ expr: expr op=('*'|'/'|'%') expr                        # MulDiv_fun
     | POISSON '(' expr ',' expr ',' expr ')'  # POISSON_fun 
     | TDIST '(' expr ',' expr ',' expr ')'  # TDIST_fun 
     | TINV '(' expr ',' expr ')'  # TINV_fun 
-    | WEIBULL '(' expr ',' expr ',' expr ')'  # WEIBULL_fun 
+    | WEIBULL '(' expr ',' expr ',' expr ',' expr ')'  # WEIBULL_fun 
 
     | URLENCODE '(' expr ')'  # URLENCODE_fun 
     | expr '.' URLENCODE '(' ')'  # URLENCODE_fun 

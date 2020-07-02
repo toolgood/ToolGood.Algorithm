@@ -6,7 +6,7 @@ using PetaTest;
 
 namespace ToolGood.Algorithm
 {
-    //[TestFixture]
+    [TestFixture]
     class AlgorithmEngineTest_sum
     {
         #region 简单统计

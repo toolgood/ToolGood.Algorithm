@@ -80,7 +80,8 @@ namespace Antlr4.Runtime
             char o = (char) c;
             if (o == '（') { o = '('; }
             if (o == '）') { o = ')'; }
-
+            if (o == '，') { o = ','; }
+            
             if (upper)
             {
                 return (int) char.ToUpperInvariant(o);
