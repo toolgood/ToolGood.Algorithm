@@ -13,15 +13,18 @@ expr: expr op=('*'|'/'|'%') expr                        # MulDiv_fun
     | IFNUMBER '(' expr ',' expr (',' expr )? ')'       # IFNUMBER_fun  
     | IFTEXT '(' expr ',' expr (',' expr )? ')'         # IFTEXT_fun  
     | ISNUMBER '(' expr ')'                             # ISNUMBER_fun 
+    | expr '.' ISNUMBER '(' ')'                         # ISNUMBER_fun 
     | ISTEXT '(' expr ')'                               # ISTEXT_fun 
+    | expr '.' ISTEXT '(' ')'                           # ISTEXT_fun 
     | ISERROR '(' expr ')'                              # ISERROR_fun 
+    | expr '.' ISERROR '(' ')'                          # ISERROR_fun 
     | AND '(' expr (',' expr )* ')'                     # AND_fun  
     | OR '(' expr (',' expr )* ')'                      # OR_fun 
     | NOT '(' expr ')'                                  # NOT_fun 
-    | TRUE '(' ')'                                      # TRUE_fun 
-    | FALSE '(' ')'                                     # FALSE_fun 
+    | TRUE ('(' ')')?                                        # TRUE_fun 
+    | FALSE ('(' ')')?                                       # FALSE_fun 
 
-    | PI '(' ')'    # PI_fun 
+    | PI ('(' ')')?    # PI_fun 
     | ABS '(' expr ')'  # ABS_fun 
     | QUOTIENT '(' expr (',' expr ) ')' # QUOTIENT_fun  
     | MOD '(' expr (',' expr ) ')'  # MOD_fun 
@@ -29,6 +32,7 @@ expr: expr op=('*'|'/'|'%') expr                        # MulDiv_fun
     | SQRT '(' expr ')' # SQRT_fun 
     | TRUNC '(' expr ')'    # TRUNC_fun 
     | INT '(' expr ')'    # INT_fun 
+    | expr '.' INT '(' ')'    # INT_fun 
     | GCD '(' expr (',' expr )+ ')' # GCD_fun 
     | LCM '(' expr (',' expr )+ ')' # LCM_fun 
     | COMBIN '(' expr ',' expr ')'  # COMBIN_fun 
@@ -122,17 +126,25 @@ expr: expr op=('*'|'/'|'%') expr                        # MulDiv_fun
     | expr '.' VALUE '(' ')'  # VALUE_fun 
 
     | DATEVALUE '(' expr ')'  # DATEVALUE_fun 
+    | expr '.' DATEVALUE '(' ')'  # DATEVALUE_fun 
     | TIMEVALUE '(' expr ')'  # TIMEVALUE_fun 
+    | expr '.' TIMEVALUE '(' ')'  # TIMEVALUE_fun 
     | DATE '(' expr ',' expr ',' expr (',' expr (',' expr (',' expr)?)?)? ')'  # DATE_fun 
     | TIME '(' expr ',' expr (',' expr)? ')'  # TIME_fun 
     | NOW '(' ')'  # NOW_fun 
     | TODAY '(' ')'  # TODAY_fun 
     | YEAR '(' expr ')'  # YEAR_fun 
+    | expr '.' YEAR ('(' ')')?  # YEAR_fun 
     | MONTH '(' expr ')'  # MONTH_fun 
+    | expr '.' MONTH ('(' ')')?  # MONTH_fun 
     | DAY '(' expr ')'  # DAY_fun 
+    | expr '.' DAY ('(' ')')?  # DAY_fun 
     | HOUR '(' expr ')'  # HOUR_fun 
+    | expr '.' HOUR ('(' ')')?  # HOUR_fun 
     | MINUTE '(' expr ')'  # MINUTE_fun 
+    | expr '.' MINUTE ('(' ')')?  # MINUTE_fun 
     | SECOND '(' expr ')'  # SECOND_fun 
+    | expr '.' SECOND ('(' ')')?  # SECOND_fun 
     | WEEKDAY '(' expr (',' expr)? ')'  # WEEKDAY_fun 
     | DATEDIF '(' expr ',' expr ',' expr ')'  # DATEDIF_fun 
     | DAYS360 '(' expr ',' expr (',' expr)? ')'  # DAYS360_fun 
@@ -265,7 +277,7 @@ expr: expr op=('*'|'/'|'%') expr                        # MulDiv_fun
     | REMOVEEND '(' expr ',' expr ')'  # REMOVEEND_fun 
     | expr '.' REMOVEEND '(' expr ')'  # REMOVEEND_fun 
 
-    
+
     | JSON '(' expr ')'  # JSON_fun 
     | expr '.' JSON '(' ')'  # JSON_fun 
 
