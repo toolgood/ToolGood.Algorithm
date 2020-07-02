@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Antlr4.Runtime;
-using static mathParser;
+using static ToolGood.Algorithm.mathParser;
 
 namespace ToolGood.Algorithm
 {

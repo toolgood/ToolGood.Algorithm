@@ -29,10 +29,11 @@ using Antlr4.Runtime.Atn;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
 using DFA = Antlr4.Runtime.Dfa.DFA;
-
-[System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.8")]
-[System.CLSCompliant(false)]
-public partial class mathParser : Parser
+namespace ToolGood.Algorithm
+{
+    //[System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.8")]
+    //[System.CLSCompliant(false)]
+    partial class mathParser : Parser
 {
     protected static DFA[] decisionToDFA;
     protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
@@ -10292,4 +10293,5 @@ public partial class mathParser : Parser
         new ATNDeserializer().Deserialize(_serializedATN);
 
 
+}
 }

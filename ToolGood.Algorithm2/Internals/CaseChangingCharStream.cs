@@ -3,9 +3,10 @@
  * can be found in the LICENSE.txt file in the project root.
  */
 using System;
+using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
 
-namespace Antlr4.Runtime
+namespace ToolGood.Algorithm
 {
     /// <summary>
     /// This class supports case-insensitive lexing by wrapping an existing
@@ -16,7 +17,7 @@ namespace Antlr4.Runtime
     /// 'BEGIN' if constructor parameter upper=true but getText() would return
     /// 'BeGiN'.
     /// </summary>
-    public class CaseChangingCharStream : ICharStream
+    class CaseChangingCharStream : ICharStream
     {
         private ICharStream stream;
         private bool upper;
