@@ -3680,11 +3680,6 @@ namespace ToolGood.Algorithm
             {
                 return this.Visit(expr);
             }
-            var num = context.NUM();
-            if (num != null)
-            {
-                return this.Visit(num);
-            }
             return Operand.Create(context.p.Text);
         }
 
