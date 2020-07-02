@@ -65,7 +65,7 @@ namespace ToolGood.Algorithm
         }
         public static Operand Create(ICollection<string> obj)
         {
-            var array =new List<Operand>();
+            var array = new List<Operand>();
             foreach (var item in obj)
             {
                 array.Add(Create(item));
@@ -80,91 +80,101 @@ namespace ToolGood.Algorithm
         public static Operand True = Operand.Create(true);
         public static Operand False = Operand.Create(false);
         #endregion
-        public Operand ToNumber(string title = "")
+        public Operand ToNumber(string errorMessage = "")
         {
             if (Type == OperandType.NUMBER) { return this; }
             if (IsError) { return this; }
             if (Type == OperandType.BOOLEAN) { return Create(BooleanValue ? 1.0 : 0.0); }
-            if (Type == OperandType.DATE) { return Create((double)DateValue); }
-            if (Type == OperandType.STRING) {
-                if (double.TryParse(StringValue, NumberStyles.Currency, CultureInfo.GetCultureInfo("en-US"), out double d)) {
+            if (Type == OperandType.DATE) { return Create((double) DateValue); }
+            if (Type == OperandType.STRING)
+            {
+                if (double.TryParse(StringValue, NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out double d))
+                {
                     return Create(d);
                 }
             }
-            return Error(title + "无法转成数字！");
+            return Error(errorMessage);
         }
-        public Operand ToBoolean(string title = "")
+        public Operand ToBoolean(string errorMessage = "")
         {
             if (Type == OperandType.BOOLEAN) { return this; }
             if (IsError) { return this; }
             if (Type == OperandType.NUMBER) { return Create(NumberValue != 0); }
-            if (Type == OperandType.DATE) { return Create(((double)DateValue) != 0); }
-            if (Type == OperandType.STRING) {
+            if (Type == OperandType.DATE) { return Create(((double) DateValue) != 0); }
+            if (Type == OperandType.STRING)
+            {
                 if (StringValue.Equals("true", StringComparison.OrdinalIgnoreCase)) { return Create(true); }
                 if (StringValue.Equals("false", StringComparison.OrdinalIgnoreCase)) { return Create(false); }
             }
-            return Error(title + "无法转成bool！");
+            return Error(errorMessage);
         }
-        public Operand ToString(string title = "")
+        public Operand ToString(string errorMessage = "")
         {
             if (Type == OperandType.STRING) { return this; }
             if (IsError) { return this; }
-            if (Type == OperandType.NUMBER) { return Create(NumberValue.ToString()); }
+            if (Type == OperandType.NUMBER) { return Create(NumberValue.ToString(CultureInfo.GetCultureInfo("en-US"))); }
             if (Type == OperandType.BOOLEAN) { return Create(BooleanValue ? "TRUE" : "FALSE"); }
             if (Type == OperandType.DATE) { return Create(DateValue.ToString()); }
             if (Type == OperandType.JSON) { return Create(JsonValue.ToString()); }
 
-            return Error(title + "无法转成string！");
+            return Error(errorMessage);
         }
-        public Operand ToDate(string title = "")
+        public Operand ToDate(string errorMessage = "")
         {
             if (Type == OperandType.DATE) { return this; }
             if (IsError) { return this; }
-            if (Type == OperandType.NUMBER) { return Create((Date)NumberValue); }
-            if (Type == OperandType.STRING) {
+            if (Type == OperandType.NUMBER) { return Create((Date) NumberValue); }
+            if (Type == OperandType.STRING)
+            {
                 if (DateTime.TryParse(StringValue, out DateTime d)) { return Create(new Date(d)); }
                 if (TimeSpan.TryParse(StringValue, out TimeSpan t)) { return Create(new Date(t)); }
             }
-            return Error(title + "无法转成date！");
+            return Error(errorMessage);
         }
-        public Operand ToJson(string title = "")
+        public Operand ToJson(string errorMessage = "")
         {
             if (Type == OperandType.JSON) { return this; }
             if (IsError) { return this; }
-            if (Type == OperandType.STRING) {
-                try {
+            if (Type == OperandType.STRING)
+            {
+                try
+                {
                     var json = JsonMapper.ToObject(StringValue);
                     return Create(json);
-                } catch (Exception) { }
+                }
+                catch (Exception) { }
             }
-            return Error(title + "无法转成json！");
+            return Error(errorMessage);
         }
-        public Operand ToArray(string title = "")
+        public Operand ToArray(string errorMessage = "")
         {
             if (Type == OperandType.ARRARY) { return this; }
             if (IsError) { return this; }
-            return Error(title + "无法转成 array！");
+            return Error(errorMessage);
         }
 
 
 
         public List<double> GetNumberList()
         {
-            if (Type == OperandType.NUMBER) {
+            if (Type == OperandType.NUMBER)
+            {
                 return new List<double>() { this.NumberValue };
             }
             List<double> list = new List<double>();
-            foreach (var item in ArrayValue) {
-                if (item.Type == OperandType.NUMBER) {
+            foreach (var item in ArrayValue)
+            {
+                if (item.Type == OperandType.NUMBER)
+                {
                     list.Add(item.NumberValue);
-                } else if (item.Type == OperandType.ARRARY) {
+                }
+                else if (item.Type == OperandType.ARRARY)
+                {
                     list.AddRange(item.GetNumberList());
                 }
             }
             return list;
         }
-
-
 
         public void Dispose() { }
     }
@@ -191,7 +201,7 @@ namespace ToolGood.Algorithm
     {
         public OperandNumber(double obj) : base(obj) { }
         public override OperandType Type => OperandType.NUMBER;
-        public override int IntValue => (int)Value;
+        public override int IntValue => (int) Value;
         public override double NumberValue => Value;
     }
     public class OperandBoolean : Operand<bool>

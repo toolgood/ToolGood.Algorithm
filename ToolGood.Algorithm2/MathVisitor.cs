@@ -409,7 +409,7 @@ namespace ToolGood.Algorithm
             }
             else if (arg[0].Type == OperandType.STRING)
             {
-                if (double.TryParse(arg[0].StringValue, NumberStyles.Currency, CultureInfo.GetCultureInfo("en-US"), out _))
+                if (double.TryParse(arg[0].StringValue, NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out _))
                 {
                     return Operand.True;
                 }
@@ -447,7 +447,7 @@ namespace ToolGood.Algorithm
             }
             else if (firstValue.Type == OperandType.STRING)
             {
-                if (double.TryParse(firstValue.StringValue, NumberStyles.Currency, CultureInfo.GetCultureInfo("en-US"), out _))
+                if (double.TryParse(firstValue.StringValue, NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out _))
                 {
                     return Operand.True;
                 }
@@ -1568,7 +1568,7 @@ namespace ToolGood.Algorithm
             var firstValue = this.Visit(context.expr()).ToString("UPPER func");
             if (firstValue.IsError) { return firstValue; }
 
-            if (double.TryParse(firstValue.StringValue, NumberStyles.Currency, CultureInfo.GetCultureInfo("en-US"), out double d))
+            if (double.TryParse(firstValue.StringValue, NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out double d))
             {
                 return Operand.Create(d);
             }
@@ -2359,7 +2359,7 @@ namespace ToolGood.Algorithm
             }
             else
             {
-                if (double.TryParse(arg[1].StringValue.Trim(), NumberStyles.Currency, CultureInfo.GetCultureInfo("en-US"), out double d))
+                if (double.TryParse(arg[1].StringValue.Trim(), NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out double d))
                 {
                     count = F_base_countif(list, arg[1].NumberValue);
                     sum = F_base_sumif(list, "=" + arg[1].StringValue.Trim(), sumdbs);
@@ -2421,7 +2421,7 @@ namespace ToolGood.Algorithm
             }
             else
             {
-                if (double.TryParse(arg[1].StringValue.Trim(), NumberStyles.Currency, CultureInfo.GetCultureInfo("en-US"), out double d))
+                if (double.TryParse(arg[1].StringValue.Trim(), NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out double d))
                 {
                     count = F_base_countif(dbs, arg[1].NumberValue);
                 }
@@ -2461,7 +2461,7 @@ namespace ToolGood.Algorithm
             }
             else
             {
-                if (double.TryParse(arg[1].StringValue.Trim(), NumberStyles.Currency, CultureInfo.GetCultureInfo("en-US"), out _))
+                if (double.TryParse(arg[1].StringValue.Trim(), NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out _))
                 {
                     sum = F_base_sumif(dbs, "=" + arg[1].StringValue.Trim(), sumdbs);
                 }
@@ -3574,8 +3574,61 @@ namespace ToolGood.Algorithm
 
         public Operand VisitGetJsonValue_fun([NotNull] mathParser.GetJsonValue_funContext context)
         {
+            var firstValue = this.Visit(context.expr());
+            if (firstValue.IsError) { return firstValue; }
 
-            throw new NotImplementedException();
+            var obj = firstValue;
+            var op = this.Visit(context.parameter());
+            try
+            {
+                if (obj.Type == OperandType.ARRARY)
+                {
+                    op = op.ToNumber();
+                    if (op.IsError) { return op; }
+                    var index = op.IntValue - excelIndex;
+                    if (index < obj.ArrayValue.Count)
+                        return obj.ArrayValue[index];
+                    return Operand.Error("");
+                }
+                if (obj.Type == OperandType.JSON)
+                {
+                    var json = obj.JsonValue;
+                    if (json.IsArray)
+                    {
+                        op = op.ToNumber();
+                        if (op.IsError) { return op; }
+                        var index = op.IntValue - excelIndex;
+                        if (index < json.Count)
+                        {
+                            var v = json[op.IntValue - excelIndex];
+                            if (v.IsString) return Operand.Create(v.ToString());
+                            if (v.IsBoolean) return Operand.Create(bool.Parse(v.ToString()));
+                            if (v.IsDouble) return Operand.Create(double.Parse(v.ToString(), CultureInfo.GetCultureInfo("en-US")));
+                            if (v.IsInt) return Operand.Create(double.Parse(v.ToString(), CultureInfo.GetCultureInfo("en-US")));
+                            if (v.IsLong) return Operand.Create(double.Parse(v.ToString(), CultureInfo.GetCultureInfo("en-US")));
+                            return Operand.Create(v);
+                        }
+                        return Operand.Error("");
+                    }
+                    else
+                    {
+                        op = op.ToString("");
+                        if (op.IsError) { return op; }
+                        var v = json[op.StringValue];
+                        if (v == null) return Operand.Create(v);
+                        if (v.IsString) return Operand.Create(v.ToString());
+                        if (v.IsBoolean) return Operand.Create(bool.Parse(v.ToString()));
+                        if (v.IsDouble) return Operand.Create(double.Parse(v.ToString(), CultureInfo.GetCultureInfo("en-US")));
+                        if (v.IsInt) return Operand.Create(double.Parse(v.ToString(), CultureInfo.GetCultureInfo("en-US")));
+                        if (v.IsLong) return Operand.Create(double.Parse(v.ToString(), CultureInfo.GetCultureInfo("en-US")));
+                        if (v.IsObject) return Operand.Create(v);
+                        if (v.IsArray) return Operand.Create(v);
+                        return Operand.Create(v);
+                    }
+                }
+            }
+            catch (Exception) { }
+            return Operand.Create(op + "操作无效！");
         }
 
         public Operand VisitParameter([NotNull] mathParser.ParameterContext context)

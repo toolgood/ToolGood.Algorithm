@@ -40,10 +40,10 @@ namespace ToolGood.Algorithm
         /// </summary>
         STRING,
 
-        /// <summary>
-        /// 参数
-        /// </summary>
-        PARAMETER,
+        ///// <summary>
+        ///// 参数
+        ///// </summary>
+        //PARAMETER,
 
         ///// <summary>
         ///// 对象
