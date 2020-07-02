@@ -15,26 +15,6 @@ namespace ToolGood.Algorithm
             return BitConverter.ToString(new byte[] { b });
         }
 
-        public static string GetCrc8String(string text)
-        {
-            if (text == null) throw new ArgumentNullException("text");
-            var buffer = System.Text.Encoding.UTF8.GetBytes(text);
-            return GetCrc8String(buffer);
-        }
-
-        public static byte GetCrc8Bytes(byte[] buffer)
-        {
-            if (buffer == null) throw new ArgumentNullException("buffer");
-            return Crc8Hash.CRC(buffer);
-        }
-
-        public static byte GetCrc8Bytes(string text)
-        {
-            if (text == null) throw new ArgumentNullException("text");
-            var buffer = System.Text.Encoding.UTF8.GetBytes(text);
-            return GetCrc8Bytes(buffer);
-        }
-
         class Crc8Hash
         {
             /// <summary> 
@@ -82,23 +62,6 @@ namespace ToolGood.Algorithm
         {
             var buffer1 = Crc16Hash.makeCrc16(buffer);
             return BitConverter.ToString(buffer1);
-        }
-
-        public static string GetCrc16String(string text)
-        {
-            var buffer = System.Text.Encoding.UTF8.GetBytes(text);
-            return GetCrc16String(buffer);
-        }
-
-        public static byte[] GetCrc16Bytes(byte[] buffer)
-        {
-            return Crc16Hash.makeCrc16(buffer);
-        }
-
-        public static byte[] GetCrc16Bytes(string text)
-        {
-            var buffer = System.Text.Encoding.UTF8.GetBytes(text);
-            return GetCrc16Bytes(buffer);
         }
 
         class Crc16Hash
@@ -209,31 +172,6 @@ namespace ToolGood.Algorithm
             return BitConverter.ToString(retVal).Replace("-", "");
         }
 
-        public static string GetCrc32String(string text)
-        {
-            if (text == null) throw new ArgumentNullException("text");
-
-            var buffer = System.Text.Encoding.UTF8.GetBytes(text);
-            return GetCrc32String(buffer);
-        }
-
-        public static byte[] GetCrc32Bytes(byte[] buffer)
-        {
-            if (buffer == null) throw new ArgumentNullException("buffer");
-
-            Crc32Hash crc32 = new Crc32Hash();
-            crc32.Append(buffer);
-            return crc32.Finish();
-        }
-
-        public static byte[] GetCrc32Bytes(string text)
-        {
-            if (text == null) throw new ArgumentNullException("text");
-
-            var buffer = System.Text.Encoding.UTF8.GetBytes(text);
-            return GetCrc32Bytes(buffer);
-        }
-
         class Crc32Hash
         {
             private static readonly uint CrcSeed = 0xFFFFFFFF;
@@ -329,121 +267,35 @@ namespace ToolGood.Algorithm
             md5.Dispose();
             return BitConverter.ToString(retVal).Replace("-", "");
         }
-
-        public static string GetMd5String(string text)
-        {
-            if (text == null) throw new ArgumentNullException("text");
-
-            var buffer = System.Text.Encoding.UTF8.GetBytes(text);
-            return GetMd5String(buffer);
-        }
-
-        public static byte[] GetMd5Bytes(byte[] buffer)
-        {
-            if (buffer == null) throw new ArgumentNullException("buffer");
-
-            System.Security.Cryptography.MD5 md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
-            byte[] retVal = md5.ComputeHash(buffer);
-            md5.Dispose();
-            return retVal;
-        }
-
-        public static byte[] GetMd5Bytes(string text)
-        {
-            if (text == null) throw new ArgumentNullException("text");
-
-            var buffer = System.Text.Encoding.UTF8.GetBytes(text);
-            return GetMd5Bytes(buffer);
-        }
         #endregion
 
         #region SHA1
-
-        public static string GetSha1String(string text)
-        {
-            if (text == null) throw new ArgumentNullException("text");
-
-            var buffer = System.Text.Encoding.UTF8.GetBytes(text);
-            return GetSha1String(buffer);
-        }
-
         public static string GetSha1String(byte[] buffer)
         {
             if (buffer == null) throw new ArgumentNullException("buffer");
 
-            System.Security.Cryptography.SHA1CryptoServiceProvider osha1 = new System.Security.Cryptography.SHA1CryptoServiceProvider();
-            byte[] retVal = osha1.ComputeHash(buffer);
-            osha1.Dispose();
+            SHA1 sha512 = new SHA1Managed();
+            byte[] retVal = sha512.ComputeHash(buffer); //计算指定Stream 对象的哈希值
+            sha512.Dispose();
             return BitConverter.ToString(retVal).Replace("-", "");
         }
 
-        public static byte[] GetSha1Bytes(byte[] buffer)
-        {
-            if (buffer == null) throw new ArgumentNullException("buffer");
-
-            System.Security.Cryptography.SHA1CryptoServiceProvider osha1 = new System.Security.Cryptography.SHA1CryptoServiceProvider();
-            byte[] retVal = osha1.ComputeHash(buffer);
-            osha1.Dispose();
-            return retVal;
-        }
-
-        public static byte[] GetSha1Bytes(string text)
-        {
-            if (text == null) throw new ArgumentNullException("text");
-
-            var buffer = System.Text.Encoding.UTF8.GetBytes(text);
-            return GetSha1Bytes(buffer);
-        }
         #endregion
 
         #region SHA256
-        public static string GetSha256String(string text)
-        {
-            if (text == null) throw new ArgumentNullException("text");
-
-            var buffer = System.Text.Encoding.UTF8.GetBytes(text);
-            return GetSha256String(buffer);
-        }
-
+ 
         public static string GetSha256String(byte[] buffer)
         {
             if (buffer == null) throw new ArgumentNullException("buffer");
 
-            SHA256 sha256 = new SHA256Managed();
-            byte[] retVal = sha256.ComputeHash(buffer); //计算指定Stream 对象的哈希值
-            sha256.Dispose();
+            SHA256 sha512 = new SHA256Managed();
+            byte[] retVal = sha512.ComputeHash(buffer); //计算指定Stream 对象的哈希值
+            sha512.Dispose();
             return BitConverter.ToString(retVal).Replace("-", "");
-        }
-
-        public static byte[] GetSha256Bytes(byte[] buffer)
-        {
-            if (buffer == null) throw new ArgumentNullException("buffer");
-
-            SHA256 sha256 = new SHA256Managed();
-            byte[] retVal = sha256.ComputeHash(buffer); //计算指定Stream 对象的哈希值
-            sha256.Dispose();
-
-            return retVal;
-        }
-
-        public static byte[] GetSha256Bytes(string text)
-        {
-            if (text == null) throw new ArgumentNullException("text");
-
-            var buffer = System.Text.Encoding.UTF8.GetBytes(text);
-            return GetSha256Bytes(buffer);
         }
         #endregion
 
         #region SHA512
-
-        public static string GetSha512String(string text)
-        {
-            if (text == null) throw new ArgumentNullException("text");
-
-            var buffer = System.Text.Encoding.UTF8.GetBytes(text);
-            return GetSha512String(buffer);
-        }
 
         public static string GetSha512String(byte[] buffer)
         {
@@ -455,24 +307,6 @@ namespace ToolGood.Algorithm
             return BitConverter.ToString(retVal).Replace("-", "");
         }
 
-        public static byte[] GetSha512Bytes(byte[] buffer)
-        {
-            if (buffer == null) throw new ArgumentNullException("buffer");
-
-            SHA512 sha512 = new SHA512Managed();
-            byte[] retVal = sha512.ComputeHash(buffer); //计算指定Stream 对象的哈希值
-            sha512.Dispose();
-
-            return retVal;
-        }
-
-        public static byte[] GetSha512Bytes(string text)
-        {
-            if (text == null) throw new ArgumentNullException("text");
-
-            var buffer = System.Text.Encoding.UTF8.GetBytes(text);
-            return GetSha512Bytes(buffer);
-        }
         #endregion
 
         #region HMACMD5
@@ -487,31 +321,6 @@ namespace ToolGood.Algorithm
                 return BitConverter.ToString(hashmessage).Replace("-", "");
             }
         }
-        public static string GetHmacMd5String(string text, string secret)
-        {
-            if (text == null) throw new ArgumentNullException("text");
-
-            var buffer = System.Text.Encoding.UTF8.GetBytes(text);
-            return GetHmacMd5String(buffer, secret);
-        }
-        public static byte[] GetHmacMd5Bytes(byte[] buffer, string secret)
-        {
-            if (buffer == null) throw new ArgumentNullException("buffer");
-
-            secret = secret ?? "";
-            byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret);
-            using (var hmacsha256 = new HMACMD5(keyByte)) {
-                return hmacsha256.ComputeHash(buffer);
-            }
-        }
-        public static byte[] GetHmacMd5Bytes(string text, string secret)
-        {
-            if (text == null) throw new ArgumentNullException("text");
-
-            var buffer = System.Text.Encoding.UTF8.GetBytes(text);
-            return GetHmacMd5Bytes(buffer, secret);
-        }
-
         #endregion
 
         #region HMACSHA1
@@ -526,31 +335,6 @@ namespace ToolGood.Algorithm
                 return BitConverter.ToString(hashmessage).Replace("-", "");
             }
         }
-        public static string GetHmacSha1String(string text, string secret)
-        {
-            if (text == null) throw new ArgumentNullException("text");
-
-            var buffer = System.Text.Encoding.UTF8.GetBytes(text);
-            return GetHmacSha1String(buffer, secret);
-        }
-        public static byte[] GetHmacSha1Bytes(byte[] buffer, string secret)
-        {
-            if (buffer == null) throw new ArgumentNullException("buffer");
-
-            secret = secret ?? "";
-            byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret);
-            using (var hmacsha256 = new HMACSHA1(keyByte)) {
-                return hmacsha256.ComputeHash(buffer);
-            }
-        }
-        public static byte[] GetHmacSha1Bytes(string text, string secret)
-        {
-            if (text == null) throw new ArgumentNullException("text");
-
-            var buffer = System.Text.Encoding.UTF8.GetBytes(text);
-            return GetHmacSha1Bytes(buffer, secret);
-        }
-
         #endregion
 
         #region HMACSHA256
@@ -565,31 +349,6 @@ namespace ToolGood.Algorithm
                 return BitConverter.ToString(hashmessage).Replace("-", "");
             }
         }
-        public static string GetHmacSha256String(string text, string secret)
-        {
-            if (text == null) throw new ArgumentNullException("text");
-
-            var buffer = System.Text.Encoding.UTF8.GetBytes(text);
-            return GetHmacSha256String(buffer, secret);
-        }
-        public static byte[] GetHmacSha256Bytes(byte[] buffer, string secret)
-        {
-            if (buffer == null) throw new ArgumentNullException("buffer");
-
-            secret = secret ?? "";
-            byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret);
-            using (var hmacsha256 = new HMACSHA256(keyByte)) {
-                return hmacsha256.ComputeHash(buffer);
-            }
-        }
-        public static byte[] GetHmacSha256Bytes(string text, string secret)
-        {
-            if (text == null) throw new ArgumentNullException("text");
-
-            var buffer = System.Text.Encoding.UTF8.GetBytes(text);
-            return GetHmacSha256Bytes(buffer, secret);
-        }
-
         #endregion
 
         #region HMACSHA512
@@ -603,30 +362,6 @@ namespace ToolGood.Algorithm
                 byte[] hashmessage = hmacsha256.ComputeHash(buffer);
                 return BitConverter.ToString(hashmessage).Replace("-", "");
             }
-        }
-        public static string GetHmacSha512String(string text, string secret)
-        {
-            if (text == null) throw new ArgumentNullException("text");
-
-            var buffer = System.Text.Encoding.UTF8.GetBytes(text);
-            return GetHmacSha512String(buffer, secret);
-        }
-        public static byte[] GetHmacSha512Bytes(byte[] buffer, string secret)
-        {
-            if (buffer == null) throw new ArgumentNullException("buffer");
-
-            secret = secret ?? "";
-            byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret);
-            using (var hmacsha256 = new HMACSHA512(keyByte)) {
-                return hmacsha256.ComputeHash(buffer);
-            }
-        }
-        public static byte[] GetHmacSha512Bytes(string text, string secret)
-        {
-            if (text == null) throw new ArgumentNullException("text");
-
-            var buffer = System.Text.Encoding.UTF8.GetBytes(text);
-            return GetHmacSha512Bytes(buffer, secret);
         }
 
         #endregion

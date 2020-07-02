@@ -2518,107 +2518,293 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitDEVSQ_fun([NotNull] mathParser.DEVSQ_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            List<double> list = F_base_GetList(arg);
+            double avg = list.Average();
+            double sum = 0;
+            for (int i = 0; i < list.Count; i++)
+            {
+                sum += (list[i] - avg) * (list[i] - avg);
+            }
+            return Operand.Create(sum);
         }
         public Operand VisitVAR_fun([NotNull] mathParser.VAR_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            List<double> list = F_base_GetList(arg);
+            double sum = 0;
+            double sum2 = 0;
+            //double avg = list.Average();
+            for (int i = 0; i < list.Count; i++)
+            {
+                sum += list[i] * list[i];
+                sum2 += list[i];
+            }
+            return Operand.Create((list.Count * sum - sum2 * sum2) / list.Count / (list.Count - 1));
         }
         public Operand VisitVARP_fun([NotNull] mathParser.VARP_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            List<double> list = F_base_GetList(arg);
+
+            double sum = 0;
+            double avg = list.Average();
+            for (int i = 0; i < list.Count; i++)
+            {
+                sum += (avg - list[i]) * (avg - list[i]);
+            }
+            return Operand.Create(sum / list.Count);
         }
         public Operand VisitNORMDIST_fun([NotNull] mathParser.NORMDIST_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            arg[0] = arg[0].ToNumber();
+            if (arg[0].IsError) return arg[0];
+            arg[1] = arg[1].ToNumber();
+            if (arg[1].IsError) return arg[1];
+            arg[2] = arg[2].ToNumber();
+            if (arg[2].IsError) return arg[2];
+
+            arg[3] = arg[3].ToBoolean();
+            if (arg[3].IsError) return arg[3];
+
+            var num = arg[0].NumberValue;
+            var avg = arg[1].NumberValue;
+            var STDEV = arg[2].NumberValue;
+            var b = arg[3].BooleanValue;
+            return Operand.Create(ExcelFunctions.NormDist(num, avg, STDEV, b));
         }
         public Operand VisitNORMINV_fun([NotNull] mathParser.NORMINV_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } arg.Add(a); }
+
+            var num = arg[0].NumberValue;
+            var avg = arg[1].NumberValue;
+            var STDEV = arg[2].NumberValue;
+            return Operand.Create(ExcelFunctions.NormInv(num, avg, STDEV));
         }
         public Operand VisitNORMSDIST_fun([NotNull] mathParser.NORMSDIST_funContext context)
         {
-            throw new NotImplementedException();
+            var firstValue = this.Visit(context.expr()).ToNumber("");
+            if (firstValue.IsError) { return firstValue; }
+
+            var k = firstValue.NumberValue;
+            return Operand.Create(ExcelFunctions.NormSDist(k));
         }
         public Operand VisitNORMSINV_fun([NotNull] mathParser.NORMSINV_funContext context)
         {
-            throw new NotImplementedException();
+            var firstValue = this.Visit(context.expr()).ToNumber("");
+            if (firstValue.IsError) { return firstValue; }
+
+            var k = firstValue.NumberValue;
+            return Operand.Create(ExcelFunctions.NormSInv(k));
         }
         public Operand VisitBETADIST_fun([NotNull] mathParser.BETADIST_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } arg.Add(a); }
+
+            var x = arg[0].NumberValue;
+            var alpha = arg[1].NumberValue;
+            var beta = arg[2].NumberValue;
+            return Operand.Create(ExcelFunctions.BetaDist(x, alpha, beta));
         }
         public Operand VisitBETAINV_fun([NotNull] mathParser.BETAINV_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } arg.Add(a); }
+
+            var probability = arg[0].NumberValue;
+            var alpha = arg[1].NumberValue;
+            var beta = arg[2].NumberValue;
+            return Operand.Create(ExcelFunctions.BetaInv(probability, alpha, beta));
         }
         public Operand VisitBINOMDIST_fun([NotNull] mathParser.BINOMDIST_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            arg[0] = arg[0].ToNumber();
+            if (arg[0].IsError) return arg[0];
+            arg[1] = arg[1].ToNumber();
+            if (arg[1].IsError) return arg[1];
+            arg[2] = arg[2].ToNumber();
+            if (arg[2].IsError) return arg[2];
+
+            arg[3] = arg[3].ToBoolean();
+            if (arg[3].IsError) return arg[3];
+
+            return Operand.Create(ExcelFunctions.BinomDist(arg[0].IntValue, arg[1].IntValue, arg[2].NumberValue, arg[3].BooleanValue));
         }
         public Operand VisitEXPONDIST_fun([NotNull] mathParser.EXPONDIST_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            arg[0] = arg[0].ToNumber();
+            if (arg[0].IsError) return arg[0];
+            arg[1] = arg[1].ToNumber();
+            if (arg[1].IsError) return arg[1];
+            arg[2] = arg[2].ToBoolean();
+            if (arg[2].IsError) return arg[2];
+
+
+            return Operand.Create(ExcelFunctions.ExponDist(arg[0].NumberValue, arg[1].NumberValue, arg[2].BooleanValue));
         }
         public Operand VisitFDIST_fun([NotNull] mathParser.FDIST_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } arg.Add(a); }
+
+            var x = arg[0].NumberValue;
+            var degreesFreedom = arg[1].IntValue;
+            var degreesFreedom2 = arg[2].IntValue;
+            return Operand.Create(ExcelFunctions.FDist(x, degreesFreedom, degreesFreedom2));
         }
         public Operand VisitFINV_fun([NotNull] mathParser.FINV_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } arg.Add(a); }
+
+
+            var probability = arg[0].NumberValue;
+            var degreesFreedom = arg[1].IntValue;
+            var degreesFreedom2 = arg[2].IntValue;
+            return Operand.Create(ExcelFunctions.FInv(probability, degreesFreedom, degreesFreedom2));
         }
         public Operand VisitFISHER_fun([NotNull] mathParser.FISHER_funContext context)
         {
-            throw new NotImplementedException();
+            var firstValue = this.Visit(context.expr()).ToNumber("");
+            if (firstValue.IsError) { return firstValue; }
+
+            var x = firstValue.NumberValue;
+            var n = 0.5 * Math.Log((1 + x) / (1 - x));
+            return Operand.Create(n);
         }
         public Operand VisitFISHERINV_fun([NotNull] mathParser.FISHERINV_funContext context)
         {
-            throw new NotImplementedException();
+            var firstValue = this.Visit(context.expr()).ToNumber("");
+            if (firstValue.IsError) { return firstValue; }
+
+            var x = firstValue.NumberValue;
+            var n = (Math.Exp(2 * x) - 1) / (Math.Exp(2 * x) + 1);
+            return Operand.Create(n);
         }
         public Operand VisitGAMMADIST_fun([NotNull] mathParser.GAMMADIST_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            arg[0] = arg[0].ToNumber();
+            if (arg[0].IsError) return arg[0];
+            arg[1] = arg[1].ToNumber();
+            if (arg[1].IsError) return arg[1];
+            arg[2] = arg[2].ToNumber();
+            if (arg[2].IsError) return arg[2];
+
+            arg[3] = arg[3].ToBoolean();
+            if (arg[3].IsError) return arg[3];
+
+
+            var x = arg[0].NumberValue;
+            var alpha = arg[1].NumberValue;
+            var beta = arg[2].NumberValue;
+            var cumulative = arg[3].BooleanValue;
+            return Operand.Create(ExcelFunctions.GammaDist(x, alpha, beta, cumulative));
         }
         public Operand VisitGAMMAINV_fun([NotNull] mathParser.GAMMAINV_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } arg.Add(a); }
+
+            var probability = arg[0].NumberValue;
+            var alpha = arg[1].NumberValue;
+            var beta = arg[2].NumberValue;
+            return Operand.Create(ExcelFunctions.GammaInv(probability, alpha, beta));
         }
         public Operand VisitGAMMALN_fun([NotNull] mathParser.GAMMALN_funContext context)
         {
-            throw new NotImplementedException();
+            var firstValue = this.Visit(context.expr()).ToNumber("");
+            if (firstValue.IsError) { return firstValue; }
+
+            return Operand.Create(ExcelFunctions.GAMMALN(firstValue.NumberValue));
         }
         public Operand VisitHYPGEOMDIST_fun([NotNull] mathParser.HYPGEOMDIST_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } arg.Add(a); }
+
+            return Operand.Create(ExcelFunctions.HypgeomDist(arg[0].IntValue, arg[1].IntValue, arg[2].IntValue, arg[3].IntValue));
         }
         public Operand VisitLOGINV_fun([NotNull] mathParser.LOGINV_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } arg.Add(a); }
+
+            return Operand.Create(ExcelFunctions.LogInv(arg[0].NumberValue, arg[1].NumberValue, arg[2].NumberValue));
         }
         public Operand VisitLOGNORMDIST_fun([NotNull] mathParser.LOGNORMDIST_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } arg.Add(a); }
+
+            return Operand.Create(ExcelFunctions.LognormDist(arg[0].NumberValue, arg[1].NumberValue, arg[2].NumberValue));
         }
         public Operand VisitNEGBINOMDIST_fun([NotNull] mathParser.NEGBINOMDIST_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } arg.Add(a); }
+
+            return Operand.Create(ExcelFunctions.NegbinomDist(arg[0].IntValue, arg[1].NumberValue, arg[2].NumberValue));
         }
         public Operand VisitPOISSON_fun([NotNull] mathParser.POISSON_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item); if (a.IsError) { return a; } arg.Add(a); }
+
+            arg[0] = arg[0].ToNumber();
+            if (arg[0].IsError) return arg[0];
+            arg[1] = arg[1].ToNumber();
+            if (arg[1].IsError) return arg[1];
+            arg[2] = arg[2].ToBoolean();
+            if (arg[2].IsError) return arg[2];
+
+            return Operand.Create(ExcelFunctions.POISSON(arg[0].IntValue, arg[1].NumberValue, arg[2].BooleanValue));
         }
         public Operand VisitTDIST_fun([NotNull] mathParser.TDIST_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } arg.Add(a); }
+
+            var x = arg[0].NumberValue;
+            var degreesFreedom = arg[1].IntValue;
+            var tails = arg[2].IntValue;
+            return Operand.Create(ExcelFunctions.TDist(x, degreesFreedom, tails));
         }
         public Operand VisitTINV_fun([NotNull] mathParser.TINV_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } arg.Add(a); }
+
+            var probability = arg[0].NumberValue;
+            var degreesFreedom = arg[1].IntValue;
+            return Operand.Create(ExcelFunctions.TInv(probability, degreesFreedom));
         }
         public Operand VisitWEIBULL_fun([NotNull] mathParser.WEIBULL_funContext context)
         {
-            throw new NotImplementedException();
+            var arg = new List<Operand>();
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } arg.Add(a); }
+
+            return Operand.Create(ExcelFunctions.WEIBULL(arg[0].NumberValue, arg[1].NumberValue, arg[2].NumberValue, arg[3].BooleanValue));
         }
 
         private int F_base_countif(List<double> dbs, double d)
@@ -3385,7 +3571,7 @@ namespace ToolGood.Algorithm
             catch (Exception) { }
             return Operand.Error("无法转Json格式！");
         }
- 
+
         public Operand VisitGetJsonValue_fun([NotNull] mathParser.GetJsonValue_funContext context)
         {
 
