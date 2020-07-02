@@ -20,10 +20,8 @@ namespace ToolGood.Algorithm
         #region base
         private Operand ThrowError(string errMsg, params Operand[] ops)
         {
-            foreach (var item in ops)
-            {
-                if (item.IsError)
-                {
+            foreach (var item in ops) {
+                if (item.IsError) {
                     return item;
                 }
             }
@@ -43,44 +41,36 @@ namespace ToolGood.Algorithm
             var firstValue = arg[0];
             var secondValue = arg[1];
 
-            if (context.op.Type == mathLexer.MUL)
-            {
-                if (secondValue.Type == OperandType.BOOLEAN)
-                {
+            if (context.op.Type == mathLexer.MUL) {
+                if (secondValue.Type == OperandType.BOOLEAN) {
                     if (secondValue.BooleanValue)
                         return firstValue;
                     else
                         return Operand.Create(0);
-                }
-                else if (firstValue.Type == OperandType.BOOLEAN)
-                {
+                } else if (firstValue.Type == OperandType.BOOLEAN) {
                     if (firstValue.BooleanValue)
                         return secondValue;
                     else
                         return Operand.Create(0);
                 }
-                if (firstValue.Type == OperandType.STRING)
-                {
+                if (firstValue.Type == OperandType.STRING) {
                     var a = firstValue.ToDate();
                     if (a.IsError == false) firstValue = a;
                 }
-                if (firstValue.Type == OperandType.DATE)
-                {
+                if (firstValue.Type == OperandType.DATE) {
                     secondValue = secondValue.ToNumber();
                     if (secondValue.IsError) { return secondValue; }
-                    return Operand.Create((Date) (firstValue.DateValue * secondValue.NumberValue));
+                    return Operand.Create((Date)(firstValue.DateValue * secondValue.NumberValue));
                 }
 
-                if (secondValue.Type == OperandType.STRING)
-                {
+                if (secondValue.Type == OperandType.STRING) {
                     var a = secondValue.ToDate();
                     if (a.IsError == false) secondValue = a;
                 }
-                if (secondValue.Type == OperandType.DATE)
-                {
+                if (secondValue.Type == OperandType.DATE) {
                     firstValue = firstValue.ToNumber();
                     if (firstValue.IsError) { return firstValue; }
-                    return Operand.Create((Date) (secondValue.DateValue * firstValue.NumberValue));
+                    return Operand.Create((Date)(secondValue.DateValue * firstValue.NumberValue));
                 }
 
                 firstValue = firstValue.ToNumber();
@@ -88,21 +78,16 @@ namespace ToolGood.Algorithm
                 secondValue = secondValue.ToNumber();
                 if (secondValue.IsError) { return secondValue; }
                 return Operand.Create(firstValue.NumberValue * secondValue.NumberValue);
-            }
-            else if (context.op.Type == mathLexer.DIV)
-            {
+            } else if (context.op.Type == mathLexer.DIV) {
                 secondValue = secondValue.ToNumber("Div fun right value");
-                if (secondValue.NumberValue == 0)
-                {
+                if (secondValue.NumberValue == 0) {
                     return ThrowError("无法除0");
                 }
-                if (firstValue.Type == OperandType.STRING)
-                {
+                if (firstValue.Type == OperandType.STRING) {
                     var a = firstValue.ToDate();
                     if (a.IsError == false) firstValue = a;
                 }
-                if (firstValue.Type == OperandType.DATE)
-                {
+                if (firstValue.Type == OperandType.DATE) {
                     return Operand.Create(firstValue.DateValue / secondValue.NumberValue);
                 }
 
@@ -111,15 +96,12 @@ namespace ToolGood.Algorithm
                 secondValue = secondValue.ToNumber();
                 if (secondValue.IsError) { return secondValue; }
                 return Operand.Create(firstValue.NumberValue / secondValue.NumberValue);
-            }
-            else if (context.op.Type == mathLexer.MOD_2)
-            {
+            } else if (context.op.Type == mathLexer.MOD_2) {
                 firstValue = firstValue.ToNumber("% fun right value");
                 if (firstValue.IsError) { return firstValue; }
                 secondValue = secondValue.ToNumber("% fun right value");
                 if (secondValue.IsError) { return secondValue; }
-                if (secondValue.NumberValue == 0)
-                {
+                if (secondValue.NumberValue == 0) {
                     return ThrowError("无法除0");
                 }
                 return Operand.Create(firstValue.NumberValue % secondValue.NumberValue);
@@ -135,34 +117,25 @@ namespace ToolGood.Algorithm
             var firstValue = arg[0];
             var secondValue = arg[1];
 
-            if (context.op.Type == mathLexer.MERGE)
-            {
+            if (context.op.Type == mathLexer.MERGE) {
                 return Operand.Create(firstValue.ToString("").StringValue + secondValue.ToString("").StringValue);
             }
-            if (context.op.Type == mathLexer.ADD)
-            {
-                if (firstValue.Type == OperandType.STRING)
-                {
+            if (context.op.Type == mathLexer.ADD) {
+                if (firstValue.Type == OperandType.STRING) {
                     var a = firstValue.ToDate();
                     if (a.IsError == false) firstValue = a;
                 }
-                if (secondValue.Type == OperandType.STRING)
-                {
+                if (secondValue.Type == OperandType.STRING) {
                     var a = secondValue.ToDate();
                     if (a.IsError == false) secondValue = a;
                 }
-                if (firstValue.Type == OperandType.DATE && secondValue.Type == OperandType.DATE)
-                {
+                if (firstValue.Type == OperandType.DATE && secondValue.Type == OperandType.DATE) {
                     return Operand.Create(firstValue.DateValue + secondValue.DateValue);
-                }
-                else if (firstValue.Type == OperandType.DATE)
-                {
+                } else if (firstValue.Type == OperandType.DATE) {
                     secondValue = secondValue.ToNumber();
                     if (secondValue.IsError) { return secondValue; }
                     return Operand.Create(firstValue.DateValue + secondValue.NumberValue);
-                }
-                else if (secondValue.Type == OperandType.DATE)
-                {
+                } else if (secondValue.Type == OperandType.DATE) {
                     firstValue = firstValue.ToNumber();
                     if (firstValue.IsError) { return firstValue; }
                     return Operand.Create(secondValue.DateValue + firstValue.NumberValue);
@@ -172,31 +145,22 @@ namespace ToolGood.Algorithm
                 secondValue = secondValue.ToNumber();
                 if (secondValue.IsError) { return secondValue; }
                 return Operand.Create(firstValue.NumberValue + secondValue.NumberValue);
-            }
-            else if (context.op.Type == mathLexer.SUB)
-            {
-                if (firstValue.Type == OperandType.STRING)
-                {
+            } else if (context.op.Type == mathLexer.SUB) {
+                if (firstValue.Type == OperandType.STRING) {
                     var a = firstValue.ToDate();
                     if (a.IsError == false) firstValue = a;
                 }
-                if (secondValue.Type == OperandType.STRING)
-                {
+                if (secondValue.Type == OperandType.STRING) {
                     var a = secondValue.ToDate();
                     if (a.IsError == false) secondValue = a;
                 }
-                if (firstValue.Type == OperandType.DATE && secondValue.Type == OperandType.DATE)
-                {
+                if (firstValue.Type == OperandType.DATE && secondValue.Type == OperandType.DATE) {
                     return Operand.Create(firstValue.DateValue - secondValue.DateValue);
-                }
-                else if (firstValue.Type == OperandType.DATE)
-                {
+                } else if (firstValue.Type == OperandType.DATE) {
                     secondValue = secondValue.ToNumber();
                     if (secondValue.IsError) { return secondValue; }
                     return Operand.Create(firstValue.DateValue - secondValue.NumberValue);
-                }
-                else if (secondValue.Type == OperandType.DATE)
-                {
+                } else if (secondValue.Type == OperandType.DATE) {
                     firstValue = firstValue.ToNumber();
                     if (firstValue.IsError) { return firstValue; }
                     return Operand.Create(secondValue.DateValue - firstValue.NumberValue);
@@ -220,60 +184,37 @@ namespace ToolGood.Algorithm
             int type = context.op.Type;
 
             int r;
-            if (firstValue.Type == secondValue.Type)
-            {
-                if (firstValue.Type == OperandType.STRING || firstValue.Type == OperandType.JSON)
-                {
+            if (firstValue.Type == secondValue.Type) {
+                if (firstValue.Type == OperandType.STRING || firstValue.Type == OperandType.JSON) {
                     r = compare(firstValue.ToString("").StringValue, secondValue.ToString("").StringValue);
-                }
-                else if (firstValue.Type == OperandType.ARRARY)
-                {
+                } else if (firstValue.Type == OperandType.ARRARY) {
                     return Operand.Error("两个类型无法比较");
-                }
-                else
-                {
+                } else {
                     r = compare(firstValue.ToNumber("").NumberValue, secondValue.ToNumber("").NumberValue);
                 }
-            }
-            else if ((firstValue.Type == OperandType.DATE && secondValue.Type == OperandType.STRING) || (secondValue.Type == OperandType.DATE && firstValue.Type == OperandType.STRING)
-               || (firstValue.Type == OperandType.NUMBER && secondValue.Type == OperandType.STRING) || (secondValue.Type == OperandType.NUMBER && firstValue.Type == OperandType.STRING)
-                )
-            {
+            } else if ((firstValue.Type == OperandType.DATE && secondValue.Type == OperandType.STRING) || (secondValue.Type == OperandType.DATE && firstValue.Type == OperandType.STRING)
+                 || (firstValue.Type == OperandType.NUMBER && secondValue.Type == OperandType.STRING) || (secondValue.Type == OperandType.NUMBER && firstValue.Type == OperandType.STRING)
+                  ) {
                 r = compare(firstValue.ToString().StringValue, secondValue.ToString().StringValue);
-            }
-            else if ((firstValue.Type == OperandType.BOOLEAN && secondValue.Type == OperandType.STRING) || (secondValue.Type == OperandType.BOOLEAN && firstValue.Type == OperandType.STRING))
-            {
+            } else if ((firstValue.Type == OperandType.BOOLEAN && secondValue.Type == OperandType.STRING) || (secondValue.Type == OperandType.BOOLEAN && firstValue.Type == OperandType.STRING)) {
                 r = compare2(firstValue.ToString().StringValue, secondValue.ToString().StringValue);
-            }
-            else if (firstValue.Type == OperandType.STRING || secondValue.Type == OperandType.STRING
-                || firstValue.Type == OperandType.JSON || secondValue.Type == OperandType.JSON
-                || firstValue.Type == OperandType.ARRARY || secondValue.Type == OperandType.ARRARY
-                )
-            {
+            } else if (firstValue.Type == OperandType.STRING || secondValue.Type == OperandType.STRING
+                  || firstValue.Type == OperandType.JSON || secondValue.Type == OperandType.JSON
+                  || firstValue.Type == OperandType.ARRARY || secondValue.Type == OperandType.ARRARY
+                  ) {
                 return Operand.Error("两个类型无法比较");
-            }
-            else
-            {
+            } else {
                 r = compare(firstValue.ToNumber("").NumberValue, secondValue.ToNumber("").NumberValue);
             }
-            if (type == mathLexer.LT)
-            {
+            if (type == mathLexer.LT) {
                 return Operand.Create(r == -1);
-            }
-            else if (type == mathLexer.LE)
-            {
+            } else if (type == mathLexer.LE) {
                 return Operand.Create(r <= 0);
-            }
-            else if (type == mathLexer.GT)
-            {
+            } else if (type == mathLexer.GT) {
                 return Operand.Create(r == 1);
-            }
-            else if (type == mathLexer.GE)
-            {
+            } else if (type == mathLexer.GE) {
                 return Operand.Create(r >= 0);
-            }
-            else if (type == mathLexer.ET)
-            {
+            } else if (type == mathLexer.ET) {
                 return Operand.Create(r == 0);
             }
             return Operand.Create(r != 0);
@@ -283,40 +224,33 @@ namespace ToolGood.Algorithm
         {
             t1 = Math.Round(t1, 12);
             t2 = Math.Round(t2, 12);
-            if (t1 == t2)
-            {
+            if (t1 == t2) {
                 return 0;
-            }
-            else if (t1 > t2)
-            {
+            } else if (t1 > t2) {
                 return 1;
             }
             return -1;
         }
         private int compare(string t1, string t2)
         {
-            if (t1 == t2)
-            {
+            if (t1 == t2) {
                 return 0;
             }
             List<string> ts = new List<string>() { t1, t2 };
             ts = ts.OrderBy(q => q).ToList();
-            if (t1 == ts[1])
-            {
+            if (t1 == ts[1]) {
                 return 1;
             }
             return -1;
         }
         private int compare2(string t1, string t2)
         {
-            if (t1.Equals(t2, StringComparison.OrdinalIgnoreCase))
-            {
+            if (t1.Equals(t2, StringComparison.OrdinalIgnoreCase)) {
                 return 0;
             }
             List<string> ts = new List<string>() { t1, t2 };
             ts = ts.OrderBy(q => q).ToList();
-            if (t1 == ts[1])
-            {
+            if (t1 == ts[1]) {
                 return 1;
             }
             return -1;
@@ -345,11 +279,9 @@ namespace ToolGood.Algorithm
             var opd = context.STRING().GetText();
             StringBuilder sb = new StringBuilder();
             int index = 1;
-            while (index < opd.Length - 1)
-            {
+            while (index < opd.Length - 1) {
                 var c = opd[index++];
-                if (c == '\\')
-                {
+                if (c == '\\') {
                     var c2 = opd[index++];
                     if (c2 == 'n') sb.Append('\n');
                     else if (c2 == 'r') sb.Append('\r');
@@ -360,9 +292,7 @@ namespace ToolGood.Algorithm
                     else if (c2 == 'b') sb.Append('\b');
                     else if (c2 == 'f') sb.Append('\f');
                     else sb.Append(opd[index++]);
-                }
-                else
-                {
+                } else {
                     sb.Append(c);
                 }
             }
@@ -373,8 +303,7 @@ namespace ToolGood.Algorithm
             var p = this.Visit(context.parameter()).ToString();
             if (p.IsError) return p;
 
-            if (GetParameter != null)
-            {
+            if (GetParameter != null) {
                 return GetParameter(p.StringValue);
             }
             return Operand.Error("");
@@ -391,16 +320,13 @@ namespace ToolGood.Algorithm
             var b = arg[0].ToBoolean("");
             if (b.IsError) { return b; }
 
-            if (b.BooleanValue)
-            {
-                if (arg.Count > 1)
-                {
+            if (b.BooleanValue) {
+                if (arg.Count > 1) {
                     return arg[1];
                 }
                 return Operand.True;
             }
-            if (arg.Count == 3)
-            {
+            if (arg.Count == 3) {
                 return arg[2];
             }
             return Operand.False;
@@ -410,12 +336,10 @@ namespace ToolGood.Algorithm
             var arg = new List<Operand>();
             foreach (var item in context.expr()) { var a = this.Visit(item); arg.Add(a); }
 
-            if (arg[0].IsError)
-            {
+            if (arg[0].IsError) {
                 return arg[1];
             }
-            if (arg.Count == 3)
-            {
+            if (arg.Count == 3) {
                 return arg[2];
             }
             return Operand.False;
@@ -426,12 +350,10 @@ namespace ToolGood.Algorithm
             var arg = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } arg.Add(aa); }
 
-            if (arg[0].Type == OperandType.NUMBER)
-            {
+            if (arg[0].Type == OperandType.NUMBER) {
                 return arg[1];
             }
-            if (arg.Count == 3)
-            {
+            if (arg.Count == 3) {
                 return arg[2];
             }
             return Operand.False;
@@ -441,10 +363,8 @@ namespace ToolGood.Algorithm
             var arg = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } arg.Add(aa); }
 
-            if (arg[0].Type == OperandType.STRING)
-            {
-                if (arg.Count > 1)
-                {
+            if (arg[0].Type == OperandType.STRING) {
+                if (arg.Count > 1) {
                     return arg[1];
                 }
                 return Operand.True;
@@ -457,8 +377,7 @@ namespace ToolGood.Algorithm
             var firstValue = this.Visit(context.expr());
             if (firstValue.IsError) { return firstValue; }
 
-            if (firstValue.Type == OperandType.NUMBER)
-            {
+            if (firstValue.Type == OperandType.NUMBER) {
                 return Operand.True;
             }
             return Operand.False;
@@ -468,8 +387,7 @@ namespace ToolGood.Algorithm
             var firstValue = this.Visit(context.expr());
             if (firstValue.IsError) { return firstValue; }
 
-            if (firstValue.Type == OperandType.STRING)
-            {
+            if (firstValue.Type == OperandType.STRING) {
                 return Operand.True;
             }
             return Operand.False;
@@ -477,8 +395,7 @@ namespace ToolGood.Algorithm
         public Operand VisitISERROR_fun([NotNull] mathParser.ISERROR_funContext context)
         {
             var firstValue = this.Visit(context.expr());
-            if (firstValue.Type == OperandType.ERROR)
-            {
+            if (firstValue.Type == OperandType.ERROR) {
                 return Operand.True;
             }
             return Operand.False;
@@ -486,18 +403,15 @@ namespace ToolGood.Algorithm
         public Operand VisitAND_fun([NotNull] mathParser.AND_funContext context)
         {
             var arg = new List<Operand>();
-            foreach (var item in context.expr())
-            {
+            foreach (var item in context.expr()) {
                 var a = this.Visit(item).ToBoolean();
                 if (a.IsError) { return a; }
                 arg.Add(a);
             }
 
             var b = true;
-            foreach (var item in arg)
-            {
-                if (item.BooleanValue == false)
-                {
+            foreach (var item in arg) {
+                if (item.BooleanValue == false) {
                     b = false;
                     break;
                 }
@@ -507,18 +421,15 @@ namespace ToolGood.Algorithm
         public Operand VisitOR_fun([NotNull] mathParser.OR_funContext context)
         {
             var arg = new List<Operand>();
-            foreach (var item in context.expr())
-            {
+            foreach (var item in context.expr()) {
                 var a = this.Visit(item).ToBoolean();
                 if (a.IsError) { return a; }
                 arg.Add(a);
             }
 
             var b = false;
-            foreach (var item in arg)
-            {
-                if (item.BooleanValue == true)
-                {
+            foreach (var item in arg) {
+                if (item.BooleanValue == true) {
                     b = true;
                     break;
                 }
@@ -569,11 +480,10 @@ namespace ToolGood.Algorithm
             var firstValue = arg[0];
             var secondValue = arg[1];
 
-            if (secondValue.NumberValue == 0)
-            {
+            if (secondValue.NumberValue == 0) {
                 return ThrowError("div 0 error!");
             }
-            return Operand.Create((double) (int) (firstValue.NumberValue / secondValue.NumberValue));
+            return Operand.Create((double)(int)(firstValue.NumberValue / secondValue.NumberValue));
         }
         public Operand VisitMOD_fun([NotNull] mathParser.MOD_funContext context)
         {
@@ -583,11 +493,10 @@ namespace ToolGood.Algorithm
             var firstValue = arg[0];
             var secondValue = arg[1];
 
-            if (secondValue.NumberValue == 0)
-            {
+            if (secondValue.NumberValue == 0) {
                 return ThrowError("div 0 error!");
             }
-            return Operand.Create((int) (firstValue.NumberValue % secondValue.NumberValue));
+            return Operand.Create((int)(firstValue.NumberValue % secondValue.NumberValue));
 
         }
         public Operand VisitSIGN_fun([NotNull] mathParser.SIGN_funContext context)
@@ -608,13 +517,13 @@ namespace ToolGood.Algorithm
         {
             var firstValue = this.Visit(context.expr()).ToNumber("TRUNC func left value");
             if (firstValue.IsError) { return firstValue; }
-            return Operand.Create((int) (firstValue.NumberValue));
+            return Operand.Create((int)(firstValue.NumberValue));
         }
         public Operand VisitINT_fun([NotNull] mathParser.INT_funContext context)
         {
             var firstValue = this.Visit(context.expr()).ToNumber("INT func left value");
             if (firstValue.IsError) { return firstValue; }
-            return Operand.Create((int) (firstValue.NumberValue));
+            return Operand.Create((int)(firstValue.NumberValue));
         }
         public Operand VisitGCD_fun([NotNull] mathParser.GCD_funContext context)
         {
@@ -622,19 +531,14 @@ namespace ToolGood.Algorithm
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } arg.Add(aa); }
 
             List<int> list = new List<int>();
-            foreach (var item in arg)
-            {
-                if (item.Type == OperandType.ARRARY)
-                {
-                    foreach (var it in item.ArrayValue)
-                    {
+            foreach (var item in arg) {
+                if (item.Type == OperandType.ARRARY) {
+                    foreach (var it in item.ArrayValue) {
                         var a = it.ToNumber();
                         if (a.IsError) { return a; }
                         list.Add(a.IntValue);
                     }
-                }
-                else
-                {
+                } else {
                     var a = item.ToNumber();
                     if (a.IsError) { return a; }
                     list.Add(a.IntValue);
@@ -648,19 +552,14 @@ namespace ToolGood.Algorithm
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } arg.Add(aa); }
 
             List<int> list = new List<int>();
-            foreach (var item in arg)
-            {
-                if (item.Type == OperandType.ARRARY)
-                {
-                    foreach (var it in item.ArrayValue)
-                    {
+            foreach (var item in arg) {
+                if (item.Type == OperandType.ARRARY) {
+                    foreach (var it in item.ArrayValue) {
                         var a = it.ToNumber();
                         if (a.IsError) { return a; }
                         list.Add(a.IntValue);
                     }
-                }
-                else
-                {
+                } else {
                     var a = item.ToNumber();
                     if (a.IsError) { return a; }
                     list.Add(a.IntValue);
@@ -681,8 +580,7 @@ namespace ToolGood.Algorithm
             var count = secondValue.IntValue;
             double sum = 1;
             double sum2 = 1;
-            for (int i = 0; i < count; i++)
-            {
+            for (int i = 0; i < count; i++) {
                 sum *= (total - i);
                 sum2 *= (i + 1);
             }
@@ -700,8 +598,7 @@ namespace ToolGood.Algorithm
             var count = secondValue.IntValue;
 
             double sum = 1;
-            for (int i = 0; i < count; i++)
-            {
+            for (int i = 0; i < count; i++) {
                 sum *= (total - i);
             }
             return Operand.Create(sum);
@@ -711,8 +608,7 @@ namespace ToolGood.Algorithm
         {
             list = list.OrderBy(q => q).ToList();
             var g = F_base_gcd(list[1], list[0]);
-            for (int i = 2; i < list.Count; i++)
-            {
+            for (int i = 2; i < list.Count; i++) {
                 g = F_base_gcd(list[i], g);
             }
             return g;
@@ -729,8 +625,7 @@ namespace ToolGood.Algorithm
             list.RemoveAll(q => q <= 1);
 
             var a = list[0];
-            for (int i = 1; i < list.Count; i++)
-            {
+            for (int i = 1; i < list.Count; i++) {
                 var b = list[i];
                 int g = b > a ? F_base_gcd(b, a) : F_base_gcd(a, b);
                 a = a / g * b;
@@ -809,8 +704,7 @@ namespace ToolGood.Algorithm
             return Operand.Create(Math.Acosh(firstValue.NumberValue));
 #else
             var z = firstValue.NumberValue;
-            if (z < 1)
-            {
+            if (z < 1) {
                 return ThrowError("acosh中参数小于1");
             }
             var r = Math.Log(z + Math.Pow(z * z - 1, 0.5));
@@ -879,7 +773,7 @@ namespace ToolGood.Algorithm
             var firstValue = arg[0];
             var secondValue = arg[1];
 
-            return Operand.Create((double) Math.Round((decimal) firstValue.NumberValue, secondValue.IntValue, MidpointRounding.AwayFromZero));
+            return Operand.Create((double)Math.Round((decimal)firstValue.NumberValue, secondValue.IntValue, MidpointRounding.AwayFromZero));
         }
         public Operand VisitROUNDDOWN_fun([NotNull] mathParser.ROUNDDOWN_funContext context)
         {
@@ -892,7 +786,7 @@ namespace ToolGood.Algorithm
             var a = Math.Pow(10, secondValue.IntValue);
             var b = firstValue.NumberValue;
 
-            b = ((double) (int) (b * a)) / a;
+            b = ((double)(int)(b * a)) / a;
             return Operand.Create(b);
         }
         public Operand VisitROUNDUP_fun([NotNull] mathParser.ROUNDUP_funContext context)
@@ -916,7 +810,7 @@ namespace ToolGood.Algorithm
             foreach (var item in context.expr()) { var aa = this.Visit(item).ToNumber(); if (aa.IsError) { return aa; } arg.Add(aa); }
 
             var firstValue = arg[0];
-            if (context.expr(1) == null)
+            if (arg.Count == 1)
                 return Operand.Create(Math.Ceiling(firstValue.NumberValue));
 
             var secondValue = arg[1];
@@ -931,7 +825,7 @@ namespace ToolGood.Algorithm
             foreach (var item in context.expr()) { var aa = this.Visit(item).ToNumber(); if (aa.IsError) { return aa; } arg.Add(aa); }
 
             var firstValue = arg[0];
-            if (context.expr(1) == null)
+            if (arg.Count == 1)
                 return Operand.Create(Math.Floor(firstValue.NumberValue));
 
             var secondValue = arg[1];
@@ -947,13 +841,11 @@ namespace ToolGood.Algorithm
             if (firstValue.IsError) { return firstValue; }
 
             var z = firstValue.NumberValue;
-            if (z % 2 == 0)
-            {
+            if (z % 2 == 0) {
                 return firstValue;
             }
             z = Math.Ceiling(z);
-            if (z % 2 == 0)
-            {
+            if (z % 2 == 0) {
                 return Operand.Create(z);
             }
             z = z + 1;
@@ -965,13 +857,11 @@ namespace ToolGood.Algorithm
             var firstValue = this.Visit(context.expr()).ToNumber("DEGREES left value");
             if (firstValue.IsError) { return firstValue; }
             var z = firstValue.NumberValue;
-            if (z % 2 == 1)
-            {
+            if (z % 2 == 1) {
                 return firstValue;
             }
             z = Math.Ceiling(z);
-            if (z % 2 == 1)
-            {
+            if (z % 2 == 1) {
                 return Operand.Create(z);
             }
             z = z + 1;
@@ -996,7 +886,7 @@ namespace ToolGood.Algorithm
         public Operand VisitRAND_fun([NotNull] mathParser.RAND_funContext context)
         {
             var tick = DateTime.Now.Ticks;
-            Random rand = new Random((int) (tick & 0xffffffffL) | (int) (tick >> 32));
+            Random rand = new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32));
             return Operand.Create(rand.NextDouble());
         }
         public Operand VisitRANDBETWEEN_fun([NotNull] mathParser.RANDBETWEEN_funContext context)
@@ -1008,7 +898,7 @@ namespace ToolGood.Algorithm
             var secondValue = arg[1];
 
             var tick = DateTime.Now.Ticks;
-            Random rand = new Random((int) (tick & 0xffffffffL) | (int) (tick >> 32));
+            Random rand = new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32));
             return Operand.Create(rand.NextDouble() * (secondValue.NumberValue - firstValue.NumberValue) + firstValue.NumberValue);
         }
         #endregion
@@ -1020,13 +910,11 @@ namespace ToolGood.Algorithm
             if (firstValue.IsError) { return firstValue; }
 
             var z = firstValue.IntValue;
-            if (z < 0)
-            {
+            if (z < 0) {
                 return ThrowError("fact中参数小于0");
             }
             double d = 1;
-            for (int i = 1; i <= z; i++)
-            {
+            for (int i = 1; i <= z; i++) {
                 d *= i;
             }
             return Operand.Create(d);
@@ -1037,13 +925,11 @@ namespace ToolGood.Algorithm
             if (firstValue.IsError) { return firstValue; }
 
             var z = firstValue.IntValue;
-            if (z < 0)
-            {
+            if (z < 0) {
                 return ThrowError("factdouble中参数小于0");
             }
             double d = 1;
-            for (int i = z; i > 0; i -= 2)
-            {
+            for (int i = z; i > 0; i -= 2) {
                 d *= i;
             }
             return Operand.Create(d);
@@ -1074,15 +960,13 @@ namespace ToolGood.Algorithm
         public Operand VisitLOG_fun([NotNull] mathParser.LOG_funContext context)
         {
             var arg = new List<Operand>();
-            foreach (var item in context.expr())
-            {
+            foreach (var item in context.expr()) {
                 var a = this.Visit(item).ToNumber();
                 if (a.IsError) { return a; }
                 arg.Add(a);
             }
 
-            if (arg.Count > 1)
-            {
+            if (arg.Count > 1) {
                 return Operand.Create(Math.Log(arg[0].NumberValue, arg[1].NumberValue));
             }
             return Operand.Create(Math.Log(arg[0].NumberValue, 10));
@@ -1096,28 +980,22 @@ namespace ToolGood.Algorithm
         public Operand VisitMULTINOMIAL_fun([NotNull] mathParser.MULTINOMIAL_funContext context)
         {
             var arg = new List<Operand>();
-            foreach (var item in context.expr())
-            {
+            foreach (var item in context.expr()) {
                 var a = this.Visit(item);
                 arg.Add(a);
             }
 
             int sum = 0;
             int n = 1;
-            foreach (var item in arg)
-            {
-                if (item.Type == OperandType.ARRARY)
-                {
-                    foreach (var it in item.ArrayValue)
-                    {
+            foreach (var item in arg) {
+                if (item.Type == OperandType.ARRARY) {
+                    foreach (var it in item.ArrayValue) {
                         var a = it.ToNumber();
                         if (a.IsError) { return a; }
                         n *= F_base_Factorial(a.IntValue);
                         sum += a.IntValue;
                     }
-                }
-                else
-                {
+                } else {
                     var a = item.ToNumber();
                     if (a.IsError) { return a; }
                     n *= F_base_Factorial(a.IntValue);
@@ -1130,26 +1008,20 @@ namespace ToolGood.Algorithm
         public Operand VisitPRODUCT_fun([NotNull] mathParser.PRODUCT_funContext context)
         {
             var arg = new List<Operand>();
-            foreach (var item in context.expr())
-            {
+            foreach (var item in context.expr()) {
                 var a = this.Visit(item);
                 arg.Add(a);
             }
             double d = 1;
-            for (int i = 0; i < arg.Count; i++)
-            {
+            for (int i = 0; i < arg.Count; i++) {
                 var item = arg[i];
-                if (item.Type == OperandType.ARRARY)
-                {
-                    foreach (var it in item.ArrayValue)
-                    {
+                if (item.Type == OperandType.ARRARY) {
+                    foreach (var it in item.ArrayValue) {
                         var a = it.ToNumber();
                         if (a.IsError) { return a; }
                         d *= a.NumberValue;
                     }
-                }
-                else
-                {
+                } else {
                     var a = item.ToNumber();
                     if (a.IsError) { return a; }
                     d *= a.NumberValue;
@@ -1166,26 +1038,20 @@ namespace ToolGood.Algorithm
         public Operand VisitSUMSQ_fun([NotNull] mathParser.SUMSQ_funContext context)
         {
             var arg = new List<Operand>();
-            foreach (var item in context.expr())
-            {
+            foreach (var item in context.expr()) {
                 var a = this.Visit(item);
                 arg.Add(a);
             }
             double d = 0;
-            for (int i = 0; i < arg.Count; i++)
-            {
+            for (int i = 0; i < arg.Count; i++) {
                 var item = arg[i];
-                if (item.Type == OperandType.ARRARY)
-                {
-                    foreach (var it in item.ArrayValue)
-                    {
+                if (item.Type == OperandType.ARRARY) {
+                    foreach (var it in item.ArrayValue) {
                         var a = it.ToNumber();
                         if (a.IsError) { return a; }
                         d += a.NumberValue * a.NumberValue;
                     }
-                }
-                else
-                {
+                } else {
                     var a = item.ToNumber();
                     if (a.IsError) { return a; }
                     d += a.NumberValue * a.NumberValue;
@@ -1200,8 +1066,7 @@ namespace ToolGood.Algorithm
         private int F_base_Factorial(int a)
         {
             int r = 1;
-            for (int i = a; i > 0; i--)
-            {
+            for (int i = a; i > 0; i--) {
                 r *= i;
             }
             return r;
@@ -1231,7 +1096,7 @@ namespace ToolGood.Algorithm
             var firstValue = this.Visit(context.expr()).ToNumber("CHAR left value");
             if (firstValue.IsError) { return firstValue; }
 
-            char c = (char) (int) firstValue.NumberValue;
+            char c = (char)(int)firstValue.NumberValue;
             return Operand.Create(c.ToString());
         }
         public Operand VisitCLEAN_fun([NotNull] mathParser.CLEAN_funContext context)
@@ -1249,25 +1114,22 @@ namespace ToolGood.Algorithm
             if (firstValue.IsError) { return firstValue; }
 
             var t = firstValue.StringValue;
-            if (t.Length == 0)
-            {
+            if (t.Length == 0) {
                 return ThrowError("字符串长度为0");
             }
-            return Operand.Create((double) (int) (char) t[0]);
+            return Operand.Create((double)(int)(char)t[0]);
         }
         public Operand VisitCONCATENATE_fun([NotNull] mathParser.CONCATENATE_funContext context)
         {
             var arg = new List<Operand>();
-            foreach (var item in context.expr())
-            {
+            foreach (var item in context.expr()) {
                 var a = this.Visit(item).ToString("CONCATENATE ");
                 if (a.IsError) { return a; }
                 arg.Add(a);
             }
 
             StringBuilder sb = new StringBuilder();
-            foreach (var item in arg)
-            {
+            foreach (var item in arg) {
                 sb.Append(item.StringValue);
             }
             return Operand.Create(sb.ToString());
@@ -1292,8 +1154,7 @@ namespace ToolGood.Algorithm
             var secondValue = arg[1].ToString("FIND left value");
             if (secondValue.IsError) { return secondValue; }
 
-            if (arg.Count == 2)
-            {
+            if (arg.Count == 2) {
                 var p = secondValue.StringValue.IndexOf(firstValue.StringValue) + excelIndex;
                 return Operand.Create(p);
             }
@@ -1309,8 +1170,7 @@ namespace ToolGood.Algorithm
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } arg.Add(aa); }
 
             var num = 2;
-            if (arg.Count > 1)
-            {
+            if (arg.Count > 1) {
                 arg[1] = arg[1].ToNumber();
                 if (arg[1].IsError) { return arg[1]; }
                 num = arg[1].IntValue;
@@ -1320,14 +1180,12 @@ namespace ToolGood.Algorithm
 
             var s = Math.Round(arg[0].NumberValue, num);
             var no = false;
-            if (arg.Count == 3)
-            {
+            if (arg.Count == 3) {
                 arg[2] = arg[2].ToBoolean();
                 if (arg[2].IsError) { return arg[2]; }
                 no = arg[2].BooleanValue;
             }
-            if (no == false)
-            {
+            if (no == false) {
                 return Operand.Create(s.ToString("N" + num));
             }
             return Operand.Create(s.ToString());
@@ -1340,8 +1198,7 @@ namespace ToolGood.Algorithm
             var firstValue = arg[0].ToString("FIND left value");
             if (firstValue.IsError) { return firstValue; }
 
-            if (arg.Count == 1)
-            {
+            if (arg.Count == 1) {
                 return Operand.Create(firstValue.StringValue[0].ToString());
             }
             var secondValue = arg[1].ToNumber("FIND left value");
@@ -1384,15 +1241,11 @@ namespace ToolGood.Algorithm
             var text = firstValue.StringValue;
             StringBuilder sb = new StringBuilder(text);
             bool isFirst = true;
-            for (int i = 0; i < text.Length; i++)
-            {
+            for (int i = 0; i < text.Length; i++) {
                 var t = text[i];
-                if (t == ' ' || t == '\r' || t == '\n' || t == '\t' || t == '.')
-                {
+                if (t == ' ' || t == '\r' || t == '\n' || t == '\t' || t == '.') {
                     isFirst = true;
-                }
-                else if (isFirst)
-                {
+                } else if (isFirst) {
                     sb[i] = char.ToUpper(t);
                     isFirst = false;
                 }
@@ -1405,8 +1258,7 @@ namespace ToolGood.Algorithm
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } arg.Add(aa); }
 
             arg[0] = arg[0].ToString("");
-            if (arg.Count == 3)
-            {
+            if (arg.Count == 3) {
                 arg[1] = arg[1].ToString("");
                 arg[2] = arg[2].ToString("");
                 var srcText = arg[0].StringValue;
@@ -1424,18 +1276,12 @@ namespace ToolGood.Algorithm
             var newtext = arg[3].StringValue;
 
             StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < oldtext.Length; i++)
-            {
-                if (i < start)
-                {
+            for (int i = 0; i < oldtext.Length; i++) {
+                if (i < start) {
                     sb.Append(oldtext[i]);
-                }
-                else if (i == start)
-                {
+                } else if (i == start) {
                     sb.Append(newtext);
-                }
-                else if (i >= start + length)
-                {
+                } else if (i >= start + length) {
                     sb.Append(oldtext[i]);
                 }
             }
@@ -1454,8 +1300,7 @@ namespace ToolGood.Algorithm
             var newtext = firstValue.StringValue;
             var length = secondValue.IntValue;
             StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < length; i++)
-            {
+            for (int i = 0; i < length; i++) {
                 sb.Append(newtext);
             }
             return Operand.Create(sb.ToString());
@@ -1468,8 +1313,7 @@ namespace ToolGood.Algorithm
             var firstValue = arg[0].ToString("FIND left value");
             if (firstValue.IsError) { return firstValue; }
 
-            if (arg.Count == 1)
-            {
+            if (arg.Count == 1) {
                 return Operand.Create(firstValue.StringValue[firstValue.StringValue.Length - 1].ToString());
             }
             var secondValue = arg[1].ToNumber("FIND left value");
@@ -1490,8 +1334,7 @@ namespace ToolGood.Algorithm
 
             arg[0] = arg[0].ToString();
             arg[1] = arg[1].ToString();
-            if (arg.Count == 2)
-            {
+            if (arg.Count == 2) {
                 var p = arg[1].StringValue.IndexOf(arg[0].StringValue, StringComparison.OrdinalIgnoreCase) + excelIndex;
                 return Operand.Create(p);
             }
@@ -1506,8 +1349,7 @@ namespace ToolGood.Algorithm
             arg[0] = arg[0].ToString();
             arg[1] = arg[1].ToString();
             arg[2] = arg[2].ToString();
-            if (arg.Count == 3)
-            {
+            if (arg.Count == 3) {
                 return Operand.Create(arg[0].StringValue.Replace(arg[1].StringValue, arg[2].StringValue));
             }
 
@@ -1520,30 +1362,23 @@ namespace ToolGood.Algorithm
 
             int index2 = 0;
             StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < text.Length; i++)
-            {
+            for (int i = 0; i < text.Length; i++) {
                 bool b = true;
-                for (int j = 0; j < oldtext.Length; j++)
-                {
+                for (int j = 0; j < oldtext.Length; j++) {
                     var t = text[i + j];
                     var t2 = oldtext[j];
-                    if (t != t2)
-                    {
+                    if (t != t2) {
                         b = false;
                         break;
                     }
                 }
-                if (b)
-                {
+                if (b) {
                     index2++;
                 }
-                if (b && index2 == index)
-                {
+                if (b && index2 == index) {
                     sb.Append(newtext);
                     i += oldtext.Length - 1;
-                }
-                else
-                {
+                } else {
                     sb.Append(text[i]);
                 }
             }
@@ -1552,8 +1387,7 @@ namespace ToolGood.Algorithm
         public Operand VisitT_fun([NotNull] mathParser.T_funContext context)
         {
             var firstValue = this.Visit(context.expr());
-            if (firstValue.Type == OperandType.STRING)
-            {
+            if (firstValue.Type == OperandType.STRING) {
                 return firstValue;
             }
             return Operand.Error("");
@@ -1570,20 +1404,13 @@ namespace ToolGood.Algorithm
 
             var f = secondValue.StringValue;
             var a = firstValue;
-            if (a.Type == OperandType.STRING)
-            {
+            if (a.Type == OperandType.STRING) {
                 return a;
-            }
-            else if (a.Type == OperandType.BOOLEAN)
-            {
+            } else if (a.Type == OperandType.BOOLEAN) {
                 return Operand.Create(a.BooleanValue.ToString());
-            }
-            else if (a.Type == OperandType.NUMBER)
-            {
+            } else if (a.Type == OperandType.NUMBER) {
                 return Operand.Create(a.NumberValue.ToString(f));
-            }
-            else if (a.Type == OperandType.DATE)
-            {
+            } else if (a.Type == OperandType.DATE) {
                 return Operand.Create(a.DateValue.ToString(f));
             }
             return Operand.Create(a.StringValue.ToString());
@@ -1607,8 +1434,7 @@ namespace ToolGood.Algorithm
             var firstValue = this.Visit(context.expr()).ToString("UPPER func");
             if (firstValue.IsError) { return firstValue; }
 
-            if (double.TryParse(firstValue.StringValue, NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out double d))
-            {
+            if (double.TryParse(firstValue.StringValue, NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out double d)) {
                 return Operand.Create(d);
             }
             return ThrowError("无法转成数字");
@@ -1617,16 +1443,12 @@ namespace ToolGood.Algorithm
         private String F_base_ToSBC(String input)
         {
             StringBuilder sb = new StringBuilder(input);
-            for (int i = 0; i < input.Length; i++)
-            {
+            for (int i = 0; i < input.Length; i++) {
                 var c = input[i];
-                if (c == ' ')
-                {
-                    sb[i] = (char) 12288;
-                }
-                else if (c < 127)
-                {
-                    sb[i] = (char) (c + 65248);
+                if (c == ' ') {
+                    sb[i] = (char)12288;
+                } else if (c < 127) {
+                    sb[i] = (char)(c + 65248);
                 }
             }
             return sb.ToString();
@@ -1634,17 +1456,13 @@ namespace ToolGood.Algorithm
         private String F_base_ToDBC(String input)
         {
             StringBuilder sb = new StringBuilder(input);
-            for (int i = 0; i < input.Length; i++)
-            {
+            for (int i = 0; i < input.Length; i++) {
                 var c = input[i];
-                if (c == 12288)
-                {
-                    sb[i] = (char) 32;
+                if (c == 12288) {
+                    sb[i] = (char)32;
                     continue;
-                }
-                else if (c > 65280 && c < 65375)
-                {
-                    sb[i] = (char) (c - 65248);
+                } else if (c > 65280 && c < 65375) {
+                    sb[i] = (char)(c - 65248);
                 }
             }
             return sb.ToString();
@@ -1680,20 +1498,13 @@ namespace ToolGood.Algorithm
             foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } arg.Add(a); }
 
             Date d;
-            if (arg.Count == 3)
-            {
+            if (arg.Count == 3) {
                 d = new Date(arg[0].IntValue, arg[1].IntValue, arg[2].IntValue, 0, 0, 0);
-            }
-            else if (arg.Count == 4)
-            {
+            } else if (arg.Count == 4) {
                 d = new Date(arg[0].IntValue, arg[1].IntValue, arg[2].IntValue, arg[3].IntValue, 0, 0);
-            }
-            else if (arg.Count == 5)
-            {
+            } else if (arg.Count == 5) {
                 d = new Date(arg[0].IntValue, arg[1].IntValue, arg[2].IntValue, arg[3].IntValue, arg[4].IntValue, 0);
-            }
-            else
-            {
+            } else {
                 d = new Date(arg[0].IntValue, arg[1].IntValue, arg[2].IntValue, arg[3].IntValue, arg[4].IntValue, arg[5].IntValue);
             }
             return Operand.Create(d);
@@ -1704,12 +1515,9 @@ namespace ToolGood.Algorithm
             foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } arg.Add(a); }
 
             Date d;
-            if (arg.Count == 3)
-            {
+            if (arg.Count == 3) {
                 d = new Date(0, 0, 0, arg[0].IntValue, arg[1].IntValue, arg[2].IntValue);
-            }
-            else
-            {
+            } else {
                 d = new Date(0, 0, 0, arg[0].IntValue, arg[1].IntValue, 0);
             }
             return Operand.Create(d);
@@ -1773,28 +1581,23 @@ namespace ToolGood.Algorithm
             if (arg[0].IsError) { return arg[0]; }
 
             var type = 1;
-            if (arg.Count == 2)
-            {
+            if (arg.Count == 2) {
                 arg[1] = arg[1].ToNumber();
                 if (arg[1].IsError) { return arg[1]; }
                 type = arg[1].IntValue;
             }
 
-            var t = ((DateTime) arg[0].DateValue).DayOfWeek;
-            if (type == 1)
-            {
-                return Operand.Create((double) (t + 1));
-            }
-            else if (type == 2)
-            {
+            var t = ((DateTime)arg[0].DateValue).DayOfWeek;
+            if (type == 1) {
+                return Operand.Create((double)(t + 1));
+            } else if (type == 2) {
                 if (t == 0) return Operand.Create(7d);
-                return Operand.Create((double) t);
+                return Operand.Create((double)t);
             }
-            if (t == 0)
-            {
+            if (t == 0) {
                 return Operand.Create(6d);
             }
-            return Operand.Create((double) (t - 1));
+            return Operand.Create((double)(t - 1));
         }
         public Operand VisitDATEDIF_fun([NotNull] mathParser.DATEDIF_funContext context)
         {
@@ -1808,77 +1611,55 @@ namespace ToolGood.Algorithm
             arg[2] = arg[2].ToString();
             if (arg[2].IsError) { return arg[2]; }
 
-            var startDate = (DateTime) arg[0].DateValue;
-            var endDate = (DateTime) arg[1].DateValue;
+            var startDate = (DateTime)arg[0].DateValue;
+            var endDate = (DateTime)arg[1].DateValue;
             var t = arg[2].StringValue.ToLower();
 
-            if (t == "y")
-            {
+            if (t == "y") {
                 #region y
                 bool b = false;
-                if (startDate.Month < endDate.Month)
-                {
+                if (startDate.Month < endDate.Month) {
                     b = true;
-                }
-                else if (startDate.Month == endDate.Month)
-                {
+                } else if (startDate.Month == endDate.Month) {
                     if (startDate.Day <= endDate.Day) b = true;
                 }
-                if (b)
-                {
+                if (b) {
                     return Operand.Create((endDate.Year - startDate.Year));
-                }
-                else
-                {
+                } else {
                     return Operand.Create((endDate.Year - startDate.Year - 1));
                 }
                 #endregion
-            }
-            else if (t == "m")
-            {
+            } else if (t == "m") {
                 #region m
                 bool b = false;
                 if (startDate.Day <= endDate.Day) b = true;
-                if (b)
-                {
+                if (b) {
                     return Operand.Create((endDate.Year * 12 + endDate.Month - startDate.Year * 12 - startDate.Month));
-                }
-                else
-                {
+                } else {
                     return Operand.Create((endDate.Year * 12 + endDate.Month - startDate.Year * 12 - startDate.Month - 1));
                 }
                 #endregion
-            }
-            else if (t == "d")
-            {
+            } else if (t == "d") {
                 return Operand.Create((endDate - startDate).Days);
-            }
-            else if (t == "yd")
-            {
+            } else if (t == "yd") {
                 #region yd
                 var day = endDate.DayOfYear - startDate.DayOfYear;
-                if (endDate.Year > startDate.Year && day < 0)
-                {
+                if (endDate.Year > startDate.Year && day < 0) {
                     var days = new DateTime(startDate.Year, 12, 31).DayOfYear;
                     day = days + day;
                 }
                 return Operand.Create((day));
                 #endregion
-            }
-            else if (t == "md")
-            {
+            } else if (t == "md") {
                 #region md
                 var mo = endDate.Day - startDate.Day;
-                if (mo < 0)
-                {
+                if (mo < 0) {
                     var days = new DateTime(startDate.Year, startDate.Month + 1, 1).AddDays(-1).Day;
                     mo += days;
                 }
                 return Operand.Create((mo));
                 #endregion
-            }
-            else if (t == "ym")
-            {
+            } else if (t == "ym") {
                 #region ym
                 var mo = endDate.Month - startDate.Month;
                 if (endDate.Day < startDate.Day) mo = mo - 1;
@@ -1898,46 +1679,33 @@ namespace ToolGood.Algorithm
             arg[1] = arg[1].ToDate();
             if (arg[1].IsError) { return arg[1]; }
 
-            var startDate = (DateTime) arg[0].DateValue;
-            var endDate = (DateTime) arg[1].DateValue;
+            var startDate = (DateTime)arg[0].DateValue;
+            var endDate = (DateTime)arg[1].DateValue;
 
             var method = false;
-            if (arg.Count == 3)
-            {
+            if (arg.Count == 3) {
                 arg[2] = arg[2].ToDate();
                 if (arg[2].IsError) { return arg[2]; }
                 method = arg[2].BooleanValue;
             }
             var days = endDate.Year * 360 + (endDate.Month - 1) * 30
                         - startDate.Year * 360 - (startDate.Month - 1) * 30;
-            if (method)
-            {
+            if (method) {
                 if (endDate.Day == 31) days += 30;
                 if (startDate.Day == 31) days -= 30;
-            }
-            else
-            {
-                if (startDate.Day == new DateTime(startDate.Year, startDate.Month + 1, 1).AddDays(-1).Day)
-                {
+            } else {
+                if (startDate.Day == new DateTime(startDate.Year, startDate.Month + 1, 1).AddDays(-1).Day) {
                     days -= 30;
-                }
-                else
-                {
+                } else {
                     days -= startDate.Day;
                 }
-                if (endDate.Day == new DateTime(endDate.Year, endDate.Month + 1, 1).AddDays(-1).Day)
-                {
-                    if (startDate.Day < 30)
-                    {
+                if (endDate.Day == new DateTime(endDate.Year, endDate.Month + 1, 1).AddDays(-1).Day) {
+                    if (startDate.Day < 30) {
                         days += 31;
-                    }
-                    else
-                    {
+                    } else {
                         days += 30;
                     }
-                }
-                else
-                {
+                } else {
                     days += endDate.Day;
                 }
             }
@@ -1953,7 +1721,7 @@ namespace ToolGood.Algorithm
             arg[1] = arg[1].ToNumber();
             if (arg[1].IsError) { return arg[1]; }
 
-            return Operand.Create((Date) (((DateTime) arg[0].DateValue).AddMonths(arg[1].IntValue)));
+            return Operand.Create((Date)(((DateTime)arg[0].DateValue).AddMonths(arg[1].IntValue)));
         }
         public Operand VisitEOMONTH_fun([NotNull] mathParser.EOMONTH_funContext context)
         {
@@ -1965,7 +1733,7 @@ namespace ToolGood.Algorithm
             arg[1] = arg[1].ToNumber();
             if (arg[1].IsError) { return arg[1]; }
 
-            var dt = ((DateTime) arg[0].DateValue).AddMonths(arg[1].IntValue + 1);
+            var dt = ((DateTime)arg[0].DateValue).AddMonths(arg[1].IntValue + 1);
             dt = new DateTime(dt.Year, dt.Month, 1).AddDays(-1);
             return Operand.Create(dt);
         }
@@ -1974,22 +1742,18 @@ namespace ToolGood.Algorithm
             var arg = new List<Operand>();
             foreach (var item in context.expr()) { var a = this.Visit(item).ToDate(); if (a.IsError) { return a; } arg.Add(a); }
 
-            var startDate = (DateTime) arg[0].DateValue;
-            var endDate = (DateTime) arg[1].DateValue;
+            var startDate = (DateTime)arg[0].DateValue;
+            var endDate = (DateTime)arg[1].DateValue;
 
             List<DateTime> list = new List<DateTime>();
-            for (int i = 2; i < arg.Count; i++)
-            {
+            for (int i = 2; i < arg.Count; i++) {
                 list.Add(arg[i].DateValue);
             }
 
             var days = 0;
-            while (startDate <= endDate)
-            {
-                if (startDate.DayOfWeek != DayOfWeek.Sunday && startDate.DayOfWeek != DayOfWeek.Saturday)
-                {
-                    if (list.Contains(startDate) == false)
-                    {
+            while (startDate <= endDate) {
+                if (startDate.DayOfWeek != DayOfWeek.Sunday && startDate.DayOfWeek != DayOfWeek.Saturday) {
+                    if (list.Contains(startDate) == false) {
                         days++;
                     }
                 }
@@ -2008,17 +1772,15 @@ namespace ToolGood.Algorithm
             if (arg[1].IsError) { return arg[1]; }
 
 
-            var startDate = (DateTime) arg[0].DateValue;
+            var startDate = (DateTime)arg[0].DateValue;
             var days = arg[1].IntValue;
             List<DateTime> list = new List<DateTime>();
-            for (int i = 2; i < arg.Count; i++)
-            {
+            for (int i = 2; i < arg.Count; i++) {
                 arg[i] = arg[i].ToDate();
                 if (arg[i].IsError) { return arg[i]; }
                 list.Add(arg[i].DateValue);
             }
-            while (days > 0)
-            {
+            while (days > 0) {
                 startDate = startDate.AddDays(1);
                 if (startDate.DayOfWeek == DayOfWeek.Saturday) continue;
                 if (startDate.DayOfWeek == DayOfWeek.Sunday) continue;
@@ -2035,15 +1797,13 @@ namespace ToolGood.Algorithm
             arg[0] = arg[0].ToDate();
             if (arg[0].IsError) { return arg[0]; }
 
-            var startDate = (DateTime) arg[0].DateValue;
+            var startDate = (DateTime)arg[0].DateValue;
 
-            var days = startDate.DayOfYear + (int) (new DateTime(startDate.Year, 1, 1).DayOfWeek);
-            if (arg.Count == 2)
-            {
+            var days = startDate.DayOfYear + (int)(new DateTime(startDate.Year, 1, 1).DayOfWeek);
+            if (arg.Count == 2) {
                 arg[1] = arg[1].ToNumber();
                 if (arg[1].IsError) { return arg[1]; }
-                if (arg[1].IntValue == 2)
-                {
+                if (arg[1].IntValue == 2) {
                     days--;
                 }
             }
@@ -2063,26 +1823,19 @@ namespace ToolGood.Algorithm
 
             var max = double.MinValue;
 
-            foreach (var item in arg)
-            {
-                if (item.Type == OperandType.ARRARY)
-                {
-                    foreach (var it in item.ArrayValue)
-                    {
+            foreach (var item in arg) {
+                if (item.Type == OperandType.ARRARY) {
+                    foreach (var it in item.ArrayValue) {
                         var a = it.ToNumber();
                         if (a.IsError) { return a; }
-                        if (a.NumberValue > max)
-                        {
+                        if (a.NumberValue > max) {
                             max = a.NumberValue;
                         }
                     }
-                }
-                else
-                {
+                } else {
                     var a = item.ToNumber();
                     if (a.IsError) { return a; }
-                    if (a.NumberValue > max)
-                    {
+                    if (a.NumberValue > max) {
                         max = a.NumberValue;
                     }
                 }
@@ -2095,19 +1848,14 @@ namespace ToolGood.Algorithm
             foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } arg.Add(a); }
 
             List<int> list = new List<int>();
-            foreach (var item in arg)
-            {
-                if (item.Type == OperandType.ARRARY)
-                {
-                    foreach (var it in item.ArrayValue)
-                    {
+            foreach (var item in arg) {
+                if (item.Type == OperandType.ARRARY) {
+                    foreach (var it in item.ArrayValue) {
                         var a = it.ToNumber();
                         if (a.IsError) { return a; }
                         list.Add(a.IntValue);
                     }
-                }
-                else
-                {
+                } else {
                     var a = item.ToNumber();
                     if (a.IsError) { return a; }
                     list.Add(a.IntValue);
@@ -2124,26 +1872,19 @@ namespace ToolGood.Algorithm
 
             var min = double.MaxValue;
 
-            foreach (var item in arg)
-            {
-                if (item.Type == OperandType.ARRARY)
-                {
-                    foreach (var it in item.ArrayValue)
-                    {
+            foreach (var item in arg) {
+                if (item.Type == OperandType.ARRARY) {
+                    foreach (var it in item.ArrayValue) {
                         var a = it.ToNumber();
                         if (a.IsError) { return a; }
-                        if (a.NumberValue < min)
-                        {
+                        if (a.NumberValue < min) {
                             min = a.NumberValue;
                         }
                     }
-                }
-                else
-                {
+                } else {
                     var a = item.ToNumber();
                     if (a.IsError) { return a; }
-                    if (a.NumberValue < min)
-                    {
+                    if (a.NumberValue < min) {
                         min = a.NumberValue;
                     }
                 }
@@ -2161,19 +1902,14 @@ namespace ToolGood.Algorithm
             if (secondValue.IsError) { return secondValue; }
 
             List<double> list = new List<double>();
-            foreach (var item in firstValue.ArrayValue)
-            {
-                if (item.Type == OperandType.ARRARY)
-                {
-                    foreach (var it in item.ArrayValue)
-                    {
+            foreach (var item in firstValue.ArrayValue) {
+                if (item.Type == OperandType.ARRARY) {
+                    foreach (var it in item.ArrayValue) {
                         var a = it.ToNumber();
                         if (a.IsError) { return a; }
                         list.Add(a.NumberValue);
                     }
-                }
-                else
-                {
+                } else {
                     var a = item.ToNumber();
                     if (a.IsError) { return a; }
                     list.Add(a.NumberValue);
@@ -2190,34 +1926,23 @@ namespace ToolGood.Algorithm
             foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } arg.Add(a); }
 
             Dictionary<double, int> dict = new Dictionary<double, int>();
-            foreach (var item in arg)
-            {
-                if (item.Type == OperandType.ARRARY)
-                {
-                    foreach (var it in item.ArrayValue)
-                    {
+            foreach (var item in arg) {
+                if (item.Type == OperandType.ARRARY) {
+                    foreach (var it in item.ArrayValue) {
                         var a = it.ToNumber();
                         if (a.IsError) { return a; }
-                        if (dict.ContainsKey(item.NumberValue))
-                        {
+                        if (dict.ContainsKey(item.NumberValue)) {
                             dict[item.NumberValue] += 1;
-                        }
-                        else
-                        {
+                        } else {
                             dict[item.NumberValue] = 1;
                         }
                     }
-                }
-                else
-                {
+                } else {
                     var a = item.ToNumber();
                     if (a.IsError) { return a; }
-                    if (dict.ContainsKey(item.NumberValue))
-                    {
+                    if (dict.ContainsKey(item.NumberValue)) {
                         dict[item.NumberValue] += 1;
-                    }
-                    else
-                    {
+                    } else {
                         dict[item.NumberValue] = 1;
                     }
                 }
@@ -2235,19 +1960,14 @@ namespace ToolGood.Algorithm
             if (secondValue.IsError) { return secondValue; }
 
             List<double> list = new List<double>();
-            foreach (var item in firstValue.ArrayValue)
-            {
-                if (item.Type == OperandType.ARRARY)
-                {
-                    foreach (var it in item.ArrayValue)
-                    {
+            foreach (var item in firstValue.ArrayValue) {
+                if (item.Type == OperandType.ARRARY) {
+                    foreach (var it in item.ArrayValue) {
                         var a = it.ToNumber();
                         if (a.IsError) { return a; }
                         list.Add(a.NumberValue);
                     }
-                }
-                else
-                {
+                } else {
                     var a = item.ToNumber();
                     if (a.IsError) { return a; }
                     list.Add(a.NumberValue);
@@ -2269,19 +1989,14 @@ namespace ToolGood.Algorithm
             if (secondValue.IsError) { return secondValue; }
 
             List<double> list = new List<double>();
-            foreach (var item in firstValue.ArrayValue)
-            {
-                if (item.Type == OperandType.ARRARY)
-                {
-                    foreach (var it in item.ArrayValue)
-                    {
+            foreach (var item in firstValue.ArrayValue) {
+                if (item.Type == OperandType.ARRARY) {
+                    foreach (var it in item.ArrayValue) {
                         var a = it.ToNumber();
                         if (a.IsError) { return a; }
                         list.Add(a.NumberValue);
                     }
-                }
-                else
-                {
+                } else {
                     var a = item.ToNumber();
                     if (a.IsError) { return a; }
                     list.Add(a.NumberValue);
@@ -2303,19 +2018,14 @@ namespace ToolGood.Algorithm
             if (secondValue.IsError) { return secondValue; }
 
             List<double> list = new List<double>();
-            foreach (var item in firstValue.ArrayValue)
-            {
-                if (item.Type == OperandType.ARRARY)
-                {
-                    foreach (var it in item.ArrayValue)
-                    {
+            foreach (var item in firstValue.ArrayValue) {
+                if (item.Type == OperandType.ARRARY) {
+                    foreach (var it in item.ArrayValue) {
                         var a = it.ToNumber();
                         if (a.IsError) { return a; }
                         list.Add(a.NumberValue);
                     }
-                }
-                else
-                {
+                } else {
                     var a = item.ToNumber();
                     if (a.IsError) { return a; }
                     list.Add(a.NumberValue);
@@ -2336,19 +2046,14 @@ namespace ToolGood.Algorithm
             if (secondValue.IsError) { return secondValue; }
 
             List<double> list = new List<double>();
-            foreach (var item in firstValue.ArrayValue)
-            {
-                if (item.Type == OperandType.ARRARY)
-                {
-                    foreach (var it in item.ArrayValue)
-                    {
+            foreach (var item in firstValue.ArrayValue) {
+                if (item.Type == OperandType.ARRARY) {
+                    foreach (var it in item.ArrayValue) {
                         var a = it.ToNumber();
                         if (a.IsError) { return a; }
                         list.Add(a.NumberValue);
                     }
-                }
-                else
-                {
+                } else {
                     var a = item.ToNumber();
                     if (a.IsError) { return a; }
                     list.Add(a.NumberValue);
@@ -2358,9 +2063,8 @@ namespace ToolGood.Algorithm
             var k = secondValue.NumberValue;
             var v = ExcelFunctions.PercentRank(list.ToArray(), k);
             var d = 3;
-            if (arg.Count == 3)
-            {
-                var thirdValue = this.Visit(context.expr(2)).ToNumber("MID left value");
+            if (arg.Count == 3) {
+                var thirdValue = arg[2].ToNumber("MID left value");
                 if (thirdValue.IsError) { return thirdValue; }
                 d = thirdValue.IntValue;
             }
@@ -2385,20 +2089,14 @@ namespace ToolGood.Algorithm
 
             double sum;
             int count;
-            if (arg[1].Type == OperandType.NUMBER)
-            {
+            if (arg[1].Type == OperandType.NUMBER) {
                 count = F_base_countif(list, arg[1].NumberValue);
                 sum = count * arg[1].NumberValue;
-            }
-            else
-            {
-                if (double.TryParse(arg[1].StringValue.Trim(), NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out double d))
-                {
+            } else {
+                if (double.TryParse(arg[1].StringValue.Trim(), NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out double d)) {
                     count = F_base_countif(list, arg[1].NumberValue);
                     sum = F_base_sumif(list, "=" + arg[1].StringValue.Trim(), sumdbs);
-                }
-                else
-                {
+                } else {
                     count = F_base_countif(list, arg[1].StringValue.Trim());
                     sum = F_base_sumif(list, arg[1].StringValue.Trim(), sumdbs);
                 }
@@ -2413,8 +2111,7 @@ namespace ToolGood.Algorithm
             if (arg.Count == 1) return arg[0];
             var dbs = F_base_GetList(arg);
             double sum = 1;
-            foreach (var db in dbs)
-            {
+            foreach (var db in dbs) {
                 sum *= db;
             }
             return Operand.Create(Math.Pow(sum, 1.0 / dbs.Count));
@@ -2427,8 +2124,7 @@ namespace ToolGood.Algorithm
             if (arg.Count == 1) return arg[0];
             var dbs = F_base_GetList(arg);
             double sum = 0;
-            foreach (var db in dbs)
-            {
+            foreach (var db in dbs) {
                 sum += 1 / db;
             }
             return Operand.Create(dbs.Count / sum);
@@ -2448,18 +2144,12 @@ namespace ToolGood.Algorithm
 
             var dbs = arg[0].GetNumberList();
             int count = 0;
-            if (arg[1].Type == OperandType.NUMBER)
-            {
+            if (arg[1].Type == OperandType.NUMBER) {
                 count = F_base_countif(dbs, arg[1].NumberValue);
-            }
-            else
-            {
-                if (double.TryParse(arg[1].StringValue.Trim(), NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out double d))
-                {
+            } else {
+                if (double.TryParse(arg[1].StringValue.Trim(), NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out double d)) {
                     count = F_base_countif(dbs, arg[1].NumberValue);
-                }
-                else
-                {
+                } else {
                     count = F_base_countif(dbs, arg[1].StringValue.Trim());
                 }
             }
@@ -2473,8 +2163,7 @@ namespace ToolGood.Algorithm
             if (arg.Count == 1) return arg[0];
             var dbs = F_base_GetList(arg);
             double sum = 0;
-            foreach (var db in dbs)
-            {
+            foreach (var db in dbs) {
                 sum += db;
             }
             return Operand.Create(sum);
@@ -2488,18 +2177,12 @@ namespace ToolGood.Algorithm
             var sumdbs = dbs;
             if (arg.Count == 3) sumdbs = arg[2].GetNumberList();
             double sum;
-            if (arg[1].Type == OperandType.NUMBER)
-            {
+            if (arg[1].Type == OperandType.NUMBER) {
                 sum = F_base_countif(dbs, arg[1].NumberValue) * arg[1].NumberValue;
-            }
-            else
-            {
-                if (double.TryParse(arg[1].StringValue.Trim(), NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out _))
-                {
+            } else {
+                if (double.TryParse(arg[1].StringValue.Trim(), NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out _)) {
                     sum = F_base_sumif(dbs, "=" + arg[1].StringValue.Trim(), sumdbs);
-                }
-                else
-                {
+                } else {
                     sum = F_base_sumif(dbs, arg[1].StringValue.Trim(), sumdbs);
                 }
             }
@@ -2513,8 +2196,7 @@ namespace ToolGood.Algorithm
             List<double> list = F_base_GetList(arg);
             double avg = list.Average();
             double sum = 0;
-            for (int i = 0; i < list.Count; i++)
-            {
+            for (int i = 0; i < list.Count; i++) {
                 sum += Math.Abs(list[i] - avg);
             }
             return Operand.Create(sum / list.Count);
@@ -2527,8 +2209,7 @@ namespace ToolGood.Algorithm
             List<double> list = F_base_GetList(arg);
             double avg = list.Average();
             double sum = 0;
-            for (int i = 0; i < list.Count; i++)
-            {
+            for (int i = 0; i < list.Count; i++) {
                 sum += (list[i] - avg) * (list[i] - avg);
             }
             return Operand.Create(Math.Sqrt(sum / (list.Count - 1)));
@@ -2543,8 +2224,7 @@ namespace ToolGood.Algorithm
             double sum = 0;
             double avg = list.Average();
 
-            for (int i = 0; i < list.Count; i++)
-            {
+            for (int i = 0; i < list.Count; i++) {
                 sum += (list[i] - avg) * (list[i] - avg);
             }
             return Operand.Create(Math.Sqrt(sum / (list.Count)));
@@ -2557,8 +2237,7 @@ namespace ToolGood.Algorithm
             List<double> list = F_base_GetList(arg);
             double avg = list.Average();
             double sum = 0;
-            for (int i = 0; i < list.Count; i++)
-            {
+            for (int i = 0; i < list.Count; i++) {
                 sum += (list[i] - avg) * (list[i] - avg);
             }
             return Operand.Create(sum);
@@ -2572,8 +2251,7 @@ namespace ToolGood.Algorithm
             double sum = 0;
             double sum2 = 0;
             //double avg = list.Average();
-            for (int i = 0; i < list.Count; i++)
-            {
+            for (int i = 0; i < list.Count; i++) {
                 sum += list[i] * list[i];
                 sum2 += list[i];
             }
@@ -2588,8 +2266,7 @@ namespace ToolGood.Algorithm
 
             double sum = 0;
             double avg = list.Average();
-            for (int i = 0; i < list.Count; i++)
-            {
+            for (int i = 0; i < list.Count; i++) {
                 sum += (avg - list[i]) * (avg - list[i]);
             }
             return Operand.Create(sum / list.Count);
@@ -2854,10 +2531,8 @@ namespace ToolGood.Algorithm
         {
             int count = 0;
             d = Math.Round(d, 12);
-            foreach (var item in dbs)
-            {
-                if (Math.Round(item, 12) == d)
-                {
+            foreach (var item in dbs) {
+                if (Math.Round(item, 12) == d) {
                     count++;
                 }
             }
@@ -2866,8 +2541,7 @@ namespace ToolGood.Algorithm
         private int F_base_countif(List<double> dbs, string s)
         {
             Regex re = new Regex(@"(<|<=|>|>=|=|==|!=|<>) *([-+]?\d+(\.(\d+)?)?)");
-            if (re.IsMatch(s) == false)
-            {
+            if (re.IsMatch(s) == false) {
                 return 0;
             }
             var m = re.Match(s);
@@ -2875,10 +2549,8 @@ namespace ToolGood.Algorithm
             var ss = m.Groups[1].Value;
             int count = 0;
 
-            foreach (var item in dbs)
-            {
-                if (F_base_compare(item, d, s))
-                {
+            foreach (var item in dbs) {
+                if (F_base_compare(item, d, s)) {
                     count++;
                 }
             }
@@ -2887,8 +2559,7 @@ namespace ToolGood.Algorithm
         private double F_base_sumif(List<double> dbs, string s, List<double> sumdbs)
         {
             Regex re = new Regex(@"(<|<=|>|>=|=|==|!=|<>) *([-+]?\d+(\.(\d+)?)?)");
-            if (re.IsMatch(s) == false)
-            {
+            if (re.IsMatch(s) == false) {
                 return 0;
             }
             var m = re.Match(s);
@@ -2896,10 +2567,8 @@ namespace ToolGood.Algorithm
             var ss = m.Groups[1].Value;
             double sum = 0;
 
-            for (int i = 0; i < dbs.Count; i++)
-            {
-                if (F_base_compare(dbs[i], d, s))
-                {
+            for (int i = 0; i < dbs.Count; i++) {
+                if (F_base_compare(dbs[i], d, s)) {
                     sum += sumdbs[i];
                 }
             }
@@ -2907,24 +2576,15 @@ namespace ToolGood.Algorithm
         }
         private bool F_base_compare(double a, double b, string ss)
         {
-            if (ss == "<")
-            {
+            if (ss == "<") {
                 return a < b;
-            }
-            else if (ss == "<=")
-            {
+            } else if (ss == "<=") {
                 return a <= b;
-            }
-            else if (ss == ">")
-            {
+            } else if (ss == ">") {
                 return a > b;
-            }
-            else if (ss == ">=")
-            {
+            } else if (ss == ">=") {
                 return a >= b;
-            }
-            else if (ss == "=" || ss == "==")
-            {
+            } else if (ss == "=" || ss == "==") {
                 return a == b;
             }
             return a != b;
@@ -2932,18 +2592,13 @@ namespace ToolGood.Algorithm
         private List<double> F_base_GetList(List<Operand> arg)
         {
             List<double> list = new List<double>();
-            foreach (var item in arg)
-            {
-                if (item.Type == OperandType.NUMBER)
-                {
+            foreach (var item in arg) {
+                if (item.Type == OperandType.NUMBER) {
                     list.Add(item.NumberValue);
-                }
-                else if (item.Type == OperandType.ARRARY)
-                {
+                } else if (item.Type == OperandType.ARRARY) {
                     var ls = item.GetNumberList();
                     if (ls == null) continue;
-                    foreach (var d in ls)
-                    {
+                    foreach (var d in ls) {
                         list.Add(d);
                     }
                 }
@@ -2990,12 +2645,9 @@ namespace ToolGood.Algorithm
             var text = arg[0].StringValue;
             var bytes = Base64.FromBase64String(text);
             Encoding encoding;
-            if (arg.Count == 1)
-            {
+            if (arg.Count == 1) {
                 encoding = Encoding.UTF8;
-            }
-            else
-            {
+            } else {
                 encoding = Encoding.GetEncoding(arg[1].StringValue);
             }
             var t = encoding.GetString(bytes);
@@ -3009,12 +2661,9 @@ namespace ToolGood.Algorithm
             var text = arg[0].StringValue;
             var bytes = Base64.FromBase64ForUrlString(text);
             Encoding encoding;
-            if (arg.Count == 1)
-            {
+            if (arg.Count == 1) {
                 encoding = Encoding.UTF8;
-            }
-            else
-            {
+            } else {
                 encoding = Encoding.GetEncoding(arg[1].StringValue);
             }
             var t = encoding.GetString(bytes);
@@ -3027,12 +2676,9 @@ namespace ToolGood.Algorithm
 
             var text = arg[0].StringValue;
             Encoding encoding;
-            if (arg.Count == 1)
-            {
+            if (arg.Count == 1) {
                 encoding = Encoding.UTF8;
-            }
-            else
-            {
+            } else {
                 encoding = Encoding.GetEncoding(arg[1].StringValue);
             }
             var bytes = encoding.GetBytes(text);
@@ -3046,12 +2692,9 @@ namespace ToolGood.Algorithm
 
             var text = arg[0].StringValue;
             Encoding encoding;
-            if (arg.Count == 1)
-            {
+            if (arg.Count == 1) {
                 encoding = Encoding.UTF8;
-            }
-            else
-            {
+            } else {
                 encoding = Encoding.GetEncoding(arg[1].StringValue);
             }
             var bytes = encoding.GetBytes(text);
@@ -3068,32 +2711,24 @@ namespace ToolGood.Algorithm
             var secondValue = arg[1].ToString("");
             if (secondValue.IsError) { return secondValue; }
 
-            if (arg.Count == 2)
-            {
+            if (arg.Count == 2) {
                 var b = Regex.Match(arg[0].StringValue, arg[1].StringValue);
-                if (b.Success == false)
-                {
+                if (b.Success == false) {
                     return ThrowError("Regex匹配失败");
                 }
                 return Operand.Create(b.Value);
-            }
-            else if (arg.Count == 3)
-            {
+            } else if (arg.Count == 3) {
                 var ms = Regex.Matches(arg[0].StringValue, arg[1].StringValue);
-                if (ms.Count <= arg[2].IntValue - excelIndex)
-                {
+                if (ms.Count <= arg[2].IntValue - excelIndex) {
                     return ThrowError("Regex匹配Index长度错误");
                 }
                 arg[2] = arg[2].ToNumber();
                 if (arg[2].IsError) { return arg[2]; }
                 return Operand.Create(ms[arg[2].IntValue - excelIndex].Value);
 
-            }
-            else
-            {
+            } else {
                 var ms = Regex.Matches(arg[0].StringValue, arg[1].StringValue);
-                if (ms.Count <= arg[2].IntValue + excelIndex)
-                {
+                if (ms.Count <= arg[2].IntValue + excelIndex) {
                     return ThrowError("Regex匹配Index长度错误");
                 }
                 arg[2] = arg[2].ToNumber();
@@ -3131,12 +2766,9 @@ namespace ToolGood.Algorithm
 
             var text = arg[0].StringValue;
             Encoding encoding;
-            if (arg.Count == 1)
-            {
+            if (arg.Count == 1) {
                 encoding = Encoding.UTF8;
-            }
-            else
-            {
+            } else {
                 encoding = Encoding.GetEncoding(arg[1].StringValue);
             }
             var t = Hash.GetMd5String(encoding.GetBytes(text));
@@ -3149,12 +2781,9 @@ namespace ToolGood.Algorithm
 
             var text = arg[0].StringValue;
             Encoding encoding;
-            if (arg.Count == 1)
-            {
+            if (arg.Count == 1) {
                 encoding = Encoding.UTF8;
-            }
-            else
-            {
+            } else {
                 encoding = Encoding.GetEncoding(arg[1].StringValue);
             }
             var t = Hash.GetSha1String(encoding.GetBytes(text));
@@ -3167,12 +2796,9 @@ namespace ToolGood.Algorithm
 
             var text = arg[0].StringValue;
             Encoding encoding;
-            if (arg.Count == 1)
-            {
+            if (arg.Count == 1) {
                 encoding = Encoding.UTF8;
-            }
-            else
-            {
+            } else {
                 encoding = Encoding.GetEncoding(arg[1].StringValue);
             }
             var t = Hash.GetSha256String(encoding.GetBytes(text));
@@ -3185,12 +2811,9 @@ namespace ToolGood.Algorithm
 
             var text = arg[0].StringValue;
             Encoding encoding;
-            if (arg.Count == 1)
-            {
+            if (arg.Count == 1) {
                 encoding = Encoding.UTF8;
-            }
-            else
-            {
+            } else {
                 encoding = Encoding.GetEncoding(arg[1].StringValue);
             }
             var t = Hash.GetSha512String(encoding.GetBytes(text));
@@ -3203,12 +2826,9 @@ namespace ToolGood.Algorithm
 
             var text = arg[0].StringValue;
             Encoding encoding;
-            if (arg.Count == 1)
-            {
+            if (arg.Count == 1) {
                 encoding = Encoding.UTF8;
-            }
-            else
-            {
+            } else {
                 encoding = Encoding.GetEncoding(arg[1].StringValue);
             }
             var t = Hash.GetCrc8String(encoding.GetBytes(text));
@@ -3221,12 +2841,9 @@ namespace ToolGood.Algorithm
 
             var text = arg[0].StringValue;
             Encoding encoding;
-            if (arg.Count == 1)
-            {
+            if (arg.Count == 1) {
                 encoding = Encoding.UTF8;
-            }
-            else
-            {
+            } else {
                 encoding = Encoding.GetEncoding(arg[1].StringValue);
             }
             var t = Hash.GetCrc16String(encoding.GetBytes(text));
@@ -3239,12 +2856,9 @@ namespace ToolGood.Algorithm
 
             var text = arg[0].StringValue;
             Encoding encoding;
-            if (arg.Count == 1)
-            {
+            if (arg.Count == 1) {
                 encoding = Encoding.UTF8;
-            }
-            else
-            {
+            } else {
                 encoding = Encoding.GetEncoding(arg[1].StringValue);
             }
             var t = Hash.GetCrc32String(encoding.GetBytes(text));
@@ -3257,12 +2871,9 @@ namespace ToolGood.Algorithm
 
             var text = arg[0].StringValue;
             Encoding encoding;
-            if (arg.Count == 2)
-            {
+            if (arg.Count == 2) {
                 encoding = Encoding.UTF8;
-            }
-            else
-            {
+            } else {
                 encoding = Encoding.GetEncoding(arg[2].StringValue);
             }
             var t = Hash.GetHmacMd5String(encoding.GetBytes(text), arg[1].StringValue);
@@ -3275,12 +2886,9 @@ namespace ToolGood.Algorithm
 
             var text = arg[0].StringValue;
             Encoding encoding;
-            if (arg.Count == 2)
-            {
+            if (arg.Count == 2) {
                 encoding = Encoding.UTF8;
-            }
-            else
-            {
+            } else {
                 encoding = Encoding.GetEncoding(arg[2].StringValue);
             }
             var t = Hash.GetHmacSha1String(encoding.GetBytes(text), arg[1].StringValue);
@@ -3293,12 +2901,9 @@ namespace ToolGood.Algorithm
 
             var text = arg[0].StringValue;
             Encoding encoding;
-            if (arg.Count == 2)
-            {
+            if (arg.Count == 2) {
                 encoding = Encoding.UTF8;
-            }
-            else
-            {
+            } else {
                 encoding = Encoding.GetEncoding(arg[2].StringValue);
             }
             var t = Hash.GetHmacSha256String(encoding.GetBytes(text), arg[1].StringValue);
@@ -3311,12 +2916,9 @@ namespace ToolGood.Algorithm
 
             var text = arg[0].StringValue;
             Encoding encoding;
-            if (arg.Count == 2)
-            {
+            if (arg.Count == 2) {
                 encoding = Encoding.UTF8;
-            }
-            else
-            {
+            } else {
                 encoding = Encoding.GetEncoding(arg[2].StringValue);
             }
             var t = Hash.GetHmacSha512String(encoding.GetBytes(text), arg[1].StringValue);
@@ -3328,8 +2930,7 @@ namespace ToolGood.Algorithm
             foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } arg.Add(a); }
 
             var text = arg[0].StringValue;
-            if (arg.Count == 2)
-            {
+            if (arg.Count == 2) {
 
                 return Operand.Create(text.TrimStart(arg[1].StringValue.ToArray()));
             }
@@ -3342,8 +2943,7 @@ namespace ToolGood.Algorithm
             foreach (var item in context.expr()) { var a = this.Visit(item).ToString(""); if (a.IsError) { return a; } arg.Add(a); }
 
             var text = arg[0].StringValue;
-            if (arg.Count == 2)
-            {
+            if (arg.Count == 2) {
 
                 return Operand.Create(text.TrimEnd(arg[1].StringValue.ToArray()));
             }
@@ -3361,14 +2961,12 @@ namespace ToolGood.Algorithm
             if (arg[1].IsError) { return arg[1]; }
 
             var text = arg[0].StringValue;
-            if (arg.Count == 2)
-            {
+            if (arg.Count == 2) {
                 return Operand.Create(text.IndexOf(arg[1].StringValue) + excelIndex);
             }
             arg[2] = arg[2].ToString();
             if (arg[2].IsError) { return arg[2]; }
-            if (arg.Count == 3)
-            {
+            if (arg.Count == 3) {
 
                 return Operand.Create(text.IndexOf(arg[1].StringValue, arg[2].IntValue) + excelIndex);
             }
@@ -3386,14 +2984,12 @@ namespace ToolGood.Algorithm
             if (arg[1].IsError) { return arg[1]; }
 
             var text = arg[0].StringValue;
-            if (arg.Count == 2)
-            {
+            if (arg.Count == 2) {
                 return Operand.Create(text.LastIndexOf(arg[1].StringValue) + excelIndex);
             }
             arg[2] = arg[2].ToString();
             if (arg[2].IsError) { return arg[2]; }
-            if (arg.Count == 3)
-            {
+            if (arg.Count == 3) {
 
                 return Operand.Create(text.LastIndexOf(arg[1].StringValue, arg[2].IntValue) + excelIndex);
             }
@@ -3412,52 +3008,39 @@ namespace ToolGood.Algorithm
             var arg = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } arg.Add(aa); }
 
-            if (arg[0].Type == OperandType.ARRARY)
-            {
+            if (arg[0].Type == OperandType.ARRARY) {
                 arg[1] = arg[1].ToString("");
                 if (arg[1].IsError) { return arg[1]; }
 
                 List<string> list = new List<string>();
-                foreach (var item in arg[0].ArrayValue)
-                {
-                    if (item.Type == OperandType.ARRARY)
-                    {
-                        foreach (var it in item.ArrayValue)
-                        {
+                foreach (var item in arg[0].ArrayValue) {
+                    if (item.Type == OperandType.ARRARY) {
+                        foreach (var it in item.ArrayValue) {
                             var a = it.ToString();
                             if (a.IsError) { return a; }
                             list.Add(a.StringValue);
                         }
-                    }
-                    else
-                    {
+                    } else {
                         var a = item.ToString();
                         if (a.IsError) { return a; }
                         list.Add(a.StringValue);
                     }
                 }
                 return Operand.Create(string.Join(arg[1].StringValue, list));
-            }
-            else
-            {
+            } else {
                 arg[0] = arg[0].ToString("");
                 if (arg[0].IsError) { return arg[0]; }
 
                 List<string> list = new List<string>();
-                for (int i = 1; i < arg.Count; i++)
-                {
+                for (int i = 1; i < arg.Count; i++) {
                     var item = arg[i];
-                    if (item.Type == OperandType.ARRARY)
-                    {
-                        foreach (var it in item.ArrayValue)
-                        {
+                    if (item.Type == OperandType.ARRARY) {
+                        foreach (var it in item.ArrayValue) {
                             var a = it.ToString();
                             if (a.IsError) { return a; }
                             list.Add(a.StringValue);
                         }
-                    }
-                    else
-                    {
+                    } else {
                         var a = item.ToString();
                         if (a.IsError) { return a; }
                         list.Add(a.StringValue);
@@ -3477,8 +3060,7 @@ namespace ToolGood.Algorithm
             if (arg[1].IsError) { return arg[1]; }
 
             var text = arg[0].StringValue;
-            if (arg.Count == 2)
-            {
+            if (arg.Count == 2) {
                 return Operand.Create(text.Substring(arg[1].IntValue - excelIndex));
             }
             arg[2] = arg[2].ToNumber();
@@ -3496,8 +3078,7 @@ namespace ToolGood.Algorithm
             if (arg[1].IsError) { return arg[1]; }
 
             var text = arg[0].StringValue;
-            if (arg.Count == 2)
-            {
+            if (arg.Count == 2) {
                 return Operand.Create(text.StartsWith(arg[1].StringValue));
             }
             arg[2] = arg[2].ToBoolean();
@@ -3515,8 +3096,7 @@ namespace ToolGood.Algorithm
             if (arg[1].IsError) { return arg[1]; }
 
             var text = arg[0].StringValue;
-            if (arg.Count == 2)
-            {
+            if (arg.Count == 2) {
                 return Operand.Create(text.EndsWith(arg[1].StringValue));
             }
             arg[2] = arg[2].ToBoolean();
@@ -3563,28 +3143,19 @@ namespace ToolGood.Algorithm
             if (arg[1].IsError) { return arg[1]; }
 
             var text = arg[0].StringValue;
-            if (arg.Count == 2)
-            {
-                if (text.StartsWith(arg[1].StringValue))
-                {
+            if (arg.Count == 2) {
+                if (text.StartsWith(arg[1].StringValue)) {
                     return Operand.Create(text.Substring(arg[1].StringValue.Length));
                 }
-            }
-            else
-            {
+            } else {
                 arg[2] = arg[2].ToBoolean();
                 if (arg[2].IsError) { return arg[2]; }
-                if (arg[2].BooleanValue)
-                {
-                    if (text.StartsWith(arg[1].StringValue, StringComparison.OrdinalIgnoreCase))
-                    {
+                if (arg[2].BooleanValue) {
+                    if (text.StartsWith(arg[1].StringValue, StringComparison.OrdinalIgnoreCase)) {
                         return Operand.Create(text.Substring(arg[1].StringValue.Length));
                     }
-                }
-                else
-                {
-                    if (text.StartsWith(arg[1].StringValue))
-                    {
+                } else {
+                    if (text.StartsWith(arg[1].StringValue)) {
                         return Operand.Create(text.Substring(arg[1].StringValue.Length));
                     }
                 }
@@ -3603,28 +3174,19 @@ namespace ToolGood.Algorithm
             if (arg[1].IsError) { return arg[1]; }
 
             var text = arg[0].StringValue;
-            if (arg.Count == 2)
-            {
-                if (text.EndsWith(arg[1].StringValue))
-                {
+            if (arg.Count == 2) {
+                if (text.EndsWith(arg[1].StringValue)) {
                     return Operand.Create(text.Substring(0, text.Length - arg[1].StringValue.Length));
                 }
-            }
-            else
-            {
+            } else {
                 arg[2] = arg[2].ToBoolean();
                 if (arg[2].IsError) { return arg[2]; }
-                if (arg[2].BooleanValue)
-                {
-                    if (text.EndsWith(arg[1].StringValue, StringComparison.OrdinalIgnoreCase))
-                    {
+                if (arg[2].BooleanValue) {
+                    if (text.EndsWith(arg[1].StringValue, StringComparison.OrdinalIgnoreCase)) {
                         return Operand.Create(text.Substring(0, text.Length - arg[1].StringValue.Length));
                     }
-                }
-                else
-                {
-                    if (text.EndsWith(arg[1].StringValue))
-                    {
+                } else {
+                    if (text.EndsWith(arg[1].StringValue)) {
                         return Operand.Create(text.Substring(0, text.Length - arg[1].StringValue.Length));
                     }
                 }
@@ -3637,12 +3199,10 @@ namespace ToolGood.Algorithm
             var firstValue = this.Visit(context.expr()).ToString("");
             if (firstValue.IsError) { return firstValue; }
 
-            try
-            {
+            try {
                 var json = JsonMapper.ToObject(firstValue.StringValue);
                 return Operand.Create(json);
-            }
-            catch (Exception) { }
+            } catch (Exception) { }
             return Operand.Error("无法转Json格式！");
         }
 
@@ -3653,10 +3213,8 @@ namespace ToolGood.Algorithm
 
             var obj = firstValue;
             var op = this.Visit(context.parameter());
-            try
-            {
-                if (obj.Type == OperandType.ARRARY)
-                {
+            try {
+                if (obj.Type == OperandType.ARRARY) {
                     op = op.ToNumber();
                     if (op.IsError) { return op; }
                     var index = op.IntValue - excelIndex;
@@ -3664,16 +3222,13 @@ namespace ToolGood.Algorithm
                         return obj.ArrayValue[index];
                     return Operand.Error("");
                 }
-                if (obj.Type == OperandType.JSON)
-                {
+                if (obj.Type == OperandType.JSON) {
                     var json = obj.JsonValue;
-                    if (json.IsArray)
-                    {
+                    if (json.IsArray) {
                         op = op.ToNumber();
                         if (op.IsError) { return op; }
                         var index = op.IntValue - excelIndex;
-                        if (index < json.Count)
-                        {
+                        if (index < json.Count) {
                             var v = json[op.IntValue - excelIndex];
                             if (v.IsString) return Operand.Create(v.ToString());
                             if (v.IsBoolean) return Operand.Create(bool.Parse(v.ToString()));
@@ -3683,9 +3238,7 @@ namespace ToolGood.Algorithm
                             return Operand.Create(v);
                         }
                         return Operand.Error("");
-                    }
-                    else
-                    {
+                    } else {
                         op = op.ToString("");
                         if (op.IsError) { return op; }
                         var v = json[op.StringValue];
@@ -3700,16 +3253,14 @@ namespace ToolGood.Algorithm
                         return Operand.Create(v);
                     }
                 }
-            }
-            catch (Exception) { }
+            } catch (Exception) { }
             return Operand.Error(op + "操作无效！");
         }
 
         public Operand VisitParameter([NotNull] mathParser.ParameterContext context)
         {
             var expr = context.expr();
-            if (expr != null)
-            {
+            if (expr != null) {
                 return this.Visit(expr);
             }
             return Operand.Create(context.p.Text);
