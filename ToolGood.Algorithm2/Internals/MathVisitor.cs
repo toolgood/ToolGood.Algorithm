@@ -377,7 +377,7 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var b = args[0].ToBoolean("");
+            var b = args[0].ToBoolean("Function IF first parameter is error!");
             if (b.IsError) { return b; }
 
             if (b.BooleanValue)
@@ -491,9 +491,10 @@ namespace ToolGood.Algorithm
         public Operand VisitAND_fun([NotNull] mathParser.AND_funContext context)
         {
             var args = new List<Operand>();
+            var index = 1;
             foreach (var item in context.expr())
             {
-                var a = this.Visit(item).ToBoolean();
+                var a = this.Visit(item).ToBoolean($"Function AND parameter {index++} is error!");
                 if (a.IsError) { return a; }
                 args.Add(a);
             }
@@ -512,9 +513,10 @@ namespace ToolGood.Algorithm
         public Operand VisitOR_fun([NotNull] mathParser.OR_funContext context)
         {
             var args = new List<Operand>();
+            var index = 1;
             foreach (var item in context.expr())
             {
-                var a = this.Visit(item).ToBoolean();
+                var a = this.Visit(item).ToBoolean($"Function OR parameter {index++} is error!");
                 if (a.IsError) { return a; }
                 args.Add(a);
             }
@@ -532,7 +534,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitNOT_fun([NotNull] mathParser.NOT_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToBoolean();
+            var firstValue = this.Visit(context.expr()).ToBoolean("Function NOT parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             return Operand.Create(!firstValue.BooleanValue);
         }
@@ -561,69 +563,69 @@ namespace ToolGood.Algorithm
 
         public Operand VisitABS_fun([NotNull] mathParser.ABS_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("ABS left value");
+            var firstValue = this.Visit(context.expr()).ToNumber("Function ABS parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(Math.Abs(firstValue.NumberValue));
         }
         public Operand VisitQUOTIENT_fun([NotNull] mathParser.QUOTIENT_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = this.Visit(item).ToNumber(); if (aa.IsError) { return aa; } args.Add(aa); }
+            var args = new List<Operand>();int index = 1;
+            foreach (var item in context.expr()) { var aa = this.Visit(item).ToNumber($"Function QUOTIENT parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
 
             var firstValue = args[0];
             var secondValue = args[1];
 
             if (secondValue.NumberValue == 0)
             {
-                return Operand.Error("div 0 error!");
+                return Operand.Error("Function QUOTIENT div 0 error!");
             }
             return Operand.Create((double) (int) (firstValue.NumberValue / secondValue.NumberValue));
         }
         public Operand VisitMOD_fun([NotNull] mathParser.MOD_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = this.Visit(item).ToNumber(); if (aa.IsError) { return aa; } args.Add(aa); }
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in context.expr()) { var aa = this.Visit(item).ToNumber($"Function MOD parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
 
             var firstValue = args[0];
             var secondValue = args[1];
 
             if (secondValue.NumberValue == 0)
             {
-                return Operand.Error("div 0 error!");
+                return Operand.Error("Function MOD div 0 error!");
             }
             return Operand.Create((int) (firstValue.NumberValue % secondValue.NumberValue));
 
         }
         public Operand VisitSIGN_fun([NotNull] mathParser.SIGN_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Sign func");
+            var firstValue = this.Visit(context.expr()).ToNumber("Function SIGN parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(Math.Sign(firstValue.NumberValue));
         }
         public Operand VisitSQRT_fun([NotNull] mathParser.SQRT_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("ABS left value");
+            var firstValue = this.Visit(context.expr()).ToNumber("Function SQRT parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(Math.Sqrt(firstValue.NumberValue));
         }
         public Operand VisitTRUNC_fun([NotNull] mathParser.TRUNC_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("TRUNC func left value");
+            var firstValue = this.Visit(context.expr()).ToNumber("Function TRUNC parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             return Operand.Create((int) (firstValue.NumberValue));
         }
         public Operand VisitINT_fun([NotNull] mathParser.INT_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("INT func left value");
+            var firstValue = this.Visit(context.expr()).ToNumber("Function INT parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             return Operand.Create((int) (firstValue.NumberValue));
         }
         public Operand VisitGCD_fun([NotNull] mathParser.GCD_funContext context)
         {
-            var args = new List<Operand>();
+            var args = new List<Operand>();var index = 1;
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
             List<int> list = new List<int>();
@@ -633,14 +635,15 @@ namespace ToolGood.Algorithm
                 {
                     foreach (var it in item.ArrayValue)
                     {
-                        var a = it.ToNumber();
+                        var a = it.ToNumber($"Function GCD parameter {index} is error!");
                         if (a.IsError) { return a; }
                         list.Add(a.IntValue);
                     }
+                    index++;
                 }
                 else
                 {
-                    var a = item.ToNumber();
+                    var a = item.ToNumber($"Function GCD parameter {index++} is error!");
                     if (a.IsError) { return a; }
                     list.Add(a.IntValue);
                 }
@@ -649,7 +652,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitLCM_fun([NotNull] mathParser.LCM_funContext context)
         {
-            var args = new List<Operand>();
+            var args = new List<Operand>(); var index = 1;
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
             List<int> list = new List<int>();
@@ -659,14 +662,15 @@ namespace ToolGood.Algorithm
                 {
                     foreach (var it in item.ArrayValue)
                     {
-                        var a = it.ToNumber();
+                        var a = it.ToNumber($"Function LCM parameter {index} is error!");
                         if (a.IsError) { return a; }
                         list.Add(a.IntValue);
                     }
+                    index++;
                 }
                 else
                 {
-                    var a = item.ToNumber();
+                    var a = item.ToNumber($"Function GCD parameter {index++} is error!");
                     if (a.IsError) { return a; }
                     list.Add(a.IntValue);
                 }
@@ -676,8 +680,8 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitCOMBIN_fun([NotNull] mathParser.COMBIN_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = this.Visit(item).ToNumber(); if (aa.IsError) { return aa; } args.Add(aa); }
+            var args = new List<Operand>(); var index = 1;
+            foreach (var item in context.expr()) { var aa = this.Visit(item).ToNumber($"Function COMBIN parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
 
             var firstValue = args[0];
             var secondValue = args[1];
@@ -695,8 +699,8 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitPERMUT_fun([NotNull] mathParser.PERMUT_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = this.Visit(item).ToNumber(); if (aa.IsError) { return aa; } args.Add(aa); }
+            var args = new List<Operand>(); var index = 1;
+            foreach (var item in context.expr()) { var aa = this.Visit(item).ToNumber($"Function PERMUT parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
 
             var firstValue = args[0];
             var secondValue = args[1];
@@ -747,7 +751,7 @@ namespace ToolGood.Algorithm
         #region trigonometric functions
         public Operand VisitDEGREES_fun([NotNull] mathParser.DEGREES_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("DEGREES left value");
+            var firstValue = this.Visit(context.expr()).ToNumber("Function DEGREES parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             var z = firstValue.NumberValue;
@@ -756,7 +760,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitRADIANS_fun([NotNull] mathParser.RADIANS_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("RADIANS left value");
+            var firstValue = this.Visit(context.expr()).ToNumber("Function RADIANS parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             var r = firstValue.NumberValue / 180 * Math.PI;
@@ -764,75 +768,74 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitCOS_fun([NotNull] mathParser.COS_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("RADIANS left value");
+            var firstValue = this.Visit(context.expr()).ToNumber("Function COS parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             return Operand.Create(Math.Cos(firstValue.NumberValue));
         }
         public Operand VisitCOSH_fun([NotNull] mathParser.COSH_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("DEGREES left value");
+            var firstValue = this.Visit(context.expr()).ToNumber("Function COSH parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(Math.Cosh(firstValue.NumberValue));
         }
         public Operand VisitSIN_fun([NotNull] mathParser.SIN_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("DEGREES left value");
+            var firstValue = this.Visit(context.expr()).ToNumber("Function SIN parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             return Operand.Create(Math.Sin(firstValue.NumberValue));
         }
         public Operand VisitSINH_fun([NotNull] mathParser.SINH_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("DEGREES left value");
+            var firstValue = this.Visit(context.expr()).ToNumber("Function SINH parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             return Operand.Create(Math.Sinh(firstValue.NumberValue));
         }
         public Operand VisitTAN_fun([NotNull] mathParser.TAN_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("DEGREES left value");
+            var firstValue = this.Visit(context.expr()).ToNumber("Function TAN parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             return Operand.Create(Math.Tan(firstValue.NumberValue));
         }
         public Operand VisitTANH_fun([NotNull] mathParser.TANH_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("DEGREES left value");
+            var firstValue = this.Visit(context.expr()).ToNumber("Function TANH parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             return Operand.Create(Math.Tanh(firstValue.NumberValue));
         }
         public Operand VisitACOS_fun([NotNull] mathParser.ACOS_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("DEGREES left value");
+            var firstValue = this.Visit(context.expr()).ToNumber("Function ACOS parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             return Operand.Create(Math.Acos(firstValue.NumberValue));
         }
         public Operand VisitACOSH_fun([NotNull] mathParser.ACOSH_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("DEGREES left value");
+            var firstValue = this.Visit(context.expr()).ToNumber("Function ACOSH parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-#if NETSTANDARD2_1
-            return Operand.Create(Math.Acosh(firstValue.NumberValue));
-#else
             var z = firstValue.NumberValue;
             if (z < 1)
             {
-                return Operand.Error("acosh中参数小于1");
+                return Operand.Error("Function ACOSH parameter is error!");
             }
+#if NETSTANDARD2_1
+            return Operand.Create(Math.Acosh(z));
+#else
             var r = Math.Log(z + Math.Pow(z * z - 1, 0.5));
-
             return Operand.Create(r);
 #endif
         }
         public Operand VisitASIN_fun([NotNull] mathParser.ASIN_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("DEGREES left value");
+            var firstValue = this.Visit(context.expr()).ToNumber("Function ASIN parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(Math.Asin(firstValue.NumberValue));
         }
         public Operand VisitASINH_fun([NotNull] mathParser.ASINH_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("DEGREES left value");
+            var firstValue = this.Visit(context.expr()).ToNumber("Function ASINH parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 #if NETSTANDARD2_1
             return Operand.Create(Math.Asinh(firstValue.NumberValue));
@@ -844,14 +847,14 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitATAN_fun([NotNull] mathParser.ATAN_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("DEGREES left value");
+            var firstValue = this.Visit(context.expr()).ToNumber("Function ATAN parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(Math.Atan(firstValue.NumberValue));
         }
         public Operand VisitATANH_fun([NotNull] mathParser.ATANH_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("DEGREES left value");
+            var firstValue = this.Visit(context.expr()).ToNumber("Function ATANH parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 #if NETSTANDARD2_1
             return Operand.Create(Math.Atanh(firstValue.NumberValue));
@@ -863,8 +866,8 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitATAN2_fun([NotNull] mathParser.ATAN2_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = this.Visit(item).ToNumber(); if (aa.IsError) { return aa; } args.Add(aa); }
+            var args = new List<Operand>();int index = 1;
+            foreach (var item in context.expr()) { var aa = this.Visit(item).ToNumber($"Function ATAN2 parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
 
             var firstValue = args[0];
             var secondValue = args[1];
@@ -879,18 +882,18 @@ namespace ToolGood.Algorithm
             var num = 2;
             if (args.Count > 1)
             {
-                args[1] = args[1].ToNumber();
+                args[1] = args[1].ToNumber("Function FIXED parameter 2 is error!");
                 if (args[1].IsError) { return args[1]; }
                 num = args[1].IntValue;
             }
-            args[0] = args[0].ToNumber();
+            args[0] = args[0].ToNumber("Function FIXED parameter 1 is error!");
             if (args[0].IsError) { return args[0]; }
 
             var s = Math.Round(args[0].NumberValue, num);
             var no = false;
             if (args.Count == 3)
             {
-                args[2] = args[2].ToBoolean();
+                args[2] = args[2].ToBoolean("Function FIXED parameter 3 is error!");
                 if (args[2].IsError) { return args[2]; }
                 no = args[2].BooleanValue;
             }
@@ -910,27 +913,27 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToString();
-            if (bit_2.IsMatch(firstValue.StringValue) == false) { return Operand.Error(""); }
+            var firstValue = args[0].ToString("Function BIN2OCT parameter 1 is error!");
+            if (bit_2.IsMatch(firstValue.StringValue) == false) { return Operand.Error("Function BIN2OCT parameter 1 is error!"); }
             var num = Convert.ToString(Convert.ToInt32(firstValue.StringValue, 2),8);
             if (args.Count == 2)
             {
-                var secondValue = args[1].ToNumber();
+                var secondValue = args[1].ToNumber("Function BIN2OCT parameter 2 is error!");
                 if (secondValue.IsError) { return secondValue; }
                 if (num.Length > secondValue.IntValue)
                 {
                     return Operand.Create(num.PadLeft(secondValue.IntValue, '0'));
                 }
-                return Operand.Error("");
+                return Operand.Error("Function BIN2OCT parameter 2 is error!");
             }
             return Operand.Create(num);
         }
         public Operand VisitBIN2DEC_fun([NotNull] mathParser.BIN2DEC_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToString("");
+            var firstValue = this.Visit(context.expr()).ToString("Function BIN2DEC parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            if (bit_2.IsMatch(firstValue.StringValue) == false) { return Operand.Error(""); }
+            if (bit_2.IsMatch(firstValue.StringValue) == false) { return Operand.Error("Function BIN2DEC parameter is error!"); }
             var num = Convert.ToInt32(firstValue.StringValue, 2);
             return Operand.Create(num);
         }
@@ -939,18 +942,18 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToString();
-            if (bit_2.IsMatch(firstValue.StringValue) == false) { return Operand.Error(""); }
+            var firstValue = args[0].ToString("Function BIN2HEX parameter 1 is error!");
+            if (bit_2.IsMatch(firstValue.StringValue) == false) { return Operand.Error("Function BIN2HEX parameter 1 is error!"); }
             var num = Convert.ToString(Convert.ToInt32(firstValue.StringValue, 2), 16).ToUpper();
             if (args.Count == 2)
             {
-                var secondValue = args[1].ToNumber();
+                var secondValue = args[1].ToNumber("Function BIN2HEX parameter 2 is error!");
                 if (secondValue.IsError) { return secondValue; }
                 if (num.Length > secondValue.IntValue)
                 {
                     return Operand.Create(num.PadLeft(secondValue.IntValue, '0'));
                 }
-                return Operand.Error("");
+                return Operand.Error("Function BIN2HEX parameter 2 is error!");
             }
             return Operand.Create(num);
         }
@@ -961,27 +964,27 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToString();
-            if (bit_8.IsMatch(firstValue.StringValue) == false) { return Operand.Error(""); }
+            var firstValue = args[0].ToString("Function OCT2BIN parameter 1 is error!");
+            if (bit_8.IsMatch(firstValue.StringValue) == false) { return Operand.Error("Function OCT2BIN parameter 1 is error!"); }
             var num = Convert.ToString(Convert.ToInt32(firstValue.StringValue, 8), 2);
             if (args.Count == 2)
             {
-                var secondValue = args[1].ToNumber();
+                var secondValue = args[1].ToNumber("Function OCT2BIN parameter 2 is error!");
                 if (secondValue.IsError) { return secondValue; }
                 if (num.Length > secondValue.IntValue)
                 {
                     return Operand.Create(num.PadLeft(secondValue.IntValue, '0'));
                 }
-                return Operand.Error("");
+                return Operand.Error("Function OCT2BIN parameter 2 is error!");
             }
             return Operand.Create(num);
         }
         public Operand VisitOCT2DEC_fun([NotNull] mathParser.OCT2DEC_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToString();
+            var firstValue = this.Visit(context.expr()).ToString("Function OCT2DEC parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            if (bit_8.IsMatch(firstValue.StringValue) == false) { return Operand.Error(""); }
+            if (bit_8.IsMatch(firstValue.StringValue) == false) { return Operand.Error("Function OCT2DEC parameter is error!"); }
             var num = Convert.ToInt32(firstValue.StringValue, 8);
             return Operand.Create(num);
         }
@@ -990,18 +993,18 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToString();
-            if (bit_8.IsMatch(firstValue.StringValue) == false) { return Operand.Error(""); }
+            var firstValue = args[0].ToString("Function OCT2HEX parameter 1 is error!");
+            if (bit_8.IsMatch(firstValue.StringValue) == false) { return Operand.Error("Function OCT2HEX parameter 1 is error!"); }
             var num = Convert.ToString(Convert.ToInt32(firstValue.StringValue, 8), 16).ToUpper();
             if (args.Count == 2)
             {
-                var secondValue = args[1].ToNumber();
+                var secondValue = args[1].ToNumber("Function OCT2HEX parameter 2 is error!");
                 if (secondValue.IsError) { return secondValue; }
                 if (num.Length > secondValue.IntValue)
                 {
                     return Operand.Create(num.PadLeft(secondValue.IntValue, '0'));
                 }
-                return Operand.Error("");
+                return Operand.Error("Function OCT2HEX parameter 2 is error!");
             }
             return Operand.Create(num);
         }
@@ -1010,15 +1013,17 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item).ToNumber(); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToNumber();
+            var firstValue = args[0].ToNumber("Function DEC2BIN parameter 1 is error!");
             var num= System.Convert.ToString(firstValue.IntValue, 2);
             if (args.Count==2)
             {
-                if (num.Length>args[1].IntValue)
+                var secondValue = args[1].ToNumber("Function DEC2BIN parameter 2 is error!");
+                if (secondValue.IsError) { return secondValue; }
+                if (num.Length > secondValue.IntValue)
                 {
-                    return Operand.Create(num.PadLeft(args[1].IntValue, '0'));
+                    return Operand.Create(num.PadLeft(secondValue.IntValue, '0'));
                 }
-                return Operand.Error("");
+                return Operand.Error("Function DEC2BIN parameter 2 is error!");
             }
             return Operand.Create(num );
         }
@@ -1027,15 +1032,17 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item).ToNumber(); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToNumber();
+            var firstValue = args[0].ToNumber("Function DEC2OCT parameter 1 is error!");
             var num = System.Convert.ToString(firstValue.IntValue, 8);
             if (args.Count == 2)
             {
-                if (num.Length > args[1].IntValue)
+                var secondValue = args[1].ToNumber("Function DEC2OCT parameter 2 is error!");
+                if (secondValue.IsError) { return secondValue; }
+                if (num.Length > secondValue.IntValue)
                 {
-                    return Operand.Create(num.PadLeft(args[1].IntValue, '0'));
+                    return Operand.Create(num.PadLeft(secondValue.IntValue, '0'));
                 }
-                return Operand.Error("");
+                return Operand.Error("Function DEC2OCT parameter 2 is error!");
             }
             return Operand.Create(num);
         }
@@ -1044,15 +1051,17 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item).ToNumber(); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToNumber();
+            var firstValue = args[0].ToNumber("Function DEC2HEX parameter 1 is error!");
             var num = System.Convert.ToString(firstValue.IntValue, 16).ToUpper();
             if (args.Count == 2)
             {
-                if (num.Length > args[1].IntValue)
+                var secondValue = args[1].ToNumber("Function DEC2HEX parameter 2 is error!");
+                if (secondValue.IsError) { return secondValue; }
+                if (num.Length > secondValue.IntValue)
                 {
-                    return Operand.Create(num.PadLeft(args[1].IntValue, '0'));
+                    return Operand.Create(num.PadLeft(secondValue.IntValue, '0'));
                 }
-                return Operand.Error("");
+                return Operand.Error("Function DEC2HEX parameter 2 is error!");
             }
             return Operand.Create(num);
         }
@@ -1063,20 +1072,20 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToString();
+            var firstValue = args[0].ToString("Function HEX2BIN parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
-            if (bit_16.IsMatch(firstValue.StringValue) == false) { return Operand.Error(""); }
+            if (bit_16.IsMatch(firstValue.StringValue) == false) { return Operand.Error("Function HEX2BIN parameter 1 is error!"); }
 
             var num = Convert.ToString(Convert.ToInt32(firstValue.StringValue, 16), 2);
             if (args.Count == 2)
             {
-                var secondValue = args[1].ToNumber();
+                var secondValue = args[1].ToNumber("Function HEX2BIN parameter 2 is error!");
                 if (secondValue.IsError) { return secondValue; }
                 if (num.Length > secondValue.IntValue)
                 {
                     return Operand.Create(num.PadLeft(secondValue.IntValue, '0'));
                 }
-                return Operand.Error("");
+                return Operand.Error("Function HEX2BIN parameter 2 is error!");
             }
             return Operand.Create(num);
         }
@@ -1085,28 +1094,28 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToString();
+            var firstValue = args[0].ToString("Function HEX2OCT parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
-            if (bit_16.IsMatch(firstValue.StringValue) == false) { return Operand.Error(""); }
+            if (bit_16.IsMatch(firstValue.StringValue) == false) { return Operand.Error("Function HEX2OCT parameter 1 is error!"); }
             var num = Convert.ToString(Convert.ToInt32(firstValue.StringValue, 16), 8);
             if (args.Count == 2)
             {
-                var secondValue = args[1].ToNumber();
+                var secondValue = args[1].ToNumber("Function HEX2OCT parameter 2 is error!");
                 if (secondValue.IsError) { return secondValue; }
                 if (num.Length > secondValue.IntValue)
                 {
                     return Operand.Create(num.PadLeft(secondValue.IntValue, '0'));
                 }
-                return Operand.Error("");
+                return Operand.Error("Function HEX2OCT parameter 2 is error!");
             }
             return Operand.Create(num);
         }
         public Operand VisitHEX2DEC_fun([NotNull] mathParser.HEX2DEC_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToString();
+            var firstValue = this.Visit(context.expr()).ToString("Function HEX2DEC parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            if (bit_16.IsMatch(firstValue.StringValue) == false) { return Operand.Error(""); }
+            if (bit_16.IsMatch(firstValue.StringValue) == false) { return Operand.Error("Function HEX2DEC parameter is error!"); }
             var num = Convert.ToInt32(firstValue.StringValue, 16);
             return Operand.Create(num);
         }
