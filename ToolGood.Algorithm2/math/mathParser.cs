@@ -188,8 +188,8 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 		public override int RuleIndex { get { return RULE_prog; } }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitProg(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitProg(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -227,45 +227,41 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 		}
 	}
 	public partial class CEILING_funContext : ExprContext {
-		public ITerminalNode CEILING() { return GetToken(mathParser.CEILING, 0); }
+		//public ITerminalNode CEILING() { return GetToken(mathParser.CEILING, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public CEILING_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCEILING_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitCEILING_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class FACT_funContext : ExprContext {
-		public ITerminalNode FACT() { return GetToken(mathParser.FACT, 0); }
+		//public ITerminalNode FACT() { return GetToken(mathParser.FACT, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public FACT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFACT_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitFACT_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class REGEXREPALCE_funContext : ExprContext {
-		public ITerminalNode REGEXREPALCE() { return GetToken(mathParser.REGEXREPALCE, 0); }
+		//public ITerminalNode REGEXREPALCE() { return GetToken(mathParser.REGEXREPALCE, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public REGEXREPALCE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitREGEXREPALCE_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitREGEXREPALCE_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class AddSub_funContext : ExprContext {
@@ -273,879 +269,801 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
-		public ITerminalNode ADD() { return GetToken(mathParser.ADD, 0); }
-		public ITerminalNode SUB() { return GetToken(mathParser.SUB, 0); }
-		public ITerminalNode MERGE() { return GetToken(mathParser.MERGE, 0); }
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
+		//public ITerminalNode ADD() { return GetToken(mathParser.ADD, 0); }
+		//public ITerminalNode SUB() { return GetToken(mathParser.SUB, 0); }
+		//public ITerminalNode MERGE() { return GetToken(mathParser.MERGE, 0); }
 		public AddSub_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitAddSub_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitAddSub_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class AVERAGEIF_funContext : ExprContext {
-		public ITerminalNode AVERAGEIF() { return GetToken(mathParser.AVERAGEIF, 0); }
+		//public ITerminalNode AVERAGEIF() { return GetToken(mathParser.AVERAGEIF, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public AVERAGEIF_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitAVERAGEIF_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitAVERAGEIF_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class CRC16_funContext : ExprContext {
-		public ITerminalNode CRC16() { return GetToken(mathParser.CRC16, 0); }
+		//public ITerminalNode CRC16() { return GetToken(mathParser.CRC16, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public CRC16_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCRC16_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitCRC16_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class RIGHT_funContext : ExprContext {
-		public ITerminalNode RIGHT() { return GetToken(mathParser.RIGHT, 0); }
+		//public ITerminalNode RIGHT() { return GetToken(mathParser.RIGHT, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public RIGHT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitRIGHT_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitRIGHT_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class TOLOWER_funContext : ExprContext {
-		public ITerminalNode TOLOWER() { return GetToken(mathParser.TOLOWER, 0); }
+		//public ITerminalNode TOLOWER() { return GetToken(mathParser.TOLOWER, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public TOLOWER_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTOLOWER_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitTOLOWER_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class OCT2BIN_funContext : ExprContext {
-		public ITerminalNode OCT2BIN() { return GetToken(mathParser.OCT2BIN, 0); }
+		//public ITerminalNode OCT2BIN() { return GetToken(mathParser.OCT2BIN, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public OCT2BIN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitOCT2BIN_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitOCT2BIN_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class QUARTILE_funContext : ExprContext {
-		public ITerminalNode QUARTILE() { return GetToken(mathParser.QUARTILE, 0); }
+		//public ITerminalNode QUARTILE() { return GetToken(mathParser.QUARTILE, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public QUARTILE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitQUARTILE_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitQUARTILE_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class FINV_funContext : ExprContext {
-		public ITerminalNode FINV() { return GetToken(mathParser.FINV, 0); }
+		//public ITerminalNode FINV() { return GetToken(mathParser.FINV, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public FINV_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFINV_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitFINV_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class NOT_funContext : ExprContext {
-		public ITerminalNode NOT() { return GetToken(mathParser.NOT, 0); }
+		//public ITerminalNode NOT() { return GetToken(mathParser.NOT, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public NOT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNOT_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitNOT_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class DAYS360_funContext : ExprContext {
-		public ITerminalNode DAYS360() { return GetToken(mathParser.DAYS360, 0); }
+		//public ITerminalNode DAYS360() { return GetToken(mathParser.DAYS360, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public DAYS360_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDAYS360_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitDAYS360_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class WEEKNUM_funContext : ExprContext {
-		public ITerminalNode WEEKNUM() { return GetToken(mathParser.WEEKNUM, 0); }
+		//public ITerminalNode WEEKNUM() { return GetToken(mathParser.WEEKNUM, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public WEEKNUM_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitWEEKNUM_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitWEEKNUM_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class POISSON_funContext : ExprContext {
-		public ITerminalNode POISSON() { return GetToken(mathParser.POISSON, 0); }
+		//public ITerminalNode POISSON() { return GetToken(mathParser.POISSON, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public POISSON_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPOISSON_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitPOISSON_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class ISREGEX_funContext : ExprContext {
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
-		public ITerminalNode ISREGEX() { return GetToken(mathParser.ISREGEX, 0); }
-		public ITerminalNode ISMATCH() { return GetToken(mathParser.ISMATCH, 0); }
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
+		//public ITerminalNode ISREGEX() { return GetToken(mathParser.ISREGEX, 0); }
+		//public ITerminalNode ISMATCH() { return GetToken(mathParser.ISMATCH, 0); }
 		public ISREGEX_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISREGEX_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitISREGEX_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class PERCENTILE_funContext : ExprContext {
-		public ITerminalNode PERCENTILE() { return GetToken(mathParser.PERCENTILE, 0); }
+		//public ITerminalNode PERCENTILE() { return GetToken(mathParser.PERCENTILE, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public PERCENTILE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPERCENTILE_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitPERCENTILE_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class SHA256_funContext : ExprContext {
-		public ITerminalNode SHA256() { return GetToken(mathParser.SHA256, 0); }
+		//public ITerminalNode SHA256() { return GetToken(mathParser.SHA256, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SHA256_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSHA256_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitSHA256_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class HYPGEOMDIST_funContext : ExprContext {
-		public ITerminalNode HYPGEOMDIST() { return GetToken(mathParser.HYPGEOMDIST, 0); }
+		//public ITerminalNode HYPGEOMDIST() { return GetToken(mathParser.HYPGEOMDIST, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public HYPGEOMDIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHYPGEOMDIST_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitHYPGEOMDIST_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class PERMUT_funContext : ExprContext {
-		public ITerminalNode PERMUT() { return GetToken(mathParser.PERMUT, 0); }
+		//public ITerminalNode PERMUT() { return GetToken(mathParser.PERMUT, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public PERMUT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPERMUT_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitPERMUT_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class TRIMSTART_funContext : ExprContext {
-		public ITerminalNode TRIMSTART() { return GetToken(mathParser.TRIMSTART, 0); }
+		//public ITerminalNode TRIMSTART() { return GetToken(mathParser.TRIMSTART, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public TRIMSTART_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTRIMSTART_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitTRIMSTART_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class RMB_funContext : ExprContext {
-		public ITerminalNode RMB() { return GetToken(mathParser.RMB, 0); }
+		//public ITerminalNode RMB() { return GetToken(mathParser.RMB, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public RMB_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitRMB_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitRMB_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class DEC2HEX_funContext : ExprContext {
-		public ITerminalNode DEC2HEX() { return GetToken(mathParser.DEC2HEX, 0); }
+		//public ITerminalNode DEC2HEX() { return GetToken(mathParser.DEC2HEX, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public DEC2HEX_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDEC2HEX_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitDEC2HEX_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class CLEAN_funContext : ExprContext {
-		public ITerminalNode CLEAN() { return GetToken(mathParser.CLEAN, 0); }
+		//public ITerminalNode CLEAN() { return GetToken(mathParser.CLEAN, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public CLEAN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCLEAN_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitCLEAN_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class LOWER_funContext : ExprContext {
-		public ITerminalNode LOWER() { return GetToken(mathParser.LOWER, 0); }
+		//public ITerminalNode LOWER() { return GetToken(mathParser.LOWER, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public LOWER_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLOWER_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitLOWER_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class OR_funContext : ExprContext {
-		public ITerminalNode OR() { return GetToken(mathParser.OR, 0); }
+		//public ITerminalNode OR() { return GetToken(mathParser.OR, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public OR_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitOR_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitOR_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class NORMSINV_funContext : ExprContext {
-		public ITerminalNode NORMSINV() { return GetToken(mathParser.NORMSINV, 0); }
+		//public ITerminalNode NORMSINV() { return GetToken(mathParser.NORMSINV, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public NORMSINV_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNORMSINV_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitNORMSINV_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class LEFT_funContext : ExprContext {
-		public ITerminalNode LEFT() { return GetToken(mathParser.LEFT, 0); }
+		//public ITerminalNode LEFT() { return GetToken(mathParser.LEFT, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public LEFT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLEFT_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitLEFT_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class ISEVEN_funContext : ExprContext {
-		public ITerminalNode ISEVEN() { return GetToken(mathParser.ISEVEN, 0); }
+		//public ITerminalNode ISEVEN() { return GetToken(mathParser.ISEVEN, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ISEVEN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISEVEN_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitISEVEN_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class LOGINV_funContext : ExprContext {
-		public ITerminalNode LOGINV() { return GetToken(mathParser.LOGINV, 0); }
+		//public ITerminalNode LOGINV() { return GetToken(mathParser.LOGINV, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public LOGINV_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLOGINV_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitLOGINV_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class WORKDAY_funContext : ExprContext {
-		public ITerminalNode WORKDAY() { return GetToken(mathParser.WORKDAY, 0); }
+		//public ITerminalNode WORKDAY() { return GetToken(mathParser.WORKDAY, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public WORKDAY_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitWORKDAY_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitWORKDAY_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class ISERROR_funContext : ExprContext {
-		public ITerminalNode ISERROR() { return GetToken(mathParser.ISERROR, 0); }
+		//public ITerminalNode ISERROR() { return GetToken(mathParser.ISERROR, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ISERROR_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISERROR_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitISERROR_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class BIN2DEC_funContext : ExprContext {
-		public ITerminalNode BIN2DEC() { return GetToken(mathParser.BIN2DEC, 0); }
+		//public ITerminalNode BIN2DEC() { return GetToken(mathParser.BIN2DEC, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public BIN2DEC_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitBIN2DEC_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitBIN2DEC_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class JIS_funContext : ExprContext {
-		public ITerminalNode JIS() { return GetToken(mathParser.JIS, 0); }
+		//public ITerminalNode JIS() { return GetToken(mathParser.JIS, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public JIS_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitJIS_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitJIS_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class CRC32_funContext : ExprContext {
-		public ITerminalNode CRC32() { return GetToken(mathParser.CRC32, 0); }
+		//public ITerminalNode CRC32() { return GetToken(mathParser.CRC32, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public CRC32_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCRC32_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitCRC32_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class LCM_funContext : ExprContext {
-		public ITerminalNode LCM() { return GetToken(mathParser.LCM, 0); }
+		//public ITerminalNode LCM() { return GetToken(mathParser.LCM, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public LCM_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLCM_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitLCM_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class HARMEAN_funContext : ExprContext {
-		public ITerminalNode HARMEAN() { return GetToken(mathParser.HARMEAN, 0); }
+		//public ITerminalNode HARMEAN() { return GetToken(mathParser.HARMEAN, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public HARMEAN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHARMEAN_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitHARMEAN_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class NORMINV_funContext : ExprContext {
-		public ITerminalNode NORMINV() { return GetToken(mathParser.NORMINV, 0); }
+		//public ITerminalNode NORMINV() { return GetToken(mathParser.NORMINV, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public NORMINV_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNORMINV_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitNORMINV_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class GAMMAINV_funContext : ExprContext {
-		public ITerminalNode GAMMAINV() { return GetToken(mathParser.GAMMAINV, 0); }
+		//public ITerminalNode GAMMAINV() { return GetToken(mathParser.GAMMAINV, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public GAMMAINV_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitGAMMAINV_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitGAMMAINV_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class SQRT_funContext : ExprContext {
-		public ITerminalNode SQRT() { return GetToken(mathParser.SQRT, 0); }
+		//public ITerminalNode SQRT() { return GetToken(mathParser.SQRT, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public SQRT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSQRT_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitSQRT_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class DEGREES_funContext : ExprContext {
-		public ITerminalNode DEGREES() { return GetToken(mathParser.DEGREES, 0); }
+		//public ITerminalNode DEGREES() { return GetToken(mathParser.DEGREES, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public DEGREES_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDEGREES_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitDEGREES_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class MROUND_funContext : ExprContext {
-		public ITerminalNode MROUND() { return GetToken(mathParser.MROUND, 0); }
+		//public ITerminalNode MROUND() { return GetToken(mathParser.MROUND, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public MROUND_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMROUND_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitMROUND_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class DATEDIF_funContext : ExprContext {
-		public ITerminalNode DATEDIF() { return GetToken(mathParser.DATEDIF, 0); }
+		//public ITerminalNode DATEDIF() { return GetToken(mathParser.DATEDIF, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public DATEDIF_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDATEDIF_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitDATEDIF_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class TRIMEND_funContext : ExprContext {
-		public ITerminalNode TRIMEND() { return GetToken(mathParser.TRIMEND, 0); }
+		//public ITerminalNode TRIMEND() { return GetToken(mathParser.TRIMEND, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public TRIMEND_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTRIMEND_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitTRIMEND_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class CRC8_funContext : ExprContext {
-		public ITerminalNode CRC8() { return GetToken(mathParser.CRC8, 0); }
+		//public ITerminalNode CRC8() { return GetToken(mathParser.CRC8, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public CRC8_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCRC8_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitCRC8_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class ISLOGICAL_funContext : ExprContext {
-		public ITerminalNode ISLOGICAL() { return GetToken(mathParser.ISLOGICAL, 0); }
+		//public ITerminalNode ISLOGICAL() { return GetToken(mathParser.ISLOGICAL, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ISLOGICAL_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISLOGICAL_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitISLOGICAL_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class INT_funContext : ExprContext {
-		public ITerminalNode INT() { return GetToken(mathParser.INT, 0); }
+		//public ITerminalNode INT() { return GetToken(mathParser.INT, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public INT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitINT_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitINT_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class SUMIF_funContext : ExprContext {
-		public ITerminalNode SUMIF() { return GetToken(mathParser.SUMIF, 0); }
+		//public ITerminalNode SUMIF() { return GetToken(mathParser.SUMIF, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SUMIF_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSUMIF_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitSUMIF_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class HEX2OCT_funContext : ExprContext {
-		public ITerminalNode HEX2OCT() { return GetToken(mathParser.HEX2OCT, 0); }
+		//public ITerminalNode HEX2OCT() { return GetToken(mathParser.HEX2OCT, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public HEX2OCT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHEX2OCT_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitHEX2OCT_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class PI_funContext : ExprContext {
-		public ITerminalNode PI() { return GetToken(mathParser.PI, 0); }
+		//public ITerminalNode PI() { return GetToken(mathParser.PI, 0); }
 		public PI_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPI_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitPI_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class YEAR_funContext : ExprContext {
-		public ITerminalNode YEAR() { return GetToken(mathParser.YEAR, 0); }
+		//public ITerminalNode YEAR() { return GetToken(mathParser.YEAR, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public YEAR_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitYEAR_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitYEAR_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class SQRTPI_funContext : ExprContext {
-		public ITerminalNode SQRTPI() { return GetToken(mathParser.SQRTPI, 0); }
+		//public ITerminalNode SQRTPI() { return GetToken(mathParser.SQRTPI, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public SQRTPI_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSQRTPI_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitSQRTPI_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class CONCATENATE_funContext : ExprContext {
-		public ITerminalNode CONCATENATE() { return GetToken(mathParser.CONCATENATE, 0); }
+		//public ITerminalNode CONCATENATE() { return GetToken(mathParser.CONCATENATE, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public CONCATENATE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCONCATENATE_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitCONCATENATE_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class COUNT_funContext : ExprContext {
-		public ITerminalNode COUNT() { return GetToken(mathParser.COUNT, 0); }
+		//public ITerminalNode COUNT() { return GetToken(mathParser.COUNT, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public COUNT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCOUNT_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitCOUNT_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class FALSE_funContext : ExprContext {
-		public ITerminalNode FALSE() { return GetToken(mathParser.FALSE, 0); }
+		//public ITerminalNode FALSE() { return GetToken(mathParser.FALSE, 0); }
 		public FALSE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFALSE_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitFALSE_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class HTMLENCODE_funContext : ExprContext {
-		public ITerminalNode HTMLENCODE() { return GetToken(mathParser.HTMLENCODE, 0); }
+		//public ITerminalNode HTMLENCODE() { return GetToken(mathParser.HTMLENCODE, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public HTMLENCODE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHTMLENCODE_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitHTMLENCODE_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class BASE64URLTOTEXT_funContext : ExprContext {
-		public ITerminalNode BASE64URLTOTEXT() { return GetToken(mathParser.BASE64URLTOTEXT, 0); }
+		//public ITerminalNode BASE64URLTOTEXT() { return GetToken(mathParser.BASE64URLTOTEXT, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public BASE64URLTOTEXT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitBASE64URLTOTEXT_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitBASE64URLTOTEXT_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class LOG10_funContext : ExprContext {
-		public ITerminalNode LOG10() { return GetToken(mathParser.LOG10, 0); }
+		//public ITerminalNode LOG10() { return GetToken(mathParser.LOG10, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public LOG10_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLOG10_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitLOG10_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class ISTEXT_funContext : ExprContext {
-		public ITerminalNode ISTEXT() { return GetToken(mathParser.ISTEXT, 0); }
+		//public ITerminalNode ISTEXT() { return GetToken(mathParser.ISTEXT, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ISTEXT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISTEXT_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitISTEXT_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class NEGBINOMDIST_funContext : ExprContext {
-		public ITerminalNode NEGBINOMDIST() { return GetToken(mathParser.NEGBINOMDIST, 0); }
+		//public ITerminalNode NEGBINOMDIST() { return GetToken(mathParser.NEGBINOMDIST, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public NEGBINOMDIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNEGBINOMDIST_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitNEGBINOMDIST_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class NETWORKDAYS_funContext : ExprContext {
-		public ITerminalNode NETWORKDAYS() { return GetToken(mathParser.NETWORKDAYS, 0); }
+		//public ITerminalNode NETWORKDAYS() { return GetToken(mathParser.NETWORKDAYS, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public NETWORKDAYS_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNETWORKDAYS_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitNETWORKDAYS_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class FACTDOUBLE_funContext : ExprContext {
-		public ITerminalNode FACTDOUBLE() { return GetToken(mathParser.FACTDOUBLE, 0); }
+		//public ITerminalNode FACTDOUBLE() { return GetToken(mathParser.FACTDOUBLE, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public FACTDOUBLE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFACTDOUBLE_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitFACTDOUBLE_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class TIMEVALUE_funContext : ExprContext {
-		public ITerminalNode TIMEVALUE() { return GetToken(mathParser.TIMEVALUE, 0); }
+		//public ITerminalNode TIMEVALUE() { return GetToken(mathParser.TIMEVALUE, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public TIMEVALUE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTIMEVALUE_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitTIMEVALUE_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class AVEDEV_funContext : ExprContext {
-		public ITerminalNode AVEDEV() { return GetToken(mathParser.AVEDEV, 0); }
+		//public ITerminalNode AVEDEV() { return GetToken(mathParser.AVEDEV, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public AVEDEV_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitAVEDEV_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitAVEDEV_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class GUID_funContext : ExprContext {
-		public ITerminalNode GUID() { return GetToken(mathParser.GUID, 0); }
+		//public ITerminalNode GUID() { return GetToken(mathParser.GUID, 0); }
 		public GUID_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitGUID_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitGUID_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class JSON_funContext : ExprContext {
-		public ITerminalNode JSON() { return GetToken(mathParser.JSON, 0); }
+		//public ITerminalNode JSON() { return GetToken(mathParser.JSON, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public JSON_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitJSON_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitJSON_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class FIXED_funContext : ExprContext {
-		public ITerminalNode FIXED() { return GetToken(mathParser.FIXED, 0); }
+		//public ITerminalNode FIXED() { return GetToken(mathParser.FIXED, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public FIXED_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFIXED_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitFIXED_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class GetJsonValue_funContext : ExprContext {
@@ -1158,479 +1076,435 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 		public GetJsonValue_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitGetJsonValue_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitGetJsonValue_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class TINV_funContext : ExprContext {
-		public ITerminalNode TINV() { return GetToken(mathParser.TINV, 0); }
+		//public ITerminalNode TINV() { return GetToken(mathParser.TINV, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public TINV_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTINV_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitTINV_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class EDATE_funContext : ExprContext {
-		public ITerminalNode EDATE() { return GetToken(mathParser.EDATE, 0); }
+		//public ITerminalNode EDATE() { return GetToken(mathParser.EDATE, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public EDATE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitEDATE_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitEDATE_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class GEOMEAN_funContext : ExprContext {
-		public ITerminalNode GEOMEAN() { return GetToken(mathParser.GEOMEAN, 0); }
+		//public ITerminalNode GEOMEAN() { return GetToken(mathParser.GEOMEAN, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public GEOMEAN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitGEOMEAN_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitGEOMEAN_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class VAR_funContext : ExprContext {
-		public ITerminalNode VAR() { return GetToken(mathParser.VAR, 0); }
+		//public ITerminalNode VAR() { return GetToken(mathParser.VAR, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public VAR_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitVAR_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitVAR_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class SIGN_funContext : ExprContext {
-		public ITerminalNode SIGN() { return GetToken(mathParser.SIGN, 0); }
+		//public ITerminalNode SIGN() { return GetToken(mathParser.SIGN, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public SIGN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSIGN_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitSIGN_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class EOMONTH_funContext : ExprContext {
-		public ITerminalNode EOMONTH() { return GetToken(mathParser.EOMONTH, 0); }
+		//public ITerminalNode EOMONTH() { return GetToken(mathParser.EOMONTH, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public EOMONTH_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitEOMONTH_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitEOMONTH_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class FLOOR_funContext : ExprContext {
-		public ITerminalNode FLOOR() { return GetToken(mathParser.FLOOR, 0); }
+		//public ITerminalNode FLOOR() { return GetToken(mathParser.FLOOR, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public FLOOR_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFLOOR_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitFLOOR_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class HOUR_funContext : ExprContext {
-		public ITerminalNode HOUR() { return GetToken(mathParser.HOUR, 0); }
+		//public ITerminalNode HOUR() { return GetToken(mathParser.HOUR, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public HOUR_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHOUR_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitHOUR_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class LEN_funContext : ExprContext {
-		public ITerminalNode LEN() { return GetToken(mathParser.LEN, 0); }
+		//public ITerminalNode LEN() { return GetToken(mathParser.LEN, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public LEN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLEN_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitLEN_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class ACOS_funContext : ExprContext {
-		public ITerminalNode ACOS() { return GetToken(mathParser.ACOS, 0); }
+		//public ITerminalNode ACOS() { return GetToken(mathParser.ACOS, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ACOS_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitACOS_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitACOS_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class ISNULLORWHITESPACE_funContext : ExprContext {
-		public ITerminalNode ISNULLORWHITESPACE() { return GetToken(mathParser.ISNULLORWHITESPACE, 0); }
+		//public ITerminalNode ISNULLORWHITESPACE() { return GetToken(mathParser.ISNULLORWHITESPACE, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ISNULLORWHITESPACE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISNULLORWHITESPACE_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitISNULLORWHITESPACE_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class NUM_funContext : ExprContext {
-		public ITerminalNode NUM() { return GetToken(mathParser.NUM, 0); }
-		public ITerminalNode SUB() { return GetToken(mathParser.SUB, 0); }
-		public NUM_funContext(ExprContext context) { CopyFrom(context); }
+        public ITerminalNode NUM() { return GetToken(mathParser.NUM, 0); }
+        public ITerminalNode SUB() { return GetToken(mathParser.SUB, 0); }
+        public NUM_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNUM_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitNUM_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class COSH_funContext : ExprContext {
-		public ITerminalNode COSH() { return GetToken(mathParser.COSH, 0); }
+		//public ITerminalNode COSH() { return GetToken(mathParser.COSH, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public COSH_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCOSH_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitCOSH_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class QUOTIENT_funContext : ExprContext {
-		public ITerminalNode QUOTIENT() { return GetToken(mathParser.QUOTIENT, 0); }
+		//public ITerminalNode QUOTIENT() { return GetToken(mathParser.QUOTIENT, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public QUOTIENT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitQUOTIENT_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitQUOTIENT_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class OCT2DEC_funContext : ExprContext {
-		public ITerminalNode OCT2DEC() { return GetToken(mathParser.OCT2DEC, 0); }
+		//public ITerminalNode OCT2DEC() { return GetToken(mathParser.OCT2DEC, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public OCT2DEC_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitOCT2DEC_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitOCT2DEC_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class SEARCH_funContext : ExprContext {
-		public ITerminalNode SEARCH() { return GetToken(mathParser.SEARCH, 0); }
+		//public ITerminalNode SEARCH() { return GetToken(mathParser.SEARCH, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SEARCH_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSEARCH_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitSEARCH_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class ROUNDUP_funContext : ExprContext {
-		public ITerminalNode ROUNDUP() { return GetToken(mathParser.ROUNDUP, 0); }
+		//public ITerminalNode ROUNDUP() { return GetToken(mathParser.ROUNDUP, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public ROUNDUP_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitROUNDUP_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitROUNDUP_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class COMBIN_funContext : ExprContext {
-		public ITerminalNode COMBIN() { return GetToken(mathParser.COMBIN, 0); }
+		//public ITerminalNode COMBIN() { return GetToken(mathParser.COMBIN, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public COMBIN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCOMBIN_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitCOMBIN_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class CODE_funContext : ExprContext {
-		public ITerminalNode CODE() { return GetToken(mathParser.CODE, 0); }
+		//public ITerminalNode CODE() { return GetToken(mathParser.CODE, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public CODE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCODE_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitCODE_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class ASINH_funContext : ExprContext {
-		public ITerminalNode ASINH() { return GetToken(mathParser.ASINH, 0); }
+		//public ITerminalNode ASINH() { return GetToken(mathParser.ASINH, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ASINH_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitASINH_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitASINH_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class SIN_funContext : ExprContext {
-		public ITerminalNode SIN() { return GetToken(mathParser.SIN, 0); }
+		//public ITerminalNode SIN() { return GetToken(mathParser.SIN, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public SIN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSIN_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitSIN_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class SUBSTRING_funContext : ExprContext {
-		public ITerminalNode SUBSTRING() { return GetToken(mathParser.SUBSTRING, 0); }
+		//public ITerminalNode SUBSTRING() { return GetToken(mathParser.SUBSTRING, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SUBSTRING_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSUBSTRING_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitSUBSTRING_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class RANDBETWEEN_funContext : ExprContext {
-		public ITerminalNode RANDBETWEEN() { return GetToken(mathParser.RANDBETWEEN, 0); }
+		//public ITerminalNode RANDBETWEEN() { return GetToken(mathParser.RANDBETWEEN, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public RANDBETWEEN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitRANDBETWEEN_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitRANDBETWEEN_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class AVERAGE_funContext : ExprContext {
-		public ITerminalNode AVERAGE() { return GetToken(mathParser.AVERAGE, 0); }
+		//public ITerminalNode AVERAGE() { return GetToken(mathParser.AVERAGE, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public AVERAGE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitAVERAGE_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitAVERAGE_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class LOG_funContext : ExprContext {
-		public ITerminalNode LOG() { return GetToken(mathParser.LOG, 0); }
+		//public ITerminalNode LOG() { return GetToken(mathParser.LOG, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public LOG_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLOG_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitLOG_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class HMACSHA512_funContext : ExprContext {
-		public ITerminalNode HMACSHA512() { return GetToken(mathParser.HMACSHA512, 0); }
+		//public ITerminalNode HMACSHA512() { return GetToken(mathParser.HMACSHA512, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public HMACSHA512_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHMACSHA512_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitHMACSHA512_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class STDEVP_funContext : ExprContext {
-		public ITerminalNode STDEVP() { return GetToken(mathParser.STDEVP, 0); }
+		//public ITerminalNode STDEVP() { return GetToken(mathParser.STDEVP, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public STDEVP_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSTDEVP_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitSTDEVP_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class Array_funContext : ExprContext {
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public Array_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitArray_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitArray_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class ROUND_funContext : ExprContext {
-		public ITerminalNode ROUND() { return GetToken(mathParser.ROUND, 0); }
+		//public ITerminalNode ROUND() { return GetToken(mathParser.ROUND, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public ROUND_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitROUND_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitROUND_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class EXP_funContext : ExprContext {
-		public ITerminalNode EXP() { return GetToken(mathParser.EXP, 0); }
+		//public ITerminalNode EXP() { return GetToken(mathParser.EXP, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public EXP_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitEXP_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitEXP_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class COUNTIF_funContext : ExprContext {
-		public ITerminalNode COUNTIF() { return GetToken(mathParser.COUNTIF, 0); }
+		//public ITerminalNode COUNTIF() { return GetToken(mathParser.COUNTIF, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public COUNTIF_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCOUNTIF_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitCOUNTIF_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class VARP_funContext : ExprContext {
-		public ITerminalNode VARP() { return GetToken(mathParser.VARP, 0); }
+		//public ITerminalNode VARP() { return GetToken(mathParser.VARP, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public VARP_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitVARP_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitVARP_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class REMOVEEND_funContext : ExprContext {
-		public ITerminalNode REMOVEEND() { return GetToken(mathParser.REMOVEEND, 0); }
+		//public ITerminalNode REMOVEEND() { return GetToken(mathParser.REMOVEEND, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public REMOVEEND_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitREMOVEEND_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitREMOVEEND_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class DATE_funContext : ExprContext {
-		public ITerminalNode DATE() { return GetToken(mathParser.DATE, 0); }
+		//public ITerminalNode DATE() { return GetToken(mathParser.DATE, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public DATE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDATE_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitDATE_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class PARAMETER_funContext : ExprContext {
@@ -1640,131 +1514,121 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 		public PARAMETER_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPARAMETER_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitPARAMETER_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class SPLIT_funContext : ExprContext {
-		public ITerminalNode SPLIT() { return GetToken(mathParser.SPLIT, 0); }
+		//public ITerminalNode SPLIT() { return GetToken(mathParser.SPLIT, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SPLIT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSPLIT_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitSPLIT_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class URLDECODE_funContext : ExprContext {
-		public ITerminalNode URLDECODE() { return GetToken(mathParser.URLDECODE, 0); }
+		//public ITerminalNode URLDECODE() { return GetToken(mathParser.URLDECODE, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public URLDECODE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitURLDECODE_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitURLDECODE_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class LARGE_funContext : ExprContext {
-		public ITerminalNode LARGE() { return GetToken(mathParser.LARGE, 0); }
+		//public ITerminalNode LARGE() { return GetToken(mathParser.LARGE, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public LARGE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLARGE_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitLARGE_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class TOUPPER_funContext : ExprContext {
-		public ITerminalNode TOUPPER() { return GetToken(mathParser.TOUPPER, 0); }
+		//public ITerminalNode TOUPPER() { return GetToken(mathParser.TOUPPER, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public TOUPPER_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTOUPPER_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitTOUPPER_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class VALUE_funContext : ExprContext {
-		public ITerminalNode VALUE() { return GetToken(mathParser.VALUE, 0); }
+		//public ITerminalNode VALUE() { return GetToken(mathParser.VALUE, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public VALUE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitVALUE_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitVALUE_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class DAY_funContext : ExprContext {
-		public ITerminalNode DAY() { return GetToken(mathParser.DAY, 0); }
+		//public ITerminalNode DAY() { return GetToken(mathParser.DAY, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public DAY_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDAY_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitDAY_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class WEIBULL_funContext : ExprContext {
-		public ITerminalNode WEIBULL() { return GetToken(mathParser.WEIBULL, 0); }
+		//public ITerminalNode WEIBULL() { return GetToken(mathParser.WEIBULL, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public WEIBULL_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitWEIBULL_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitWEIBULL_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class HMACSHA256_funContext : ExprContext {
-		public ITerminalNode HMACSHA256() { return GetToken(mathParser.HMACSHA256, 0); }
+		//public ITerminalNode HMACSHA256() { return GetToken(mathParser.HMACSHA256, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public HMACSHA256_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHMACSHA256_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitHMACSHA256_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class BINOMDIST_funContext : ExprContext {
-		public ITerminalNode BINOMDIST() { return GetToken(mathParser.BINOMDIST, 0); }
+		//public ITerminalNode BINOMDIST() { return GetToken(mathParser.BINOMDIST, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public BINOMDIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitBINOMDIST_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitBINOMDIST_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class Judge_funContext : ExprContext {
@@ -1772,821 +1636,751 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
-		public ITerminalNode LT() { return GetToken(mathParser.LT, 0); }
-		public ITerminalNode LE() { return GetToken(mathParser.LE, 0); }
-		public ITerminalNode GT() { return GetToken(mathParser.GT, 0); }
-		public ITerminalNode GE() { return GetToken(mathParser.GE, 0); }
-		public ITerminalNode ET() { return GetToken(mathParser.ET, 0); }
-		public ITerminalNode NT() { return GetToken(mathParser.NT, 0); }
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
+		//public ITerminalNode LT() { return GetToken(mathParser.LT, 0); }
+		//public ITerminalNode LE() { return GetToken(mathParser.LE, 0); }
+		//public ITerminalNode GT() { return GetToken(mathParser.GT, 0); }
+		//public ITerminalNode GE() { return GetToken(mathParser.GE, 0); }
+		//public ITerminalNode ET() { return GetToken(mathParser.ET, 0); }
+		//public ITerminalNode NT() { return GetToken(mathParser.NT, 0); }
 		public Judge_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitJudge_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitJudge_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class DEVSQ_funContext : ExprContext {
-		public ITerminalNode DEVSQ() { return GetToken(mathParser.DEVSQ, 0); }
+		//public ITerminalNode DEVSQ() { return GetToken(mathParser.DEVSQ, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public DEVSQ_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDEVSQ_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitDEVSQ_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class MODE_funContext : ExprContext {
-		public ITerminalNode MODE() { return GetToken(mathParser.MODE, 0); }
+		//public ITerminalNode MODE() { return GetToken(mathParser.MODE, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public MODE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMODE_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitMODE_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class BETAINV_funContext : ExprContext {
-		public ITerminalNode BETAINV() { return GetToken(mathParser.BETAINV, 0); }
+		//public ITerminalNode BETAINV() { return GetToken(mathParser.BETAINV, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public BETAINV_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitBETAINV_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitBETAINV_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class MAX_funContext : ExprContext {
-		public ITerminalNode MAX() { return GetToken(mathParser.MAX, 0); }
+		//public ITerminalNode MAX() { return GetToken(mathParser.MAX, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public MAX_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMAX_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitMAX_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class MINUTE_funContext : ExprContext {
-		public ITerminalNode MINUTE() { return GetToken(mathParser.MINUTE, 0); }
+		//public ITerminalNode MINUTE() { return GetToken(mathParser.MINUTE, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public MINUTE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMINUTE_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitMINUTE_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class TAN_funContext : ExprContext {
-		public ITerminalNode TAN() { return GetToken(mathParser.TAN, 0); }
+		//public ITerminalNode TAN() { return GetToken(mathParser.TAN, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public TAN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTAN_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitTAN_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class IFERROR_funContext : ExprContext {
-		public ITerminalNode IFERROR() { return GetToken(mathParser.IFERROR, 0); }
+		//public ITerminalNode IFERROR() { return GetToken(mathParser.IFERROR, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public IFERROR_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitIFERROR_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitIFERROR_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class FDIST_funContext : ExprContext {
-		public ITerminalNode FDIST() { return GetToken(mathParser.FDIST, 0); }
+		//public ITerminalNode FDIST() { return GetToken(mathParser.FDIST, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public FDIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFDIST_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitFDIST_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class INDEXOF_funContext : ExprContext {
-		public ITerminalNode INDEXOF() { return GetToken(mathParser.INDEXOF, 0); }
+		//public ITerminalNode INDEXOF() { return GetToken(mathParser.INDEXOF, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public INDEXOF_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitINDEXOF_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitINDEXOF_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class UPPER_funContext : ExprContext {
-		public ITerminalNode UPPER() { return GetToken(mathParser.UPPER, 0); }
+		//public ITerminalNode UPPER() { return GetToken(mathParser.UPPER, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public UPPER_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitUPPER_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitUPPER_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class HTMLDECODE_funContext : ExprContext {
-		public ITerminalNode HTMLDECODE() { return GetToken(mathParser.HTMLDECODE, 0); }
+		//public ITerminalNode HTMLDECODE() { return GetToken(mathParser.HTMLDECODE, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public HTMLDECODE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHTMLDECODE_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitHTMLDECODE_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class EXPONDIST_funContext : ExprContext {
-		public ITerminalNode EXPONDIST() { return GetToken(mathParser.EXPONDIST, 0); }
+		//public ITerminalNode EXPONDIST() { return GetToken(mathParser.EXPONDIST, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public EXPONDIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitEXPONDIST_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitEXPONDIST_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class DEC2BIN_funContext : ExprContext {
-		public ITerminalNode DEC2BIN() { return GetToken(mathParser.DEC2BIN, 0); }
+		//public ITerminalNode DEC2BIN() { return GetToken(mathParser.DEC2BIN, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public DEC2BIN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDEC2BIN_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitDEC2BIN_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class HEX2DEC_funContext : ExprContext {
-		public ITerminalNode HEX2DEC() { return GetToken(mathParser.HEX2DEC, 0); }
+		//public ITerminalNode HEX2DEC() { return GetToken(mathParser.HEX2DEC, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public HEX2DEC_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHEX2DEC_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitHEX2DEC_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class SMALL_funContext : ExprContext {
-		public ITerminalNode SMALL() { return GetToken(mathParser.SMALL, 0); }
+		//public ITerminalNode SMALL() { return GetToken(mathParser.SMALL, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SMALL_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSMALL_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitSMALL_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class ODD_funContext : ExprContext {
-		public ITerminalNode ODD() { return GetToken(mathParser.ODD, 0); }
+		//public ITerminalNode ODD() { return GetToken(mathParser.ODD, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ODD_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitODD_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitODD_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class TEXTTOBASE64_funContext : ExprContext {
-		public ITerminalNode TEXTTOBASE64() { return GetToken(mathParser.TEXTTOBASE64, 0); }
+		//public ITerminalNode TEXTTOBASE64() { return GetToken(mathParser.TEXTTOBASE64, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public TEXTTOBASE64_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTEXTTOBASE64_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitTEXTTOBASE64_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class MID_funContext : ExprContext {
-		public ITerminalNode MID() { return GetToken(mathParser.MID, 0); }
+		//public ITerminalNode MID() { return GetToken(mathParser.MID, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public MID_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMID_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitMID_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class PERCENTRANK_funContext : ExprContext {
-		public ITerminalNode PERCENTRANK() { return GetToken(mathParser.PERCENTRANK, 0); }
+		//public ITerminalNode PERCENTRANK() { return GetToken(mathParser.PERCENTRANK, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public PERCENTRANK_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPERCENTRANK_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitPERCENTRANK_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class STDEV_funContext : ExprContext {
-		public ITerminalNode STDEV() { return GetToken(mathParser.STDEV, 0); }
+		//public ITerminalNode STDEV() { return GetToken(mathParser.STDEV, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public STDEV_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSTDEV_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitSTDEV_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class NORMSDIST_funContext : ExprContext {
-		public ITerminalNode NORMSDIST() { return GetToken(mathParser.NORMSDIST, 0); }
+		//public ITerminalNode NORMSDIST() { return GetToken(mathParser.NORMSDIST, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public NORMSDIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNORMSDIST_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitNORMSDIST_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class ISNUMBER_funContext : ExprContext {
-		public ITerminalNode ISNUMBER() { return GetToken(mathParser.ISNUMBER, 0); }
+		//public ITerminalNode ISNUMBER() { return GetToken(mathParser.ISNUMBER, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ISNUMBER_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISNUMBER_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitISNUMBER_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class LASTINDEXOF_funContext : ExprContext {
-		public ITerminalNode LASTINDEXOF() { return GetToken(mathParser.LASTINDEXOF, 0); }
+		//public ITerminalNode LASTINDEXOF() { return GetToken(mathParser.LASTINDEXOF, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public LASTINDEXOF_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLASTINDEXOF_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitLASTINDEXOF_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class MOD_funContext : ExprContext {
-		public ITerminalNode MOD() { return GetToken(mathParser.MOD, 0); }
+		//public ITerminalNode MOD() { return GetToken(mathParser.MOD, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public MOD_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMOD_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitMOD_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class CHAR_funContext : ExprContext {
-		public ITerminalNode CHAR() { return GetToken(mathParser.CHAR, 0); }
+		//public ITerminalNode CHAR() { return GetToken(mathParser.CHAR, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public CHAR_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCHAR_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitCHAR_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class REGEX_funContext : ExprContext {
-		public ITerminalNode REGEX() { return GetToken(mathParser.REGEX, 0); }
+		//public ITerminalNode REGEX() { return GetToken(mathParser.REGEX, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public REGEX_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitREGEX_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitREGEX_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class TEXTTOBASE64URL_funContext : ExprContext {
-		public ITerminalNode TEXTTOBASE64URL() { return GetToken(mathParser.TEXTTOBASE64URL, 0); }
+		//public ITerminalNode TEXTTOBASE64URL() { return GetToken(mathParser.TEXTTOBASE64URL, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public TEXTTOBASE64URL_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTEXTTOBASE64URL_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitTEXTTOBASE64URL_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class MD5_funContext : ExprContext {
-		public ITerminalNode MD5() { return GetToken(mathParser.MD5, 0); }
+		//public ITerminalNode MD5() { return GetToken(mathParser.MD5, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public MD5_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMD5_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitMD5_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class REPLACE_funContext : ExprContext {
-		public ITerminalNode REPLACE() { return GetToken(mathParser.REPLACE, 0); }
+		//public ITerminalNode REPLACE() { return GetToken(mathParser.REPLACE, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public REPLACE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitREPLACE_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitREPLACE_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class ACOSH_funContext : ExprContext {
-		public ITerminalNode ACOSH() { return GetToken(mathParser.ACOSH, 0); }
+		//public ITerminalNode ACOSH() { return GetToken(mathParser.ACOSH, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ACOSH_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitACOSH_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitACOSH_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class ISODD_funContext : ExprContext {
-		public ITerminalNode ISODD() { return GetToken(mathParser.ISODD, 0); }
+		//public ITerminalNode ISODD() { return GetToken(mathParser.ISODD, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ISODD_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISODD_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitISODD_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class ASC_funContext : ExprContext {
-		public ITerminalNode ASC() { return GetToken(mathParser.ASC, 0); }
+		//public ITerminalNode ASC() { return GetToken(mathParser.ASC, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ASC_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitASC_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitASC_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class COS_funContext : ExprContext {
-		public ITerminalNode COS() { return GetToken(mathParser.COS, 0); }
+		//public ITerminalNode COS() { return GetToken(mathParser.COS, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public COS_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCOS_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitCOS_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class LN_funContext : ExprContext {
-		public ITerminalNode LN() { return GetToken(mathParser.LN, 0); }
+		//public ITerminalNode LN() { return GetToken(mathParser.LN, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public LN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLN_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitLN_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class STRING_funContext : ExprContext {
-		public ITerminalNode STRING() { return GetToken(mathParser.STRING, 0); }
-		public STRING_funContext(ExprContext context) { CopyFrom(context); }
+        public ITerminalNode STRING() { return GetToken(mathParser.STRING, 0); }
+        public STRING_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSTRING_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitSTRING_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class HMACMD5_funContext : ExprContext {
-		public ITerminalNode HMACMD5() { return GetToken(mathParser.HMACMD5, 0); }
+		//public ITerminalNode HMACMD5() { return GetToken(mathParser.HMACMD5, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public HMACMD5_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHMACMD5_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitHMACMD5_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class PRODUCT_funContext : ExprContext {
-		public ITerminalNode PRODUCT() { return GetToken(mathParser.PRODUCT, 0); }
+		//public ITerminalNode PRODUCT() { return GetToken(mathParser.PRODUCT, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public PRODUCT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPRODUCT_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitPRODUCT_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class EXACT_funContext : ExprContext {
-		public ITerminalNode EXACT() { return GetToken(mathParser.EXACT, 0); }
+		//public ITerminalNode EXACT() { return GetToken(mathParser.EXACT, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public EXACT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitEXACT_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitEXACT_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class SUMSQ_funContext : ExprContext {
-		public ITerminalNode SUMSQ() { return GetToken(mathParser.SUMSQ, 0); }
+		//public ITerminalNode SUMSQ() { return GetToken(mathParser.SUMSQ, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SUMSQ_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSUMSQ_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitSUMSQ_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class SUM_funContext : ExprContext {
-		public ITerminalNode SUM() { return GetToken(mathParser.SUM, 0); }
+		//public ITerminalNode SUM() { return GetToken(mathParser.SUM, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SUM_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSUM_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitSUM_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class SECOND_funContext : ExprContext {
-		public ITerminalNode SECOND() { return GetToken(mathParser.SECOND, 0); }
+		//public ITerminalNode SECOND() { return GetToken(mathParser.SECOND, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public SECOND_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSECOND_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitSECOND_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class GAMMADIST_funContext : ExprContext {
-		public ITerminalNode GAMMADIST() { return GetToken(mathParser.GAMMADIST, 0); }
+		//public ITerminalNode GAMMADIST() { return GetToken(mathParser.GAMMADIST, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public GAMMADIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitGAMMADIST_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitGAMMADIST_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class OCT2HEX_funContext : ExprContext {
-		public ITerminalNode OCT2HEX() { return GetToken(mathParser.OCT2HEX, 0); }
+		//public ITerminalNode OCT2HEX() { return GetToken(mathParser.OCT2HEX, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public OCT2HEX_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitOCT2HEX_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitOCT2HEX_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class TODAY_funContext : ExprContext {
-		public ITerminalNode TODAY() { return GetToken(mathParser.TODAY, 0); }
+		//public ITerminalNode TODAY() { return GetToken(mathParser.TODAY, 0); }
 		public TODAY_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTODAY_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitTODAY_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class ATAN_funContext : ExprContext {
-		public ITerminalNode ATAN() { return GetToken(mathParser.ATAN, 0); }
+		//public ITerminalNode ATAN() { return GetToken(mathParser.ATAN, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ATAN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitATAN_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitATAN_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class E_funContext : ExprContext {
-		public ITerminalNode E() { return GetToken(mathParser.E, 0); }
+		//public ITerminalNode E() { return GetToken(mathParser.E, 0); }
 		public E_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitE_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitE_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class TRIM_funContext : ExprContext {
-		public ITerminalNode TRIM() { return GetToken(mathParser.TRIM, 0); }
+		//public ITerminalNode TRIM() { return GetToken(mathParser.TRIM, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public TRIM_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTRIM_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitTRIM_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class RADIANS_funContext : ExprContext {
-		public ITerminalNode RADIANS() { return GetToken(mathParser.RADIANS, 0); }
+		//public ITerminalNode RADIANS() { return GetToken(mathParser.RADIANS, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public RADIANS_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitRADIANS_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitRADIANS_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class GAMMALN_funContext : ExprContext {
-		public ITerminalNode GAMMALN() { return GetToken(mathParser.GAMMALN, 0); }
+		//public ITerminalNode GAMMALN() { return GetToken(mathParser.GAMMALN, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public GAMMALN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitGAMMALN_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitGAMMALN_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class TEXT_funContext : ExprContext {
-		public ITerminalNode TEXT() { return GetToken(mathParser.TEXT, 0); }
+		//public ITerminalNode TEXT() { return GetToken(mathParser.TEXT, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public TEXT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTEXT_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitTEXT_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class FISHER_funContext : ExprContext {
-		public ITerminalNode FISHER() { return GetToken(mathParser.FISHER, 0); }
+		//public ITerminalNode FISHER() { return GetToken(mathParser.FISHER, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public FISHER_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFISHER_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitFISHER_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class AND_funContext : ExprContext {
-		public ITerminalNode AND() { return GetToken(mathParser.AND, 0); }
+		//public ITerminalNode AND() { return GetToken(mathParser.AND, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public AND_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitAND_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitAND_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class BIN2HEX_funContext : ExprContext {
-		public ITerminalNode BIN2HEX() { return GetToken(mathParser.BIN2HEX, 0); }
+		//public ITerminalNode BIN2HEX() { return GetToken(mathParser.BIN2HEX, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public BIN2HEX_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitBIN2HEX_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitBIN2HEX_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class MULTINOMIAL_funContext : ExprContext {
-		public ITerminalNode MULTINOMIAL() { return GetToken(mathParser.MULTINOMIAL, 0); }
+		//public ITerminalNode MULTINOMIAL() { return GetToken(mathParser.MULTINOMIAL, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public MULTINOMIAL_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMULTINOMIAL_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitMULTINOMIAL_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class MONTH_funContext : ExprContext {
-		public ITerminalNode MONTH() { return GetToken(mathParser.MONTH, 0); }
+		//public ITerminalNode MONTH() { return GetToken(mathParser.MONTH, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public MONTH_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMONTH_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitMONTH_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class URLENCODE_funContext : ExprContext {
-		public ITerminalNode URLENCODE() { return GetToken(mathParser.URLENCODE, 0); }
+		//public ITerminalNode URLENCODE() { return GetToken(mathParser.URLENCODE, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public URLENCODE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitURLENCODE_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitURLENCODE_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class NORMDIST_funContext : ExprContext {
-		public ITerminalNode NORMDIST() { return GetToken(mathParser.NORMDIST, 0); }
+		//public ITerminalNode NORMDIST() { return GetToken(mathParser.NORMDIST, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public NORMDIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNORMDIST_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitNORMDIST_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class HMACSHA1_funContext : ExprContext {
-		public ITerminalNode HMACSHA1() { return GetToken(mathParser.HMACSHA1, 0); }
+		//public ITerminalNode HMACSHA1() { return GetToken(mathParser.HMACSHA1, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public HMACSHA1_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHMACSHA1_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitHMACSHA1_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class ENDSWITH_funContext : ExprContext {
-		public ITerminalNode ENDSWITH() { return GetToken(mathParser.ENDSWITH, 0); }
+		//public ITerminalNode ENDSWITH() { return GetToken(mathParser.ENDSWITH, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public ENDSWITH_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitENDSWITH_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitENDSWITH_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class Bracket_funContext : ExprContext {
@@ -2596,323 +2390,295 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 		public Bracket_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitBracket_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitBracket_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class BETADIST_funContext : ExprContext {
-		public ITerminalNode BETADIST() { return GetToken(mathParser.BETADIST, 0); }
+		//public ITerminalNode BETADIST() { return GetToken(mathParser.BETADIST, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public BETADIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitBETADIST_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitBETADIST_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class ATANH_funContext : ExprContext {
-		public ITerminalNode ATANH() { return GetToken(mathParser.ATANH, 0); }
+		//public ITerminalNode ATANH() { return GetToken(mathParser.ATANH, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ATANH_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitATANH_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitATANH_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class NOW_funContext : ExprContext {
-		public ITerminalNode NOW() { return GetToken(mathParser.NOW, 0); }
+		//public ITerminalNode NOW() { return GetToken(mathParser.NOW, 0); }
 		public NOW_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNOW_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitNOW_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class MEDIAN_funContext : ExprContext {
-		public ITerminalNode MEDIAN() { return GetToken(mathParser.MEDIAN, 0); }
+		//public ITerminalNode MEDIAN() { return GetToken(mathParser.MEDIAN, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public MEDIAN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMEDIAN_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitMEDIAN_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class POWER_funContext : ExprContext {
-		public ITerminalNode POWER() { return GetToken(mathParser.POWER, 0); }
+		//public ITerminalNode POWER() { return GetToken(mathParser.POWER, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public POWER_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPOWER_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitPOWER_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class DEC2OCT_funContext : ExprContext {
-		public ITerminalNode DEC2OCT() { return GetToken(mathParser.DEC2OCT, 0); }
+		//public ITerminalNode DEC2OCT() { return GetToken(mathParser.DEC2OCT, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public DEC2OCT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDEC2OCT_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitDEC2OCT_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class PROPER_funContext : ExprContext {
-		public ITerminalNode PROPER() { return GetToken(mathParser.PROPER, 0); }
+		//public ITerminalNode PROPER() { return GetToken(mathParser.PROPER, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public PROPER_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPROPER_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitPROPER_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class TRUNC_funContext : ExprContext {
-		public ITerminalNode TRUNC() { return GetToken(mathParser.TRUNC, 0); }
+		//public ITerminalNode TRUNC() { return GetToken(mathParser.TRUNC, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public TRUNC_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTRUNC_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitTRUNC_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class GCD_funContext : ExprContext {
-		public ITerminalNode GCD() { return GetToken(mathParser.GCD, 0); }
+		//public ITerminalNode GCD() { return GetToken(mathParser.GCD, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public GCD_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitGCD_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitGCD_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class TANH_funContext : ExprContext {
-		public ITerminalNode TANH() { return GetToken(mathParser.TANH, 0); }
+		//public ITerminalNode TANH() { return GetToken(mathParser.TANH, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public TANH_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTANH_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitTANH_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class HEX2BIN_funContext : ExprContext {
-		public ITerminalNode HEX2BIN() { return GetToken(mathParser.HEX2BIN, 0); }
+		//public ITerminalNode HEX2BIN() { return GetToken(mathParser.HEX2BIN, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public HEX2BIN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHEX2BIN_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitHEX2BIN_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class SINH_funContext : ExprContext {
-		public ITerminalNode SINH() { return GetToken(mathParser.SINH, 0); }
+		//public ITerminalNode SINH() { return GetToken(mathParser.SINH, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public SINH_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSINH_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitSINH_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class SHA512_funContext : ExprContext {
-		public ITerminalNode SHA512() { return GetToken(mathParser.SHA512, 0); }
+		//public ITerminalNode SHA512() { return GetToken(mathParser.SHA512, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SHA512_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSHA512_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitSHA512_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class MIN_funContext : ExprContext {
-		public ITerminalNode MIN() { return GetToken(mathParser.MIN, 0); }
+		//public ITerminalNode MIN() { return GetToken(mathParser.MIN, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public MIN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMIN_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitMIN_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class ISNONTEXT_funContext : ExprContext {
-		public ITerminalNode ISNONTEXT() { return GetToken(mathParser.ISNONTEXT, 0); }
+		//public ITerminalNode ISNONTEXT() { return GetToken(mathParser.ISNONTEXT, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ISNONTEXT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISNONTEXT_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitISNONTEXT_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class ABS_funContext : ExprContext {
-		public ITerminalNode ABS() { return GetToken(mathParser.ABS, 0); }
+		//public ITerminalNode ABS() { return GetToken(mathParser.ABS, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ABS_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitABS_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitABS_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class ROUNDDOWN_funContext : ExprContext {
-		public ITerminalNode ROUNDDOWN() { return GetToken(mathParser.ROUNDDOWN, 0); }
+		//public ITerminalNode ROUNDDOWN() { return GetToken(mathParser.ROUNDDOWN, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public ROUNDDOWN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitROUNDDOWN_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitROUNDDOWN_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class IF_funContext : ExprContext {
-		public ITerminalNode IF() { return GetToken(mathParser.IF, 0); }
+		//public ITerminalNode IF() { return GetToken(mathParser.IF, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public IF_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitIF_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitIF_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class JOIN_funContext : ExprContext {
-		public ITerminalNode JOIN() { return GetToken(mathParser.JOIN, 0); }
+		//public ITerminalNode JOIN() { return GetToken(mathParser.JOIN, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public JOIN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitJOIN_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitJOIN_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class FIND_funContext : ExprContext {
-		public ITerminalNode FIND() { return GetToken(mathParser.FIND, 0); }
+		//public ITerminalNode FIND() { return GetToken(mathParser.FIND, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public FIND_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFIND_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitFIND_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class SUBSTITUTE_funContext : ExprContext {
-		public ITerminalNode SUBSTITUTE() { return GetToken(mathParser.SUBSTITUTE, 0); }
+		//public ITerminalNode SUBSTITUTE() { return GetToken(mathParser.SUBSTITUTE, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SUBSTITUTE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSUBSTITUTE_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitSUBSTITUTE_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class REPT_funContext : ExprContext {
-		public ITerminalNode REPT() { return GetToken(mathParser.REPT, 0); }
+		//public ITerminalNode REPT() { return GetToken(mathParser.REPT, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public REPT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitREPT_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitREPT_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class ASIN_funContext : ExprContext {
-		public ITerminalNode ASIN() { return GetToken(mathParser.ASIN, 0); }
+		//public ITerminalNode ASIN() { return GetToken(mathParser.ASIN, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ASIN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitASIN_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitASIN_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class MulDiv_funContext : ExprContext {
@@ -2920,245 +2686,223 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
-		public ITerminalNode MUL() { return GetToken(mathParser.MUL, 0); }
-		public ITerminalNode DIV() { return GetToken(mathParser.DIV, 0); }
-		public ITerminalNode MOD_2() { return GetToken(mathParser.MOD_2, 0); }
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
+		//public ITerminalNode MUL() { return GetToken(mathParser.MUL, 0); }
+		//public ITerminalNode DIV() { return GetToken(mathParser.DIV, 0); }
+		//public ITerminalNode MOD_2() { return GetToken(mathParser.MOD_2, 0); }
 		public MulDiv_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMulDiv_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitMulDiv_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class REMOVESTART_funContext : ExprContext {
-		public ITerminalNode REMOVESTART() { return GetToken(mathParser.REMOVESTART, 0); }
+		//public ITerminalNode REMOVESTART() { return GetToken(mathParser.REMOVESTART, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public REMOVESTART_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitREMOVESTART_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitREMOVESTART_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class T_funContext : ExprContext {
-		public ITerminalNode T() { return GetToken(mathParser.T, 0); }
+		//public ITerminalNode T() { return GetToken(mathParser.T, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public T_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitT_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitT_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class WEEKDAY_funContext : ExprContext {
-		public ITerminalNode WEEKDAY() { return GetToken(mathParser.WEEKDAY, 0); }
+		//public ITerminalNode WEEKDAY() { return GetToken(mathParser.WEEKDAY, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public WEEKDAY_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitWEEKDAY_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitWEEKDAY_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class BIN2OCT_funContext : ExprContext {
-		public ITerminalNode BIN2OCT() { return GetToken(mathParser.BIN2OCT, 0); }
+		//public ITerminalNode BIN2OCT() { return GetToken(mathParser.BIN2OCT, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public BIN2OCT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitBIN2OCT_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitBIN2OCT_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class BASE64TOTEXT_funContext : ExprContext {
-		public ITerminalNode BASE64TOTEXT() { return GetToken(mathParser.BASE64TOTEXT, 0); }
+		//public ITerminalNode BASE64TOTEXT() { return GetToken(mathParser.BASE64TOTEXT, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public BASE64TOTEXT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitBASE64TOTEXT_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitBASE64TOTEXT_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class TDIST_funContext : ExprContext {
-		public ITerminalNode TDIST() { return GetToken(mathParser.TDIST, 0); }
+		//public ITerminalNode TDIST() { return GetToken(mathParser.TDIST, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public TDIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTDIST_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitTDIST_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class DATEVALUE_funContext : ExprContext {
-		public ITerminalNode DATEVALUE() { return GetToken(mathParser.DATEVALUE, 0); }
+		//public ITerminalNode DATEVALUE() { return GetToken(mathParser.DATEVALUE, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public DATEVALUE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDATEVALUE_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitDATEVALUE_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class STARTSWITH_funContext : ExprContext {
-		public ITerminalNode STARTSWITH() { return GetToken(mathParser.STARTSWITH, 0); }
+		//public ITerminalNode STARTSWITH() { return GetToken(mathParser.STARTSWITH, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public STARTSWITH_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSTARTSWITH_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitSTARTSWITH_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class EVEN_funContext : ExprContext {
-		public ITerminalNode EVEN() { return GetToken(mathParser.EVEN, 0); }
+		//public ITerminalNode EVEN() { return GetToken(mathParser.EVEN, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public EVEN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitEVEN_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitEVEN_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class LOGNORMDIST_funContext : ExprContext {
-		public ITerminalNode LOGNORMDIST() { return GetToken(mathParser.LOGNORMDIST, 0); }
+		//public ITerminalNode LOGNORMDIST() { return GetToken(mathParser.LOGNORMDIST, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public LOGNORMDIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLOGNORMDIST_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitLOGNORMDIST_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class ISNULLOREMPTY_funContext : ExprContext {
-		public ITerminalNode ISNULLOREMPTY() { return GetToken(mathParser.ISNULLOREMPTY, 0); }
+		//public ITerminalNode ISNULLOREMPTY() { return GetToken(mathParser.ISNULLOREMPTY, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ISNULLOREMPTY_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISNULLOREMPTY_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitISNULLOREMPTY_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class TRUE_funContext : ExprContext {
-		public ITerminalNode TRUE() { return GetToken(mathParser.TRUE, 0); }
+		//public ITerminalNode TRUE() { return GetToken(mathParser.TRUE, 0); }
 		public TRUE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTRUE_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitTRUE_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class FISHERINV_funContext : ExprContext {
-		public ITerminalNode FISHERINV() { return GetToken(mathParser.FISHERINV, 0); }
+		//public ITerminalNode FISHERINV() { return GetToken(mathParser.FISHERINV, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public FISHERINV_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFISHERINV_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitFISHERINV_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class SHA1_funContext : ExprContext {
-		public ITerminalNode SHA1() { return GetToken(mathParser.SHA1, 0); }
+		//public ITerminalNode SHA1() { return GetToken(mathParser.SHA1, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SHA1_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSHA1_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitSHA1_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class TIME_funContext : ExprContext {
-		public ITerminalNode TIME() { return GetToken(mathParser.TIME, 0); }
+		//public ITerminalNode TIME() { return GetToken(mathParser.TIME, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public TIME_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTIME_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitTIME_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class ATAN2_funContext : ExprContext {
-		public ITerminalNode ATAN2() { return GetToken(mathParser.ATAN2, 0); }
+		//public ITerminalNode ATAN2() { return GetToken(mathParser.ATAN2, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public ATAN2_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitATAN2_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitATAN2_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class RAND_funContext : ExprContext {
-		public ITerminalNode RAND() { return GetToken(mathParser.RAND, 0); }
+		//public ITerminalNode RAND() { return GetToken(mathParser.RAND, 0); }
 		public RAND_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitRAND_fun(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitRAND_fun(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -3179,7 +2923,7 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 			int _alt;
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 1656;
+			 
 			ErrorHandler.Sync(this);
 			switch ( Interpreter.AdaptivePredict(TokenStream,91,Context) ) {
 			case 1:
@@ -3188,23 +2932,23 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				Context = _localctx;
 				_prevctx = _localctx;
 
-				State = 9; Match(T__0);
+				 Match(T__0);
 				State = 10; expr(0);
-				State = 15;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				while (_la==T__1) {
 					{
 					{
-					State = 11; Match(T__1);
+					 Match(T__1);
 					State = 12; expr(0);
 					}
 					}
-					State = 17;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 18; Match(T__2);
+				 Match(T__2);
 				}
 				break;
 			case 2:
@@ -3212,9 +2956,9 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new Bracket_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 20; Match(T__3);
+				 Match(T__3);
 				State = 21; expr(0);
-				State = 22; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 3:
@@ -3222,22 +2966,22 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new IF_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 24; Match(IF);
-				State = 25; Match(T__3);
+				 Match(IF);
+				 Match(T__3);
 				State = 26; expr(0);
-				State = 27; Match(T__1);
+				 Match(T__1);
 				State = 28; expr(0);
-				State = 31;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 29; Match(T__1);
+					 Match(T__1);
 					State = 30; expr(0);
 					}
 				}
 
-				State = 33; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 4:
@@ -3245,22 +2989,22 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new IFERROR_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 35; Match(IFERROR);
-				State = 36; Match(T__3);
+				 Match(IFERROR);
+				 Match(T__3);
 				State = 37; expr(0);
-				State = 38; Match(T__1);
+				 Match(T__1);
 				State = 39; expr(0);
-				State = 42;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 40; Match(T__1);
+					 Match(T__1);
 					State = 41; expr(0);
 					}
 				}
 
-				State = 44; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 5:
@@ -3268,10 +3012,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new ISNUMBER_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 46; Match(ISNUMBER);
-				State = 47; Match(T__3);
+				 Match(ISNUMBER);
+				 Match(T__3);
 				State = 48; expr(0);
-				State = 49; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 6:
@@ -3279,10 +3023,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new ISTEXT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 51; Match(ISTEXT);
-				State = 52; Match(T__3);
+				 Match(ISTEXT);
+				 Match(T__3);
 				State = 53; expr(0);
-				State = 54; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 7:
@@ -3290,10 +3034,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new ISERROR_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 56; Match(ISERROR);
-				State = 57; Match(T__3);
+				 Match(ISERROR);
+				 Match(T__3);
 				State = 58; expr(0);
-				State = 59; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 8:
@@ -3301,10 +3045,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new ISNONTEXT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 61; Match(ISNONTEXT);
-				State = 62; Match(T__3);
+				 Match(ISNONTEXT);
+				 Match(T__3);
 				State = 63; expr(0);
-				State = 64; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 9:
@@ -3312,10 +3056,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new ISLOGICAL_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 66; Match(ISLOGICAL);
-				State = 67; Match(T__3);
+				 Match(ISLOGICAL);
+				 Match(T__3);
 				State = 68; expr(0);
-				State = 69; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 10:
@@ -3323,10 +3067,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new ISEVEN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 71; Match(ISEVEN);
-				State = 72; Match(T__3);
+				 Match(ISEVEN);
+				 Match(T__3);
 				State = 73; expr(0);
-				State = 74; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 11:
@@ -3334,10 +3078,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new ISODD_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 76; Match(ISODD);
-				State = 77; Match(T__3);
+				 Match(ISODD);
+				 Match(T__3);
 				State = 78; expr(0);
-				State = 79; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 12:
@@ -3345,24 +3089,24 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new AND_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 81; Match(AND);
-				State = 82; Match(T__3);
+				 Match(AND);
+				 Match(T__3);
 				State = 83; expr(0);
-				State = 88;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				while (_la==T__1) {
 					{
 					{
-					State = 84; Match(T__1);
+					 Match(T__1);
 					State = 85; expr(0);
 					}
 					}
-					State = 90;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 91; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 13:
@@ -3370,24 +3114,24 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new OR_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 93; Match(OR);
-				State = 94; Match(T__3);
+				 Match(OR);
+				 Match(T__3);
 				State = 95; expr(0);
-				State = 100;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				while (_la==T__1) {
 					{
 					{
-					State = 96; Match(T__1);
+					 Match(T__1);
 					State = 97; expr(0);
 					}
 					}
-					State = 102;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 103; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 14:
@@ -3395,10 +3139,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new NOT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 105; Match(NOT);
-				State = 106; Match(T__3);
+				 Match(NOT);
+				 Match(T__3);
 				State = 107; expr(0);
-				State = 108; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 15:
@@ -3406,14 +3150,14 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new TRUE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 110; Match(TRUE);
-				State = 113;
+				 Match(TRUE);
+				 
 				ErrorHandler.Sync(this);
 				switch ( Interpreter.AdaptivePredict(TokenStream,5,Context) ) {
 				case 1:
 					{
-					State = 111; Match(T__3);
-					State = 112; Match(T__4);
+					 Match(T__3);
+					 Match(T__4);
 					}
 					break;
 				}
@@ -3424,14 +3168,14 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new FALSE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 115; Match(FALSE);
-				State = 118;
+				 Match(FALSE);
+				 
 				ErrorHandler.Sync(this);
 				switch ( Interpreter.AdaptivePredict(TokenStream,6,Context) ) {
 				case 1:
 					{
-					State = 116; Match(T__3);
-					State = 117; Match(T__4);
+					 Match(T__3);
+					 Match(T__4);
 					}
 					break;
 				}
@@ -3442,14 +3186,14 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new E_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 120; Match(E);
-				State = 123;
+				 Match(E);
+				 
 				ErrorHandler.Sync(this);
 				switch ( Interpreter.AdaptivePredict(TokenStream,7,Context) ) {
 				case 1:
 					{
-					State = 121; Match(T__3);
-					State = 122; Match(T__4);
+					 Match(T__3);
+					 Match(T__4);
 					}
 					break;
 				}
@@ -3460,14 +3204,14 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new PI_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 125; Match(PI);
-				State = 128;
+				 Match(PI);
+				 
 				ErrorHandler.Sync(this);
 				switch ( Interpreter.AdaptivePredict(TokenStream,8,Context) ) {
 				case 1:
 					{
-					State = 126; Match(T__3);
-					State = 127; Match(T__4);
+					 Match(T__3);
+					 Match(T__4);
 					}
 					break;
 				}
@@ -3478,14 +3222,14 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new PI_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 130; Match(PI);
-				State = 133;
+				 Match(PI);
+				 
 				ErrorHandler.Sync(this);
 				switch ( Interpreter.AdaptivePredict(TokenStream,9,Context) ) {
 				case 1:
 					{
-					State = 131; Match(T__3);
-					State = 132; Match(T__4);
+					 Match(T__3);
+					 Match(T__4);
 					}
 					break;
 				}
@@ -3496,21 +3240,21 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new DEC2BIN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 135; Match(DEC2BIN);
+				 Match(DEC2BIN);
 				{
-				State = 136; Match(T__3);
+				 Match(T__3);
 				State = 137; expr(0);
-				State = 140;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 138; Match(T__1);
+					 Match(T__1);
 					State = 139; expr(0);
 					}
 				}
 
-				State = 142; Match(T__4);
+				 Match(T__4);
 				}
 				}
 				break;
@@ -3519,21 +3263,21 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new DEC2HEX_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 144; Match(DEC2HEX);
+				 Match(DEC2HEX);
 				{
-				State = 145; Match(T__3);
+				 Match(T__3);
 				State = 146; expr(0);
-				State = 149;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 147; Match(T__1);
+					 Match(T__1);
 					State = 148; expr(0);
 					}
 				}
 
-				State = 151; Match(T__4);
+				 Match(T__4);
 				}
 				}
 				break;
@@ -3542,21 +3286,21 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new DEC2OCT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 153; Match(DEC2OCT);
+				 Match(DEC2OCT);
 				{
-				State = 154; Match(T__3);
+				 Match(T__3);
 				State = 155; expr(0);
-				State = 158;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 156; Match(T__1);
+					 Match(T__1);
 					State = 157; expr(0);
 					}
 				}
 
-				State = 160; Match(T__4);
+				 Match(T__4);
 				}
 				}
 				break;
@@ -3565,21 +3309,21 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new HEX2BIN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 162; Match(HEX2BIN);
+				 Match(HEX2BIN);
 				{
-				State = 163; Match(T__3);
+				 Match(T__3);
 				State = 164; expr(0);
-				State = 167;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 165; Match(T__1);
+					 Match(T__1);
 					State = 166; expr(0);
 					}
 				}
 
-				State = 169; Match(T__4);
+				 Match(T__4);
 				}
 				}
 				break;
@@ -3588,11 +3332,11 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new HEX2DEC_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 171; Match(HEX2DEC);
+				 Match(HEX2DEC);
 				{
-				State = 172; Match(T__3);
+				 Match(T__3);
 				State = 173; expr(0);
-				State = 174; Match(T__4);
+				 Match(T__4);
 				}
 				}
 				break;
@@ -3601,21 +3345,21 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new HEX2OCT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 176; Match(HEX2OCT);
+				 Match(HEX2OCT);
 				{
-				State = 177; Match(T__3);
+				 Match(T__3);
 				State = 178; expr(0);
-				State = 181;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 179; Match(T__1);
+					 Match(T__1);
 					State = 180; expr(0);
 					}
 				}
 
-				State = 183; Match(T__4);
+				 Match(T__4);
 				}
 				}
 				break;
@@ -3624,21 +3368,21 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new OCT2BIN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 185; Match(OCT2BIN);
+				 Match(OCT2BIN);
 				{
-				State = 186; Match(T__3);
+				 Match(T__3);
 				State = 187; expr(0);
-				State = 190;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 188; Match(T__1);
+					 Match(T__1);
 					State = 189; expr(0);
 					}
 				}
 
-				State = 192; Match(T__4);
+				 Match(T__4);
 				}
 				}
 				break;
@@ -3647,11 +3391,11 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new OCT2DEC_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 194; Match(OCT2DEC);
+				 Match(OCT2DEC);
 				{
-				State = 195; Match(T__3);
+				 Match(T__3);
 				State = 196; expr(0);
-				State = 197; Match(T__4);
+				 Match(T__4);
 				}
 				}
 				break;
@@ -3660,21 +3404,21 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new OCT2HEX_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 199; Match(OCT2HEX);
+				 Match(OCT2HEX);
 				{
-				State = 200; Match(T__3);
+				 Match(T__3);
 				State = 201; expr(0);
-				State = 204;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 202; Match(T__1);
+					 Match(T__1);
 					State = 203; expr(0);
 					}
 				}
 
-				State = 206; Match(T__4);
+				 Match(T__4);
 				}
 				}
 				break;
@@ -3683,21 +3427,21 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new BIN2OCT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 208; Match(BIN2OCT);
+				 Match(BIN2OCT);
 				{
-				State = 209; Match(T__3);
+				 Match(T__3);
 				State = 210; expr(0);
-				State = 213;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 211; Match(T__1);
+					 Match(T__1);
 					State = 212; expr(0);
 					}
 				}
 
-				State = 215; Match(T__4);
+				 Match(T__4);
 				}
 				}
 				break;
@@ -3706,11 +3450,11 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new BIN2DEC_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 217; Match(BIN2DEC);
+				 Match(BIN2DEC);
 				{
-				State = 218; Match(T__3);
+				 Match(T__3);
 				State = 219; expr(0);
-				State = 220; Match(T__4);
+				 Match(T__4);
 				}
 				}
 				break;
@@ -3719,21 +3463,21 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new BIN2HEX_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 222; Match(BIN2HEX);
+				 Match(BIN2HEX);
 				{
-				State = 223; Match(T__3);
+				 Match(T__3);
 				State = 224; expr(0);
-				State = 227;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 225; Match(T__1);
+					 Match(T__1);
 					State = 226; expr(0);
 					}
 				}
 
-				State = 229; Match(T__4);
+				 Match(T__4);
 				}
 				}
 				break;
@@ -3742,10 +3486,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new ABS_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 231; Match(ABS);
-				State = 232; Match(T__3);
+				 Match(ABS);
+				 Match(T__3);
 				State = 233; expr(0);
-				State = 234; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 33:
@@ -3753,14 +3497,14 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new QUOTIENT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 236; Match(QUOTIENT);
-				State = 237; Match(T__3);
+				 Match(QUOTIENT);
+				 Match(T__3);
 				State = 238; expr(0);
 				{
-				State = 239; Match(T__1);
+				 Match(T__1);
 				State = 240; expr(0);
 				}
-				State = 242; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 34:
@@ -3768,14 +3512,14 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new MOD_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 244; Match(MOD);
-				State = 245; Match(T__3);
+				 Match(MOD);
+				 Match(T__3);
 				State = 246; expr(0);
 				{
-				State = 247; Match(T__1);
+				 Match(T__1);
 				State = 248; expr(0);
 				}
-				State = 250; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 35:
@@ -3783,10 +3527,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new SIGN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 252; Match(SIGN);
-				State = 253; Match(T__3);
+				 Match(SIGN);
+				 Match(T__3);
 				State = 254; expr(0);
-				State = 255; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 36:
@@ -3794,10 +3538,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new SQRT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 257; Match(SQRT);
-				State = 258; Match(T__3);
+				 Match(SQRT);
+				 Match(T__3);
 				State = 259; expr(0);
-				State = 260; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 37:
@@ -3805,10 +3549,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new TRUNC_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 262; Match(TRUNC);
-				State = 263; Match(T__3);
+				 Match(TRUNC);
+				 Match(T__3);
 				State = 264; expr(0);
-				State = 265; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 38:
@@ -3816,10 +3560,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new INT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 267; Match(INT);
-				State = 268; Match(T__3);
+				 Match(INT);
+				 Match(T__3);
 				State = 269; expr(0);
-				State = 270; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 39:
@@ -3827,24 +3571,24 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new GCD_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 272; Match(GCD);
-				State = 273; Match(T__3);
+				 Match(GCD);
+				 Match(T__3);
 				State = 274; expr(0);
-				State = 277;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				do {
 					{
 					{
-					State = 275; Match(T__1);
+					 Match(T__1);
 					State = 276; expr(0);
 					}
 					}
-					State = 279;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				} while ( _la==T__1 );
-				State = 281; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 40:
@@ -3852,24 +3596,24 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new LCM_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 283; Match(LCM);
-				State = 284; Match(T__3);
+				 Match(LCM);
+				 Match(T__3);
 				State = 285; expr(0);
-				State = 288;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				do {
 					{
 					{
-					State = 286; Match(T__1);
+					 Match(T__1);
 					State = 287; expr(0);
 					}
 					}
-					State = 290;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				} while ( _la==T__1 );
-				State = 292; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 41:
@@ -3877,12 +3621,12 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new COMBIN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 294; Match(COMBIN);
-				State = 295; Match(T__3);
+				 Match(COMBIN);
+				 Match(T__3);
 				State = 296; expr(0);
-				State = 297; Match(T__1);
+				 Match(T__1);
 				State = 298; expr(0);
-				State = 299; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 42:
@@ -3890,12 +3634,12 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new PERMUT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 301; Match(PERMUT);
-				State = 302; Match(T__3);
+				 Match(PERMUT);
+				 Match(T__3);
 				State = 303; expr(0);
-				State = 304; Match(T__1);
+				 Match(T__1);
 				State = 305; expr(0);
-				State = 306; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 43:
@@ -3903,10 +3647,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new DEGREES_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 308; Match(DEGREES);
-				State = 309; Match(T__3);
+				 Match(DEGREES);
+				 Match(T__3);
 				State = 310; expr(0);
-				State = 311; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 44:
@@ -3914,10 +3658,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new RADIANS_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 313; Match(RADIANS);
-				State = 314; Match(T__3);
+				 Match(RADIANS);
+				 Match(T__3);
 				State = 315; expr(0);
-				State = 316; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 45:
@@ -3925,10 +3669,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new COS_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 318; Match(COS);
-				State = 319; Match(T__3);
+				 Match(COS);
+				 Match(T__3);
 				State = 320; expr(0);
-				State = 321; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 46:
@@ -3936,10 +3680,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new COSH_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 323; Match(COSH);
-				State = 324; Match(T__3);
+				 Match(COSH);
+				 Match(T__3);
 				State = 325; expr(0);
-				State = 326; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 47:
@@ -3947,10 +3691,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new SIN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 328; Match(SIN);
-				State = 329; Match(T__3);
+				 Match(SIN);
+				 Match(T__3);
 				State = 330; expr(0);
-				State = 331; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 48:
@@ -3958,10 +3702,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new SINH_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 333; Match(SINH);
-				State = 334; Match(T__3);
+				 Match(SINH);
+				 Match(T__3);
 				State = 335; expr(0);
-				State = 336; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 49:
@@ -3969,10 +3713,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new TAN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 338; Match(TAN);
-				State = 339; Match(T__3);
+				 Match(TAN);
+				 Match(T__3);
 				State = 340; expr(0);
-				State = 341; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 50:
@@ -3980,10 +3724,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new TANH_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 343; Match(TANH);
-				State = 344; Match(T__3);
+				 Match(TANH);
+				 Match(T__3);
 				State = 345; expr(0);
-				State = 346; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 51:
@@ -3991,10 +3735,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new ACOS_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 348; Match(ACOS);
-				State = 349; Match(T__3);
+				 Match(ACOS);
+				 Match(T__3);
 				State = 350; expr(0);
-				State = 351; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 52:
@@ -4002,10 +3746,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new ACOSH_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 353; Match(ACOSH);
-				State = 354; Match(T__3);
+				 Match(ACOSH);
+				 Match(T__3);
 				State = 355; expr(0);
-				State = 356; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 53:
@@ -4013,10 +3757,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new ASIN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 358; Match(ASIN);
-				State = 359; Match(T__3);
+				 Match(ASIN);
+				 Match(T__3);
 				State = 360; expr(0);
-				State = 361; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 54:
@@ -4024,10 +3768,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new ASINH_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 363; Match(ASINH);
-				State = 364; Match(T__3);
+				 Match(ASINH);
+				 Match(T__3);
 				State = 365; expr(0);
-				State = 366; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 55:
@@ -4035,10 +3779,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new ATAN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 368; Match(ATAN);
-				State = 369; Match(T__3);
+				 Match(ATAN);
+				 Match(T__3);
 				State = 370; expr(0);
-				State = 371; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 56:
@@ -4046,10 +3790,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new ATANH_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 373; Match(ATANH);
-				State = 374; Match(T__3);
+				 Match(ATANH);
+				 Match(T__3);
 				State = 375; expr(0);
-				State = 376; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 57:
@@ -4057,12 +3801,12 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new ATAN2_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 378; Match(ATAN2);
-				State = 379; Match(T__3);
+				 Match(ATAN2);
+				 Match(T__3);
 				State = 380; expr(0);
-				State = 381; Match(T__1);
+				 Match(T__1);
 				State = 382; expr(0);
-				State = 383; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 58:
@@ -4070,12 +3814,12 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new ROUND_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 385; Match(ROUND);
-				State = 386; Match(T__3);
+				 Match(ROUND);
+				 Match(T__3);
 				State = 387; expr(0);
-				State = 388; Match(T__1);
+				 Match(T__1);
 				State = 389; expr(0);
-				State = 390; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 59:
@@ -4083,12 +3827,12 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new ROUNDDOWN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 392; Match(ROUNDDOWN);
-				State = 393; Match(T__3);
+				 Match(ROUNDDOWN);
+				 Match(T__3);
 				State = 394; expr(0);
-				State = 395; Match(T__1);
+				 Match(T__1);
 				State = 396; expr(0);
-				State = 397; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 60:
@@ -4096,12 +3840,12 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new ROUNDUP_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 399; Match(ROUNDUP);
-				State = 400; Match(T__3);
+				 Match(ROUNDUP);
+				 Match(T__3);
 				State = 401; expr(0);
-				State = 402; Match(T__1);
+				 Match(T__1);
 				State = 403; expr(0);
-				State = 404; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 61:
@@ -4109,20 +3853,20 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new CEILING_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 406; Match(CEILING);
-				State = 407; Match(T__3);
+				 Match(CEILING);
+				 Match(T__3);
 				State = 408; expr(0);
-				State = 411;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 409; Match(T__1);
+					 Match(T__1);
 					State = 410; expr(0);
 					}
 				}
 
-				State = 413; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 62:
@@ -4130,20 +3874,20 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new FLOOR_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 415; Match(FLOOR);
-				State = 416; Match(T__3);
+				 Match(FLOOR);
+				 Match(T__3);
 				State = 417; expr(0);
-				State = 420;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 418; Match(T__1);
+					 Match(T__1);
 					State = 419; expr(0);
 					}
 				}
 
-				State = 422; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 63:
@@ -4151,10 +3895,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new EVEN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 424; Match(EVEN);
-				State = 425; Match(T__3);
+				 Match(EVEN);
+				 Match(T__3);
 				State = 426; expr(0);
-				State = 427; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 64:
@@ -4162,10 +3906,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new ODD_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 429; Match(ODD);
-				State = 430; Match(T__3);
+				 Match(ODD);
+				 Match(T__3);
 				State = 431; expr(0);
-				State = 432; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 65:
@@ -4173,12 +3917,12 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new MROUND_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 434; Match(MROUND);
-				State = 435; Match(T__3);
+				 Match(MROUND);
+				 Match(T__3);
 				State = 436; expr(0);
-				State = 437; Match(T__1);
+				 Match(T__1);
 				State = 438; expr(0);
-				State = 439; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 66:
@@ -4186,9 +3930,9 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new RAND_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 441; Match(RAND);
-				State = 442; Match(T__3);
-				State = 443; Match(T__4);
+				 Match(RAND);
+				 Match(T__3);
+				 Match(T__4);
 				}
 				break;
 			case 67:
@@ -4196,12 +3940,12 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new RANDBETWEEN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 444; Match(RANDBETWEEN);
-				State = 445; Match(T__3);
+				 Match(RANDBETWEEN);
+				 Match(T__3);
 				State = 446; expr(0);
-				State = 447; Match(T__1);
+				 Match(T__1);
 				State = 448; expr(0);
-				State = 449; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 68:
@@ -4209,10 +3953,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new FACT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 451; Match(FACT);
-				State = 452; Match(T__3);
+				 Match(FACT);
+				 Match(T__3);
 				State = 453; expr(0);
-				State = 454; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 69:
@@ -4220,10 +3964,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new FACTDOUBLE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 456; Match(FACTDOUBLE);
-				State = 457; Match(T__3);
+				 Match(FACTDOUBLE);
+				 Match(T__3);
 				State = 458; expr(0);
-				State = 459; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 70:
@@ -4231,12 +3975,12 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new POWER_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 461; Match(POWER);
-				State = 462; Match(T__3);
+				 Match(POWER);
+				 Match(T__3);
 				State = 463; expr(0);
-				State = 464; Match(T__1);
+				 Match(T__1);
 				State = 465; expr(0);
-				State = 466; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 71:
@@ -4244,10 +3988,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new EXP_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 468; Match(EXP);
-				State = 469; Match(T__3);
+				 Match(EXP);
+				 Match(T__3);
 				State = 470; expr(0);
-				State = 471; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 72:
@@ -4255,10 +3999,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new LN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 473; Match(LN);
-				State = 474; Match(T__3);
+				 Match(LN);
+				 Match(T__3);
 				State = 475; expr(0);
-				State = 476; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 73:
@@ -4266,20 +4010,20 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new LOG_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 478; Match(LOG);
-				State = 479; Match(T__3);
+				 Match(LOG);
+				 Match(T__3);
 				State = 480; expr(0);
-				State = 483;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 481; Match(T__1);
+					 Match(T__1);
 					State = 482; expr(0);
 					}
 				}
 
-				State = 485; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 74:
@@ -4287,10 +4031,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new LOG10_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 487; Match(LOG10);
-				State = 488; Match(T__3);
+				 Match(LOG10);
+				 Match(T__3);
 				State = 489; expr(0);
-				State = 490; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 75:
@@ -4298,24 +4042,24 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new MULTINOMIAL_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 492; Match(MULTINOMIAL);
-				State = 493; Match(T__3);
+				 Match(MULTINOMIAL);
+				 Match(T__3);
 				State = 494; expr(0);
-				State = 499;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				while (_la==T__1) {
 					{
 					{
-					State = 495; Match(T__1);
+					 Match(T__1);
 					State = 496; expr(0);
 					}
 					}
-					State = 501;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 502; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 76:
@@ -4323,24 +4067,24 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new PRODUCT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 504; Match(PRODUCT);
-				State = 505; Match(T__3);
+				 Match(PRODUCT);
+				 Match(T__3);
 				State = 506; expr(0);
-				State = 511;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				while (_la==T__1) {
 					{
 					{
-					State = 507; Match(T__1);
+					 Match(T__1);
 					State = 508; expr(0);
 					}
 					}
-					State = 513;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 514; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 77:
@@ -4348,10 +4092,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new SQRTPI_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 516; Match(SQRTPI);
-				State = 517; Match(T__3);
+				 Match(SQRTPI);
+				 Match(T__3);
 				State = 518; expr(0);
-				State = 519; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 78:
@@ -4359,24 +4103,24 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new SUMSQ_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 521; Match(SUMSQ);
-				State = 522; Match(T__3);
+				 Match(SUMSQ);
+				 Match(T__3);
 				State = 523; expr(0);
-				State = 528;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				while (_la==T__1) {
 					{
 					{
-					State = 524; Match(T__1);
+					 Match(T__1);
 					State = 525; expr(0);
 					}
 					}
-					State = 530;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 531; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 79:
@@ -4384,10 +4128,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new ASC_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 533; Match(ASC);
-				State = 534; Match(T__3);
+				 Match(ASC);
+				 Match(T__3);
 				State = 535; expr(0);
-				State = 536; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 80:
@@ -4395,10 +4139,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new JIS_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 538; Match(JIS);
-				State = 539; Match(T__3);
+				 Match(JIS);
+				 Match(T__3);
 				State = 540; expr(0);
-				State = 541; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 81:
@@ -4406,10 +4150,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new CHAR_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 543; Match(CHAR);
-				State = 544; Match(T__3);
+				 Match(CHAR);
+				 Match(T__3);
 				State = 545; expr(0);
-				State = 546; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 82:
@@ -4417,10 +4161,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new CLEAN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 548; Match(CLEAN);
-				State = 549; Match(T__3);
+				 Match(CLEAN);
+				 Match(T__3);
 				State = 550; expr(0);
-				State = 551; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 83:
@@ -4428,10 +4172,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new CODE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 553; Match(CODE);
-				State = 554; Match(T__3);
+				 Match(CODE);
+				 Match(T__3);
 				State = 555; expr(0);
-				State = 556; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 84:
@@ -4439,24 +4183,24 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new CONCATENATE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 558; Match(CONCATENATE);
-				State = 559; Match(T__3);
+				 Match(CONCATENATE);
+				 Match(T__3);
 				State = 560; expr(0);
-				State = 565;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				while (_la==T__1) {
 					{
 					{
-					State = 561; Match(T__1);
+					 Match(T__1);
 					State = 562; expr(0);
 					}
 					}
-					State = 567;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 568; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 85:
@@ -4464,12 +4208,12 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new EXACT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 570; Match(EXACT);
-				State = 571; Match(T__3);
+				 Match(EXACT);
+				 Match(T__3);
 				State = 572; expr(0);
-				State = 573; Match(T__1);
+				 Match(T__1);
 				State = 574; expr(0);
-				State = 575; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 86:
@@ -4477,22 +4221,22 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new FIND_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 577; Match(FIND);
-				State = 578; Match(T__3);
+				 Match(FIND);
+				 Match(T__3);
 				State = 579; expr(0);
-				State = 580; Match(T__1);
+				 Match(T__1);
 				State = 581; expr(0);
-				State = 584;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 582; Match(T__1);
+					 Match(T__1);
 					State = 583; expr(0);
 					}
 				}
 
-				State = 586; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 87:
@@ -4500,22 +4244,22 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new FIXED_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 588; Match(FIXED);
-				State = 589; Match(T__3);
+				 Match(FIXED);
+				 Match(T__3);
 				State = 590; expr(0);
-				State = 597;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 591; Match(T__1);
+					 Match(T__1);
 					State = 592; expr(0);
-					State = 595;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 					if (_la==T__1) {
 						{
-						State = 593; Match(T__1);
+						 Match(T__1);
 						State = 594; expr(0);
 						}
 					}
@@ -4523,7 +4267,7 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 					}
 				}
 
-				State = 599; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 88:
@@ -4531,20 +4275,20 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new LEFT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 601; Match(LEFT);
-				State = 602; Match(T__3);
+				 Match(LEFT);
+				 Match(T__3);
 				State = 603; expr(0);
-				State = 606;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 604; Match(T__1);
+					 Match(T__1);
 					State = 605; expr(0);
 					}
 				}
 
-				State = 608; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 89:
@@ -4552,10 +4296,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new LEN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 610; Match(LEN);
-				State = 611; Match(T__3);
+				 Match(LEN);
+				 Match(T__3);
 				State = 612; expr(0);
-				State = 613; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 90:
@@ -4563,10 +4307,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new LOWER_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 615; Match(LOWER);
-				State = 616; Match(T__3);
+				 Match(LOWER);
+				 Match(T__3);
 				State = 617; expr(0);
-				State = 618; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 91:
@@ -4574,14 +4318,14 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new MID_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 620; Match(MID);
-				State = 621; Match(T__3);
+				 Match(MID);
+				 Match(T__3);
 				State = 622; expr(0);
-				State = 623; Match(T__1);
+				 Match(T__1);
 				State = 624; expr(0);
-				State = 625; Match(T__1);
+				 Match(T__1);
 				State = 626; expr(0);
-				State = 627; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 92:
@@ -4589,10 +4333,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new PROPER_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 629; Match(PROPER);
-				State = 630; Match(T__3);
+				 Match(PROPER);
+				 Match(T__3);
 				State = 631; expr(0);
-				State = 632; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 93:
@@ -4600,24 +4344,24 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new REPLACE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 634; Match(REPLACE);
-				State = 635; Match(T__3);
+				 Match(REPLACE);
+				 Match(T__3);
 				State = 636; expr(0);
-				State = 637; Match(T__1);
+				 Match(T__1);
 				State = 638; expr(0);
-				State = 639; Match(T__1);
+				 Match(T__1);
 				State = 640; expr(0);
-				State = 643;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 641; Match(T__1);
+					 Match(T__1);
 					State = 642; expr(0);
 					}
 				}
 
-				State = 645; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 94:
@@ -4625,12 +4369,12 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new REPT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 647; Match(REPT);
-				State = 648; Match(T__3);
+				 Match(REPT);
+				 Match(T__3);
 				State = 649; expr(0);
-				State = 650; Match(T__1);
+				 Match(T__1);
 				State = 651; expr(0);
-				State = 652; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 95:
@@ -4638,20 +4382,20 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new RIGHT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 654; Match(RIGHT);
-				State = 655; Match(T__3);
+				 Match(RIGHT);
+				 Match(T__3);
 				State = 656; expr(0);
-				State = 659;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 657; Match(T__1);
+					 Match(T__1);
 					State = 658; expr(0);
 					}
 				}
 
-				State = 661; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 96:
@@ -4659,10 +4403,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new RMB_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 663; Match(RMB);
-				State = 664; Match(T__3);
+				 Match(RMB);
+				 Match(T__3);
 				State = 665; expr(0);
-				State = 666; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 97:
@@ -4670,22 +4414,22 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new SEARCH_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 668; Match(SEARCH);
-				State = 669; Match(T__3);
+				 Match(SEARCH);
+				 Match(T__3);
 				State = 670; expr(0);
-				State = 671; Match(T__1);
+				 Match(T__1);
 				State = 672; expr(0);
-				State = 675;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 673; Match(T__1);
+					 Match(T__1);
 					State = 674; expr(0);
 					}
 				}
 
-				State = 677; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 98:
@@ -4693,24 +4437,24 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new SUBSTITUTE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 679; Match(SUBSTITUTE);
-				State = 680; Match(T__3);
+				 Match(SUBSTITUTE);
+				 Match(T__3);
 				State = 681; expr(0);
-				State = 682; Match(T__1);
+				 Match(T__1);
 				State = 683; expr(0);
-				State = 684; Match(T__1);
+				 Match(T__1);
 				State = 685; expr(0);
-				State = 688;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 686; Match(T__1);
+					 Match(T__1);
 					State = 687; expr(0);
 					}
 				}
 
-				State = 690; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 99:
@@ -4718,10 +4462,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new T_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 692; Match(T);
-				State = 693; Match(T__3);
+				 Match(T);
+				 Match(T__3);
 				State = 694; expr(0);
-				State = 695; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 100:
@@ -4729,12 +4473,12 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new TEXT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 697; Match(TEXT);
-				State = 698; Match(T__3);
+				 Match(TEXT);
+				 Match(T__3);
 				State = 699; expr(0);
-				State = 700; Match(T__1);
+				 Match(T__1);
 				State = 701; expr(0);
-				State = 702; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 101:
@@ -4742,10 +4486,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new TRIM_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 704; Match(TRIM);
-				State = 705; Match(T__3);
+				 Match(TRIM);
+				 Match(T__3);
 				State = 706; expr(0);
-				State = 707; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 102:
@@ -4753,10 +4497,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new UPPER_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 709; Match(UPPER);
-				State = 710; Match(T__3);
+				 Match(UPPER);
+				 Match(T__3);
 				State = 711; expr(0);
-				State = 712; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 103:
@@ -4764,10 +4508,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new VALUE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 714; Match(VALUE);
-				State = 715; Match(T__3);
+				 Match(VALUE);
+				 Match(T__3);
 				State = 716; expr(0);
-				State = 717; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 104:
@@ -4775,10 +4519,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new DATEVALUE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 719; Match(DATEVALUE);
-				State = 720; Match(T__3);
+				 Match(DATEVALUE);
+				 Match(T__3);
 				State = 721; expr(0);
-				State = 722; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 105:
@@ -4786,10 +4530,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new TIMEVALUE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 724; Match(TIMEVALUE);
-				State = 725; Match(T__3);
+				 Match(TIMEVALUE);
+				 Match(T__3);
 				State = 726; expr(0);
-				State = 727; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 106:
@@ -4797,33 +4541,33 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new DATE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 729; Match(DATE);
-				State = 730; Match(T__3);
+				 Match(DATE);
+				 Match(T__3);
 				State = 731; expr(0);
-				State = 732; Match(T__1);
+				 Match(T__1);
 				State = 733; expr(0);
-				State = 734; Match(T__1);
+				 Match(T__1);
 				State = 735; expr(0);
-				State = 746;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 736; Match(T__1);
+					 Match(T__1);
 					State = 737; expr(0);
-					State = 744;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 					if (_la==T__1) {
 						{
-						State = 738; Match(T__1);
+						 Match(T__1);
 						State = 739; expr(0);
-						State = 742;
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if (_la==T__1) {
 							{
-							State = 740; Match(T__1);
+							 Match(T__1);
 							State = 741; expr(0);
 							}
 						}
@@ -4834,7 +4578,7 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 					}
 				}
 
-				State = 748; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 107:
@@ -4842,22 +4586,22 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new TIME_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 750; Match(TIME);
-				State = 751; Match(T__3);
+				 Match(TIME);
+				 Match(T__3);
 				State = 752; expr(0);
-				State = 753; Match(T__1);
+				 Match(T__1);
 				State = 754; expr(0);
-				State = 757;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 755; Match(T__1);
+					 Match(T__1);
 					State = 756; expr(0);
 					}
 				}
 
-				State = 759; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 108:
@@ -4865,9 +4609,9 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new NOW_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 761; Match(NOW);
-				State = 762; Match(T__3);
-				State = 763; Match(T__4);
+				 Match(NOW);
+				 Match(T__3);
+				 Match(T__4);
 				}
 				break;
 			case 109:
@@ -4875,9 +4619,9 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new TODAY_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 764; Match(TODAY);
-				State = 765; Match(T__3);
-				State = 766; Match(T__4);
+				 Match(TODAY);
+				 Match(T__3);
+				 Match(T__4);
 				}
 				break;
 			case 110:
@@ -4885,10 +4629,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new YEAR_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 767; Match(YEAR);
-				State = 768; Match(T__3);
+				 Match(YEAR);
+				 Match(T__3);
 				State = 769; expr(0);
-				State = 770; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 111:
@@ -4896,10 +4640,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new MONTH_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 772; Match(MONTH);
-				State = 773; Match(T__3);
+				 Match(MONTH);
+				 Match(T__3);
 				State = 774; expr(0);
-				State = 775; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 112:
@@ -4907,10 +4651,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new DAY_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 777; Match(DAY);
-				State = 778; Match(T__3);
+				 Match(DAY);
+				 Match(T__3);
 				State = 779; expr(0);
-				State = 780; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 113:
@@ -4918,10 +4662,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new HOUR_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 782; Match(HOUR);
-				State = 783; Match(T__3);
+				 Match(HOUR);
+				 Match(T__3);
 				State = 784; expr(0);
-				State = 785; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 114:
@@ -4929,10 +4673,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new MINUTE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 787; Match(MINUTE);
-				State = 788; Match(T__3);
+				 Match(MINUTE);
+				 Match(T__3);
 				State = 789; expr(0);
-				State = 790; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 115:
@@ -4940,10 +4684,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new SECOND_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 792; Match(SECOND);
-				State = 793; Match(T__3);
+				 Match(SECOND);
+				 Match(T__3);
 				State = 794; expr(0);
-				State = 795; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 116:
@@ -4951,20 +4695,20 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new WEEKDAY_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 797; Match(WEEKDAY);
-				State = 798; Match(T__3);
+				 Match(WEEKDAY);
+				 Match(T__3);
 				State = 799; expr(0);
-				State = 802;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 800; Match(T__1);
+					 Match(T__1);
 					State = 801; expr(0);
 					}
 				}
 
-				State = 804; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 117:
@@ -4972,14 +4716,14 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new DATEDIF_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 806; Match(DATEDIF);
-				State = 807; Match(T__3);
+				 Match(DATEDIF);
+				 Match(T__3);
 				State = 808; expr(0);
-				State = 809; Match(T__1);
+				 Match(T__1);
 				State = 810; expr(0);
-				State = 811; Match(T__1);
+				 Match(T__1);
 				State = 812; expr(0);
-				State = 813; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 118:
@@ -4987,22 +4731,22 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new DAYS360_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 815; Match(DAYS360);
-				State = 816; Match(T__3);
+				 Match(DAYS360);
+				 Match(T__3);
 				State = 817; expr(0);
-				State = 818; Match(T__1);
+				 Match(T__1);
 				State = 819; expr(0);
-				State = 822;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 820; Match(T__1);
+					 Match(T__1);
 					State = 821; expr(0);
 					}
 				}
 
-				State = 824; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 119:
@@ -5010,12 +4754,12 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new EDATE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 826; Match(EDATE);
-				State = 827; Match(T__3);
+				 Match(EDATE);
+				 Match(T__3);
 				State = 828; expr(0);
-				State = 829; Match(T__1);
+				 Match(T__1);
 				State = 830; expr(0);
-				State = 831; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 120:
@@ -5023,12 +4767,12 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new EOMONTH_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 833; Match(EOMONTH);
-				State = 834; Match(T__3);
+				 Match(EOMONTH);
+				 Match(T__3);
 				State = 835; expr(0);
-				State = 836; Match(T__1);
+				 Match(T__1);
 				State = 837; expr(0);
-				State = 838; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 121:
@@ -5036,22 +4780,22 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new NETWORKDAYS_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 840; Match(NETWORKDAYS);
-				State = 841; Match(T__3);
+				 Match(NETWORKDAYS);
+				 Match(T__3);
 				State = 842; expr(0);
-				State = 843; Match(T__1);
+				 Match(T__1);
 				State = 844; expr(0);
-				State = 847;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 845; Match(T__1);
+					 Match(T__1);
 					State = 846; expr(0);
 					}
 				}
 
-				State = 849; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 122:
@@ -5059,22 +4803,22 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new WORKDAY_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 851; Match(WORKDAY);
-				State = 852; Match(T__3);
+				 Match(WORKDAY);
+				 Match(T__3);
 				State = 853; expr(0);
-				State = 854; Match(T__1);
+				 Match(T__1);
 				State = 855; expr(0);
-				State = 858;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 856; Match(T__1);
+					 Match(T__1);
 					State = 857; expr(0);
 					}
 				}
 
-				State = 860; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 123:
@@ -5082,20 +4826,20 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new WEEKNUM_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 862; Match(WEEKNUM);
-				State = 863; Match(T__3);
+				 Match(WEEKNUM);
+				 Match(T__3);
 				State = 864; expr(0);
-				State = 867;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 865; Match(T__1);
+					 Match(T__1);
 					State = 866; expr(0);
 					}
 				}
 
-				State = 869; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 124:
@@ -5103,24 +4847,24 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new MAX_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 871; Match(MAX);
-				State = 872; Match(T__3);
+				 Match(MAX);
+				 Match(T__3);
 				State = 873; expr(0);
-				State = 876;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				do {
 					{
 					{
-					State = 874; Match(T__1);
+					 Match(T__1);
 					State = 875; expr(0);
 					}
 					}
-					State = 878;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				} while ( _la==T__1 );
-				State = 880; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 125:
@@ -5128,24 +4872,24 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new MEDIAN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 882; Match(MEDIAN);
-				State = 883; Match(T__3);
+				 Match(MEDIAN);
+				 Match(T__3);
 				State = 884; expr(0);
-				State = 887;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				do {
 					{
 					{
-					State = 885; Match(T__1);
+					 Match(T__1);
 					State = 886; expr(0);
 					}
 					}
-					State = 889;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				} while ( _la==T__1 );
-				State = 891; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 126:
@@ -5153,24 +4897,24 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new MIN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 893; Match(MIN);
-				State = 894; Match(T__3);
+				 Match(MIN);
+				 Match(T__3);
 				State = 895; expr(0);
-				State = 898;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				do {
 					{
 					{
-					State = 896; Match(T__1);
+					 Match(T__1);
 					State = 897; expr(0);
 					}
 					}
-					State = 900;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				} while ( _la==T__1 );
-				State = 902; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 127:
@@ -5178,12 +4922,12 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new QUARTILE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 904; Match(QUARTILE);
-				State = 905; Match(T__3);
+				 Match(QUARTILE);
+				 Match(T__3);
 				State = 906; expr(0);
-				State = 907; Match(T__1);
+				 Match(T__1);
 				State = 908; expr(0);
-				State = 909; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 128:
@@ -5191,24 +4935,24 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new MODE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 911; Match(MODE);
-				State = 912; Match(T__3);
+				 Match(MODE);
+				 Match(T__3);
 				State = 913; expr(0);
-				State = 918;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				while (_la==T__1) {
 					{
 					{
-					State = 914; Match(T__1);
+					 Match(T__1);
 					State = 915; expr(0);
 					}
 					}
-					State = 920;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 921; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 129:
@@ -5216,12 +4960,12 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new LARGE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 923; Match(LARGE);
-				State = 924; Match(T__3);
+				 Match(LARGE);
+				 Match(T__3);
 				State = 925; expr(0);
-				State = 926; Match(T__1);
+				 Match(T__1);
 				State = 927; expr(0);
-				State = 928; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 130:
@@ -5229,12 +4973,12 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new SMALL_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 930; Match(SMALL);
-				State = 931; Match(T__3);
+				 Match(SMALL);
+				 Match(T__3);
 				State = 932; expr(0);
-				State = 933; Match(T__1);
+				 Match(T__1);
 				State = 934; expr(0);
-				State = 935; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 131:
@@ -5242,12 +4986,12 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new PERCENTILE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 937; Match(PERCENTILE);
-				State = 938; Match(T__3);
+				 Match(PERCENTILE);
+				 Match(T__3);
 				State = 939; expr(0);
-				State = 940; Match(T__1);
+				 Match(T__1);
 				State = 941; expr(0);
-				State = 942; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 132:
@@ -5255,12 +4999,12 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new PERCENTRANK_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 944; Match(PERCENTRANK);
-				State = 945; Match(T__3);
+				 Match(PERCENTRANK);
+				 Match(T__3);
 				State = 946; expr(0);
-				State = 947; Match(T__1);
+				 Match(T__1);
 				State = 948; expr(0);
-				State = 949; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 133:
@@ -5268,24 +5012,24 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new AVERAGE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 951; Match(AVERAGE);
-				State = 952; Match(T__3);
+				 Match(AVERAGE);
+				 Match(T__3);
 				State = 953; expr(0);
-				State = 958;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				while (_la==T__1) {
 					{
 					{
-					State = 954; Match(T__1);
+					 Match(T__1);
 					State = 955; expr(0);
 					}
 					}
-					State = 960;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 961; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 134:
@@ -5293,22 +5037,22 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new AVERAGEIF_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 963; Match(AVERAGEIF);
-				State = 964; Match(T__3);
+				 Match(AVERAGEIF);
+				 Match(T__3);
 				State = 965; expr(0);
-				State = 966; Match(T__1);
+				 Match(T__1);
 				State = 967; expr(0);
-				State = 970;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 968; Match(T__1);
+					 Match(T__1);
 					State = 969; expr(0);
 					}
 				}
 
-				State = 972; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 135:
@@ -5316,24 +5060,24 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new GEOMEAN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 974; Match(GEOMEAN);
-				State = 975; Match(T__3);
+				 Match(GEOMEAN);
+				 Match(T__3);
 				State = 976; expr(0);
-				State = 981;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				while (_la==T__1) {
 					{
 					{
-					State = 977; Match(T__1);
+					 Match(T__1);
 					State = 978; expr(0);
 					}
 					}
-					State = 983;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 984; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 136:
@@ -5341,24 +5085,24 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new HARMEAN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 986; Match(HARMEAN);
-				State = 987; Match(T__3);
+				 Match(HARMEAN);
+				 Match(T__3);
 				State = 988; expr(0);
-				State = 993;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				while (_la==T__1) {
 					{
 					{
-					State = 989; Match(T__1);
+					 Match(T__1);
 					State = 990; expr(0);
 					}
 					}
-					State = 995;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 996; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 137:
@@ -5366,24 +5110,24 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new COUNT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 998; Match(COUNT);
-				State = 999; Match(T__3);
+				 Match(COUNT);
+				 Match(T__3);
 				State = 1000; expr(0);
-				State = 1005;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				while (_la==T__1) {
 					{
 					{
-					State = 1001; Match(T__1);
+					 Match(T__1);
 					State = 1002; expr(0);
 					}
 					}
-					State = 1007;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 1008; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 138:
@@ -5391,24 +5135,24 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new COUNTIF_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1010; Match(COUNTIF);
-				State = 1011; Match(T__3);
+				 Match(COUNTIF);
+				 Match(T__3);
 				State = 1012; expr(0);
-				State = 1017;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				while (_la==T__1) {
 					{
 					{
-					State = 1013; Match(T__1);
+					 Match(T__1);
 					State = 1014; expr(0);
 					}
 					}
-					State = 1019;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 1020; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 139:
@@ -5416,24 +5160,24 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new SUM_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1022; Match(SUM);
-				State = 1023; Match(T__3);
+				 Match(SUM);
+				 Match(T__3);
 				State = 1024; expr(0);
-				State = 1029;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				while (_la==T__1) {
 					{
 					{
-					State = 1025; Match(T__1);
+					 Match(T__1);
 					State = 1026; expr(0);
 					}
 					}
-					State = 1031;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 1032; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 140:
@@ -5441,22 +5185,22 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new SUMIF_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1034; Match(SUMIF);
-				State = 1035; Match(T__3);
+				 Match(SUMIF);
+				 Match(T__3);
 				State = 1036; expr(0);
-				State = 1037; Match(T__1);
+				 Match(T__1);
 				State = 1038; expr(0);
-				State = 1041;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 1039; Match(T__1);
+					 Match(T__1);
 					State = 1040; expr(0);
 					}
 				}
 
-				State = 1043; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 141:
@@ -5464,24 +5208,24 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new AVEDEV_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1045; Match(AVEDEV);
-				State = 1046; Match(T__3);
+				 Match(AVEDEV);
+				 Match(T__3);
 				State = 1047; expr(0);
-				State = 1052;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				while (_la==T__1) {
 					{
 					{
-					State = 1048; Match(T__1);
+					 Match(T__1);
 					State = 1049; expr(0);
 					}
 					}
-					State = 1054;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 1055; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 142:
@@ -5489,24 +5233,24 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new STDEV_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1057; Match(STDEV);
-				State = 1058; Match(T__3);
+				 Match(STDEV);
+				 Match(T__3);
 				State = 1059; expr(0);
-				State = 1064;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				while (_la==T__1) {
 					{
 					{
-					State = 1060; Match(T__1);
+					 Match(T__1);
 					State = 1061; expr(0);
 					}
 					}
-					State = 1066;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 1067; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 143:
@@ -5514,24 +5258,24 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new STDEVP_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1069; Match(STDEVP);
-				State = 1070; Match(T__3);
+				 Match(STDEVP);
+				 Match(T__3);
 				State = 1071; expr(0);
-				State = 1076;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				while (_la==T__1) {
 					{
 					{
-					State = 1072; Match(T__1);
+					 Match(T__1);
 					State = 1073; expr(0);
 					}
 					}
-					State = 1078;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 1079; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 144:
@@ -5539,24 +5283,24 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new DEVSQ_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1081; Match(DEVSQ);
-				State = 1082; Match(T__3);
+				 Match(DEVSQ);
+				 Match(T__3);
 				State = 1083; expr(0);
-				State = 1088;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				while (_la==T__1) {
 					{
 					{
-					State = 1084; Match(T__1);
+					 Match(T__1);
 					State = 1085; expr(0);
 					}
 					}
-					State = 1090;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 1091; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 145:
@@ -5564,24 +5308,24 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new VAR_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1093; Match(VAR);
-				State = 1094; Match(T__3);
+				 Match(VAR);
+				 Match(T__3);
 				State = 1095; expr(0);
-				State = 1100;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				while (_la==T__1) {
 					{
 					{
-					State = 1096; Match(T__1);
+					 Match(T__1);
 					State = 1097; expr(0);
 					}
 					}
-					State = 1102;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 1103; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 146:
@@ -5589,24 +5333,24 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new VARP_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1105; Match(VARP);
-				State = 1106; Match(T__3);
+				 Match(VARP);
+				 Match(T__3);
 				State = 1107; expr(0);
-				State = 1112;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				while (_la==T__1) {
 					{
 					{
-					State = 1108; Match(T__1);
+					 Match(T__1);
 					State = 1109; expr(0);
 					}
 					}
-					State = 1114;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 1115; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 147:
@@ -5614,16 +5358,16 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new NORMDIST_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1117; Match(NORMDIST);
-				State = 1118; Match(T__3);
+				 Match(NORMDIST);
+				 Match(T__3);
 				State = 1119; expr(0);
-				State = 1120; Match(T__1);
+				 Match(T__1);
 				State = 1121; expr(0);
-				State = 1122; Match(T__1);
+				 Match(T__1);
 				State = 1123; expr(0);
-				State = 1124; Match(T__1);
+				 Match(T__1);
 				State = 1125; expr(0);
-				State = 1126; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 148:
@@ -5631,14 +5375,14 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new NORMINV_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1128; Match(NORMINV);
-				State = 1129; Match(T__3);
+				 Match(NORMINV);
+				 Match(T__3);
 				State = 1130; expr(0);
-				State = 1131; Match(T__1);
+				 Match(T__1);
 				State = 1132; expr(0);
-				State = 1133; Match(T__1);
+				 Match(T__1);
 				State = 1134; expr(0);
-				State = 1135; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 149:
@@ -5646,10 +5390,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new NORMSDIST_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1137; Match(NORMSDIST);
-				State = 1138; Match(T__3);
+				 Match(NORMSDIST);
+				 Match(T__3);
 				State = 1139; expr(0);
-				State = 1140; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 150:
@@ -5657,10 +5401,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new NORMSINV_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1142; Match(NORMSINV);
-				State = 1143; Match(T__3);
+				 Match(NORMSINV);
+				 Match(T__3);
 				State = 1144; expr(0);
-				State = 1145; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 151:
@@ -5668,14 +5412,14 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new BETADIST_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1147; Match(BETADIST);
-				State = 1148; Match(T__3);
+				 Match(BETADIST);
+				 Match(T__3);
 				State = 1149; expr(0);
-				State = 1150; Match(T__1);
+				 Match(T__1);
 				State = 1151; expr(0);
-				State = 1152; Match(T__1);
+				 Match(T__1);
 				State = 1153; expr(0);
-				State = 1154; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 152:
@@ -5683,14 +5427,14 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new BETAINV_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1156; Match(BETAINV);
-				State = 1157; Match(T__3);
+				 Match(BETAINV);
+				 Match(T__3);
 				State = 1158; expr(0);
-				State = 1159; Match(T__1);
+				 Match(T__1);
 				State = 1160; expr(0);
-				State = 1161; Match(T__1);
+				 Match(T__1);
 				State = 1162; expr(0);
-				State = 1163; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 153:
@@ -5698,16 +5442,16 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new BINOMDIST_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1165; Match(BINOMDIST);
-				State = 1166; Match(T__3);
+				 Match(BINOMDIST);
+				 Match(T__3);
 				State = 1167; expr(0);
-				State = 1168; Match(T__1);
+				 Match(T__1);
 				State = 1169; expr(0);
-				State = 1170; Match(T__1);
+				 Match(T__1);
 				State = 1171; expr(0);
-				State = 1172; Match(T__1);
+				 Match(T__1);
 				State = 1173; expr(0);
-				State = 1174; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 154:
@@ -5715,14 +5459,14 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new EXPONDIST_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1176; Match(EXPONDIST);
-				State = 1177; Match(T__3);
+				 Match(EXPONDIST);
+				 Match(T__3);
 				State = 1178; expr(0);
-				State = 1179; Match(T__1);
+				 Match(T__1);
 				State = 1180; expr(0);
-				State = 1181; Match(T__1);
+				 Match(T__1);
 				State = 1182; expr(0);
-				State = 1183; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 155:
@@ -5730,14 +5474,14 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new FDIST_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1185; Match(FDIST);
-				State = 1186; Match(T__3);
+				 Match(FDIST);
+				 Match(T__3);
 				State = 1187; expr(0);
-				State = 1188; Match(T__1);
+				 Match(T__1);
 				State = 1189; expr(0);
-				State = 1190; Match(T__1);
+				 Match(T__1);
 				State = 1191; expr(0);
-				State = 1192; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 156:
@@ -5745,14 +5489,14 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new FINV_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1194; Match(FINV);
-				State = 1195; Match(T__3);
+				 Match(FINV);
+				 Match(T__3);
 				State = 1196; expr(0);
-				State = 1197; Match(T__1);
+				 Match(T__1);
 				State = 1198; expr(0);
-				State = 1199; Match(T__1);
+				 Match(T__1);
 				State = 1200; expr(0);
-				State = 1201; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 157:
@@ -5760,10 +5504,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new FISHER_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1203; Match(FISHER);
-				State = 1204; Match(T__3);
+				 Match(FISHER);
+				 Match(T__3);
 				State = 1205; expr(0);
-				State = 1206; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 158:
@@ -5771,10 +5515,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new FISHERINV_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1208; Match(FISHERINV);
-				State = 1209; Match(T__3);
+				 Match(FISHERINV);
+				 Match(T__3);
 				State = 1210; expr(0);
-				State = 1211; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 159:
@@ -5782,16 +5526,16 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new GAMMADIST_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1213; Match(GAMMADIST);
-				State = 1214; Match(T__3);
+				 Match(GAMMADIST);
+				 Match(T__3);
 				State = 1215; expr(0);
-				State = 1216; Match(T__1);
+				 Match(T__1);
 				State = 1217; expr(0);
-				State = 1218; Match(T__1);
+				 Match(T__1);
 				State = 1219; expr(0);
-				State = 1220; Match(T__1);
+				 Match(T__1);
 				State = 1221; expr(0);
-				State = 1222; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 160:
@@ -5799,14 +5543,14 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new GAMMAINV_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1224; Match(GAMMAINV);
-				State = 1225; Match(T__3);
+				 Match(GAMMAINV);
+				 Match(T__3);
 				State = 1226; expr(0);
-				State = 1227; Match(T__1);
+				 Match(T__1);
 				State = 1228; expr(0);
-				State = 1229; Match(T__1);
+				 Match(T__1);
 				State = 1230; expr(0);
-				State = 1231; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 161:
@@ -5814,10 +5558,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new GAMMALN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1233; Match(GAMMALN);
-				State = 1234; Match(T__3);
+				 Match(GAMMALN);
+				 Match(T__3);
 				State = 1235; expr(0);
-				State = 1236; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 162:
@@ -5825,16 +5569,16 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new HYPGEOMDIST_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1238; Match(HYPGEOMDIST);
-				State = 1239; Match(T__3);
+				 Match(HYPGEOMDIST);
+				 Match(T__3);
 				State = 1240; expr(0);
-				State = 1241; Match(T__1);
+				 Match(T__1);
 				State = 1242; expr(0);
-				State = 1243; Match(T__1);
+				 Match(T__1);
 				State = 1244; expr(0);
-				State = 1245; Match(T__1);
+				 Match(T__1);
 				State = 1246; expr(0);
-				State = 1247; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 163:
@@ -5842,14 +5586,14 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new LOGINV_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1249; Match(LOGINV);
-				State = 1250; Match(T__3);
+				 Match(LOGINV);
+				 Match(T__3);
 				State = 1251; expr(0);
-				State = 1252; Match(T__1);
+				 Match(T__1);
 				State = 1253; expr(0);
-				State = 1254; Match(T__1);
+				 Match(T__1);
 				State = 1255; expr(0);
-				State = 1256; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 164:
@@ -5857,14 +5601,14 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new LOGNORMDIST_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1258; Match(LOGNORMDIST);
-				State = 1259; Match(T__3);
+				 Match(LOGNORMDIST);
+				 Match(T__3);
 				State = 1260; expr(0);
-				State = 1261; Match(T__1);
+				 Match(T__1);
 				State = 1262; expr(0);
-				State = 1263; Match(T__1);
+				 Match(T__1);
 				State = 1264; expr(0);
-				State = 1265; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 165:
@@ -5872,14 +5616,14 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new NEGBINOMDIST_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1267; Match(NEGBINOMDIST);
-				State = 1268; Match(T__3);
+				 Match(NEGBINOMDIST);
+				 Match(T__3);
 				State = 1269; expr(0);
-				State = 1270; Match(T__1);
+				 Match(T__1);
 				State = 1271; expr(0);
-				State = 1272; Match(T__1);
+				 Match(T__1);
 				State = 1273; expr(0);
-				State = 1274; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 166:
@@ -5887,14 +5631,14 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new POISSON_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1276; Match(POISSON);
-				State = 1277; Match(T__3);
+				 Match(POISSON);
+				 Match(T__3);
 				State = 1278; expr(0);
-				State = 1279; Match(T__1);
+				 Match(T__1);
 				State = 1280; expr(0);
-				State = 1281; Match(T__1);
+				 Match(T__1);
 				State = 1282; expr(0);
-				State = 1283; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 167:
@@ -5902,14 +5646,14 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new TDIST_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1285; Match(TDIST);
-				State = 1286; Match(T__3);
+				 Match(TDIST);
+				 Match(T__3);
 				State = 1287; expr(0);
-				State = 1288; Match(T__1);
+				 Match(T__1);
 				State = 1289; expr(0);
-				State = 1290; Match(T__1);
+				 Match(T__1);
 				State = 1291; expr(0);
-				State = 1292; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 168:
@@ -5917,12 +5661,12 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new TINV_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1294; Match(TINV);
-				State = 1295; Match(T__3);
+				 Match(TINV);
+				 Match(T__3);
 				State = 1296; expr(0);
-				State = 1297; Match(T__1);
+				 Match(T__1);
 				State = 1298; expr(0);
-				State = 1299; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 169:
@@ -5930,16 +5674,16 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new WEIBULL_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1301; Match(WEIBULL);
-				State = 1302; Match(T__3);
+				 Match(WEIBULL);
+				 Match(T__3);
 				State = 1303; expr(0);
-				State = 1304; Match(T__1);
+				 Match(T__1);
 				State = 1305; expr(0);
-				State = 1306; Match(T__1);
+				 Match(T__1);
 				State = 1307; expr(0);
-				State = 1308; Match(T__1);
+				 Match(T__1);
 				State = 1309; expr(0);
-				State = 1310; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 170:
@@ -5947,10 +5691,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new URLENCODE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1312; Match(URLENCODE);
-				State = 1313; Match(T__3);
+				 Match(URLENCODE);
+				 Match(T__3);
 				State = 1314; expr(0);
-				State = 1315; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 171:
@@ -5958,10 +5702,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new URLDECODE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1317; Match(URLDECODE);
-				State = 1318; Match(T__3);
+				 Match(URLDECODE);
+				 Match(T__3);
 				State = 1319; expr(0);
-				State = 1320; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 172:
@@ -5969,10 +5713,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new HTMLENCODE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1322; Match(HTMLENCODE);
-				State = 1323; Match(T__3);
+				 Match(HTMLENCODE);
+				 Match(T__3);
 				State = 1324; expr(0);
-				State = 1325; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 173:
@@ -5980,10 +5724,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new HTMLDECODE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1327; Match(HTMLDECODE);
-				State = 1328; Match(T__3);
+				 Match(HTMLDECODE);
+				 Match(T__3);
 				State = 1329; expr(0);
-				State = 1330; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 174:
@@ -5991,20 +5735,20 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new BASE64TOTEXT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1332; Match(BASE64TOTEXT);
-				State = 1333; Match(T__3);
+				 Match(BASE64TOTEXT);
+				 Match(T__3);
 				State = 1334; expr(0);
-				State = 1337;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 1335; Match(T__1);
+					 Match(T__1);
 					State = 1336; expr(0);
 					}
 				}
 
-				State = 1339; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 175:
@@ -6012,20 +5756,20 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new BASE64URLTOTEXT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1341; Match(BASE64URLTOTEXT);
-				State = 1342; Match(T__3);
+				 Match(BASE64URLTOTEXT);
+				 Match(T__3);
 				State = 1343; expr(0);
-				State = 1346;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 1344; Match(T__1);
+					 Match(T__1);
 					State = 1345; expr(0);
 					}
 				}
 
-				State = 1348; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 176:
@@ -6033,20 +5777,20 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new TEXTTOBASE64_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1350; Match(TEXTTOBASE64);
-				State = 1351; Match(T__3);
+				 Match(TEXTTOBASE64);
+				 Match(T__3);
 				State = 1352; expr(0);
-				State = 1355;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 1353; Match(T__1);
+					 Match(T__1);
 					State = 1354; expr(0);
 					}
 				}
 
-				State = 1357; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 177:
@@ -6054,20 +5798,20 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new TEXTTOBASE64URL_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1359; Match(TEXTTOBASE64URL);
-				State = 1360; Match(T__3);
+				 Match(TEXTTOBASE64URL);
+				 Match(T__3);
 				State = 1361; expr(0);
-				State = 1364;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 1362; Match(T__1);
+					 Match(T__1);
 					State = 1363; expr(0);
 					}
 				}
 
-				State = 1366; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 178:
@@ -6075,24 +5819,24 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new REGEX_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1368; Match(REGEX);
-				State = 1369; Match(T__3);
+				 Match(REGEX);
+				 Match(T__3);
 				State = 1370; expr(0);
-				State = 1371; Match(T__1);
+				 Match(T__1);
 				State = 1372; expr(0);
-				State = 1379;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 1373; Match(T__1);
+					 Match(T__1);
 					State = 1374; expr(0);
-					State = 1377;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 					if (_la==T__1) {
 						{
-						State = 1375; Match(T__1);
+						 Match(T__1);
 						State = 1376; expr(0);
 						}
 					}
@@ -6100,7 +5844,7 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 					}
 				}
 
-				State = 1381; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 179:
@@ -6108,14 +5852,14 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new REGEXREPALCE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1383; Match(REGEXREPALCE);
-				State = 1384; Match(T__3);
+				 Match(REGEXREPALCE);
+				 Match(T__3);
 				State = 1385; expr(0);
-				State = 1386; Match(T__1);
+				 Match(T__1);
 				State = 1387; expr(0);
-				State = 1388; Match(T__1);
+				 Match(T__1);
 				State = 1389; expr(0);
-				State = 1390; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 180:
@@ -6123,7 +5867,7 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new ISREGEX_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1392;
+				 
 				_la = TokenStream.LA(1);
 				if ( !(_la==ISREGEX || _la==ISMATCH) ) {
 				ErrorHandler.RecoverInline(this);
@@ -6132,11 +5876,11 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 					ErrorHandler.ReportMatch(this);
 				    Consume();
 				}
-				State = 1393; Match(T__3);
+				 Match(T__3);
 				State = 1394; expr(0);
-				State = 1395; Match(T__1);
+				 Match(T__1);
 				State = 1396; expr(0);
-				State = 1397; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 181:
@@ -6144,9 +5888,9 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new GUID_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1399; Match(GUID);
-				State = 1400; Match(T__3);
-				State = 1401; Match(T__4);
+				 Match(GUID);
+				 Match(T__3);
+				 Match(T__4);
 				}
 				break;
 			case 182:
@@ -6154,20 +5898,20 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new MD5_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1402; Match(MD5);
-				State = 1403; Match(T__3);
+				 Match(MD5);
+				 Match(T__3);
 				State = 1404; expr(0);
-				State = 1407;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 1405; Match(T__1);
+					 Match(T__1);
 					State = 1406; expr(0);
 					}
 				}
 
-				State = 1409; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 183:
@@ -6175,20 +5919,20 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new SHA1_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1411; Match(SHA1);
-				State = 1412; Match(T__3);
+				 Match(SHA1);
+				 Match(T__3);
 				State = 1413; expr(0);
-				State = 1416;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 1414; Match(T__1);
+					 Match(T__1);
 					State = 1415; expr(0);
 					}
 				}
 
-				State = 1418; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 184:
@@ -6196,20 +5940,20 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new SHA256_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1420; Match(SHA256);
-				State = 1421; Match(T__3);
+				 Match(SHA256);
+				 Match(T__3);
 				State = 1422; expr(0);
-				State = 1425;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 1423; Match(T__1);
+					 Match(T__1);
 					State = 1424; expr(0);
 					}
 				}
 
-				State = 1427; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 185:
@@ -6217,20 +5961,20 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new SHA512_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1429; Match(SHA512);
-				State = 1430; Match(T__3);
+				 Match(SHA512);
+				 Match(T__3);
 				State = 1431; expr(0);
-				State = 1434;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 1432; Match(T__1);
+					 Match(T__1);
 					State = 1433; expr(0);
 					}
 				}
 
-				State = 1436; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 186:
@@ -6238,20 +5982,20 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new CRC8_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1438; Match(CRC8);
-				State = 1439; Match(T__3);
+				 Match(CRC8);
+				 Match(T__3);
 				State = 1440; expr(0);
-				State = 1443;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 1441; Match(T__1);
+					 Match(T__1);
 					State = 1442; expr(0);
 					}
 				}
 
-				State = 1445; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 187:
@@ -6259,20 +6003,20 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new CRC16_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1447; Match(CRC16);
-				State = 1448; Match(T__3);
+				 Match(CRC16);
+				 Match(T__3);
 				State = 1449; expr(0);
-				State = 1452;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 1450; Match(T__1);
+					 Match(T__1);
 					State = 1451; expr(0);
 					}
 				}
 
-				State = 1454; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 188:
@@ -6280,20 +6024,20 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new CRC32_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1456; Match(CRC32);
-				State = 1457; Match(T__3);
+				 Match(CRC32);
+				 Match(T__3);
 				State = 1458; expr(0);
-				State = 1461;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 1459; Match(T__1);
+					 Match(T__1);
 					State = 1460; expr(0);
 					}
 				}
 
-				State = 1463; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 189:
@@ -6301,22 +6045,22 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new HMACMD5_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1465; Match(HMACMD5);
-				State = 1466; Match(T__3);
+				 Match(HMACMD5);
+				 Match(T__3);
 				State = 1467; expr(0);
-				State = 1468; Match(T__1);
+				 Match(T__1);
 				State = 1469; expr(0);
-				State = 1472;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 1470; Match(T__1);
+					 Match(T__1);
 					State = 1471; expr(0);
 					}
 				}
 
-				State = 1474; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 190:
@@ -6324,22 +6068,22 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new HMACSHA1_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1476; Match(HMACSHA1);
-				State = 1477; Match(T__3);
+				 Match(HMACSHA1);
+				 Match(T__3);
 				State = 1478; expr(0);
-				State = 1479; Match(T__1);
+				 Match(T__1);
 				State = 1480; expr(0);
-				State = 1483;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 1481; Match(T__1);
+					 Match(T__1);
 					State = 1482; expr(0);
 					}
 				}
 
-				State = 1485; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 191:
@@ -6347,22 +6091,22 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new HMACSHA256_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1487; Match(HMACSHA256);
-				State = 1488; Match(T__3);
+				 Match(HMACSHA256);
+				 Match(T__3);
 				State = 1489; expr(0);
-				State = 1490; Match(T__1);
+				 Match(T__1);
 				State = 1491; expr(0);
-				State = 1494;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 1492; Match(T__1);
+					 Match(T__1);
 					State = 1493; expr(0);
 					}
 				}
 
-				State = 1496; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 192:
@@ -6370,22 +6114,22 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new HMACSHA512_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1498; Match(HMACSHA512);
-				State = 1499; Match(T__3);
+				 Match(HMACSHA512);
+				 Match(T__3);
 				State = 1500; expr(0);
-				State = 1501; Match(T__1);
+				 Match(T__1);
 				State = 1502; expr(0);
-				State = 1505;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 1503; Match(T__1);
+					 Match(T__1);
 					State = 1504; expr(0);
 					}
 				}
 
-				State = 1507; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 193:
@@ -6393,20 +6137,20 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new TRIMSTART_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1509; Match(TRIMSTART);
-				State = 1510; Match(T__3);
+				 Match(TRIMSTART);
+				 Match(T__3);
 				State = 1511; expr(0);
-				State = 1514;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 1512; Match(T__1);
+					 Match(T__1);
 					State = 1513; expr(0);
 					}
 				}
 
-				State = 1516; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 194:
@@ -6414,20 +6158,20 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new TRIMEND_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1518; Match(TRIMEND);
-				State = 1519; Match(T__3);
+				 Match(TRIMEND);
+				 Match(T__3);
 				State = 1520; expr(0);
-				State = 1523;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 1521; Match(T__1);
+					 Match(T__1);
 					State = 1522; expr(0);
 					}
 				}
 
-				State = 1525; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 195:
@@ -6435,24 +6179,24 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new INDEXOF_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1527; Match(INDEXOF);
-				State = 1528; Match(T__3);
+				 Match(INDEXOF);
+				 Match(T__3);
 				State = 1529; expr(0);
-				State = 1530; Match(T__1);
+				 Match(T__1);
 				State = 1531; expr(0);
-				State = 1538;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 1532; Match(T__1);
+					 Match(T__1);
 					State = 1533; expr(0);
-					State = 1536;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 					if (_la==T__1) {
 						{
-						State = 1534; Match(T__1);
+						 Match(T__1);
 						State = 1535; expr(0);
 						}
 					}
@@ -6460,7 +6204,7 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 					}
 				}
 
-				State = 1540; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 196:
@@ -6468,24 +6212,24 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new LASTINDEXOF_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1542; Match(LASTINDEXOF);
-				State = 1543; Match(T__3);
+				 Match(LASTINDEXOF);
+				 Match(T__3);
 				State = 1544; expr(0);
-				State = 1545; Match(T__1);
+				 Match(T__1);
 				State = 1546; expr(0);
-				State = 1553;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 1547; Match(T__1);
+					 Match(T__1);
 					State = 1548; expr(0);
-					State = 1551;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 					if (_la==T__1) {
 						{
-						State = 1549; Match(T__1);
+						 Match(T__1);
 						State = 1550; expr(0);
 						}
 					}
@@ -6493,7 +6237,7 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 					}
 				}
 
-				State = 1555; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 197:
@@ -6501,12 +6245,12 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new SPLIT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1557; Match(SPLIT);
-				State = 1558; Match(T__3);
+				 Match(SPLIT);
+				 Match(T__3);
 				State = 1559; expr(0);
-				State = 1560; Match(T__1);
+				 Match(T__1);
 				State = 1561; expr(0);
-				State = 1562; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 198:
@@ -6514,24 +6258,24 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new JOIN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1564; Match(JOIN);
-				State = 1565; Match(T__3);
+				 Match(JOIN);
+				 Match(T__3);
 				State = 1566; expr(0);
-				State = 1569;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				do {
 					{
 					{
-					State = 1567; Match(T__1);
+					 Match(T__1);
 					State = 1568; expr(0);
 					}
 					}
-					State = 1571;
+					 
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				} while ( _la==T__1 );
-				State = 1573; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 199:
@@ -6539,22 +6283,22 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new SUBSTRING_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1575; Match(SUBSTRING);
-				State = 1576; Match(T__3);
+				 Match(SUBSTRING);
+				 Match(T__3);
 				State = 1577; expr(0);
-				State = 1578; Match(T__1);
+				 Match(T__1);
 				State = 1579; expr(0);
-				State = 1582;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 1580; Match(T__1);
+					 Match(T__1);
 					State = 1581; expr(0);
 					}
 				}
 
-				State = 1584; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 200:
@@ -6562,22 +6306,22 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new STARTSWITH_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1586; Match(STARTSWITH);
-				State = 1587; Match(T__3);
+				 Match(STARTSWITH);
+				 Match(T__3);
 				State = 1588; expr(0);
-				State = 1589; Match(T__1);
+				 Match(T__1);
 				State = 1590; expr(0);
-				State = 1593;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 1591; Match(T__1);
+					 Match(T__1);
 					State = 1592; expr(0);
 					}
 				}
 
-				State = 1595; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 201:
@@ -6585,22 +6329,22 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new ENDSWITH_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1597; Match(ENDSWITH);
-				State = 1598; Match(T__3);
+				 Match(ENDSWITH);
+				 Match(T__3);
 				State = 1599; expr(0);
-				State = 1600; Match(T__1);
+				 Match(T__1);
 				State = 1601; expr(0);
-				State = 1604;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==T__1) {
 					{
-					State = 1602; Match(T__1);
+					 Match(T__1);
 					State = 1603; expr(0);
 					}
 				}
 
-				State = 1606; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 202:
@@ -6608,10 +6352,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new ISNULLOREMPTY_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1608; Match(ISNULLOREMPTY);
-				State = 1609; Match(T__3);
+				 Match(ISNULLOREMPTY);
+				 Match(T__3);
 				State = 1610; expr(0);
-				State = 1611; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 203:
@@ -6619,10 +6363,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new ISNULLORWHITESPACE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1613; Match(ISNULLORWHITESPACE);
-				State = 1614; Match(T__3);
+				 Match(ISNULLORWHITESPACE);
+				 Match(T__3);
 				State = 1615; expr(0);
-				State = 1616; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 204:
@@ -6630,10 +6374,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new TOUPPER_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1618; Match(TOUPPER);
-				State = 1619; Match(T__3);
+				 Match(TOUPPER);
+				 Match(T__3);
 				State = 1620; expr(0);
-				State = 1621; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 205:
@@ -6641,10 +6385,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new TOLOWER_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1623; Match(TOLOWER);
-				State = 1624; Match(T__3);
+				 Match(TOLOWER);
+				 Match(T__3);
 				State = 1625; expr(0);
-				State = 1626; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 206:
@@ -6652,12 +6396,12 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new REMOVESTART_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1628; Match(REMOVESTART);
-				State = 1629; Match(T__3);
+				 Match(REMOVESTART);
+				 Match(T__3);
 				State = 1630; expr(0);
-				State = 1631; Match(T__1);
+				 Match(T__1);
 				State = 1632; expr(0);
-				State = 1633; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 207:
@@ -6665,12 +6409,12 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new REMOVEEND_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1635; Match(REMOVEEND);
-				State = 1636; Match(T__3);
+				 Match(REMOVEEND);
+				 Match(T__3);
 				State = 1637; expr(0);
-				State = 1638; Match(T__1);
+				 Match(T__1);
 				State = 1639; expr(0);
-				State = 1640; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 208:
@@ -6678,10 +6422,10 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new JSON_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1642; Match(JSON);
-				State = 1643; Match(T__3);
+				 Match(JSON);
+				 Match(T__3);
 				State = 1644; expr(0);
-				State = 1645; Match(T__4);
+				 Match(T__4);
 				}
 				break;
 			case 209:
@@ -6689,16 +6433,16 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new NUM_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1648;
+				 
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if (_la==SUB) {
 					{
-					State = 1647; Match(SUB);
+					 Match(SUB);
 					}
 				}
 
-				State = 1650; Match(NUM);
+				 Match(NUM);
 				}
 				break;
 			case 210:
@@ -6706,7 +6450,7 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new STRING_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1651; Match(STRING);
+				 Match(STRING);
 				}
 				break;
 			case 211:
@@ -6714,14 +6458,14 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 				_localctx = new PARAMETER_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1652; Match(T__6);
+				 Match(T__6);
 				State = 1653; parameter();
-				State = 1654; Match(T__7);
+				 Match(T__7);
 				}
 				break;
 			}
 			Context.Stop = TokenStream.LT(-1);
-			State = 2361;
+			 
 			ErrorHandler.Sync(this);
 			_alt = Interpreter.AdaptivePredict(TokenStream,145,Context);
 			while ( _alt!=2 && _alt!=global::Antlr4.Runtime.Atn.ATN.INVALID_ALT_NUMBER ) {
@@ -6730,16 +6474,16 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 						TriggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					State = 2359;
+					 
 					ErrorHandler.Sync(this);
 					switch ( Interpreter.AdaptivePredict(TokenStream,144,Context) ) {
 					case 1:
 						{
 						_localctx = new MulDiv_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1658;
+						 
 						if (!(Precpred(Context, 306))) throw new FailedPredicateException(this, "Precpred(Context, 306)");
-						State = 1659;
+						 
 						((MulDiv_funContext)_localctx).op = TokenStream.LT(1);
 						_la = TokenStream.LA(1);
 						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << MUL) | (1L << DIV) | (1L << MOD_2))) != 0)) ) {
@@ -6756,9 +6500,9 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 						{
 						_localctx = new AddSub_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1661;
+						 
 						if (!(Precpred(Context, 305))) throw new FailedPredicateException(this, "Precpred(Context, 305)");
-						State = 1662;
+						 
 						((AddSub_funContext)_localctx).op = TokenStream.LT(1);
 						_la = TokenStream.LA(1);
 						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << ADD) | (1L << SUB) | (1L << MERGE))) != 0)) ) {
@@ -6775,9 +6519,9 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 						{
 						_localctx = new Judge_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1664;
+						 
 						if (!(Precpred(Context, 304))) throw new FailedPredicateException(this, "Precpred(Context, 304)");
-						State = 1665;
+						 
 						((Judge_funContext)_localctx).op = TokenStream.LT(1);
 						_la = TokenStream.LA(1);
 						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LT) | (1L << LE) | (1L << GT) | (1L << GE) | (1L << ET) | (1L << NT))) != 0)) ) {
@@ -6794,97 +6538,97 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 						{
 						_localctx = new ISNUMBER_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1667;
+						 
 						if (!(Precpred(Context, 298))) throw new FailedPredicateException(this, "Precpred(Context, 298)");
-						State = 1668; Match(T__5);
-						State = 1669; Match(ISNUMBER);
-						State = 1670; Match(T__3);
-						State = 1671; Match(T__4);
+						 Match(T__5);
+						 Match(ISNUMBER);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 5:
 						{
 						_localctx = new ISTEXT_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1672;
+						 
 						if (!(Precpred(Context, 296))) throw new FailedPredicateException(this, "Precpred(Context, 296)");
-						State = 1673; Match(T__5);
-						State = 1674; Match(ISTEXT);
-						State = 1675; Match(T__3);
-						State = 1676; Match(T__4);
+						 Match(T__5);
+						 Match(ISTEXT);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 6:
 						{
 						_localctx = new ISERROR_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1677;
+						 
 						if (!(Precpred(Context, 294))) throw new FailedPredicateException(this, "Precpred(Context, 294)");
-						State = 1678; Match(T__5);
-						State = 1679; Match(ISERROR);
-						State = 1680; Match(T__3);
-						State = 1681; Match(T__4);
+						 Match(T__5);
+						 Match(ISERROR);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 7:
 						{
 						_localctx = new ISNONTEXT_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1682;
+						 
 						if (!(Precpred(Context, 292))) throw new FailedPredicateException(this, "Precpred(Context, 292)");
-						State = 1683; Match(T__5);
-						State = 1684; Match(ISNONTEXT);
-						State = 1685; Match(T__3);
-						State = 1686; Match(T__4);
+						 Match(T__5);
+						 Match(ISNONTEXT);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 8:
 						{
 						_localctx = new ISLOGICAL_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1687;
+						 
 						if (!(Precpred(Context, 290))) throw new FailedPredicateException(this, "Precpred(Context, 290)");
-						State = 1688; Match(T__5);
-						State = 1689; Match(ISLOGICAL);
-						State = 1690; Match(T__3);
-						State = 1691; Match(T__4);
+						 Match(T__5);
+						 Match(ISLOGICAL);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 9:
 						{
 						_localctx = new ISEVEN_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1692;
+						 
 						if (!(Precpred(Context, 288))) throw new FailedPredicateException(this, "Precpred(Context, 288)");
-						State = 1693; Match(T__5);
-						State = 1694; Match(ISEVEN);
-						State = 1695; Match(T__3);
-						State = 1696; Match(T__4);
+						 Match(T__5);
+						 Match(ISEVEN);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 10:
 						{
 						_localctx = new ISODD_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1697;
+						 
 						if (!(Precpred(Context, 286))) throw new FailedPredicateException(this, "Precpred(Context, 286)");
-						State = 1698; Match(T__5);
-						State = 1699; Match(ISODD);
-						State = 1700; Match(T__3);
-						State = 1701; Match(T__4);
+						 Match(T__5);
+						 Match(ISODD);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 11:
 						{
 						_localctx = new DEC2BIN_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1702;
+						 
 						if (!(Precpred(Context, 276))) throw new FailedPredicateException(this, "Precpred(Context, 276)");
-						State = 1703; Match(T__5);
-						State = 1704; Match(DEC2BIN);
+						 Match(T__5);
+						 Match(DEC2BIN);
 						{
-						State = 1705; Match(T__3);
-						State = 1707;
+						 Match(T__3);
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__6) | (1L << SUB) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC) | (1L << INT) | (1L << GCD) | (1L << LCM) | (1L << COMBIN) | (1L << PERMUT) | (1L << DEGREES) | (1L << RADIANS) | (1L << COS) | (1L << COSH))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)) | (1L << (UPPER - 64)) | (1L << (VALUE - 64)) | (1L << (DATEVALUE - 64)) | (1L << (TIMEVALUE - 64)) | (1L << (DATE - 64)) | (1L << (TIME - 64)) | (1L << (NOW - 64)) | (1L << (TODAY - 64)) | (1L << (YEAR - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)) | (1L << (POISSON - 128)) | (1L << (TDIST - 128)) | (1L << (TINV - 128)) | (1L << (WEIBULL - 128)) | (1L << (URLENCODE - 128)) | (1L << (URLDECODE - 128)) | (1L << (HTMLENCODE - 128)) | (1L << (HTMLDECODE - 128)) | (1L << (BASE64TOTEXT - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (ISMATCH - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC8 - 192)) | (1L << (CRC16 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (TOUPPER - 192)) | (1L << (TOLOWER - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (NUM - 192)) | (1L << (STRING - 192)))) != 0)) {
@@ -6893,7 +6637,7 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 							}
 						}
 
-						State = 1709; Match(T__4);
+						 Match(T__4);
 						}
 						}
 						break;
@@ -6901,13 +6645,13 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 						{
 						_localctx = new DEC2HEX_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1710;
+						 
 						if (!(Precpred(Context, 274))) throw new FailedPredicateException(this, "Precpred(Context, 274)");
-						State = 1711; Match(T__5);
-						State = 1712; Match(DEC2HEX);
+						 Match(T__5);
+						 Match(DEC2HEX);
 						{
-						State = 1713; Match(T__3);
-						State = 1715;
+						 Match(T__3);
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__6) | (1L << SUB) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC) | (1L << INT) | (1L << GCD) | (1L << LCM) | (1L << COMBIN) | (1L << PERMUT) | (1L << DEGREES) | (1L << RADIANS) | (1L << COS) | (1L << COSH))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)) | (1L << (UPPER - 64)) | (1L << (VALUE - 64)) | (1L << (DATEVALUE - 64)) | (1L << (TIMEVALUE - 64)) | (1L << (DATE - 64)) | (1L << (TIME - 64)) | (1L << (NOW - 64)) | (1L << (TODAY - 64)) | (1L << (YEAR - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)) | (1L << (POISSON - 128)) | (1L << (TDIST - 128)) | (1L << (TINV - 128)) | (1L << (WEIBULL - 128)) | (1L << (URLENCODE - 128)) | (1L << (URLDECODE - 128)) | (1L << (HTMLENCODE - 128)) | (1L << (HTMLDECODE - 128)) | (1L << (BASE64TOTEXT - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (ISMATCH - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC8 - 192)) | (1L << (CRC16 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (TOUPPER - 192)) | (1L << (TOLOWER - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (NUM - 192)) | (1L << (STRING - 192)))) != 0)) {
@@ -6916,7 +6660,7 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 							}
 						}
 
-						State = 1717; Match(T__4);
+						 Match(T__4);
 						}
 						}
 						break;
@@ -6924,13 +6668,13 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 						{
 						_localctx = new DEC2OCT_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1718;
+						 
 						if (!(Precpred(Context, 272))) throw new FailedPredicateException(this, "Precpred(Context, 272)");
-						State = 1719; Match(T__5);
-						State = 1720; Match(DEC2OCT);
+						 Match(T__5);
+						 Match(DEC2OCT);
 						{
-						State = 1721; Match(T__3);
-						State = 1723;
+						 Match(T__3);
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__6) | (1L << SUB) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC) | (1L << INT) | (1L << GCD) | (1L << LCM) | (1L << COMBIN) | (1L << PERMUT) | (1L << DEGREES) | (1L << RADIANS) | (1L << COS) | (1L << COSH))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)) | (1L << (UPPER - 64)) | (1L << (VALUE - 64)) | (1L << (DATEVALUE - 64)) | (1L << (TIMEVALUE - 64)) | (1L << (DATE - 64)) | (1L << (TIME - 64)) | (1L << (NOW - 64)) | (1L << (TODAY - 64)) | (1L << (YEAR - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)) | (1L << (POISSON - 128)) | (1L << (TDIST - 128)) | (1L << (TINV - 128)) | (1L << (WEIBULL - 128)) | (1L << (URLENCODE - 128)) | (1L << (URLDECODE - 128)) | (1L << (HTMLENCODE - 128)) | (1L << (HTMLDECODE - 128)) | (1L << (BASE64TOTEXT - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (ISMATCH - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC8 - 192)) | (1L << (CRC16 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (TOUPPER - 192)) | (1L << (TOLOWER - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (NUM - 192)) | (1L << (STRING - 192)))) != 0)) {
@@ -6939,7 +6683,7 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 							}
 						}
 
-						State = 1725; Match(T__4);
+						 Match(T__4);
 						}
 						}
 						break;
@@ -6947,13 +6691,13 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 						{
 						_localctx = new HEX2BIN_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1726;
+						 
 						if (!(Precpred(Context, 270))) throw new FailedPredicateException(this, "Precpred(Context, 270)");
-						State = 1727; Match(T__5);
-						State = 1728; Match(HEX2BIN);
+						 Match(T__5);
+						 Match(HEX2BIN);
 						{
-						State = 1729; Match(T__3);
-						State = 1731;
+						 Match(T__3);
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__6) | (1L << SUB) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC) | (1L << INT) | (1L << GCD) | (1L << LCM) | (1L << COMBIN) | (1L << PERMUT) | (1L << DEGREES) | (1L << RADIANS) | (1L << COS) | (1L << COSH))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)) | (1L << (UPPER - 64)) | (1L << (VALUE - 64)) | (1L << (DATEVALUE - 64)) | (1L << (TIMEVALUE - 64)) | (1L << (DATE - 64)) | (1L << (TIME - 64)) | (1L << (NOW - 64)) | (1L << (TODAY - 64)) | (1L << (YEAR - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)) | (1L << (POISSON - 128)) | (1L << (TDIST - 128)) | (1L << (TINV - 128)) | (1L << (WEIBULL - 128)) | (1L << (URLENCODE - 128)) | (1L << (URLDECODE - 128)) | (1L << (HTMLENCODE - 128)) | (1L << (HTMLDECODE - 128)) | (1L << (BASE64TOTEXT - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (ISMATCH - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC8 - 192)) | (1L << (CRC16 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (TOUPPER - 192)) | (1L << (TOLOWER - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (NUM - 192)) | (1L << (STRING - 192)))) != 0)) {
@@ -6962,7 +6706,7 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 							}
 						}
 
-						State = 1733; Match(T__4);
+						 Match(T__4);
 						}
 						}
 						break;
@@ -6970,13 +6714,13 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 						{
 						_localctx = new HEX2DEC_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1734;
+						 
 						if (!(Precpred(Context, 268))) throw new FailedPredicateException(this, "Precpred(Context, 268)");
-						State = 1735; Match(T__5);
-						State = 1736; Match(HEX2DEC);
+						 Match(T__5);
+						 Match(HEX2DEC);
 						{
-						State = 1737; Match(T__3);
-						State = 1738; Match(T__4);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						}
 						break;
@@ -6984,13 +6728,13 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 						{
 						_localctx = new HEX2OCT_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1739;
+						 
 						if (!(Precpred(Context, 266))) throw new FailedPredicateException(this, "Precpred(Context, 266)");
-						State = 1740; Match(T__5);
-						State = 1741; Match(HEX2OCT);
+						 Match(T__5);
+						 Match(HEX2OCT);
 						{
-						State = 1742; Match(T__3);
-						State = 1744;
+						 Match(T__3);
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__6) | (1L << SUB) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC) | (1L << INT) | (1L << GCD) | (1L << LCM) | (1L << COMBIN) | (1L << PERMUT) | (1L << DEGREES) | (1L << RADIANS) | (1L << COS) | (1L << COSH))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)) | (1L << (UPPER - 64)) | (1L << (VALUE - 64)) | (1L << (DATEVALUE - 64)) | (1L << (TIMEVALUE - 64)) | (1L << (DATE - 64)) | (1L << (TIME - 64)) | (1L << (NOW - 64)) | (1L << (TODAY - 64)) | (1L << (YEAR - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)) | (1L << (POISSON - 128)) | (1L << (TDIST - 128)) | (1L << (TINV - 128)) | (1L << (WEIBULL - 128)) | (1L << (URLENCODE - 128)) | (1L << (URLDECODE - 128)) | (1L << (HTMLENCODE - 128)) | (1L << (HTMLDECODE - 128)) | (1L << (BASE64TOTEXT - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (ISMATCH - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC8 - 192)) | (1L << (CRC16 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (TOUPPER - 192)) | (1L << (TOLOWER - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (NUM - 192)) | (1L << (STRING - 192)))) != 0)) {
@@ -6999,7 +6743,7 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 							}
 						}
 
-						State = 1746; Match(T__4);
+						 Match(T__4);
 						}
 						}
 						break;
@@ -7007,13 +6751,13 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 						{
 						_localctx = new OCT2BIN_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1747;
+						 
 						if (!(Precpred(Context, 264))) throw new FailedPredicateException(this, "Precpred(Context, 264)");
-						State = 1748; Match(T__5);
-						State = 1749; Match(OCT2BIN);
+						 Match(T__5);
+						 Match(OCT2BIN);
 						{
-						State = 1750; Match(T__3);
-						State = 1752;
+						 Match(T__3);
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__6) | (1L << SUB) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC) | (1L << INT) | (1L << GCD) | (1L << LCM) | (1L << COMBIN) | (1L << PERMUT) | (1L << DEGREES) | (1L << RADIANS) | (1L << COS) | (1L << COSH))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)) | (1L << (UPPER - 64)) | (1L << (VALUE - 64)) | (1L << (DATEVALUE - 64)) | (1L << (TIMEVALUE - 64)) | (1L << (DATE - 64)) | (1L << (TIME - 64)) | (1L << (NOW - 64)) | (1L << (TODAY - 64)) | (1L << (YEAR - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)) | (1L << (POISSON - 128)) | (1L << (TDIST - 128)) | (1L << (TINV - 128)) | (1L << (WEIBULL - 128)) | (1L << (URLENCODE - 128)) | (1L << (URLDECODE - 128)) | (1L << (HTMLENCODE - 128)) | (1L << (HTMLDECODE - 128)) | (1L << (BASE64TOTEXT - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (ISMATCH - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC8 - 192)) | (1L << (CRC16 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (TOUPPER - 192)) | (1L << (TOLOWER - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (NUM - 192)) | (1L << (STRING - 192)))) != 0)) {
@@ -7022,7 +6766,7 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 							}
 						}
 
-						State = 1754; Match(T__4);
+						 Match(T__4);
 						}
 						}
 						break;
@@ -7030,13 +6774,13 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 						{
 						_localctx = new OCT2DEC_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1755;
+						 
 						if (!(Precpred(Context, 262))) throw new FailedPredicateException(this, "Precpred(Context, 262)");
-						State = 1756; Match(T__5);
-						State = 1757; Match(OCT2DEC);
+						 Match(T__5);
+						 Match(OCT2DEC);
 						{
-						State = 1758; Match(T__3);
-						State = 1759; Match(T__4);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						}
 						break;
@@ -7044,13 +6788,13 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 						{
 						_localctx = new OCT2HEX_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1760;
+						 
 						if (!(Precpred(Context, 260))) throw new FailedPredicateException(this, "Precpred(Context, 260)");
-						State = 1761; Match(T__5);
-						State = 1762; Match(OCT2HEX);
+						 Match(T__5);
+						 Match(OCT2HEX);
 						{
-						State = 1763; Match(T__3);
-						State = 1765;
+						 Match(T__3);
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__6) | (1L << SUB) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC) | (1L << INT) | (1L << GCD) | (1L << LCM) | (1L << COMBIN) | (1L << PERMUT) | (1L << DEGREES) | (1L << RADIANS) | (1L << COS) | (1L << COSH))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)) | (1L << (UPPER - 64)) | (1L << (VALUE - 64)) | (1L << (DATEVALUE - 64)) | (1L << (TIMEVALUE - 64)) | (1L << (DATE - 64)) | (1L << (TIME - 64)) | (1L << (NOW - 64)) | (1L << (TODAY - 64)) | (1L << (YEAR - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)) | (1L << (POISSON - 128)) | (1L << (TDIST - 128)) | (1L << (TINV - 128)) | (1L << (WEIBULL - 128)) | (1L << (URLENCODE - 128)) | (1L << (URLDECODE - 128)) | (1L << (HTMLENCODE - 128)) | (1L << (HTMLDECODE - 128)) | (1L << (BASE64TOTEXT - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (ISMATCH - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC8 - 192)) | (1L << (CRC16 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (TOUPPER - 192)) | (1L << (TOLOWER - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (NUM - 192)) | (1L << (STRING - 192)))) != 0)) {
@@ -7059,7 +6803,7 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 							}
 						}
 
-						State = 1767; Match(T__4);
+						 Match(T__4);
 						}
 						}
 						break;
@@ -7067,13 +6811,13 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 						{
 						_localctx = new BIN2OCT_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1768;
+						 
 						if (!(Precpred(Context, 258))) throw new FailedPredicateException(this, "Precpred(Context, 258)");
-						State = 1769; Match(T__5);
-						State = 1770; Match(BIN2OCT);
+						 Match(T__5);
+						 Match(BIN2OCT);
 						{
-						State = 1771; Match(T__3);
-						State = 1773;
+						 Match(T__3);
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__6) | (1L << SUB) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC) | (1L << INT) | (1L << GCD) | (1L << LCM) | (1L << COMBIN) | (1L << PERMUT) | (1L << DEGREES) | (1L << RADIANS) | (1L << COS) | (1L << COSH))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)) | (1L << (UPPER - 64)) | (1L << (VALUE - 64)) | (1L << (DATEVALUE - 64)) | (1L << (TIMEVALUE - 64)) | (1L << (DATE - 64)) | (1L << (TIME - 64)) | (1L << (NOW - 64)) | (1L << (TODAY - 64)) | (1L << (YEAR - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)) | (1L << (POISSON - 128)) | (1L << (TDIST - 128)) | (1L << (TINV - 128)) | (1L << (WEIBULL - 128)) | (1L << (URLENCODE - 128)) | (1L << (URLDECODE - 128)) | (1L << (HTMLENCODE - 128)) | (1L << (HTMLDECODE - 128)) | (1L << (BASE64TOTEXT - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (ISMATCH - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC8 - 192)) | (1L << (CRC16 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (TOUPPER - 192)) | (1L << (TOLOWER - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (NUM - 192)) | (1L << (STRING - 192)))) != 0)) {
@@ -7082,7 +6826,7 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 							}
 						}
 
-						State = 1775; Match(T__4);
+						 Match(T__4);
 						}
 						}
 						break;
@@ -7090,13 +6834,13 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 						{
 						_localctx = new BIN2DEC_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1776;
+						 
 						if (!(Precpred(Context, 256))) throw new FailedPredicateException(this, "Precpred(Context, 256)");
-						State = 1777; Match(T__5);
-						State = 1778; Match(BIN2DEC);
+						 Match(T__5);
+						 Match(BIN2DEC);
 						{
-						State = 1779; Match(T__3);
-						State = 1780; Match(T__4);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						}
 						break;
@@ -7104,13 +6848,13 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 						{
 						_localctx = new BIN2HEX_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1781;
+						 
 						if (!(Precpred(Context, 254))) throw new FailedPredicateException(this, "Precpred(Context, 254)");
-						State = 1782; Match(T__5);
-						State = 1783; Match(BIN2HEX);
+						 Match(T__5);
+						 Match(BIN2HEX);
 						{
-						State = 1784; Match(T__3);
-						State = 1786;
+						 Match(T__3);
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__6) | (1L << SUB) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC) | (1L << INT) | (1L << GCD) | (1L << LCM) | (1L << COMBIN) | (1L << PERMUT) | (1L << DEGREES) | (1L << RADIANS) | (1L << COS) | (1L << COSH))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)) | (1L << (UPPER - 64)) | (1L << (VALUE - 64)) | (1L << (DATEVALUE - 64)) | (1L << (TIMEVALUE - 64)) | (1L << (DATE - 64)) | (1L << (TIME - 64)) | (1L << (NOW - 64)) | (1L << (TODAY - 64)) | (1L << (YEAR - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)) | (1L << (POISSON - 128)) | (1L << (TDIST - 128)) | (1L << (TINV - 128)) | (1L << (WEIBULL - 128)) | (1L << (URLENCODE - 128)) | (1L << (URLDECODE - 128)) | (1L << (HTMLENCODE - 128)) | (1L << (HTMLDECODE - 128)) | (1L << (BASE64TOTEXT - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (ISMATCH - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC8 - 192)) | (1L << (CRC16 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (TOUPPER - 192)) | (1L << (TOLOWER - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (NUM - 192)) | (1L << (STRING - 192)))) != 0)) {
@@ -7119,7 +6863,7 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 							}
 						}
 
-						State = 1788; Match(T__4);
+						 Match(T__4);
 						}
 						}
 						break;
@@ -7127,166 +6871,166 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 						{
 						_localctx = new INT_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1789;
+						 
 						if (!(Precpred(Context, 246))) throw new FailedPredicateException(this, "Precpred(Context, 246)");
-						State = 1790; Match(T__5);
-						State = 1791; Match(INT);
-						State = 1792; Match(T__3);
-						State = 1793; Match(T__4);
+						 Match(T__5);
+						 Match(INT);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 24:
 						{
 						_localctx = new ASC_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1794;
+						 
 						if (!(Precpred(Context, 204))) throw new FailedPredicateException(this, "Precpred(Context, 204)");
-						State = 1795; Match(T__5);
-						State = 1796; Match(ASC);
-						State = 1797; Match(T__3);
-						State = 1798; Match(T__4);
+						 Match(T__5);
+						 Match(ASC);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 25:
 						{
 						_localctx = new JIS_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1799;
+						 
 						if (!(Precpred(Context, 202))) throw new FailedPredicateException(this, "Precpred(Context, 202)");
-						State = 1800; Match(T__5);
-						State = 1801; Match(JIS);
-						State = 1802; Match(T__3);
-						State = 1803; Match(T__4);
+						 Match(T__5);
+						 Match(JIS);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 26:
 						{
 						_localctx = new CHAR_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1804;
+						 
 						if (!(Precpred(Context, 200))) throw new FailedPredicateException(this, "Precpred(Context, 200)");
-						State = 1805; Match(T__5);
-						State = 1806; Match(CHAR);
-						State = 1807; Match(T__3);
-						State = 1808; Match(T__4);
+						 Match(T__5);
+						 Match(CHAR);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 27:
 						{
 						_localctx = new CLEAN_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1809;
+						 
 						if (!(Precpred(Context, 198))) throw new FailedPredicateException(this, "Precpred(Context, 198)");
-						State = 1810; Match(T__5);
-						State = 1811; Match(CLEAN);
-						State = 1812; Match(T__3);
-						State = 1813; Match(T__4);
+						 Match(T__5);
+						 Match(CLEAN);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 28:
 						{
 						_localctx = new CODE_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1814;
+						 
 						if (!(Precpred(Context, 196))) throw new FailedPredicateException(this, "Precpred(Context, 196)");
-						State = 1815; Match(T__5);
-						State = 1816; Match(CODE);
-						State = 1817; Match(T__3);
-						State = 1818; Match(T__4);
+						 Match(T__5);
+						 Match(CODE);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 29:
 						{
 						_localctx = new CONCATENATE_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1819;
+						 
 						if (!(Precpred(Context, 194))) throw new FailedPredicateException(this, "Precpred(Context, 194)");
-						State = 1820; Match(T__5);
-						State = 1821; Match(CONCATENATE);
-						State = 1822; Match(T__3);
-						State = 1831;
+						 Match(T__5);
+						 Match(CONCATENATE);
+						 Match(T__3);
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__6) | (1L << SUB) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC) | (1L << INT) | (1L << GCD) | (1L << LCM) | (1L << COMBIN) | (1L << PERMUT) | (1L << DEGREES) | (1L << RADIANS) | (1L << COS) | (1L << COSH))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)) | (1L << (UPPER - 64)) | (1L << (VALUE - 64)) | (1L << (DATEVALUE - 64)) | (1L << (TIMEVALUE - 64)) | (1L << (DATE - 64)) | (1L << (TIME - 64)) | (1L << (NOW - 64)) | (1L << (TODAY - 64)) | (1L << (YEAR - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)) | (1L << (POISSON - 128)) | (1L << (TDIST - 128)) | (1L << (TINV - 128)) | (1L << (WEIBULL - 128)) | (1L << (URLENCODE - 128)) | (1L << (URLDECODE - 128)) | (1L << (HTMLENCODE - 128)) | (1L << (HTMLDECODE - 128)) | (1L << (BASE64TOTEXT - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (ISMATCH - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC8 - 192)) | (1L << (CRC16 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (TOUPPER - 192)) | (1L << (TOLOWER - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (NUM - 192)) | (1L << (STRING - 192)))) != 0)) {
 							{
 							State = 1823; expr(0);
-							State = 1828;
+							 
 							ErrorHandler.Sync(this);
 							_la = TokenStream.LA(1);
 							while (_la==T__1) {
 								{
 								{
-								State = 1824; Match(T__1);
+								 Match(T__1);
 								State = 1825; expr(0);
 								}
 								}
-								State = 1830;
+								 
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 							}
 							}
 						}
 
-						State = 1833; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 30:
 						{
 						_localctx = new EXACT_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1834;
+						 
 						if (!(Precpred(Context, 192))) throw new FailedPredicateException(this, "Precpred(Context, 192)");
-						State = 1835; Match(T__5);
-						State = 1836; Match(EXACT);
-						State = 1837; Match(T__3);
+						 Match(T__5);
+						 Match(EXACT);
+						 Match(T__3);
 						State = 1838; expr(0);
-						State = 1839; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 31:
 						{
 						_localctx = new FIND_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1841;
+						 
 						if (!(Precpred(Context, 190))) throw new FailedPredicateException(this, "Precpred(Context, 190)");
-						State = 1842; Match(T__5);
-						State = 1843; Match(FIND);
-						State = 1844; Match(T__3);
+						 Match(T__5);
+						 Match(FIND);
+						 Match(T__3);
 						State = 1845; expr(0);
-						State = 1848;
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if (_la==T__1) {
 							{
-							State = 1846; Match(T__1);
+							 Match(T__1);
 							State = 1847; expr(0);
 							}
 						}
 
-						State = 1850; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 32:
 						{
 						_localctx = new FIXED_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1852;
+						 
 						if (!(Precpred(Context, 188))) throw new FailedPredicateException(this, "Precpred(Context, 188)");
-						State = 1853; Match(T__5);
-						State = 1854; Match(FIXED);
-						State = 1855; Match(T__3);
-						State = 1861;
+						 Match(T__5);
+						 Match(FIXED);
+						 Match(T__3);
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__6) | (1L << SUB) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC) | (1L << INT) | (1L << GCD) | (1L << LCM) | (1L << COMBIN) | (1L << PERMUT) | (1L << DEGREES) | (1L << RADIANS) | (1L << COS) | (1L << COSH))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)) | (1L << (UPPER - 64)) | (1L << (VALUE - 64)) | (1L << (DATEVALUE - 64)) | (1L << (TIMEVALUE - 64)) | (1L << (DATE - 64)) | (1L << (TIME - 64)) | (1L << (NOW - 64)) | (1L << (TODAY - 64)) | (1L << (YEAR - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)) | (1L << (POISSON - 128)) | (1L << (TDIST - 128)) | (1L << (TINV - 128)) | (1L << (WEIBULL - 128)) | (1L << (URLENCODE - 128)) | (1L << (URLDECODE - 128)) | (1L << (HTMLENCODE - 128)) | (1L << (HTMLDECODE - 128)) | (1L << (BASE64TOTEXT - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (ISMATCH - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC8 - 192)) | (1L << (CRC16 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (TOUPPER - 192)) | (1L << (TOLOWER - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (NUM - 192)) | (1L << (STRING - 192)))) != 0)) {
 							{
 							State = 1856; expr(0);
-							State = 1859;
+							 
 							ErrorHandler.Sync(this);
 							_la = TokenStream.LA(1);
 							if (_la==T__1) {
 								{
-								State = 1857; Match(T__1);
+								 Match(T__1);
 								State = 1858; expr(0);
 								}
 							}
@@ -7294,19 +7038,19 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 							}
 						}
 
-						State = 1863; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 33:
 						{
 						_localctx = new LEFT_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1864;
+						 
 						if (!(Precpred(Context, 186))) throw new FailedPredicateException(this, "Precpred(Context, 186)");
-						State = 1865; Match(T__5);
-						State = 1866; Match(LEFT);
-						State = 1867; Match(T__3);
-						State = 1869;
+						 Match(T__5);
+						 Match(LEFT);
+						 Match(T__3);
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__6) | (1L << SUB) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC) | (1L << INT) | (1L << GCD) | (1L << LCM) | (1L << COMBIN) | (1L << PERMUT) | (1L << DEGREES) | (1L << RADIANS) | (1L << COS) | (1L << COSH))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)) | (1L << (UPPER - 64)) | (1L << (VALUE - 64)) | (1L << (DATEVALUE - 64)) | (1L << (TIMEVALUE - 64)) | (1L << (DATE - 64)) | (1L << (TIME - 64)) | (1L << (NOW - 64)) | (1L << (TODAY - 64)) | (1L << (YEAR - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)) | (1L << (POISSON - 128)) | (1L << (TDIST - 128)) | (1L << (TINV - 128)) | (1L << (WEIBULL - 128)) | (1L << (URLENCODE - 128)) | (1L << (URLDECODE - 128)) | (1L << (HTMLENCODE - 128)) | (1L << (HTMLDECODE - 128)) | (1L << (BASE64TOTEXT - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (ISMATCH - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC8 - 192)) | (1L << (CRC16 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (TOUPPER - 192)) | (1L << (TOLOWER - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (NUM - 192)) | (1L << (STRING - 192)))) != 0)) {
@@ -7315,108 +7059,108 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 							}
 						}
 
-						State = 1871; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 34:
 						{
 						_localctx = new LEN_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1872;
+						 
 						if (!(Precpred(Context, 184))) throw new FailedPredicateException(this, "Precpred(Context, 184)");
-						State = 1873; Match(T__5);
-						State = 1874; Match(LEN);
-						State = 1875; Match(T__3);
-						State = 1876; Match(T__4);
+						 Match(T__5);
+						 Match(LEN);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 35:
 						{
 						_localctx = new LOWER_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1877;
+						 
 						if (!(Precpred(Context, 182))) throw new FailedPredicateException(this, "Precpred(Context, 182)");
-						State = 1878; Match(T__5);
-						State = 1879; Match(LOWER);
-						State = 1880; Match(T__3);
-						State = 1881; Match(T__4);
+						 Match(T__5);
+						 Match(LOWER);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 36:
 						{
 						_localctx = new MID_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1882;
+						 
 						if (!(Precpred(Context, 180))) throw new FailedPredicateException(this, "Precpred(Context, 180)");
-						State = 1883; Match(T__5);
-						State = 1884; Match(MID);
-						State = 1885; Match(T__3);
+						 Match(T__5);
+						 Match(MID);
+						 Match(T__3);
 						State = 1886; expr(0);
-						State = 1887; Match(T__1);
+						 Match(T__1);
 						State = 1888; expr(0);
-						State = 1889; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 37:
 						{
 						_localctx = new PROPER_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1891;
+						 
 						if (!(Precpred(Context, 178))) throw new FailedPredicateException(this, "Precpred(Context, 178)");
-						State = 1892; Match(T__5);
-						State = 1893; Match(PROPER);
-						State = 1894; Match(T__3);
-						State = 1895; Match(T__4);
+						 Match(T__5);
+						 Match(PROPER);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 38:
 						{
 						_localctx = new REPLACE_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1896;
+						 
 						if (!(Precpred(Context, 176))) throw new FailedPredicateException(this, "Precpred(Context, 176)");
-						State = 1897; Match(T__5);
-						State = 1898; Match(REPLACE);
-						State = 1899; Match(T__3);
+						 Match(T__5);
+						 Match(REPLACE);
+						 Match(T__3);
 						State = 1900; expr(0);
-						State = 1901; Match(T__1);
+						 Match(T__1);
 						State = 1902; expr(0);
-						State = 1905;
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if (_la==T__1) {
 							{
-							State = 1903; Match(T__1);
+							 Match(T__1);
 							State = 1904; expr(0);
 							}
 						}
 
-						State = 1907; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 39:
 						{
 						_localctx = new REPT_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1909;
+						 
 						if (!(Precpred(Context, 174))) throw new FailedPredicateException(this, "Precpred(Context, 174)");
-						State = 1910; Match(T__5);
-						State = 1911; Match(REPT);
-						State = 1912; Match(T__3);
+						 Match(T__5);
+						 Match(REPT);
+						 Match(T__3);
 						State = 1913; expr(0);
-						State = 1914; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 40:
 						{
 						_localctx = new RIGHT_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1916;
+						 
 						if (!(Precpred(Context, 172))) throw new FailedPredicateException(this, "Precpred(Context, 172)");
-						State = 1917; Match(T__5);
-						State = 1918; Match(RIGHT);
-						State = 1919; Match(T__3);
-						State = 1921;
+						 Match(T__5);
+						 Match(RIGHT);
+						 Match(T__3);
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__6) | (1L << SUB) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC) | (1L << INT) | (1L << GCD) | (1L << LCM) | (1L << COMBIN) | (1L << PERMUT) | (1L << DEGREES) | (1L << RADIANS) | (1L << COS) | (1L << COSH))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)) | (1L << (UPPER - 64)) | (1L << (VALUE - 64)) | (1L << (DATEVALUE - 64)) | (1L << (TIMEVALUE - 64)) | (1L << (DATE - 64)) | (1L << (TIME - 64)) | (1L << (NOW - 64)) | (1L << (TODAY - 64)) | (1L << (YEAR - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)) | (1L << (POISSON - 128)) | (1L << (TDIST - 128)) | (1L << (TINV - 128)) | (1L << (WEIBULL - 128)) | (1L << (URLENCODE - 128)) | (1L << (URLDECODE - 128)) | (1L << (HTMLENCODE - 128)) | (1L << (HTMLDECODE - 128)) | (1L << (BASE64TOTEXT - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (ISMATCH - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC8 - 192)) | (1L << (CRC16 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (TOUPPER - 192)) | (1L << (TOLOWER - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (NUM - 192)) | (1L << (STRING - 192)))) != 0)) {
@@ -7425,169 +7169,169 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 							}
 						}
 
-						State = 1923; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 41:
 						{
 						_localctx = new RMB_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1924;
+						 
 						if (!(Precpred(Context, 170))) throw new FailedPredicateException(this, "Precpred(Context, 170)");
-						State = 1925; Match(T__5);
-						State = 1926; Match(RMB);
-						State = 1927; Match(T__3);
-						State = 1928; Match(T__4);
+						 Match(T__5);
+						 Match(RMB);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 42:
 						{
 						_localctx = new SEARCH_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1929;
+						 
 						if (!(Precpred(Context, 168))) throw new FailedPredicateException(this, "Precpred(Context, 168)");
-						State = 1930; Match(T__5);
-						State = 1931; Match(SEARCH);
-						State = 1932; Match(T__3);
+						 Match(T__5);
+						 Match(SEARCH);
+						 Match(T__3);
 						State = 1933; expr(0);
-						State = 1936;
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if (_la==T__1) {
 							{
-							State = 1934; Match(T__1);
+							 Match(T__1);
 							State = 1935; expr(0);
 							}
 						}
 
-						State = 1938; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 43:
 						{
 						_localctx = new SUBSTITUTE_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1940;
+						 
 						if (!(Precpred(Context, 166))) throw new FailedPredicateException(this, "Precpred(Context, 166)");
-						State = 1941; Match(T__5);
-						State = 1942; Match(SUBSTITUTE);
-						State = 1943; Match(T__3);
+						 Match(T__5);
+						 Match(SUBSTITUTE);
+						 Match(T__3);
 						State = 1944; expr(0);
-						State = 1945; Match(T__1);
+						 Match(T__1);
 						State = 1946; expr(0);
-						State = 1949;
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if (_la==T__1) {
 							{
-							State = 1947; Match(T__1);
+							 Match(T__1);
 							State = 1948; expr(0);
 							}
 						}
 
-						State = 1951; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 44:
 						{
 						_localctx = new T_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1953;
+						 
 						if (!(Precpred(Context, 164))) throw new FailedPredicateException(this, "Precpred(Context, 164)");
-						State = 1954; Match(T__5);
-						State = 1955; Match(T);
-						State = 1956; Match(T__3);
-						State = 1957; Match(T__4);
+						 Match(T__5);
+						 Match(T);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 45:
 						{
 						_localctx = new TEXT_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1958;
+						 
 						if (!(Precpred(Context, 162))) throw new FailedPredicateException(this, "Precpred(Context, 162)");
-						State = 1959; Match(T__5);
-						State = 1960; Match(TEXT);
-						State = 1961; Match(T__3);
+						 Match(T__5);
+						 Match(TEXT);
+						 Match(T__3);
 						State = 1962; expr(0);
-						State = 1963; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 46:
 						{
 						_localctx = new TRIM_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1965;
+						 
 						if (!(Precpred(Context, 160))) throw new FailedPredicateException(this, "Precpred(Context, 160)");
-						State = 1966; Match(T__5);
-						State = 1967; Match(TRIM);
-						State = 1968; Match(T__3);
-						State = 1969; Match(T__4);
+						 Match(T__5);
+						 Match(TRIM);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 47:
 						{
 						_localctx = new UPPER_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1970;
+						 
 						if (!(Precpred(Context, 158))) throw new FailedPredicateException(this, "Precpred(Context, 158)");
-						State = 1971; Match(T__5);
-						State = 1972; Match(UPPER);
-						State = 1973; Match(T__3);
-						State = 1974; Match(T__4);
+						 Match(T__5);
+						 Match(UPPER);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 48:
 						{
 						_localctx = new VALUE_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1975;
+						 
 						if (!(Precpred(Context, 156))) throw new FailedPredicateException(this, "Precpred(Context, 156)");
-						State = 1976; Match(T__5);
-						State = 1977; Match(VALUE);
-						State = 1978; Match(T__3);
-						State = 1979; Match(T__4);
+						 Match(T__5);
+						 Match(VALUE);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 49:
 						{
 						_localctx = new DATEVALUE_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1980;
+						 
 						if (!(Precpred(Context, 154))) throw new FailedPredicateException(this, "Precpred(Context, 154)");
-						State = 1981; Match(T__5);
-						State = 1982; Match(DATEVALUE);
-						State = 1983; Match(T__3);
-						State = 1984; Match(T__4);
+						 Match(T__5);
+						 Match(DATEVALUE);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 50:
 						{
 						_localctx = new TIMEVALUE_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1985;
+						 
 						if (!(Precpred(Context, 152))) throw new FailedPredicateException(this, "Precpred(Context, 152)");
-						State = 1986; Match(T__5);
-						State = 1987; Match(TIMEVALUE);
-						State = 1988; Match(T__3);
-						State = 1989; Match(T__4);
+						 Match(T__5);
+						 Match(TIMEVALUE);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 51:
 						{
 						_localctx = new YEAR_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1990;
+						 
 						if (!(Precpred(Context, 146))) throw new FailedPredicateException(this, "Precpred(Context, 146)");
-						State = 1991; Match(T__5);
-						State = 1992; Match(YEAR);
-						State = 1995;
+						 Match(T__5);
+						 Match(YEAR);
+						 
 						ErrorHandler.Sync(this);
 						switch ( Interpreter.AdaptivePredict(TokenStream,111,Context) ) {
 						case 1:
 							{
-							State = 1993; Match(T__3);
-							State = 1994; Match(T__4);
+							 Match(T__3);
+							 Match(T__4);
 							}
 							break;
 						}
@@ -7597,17 +7341,17 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 						{
 						_localctx = new MONTH_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1997;
+						 
 						if (!(Precpred(Context, 144))) throw new FailedPredicateException(this, "Precpred(Context, 144)");
-						State = 1998; Match(T__5);
-						State = 1999; Match(MONTH);
-						State = 2002;
+						 Match(T__5);
+						 Match(MONTH);
+						 
 						ErrorHandler.Sync(this);
 						switch ( Interpreter.AdaptivePredict(TokenStream,112,Context) ) {
 						case 1:
 							{
-							State = 2000; Match(T__3);
-							State = 2001; Match(T__4);
+							 Match(T__3);
+							 Match(T__4);
 							}
 							break;
 						}
@@ -7617,17 +7361,17 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 						{
 						_localctx = new DAY_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2004;
+						 
 						if (!(Precpred(Context, 142))) throw new FailedPredicateException(this, "Precpred(Context, 142)");
-						State = 2005; Match(T__5);
-						State = 2006; Match(DAY);
-						State = 2009;
+						 Match(T__5);
+						 Match(DAY);
+						 
 						ErrorHandler.Sync(this);
 						switch ( Interpreter.AdaptivePredict(TokenStream,113,Context) ) {
 						case 1:
 							{
-							State = 2007; Match(T__3);
-							State = 2008; Match(T__4);
+							 Match(T__3);
+							 Match(T__4);
 							}
 							break;
 						}
@@ -7637,17 +7381,17 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 						{
 						_localctx = new HOUR_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2011;
+						 
 						if (!(Precpred(Context, 140))) throw new FailedPredicateException(this, "Precpred(Context, 140)");
-						State = 2012; Match(T__5);
-						State = 2013; Match(HOUR);
-						State = 2016;
+						 Match(T__5);
+						 Match(HOUR);
+						 
 						ErrorHandler.Sync(this);
 						switch ( Interpreter.AdaptivePredict(TokenStream,114,Context) ) {
 						case 1:
 							{
-							State = 2014; Match(T__3);
-							State = 2015; Match(T__4);
+							 Match(T__3);
+							 Match(T__4);
 							}
 							break;
 						}
@@ -7657,17 +7401,17 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 						{
 						_localctx = new MINUTE_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2018;
+						 
 						if (!(Precpred(Context, 138))) throw new FailedPredicateException(this, "Precpred(Context, 138)");
-						State = 2019; Match(T__5);
-						State = 2020; Match(MINUTE);
-						State = 2023;
+						 Match(T__5);
+						 Match(MINUTE);
+						 
 						ErrorHandler.Sync(this);
 						switch ( Interpreter.AdaptivePredict(TokenStream,115,Context) ) {
 						case 1:
 							{
-							State = 2021; Match(T__3);
-							State = 2022; Match(T__4);
+							 Match(T__3);
+							 Match(T__4);
 							}
 							break;
 						}
@@ -7677,17 +7421,17 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 						{
 						_localctx = new SECOND_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2025;
+						 
 						if (!(Precpred(Context, 136))) throw new FailedPredicateException(this, "Precpred(Context, 136)");
-						State = 2026; Match(T__5);
-						State = 2027; Match(SECOND);
-						State = 2030;
+						 Match(T__5);
+						 Match(SECOND);
+						 
 						ErrorHandler.Sync(this);
 						switch ( Interpreter.AdaptivePredict(TokenStream,116,Context) ) {
 						case 1:
 							{
-							State = 2028; Match(T__3);
-							State = 2029; Match(T__4);
+							 Match(T__3);
+							 Match(T__4);
 							}
 							break;
 						}
@@ -7697,60 +7441,60 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 						{
 						_localctx = new URLENCODE_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2032;
+						 
 						if (!(Precpred(Context, 80))) throw new FailedPredicateException(this, "Precpred(Context, 80)");
-						State = 2033; Match(T__5);
-						State = 2034; Match(URLENCODE);
-						State = 2035; Match(T__3);
-						State = 2036; Match(T__4);
+						 Match(T__5);
+						 Match(URLENCODE);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 58:
 						{
 						_localctx = new URLDECODE_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2037;
+						 
 						if (!(Precpred(Context, 78))) throw new FailedPredicateException(this, "Precpred(Context, 78)");
-						State = 2038; Match(T__5);
-						State = 2039; Match(URLDECODE);
-						State = 2040; Match(T__3);
-						State = 2041; Match(T__4);
+						 Match(T__5);
+						 Match(URLDECODE);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 59:
 						{
 						_localctx = new HTMLENCODE_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2042;
+						 
 						if (!(Precpred(Context, 76))) throw new FailedPredicateException(this, "Precpred(Context, 76)");
-						State = 2043; Match(T__5);
-						State = 2044; Match(HTMLENCODE);
-						State = 2045; Match(T__3);
-						State = 2046; Match(T__4);
+						 Match(T__5);
+						 Match(HTMLENCODE);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 60:
 						{
 						_localctx = new HTMLDECODE_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2047;
+						 
 						if (!(Precpred(Context, 74))) throw new FailedPredicateException(this, "Precpred(Context, 74)");
-						State = 2048; Match(T__5);
-						State = 2049; Match(HTMLDECODE);
-						State = 2050; Match(T__3);
-						State = 2051; Match(T__4);
+						 Match(T__5);
+						 Match(HTMLDECODE);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 61:
 						{
 						_localctx = new BASE64TOTEXT_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2052;
+						 
 						if (!(Precpred(Context, 72))) throw new FailedPredicateException(this, "Precpred(Context, 72)");
-						State = 2053; Match(T__5);
-						State = 2054; Match(BASE64TOTEXT);
-						State = 2055; Match(T__3);
-						State = 2057;
+						 Match(T__5);
+						 Match(BASE64TOTEXT);
+						 Match(T__3);
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__6) | (1L << SUB) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC) | (1L << INT) | (1L << GCD) | (1L << LCM) | (1L << COMBIN) | (1L << PERMUT) | (1L << DEGREES) | (1L << RADIANS) | (1L << COS) | (1L << COSH))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)) | (1L << (UPPER - 64)) | (1L << (VALUE - 64)) | (1L << (DATEVALUE - 64)) | (1L << (TIMEVALUE - 64)) | (1L << (DATE - 64)) | (1L << (TIME - 64)) | (1L << (NOW - 64)) | (1L << (TODAY - 64)) | (1L << (YEAR - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)) | (1L << (POISSON - 128)) | (1L << (TDIST - 128)) | (1L << (TINV - 128)) | (1L << (WEIBULL - 128)) | (1L << (URLENCODE - 128)) | (1L << (URLDECODE - 128)) | (1L << (HTMLENCODE - 128)) | (1L << (HTMLDECODE - 128)) | (1L << (BASE64TOTEXT - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (ISMATCH - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC8 - 192)) | (1L << (CRC16 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (TOUPPER - 192)) | (1L << (TOLOWER - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (NUM - 192)) | (1L << (STRING - 192)))) != 0)) {
@@ -7759,19 +7503,19 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 							}
 						}
 
-						State = 2059; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 62:
 						{
 						_localctx = new BASE64URLTOTEXT_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2060;
+						 
 						if (!(Precpred(Context, 70))) throw new FailedPredicateException(this, "Precpred(Context, 70)");
-						State = 2061; Match(T__5);
-						State = 2062; Match(BASE64URLTOTEXT);
-						State = 2063; Match(T__3);
-						State = 2065;
+						 Match(T__5);
+						 Match(BASE64URLTOTEXT);
+						 Match(T__3);
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__6) | (1L << SUB) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC) | (1L << INT) | (1L << GCD) | (1L << LCM) | (1L << COMBIN) | (1L << PERMUT) | (1L << DEGREES) | (1L << RADIANS) | (1L << COS) | (1L << COSH))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)) | (1L << (UPPER - 64)) | (1L << (VALUE - 64)) | (1L << (DATEVALUE - 64)) | (1L << (TIMEVALUE - 64)) | (1L << (DATE - 64)) | (1L << (TIME - 64)) | (1L << (NOW - 64)) | (1L << (TODAY - 64)) | (1L << (YEAR - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)) | (1L << (POISSON - 128)) | (1L << (TDIST - 128)) | (1L << (TINV - 128)) | (1L << (WEIBULL - 128)) | (1L << (URLENCODE - 128)) | (1L << (URLDECODE - 128)) | (1L << (HTMLENCODE - 128)) | (1L << (HTMLDECODE - 128)) | (1L << (BASE64TOTEXT - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (ISMATCH - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC8 - 192)) | (1L << (CRC16 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (TOUPPER - 192)) | (1L << (TOLOWER - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (NUM - 192)) | (1L << (STRING - 192)))) != 0)) {
@@ -7780,19 +7524,19 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 							}
 						}
 
-						State = 2067; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 63:
 						{
 						_localctx = new TEXTTOBASE64_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2068;
+						 
 						if (!(Precpred(Context, 68))) throw new FailedPredicateException(this, "Precpred(Context, 68)");
-						State = 2069; Match(T__5);
-						State = 2070; Match(TEXTTOBASE64);
-						State = 2071; Match(T__3);
-						State = 2073;
+						 Match(T__5);
+						 Match(TEXTTOBASE64);
+						 Match(T__3);
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__6) | (1L << SUB) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC) | (1L << INT) | (1L << GCD) | (1L << LCM) | (1L << COMBIN) | (1L << PERMUT) | (1L << DEGREES) | (1L << RADIANS) | (1L << COS) | (1L << COSH))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)) | (1L << (UPPER - 64)) | (1L << (VALUE - 64)) | (1L << (DATEVALUE - 64)) | (1L << (TIMEVALUE - 64)) | (1L << (DATE - 64)) | (1L << (TIME - 64)) | (1L << (NOW - 64)) | (1L << (TODAY - 64)) | (1L << (YEAR - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)) | (1L << (POISSON - 128)) | (1L << (TDIST - 128)) | (1L << (TINV - 128)) | (1L << (WEIBULL - 128)) | (1L << (URLENCODE - 128)) | (1L << (URLDECODE - 128)) | (1L << (HTMLENCODE - 128)) | (1L << (HTMLDECODE - 128)) | (1L << (BASE64TOTEXT - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (ISMATCH - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC8 - 192)) | (1L << (CRC16 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (TOUPPER - 192)) | (1L << (TOLOWER - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (NUM - 192)) | (1L << (STRING - 192)))) != 0)) {
@@ -7801,19 +7545,19 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 							}
 						}
 
-						State = 2075; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 64:
 						{
 						_localctx = new TEXTTOBASE64URL_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2076;
+						 
 						if (!(Precpred(Context, 66))) throw new FailedPredicateException(this, "Precpred(Context, 66)");
-						State = 2077; Match(T__5);
-						State = 2078; Match(TEXTTOBASE64URL);
-						State = 2079; Match(T__3);
-						State = 2081;
+						 Match(T__5);
+						 Match(TEXTTOBASE64URL);
+						 Match(T__3);
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__6) | (1L << SUB) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC) | (1L << INT) | (1L << GCD) | (1L << LCM) | (1L << COMBIN) | (1L << PERMUT) | (1L << DEGREES) | (1L << RADIANS) | (1L << COS) | (1L << COSH))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)) | (1L << (UPPER - 64)) | (1L << (VALUE - 64)) | (1L << (DATEVALUE - 64)) | (1L << (TIMEVALUE - 64)) | (1L << (DATE - 64)) | (1L << (TIME - 64)) | (1L << (NOW - 64)) | (1L << (TODAY - 64)) | (1L << (YEAR - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)) | (1L << (POISSON - 128)) | (1L << (TDIST - 128)) | (1L << (TINV - 128)) | (1L << (WEIBULL - 128)) | (1L << (URLENCODE - 128)) | (1L << (URLDECODE - 128)) | (1L << (HTMLENCODE - 128)) | (1L << (HTMLDECODE - 128)) | (1L << (BASE64TOTEXT - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (ISMATCH - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC8 - 192)) | (1L << (CRC16 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (TOUPPER - 192)) | (1L << (TOLOWER - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (NUM - 192)) | (1L << (STRING - 192)))) != 0)) {
@@ -7822,32 +7566,32 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 							}
 						}
 
-						State = 2083; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 65:
 						{
 						_localctx = new REGEX_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2084;
+						 
 						if (!(Precpred(Context, 64))) throw new FailedPredicateException(this, "Precpred(Context, 64)");
-						State = 2085; Match(T__5);
-						State = 2086; Match(REGEX);
-						State = 2087; Match(T__3);
+						 Match(T__5);
+						 Match(REGEX);
+						 Match(T__3);
 						State = 2088; expr(0);
-						State = 2095;
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if (_la==T__1) {
 							{
-							State = 2089; Match(T__1);
+							 Match(T__1);
 							State = 2090; expr(0);
-							State = 2093;
+							 
 							ErrorHandler.Sync(this);
 							_la = TokenStream.LA(1);
 							if (_la==T__1) {
 								{
-								State = 2091; Match(T__1);
+								 Match(T__1);
 								State = 2092; expr(0);
 								}
 							}
@@ -7855,32 +7599,32 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 							}
 						}
 
-						State = 2097; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 66:
 						{
 						_localctx = new REGEXREPALCE_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2099;
+						 
 						if (!(Precpred(Context, 62))) throw new FailedPredicateException(this, "Precpred(Context, 62)");
-						State = 2100; Match(T__5);
-						State = 2101; Match(REGEXREPALCE);
-						State = 2102; Match(T__3);
+						 Match(T__5);
+						 Match(REGEXREPALCE);
+						 Match(T__3);
 						State = 2103; expr(0);
-						State = 2104; Match(T__1);
+						 Match(T__1);
 						State = 2105; expr(0);
-						State = 2106; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 67:
 						{
 						_localctx = new ISREGEX_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2108;
+						 
 						if (!(Precpred(Context, 60))) throw new FailedPredicateException(this, "Precpred(Context, 60)");
-						State = 2109; Match(T__5);
-						State = 2110;
+						 Match(T__5);
+						 
 						_la = TokenStream.LA(1);
 						if ( !(_la==ISREGEX || _la==ISMATCH) ) {
 						ErrorHandler.RecoverInline(this);
@@ -7889,21 +7633,21 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 							ErrorHandler.ReportMatch(this);
 						    Consume();
 						}
-						State = 2111; Match(T__3);
+						 Match(T__3);
 						State = 2112; expr(0);
-						State = 2113; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 68:
 						{
 						_localctx = new MD5_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2115;
+						 
 						if (!(Precpred(Context, 57))) throw new FailedPredicateException(this, "Precpred(Context, 57)");
-						State = 2116; Match(T__5);
-						State = 2117; Match(MD5);
-						State = 2118; Match(T__3);
-						State = 2120;
+						 Match(T__5);
+						 Match(MD5);
+						 Match(T__3);
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__6) | (1L << SUB) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC) | (1L << INT) | (1L << GCD) | (1L << LCM) | (1L << COMBIN) | (1L << PERMUT) | (1L << DEGREES) | (1L << RADIANS) | (1L << COS) | (1L << COSH))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)) | (1L << (UPPER - 64)) | (1L << (VALUE - 64)) | (1L << (DATEVALUE - 64)) | (1L << (TIMEVALUE - 64)) | (1L << (DATE - 64)) | (1L << (TIME - 64)) | (1L << (NOW - 64)) | (1L << (TODAY - 64)) | (1L << (YEAR - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)) | (1L << (POISSON - 128)) | (1L << (TDIST - 128)) | (1L << (TINV - 128)) | (1L << (WEIBULL - 128)) | (1L << (URLENCODE - 128)) | (1L << (URLDECODE - 128)) | (1L << (HTMLENCODE - 128)) | (1L << (HTMLDECODE - 128)) | (1L << (BASE64TOTEXT - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (ISMATCH - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC8 - 192)) | (1L << (CRC16 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (TOUPPER - 192)) | (1L << (TOLOWER - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (NUM - 192)) | (1L << (STRING - 192)))) != 0)) {
@@ -7912,19 +7656,19 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 							}
 						}
 
-						State = 2122; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 69:
 						{
 						_localctx = new SHA1_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2123;
+						 
 						if (!(Precpred(Context, 55))) throw new FailedPredicateException(this, "Precpred(Context, 55)");
-						State = 2124; Match(T__5);
-						State = 2125; Match(SHA1);
-						State = 2126; Match(T__3);
-						State = 2128;
+						 Match(T__5);
+						 Match(SHA1);
+						 Match(T__3);
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__6) | (1L << SUB) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC) | (1L << INT) | (1L << GCD) | (1L << LCM) | (1L << COMBIN) | (1L << PERMUT) | (1L << DEGREES) | (1L << RADIANS) | (1L << COS) | (1L << COSH))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)) | (1L << (UPPER - 64)) | (1L << (VALUE - 64)) | (1L << (DATEVALUE - 64)) | (1L << (TIMEVALUE - 64)) | (1L << (DATE - 64)) | (1L << (TIME - 64)) | (1L << (NOW - 64)) | (1L << (TODAY - 64)) | (1L << (YEAR - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)) | (1L << (POISSON - 128)) | (1L << (TDIST - 128)) | (1L << (TINV - 128)) | (1L << (WEIBULL - 128)) | (1L << (URLENCODE - 128)) | (1L << (URLDECODE - 128)) | (1L << (HTMLENCODE - 128)) | (1L << (HTMLDECODE - 128)) | (1L << (BASE64TOTEXT - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (ISMATCH - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC8 - 192)) | (1L << (CRC16 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (TOUPPER - 192)) | (1L << (TOLOWER - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (NUM - 192)) | (1L << (STRING - 192)))) != 0)) {
@@ -7933,19 +7677,19 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 							}
 						}
 
-						State = 2130; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 70:
 						{
 						_localctx = new SHA256_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2131;
+						 
 						if (!(Precpred(Context, 53))) throw new FailedPredicateException(this, "Precpred(Context, 53)");
-						State = 2132; Match(T__5);
-						State = 2133; Match(SHA256);
-						State = 2134; Match(T__3);
-						State = 2136;
+						 Match(T__5);
+						 Match(SHA256);
+						 Match(T__3);
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__6) | (1L << SUB) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC) | (1L << INT) | (1L << GCD) | (1L << LCM) | (1L << COMBIN) | (1L << PERMUT) | (1L << DEGREES) | (1L << RADIANS) | (1L << COS) | (1L << COSH))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)) | (1L << (UPPER - 64)) | (1L << (VALUE - 64)) | (1L << (DATEVALUE - 64)) | (1L << (TIMEVALUE - 64)) | (1L << (DATE - 64)) | (1L << (TIME - 64)) | (1L << (NOW - 64)) | (1L << (TODAY - 64)) | (1L << (YEAR - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)) | (1L << (POISSON - 128)) | (1L << (TDIST - 128)) | (1L << (TINV - 128)) | (1L << (WEIBULL - 128)) | (1L << (URLENCODE - 128)) | (1L << (URLDECODE - 128)) | (1L << (HTMLENCODE - 128)) | (1L << (HTMLDECODE - 128)) | (1L << (BASE64TOTEXT - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (ISMATCH - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC8 - 192)) | (1L << (CRC16 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (TOUPPER - 192)) | (1L << (TOLOWER - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (NUM - 192)) | (1L << (STRING - 192)))) != 0)) {
@@ -7954,19 +7698,19 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 							}
 						}
 
-						State = 2138; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 71:
 						{
 						_localctx = new SHA512_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2139;
+						 
 						if (!(Precpred(Context, 51))) throw new FailedPredicateException(this, "Precpred(Context, 51)");
-						State = 2140; Match(T__5);
-						State = 2141; Match(SHA512);
-						State = 2142; Match(T__3);
-						State = 2144;
+						 Match(T__5);
+						 Match(SHA512);
+						 Match(T__3);
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__6) | (1L << SUB) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC) | (1L << INT) | (1L << GCD) | (1L << LCM) | (1L << COMBIN) | (1L << PERMUT) | (1L << DEGREES) | (1L << RADIANS) | (1L << COS) | (1L << COSH))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)) | (1L << (UPPER - 64)) | (1L << (VALUE - 64)) | (1L << (DATEVALUE - 64)) | (1L << (TIMEVALUE - 64)) | (1L << (DATE - 64)) | (1L << (TIME - 64)) | (1L << (NOW - 64)) | (1L << (TODAY - 64)) | (1L << (YEAR - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)) | (1L << (POISSON - 128)) | (1L << (TDIST - 128)) | (1L << (TINV - 128)) | (1L << (WEIBULL - 128)) | (1L << (URLENCODE - 128)) | (1L << (URLDECODE - 128)) | (1L << (HTMLENCODE - 128)) | (1L << (HTMLDECODE - 128)) | (1L << (BASE64TOTEXT - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (ISMATCH - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC8 - 192)) | (1L << (CRC16 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (TOUPPER - 192)) | (1L << (TOLOWER - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (NUM - 192)) | (1L << (STRING - 192)))) != 0)) {
@@ -7975,19 +7719,19 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 							}
 						}
 
-						State = 2146; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 72:
 						{
 						_localctx = new CRC8_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2147;
+						 
 						if (!(Precpred(Context, 49))) throw new FailedPredicateException(this, "Precpred(Context, 49)");
-						State = 2148; Match(T__5);
-						State = 2149; Match(CRC8);
-						State = 2150; Match(T__3);
-						State = 2152;
+						 Match(T__5);
+						 Match(CRC8);
+						 Match(T__3);
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__6) | (1L << SUB) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC) | (1L << INT) | (1L << GCD) | (1L << LCM) | (1L << COMBIN) | (1L << PERMUT) | (1L << DEGREES) | (1L << RADIANS) | (1L << COS) | (1L << COSH))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)) | (1L << (UPPER - 64)) | (1L << (VALUE - 64)) | (1L << (DATEVALUE - 64)) | (1L << (TIMEVALUE - 64)) | (1L << (DATE - 64)) | (1L << (TIME - 64)) | (1L << (NOW - 64)) | (1L << (TODAY - 64)) | (1L << (YEAR - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)) | (1L << (POISSON - 128)) | (1L << (TDIST - 128)) | (1L << (TINV - 128)) | (1L << (WEIBULL - 128)) | (1L << (URLENCODE - 128)) | (1L << (URLDECODE - 128)) | (1L << (HTMLENCODE - 128)) | (1L << (HTMLDECODE - 128)) | (1L << (BASE64TOTEXT - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (ISMATCH - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC8 - 192)) | (1L << (CRC16 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (TOUPPER - 192)) | (1L << (TOLOWER - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (NUM - 192)) | (1L << (STRING - 192)))) != 0)) {
@@ -7996,19 +7740,19 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 							}
 						}
 
-						State = 2154; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 73:
 						{
 						_localctx = new CRC16_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2155;
+						 
 						if (!(Precpred(Context, 47))) throw new FailedPredicateException(this, "Precpred(Context, 47)");
-						State = 2156; Match(T__5);
-						State = 2157; Match(CRC16);
-						State = 2158; Match(T__3);
-						State = 2160;
+						 Match(T__5);
+						 Match(CRC16);
+						 Match(T__3);
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__6) | (1L << SUB) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC) | (1L << INT) | (1L << GCD) | (1L << LCM) | (1L << COMBIN) | (1L << PERMUT) | (1L << DEGREES) | (1L << RADIANS) | (1L << COS) | (1L << COSH))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)) | (1L << (UPPER - 64)) | (1L << (VALUE - 64)) | (1L << (DATEVALUE - 64)) | (1L << (TIMEVALUE - 64)) | (1L << (DATE - 64)) | (1L << (TIME - 64)) | (1L << (NOW - 64)) | (1L << (TODAY - 64)) | (1L << (YEAR - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)) | (1L << (POISSON - 128)) | (1L << (TDIST - 128)) | (1L << (TINV - 128)) | (1L << (WEIBULL - 128)) | (1L << (URLENCODE - 128)) | (1L << (URLDECODE - 128)) | (1L << (HTMLENCODE - 128)) | (1L << (HTMLDECODE - 128)) | (1L << (BASE64TOTEXT - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (ISMATCH - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC8 - 192)) | (1L << (CRC16 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (TOUPPER - 192)) | (1L << (TOLOWER - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (NUM - 192)) | (1L << (STRING - 192)))) != 0)) {
@@ -8017,19 +7761,19 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 							}
 						}
 
-						State = 2162; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 74:
 						{
 						_localctx = new CRC32_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2163;
+						 
 						if (!(Precpred(Context, 45))) throw new FailedPredicateException(this, "Precpred(Context, 45)");
-						State = 2164; Match(T__5);
-						State = 2165; Match(CRC32);
-						State = 2166; Match(T__3);
-						State = 2168;
+						 Match(T__5);
+						 Match(CRC32);
+						 Match(T__3);
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__6) | (1L << SUB) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC) | (1L << INT) | (1L << GCD) | (1L << LCM) | (1L << COMBIN) | (1L << PERMUT) | (1L << DEGREES) | (1L << RADIANS) | (1L << COS) | (1L << COSH))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)) | (1L << (UPPER - 64)) | (1L << (VALUE - 64)) | (1L << (DATEVALUE - 64)) | (1L << (TIMEVALUE - 64)) | (1L << (DATE - 64)) | (1L << (TIME - 64)) | (1L << (NOW - 64)) | (1L << (TODAY - 64)) | (1L << (YEAR - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)) | (1L << (POISSON - 128)) | (1L << (TDIST - 128)) | (1L << (TINV - 128)) | (1L << (WEIBULL - 128)) | (1L << (URLENCODE - 128)) | (1L << (URLDECODE - 128)) | (1L << (HTMLENCODE - 128)) | (1L << (HTMLDECODE - 128)) | (1L << (BASE64TOTEXT - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (ISMATCH - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC8 - 192)) | (1L << (CRC16 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (TOUPPER - 192)) | (1L << (TOLOWER - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (NUM - 192)) | (1L << (STRING - 192)))) != 0)) {
@@ -8038,111 +7782,111 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 							}
 						}
 
-						State = 2170; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 75:
 						{
 						_localctx = new HMACMD5_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2171;
+						 
 						if (!(Precpred(Context, 43))) throw new FailedPredicateException(this, "Precpred(Context, 43)");
-						State = 2172; Match(T__5);
-						State = 2173; Match(HMACMD5);
-						State = 2174; Match(T__3);
+						 Match(T__5);
+						 Match(HMACMD5);
+						 Match(T__3);
 						State = 2175; expr(0);
-						State = 2178;
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if (_la==T__1) {
 							{
-							State = 2176; Match(T__1);
+							 Match(T__1);
 							State = 2177; expr(0);
 							}
 						}
 
-						State = 2180; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 76:
 						{
 						_localctx = new HMACSHA1_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2182;
+						 
 						if (!(Precpred(Context, 41))) throw new FailedPredicateException(this, "Precpred(Context, 41)");
-						State = 2183; Match(T__5);
-						State = 2184; Match(HMACSHA1);
-						State = 2185; Match(T__3);
+						 Match(T__5);
+						 Match(HMACSHA1);
+						 Match(T__3);
 						State = 2186; expr(0);
-						State = 2189;
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if (_la==T__1) {
 							{
-							State = 2187; Match(T__1);
+							 Match(T__1);
 							State = 2188; expr(0);
 							}
 						}
 
-						State = 2191; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 77:
 						{
 						_localctx = new HMACSHA256_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2193;
+						 
 						if (!(Precpred(Context, 39))) throw new FailedPredicateException(this, "Precpred(Context, 39)");
-						State = 2194; Match(T__5);
-						State = 2195; Match(HMACSHA256);
-						State = 2196; Match(T__3);
+						 Match(T__5);
+						 Match(HMACSHA256);
+						 Match(T__3);
 						State = 2197; expr(0);
-						State = 2200;
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if (_la==T__1) {
 							{
-							State = 2198; Match(T__1);
+							 Match(T__1);
 							State = 2199; expr(0);
 							}
 						}
 
-						State = 2202; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 78:
 						{
 						_localctx = new HMACSHA512_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2204;
+						 
 						if (!(Precpred(Context, 37))) throw new FailedPredicateException(this, "Precpred(Context, 37)");
-						State = 2205; Match(T__5);
-						State = 2206; Match(HMACSHA512);
-						State = 2207; Match(T__3);
+						 Match(T__5);
+						 Match(HMACSHA512);
+						 Match(T__3);
 						State = 2208; expr(0);
-						State = 2211;
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if (_la==T__1) {
 							{
-							State = 2209; Match(T__1);
+							 Match(T__1);
 							State = 2210; expr(0);
 							}
 						}
 
-						State = 2213; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 79:
 						{
 						_localctx = new TRIMSTART_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2215;
+						 
 						if (!(Precpred(Context, 35))) throw new FailedPredicateException(this, "Precpred(Context, 35)");
-						State = 2216; Match(T__5);
-						State = 2217; Match(TRIMSTART);
-						State = 2218; Match(T__3);
-						State = 2220;
+						 Match(T__5);
+						 Match(TRIMSTART);
+						 Match(T__3);
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__6) | (1L << SUB) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC) | (1L << INT) | (1L << GCD) | (1L << LCM) | (1L << COMBIN) | (1L << PERMUT) | (1L << DEGREES) | (1L << RADIANS) | (1L << COS) | (1L << COSH))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)) | (1L << (UPPER - 64)) | (1L << (VALUE - 64)) | (1L << (DATEVALUE - 64)) | (1L << (TIMEVALUE - 64)) | (1L << (DATE - 64)) | (1L << (TIME - 64)) | (1L << (NOW - 64)) | (1L << (TODAY - 64)) | (1L << (YEAR - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)) | (1L << (POISSON - 128)) | (1L << (TDIST - 128)) | (1L << (TINV - 128)) | (1L << (WEIBULL - 128)) | (1L << (URLENCODE - 128)) | (1L << (URLDECODE - 128)) | (1L << (HTMLENCODE - 128)) | (1L << (HTMLDECODE - 128)) | (1L << (BASE64TOTEXT - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (ISMATCH - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC8 - 192)) | (1L << (CRC16 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (TOUPPER - 192)) | (1L << (TOLOWER - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (NUM - 192)) | (1L << (STRING - 192)))) != 0)) {
@@ -8151,19 +7895,19 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 							}
 						}
 
-						State = 2222; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 80:
 						{
 						_localctx = new TRIMEND_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2223;
+						 
 						if (!(Precpred(Context, 33))) throw new FailedPredicateException(this, "Precpred(Context, 33)");
-						State = 2224; Match(T__5);
-						State = 2225; Match(TRIMEND);
-						State = 2226; Match(T__3);
-						State = 2228;
+						 Match(T__5);
+						 Match(TRIMEND);
+						 Match(T__3);
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__6) | (1L << SUB) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC) | (1L << INT) | (1L << GCD) | (1L << LCM) | (1L << COMBIN) | (1L << PERMUT) | (1L << DEGREES) | (1L << RADIANS) | (1L << COS) | (1L << COSH))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)) | (1L << (UPPER - 64)) | (1L << (VALUE - 64)) | (1L << (DATEVALUE - 64)) | (1L << (TIMEVALUE - 64)) | (1L << (DATE - 64)) | (1L << (TIME - 64)) | (1L << (NOW - 64)) | (1L << (TODAY - 64)) | (1L << (YEAR - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)) | (1L << (POISSON - 128)) | (1L << (TDIST - 128)) | (1L << (TINV - 128)) | (1L << (WEIBULL - 128)) | (1L << (URLENCODE - 128)) | (1L << (URLDECODE - 128)) | (1L << (HTMLENCODE - 128)) | (1L << (HTMLDECODE - 128)) | (1L << (BASE64TOTEXT - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (ISMATCH - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC8 - 192)) | (1L << (CRC16 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (TOUPPER - 192)) | (1L << (TOLOWER - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (NUM - 192)) | (1L << (STRING - 192)))) != 0)) {
@@ -8172,32 +7916,32 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 							}
 						}
 
-						State = 2230; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 81:
 						{
 						_localctx = new INDEXOF_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2231;
+						 
 						if (!(Precpred(Context, 31))) throw new FailedPredicateException(this, "Precpred(Context, 31)");
-						State = 2232; Match(T__5);
-						State = 2233; Match(INDEXOF);
-						State = 2234; Match(T__3);
+						 Match(T__5);
+						 Match(INDEXOF);
+						 Match(T__3);
 						State = 2235; expr(0);
-						State = 2242;
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if (_la==T__1) {
 							{
-							State = 2236; Match(T__1);
+							 Match(T__1);
 							State = 2237; expr(0);
-							State = 2240;
+							 
 							ErrorHandler.Sync(this);
 							_la = TokenStream.LA(1);
 							if (_la==T__1) {
 								{
-								State = 2238; Match(T__1);
+								 Match(T__1);
 								State = 2239; expr(0);
 								}
 							}
@@ -8205,32 +7949,32 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 							}
 						}
 
-						State = 2244; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 82:
 						{
 						_localctx = new LASTINDEXOF_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2246;
+						 
 						if (!(Precpred(Context, 29))) throw new FailedPredicateException(this, "Precpred(Context, 29)");
-						State = 2247; Match(T__5);
-						State = 2248; Match(LASTINDEXOF);
-						State = 2249; Match(T__3);
+						 Match(T__5);
+						 Match(LASTINDEXOF);
+						 Match(T__3);
 						State = 2250; expr(0);
-						State = 2257;
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if (_la==T__1) {
 							{
-							State = 2251; Match(T__1);
+							 Match(T__1);
 							State = 2252; expr(0);
-							State = 2255;
+							 
 							ErrorHandler.Sync(this);
 							_la = TokenStream.LA(1);
 							if (_la==T__1) {
 								{
-								State = 2253; Match(T__1);
+								 Match(T__1);
 								State = 2254; expr(0);
 								}
 							}
@@ -8238,219 +7982,219 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 							}
 						}
 
-						State = 2259; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 83:
 						{
 						_localctx = new SPLIT_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2261;
+						 
 						if (!(Precpred(Context, 27))) throw new FailedPredicateException(this, "Precpred(Context, 27)");
-						State = 2262; Match(T__5);
-						State = 2263; Match(SPLIT);
-						State = 2264; Match(T__3);
+						 Match(T__5);
+						 Match(SPLIT);
+						 Match(T__3);
 						State = 2265; expr(0);
-						State = 2266; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 84:
 						{
 						_localctx = new JOIN_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2268;
+						 
 						if (!(Precpred(Context, 25))) throw new FailedPredicateException(this, "Precpred(Context, 25)");
-						State = 2269; Match(T__5);
-						State = 2270; Match(JOIN);
-						State = 2271; Match(T__3);
+						 Match(T__5);
+						 Match(JOIN);
+						 Match(T__3);
 						State = 2272; expr(0);
-						State = 2277;
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						while (_la==T__1) {
 							{
 							{
-							State = 2273; Match(T__1);
+							 Match(T__1);
 							State = 2274; expr(0);
 							}
 							}
-							State = 2279;
+							 
 							ErrorHandler.Sync(this);
 							_la = TokenStream.LA(1);
 						}
-						State = 2280; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 85:
 						{
 						_localctx = new SUBSTRING_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2282;
+						 
 						if (!(Precpred(Context, 23))) throw new FailedPredicateException(this, "Precpred(Context, 23)");
-						State = 2283; Match(T__5);
-						State = 2284; Match(SUBSTRING);
-						State = 2285; Match(T__3);
+						 Match(T__5);
+						 Match(SUBSTRING);
+						 Match(T__3);
 						State = 2286; expr(0);
-						State = 2289;
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if (_la==T__1) {
 							{
-							State = 2287; Match(T__1);
+							 Match(T__1);
 							State = 2288; expr(0);
 							}
 						}
 
-						State = 2291; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 86:
 						{
 						_localctx = new STARTSWITH_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2293;
+						 
 						if (!(Precpred(Context, 21))) throw new FailedPredicateException(this, "Precpred(Context, 21)");
-						State = 2294; Match(T__5);
-						State = 2295; Match(STARTSWITH);
-						State = 2296; Match(T__3);
+						 Match(T__5);
+						 Match(STARTSWITH);
+						 Match(T__3);
 						State = 2297; expr(0);
-						State = 2300;
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if (_la==T__1) {
 							{
-							State = 2298; Match(T__1);
+							 Match(T__1);
 							State = 2299; expr(0);
 							}
 						}
 
-						State = 2302; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 87:
 						{
 						_localctx = new ENDSWITH_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2304;
+						 
 						if (!(Precpred(Context, 19))) throw new FailedPredicateException(this, "Precpred(Context, 19)");
-						State = 2305; Match(T__5);
-						State = 2306; Match(ENDSWITH);
-						State = 2307; Match(T__3);
+						 Match(T__5);
+						 Match(ENDSWITH);
+						 Match(T__3);
 						State = 2308; expr(0);
-						State = 2311;
+						 
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if (_la==T__1) {
 							{
-							State = 2309; Match(T__1);
+							 Match(T__1);
 							State = 2310; expr(0);
 							}
 						}
 
-						State = 2313; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 88:
 						{
 						_localctx = new ISNULLOREMPTY_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2315;
+						 
 						if (!(Precpred(Context, 17))) throw new FailedPredicateException(this, "Precpred(Context, 17)");
-						State = 2316; Match(T__5);
-						State = 2317; Match(ISNULLOREMPTY);
-						State = 2318; Match(T__3);
-						State = 2319; Match(T__4);
+						 Match(T__5);
+						 Match(ISNULLOREMPTY);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 89:
 						{
 						_localctx = new ISNULLORWHITESPACE_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2320;
+						 
 						if (!(Precpred(Context, 15))) throw new FailedPredicateException(this, "Precpred(Context, 15)");
-						State = 2321; Match(T__5);
-						State = 2322; Match(ISNULLORWHITESPACE);
-						State = 2323; Match(T__3);
-						State = 2324; Match(T__4);
+						 Match(T__5);
+						 Match(ISNULLORWHITESPACE);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 90:
 						{
 						_localctx = new TOUPPER_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2325;
+						 
 						if (!(Precpred(Context, 13))) throw new FailedPredicateException(this, "Precpred(Context, 13)");
-						State = 2326; Match(T__5);
-						State = 2327; Match(TOUPPER);
-						State = 2328; Match(T__3);
-						State = 2329; Match(T__4);
+						 Match(T__5);
+						 Match(TOUPPER);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 91:
 						{
 						_localctx = new TOLOWER_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2330;
+						 
 						if (!(Precpred(Context, 11))) throw new FailedPredicateException(this, "Precpred(Context, 11)");
-						State = 2331; Match(T__5);
-						State = 2332; Match(TOLOWER);
-						State = 2333; Match(T__3);
-						State = 2334; Match(T__4);
+						 Match(T__5);
+						 Match(TOLOWER);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 92:
 						{
 						_localctx = new REMOVESTART_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2335;
+						 
 						if (!(Precpred(Context, 9))) throw new FailedPredicateException(this, "Precpred(Context, 9)");
-						State = 2336; Match(T__5);
-						State = 2337; Match(REMOVESTART);
-						State = 2338; Match(T__3);
+						 Match(T__5);
+						 Match(REMOVESTART);
+						 Match(T__3);
 						State = 2339; expr(0);
-						State = 2340; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 93:
 						{
 						_localctx = new REMOVEEND_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2342;
+						 
 						if (!(Precpred(Context, 7))) throw new FailedPredicateException(this, "Precpred(Context, 7)");
-						State = 2343; Match(T__5);
-						State = 2344; Match(REMOVEEND);
-						State = 2345; Match(T__3);
+						 Match(T__5);
+						 Match(REMOVEEND);
+						 Match(T__3);
 						State = 2346; expr(0);
-						State = 2347; Match(T__4);
+						 Match(T__4);
 						}
 						break;
 					case 94:
 						{
 						_localctx = new JSON_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2349;
+						 
 						if (!(Precpred(Context, 5))) throw new FailedPredicateException(this, "Precpred(Context, 5)");
-						State = 2350; Match(T__5);
-						State = 2351; Match(JSON);
-						State = 2352; Match(T__3);
-						State = 2353; Match(T__4);
+						 Match(T__5);
+						 Match(JSON);
+						 Match(T__3);
+						 Match(T__4);
 						}
 						break;
 					case 95:
 						{
 						_localctx = new GetJsonValue_funContext(new ExprContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2354;
+						 
 						if (!(Precpred(Context, 4))) throw new FailedPredicateException(this, "Precpred(Context, 4)");
-						State = 2355; Match(T__6);
+						 Match(T__6);
 						State = 2356; parameter();
-						State = 2357; Match(T__7);
+						 Match(T__7);
 						}
 						break;
 					}
 					} 
 				}
-				State = 2363;
+				 
 				ErrorHandler.Sync(this);
 				_alt = Interpreter.AdaptivePredict(TokenStream,145,Context);
 			}
@@ -8472,213 +8216,213 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
-		public ITerminalNode E() { return GetToken(mathParser.E, 0); }
-		public ITerminalNode IF() { return GetToken(mathParser.IF, 0); }
-		public ITerminalNode IFERROR() { return GetToken(mathParser.IFERROR, 0); }
-		public ITerminalNode ISNUMBER() { return GetToken(mathParser.ISNUMBER, 0); }
-		public ITerminalNode ISTEXT() { return GetToken(mathParser.ISTEXT, 0); }
-		public ITerminalNode ISERROR() { return GetToken(mathParser.ISERROR, 0); }
-		public ITerminalNode ISNONTEXT() { return GetToken(mathParser.ISNONTEXT, 0); }
-		public ITerminalNode ISLOGICAL() { return GetToken(mathParser.ISLOGICAL, 0); }
-		public ITerminalNode ISEVEN() { return GetToken(mathParser.ISEVEN, 0); }
-		public ITerminalNode ISODD() { return GetToken(mathParser.ISODD, 0); }
-		public ITerminalNode AND() { return GetToken(mathParser.AND, 0); }
-		public ITerminalNode OR() { return GetToken(mathParser.OR, 0); }
-		public ITerminalNode NOT() { return GetToken(mathParser.NOT, 0); }
-		public ITerminalNode TRUE() { return GetToken(mathParser.TRUE, 0); }
-		public ITerminalNode FALSE() { return GetToken(mathParser.FALSE, 0); }
-		public ITerminalNode PI() { return GetToken(mathParser.PI, 0); }
-		public ITerminalNode DEC2BIN() { return GetToken(mathParser.DEC2BIN, 0); }
-		public ITerminalNode DEC2HEX() { return GetToken(mathParser.DEC2HEX, 0); }
-		public ITerminalNode DEC2OCT() { return GetToken(mathParser.DEC2OCT, 0); }
-		public ITerminalNode HEX2BIN() { return GetToken(mathParser.HEX2BIN, 0); }
-		public ITerminalNode HEX2DEC() { return GetToken(mathParser.HEX2DEC, 0); }
-		public ITerminalNode HEX2OCT() { return GetToken(mathParser.HEX2OCT, 0); }
-		public ITerminalNode OCT2BIN() { return GetToken(mathParser.OCT2BIN, 0); }
-		public ITerminalNode OCT2DEC() { return GetToken(mathParser.OCT2DEC, 0); }
-		public ITerminalNode OCT2HEX() { return GetToken(mathParser.OCT2HEX, 0); }
-		public ITerminalNode BIN2OCT() { return GetToken(mathParser.BIN2OCT, 0); }
-		public ITerminalNode BIN2DEC() { return GetToken(mathParser.BIN2DEC, 0); }
-		public ITerminalNode BIN2HEX() { return GetToken(mathParser.BIN2HEX, 0); }
-		public ITerminalNode ABS() { return GetToken(mathParser.ABS, 0); }
-		public ITerminalNode QUOTIENT() { return GetToken(mathParser.QUOTIENT, 0); }
-		public ITerminalNode MOD() { return GetToken(mathParser.MOD, 0); }
-		public ITerminalNode SIGN() { return GetToken(mathParser.SIGN, 0); }
-		public ITerminalNode SQRT() { return GetToken(mathParser.SQRT, 0); }
-		public ITerminalNode TRUNC() { return GetToken(mathParser.TRUNC, 0); }
-		public ITerminalNode INT() { return GetToken(mathParser.INT, 0); }
-		public ITerminalNode GCD() { return GetToken(mathParser.GCD, 0); }
-		public ITerminalNode LCM() { return GetToken(mathParser.LCM, 0); }
-		public ITerminalNode COMBIN() { return GetToken(mathParser.COMBIN, 0); }
-		public ITerminalNode PERMUT() { return GetToken(mathParser.PERMUT, 0); }
-		public ITerminalNode DEGREES() { return GetToken(mathParser.DEGREES, 0); }
-		public ITerminalNode RADIANS() { return GetToken(mathParser.RADIANS, 0); }
-		public ITerminalNode COS() { return GetToken(mathParser.COS, 0); }
-		public ITerminalNode COSH() { return GetToken(mathParser.COSH, 0); }
-		public ITerminalNode SIN() { return GetToken(mathParser.SIN, 0); }
-		public ITerminalNode SINH() { return GetToken(mathParser.SINH, 0); }
-		public ITerminalNode TAN() { return GetToken(mathParser.TAN, 0); }
-		public ITerminalNode TANH() { return GetToken(mathParser.TANH, 0); }
-		public ITerminalNode ACOS() { return GetToken(mathParser.ACOS, 0); }
-		public ITerminalNode ACOSH() { return GetToken(mathParser.ACOSH, 0); }
-		public ITerminalNode ASIN() { return GetToken(mathParser.ASIN, 0); }
-		public ITerminalNode ASINH() { return GetToken(mathParser.ASINH, 0); }
-		public ITerminalNode ATAN() { return GetToken(mathParser.ATAN, 0); }
-		public ITerminalNode ATANH() { return GetToken(mathParser.ATANH, 0); }
-		public ITerminalNode ATAN2() { return GetToken(mathParser.ATAN2, 0); }
-		public ITerminalNode ROUND() { return GetToken(mathParser.ROUND, 0); }
-		public ITerminalNode ROUNDDOWN() { return GetToken(mathParser.ROUNDDOWN, 0); }
-		public ITerminalNode ROUNDUP() { return GetToken(mathParser.ROUNDUP, 0); }
-		public ITerminalNode CEILING() { return GetToken(mathParser.CEILING, 0); }
-		public ITerminalNode FLOOR() { return GetToken(mathParser.FLOOR, 0); }
-		public ITerminalNode EVEN() { return GetToken(mathParser.EVEN, 0); }
-		public ITerminalNode ODD() { return GetToken(mathParser.ODD, 0); }
-		public ITerminalNode MROUND() { return GetToken(mathParser.MROUND, 0); }
-		public ITerminalNode RAND() { return GetToken(mathParser.RAND, 0); }
-		public ITerminalNode RANDBETWEEN() { return GetToken(mathParser.RANDBETWEEN, 0); }
-		public ITerminalNode FACT() { return GetToken(mathParser.FACT, 0); }
-		public ITerminalNode FACTDOUBLE() { return GetToken(mathParser.FACTDOUBLE, 0); }
-		public ITerminalNode POWER() { return GetToken(mathParser.POWER, 0); }
-		public ITerminalNode EXP() { return GetToken(mathParser.EXP, 0); }
-		public ITerminalNode LN() { return GetToken(mathParser.LN, 0); }
-		public ITerminalNode LOG() { return GetToken(mathParser.LOG, 0); }
-		public ITerminalNode LOG10() { return GetToken(mathParser.LOG10, 0); }
-		public ITerminalNode MULTINOMIAL() { return GetToken(mathParser.MULTINOMIAL, 0); }
-		public ITerminalNode PRODUCT() { return GetToken(mathParser.PRODUCT, 0); }
-		public ITerminalNode SQRTPI() { return GetToken(mathParser.SQRTPI, 0); }
-		public ITerminalNode SUMSQ() { return GetToken(mathParser.SUMSQ, 0); }
-		public ITerminalNode ASC() { return GetToken(mathParser.ASC, 0); }
-		public ITerminalNode JIS() { return GetToken(mathParser.JIS, 0); }
-		public ITerminalNode CHAR() { return GetToken(mathParser.CHAR, 0); }
-		public ITerminalNode CLEAN() { return GetToken(mathParser.CLEAN, 0); }
-		public ITerminalNode CODE() { return GetToken(mathParser.CODE, 0); }
-		public ITerminalNode CONCATENATE() { return GetToken(mathParser.CONCATENATE, 0); }
-		public ITerminalNode EXACT() { return GetToken(mathParser.EXACT, 0); }
-		public ITerminalNode FIND() { return GetToken(mathParser.FIND, 0); }
-		public ITerminalNode FIXED() { return GetToken(mathParser.FIXED, 0); }
-		public ITerminalNode LEFT() { return GetToken(mathParser.LEFT, 0); }
-		public ITerminalNode LEN() { return GetToken(mathParser.LEN, 0); }
-		public ITerminalNode LOWER() { return GetToken(mathParser.LOWER, 0); }
-		public ITerminalNode MID() { return GetToken(mathParser.MID, 0); }
-		public ITerminalNode PROPER() { return GetToken(mathParser.PROPER, 0); }
-		public ITerminalNode REPLACE() { return GetToken(mathParser.REPLACE, 0); }
-		public ITerminalNode REPT() { return GetToken(mathParser.REPT, 0); }
-		public ITerminalNode RIGHT() { return GetToken(mathParser.RIGHT, 0); }
-		public ITerminalNode RMB() { return GetToken(mathParser.RMB, 0); }
-		public ITerminalNode SEARCH() { return GetToken(mathParser.SEARCH, 0); }
-		public ITerminalNode SUBSTITUTE() { return GetToken(mathParser.SUBSTITUTE, 0); }
-		public ITerminalNode T() { return GetToken(mathParser.T, 0); }
-		public ITerminalNode TEXT() { return GetToken(mathParser.TEXT, 0); }
-		public ITerminalNode TRIM() { return GetToken(mathParser.TRIM, 0); }
-		public ITerminalNode UPPER() { return GetToken(mathParser.UPPER, 0); }
-		public ITerminalNode VALUE() { return GetToken(mathParser.VALUE, 0); }
-		public ITerminalNode DATEVALUE() { return GetToken(mathParser.DATEVALUE, 0); }
-		public ITerminalNode TIMEVALUE() { return GetToken(mathParser.TIMEVALUE, 0); }
-		public ITerminalNode DATE() { return GetToken(mathParser.DATE, 0); }
-		public ITerminalNode TIME() { return GetToken(mathParser.TIME, 0); }
-		public ITerminalNode NOW() { return GetToken(mathParser.NOW, 0); }
-		public ITerminalNode TODAY() { return GetToken(mathParser.TODAY, 0); }
-		public ITerminalNode YEAR() { return GetToken(mathParser.YEAR, 0); }
-		public ITerminalNode MONTH() { return GetToken(mathParser.MONTH, 0); }
-		public ITerminalNode DAY() { return GetToken(mathParser.DAY, 0); }
-		public ITerminalNode HOUR() { return GetToken(mathParser.HOUR, 0); }
-		public ITerminalNode MINUTE() { return GetToken(mathParser.MINUTE, 0); }
-		public ITerminalNode SECOND() { return GetToken(mathParser.SECOND, 0); }
-		public ITerminalNode WEEKDAY() { return GetToken(mathParser.WEEKDAY, 0); }
-		public ITerminalNode DATEDIF() { return GetToken(mathParser.DATEDIF, 0); }
-		public ITerminalNode DAYS360() { return GetToken(mathParser.DAYS360, 0); }
-		public ITerminalNode EDATE() { return GetToken(mathParser.EDATE, 0); }
-		public ITerminalNode EOMONTH() { return GetToken(mathParser.EOMONTH, 0); }
-		public ITerminalNode NETWORKDAYS() { return GetToken(mathParser.NETWORKDAYS, 0); }
-		public ITerminalNode WORKDAY() { return GetToken(mathParser.WORKDAY, 0); }
-		public ITerminalNode WEEKNUM() { return GetToken(mathParser.WEEKNUM, 0); }
-		public ITerminalNode MAX() { return GetToken(mathParser.MAX, 0); }
-		public ITerminalNode MEDIAN() { return GetToken(mathParser.MEDIAN, 0); }
-		public ITerminalNode MIN() { return GetToken(mathParser.MIN, 0); }
-		public ITerminalNode QUARTILE() { return GetToken(mathParser.QUARTILE, 0); }
-		public ITerminalNode MODE() { return GetToken(mathParser.MODE, 0); }
-		public ITerminalNode LARGE() { return GetToken(mathParser.LARGE, 0); }
-		public ITerminalNode SMALL() { return GetToken(mathParser.SMALL, 0); }
-		public ITerminalNode PERCENTILE() { return GetToken(mathParser.PERCENTILE, 0); }
-		public ITerminalNode PERCENTRANK() { return GetToken(mathParser.PERCENTRANK, 0); }
-		public ITerminalNode AVERAGE() { return GetToken(mathParser.AVERAGE, 0); }
-		public ITerminalNode AVERAGEIF() { return GetToken(mathParser.AVERAGEIF, 0); }
-		public ITerminalNode GEOMEAN() { return GetToken(mathParser.GEOMEAN, 0); }
-		public ITerminalNode HARMEAN() { return GetToken(mathParser.HARMEAN, 0); }
-		public ITerminalNode COUNT() { return GetToken(mathParser.COUNT, 0); }
-		public ITerminalNode COUNTIF() { return GetToken(mathParser.COUNTIF, 0); }
-		public ITerminalNode SUM() { return GetToken(mathParser.SUM, 0); }
-		public ITerminalNode SUMIF() { return GetToken(mathParser.SUMIF, 0); }
-		public ITerminalNode AVEDEV() { return GetToken(mathParser.AVEDEV, 0); }
-		public ITerminalNode STDEV() { return GetToken(mathParser.STDEV, 0); }
-		public ITerminalNode STDEVP() { return GetToken(mathParser.STDEVP, 0); }
-		public ITerminalNode DEVSQ() { return GetToken(mathParser.DEVSQ, 0); }
-		public ITerminalNode VAR() { return GetToken(mathParser.VAR, 0); }
-		public ITerminalNode VARP() { return GetToken(mathParser.VARP, 0); }
-		public ITerminalNode NORMDIST() { return GetToken(mathParser.NORMDIST, 0); }
-		public ITerminalNode NORMINV() { return GetToken(mathParser.NORMINV, 0); }
-		public ITerminalNode NORMSDIST() { return GetToken(mathParser.NORMSDIST, 0); }
-		public ITerminalNode NORMSINV() { return GetToken(mathParser.NORMSINV, 0); }
-		public ITerminalNode BETADIST() { return GetToken(mathParser.BETADIST, 0); }
-		public ITerminalNode BETAINV() { return GetToken(mathParser.BETAINV, 0); }
-		public ITerminalNode BINOMDIST() { return GetToken(mathParser.BINOMDIST, 0); }
-		public ITerminalNode EXPONDIST() { return GetToken(mathParser.EXPONDIST, 0); }
-		public ITerminalNode FDIST() { return GetToken(mathParser.FDIST, 0); }
-		public ITerminalNode FINV() { return GetToken(mathParser.FINV, 0); }
-		public ITerminalNode FISHER() { return GetToken(mathParser.FISHER, 0); }
-		public ITerminalNode FISHERINV() { return GetToken(mathParser.FISHERINV, 0); }
-		public ITerminalNode GAMMADIST() { return GetToken(mathParser.GAMMADIST, 0); }
-		public ITerminalNode GAMMAINV() { return GetToken(mathParser.GAMMAINV, 0); }
-		public ITerminalNode GAMMALN() { return GetToken(mathParser.GAMMALN, 0); }
-		public ITerminalNode HYPGEOMDIST() { return GetToken(mathParser.HYPGEOMDIST, 0); }
-		public ITerminalNode LOGINV() { return GetToken(mathParser.LOGINV, 0); }
-		public ITerminalNode LOGNORMDIST() { return GetToken(mathParser.LOGNORMDIST, 0); }
-		public ITerminalNode NEGBINOMDIST() { return GetToken(mathParser.NEGBINOMDIST, 0); }
-		public ITerminalNode POISSON() { return GetToken(mathParser.POISSON, 0); }
-		public ITerminalNode TDIST() { return GetToken(mathParser.TDIST, 0); }
-		public ITerminalNode TINV() { return GetToken(mathParser.TINV, 0); }
-		public ITerminalNode WEIBULL() { return GetToken(mathParser.WEIBULL, 0); }
-		public ITerminalNode URLENCODE() { return GetToken(mathParser.URLENCODE, 0); }
-		public ITerminalNode URLDECODE() { return GetToken(mathParser.URLDECODE, 0); }
-		public ITerminalNode HTMLENCODE() { return GetToken(mathParser.HTMLENCODE, 0); }
-		public ITerminalNode HTMLDECODE() { return GetToken(mathParser.HTMLDECODE, 0); }
-		public ITerminalNode BASE64TOTEXT() { return GetToken(mathParser.BASE64TOTEXT, 0); }
-		public ITerminalNode BASE64URLTOTEXT() { return GetToken(mathParser.BASE64URLTOTEXT, 0); }
-		public ITerminalNode TEXTTOBASE64() { return GetToken(mathParser.TEXTTOBASE64, 0); }
-		public ITerminalNode TEXTTOBASE64URL() { return GetToken(mathParser.TEXTTOBASE64URL, 0); }
-		public ITerminalNode REGEX() { return GetToken(mathParser.REGEX, 0); }
-		public ITerminalNode REGEXREPALCE() { return GetToken(mathParser.REGEXREPALCE, 0); }
-		public ITerminalNode ISREGEX() { return GetToken(mathParser.ISREGEX, 0); }
-		public ITerminalNode ISMATCH() { return GetToken(mathParser.ISMATCH, 0); }
-		public ITerminalNode GUID() { return GetToken(mathParser.GUID, 0); }
-		public ITerminalNode MD5() { return GetToken(mathParser.MD5, 0); }
-		public ITerminalNode SHA1() { return GetToken(mathParser.SHA1, 0); }
-		public ITerminalNode SHA256() { return GetToken(mathParser.SHA256, 0); }
-		public ITerminalNode SHA512() { return GetToken(mathParser.SHA512, 0); }
-		public ITerminalNode CRC8() { return GetToken(mathParser.CRC8, 0); }
-		public ITerminalNode CRC16() { return GetToken(mathParser.CRC16, 0); }
-		public ITerminalNode CRC32() { return GetToken(mathParser.CRC32, 0); }
-		public ITerminalNode HMACMD5() { return GetToken(mathParser.HMACMD5, 0); }
-		public ITerminalNode HMACSHA1() { return GetToken(mathParser.HMACSHA1, 0); }
-		public ITerminalNode HMACSHA256() { return GetToken(mathParser.HMACSHA256, 0); }
-		public ITerminalNode HMACSHA512() { return GetToken(mathParser.HMACSHA512, 0); }
-		public ITerminalNode TRIMSTART() { return GetToken(mathParser.TRIMSTART, 0); }
-		public ITerminalNode TRIMEND() { return GetToken(mathParser.TRIMEND, 0); }
-		public ITerminalNode INDEXOF() { return GetToken(mathParser.INDEXOF, 0); }
-		public ITerminalNode LASTINDEXOF() { return GetToken(mathParser.LASTINDEXOF, 0); }
-		public ITerminalNode SPLIT() { return GetToken(mathParser.SPLIT, 0); }
-		public ITerminalNode JOIN() { return GetToken(mathParser.JOIN, 0); }
-		public ITerminalNode SUBSTRING() { return GetToken(mathParser.SUBSTRING, 0); }
-		public ITerminalNode STARTSWITH() { return GetToken(mathParser.STARTSWITH, 0); }
-		public ITerminalNode ENDSWITH() { return GetToken(mathParser.ENDSWITH, 0); }
-		public ITerminalNode ISNULLOREMPTY() { return GetToken(mathParser.ISNULLOREMPTY, 0); }
-		public ITerminalNode ISNULLORWHITESPACE() { return GetToken(mathParser.ISNULLORWHITESPACE, 0); }
-		public ITerminalNode TOUPPER() { return GetToken(mathParser.TOUPPER, 0); }
-		public ITerminalNode TOLOWER() { return GetToken(mathParser.TOLOWER, 0); }
-		public ITerminalNode REMOVESTART() { return GetToken(mathParser.REMOVESTART, 0); }
-		public ITerminalNode REMOVEEND() { return GetToken(mathParser.REMOVEEND, 0); }
-		public ITerminalNode JSON() { return GetToken(mathParser.JSON, 0); }
-		public ITerminalNode PARAMETER() { return GetToken(mathParser.PARAMETER, 0); }
+		//public ITerminalNode E() { return GetToken(mathParser.E, 0); }
+		//public ITerminalNode IF() { return GetToken(mathParser.IF, 0); }
+		//public ITerminalNode IFERROR() { return GetToken(mathParser.IFERROR, 0); }
+		//public ITerminalNode ISNUMBER() { return GetToken(mathParser.ISNUMBER, 0); }
+		//public ITerminalNode ISTEXT() { return GetToken(mathParser.ISTEXT, 0); }
+		//public ITerminalNode ISERROR() { return GetToken(mathParser.ISERROR, 0); }
+		//public ITerminalNode ISNONTEXT() { return GetToken(mathParser.ISNONTEXT, 0); }
+		//public ITerminalNode ISLOGICAL() { return GetToken(mathParser.ISLOGICAL, 0); }
+		//public ITerminalNode ISEVEN() { return GetToken(mathParser.ISEVEN, 0); }
+		//public ITerminalNode ISODD() { return GetToken(mathParser.ISODD, 0); }
+		//public ITerminalNode AND() { return GetToken(mathParser.AND, 0); }
+		//public ITerminalNode OR() { return GetToken(mathParser.OR, 0); }
+		//public ITerminalNode NOT() { return GetToken(mathParser.NOT, 0); }
+		//public ITerminalNode TRUE() { return GetToken(mathParser.TRUE, 0); }
+		//public ITerminalNode FALSE() { return GetToken(mathParser.FALSE, 0); }
+		//public ITerminalNode PI() { return GetToken(mathParser.PI, 0); }
+		//public ITerminalNode DEC2BIN() { return GetToken(mathParser.DEC2BIN, 0); }
+		//public ITerminalNode DEC2HEX() { return GetToken(mathParser.DEC2HEX, 0); }
+		//public ITerminalNode DEC2OCT() { return GetToken(mathParser.DEC2OCT, 0); }
+		//public ITerminalNode HEX2BIN() { return GetToken(mathParser.HEX2BIN, 0); }
+		//public ITerminalNode HEX2DEC() { return GetToken(mathParser.HEX2DEC, 0); }
+		//public ITerminalNode HEX2OCT() { return GetToken(mathParser.HEX2OCT, 0); }
+		//public ITerminalNode OCT2BIN() { return GetToken(mathParser.OCT2BIN, 0); }
+		//public ITerminalNode OCT2DEC() { return GetToken(mathParser.OCT2DEC, 0); }
+		//public ITerminalNode OCT2HEX() { return GetToken(mathParser.OCT2HEX, 0); }
+		//public ITerminalNode BIN2OCT() { return GetToken(mathParser.BIN2OCT, 0); }
+		//public ITerminalNode BIN2DEC() { return GetToken(mathParser.BIN2DEC, 0); }
+		//public ITerminalNode BIN2HEX() { return GetToken(mathParser.BIN2HEX, 0); }
+		//public ITerminalNode ABS() { return GetToken(mathParser.ABS, 0); }
+		//public ITerminalNode QUOTIENT() { return GetToken(mathParser.QUOTIENT, 0); }
+		//public ITerminalNode MOD() { return GetToken(mathParser.MOD, 0); }
+		//public ITerminalNode SIGN() { return GetToken(mathParser.SIGN, 0); }
+		//public ITerminalNode SQRT() { return GetToken(mathParser.SQRT, 0); }
+		//public ITerminalNode TRUNC() { return GetToken(mathParser.TRUNC, 0); }
+		//public ITerminalNode INT() { return GetToken(mathParser.INT, 0); }
+		//public ITerminalNode GCD() { return GetToken(mathParser.GCD, 0); }
+		//public ITerminalNode LCM() { return GetToken(mathParser.LCM, 0); }
+		//public ITerminalNode COMBIN() { return GetToken(mathParser.COMBIN, 0); }
+		//public ITerminalNode PERMUT() { return GetToken(mathParser.PERMUT, 0); }
+		//public ITerminalNode DEGREES() { return GetToken(mathParser.DEGREES, 0); }
+		//public ITerminalNode RADIANS() { return GetToken(mathParser.RADIANS, 0); }
+		//public ITerminalNode COS() { return GetToken(mathParser.COS, 0); }
+		//public ITerminalNode COSH() { return GetToken(mathParser.COSH, 0); }
+		//public ITerminalNode SIN() { return GetToken(mathParser.SIN, 0); }
+		//public ITerminalNode SINH() { return GetToken(mathParser.SINH, 0); }
+		//public ITerminalNode TAN() { return GetToken(mathParser.TAN, 0); }
+		//public ITerminalNode TANH() { return GetToken(mathParser.TANH, 0); }
+		//public ITerminalNode ACOS() { return GetToken(mathParser.ACOS, 0); }
+		//public ITerminalNode ACOSH() { return GetToken(mathParser.ACOSH, 0); }
+		//public ITerminalNode ASIN() { return GetToken(mathParser.ASIN, 0); }
+		//public ITerminalNode ASINH() { return GetToken(mathParser.ASINH, 0); }
+		//public ITerminalNode ATAN() { return GetToken(mathParser.ATAN, 0); }
+		//public ITerminalNode ATANH() { return GetToken(mathParser.ATANH, 0); }
+		//public ITerminalNode ATAN2() { return GetToken(mathParser.ATAN2, 0); }
+		//public ITerminalNode ROUND() { return GetToken(mathParser.ROUND, 0); }
+		//public ITerminalNode ROUNDDOWN() { return GetToken(mathParser.ROUNDDOWN, 0); }
+		//public ITerminalNode ROUNDUP() { return GetToken(mathParser.ROUNDUP, 0); }
+		//public ITerminalNode CEILING() { return GetToken(mathParser.CEILING, 0); }
+		//public ITerminalNode FLOOR() { return GetToken(mathParser.FLOOR, 0); }
+		//public ITerminalNode EVEN() { return GetToken(mathParser.EVEN, 0); }
+		//public ITerminalNode ODD() { return GetToken(mathParser.ODD, 0); }
+		//public ITerminalNode MROUND() { return GetToken(mathParser.MROUND, 0); }
+		//public ITerminalNode RAND() { return GetToken(mathParser.RAND, 0); }
+		//public ITerminalNode RANDBETWEEN() { return GetToken(mathParser.RANDBETWEEN, 0); }
+		//public ITerminalNode FACT() { return GetToken(mathParser.FACT, 0); }
+		//public ITerminalNode FACTDOUBLE() { return GetToken(mathParser.FACTDOUBLE, 0); }
+		//public ITerminalNode POWER() { return GetToken(mathParser.POWER, 0); }
+		//public ITerminalNode EXP() { return GetToken(mathParser.EXP, 0); }
+		//public ITerminalNode LN() { return GetToken(mathParser.LN, 0); }
+		//public ITerminalNode LOG() { return GetToken(mathParser.LOG, 0); }
+		//public ITerminalNode LOG10() { return GetToken(mathParser.LOG10, 0); }
+		//public ITerminalNode MULTINOMIAL() { return GetToken(mathParser.MULTINOMIAL, 0); }
+		//public ITerminalNode PRODUCT() { return GetToken(mathParser.PRODUCT, 0); }
+		//public ITerminalNode SQRTPI() { return GetToken(mathParser.SQRTPI, 0); }
+		//public ITerminalNode SUMSQ() { return GetToken(mathParser.SUMSQ, 0); }
+		//public ITerminalNode ASC() { return GetToken(mathParser.ASC, 0); }
+		//public ITerminalNode JIS() { return GetToken(mathParser.JIS, 0); }
+		//public ITerminalNode CHAR() { return GetToken(mathParser.CHAR, 0); }
+		//public ITerminalNode CLEAN() { return GetToken(mathParser.CLEAN, 0); }
+		//public ITerminalNode CODE() { return GetToken(mathParser.CODE, 0); }
+		//public ITerminalNode CONCATENATE() { return GetToken(mathParser.CONCATENATE, 0); }
+		//public ITerminalNode EXACT() { return GetToken(mathParser.EXACT, 0); }
+		//public ITerminalNode FIND() { return GetToken(mathParser.FIND, 0); }
+		//public ITerminalNode FIXED() { return GetToken(mathParser.FIXED, 0); }
+		//public ITerminalNode LEFT() { return GetToken(mathParser.LEFT, 0); }
+		//public ITerminalNode LEN() { return GetToken(mathParser.LEN, 0); }
+		//public ITerminalNode LOWER() { return GetToken(mathParser.LOWER, 0); }
+		//public ITerminalNode MID() { return GetToken(mathParser.MID, 0); }
+		//public ITerminalNode PROPER() { return GetToken(mathParser.PROPER, 0); }
+		//public ITerminalNode REPLACE() { return GetToken(mathParser.REPLACE, 0); }
+		//public ITerminalNode REPT() { return GetToken(mathParser.REPT, 0); }
+		//public ITerminalNode RIGHT() { return GetToken(mathParser.RIGHT, 0); }
+		//public ITerminalNode RMB() { return GetToken(mathParser.RMB, 0); }
+		//public ITerminalNode SEARCH() { return GetToken(mathParser.SEARCH, 0); }
+		//public ITerminalNode SUBSTITUTE() { return GetToken(mathParser.SUBSTITUTE, 0); }
+		//public ITerminalNode T() { return GetToken(mathParser.T, 0); }
+		//public ITerminalNode TEXT() { return GetToken(mathParser.TEXT, 0); }
+		//public ITerminalNode TRIM() { return GetToken(mathParser.TRIM, 0); }
+		//public ITerminalNode UPPER() { return GetToken(mathParser.UPPER, 0); }
+		//public ITerminalNode VALUE() { return GetToken(mathParser.VALUE, 0); }
+		//public ITerminalNode DATEVALUE() { return GetToken(mathParser.DATEVALUE, 0); }
+		//public ITerminalNode TIMEVALUE() { return GetToken(mathParser.TIMEVALUE, 0); }
+		//public ITerminalNode DATE() { return GetToken(mathParser.DATE, 0); }
+		//public ITerminalNode TIME() { return GetToken(mathParser.TIME, 0); }
+		//public ITerminalNode NOW() { return GetToken(mathParser.NOW, 0); }
+		//public ITerminalNode TODAY() { return GetToken(mathParser.TODAY, 0); }
+		//public ITerminalNode YEAR() { return GetToken(mathParser.YEAR, 0); }
+		//public ITerminalNode MONTH() { return GetToken(mathParser.MONTH, 0); }
+		//public ITerminalNode DAY() { return GetToken(mathParser.DAY, 0); }
+		//public ITerminalNode HOUR() { return GetToken(mathParser.HOUR, 0); }
+		//public ITerminalNode MINUTE() { return GetToken(mathParser.MINUTE, 0); }
+		//public ITerminalNode SECOND() { return GetToken(mathParser.SECOND, 0); }
+		//public ITerminalNode WEEKDAY() { return GetToken(mathParser.WEEKDAY, 0); }
+		//public ITerminalNode DATEDIF() { return GetToken(mathParser.DATEDIF, 0); }
+		//public ITerminalNode DAYS360() { return GetToken(mathParser.DAYS360, 0); }
+		//public ITerminalNode EDATE() { return GetToken(mathParser.EDATE, 0); }
+		//public ITerminalNode EOMONTH() { return GetToken(mathParser.EOMONTH, 0); }
+		//public ITerminalNode NETWORKDAYS() { return GetToken(mathParser.NETWORKDAYS, 0); }
+		//public ITerminalNode WORKDAY() { return GetToken(mathParser.WORKDAY, 0); }
+		//public ITerminalNode WEEKNUM() { return GetToken(mathParser.WEEKNUM, 0); }
+		//public ITerminalNode MAX() { return GetToken(mathParser.MAX, 0); }
+		//public ITerminalNode MEDIAN() { return GetToken(mathParser.MEDIAN, 0); }
+		//public ITerminalNode MIN() { return GetToken(mathParser.MIN, 0); }
+		//public ITerminalNode QUARTILE() { return GetToken(mathParser.QUARTILE, 0); }
+		//public ITerminalNode MODE() { return GetToken(mathParser.MODE, 0); }
+		//public ITerminalNode LARGE() { return GetToken(mathParser.LARGE, 0); }
+		//public ITerminalNode SMALL() { return GetToken(mathParser.SMALL, 0); }
+		//public ITerminalNode PERCENTILE() { return GetToken(mathParser.PERCENTILE, 0); }
+		//public ITerminalNode PERCENTRANK() { return GetToken(mathParser.PERCENTRANK, 0); }
+		//public ITerminalNode AVERAGE() { return GetToken(mathParser.AVERAGE, 0); }
+		//public ITerminalNode AVERAGEIF() { return GetToken(mathParser.AVERAGEIF, 0); }
+		//public ITerminalNode GEOMEAN() { return GetToken(mathParser.GEOMEAN, 0); }
+		//public ITerminalNode HARMEAN() { return GetToken(mathParser.HARMEAN, 0); }
+		//public ITerminalNode COUNT() { return GetToken(mathParser.COUNT, 0); }
+		//public ITerminalNode COUNTIF() { return GetToken(mathParser.COUNTIF, 0); }
+		//public ITerminalNode SUM() { return GetToken(mathParser.SUM, 0); }
+		//public ITerminalNode SUMIF() { return GetToken(mathParser.SUMIF, 0); }
+		//public ITerminalNode AVEDEV() { return GetToken(mathParser.AVEDEV, 0); }
+		//public ITerminalNode STDEV() { return GetToken(mathParser.STDEV, 0); }
+		//public ITerminalNode STDEVP() { return GetToken(mathParser.STDEVP, 0); }
+		//public ITerminalNode DEVSQ() { return GetToken(mathParser.DEVSQ, 0); }
+		//public ITerminalNode VAR() { return GetToken(mathParser.VAR, 0); }
+		//public ITerminalNode VARP() { return GetToken(mathParser.VARP, 0); }
+		//public ITerminalNode NORMDIST() { return GetToken(mathParser.NORMDIST, 0); }
+		//public ITerminalNode NORMINV() { return GetToken(mathParser.NORMINV, 0); }
+		//public ITerminalNode NORMSDIST() { return GetToken(mathParser.NORMSDIST, 0); }
+		//public ITerminalNode NORMSINV() { return GetToken(mathParser.NORMSINV, 0); }
+		//public ITerminalNode BETADIST() { return GetToken(mathParser.BETADIST, 0); }
+		//public ITerminalNode BETAINV() { return GetToken(mathParser.BETAINV, 0); }
+		//public ITerminalNode BINOMDIST() { return GetToken(mathParser.BINOMDIST, 0); }
+		//public ITerminalNode EXPONDIST() { return GetToken(mathParser.EXPONDIST, 0); }
+		//public ITerminalNode FDIST() { return GetToken(mathParser.FDIST, 0); }
+		//public ITerminalNode FINV() { return GetToken(mathParser.FINV, 0); }
+		//public ITerminalNode FISHER() { return GetToken(mathParser.FISHER, 0); }
+		//public ITerminalNode FISHERINV() { return GetToken(mathParser.FISHERINV, 0); }
+		//public ITerminalNode GAMMADIST() { return GetToken(mathParser.GAMMADIST, 0); }
+		//public ITerminalNode GAMMAINV() { return GetToken(mathParser.GAMMAINV, 0); }
+		//public ITerminalNode GAMMALN() { return GetToken(mathParser.GAMMALN, 0); }
+		//public ITerminalNode HYPGEOMDIST() { return GetToken(mathParser.HYPGEOMDIST, 0); }
+		//public ITerminalNode LOGINV() { return GetToken(mathParser.LOGINV, 0); }
+		//public ITerminalNode LOGNORMDIST() { return GetToken(mathParser.LOGNORMDIST, 0); }
+		//public ITerminalNode NEGBINOMDIST() { return GetToken(mathParser.NEGBINOMDIST, 0); }
+		//public ITerminalNode POISSON() { return GetToken(mathParser.POISSON, 0); }
+		//public ITerminalNode TDIST() { return GetToken(mathParser.TDIST, 0); }
+		//public ITerminalNode TINV() { return GetToken(mathParser.TINV, 0); }
+		//public ITerminalNode WEIBULL() { return GetToken(mathParser.WEIBULL, 0); }
+		//public ITerminalNode URLENCODE() { return GetToken(mathParser.URLENCODE, 0); }
+		//public ITerminalNode URLDECODE() { return GetToken(mathParser.URLDECODE, 0); }
+		//public ITerminalNode HTMLENCODE() { return GetToken(mathParser.HTMLENCODE, 0); }
+		//public ITerminalNode HTMLDECODE() { return GetToken(mathParser.HTMLDECODE, 0); }
+		//public ITerminalNode BASE64TOTEXT() { return GetToken(mathParser.BASE64TOTEXT, 0); }
+		//public ITerminalNode BASE64URLTOTEXT() { return GetToken(mathParser.BASE64URLTOTEXT, 0); }
+		//public ITerminalNode TEXTTOBASE64() { return GetToken(mathParser.TEXTTOBASE64, 0); }
+		//public ITerminalNode TEXTTOBASE64URL() { return GetToken(mathParser.TEXTTOBASE64URL, 0); }
+		//public ITerminalNode REGEX() { return GetToken(mathParser.REGEX, 0); }
+		//public ITerminalNode REGEXREPALCE() { return GetToken(mathParser.REGEXREPALCE, 0); }
+		//public ITerminalNode ISREGEX() { return GetToken(mathParser.ISREGEX, 0); }
+		//public ITerminalNode ISMATCH() { return GetToken(mathParser.ISMATCH, 0); }
+		//public ITerminalNode GUID() { return GetToken(mathParser.GUID, 0); }
+		//public ITerminalNode MD5() { return GetToken(mathParser.MD5, 0); }
+		//public ITerminalNode SHA1() { return GetToken(mathParser.SHA1, 0); }
+		//public ITerminalNode SHA256() { return GetToken(mathParser.SHA256, 0); }
+		//public ITerminalNode SHA512() { return GetToken(mathParser.SHA512, 0); }
+		//public ITerminalNode CRC8() { return GetToken(mathParser.CRC8, 0); }
+		//public ITerminalNode CRC16() { return GetToken(mathParser.CRC16, 0); }
+		//public ITerminalNode CRC32() { return GetToken(mathParser.CRC32, 0); }
+		//public ITerminalNode HMACMD5() { return GetToken(mathParser.HMACMD5, 0); }
+		//public ITerminalNode HMACSHA1() { return GetToken(mathParser.HMACSHA1, 0); }
+		//public ITerminalNode HMACSHA256() { return GetToken(mathParser.HMACSHA256, 0); }
+		//public ITerminalNode HMACSHA512() { return GetToken(mathParser.HMACSHA512, 0); }
+		//public ITerminalNode TRIMSTART() { return GetToken(mathParser.TRIMSTART, 0); }
+		//public ITerminalNode TRIMEND() { return GetToken(mathParser.TRIMEND, 0); }
+		//public ITerminalNode INDEXOF() { return GetToken(mathParser.INDEXOF, 0); }
+		//public ITerminalNode LASTINDEXOF() { return GetToken(mathParser.LASTINDEXOF, 0); }
+		//public ITerminalNode SPLIT() { return GetToken(mathParser.SPLIT, 0); }
+		//public ITerminalNode JOIN() { return GetToken(mathParser.JOIN, 0); }
+		//public ITerminalNode SUBSTRING() { return GetToken(mathParser.SUBSTRING, 0); }
+		//public ITerminalNode STARTSWITH() { return GetToken(mathParser.STARTSWITH, 0); }
+		//public ITerminalNode ENDSWITH() { return GetToken(mathParser.ENDSWITH, 0); }
+		//public ITerminalNode ISNULLOREMPTY() { return GetToken(mathParser.ISNULLOREMPTY, 0); }
+		//public ITerminalNode ISNULLORWHITESPACE() { return GetToken(mathParser.ISNULLORWHITESPACE, 0); }
+		//public ITerminalNode TOUPPER() { return GetToken(mathParser.TOUPPER, 0); }
+		//public ITerminalNode TOLOWER() { return GetToken(mathParser.TOLOWER, 0); }
+		//public ITerminalNode REMOVESTART() { return GetToken(mathParser.REMOVESTART, 0); }
+		//public ITerminalNode REMOVEEND() { return GetToken(mathParser.REMOVEEND, 0); }
+		//public ITerminalNode JSON() { return GetToken(mathParser.JSON, 0); }
+		//public ITerminalNode PARAMETER() { return GetToken(mathParser.PARAMETER, 0); }
 		public ParameterContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -8686,8 +8430,8 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 		public override int RuleIndex { get { return RULE_parameter; } }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitParameter(this);
-			else return visitor.VisitChildren(this);
+			/*if (typedVisitor != null)*/ return typedVisitor.VisitParameter(this);
+			//else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -8697,7 +8441,7 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 		EnterRule(_localctx, 4, RULE_parameter);
 		int _la;
 		try {
-			State = 2366;
+			 
 			ErrorHandler.Sync(this);
 			switch ( Interpreter.AdaptivePredict(TokenStream,146,Context) ) {
 			case 1:
@@ -8709,7 +8453,7 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 			case 2:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 2365;
+				 
 				_localctx.p = TokenStream.LT(1);
 				_la = TokenStream.LA(1);
 				if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC) | (1L << INT) | (1L << GCD) | (1L << LCM) | (1L << COMBIN) | (1L << PERMUT) | (1L << DEGREES) | (1L << RADIANS) | (1L << COS) | (1L << COSH))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)) | (1L << (UPPER - 64)) | (1L << (VALUE - 64)) | (1L << (DATEVALUE - 64)) | (1L << (TIMEVALUE - 64)) | (1L << (DATE - 64)) | (1L << (TIME - 64)) | (1L << (NOW - 64)) | (1L << (TODAY - 64)) | (1L << (YEAR - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)) | (1L << (POISSON - 128)) | (1L << (TDIST - 128)) | (1L << (TINV - 128)) | (1L << (WEIBULL - 128)) | (1L << (URLENCODE - 128)) | (1L << (URLDECODE - 128)) | (1L << (HTMLENCODE - 128)) | (1L << (HTMLDECODE - 128)) | (1L << (BASE64TOTEXT - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (ISMATCH - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC8 - 192)) | (1L << (CRC16 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (TOUPPER - 192)) | (1L << (TOLOWER - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (PARAMETER - 192)))) != 0)) ) {
