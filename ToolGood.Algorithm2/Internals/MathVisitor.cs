@@ -336,33 +336,6 @@ namespace ToolGood.Algorithm
             return Operand.False;
 
         }
-        public Operand VisitIFNUMBER_fun([NotNull] mathParser.IFNUMBER_funContext context)
-        {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            if (args[0].Type == OperandType.NUMBER) {
-                return args[1];
-            }
-            if (args.Count == 3) {
-                return args[2];
-            }
-            return Operand.False;
-        }
-        public Operand VisitIFTEXT_fun([NotNull] mathParser.IFTEXT_funContext context)
-        {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            if (args[0].Type == OperandType.STRING) {
-                if (args.Count > 1) {
-                    return args[1];
-                }
-                return Operand.True;
-            }
-            if (args.Count == 3) return args[2];
-            return Operand.False;
-        }
         public Operand VisitISNUMBER_fun([NotNull] mathParser.ISNUMBER_funContext context)
         {
             var firstValue = this.Visit(context.expr());
@@ -391,6 +364,53 @@ namespace ToolGood.Algorithm
             }
             return Operand.False;
         }
+
+        public Operand VisitISEVEN_fun([NotNull] mathParser.ISEVEN_funContext context)
+        {
+            var firstValue = this.Visit(context.expr());
+            if (firstValue.Type == OperandType.NUMBER)
+            {
+                if (firstValue.IntValue % 2 == 0)
+                {
+                    return Operand.True;
+                }
+            }
+            return Operand.False;
+        }
+
+        public Operand VisitISLOGICAL_fun([NotNull] mathParser.ISLOGICAL_funContext context)
+        {
+            var firstValue = this.Visit(context.expr());
+            if (firstValue.Type == OperandType.BOOLEAN)
+            {
+                return Operand.True;
+            }
+            return Operand.False;
+        }
+
+        public Operand VisitISODD_fun([NotNull] mathParser.ISODD_funContext context)
+        {
+            var firstValue = this.Visit(context.expr());
+            if (firstValue.Type == OperandType.NUMBER)
+            {
+                if (firstValue.IntValue % 2 == 1)
+                {
+                    return Operand.True;
+                }
+            }
+            return Operand.False;
+        }
+
+        public Operand VisitISNONTEXT_fun([NotNull] mathParser.ISNONTEXT_funContext context)
+        {
+            var firstValue = this.Visit(context.expr());
+            if (firstValue.Type != OperandType.STRING)
+            {
+                return Operand.True;
+            }
+            return Operand.False;
+        }
+
         public Operand VisitAND_fun([NotNull] mathParser.AND_funContext context)
         {
             var args = new List<Operand>();
@@ -3235,6 +3255,8 @@ namespace ToolGood.Algorithm
             }
             return Operand.Create(context.p.Text);
         }
+
+
 
 
         #endregion

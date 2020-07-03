@@ -10,14 +10,20 @@ expr:
 	| '(' expr ')'											# Bracket_fun
 	| IF '(' expr ',' expr (',' expr)? ')'					# IF_fun
 	| IFERROR '(' expr ',' expr (',' expr)? ')'				# IFERROR_fun
-	| IFNUMBER '(' expr ',' expr (',' expr)? ')'			# IFNUMBER_fun
-	| IFTEXT '(' expr ',' expr (',' expr)? ')'				# IFTEXT_fun
 	| ISNUMBER '(' expr ')'									# ISNUMBER_fun
 	| expr '.' ISNUMBER '(' ')'								# ISNUMBER_fun
 	| ISTEXT '(' expr ')'									# ISTEXT_fun
 	| expr '.' ISTEXT '(' ')'								# ISTEXT_fun
 	| ISERROR '(' expr ')'									# ISERROR_fun
 	| expr '.' ISERROR '(' ')'								# ISERROR_fun
+	| ISNONTEXT '(' expr ')'									# ISNONTEXT_fun
+	| expr '.' ISNONTEXT '(' ')'								# ISNONTEXT_fun
+	| ISLOGICAL '(' expr ')'									# ISLOGICAL_fun
+	| expr '.' ISLOGICAL '(' ')'								# ISLOGICAL_fun
+	| ISEVEN '(' expr ')'									# ISEVEN_fun
+	| expr '.' ISEVEN '(' ')'								# ISEVEN_fun
+	| ISODD '(' expr ')'									# ISODD_fun
+	| expr '.' ISODD '(' ')'								# ISODD_fun
 	| AND '(' expr (',' expr)* ')'							# AND_fun
 	| OR '(' expr (',' expr)* ')'							# OR_fun
 	| NOT '(' expr ')'										# NOT_fun
@@ -287,10 +293,13 @@ parameter:
 		E
 		| IF
 		| IFERROR
-		| IFNUMBER
-		| IFTEXT
 		| ISNUMBER
 		| ISTEXT
+		| ISERROR
+		| ISNONTEXT
+		| ISLOGICAL
+		| ISEVEN
+		| ISODD
 		| AND
 		| OR
 		| NOT
@@ -494,11 +503,13 @@ NT: '<>' | '!=';
 // 逻辑函数
 IF: 'IF';
 IFERROR: 'IFERROR';
-IFNUMBER: 'IFNUMBER';
-IFTEXT: 'IFTEXT';
 ISNUMBER: 'ISNUMBER';
 ISTEXT: 'ISTEXT';
 ISERROR: 'ISERROR';
+ISNONTEXT:'ISNONTEXT';
+ISLOGICAL: 'ISLOGICAL' ;
+ISEVEN:'ISEVEN';
+ISODD:'ISODD';
 AND: 'AND';
 OR: 'OR';
 NOT: 'NOT';
