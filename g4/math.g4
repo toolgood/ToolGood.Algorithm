@@ -3,9 +3,18 @@ grammar math;
 prog: expr;
 
 expr:
-	expr op = ('*' | '/' | '%') expr						# MulDiv_fun
-	| expr op = ('+' | '-' | '&') expr						# AddSub_fun
-	| expr op = (LT | LE | GT | GE | ET | NT) expr			# Judge_fun
+	expr op = ('*' | '/' | '%') expr	# MulDiv_fun
+	| expr op = ('+' | '-' | '&') expr	# AddSub_fun
+	| expr op = (
+		'>'
+		| '>='
+		| '<'
+		| '<='
+		| '='
+		| '=='
+		| '!='
+		| '<>'
+	) expr													# Judge_fun
 	| expr op = ('&&' | '||' | AND | OR) expr				# AndOr_fun
 	| '{' expr (',' expr)* '}'								# Array_fun
 	| '(' expr ')'											# Bracket_fun
@@ -303,10 +312,10 @@ expr:
 	| JSON '(' expr ')'											# JSON_fun
 	| expr '.' JSON '(' ')'										# JSON_fun
 	| expr '[' parameter ']'									# GetJsonValue_fun
+	| expr '.' parameter										# GetJsonValue_fun
+	| '[' parameter ']'											# PARAMETER_fun
 	| '-'? NUM													# NUM_fun
-	| STRING													# STRING_fun
-	| '[' parameter ']'											# PARAMETER_fun;
-
+	| STRING													# STRING_fun;
 parameter:
 	expr
 	| p = (
@@ -515,22 +524,7 @@ parameter:
 		| JSON
 		| PARAMETER
 	);
-
-MUL: '*';
-DIV: '/';
-ADD: '+';
-SUB: '-';
-MOD_2: '%';
-MERGE: '&';
-LT: '<';
-LE: '<=';
-GT: '>';
-GE: '>=';
-ET: '=' | '==';
-NT: '<>' | '!=';
-AND_2: '&&';
-OR_2: '||';
-
+SUB:'-';
 // 逻辑函数
 IF: 'IF';
 IFERROR: 'IFERROR';
@@ -620,7 +614,7 @@ FIND: 'FIND';
 FIXED: 'FIXED';
 LEFT: 'LEFT';
 LEN: 'LEN';
-LOWER: 'LOWER'|'TOLOWER';
+LOWER: 'LOWER' | 'TOLOWER';
 MID: 'MID';
 PROPER: 'PROPER';
 REPLACE: 'REPLACE';
@@ -632,7 +626,7 @@ SUBSTITUTE: 'SUBSTITUTE';
 T: 'T';
 TEXT: 'TEXT';
 TRIM: 'TRIM';
-UPPER: 'UPPER'|'TOUPPER';
+UPPER: 'UPPER' | 'TOUPPER';
 VALUE: 'VALUE';
 // 日期与时间函数
 DATEVALUE: 'DATEVALUE';

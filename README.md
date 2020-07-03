@@ -17,9 +17,9 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
     var r = engine.TryEvaluate("(1=1)*9+2", 0); //返回:11
     var d = engine.TryEvaluate("'2016-1-1'+1", DateTime.MinValue); //返回日期:2016-1-2
     var t = engine.TryEvaluate("'2016-1-1'+9*'1:0'", DateTime.MinValue);//返回日期:2016-1-1 9:0
-    var j = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')[Age]", null);//返回51
+    var j = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Age", null);//返回51
     var k = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')[Name].Trim()", null);//返回"William Shakespeare" (不带空格)
-	var l = engine.TryEvaluate("json('{\"Name1\":\"William Shakespeare \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')['Name'& 1].Trim().substring(2,3)", null); ;//返回"ill"
+    var l = engine.TryEvaluate("json('{\"Name1\":\"William Shakespeare \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')['Name'& 1].Trim().substring(2,3)", null); ;//返回"ill"
 
 ```
 支持常量`pi`,`e`,`true`,`false`。
@@ -34,7 +34,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
 
 中文符号自动转成英文符号：`括号`,`方括号`,`逗号`,`引号`,`双引号`
 
- 
+注：字符串拼接使用`&`。
 
 ## 自定义参数
 ``` csharp

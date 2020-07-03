@@ -254,7 +254,7 @@ namespace ToolGood.Algorithm.Test
         {
 
             AlgorithmEngine engine = new AlgorithmEngine();
-            var dt = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')[Age]", null);
+            var dt = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Age", null);
             Assert.AreEqual(dt.ToString(), "51");
             dt = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')[Birthday]", null);
             Assert.AreEqual(dt, "04/26/1564 00:00:00");
