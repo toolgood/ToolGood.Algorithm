@@ -28,8 +28,6 @@ using IToken = Antlr4.Runtime.IToken;
 /// by <see cref="mathParser"/>.
 /// </summary>
 /// <typeparam name="Result">The return type of the visit operation.</typeparam>
-[System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.8")]
-[System.CLSCompliant(false)]
   interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="mathParser.prog"/>.
@@ -93,6 +91,13 @@ using IToken = Antlr4.Runtime.IToken;
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitTOLOWER_fun([NotNull] mathParser.TOLOWER_funContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>OCT2BIN_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitOCT2BIN_fun([NotNull] mathParser.OCT2BIN_funContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>QUARTILE_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
@@ -185,6 +190,13 @@ using IToken = Antlr4.Runtime.IToken;
 	/// <return>The visitor result.</return>
 	Result VisitRMB_fun([NotNull] mathParser.RMB_funContext context);
 	/// <summary>
+	/// Visit a parse tree produced by the <c>DEC2HEX_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDEC2HEX_fun([NotNull] mathParser.DEC2HEX_funContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>CLEAN_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// </summary>
@@ -247,6 +259,13 @@ using IToken = Antlr4.Runtime.IToken;
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitISERROR_fun([NotNull] mathParser.ISERROR_funContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>BIN2DEC_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitBIN2DEC_fun([NotNull] mathParser.BIN2DEC_funContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>JIS_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
@@ -352,6 +371,13 @@ using IToken = Antlr4.Runtime.IToken;
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitSUMIF_fun([NotNull] mathParser.SUMIF_funContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>HEX2OCT_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitHEX2OCT_fun([NotNull] mathParser.HEX2OCT_funContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>PI_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
@@ -583,6 +609,13 @@ using IToken = Antlr4.Runtime.IToken;
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitQUOTIENT_fun([NotNull] mathParser.QUOTIENT_funContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>OCT2DEC_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitOCT2DEC_fun([NotNull] mathParser.OCT2DEC_funContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>SEARCH_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
@@ -878,6 +911,20 @@ using IToken = Antlr4.Runtime.IToken;
 	/// <return>The visitor result.</return>
 	Result VisitEXPONDIST_fun([NotNull] mathParser.EXPONDIST_funContext context);
 	/// <summary>
+	/// Visit a parse tree produced by the <c>DEC2BIN_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDEC2BIN_fun([NotNull] mathParser.DEC2BIN_funContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>HEX2DEC_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitHEX2DEC_fun([NotNull] mathParser.HEX2DEC_funContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>SMALL_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// </summary>
@@ -1074,6 +1121,13 @@ using IToken = Antlr4.Runtime.IToken;
 	/// <return>The visitor result.</return>
 	Result VisitGAMMADIST_fun([NotNull] mathParser.GAMMADIST_funContext context);
 	/// <summary>
+	/// Visit a parse tree produced by the <c>OCT2HEX_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitOCT2HEX_fun([NotNull] mathParser.OCT2HEX_funContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>TODAY_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// </summary>
@@ -1136,6 +1190,13 @@ using IToken = Antlr4.Runtime.IToken;
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitAND_fun([NotNull] mathParser.AND_funContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>BIN2HEX_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitBIN2HEX_fun([NotNull] mathParser.BIN2HEX_funContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>MULTINOMIAL_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
@@ -1221,6 +1282,13 @@ using IToken = Antlr4.Runtime.IToken;
 	/// <return>The visitor result.</return>
 	Result VisitPOWER_fun([NotNull] mathParser.POWER_funContext context);
 	/// <summary>
+	/// Visit a parse tree produced by the <c>DEC2OCT_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDEC2OCT_fun([NotNull] mathParser.DEC2OCT_funContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>PROPER_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// </summary>
@@ -1248,6 +1316,13 @@ using IToken = Antlr4.Runtime.IToken;
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitTANH_fun([NotNull] mathParser.TANH_funContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>HEX2BIN_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitHEX2BIN_fun([NotNull] mathParser.HEX2BIN_funContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>SINH_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
@@ -1360,6 +1435,13 @@ using IToken = Antlr4.Runtime.IToken;
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitWEEKDAY_fun([NotNull] mathParser.WEEKDAY_funContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>BIN2OCT_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitBIN2OCT_fun([NotNull] mathParser.BIN2OCT_funContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>BASE64TOTEXT_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.

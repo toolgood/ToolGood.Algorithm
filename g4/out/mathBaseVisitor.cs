@@ -132,6 +132,17 @@ public partial class mathBaseVisitor<Result> : AbstractParseTreeVisitor<Result>,
 	/// <return>The visitor result.</return>
 	public virtual Result VisitTOLOWER_fun([NotNull] mathParser.TOLOWER_funContext context) { return VisitChildren(context); }
 	/// <summary>
+	/// Visit a parse tree produced by the <c>OCT2BIN_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitOCT2BIN_fun([NotNull] mathParser.OCT2BIN_funContext context) { return VisitChildren(context); }
+	/// <summary>
 	/// Visit a parse tree produced by the <c>QUARTILE_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// <para>
@@ -275,6 +286,17 @@ public partial class mathBaseVisitor<Result> : AbstractParseTreeVisitor<Result>,
 	/// <return>The visitor result.</return>
 	public virtual Result VisitRMB_fun([NotNull] mathParser.RMB_funContext context) { return VisitChildren(context); }
 	/// <summary>
+	/// Visit a parse tree produced by the <c>DEC2HEX_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitDEC2HEX_fun([NotNull] mathParser.DEC2HEX_funContext context) { return VisitChildren(context); }
+	/// <summary>
 	/// Visit a parse tree produced by the <c>CLEAN_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// <para>
@@ -373,6 +395,17 @@ public partial class mathBaseVisitor<Result> : AbstractParseTreeVisitor<Result>,
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	public virtual Result VisitISERROR_fun([NotNull] mathParser.ISERROR_funContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>BIN2DEC_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitBIN2DEC_fun([NotNull] mathParser.BIN2DEC_funContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by the <c>JIS_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
@@ -538,6 +571,17 @@ public partial class mathBaseVisitor<Result> : AbstractParseTreeVisitor<Result>,
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	public virtual Result VisitSUMIF_fun([NotNull] mathParser.SUMIF_funContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>HEX2OCT_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitHEX2OCT_fun([NotNull] mathParser.HEX2OCT_funContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by the <c>PI_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
@@ -901,6 +945,17 @@ public partial class mathBaseVisitor<Result> : AbstractParseTreeVisitor<Result>,
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	public virtual Result VisitQUOTIENT_fun([NotNull] mathParser.QUOTIENT_funContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>OCT2DEC_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitOCT2DEC_fun([NotNull] mathParser.OCT2DEC_funContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by the <c>SEARCH_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
@@ -1364,6 +1419,28 @@ public partial class mathBaseVisitor<Result> : AbstractParseTreeVisitor<Result>,
 	/// <return>The visitor result.</return>
 	public virtual Result VisitEXPONDIST_fun([NotNull] mathParser.EXPONDIST_funContext context) { return VisitChildren(context); }
 	/// <summary>
+	/// Visit a parse tree produced by the <c>DEC2BIN_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitDEC2BIN_fun([NotNull] mathParser.DEC2BIN_funContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>HEX2DEC_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitHEX2DEC_fun([NotNull] mathParser.HEX2DEC_funContext context) { return VisitChildren(context); }
+	/// <summary>
 	/// Visit a parse tree produced by the <c>SMALL_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// <para>
@@ -1672,6 +1749,17 @@ public partial class mathBaseVisitor<Result> : AbstractParseTreeVisitor<Result>,
 	/// <return>The visitor result.</return>
 	public virtual Result VisitGAMMADIST_fun([NotNull] mathParser.GAMMADIST_funContext context) { return VisitChildren(context); }
 	/// <summary>
+	/// Visit a parse tree produced by the <c>OCT2HEX_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitOCT2HEX_fun([NotNull] mathParser.OCT2HEX_funContext context) { return VisitChildren(context); }
+	/// <summary>
 	/// Visit a parse tree produced by the <c>TODAY_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// <para>
@@ -1770,6 +1858,17 @@ public partial class mathBaseVisitor<Result> : AbstractParseTreeVisitor<Result>,
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	public virtual Result VisitAND_fun([NotNull] mathParser.AND_funContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>BIN2HEX_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitBIN2HEX_fun([NotNull] mathParser.BIN2HEX_funContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by the <c>MULTINOMIAL_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
@@ -1903,6 +2002,17 @@ public partial class mathBaseVisitor<Result> : AbstractParseTreeVisitor<Result>,
 	/// <return>The visitor result.</return>
 	public virtual Result VisitPOWER_fun([NotNull] mathParser.POWER_funContext context) { return VisitChildren(context); }
 	/// <summary>
+	/// Visit a parse tree produced by the <c>DEC2OCT_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitDEC2OCT_fun([NotNull] mathParser.DEC2OCT_funContext context) { return VisitChildren(context); }
+	/// <summary>
 	/// Visit a parse tree produced by the <c>PROPER_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// <para>
@@ -1946,6 +2056,17 @@ public partial class mathBaseVisitor<Result> : AbstractParseTreeVisitor<Result>,
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	public virtual Result VisitTANH_fun([NotNull] mathParser.TANH_funContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>HEX2BIN_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitHEX2BIN_fun([NotNull] mathParser.HEX2BIN_funContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by the <c>SINH_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
@@ -2122,6 +2243,17 @@ public partial class mathBaseVisitor<Result> : AbstractParseTreeVisitor<Result>,
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	public virtual Result VisitWEEKDAY_fun([NotNull] mathParser.WEEKDAY_funContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>BIN2OCT_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitBIN2OCT_fun([NotNull] mathParser.BIN2OCT_funContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by the <c>BASE64TOTEXT_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.

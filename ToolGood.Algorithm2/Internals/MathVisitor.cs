@@ -871,8 +871,251 @@ namespace ToolGood.Algorithm
 
             return Operand.Create(Math.Atan2(secondValue.NumberValue, firstValue.NumberValue));
         }
+        public Operand VisitFIXED_fun([NotNull] mathParser.FIXED_funContext context)
+        {
+            var args = new List<Operand>();
+            foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            var num = 2;
+            if (args.Count > 1)
+            {
+                args[1] = args[1].ToNumber();
+                if (args[1].IsError) { return args[1]; }
+                num = args[1].IntValue;
+            }
+            args[0] = args[0].ToNumber();
+            if (args[0].IsError) { return args[0]; }
+
+            var s = Math.Round(args[0].NumberValue, num);
+            var no = false;
+            if (args.Count == 3)
+            {
+                args[2] = args[2].ToBoolean();
+                if (args[2].IsError) { return args[2]; }
+                no = args[2].BooleanValue;
+            }
+            if (no == false)
+            {
+                return Operand.Create(s.ToString("N" + num));
+            }
+            return Operand.Create(s.ToString());
+        }
 
         #endregion
+
+        #region transformation
+        private static Regex bit_2 = new Regex("^[01]+$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        public Operand VisitBIN2OCT_fun([NotNull] mathParser.BIN2OCT_funContext context)
+        {
+            var args = new List<Operand>();
+            foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            var firstValue = args[0].ToString();
+            if (bit_2.IsMatch(firstValue.StringValue) == false) { return Operand.Error(""); }
+            var num = Convert.ToString(Convert.ToInt32(firstValue.StringValue, 2),8);
+            if (args.Count == 2)
+            {
+                var secondValue = args[1].ToNumber();
+                if (secondValue.IsError) { return secondValue; }
+                if (num.Length > secondValue.IntValue)
+                {
+                    return Operand.Create(num.PadLeft(secondValue.IntValue, '0'));
+                }
+                return Operand.Error("");
+            }
+            return Operand.Create(num);
+        }
+        public Operand VisitBIN2DEC_fun([NotNull] mathParser.BIN2DEC_funContext context)
+        {
+            var firstValue = this.Visit(context.expr()).ToString("");
+            if (firstValue.IsError) { return firstValue; }
+
+            if (bit_2.IsMatch(firstValue.StringValue) == false) { return Operand.Error(""); }
+            var num = Convert.ToInt32(firstValue.StringValue, 2);
+            return Operand.Create(num);
+        }
+
+        public Operand VisitBIN2HEX_fun([NotNull] mathParser.BIN2HEX_funContext context)
+        {
+            var args = new List<Operand>();
+            foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            var firstValue = args[0].ToString();
+            if (bit_2.IsMatch(firstValue.StringValue) == false) { return Operand.Error(""); }
+            var num = Convert.ToString(Convert.ToInt32(firstValue.StringValue, 2), 16).ToUpper();
+            if (args.Count == 2)
+            {
+                var secondValue = args[1].ToNumber();
+                if (secondValue.IsError) { return secondValue; }
+                if (num.Length > secondValue.IntValue)
+                {
+                    return Operand.Create(num.PadLeft(secondValue.IntValue, '0'));
+                }
+                return Operand.Error("");
+            }
+            return Operand.Create(num);
+        }
+
+        private static Regex bit_8 = new Regex("^[0-8]+$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        public Operand VisitOCT2BIN_fun([NotNull] mathParser.OCT2BIN_funContext context)
+        {
+            var args = new List<Operand>();
+            foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            var firstValue = args[0].ToString();
+            if (bit_8.IsMatch(firstValue.StringValue) == false) { return Operand.Error(""); }
+            var num = Convert.ToString(Convert.ToInt32(firstValue.StringValue, 8), 2);
+            if (args.Count == 2)
+            {
+                var secondValue = args[1].ToNumber();
+                if (secondValue.IsError) { return secondValue; }
+                if (num.Length > secondValue.IntValue)
+                {
+                    return Operand.Create(num.PadLeft(secondValue.IntValue, '0'));
+                }
+                return Operand.Error("");
+            }
+            return Operand.Create(num);
+        }
+        public Operand VisitOCT2DEC_fun([NotNull] mathParser.OCT2DEC_funContext context)
+        {
+            var firstValue = this.Visit(context.expr()).ToString();
+            if (firstValue.IsError) { return firstValue; }
+
+            if (bit_8.IsMatch(firstValue.StringValue) == false) { return Operand.Error(""); }
+            var num = Convert.ToInt32(firstValue.StringValue, 8);
+            return Operand.Create(num);
+        }
+
+        public Operand VisitOCT2HEX_fun([NotNull] mathParser.OCT2HEX_funContext context)
+        {
+            var args = new List<Operand>();
+            foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            var firstValue = args[0].ToString();
+            if (bit_8.IsMatch(firstValue.StringValue) == false) { return Operand.Error(""); }
+            var num = Convert.ToString(Convert.ToInt32(firstValue.StringValue, 8), 16).ToUpper();
+            if (args.Count == 2)
+            {
+                var secondValue = args[1].ToNumber();
+                if (secondValue.IsError) { return secondValue; }
+                if (num.Length > secondValue.IntValue)
+                {
+                    return Operand.Create(num.PadLeft(secondValue.IntValue, '0'));
+                }
+                return Operand.Error("");
+            }
+            return Operand.Create(num);
+        }
+
+
+        public Operand VisitDEC2BIN_fun([NotNull] mathParser.DEC2BIN_funContext context)
+        {
+            var args = new List<Operand>();
+            foreach (var item in context.expr()) { var aa = this.Visit(item).ToNumber(); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            var firstValue = args[0].ToNumber();
+            var num= System.Convert.ToString(firstValue.IntValue, 2);
+            if (args.Count==2)
+            {
+                if (num.Length>args[1].IntValue)
+                {
+                    return Operand.Create(num.PadLeft(args[1].IntValue, '0'));
+                }
+                return Operand.Error("");
+            }
+            return Operand.Create(num );
+        }
+
+        public Operand VisitDEC2OCT_fun([NotNull] mathParser.DEC2OCT_funContext context)
+        {
+            var args = new List<Operand>();
+            foreach (var item in context.expr()) { var aa = this.Visit(item).ToNumber(); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            var firstValue = args[0].ToNumber();
+            var num = System.Convert.ToString(firstValue.IntValue, 8);
+            if (args.Count == 2)
+            {
+                if (num.Length > args[1].IntValue)
+                {
+                    return Operand.Create(num.PadLeft(args[1].IntValue, '0'));
+                }
+                return Operand.Error("");
+            }
+            return Operand.Create(num);
+        }
+        public Operand VisitDEC2HEX_fun([NotNull] mathParser.DEC2HEX_funContext context)
+        {
+            var args = new List<Operand>();
+            foreach (var item in context.expr()) { var aa = this.Visit(item).ToNumber(); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            var firstValue = args[0].ToNumber();
+            var num = System.Convert.ToString(firstValue.IntValue, 16).ToUpper();
+            if (args.Count == 2)
+            {
+                if (num.Length > args[1].IntValue)
+                {
+                    return Operand.Create(num.PadLeft(args[1].IntValue, '0'));
+                }
+                return Operand.Error("");
+            }
+            return Operand.Create(num);
+        }
+        private static Regex bit_16 = new Regex("^[0-9a-f]+$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        public Operand VisitHEX2BIN_fun([NotNull] mathParser.HEX2BIN_funContext context)
+        {
+            var args = new List<Operand>();
+            foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            var firstValue = args[0].ToString();
+            if (firstValue.IsError) { return firstValue; }
+            if (bit_16.IsMatch(firstValue.StringValue) == false) { return Operand.Error(""); }
+
+            var num = Convert.ToString(Convert.ToInt32(firstValue.StringValue, 16), 2);
+            if (args.Count == 2)
+            {
+                var secondValue = args[1].ToNumber();
+                if (secondValue.IsError) { return secondValue; }
+                if (num.Length > secondValue.IntValue)
+                {
+                    return Operand.Create(num.PadLeft(secondValue.IntValue, '0'));
+                }
+                return Operand.Error("");
+            }
+            return Operand.Create(num);
+        }
+        public Operand VisitHEX2OCT_fun([NotNull] mathParser.HEX2OCT_funContext context)
+        {
+            var args = new List<Operand>();
+            foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            var firstValue = args[0].ToString();
+            if (firstValue.IsError) { return firstValue; }
+            if (bit_16.IsMatch(firstValue.StringValue) == false) { return Operand.Error(""); }
+            var num = Convert.ToString(Convert.ToInt32(firstValue.StringValue, 16), 8);
+            if (args.Count == 2)
+            {
+                var secondValue = args[1].ToNumber();
+                if (secondValue.IsError) { return secondValue; }
+                if (num.Length > secondValue.IntValue)
+                {
+                    return Operand.Create(num.PadLeft(secondValue.IntValue, '0'));
+                }
+                return Operand.Error("");
+            }
+            return Operand.Create(num);
+        }
+        public Operand VisitHEX2DEC_fun([NotNull] mathParser.HEX2DEC_funContext context)
+        {
+            var firstValue = this.Visit(context.expr()).ToString();
+            if (firstValue.IsError) { return firstValue; }
+
+            if (bit_16.IsMatch(firstValue.StringValue) == false) { return Operand.Error(""); }
+            var num = Convert.ToInt32(firstValue.StringValue, 16);
+            return Operand.Create(num);
+        }
+        #endregion
+
 
         #region rounding
 
@@ -1307,35 +1550,6 @@ namespace ToolGood.Algorithm
 
             var p2 = secondValue.StringValue.IndexOf(firstValue.StringValue, count.IntValue) + excelIndex;
             return Operand.Create(p2);
-        }
-        public Operand VisitFIXED_fun([NotNull] mathParser.FIXED_funContext context)
-        {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            var num = 2;
-            if (args.Count > 1)
-            {
-                args[1] = args[1].ToNumber();
-                if (args[1].IsError) { return args[1]; }
-                num = args[1].IntValue;
-            }
-            args[0] = args[0].ToNumber();
-            if (args[0].IsError) { return args[0]; }
-
-            var s = Math.Round(args[0].NumberValue, num);
-            var no = false;
-            if (args.Count == 3)
-            {
-                args[2] = args[2].ToBoolean();
-                if (args[2].IsError) { return args[2]; }
-                no = args[2].BooleanValue;
-            }
-            if (no == false)
-            {
-                return Operand.Create(s.ToString("N" + num));
-            }
-            return Operand.Create(s.ToString());
         }
         public Operand VisitLEFT_fun([NotNull] mathParser.LEFT_funContext context)
         {
@@ -2450,7 +2664,7 @@ namespace ToolGood.Algorithm
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
             var dbs = args[0].GetNumberList();
-            int count = 0;
+            int count;
             if (args[1].Type == OperandType.NUMBER)
             {
                 count = F_base_countif(dbs, args[1].NumberValue);
