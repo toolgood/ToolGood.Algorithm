@@ -7,22 +7,28 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
     AlgorithmEngine engine = new AlgorithmEngine();
     double a=0.0;
     if (engine.Parse("1+2")) {
-        a = (double)engine.Evaluate();
+        var o = engine.Evaluate();
+        a=o.NumberValue;
     }
+    var b = engine.TryEvaluate("1=1 && 1<2", 0);
     var c = engine.TryEvaluate("2+3", 0);
     var d = engine.TryEvaluate("count({1,2,3,4})", 0);//{}代表数组,返回:4
     var s = engine.TryEvaluate("'aa'&'bb'", ""); //字符串连接,返回:aabb
     var r = engine.TryEvaluate("(1=1)*9+2", 0); //返回:11
     var d = engine.TryEvaluate("'2016-1-1'+1", DateTime.MinValue); //返回日期:2016-1-2
     var t = engine.TryEvaluate("'2016-1-1'+9*'1:0'", DateTime.MinValue);//返回日期:2016-1-1 9:0
-    var j = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Age", null);//返回51
-    var k = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Name.Trim()", null);//返回"William Shakespeare" (不带空格)
-	var l = engine.TryEvaluate("json('{\"Name1\":\"William Shakespeare \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').（'Name'& 1）.Trim().substring(2,3)", null); ;//返回"ill"
+    var j = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')[Age]", null);//返回51
+    var k = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')[Name].Trim()", null);//返回"William Shakespeare" (不带空格)
+	var l = engine.TryEvaluate("json('{\"Name1\":\"William Shakespeare \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')['Name'& 1].Trim().substring(2,3)", null); ;//返回"ill"
 
 ```
 支持常量`pi`,`e`,`true`,`false`。
 
-数字转bool，非零为真,零为假。bool转数字，假为0，真为1。
+数字转bool，非零为真,零为假。
+bool转数字，假为`0`，真为`1`。
+bool转字符串，假为`FALSE`，真为`TRUE`。
+字符串转bool,`0`、`false`为假，`1`、`true`为真。
+
 
 索引默认为`Excel索引`，如果想用c#索引，请设置`UseExcelIndex`为`false`。
 
@@ -39,18 +45,21 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
             _height = height;
         }
 
-        protected override Operand GetParameter(Operand curOpd)
+        protected override Operand GetParameter(string parameter)
         {
-            if (curOpd.Parameter == "[半径]") {
-                return new Operand(OperandType.NUMBER, _radius);
+            if (parameter == "[半径]")
+            {
+                return Operand.Create(_radius);
             }
-            if (curOpd.Parameter == "[直径]") {
-                return new Operand(OperandType.NUMBER, _radius * 2);
+            if (parameter == "[直径]")
+            {
+                return Operand.Create(_radius * 2);
             }
-            if (curOpd.Parameter == "[高]") {
-                return new Operand(OperandType.NUMBER, _height);
+            if (parameter == "[高]")
+            {
+                return Operand.Create(_height);
             }
-            return base.GetParameter(curOpd);
+            return base.GetParameter(parameter);
         }
     }
     //调用方法
@@ -58,10 +67,9 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
     c.TryEvaluate("[半径]*[半径]*pi()", 0.0);      //圆底面积
     c.TryEvaluate("[直径]*pi()", 0.0);            //圆的长
     c.TryEvaluate("[半径]*[半径]*pi()*[高]", 0.0); //圆的体积
-
-	c.TryEvaluate("p('半径')*[半径]*pi()*[高]", 0.0); //圆的体积
+    c.TryEvaluate("['半径']*[半径]*pi()*[高]", 0.0); //圆的体积
 ```
-参数以方括号定义，如 `[参数名]`。变量参数可以用`p(参数名)`。
+参数以方括号定义，如 `[参数名]`。 
 
 
 ## Excel函数
@@ -72,20 +80,16 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
 <table>
     <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
-        <td>IF</td><td>if(测试条件,真值,[假值])<br>执行真假值判断,根据逻辑计算的真假值,返回不同结果。</td>
+        <td>IF</td><td>if(测试条件,真值[,假值])<br>执行真假值判断,根据逻辑计算的真假值,返回不同结果。</td>
         <td>if(1=1,1,2) <br>>>1</td>
     </tr>
     <tr>
-        <td>IFERROR</td><td>ifError(测试条件,真值,[假值])<br>如果公式计算出错误则返回您指定的值；否则返回公式结果。</td>
+        <td>IFERROR</td><td>ifError(测试条件,真值[,假值])<br>如果公式计算出错误则返回您指定的值；否则返回公式结果。</td>
         <td>iferror(1/0,1,2) <br>>>1</td>
     </tr>
     <tr>
-        <td>IFNUMBER</td><td>ifNumber(测试条件,真值,[假值])<br>指定要执行的逻辑检测</td>
-        <td>ifnumber(4,1,2) <br>>>1</td>
-    </tr>
-    <tr>
-        <td>IFTEXT</td><td>ifText(测试条件,真值,[假值])<br>指定要执行的逻辑检测</td>
-        <td>iftext('a',1,2) <br>>>1</td>
+        <td>ISERROR</td><td>ISERROR(值)<br>判断出错,返回 TRUE 或 FALSE</td>
+        <td>ISERROR(1) <br>>>false</td>
     </tr>
     <tr>
         <td>ISNUMBER</td><td>isNumber(值)<br>判断是否数字,返回 TRUE 或 FALSE</td>
@@ -94,6 +98,22 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
     <tr>
         <td>ISTEXT</td><td>isText(值)<br>判断是否文字,返回 TRUE 或 FALSE</td>
         <td>istext('1') <br>>>true </td>
+    </tr>
+    <tr>
+        <td>ISNONTEXT</td><td>ISNONTEXT(值)<br>判断是否为非文字,返回 TRUE 或 FALSE</td>
+        <td>ISNONTEXT('1') <br>>>false </td>
+    </tr>
+    <tr>
+        <td>ISLOGICAL</td><td>ISLOGICAL(值)<br>判断是否为逻辑值,返回 TRUE 或 FALSE</td>
+        <td>ISLOGICAL('1') <br>>>false </td>
+    </tr>
+    <tr>
+        <td>ISEVEN</td><td>ISEVEN(值)<br>如果数字是偶数,返回 TRUE 或 FALSE</td>
+        <td>ISEVEN('1') <br>>>false </td>
+    </tr>
+    <tr>
+        <td>ISODD</td><td>ISODD(值)<br>如果数字是奇数,返回 TRUE 或 FALSE</td>
+        <td>ISODD('1') <br>>>true </td>
     </tr>
     <tr>
         <td>AND</td><td>and(逻辑值1,...)<br>如果所有参数均为TRUE,则返回TRUE</td>
@@ -294,7 +314,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
         <td>LN(4) <br>>>1.386294361</td>
     </tr>
     <tr>
-        <td>log</td><td>log(数值,[底数])<br>返回数字的常用对数,如省略底数,默认为10</td>
+        <td>log</td><td>log(数值[,底数])<br>返回数字的常用对数,如省略底数,默认为10</td>
         <td>LOG(100,10) <br>>>2</td>
     </tr>
     <tr>
@@ -316,6 +336,59 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
     <tr>
         <td>SUMSQ</td><td>sumQq(数值,...)<br>返回参数的平方和</td>
         <td>SUMSQ(1,2) <br>>>5</td>
+    </tr>
+   <tr>
+        <td>FIXED</td><td>fixed(数值[,小数位数[,有无逗号分隔符]])<br>将数字设置为具有固定小数位的文本格式</td>
+        <td>FIXED(4567.89,1) <br>>>4,567.9</td>
+    </tr>
+    <tr>
+        <td rowspan="12">转<br><br>化<</td>
+        <td>DEC2BIN</td><td>DEC2BIN(数值[,位数])<br>十进制转二进制 </td>
+        <td>DEC2BIN(100) <br>>> </td>
+    </tr>
+    <tr>
+        <td>DEC2OCT</td><td>DEC2OCT(数值[,位数])<br>十进制转二进制 </td>
+        <td>DEC2OCT(100) <br>>> </td>
+    </tr>
+    <tr>
+        <td>DEC2HEX</td><td>DEC2HEX(数值[,位数])<br>十进制转二进制 </td>
+        <td>DEC2HEX(100) <br>>> </td>
+    </tr>
+    <tr>
+        <td>HEX2BIN</td><td>HEX2BIN(数值[,位数])<br>十进制转二进制 </td>
+        <td>HEX2BIN(100) <br>>> </td>
+    </tr>
+    <tr>
+        <td>HEX2DEC</td><td>HEX2DEC(数值[,位数])<br>十进制转二进制 </td>
+        <td>HEX2DEC(100) <br>>> </td>
+    </tr>
+    <tr>
+        <td>HEX2OCT</td><td>HEX2OCT(数值[,位数])<br>十进制转二进制 </td>
+        <td>HEX2OCT(100) <br>>> </td>
+    </tr>
+    <tr>
+        <td>OCT2BIN</td><td>OCT2BIN(数值[,位数])<br>十进制转二进制 </td>
+        <td>OCT2BIN(100) <br>>> </td>
+    </tr>
+    <tr>
+        <td>OCT2DEC</td><td>OCT2DEC(数值[,位数])<br>十进制转二进制 </td>
+        <td>OCT2DEC(100) <br>>> </td>
+    </tr>
+    <tr>
+        <td>OCT2HEX</td><td>OCT2HEX(数值[,位数])<br>十进制转二进制 </td>
+        <td>OCT2HEX(100) <br>>> </td>
+    </tr>
+    <tr>
+        <td>BIN2OCT</td><td>BIN2OCT(数值[,位数])<br>十进制转二进制 </td>
+        <td>BIN2OCT(100) <br>>> </td>
+    </tr>
+    <tr>
+        <td>BIN2DEC</td><td>BIN2DEC(数值[,位数])<br>十进制转二进制 </td>
+        <td>BIN2DEC(100) <br>>> </td>
+    </tr>
+    <tr>
+        <td>BIN2HEX</td><td>BIN2HEX(数值[,位数])<br>十进制转二进制 </td>
+        <td>BIN2HEX(100) <br>>> </td>
     </tr>
 </table>
 
@@ -351,24 +424,16 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
         <td>EXACT("11","22") <br>>>false</td>
     </tr>
     <tr>
-        <td>FIND</td><td>find(要查找的字符串,被查找的字符串,[开始位置])<br>在一文本值内查找另一文本值（区分大小写） </td>
+        <td>FIND</td><td>find(要查找的字符串,被查找的字符串[,开始位置])<br>在一文本值内查找另一文本值（区分大小写） </td>
         <td>FIND("11","12221122") <br>>>5</td>
     </tr>
     <tr>
-        <td>FIXED</td><td>fixed(数值,[小数位数],[有无逗号分隔符])<br>将数字设置为具有固定小数位的文本格式</td>
-        <td>FIXED(4567.89,1) <br>>>4,567.9</td>
-    </tr>
-    <tr>
-        <td>LEFT</td><td>left(字符串,[字符个数])<br>返回文本值最左边的字符</td>
+        <td>LEFT</td><td>left(字符串[,字符个数])<br>返回文本值最左边的字符</td>
         <td>LEFT('123222',3) <br>>>123</td>
     </tr>
     <tr>
         <td>LEN</td><td>len(字符串)<br>返回文本字符串中的字符个数</td>
         <td>LEN('123222') <br>>>6</td>
-    </tr>
-    <tr>
-        <td>LOWER</td><td>lower(字符串)<br>将文本转换为小写形式</td>
-        <td>LOWER('ABC') <br>>>abc</td>
     </tr>
     <tr>
         <td>MID</td><td>mid(字符串,开始位置,字符个数)<br>从文本字符串中的指定位置起返回特定个数的字符</td>
@@ -392,7 +457,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
         <td>REPT("q",3) <br>>>qqq</td>
     </tr>
     <tr>
-        <td>RIGHT</td><td>right(字符串,[字符个数])<br>返回文本值最右边的字符</td>
+        <td>RIGHT</td><td>right(字符串[,字符个数])<br>返回文本值最右边的字符</td>
         <td>RIGHT("123q",3) <br>>>23q</td>
     </tr>
     <tr>
@@ -400,11 +465,11 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
         <td>rmb(12.3) <br>>>壹拾贰元叁角</td>
     </tr>
     <tr>
-        <td>SEARCH</td><td>search(要找的字符串,被查找的字符串,[开始位置])<br>在一文本值中查找另一文本值（不区分大小写）</td>
+        <td>SEARCH</td><td>search(要找的字符串,被查找的字符串[,开始位置])<br>在一文本值中查找另一文本值（不区分大小写）</td>
         <td>SEARCH("aa","abbAaddd") <br>>>4</td>
     </tr>
     <tr>
-        <td>SUBSTITUTE</td><td>substitute(字符串,原字符串,新字符串,[替换序号])<br>在文本字符串中以新文本替换旧文本</td>
+        <td>SUBSTITUTE</td><td>substitute(字符串,原字符串,新字符串[,替换序号])<br>在文本字符串中以新文本替换旧文本</td>
         <td>SUBSTITUTE("ababcc","ab","12") <br>>>1212cc</td>
     </tr>
     <tr>
@@ -420,7 +485,11 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
         <td>TRIM(" 123 123 ")<br>>>123 123</td>
     </tr>
     <tr>
-        <td>UPPER</td><td>upper(字符串)<br>将文本转换为大写形式</td>
+        <td>LOWER<br>TOLOWER</td><td>lower(字符串)<br>tolower(字符串)<br>将文本转换为小写形式</td>
+        <td>LOWER('ABC') <br>>>abc</td>
+    </tr>
+    <tr>
+        <td>UPPER<br>TOUPPER</td><td>upper(字符串)<br>toupper(字符串)<br>将文本转换为大写形式</td>
         <td>UPPER("abc") <br>>>ABC</td>
     </tr>
     <tr>
@@ -441,7 +510,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
         <td>TIMEVALUE("12:12:12") <br>>>12:12:12</td>
     </tr>
     <tr>
-        <td>DATE</td><td>date(年,月,日,[时],[分],[秒])<br>返回特定日期的序列号</td>
+        <td>DATE</td><td>date(年,月,日[,时[,分[,秒]]])<br>返回特定日期的序列号</td>
         <td>DATE(2016,1,1) <br>>>2016-01-01</td>
     </tr>
     <tr>
@@ -489,7 +558,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
         <td>DATEDIF("1975-1-30","2017-1-7","Y") <br>>>41</td>
     </tr>
     <tr>
-        <td>DAYS360</td><td>days360(开始日期,结束日期,[选项0/1])<br>以一年 360 天为基准计算两个日期间的天数</td>
+        <td>DAYS360</td><td>days360(开始日期,结束日期[,选项0/1])<br>以一年 360 天为基准计算两个日期间的天数</td>
         <td>DAYS360('1975-1-30','2017-1-7') <br>>>15097</td>
     </tr>
     <tr>
@@ -501,15 +570,15 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
         <td>EOMONTH("2012-2-1",32) <br>>>2014-10-31</td>
     </tr>
     <tr>
-        <td>NETWORKDAYS</td><td>netWorkdays(开始日期,结束日期,[假日])<br>返回两个日期之间的全部工作日数</td>
+        <td>NETWORKDAYS</td><td>netWorkdays(开始日期,结束日期[,假日])<br>返回两个日期之间的全部工作日数</td>
         <td>NETWORKDAYS("2012-1-1","2013-1-1") <br>>>262</td>
     </tr>
     <tr>
-        <td>WORKDAY</td><td>workday(开始日期,天数,[假日])<br>返回指定的若干个工作日之前或之后的日期的序列号</td>
+        <td>WORKDAY</td><td>workday(开始日期,天数[,假日])<br>返回指定的若干个工作日之前或之后的日期的序列号</td>
         <td>WORKDAY("2012-1-2",145) <br>>>2012-07-23</td>
     </tr>
     <tr>
-        <td>WEEKNUM</td><td>weekNum(日期,[类型：1/2])<br>将序列号转换为一年中相应的周数</td>
+        <td>WEEKNUM</td><td>weekNum(日期[,类型：1/2])<br>将序列号转换为一年中相应的周数</td>
         <td>WEEKNUM("2016-1-3") <br>>>2</td>
     </tr>
 </table>
@@ -518,15 +587,15 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
 <table>
     <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
-        <td>MAX</td><td>max(数值)<br>返回参数列表中的最大值</td>
+        <td>MAX</td><td>max(数值1,...)<br>返回参数列表中的最大值</td>
         <td>max(1,2,3,4,2,2,1,4) <br>>>4</td>
     </tr>
     <tr>
-        <td>MEDIAN</td><td>median(数值)<br>返回给定数字的中值</td>
+        <td>MEDIAN</td><td>median(数值1,...)<br>返回给定数字的中值</td>
         <td>MEDIAN(1,2,3,4,2,2,1,4) <br>>>2</td>
     </tr>
     <tr>
-        <td>MIN</td><td>min(数值)<br>返回参数列表中的最小值</td>
+        <td>MIN</td><td>min(数值1,...)<br>返回参数列表中的最小值</td>
         <td>MIN(1,2,3,4,2,2,1,4) <br>>>1</td>
     </tr>
     <tr>
@@ -558,7 +627,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
         <td>AVERAGE(1,2,3,4,2,2,1,4) <br>>>2.375</td>
     </tr>
     <tr>
-        <td>AVERAGEIF</td><td>averageIf(数值1,...)<br>返回参数的平均值</td>
+        <td>AVERAGEIF</td><td>averageIf({数值1,...},条件[,{值1,...}])<br>返回参数的平均值</td>
         <td>AVERAGEIF({1,2,3,4,2,2,1,4},'>1') <br>>>2.833333333</td>
     </tr>
     <tr>
@@ -574,7 +643,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
         <td>COUNT(1,2,3,4,2,2,1,4) <br>>>8</td>
     </tr>
     <tr>
-        <td>COUNTIF</td><td>countIf(数值1,...)<br>计算参数列表中数字的个数</td>
+        <td>COUNTIF</td><td>countIf({数值1,...},条件[,{值1,...}])<br>计算参数列表中数字的个数</td>
         <td>COUNTIF({1,2,3,4,2,2,1,4},'>1') <br>>>6</td>
     </tr>
     <tr>
@@ -582,7 +651,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
         <td>SUM(1,2,3,4) <br>>>10</td>
     </tr>
     <tr>
-        <td>SUMIF</td><td>sumIf(数值1,...)<br>返回所有数字之和</td>
+        <td>SUMIF</td><td>sumIf({数值1,...},条件[,{值1,...}])<br>返回所有数字之和</td>
         <td>SUMIF({1,2,3,4,2,2,1,4},'>1') <br>>>17</td>
     </tr>
     <tr>
@@ -721,19 +790,19 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
         <td>HtmlDecode</td><td>HtmlDecode(文本)<br>  将HTML 编码的字符串转解码。</td> <td></td>
     </tr>
 	<tr>
-        <td>Base64ToText</td><td>Base64ToText(文本)<br>Base64ToText(文本,编码类型)<br>   将Base64转换为字符串。</td> <td></td>
+        <td>Base64ToText</td><td>Base64ToText(文本[,编码类型])<br>   将Base64转换为字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Base64UrlToText</td><td>Base64UrlToText(文本)<br>Base64UrlToText(文本,编码类型)<br>   将Url类型的Base64 转换为字符串。</td> <td></td>
+        <td>Base64UrlToText</td><td>Base64UrlToText(文本[,编码类型])<br>   将Url类型的Base64 转换为字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>TextToBase64</td><td>TextToBase64(文本)<br>TextToBase64(文本,编码类型)<br>   将字符串转换为Base64字符串。</td> <td></td>
+        <td>TextToBase64</td><td>TextToBase64(文本[,编码类型])<br>   将字符串转换为Base64字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>TextToBase64Url</td><td>TextToBase64Url(文本)<br>TextToBase64Url(文本,编码类型)<br>   将字符串 转换为Url类型的Base64 字符串。</td> <td></td>
+        <td>TextToBase64Url</td><td>TextToBase64Url(文本[,编码类型])<br>   将字符串 转换为Url类型的Base64 字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Regex</td><td>Regex(文本,匹配文本)<br>Regex(文本,匹配文本,索引)<br>Regex(文本,匹配文本,索引,组索引)<br>   并返回匹配的字符串。</td> <td></td>
+        <td>Regex</td><td>Regex(文本,匹配文本[,索引[,组索引]])<br>   并返回匹配的字符串。</td> <td></td>
     </tr>
 	<tr>
         <td>RegexRepalce</td><td>RegexRepalce(文本,匹配文本,替换文本)<br>  匹配替换字符串。</td> <td></td>
@@ -745,49 +814,49 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
         <td>Guid</td><td>Guid()<br>  生成Guid字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Md5</td><td>Md5(文本)<br>Md5(文本,编码类型)<br> 返回Md5的Hash字符串。</td> <td></td>
+        <td>Md5</td><td>Md5(文本[,编码类型])<br> 返回Md5的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Sha1</td><td>Sha1(文本)<br>Sha1(文本,编码类型)<br> 返回Sha1的Hash字符串。</td> <td></td>
+        <td>Sha1</td><td>Sha1(文本[,编码类型])<br> 返回Sha1的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Sha256</td><td>Sha256(文本)<br>Sha256(文本,编码类型)<br> 返回Sha256的Hash字符串。</td> <td></td>
+        <td>Sha256</td><td>Sha256(文本[,编码类型])<br> 返回Sha256的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Sha512</td><td>Sha512(文本)<br>Sha512(文本,编码类型)<br> 返回Sha512的Hash字符串。</td> <td></td>
+        <td>Sha512</td><td>Sha512(文本[,编码类型])<br> 返回Sha512的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Crc8</td><td>Crc8(文本)<br>Crc8(文本,编码类型)<br> 返回Crc8的Hash字符串。</td> <td></td>
+        <td>Crc8</td><td>Crc8(文本[,编码类型])<br> 返回Crc8的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Crc16</td><td>Crc16(文本)<br>Crc16(文本,编码类型)<br> 返回Crc16的Hash字符串。</td> <td></td>
+        <td>Crc16</td><td>Crc16(文本[,编码类型])<br> 返回Crc16的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Crc32</td><td>Crc32(文本)<br>Crc32(文本,编码类型)<br> 返回Crc32的Hash字符串。</td> <td></td>
+        <td>Crc32</td><td>Crc32(文本[,编码类型])<br> 返回Crc32的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>HmacMd5</td><td>HmacMd5(文本,secret)<br>HmacMd5(文本,secret,编码类型)<br> 返回HmacMd5的Hash字符串。</td> <td></td>
+        <td>HmacMd5</td><td>HmacMd5(文本,secret[,编码类型])<br> 返回HmacMd5的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>HmacSha1</td><td>HmacSha1(文本,secret)<br>HmacSha1(文本,secret,编码类型)<br> 返回HmacSha1的Hash字符串。</td> <td></td>
+        <td>HmacSha1</td><td>HmacSha1(文本,secret[,编码类型])<br> 返回HmacSha1的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>HmacSha256</td><td>HmacSha256(文本,secret)<br>HmacSha256(文本,secret,编码类型)<br> 返回HmacSha256的Hash字符串。</td> <td></td>
+        <td>HmacSha256</td><td>HmacSha256(文本,secret[,编码类型])<br> 返回HmacSha256的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>HmacSha512</td><td>HmacSha512(文本,secret)<br>HmacSha512(文本,secret,编码类型)<br> 返回HmacSha512的Hash字符串。</td> <td></td>
+        <td>HmacSha512</td><td>HmacSha512(文本,secret[,编码类型])<br> 返回HmacSha512的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>TrimStart<br>LTrim</td><td>TrimStart(文本)<br>LTrim(文本)<br>LTrim(文本,字符集)<br>   消空字符串左边。</td> <td></td>
+        <td>TrimStart<br>LTrim</td><td>TrimStart(文本)<br>LTrim(文本)<br>LTrim(文本[,字符集])<br>   消空字符串左边。</td> <td></td>
     </tr>
 	<tr>
         <td>TrimEnd<br>RTrim</td><td>TrimEnd(文本)<br>RTrim(文本)<br>RTrim(文本,字符集)<br>   消空字符串右边。</td> <td></td>
     </tr>
 	<tr>
-        <td>IndexOf</td><td>IndexOf(文本,查找文本)<br>IndexOf(文本,查找文本,开始位置)<br>IndexOf(文本,查找文本,开始位置,索引)<br>   查找字符串位置。</td> <td></td>
+        <td>IndexOf</td><td>IndexOf(文本,查找文本[,开始位置[,索引]])<br>   查找字符串位置。</td> <td></td>
     </tr>
 	<tr>
-        <td>LastIndexOf</td><td>LastIndexOf(文本,查找文本)<br>LastIndexOf(文本,查找文本,开始位置)<br>LastIndexOf(文本,查找文本,开始位置,索引)<br>   查找字符串位置。</td> <td></td>
+        <td>LastIndexOf</td><td>LastIndexOf(文本,查找文本[,开始位置[,索引]])<br>   查找字符串位置。</td> <td></td>
     </tr>
 	<tr>
         <td>Split</td><td>Split(文本,分隔符)<br> 生成数组<br>Split(文本,分隔符,索引)<br>  返回分割后索引指向的字符串。</td> <td></td>
@@ -799,10 +868,10 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
         <td>Substring</td><td>Substring(文本,位置)<br>Substring(文本,位置,数量)<br>  切割字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>StartsWith</td><td>StartsWith(文本,开始文本)<br>StartsWith(文本,开始文本,是否忽略大小写:1/0)<br>  确定此字符串实例的开头是否与指定的字符串匹配。</td> <td></td>
+        <td>StartsWith</td><td>StartsWith(文本,开始文本[,是否忽略大小写:1/0])<br>  确定此字符串实例的开头是否与指定的字符串匹配。</td> <td></td>
     </tr>
 	<tr>
-        <td>EndsWith</td><td>EndsWith(文本,开始文本)<br>EndsWith(文本,开始文本,是否忽略大小写:1/0)<br>  确定使用指定的比较选项进行比较时此字符串实例的结尾是否与指定的字符串匹配。</td> <td></td>
+        <td>EndsWith</td><td>EndsWith(文本,开始文本[,是否忽略大小写:1/0])<br>  确定使用指定的比较选项进行比较时此字符串实例的结尾是否与指定的字符串匹配。</td> <td></td>
     </tr>
 	<tr>
         <td>IsNullOrEmpty</td><td>IsNullOrEmpty(文本)<br>  指示指定的字符串是 null 还是 空字符串。</td> <td></td>
@@ -811,27 +880,12 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
         <td>IsNullOrWhiteSpace</td><td>IsNullOrWhiteSpace(文本)<br>  指示指定的字符串是 null、空还是仅由空白字符组成。</td> <td></td>
     </tr>
 	<tr>
-        <td>ToUpper</td><td>ToUpper(文本)<br>  将文本转换为大写形式。</td> <td></td>
-    </tr>	
-	<tr>
-        <td>ToLower</td><td>ToLower(文本)<br>  将文本转换为小写形式。</td> <td></td>
-    </tr>
-	<tr>
         <td>RemoveStart</td><td>RemoveStart(文本,左边文本)<br>匹配左边，成功则去除左边字符串。</td> <td></td>
     </tr>
 	<tr>
         <td>RemoveEnd</td><td>RemoveEnd(文本,右边文本)<br>匹配右边，成功则去除右边字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>RemoveBoth</td><td>RemoveBoth(文本,左边文本,右边文本,同时匹配:0/1(默认0))<br>匹配方式, 匹配左边，成功则去除左边字符串。匹配右边，成功则去除右边字符串。</td> <td></td>
-    </tr>
-	<tr>
         <td>json</td><td>json(文本)<br>动态json查询。</td> <td></td>
-    </tr>
-	<tr>
-        <td>tryjson</td><td>tryjson(文本)<br>尝试转为json，再查询。</td> <td></td>
-    </tr>
-	<tr>
-        <td>P<br>param</td><td>P(文本)<br>动态查询参数。</td> <td></td>
     </tr>
 </table>
