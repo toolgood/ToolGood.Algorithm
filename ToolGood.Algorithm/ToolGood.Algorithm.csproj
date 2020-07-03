@@ -16,7 +16,6 @@
     <PackageProjectUrl>https://github.com/toolgood/ToolGood.Algorithm</PackageProjectUrl>
     <PackageLicenseUrl></PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/toolgood/ToolGood.Algorithm</RepositoryUrl>
     <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netstandard2.0' ">$(PackageTargetFallback);dotnet</PackageTargetFallback>
     <AutoUnifyAssemblyReferences Condition="'$(TargetFramework)' == 'net40'">false</AutoUnifyAssemblyReferences>
     <RootNamespace>ToolGood.Algorithm</RootNamespace>

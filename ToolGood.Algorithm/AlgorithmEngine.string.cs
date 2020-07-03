@@ -104,7 +104,7 @@ namespace ToolGood.Algorithm
             } else if (a.Type == OperandType.BOOLEAN) {
                 return new Operand(OperandType.STRING, a.BooleanValue.ToString());
             } else if (a.Type == OperandType.NUMBER) {
-                return new Operand(OperandType.STRING, a.NumberValue.ToString(f));
+                return new Operand(OperandType.STRING, a.NumberValue.ToString(f,cultureInfo));
             } else if (a.Type == OperandType.DATE) {
                 return new Operand(OperandType.STRING, a.DateValue.ToString(f));
             }
@@ -309,9 +309,9 @@ namespace ToolGood.Algorithm
             var no = false;
             if (arg.Count == 3) no = arg[2].BooleanValue;
             if (no == false) {
-                return new Operand(OperandType.STRING, s.ToString("N" + num));
+                return new Operand(OperandType.STRING, s.ToString("N" + num,cultureInfo));
             }
-            return new Operand(OperandType.STRING, s.ToString());
+            return new Operand(OperandType.STRING, s.ToString(cultureInfo));
         }
 
         private Operand F_Search(List<Operand> arg)
