@@ -9,17 +9,10 @@ namespace ToolGood.Algorithm.MathNet.Numerics
     public static partial class Precision
     {
         /// <summary>
-        /// The number of binary digits used to represent the binary number for a double precision floating
-        /// point value. i.e. there are this many digits used to represent the
-        /// actual number, where in a number as: 0.134556 * 10^5 the digits are 0.134556 and the exponent is 5.
-        /// </summary>
-        const int DoubleWidth = 53;
-
-        /// <summary>
         /// Standard epsilon, the maximum relative precision of IEEE 754 double-precision floating numbers (64 bit).
         /// According to the definition of Prof. Demmel and used in LAPACK and Scilab.
         /// </summary>
-        public static readonly double DoublePrecision = Math.Pow(2, -DoubleWidth);
+        public static readonly double DoublePrecision = Math.Pow(2, -53);
 
         /// <summary>
         /// Standard epsilon, the maximum relative precision of IEEE 754 double-precision floating numbers (64 bit).

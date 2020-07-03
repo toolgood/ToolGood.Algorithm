@@ -7,7 +7,6 @@ namespace ToolGood.Algorithm.MathNet.Numerics
 {
     public partial class SpecialFunctions
     {
-        const int FactorialMaxArgument = 170;
         static double[] _factorialCache;
 
         /// <summary>
@@ -20,7 +19,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
 
         static void InitializeFactorial()
         {
-            _factorialCache = new double[FactorialMaxArgument + 1];
+            _factorialCache = new double[171];
             _factorialCache[0] = 1.0;
             for (int i = 1; i < _factorialCache.Length; i++) {
                 _factorialCache[i] = _factorialCache[i - 1] * i;
