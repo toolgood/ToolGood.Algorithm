@@ -10,17 +10,16 @@ namespace ToolGood.Algorithm
     /// </summary>
     public abstract class Operand : IDisposable
     {
-        public abstract bool IsError { get; }
-        public abstract string ErrorMsg { get; }
+        public virtual bool IsError => false;
+        public virtual string ErrorMsg => null;
         public abstract OperandType Type { get; }
-
-        public abstract double NumberValue { get; }
-        public abstract int IntValue { get; }
-        public abstract string StringValue { get; }
-        public abstract bool BooleanValue { get; }
-        public abstract Date DateValue { get; }
-        public abstract List<Operand> ArrayValue { get; }
-        internal abstract JsonData JsonValue { get; }
+        public virtual double NumberValue => throw new NotImplementedException();
+        public virtual int IntValue => throw new NotImplementedException();
+        public virtual string StringValue => throw new NotImplementedException();
+        public virtual bool BooleanValue => throw new NotImplementedException();
+        public virtual List<Operand> ArrayValue => throw new NotImplementedException();
+        internal virtual JsonData JsonValue => throw new NotImplementedException();
+        public virtual Date DateValue => throw new NotImplementedException();
 
         #region Create
 
@@ -168,20 +167,10 @@ namespace ToolGood.Algorithm
     public abstract class Operand<T> : Operand
     {
         public T Value { get; private set; }
-        public override bool IsError => false;
-        public override string ErrorMsg => null;
-        public override double NumberValue => throw new NotImplementedException();
-        public override int IntValue => throw new NotImplementedException();
-        public override string StringValue => throw new NotImplementedException();
-        public override bool BooleanValue => throw new NotImplementedException();
-        public override List<Operand> ArrayValue => throw new NotImplementedException();
-        internal override JsonData JsonValue => throw new NotImplementedException();
-        public override Date DateValue => throw new NotImplementedException();
         public Operand(T obj)
         {
             Value = obj;
         }
-
     }
 
     public class OperandNumber : Operand<double>
@@ -227,14 +216,6 @@ namespace ToolGood.Algorithm
         public override bool IsError => true;
         private string _errorMsg;
         public override string ErrorMsg => _errorMsg;
-        public override double NumberValue => throw new NotImplementedException();
-        public override string StringValue => throw new NotImplementedException();
-        public override bool BooleanValue => throw new NotImplementedException();
-        public override List<Operand> ArrayValue => throw new NotImplementedException();
-        internal override JsonData JsonValue => throw new NotImplementedException();
-        public override Date DateValue => throw new NotImplementedException();
-        public override int IntValue => throw new NotImplementedException();
-
         public OperandError(string msg)
         {
             _errorMsg = msg;
