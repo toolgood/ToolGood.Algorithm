@@ -30,23 +30,11 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
 bool转数字，假为`0`，真为`1`。
 bool转字符串，假为`FALSE`，真为`TRUE`。
 
-
-
 索引默认为`Excel索引`，如果想用c#索引，请设置`UseExcelIndex`为`false`。
 
+中文符号自动转成英文符号：`括号`,`方括号`,`逗号`,`引号`,`双引号`
 
-## 中文符号自动转化
-`（` => `(` 
-`）` =>  `)` 
-`，` =>  `,` 
-`【` => `[`
-`】` => `]`
-`‘` => `'`
-`’` => `'`
-`“` => `"`
-`”` => `"`
-
-
+ 
 
 ## 自定义参数
 ``` csharp
@@ -93,7 +81,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
 
 注：函数名不分大小写,带方括号的参数可省略,示例的返回值,为近似值。
 
-注2：
+注2：函数名带★，表示第一个参数可以前置，如`(-1).ISTEXT()`
 #### 逻辑函数
 <table>
     <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
@@ -106,31 +94,31 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>iferror(1/0,1,2) <br>>>1</td>
     </tr>
     <tr>
-        <td>ISERROR</td><td>ISERROR(值)<br>判断出错,返回 TRUE 或 FALSE</td>
+        <td>ISERROR ★</td><td>ISERROR(值)<br>判断出错,返回 TRUE 或 FALSE</td>
         <td>ISERROR(1) <br>>>false</td>
     </tr>
     <tr>
-        <td>ISNUMBER</td><td>isNumber(值)<br>判断是否数字,返回 TRUE 或 FALSE</td>
+        <td>ISNUMBER ★</td><td>isNumber(值)<br>判断是否数字,返回 TRUE 或 FALSE</td>
         <td>ISNUMBER(1) <br>>>true</td>
     </tr>
     <tr>
-        <td>ISTEXT</td><td>isText(值)<br>判断是否文字,返回 TRUE 或 FALSE</td>
+        <td>ISTEXT ★</td><td>isText(值)<br>判断是否文字,返回 TRUE 或 FALSE</td>
         <td>istext('1') <br>>>true </td>
     </tr>
     <tr>
-        <td>ISNONTEXT</td><td>ISNONTEXT(值)<br>判断是否为非文字,返回 TRUE 或 FALSE</td>
+        <td>ISNONTEXT ★</td><td>ISNONTEXT(值)<br>判断是否为非文字,返回 TRUE 或 FALSE</td>
         <td>ISNONTEXT('1') <br>>>false </td>
     </tr>
     <tr>
-        <td>ISLOGICAL</td><td>ISLOGICAL(值)<br>判断是否为逻辑值,返回 TRUE 或 FALSE</td>
+        <td>ISLOGICAL ★</td><td>ISLOGICAL(值)<br>判断是否为逻辑值,返回 TRUE 或 FALSE</td>
         <td>ISLOGICAL('1') <br>>>false </td>
     </tr>
     <tr>
-        <td>ISEVEN</td><td>ISEVEN(值)<br>如果数字是偶数,返回 TRUE 或 FALSE</td>
+        <td>ISEVEN ★</td><td>ISEVEN(值)<br>如果数字是偶数,返回 TRUE 或 FALSE</td>
         <td>ISEVEN('1') <br>>>false </td>
     </tr>
     <tr>
-        <td>ISODD</td><td>ISODD(值)<br>如果数字是奇数,返回 TRUE 或 FALSE</td>
+        <td>ISODD ★</td><td>ISODD(值)<br>如果数字是奇数,返回 TRUE 或 FALSE</td>
         <td>ISODD('1') <br>>>true </td>
     </tr>
     <tr>
@@ -164,7 +152,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>pi() <br>>>3.141592654</td>
     </tr>
     <tr>
-        <td>abs<upper style="color:red">★</upper></td><td>abs(数字)<br>返回数字的绝对值</td>
+        <td>abs</td><td>abs(数字)<br>返回数字的绝对值</td>
         <td>abs(-1) <br>>>1</td>
     </tr>
     <tr>
@@ -188,7 +176,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>TRUNC(9.222) <br>>>9</td>
     </tr>
     <tr>
-        <td>int</td><td>int(数字)<br>将数字向下舍入到最接近的整数。</td>
+        <td>int ★</td><td>int(数字)<br>将数字向下舍入到最接近的整数。</td>
         <td>int(9.222) <br>>>9</td>
     </tr>
     <tr>
@@ -361,27 +349,27 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
     </tr>
     <tr>
         <td rowspan="12">转<br><br>化</td>
-        <td>DEC2BIN</td><td>DEC2BIN(数值[,位数])<br>十进制转二进制 </td>
+        <td>DEC2BIN ★</td><td>DEC2BIN(数值[,位数])<br>十进制转二进制 </td>
         <td>DEC2BIN(100) <br>>> </td>
     </tr>
     <tr>
-        <td>DEC2OCT</td><td>DEC2OCT(数值[,位数])<br>十进制转八进制 </td>
+        <td>DEC2OCT ★</td><td>DEC2OCT(数值[,位数])<br>十进制转八进制 </td>
         <td>DEC2OCT(100) <br>>> </td>
     </tr>
     <tr>
-        <td>DEC2HEX</td><td>DEC2HEX(数值[,位数])<br>十进制转十六进制 </td>
+        <td>DEC2HEX ★</td><td>DEC2HEX(数值[,位数])<br>十进制转十六进制 </td>
         <td>DEC2HEX(100) <br>>> </td>
     </tr>
     <tr>
-        <td>HEX2BIN</td><td>HEX2BIN(数值[,位数])<br>十六进制转二进制 </td>
+        <td>HEX2BIN ★</td><td>HEX2BIN(数值[,位数])<br>十六进制转二进制 </td>
         <td>HEX2BIN(100) <br>>> </td>
     </tr>
     <tr>
-        <td>HEX2OCT</td><td>HEX2OCT(数值[,位数])<br>十六进制转八进制 </td>
+        <td>HEX2OCT ★</td><td>HEX2OCT(数值[,位数])<br>十六进制转八进制 </td>
         <td>HEX2OCT(100) <br>>> </td>
     </tr>
     <tr>
-        <td>HEX2DEC</td><td>HEX2DEC(数值)<br>十六进制转十进制 </td>
+        <td>HEX2DEC ★</td><td>HEX2DEC(数值)<br>十六进制转十进制 </td>
         <td>HEX2DEC(100) <br>>> </td>
     </tr>
     <tr>
@@ -389,23 +377,23 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>OCT2BIN(100) <br>>> </td>
     </tr>
     <tr>
-        <td>OCT2DEC</td><td>OCT2DEC(数值)<br>八进制转十进制 </td>
+        <td>OCT2DEC ★</td><td>OCT2DEC(数值)<br>八进制转十进制 </td>
         <td>OCT2DEC(100) <br>>> </td>
     </tr>
     <tr>
-        <td>OCT2HEX</td><td>OCT2HEX(数值[,位数])<br>八进制转十六进制 </td>
+        <td>OCT2HEX ★</td><td>OCT2HEX(数值[,位数])<br>八进制转十六进制 </td>
         <td>OCT2HEX(100) <br>>> </td>
     </tr>
     <tr>
-        <td>BIN2OCT</td><td>BIN2OCT(数值[,位数])<br>二进制转八进制 </td>
+        <td>BIN2OCT ★</td><td>BIN2OCT(数值[,位数])<br>二进制转八进制 </td>
         <td>BIN2OCT(100) <br>>> </td>
     </tr>
     <tr>
-        <td>BIN2DEC</td><td>BIN2DEC(数值)<br>二进制转十进制 </td>
+        <td>BIN2DEC ★</td><td>BIN2DEC(数值)<br>二进制转十进制 </td>
         <td>BIN2DEC(100) <br>>> </td>
     </tr>
     <tr>
-        <td>BIN2HEX</td><td>BIN2HEX(数值[,位数])<br>二进制转十六进制 </td>
+        <td>BIN2HEX ★</td><td>BIN2HEX(数值[,位数])<br>二进制转十六进制 </td>
         <td>BIN2HEX(100) <br>>> </td>
     </tr>
 </table>
@@ -414,55 +402,55 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
 <table>
     <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
-        <td>ASC</td><td>asc(字符串)<br>将字符串内的全角英文字母更改为半角字符</td>
+        <td>ASC ★</td><td>asc(字符串)<br>将字符串内的全角英文字母更改为半角字符</td>
         <td>asc('ａｂｃＡＢＣ１２３') <br>>>abcABC123</td>
     </tr>
     <tr>
-        <td>JIS / WIDECHAR</td><td>jis(字符串)<br>将字符串中的半角英文字符更改为全角字符</td>
+        <td>JIS / WIDECHAR ★</td><td>jis(字符串)<br>将字符串中的半角英文字符更改为全角字符</td>
         <td>jis('abcABC123') <br>>>ａｂｃＡＢＣ１２３</td>
     </tr>
     <tr>
-        <td>CHAR</td><td>jis(数值)<br>返回由代码数字指定的字符</td>
+        <td>CHAR ★</td><td>jis(数值)<br>返回由代码数字指定的字符</td>
         <td>char(49) <br>>>1</td>
     </tr>
     <tr>
-        <td>CLEAN</td><td>clean(字符串)<br>删除文本中所有打印不出的字符</td>
+        <td>CLEAN ★</td><td>clean(字符串)<br>删除文本中所有打印不出的字符</td>
         <td>clean('\r112\t') <br>>>112</td>
     </tr>
     <tr>
-        <td>CODE</td><td>code(字符串)<br>返回文本字符串中第一个字符的数字代码</td>
+        <td>CODE ★</td><td>code(字符串)<br>返回文本字符串中第一个字符的数字代码</td>
         <td>CODE("1") <br>>>49</td>
     </tr>
     <tr>
-        <td>CONCATENATE</td><td>concatenate(字符串1,...)<br>将若干文本项合并到一个文本项中</td>
+        <td>CONCATENATE ★</td><td>concatenate(字符串1,...)<br>将若干文本项合并到一个文本项中</td>
         <td>CONCATENATE('tt','11') <br>>>tt11</td>
     </tr>
     <tr>
-        <td>EXACT</td><td>exact(字符串1,字符串2)<br>检查两个文本值是否完全相同</td>
+        <td>EXACT ★</td><td>exact(字符串1,字符串2)<br>检查两个文本值是否完全相同</td>
         <td>EXACT("11","22") <br>>>false</td>
     </tr>
     <tr>
-        <td>FIND</td><td>find(要查找的字符串,被查找的字符串[,开始位置])<br>在一文本值内查找另一文本值（区分大小写） </td>
+        <td>FIND ★</td><td>find(要查找的字符串,被查找的字符串[,开始位置])<br>在一文本值内查找另一文本值（区分大小写） </td>
         <td>FIND("11","12221122") <br>>>5</td>
     </tr>
     <tr>
-        <td>LEFT</td><td>left(字符串[,字符个数])<br>返回文本值最左边的字符</td>
+        <td>LEFT ★</td><td>left(字符串[,字符个数])<br>返回文本值最左边的字符</td>
         <td>LEFT('123222',3) <br>>>123</td>
     </tr>
     <tr>
-        <td>LEN</td><td>len(字符串)<br>返回文本字符串中的字符个数</td>
+        <td>LEN ★</td><td>len(字符串)<br>返回文本字符串中的字符个数</td>
         <td>LEN('123222') <br>>>6</td>
     </tr>
     <tr>
-        <td>MID</td><td>mid(字符串,开始位置,字符个数)<br>从文本字符串中的指定位置起返回特定个数的字符</td>
+        <td>MID ★</td><td>mid(字符串,开始位置,字符个数)<br>从文本字符串中的指定位置起返回特定个数的字符</td>
         <td>MID('ABCDEF',2,3) <br>>>BCD</td>
     </tr>
     <tr>
-        <td>PROPER</td><td>proper(字符串)<br>将文本值中每一个单词的首字母设置为大写</td>
+        <td>PROPER ★</td><td>proper(字符串)<br>将文本值中每一个单词的首字母设置为大写</td>
         <td>PROPER('abc abc') <br>>>Abc Abc</td>
     </tr>
     <tr>
-        <td>REPLACE</td>
+        <td>REPLACE ★</td>
         <td>replace(原字符串,开始位置,字符个数,新字符串)<br>
         replace(原字符串,要替换的字符串, 新字符串)<br>
         替换文本内的字符</td>
@@ -471,47 +459,47 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         </td>
     </tr>
     <tr>
-        <td>REPT</td><td>rept(字符串,重复次数)<br>按给定次数重复文本</td>
+        <td>REPT ★</td><td>rept(字符串,重复次数)<br>按给定次数重复文本</td>
         <td>REPT("q",3) <br>>>qqq</td>
     </tr>
     <tr>
-        <td>RIGHT</td><td>right(字符串[,字符个数])<br>返回文本值最右边的字符</td>
+        <td>RIGHT ★</td><td>right(字符串[,字符个数])<br>返回文本值最右边的字符</td>
         <td>RIGHT("123q",3) <br>>>23q</td>
     </tr>
     <tr>
-        <td>RMB</td><td>rmb(数值)<br>将数字转换为大写数字文本</td>
+        <td>RMB ★</td><td>rmb(数值)<br>将数字转换为大写数字文本</td>
         <td>rmb(12.3) <br>>>壹拾贰元叁角</td>
     </tr>
     <tr>
-        <td>SEARCH</td><td>search(要找的字符串,被查找的字符串[,开始位置])<br>在一文本值中查找另一文本值（不区分大小写）</td>
+        <td>SEARCH ★</td><td>search(要找的字符串,被查找的字符串[,开始位置])<br>在一文本值中查找另一文本值（不区分大小写）</td>
         <td>SEARCH("aa","abbAaddd") <br>>>4</td>
     </tr>
     <tr>
-        <td>SUBSTITUTE</td><td>substitute(字符串,原字符串,新字符串[,替换序号])<br>在文本字符串中以新文本替换旧文本</td>
+        <td>SUBSTITUTE ★</td><td>substitute(字符串,原字符串,新字符串[,替换序号])<br>在文本字符串中以新文本替换旧文本</td>
         <td>SUBSTITUTE("ababcc","ab","12") <br>>>1212cc</td>
     </tr>
     <tr>
-        <td>T</td><td>t(数值)<br>将参数转换为文本</td>
+        <td>T ★</td><td>t(数值)<br>将参数转换为文本</td>
         <td>T('123') <br>>>123</td>
     </tr>
     <tr>
-        <td>TEXT</td><td>text(数值,数值格式)<br>设置数字的格式并将数字转换为文本</td>
+        <td>TEXT ★</td><td>text(数值,数值格式)<br>设置数字的格式并将数字转换为文本</td>
         <td>TEXT(123,"0.00") <br>>>123.00</td>
     </tr>
     <tr>
-        <td>TRIM</td><td>trim(字符串)<br>删除文本中的空格</td>
+        <td>TRIM ★</td><td>trim(字符串)<br>删除文本中的空格</td>
         <td>TRIM(" 123 123 ")<br>>>123 123</td>
     </tr>
     <tr>
-        <td>LOWER<br>TOLOWER</td><td>lower(字符串)<br>tolower(字符串)<br>将文本转换为小写形式</td>
+        <td>LOWER ★<br>TOLOWER ★</td><td>lower(字符串)<br>tolower(字符串)<br>将文本转换为小写形式</td>
         <td>LOWER('ABC') <br>>>abc</td>
     </tr>
     <tr>
-        <td>UPPER<br>TOUPPER</td><td>upper(字符串)<br>toupper(字符串)<br>将文本转换为大写形式</td>
+        <td>UPPER ★<br>TOUPPER ★</td><td>upper(字符串)<br>toupper(字符串)<br>将文本转换为大写形式</td>
         <td>UPPER("abc") <br>>>ABC</td>
     </tr>
     <tr>
-        <td>VALUE</td><td>value(字符串)<br>将文本参数转换为数字</td>
+        <td>VALUE ★</td><td>value(字符串)<br>将文本参数转换为数字</td>
         <td>VALUE("123") <br>>>123</td>
     </tr>
 </table>
@@ -520,19 +508,19 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
 <table>
     <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
-        <td>DATEVALUE</td><td>dateValue(字符串)<br>将文本格式的日期转换为序列号</td>
+        <td>DATEVALUE ★</td><td>dateValue(字符串)<br>将文本格式的日期转换为序列号</td>
         <td>DATEVALUE("2017-01-02") <br>>>2017-01-02</td>
     </tr>
     <tr>
-        <td>TIMEVALUE</td><td>timeValue(字符串)<br>将文本格式的时间转换为序列号</td>
+        <td>TIMEVALUE ★</td><td>timeValue(字符串)<br>将文本格式的时间转换为序列号</td>
         <td>TIMEVALUE("12:12:12") <br>>>12:12:12</td>
     </tr>
     <tr>
-        <td>DATE</td><td>date(年,月,日[,时[,分[,秒]]])<br>返回特定日期的序列号</td>
+        <td>DATE ★</td><td>date(年,月,日[,时[,分[,秒]]])<br>返回特定日期的序列号</td>
         <td>DATE(2016,1,1) <br>>>2016-01-01</td>
     </tr>
     <tr>
-        <td>TIME</td><td>time(时,分,秒)<br>返回特定时间的序列号</td>
+        <td>TIME ★</td><td>time(时,分,秒)<br>返回特定时间的序列号</td>
         <td>TIME(12,13,14) <br>>>12:13:14</td>
     </tr>
     <tr>
@@ -544,31 +532,31 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>TODAY() <br>>>2017-01-07</td>
     </tr>
     <tr>
-        <td>YEAR</td><td>year(日期)<br>将序列号转换为年</td>
+        <td>YEAR ★</td><td>year(日期)<br>将序列号转换为年</td>
         <td>YEAR(NOW()) <br>>>2017</td>
     </tr>
     <tr>
-        <td>MONTH</td><td>month(日期)<br>将序列号转换为月</td>
+        <td>MONTH ★</td><td>month(日期)<br>将序列号转换为月</td>
         <td>MONTH(NOW()) <br>>>1</td>
     </tr>
     <tr>
-        <td>DAY</td><td>day(日期)<br>将序列号转换为月份中的日</td>
+        <td>DAY ★</td><td>day(日期)<br>将序列号转换为月份中的日</td>
         <td>DAY(NOW()) <br>>>7</td>
     </tr>
     <tr>
-        <td>HOUR</td><td>hour(日期)<br>将序列号转换为小时</td>
+        <td>HOUR ★</td><td>hour(日期)<br>将序列号转换为小时</td>
         <td>HOUR(NOW()) <br>>>11</td>
     </tr>
     <tr>
-        <td>MINUTE</td><td>minute(日期)<br>将序列号转换为分钟</td>
+        <td>MINUTE ★</td><td>minute(日期)<br>将序列号转换为分钟</td>
         <td>MINUTE(NOW()) <br>>>12</td>
     </tr>
     <tr>
-        <td>SECOND</td><td>second(日期)<br>将序列号转换为秒</td>
+        <td>SECOND ★</td><td>second(日期)<br>将序列号转换为秒</td>
         <td>SECOND(NOW()) <br>>>34</td>
     </tr>
     <tr>
-        <td>WEEKDAY</td><td>second(日期)<br>将序列号转换为星期几</td>
+        <td>WEEKDAY ★</td><td>second(日期)<br>将序列号转换为星期几</td>
         <td>WEEKDAY(date(2017,1,7)) <br>>>7</td>
     </tr>
     <tr>
@@ -796,114 +784,114 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
 <table>
     <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
-        <td>UrlEncode</td><td>UrlEncode(文本)<br> 对 URL 字符串进行编码。</td> <td></td>
+        <td>UrlEncode ★</td><td>UrlEncode(文本)<br> 对 URL 字符串进行编码。</td> <td></td>
     </tr>
 	<tr>
-        <td>UrlDecode</td><td>UrlEncode(文本)<br> 将 URL 编码的字符串转换为已解码的字符串。</td> <td></td>
+        <td>UrlDecode ★</td><td>UrlEncode(文本)<br> 将 URL 编码的字符串转换为已解码的字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>HtmlEncode</td><td>HtmlEncode(文本)<br> 将字符串转换为 HTML 编码的字符串。</td> <td></td>
+        <td>HtmlEncode ★</td><td>HtmlEncode(文本)<br> 将字符串转换为 HTML 编码的字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>HtmlDecode</td><td>HtmlDecode(文本)<br>  将HTML 编码的字符串转解码。</td> <td></td>
+        <td>HtmlDecode ★</td><td>HtmlDecode(文本)<br>  将HTML 编码的字符串转解码。</td> <td></td>
     </tr>
 	<tr>
-        <td>Base64ToText</td><td>Base64ToText(文本[,编码类型])<br>   将Base64转换为字符串。</td> <td></td>
+        <td>Base64ToText ★</td><td>Base64ToText(文本[,编码类型])<br>   将Base64转换为字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Base64UrlToText</td><td>Base64UrlToText(文本[,编码类型])<br>   将Url类型的Base64 转换为字符串。</td> <td></td>
+        <td>Base64UrlToText ★</td><td>Base64UrlToText(文本[,编码类型])<br>   将Url类型的Base64 转换为字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>TextToBase64</td><td>TextToBase64(文本[,编码类型])<br>   将字符串转换为Base64字符串。</td> <td></td>
+        <td>TextToBase64 ★</td><td>TextToBase64(文本[,编码类型])<br>   将字符串转换为Base64字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>TextToBase64Url</td><td>TextToBase64Url(文本[,编码类型])<br>   将字符串 转换为Url类型的Base64 字符串。</td> <td></td>
+        <td>TextToBase64Url ★</td><td>TextToBase64Url(文本[,编码类型])<br>   将字符串 转换为Url类型的Base64 字符串。</td> <td></td>
     </tr>
 	<tr>
         <td>Regex</td><td>Regex(文本,匹配文本[,索引[,组索引]])<br>   并返回匹配的字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>RegexRepalce</td><td>RegexRepalce(文本,匹配文本,替换文本)<br>  匹配替换字符串。</td> <td></td>
+        <td>RegexRepalce ★</td><td>RegexRepalce(文本,匹配文本,替换文本)<br>  匹配替换字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>IsRegex<br>IsMatch</td><td>IsRegex(文本,匹配文本)<br>IsMatch(文本,匹配文本)<br>  判断是否匹配。</td> <td></td>
+        <td>IsRegex ★<br>IsMatch ★</td><td>IsRegex(文本,匹配文本)<br>IsMatch(文本,匹配文本)<br>  判断是否匹配。</td> <td></td>
     </tr>
 	<tr>
         <td>Guid</td><td>Guid()<br>  生成Guid字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Md5</td><td>Md5(文本[,编码类型])<br> 返回Md5的Hash字符串。</td> <td></td>
+        <td>Md5 ★</td><td>Md5(文本[,编码类型])<br> 返回Md5的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Sha1</td><td>Sha1(文本[,编码类型])<br> 返回Sha1的Hash字符串。</td> <td></td>
+        <td>Sha1 ★</td><td>Sha1(文本[,编码类型])<br> 返回Sha1的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Sha256</td><td>Sha256(文本[,编码类型])<br> 返回Sha256的Hash字符串。</td> <td></td>
+        <td>Sha256 ★</td><td>Sha256(文本[,编码类型])<br> 返回Sha256的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Sha512</td><td>Sha512(文本[,编码类型])<br> 返回Sha512的Hash字符串。</td> <td></td>
+        <td>Sha512 ★</td><td>Sha512(文本[,编码类型])<br> 返回Sha512的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Crc8</td><td>Crc8(文本[,编码类型])<br> 返回Crc8的Hash字符串。</td> <td></td>
+        <td>Crc8 ★</td><td>Crc8(文本[,编码类型])<br> 返回Crc8的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Crc16</td><td>Crc16(文本[,编码类型])<br> 返回Crc16的Hash字符串。</td> <td></td>
+        <td>Crc16 ★</td><td>Crc16(文本[,编码类型])<br> 返回Crc16的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Crc32</td><td>Crc32(文本[,编码类型])<br> 返回Crc32的Hash字符串。</td> <td></td>
+        <td>Crc32 ★</td><td>Crc32(文本[,编码类型])<br> 返回Crc32的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>HmacMd5</td><td>HmacMd5(文本,secret[,编码类型])<br> 返回HmacMd5的Hash字符串。</td> <td></td>
+        <td>HmacMd5 ★</td><td>HmacMd5(文本,secret[,编码类型])<br> 返回HmacMd5的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>HmacSha1</td><td>HmacSha1(文本,secret[,编码类型])<br> 返回HmacSha1的Hash字符串。</td> <td></td>
+        <td>HmacSha1 ★</td><td>HmacSha1(文本,secret[,编码类型])<br> 返回HmacSha1的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>HmacSha256</td><td>HmacSha256(文本,secret[,编码类型])<br> 返回HmacSha256的Hash字符串。</td> <td></td>
+        <td>HmacSha256 ★</td><td>HmacSha256(文本,secret[,编码类型])<br> 返回HmacSha256的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>HmacSha512</td><td>HmacSha512(文本,secret[,编码类型])<br> 返回HmacSha512的Hash字符串。</td> <td></td>
+        <td>HmacSha512 ★</td><td>HmacSha512(文本,secret[,编码类型])<br> 返回HmacSha512的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>TrimStart<br>LTrim</td><td>TrimStart(文本)<br>LTrim(文本)<br>LTrim(文本[,字符集])<br>   消空字符串左边。</td> <td></td>
+        <td>TrimStart ★<br>LTrim ★</td><td>TrimStart(文本)<br>LTrim(文本)<br>LTrim(文本[,字符集])<br>   消空字符串左边。</td> <td></td>
     </tr>
 	<tr>
-        <td>TrimEnd<br>RTrim</td><td>TrimEnd(文本)<br>RTrim(文本)<br>RTrim(文本,字符集)<br>   消空字符串右边。</td> <td></td>
+        <td>TrimEnd ★<br>RTrim ★</td><td>TrimEnd(文本)<br>RTrim(文本)<br>RTrim(文本,字符集)<br>   消空字符串右边。</td> <td></td>
     </tr>
 	<tr>
-        <td>IndexOf</td><td>IndexOf(文本,查找文本[,开始位置[,索引]])<br>   查找字符串位置。</td> <td></td>
+        <td>IndexOf ★</td><td>IndexOf(文本,查找文本[,开始位置[,索引]])<br>   查找字符串位置。</td> <td></td>
     </tr>
 	<tr>
-        <td>LastIndexOf</td><td>LastIndexOf(文本,查找文本[,开始位置[,索引]])<br>   查找字符串位置。</td> <td></td>
+        <td>LastIndexOf ★</td><td>LastIndexOf(文本,查找文本[,开始位置[,索引]])<br>   查找字符串位置。</td> <td></td>
     </tr>
 	<tr>
-        <td>Split</td><td>Split(文本,分隔符)<br> 生成数组<br>Split(文本,分隔符,索引)<br>  返回分割后索引指向的字符串。</td> <td></td>
+        <td>Split ★</td><td>Split(文本,分隔符)<br> 生成数组<br>Split(文本,分隔符,索引)<br>  返回分割后索引指向的字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Join</td><td>Join(文本1,文本2....)<br>  合并字符串。</td> <td></td>
+        <td>Join ★</td><td>Join(文本1,文本2....)<br>  合并字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Substring</td><td>Substring(文本,位置)<br>Substring(文本,位置,数量)<br>  切割字符串。</td> <td></td>
+        <td>Substring ★</td><td>Substring(文本,位置)<br>Substring(文本,位置,数量)<br>  切割字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>StartsWith</td><td>StartsWith(文本,开始文本[,是否忽略大小写:1/0])<br>  确定此字符串实例的开头是否与指定的字符串匹配。</td> <td></td>
+        <td>StartsWith ★</td><td>StartsWith(文本,开始文本[,是否忽略大小写:1/0])<br>  确定此字符串实例的开头是否与指定的字符串匹配。</td> <td></td>
     </tr>
 	<tr>
-        <td>EndsWith</td><td>EndsWith(文本,开始文本[,是否忽略大小写:1/0])<br>  确定使用指定的比较选项进行比较时此字符串实例的结尾是否与指定的字符串匹配。</td> <td></td>
+        <td>EndsWith ★</td><td>EndsWith(文本,开始文本[,是否忽略大小写:1/0])<br>  确定使用指定的比较选项进行比较时此字符串实例的结尾是否与指定的字符串匹配。</td> <td></td>
     </tr>
 	<tr>
-        <td>IsNullOrEmpty</td><td>IsNullOrEmpty(文本)<br>  指示指定的字符串是 null 还是 空字符串。</td> <td></td>
+        <td>IsNullOrEmpty ★</td><td>IsNullOrEmpty(文本)<br>  指示指定的字符串是 null 还是 空字符串。</td> <td></td>
     </tr>	
 	<tr>
-        <td>IsNullOrWhiteSpace</td><td>IsNullOrWhiteSpace(文本)<br>  指示指定的字符串是 null、空还是仅由空白字符组成。</td> <td></td>
+        <td>IsNullOrWhiteSpace ★</td><td>IsNullOrWhiteSpace(文本)<br>  指示指定的字符串是 null、空还是仅由空白字符组成。</td> <td></td>
     </tr>
 	<tr>
-        <td>RemoveStart</td><td>RemoveStart(文本,左边文本)<br>匹配左边，成功则去除左边字符串。</td> <td></td>
+        <td>RemoveStart ★</td><td>RemoveStart(文本,左边文本)<br>匹配左边，成功则去除左边字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>RemoveEnd</td><td>RemoveEnd(文本,右边文本)<br>匹配右边，成功则去除右边字符串。</td> <td></td>
+        <td>RemoveEnd ★</td><td>RemoveEnd(文本,右边文本)<br>匹配右边，成功则去除右边字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>json</td><td>json(文本)<br>动态json查询。</td> <td></td>
+        <td>json ★</td><td>json(文本)<br>动态json查询。</td> <td></td>
     </tr>
 </table>

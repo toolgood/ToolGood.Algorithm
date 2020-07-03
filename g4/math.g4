@@ -121,7 +121,6 @@ expr:
 	| FIND '(' expr ',' expr (',' expr)? ')'				# FIND_fun
 	| expr '.' FIND '(' expr (',' expr)? ')'				# FIND_fun
 	| FIXED '(' expr (',' expr (',' expr)?)? ')'			# FIXED_fun
-	| expr '.' FIXED '(' (expr (',' expr)?)? ')'			# FIXED_fun
 	| LEFT '(' expr (',' expr)? ')'							# LEFT_fun
 	| expr '.' LEFT '(' expr? ')'							# LEFT_fun
 	| LEN '(' expr ')'										# LEN_fun
