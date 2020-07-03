@@ -293,7 +293,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>RANDBETWEEN(2,44) <br>>>9</td>
     </tr>
     <tr>
-        <td rowspan="11">幂<br><br>/<br><br>对<br><br>数<br><br>/<br><br>阶<br><br>乘</td>
+        <td rowspan="12">幂<br><br>/<br><br>对<br><br>数<br><br>/<br><br>阶<br><br>乘</td>
         <td>fact</td><td>fact(数值)<br>返回数的阶乘,一个数的阶乘等于 1*2*3*…* 该数。</td>
         <td>FACT(3) <br>>>6</td>
     </tr>
@@ -342,52 +342,52 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>FIXED(4567.89,1) <br>>>4,567.9</td>
     </tr>
     <tr>
-        <td rowspan="12">转<br><br>化<</td>
+        <td rowspan="12">转<br><br>化</td>
         <td>DEC2BIN</td><td>DEC2BIN(数值[,位数])<br>十进制转二进制 </td>
         <td>DEC2BIN(100) <br>>> </td>
     </tr>
     <tr>
-        <td>DEC2OCT</td><td>DEC2OCT(数值[,位数])<br>十进制转二进制 </td>
+        <td>DEC2OCT</td><td>DEC2OCT(数值[,位数])<br>十进制转八进制 </td>
         <td>DEC2OCT(100) <br>>> </td>
     </tr>
     <tr>
-        <td>DEC2HEX</td><td>DEC2HEX(数值[,位数])<br>十进制转二进制 </td>
+        <td>DEC2HEX</td><td>DEC2HEX(数值[,位数])<br>十进制转十六进制 </td>
         <td>DEC2HEX(100) <br>>> </td>
     </tr>
     <tr>
-        <td>HEX2BIN</td><td>HEX2BIN(数值[,位数])<br>十进制转二进制 </td>
+        <td>HEX2BIN</td><td>HEX2BIN(数值[,位数])<br>十六进制转二进制 </td>
         <td>HEX2BIN(100) <br>>> </td>
     </tr>
     <tr>
-        <td>HEX2DEC</td><td>HEX2DEC(数值[,位数])<br>十进制转二进制 </td>
-        <td>HEX2DEC(100) <br>>> </td>
-    </tr>
-    <tr>
-        <td>HEX2OCT</td><td>HEX2OCT(数值[,位数])<br>十进制转二进制 </td>
+        <td>HEX2OCT</td><td>HEX2OCT(数值[,位数])<br>十六进制转八进制 </td>
         <td>HEX2OCT(100) <br>>> </td>
     </tr>
     <tr>
-        <td>OCT2BIN</td><td>OCT2BIN(数值[,位数])<br>十进制转二进制 </td>
+        <td>HEX2DEC</td><td>HEX2DEC(数值)<br>十六进制转十进制 </td>
+        <td>HEX2DEC(100) <br>>> </td>
+    </tr>
+    <tr>
+        <td>OCT2BIN</td><td>OCT2BIN(数值[,位数])<br>八进制转二进制 </td>
         <td>OCT2BIN(100) <br>>> </td>
     </tr>
     <tr>
-        <td>OCT2DEC</td><td>OCT2DEC(数值[,位数])<br>十进制转二进制 </td>
+        <td>OCT2DEC</td><td>OCT2DEC(数值)<br>八进制转十进制 </td>
         <td>OCT2DEC(100) <br>>> </td>
     </tr>
     <tr>
-        <td>OCT2HEX</td><td>OCT2HEX(数值[,位数])<br>十进制转二进制 </td>
+        <td>OCT2HEX</td><td>OCT2HEX(数值[,位数])<br>八进制转十六进制 </td>
         <td>OCT2HEX(100) <br>>> </td>
     </tr>
     <tr>
-        <td>BIN2OCT</td><td>BIN2OCT(数值[,位数])<br>十进制转二进制 </td>
+        <td>BIN2OCT</td><td>BIN2OCT(数值[,位数])<br>二进制转八进制 </td>
         <td>BIN2OCT(100) <br>>> </td>
     </tr>
     <tr>
-        <td>BIN2DEC</td><td>BIN2DEC(数值[,位数])<br>十进制转二进制 </td>
+        <td>BIN2DEC</td><td>BIN2DEC(数值)<br>二进制转十进制 </td>
         <td>BIN2DEC(100) <br>>> </td>
     </tr>
     <tr>
-        <td>BIN2HEX</td><td>BIN2HEX(数值[,位数])<br>十进制转二进制 </td>
+        <td>BIN2HEX</td><td>BIN2HEX(数值[,位数])<br>二进制转十六进制 </td>
         <td>BIN2HEX(100) <br>>> </td>
     </tr>
 </table>
