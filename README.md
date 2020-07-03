@@ -141,7 +141,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
 <table>
     <tr><td>分类</td><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
-        <td rowspan="12">基<br><br>础<br><br>数<br><br>学</td>
+        <td rowspan="13">基<br><br>础<br><br>数<br><br>学</td>
         <td>PI</td><td>pi()<br>返回 PI 值</td>
         <td>pi() <br>>>3.141592654</td>
     </tr>
@@ -188,6 +188,10 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
     <tr>
         <td>PERMUT</td><td>permut(总数,排列数)<br>返回从给定数目的对象集合中选取的若干对象的排列数</td>
         <td>PERMUT(10,2) <br>>>990</td>
+    </tr>
+    <tr>
+        <td>FIXED</td><td>fixed(数值[,小数位数[,有无逗号分隔符]])<br>将数字设置为具有固定小数位的文本格式</td>
+        <td>FIXED(4567.89,1) <br>>>4,567.9</td>
     </tr>
     <tr>
     <td rowspan="15">三<br><br>角<br><br>函<br><br>数</td>
@@ -293,7 +297,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>RANDBETWEEN(2,44) <br>>>9</td>
     </tr>
     <tr>
-        <td rowspan="12">幂<br><br>/<br><br>对<br><br>数<br><br>/<br><br>阶<br><br>乘</td>
+        <td rowspan="11">幂<br><br>/<br><br>对<br><br>数<br><br>/<br><br>阶<br><br>乘</td>
         <td>fact</td><td>fact(数值)<br>返回数的阶乘,一个数的阶乘等于 1*2*3*…* 该数。</td>
         <td>FACT(3) <br>>>6</td>
     </tr>
@@ -336,10 +340,6 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
     <tr>
         <td>SUMSQ</td><td>sumQq(数值,...)<br>返回参数的平方和</td>
         <td>SUMSQ(1,2) <br>>>5</td>
-    </tr>
-   <tr>
-        <td>FIXED</td><td>fixed(数值[,小数位数[,有无逗号分隔符]])<br>将数字设置为具有固定小数位的文本格式</td>
-        <td>FIXED(4567.89,1) <br>>>4,567.9</td>
     </tr>
     <tr>
         <td rowspan="12">转<br><br>化</td>
