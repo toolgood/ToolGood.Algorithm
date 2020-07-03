@@ -23,26 +23,11 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
         /// <returns>the probability mass at location <paramref name="k"/>.</returns>
         public static double PMF(double lambda, int k)
         {
-            if (!(lambda > 0.0)) {
-                throw new ArgumentException("InvalidDistributionParameters");
-            }
+            //if (!(lambda > 0.0)) {
+            //    throw new ArgumentException("InvalidDistributionParameters");
+            //}
 
             return Math.Exp(-lambda + (k * Math.Log(lambda)) - SpecialFunctions.FactorialLn(k));
-        }
-
-        /// <summary>
-        /// Computes the log probability mass (lnPMF) at k, i.e. ln(P(X = k)).
-        /// </summary>
-        /// <param name="k">The location in the domain where we want to evaluate the log probability mass function.</param>
-        /// <param name="lambda">The lambda (λ) parameter of the Poisson distribution. Range: λ > 0.</param>
-        /// <returns>the log probability mass at location <paramref name="k"/>.</returns>
-        public static double PMFLn(double lambda, int k)
-        {
-            if (!(lambda > 0.0)) {
-                throw new ArgumentException("InvalidDistributionParameters");
-            }
-
-            return -lambda + (k * Math.Log(lambda)) - SpecialFunctions.FactorialLn(k);
         }
 
         /// <summary>

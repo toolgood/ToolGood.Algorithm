@@ -1,8 +1,10 @@
 ﻿using PetaTest;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using ToolGood.Algorithm;
 
@@ -36,7 +38,8 @@ namespace ToolGood.Algorithm.Test
             //    var a = t;
             //}
 
-
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("fr-FR");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("fr-FR");
 
             PetaTest.Runner.RunMain(args);
 

@@ -49,7 +49,7 @@ namespace ToolGood.Algorithm
 
         private string F_base_ToChineseRMB(double x)
         {
-            string s = x.ToString("#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A");
+            string s = x.ToString("#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A",cultureInfo);
             string d = System.Text.RegularExpressions.Regex.Replace(s, @"((?<=-|^)[^1-9]*)|((?'z'0)[0A-E]*((?=[1-9])|(?'-z'(?=[F-L\.]|$))))|((?'b'[F-L])(?'z'0)[0A-L]*((?=[1-9])|(?'-z'(?=[\.]|$))))", "${b}${z}");
             return System.Text.RegularExpressions.Regex.Replace(d, ".", m => "负元空零壹贰叁肆伍陆柒捌玖空空空空空空空分角拾佰仟萬億兆京垓秭穰"[m.Value[0] - '-'].ToString());
         }
@@ -94,7 +94,7 @@ namespace ToolGood.Algorithm
                 return 0;
             }
             var m = re.Match(s);
-            var d = double.Parse(m.Groups[2].Value);
+            var d = double.Parse(m.Groups[2].Value, cultureInfo);
             var ss = m.Groups[1].Value;
             double sum = 0;
 
@@ -141,7 +141,7 @@ namespace ToolGood.Algorithm
                 return 0;
             }
             var m = re.Match(s);
-            var d = double.Parse(m.Groups[2].Value);
+            var d = double.Parse(m.Groups[2].Value, cultureInfo);
             var ss = m.Groups[1].Value;
             int count = 0;
 

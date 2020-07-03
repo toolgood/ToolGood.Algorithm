@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -111,7 +112,7 @@ namespace ToolGood.Algorithm
                 } else if (this.Type == OperandType.BOOLEAN) {
                     this.Value = bool.Parse(opd);
                 } else if (this.Type == OperandType.NUMBER) {
-                    this.Value = double.Parse(opd);
+                    this.Value = double.Parse(opd, CultureInfo.GetCultureInfo("en-US"));
                 } else if (this.Type == OperandType.DATE) {
                     this.Value = new Date(opd);
                 } else {
@@ -149,14 +150,21 @@ namespace ToolGood.Algorithm
                     return (bool)Value ? 1 : 0;
                 }
                 if (Value is string) {
-                    if (double.TryParse(Value.ToString(), out double d)) {
+                    if (double.TryParse(Value.ToString(), NumberStyles.Currency, CultureInfo.GetCultureInfo("en-US"), out double d)) {
                         return d;
                     }
                 }
                 return (double)Value;
             }
         }
-        public string StringValue { get { return Value.ToString(); } }
+        public string StringValue {
+            get {
+                if (Type == OperandType.NUMBER) {
+                    return ((double)Value).ToString(CultureInfo.GetCultureInfo("en-US"));
+                }
+                return Value.ToString();
+            }
+        }
         public bool BooleanValue {
             get {
                 if (Type == OperandType.NUMBER) {
@@ -310,7 +318,7 @@ namespace ToolGood.Algorithm
         /// <returns>是返回真,否返回假</returns>
         public static bool IsNumber(object value)
         {
-            return double.TryParse(value.ToString(), out double val);
+            return double.TryParse(value.ToString(), NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out double val);
         }
 
         /// <summary>

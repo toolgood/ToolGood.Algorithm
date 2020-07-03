@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -66,7 +67,7 @@ namespace ToolGood.Algorithm
                 new OperandType[] { OperandType.STRING },
                  });
 
-            if (double.TryParse(arg[0].StringValue, out double d)) {
+            if (double.TryParse(arg[0].StringValue, NumberStyles.Currency, CultureInfo.GetCultureInfo("en-US"), out double d)) {
                 return new Operand(OperandType.STRING, d);
             }
             return ThrowError("无法转成数字", arg);
@@ -103,7 +104,7 @@ namespace ToolGood.Algorithm
             } else if (a.Type == OperandType.BOOLEAN) {
                 return new Operand(OperandType.STRING, a.BooleanValue.ToString());
             } else if (a.Type == OperandType.NUMBER) {
-                return new Operand(OperandType.STRING, a.NumberValue.ToString(f));
+                return new Operand(OperandType.STRING, a.NumberValue.ToString(f,cultureInfo));
             } else if (a.Type == OperandType.DATE) {
                 return new Operand(OperandType.STRING, a.DateValue.ToString(f));
             }
@@ -308,9 +309,9 @@ namespace ToolGood.Algorithm
             var no = false;
             if (arg.Count == 3) no = arg[2].BooleanValue;
             if (no == false) {
-                return new Operand(OperandType.STRING, s.ToString("N" + num));
+                return new Operand(OperandType.STRING, s.ToString("N" + num,cultureInfo));
             }
-            return new Operand(OperandType.STRING, s.ToString());
+            return new Operand(OperandType.STRING, s.ToString(cultureInfo));
         }
 
         private Operand F_Search(List<Operand> arg)

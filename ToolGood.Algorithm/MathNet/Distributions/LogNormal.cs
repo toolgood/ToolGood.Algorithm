@@ -14,9 +14,9 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
     {
         public static double CDF(double mu, double sigma, double x)
         {
-            if (sigma < 0.0) {
-                throw new ArgumentException("InvalidDistributionParameters");
-            }
+            //if (sigma < 0.0) {
+            //    throw new ArgumentException("InvalidDistributionParameters");
+            //}
 
             return x < 0.0 ? 0.0
                 : 0.5 * (1.0 + SpecialFunctions.Erf((Math.Log(x) - mu) / (sigma * Constants.Sqrt2)));
@@ -24,9 +24,9 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
 
         public static double InvCDF(double mu, double sigma, double p)
         {
-            if (sigma < 0.0) {
-                throw new ArgumentException("InvalidDistributionParameters");
-            }
+            //if (sigma < 0.0) {
+            //    throw new ArgumentException("InvalidDistributionParameters");
+            //}
 
             return p <= 0.0 ? 0.0 : p >= 1.0 ? double.PositiveInfinity
                 : Math.Exp(mu - sigma * Constants.Sqrt2 * SpecialFunctions.ErfcInv(2.0 * p));
