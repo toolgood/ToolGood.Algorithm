@@ -87,13 +87,6 @@ public interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitRIGHT_fun([NotNull] mathParser.RIGHT_funContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>TOLOWER_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitTOLOWER_fun([NotNull] mathParser.TOLOWER_funContext context);
-	/// <summary>
 	/// Visit a parse tree produced by the <c>OCT2BIN_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// </summary>
@@ -696,6 +689,13 @@ public interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitHMACSHA512_fun([NotNull] mathParser.HMACSHA512_funContext context);
 	/// <summary>
+	/// Visit a parse tree produced by the <c>AndOr_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAndOr_fun([NotNull] mathParser.AndOr_funContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>STDEVP_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// </summary>
@@ -779,13 +779,6 @@ public interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitLARGE_fun([NotNull] mathParser.LARGE_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>TOUPPER_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitTOUPPER_fun([NotNull] mathParser.TOUPPER_funContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>VALUE_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.

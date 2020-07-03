@@ -32,8 +32,9 @@ namespace ToolGood.Algorithm
 
             var firstValue = args[0];
             var secondValue = args[1];
+            var t = context.op.Text;
 
-            if (context.op.Type == mathLexer.MUL) {
+            if (t == "*") {
                 if (secondValue.Type == OperandType.BOOLEAN) {
                     if (secondValue.BooleanValue)
                         return firstValue;
@@ -70,7 +71,7 @@ namespace ToolGood.Algorithm
                 secondValue = secondValue.ToNumber();
                 if (secondValue.IsError) { return secondValue; }
                 return Operand.Create(firstValue.NumberValue * secondValue.NumberValue);
-            } else if (context.op.Type == mathLexer.DIV) {
+            } else if (t == "/") {
                 secondValue = secondValue.ToNumber("Div fun right value");
                 if (secondValue.NumberValue == 0) {
                     return Operand.Error("无法除0");
@@ -88,7 +89,7 @@ namespace ToolGood.Algorithm
                 secondValue = secondValue.ToNumber();
                 if (secondValue.IsError) { return secondValue; }
                 return Operand.Create(firstValue.NumberValue / secondValue.NumberValue);
-            } else if (context.op.Type == mathLexer.MOD_2) {
+            } else if (t == "%") {
                 firstValue = firstValue.ToNumber("% fun right value");
                 if (firstValue.IsError) { return firstValue; }
                 secondValue = secondValue.ToNumber("% fun right value");
@@ -108,11 +109,12 @@ namespace ToolGood.Algorithm
 
             var firstValue = args[0];
             var secondValue = args[1];
+            var t = context.op.Text;
 
-            if (context.op.Type == mathLexer.MERGE) {
+            if (t == "&") {
                 return Operand.Create(firstValue.ToString("").StringValue + secondValue.ToString("").StringValue);
             }
-            if (context.op.Type == mathLexer.ADD) {
+            if (t == "+") {
                 if (firstValue.Type == OperandType.STRING) {
                     var a = firstValue.ToDate();
                     if (a.IsError == false) firstValue = a;
@@ -137,7 +139,7 @@ namespace ToolGood.Algorithm
                 secondValue = secondValue.ToNumber();
                 if (secondValue.IsError) { return secondValue; }
                 return Operand.Create(firstValue.NumberValue + secondValue.NumberValue);
-            } else if (context.op.Type == mathLexer.SUB) {
+            } else if (t == "-") {
                 if (firstValue.Type == OperandType.STRING) {
                     var a = firstValue.ToDate();
                     if (a.IsError == false) firstValue = a;
@@ -173,7 +175,6 @@ namespace ToolGood.Algorithm
 
             var firstValue = args[0];
             var secondValue = args[1];
-            int type = context.op.Type;
 
             int r;
             if (firstValue.Type == secondValue.Type) {
@@ -198,15 +199,16 @@ namespace ToolGood.Algorithm
             } else {
                 r = Compare(firstValue.ToNumber("").NumberValue, secondValue.ToNumber("").NumberValue);
             }
-            if (type == mathLexer.LT) {
+            string type = context.op.Text;
+            if (type == "<") {
                 return Operand.Create(r == -1);
-            } else if (type == mathLexer.LE) {
+            } else if (type == "<=") {
                 return Operand.Create(r <= 0);
-            } else if (type == mathLexer.GT) {
+            } else if (type == ">") {
                 return Operand.Create(r == 1);
-            } else if (type == mathLexer.GE) {
+            } else if (type == ">=") {
                 return Operand.Create(r >= 0);
-            } else if (type == mathLexer.ET) {
+            } else if (type == "=" || type == "==") {
                 return Operand.Create(r == 0);
             }
             return Operand.Create(r != 0);
@@ -246,6 +248,27 @@ namespace ToolGood.Algorithm
                 return 1;
             }
             return -1;
+        }
+
+        public Operand VisitAndOr_fun([NotNull] mathParser.AndOr_funContext context)
+        {
+            var t = context.op.Text;
+            var args = new List<Operand>();
+            var index = 1;
+            foreach (var item in context.expr()) { var aa = this.Visit(item).ToBoolean($"Function '{t}' parameter {index++} is error!"); ; if (aa.IsError) { return aa; } args.Add(aa); }
+
+            var firstValue = args[0];
+            var secondValue = args[1];
+            if (t == "&&" || t.Equals("and", StringComparison.OrdinalIgnoreCase)) {
+                if (firstValue.BooleanValue && secondValue.BooleanValue) {
+                    return Operand.True;
+                }
+                return Operand.False;
+            }
+            if (firstValue.BooleanValue || secondValue.BooleanValue) {
+                return Operand.True;
+            }
+            return Operand.False;
         }
 
         public Operand VisitArray_fun([NotNull] mathParser.Array_funContext context)
@@ -1422,7 +1445,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitLOWER_fun([NotNull] mathParser.LOWER_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToString("Function LOWER parameter is error!");
+            var firstValue = this.Visit(context.expr()).ToString("Function LOWER/TOLOWER parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(firstValue.StringValue.ToLower());
@@ -1633,7 +1656,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitUPPER_fun([NotNull] mathParser.UPPER_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToString("Function UPPER parameter is error!");
+            var firstValue = this.Visit(context.expr()).ToString("Function UPPER/TOUPPER parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(firstValue.StringValue.ToUpper());
@@ -3356,20 +3379,6 @@ namespace ToolGood.Algorithm
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(string.IsNullOrWhiteSpace(firstValue.StringValue));
-        }
-        public Operand VisitTOUPPER_fun([NotNull] mathParser.TOUPPER_funContext context)
-        {
-            var firstValue = this.Visit(context.expr()).ToString("Function TOUPPER parameter 1 is error!");
-            if (firstValue.IsError) { return firstValue; }
-
-            return Operand.Create(firstValue.StringValue.ToUpper());
-        }
-        public Operand VisitTOLOWER_fun([NotNull] mathParser.TOLOWER_funContext context)
-        {
-            var firstValue = this.Visit(context.expr()).ToString("Function TOLOWER parameter 1 is error!");
-            if (firstValue.IsError) { return firstValue; }
-
-            return Operand.Create(firstValue.StringValue.ToLower());
         }
         public Operand VisitREMOVESTART_fun([NotNull] mathParser.REMOVESTART_funContext context)
         {

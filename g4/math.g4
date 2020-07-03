@@ -6,6 +6,7 @@ expr:
 	expr op = ('*' | '/' | '%') expr						# MulDiv_fun
 	| expr op = ('+' | '-' | '&') expr						# AddSub_fun
 	| expr op = (LT | LE | GT | GE | ET | NT) expr			# Judge_fun
+	| expr op = ('&&' | '||' | AND | OR) expr				# AndOr_fun
 	| '{' expr (',' expr)* '}'								# Array_fun
 	| '(' expr ')'											# Bracket_fun
 	| IF '(' expr ',' expr (',' expr)? ')'					# IF_fun
@@ -16,10 +17,10 @@ expr:
 	| expr '.' ISTEXT '(' ')'								# ISTEXT_fun
 	| ISERROR '(' expr ')'									# ISERROR_fun
 	| expr '.' ISERROR '(' ')'								# ISERROR_fun
-	| ISNONTEXT '(' expr ')'									# ISNONTEXT_fun
-	| expr '.' ISNONTEXT '(' ')'								# ISNONTEXT_fun
-	| ISLOGICAL '(' expr ')'									# ISLOGICAL_fun
-	| expr '.' ISLOGICAL '(' ')'								# ISLOGICAL_fun
+	| ISNONTEXT '(' expr ')'								# ISNONTEXT_fun
+	| expr '.' ISNONTEXT '(' ')'							# ISNONTEXT_fun
+	| ISLOGICAL '(' expr ')'								# ISLOGICAL_fun
+	| expr '.' ISLOGICAL '(' ')'							# ISLOGICAL_fun
 	| ISEVEN '(' expr ')'									# ISEVEN_fun
 	| expr '.' ISEVEN '(' ')'								# ISEVEN_fun
 	| ISODD '(' expr ')'									# ISODD_fun
@@ -31,36 +32,30 @@ expr:
 	| FALSE ('(' ')')?										# FALSE_fun
 	| E ('(' ')')?											# E_fun
 	| PI ('(' ')')?											# PI_fun
-	| PI ('(' ')')?											# PI_fun
-	| DEC2BIN ('(' expr (',' expr)? ')') 	# DEC2BIN_fun
-	| expr '.' DEC2BIN ('(' expr? ')') 	# DEC2BIN_fun
-	| DEC2HEX ('(' expr (',' expr)? ')') 	# DEC2HEX_fun
-	| expr '.' DEC2HEX ('(' expr? ')') 	# DEC2HEX_fun
-	| DEC2OCT ('(' expr (',' expr)? ')') 	# DEC2OCT_fun
-	| expr '.' DEC2OCT ('(' expr? ')') 	# DEC2OCT_fun
-
-	| HEX2BIN ('(' expr (',' expr)? ')') 	# HEX2BIN_fun
-	| expr '.' HEX2BIN ('(' expr? ')') 	# HEX2BIN_fun
-	| HEX2DEC ('(' expr ')') 	# HEX2DEC_fun
-	| expr '.' HEX2DEC ('(' ')') 	# HEX2DEC_fun
-	| HEX2OCT ('(' expr (',' expr)? ')') 	# HEX2OCT_fun
-	| expr '.' HEX2OCT ('(' expr? ')') 	# HEX2OCT_fun
-
-	| OCT2BIN ('(' expr (',' expr)? ')') 	# OCT2BIN_fun
-	| expr '.' OCT2BIN ('(' expr? ')') 	# OCT2BIN_fun
-	| OCT2DEC ('(' expr ')') 	# OCT2DEC_fun
-	| expr '.' OCT2DEC ('(' ')') 	# OCT2DEC_fun
-	| OCT2HEX ('(' expr (',' expr)? ')') 	# OCT2HEX_fun
-	| expr '.' OCT2HEX ('(' expr? ')') 	# OCT2HEX_fun
-
-	| BIN2OCT ('(' expr (',' expr)? ')') 	# BIN2OCT_fun
-	| expr '.' BIN2OCT ('(' expr? ')') 	# BIN2OCT_fun
-	| BIN2DEC ('(' expr ')') 	# BIN2DEC_fun
-	| expr '.' BIN2DEC ('(' ')') 	# BIN2DEC_fun
-	| BIN2HEX ('(' expr (',' expr)? ')') 	# BIN2HEX_fun
-	| expr '.' BIN2HEX ('(' expr? ')') 	# BIN2HEX_fun
- 
- 
+	| DEC2BIN ('(' expr (',' expr)? ')')					# DEC2BIN_fun
+	| expr '.' DEC2BIN ('(' expr? ')')						# DEC2BIN_fun
+	| DEC2HEX ('(' expr (',' expr)? ')')					# DEC2HEX_fun
+	| expr '.' DEC2HEX ('(' expr? ')')						# DEC2HEX_fun
+	| DEC2OCT ('(' expr (',' expr)? ')')					# DEC2OCT_fun
+	| expr '.' DEC2OCT ('(' expr? ')')						# DEC2OCT_fun
+	| HEX2BIN ('(' expr (',' expr)? ')')					# HEX2BIN_fun
+	| expr '.' HEX2BIN ('(' expr? ')')						# HEX2BIN_fun
+	| HEX2DEC ('(' expr ')')								# HEX2DEC_fun
+	| expr '.' HEX2DEC ('(' ')')							# HEX2DEC_fun
+	| HEX2OCT ('(' expr (',' expr)? ')')					# HEX2OCT_fun
+	| expr '.' HEX2OCT ('(' expr? ')')						# HEX2OCT_fun
+	| OCT2BIN ('(' expr (',' expr)? ')')					# OCT2BIN_fun
+	| expr '.' OCT2BIN ('(' expr? ')')						# OCT2BIN_fun
+	| OCT2DEC ('(' expr ')')								# OCT2DEC_fun
+	| expr '.' OCT2DEC ('(' ')')							# OCT2DEC_fun
+	| OCT2HEX ('(' expr (',' expr)? ')')					# OCT2HEX_fun
+	| expr '.' OCT2HEX ('(' expr? ')')						# OCT2HEX_fun
+	| BIN2OCT ('(' expr (',' expr)? ')')					# BIN2OCT_fun
+	| expr '.' BIN2OCT ('(' expr? ')')						# BIN2OCT_fun
+	| BIN2DEC ('(' expr ')')								# BIN2DEC_fun
+	| expr '.' BIN2DEC ('(' ')')							# BIN2DEC_fun
+	| BIN2HEX ('(' expr (',' expr)? ')')					# BIN2HEX_fun
+	| expr '.' BIN2HEX ('(' expr? ')')						# BIN2HEX_fun
 	| ABS '(' expr ')'										# ABS_fun
 	| QUOTIENT '(' expr (',' expr) ')'						# QUOTIENT_fun
 	| MOD '(' expr (',' expr) ')'							# MOD_fun
@@ -255,8 +250,8 @@ expr:
 	| expr '.' REGEX '(' expr (',' expr (',' expr)?)? ')'		# REGEX_fun
 	| REGEXREPALCE '(' expr ',' expr ',' expr ')'				# REGEXREPALCE_fun
 	| expr '.' REGEXREPALCE '(' expr ',' expr ')'				# REGEXREPALCE_fun
-	| (ISREGEX | ISMATCH) '(' expr ',' expr ')'					# ISREGEX_fun
-	| expr '.' (ISREGEX | ISMATCH) '(' expr ')'					# ISREGEX_fun
+	| ISREGEX '(' expr ',' expr ')'								# ISREGEX_fun
+	| expr '.' ISREGEX '(' expr ')'								# ISREGEX_fun
 	| GUID '(' ')'												# GUID_fun
 	| MD5 '(' expr (',' expr)? ')'								# MD5_fun
 	| expr '.' MD5 '(' expr? ')'								# MD5_fun
@@ -302,10 +297,6 @@ expr:
 	| expr '.' ISNULLOREMPTY '(' ')'							# ISNULLOREMPTY_fun
 	| ISNULLORWHITESPACE '(' expr ')'							# ISNULLORWHITESPACE_fun
 	| expr '.' ISNULLORWHITESPACE '(' ')'						# ISNULLORWHITESPACE_fun
-	| TOUPPER '(' expr ')'										# TOUPPER_fun
-	| expr '.' TOUPPER '(' ')'									# TOUPPER_fun
-	| TOLOWER '(' expr ')'										# TOLOWER_fun
-	| expr '.' TOLOWER '(' ')'									# TOLOWER_fun
 	| REMOVESTART '(' expr ',' expr ')'							# REMOVESTART_fun
 	| expr '.' REMOVESTART '(' expr ')'							# REMOVESTART_fun
 	| REMOVEEND '(' expr ',' expr ')'							# REMOVEEND_fun
@@ -336,19 +327,18 @@ parameter:
 		| TRUE
 		| FALSE
 		| PI
-|DEC2BIN 
-|DEC2HEX 
-|DEC2OCT 
-|HEX2BIN 
-|HEX2DEC 
-|HEX2OCT 
-|OCT2BIN 
-|OCT2DEC 
-|OCT2HEX 
-|BIN2OCT
-|BIN2DEC
-|BIN2HEX
-
+		| DEC2BIN
+		| DEC2HEX
+		| DEC2OCT
+		| HEX2BIN
+		| HEX2DEC
+		| HEX2OCT
+		| OCT2BIN
+		| OCT2DEC
+		| OCT2HEX
+		| BIN2OCT
+		| BIN2DEC
+		| BIN2HEX
 		| ABS
 		| QUOTIENT
 		| MOD
@@ -498,7 +488,6 @@ parameter:
 		| REGEX
 		| REGEXREPALCE
 		| ISREGEX
-		| ISMATCH
 		| GUID
 		| MD5
 		| SHA1
@@ -522,8 +511,6 @@ parameter:
 		| ENDSWITH
 		| ISNULLOREMPTY
 		| ISNULLORWHITESPACE
-		| TOUPPER
-		| TOLOWER
 		| REMOVESTART
 		| REMOVEEND
 		| JSON
@@ -542,6 +529,8 @@ GT: '>';
 GE: '>=';
 ET: '=' | '==';
 NT: '<>' | '!=';
+AND_2: '&&';
+OR_2: '||';
 
 // 逻辑函数
 IF: 'IF';
@@ -549,10 +538,10 @@ IFERROR: 'IFERROR';
 ISNUMBER: 'ISNUMBER';
 ISTEXT: 'ISTEXT';
 ISERROR: 'ISERROR';
-ISNONTEXT:'ISNONTEXT';
-ISLOGICAL: 'ISLOGICAL' ;
-ISEVEN:'ISEVEN';
-ISODD:'ISODD';
+ISNONTEXT: 'ISNONTEXT';
+ISLOGICAL: 'ISLOGICAL';
+ISEVEN: 'ISEVEN';
+ISODD: 'ISODD';
 AND: 'AND';
 OR: 'OR';
 NOT: 'NOT';
@@ -561,18 +550,18 @@ FALSE: 'FALSE';
 // 数学与三角函数
 E: 'E';
 PI: 'PI';
-DEC2BIN:'DEC2BIN';
-DEC2HEX:'DEC2HEX';
-DEC2OCT:'DEC2OCT';
-HEX2BIN:'HEX2BIN';//  将十六进制数转换为二进制数
-HEX2DEC:'HEX2DEC';  // 将十六进制数转换为十进制数
-HEX2OCT:'HEX2OCT'; //  将十六进制数转换为八进制数
-OCT2BIN:'OCT2BIN';//   将八进制数转换为二进制数
-OCT2DEC:'OCT2DEC';//   将八进制数转换为十进制数
-OCT2HEX:'OCT2HEX';//  将八进制数转换为十六进制数
-BIN2OCT:'BIN2OCT';
-BIN2DEC:'BIN2DEC';
-BIN2HEX:'BIN2HEX';
+DEC2BIN: 'DEC2BIN';
+DEC2HEX: 'DEC2HEX';
+DEC2OCT: 'DEC2OCT';
+HEX2BIN: 'HEX2BIN'; //  将十六进制数转换为二进制数
+HEX2DEC: 'HEX2DEC'; // 将十六进制数转换为十进制数
+HEX2OCT: 'HEX2OCT'; //  将十六进制数转换为八进制数
+OCT2BIN: 'OCT2BIN'; //   将八进制数转换为二进制数
+OCT2DEC: 'OCT2DEC'; //   将八进制数转换为十进制数
+OCT2HEX: 'OCT2HEX'; //  将八进制数转换为十六进制数
+BIN2OCT: 'BIN2OCT';
+BIN2DEC: 'BIN2DEC';
+BIN2HEX: 'BIN2HEX';
 ABS: 'ABS';
 QUOTIENT: 'QUOTIENT';
 MOD: 'MOD';
@@ -632,7 +621,7 @@ FIND: 'FIND';
 FIXED: 'FIXED';
 LEFT: 'LEFT';
 LEN: 'LEN';
-LOWER: 'LOWER';
+LOWER: 'LOWER'|'TOLOWER';
 MID: 'MID';
 PROPER: 'PROPER';
 REPLACE: 'REPLACE';
@@ -644,7 +633,7 @@ SUBSTITUTE: 'SUBSTITUTE';
 T: 'T';
 TEXT: 'TEXT';
 TRIM: 'TRIM';
-UPPER: 'UPPER';
+UPPER: 'UPPER'|'TOUPPER';
 VALUE: 'VALUE';
 // 日期与时间函数
 DATEVALUE: 'DATEVALUE';
@@ -725,8 +714,7 @@ TEXTTOBASE64: 'TEXTTOBASE64';
 TEXTTOBASE64URL: 'TEXTTOBASE64URL';
 REGEX: 'REGEX';
 REGEXREPALCE: 'REGEXREPALCE';
-ISREGEX: 'ISREGEX';
-ISMATCH: 'ISMATCH';
+ISREGEX: 'ISREGEX' | 'ISMATCH';
 GUID: 'GUID';
 MD5: 'MD5';
 SHA1: 'SHA1';
@@ -750,8 +738,6 @@ STARTSWITH: 'STARTSWITH';
 ENDSWITH: 'ENDSWITH';
 ISNULLOREMPTY: 'ISNULLOREMPTY';
 ISNULLORWHITESPACE: 'ISNULLORWHITESPACE';
-TOUPPER: 'TOUPPER';
-TOLOWER: 'TOLOWER';
 REMOVESTART: 'REMOVESTART';
 REMOVEEND: 'REMOVEEND';
 JSON: 'JSON';

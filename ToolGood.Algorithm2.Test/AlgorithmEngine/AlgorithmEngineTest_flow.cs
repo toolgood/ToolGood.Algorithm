@@ -70,6 +70,69 @@ namespace ToolGood.Algorithm
             Assert.AreEqual(1, t);
         }
 
+
+        [Test]
+        public void ISNONTEXT_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("if(ISNONTEXT(1),1,2)", 0);
+            Assert.AreEqual(1, t);
+
+            t = engine.TryEvaluate("if(ISNONTEXT('e'),1,2)", 0);
+            Assert.AreEqual(2, t);
+            t = engine.TryEvaluate("if(ISNONTEXT('11'),1,2)", 0);
+            Assert.AreEqual(2, t);
+
+            t = engine.TryEvaluate("if(ISNONTEXT('2016-1-2'),1,2)", 0);
+            Assert.AreEqual(2, t);
+        }
+
+
+        [Test]
+        public void ISLOGICAL_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("if(ISLOGICAL(1),1,2)", 0);
+            Assert.AreEqual(2, t);
+
+            t = engine.TryEvaluate("if(ISLOGICAL('e'),1,2)", 0);
+            Assert.AreEqual(2, t);
+
+            t = engine.TryEvaluate("if(ISLOGICAL(true),1,2)", 0);
+            Assert.AreEqual(1, t);
+
+            t = engine.TryEvaluate("if(ISLOGICAL(false),1,2)", 0);
+            Assert.AreEqual(1, t);
+        }
+
+        [Test]
+        public void ISEVEN_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("if(ISEVEN(1),1,2)", 0);
+            Assert.AreEqual(2, t);
+
+            t = engine.TryEvaluate("if(ISEVEN(2),1,2)", 0);
+            Assert.AreEqual(1, t);
+
+            t = engine.TryEvaluate("if(ISEVEN('e'),1,2)", 0);
+            Assert.AreEqual(2, t);
+        }
+
+        [Test]
+        public void ISODD_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("if(ISODD(1),1,2)", 0);
+            Assert.AreEqual(1, t);
+
+            t = engine.TryEvaluate("if(ISODD(2),1,2)", 0);
+            Assert.AreEqual(2, t);
+
+            t = engine.TryEvaluate("if(ISODD('e'),1,2)", 0);
+            Assert.AreEqual(2, t);
+        }
+
         [Test]
         public void And_Test()
         {
@@ -134,6 +197,39 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("false()", false);
             Assert.AreEqual(false, t);
         }
+
+        [Test]
+        public void andor_Test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("1=1 && 2==2 and 3=3", false);
+            Assert.AreEqual(true, t);
+
+            t = engine.TryEvaluate("1=1 && 2!=2", false);
+            Assert.AreEqual(false, t);
+
+            t = engine.TryEvaluate("1=1 && 2!=2", true);
+            Assert.AreEqual(false, t);
+
+            t = engine.TryEvaluate("1=1 || 2!=2", false);
+            Assert.AreEqual(true, t);
+
+
+            t = engine.TryEvaluate("1=1 and 2==2", false);
+            Assert.AreEqual(true, t);
+
+            t = engine.TryEvaluate("1=1 and 2!=2", false);
+            Assert.AreEqual(false, t);
+
+            t = engine.TryEvaluate("1=1 and 2!=2", true);
+            Assert.AreEqual(false, t);
+
+            t = engine.TryEvaluate("1=1 or 2!=2", false);
+            Assert.AreEqual(true, t);
+
+        }
+
+  
 
 
     }
