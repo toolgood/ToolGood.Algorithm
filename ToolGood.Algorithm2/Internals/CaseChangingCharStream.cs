@@ -71,7 +71,27 @@ namespace ToolGood.Algorithm
             }
 
             char o = (char)c;
-            if (o == '（') { o = '('; } else if (o == '）') { o = ')'; } else if (o == '，') { o = ','; } else if (o == '【') { o = '['; } else if (o == '】') { o = ']'; }
+            if (o == '（') {
+                o = '(';
+            } else if (o == '）') {
+                o = ')';
+            } else if (o == '，') {
+                o = ',';
+            } else if (o == '【') {
+                o = '[';
+            } else if (o == '】') {
+                o = ']';
+            } else if (o == '‘') {
+                o = '\'';
+            } else if (o == '’') {
+                o = '\'';
+            } else if (o == '“') {
+                o = '"';
+            } else if (o == '”') {
+                o = '"';
+            }
+
+
 
             if (upper) {
                 return (int)char.ToUpperInvariant(o);
