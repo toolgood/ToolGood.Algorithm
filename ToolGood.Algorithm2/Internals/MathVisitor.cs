@@ -178,25 +178,25 @@ namespace ToolGood.Algorithm
             int r;
             if (firstValue.Type == secondValue.Type) {
                 if (firstValue.Type == OperandType.STRING || firstValue.Type == OperandType.JSON) {
-                    r = compare(firstValue.ToString("").StringValue, secondValue.ToString("").StringValue);
+                    r = Compare(firstValue.ToString("").StringValue, secondValue.ToString("").StringValue);
                 } else if (firstValue.Type == OperandType.ARRARY) {
                     return Operand.Error("两个类型无法比较");
                 } else {
-                    r = compare(firstValue.ToNumber("").NumberValue, secondValue.ToNumber("").NumberValue);
+                    r = Compare(firstValue.ToNumber("").NumberValue, secondValue.ToNumber("").NumberValue);
                 }
             } else if ((firstValue.Type == OperandType.DATE && secondValue.Type == OperandType.STRING) || (secondValue.Type == OperandType.DATE && firstValue.Type == OperandType.STRING)
                  || (firstValue.Type == OperandType.NUMBER && secondValue.Type == OperandType.STRING) || (secondValue.Type == OperandType.NUMBER && firstValue.Type == OperandType.STRING)
                   ) {
-                r = compare(firstValue.ToString().StringValue, secondValue.ToString().StringValue);
+                r = Compare(firstValue.ToString().StringValue, secondValue.ToString().StringValue);
             } else if ((firstValue.Type == OperandType.BOOLEAN && secondValue.Type == OperandType.STRING) || (secondValue.Type == OperandType.BOOLEAN && firstValue.Type == OperandType.STRING)) {
-                r = compare2(firstValue.ToString().StringValue, secondValue.ToString().StringValue);
+                r = Compare2(firstValue.ToString().StringValue, secondValue.ToString().StringValue);
             } else if (firstValue.Type == OperandType.STRING || secondValue.Type == OperandType.STRING
                   || firstValue.Type == OperandType.JSON || secondValue.Type == OperandType.JSON
                   || firstValue.Type == OperandType.ARRARY || secondValue.Type == OperandType.ARRARY
                   ) {
                 return Operand.Error("两个类型无法比较");
             } else {
-                r = compare(firstValue.ToNumber("").NumberValue, secondValue.ToNumber("").NumberValue);
+                r = Compare(firstValue.ToNumber("").NumberValue, secondValue.ToNumber("").NumberValue);
             }
             if (type == mathLexer.LT) {
                 return Operand.Create(r == -1);
@@ -212,7 +212,7 @@ namespace ToolGood.Algorithm
             return Operand.Create(r != 0);
         }
 
-        private int compare(double t1, double t2)
+        private int Compare(double t1, double t2)
         {
             t1 = Math.Round(t1, 12);
             t2 = Math.Round(t2, 12);
@@ -223,7 +223,7 @@ namespace ToolGood.Algorithm
             }
             return -1;
         }
-        private int compare(string t1, string t2)
+        private int Compare(string t1, string t2)
         {
             if (t1 == t2) {
                 return 0;
@@ -235,7 +235,7 @@ namespace ToolGood.Algorithm
             }
             return -1;
         }
-        private int compare2(string t1, string t2)
+        private int Compare2(string t1, string t2)
         {
             if (t1.Equals(t2, StringComparison.OrdinalIgnoreCase)) {
                 return 0;
@@ -2216,7 +2216,7 @@ namespace ToolGood.Algorithm
                 sum = count * args[1].NumberValue;
             } else {
                 if (double.TryParse(args[1].StringValue.Trim(), NumberStyles.Any, cultureInfo, out double d)) {
-                    count = F_base_countif(list, args[1].NumberValue);
+                    count = F_base_countif(list, d);
                     sum = F_base_sumif(list, "=" + args[1].StringValue.Trim(), sumdbs);
                 } else {
                     count = F_base_countif(list, args[1].StringValue.Trim());
@@ -2284,7 +2284,7 @@ namespace ToolGood.Algorithm
                 count = F_base_countif(list, args[1].NumberValue);
             } else {
                 if (double.TryParse(args[1].StringValue.Trim(), NumberStyles.Any, cultureInfo, out double d)) {
-                    count = F_base_countif(list, args[1].NumberValue);
+                    count = F_base_countif(list, d);
                 } else {
                     count = F_base_countif(list, args[1].StringValue.Trim());
                 }
@@ -2777,7 +2777,6 @@ namespace ToolGood.Algorithm
             }
             var m = re.Match(s);
             var d = double.Parse(m.Groups[2].Value, cultureInfo);
-            var ss = m.Groups[1].Value;
             int count = 0;
 
             foreach (var item in dbs) {

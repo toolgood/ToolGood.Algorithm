@@ -82,7 +82,7 @@ namespace ToolGood.Algorithm
 
 
             var value3 = engine.TryEvaluate("-7 < -2", false);
-            Assert.AreEqual(value2, true);
+            Assert.AreEqual(value3, true);
         }
 
         [Test]
