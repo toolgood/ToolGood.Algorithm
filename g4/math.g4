@@ -31,6 +31,29 @@ expr:
 	| FALSE ('(' ')')?										# FALSE_fun
 	| E ('(' ')')?											# E_fun
 	| PI ('(' ')')?											# PI_fun
+	| PI ('(' ')')?											# PI_fun
+	| DEC2BIN ('(' expr (',' expr)? ')') 	# DEC2BIN_fun
+	| expr '.' DEC2BIN ('(' expr? ')') 	# DEC2BIN_fun
+	| DEC2HEX ('(' expr (',' expr)? ')') 	# DEC2HEX_fun
+	| expr '.' DEC2HEX ('(' expr? ')') 	# DEC2HEX_fun
+	| DEC2OCT ('(' expr (',' expr)? ')') 	# DEC2OCT_fun
+	| expr '.' DEC2OCT ('(' expr? ')') 	# DEC2OCT_fun
+
+	| HEX2BIN ('(' expr (',' expr)? ')') 	# HEX2BIN_fun
+	| expr '.' HEX2BIN ('(' expr? ')') 	# HEX2BIN_fun
+	| HEX2DEC ('(' expr (',' expr)? ')') 	# HEX2DEC_fun
+	| expr '.' HEX2DEC ('(' expr? ')') 	# HEX2DEC_fun
+	| HEX2OCT ('(' expr (',' expr)? ')') 	# HEX2OCT_fun
+	| expr '.' HEX2OCT ('(' expr? ')') 	# HEX2OCT_fun
+
+	| OCT2BIN ('(' expr (',' expr)? ')') 	# OCT2BIN_fun
+	| expr '.' OCT2BIN ('(' expr? ')') 	# OCT2BIN_fun
+	| OCT2DEC ('(' expr (',' expr)? ')') 	# OCT2DEC_fun
+	| expr '.' OCT2DEC ('(' expr? ')') 	# OCT2DEC_fun
+	| OCT2HEX ('(' expr (',' expr)? ')') 	# OCT2HEX_fun
+	| expr '.' OCT2HEX ('(' expr? ')') 	# OCT2HEX_fun
+
+ 
 	| ABS '(' expr ')'										# ABS_fun
 	| QUOTIENT '(' expr (',' expr) ')'						# QUOTIENT_fun
 	| MOD '(' expr (',' expr) ')'							# MOD_fun
@@ -306,6 +329,15 @@ parameter:
 		| TRUE
 		| FALSE
 		| PI
+|DEC2BIN 
+|DEC2HEX 
+|DEC2OCT 
+|HEX2BIN 
+|HEX2DEC 
+|HEX2OCT 
+|OCT2BIN 
+|OCT2DEC 
+|OCT2HEX 
 		| ABS
 		| QUOTIENT
 		| MOD
@@ -518,6 +550,15 @@ FALSE: 'FALSE';
 // 数学与三角函数
 E: 'E';
 PI: 'PI';
+DEC2BIN:'DEC2BIN';
+DEC2HEX:'DEC2HEX';
+DEC2OCT:'DEC2OCT';
+HEX2BIN :'HEX2BIN';//  将十六进制数转换为二进制数
+HEX2DEC:'HEX2DEC';  // 将十六进制数转换为十进制数
+HEX2OCT:'HEX2OCT'; //  将十六进制数转换为八进制数
+OCT2BIN:'OCT2BIN';//   将八进制数转换为二进制数
+OCT2DEC:'OCT2DEC';//   将八进制数转换为十进制数
+OCT2HEX :'OCT2HEX';//  将八进制数转换为十六进制数
 ABS: 'ABS';
 QUOTIENT: 'QUOTIENT';
 MOD: 'MOD';

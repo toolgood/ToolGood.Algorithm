@@ -25,9 +25,9 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
         ///// <seealso cref="Density"/>
         public static double PDF(double shape, double scale, double x)
         {
-            if (shape <= 0.0 || scale <= 0.0) {
-                throw new ArgumentException("InvalidDistributionParameters");
-            }
+            //if (shape <= 0.0 || scale <= 0.0) {
+            //    throw new ArgumentException("InvalidDistributionParameters");
+            //}
 
             if (x >= 0.0) {
                 if (x == 0.0 && shape == 1.0) {
@@ -42,34 +42,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
 
             return 0.0;
         }
-
-        /// <summary>
-        /// Computes the log probability density of the distribution (lnPDF) at x, i.e. ln(∂P(X ≤ x)/∂x).
-        /// </summary>
-        /// <param name="shape">The shape (k) of the Weibull distribution. Range: k > 0.</param>
-        /// <param name="scale">The scale (λ) of the Weibull distribution. Range: λ > 0.</param>
-        /// <param name="x">The location at which to compute the density.</param>
-        /// <returns>the log density at <paramref name="x"/>.</returns>
-        ///// <seealso cref="DensityLn"/>
-        public static double PDFLn(double shape, double scale, double x)
-        {
-            if (shape <= 0.0 || scale <= 0.0) {
-                throw new ArgumentException("InvalidDistributionParameters");
-            }
-
-            if (x >= 0.0) {
-                if (x == 0.0 && shape == 1.0) {
-                    return Math.Log(shape) - Math.Log(scale);
-                }
-
-                return Math.Log(shape)
-                       + ((shape - 1.0) * Math.Log(x / scale))
-                       - (Math.Pow(x, shape) * Math.Pow(scale, -shape))
-                       - Math.Log(scale);
-            }
-
-            return double.NegativeInfinity;
-        }
+         
 
         /// <summary>
         /// Computes the cumulative distribution (CDF) of the distribution at x, i.e. P(X ≤ x).
@@ -81,9 +54,9 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
         ///// <seealso cref="CumulativeDistribution"/>
         public static double CDF(double shape, double scale, double x)
         {
-            if (shape <= 0.0 || scale <= 0.0) {
-                throw new ArgumentException("InvalidDistributionParameters");
-            }
+            //if (shape <= 0.0 || scale <= 0.0) {
+            //    throw new ArgumentException("InvalidDistributionParameters");
+            //}
 
             if (x < 0.0) {
                 return 0.0;
