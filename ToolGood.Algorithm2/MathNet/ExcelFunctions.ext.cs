@@ -1,12 +1,12 @@
 ﻿using System;
-using MathNet.Numerics;
-using MathNet.Numerics.Distributions;
+using ToolGood.Algorithm.MathNet.Numerics.Distributions;
+using ToolGood.Algorithm.MathNet.Numerics.Statistics;
 
 
 
 namespace ToolGood.Algorithm.MathNet.Numerics
 {
-    public static partial class ExcelFunctions2
+    public static partial class ExcelFunctions
     {
         public static double GAMMALN(double z)
         {

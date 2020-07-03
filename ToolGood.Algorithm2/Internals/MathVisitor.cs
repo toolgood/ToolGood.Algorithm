@@ -7,7 +7,6 @@ using System.Text.RegularExpressions;
 using System.Web;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
-using MathNet.Numerics;
 using ToolGood.Algorithm.LitJson;
 using ToolGood.Algorithm.MathNet.Numerics;
 
@@ -2336,6 +2335,12 @@ namespace ToolGood.Algorithm
             var x = args[0].NumberValue;
             var alpha = args[1].NumberValue;
             var beta = args[2].NumberValue;
+
+            if (alpha < 0.0 || beta < 0.0)
+            {
+                return Operand.Error("Invalid parameterization for the distribution.");
+            }
+
             return Operand.Create(ExcelFunctions.BetaDist(x, alpha, beta));
         }
         public Operand VisitBETAINV_fun([NotNull] mathParser.BETAINV_funContext context)
@@ -2346,6 +2351,10 @@ namespace ToolGood.Algorithm
             var probability = args[0].NumberValue;
             var alpha = args[1].NumberValue;
             var beta = args[2].NumberValue;
+            if (alpha < 0.0 || beta < 0.0 || probability < 0.0 || probability > 1.0)
+            {
+                return Operand.Error("Invalid parameterization for the distribution.");
+            }
             return Operand.Create(ExcelFunctions.BetaInv(probability, alpha, beta));
         }
         public Operand VisitBINOMDIST_fun([NotNull] mathParser.BINOMDIST_funContext context)
@@ -2363,7 +2372,11 @@ namespace ToolGood.Algorithm
             args[3] = args[3].ToBoolean();
             if (args[3].IsError) return args[3];
 
-            return Operand.Create(ExcelFunctions2.BinomDist(args[0].IntValue, args[1].IntValue, args[2].NumberValue, args[3].BooleanValue));
+            if (!(args[2].NumberValue >= 0.0 && args[2].NumberValue <= 1.0 && args[1].NumberValue >= 0))
+            {
+                return Operand.Error("Invalid parameterization for the distribution.");
+            }
+            return Operand.Create(ExcelFunctions.BinomDist(args[0].IntValue, args[1].IntValue, args[2].NumberValue, args[3].BooleanValue));
         }
         public Operand VisitEXPONDIST_fun([NotNull] mathParser.EXPONDIST_funContext context)
         {
@@ -2377,8 +2390,12 @@ namespace ToolGood.Algorithm
             args[2] = args[2].ToBoolean();
             if (args[2].IsError) return args[2];
 
+            if (args[1].NumberValue < 0.0)
+            {
+                return Operand.Error("Invalid parameterization for the distribution.");
+            }
 
-            return Operand.Create(ExcelFunctions2.ExponDist(args[0].NumberValue, args[1].NumberValue, args[2].BooleanValue));
+            return Operand.Create(ExcelFunctions.ExponDist(args[0].NumberValue, args[1].NumberValue, args[2].BooleanValue));
         }
         public Operand VisitFDIST_fun([NotNull] mathParser.FDIST_funContext context)
         {
@@ -2388,6 +2405,10 @@ namespace ToolGood.Algorithm
             var x = args[0].NumberValue;
             var degreesFreedom = args[1].IntValue;
             var degreesFreedom2 = args[2].IntValue;
+            if (degreesFreedom <= 0.0 || degreesFreedom2 <= 0.0)
+            {
+                return Operand.Error("Invalid parameterization for the distribution.");
+            }
             return Operand.Create(ExcelFunctions.FDist(x, degreesFreedom, degreesFreedom2));
         }
         public Operand VisitFINV_fun([NotNull] mathParser.FINV_funContext context)
@@ -2395,10 +2416,13 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } args.Add(a); }
 
-
             var probability = args[0].NumberValue;
             var degreesFreedom = args[1].IntValue;
             var degreesFreedom2 = args[2].IntValue;
+            if (degreesFreedom <= 0.0 || degreesFreedom2 <= 0.0)
+            {
+                return Operand.Error("Invalid parameterization for the distribution.");
+            }
             return Operand.Create(ExcelFunctions.FInv(probability, degreesFreedom, degreesFreedom2));
         }
         public Operand VisitFISHER_fun([NotNull] mathParser.FISHER_funContext context)
@@ -2407,6 +2431,10 @@ namespace ToolGood.Algorithm
             if (firstValue.IsError) { return firstValue; }
 
             var x = firstValue.NumberValue;
+            if (x >=1 || x <= -1)
+            {
+                return Operand.Error("Invalid parameterization for the distribution.");
+            }
             var n = 0.5 * Math.Log((1 + x) / (1 - x));
             return Operand.Create(n);
         }
@@ -2439,6 +2467,10 @@ namespace ToolGood.Algorithm
             var alpha = args[1].NumberValue;
             var beta = args[2].NumberValue;
             var cumulative = args[3].BooleanValue;
+            if (alpha < 0.0 || beta < 0.0)
+            {
+                return Operand.Error("Invalid parameterization for the distribution.");
+            }
             return Operand.Create(ExcelFunctions.GammaDist(x, alpha, beta, cumulative));
         }
         public Operand VisitGAMMAINV_fun([NotNull] mathParser.GAMMAINV_funContext context)
@@ -2449,6 +2481,10 @@ namespace ToolGood.Algorithm
             var probability = args[0].NumberValue;
             var alpha = args[1].NumberValue;
             var beta = args[2].NumberValue;
+            if (alpha < 0.0 || beta < 0.0)
+            {
+                return Operand.Error("Invalid parameterization for the distribution.");
+            }
             return Operand.Create(ExcelFunctions.GammaInv(probability, alpha, beta));
         }
         public Operand VisitGAMMALN_fun([NotNull] mathParser.GAMMALN_funContext context)
@@ -2456,35 +2492,51 @@ namespace ToolGood.Algorithm
             var firstValue = this.Visit(context.expr()).ToNumber("");
             if (firstValue.IsError) { return firstValue; }
 
-            return Operand.Create(ExcelFunctions2.GAMMALN(firstValue.NumberValue));
+            return Operand.Create(ExcelFunctions.GAMMALN(firstValue.NumberValue));
         }
         public Operand VisitHYPGEOMDIST_fun([NotNull] mathParser.HYPGEOMDIST_funContext context)
         {
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } args.Add(a); }
 
-            return Operand.Create(ExcelFunctions2.HypgeomDist(args[0].IntValue, args[1].IntValue, args[2].IntValue, args[3].IntValue));
+            int k = args[0].IntValue;
+            int draws = args[1].IntValue;
+            int success = args[2].IntValue;
+            int population = args[3].IntValue;
+            if (!(population >= 0 && success >= 0 && draws >= 0 && success <= population && draws <= population))
+            {
+                return Operand.Error("Invalid parameterization for the distribution.");
+            }
+            return Operand.Create(ExcelFunctions.HypgeomDist(k, draws, success, population));
         }
         public Operand VisitLOGINV_fun([NotNull] mathParser.LOGINV_funContext context)
         {
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } args.Add(a); }
 
-            return Operand.Create(ExcelFunctions2.LogInv(args[0].NumberValue, args[1].NumberValue, args[2].NumberValue));
+            if (args[2].NumberValue < 0.0)
+            {
+                return Operand.Error("Invalid parameterization for the distribution.");
+            }
+            return Operand.Create(ExcelFunctions.LogInv(args[0].NumberValue, args[1].NumberValue, args[2].NumberValue));
         }
         public Operand VisitLOGNORMDIST_fun([NotNull] mathParser.LOGNORMDIST_funContext context)
         {
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } args.Add(a); }
 
-            return Operand.Create(ExcelFunctions2.LognormDist(args[0].NumberValue, args[1].NumberValue, args[2].NumberValue));
+            if (args[2].NumberValue < 0.0)
+            {
+                return Operand.Error("Invalid parameterization for the distribution.");
+            }
+            return Operand.Create(ExcelFunctions.LognormDist(args[0].NumberValue, args[1].NumberValue, args[2].NumberValue));
         }
         public Operand VisitNEGBINOMDIST_fun([NotNull] mathParser.NEGBINOMDIST_funContext context)
         {
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } args.Add(a); }
 
-            return Operand.Create(ExcelFunctions2.NegbinomDist(args[0].IntValue, args[1].NumberValue, args[2].NumberValue));
+            return Operand.Create(ExcelFunctions.NegbinomDist(args[0].IntValue, args[1].NumberValue, args[2].NumberValue));
         }
         public Operand VisitPOISSON_fun([NotNull] mathParser.POISSON_funContext context)
         {
@@ -2498,7 +2550,7 @@ namespace ToolGood.Algorithm
             args[2] = args[2].ToBoolean();
             if (args[2].IsError) return args[2];
 
-            return Operand.Create(ExcelFunctions2.POISSON(args[0].IntValue, args[1].NumberValue, args[2].BooleanValue));
+            return Operand.Create(ExcelFunctions.POISSON(args[0].IntValue, args[1].NumberValue, args[2].BooleanValue));
         }
         public Operand VisitTDIST_fun([NotNull] mathParser.TDIST_funContext context)
         {
@@ -2534,7 +2586,7 @@ namespace ToolGood.Algorithm
             args[3] = args[3].ToBoolean();
             if (args[3].IsError) return args[3];
 
-            return Operand.Create(ExcelFunctions2.WEIBULL(args[0].NumberValue, args[1].NumberValue, args[2].NumberValue, args[3].BooleanValue));
+            return Operand.Create(ExcelFunctions.WEIBULL(args[0].NumberValue, args[1].NumberValue, args[2].NumberValue, args[3].BooleanValue));
         }
 
         private int F_base_countif(List<double> dbs, double d)
