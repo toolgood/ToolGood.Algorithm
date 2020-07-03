@@ -896,9 +896,9 @@ namespace ToolGood.Algorithm
             }
             if (no == false)
             {
-                return Operand.Create(s.ToString("N" + num));
+                return Operand.Create(s.ToString("N" + num,CultureInfo.GetCultureInfo("en-US")));
             }
-            return Operand.Create(s.ToString());
+            return Operand.Create(s.ToString(CultureInfo.GetCultureInfo("en-US")));
         }
 
         #endregion
@@ -1793,7 +1793,7 @@ namespace ToolGood.Algorithm
             }
             else if (firstValue.Type == OperandType.NUMBER)
             {
-                return Operand.Create(firstValue.NumberValue.ToString(secondValue.StringValue));
+                return Operand.Create(firstValue.NumberValue.ToString(secondValue.StringValue,CultureInfo.GetCultureInfo("en-US")));
             }
             else if (firstValue.Type == OperandType.DATE)
             {
@@ -1864,7 +1864,7 @@ namespace ToolGood.Algorithm
         }
         private string F_base_ToChineseRMB(double x)
         {
-            string s = x.ToString("#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A");
+            string s = x.ToString("#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A",CultureInfo.GetCultureInfo("en-US"));
             string d = Regex.Replace(s, @"((?<=-|^)[^1-9]*)|((?'z'0)[0A-E]*((?=[1-9])|(?'-z'(?=[F-L\.]|$))))|((?'b'[F-L])(?'z'0)[0A-L]*((?=[1-9])|(?'-z'(?=[\.]|$))))", "${b}${z}");
             return Regex.Replace(d, ".", m => "负元空零壹贰叁肆伍陆柒捌玖空空空空空空空分角拾佰仟万亿兆京垓秭穰"[m.Value[0] - '-'].ToString());
         }
