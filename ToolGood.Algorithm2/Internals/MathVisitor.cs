@@ -934,7 +934,6 @@ namespace ToolGood.Algorithm
             var num = Convert.ToInt32(firstValue.StringValue, 2);
             return Operand.Create(num);
         }
-
         public Operand VisitBIN2HEX_fun([NotNull] mathParser.BIN2HEX_funContext context)
         {
             var args = new List<Operand>();
@@ -955,7 +954,7 @@ namespace ToolGood.Algorithm
             }
             return Operand.Create(num);
         }
-
+        
         private static Regex bit_8 = new Regex("^[0-8]+$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
         public Operand VisitOCT2BIN_fun([NotNull] mathParser.OCT2BIN_funContext context)
         {
@@ -986,7 +985,6 @@ namespace ToolGood.Algorithm
             var num = Convert.ToInt32(firstValue.StringValue, 8);
             return Operand.Create(num);
         }
-
         public Operand VisitOCT2HEX_fun([NotNull] mathParser.OCT2HEX_funContext context)
         {
             var args = new List<Operand>();
@@ -1007,8 +1005,6 @@ namespace ToolGood.Algorithm
             }
             return Operand.Create(num);
         }
-
-
         public Operand VisitDEC2BIN_fun([NotNull] mathParser.DEC2BIN_funContext context)
         {
             var args = new List<Operand>();
@@ -1026,7 +1022,6 @@ namespace ToolGood.Algorithm
             }
             return Operand.Create(num );
         }
-
         public Operand VisitDEC2OCT_fun([NotNull] mathParser.DEC2OCT_funContext context)
         {
             var args = new List<Operand>();
@@ -1061,6 +1056,7 @@ namespace ToolGood.Algorithm
             }
             return Operand.Create(num);
         }
+        
         private static Regex bit_16 = new Regex("^[0-9a-f]+$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
         public Operand VisitHEX2BIN_fun([NotNull] mathParser.HEX2BIN_funContext context)
         {

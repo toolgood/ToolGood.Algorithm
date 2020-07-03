@@ -25,9 +25,9 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
         /// <returns>the probability mass at location <paramref name="k"/>.</returns>
         public static double PMF(double p, int n, int k)
         {
-            if (!(p >= 0.0 && p <= 1.0 && n >= 0)) {
-                throw new ArgumentException("InvalidDistributionParameters");
-            }
+            //if (!(p >= 0.0 && p <= 1.0 && n >= 0)) {
+            //    throw new ArgumentException("InvalidDistributionParameters");
+            //}
 
             if (k < 0 || k > n) {
                 return 0.0;
@@ -43,35 +43,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
 
             return Math.Exp(SpecialFunctions.BinomialLn(n, k) + (k * Math.Log(p)) + ((n - k) * Math.Log(1.0 - p)));
         }
-
-        /// <summary>
-        /// Computes the log probability mass (lnPMF) at k, i.e. ln(P(X = k)).
-        /// </summary>
-        /// <param name="k">The location in the domain where we want to evaluate the log probability mass function.</param>
-        /// <param name="p">The success probability (p) in each trial. Range: 0 ≤ p ≤ 1.</param>
-        /// <param name="n">The number of trials (n). Range: n ≥ 0.</param>
-        /// <returns>the log probability mass at location <paramref name="k"/>.</returns>
-        public static double PMFLn(double p, int n, int k)
-        {
-            if (!(p >= 0.0 && p <= 1.0 && n >= 0)) {
-                throw new ArgumentException("InvalidDistributionParameters");
-            }
-
-            if (k < 0 || k > n) {
-                return double.NegativeInfinity;
-            }
-
-            if (p == 0.0) {
-                return k == 0 ? 0.0 : double.NegativeInfinity;
-            }
-
-            if (p == 1.0) {
-                return k == n ? 0.0 : double.NegativeInfinity;
-            }
-
-            return SpecialFunctions.BinomialLn(n, k) + (k * Math.Log(p)) + ((n - k) * Math.Log(1.0 - p));
-        }
-
+      
         /// <summary>
         /// Computes the cumulative distribution (CDF) of the distribution at x, i.e. P(X ≤ x).
         /// </summary>

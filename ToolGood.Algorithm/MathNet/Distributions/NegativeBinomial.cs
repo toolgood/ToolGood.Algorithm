@@ -36,9 +36,9 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
         /// <returns>the log probability mass at location <paramref name="k"/>.</returns>
         public static double PMFLn(double r, double p, int k)
         {
-            if (!(r >= 0.0 && p >= 0.0 && p <= 1.0)) {
-                throw new ArgumentException("InvalidDistributionParameters");
-            }
+            //if (!(r >= 0.0 && p >= 0.0 && p <= 1.0)) {
+            //    throw new ArgumentException("InvalidDistributionParameters");
+            //}
 
             return SpecialFunctions.GammaLn(r + k)
                    - SpecialFunctions.GammaLn(r)

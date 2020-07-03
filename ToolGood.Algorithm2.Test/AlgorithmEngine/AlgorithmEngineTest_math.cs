@@ -450,6 +450,8 @@ namespace ToolGood.Algorithm
             Assert.AreEqual(t, "111010001");
             t = engine.TryEvaluate("HEX2BIN('fa')", "");
             Assert.AreEqual(t, "11111010");
+            t = engine.TryEvaluate("'fa'.HEX2BIN()", "");
+            Assert.AreEqual(t, "11111010");
 
             t = engine.TryEvaluate("BIN2OCT(10)", "");
             Assert.AreEqual(t, "2");
