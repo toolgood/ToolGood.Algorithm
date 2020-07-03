@@ -20,8 +20,8 @@
     <AutoUnifyAssemblyReferences Condition="'$(TargetFramework)' == 'net40'">false</AutoUnifyAssemblyReferences>
     <RootNamespace>ToolGood.Algorithm</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>1.3.3.5</Version>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Version>1.3.3.6</Version>
     <PackageReleaseNotes></PackageReleaseNotes>
     <Product>ToolGood.Algorithm</Product>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
