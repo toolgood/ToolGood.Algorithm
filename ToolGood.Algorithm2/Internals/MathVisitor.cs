@@ -2395,6 +2395,10 @@ namespace ToolGood.Algorithm
             }
 
             var quant = secondValue.IntValue;
+            if (quant<0 || quant>4)
+            {
+                return Operand.Error("");
+            }
             return Operand.Create(ExcelFunctions.Quartile(list.ToArray(), quant));
         }
         public Operand VisitMODE_fun([NotNull] mathParser.MODE_funContext context)
@@ -3103,6 +3107,10 @@ namespace ToolGood.Algorithm
             var degreesFreedom = args[1].IntValue;
             var tails = args[2].IntValue;
             if (degreesFreedom <= 0.0)
+            {
+                return Operand.Error("Invalid parameterization for the distribution.");
+            }
+            if (tails<1 || tails>2)
             {
                 return Operand.Error("Invalid parameterization for the distribution.");
             }
