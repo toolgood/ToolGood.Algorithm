@@ -99,7 +99,7 @@ namespace ToolGood.Algorithm
             if (Parse(exp)) {
                 try {
                     var obj = Evaluate();
-                    obj = obj.ToNumber();
+                    obj = obj.ToNumber("");
                     if (obj.IsError) {
                         LastError = obj.ErrorMsg;
                         return def;
@@ -117,7 +117,7 @@ namespace ToolGood.Algorithm
             if (Parse(exp)) {
                 try {
                     var obj = Evaluate();
-                    obj = obj.ToNumber();
+                    obj = obj.ToNumber("");
                     if (obj.IsError) {
                         LastError = obj.ErrorMsg;
                         return def;
@@ -135,7 +135,7 @@ namespace ToolGood.Algorithm
             if (Parse(exp)) {
                 try {
                     var obj = Evaluate();
-                    obj = obj.ToString();
+                    obj = obj.ToString("");
                     if (obj.IsError) {
                         LastError = obj.ErrorMsg;
                         return def;
@@ -152,7 +152,7 @@ namespace ToolGood.Algorithm
             if (Parse(exp)) {
                 try {
                     var obj = Evaluate();
-                    obj = obj.ToBoolean();
+                    obj = obj.ToBoolean("");
                     if (obj.IsError) {
                         LastError = obj.ErrorMsg;
                         return def;
@@ -170,7 +170,7 @@ namespace ToolGood.Algorithm
             if (Parse(exp)) {
                 try {
                     var obj = Evaluate();
-                    obj = obj.ToDate();
+                    obj = obj.ToDate("");
                     if (obj.IsError) {
                         LastError = obj.ErrorMsg;
                         return def;
@@ -188,7 +188,7 @@ namespace ToolGood.Algorithm
             if (Parse(exp)) {
                 try {
                     var obj = Evaluate();
-                    obj = obj.ToDate();
+                    obj = obj.ToDate("");
                     if (obj.IsError) {
                         LastError = obj.ErrorMsg;
                         return def;
