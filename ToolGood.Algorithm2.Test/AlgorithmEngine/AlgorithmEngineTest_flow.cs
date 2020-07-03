@@ -36,39 +36,7 @@ namespace ToolGood.Algorithm
             t = engine.TryEvaluate("iferror(1-'rrr',1,2)", 0);
             Assert.AreEqual(1, t);
         }
-
-        [Test]
-        public void IFNUMBER_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("IFNUMBER(1,1,2)", 0);
-            Assert.AreEqual(1, t);
-
-            t = engine.TryEvaluate("IFNUMBER('e',1,2)", 0);
-            Assert.AreEqual(2, t);
-
-            t = engine.TryEvaluate("IFNUMBER('11',1,2)", 0);
-            Assert.AreEqual(2, t);
-
-            t = engine.TryEvaluate("IFNUMBER('2016-1-2',1,2)", 0);
-            Assert.AreEqual(2, t);
-        }
-
-        [Test]
-        public void IFTEXT_test()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("IFTEXT(1,1,2)", 0);
-            Assert.AreEqual(2, t);
-
-            t = engine.TryEvaluate("IFTEXT('e',1,2)", 0);
-            Assert.AreEqual(1, t);
-            t = engine.TryEvaluate("IFTEXT('11',1,2)", 0);
-            Assert.AreEqual(1, t);
-
-            t = engine.TryEvaluate("IFTEXT('2016-1-2',1,2)", 0);
-            Assert.AreEqual(1, t);
-        }
+ 
 
         [Test]
         public void ISNUMBER_test()

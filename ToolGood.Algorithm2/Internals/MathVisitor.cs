@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
+using MathNet.Numerics;
 using ToolGood.Algorithm.LitJson;
 using ToolGood.Algorithm.MathNet.Numerics;
 
@@ -2362,7 +2363,7 @@ namespace ToolGood.Algorithm
             args[3] = args[3].ToBoolean();
             if (args[3].IsError) return args[3];
 
-            return Operand.Create(ExcelFunctions.BinomDist(args[0].IntValue, args[1].IntValue, args[2].NumberValue, args[3].BooleanValue));
+            return Operand.Create(ExcelFunctions2.BinomDist(args[0].IntValue, args[1].IntValue, args[2].NumberValue, args[3].BooleanValue));
         }
         public Operand VisitEXPONDIST_fun([NotNull] mathParser.EXPONDIST_funContext context)
         {
@@ -2377,7 +2378,7 @@ namespace ToolGood.Algorithm
             if (args[2].IsError) return args[2];
 
 
-            return Operand.Create(ExcelFunctions.ExponDist(args[0].NumberValue, args[1].NumberValue, args[2].BooleanValue));
+            return Operand.Create(ExcelFunctions2.ExponDist(args[0].NumberValue, args[1].NumberValue, args[2].BooleanValue));
         }
         public Operand VisitFDIST_fun([NotNull] mathParser.FDIST_funContext context)
         {
@@ -2455,35 +2456,35 @@ namespace ToolGood.Algorithm
             var firstValue = this.Visit(context.expr()).ToNumber("");
             if (firstValue.IsError) { return firstValue; }
 
-            return Operand.Create(ExcelFunctions.GAMMALN(firstValue.NumberValue));
+            return Operand.Create(ExcelFunctions2.GAMMALN(firstValue.NumberValue));
         }
         public Operand VisitHYPGEOMDIST_fun([NotNull] mathParser.HYPGEOMDIST_funContext context)
         {
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } args.Add(a); }
 
-            return Operand.Create(ExcelFunctions.HypgeomDist(args[0].IntValue, args[1].IntValue, args[2].IntValue, args[3].IntValue));
+            return Operand.Create(ExcelFunctions2.HypgeomDist(args[0].IntValue, args[1].IntValue, args[2].IntValue, args[3].IntValue));
         }
         public Operand VisitLOGINV_fun([NotNull] mathParser.LOGINV_funContext context)
         {
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } args.Add(a); }
 
-            return Operand.Create(ExcelFunctions.LogInv(args[0].NumberValue, args[1].NumberValue, args[2].NumberValue));
+            return Operand.Create(ExcelFunctions2.LogInv(args[0].NumberValue, args[1].NumberValue, args[2].NumberValue));
         }
         public Operand VisitLOGNORMDIST_fun([NotNull] mathParser.LOGNORMDIST_funContext context)
         {
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } args.Add(a); }
 
-            return Operand.Create(ExcelFunctions.LognormDist(args[0].NumberValue, args[1].NumberValue, args[2].NumberValue));
+            return Operand.Create(ExcelFunctions2.LognormDist(args[0].NumberValue, args[1].NumberValue, args[2].NumberValue));
         }
         public Operand VisitNEGBINOMDIST_fun([NotNull] mathParser.NEGBINOMDIST_funContext context)
         {
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var a = this.Visit(item).ToNumber(); if (a.IsError) { return a; } args.Add(a); }
 
-            return Operand.Create(ExcelFunctions.NegbinomDist(args[0].IntValue, args[1].NumberValue, args[2].NumberValue));
+            return Operand.Create(ExcelFunctions2.NegbinomDist(args[0].IntValue, args[1].NumberValue, args[2].NumberValue));
         }
         public Operand VisitPOISSON_fun([NotNull] mathParser.POISSON_funContext context)
         {
@@ -2497,7 +2498,7 @@ namespace ToolGood.Algorithm
             args[2] = args[2].ToBoolean();
             if (args[2].IsError) return args[2];
 
-            return Operand.Create(ExcelFunctions.POISSON(args[0].IntValue, args[1].NumberValue, args[2].BooleanValue));
+            return Operand.Create(ExcelFunctions2.POISSON(args[0].IntValue, args[1].NumberValue, args[2].BooleanValue));
         }
         public Operand VisitTDIST_fun([NotNull] mathParser.TDIST_funContext context)
         {
@@ -2533,7 +2534,7 @@ namespace ToolGood.Algorithm
             args[3] = args[3].ToBoolean();
             if (args[3].IsError) return args[3];
 
-            return Operand.Create(ExcelFunctions.WEIBULL(args[0].NumberValue, args[1].NumberValue, args[2].NumberValue, args[3].BooleanValue));
+            return Operand.Create(ExcelFunctions2.WEIBULL(args[0].NumberValue, args[1].NumberValue, args[2].NumberValue, args[3].BooleanValue));
         }
 
         private int F_base_countif(List<double> dbs, double d)
