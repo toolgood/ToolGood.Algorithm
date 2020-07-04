@@ -15,8 +15,6 @@ namespace ToolGood.Algorithm.LitJson
     class JsonMapper
     {
         #region Fields
-        //private static readonly int max_nesting_depth;
-
         private static readonly IFormatProvider datetime_format;
 
         private static readonly IDictionary<Type,

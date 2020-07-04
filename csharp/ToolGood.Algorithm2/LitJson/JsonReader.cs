@@ -39,7 +39,7 @@ namespace ToolGood.Algorithm.LitJson
         private int current_symbol;
         private bool end_of_json;
         private bool end_of_input;
-        private Lexer lexer;
+        private readonly Lexer lexer;
         private bool parser_in_string;
         private bool parser_return;
         private bool read_started;
