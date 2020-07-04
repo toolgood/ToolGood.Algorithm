@@ -9,9 +9,6 @@ using System.Reflection;
 namespace ToolGood.Algorithm.LitJson
 {
     internal delegate object ImporterFunc(object input);
-
-    delegate IJsonWrapper WrapperFactory();
-
     class JsonMapper
     {
         #region Fields
@@ -36,13 +33,13 @@ namespace ToolGood.Algorithm.LitJson
 
         #region Private Methods
 
-        private static IJsonWrapper ReadValue(WrapperFactory factory, JsonReader reader)
+        private static IJsonWrapper ReadValue(JsonReader reader)
         {
             reader.Read();
 
-            if (reader.Token == JsonToken.ArrayEnd || reader.Token == JsonToken.Null)                return null;
+            if (reader.Token == JsonToken.ArrayEnd || reader.Token == JsonToken.Null) return null;
 
-            IJsonWrapper instance = factory();
+            IJsonWrapper instance = new JsonData();
 
             if (reader.Token == JsonToken.String) {
                 instance.SetString((string)reader.Value);
@@ -73,7 +70,7 @@ namespace ToolGood.Algorithm.LitJson
                 instance.SetJsonType(JsonType.Array);
 
                 while (true) {
-                    IJsonWrapper item = ReadValue(factory, reader);
+                    IJsonWrapper item = ReadValue(reader);
                     if (item == null && reader.Token == JsonToken.ArrayEnd) break;
                     instance.Add(item);
                     //((IList)instance).Add(item);
@@ -87,7 +84,7 @@ namespace ToolGood.Algorithm.LitJson
                     if (reader.Token == JsonToken.ObjectEnd) break;
 
                     string property = (string)reader.Value;
-                    instance.Set(property, ReadValue(factory, reader));
+                    instance.Set(property, ReadValue(reader));
                     //((IDictionary)instance)[property] = ReadValue(factory, reader);
                 }
 
@@ -186,14 +183,14 @@ namespace ToolGood.Algorithm.LitJson
 
         public static JsonData ToObject(string json)
         {
-            return (JsonData)ToWrapper(delegate { return new JsonData(); }, json);
+            return (JsonData)ToWrapper(json);
         }
 
 
-        public static IJsonWrapper ToWrapper(WrapperFactory factory, string json)
+        public static IJsonWrapper ToWrapper(string json)
         {
             JsonReader reader = new JsonReader(json);
-            return ReadValue(factory, reader);
+            return ReadValue(reader);
         }
 
 
