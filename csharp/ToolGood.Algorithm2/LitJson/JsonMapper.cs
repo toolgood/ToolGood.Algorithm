@@ -11,25 +11,6 @@ namespace ToolGood.Algorithm.LitJson
     internal delegate object ImporterFunc(object input);
     class JsonMapper
     {
-        #region Fields
-        private static readonly IFormatProvider datetime_format;
-
-        private static readonly IDictionary<Type, IDictionary<Type, ImporterFunc>> base_importers_table;
-
-        #endregion
-
-
-        #region Constructors
-        static JsonMapper()
-        {
-            datetime_format = DateTimeFormatInfo.InvariantInfo;
-
-            base_importers_table = new Dictionary<Type, IDictionary<Type, ImporterFunc>>();
-
-            RegisterBaseImporters();
-        }
-        #endregion
-
 
         #region Private Methods
 
@@ -91,90 +72,6 @@ namespace ToolGood.Algorithm.LitJson
             }
 
             return instance;
-        }
-
-        private static void RegisterBaseImporters()
-        {
-            ImporterFunc importer;
-
-            importer = delegate (object input) {
-                return Convert.ToByte((int)input);
-            };
-            RegisterImporter(base_importers_table, typeof(int), typeof(byte), importer);
-
-            importer = delegate (object input) {
-                return Convert.ToUInt64((int)input);
-            };
-            RegisterImporter(base_importers_table, typeof(int), typeof(ulong), importer);
-
-            importer = delegate (object input) {
-                return Convert.ToInt64((int)input);
-            };
-            RegisterImporter(base_importers_table, typeof(int), typeof(long), importer);
-
-            importer = delegate (object input) {
-                return Convert.ToSByte((int)input);
-            };
-            RegisterImporter(base_importers_table, typeof(int), typeof(sbyte), importer);
-
-            importer = delegate (object input) {
-                return Convert.ToInt16((int)input);
-            };
-            RegisterImporter(base_importers_table, typeof(int), typeof(short), importer);
-
-            importer = delegate (object input) {
-                return Convert.ToUInt16((int)input);
-            };
-            RegisterImporter(base_importers_table, typeof(int), typeof(ushort), importer);
-
-            importer = delegate (object input) {
-                return Convert.ToUInt32((int)input);
-            };
-            RegisterImporter(base_importers_table, typeof(int), typeof(uint), importer);
-
-            importer = delegate (object input) {
-                return Convert.ToSingle((int)input);
-            };
-            RegisterImporter(base_importers_table, typeof(int), typeof(float), importer);
-
-            importer = delegate (object input) {
-                return Convert.ToDouble((int)input);
-            };
-            RegisterImporter(base_importers_table, typeof(int), typeof(double), importer);
-
-            importer = delegate (object input) {
-                return Convert.ToDecimal((double)input);
-            };
-            RegisterImporter(base_importers_table, typeof(double), typeof(decimal), importer);
-
-
-            importer = delegate (object input) {
-                return Convert.ToUInt32((long)input);
-            };
-            RegisterImporter(base_importers_table, typeof(long), typeof(uint), importer);
-
-            importer = delegate (object input) {
-                return Convert.ToChar((string)input);
-            };
-            RegisterImporter(base_importers_table, typeof(string), typeof(char), importer);
-
-            importer = delegate (object input) {
-                return Convert.ToDateTime((string)input, datetime_format);
-            };
-            RegisterImporter(base_importers_table, typeof(string), typeof(DateTime), importer);
-
-            importer = delegate (object input) {
-                return DateTimeOffset.Parse((string)input, datetime_format);
-            };
-            RegisterImporter(base_importers_table, typeof(string), typeof(DateTimeOffset), importer);
-        }
-
-        private static void RegisterImporter(IDictionary<Type, IDictionary<Type, ImporterFunc>> table, Type json_type, Type value_type, ImporterFunc importer)
-        {
-            if (!table.ContainsKey(json_type))
-                table.Add(json_type, new Dictionary<Type, ImporterFunc>());
-
-            table[json_type][value_type] = importer;
         }
 
         #endregion
