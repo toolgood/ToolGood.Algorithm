@@ -35,16 +35,6 @@
         /// </summary>
         STRING,
 
-        ///// <summary>
-        ///// 参数
-        ///// </summary>
-        //PARAMETER,
-
-        ///// <summary>
-        ///// 对象
-        ///// </summary>
-        //OBJECT,
-
         /// <summary>
         /// JSON格式
         /// </summary>

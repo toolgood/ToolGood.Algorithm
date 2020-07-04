@@ -41,20 +41,29 @@ namespace ToolGood.Algorithm
 
         public override string ToString()
         {
-            if (Year != null && Hour > 0 && Second > 0) {
-                return ((DateTime)this).ToString("yyyy-MM-dd HH:mm:ss");
-            } else if (Year > 0 && Hour > 0) {
-                return ((DateTime)this).ToString("yyyy-MM-dd HH:mm");
-            } else if (Year > 0) {
-                return ((DateTime)this).ToString("yyyy-MM-dd");
-            } else if (Hour > 0 && Second > 0) {
-                return ((DateTime)this).ToString("HH:mm:ss");
+            if (Year != null) {
+                if (Second > 0) {
+                    return ((DateTime)this).ToString("yyyy-MM-dd HH:mm:ss");
+                } else if (Hour > 0 || Minute > 0) {
+                    return ((DateTime)this).ToString("yyyy-MM-dd HH:mm");
+                } else {
+                    return ((DateTime)this).ToString("yyyy-MM-dd");
+                }
             }
-            return ((DateTime)this).ToString("HH:mm:ss");
+            if (Day != null) {
+                return ((TimeSpan)this).ToString("dd HH:mm:ss");
+            }
+            if (Second == 0) {
+                return ((TimeSpan)this).ToString("HH:mm");
+            }
+            return ((TimeSpan)this).ToString("HH:mm:ss");
         }
 
         public string ToString(string f)
         {
+            if (Year==null) {
+                return ((DateTime)this).ToString(f);
+            }
             return ((DateTime)this).ToString(f);
         }
 
@@ -69,7 +78,7 @@ namespace ToolGood.Algorithm
         }
         public static implicit operator TimeSpan(Date date)
         {
-            return new TimeSpan(date.Hour, date.Minute, date.Second);
+            return new TimeSpan(date.Day ?? 0, date.Hour, date.Minute, date.Second);
         }
 
         public static implicit operator Date(double days)
@@ -108,14 +117,7 @@ namespace ToolGood.Algorithm
         public static Date operator -(Date date, Date num)
         {
             return (Date)((double)date - (double)num);
-            //var dt = new DateTime(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second);
-            //var dt2 = new DateTime(num.Year, num.Month, num.Day, num.Hour, num.Minute, num.Second);
-
-            //return date;
         }
-
-
-
         public static Date operator +(Date date, double num)
         {
             return (Date)((double)date + (double)num);
@@ -132,11 +134,6 @@ namespace ToolGood.Algorithm
         {
             return (Date)((double)date / (double)num);
         }
-        public static Date operator %(Date date, double num)
-        {
-            return (Date)((double)date % (double)num);
-        }
-
         #endregion
     }
 }

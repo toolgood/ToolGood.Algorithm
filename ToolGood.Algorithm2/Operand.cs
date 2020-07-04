@@ -10,6 +10,10 @@ namespace ToolGood.Algorithm
     /// </summary>
     public abstract class Operand : IDisposable
     {
+        private static readonly CultureInfo cultureInfo = CultureInfo.GetCultureInfo("en-US");
+        public static readonly Operand True = Operand.Create(true);
+        public static readonly Operand False = Operand.Create(false);
+
         public virtual bool IsError => false;
         public virtual string ErrorMsg => null;
         public abstract OperandType Type { get; }
@@ -51,7 +55,6 @@ namespace ToolGood.Algorithm
         {
             return new OperandDate(new Date(obj));
         }
-
         internal static Operand Create(JsonData obj)
         {
             return new OperandJson(obj);
@@ -68,13 +71,37 @@ namespace ToolGood.Algorithm
             }
             return new OperandArray(array);
         }
+        public static Operand Create(ICollection<double> obj)
+        {
+            var array = new List<Operand>();
+            foreach (var item in obj) {
+                array.Add(Create(item));
+            }
+            return new OperandArray(array);
+        }
+        public static Operand Create(ICollection<int> obj)
+        {
+            var array = new List<Operand>();
+            foreach (var item in obj) {
+                array.Add(Create(item));
+            }
+            return new OperandArray(array);
+        }
+        public static Operand Create(ICollection<bool> obj)
+        {
+            var array = new List<Operand>();
+            foreach (var item in obj) {
+                array.Add(Create(item));
+            }
+            return new OperandArray(array);
+        }
+
         public static Operand Error(string msg)
         {
             return new OperandError(msg);
         }
 
-        public static Operand True = Operand.Create(true);
-        public static Operand False = Operand.Create(false);
+
         #endregion
         public Operand ToNumber(string errorMessage)
         {
@@ -83,7 +110,7 @@ namespace ToolGood.Algorithm
             if (Type == OperandType.BOOLEAN) { return Create(BooleanValue ? 1.0 : 0.0); }
             if (Type == OperandType.DATE) { return Create((double)DateValue); }
             if (Type == OperandType.STRING) {
-                if (double.TryParse(StringValue, NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out double d)) {
+                if (double.TryParse(StringValue, NumberStyles.Any, cultureInfo, out double d)) {
                     return Create(d);
                 }
             }
@@ -107,7 +134,7 @@ namespace ToolGood.Algorithm
         {
             if (Type == OperandType.STRING) { return this; }
             if (IsError) { return this; }
-            if (Type == OperandType.NUMBER) { return Create(NumberValue.ToString(CultureInfo.GetCultureInfo("en-US"))); }
+            if (Type == OperandType.NUMBER) { return Create(NumberValue.ToString(cultureInfo)); }
             if (Type == OperandType.BOOLEAN) { return Create(BooleanValue ? "TRUE" : "FALSE"); }
             if (Type == OperandType.DATE) { return Create(DateValue.ToString()); }
             if (Type == OperandType.JSON) { return Create(JsonValue.ToString()); }
@@ -120,8 +147,8 @@ namespace ToolGood.Algorithm
             if (IsError) { return this; }
             if (Type == OperandType.NUMBER) { return Create((Date)NumberValue); }
             if (Type == OperandType.STRING) {
-                if (TimeSpan.TryParse(StringValue, out TimeSpan t)) { return Create(new Date(t)); }
-                if (DateTime.TryParse(StringValue, out DateTime d)) { return Create(new Date(d)); }
+                if (TimeSpan.TryParse(StringValue, cultureInfo, out TimeSpan t)) { return Create(new Date(t)); }
+                if (DateTime.TryParse(StringValue, cultureInfo, DateTimeStyles.None, out DateTime d)) { return Create(new Date(d)); }
             }
             return Error(errorMessage);
         }
