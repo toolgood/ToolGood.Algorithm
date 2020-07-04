@@ -82,6 +82,8 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
 注：函数名不分大小写,带方括号的参数可省略,示例的返回值,为近似值。
 
 注2：函数名带★，表示第一个参数可以前置，如`(-1).ISTEXT()`
+
+注3：函数名带▲，表示受`Excel索引`影响，
 #### 逻辑函数
 <table>
     <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
@@ -434,7 +436,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>EXACT("11","22") <br>>>false</td>
     </tr>
     <tr>
-        <td>FIND ★</td><td>find(要查找的字符串,被查找的字符串[,开始位置])<br>在一文本值内查找另一文本值（区分大小写） </td>
+        <td>FIND ★ ▲</td><td>find(要查找的字符串,被查找的字符串[,开始位置])<br>在一文本值内查找另一文本值（区分大小写） </td>
         <td>FIND("11","12221122") <br>>>5</td>
     </tr>
     <tr>
@@ -446,7 +448,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>LEN('123222') <br>>>6</td>
     </tr>
     <tr>
-        <td>MID ★</td><td>mid(字符串,开始位置,字符个数)<br>从文本字符串中的指定位置起返回特定个数的字符</td>
+        <td>MID ★  ▲</td><td>mid(字符串,开始位置,字符个数)<br>从文本字符串中的指定位置起返回特定个数的字符</td>
         <td>MID('ABCDEF',2,3) <br>>>BCD</td>
     </tr>
     <tr>
@@ -454,7 +456,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>PROPER('abc abc') <br>>>Abc Abc</td>
     </tr>
     <tr>
-        <td>REPLACE ★</td>
+        <td>REPLACE ★  ▲</td>
         <td>replace(原字符串,开始位置,字符个数,新字符串)<br>
         replace(原字符串,要替换的字符串, 新字符串)<br>
         替换文本内的字符</td>
@@ -475,7 +477,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>RMB(12.3) <br>>>壹拾贰元叁角</td>
     </tr>
     <tr>
-        <td>SEARCH ★</td><td>search(要找的字符串,被查找的字符串[,开始位置])<br>在一文本值中查找另一文本值（不区分大小写）</td>
+        <td>SEARCH ★ ▲</td><td>search(要找的字符串,被查找的字符串[,开始位置])<br>在一文本值中查找另一文本值（不区分大小写）</td>
         <td>SEARCH("aa","abbAaddd") <br>>>4</td>
     </tr>
     <tr>
@@ -617,11 +619,11 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>MODE(1,2,3,4,2,2,1,4) <br>>>2</td>
     </tr>
     <tr>
-        <td>LARGE</td><td>large(数组,K)<br>返回数据集中第 k 个最大值</td>
+        <td>LARGE ▲</td><td>large(数组,K)<br>返回数据集中第 k 个最大值</td>
         <td>LARGE({1,2,3,4,2,2,1,4},3) <br>>>3</td>
     </tr>
     <tr>
-        <td>SMALL</td><td>small(数值,K)<br>返回数据集中第 k 个最小值</td>
+        <td>SMALL ▲</td><td>small(数值,K)<br>返回数据集中第 k 个最小值</td>
         <td>SMALL({1,2,3,4,2,2,1,4},3) <br>>>2</td>
     </tr>
     <tr>
@@ -812,7 +814,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>TextToBase64Url ★</td><td>TextToBase64Url(文本[,编码类型])<br>   将字符串 转换为Url类型的Base64 字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Regex ★</td><td>Regex(文本,匹配文本[,索引[,组索引]])<br>   并返回匹配的字符串。</td> <td></td>
+        <td>Regex ★ ▲</td><td>Regex(文本,匹配文本[,索引[,组索引]])<br>   并返回匹配的字符串。</td> <td></td>
     </tr>
 	<tr>
         <td>RegexRepalce ★</td><td>RegexRepalce(文本,匹配文本,替换文本)<br>  匹配替换字符串。</td> <td></td>
@@ -863,10 +865,10 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>TrimEnd ★<br>RTrim ★</td><td>TrimEnd(文本)<br>RTrim(文本)<br>RTrim(文本,字符集)<br>   消空字符串右边。</td> <td></td>
     </tr>
 	<tr>
-        <td>IndexOf ★</td><td>IndexOf(文本,查找文本[,开始位置[,索引]])<br>   查找字符串位置。</td> <td></td>
+        <td>IndexOf ★ ▲</td><td>IndexOf(文本,查找文本[,开始位置[,索引]])<br>   查找字符串位置。</td> <td></td>
     </tr>
 	<tr>
-        <td>LastIndexOf ★</td><td>LastIndexOf(文本,查找文本[,开始位置[,索引]])<br>   查找字符串位置。</td> <td></td>
+        <td>LastIndexOf ★ ▲</td><td>LastIndexOf(文本,查找文本[,开始位置[,索引]])<br>   查找字符串位置。</td> <td></td>
     </tr>
 	<tr>
         <td>Split ★</td><td>Split(文本,分隔符)<br> 生成数组<br>Split(文本,分隔符,索引)<br>  返回分割后索引指向的字符串。</td> <td></td>
@@ -875,7 +877,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>Join ★</td><td>Join(文本1,文本2....)<br>  合并字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Substring ★</td><td>Substring(文本,位置)<br>Substring(文本,位置,数量)<br>  切割字符串。</td> <td></td>
+        <td>Substring ★ ▲</td><td>Substring(文本,位置)<br>Substring(文本,位置,数量)<br>  切割字符串。</td> <td></td>
     </tr>
 	<tr>
         <td>StartsWith ★</td><td>StartsWith(文本,开始文本[,是否忽略大小写:1/0])<br>  确定此字符串实例的开头是否与指定的字符串匹配。</td> <td></td>
