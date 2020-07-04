@@ -3488,7 +3488,14 @@ namespace ToolGood.Algorithm
             if (firstValue.IsError) { return firstValue; }
 
             var obj = firstValue;
-            var op = this.Visit(context.parameter());
+            Operand op;
+            var p1 = context.parameter();
+            if (p1!=null) {
+                op = this.Visit(p1);
+            } else {
+                op = this.Visit(context.parameter2());
+            }
+
             if (obj.Type == OperandType.ARRARY) {
                 op = op.ToNumber("ARRARY parameter [] is error!");
                 if (op.IsError) { return op; }
@@ -3537,12 +3544,13 @@ namespace ToolGood.Algorithm
             if (expr != null) {
                 return this.Visit(expr);
             }
-            return Operand.Create(context.p.Text);
+            return this.Visit(context.parameter2());
         }
 
-
-
-
+        public Operand VisitParameter2([NotNull] mathParser.Parameter2Context context)
+        {
+            return Operand.Create(context.children[0].GetText());
+        }
         #endregion
 
     }
