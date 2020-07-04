@@ -36,9 +36,9 @@ namespace ToolGood.Algorithm.MathNet.Numerics
         }
         public static double FactorialLn(int x)
         {
-            if (x < 0) {
-                throw new ArgumentOutOfRangeException("x", "ArgumentPositive");
-            }
+            //if (x < 0) {
+            //    throw new ArgumentOutOfRangeException("x", "ArgumentPositive");
+            //}
 
             if (x <= 1) {
                 return 0d;

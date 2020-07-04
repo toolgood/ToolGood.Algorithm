@@ -74,6 +74,13 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
             //if (shape < 0.0 || rate < 0.0) {
             //    throw new ArgumentException(Resources.InvalidDistributionParameters);
             //}
+            //if (a < 0 || a.AlmostEqual(0.0)) {
+            //    throw new ArgumentOutOfRangeException("a");
+            //}
+
+            //if (y0 < 0 || y0 > 1) {
+            //    throw new ArgumentOutOfRangeException("y0");
+            //}
 
             return SpecialFunctions.GammaLowerRegularizedInv(shape, p) / rate;
         }

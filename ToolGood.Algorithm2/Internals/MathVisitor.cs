@@ -174,7 +174,7 @@ namespace ToolGood.Algorithm
                 if (secondValue.IsError) { return secondValue; }
                 return Operand.Create(firstValue.NumberValue - secondValue.NumberValue);
             }
-            throw new NotImplementedException();
+            return Operand.Error($"Function '{t}' parameter is error!");
         }
 
         public Operand VisitJudge_fun([NotNull] mathParser.Judge_funContext context)
@@ -2643,7 +2643,7 @@ namespace ToolGood.Algorithm
             var probability = args[0].NumberValue;
             var alpha = args[1].NumberValue;
             var beta = args[2].NumberValue;
-            if (alpha < 0.0 || beta < 0.0) {
+            if (alpha < 0.0 || beta < 0.0 || probability < 0 || probability > 1.0) {
                 return Operand.Error("Function GAMMAINV parameter error!");
             }
             return Operand.Create(ExcelFunctions.GammaInv(probability, alpha, beta));
@@ -2743,7 +2743,7 @@ namespace ToolGood.Algorithm
 
             var probability = args[0].NumberValue;
             var degreesFreedom = args[1].IntValue;
-            if (degreesFreedom <= 0.0) {
+            if (degreesFreedom <= 0.0  ) {
                 return Operand.Error("Function TINV parameter error!");
             }
             return Operand.Create(ExcelFunctions.TInv(probability, degreesFreedom));

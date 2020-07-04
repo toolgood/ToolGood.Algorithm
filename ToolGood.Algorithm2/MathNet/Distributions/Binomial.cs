@@ -54,9 +54,9 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
         ///// <seealso cref="CumulativeDistribution"/>
         public static double CDF(double p, int n, double x)
         {
-            if (!(p >= 0.0 && p <= 1.0 && n >= 0)) {
-                throw new ArgumentException("InvalidDistributionParameters");
-            }
+            //if (!(p >= 0.0 && p <= 1.0 && n >= 0)) {
+            //    throw new ArgumentException("InvalidDistributionParameters");
+            //}
 
             if (x < 0.0) {
                 return 0.0;

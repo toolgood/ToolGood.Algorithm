@@ -135,13 +135,13 @@ namespace ToolGood.Algorithm.MathNet.Numerics
                 return double.NaN;
             }
 
-            if (a < 0 || a.AlmostEqual(0.0)) {
-                throw new ArgumentOutOfRangeException("a");
-            }
+            //if (a < 0 || a.AlmostEqual(0.0)) {
+            //    throw new ArgumentOutOfRangeException("a");
+            //}
 
-            if (y0 < 0 || y0 > 1) {
-                throw new ArgumentOutOfRangeException("y0");
-            }
+            //if (y0 < 0 || y0 > 1) {
+            //    throw new ArgumentOutOfRangeException("y0");
+            //}
 
             if (y0.AlmostEqual(0.0)) {
                 return 0d;

@@ -39,9 +39,9 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
         ///// <seealso cref="CumulativeDistribution"/>
         public static double CDF(double lambda, double x)
         {
-            if (!(lambda > 0.0)) {
-                throw new ArgumentException("InvalidDistributionParameters");
-            }
+            //if (!(lambda > 0.0)) {
+            //    throw new ArgumentException("InvalidDistributionParameters");
+            //}
 
             return 1.0 - SpecialFunctions.GammaLowerRegularized(x + 1, lambda);
         }
