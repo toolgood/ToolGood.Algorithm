@@ -3,15 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolGood.Algorithm.Test", "ToolGood.Algorithm.Test\ToolGood.Algorithm.Test.csproj", "{2F901E3F-36BB-4727-B6BB-EA1D831F00AD}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolGood.Algorithm", "ToolGood.Algorithm\ToolGood.Algorithm.csproj", "{3C8AE2A1-A7C0-42E3-8082-A95407C6E59E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolGood.Algorithm2", "ToolGood.Algorithm2\ToolGood.Algorithm2.csproj", "{DD810514-188F-44BC-BD28-2C0A5C3B9513}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolGood.Algorithm2.Test", "ToolGood.Algorithm2.Test\ToolGood.Algorithm2.Test.csproj", "{B393EF66-13D8-4D9E-BDB7-5F06D7F09651}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolGood.Algorithm2.MathParserReplace", "ToolGood.Algorithm2.MathParserReplace\ToolGood.Algorithm2.MathParserReplace.csproj", "{7DE106D2-837C-4E7B-B520-0CC29021D6D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolGood.Algorithm2.MathParserReplace", "ToolGood.Algorithm2.MathParserReplace\ToolGood.Algorithm2.MathParserReplace.csproj", "{7DE106D2-837C-4E7B-B520-0CC29021D6D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2F901E3F-36BB-4727-B6BB-EA1D831F00AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2F901E3F-36BB-4727-B6BB-EA1D831F00AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2F901E3F-36BB-4727-B6BB-EA1D831F00AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2F901E3F-36BB-4727-B6BB-EA1D831F00AD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3C8AE2A1-A7C0-42E3-8082-A95407C6E59E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3C8AE2A1-A7C0-42E3-8082-A95407C6E59E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3C8AE2A1-A7C0-42E3-8082-A95407C6E59E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3C8AE2A1-A7C0-42E3-8082-A95407C6E59E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DD810514-188F-44BC-BD28-2C0A5C3B9513}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DD810514-188F-44BC-BD28-2C0A5C3B9513}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD810514-188F-44BC-BD28-2C0A5C3B9513}.Release|Any CPU.ActiveCfg = Release|Any CPU

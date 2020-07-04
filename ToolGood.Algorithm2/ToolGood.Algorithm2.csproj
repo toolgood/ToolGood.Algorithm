@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>ToolGood.Algorithm支持四则运算、Excel函数，并支持自定义参数。</Description>
+    <Description>ToolGood.Algorithm支持四则运算、Excel函数，并支持自定义参数。不兼容1.x版本。</Description>
     <Copyright>Copyright 2017-2020 ToolGood</Copyright>
     <AssemblyTitle>ToolGood.Algorithm</AssemblyTitle>
     <Authors>ToolGood</Authors>

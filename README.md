@@ -2,6 +2,8 @@ ToolGood.Algorithm
 ===================
 ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数`。
 
+注：不兼容1.x版本
+
 ## 快速上手
 ``` csharp
     AlgorithmEngine engine = new AlgorithmEngine();
