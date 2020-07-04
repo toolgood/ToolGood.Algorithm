@@ -2227,7 +2227,7 @@ namespace ToolGood.Algorithm
                 } else {
                     var sunif = args[1].StringValue.Trim();
                     if (sumifRegex.IsMatch(sunif)) {
-                        count = F_base_countif(list, args[1].StringValue.Trim());
+                        count = F_base_countif(list, sunif);
                         sum = F_base_sumif(list, sunif, sumdbs);
                     } else {
                         return Operand.Error("Function AVERAGE parameter 2 error!");
@@ -2297,7 +2297,12 @@ namespace ToolGood.Algorithm
                 if (double.TryParse(args[1].StringValue.Trim(), NumberStyles.Any, cultureInfo, out double d)) {
                     count = F_base_countif(list, d);
                 } else {
-                    count = F_base_countif(list, args[1].StringValue.Trim());
+                    var sunif = args[1].StringValue.Trim();
+                    if (sumifRegex.IsMatch(sunif)) {
+                        count = F_base_countif(list, sunif);
+                    } else {
+                        return Operand.Error("Function COUNTIF parameter 2 error!");
+                    }
                 }
             }
             return Operand.Create(count);
@@ -2345,7 +2350,7 @@ namespace ToolGood.Algorithm
                     if (sumifRegex.IsMatch(sunif)) {
                         sum = F_base_sumif(list, sunif, sumdbs);
                     } else {
-                        return Operand.Error("Function AVERAGE parameter 2 error!");
+                        return Operand.Error("Function SUMIF parameter 2 error!");
                     }
                 }
             }
@@ -2816,17 +2821,17 @@ namespace ToolGood.Algorithm
         private bool F_base_compare(double a, double b, string ss)
         {
             if (ss == "<") {
-                return a < b;
+                return Math.Round(a, 12, MidpointRounding.AwayFromZero) < Math.Round(b, 12, MidpointRounding.AwayFromZero);
             } else if (ss == "<=") {
-                return a <= b;
+                return Math.Round(a, 12, MidpointRounding.AwayFromZero) <= Math.Round(b, 12, MidpointRounding.AwayFromZero);
             } else if (ss == ">") {
-                return a > b;
+                return Math.Round(a, 12, MidpointRounding.AwayFromZero) > Math.Round(b, 12, MidpointRounding.AwayFromZero);
             } else if (ss == ">=") {
-                return a >= b;
+                return Math.Round(a, 12, MidpointRounding.AwayFromZero) >= Math.Round(b, 12, MidpointRounding.AwayFromZero);
             } else if (ss == "=" || ss == "==") {
-                return a == b;
+                return Math.Round(a, 12, MidpointRounding.AwayFromZero) == Math.Round(b, 12, MidpointRounding.AwayFromZero);
             }
-            return a != b;
+            return Math.Round(a, 12, MidpointRounding.AwayFromZero) != Math.Round(b, 12, MidpointRounding.AwayFromZero);
         }
 
         private bool F_base_GetList(List<Operand> args, List<double> list)
