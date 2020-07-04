@@ -202,24 +202,15 @@ namespace ToolGood.Algorithm.LitJson
         void IDictionary.Add(object key, object value)
         {
             JsonData data = ToJsonData(value);
-
             EnsureDictionary().Add(key, data);
-
-            KeyValuePair<string, JsonData> entry =
-                new KeyValuePair<string, JsonData>((string)key, data);
+            KeyValuePair<string, JsonData> entry = new KeyValuePair<string, JsonData>((string)key, data);
             object_list.Add(entry);
         }
         void IDictionary.Clear() { }
 
-        bool IDictionary.Contains(object key)
-        {
-            return EnsureDictionary().Contains(key);
-        }
+        bool IDictionary.Contains(object key) { return EnsureDictionary().Contains(key); }
 
-        IDictionaryEnumerator IDictionary.GetEnumerator()
-        {
-            return ((IOrderedDictionary)this).GetEnumerator();
-        }
+        IDictionaryEnumerator IDictionary.GetEnumerator() { return ((IDictionary)this).GetEnumerator(); }
 
         void IDictionary.Remove(object key) { }
         #endregion
@@ -239,55 +230,40 @@ namespace ToolGood.Algorithm.LitJson
         {
             type = JsonType.Boolean;
             inst_boolean = val;
-            //json = null;
         }
 
         void IJsonWrapper.SetDouble(double val)
         {
             type = JsonType.Double;
             inst_double = val;
-            //json = null;
         }
 
         void IJsonWrapper.SetInt(int val)
         {
             type = JsonType.Int;
             inst_int = val;
-            //json = null;
         }
 
         void IJsonWrapper.SetLong(long val)
         {
             type = JsonType.Long;
             inst_long = val;
-            //json = null;
         }
 
         void IJsonWrapper.SetString(string val)
         {
             type = JsonType.String;
             inst_string = val;
-            //json = null;
         }
 
         #endregion
 
 
         #region IList Methods
-        int IList.Add(object value)
-        {
-            return Add(value);
-        }
+        int IList.Add(object value) { return Add(value); }
         void IList.Clear() { }
-        bool IList.Contains(object value)
-        {
-            return EnsureList().Contains(value);
-        }
-
-        int IList.IndexOf(object value)
-        {
-            return EnsureList().IndexOf(value);
-        }
+        bool IList.Contains(object value) { return false; }
+        int IList.IndexOf(object value) { return -1; }
         void IList.Insert(int index, object value) { }
         void IList.Remove(object value) { }
         void IList.RemoveAt(int index) { }
@@ -297,54 +273,34 @@ namespace ToolGood.Algorithm.LitJson
         #region Private Methods
         private ICollection EnsureCollection()
         {
-            if (type == JsonType.Array)
-                return (ICollection)inst_array;
-
-            if (type == JsonType.Object)
-                return (ICollection)inst_object;
-
-            throw new InvalidOperationException(
-                "The JsonData instance has to be initialized first");
+            if (type == JsonType.Array) return (ICollection)inst_array;
+            if (type == JsonType.Object) return (ICollection)inst_object;
+            throw new InvalidOperationException("The JsonData instance has to be initialized first");
         }
 
         private IDictionary EnsureDictionary()
         {
-            if (type == JsonType.Object)
-                return (IDictionary)inst_object;
-
-            if (type != JsonType.None)
-                throw new InvalidOperationException(
-                    "Instance of JsonData is not a dictionary");
-
+            if (type == JsonType.Object) return (IDictionary)inst_object;
+            if (type != JsonType.None) throw new InvalidOperationException("Instance of JsonData is not a dictionary");
             type = JsonType.Object;
             inst_object = new Dictionary<string, JsonData>();
             object_list = new List<KeyValuePair<string, JsonData>>();
-
             return (IDictionary)inst_object;
         }
 
         private IList EnsureList()
         {
-            if (type == JsonType.Array)
-                return (IList)inst_array;
-
-            if (type != JsonType.None)
-                throw new InvalidOperationException("Instance of JsonData is not a list");
-
+            if (type == JsonType.Array) return (IList)inst_array;
+            if (type != JsonType.None) throw new InvalidOperationException("Instance of JsonData is not a list");
             type = JsonType.Array;
             inst_array = new List<JsonData>();
-
             return (IList)inst_array;
         }
 
         private JsonData ToJsonData(object obj)
         {
-            if (obj == null)
-                return null;
-
-            if (obj is JsonData)
-                return (JsonData)obj;
-
+            if (obj == null) return null;
+            if (obj is JsonData) return (JsonData)obj;
             return new JsonData(obj);
         }
 
@@ -354,7 +310,6 @@ namespace ToolGood.Algorithm.LitJson
         public int Add(object value)
         {
             JsonData data = ToJsonData(value);
-
             return EnsureList().Add(data);
         }
 
