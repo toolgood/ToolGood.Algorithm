@@ -69,20 +69,20 @@ namespace ToolGood.Algorithm.LitJson
 
 
         #region Constructors
-        static JsonReader()
-        {
-            parse_table = PopulateParseTable();
-        }
+        //static JsonReader()
+        //{
+        //    parse_table = PopulateParseTable();
+        //}
 
         public JsonReader(string json_text) :
             this(new StringReader(json_text), true)
         {
         }
 
-        public JsonReader(TextReader reader) :
-            this(reader, false)
-        {
-        }
+        //public JsonReader(TextReader reader) :
+        //    this(reader, false)
+        //{
+        //}
 
         private JsonReader(TextReader reader, bool owned)
         {
@@ -110,125 +110,125 @@ namespace ToolGood.Algorithm.LitJson
         #endregion
 
         #region Static Methods
-        private static IDictionary<int, IDictionary<int, int[]>> PopulateParseTable()
-        {
-            // See section A.2. of the manual for details
-            IDictionary<int, IDictionary<int, int[]>> parse_table = new Dictionary<int, IDictionary<int, int[]>>();
+        //private static IDictionary<int, IDictionary<int, int[]>> PopulateParseTable()
+        //{
+        //    // See section A.2. of the manual for details
+        //    IDictionary<int, IDictionary<int, int[]>> parse_table = new Dictionary<int, IDictionary<int, int[]>>();
 
-            TableAddRow(parse_table, ParserToken.Array);
-            TableAddCol(parse_table, ParserToken.Array, '[',
-                            '[',
-                            (int)ParserToken.ArrayPrime);
+        //    TableAddRow(parse_table, ParserToken.Array);
+        //    TableAddCol(parse_table, ParserToken.Array, '[',
+        //                    '[',
+        //                    (int)ParserToken.ArrayPrime);
 
-            TableAddRow(parse_table, ParserToken.ArrayPrime);
-            TableAddCol(parse_table, ParserToken.ArrayPrime, '"',
-                            (int)ParserToken.Value,
+        //    TableAddRow(parse_table, ParserToken.ArrayPrime);
+        //    TableAddCol(parse_table, ParserToken.ArrayPrime, '"',
+        //                    (int)ParserToken.Value,
 
-                            (int)ParserToken.ValueRest,
-                            ']');
-            TableAddCol(parse_table, ParserToken.ArrayPrime, '[',
-                            (int)ParserToken.Value,
-                            (int)ParserToken.ValueRest,
-                            ']');
-            TableAddCol(parse_table, ParserToken.ArrayPrime, ']',
-                            ']');
-            TableAddCol(parse_table, ParserToken.ArrayPrime, '{',
-                            (int)ParserToken.Value,
-                            (int)ParserToken.ValueRest,
-                            ']');
-            TableAddCol(parse_table, ParserToken.ArrayPrime, (int)ParserToken.Number,
-                            (int)ParserToken.Value,
-                            (int)ParserToken.ValueRest,
-                            ']');
-            TableAddCol(parse_table, ParserToken.ArrayPrime, (int)ParserToken.True,
-                            (int)ParserToken.Value,
-                            (int)ParserToken.ValueRest,
-                            ']');
-            TableAddCol(parse_table, ParserToken.ArrayPrime, (int)ParserToken.False,
-                            (int)ParserToken.Value,
-                            (int)ParserToken.ValueRest,
-                            ']');
-            TableAddCol(parse_table, ParserToken.ArrayPrime, (int)ParserToken.Null,
-                            (int)ParserToken.Value,
-                            (int)ParserToken.ValueRest,
-                            ']');
+        //                    (int)ParserToken.ValueRest,
+        //                    ']');
+        //    TableAddCol(parse_table, ParserToken.ArrayPrime, '[',
+        //                    (int)ParserToken.Value,
+        //                    (int)ParserToken.ValueRest,
+        //                    ']');
+        //    TableAddCol(parse_table, ParserToken.ArrayPrime, ']',
+        //                    ']');
+        //    TableAddCol(parse_table, ParserToken.ArrayPrime, '{',
+        //                    (int)ParserToken.Value,
+        //                    (int)ParserToken.ValueRest,
+        //                    ']');
+        //    TableAddCol(parse_table, ParserToken.ArrayPrime, (int)ParserToken.Number,
+        //                    (int)ParserToken.Value,
+        //                    (int)ParserToken.ValueRest,
+        //                    ']');
+        //    TableAddCol(parse_table, ParserToken.ArrayPrime, (int)ParserToken.True,
+        //                    (int)ParserToken.Value,
+        //                    (int)ParserToken.ValueRest,
+        //                    ']');
+        //    TableAddCol(parse_table, ParserToken.ArrayPrime, (int)ParserToken.False,
+        //                    (int)ParserToken.Value,
+        //                    (int)ParserToken.ValueRest,
+        //                    ']');
+        //    TableAddCol(parse_table, ParserToken.ArrayPrime, (int)ParserToken.Null,
+        //                    (int)ParserToken.Value,
+        //                    (int)ParserToken.ValueRest,
+        //                    ']');
 
-            TableAddRow(parse_table, ParserToken.Object);
-            TableAddCol(parse_table, ParserToken.Object, '{',
-                            '{',
-                            (int)ParserToken.ObjectPrime);
+        //    TableAddRow(parse_table, ParserToken.Object);
+        //    TableAddCol(parse_table, ParserToken.Object, '{',
+        //                    '{',
+        //                    (int)ParserToken.ObjectPrime);
 
-            TableAddRow(parse_table, ParserToken.ObjectPrime);
-            TableAddCol(parse_table, ParserToken.ObjectPrime, '"',
-                            (int)ParserToken.Pair,
-                            (int)ParserToken.PairRest,
-                            '}');
-            TableAddCol(parse_table, ParserToken.ObjectPrime, '}',
-                            '}');
+        //    TableAddRow(parse_table, ParserToken.ObjectPrime);
+        //    TableAddCol(parse_table, ParserToken.ObjectPrime, '"',
+        //                    (int)ParserToken.Pair,
+        //                    (int)ParserToken.PairRest,
+        //                    '}');
+        //    TableAddCol(parse_table, ParserToken.ObjectPrime, '}',
+        //                    '}');
 
-            TableAddRow(parse_table, ParserToken.Pair);
-            TableAddCol(parse_table, ParserToken.Pair, '"',
-                            (int)ParserToken.String,
-                            ':',
-                            (int)ParserToken.Value);
+        //    TableAddRow(parse_table, ParserToken.Pair);
+        //    TableAddCol(parse_table, ParserToken.Pair, '"',
+        //                    (int)ParserToken.String,
+        //                    ':',
+        //                    (int)ParserToken.Value);
 
-            TableAddRow(parse_table, ParserToken.PairRest);
-            TableAddCol(parse_table, ParserToken.PairRest, ',',
-                            ',',
-                            (int)ParserToken.Pair,
-                            (int)ParserToken.PairRest);
-            TableAddCol(parse_table, ParserToken.PairRest, '}',
-                            (int)ParserToken.Epsilon);
+        //    TableAddRow(parse_table, ParserToken.PairRest);
+        //    TableAddCol(parse_table, ParserToken.PairRest, ',',
+        //                    ',',
+        //                    (int)ParserToken.Pair,
+        //                    (int)ParserToken.PairRest);
+        //    TableAddCol(parse_table, ParserToken.PairRest, '}',
+        //                    (int)ParserToken.Epsilon);
 
-            TableAddRow(parse_table, ParserToken.String);
-            TableAddCol(parse_table, ParserToken.String, '"',
-                            '"',
-                            (int)ParserToken.CharSeq,
-                            '"');
+        //    TableAddRow(parse_table, ParserToken.String);
+        //    TableAddCol(parse_table, ParserToken.String, '"',
+        //                    '"',
+        //                    (int)ParserToken.CharSeq,
+        //                    '"');
 
-            TableAddRow(parse_table, ParserToken.Text);
-            TableAddCol(parse_table, ParserToken.Text, '[',
-                            (int)ParserToken.Array);
-            TableAddCol(parse_table, ParserToken.Text, '{',
-                            (int)ParserToken.Object);
+        //    TableAddRow(parse_table, ParserToken.Text);
+        //    TableAddCol(parse_table, ParserToken.Text, '[',
+        //                    (int)ParserToken.Array);
+        //    TableAddCol(parse_table, ParserToken.Text, '{',
+        //                    (int)ParserToken.Object);
 
-            TableAddRow(parse_table, ParserToken.Value);
-            TableAddCol(parse_table, ParserToken.Value, '"',
-                            (int)ParserToken.String);
-            TableAddCol(parse_table, ParserToken.Value, '[',
-                            (int)ParserToken.Array);
-            TableAddCol(parse_table, ParserToken.Value, '{',
-                            (int)ParserToken.Object);
-            TableAddCol(parse_table, ParserToken.Value, (int)ParserToken.Number,
-                            (int)ParserToken.Number);
-            TableAddCol(parse_table, ParserToken.Value, (int)ParserToken.True,
-                            (int)ParserToken.True);
-            TableAddCol(parse_table, ParserToken.Value, (int)ParserToken.False,
-                            (int)ParserToken.False);
-            TableAddCol(parse_table, ParserToken.Value, (int)ParserToken.Null,
-                            (int)ParserToken.Null);
+        //    TableAddRow(parse_table, ParserToken.Value);
+        //    TableAddCol(parse_table, ParserToken.Value, '"',
+        //                    (int)ParserToken.String);
+        //    TableAddCol(parse_table, ParserToken.Value, '[',
+        //                    (int)ParserToken.Array);
+        //    TableAddCol(parse_table, ParserToken.Value, '{',
+        //                    (int)ParserToken.Object);
+        //    TableAddCol(parse_table, ParserToken.Value, (int)ParserToken.Number,
+        //                    (int)ParserToken.Number);
+        //    TableAddCol(parse_table, ParserToken.Value, (int)ParserToken.True,
+        //                    (int)ParserToken.True);
+        //    TableAddCol(parse_table, ParserToken.Value, (int)ParserToken.False,
+        //                    (int)ParserToken.False);
+        //    TableAddCol(parse_table, ParserToken.Value, (int)ParserToken.Null,
+        //                    (int)ParserToken.Null);
 
-            TableAddRow(parse_table, ParserToken.ValueRest);
-            TableAddCol(parse_table, ParserToken.ValueRest, ',',
-                            ',',
-                            (int)ParserToken.Value,
-                            (int)ParserToken.ValueRest);
-            TableAddCol(parse_table, ParserToken.ValueRest, ']',
-                            (int)ParserToken.Epsilon);
+        //    TableAddRow(parse_table, ParserToken.ValueRest);
+        //    TableAddCol(parse_table, ParserToken.ValueRest, ',',
+        //                    ',',
+        //                    (int)ParserToken.Value,
+        //                    (int)ParserToken.ValueRest);
+        //    TableAddCol(parse_table, ParserToken.ValueRest, ']',
+        //                    (int)ParserToken.Epsilon);
 
-            return parse_table;
-        }
+        //    return parse_table;
+        //}
 
-        private static void TableAddCol(IDictionary<int, IDictionary<int, int[]>> parse_table, ParserToken row, int col,
-                                         params int[] symbols)
-        {
-            parse_table[(int)row].Add(col, symbols);
-        }
+        //private static void TableAddCol(IDictionary<int, IDictionary<int, int[]>> parse_table, ParserToken row, int col,
+        //                                 params int[] symbols)
+        //{
+        //    parse_table[(int)row].Add(col, symbols);
+        //}
 
-        private static void TableAddRow(IDictionary<int, IDictionary<int, int[]>> parse_table, ParserToken rule)
-        {
-            parse_table.Add((int)rule, new Dictionary<int, int[]>());
-        }
+        //private static void TableAddRow(IDictionary<int, IDictionary<int, int[]>> parse_table, ParserToken rule)
+        //{
+        //    parse_table.Add((int)rule, new Dictionary<int, int[]>());
+        //}
         #endregion
 
 
