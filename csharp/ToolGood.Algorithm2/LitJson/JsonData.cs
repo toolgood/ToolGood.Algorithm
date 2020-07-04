@@ -36,49 +36,24 @@ namespace ToolGood.Algorithm.LitJson
 
         #region ICollection Properties
         int ICollection.Count { get { return Count; } }
-        bool ICollection.IsSynchronized { get { return EnsureCollection().IsSynchronized; } }
-
-        object ICollection.SyncRoot { get { return EnsureCollection().SyncRoot; } }
+        bool ICollection.IsSynchronized { get { return false; } }
+        object ICollection.SyncRoot { get { return false; } }
         #endregion
 
 
         #region IDictionary Properties
-        bool IDictionary.IsFixedSize { get { return EnsureDictionary().IsFixedSize; } }
-        bool IDictionary.IsReadOnly { get { return EnsureDictionary().IsReadOnly; } }
+        bool IDictionary.IsFixedSize { get { return false; } }
+        bool IDictionary.IsReadOnly { get { return false; } }
 
-        ICollection IDictionary.Keys {
-            get {
-                EnsureDictionary();
-                IList<string> keys = new List<string>();
+        ICollection IDictionary.Keys { get { return null; } }
 
-                foreach (KeyValuePair<string, JsonData> entry in
-                         object_list) {
-                    keys.Add(entry.Key);
-                }
-
-                return (ICollection)keys;
-            }
-        }
-
-        ICollection IDictionary.Values {
-            get {
-                EnsureDictionary();
-                IList<JsonData> values = new List<JsonData>();
-
-                foreach (KeyValuePair<string, JsonData> entry in
-                         object_list) {
-                    values.Add(entry.Value);
-                }
-
-                return (ICollection)values;
-            }
-        }
+        ICollection IDictionary.Values { get { return null; } }
         #endregion
 
 
         #region IList Properties
-        bool IList.IsFixedSize { get { return EnsureList().IsFixedSize; } }
-        bool IList.IsReadOnly { get { return EnsureList().IsReadOnly; } }
+        bool IList.IsFixedSize { get { return false; } }
+        bool IList.IsReadOnly { get { return false; } }
         #endregion
 
 
@@ -219,7 +194,7 @@ namespace ToolGood.Algorithm.LitJson
         #endregion
 
         #region ICollection Methods
-        void ICollection.CopyTo(Array array, int index)        {        }
+        void ICollection.CopyTo(Array array, int index) { }
         #endregion
 
 
@@ -234,7 +209,7 @@ namespace ToolGood.Algorithm.LitJson
                 new KeyValuePair<string, JsonData>((string)key, data);
             object_list.Add(entry);
         }
-        void IDictionary.Clear()        {        }
+        void IDictionary.Clear() { }
 
         bool IDictionary.Contains(object key)
         {
@@ -246,7 +221,7 @@ namespace ToolGood.Algorithm.LitJson
             return ((IOrderedDictionary)this).GetEnumerator();
         }
 
-        void IDictionary.Remove(object key)        {        }
+        void IDictionary.Remove(object key) { }
         #endregion
 
 
