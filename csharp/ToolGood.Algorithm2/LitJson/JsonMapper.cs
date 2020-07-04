@@ -40,9 +40,7 @@ namespace ToolGood.Algorithm.LitJson
         {
             reader.Read();
 
-            if (reader.Token == JsonToken.ArrayEnd ||
-                reader.Token == JsonToken.Null)
-                return null;
+            if (reader.Token == JsonToken.ArrayEnd || reader.Token == JsonToken.Null)                return null;
 
             IJsonWrapper instance = factory();
 
@@ -76,8 +74,7 @@ namespace ToolGood.Algorithm.LitJson
 
                 while (true) {
                     IJsonWrapper item = ReadValue(factory, reader);
-                    if (item == null && reader.Token == JsonToken.ArrayEnd)
-                        break;
+                    if (item == null && reader.Token == JsonToken.ArrayEnd) break;
 
                     ((IList)instance).Add(item);
                 }
@@ -87,8 +84,7 @@ namespace ToolGood.Algorithm.LitJson
                 while (true) {
                     reader.Read();
 
-                    if (reader.Token == JsonToken.ObjectEnd)
-                        break;
+                    if (reader.Token == JsonToken.ObjectEnd) break;
 
                     string property = (string)reader.Value;
 
@@ -176,9 +172,7 @@ namespace ToolGood.Algorithm.LitJson
             RegisterImporter(base_importers_table, typeof(string), typeof(DateTimeOffset), importer);
         }
 
-        private static void RegisterImporter(
-            IDictionary<Type, IDictionary<Type, ImporterFunc>> table,
-            Type json_type, Type value_type, ImporterFunc importer)
+        private static void RegisterImporter(IDictionary<Type, IDictionary<Type, ImporterFunc>> table, Type json_type, Type value_type, ImporterFunc importer)
         {
             if (!table.ContainsKey(json_type))
                 table.Add(json_type, new Dictionary<Type, ImporterFunc>());
@@ -199,7 +193,6 @@ namespace ToolGood.Algorithm.LitJson
         public static IJsonWrapper ToWrapper(WrapperFactory factory, string json)
         {
             JsonReader reader = new JsonReader(json);
-
             return ReadValue(factory, reader);
         }
 

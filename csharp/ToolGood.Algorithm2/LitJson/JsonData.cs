@@ -307,13 +307,13 @@ namespace ToolGood.Algorithm.LitJson
         #endregion
 
 
-        public int Add(object value)
+        private int Add(object value)
         {
             JsonData data = ToJsonData(value);
             return EnsureList().Add(data);
         }
 
-        public void SetJsonType(JsonType type)
+        void IJsonWrapper.SetJsonType(JsonType type)
         {
             if (this.type == type)
                 return;

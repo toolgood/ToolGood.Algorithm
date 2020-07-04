@@ -39,27 +39,9 @@ namespace ToolGood.Algorithm.LitJson
 
 
         #region Properties
-        //public bool AllowComments {
-        //    get { return allow_comments; }
-        //    set { allow_comments = value; }
-        //}
-
-        //public bool AllowSingleQuotedStrings {
-        //    get { return allow_single_quoted_strings; }
-        //    set { allow_single_quoted_strings = value; }
-        //}
-
-        public bool EndOfInput {
-            get { return end_of_input; }
-        }
-
-        public int Token {
-            get { return token; }
-        }
-
-        public string StringValue {
-            get { return string_value; }
-        }
+        public bool EndOfInput { get { return end_of_input; } }
+        public int Token { get { return token; } }
+        public string StringValue { get { return string_value; } }
         #endregion
 
 
@@ -121,8 +103,7 @@ namespace ToolGood.Algorithm.LitJson
 
         private static void PopulateFsmTables(out StateHandler[] fsm_handler_table, out int[] fsm_return_table)
         {
-            // See section A.1. of the manual for details of the finite
-            // state machine.
+            // See section A.1. of the manual for details of the finite state machine.
             fsm_handler_table = new StateHandler[28] {
                 State1,
                 State2,
@@ -192,35 +173,20 @@ namespace ToolGood.Algorithm.LitJson
                 case '"':
                 case '\'':
                 case '\\':
-                case '/':
-                    return Convert.ToChar(esc_char);
-
-                case 'n':
-                    return '\n';
-
-                case 't':
-                    return '\t';
-
-                case 'r':
-                    return '\r';
-
-                case 'b':
-                    return '\b';
-
-                case 'f':
-                    return '\f';
-
-                default:
-                    // Unreachable
-                    return '?';
+                case '/': return Convert.ToChar(esc_char);
+                case 'n': return '\n';
+                case 't': return '\t';
+                case 'r': return '\r';
+                case 'b': return '\b';
+                case 'f': return '\f';
+                default: return '?';
             }
         }
 
         private static bool State1(FsmContext ctx)
         {
             while (ctx.L.GetChar()) {
-                if (ctx.L.input_char == ' ' ||
-                    ctx.L.input_char >= '\t' && ctx.L.input_char <= '\r')
+                if (ctx.L.input_char == ' ' || ctx.L.input_char >= '\t' && ctx.L.input_char <= '\r')
                     continue;
 
                 if (ctx.L.input_char >= '1' && ctx.L.input_char <= '9') {
@@ -268,8 +234,7 @@ namespace ToolGood.Algorithm.LitJson
                         return true;
 
                     case '\'':
-                        if (!ctx.L.allow_single_quoted_strings)
-                            return false;
+                        if (!ctx.L.allow_single_quoted_strings) return false;
 
                         ctx.L.input_char = '"';
                         ctx.NextState = 23;
@@ -277,8 +242,7 @@ namespace ToolGood.Algorithm.LitJson
                         return true;
 
                     case '/':
-                        if (!ctx.L.allow_comments)
-                            return false;
+                        if (!ctx.L.allow_comments) return false;
 
                         ctx.NextState = 25;
                         return true;
@@ -358,8 +322,7 @@ namespace ToolGood.Algorithm.LitJson
         {
             ctx.L.GetChar();
 
-            if (ctx.L.input_char == ' ' ||
-                ctx.L.input_char >= '\t' && ctx.L.input_char <= '\r') {
+            if (ctx.L.input_char == ' ' || ctx.L.input_char >= '\t' && ctx.L.input_char <= '\r') {
                 ctx.Return = true;
                 ctx.NextState = 1;
                 return true;
@@ -411,8 +374,7 @@ namespace ToolGood.Algorithm.LitJson
                     continue;
                 }
 
-                if (ctx.L.input_char == ' ' ||
-                    ctx.L.input_char >= '\t' && ctx.L.input_char <= '\r') {
+                if (ctx.L.input_char == ' ' || ctx.L.input_char >= '\t' && ctx.L.input_char <= '\r') {
                     ctx.Return = true;
                     ctx.NextState = 1;
                     return true;
@@ -471,8 +433,7 @@ namespace ToolGood.Algorithm.LitJson
                     continue;
                 }
 
-                if (ctx.L.input_char == ' ' ||
-                    ctx.L.input_char >= '\t' && ctx.L.input_char <= '\r') {
+                if (ctx.L.input_char == ' ' || ctx.L.input_char >= '\t' && ctx.L.input_char <= '\r') {
                     ctx.Return = true;
                     ctx.NextState = 1;
                     return true;
@@ -695,8 +656,7 @@ namespace ToolGood.Algorithm.LitJson
                 case 'n':
                 case 'r':
                 case 't':
-                    ctx.L.string_buffer.Append(
-                        ProcessEscChar(ctx.L.input_char));
+                    ctx.L.string_buffer.Append(ProcessEscChar(ctx.L.input_char));
                     ctx.NextState = ctx.StateStack;
                     return true;
 
@@ -714,9 +674,7 @@ namespace ToolGood.Algorithm.LitJson
 
             while (ctx.L.GetChar()) {
 
-                if (ctx.L.input_char >= '0' && ctx.L.input_char <= '9' ||
-                    ctx.L.input_char >= 'A' && ctx.L.input_char <= 'F' ||
-                    ctx.L.input_char >= 'a' && ctx.L.input_char <= 'f') {
+                if (ctx.L.input_char >= '0' && ctx.L.input_char <= '9' || ctx.L.input_char >= 'A' && ctx.L.input_char <= 'F' || ctx.L.input_char >= 'a' && ctx.L.input_char <= 'f') {
 
                     ctx.L.unichar += HexValue(ctx.L.input_char) * mult;
 
@@ -724,8 +682,7 @@ namespace ToolGood.Algorithm.LitJson
                     mult /= 16;
 
                     if (counter == 4) {
-                        ctx.L.string_buffer.Append(
-                            Convert.ToChar(ctx.L.unichar));
+                        ctx.L.string_buffer.Append(Convert.ToChar(ctx.L.unichar));
                         ctx.NextState = ctx.StateStack;
                         return true;
                     }
@@ -824,8 +781,7 @@ namespace ToolGood.Algorithm.LitJson
         private static bool State28(FsmContext ctx)
         {
             while (ctx.L.GetChar()) {
-                if (ctx.L.input_char == '*')
-                    continue;
+                if (ctx.L.input_char == '*') continue;
 
                 if (ctx.L.input_char == '/') {
                     ctx.NextState = 1;
@@ -843,8 +799,7 @@ namespace ToolGood.Algorithm.LitJson
 
         private bool GetChar()
         {
-            if ((input_char = NextChar()) != -1)
-                return true;
+            if ((input_char = NextChar()) != -1) return true;
 
             end_of_input = true;
             return false;
@@ -870,19 +825,16 @@ namespace ToolGood.Algorithm.LitJson
             while (true) {
                 handler = fsm_handler_table[state - 1];
 
-                if (!handler(fsm_context))
-                    throw new JsonException(input_char);
+                if (!handler(fsm_context)) throw new JsonException(input_char);
 
-                if (end_of_input)
-                    return false;
+                if (end_of_input) return false;
 
                 if (fsm_context.Return) {
                     string_value = string_buffer.ToString();
                     string_buffer.Remove(0, string_buffer.Length);
                     token = fsm_return_table[state - 1];
 
-                    if (token == (int)ParserToken.Char)
-                        token = input_char;
+                    if (token == (int)ParserToken.Char) token = input_char;
 
                     state = fsm_context.NextState;
 
