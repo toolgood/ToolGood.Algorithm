@@ -658,10 +658,10 @@ namespace ToolGood.Algorithm.LitJson
             return false;
         }
 
-        public JsonType GetJsonType()
-        {
-            return type;
-        }
+        //public JsonType GetJsonType()
+        //{
+        //    return type;
+        //}
 
         public void SetJsonType(JsonType type)
         {

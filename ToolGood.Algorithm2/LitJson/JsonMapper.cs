@@ -101,8 +101,8 @@ namespace ToolGood.Algorithm.LitJson
         private static readonly IDictionary<Type, ObjectMetadata> object_metadata;
         private static readonly object object_metadata_lock = new Object();
 
-        private static readonly IDictionary<Type,
-                IList<PropertyMetadata>> type_properties;
+        //private static readonly IDictionary<Type,
+        //        IList<PropertyMetadata>> type_properties;
 
         #endregion
 
@@ -115,8 +115,8 @@ namespace ToolGood.Algorithm.LitJson
             array_metadata = new Dictionary<Type, ArrayMetadata>();
             conv_ops = new Dictionary<Type, IDictionary<Type, MethodInfo>>();
             object_metadata = new Dictionary<Type, ObjectMetadata>();
-            type_properties = new Dictionary<Type,
-                            IList<PropertyMetadata>>();
+            //type_properties = new Dictionary<Type,
+            //                IList<PropertyMetadata>>();
 
             datetime_format = DateTimeFormatInfo.InvariantInfo;
 
