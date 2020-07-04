@@ -52,7 +52,7 @@ namespace ToolGood.Algorithm.LitJson
 
 
         #region Public Properties
- 
+
         public bool SkipNonMembers {
             get { return skip_non_members; }
             set { skip_non_members = value; }
@@ -79,10 +79,10 @@ namespace ToolGood.Algorithm.LitJson
         {
         }
 
-        public JsonReader(TextReader reader) :
-            this(reader, false)
-        {
-        }
+        //public JsonReader(TextReader reader) :
+        //    this(reader, false)
+        //{
+        //}
 
         private JsonReader(TextReader reader, bool owned)
         {

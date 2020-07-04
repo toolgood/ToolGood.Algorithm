@@ -58,20 +58,6 @@ namespace ToolGood.Algorithm.LitJson
             get { return type == JsonType.String; }
         }
 
-        public ICollection<string> Keys {
-            get { EnsureDictionary(); return inst_object.Keys; }
-        }
-
-        /// <summary>
-        /// Determines whether the json contains an element that has the specified key.
-        /// </summary>
-        /// <param name="key">The key to locate in the json.</param>
-        /// <returns>true if the json contains an element that has the specified key; otherwise, false.</returns>
-        public Boolean ContainsKey(String key)
-        {
-            EnsureDictionary();
-            return this.inst_object.Keys.Contains(key);
-        }
         #endregion
 
 
@@ -135,38 +121,6 @@ namespace ToolGood.Algorithm.LitJson
 
                 return (ICollection)values;
             }
-        }
-        #endregion
-
-
-
-        #region IJsonWrapper Properties
-        bool IJsonWrapper.IsArray {
-            get { return IsArray; }
-        }
-
-        bool IJsonWrapper.IsBoolean {
-            get { return IsBoolean; }
-        }
-
-        bool IJsonWrapper.IsDouble {
-            get { return IsDouble; }
-        }
-
-        bool IJsonWrapper.IsInt {
-            get { return IsInt; }
-        }
-
-        bool IJsonWrapper.IsLong {
-            get { return IsLong; }
-        }
-
-        bool IJsonWrapper.IsObject {
-            get { return IsObject; }
-        }
-
-        bool IJsonWrapper.IsString {
-            get { return IsString; }
         }
         #endregion
 
@@ -344,7 +298,7 @@ namespace ToolGood.Algorithm.LitJson
             throw new ArgumentException(
                 "Unable to wrap the given object with JsonData");
         }
- 
+
         #endregion
 
         #region ICollection Methods
@@ -591,19 +545,6 @@ namespace ToolGood.Algorithm.LitJson
             return EnsureList().Add(data);
         }
 
-        public void Clear()
-        {
-            if (IsObject) {
-                ((IDictionary)this).Clear();
-                return;
-            }
-
-            if (IsArray) {
-                ((IList)this).Clear();
-                return;
-            }
-        }
-
         public bool Equals(JsonData x)
         {
             if (x == null)
@@ -631,22 +572,22 @@ namespace ToolGood.Algorithm.LitJson
                     return this.inst_string.Equals(x.inst_string);
 
                 case JsonType.Int: {
-                        if (x.IsLong) {
-                            if (x.inst_long < Int32.MinValue || x.inst_long > Int32.MaxValue)
-                                return false;
-                            return this.inst_int.Equals((int)x.inst_long);
-                        }
-                        return this.inst_int.Equals(x.inst_int);
+                    if (x.IsLong) {
+                        if (x.inst_long < Int32.MinValue || x.inst_long > Int32.MaxValue)
+                            return false;
+                        return this.inst_int.Equals((int)x.inst_long);
                     }
+                    return this.inst_int.Equals(x.inst_int);
+                }
 
                 case JsonType.Long: {
-                        if (x.IsInt) {
-                            if (this.inst_long < Int32.MinValue || this.inst_long > Int32.MaxValue)
-                                return false;
-                            return x.inst_int.Equals((int)this.inst_long);
-                        }
-                        return this.inst_long.Equals(x.inst_long);
+                    if (x.IsInt) {
+                        if (this.inst_long < Int32.MinValue || this.inst_long > Int32.MaxValue)
+                            return false;
+                        return x.inst_int.Equals((int)this.inst_long);
                     }
+                    return this.inst_long.Equals(x.inst_long);
+                }
 
                 case JsonType.Double:
                     return this.inst_double.Equals(x.inst_double);
@@ -656,11 +597,6 @@ namespace ToolGood.Algorithm.LitJson
             }
 
             return false;
-        }
-
-        public JsonType GetJsonType()
-        {
-            return type;
         }
 
         public void SetJsonType(JsonType type)

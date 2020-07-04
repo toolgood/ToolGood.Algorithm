@@ -101,8 +101,6 @@ namespace ToolGood.Algorithm.LitJson
         private static readonly IDictionary<Type, ObjectMetadata> object_metadata;
         private static readonly object object_metadata_lock = new Object();
 
-        private static readonly IDictionary<Type,
-                IList<PropertyMetadata>> type_properties;
 
         #endregion
 
@@ -115,15 +113,15 @@ namespace ToolGood.Algorithm.LitJson
             array_metadata = new Dictionary<Type, ArrayMetadata>();
             conv_ops = new Dictionary<Type, IDictionary<Type, MethodInfo>>();
             object_metadata = new Dictionary<Type, ObjectMetadata>();
-            type_properties = new Dictionary<Type,
-                            IList<PropertyMetadata>>();
+            //type_properties = new Dictionary<Type,
+            //                IList<PropertyMetadata>>();
 
             datetime_format = DateTimeFormatInfo.InvariantInfo;
 
             base_importers_table = new Dictionary<Type,
                                  IDictionary<Type, ImporterFunc>>();
 
-             RegisterBaseImporters();
+            RegisterBaseImporters();
         }
         #endregion
 
@@ -249,7 +247,7 @@ namespace ToolGood.Algorithm.LitJson
             Type value_type = underlying_type ?? inst_type;
 
             if (reader.Token == JsonToken.Null) {
- 
+
                 if (inst_type.IsClass || underlying_type != null) {
                     return null;
                 }
@@ -282,10 +280,10 @@ namespace ToolGood.Algorithm.LitJson
                 }
 
                 // Maybe it's an enum
- 
+
                 if (value_type.IsEnum)
                     return Enum.ToObject(value_type, reader.Value);
-                 // Try using an implicit conversion operator
+                // Try using an implicit conversion operator
                 MethodInfo conv_op = GetConvOp(value_type, json_type);
 
                 if (conv_op != null)
@@ -470,7 +468,7 @@ namespace ToolGood.Algorithm.LitJson
                 delegate { return new JsonMockWrapper(); }, reader);
         }
 
- 
+
         private static void RegisterBaseImporters()
         {
             ImporterFunc importer;
@@ -597,6 +595,6 @@ namespace ToolGood.Algorithm.LitJson
         }
 
 
- 
+
     }
 }

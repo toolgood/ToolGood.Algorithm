@@ -4,7 +4,7 @@ using System.Collections.Specialized;
 
 namespace ToolGood.Algorithm.LitJson
 {
-    enum JsonType
+   enum JsonType
     {
         None,
 
