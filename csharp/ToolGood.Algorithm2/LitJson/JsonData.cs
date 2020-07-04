@@ -7,7 +7,7 @@ using System.IO;
 
 namespace ToolGood.Algorithm.LitJson
 {
-    class JsonData : IJsonWrapper, IList, IDictionary
+    class JsonData : IJsonWrapper, IEnumerable
     {
         #region Fields
         private IList<JsonData> inst_array;
@@ -33,62 +33,6 @@ namespace ToolGood.Algorithm.LitJson
         public bool IsString { get { return type == JsonType.String; } }
         #endregion
 
-
-        #region ICollection Properties
-        int ICollection.Count { get { return Count; } }
-        bool ICollection.IsSynchronized { get { return false; } }
-        object ICollection.SyncRoot { get { return false; } }
-        #endregion
-
-
-        #region IDictionary Properties
-        bool IDictionary.IsFixedSize { get { return false; } }
-        bool IDictionary.IsReadOnly { get { return false; } }
-
-        ICollection IDictionary.Keys { get { return null; } }
-
-        ICollection IDictionary.Values { get { return null; } }
-        #endregion
-
-
-        #region IList Properties
-        bool IList.IsFixedSize { get { return false; } }
-        bool IList.IsReadOnly { get { return false; } }
-        #endregion
-
-
-        #region IDictionary Indexer
-        object IDictionary.this[object key] {
-            get {
-                return EnsureDictionary()[key];
-            }
-
-            set {
-                if (!(key is String))
-                    throw new ArgumentException(
-                        "The key has to be a string");
-
-                JsonData data = ToJsonData(value);
-
-                this[(string)key] = data;
-            }
-        }
-        #endregion
-
-        #region IList Indexer
-        object IList.this[int index] {
-            get {
-                return EnsureList()[index];
-            }
-
-            set {
-                EnsureList();
-                JsonData data = ToJsonData(value);
-
-                this[index] = data;
-            }
-        }
-        #endregion
 
 
         #region Public Indexers
@@ -193,35 +137,6 @@ namespace ToolGood.Algorithm.LitJson
 
         #endregion
 
-        #region ICollection Methods
-        void ICollection.CopyTo(Array array, int index) { }
-        #endregion
-
-
-        #region IDictionary Methods
-        void IDictionary.Add(object key, object value)
-        {
-            JsonData data = ToJsonData(value);
-            EnsureDictionary().Add(key, data);
-            KeyValuePair<string, JsonData> entry = new KeyValuePair<string, JsonData>((string)key, data);
-            object_list.Add(entry);
-        }
-        void IDictionary.Clear() { }
-
-        bool IDictionary.Contains(object key) { return EnsureDictionary().Contains(key); }
-
-        IDictionaryEnumerator IDictionary.GetEnumerator() { return ((IDictionary)this).GetEnumerator(); }
-
-        void IDictionary.Remove(object key) { }
-        #endregion
-
-
-        #region IEnumerable Methods
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return EnsureCollection().GetEnumerator();
-        }
-        #endregion
 
 
         #region IJsonWrapper Methods
@@ -256,18 +171,22 @@ namespace ToolGood.Algorithm.LitJson
             inst_string = val;
         }
 
+        void IJsonWrapper.Add(IJsonWrapper val)
+        {
+            JsonData data = ToJsonData(val);
+            EnsureList().Add(data);
+        }
+
+        void IJsonWrapper.Set(string key, IJsonWrapper val)
+        {
+            JsonData data = ToJsonData(val);
+            EnsureDictionary().Add(key, data);
+            KeyValuePair<string, JsonData> entry = new KeyValuePair<string, JsonData>((string)key, data);
+            object_list.Add(entry);
+        }
+
         #endregion
 
-
-        #region IList Methods
-        int IList.Add(object value) { return Add(value); }
-        void IList.Clear() { }
-        bool IList.Contains(object value) { return false; }
-        int IList.IndexOf(object value) { return -1; }
-        void IList.Insert(int index, object value) { }
-        void IList.Remove(object value) { }
-        void IList.RemoveAt(int index) { }
-        #endregion
 
 
         #region Private Methods
@@ -305,13 +224,6 @@ namespace ToolGood.Algorithm.LitJson
         }
 
         #endregion
-
-
-        private int Add(object value)
-        {
-            JsonData data = ToJsonData(value);
-            return EnsureList().Add(data);
-        }
 
         void IJsonWrapper.SetJsonType(JsonType type)
         {
@@ -381,6 +293,11 @@ namespace ToolGood.Algorithm.LitJson
             }
 
             return "Uninitialized JsonData";
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            return EnsureList().GetEnumerator();
         }
     }
 }

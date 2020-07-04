@@ -34,5 +34,10 @@ namespace ToolGood.Algorithm.LitJson
         void SetLong(long val);
         void SetString(string val);
 
+        void Add(IJsonWrapper val);
+
+        void Set(string key, IJsonWrapper val);
+
+
     }
 }

@@ -75,8 +75,8 @@ namespace ToolGood.Algorithm.LitJson
                 while (true) {
                     IJsonWrapper item = ReadValue(factory, reader);
                     if (item == null && reader.Token == JsonToken.ArrayEnd) break;
-
-                    ((IList)instance).Add(item);
+                    instance.Add(item);
+                    //((IList)instance).Add(item);
                 }
             } else if (reader.Token == JsonToken.ObjectStart) {
                 instance.SetJsonType(JsonType.Object);
@@ -87,8 +87,8 @@ namespace ToolGood.Algorithm.LitJson
                     if (reader.Token == JsonToken.ObjectEnd) break;
 
                     string property = (string)reader.Value;
-
-                    ((IDictionary)instance)[property] = ReadValue(factory, reader);
+                    instance.Set(property, ReadValue(factory, reader));
+                    //((IDictionary)instance)[property] = ReadValue(factory, reader);
                 }
 
             }
