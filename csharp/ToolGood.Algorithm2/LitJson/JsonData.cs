@@ -17,10 +17,7 @@ namespace ToolGood.Algorithm.LitJson
         private long inst_long;
         private IDictionary<string, JsonData> inst_object;
         private string inst_string;
-        //private string json;
         private JsonType type;
-
-        // Used to implement the IOrderedDictionary interface
         private IList<KeyValuePair<string, JsonData>> object_list;
         #endregion
 
@@ -222,10 +219,7 @@ namespace ToolGood.Algorithm.LitJson
         #endregion
 
         #region ICollection Methods
-        void ICollection.CopyTo(Array array, int index)
-        {
-            EnsureCollection().CopyTo(array, index);
-        }
+        void ICollection.CopyTo(Array array, int index)        {        }
         #endregion
 
 
@@ -239,16 +233,8 @@ namespace ToolGood.Algorithm.LitJson
             KeyValuePair<string, JsonData> entry =
                 new KeyValuePair<string, JsonData>((string)key, data);
             object_list.Add(entry);
-
-            //json = null;
         }
-
-        void IDictionary.Clear()
-        {
-            EnsureDictionary().Clear();
-            object_list.Clear();
-            //json = null;
-        }
+        void IDictionary.Clear()        {        }
 
         bool IDictionary.Contains(object key)
         {
@@ -260,19 +246,7 @@ namespace ToolGood.Algorithm.LitJson
             return ((IOrderedDictionary)this).GetEnumerator();
         }
 
-        void IDictionary.Remove(object key)
-        {
-            EnsureDictionary().Remove(key);
-
-            for (int i = 0; i < object_list.Count; i++) {
-                if (object_list[i].Key == (string)key) {
-                    object_list.RemoveAt(i);
-                    break;
-                }
-            }
-
-            //json = null;
-        }
+        void IDictionary.Remove(object key)        {        }
         #endregion
 
 
@@ -329,12 +303,7 @@ namespace ToolGood.Algorithm.LitJson
         {
             return Add(value);
         }
-
-        void IList.Clear()
-        {
-            EnsureList().Clear();
-        }
-
+        void IList.Clear() { }
         bool IList.Contains(object value)
         {
             return EnsureList().Contains(value);
@@ -344,21 +313,9 @@ namespace ToolGood.Algorithm.LitJson
         {
             return EnsureList().IndexOf(value);
         }
-
-        void IList.Insert(int index, object value)
-        {
-            EnsureList().Insert(index, value);
-        }
-
-        void IList.Remove(object value)
-        {
-            EnsureList().Remove(value);
-        }
-
-        void IList.RemoveAt(int index)
-        {
-            EnsureList().RemoveAt(index);
-        }
+        void IList.Insert(int index, object value) { }
+        void IList.Remove(object value) { }
+        void IList.RemoveAt(int index) { }
         #endregion
 
 
