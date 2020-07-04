@@ -25,31 +25,6 @@ namespace ToolGood.Algorithm.MathNet.Numerics
         /// </summary>
         static readonly double DefaultDoubleAccuracy = DoublePrecision * 10;
 
-        /// <summary>
-        /// Returns the magnitude of the number.
-        /// </summary>
-        /// <param name="value">The value.</param>
-        /// <returns>The magnitude of the number.</returns>
-        public static int Magnitude(this double value)
-        {
-            // Can't do this with zero because the 10-log of zero doesn't exist.
-            if (value.Equals(0.0)) {
-                return 0;
-            }
-
-            // Note that we need the absolute value of the input because Log10 doesn't
-            // work for negative numbers (obviously).
-            double magnitude = Math.Log10(Math.Abs(value));
-            var truncated = (int)Truncate(magnitude);
-
-            // To get the right number we need to know if the value is negative or positive
-            // truncating a positive number will always give use the correct magnitude
-            // truncating a negative number will give us a magnitude that is off by 1 (unless integer)
-            return magnitude < 0d && truncated != magnitude
-                ? truncated - 1
-                : truncated;
-        }
-
  
         /// <summary>
         /// Increments a floating point number to the next bigger number representable by the data type.
@@ -176,16 +151,6 @@ namespace ToolGood.Algorithm.MathNet.Numerics
         public static double PositiveEpsilonOf(this double value)
         {
             return 2 * EpsilonOf(value);
-        }
-         
-
-        static double Truncate(double value)
-        {
-#if PORTABLE
-            return value >= 0.0 ? Math.Floor(value) : Math.Ceiling(value);
-#else
-            return Math.Truncate(value);
-#endif
         }
  
     }
