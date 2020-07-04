@@ -13,11 +13,10 @@ namespace ToolGood.Algorithm.MathNet.Numerics.RootFinding
     {
         public static double FindRoot(Func<double, double> f, double lowerBound, double upperBound, double accuracy = 1e-8, int maxIterations = 100)
         {
-            double root;
-            if (TryFindRoot(f, lowerBound, upperBound, accuracy, maxIterations, out root)) {
+            if (TryFindRoot(f, lowerBound, upperBound, accuracy, maxIterations, out double root)) {
                 return root;
             }
-            
+
             throw new Exception("RootFindingFailed");
         }
 

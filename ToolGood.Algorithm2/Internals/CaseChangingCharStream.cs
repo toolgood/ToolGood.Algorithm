@@ -19,7 +19,6 @@ namespace ToolGood.Algorithm
     class CaseChangingCharStream : ICharStream
     {
         private ICharStream stream;
-        private bool upper;
 
         /// <summary>
         /// Constructs a new CaseChangingCharStream wrapping the given <paramref name="stream"/> forcing
@@ -27,10 +26,9 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="stream">The stream to wrap.</param>
         /// <param name="upper">If true force each symbol to upper case, otherwise force to lower.</param>
-        public CaseChangingCharStream(ICharStream stream, bool upper)
+        public CaseChangingCharStream(ICharStream stream)
         {
             this.stream = stream;
-            this.upper = upper;
         }
 
         public int Index {
@@ -91,13 +89,8 @@ namespace ToolGood.Algorithm
                 o = '"';
             }
 
+            return (int)char.ToUpperInvariant(o);
 
-
-            if (upper) {
-                return (int)char.ToUpperInvariant(o);
-            }
-
-            return (int)char.ToLowerInvariant(o);
         }
 
         public int Mark()

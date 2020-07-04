@@ -299,8 +299,7 @@ namespace ToolGood.Algorithm
         #region HMACMD5
         public static string GetHmacMd5String(byte[] buffer, string secret)
         {
-            secret = secret ?? "";
-            byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret);
+            byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret ?? "");
             using (var hmacsha256 = new HMACMD5(keyByte)) {
                 byte[] hashmessage = hmacsha256.ComputeHash(buffer);
                 return BitConverter.ToString(hashmessage).Replace("-", "");
@@ -311,8 +310,7 @@ namespace ToolGood.Algorithm
         #region HMACSHA1
         public static string GetHmacSha1String(byte[] buffer, string secret)
         {
-            secret = secret ?? "";
-            byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret);
+            byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret ?? "");
             using (var hmacsha256 = new HMACSHA1(keyByte)) {
                 byte[] hashmessage = hmacsha256.ComputeHash(buffer);
                 return BitConverter.ToString(hashmessage).Replace("-", "");
@@ -323,8 +321,7 @@ namespace ToolGood.Algorithm
         #region HMACSHA256
         public static string GetHmacSha256String(byte[] buffer, string secret)
         {
-            secret = secret ?? "";
-            byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret);
+            byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret ?? "");
             using (var hmacsha256 = new HMACSHA256(keyByte)) {
                 byte[] hashmessage = hmacsha256.ComputeHash(buffer);
                 return BitConverter.ToString(hashmessage).Replace("-", "");
@@ -335,8 +332,7 @@ namespace ToolGood.Algorithm
         #region HMACSHA512
         public static string GetHmacSha512String(byte[] buffer, string secret)
         {
-            secret = secret ?? "";
-            byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret);
+            byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret ?? "");
             using (var hmacsha256 = new HMACSHA512(keyByte)) {
                 byte[] hashmessage = hmacsha256.ComputeHash(buffer);
                 return BitConverter.ToString(hashmessage).Replace("-", "");
