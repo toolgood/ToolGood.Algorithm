@@ -17,7 +17,7 @@ namespace ToolGood.Algorithm.LitJson
         Boolean
     }
 
-    interface IJsonWrapper : IList
+    interface IJsonWrapper  
     {
         bool IsArray { get; }
         bool IsBoolean { get; }
