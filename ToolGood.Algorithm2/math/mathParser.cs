@@ -227,11 +227,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class CEILING_funContext : ExprContext {
-		//public ITerminalNode CEILING() { return GetToken(mathParser.CEILING, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public CEILING_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -240,7 +238,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class FACT_funContext : ExprContext {
-		//public ITerminalNode FACT() { return GetToken(mathParser.FACT, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -252,11 +249,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class REGEXREPALCE_funContext : ExprContext {
-		//public ITerminalNode REGEXREPALCE() { return GetToken(mathParser.REGEXREPALCE, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public REGEXREPALCE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -269,8 +264,6 @@ partial class mathParser : Parser {
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
-		//public ITerminalNode SUB() { return GetToken(mathParser.SUB, 0); }
 		public AddSub_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -279,11 +272,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class AVERAGEIF_funContext : ExprContext {
-		//public ITerminalNode AVERAGEIF() { return GetToken(mathParser.AVERAGEIF, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public AVERAGEIF_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -292,11 +283,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class CRC16_funContext : ExprContext {
-		//public ITerminalNode CRC16() { return GetToken(mathParser.CRC16, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public CRC16_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -305,11 +294,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class RIGHT_funContext : ExprContext {
-		//public ITerminalNode RIGHT() { return GetToken(mathParser.RIGHT, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public RIGHT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -318,11 +305,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class OCT2BIN_funContext : ExprContext {
-		//public ITerminalNode OCT2BIN() { return GetToken(mathParser.OCT2BIN, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public OCT2BIN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -331,11 +316,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class QUARTILE_funContext : ExprContext {
-		//public ITerminalNode QUARTILE() { return GetToken(mathParser.QUARTILE, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public QUARTILE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -344,11 +327,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class FINV_funContext : ExprContext {
-		//public ITerminalNode FINV() { return GetToken(mathParser.FINV, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public FINV_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -357,7 +338,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class NOT_funContext : ExprContext {
-		//public ITerminalNode NOT() { return GetToken(mathParser.NOT, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -369,11 +349,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class DAYS360_funContext : ExprContext {
-		//public ITerminalNode DAYS360() { return GetToken(mathParser.DAYS360, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public DAYS360_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -382,11 +360,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class WEEKNUM_funContext : ExprContext {
-		//public ITerminalNode WEEKNUM() { return GetToken(mathParser.WEEKNUM, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public WEEKNUM_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -395,11 +371,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class POISSON_funContext : ExprContext {
-		//public ITerminalNode POISSON() { return GetToken(mathParser.POISSON, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public POISSON_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -408,11 +382,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class ISREGEX_funContext : ExprContext {
-		//public ITerminalNode ISREGEX() { return GetToken(mathParser.ISREGEX, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public ISREGEX_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -421,11 +393,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class PERCENTILE_funContext : ExprContext {
-		//public ITerminalNode PERCENTILE() { return GetToken(mathParser.PERCENTILE, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public PERCENTILE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -434,11 +404,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class SHA256_funContext : ExprContext {
-		//public ITerminalNode SHA256() { return GetToken(mathParser.SHA256, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SHA256_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -447,11 +415,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class HYPGEOMDIST_funContext : ExprContext {
-		//public ITerminalNode HYPGEOMDIST() { return GetToken(mathParser.HYPGEOMDIST, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public HYPGEOMDIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -460,11 +426,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class PERMUT_funContext : ExprContext {
-		//public ITerminalNode PERMUT() { return GetToken(mathParser.PERMUT, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public PERMUT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -473,11 +437,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class TRIMSTART_funContext : ExprContext {
-		//public ITerminalNode TRIMSTART() { return GetToken(mathParser.TRIMSTART, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public TRIMSTART_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -486,7 +448,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class RMB_funContext : ExprContext {
-		//public ITerminalNode RMB() { return GetToken(mathParser.RMB, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -498,11 +459,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class DEC2HEX_funContext : ExprContext {
-		//public ITerminalNode DEC2HEX() { return GetToken(mathParser.DEC2HEX, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public DEC2HEX_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -511,7 +470,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class CLEAN_funContext : ExprContext {
-		//public ITerminalNode CLEAN() { return GetToken(mathParser.CLEAN, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -523,7 +481,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class LOWER_funContext : ExprContext {
-		//public ITerminalNode LOWER() { return GetToken(mathParser.LOWER, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -535,11 +492,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class OR_funContext : ExprContext {
-		//public ITerminalNode OR() { return GetToken(mathParser.OR, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public OR_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -548,7 +503,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class NORMSINV_funContext : ExprContext {
-		//public ITerminalNode NORMSINV() { return GetToken(mathParser.NORMSINV, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -560,11 +514,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class LEFT_funContext : ExprContext {
-		//public ITerminalNode LEFT() { return GetToken(mathParser.LEFT, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public LEFT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -573,7 +525,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class ISEVEN_funContext : ExprContext {
-		//public ITerminalNode ISEVEN() { return GetToken(mathParser.ISEVEN, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -585,11 +536,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class LOGINV_funContext : ExprContext {
-		//public ITerminalNode LOGINV() { return GetToken(mathParser.LOGINV, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public LOGINV_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -598,11 +547,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class WORKDAY_funContext : ExprContext {
-		//public ITerminalNode WORKDAY() { return GetToken(mathParser.WORKDAY, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public WORKDAY_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -611,7 +558,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class ISERROR_funContext : ExprContext {
-		//public ITerminalNode ISERROR() { return GetToken(mathParser.ISERROR, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -623,7 +569,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class BIN2DEC_funContext : ExprContext {
-		//public ITerminalNode BIN2DEC() { return GetToken(mathParser.BIN2DEC, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -635,7 +580,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class JIS_funContext : ExprContext {
-		//public ITerminalNode JIS() { return GetToken(mathParser.JIS, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -647,11 +591,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class CRC32_funContext : ExprContext {
-		//public ITerminalNode CRC32() { return GetToken(mathParser.CRC32, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public CRC32_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -660,11 +602,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class LCM_funContext : ExprContext {
-		//public ITerminalNode LCM() { return GetToken(mathParser.LCM, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public LCM_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -673,11 +613,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class HARMEAN_funContext : ExprContext {
-		//public ITerminalNode HARMEAN() { return GetToken(mathParser.HARMEAN, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public HARMEAN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -686,11 +624,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class NORMINV_funContext : ExprContext {
-		//public ITerminalNode NORMINV() { return GetToken(mathParser.NORMINV, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public NORMINV_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -699,11 +635,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class GAMMAINV_funContext : ExprContext {
-		//public ITerminalNode GAMMAINV() { return GetToken(mathParser.GAMMAINV, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public GAMMAINV_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -712,7 +646,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class SQRT_funContext : ExprContext {
-		//public ITerminalNode SQRT() { return GetToken(mathParser.SQRT, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -724,7 +657,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class DEGREES_funContext : ExprContext {
-		//public ITerminalNode DEGREES() { return GetToken(mathParser.DEGREES, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -736,11 +668,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class MROUND_funContext : ExprContext {
-		//public ITerminalNode MROUND() { return GetToken(mathParser.MROUND, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public MROUND_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -749,11 +679,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class DATEDIF_funContext : ExprContext {
-		//public ITerminalNode DATEDIF() { return GetToken(mathParser.DATEDIF, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public DATEDIF_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -762,11 +690,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class TRIMEND_funContext : ExprContext {
-		//public ITerminalNode TRIMEND() { return GetToken(mathParser.TRIMEND, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public TRIMEND_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -775,11 +701,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class CRC8_funContext : ExprContext {
-		//public ITerminalNode CRC8() { return GetToken(mathParser.CRC8, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public CRC8_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -788,7 +712,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class ISLOGICAL_funContext : ExprContext {
-		//public ITerminalNode ISLOGICAL() { return GetToken(mathParser.ISLOGICAL, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -800,7 +723,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class INT_funContext : ExprContext {
-		//public ITerminalNode INT() { return GetToken(mathParser.INT, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -812,11 +734,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class SUMIF_funContext : ExprContext {
-		//public ITerminalNode SUMIF() { return GetToken(mathParser.SUMIF, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SUMIF_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -825,11 +745,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class HEX2OCT_funContext : ExprContext {
-		//public ITerminalNode HEX2OCT() { return GetToken(mathParser.HEX2OCT, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public HEX2OCT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -838,7 +756,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class PI_funContext : ExprContext {
-		//public ITerminalNode PI() { return GetToken(mathParser.PI, 0); }
 		public PI_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -847,7 +764,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class YEAR_funContext : ExprContext {
-		//public ITerminalNode YEAR() { return GetToken(mathParser.YEAR, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -859,7 +775,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class SQRTPI_funContext : ExprContext {
-		//public ITerminalNode SQRTPI() { return GetToken(mathParser.SQRTPI, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -871,11 +786,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class CONCATENATE_funContext : ExprContext {
-		//public ITerminalNode CONCATENATE() { return GetToken(mathParser.CONCATENATE, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public CONCATENATE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -884,11 +797,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class COUNT_funContext : ExprContext {
-		//public ITerminalNode COUNT() { return GetToken(mathParser.COUNT, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public COUNT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -897,7 +808,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class FALSE_funContext : ExprContext {
-		//public ITerminalNode FALSE() { return GetToken(mathParser.FALSE, 0); }
 		public FALSE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -906,7 +816,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class HTMLENCODE_funContext : ExprContext {
-		//public ITerminalNode HTMLENCODE() { return GetToken(mathParser.HTMLENCODE, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -918,11 +827,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class BASE64URLTOTEXT_funContext : ExprContext {
-		//public ITerminalNode BASE64URLTOTEXT() { return GetToken(mathParser.BASE64URLTOTEXT, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public BASE64URLTOTEXT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -931,7 +838,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class LOG10_funContext : ExprContext {
-		//public ITerminalNode LOG10() { return GetToken(mathParser.LOG10, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -943,7 +849,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class ISTEXT_funContext : ExprContext {
-		//public ITerminalNode ISTEXT() { return GetToken(mathParser.ISTEXT, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -955,11 +860,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class NEGBINOMDIST_funContext : ExprContext {
-		//public ITerminalNode NEGBINOMDIST() { return GetToken(mathParser.NEGBINOMDIST, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public NEGBINOMDIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -968,11 +871,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class NETWORKDAYS_funContext : ExprContext {
-		//public ITerminalNode NETWORKDAYS() { return GetToken(mathParser.NETWORKDAYS, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public NETWORKDAYS_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -981,7 +882,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class FACTDOUBLE_funContext : ExprContext {
-		//public ITerminalNode FACTDOUBLE() { return GetToken(mathParser.FACTDOUBLE, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -993,7 +893,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class TIMEVALUE_funContext : ExprContext {
-		//public ITerminalNode TIMEVALUE() { return GetToken(mathParser.TIMEVALUE, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1005,11 +904,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class AVEDEV_funContext : ExprContext {
-		//public ITerminalNode AVEDEV() { return GetToken(mathParser.AVEDEV, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public AVEDEV_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1018,7 +915,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class GUID_funContext : ExprContext {
-		//public ITerminalNode GUID() { return GetToken(mathParser.GUID, 0); }
 		public GUID_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1027,7 +923,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class JSON_funContext : ExprContext {
-		//public ITerminalNode JSON() { return GetToken(mathParser.JSON, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1039,11 +934,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class FIXED_funContext : ExprContext {
-		//public ITerminalNode FIXED() { return GetToken(mathParser.FIXED, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public FIXED_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1069,11 +962,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class TINV_funContext : ExprContext {
-		//public ITerminalNode TINV() { return GetToken(mathParser.TINV, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public TINV_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1082,11 +973,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class EDATE_funContext : ExprContext {
-		//public ITerminalNode EDATE() { return GetToken(mathParser.EDATE, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public EDATE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1095,11 +984,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class GEOMEAN_funContext : ExprContext {
-		//public ITerminalNode GEOMEAN() { return GetToken(mathParser.GEOMEAN, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public GEOMEAN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1108,11 +995,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class VAR_funContext : ExprContext {
-		//public ITerminalNode VAR() { return GetToken(mathParser.VAR, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public VAR_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1121,7 +1006,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class SIGN_funContext : ExprContext {
-		//public ITerminalNode SIGN() { return GetToken(mathParser.SIGN, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1133,11 +1017,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class EOMONTH_funContext : ExprContext {
-		//public ITerminalNode EOMONTH() { return GetToken(mathParser.EOMONTH, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public EOMONTH_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1146,11 +1028,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class FLOOR_funContext : ExprContext {
-		//public ITerminalNode FLOOR() { return GetToken(mathParser.FLOOR, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public FLOOR_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1159,7 +1039,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class HOUR_funContext : ExprContext {
-		//public ITerminalNode HOUR() { return GetToken(mathParser.HOUR, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1171,7 +1050,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class LEN_funContext : ExprContext {
-		//public ITerminalNode LEN() { return GetToken(mathParser.LEN, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1183,7 +1061,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class ACOS_funContext : ExprContext {
-		//public ITerminalNode ACOS() { return GetToken(mathParser.ACOS, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1195,7 +1072,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class ISNULLORWHITESPACE_funContext : ExprContext {
-		//public ITerminalNode ISNULLORWHITESPACE() { return GetToken(mathParser.ISNULLORWHITESPACE, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1217,7 +1093,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class COSH_funContext : ExprContext {
-		//public ITerminalNode COSH() { return GetToken(mathParser.COSH, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1229,11 +1104,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class QUOTIENT_funContext : ExprContext {
-		//public ITerminalNode QUOTIENT() { return GetToken(mathParser.QUOTIENT, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public QUOTIENT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1242,7 +1115,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class OCT2DEC_funContext : ExprContext {
-		//public ITerminalNode OCT2DEC() { return GetToken(mathParser.OCT2DEC, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1254,11 +1126,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class SEARCH_funContext : ExprContext {
-		//public ITerminalNode SEARCH() { return GetToken(mathParser.SEARCH, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SEARCH_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1267,11 +1137,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class ROUNDUP_funContext : ExprContext {
-		//public ITerminalNode ROUNDUP() { return GetToken(mathParser.ROUNDUP, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public ROUNDUP_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1280,11 +1148,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class COMBIN_funContext : ExprContext {
-		//public ITerminalNode COMBIN() { return GetToken(mathParser.COMBIN, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public COMBIN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1293,7 +1159,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class CODE_funContext : ExprContext {
-		//public ITerminalNode CODE() { return GetToken(mathParser.CODE, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1305,7 +1170,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class ASINH_funContext : ExprContext {
-		//public ITerminalNode ASINH() { return GetToken(mathParser.ASINH, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1317,7 +1181,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class SIN_funContext : ExprContext {
-		//public ITerminalNode SIN() { return GetToken(mathParser.SIN, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1329,11 +1192,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class SUBSTRING_funContext : ExprContext {
-		//public ITerminalNode SUBSTRING() { return GetToken(mathParser.SUBSTRING, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SUBSTRING_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1342,11 +1203,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class RANDBETWEEN_funContext : ExprContext {
-		//public ITerminalNode RANDBETWEEN() { return GetToken(mathParser.RANDBETWEEN, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public RANDBETWEEN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1355,11 +1214,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class AVERAGE_funContext : ExprContext {
-		//public ITerminalNode AVERAGE() { return GetToken(mathParser.AVERAGE, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public AVERAGE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1368,11 +1225,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class LOG_funContext : ExprContext {
-		//public ITerminalNode LOG() { return GetToken(mathParser.LOG, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public LOG_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1381,11 +1236,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class HMACSHA512_funContext : ExprContext {
-		//public ITerminalNode HMACSHA512() { return GetToken(mathParser.HMACSHA512, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public HMACSHA512_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1398,9 +1251,6 @@ partial class mathParser : Parser {
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
-		//public ITerminalNode AND() { return GetToken(mathParser.AND, 0); }
-		//public ITerminalNode OR() { return GetToken(mathParser.OR, 0); }
 		public AndOr_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1409,11 +1259,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class STDEVP_funContext : ExprContext {
-		//public ITerminalNode STDEVP() { return GetToken(mathParser.STDEVP, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public STDEVP_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1425,7 +1273,6 @@ partial class mathParser : Parser {
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public Array_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1434,11 +1281,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class ROUND_funContext : ExprContext {
-		//public ITerminalNode ROUND() { return GetToken(mathParser.ROUND, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public ROUND_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1447,7 +1292,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class EXP_funContext : ExprContext {
-		//public ITerminalNode EXP() { return GetToken(mathParser.EXP, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1459,11 +1303,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class COUNTIF_funContext : ExprContext {
-		//public ITerminalNode COUNTIF() { return GetToken(mathParser.COUNTIF, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public COUNTIF_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1472,11 +1314,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class VARP_funContext : ExprContext {
-		//public ITerminalNode VARP() { return GetToken(mathParser.VARP, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public VARP_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1485,11 +1325,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class REMOVEEND_funContext : ExprContext {
-		//public ITerminalNode REMOVEEND() { return GetToken(mathParser.REMOVEEND, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public REMOVEEND_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1498,11 +1336,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class DATE_funContext : ExprContext {
-		//public ITerminalNode DATE() { return GetToken(mathParser.DATE, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public DATE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1522,11 +1358,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class SPLIT_funContext : ExprContext {
-		//public ITerminalNode SPLIT() { return GetToken(mathParser.SPLIT, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SPLIT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1535,7 +1369,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class URLDECODE_funContext : ExprContext {
-		//public ITerminalNode URLDECODE() { return GetToken(mathParser.URLDECODE, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1547,11 +1380,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class LARGE_funContext : ExprContext {
-		//public ITerminalNode LARGE() { return GetToken(mathParser.LARGE, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public LARGE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1560,7 +1391,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class VALUE_funContext : ExprContext {
-		//public ITerminalNode VALUE() { return GetToken(mathParser.VALUE, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1572,7 +1402,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class DAY_funContext : ExprContext {
-		//public ITerminalNode DAY() { return GetToken(mathParser.DAY, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1584,11 +1413,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class WEIBULL_funContext : ExprContext {
-		//public ITerminalNode WEIBULL() { return GetToken(mathParser.WEIBULL, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public WEIBULL_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1597,11 +1424,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class HMACSHA256_funContext : ExprContext {
-		//public ITerminalNode HMACSHA256() { return GetToken(mathParser.HMACSHA256, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public HMACSHA256_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1610,11 +1435,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class BINOMDIST_funContext : ExprContext {
-		//public ITerminalNode BINOMDIST() { return GetToken(mathParser.BINOMDIST, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public BINOMDIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1627,7 +1450,6 @@ partial class mathParser : Parser {
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public Judge_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1636,11 +1458,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class DEVSQ_funContext : ExprContext {
-		//public ITerminalNode DEVSQ() { return GetToken(mathParser.DEVSQ, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public DEVSQ_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1649,11 +1469,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class MODE_funContext : ExprContext {
-		//public ITerminalNode MODE() { return GetToken(mathParser.MODE, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public MODE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1662,11 +1480,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class BETAINV_funContext : ExprContext {
-		//public ITerminalNode BETAINV() { return GetToken(mathParser.BETAINV, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public BETAINV_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1675,11 +1491,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class MAX_funContext : ExprContext {
-		//public ITerminalNode MAX() { return GetToken(mathParser.MAX, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public MAX_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1688,7 +1502,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class MINUTE_funContext : ExprContext {
-		//public ITerminalNode MINUTE() { return GetToken(mathParser.MINUTE, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1700,7 +1513,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class TAN_funContext : ExprContext {
-		//public ITerminalNode TAN() { return GetToken(mathParser.TAN, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1712,11 +1524,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class IFERROR_funContext : ExprContext {
-		//public ITerminalNode IFERROR() { return GetToken(mathParser.IFERROR, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public IFERROR_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1725,11 +1535,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class FDIST_funContext : ExprContext {
-		//public ITerminalNode FDIST() { return GetToken(mathParser.FDIST, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public FDIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1738,11 +1546,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class INDEXOF_funContext : ExprContext {
-		//public ITerminalNode INDEXOF() { return GetToken(mathParser.INDEXOF, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public INDEXOF_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1751,7 +1557,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class UPPER_funContext : ExprContext {
-		//public ITerminalNode UPPER() { return GetToken(mathParser.UPPER, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1763,7 +1568,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class HTMLDECODE_funContext : ExprContext {
-		//public ITerminalNode HTMLDECODE() { return GetToken(mathParser.HTMLDECODE, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1775,11 +1579,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class EXPONDIST_funContext : ExprContext {
-		//public ITerminalNode EXPONDIST() { return GetToken(mathParser.EXPONDIST, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public EXPONDIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1788,11 +1590,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class DEC2BIN_funContext : ExprContext {
-		//public ITerminalNode DEC2BIN() { return GetToken(mathParser.DEC2BIN, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public DEC2BIN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1801,7 +1601,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class HEX2DEC_funContext : ExprContext {
-		//public ITerminalNode HEX2DEC() { return GetToken(mathParser.HEX2DEC, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1813,11 +1612,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class SMALL_funContext : ExprContext {
-		//public ITerminalNode SMALL() { return GetToken(mathParser.SMALL, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SMALL_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1826,7 +1623,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class ODD_funContext : ExprContext {
-		//public ITerminalNode ODD() { return GetToken(mathParser.ODD, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1838,11 +1634,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class TEXTTOBASE64_funContext : ExprContext {
-		//public ITerminalNode TEXTTOBASE64() { return GetToken(mathParser.TEXTTOBASE64, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public TEXTTOBASE64_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1851,11 +1645,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class MID_funContext : ExprContext {
-		//public ITerminalNode MID() { return GetToken(mathParser.MID, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public MID_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1864,11 +1656,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class PERCENTRANK_funContext : ExprContext {
-		//public ITerminalNode PERCENTRANK() { return GetToken(mathParser.PERCENTRANK, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public PERCENTRANK_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1877,11 +1667,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class STDEV_funContext : ExprContext {
-		//public ITerminalNode STDEV() { return GetToken(mathParser.STDEV, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public STDEV_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1890,7 +1678,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class NORMSDIST_funContext : ExprContext {
-		//public ITerminalNode NORMSDIST() { return GetToken(mathParser.NORMSDIST, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1902,7 +1689,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class ISNUMBER_funContext : ExprContext {
-		//public ITerminalNode ISNUMBER() { return GetToken(mathParser.ISNUMBER, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1914,11 +1700,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class LASTINDEXOF_funContext : ExprContext {
-		//public ITerminalNode LASTINDEXOF() { return GetToken(mathParser.LASTINDEXOF, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public LASTINDEXOF_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1927,11 +1711,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class MOD_funContext : ExprContext {
-		//public ITerminalNode MOD() { return GetToken(mathParser.MOD, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public MOD_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1940,7 +1722,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class CHAR_funContext : ExprContext {
-		//public ITerminalNode CHAR() { return GetToken(mathParser.CHAR, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -1952,11 +1733,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class REGEX_funContext : ExprContext {
-		//public ITerminalNode REGEX() { return GetToken(mathParser.REGEX, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public REGEX_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1965,11 +1744,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class TEXTTOBASE64URL_funContext : ExprContext {
-		//public ITerminalNode TEXTTOBASE64URL() { return GetToken(mathParser.TEXTTOBASE64URL, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public TEXTTOBASE64URL_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1978,11 +1755,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class MD5_funContext : ExprContext {
-		//public ITerminalNode MD5() { return GetToken(mathParser.MD5, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public MD5_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -1991,11 +1766,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class REPLACE_funContext : ExprContext {
-		//public ITerminalNode REPLACE() { return GetToken(mathParser.REPLACE, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public REPLACE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2004,7 +1777,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class ACOSH_funContext : ExprContext {
-		//public ITerminalNode ACOSH() { return GetToken(mathParser.ACOSH, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2016,7 +1788,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class ISODD_funContext : ExprContext {
-		//public ITerminalNode ISODD() { return GetToken(mathParser.ISODD, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2028,7 +1799,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class ASC_funContext : ExprContext {
-		//public ITerminalNode ASC() { return GetToken(mathParser.ASC, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2040,7 +1810,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class COS_funContext : ExprContext {
-		//public ITerminalNode COS() { return GetToken(mathParser.COS, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2052,7 +1821,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class LN_funContext : ExprContext {
-		//public ITerminalNode LN() { return GetToken(mathParser.LN, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2073,11 +1841,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class HMACMD5_funContext : ExprContext {
-		//public ITerminalNode HMACMD5() { return GetToken(mathParser.HMACMD5, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public HMACMD5_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2086,11 +1852,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class PRODUCT_funContext : ExprContext {
-		//public ITerminalNode PRODUCT() { return GetToken(mathParser.PRODUCT, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public PRODUCT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2099,11 +1863,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class EXACT_funContext : ExprContext {
-		//public ITerminalNode EXACT() { return GetToken(mathParser.EXACT, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public EXACT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2112,11 +1874,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class SUMSQ_funContext : ExprContext {
-		//public ITerminalNode SUMSQ() { return GetToken(mathParser.SUMSQ, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SUMSQ_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2125,11 +1885,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class SUM_funContext : ExprContext {
-		//public ITerminalNode SUM() { return GetToken(mathParser.SUM, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SUM_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2138,7 +1896,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class SECOND_funContext : ExprContext {
-		//public ITerminalNode SECOND() { return GetToken(mathParser.SECOND, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2150,11 +1907,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class GAMMADIST_funContext : ExprContext {
-		//public ITerminalNode GAMMADIST() { return GetToken(mathParser.GAMMADIST, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public GAMMADIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2163,11 +1918,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class OCT2HEX_funContext : ExprContext {
-		//public ITerminalNode OCT2HEX() { return GetToken(mathParser.OCT2HEX, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public OCT2HEX_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2176,7 +1929,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class TODAY_funContext : ExprContext {
-		//public ITerminalNode TODAY() { return GetToken(mathParser.TODAY, 0); }
 		public TODAY_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2185,7 +1937,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class ATAN_funContext : ExprContext {
-		//public ITerminalNode ATAN() { return GetToken(mathParser.ATAN, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2197,7 +1948,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class E_funContext : ExprContext {
-		//public ITerminalNode E() { return GetToken(mathParser.E, 0); }
 		public E_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2206,7 +1956,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class TRIM_funContext : ExprContext {
-		//public ITerminalNode TRIM() { return GetToken(mathParser.TRIM, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2218,7 +1967,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class RADIANS_funContext : ExprContext {
-		//public ITerminalNode RADIANS() { return GetToken(mathParser.RADIANS, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2230,7 +1978,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class GAMMALN_funContext : ExprContext {
-		//public ITerminalNode GAMMALN() { return GetToken(mathParser.GAMMALN, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2242,11 +1989,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class TEXT_funContext : ExprContext {
-		//public ITerminalNode TEXT() { return GetToken(mathParser.TEXT, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public TEXT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2255,7 +2000,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class FISHER_funContext : ExprContext {
-		//public ITerminalNode FISHER() { return GetToken(mathParser.FISHER, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2267,11 +2011,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class AND_funContext : ExprContext {
-		//public ITerminalNode AND() { return GetToken(mathParser.AND, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public AND_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2280,11 +2022,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class BIN2HEX_funContext : ExprContext {
-		//public ITerminalNode BIN2HEX() { return GetToken(mathParser.BIN2HEX, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public BIN2HEX_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2293,11 +2033,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class MULTINOMIAL_funContext : ExprContext {
-		//public ITerminalNode MULTINOMIAL() { return GetToken(mathParser.MULTINOMIAL, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public MULTINOMIAL_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2306,7 +2044,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class MONTH_funContext : ExprContext {
-		//public ITerminalNode MONTH() { return GetToken(mathParser.MONTH, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2318,7 +2055,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class URLENCODE_funContext : ExprContext {
-		//public ITerminalNode URLENCODE() { return GetToken(mathParser.URLENCODE, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2330,11 +2066,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class NORMDIST_funContext : ExprContext {
-		//public ITerminalNode NORMDIST() { return GetToken(mathParser.NORMDIST, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public NORMDIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2343,11 +2077,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class HMACSHA1_funContext : ExprContext {
-		//public ITerminalNode HMACSHA1() { return GetToken(mathParser.HMACSHA1, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public HMACSHA1_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2356,11 +2088,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class ENDSWITH_funContext : ExprContext {
-		//public ITerminalNode ENDSWITH() { return GetToken(mathParser.ENDSWITH, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public ENDSWITH_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2380,11 +2110,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class BETADIST_funContext : ExprContext {
-		//public ITerminalNode BETADIST() { return GetToken(mathParser.BETADIST, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public BETADIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2393,7 +2121,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class ATANH_funContext : ExprContext {
-		//public ITerminalNode ATANH() { return GetToken(mathParser.ATANH, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2405,7 +2132,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class NOW_funContext : ExprContext {
-		//public ITerminalNode NOW() { return GetToken(mathParser.NOW, 0); }
 		public NOW_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2414,11 +2140,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class MEDIAN_funContext : ExprContext {
-		//public ITerminalNode MEDIAN() { return GetToken(mathParser.MEDIAN, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public MEDIAN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2427,11 +2151,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class POWER_funContext : ExprContext {
-		//public ITerminalNode POWER() { return GetToken(mathParser.POWER, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public POWER_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2440,11 +2162,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class DEC2OCT_funContext : ExprContext {
-		//public ITerminalNode DEC2OCT() { return GetToken(mathParser.DEC2OCT, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public DEC2OCT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2453,7 +2173,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class PROPER_funContext : ExprContext {
-		//public ITerminalNode PROPER() { return GetToken(mathParser.PROPER, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2465,7 +2184,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class TRUNC_funContext : ExprContext {
-		//public ITerminalNode TRUNC() { return GetToken(mathParser.TRUNC, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2477,11 +2195,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class GCD_funContext : ExprContext {
-		//public ITerminalNode GCD() { return GetToken(mathParser.GCD, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public GCD_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2490,7 +2206,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class TANH_funContext : ExprContext {
-		//public ITerminalNode TANH() { return GetToken(mathParser.TANH, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2502,11 +2217,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class HEX2BIN_funContext : ExprContext {
-		//public ITerminalNode HEX2BIN() { return GetToken(mathParser.HEX2BIN, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public HEX2BIN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2515,7 +2228,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class SINH_funContext : ExprContext {
-		//public ITerminalNode SINH() { return GetToken(mathParser.SINH, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2527,11 +2239,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class SHA512_funContext : ExprContext {
-		//public ITerminalNode SHA512() { return GetToken(mathParser.SHA512, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SHA512_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2540,11 +2250,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class MIN_funContext : ExprContext {
-		//public ITerminalNode MIN() { return GetToken(mathParser.MIN, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public MIN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2553,7 +2261,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class ISNONTEXT_funContext : ExprContext {
-		//public ITerminalNode ISNONTEXT() { return GetToken(mathParser.ISNONTEXT, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2565,7 +2272,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class ABS_funContext : ExprContext {
-		//public ITerminalNode ABS() { return GetToken(mathParser.ABS, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2577,11 +2283,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class ROUNDDOWN_funContext : ExprContext {
-		//public ITerminalNode ROUNDDOWN() { return GetToken(mathParser.ROUNDDOWN, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public ROUNDDOWN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2590,11 +2294,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class IF_funContext : ExprContext {
-		//public ITerminalNode IF() { return GetToken(mathParser.IF, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public IF_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2603,11 +2305,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class JOIN_funContext : ExprContext {
-		//public ITerminalNode JOIN() { return GetToken(mathParser.JOIN, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public JOIN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2616,11 +2316,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class FIND_funContext : ExprContext {
-		//public ITerminalNode FIND() { return GetToken(mathParser.FIND, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public FIND_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2629,11 +2327,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class SUBSTITUTE_funContext : ExprContext {
-		//public ITerminalNode SUBSTITUTE() { return GetToken(mathParser.SUBSTITUTE, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SUBSTITUTE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2642,11 +2338,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class REPT_funContext : ExprContext {
-		//public ITerminalNode REPT() { return GetToken(mathParser.REPT, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public REPT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2655,7 +2349,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class ASIN_funContext : ExprContext {
-		//public ITerminalNode ASIN() { return GetToken(mathParser.ASIN, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2671,7 +2364,6 @@ partial class mathParser : Parser {
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public MulDiv_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2680,11 +2372,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class REMOVESTART_funContext : ExprContext {
-		//public ITerminalNode REMOVESTART() { return GetToken(mathParser.REMOVESTART, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public REMOVESTART_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2693,7 +2383,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class T_funContext : ExprContext {
-		//public ITerminalNode T() { return GetToken(mathParser.T, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2705,11 +2394,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class WEEKDAY_funContext : ExprContext {
-		//public ITerminalNode WEEKDAY() { return GetToken(mathParser.WEEKDAY, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public WEEKDAY_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2718,11 +2405,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class BIN2OCT_funContext : ExprContext {
-		//public ITerminalNode BIN2OCT() { return GetToken(mathParser.BIN2OCT, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public BIN2OCT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2731,11 +2416,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class BASE64TOTEXT_funContext : ExprContext {
-		//public ITerminalNode BASE64TOTEXT() { return GetToken(mathParser.BASE64TOTEXT, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public BASE64TOTEXT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2744,11 +2427,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class TDIST_funContext : ExprContext {
-		//public ITerminalNode TDIST() { return GetToken(mathParser.TDIST, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public TDIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2757,7 +2438,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class DATEVALUE_funContext : ExprContext {
-		//public ITerminalNode DATEVALUE() { return GetToken(mathParser.DATEVALUE, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2769,11 +2449,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class STARTSWITH_funContext : ExprContext {
-		//public ITerminalNode STARTSWITH() { return GetToken(mathParser.STARTSWITH, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public STARTSWITH_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2782,7 +2460,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class EVEN_funContext : ExprContext {
-		//public ITerminalNode EVEN() { return GetToken(mathParser.EVEN, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2794,11 +2471,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class LOGNORMDIST_funContext : ExprContext {
-		//public ITerminalNode LOGNORMDIST() { return GetToken(mathParser.LOGNORMDIST, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public LOGNORMDIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2807,7 +2482,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class ISNULLOREMPTY_funContext : ExprContext {
-		//public ITerminalNode ISNULLOREMPTY() { return GetToken(mathParser.ISNULLOREMPTY, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2819,7 +2493,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class TRUE_funContext : ExprContext {
-		//public ITerminalNode TRUE() { return GetToken(mathParser.TRUE, 0); }
 		public TRUE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2828,7 +2501,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class FISHERINV_funContext : ExprContext {
-		//public ITerminalNode FISHERINV() { return GetToken(mathParser.FISHERINV, 0); }
 		public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2840,11 +2512,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class SHA1_funContext : ExprContext {
-		//public ITerminalNode SHA1() { return GetToken(mathParser.SHA1, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SHA1_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2853,11 +2523,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class TIME_funContext : ExprContext {
-		//public ITerminalNode TIME() { return GetToken(mathParser.TIME, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public TIME_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2866,11 +2534,9 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class ATAN2_funContext : ExprContext {
-		//public ITerminalNode ATAN2() { return GetToken(mathParser.ATAN2, 0); }
 		public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		//public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public ATAN2_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -2879,7 +2545,6 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class RAND_funContext : ExprContext {
-		//public ITerminalNode RAND() { return GetToken(mathParser.RAND, 0); }
 		public RAND_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
@@ -8167,210 +7832,6 @@ partial class mathParser : Parser {
 	}
 
 	public partial class Parameter2Context : ParserRuleContext {
-		//public ITerminalNode E() { return GetToken(mathParser.E, 0); }
-		//public ITerminalNode IF() { return GetToken(mathParser.IF, 0); }
-		//public ITerminalNode IFERROR() { return GetToken(mathParser.IFERROR, 0); }
-		//public ITerminalNode ISNUMBER() { return GetToken(mathParser.ISNUMBER, 0); }
-		//public ITerminalNode ISTEXT() { return GetToken(mathParser.ISTEXT, 0); }
-		//public ITerminalNode ISERROR() { return GetToken(mathParser.ISERROR, 0); }
-		//public ITerminalNode ISNONTEXT() { return GetToken(mathParser.ISNONTEXT, 0); }
-		//public ITerminalNode ISLOGICAL() { return GetToken(mathParser.ISLOGICAL, 0); }
-		//public ITerminalNode ISEVEN() { return GetToken(mathParser.ISEVEN, 0); }
-		//public ITerminalNode ISODD() { return GetToken(mathParser.ISODD, 0); }
-		//public ITerminalNode AND() { return GetToken(mathParser.AND, 0); }
-		//public ITerminalNode OR() { return GetToken(mathParser.OR, 0); }
-		//public ITerminalNode NOT() { return GetToken(mathParser.NOT, 0); }
-		//public ITerminalNode TRUE() { return GetToken(mathParser.TRUE, 0); }
-		//public ITerminalNode FALSE() { return GetToken(mathParser.FALSE, 0); }
-		//public ITerminalNode PI() { return GetToken(mathParser.PI, 0); }
-		//public ITerminalNode DEC2BIN() { return GetToken(mathParser.DEC2BIN, 0); }
-		//public ITerminalNode DEC2HEX() { return GetToken(mathParser.DEC2HEX, 0); }
-		//public ITerminalNode DEC2OCT() { return GetToken(mathParser.DEC2OCT, 0); }
-		//public ITerminalNode HEX2BIN() { return GetToken(mathParser.HEX2BIN, 0); }
-		//public ITerminalNode HEX2DEC() { return GetToken(mathParser.HEX2DEC, 0); }
-		//public ITerminalNode HEX2OCT() { return GetToken(mathParser.HEX2OCT, 0); }
-		//public ITerminalNode OCT2BIN() { return GetToken(mathParser.OCT2BIN, 0); }
-		//public ITerminalNode OCT2DEC() { return GetToken(mathParser.OCT2DEC, 0); }
-		//public ITerminalNode OCT2HEX() { return GetToken(mathParser.OCT2HEX, 0); }
-		//public ITerminalNode BIN2OCT() { return GetToken(mathParser.BIN2OCT, 0); }
-		//public ITerminalNode BIN2DEC() { return GetToken(mathParser.BIN2DEC, 0); }
-		//public ITerminalNode BIN2HEX() { return GetToken(mathParser.BIN2HEX, 0); }
-		//public ITerminalNode ABS() { return GetToken(mathParser.ABS, 0); }
-		//public ITerminalNode QUOTIENT() { return GetToken(mathParser.QUOTIENT, 0); }
-		//public ITerminalNode MOD() { return GetToken(mathParser.MOD, 0); }
-		//public ITerminalNode SIGN() { return GetToken(mathParser.SIGN, 0); }
-		//public ITerminalNode SQRT() { return GetToken(mathParser.SQRT, 0); }
-		//public ITerminalNode TRUNC() { return GetToken(mathParser.TRUNC, 0); }
-		//public ITerminalNode INT() { return GetToken(mathParser.INT, 0); }
-		//public ITerminalNode GCD() { return GetToken(mathParser.GCD, 0); }
-		//public ITerminalNode LCM() { return GetToken(mathParser.LCM, 0); }
-		//public ITerminalNode COMBIN() { return GetToken(mathParser.COMBIN, 0); }
-		//public ITerminalNode PERMUT() { return GetToken(mathParser.PERMUT, 0); }
-		//public ITerminalNode DEGREES() { return GetToken(mathParser.DEGREES, 0); }
-		//public ITerminalNode RADIANS() { return GetToken(mathParser.RADIANS, 0); }
-		//public ITerminalNode COS() { return GetToken(mathParser.COS, 0); }
-		//public ITerminalNode COSH() { return GetToken(mathParser.COSH, 0); }
-		//public ITerminalNode SIN() { return GetToken(mathParser.SIN, 0); }
-		//public ITerminalNode SINH() { return GetToken(mathParser.SINH, 0); }
-		//public ITerminalNode TAN() { return GetToken(mathParser.TAN, 0); }
-		//public ITerminalNode TANH() { return GetToken(mathParser.TANH, 0); }
-		//public ITerminalNode ACOS() { return GetToken(mathParser.ACOS, 0); }
-		//public ITerminalNode ACOSH() { return GetToken(mathParser.ACOSH, 0); }
-		//public ITerminalNode ASIN() { return GetToken(mathParser.ASIN, 0); }
-		//public ITerminalNode ASINH() { return GetToken(mathParser.ASINH, 0); }
-		//public ITerminalNode ATAN() { return GetToken(mathParser.ATAN, 0); }
-		//public ITerminalNode ATANH() { return GetToken(mathParser.ATANH, 0); }
-		//public ITerminalNode ATAN2() { return GetToken(mathParser.ATAN2, 0); }
-		//public ITerminalNode ROUND() { return GetToken(mathParser.ROUND, 0); }
-		//public ITerminalNode ROUNDDOWN() { return GetToken(mathParser.ROUNDDOWN, 0); }
-		//public ITerminalNode ROUNDUP() { return GetToken(mathParser.ROUNDUP, 0); }
-		//public ITerminalNode CEILING() { return GetToken(mathParser.CEILING, 0); }
-		//public ITerminalNode FLOOR() { return GetToken(mathParser.FLOOR, 0); }
-		//public ITerminalNode EVEN() { return GetToken(mathParser.EVEN, 0); }
-		//public ITerminalNode ODD() { return GetToken(mathParser.ODD, 0); }
-		//public ITerminalNode MROUND() { return GetToken(mathParser.MROUND, 0); }
-		//public ITerminalNode RAND() { return GetToken(mathParser.RAND, 0); }
-		//public ITerminalNode RANDBETWEEN() { return GetToken(mathParser.RANDBETWEEN, 0); }
-		//public ITerminalNode FACT() { return GetToken(mathParser.FACT, 0); }
-		//public ITerminalNode FACTDOUBLE() { return GetToken(mathParser.FACTDOUBLE, 0); }
-		//public ITerminalNode POWER() { return GetToken(mathParser.POWER, 0); }
-		//public ITerminalNode EXP() { return GetToken(mathParser.EXP, 0); }
-		//public ITerminalNode LN() { return GetToken(mathParser.LN, 0); }
-		//public ITerminalNode LOG() { return GetToken(mathParser.LOG, 0); }
-		//public ITerminalNode LOG10() { return GetToken(mathParser.LOG10, 0); }
-		//public ITerminalNode MULTINOMIAL() { return GetToken(mathParser.MULTINOMIAL, 0); }
-		//public ITerminalNode PRODUCT() { return GetToken(mathParser.PRODUCT, 0); }
-		//public ITerminalNode SQRTPI() { return GetToken(mathParser.SQRTPI, 0); }
-		//public ITerminalNode SUMSQ() { return GetToken(mathParser.SUMSQ, 0); }
-		//public ITerminalNode ASC() { return GetToken(mathParser.ASC, 0); }
-		//public ITerminalNode JIS() { return GetToken(mathParser.JIS, 0); }
-		//public ITerminalNode CHAR() { return GetToken(mathParser.CHAR, 0); }
-		//public ITerminalNode CLEAN() { return GetToken(mathParser.CLEAN, 0); }
-		//public ITerminalNode CODE() { return GetToken(mathParser.CODE, 0); }
-		//public ITerminalNode CONCATENATE() { return GetToken(mathParser.CONCATENATE, 0); }
-		//public ITerminalNode EXACT() { return GetToken(mathParser.EXACT, 0); }
-		//public ITerminalNode FIND() { return GetToken(mathParser.FIND, 0); }
-		//public ITerminalNode FIXED() { return GetToken(mathParser.FIXED, 0); }
-		//public ITerminalNode LEFT() { return GetToken(mathParser.LEFT, 0); }
-		//public ITerminalNode LEN() { return GetToken(mathParser.LEN, 0); }
-		//public ITerminalNode LOWER() { return GetToken(mathParser.LOWER, 0); }
-		//public ITerminalNode MID() { return GetToken(mathParser.MID, 0); }
-		//public ITerminalNode PROPER() { return GetToken(mathParser.PROPER, 0); }
-		//public ITerminalNode REPLACE() { return GetToken(mathParser.REPLACE, 0); }
-		//public ITerminalNode REPT() { return GetToken(mathParser.REPT, 0); }
-		//public ITerminalNode RIGHT() { return GetToken(mathParser.RIGHT, 0); }
-		//public ITerminalNode RMB() { return GetToken(mathParser.RMB, 0); }
-		//public ITerminalNode SEARCH() { return GetToken(mathParser.SEARCH, 0); }
-		//public ITerminalNode SUBSTITUTE() { return GetToken(mathParser.SUBSTITUTE, 0); }
-		//public ITerminalNode T() { return GetToken(mathParser.T, 0); }
-		//public ITerminalNode TEXT() { return GetToken(mathParser.TEXT, 0); }
-		//public ITerminalNode TRIM() { return GetToken(mathParser.TRIM, 0); }
-		//public ITerminalNode UPPER() { return GetToken(mathParser.UPPER, 0); }
-		//public ITerminalNode VALUE() { return GetToken(mathParser.VALUE, 0); }
-		//public ITerminalNode DATEVALUE() { return GetToken(mathParser.DATEVALUE, 0); }
-		//public ITerminalNode TIMEVALUE() { return GetToken(mathParser.TIMEVALUE, 0); }
-		//public ITerminalNode DATE() { return GetToken(mathParser.DATE, 0); }
-		//public ITerminalNode TIME() { return GetToken(mathParser.TIME, 0); }
-		//public ITerminalNode NOW() { return GetToken(mathParser.NOW, 0); }
-		//public ITerminalNode TODAY() { return GetToken(mathParser.TODAY, 0); }
-		//public ITerminalNode YEAR() { return GetToken(mathParser.YEAR, 0); }
-		//public ITerminalNode MONTH() { return GetToken(mathParser.MONTH, 0); }
-		//public ITerminalNode DAY() { return GetToken(mathParser.DAY, 0); }
-		//public ITerminalNode HOUR() { return GetToken(mathParser.HOUR, 0); }
-		//public ITerminalNode MINUTE() { return GetToken(mathParser.MINUTE, 0); }
-		//public ITerminalNode SECOND() { return GetToken(mathParser.SECOND, 0); }
-		//public ITerminalNode WEEKDAY() { return GetToken(mathParser.WEEKDAY, 0); }
-		//public ITerminalNode DATEDIF() { return GetToken(mathParser.DATEDIF, 0); }
-		//public ITerminalNode DAYS360() { return GetToken(mathParser.DAYS360, 0); }
-		//public ITerminalNode EDATE() { return GetToken(mathParser.EDATE, 0); }
-		//public ITerminalNode EOMONTH() { return GetToken(mathParser.EOMONTH, 0); }
-		//public ITerminalNode NETWORKDAYS() { return GetToken(mathParser.NETWORKDAYS, 0); }
-		//public ITerminalNode WORKDAY() { return GetToken(mathParser.WORKDAY, 0); }
-		//public ITerminalNode WEEKNUM() { return GetToken(mathParser.WEEKNUM, 0); }
-		//public ITerminalNode MAX() { return GetToken(mathParser.MAX, 0); }
-		//public ITerminalNode MEDIAN() { return GetToken(mathParser.MEDIAN, 0); }
-		//public ITerminalNode MIN() { return GetToken(mathParser.MIN, 0); }
-		//public ITerminalNode QUARTILE() { return GetToken(mathParser.QUARTILE, 0); }
-		//public ITerminalNode MODE() { return GetToken(mathParser.MODE, 0); }
-		//public ITerminalNode LARGE() { return GetToken(mathParser.LARGE, 0); }
-		//public ITerminalNode SMALL() { return GetToken(mathParser.SMALL, 0); }
-		//public ITerminalNode PERCENTILE() { return GetToken(mathParser.PERCENTILE, 0); }
-		//public ITerminalNode PERCENTRANK() { return GetToken(mathParser.PERCENTRANK, 0); }
-		//public ITerminalNode AVERAGE() { return GetToken(mathParser.AVERAGE, 0); }
-		//public ITerminalNode AVERAGEIF() { return GetToken(mathParser.AVERAGEIF, 0); }
-		//public ITerminalNode GEOMEAN() { return GetToken(mathParser.GEOMEAN, 0); }
-		//public ITerminalNode HARMEAN() { return GetToken(mathParser.HARMEAN, 0); }
-		//public ITerminalNode COUNT() { return GetToken(mathParser.COUNT, 0); }
-		//public ITerminalNode COUNTIF() { return GetToken(mathParser.COUNTIF, 0); }
-		//public ITerminalNode SUM() { return GetToken(mathParser.SUM, 0); }
-		//public ITerminalNode SUMIF() { return GetToken(mathParser.SUMIF, 0); }
-		//public ITerminalNode AVEDEV() { return GetToken(mathParser.AVEDEV, 0); }
-		//public ITerminalNode STDEV() { return GetToken(mathParser.STDEV, 0); }
-		//public ITerminalNode STDEVP() { return GetToken(mathParser.STDEVP, 0); }
-		//public ITerminalNode DEVSQ() { return GetToken(mathParser.DEVSQ, 0); }
-		//public ITerminalNode VAR() { return GetToken(mathParser.VAR, 0); }
-		//public ITerminalNode VARP() { return GetToken(mathParser.VARP, 0); }
-		//public ITerminalNode NORMDIST() { return GetToken(mathParser.NORMDIST, 0); }
-		//public ITerminalNode NORMINV() { return GetToken(mathParser.NORMINV, 0); }
-		//public ITerminalNode NORMSDIST() { return GetToken(mathParser.NORMSDIST, 0); }
-		//public ITerminalNode NORMSINV() { return GetToken(mathParser.NORMSINV, 0); }
-		//public ITerminalNode BETADIST() { return GetToken(mathParser.BETADIST, 0); }
-		//public ITerminalNode BETAINV() { return GetToken(mathParser.BETAINV, 0); }
-		//public ITerminalNode BINOMDIST() { return GetToken(mathParser.BINOMDIST, 0); }
-		//public ITerminalNode EXPONDIST() { return GetToken(mathParser.EXPONDIST, 0); }
-		//public ITerminalNode FDIST() { return GetToken(mathParser.FDIST, 0); }
-		//public ITerminalNode FINV() { return GetToken(mathParser.FINV, 0); }
-		//public ITerminalNode FISHER() { return GetToken(mathParser.FISHER, 0); }
-		//public ITerminalNode FISHERINV() { return GetToken(mathParser.FISHERINV, 0); }
-		//public ITerminalNode GAMMADIST() { return GetToken(mathParser.GAMMADIST, 0); }
-		//public ITerminalNode GAMMAINV() { return GetToken(mathParser.GAMMAINV, 0); }
-		//public ITerminalNode GAMMALN() { return GetToken(mathParser.GAMMALN, 0); }
-		//public ITerminalNode HYPGEOMDIST() { return GetToken(mathParser.HYPGEOMDIST, 0); }
-		//public ITerminalNode LOGINV() { return GetToken(mathParser.LOGINV, 0); }
-		//public ITerminalNode LOGNORMDIST() { return GetToken(mathParser.LOGNORMDIST, 0); }
-		//public ITerminalNode NEGBINOMDIST() { return GetToken(mathParser.NEGBINOMDIST, 0); }
-		//public ITerminalNode POISSON() { return GetToken(mathParser.POISSON, 0); }
-		//public ITerminalNode TDIST() { return GetToken(mathParser.TDIST, 0); }
-		//public ITerminalNode TINV() { return GetToken(mathParser.TINV, 0); }
-		//public ITerminalNode WEIBULL() { return GetToken(mathParser.WEIBULL, 0); }
-		//public ITerminalNode URLENCODE() { return GetToken(mathParser.URLENCODE, 0); }
-		//public ITerminalNode URLDECODE() { return GetToken(mathParser.URLDECODE, 0); }
-		//public ITerminalNode HTMLENCODE() { return GetToken(mathParser.HTMLENCODE, 0); }
-		//public ITerminalNode HTMLDECODE() { return GetToken(mathParser.HTMLDECODE, 0); }
-		//public ITerminalNode BASE64TOTEXT() { return GetToken(mathParser.BASE64TOTEXT, 0); }
-		//public ITerminalNode BASE64URLTOTEXT() { return GetToken(mathParser.BASE64URLTOTEXT, 0); }
-		//public ITerminalNode TEXTTOBASE64() { return GetToken(mathParser.TEXTTOBASE64, 0); }
-		//public ITerminalNode TEXTTOBASE64URL() { return GetToken(mathParser.TEXTTOBASE64URL, 0); }
-		//public ITerminalNode REGEX() { return GetToken(mathParser.REGEX, 0); }
-		//public ITerminalNode REGEXREPALCE() { return GetToken(mathParser.REGEXREPALCE, 0); }
-		//public ITerminalNode ISREGEX() { return GetToken(mathParser.ISREGEX, 0); }
-		//public ITerminalNode GUID() { return GetToken(mathParser.GUID, 0); }
-		//public ITerminalNode MD5() { return GetToken(mathParser.MD5, 0); }
-		//public ITerminalNode SHA1() { return GetToken(mathParser.SHA1, 0); }
-		//public ITerminalNode SHA256() { return GetToken(mathParser.SHA256, 0); }
-		//public ITerminalNode SHA512() { return GetToken(mathParser.SHA512, 0); }
-		//public ITerminalNode CRC8() { return GetToken(mathParser.CRC8, 0); }
-		//public ITerminalNode CRC16() { return GetToken(mathParser.CRC16, 0); }
-		//public ITerminalNode CRC32() { return GetToken(mathParser.CRC32, 0); }
-		//public ITerminalNode HMACMD5() { return GetToken(mathParser.HMACMD5, 0); }
-		//public ITerminalNode HMACSHA1() { return GetToken(mathParser.HMACSHA1, 0); }
-		//public ITerminalNode HMACSHA256() { return GetToken(mathParser.HMACSHA256, 0); }
-		//public ITerminalNode HMACSHA512() { return GetToken(mathParser.HMACSHA512, 0); }
-		//public ITerminalNode TRIMSTART() { return GetToken(mathParser.TRIMSTART, 0); }
-		//public ITerminalNode TRIMEND() { return GetToken(mathParser.TRIMEND, 0); }
-		//public ITerminalNode INDEXOF() { return GetToken(mathParser.INDEXOF, 0); }
-		//public ITerminalNode LASTINDEXOF() { return GetToken(mathParser.LASTINDEXOF, 0); }
-		//public ITerminalNode SPLIT() { return GetToken(mathParser.SPLIT, 0); }
-		//public ITerminalNode JOIN() { return GetToken(mathParser.JOIN, 0); }
-		//public ITerminalNode SUBSTRING() { return GetToken(mathParser.SUBSTRING, 0); }
-		//public ITerminalNode STARTSWITH() { return GetToken(mathParser.STARTSWITH, 0); }
-		//public ITerminalNode ENDSWITH() { return GetToken(mathParser.ENDSWITH, 0); }
-		//public ITerminalNode ISNULLOREMPTY() { return GetToken(mathParser.ISNULLOREMPTY, 0); }
-		//public ITerminalNode ISNULLORWHITESPACE() { return GetToken(mathParser.ISNULLORWHITESPACE, 0); }
-		//public ITerminalNode REMOVESTART() { return GetToken(mathParser.REMOVESTART, 0); }
-		//public ITerminalNode REMOVEEND() { return GetToken(mathParser.REMOVEEND, 0); }
-		//public ITerminalNode JSON() { return GetToken(mathParser.JSON, 0); }
-		//public ITerminalNode PARAMETER() { return GetToken(mathParser.PARAMETER, 0); }
 		public Parameter2Context(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
