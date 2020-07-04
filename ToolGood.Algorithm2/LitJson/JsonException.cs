@@ -5,10 +5,6 @@ namespace ToolGood.Algorithm.LitJson
 {
     class JsonException : ApplicationException
     {
-        //public JsonException() : base()
-        //{
-        //}
-
 
         internal JsonException(ParserToken token,
                                 Exception inner_exception) :

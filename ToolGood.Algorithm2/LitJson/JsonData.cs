@@ -139,38 +139,6 @@ namespace ToolGood.Algorithm.LitJson
         #endregion
 
 
-
-        #region IJsonWrapper Properties
-        bool IJsonWrapper.IsArray {
-            get { return IsArray; }
-        }
-
-        bool IJsonWrapper.IsBoolean {
-            get { return IsBoolean; }
-        }
-
-        bool IJsonWrapper.IsDouble {
-            get { return IsDouble; }
-        }
-
-        bool IJsonWrapper.IsInt {
-            get { return IsInt; }
-        }
-
-        bool IJsonWrapper.IsLong {
-            get { return IsLong; }
-        }
-
-        bool IJsonWrapper.IsObject {
-            get { return IsObject; }
-        }
-
-        bool IJsonWrapper.IsString {
-            get { return IsString; }
-        }
-        #endregion
-
-
         #region IList Properties
         bool IList.IsFixedSize {
             get {
@@ -657,11 +625,6 @@ namespace ToolGood.Algorithm.LitJson
 
             return false;
         }
-
-        //public JsonType GetJsonType()
-        //{
-        //    return type;
-        //}
 
         public void SetJsonType(JsonType type)
         {

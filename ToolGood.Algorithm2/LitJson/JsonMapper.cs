@@ -101,8 +101,6 @@ namespace ToolGood.Algorithm.LitJson
         private static readonly IDictionary<Type, ObjectMetadata> object_metadata;
         private static readonly object object_metadata_lock = new Object();
 
-        //private static readonly IDictionary<Type,
-        //        IList<PropertyMetadata>> type_properties;
 
         #endregion
 
