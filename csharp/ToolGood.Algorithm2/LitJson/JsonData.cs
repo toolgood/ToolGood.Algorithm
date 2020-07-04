@@ -7,7 +7,7 @@ using System.IO;
 
 namespace ToolGood.Algorithm.LitJson
 {
-    class JsonData : IJsonWrapper, IEquatable<JsonData>
+    class JsonData : IJsonWrapper, IOrderedDictionary, IEquatable<JsonData>
     {
         #region Fields
         private IList<JsonData> inst_array;
