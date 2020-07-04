@@ -7,7 +7,7 @@ using System.IO;
 
 namespace ToolGood.Algorithm.LitJson
 {
-    class JsonData : IJsonWrapper, IOrderedDictionary, IEquatable<JsonData>
+    class JsonData : IJsonWrapper, IDictionary, IEquatable<JsonData>
     {
         #region Fields
         private IList<JsonData> inst_array;
@@ -157,31 +157,6 @@ namespace ToolGood.Algorithm.LitJson
             }
         }
         #endregion
-
-
-        #region IOrderedDictionary Indexer
-        object IOrderedDictionary.this[int idx] {
-            get {
-                EnsureDictionary();
-                return object_list[idx].Value;
-            }
-
-            set {
-                EnsureDictionary();
-                JsonData data = ToJsonData(value);
-
-                KeyValuePair<string, JsonData> old_entry = object_list[idx];
-
-                inst_object[old_entry.Key] = data;
-
-                KeyValuePair<string, JsonData> entry =
-                    new KeyValuePair<string, JsonData>(old_entry.Key, data);
-
-                object_list[idx] = entry;
-            }
-        }
-        #endregion
-
 
         #region IList Indexer
         object IList.this[int index] {
@@ -442,38 +417,6 @@ namespace ToolGood.Algorithm.LitJson
         {
             EnsureList().RemoveAt(index);
             //json = null;
-        }
-        #endregion
-
-
-        #region IOrderedDictionary Methods
-        IDictionaryEnumerator IOrderedDictionary.GetEnumerator()
-        {
-            EnsureDictionary();
-
-            return new OrderedDictionaryEnumerator(
-                object_list.GetEnumerator());
-        }
-
-        void IOrderedDictionary.Insert(int idx, object key, object value)
-        {
-            string property = (string)key;
-            JsonData data = ToJsonData(value);
-
-            this[property] = data;
-
-            KeyValuePair<string, JsonData> entry =
-                new KeyValuePair<string, JsonData>(property, data);
-
-            object_list.Insert(idx, entry);
-        }
-
-        void IOrderedDictionary.RemoveAt(int idx)
-        {
-            EnsureDictionary();
-
-            inst_object.Remove(object_list[idx].Key);
-            object_list.RemoveAt(idx);
         }
         #endregion
 
