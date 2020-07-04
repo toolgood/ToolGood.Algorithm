@@ -45,18 +45,12 @@ namespace ToolGood.Algorithm.LitJson
         private bool read_started;
         private TextReader reader;
         private readonly bool reader_is_owned;
-        private bool skip_non_members;
         private object token_value;
         private JsonToken token;
         #endregion
 
 
         #region Public Properties
-
-        public bool SkipNonMembers {
-            get { return skip_non_members; }
-            set { skip_non_members = value; }
-        }
 
         public JsonToken Token {
             get { return token; }
@@ -101,8 +95,6 @@ namespace ToolGood.Algorithm.LitJson
 
             end_of_input = false;
             end_of_json = false;
-
-            skip_non_members = true;
 
             this.reader = reader;
             reader_is_owned = owned;
