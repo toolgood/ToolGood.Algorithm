@@ -58,20 +58,6 @@ namespace ToolGood.Algorithm.LitJson
             get { return type == JsonType.String; }
         }
 
-        public ICollection<string> Keys {
-            get { EnsureDictionary(); return inst_object.Keys; }
-        }
-
-        /// <summary>
-        /// Determines whether the json contains an element that has the specified key.
-        /// </summary>
-        /// <param name="key">The key to locate in the json.</param>
-        /// <returns>true if the json contains an element that has the specified key; otherwise, false.</returns>
-        public Boolean ContainsKey(String key)
-        {
-            EnsureDictionary();
-            return this.inst_object.Keys.Contains(key);
-        }
         #endregion
 
 
@@ -557,19 +543,6 @@ namespace ToolGood.Algorithm.LitJson
             //json = null;
 
             return EnsureList().Add(data);
-        }
-
-        public void Clear()
-        {
-            if (IsObject) {
-                ((IDictionary)this).Clear();
-                return;
-            }
-
-            if (IsArray) {
-                ((IList)this).Clear();
-                return;
-            }
         }
 
         public bool Equals(JsonData x)
