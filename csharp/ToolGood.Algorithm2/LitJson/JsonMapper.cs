@@ -17,8 +17,7 @@ namespace ToolGood.Algorithm.LitJson
         #region Fields
         private static readonly IFormatProvider datetime_format;
 
-        private static readonly IDictionary<Type,
-                IDictionary<Type, ImporterFunc>> base_importers_table;
+        private static readonly IDictionary<Type, IDictionary<Type, ImporterFunc>> base_importers_table;
 
         #endregion
 
@@ -28,8 +27,7 @@ namespace ToolGood.Algorithm.LitJson
         {
             datetime_format = DateTimeFormatInfo.InvariantInfo;
 
-            base_importers_table = new Dictionary<Type,
-                                 IDictionary<Type, ImporterFunc>>();
+            base_importers_table = new Dictionary<Type, IDictionary<Type, ImporterFunc>>();
 
             RegisterBaseImporters();
         }
@@ -37,9 +35,8 @@ namespace ToolGood.Algorithm.LitJson
 
 
         #region Private Methods
- 
-        private static IJsonWrapper ReadValue(WrapperFactory factory,
-                                               JsonReader reader)
+
+        private static IJsonWrapper ReadValue(WrapperFactory factory, JsonReader reader)
         {
             reader.Read();
 
@@ -95,8 +92,7 @@ namespace ToolGood.Algorithm.LitJson
 
                     string property = (string)reader.Value;
 
-                    ((IDictionary)instance)[property] = ReadValue(
-                        factory, reader);
+                    ((IDictionary)instance)[property] = ReadValue(factory, reader);
                 }
 
             }
@@ -111,87 +107,73 @@ namespace ToolGood.Algorithm.LitJson
             importer = delegate (object input) {
                 return Convert.ToByte((int)input);
             };
-            RegisterImporter(base_importers_table, typeof(int),
-                              typeof(byte), importer);
+            RegisterImporter(base_importers_table, typeof(int), typeof(byte), importer);
 
             importer = delegate (object input) {
                 return Convert.ToUInt64((int)input);
             };
-            RegisterImporter(base_importers_table, typeof(int),
-                              typeof(ulong), importer);
+            RegisterImporter(base_importers_table, typeof(int), typeof(ulong), importer);
 
             importer = delegate (object input) {
                 return Convert.ToInt64((int)input);
             };
-            RegisterImporter(base_importers_table, typeof(int),
-                              typeof(long), importer);
+            RegisterImporter(base_importers_table, typeof(int), typeof(long), importer);
 
             importer = delegate (object input) {
                 return Convert.ToSByte((int)input);
             };
-            RegisterImporter(base_importers_table, typeof(int),
-                              typeof(sbyte), importer);
+            RegisterImporter(base_importers_table, typeof(int), typeof(sbyte), importer);
 
             importer = delegate (object input) {
                 return Convert.ToInt16((int)input);
             };
-            RegisterImporter(base_importers_table, typeof(int),
-                              typeof(short), importer);
+            RegisterImporter(base_importers_table, typeof(int), typeof(short), importer);
 
             importer = delegate (object input) {
                 return Convert.ToUInt16((int)input);
             };
-            RegisterImporter(base_importers_table, typeof(int),
-                              typeof(ushort), importer);
+            RegisterImporter(base_importers_table, typeof(int), typeof(ushort), importer);
 
             importer = delegate (object input) {
                 return Convert.ToUInt32((int)input);
             };
-            RegisterImporter(base_importers_table, typeof(int),
-                              typeof(uint), importer);
+            RegisterImporter(base_importers_table, typeof(int), typeof(uint), importer);
 
             importer = delegate (object input) {
                 return Convert.ToSingle((int)input);
             };
-            RegisterImporter(base_importers_table, typeof(int),
-                              typeof(float), importer);
+            RegisterImporter(base_importers_table, typeof(int), typeof(float), importer);
 
             importer = delegate (object input) {
                 return Convert.ToDouble((int)input);
             };
-            RegisterImporter(base_importers_table, typeof(int),
-                              typeof(double), importer);
+            RegisterImporter(base_importers_table, typeof(int), typeof(double), importer);
 
             importer = delegate (object input) {
                 return Convert.ToDecimal((double)input);
             };
-            RegisterImporter(base_importers_table, typeof(double),
-                              typeof(decimal), importer);
+            RegisterImporter(base_importers_table, typeof(double), typeof(decimal), importer);
 
 
             importer = delegate (object input) {
                 return Convert.ToUInt32((long)input);
             };
-            RegisterImporter(base_importers_table, typeof(long),
-                              typeof(uint), importer);
+            RegisterImporter(base_importers_table, typeof(long), typeof(uint), importer);
 
             importer = delegate (object input) {
                 return Convert.ToChar((string)input);
             };
-            RegisterImporter(base_importers_table, typeof(string),
-                              typeof(char), importer);
+            RegisterImporter(base_importers_table, typeof(string), typeof(char), importer);
 
             importer = delegate (object input) {
                 return Convert.ToDateTime((string)input, datetime_format);
             };
-            RegisterImporter(base_importers_table, typeof(string),
-                              typeof(DateTime), importer);
+            RegisterImporter(base_importers_table, typeof(string), typeof(DateTime), importer);
 
             importer = delegate (object input) {
                 return DateTimeOffset.Parse((string)input, datetime_format);
             };
-            RegisterImporter(base_importers_table, typeof(string),
-                typeof(DateTimeOffset), importer);
+            RegisterImporter(base_importers_table, typeof(string), typeof(DateTimeOffset), importer);
         }
 
         private static void RegisterImporter(
@@ -210,13 +192,11 @@ namespace ToolGood.Algorithm.LitJson
 
         public static JsonData ToObject(string json)
         {
-            return (JsonData)ToWrapper(
-                delegate { return new JsonData(); }, json);
+            return (JsonData)ToWrapper(delegate { return new JsonData(); }, json);
         }
- 
 
-        public static IJsonWrapper ToWrapper(WrapperFactory factory,
-                                              string json)
+
+        public static IJsonWrapper ToWrapper(WrapperFactory factory, string json)
         {
             JsonReader reader = new JsonReader(json);
 

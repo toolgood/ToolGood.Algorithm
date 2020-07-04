@@ -7,7 +7,7 @@ using System.IO;
 
 namespace ToolGood.Algorithm.LitJson
 {
-    class JsonData : IJsonWrapper, IList, IDictionary, IEquatable<JsonData>
+    class JsonData : IJsonWrapper, IList, IDictionary
     {
         #region Fields
         private IList<JsonData> inst_array;
@@ -388,7 +388,6 @@ namespace ToolGood.Algorithm.LitJson
         void IList.Clear()
         {
             EnsureList().Clear();
-            //json = null;
         }
 
         bool IList.Contains(object value)
@@ -404,19 +403,16 @@ namespace ToolGood.Algorithm.LitJson
         void IList.Insert(int index, object value)
         {
             EnsureList().Insert(index, value);
-            //json = null;
         }
 
         void IList.Remove(object value)
         {
             EnsureList().Remove(value);
-            //json = null;
         }
 
         void IList.RemoveAt(int index)
         {
             EnsureList().RemoveAt(index);
-            //json = null;
         }
         #endregion
 
@@ -456,8 +452,7 @@ namespace ToolGood.Algorithm.LitJson
                 return (IList)inst_array;
 
             if (type != JsonType.None)
-                throw new InvalidOperationException(
-                    "Instance of JsonData is not a list");
+                throw new InvalidOperationException("Instance of JsonData is not a list");
 
             type = JsonType.Array;
             inst_array = new List<JsonData>();
@@ -483,63 +478,7 @@ namespace ToolGood.Algorithm.LitJson
         {
             JsonData data = ToJsonData(value);
 
-            //json = null;
-
             return EnsureList().Add(data);
-        }
-
-        public bool Equals(JsonData x)
-        {
-            if (x == null)
-                return false;
-
-            if (x.type != this.type) {
-                // further check to see if this is a long to int comparison
-                if ((x.type != JsonType.Int && x.type != JsonType.Long)
-                    || (this.type != JsonType.Int && this.type != JsonType.Long)) {
-                    return false;
-                }
-            }
-
-            switch (this.type) {
-                case JsonType.None:
-                    return true;
-
-                case JsonType.Object:
-                    return this.inst_object.Equals(x.inst_object);
-
-                case JsonType.Array:
-                    return this.inst_array.Equals(x.inst_array);
-
-                case JsonType.String:
-                    return this.inst_string.Equals(x.inst_string);
-
-                case JsonType.Int: {
-                    if (x.IsLong) {
-                        if (x.inst_long < Int32.MinValue || x.inst_long > Int32.MaxValue)
-                            return false;
-                        return this.inst_int.Equals((int)x.inst_long);
-                    }
-                    return this.inst_int.Equals(x.inst_int);
-                }
-
-                case JsonType.Long: {
-                    if (x.IsInt) {
-                        if (this.inst_long < Int32.MinValue || this.inst_long > Int32.MaxValue)
-                            return false;
-                        return x.inst_int.Equals((int)this.inst_long);
-                    }
-                    return this.inst_long.Equals(x.inst_long);
-                }
-
-                case JsonType.Double:
-                    return this.inst_double.Equals(x.inst_double);
-
-                case JsonType.Boolean:
-                    return this.inst_boolean.Equals(x.inst_boolean);
-            }
-
-            return false;
         }
 
         public void SetJsonType(JsonType type)

@@ -211,8 +211,7 @@ namespace ToolGood.Algorithm.LitJson
             return parse_table;
         }
 
-        private static void TableAddCol(IDictionary<int, IDictionary<int, int[]>> parse_table, ParserToken row, int col,
-                                         params int[] symbols)
+        private static void TableAddCol(IDictionary<int, IDictionary<int, int[]>> parse_table, ParserToken row, int col, params int[] symbols)
         {
             parse_table[(int)row].Add(col, symbols);
         }
@@ -352,9 +351,9 @@ namespace ToolGood.Algorithm.LitJson
             end_of_input = true;
             end_of_json = true;
 
-            if (reader_is_owned) {
-                using (reader) { }
-            }
+            //if (reader_is_owned) {
+            //    using (reader) { }
+            //}
 
             reader = null;
         }
@@ -402,8 +401,7 @@ namespace ToolGood.Algorithm.LitJson
                 if (current_symbol == current_input) {
                     if (!ReadToken()) {
                         if (automaton_stack.Peek() != (int)ParserToken.End)
-                            throw new JsonException(
-                                "Input doesn't evaluate to proper JSON text");
+                            throw new JsonException("Input doesn't evaluate to proper JSON text");
 
                         if (parser_return)
                             return true;
@@ -416,8 +414,7 @@ namespace ToolGood.Algorithm.LitJson
 
                 try {
 
-                    entry_symbols =
-                        parse_table[current_symbol][current_input];
+                    entry_symbols = parse_table[current_symbol][current_input];
 
                 } catch (KeyNotFoundException e) {
                     throw new JsonException((ParserToken)current_input, e);
