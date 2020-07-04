@@ -539,47 +539,24 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitGCD_fun([NotNull] mathParser.GCD_funContext context)
         {
-            var args = new List<Operand>(); var index = 1;
+            var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            List<int> list = new List<int>();
-            foreach (var item in args) {
-                if (item.Type == OperandType.ARRARY) {
-                    foreach (var it in item.ArrayValue) {
-                        var a = it.ToNumber($"Function GCD parameter {index} is error!");
-                        if (a.IsError) { return a; }
-                        list.Add(a.IntValue);
-                    }
-                    index++;
-                } else {
-                    var a = item.ToNumber($"Function GCD parameter {index++} is error!");
-                    if (a.IsError) { return a; }
-                    list.Add(a.IntValue);
-                }
-            }
+            List<double> list = new List<double>();
+            var o = F_base_GetList(args, list);
+            if (o == false) { return Operand.Error("Function GCD parameter is error!"); }
+
             return Operand.Create(F_base_gcd(list));
         }
         public Operand VisitLCM_fun([NotNull] mathParser.LCM_funContext context)
         {
-            var args = new List<Operand>(); var index = 1;
+            var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            List<int> list = new List<int>();
-            foreach (var item in args) {
-                if (item.Type == OperandType.ARRARY) {
-                    foreach (var it in item.ArrayValue) {
-                        var a = it.ToNumber($"Function LCM parameter {index} is error!");
-                        if (a.IsError) { return a; }
-                        list.Add(a.IntValue);
-                    }
-                    index++;
-                } else {
-                    var a = item.ToNumber($"Function GCD parameter {index++} is error!");
-                    if (a.IsError) { return a; }
-                    list.Add(a.IntValue);
-                }
+            List<double> list = new List<double>();
+            var o = F_base_GetList(args, list);
+            if (o == false) { return Operand.Error("Function GCD parameter is error!"); }
 
-            }
             return Operand.Create(F_base_lgm(list));
         }
         public Operand VisitCOMBIN_fun([NotNull] mathParser.COMBIN_funContext context)
@@ -618,12 +595,12 @@ namespace ToolGood.Algorithm
             return Operand.Create(sum);
         }
 
-        private int F_base_gcd(List<int> list)
+        private int F_base_gcd(List<double> list)
         {
             list = list.OrderBy(q => q).ToList();
-            var g = F_base_gcd(list[1], list[0]);
+            var g = F_base_gcd((int)list[1], (int)list[0]);
             for (int i = 2; i < list.Count; i++) {
-                g = F_base_gcd(list[i], g);
+                g = F_base_gcd((int)list[i], g);
             }
             return g;
         }
@@ -633,14 +610,14 @@ namespace ToolGood.Algorithm
             if (b == 0) { return a; }
             return F_base_gcd(b, a % b);
         }
-        private int F_base_lgm(List<int> list)
+        private int F_base_lgm(List<double> list)
         {
             list = list.OrderBy(q => q).ToList();
             list.RemoveAll(q => q <= 1);
 
-            var a = list[0];
+            int a = (int)list[0];
             for (int i = 1; i < list.Count; i++) {
-                var b = list[i];
+                int b = (int)list[i];
                 int g = b > a ? F_base_gcd(b, a) : F_base_gcd(a, b);
                 a = a / g * b;
             }
@@ -1212,58 +1189,37 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitMULTINOMIAL_fun([NotNull] mathParser.MULTINOMIAL_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) {
-                var a = this.Visit(item);
-                args.Add(a);
-            }
+            var args = new List<Operand>();  
+            foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            List<double> list = new List<double>();
+            var o = F_base_GetList(args, list);
+            if (o == false) { return Operand.Error("Function MULTINOMIAL parameter is error!"); }
 
             int sum = 0;
             int n = 1;
-            var index = 1;
-            foreach (var item in args) {
-                if (item.Type == OperandType.ARRARY) {
-                    foreach (var it in item.ArrayValue) {
-                        var a = it.ToNumber($"Function MULTINOMIAL parameter {index} is error!");
-                        if (a.IsError) { return a; }
-                        n *= F_base_Factorial(a.IntValue);
-                        sum += a.IntValue;
-                    }
-                    index++;
-                } else {
-                    var a = item.ToNumber($"Function MULTINOMIAL parameter {index++} is error!");
-                    if (a.IsError) { return a; }
-                    n *= F_base_Factorial(a.IntValue);
-                    sum += a.IntValue;
-                }
+            foreach (var a in list) {
+                n *= F_base_Factorial((int)a);
+                sum += (int)a;
             }
+
             var r = F_base_Factorial(sum) / n;
             return Operand.Create(r);
         }
         public Operand VisitPRODUCT_fun([NotNull] mathParser.PRODUCT_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) {
-                var a = this.Visit(item);
-                args.Add(a);
-            }
+            var args = new List<Operand>();  
+            foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            List<double> list = new List<double>();
+            var o = F_base_GetList(args, list);
+            if (o == false) { return Operand.Error("Function PRODUCT parameter is error!"); }
+
             double d = 1;
-            var index = 1;
-            for (int i = 0; i < args.Count; i++) {
-                var item = args[i];
-                if (item.Type == OperandType.ARRARY) {
-                    foreach (var it in item.ArrayValue) {
-                        var a = it.ToNumber($"Function PRODUCT parameter {index} is error!");
-                        if (a.IsError) { return a; }
-                        d *= a.NumberValue;
-                    }
-                    index++;
-                } else {
-                    var a = item.ToNumber($"Function PRODUCT parameter {index++} is error!");
-                    if (a.IsError) { return a; }
-                    d *= a.NumberValue;
-                }
+            foreach (var a in list) {
+                d *= a;
             }
+    
             return Operand.Create(d);
         }
         public Operand VisitSQRTPI_fun([NotNull] mathParser.SQRTPI_funContext context)
@@ -1275,27 +1231,17 @@ namespace ToolGood.Algorithm
         public Operand VisitSUMSQ_fun([NotNull] mathParser.SUMSQ_funContext context)
         {
             var args = new List<Operand>();
-            foreach (var item in context.expr()) {
-                var a = this.Visit(item);
-                args.Add(a);
-            }
+            foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            List<double> list = new List<double>();
+            var o = F_base_GetList(args, list);
+            if (o == false) { return Operand.Error("Function SUMSQ parameter is error!"); }
+
             double d = 0;
-            var index = 1;
-            for (int i = 0; i < args.Count; i++) {
-                var item = args[i];
-                if (item.Type == OperandType.ARRARY) {
-                    foreach (var it in item.ArrayValue) {
-                        var a = it.ToNumber($"Function SUMSQ parameter {index} is error!");
-                        if (a.IsError) { return a; }
-                        d += a.NumberValue * a.NumberValue;
-                    }
-                    index++;
-                } else {
-                    var a = item.ToNumber($"Function SUMSQ parameter {index++} is error!");
-                    if (a.IsError) { return a; }
-                    d += a.NumberValue * a.NumberValue;
-                }
+            foreach (var a in list) {
+                d += a * a;
             }
+ 
             return Operand.Create(d);
         }
         private int F_base_Factorial(int a)
@@ -2748,7 +2694,7 @@ namespace ToolGood.Algorithm
 
             var probability = args[0].NumberValue;
             var degreesFreedom = args[1].IntValue;
-            if (degreesFreedom <= 0.0  ) {
+            if (degreesFreedom <= 0.0) {
                 return Operand.Error("Function TINV parameter error!");
             }
             return Operand.Create(ExcelFunctions.TInv(probability, degreesFreedom));
@@ -2842,6 +2788,11 @@ namespace ToolGood.Algorithm
                 } else if (item.Type == OperandType.ARRARY) {
                     var o = F_base_GetList(item.ArrayValue, list);
                     if (o == false) { return false; }
+                } else if (item.Type == OperandType.JSON) {
+                    var i = item.ToArray("");
+                    if (i.IsError) { return false; }
+                    var o = F_base_GetList(i.ArrayValue, list);
+                    if (o == false) { return false; }
                 } else {
                     var o = item.ToNumber("");
                     if (o.IsError) { return false; }
@@ -2858,6 +2809,11 @@ namespace ToolGood.Algorithm
             } else if (args.Type == OperandType.ARRARY) {
                 var o = F_base_GetList(args.ArrayValue, list);
                 if (o == false) { return false; }
+            } else if (args.Type == OperandType.JSON) {
+                var i = args.ToArray("");
+                if (i.IsError) { return false; }
+                var o = F_base_GetList(i.ArrayValue, list);
+                if (o == false) { return false; }
             } else {
                 var o = args.ToNumber("");
                 if (o.IsError) { return false; }
@@ -2871,6 +2827,11 @@ namespace ToolGood.Algorithm
             if (args.IsError) { return false; }
             if (args.Type == OperandType.ARRARY) {
                 var o = F_base_GetList(args.ArrayValue, list);
+                if (o == false) { return false; }
+            } else if (args.Type == OperandType.JSON) {
+                var i = args.ToArray("");
+                if (i.IsError) { return false; }
+                var o = F_base_GetList(i.ArrayValue, list);
                 if (o == false) { return false; }
             } else {
                 var o = args.ToString("");
@@ -2886,6 +2847,11 @@ namespace ToolGood.Algorithm
             foreach (var item in args) {
                 if (item.Type == OperandType.ARRARY) {
                     var o = F_base_GetList(item.ArrayValue, list);
+                    if (o == false) { return false; }
+                } else if (item.Type == OperandType.JSON) {
+                    var i = item.ToArray("");
+                    if (i.IsError) { return false; }
+                    var o = F_base_GetList(i.ArrayValue, list);
                     if (o == false) { return false; }
                 } else {
                     var o = item.ToString("");
@@ -3280,6 +3246,12 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
+            if (args[0].Type == OperandType.JSON) {
+                var o = args[0].ToArray("");
+                if (o.IsError == false) {
+                    args[0] = o;
+                }
+            }
             if (args[0].Type == OperandType.ARRARY) {
                 List<string> list = new List<string>();
                 var o = F_base_GetList(args[0], list);

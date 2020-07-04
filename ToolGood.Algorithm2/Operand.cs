@@ -168,6 +168,26 @@ namespace ToolGood.Algorithm
         {
             if (Type == OperandType.ARRARY) { return this; }
             if (IsError) { return this; }
+            if (Type == OperandType.JSON) {
+                if (JsonValue.IsArray) {
+                    List<Operand> list = new List<Operand>();
+                    foreach (JsonData v in JsonValue) {
+                        if (v.IsString)
+                            list.Add(Operand.Create(v.ToString()));
+                        else if (v.IsBoolean)
+                            list.Add(Operand.Create(bool.Parse(v.ToString())));
+                        else if (v.IsDouble)
+                            list.Add(Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo)));
+                        else if (v.IsInt)
+                            list.Add(Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo)));
+                        else if (v.IsLong)
+                            list.Add(Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo)));
+                        else
+                            list.Add(Operand.Create(v));
+                    }
+                    return Create(list);
+                }
+            }
             return Error(errorMessage);
         }
 
