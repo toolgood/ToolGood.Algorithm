@@ -1,0 +1,22 @@
+﻿
+
+删除类  public
+删除   public const  并简化
+删除 没有用到的 public ITerminalNode 
+
+删除 [System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.8")]
+删除 [System.CLSCompliant(false)]
+
+独立  Context 文件
+ 因为 Expr2_funContext 与 Expr2_fun2Context 的结构是相同的 只是继承的中间类不同
+
+
+ 简化 Accept， 如下
+ 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+		{
+			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+			 return typedVisitor.VisitExpr2_fun(this);
+		}
+
+
+删除 State值 保留expr、expr2、parameter、parameter2 前State值

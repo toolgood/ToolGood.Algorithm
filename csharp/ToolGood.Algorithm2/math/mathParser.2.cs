@@ -3019,4 +3019,20 @@ partial class mathParser : Parser
 		}
 	}
 
+	public partial class Parameter2Context : ParserRuleContext
+	{
+		public Parameter2Context(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return 4; } }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+		{
+			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitParameter2(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+
 }

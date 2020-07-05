@@ -45,11 +45,11 @@ namespace ToolGood.Algorithm2.MathParserReplace
 		TRIMSTART=214, TRIMEND=215, INDEXOF=216, LASTINDEXOF=217, SPLIT=218, JOIN=219, 
 		SUBSTRING=220, STARTSWITH=221, ENDSWITH=222, ISNULLOREMPTY=223, ISNULLORWHITESPACE=224, 
 		REMOVESTART=225, REMOVEEND=226, JSON=227, NUM=228, STRING=229, PARAMETER=230, 
-		WS=231
+		WS=231;
 
-RULE_prog=0, RULE_expr=1, RULE_parameter=2, RULE_parameter2=3, RULE_parameter2=4
+RULE_prog=0, RULE_expr=1, RULE_expr2=2, RULE_parameter=3, RULE_parameter2=4
 ";
-            var array = str.Split(" ,\r\n\t".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            var array = str.Split(" ,\r\n\t;".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
             Dictionary<string, string> dict = new Dictionary<string, string>();
             foreach (var item in array) {
                 var sp = item.Split('=');
