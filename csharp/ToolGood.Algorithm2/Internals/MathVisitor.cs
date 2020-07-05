@@ -27,7 +27,7 @@ namespace ToolGood.Algorithm
 
         public Operand VisitProg([NotNull] mathParser.ProgContext context)
         {
-            return this.Visit(context.expr());
+            return VisitChildren(context);
         }
 
         public Operand VisitMulDiv_fun([NotNull] mathParser.MulDiv_funContext context)
