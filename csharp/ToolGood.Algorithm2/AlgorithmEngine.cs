@@ -133,7 +133,7 @@ namespace ToolGood.Algorithm
         public string TryEvaluate(string exp, string def)
         {
             if (Parse(exp)) {
-                //try {
+                try {
                     var obj = Evaluate();
                     obj = obj.ToString("");
                     if (obj.IsError) {
@@ -141,9 +141,9 @@ namespace ToolGood.Algorithm
                         return def;
                     }
                     return obj.StringValue;
-                //} catch (Exception ex) {
-                //    LastError = ex.Message;
-                //}
+                } catch (Exception ex) {
+                    LastError = ex.Message;
+                }
             }
             return def;
         }
