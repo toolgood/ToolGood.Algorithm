@@ -33,6 +33,48 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 
 partial class mathParser : Parser
 {
+	public partial class ProgContext : ParserRuleContext
+	{
+		public ExprContext expr()
+		{
+			return GetRuleContext<ExprContext>(0);
+		}
+		public ProgContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return 0; } }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+		{
+			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitProg(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	public partial class ParameterContext : ParserRuleContext
+	{
+		public ExprContext expr()
+		{
+			return GetRuleContext<ExprContext>(0);
+		}
+		public Parameter2Context parameter2()
+		{
+			return GetRuleContext<Parameter2Context>(0);
+		}
+		public ParameterContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return 2; } }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+		{
+			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitParameter(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
 	public partial class ExprContext : ParserRuleContext
 	{
 		public ExprContext(ParserRuleContext parent, int invokingState)

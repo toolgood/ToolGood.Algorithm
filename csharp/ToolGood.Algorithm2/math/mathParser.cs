@@ -139,21 +139,6 @@ partial class mathParser : Parser {
 		Interpreter = new ParserATNSimulator(this, _ATN, decisionToDFA, sharedContextCache);
 	}
 
-	public partial class ProgContext : ParserRuleContext {
-		public ExprContext expr() {
-			return GetRuleContext<ExprContext>(0);
-		}
-		public ProgContext(ParserRuleContext parent, int invokingState)
-			: base(parent, invokingState)
-		{
-		}
-		public override int RuleIndex { get { return 0; } }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitProg(this);
-			else return visitor.VisitChildren(this);
-		}
-	}
 
 	[RuleVersion(0)]
 	public ProgContext prog() {
@@ -198,7 +183,7 @@ partial class mathParser : Parser {
 			Context = _localctx;
 			_prevctx = _localctx;
 
-			State = 13; expr2();
+			expr2();
 			}
 			Context.Stop = TokenStream.LT(-1);
 						ErrorHandler.Sync(this);
@@ -1738,7 +1723,7 @@ partial class mathParser : Parser {
 						PushNewRecursionContext(_localctx, _startState, 1);
 												if (!(Precpred(Context, 2))) throw new FailedPredicateException(this, "Precpred(Context, 2)");
 						Match(16);
-						State = 699; parameter2();
+						parameter2();
 						}
 						break;
 					}
@@ -4948,24 +4933,6 @@ partial class mathParser : Parser {
 		return _localctx;
 	}
 
-	public partial class ParameterContext : ParserRuleContext {
-		public ExprContext expr() {
-			return GetRuleContext<ExprContext>(0);
-		}
-		public Parameter2Context parameter2() {
-			return GetRuleContext<Parameter2Context>(0);
-		}
-		public ParameterContext(ParserRuleContext parent, int invokingState)
-			: base(parent, invokingState)
-		{
-		}
-		public override int RuleIndex { get { return 2; } }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitParameter(this);
-			else return visitor.VisitChildren(this);
-		}
-	}
 
 	[RuleVersion(0)]
 	public ParameterContext parameter() {
@@ -4983,7 +4950,7 @@ partial class mathParser : Parser {
 			case 2:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 2340; parameter2();
+				parameter2();
 				}
 				break;
 			}
