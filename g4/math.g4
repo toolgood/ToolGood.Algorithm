@@ -108,9 +108,6 @@ expr:
 	| expr '.' parameter2										# GetJsonValue_fun
 	| expr2														# expr2_fun;
 
- 
-
-
 expr2:
 	'{' expr (',' expr)* '}'								# Array_fun2
 	| '(' expr ')'											# Bracket_fun2
@@ -319,6 +316,7 @@ expr2:
 	| REMOVESTART '(' expr ',' expr ')'							# REMOVESTART_fun2
 	| REMOVEEND '(' expr ',' expr ')'							# REMOVEEND_fun2
 	| JSON '(' expr ')'											# JSON_fun2
+	| VLOOKUP '(' expr ',' expr ',' expr (',' expr)? ')'		# VLOOKUP_fun2
 	| '[' parameter ']'											# PARAMETER_fun2
 	| '-'? NUM													# NUM_fun2
 	| STRING													# STRING_fun2;
@@ -529,6 +527,7 @@ parameter2:
 	| REMOVESTART
 	| REMOVEEND
 	| JSON
+	| VLOOKUP
 	| PARAMETER;
 SUB: '-';
 // 逻辑函数
@@ -740,6 +739,7 @@ ISNULLORWHITESPACE: 'ISNULLORWHITESPACE';
 REMOVESTART: 'REMOVESTART';
 REMOVEEND: 'REMOVEEND';
 JSON: 'JSON';
+VLOOKUP: 'VLOOKUP';
 
 NUM: '0' ('.' [0-9]+)? | [1-9][0-9]* ('.' [0-9]+)?;
 STRING: '\'' ( ~'\'' | '\\\'')* '\'' | '"' ( ~'"' | '\\"')* '"';

@@ -35,10 +35,6 @@ partial class mathParser : Parser
 {
 	public partial class ProgContext : ParserRuleContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
 		public ProgContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -47,8 +43,8 @@ partial class mathParser : Parser
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitProg(this);
-			else return visitor.VisitChildren(this);
+			 return typedVisitor.VisitProg(this);
+			
 		}
 	}
 
@@ -70,8 +66,8 @@ partial class mathParser : Parser
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitParameter(this);
-			else return visitor.VisitChildren(this);
+			 return typedVisitor.VisitParameter(this);
+			
 		}
 	}
 
@@ -91,10 +87,6 @@ partial class mathParser : Parser
 	}
 	public partial class Expr2_funContext : ExprContext
 	{
-		public ExprContext expr2()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
 		public Expr2_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -3071,8 +3063,7 @@ partial class mathParser : Parser
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitParameter2(this);
-			else return visitor.VisitChildren(this);
+			 return typedVisitor.VisitParameter2(this);
 		}
 	}
 
