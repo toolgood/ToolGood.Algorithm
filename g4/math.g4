@@ -14,308 +14,314 @@ expr:
 		| '=='
 		| '!='
 		| '<>'
-	) expr													# Judge_fun
-	| expr op = ('&&' | '||' | AND | OR) expr				# AndOr_fun
-	| '{' expr (',' expr)* '}'								# Array_fun
-	| '(' expr ')'											# Bracket_fun
-	| IF '(' expr ',' expr (',' expr)? ')'					# IF_fun
-	| IFERROR '(' expr ',' expr (',' expr)? ')'				# IFERROR_fun
-	| ISNUMBER '(' expr ')'									# ISNUMBER_fun
-	| expr '.' ISNUMBER '(' ')'								# ISNUMBER_fun
-	| ISTEXT '(' expr ')'									# ISTEXT_fun
-	| expr '.' ISTEXT '(' ')'								# ISTEXT_fun
-	| ISERROR '(' expr ')'									# ISERROR_fun
-	| expr '.' ISERROR '(' ')'								# ISERROR_fun
-	| ISNONTEXT '(' expr ')'								# ISNONTEXT_fun
-	| expr '.' ISNONTEXT '(' ')'							# ISNONTEXT_fun
-	| ISLOGICAL '(' expr ')'								# ISLOGICAL_fun
-	| expr '.' ISLOGICAL '(' ')'							# ISLOGICAL_fun
-	| ISEVEN '(' expr ')'									# ISEVEN_fun
-	| expr '.' ISEVEN '(' ')'								# ISEVEN_fun
-	| ISODD '(' expr ')'									# ISODD_fun
-	| expr '.' ISODD '(' ')'								# ISODD_fun
-	| AND '(' expr (',' expr)* ')'							# AND_fun
-	| OR '(' expr (',' expr)* ')'							# OR_fun
-	| NOT '(' expr ')'										# NOT_fun
-	| TRUE ('(' ')')?										# TRUE_fun
-	| FALSE ('(' ')')?										# FALSE_fun
-	| E ('(' ')')?											# E_fun
-	| PI ('(' ')')?											# PI_fun
-	| DEC2BIN ('(' expr (',' expr)? ')')					# DEC2BIN_fun
-	| expr '.' DEC2BIN ('(' expr? ')')						# DEC2BIN_fun
-	| DEC2HEX ('(' expr (',' expr)? ')')					# DEC2HEX_fun
-	| expr '.' DEC2HEX ('(' expr? ')')						# DEC2HEX_fun
-	| DEC2OCT ('(' expr (',' expr)? ')')					# DEC2OCT_fun
-	| expr '.' DEC2OCT ('(' expr? ')')						# DEC2OCT_fun
-	| HEX2BIN ('(' expr (',' expr)? ')')					# HEX2BIN_fun
-	| expr '.' HEX2BIN ('(' expr? ')')						# HEX2BIN_fun
-	| HEX2DEC ('(' expr ')')								# HEX2DEC_fun
-	| expr '.' HEX2DEC ('(' ')')							# HEX2DEC_fun
-	| HEX2OCT ('(' expr (',' expr)? ')')					# HEX2OCT_fun
-	| expr '.' HEX2OCT ('(' expr? ')')						# HEX2OCT_fun
-	| OCT2BIN ('(' expr (',' expr)? ')')					# OCT2BIN_fun
-	| expr '.' OCT2BIN ('(' expr? ')')						# OCT2BIN_fun
-	| OCT2DEC ('(' expr ')')								# OCT2DEC_fun
-	| expr '.' OCT2DEC ('(' ')')							# OCT2DEC_fun
-	| OCT2HEX ('(' expr (',' expr)? ')')					# OCT2HEX_fun
-	| expr '.' OCT2HEX ('(' expr? ')')						# OCT2HEX_fun
-	| BIN2OCT ('(' expr (',' expr)? ')')					# BIN2OCT_fun
-	| expr '.' BIN2OCT ('(' expr? ')')						# BIN2OCT_fun
-	| BIN2DEC ('(' expr ')')								# BIN2DEC_fun
-	| expr '.' BIN2DEC ('(' ')')							# BIN2DEC_fun
-	| BIN2HEX ('(' expr (',' expr)? ')')					# BIN2HEX_fun
-	| expr '.' BIN2HEX ('(' expr? ')')						# BIN2HEX_fun
-	| ABS '(' expr ')'										# ABS_fun
-	| QUOTIENT '(' expr (',' expr) ')'						# QUOTIENT_fun
-	| MOD '(' expr (',' expr) ')'							# MOD_fun
-	| SIGN '(' expr ')'										# SIGN_fun
-	| SQRT '(' expr ')'										# SQRT_fun
-	| TRUNC '(' expr ')'									# TRUNC_fun
-	| INT '(' expr ')'										# INT_fun
-	| expr '.' INT '(' ')'									# INT_fun
-	| GCD '(' expr (',' expr)+ ')'							# GCD_fun
-	| LCM '(' expr (',' expr)+ ')'							# LCM_fun
-	| COMBIN '(' expr ',' expr ')'							# COMBIN_fun
-	| PERMUT '(' expr ',' expr ')'							# PERMUT_fun
-	| DEGREES '(' expr ')'									# DEGREES_fun
-	| RADIANS '(' expr ')'									# RADIANS_fun
-	| COS '(' expr ')'										# COS_fun
-	| COSH '(' expr ')'										# COSH_fun
-	| SIN '(' expr ')'										# SIN_fun
-	| SINH '(' expr ')'										# SINH_fun
-	| TAN '(' expr ')'										# TAN_fun
-	| TANH '(' expr ')'										# TANH_fun
-	| ACOS '(' expr ')'										# ACOS_fun
-	| ACOSH '(' expr ')'									# ACOSH_fun
-	| ASIN '(' expr ')'										# ASIN_fun
-	| ASINH '(' expr ')'									# ASINH_fun
-	| ATAN '(' expr ')'										# ATAN_fun
-	| ATANH '(' expr ')'									# ATANH_fun
-	| ATAN2 '(' expr ',' expr ')'							# ATAN2_fun
-	| ROUND '(' expr ',' expr ')'							# ROUND_fun
-	| ROUNDDOWN '(' expr ',' expr ')'						# ROUNDDOWN_fun
-	| ROUNDUP '(' expr ',' expr ')'							# ROUNDUP_fun
-	| CEILING '(' expr (',' expr)? ')'						# CEILING_fun
-	| FLOOR '(' expr (',' expr)? ')'						# FLOOR_fun
-	| EVEN '(' expr ')'										# EVEN_fun
-	| ODD '(' expr ')'										# ODD_fun
-	| MROUND '(' expr ',' expr ')'							# MROUND_fun
-	| RAND '(' ')'											# RAND_fun
-	| RANDBETWEEN '(' expr ',' expr ')'						# RANDBETWEEN_fun
-	| FACT '(' expr ')'										# FACT_fun
-	| FACTDOUBLE '(' expr ')'								# FACTDOUBLE_fun
-	| POWER '(' expr ',' expr ')'							# POWER_fun
-	| EXP '(' expr ')'										# EXP_fun
-	| LN '(' expr ')'										# LN_fun
-	| LOG '(' expr (',' expr)? ')'							# LOG_fun
-	| LOG10 '(' expr ')'									# LOG10_fun
-	| MULTINOMIAL '(' expr (',' expr)* ')'					# MULTINOMIAL_fun
-	| PRODUCT '(' expr (',' expr)* ')'						# PRODUCT_fun
-	| SQRTPI '(' expr ')'									# SQRTPI_fun
-	| SUMSQ '(' expr (',' expr)* ')'						# SUMSQ_fun
-	| ASC '(' expr ')'										# ASC_fun
-	| expr '.' ASC '(' ')'									# ASC_fun
-	| JIS '(' expr ')'										# JIS_fun
-	| expr '.' JIS '(' ')'									# JIS_fun
-	| CHAR '(' expr ')'										# CHAR_fun
-	| expr '.' CHAR '(' ')'									# CHAR_fun
-	| CLEAN '(' expr ')'									# CLEAN_fun
-	| expr '.' CLEAN '(' ')'								# CLEAN_fun
-	| CODE '(' expr ')'										# CODE_fun
-	| expr '.' CODE '(' ')'									# CODE_fun
-	| CONCATENATE '(' expr (',' expr)* ')'					# CONCATENATE_fun
-	| expr '.' CONCATENATE '(' (expr (',' expr)*)? ')'		# CONCATENATE_fun
-	| EXACT '(' expr ',' expr ')'							# EXACT_fun
-	| expr '.' EXACT '(' expr ')'							# EXACT_fun
-	| FIND '(' expr ',' expr (',' expr)? ')'				# FIND_fun
-	| expr '.' FIND '(' expr (',' expr)? ')'				# FIND_fun
-	| FIXED '(' expr (',' expr (',' expr)?)? ')'			# FIXED_fun
-	| LEFT '(' expr (',' expr)? ')'							# LEFT_fun
-	| expr '.' LEFT '(' expr? ')'							# LEFT_fun
-	| LEN '(' expr ')'										# LEN_fun
-	| expr '.' LEN '(' ')'									# LEN_fun
-	| LOWER '(' expr ')'									# LOWER_fun
-	| expr '.' LOWER '(' ')'								# LOWER_fun
-	| MID '(' expr ',' expr ',' expr ')'					# MID_fun
-	| expr '.' MID '(' expr ',' expr ')'					# MID_fun
-	| PROPER '(' expr ')'									# PROPER_fun
-	| expr '.' PROPER '(' ')'								# PROPER_fun
-	| REPLACE '(' expr ',' expr ',' expr (',' expr)? ')'	# REPLACE_fun
-	| expr '.' REPLACE '(' expr ',' expr (',' expr)? ')'	# REPLACE_fun
-	| REPT '(' expr ',' expr ')'							# REPT_fun
-	| expr '.' REPT '(' expr ')'							# REPT_fun
-	| RIGHT '(' expr (',' expr)? ')'						# RIGHT_fun
-	| expr '.' RIGHT '(' expr? ')'							# RIGHT_fun
-	| RMB '(' expr ')'										# RMB_fun
-	| expr '.' RMB '(' ')'									# RMB_fun
-	| SEARCH '(' expr ',' expr (',' expr)? ')'				# SEARCH_fun
-	| expr '.' SEARCH '(' expr (',' expr)? ')'				# SEARCH_fun
-	| SUBSTITUTE '(' expr ',' expr ',' expr (',' expr)? ')'	# SUBSTITUTE_fun
-	| expr '.' SUBSTITUTE '(' expr ',' expr (',' expr)? ')'	# SUBSTITUTE_fun
-	| T '(' expr ')'										# T_fun
-	| expr '.' T '(' ')'									# T_fun
-	| TEXT '(' expr ',' expr ')'							# TEXT_fun
-	| expr '.' TEXT '(' expr ')'							# TEXT_fun
-	| TRIM '(' expr ')'										# TRIM_fun
-	| expr '.' TRIM '(' ')'									# TRIM_fun
-	| UPPER '(' expr ')'									# UPPER_fun
-	| expr '.' UPPER '(' ')'								# UPPER_fun
-	| VALUE '(' expr ')'									# VALUE_fun
-	| expr '.' VALUE '(' ')'								# VALUE_fun
-	| DATEVALUE '(' expr ')'								# DATEVALUE_fun
-	| expr '.' DATEVALUE '(' ')'							# DATEVALUE_fun
-	| TIMEVALUE '(' expr ')'								# TIMEVALUE_fun
-	| expr '.' TIMEVALUE '(' ')'							# TIMEVALUE_fun
-	| DATE '(' expr ',' expr ',' expr (
-		',' expr (',' expr (',' expr)?)?
-	)? ')'														# DATE_fun
-	| TIME '(' expr ',' expr (',' expr)? ')'					# TIME_fun
-	| NOW '(' ')'												# NOW_fun
-	| TODAY '(' ')'												# TODAY_fun
-	| YEAR '(' expr ')'											# YEAR_fun
+	) expr														# Judge_fun
+	| expr op = ('&&' | '||' | AND | OR) expr					# AndOr_fun
+	| expr '.' ISNUMBER '(' ')'									# ISNUMBER_fun
+	| expr '.' ISTEXT '(' ')'									# ISTEXT_fun
+	| expr '.' ISERROR '(' ')'									# ISERROR_fun
+	| expr '.' ISNONTEXT '(' ')'								# ISNONTEXT_fun
+	| expr '.' ISLOGICAL '(' ')'								# ISLOGICAL_fun
+	| expr '.' ISEVEN '(' ')'									# ISEVEN_fun
+	| expr '.' ISODD '(' ')'									# ISODD_fun
+	| expr '.' DEC2BIN ('(' expr? ')')							# DEC2BIN_fun
+	| expr '.' DEC2HEX ('(' expr? ')')							# DEC2HEX_fun
+	| expr '.' DEC2OCT ('(' expr? ')')							# DEC2OCT_fun
+	| expr '.' HEX2BIN ('(' expr? ')')							# HEX2BIN_fun
+	| expr '.' HEX2DEC ('(' ')')								# HEX2DEC_fun
+	| expr '.' HEX2OCT ('(' expr? ')')							# HEX2OCT_fun
+	| expr '.' OCT2BIN ('(' expr? ')')							# OCT2BIN_fun
+	| expr '.' OCT2DEC ('(' ')')								# OCT2DEC_fun
+	| expr '.' OCT2HEX ('(' expr? ')')							# OCT2HEX_fun
+	| expr '.' BIN2OCT ('(' expr? ')')							# BIN2OCT_fun
+	| expr '.' BIN2DEC ('(' ')')								# BIN2DEC_fun
+	| expr '.' BIN2HEX ('(' expr? ')')							# BIN2HEX_fun
+	| expr '.' INT '(' ')'										# INT_fun
+	| expr '.' ASC '(' ')'										# ASC_fun
+	| expr '.' JIS '(' ')'										# JIS_fun
+	| expr '.' CHAR '(' ')'										# CHAR_fun
+	| expr '.' CLEAN '(' ')'									# CLEAN_fun
+	| expr '.' CODE '(' ')'										# CODE_fun
+	| expr '.' CONCATENATE '(' (expr (',' expr)*)? ')'			# CONCATENATE_fun
+	| expr '.' EXACT '(' expr ')'								# EXACT_fun
+	| expr '.' FIND '(' expr (',' expr)? ')'					# FIND_fun
+	| expr '.' LEFT '(' expr? ')'								# LEFT_fun
+	| expr '.' LEN '(' ')'										# LEN_fun
+	| expr '.' LOWER '(' ')'									# LOWER_fun
+	| expr '.' MID '(' expr ',' expr ')'						# MID_fun
+	| expr '.' PROPER '(' ')'									# PROPER_fun
+	| expr '.' REPLACE '(' expr ',' expr (',' expr)? ')'		# REPLACE_fun
+	| expr '.' REPT '(' expr ')'								# REPT_fun
+	| expr '.' RIGHT '(' expr? ')'								# RIGHT_fun
+	| expr '.' RMB '(' ')'										# RMB_fun
+	| expr '.' SEARCH '(' expr (',' expr)? ')'					# SEARCH_fun
+	| expr '.' SUBSTITUTE '(' expr ',' expr (',' expr)? ')'		# SUBSTITUTE_fun
+	| expr '.' T '(' ')'										# T_fun
+	| expr '.' TEXT '(' expr ')'								# TEXT_fun
+	| expr '.' TRIM '(' ')'										# TRIM_fun
+	| expr '.' UPPER '(' ')'									# UPPER_fun
+	| expr '.' VALUE '(' ')'									# VALUE_fun
+	| expr '.' DATEVALUE '(' ')'								# DATEVALUE_fun
+	| expr '.' TIMEVALUE '(' ')'								# TIMEVALUE_fun
 	| expr '.' YEAR ('(' ')')?									# YEAR_fun
-	| MONTH '(' expr ')'										# MONTH_fun
 	| expr '.' MONTH ('(' ')')?									# MONTH_fun
-	| DAY '(' expr ')'											# DAY_fun
 	| expr '.' DAY ('(' ')')?									# DAY_fun
-	| HOUR '(' expr ')'											# HOUR_fun
 	| expr '.' HOUR ('(' ')')?									# HOUR_fun
-	| MINUTE '(' expr ')'										# MINUTE_fun
 	| expr '.' MINUTE ('(' ')')?								# MINUTE_fun
-	| SECOND '(' expr ')'										# SECOND_fun
 	| expr '.' SECOND ('(' ')')?								# SECOND_fun
-	| WEEKDAY '(' expr (',' expr)? ')'							# WEEKDAY_fun
-	| DATEDIF '(' expr ',' expr ',' expr ')'					# DATEDIF_fun
-	| DAYS360 '(' expr ',' expr (',' expr)? ')'					# DAYS360_fun
-	| EDATE '(' expr ',' expr ')'								# EDATE_fun
-	| EOMONTH '(' expr ',' expr ')'								# EOMONTH_fun
-	| NETWORKDAYS '(' expr ',' expr (',' expr)? ')'				# NETWORKDAYS_fun
-	| WORKDAY '(' expr ',' expr (',' expr)? ')'					# WORKDAY_fun
-	| WEEKNUM '(' expr (',' expr)? ')'							# WEEKNUM_fun
-	| MAX '(' expr (',' expr)+ ')'								# MAX_fun
-	| MEDIAN '(' expr (',' expr)+ ')'							# MEDIAN_fun
-	| MIN '(' expr (',' expr)+ ')'								# MIN_fun
-	| QUARTILE '(' expr ',' expr ')'							# QUARTILE_fun
-	| MODE '(' expr (',' expr)* ')'								# MODE_fun
-	| LARGE '(' expr ',' expr ')'								# LARGE_fun
-	| SMALL '(' expr ',' expr ')'								# SMALL_fun
-	| PERCENTILE '(' expr ',' expr ')'							# PERCENTILE_fun
-	| PERCENTRANK '(' expr ',' expr ')'							# PERCENTRANK_fun
-	| AVERAGE '(' expr (',' expr)* ')'							# AVERAGE_fun
-	| AVERAGEIF '(' expr ',' expr (',' expr)? ')'				# AVERAGEIF_fun
-	| GEOMEAN '(' expr (',' expr)* ')'							# GEOMEAN_fun
-	| HARMEAN '(' expr (',' expr)* ')'							# HARMEAN_fun
-	| COUNT '(' expr (',' expr)* ')'							# COUNT_fun
-	| COUNTIF '(' expr (',' expr)* ')'							# COUNTIF_fun
-	| SUM '(' expr (',' expr)* ')'								# SUM_fun
-	| SUMIF '(' expr ',' expr (',' expr)? ')'					# SUMIF_fun
-	| AVEDEV '(' expr (',' expr)* ')'							# AVEDEV_fun
-	| STDEV '(' expr (',' expr)* ')'							# STDEV_fun
-	| STDEVP '(' expr (',' expr)* ')'							# STDEVP_fun
-	| DEVSQ '(' expr (',' expr)* ')'							# DEVSQ_fun
-	| VAR '(' expr (',' expr)* ')'								# VAR_fun
-	| VARP '(' expr (',' expr)* ')'								# VARP_fun
-	| NORMDIST '(' expr ',' expr ',' expr ',' expr ')'			# NORMDIST_fun
-	| NORMINV '(' expr ',' expr ',' expr ')'					# NORMINV_fun
-	| NORMSDIST '(' expr ')'									# NORMSDIST_fun
-	| NORMSINV '(' expr ')'										# NORMSINV_fun
-	| BETADIST '(' expr ',' expr ',' expr ')'					# BETADIST_fun
-	| BETAINV '(' expr ',' expr ',' expr ')'					# BETAINV_fun
-	| BINOMDIST '(' expr ',' expr ',' expr ',' expr ')'			# BINOMDIST_fun
-	| EXPONDIST '(' expr ',' expr ',' expr ')'					# EXPONDIST_fun
-	| FDIST '(' expr ',' expr ',' expr ')'						# FDIST_fun
-	| FINV '(' expr ',' expr ',' expr ')'						# FINV_fun
-	| FISHER '(' expr ')'										# FISHER_fun
-	| FISHERINV '(' expr ')'									# FISHERINV_fun
-	| GAMMADIST '(' expr ',' expr ',' expr ',' expr ')'			# GAMMADIST_fun
-	| GAMMAINV '(' expr ',' expr ',' expr ')'					# GAMMAINV_fun
-	| GAMMALN '(' expr ')'										# GAMMALN_fun
-	| HYPGEOMDIST '(' expr ',' expr ',' expr ',' expr ')'		# HYPGEOMDIST_fun
-	| LOGINV '(' expr ',' expr ',' expr ')'						# LOGINV_fun
-	| LOGNORMDIST '(' expr ',' expr ',' expr ')'				# LOGNORMDIST_fun
-	| NEGBINOMDIST '(' expr ',' expr ',' expr ')'				# NEGBINOMDIST_fun
-	| POISSON '(' expr ',' expr ',' expr ')'					# POISSON_fun
-	| TDIST '(' expr ',' expr ',' expr ')'						# TDIST_fun
-	| TINV '(' expr ',' expr ')'								# TINV_fun
-	| WEIBULL '(' expr ',' expr ',' expr ',' expr ')'			# WEIBULL_fun
-	| URLENCODE '(' expr ')'									# URLENCODE_fun
 	| expr '.' URLENCODE '(' ')'								# URLENCODE_fun
-	| URLDECODE '(' expr ')'									# URLDECODE_fun
 	| expr '.' URLDECODE '(' ')'								# URLDECODE_fun
-	| HTMLENCODE '(' expr ')'									# HTMLENCODE_fun
 	| expr '.' HTMLENCODE '(' ')'								# HTMLENCODE_fun
-	| HTMLDECODE '(' expr ')'									# HTMLDECODE_fun
 	| expr '.' HTMLDECODE '(' ')'								# HTMLDECODE_fun
-	| BASE64TOTEXT '(' expr (',' expr)? ')'						# BASE64TOTEXT_fun
 	| expr '.' BASE64TOTEXT '(' expr? ')'						# BASE64TOTEXT_fun
-	| BASE64URLTOTEXT '(' expr (',' expr)? ')'					# BASE64URLTOTEXT_fun
 	| expr '.' BASE64URLTOTEXT '(' expr? ')'					# BASE64URLTOTEXT_fun
-	| TEXTTOBASE64 '(' expr (',' expr)? ')'						# TEXTTOBASE64_fun
 	| expr '.' TEXTTOBASE64 '(' expr? ')'						# TEXTTOBASE64_fun
-	| TEXTTOBASE64URL '(' expr (',' expr)? ')'					# TEXTTOBASE64URL_fun
 	| expr '.' TEXTTOBASE64URL '(' expr? ')'					# TEXTTOBASE64URL_fun
-	| REGEX '(' expr ',' expr (',' expr (',' expr)?)? ')'		# REGEX_fun
 	| expr '.' REGEX '(' expr (',' expr (',' expr)?)? ')'		# REGEX_fun
-	| REGEXREPALCE '(' expr ',' expr ',' expr ')'				# REGEXREPALCE_fun
 	| expr '.' REGEXREPALCE '(' expr ',' expr ')'				# REGEXREPALCE_fun
-	| ISREGEX '(' expr ',' expr ')'								# ISREGEX_fun
 	| expr '.' ISREGEX '(' expr ')'								# ISREGEX_fun
-	| GUID '(' ')'												# GUID_fun
-	| MD5 '(' expr (',' expr)? ')'								# MD5_fun
 	| expr '.' MD5 '(' expr? ')'								# MD5_fun
-	| SHA1 '(' expr (',' expr)? ')'								# SHA1_fun
 	| expr '.' SHA1 '(' expr? ')'								# SHA1_fun
-	| SHA256 '(' expr (',' expr)? ')'							# SHA256_fun
 	| expr '.' SHA256 '(' expr? ')'								# SHA256_fun
-	| SHA512 '(' expr (',' expr)? ')'							# SHA512_fun
 	| expr '.' SHA512 '(' expr? ')'								# SHA512_fun
-	| CRC8 '(' expr (',' expr)? ')'								# CRC8_fun
 	| expr '.' CRC8 '(' expr? ')'								# CRC8_fun
-	| CRC16 '(' expr (',' expr)? ')'							# CRC16_fun
 	| expr '.' CRC16 '(' expr? ')'								# CRC16_fun
-	| CRC32 '(' expr (',' expr)? ')'							# CRC32_fun
 	| expr '.' CRC32 '(' expr? ')'								# CRC32_fun
-	| HMACMD5 '(' expr ',' expr (',' expr)? ')'					# HMACMD5_fun
 	| expr '.' HMACMD5 '(' expr (',' expr)? ')'					# HMACMD5_fun
-	| HMACSHA1 '(' expr ',' expr (',' expr)? ')'				# HMACSHA1_fun
 	| expr '.' HMACSHA1 '(' expr (',' expr)? ')'				# HMACSHA1_fun
-	| HMACSHA256 '(' expr ',' expr (',' expr)? ')'				# HMACSHA256_fun
 	| expr '.' HMACSHA256 '(' expr (',' expr)? ')'				# HMACSHA256_fun
-	| HMACSHA512 '(' expr ',' expr (',' expr)? ')'				# HMACSHA512_fun
 	| expr '.' HMACSHA512 '(' expr (',' expr)? ')'				# HMACSHA512_fun
-	| TRIMSTART '(' expr (',' expr)? ')'						# TRIMSTART_fun
 	| expr '.' TRIMSTART '(' expr? ')'							# TRIMSTART_fun
-	| TRIMEND '(' expr (',' expr)? ')'							# TRIMEND_fun
 	| expr '.' TRIMEND '(' expr? ')'							# TRIMEND_fun
-	| INDEXOF '(' expr ',' expr (',' expr (',' expr)?)? ')'		# INDEXOF_fun
 	| expr '.' INDEXOF '(' expr (',' expr (',' expr)?)? ')'		# INDEXOF_fun
-	| LASTINDEXOF '(' expr ',' expr (',' expr (',' expr)?)? ')'	# LASTINDEXOF_fun
 	| expr '.' LASTINDEXOF '(' expr (',' expr (',' expr)?)? ')'	# LASTINDEXOF_fun
-	| SPLIT '(' expr ',' expr ')'								# SPLIT_fun
 	| expr '.' SPLIT '(' expr ')'								# SPLIT_fun
-	| JOIN '(' expr (',' expr)+ ')'								# JOIN_fun
 	| expr '.' JOIN '(' expr (',' expr)* ')'					# JOIN_fun
-	| SUBSTRING '(' expr ',' expr (',' expr)? ')'				# SUBSTRING_fun
 	| expr '.' SUBSTRING '(' expr (',' expr)? ')'				# SUBSTRING_fun
-	| STARTSWITH '(' expr ',' expr (',' expr)? ')'				# STARTSWITH_fun
 	| expr '.' STARTSWITH '(' expr (',' expr)? ')'				# STARTSWITH_fun
-	| ENDSWITH '(' expr ',' expr (',' expr)? ')'				# ENDSWITH_fun
 	| expr '.' ENDSWITH '(' expr (',' expr)? ')'				# ENDSWITH_fun
-	| ISNULLOREMPTY '(' expr ')'								# ISNULLOREMPTY_fun
 	| expr '.' ISNULLOREMPTY '(' ')'							# ISNULLOREMPTY_fun
-	| ISNULLORWHITESPACE '(' expr ')'							# ISNULLORWHITESPACE_fun
 	| expr '.' ISNULLORWHITESPACE '(' ')'						# ISNULLORWHITESPACE_fun
-	| REMOVESTART '(' expr ',' expr ')'							# REMOVESTART_fun
 	| expr '.' REMOVESTART '(' expr ')'							# REMOVESTART_fun
-	| REMOVEEND '(' expr ',' expr ')'							# REMOVEEND_fun
 	| expr '.' REMOVEEND '(' expr ')'							# REMOVEEND_fun
-	| JSON '(' expr ')'											# JSON_fun
 	| expr '.' JSON '(' ')'										# JSON_fun
 	| expr '[' parameter ']'									# GetJsonValue_fun
 	| expr '.' parameter2										# GetJsonValue_fun
-	| '[' parameter ']'											# PARAMETER_fun
-	| '-'? NUM													# NUM_fun
-	| STRING													# STRING_fun;
+	| expr2														# expr2_fun;
+
+ 
+
+
+expr2:
+	'{' expr (',' expr)* '}'								# Array_fun2
+	| '(' expr ')'											# Bracket_fun2
+	| IF '(' expr ',' expr (',' expr)? ')'					# IF_fun2
+	| IFERROR '(' expr ',' expr (',' expr)? ')'				# IFERROR_fun2
+	| ISNUMBER '(' expr ')'									# ISNUMBER_fun2
+	| ISTEXT '(' expr ')'									# ISTEXT_fun2
+	| ISERROR '(' expr ')'									# ISERROR_fun2
+	| ISNONTEXT '(' expr ')'								# ISNONTEXT_fun2
+	| ISLOGICAL '(' expr ')'								# ISLOGICAL_fun2
+	| ISEVEN '(' expr ')'									# ISEVEN_fun2
+	| ISODD '(' expr ')'									# ISODD_fun2
+	| AND '(' expr (',' expr)* ')'							# AND_fun2
+	| OR '(' expr (',' expr)* ')'							# OR_fun2
+	| NOT '(' expr ')'										# NOT_fun2
+	| TRUE ('(' ')')?										# TRUE_fun2
+	| FALSE ('(' ')')?										# FALSE_fun2
+	| E ('(' ')')?											# E_fun2
+	| PI ('(' ')')?											# PI_fun2
+	| DEC2BIN ('(' expr (',' expr)? ')')					# DEC2BIN_fun2
+	| DEC2HEX ('(' expr (',' expr)? ')')					# DEC2HEX_fun2
+	| DEC2OCT ('(' expr (',' expr)? ')')					# DEC2OCT_fun2
+	| HEX2BIN ('(' expr (',' expr)? ')')					# HEX2BIN_fun2
+	| HEX2DEC ('(' expr ')')								# HEX2DEC_fun2
+	| HEX2OCT ('(' expr (',' expr)? ')')					# HEX2OCT_fun2
+	| OCT2BIN ('(' expr (',' expr)? ')')					# OCT2BIN_fun2
+	| OCT2DEC ('(' expr ')')								# OCT2DEC_fun2
+	| OCT2HEX ('(' expr (',' expr)? ')')					# OCT2HEX_fun2
+	| BIN2OCT ('(' expr (',' expr)? ')')					# BIN2OCT_fun2
+	| BIN2DEC ('(' expr ')')								# BIN2DEC_fun2
+	| BIN2HEX ('(' expr (',' expr)? ')')					# BIN2HEX_fun2
+	| ABS '(' expr ')'										# ABS_fun2
+	| QUOTIENT '(' expr (',' expr) ')'						# QUOTIENT_fun2
+	| MOD '(' expr (',' expr) ')'							# MOD_fun2
+	| SIGN '(' expr ')'										# SIGN_fun2
+	| SQRT '(' expr ')'										# SQRT_fun2
+	| TRUNC '(' expr ')'									# TRUNC_fun2
+	| INT '(' expr ')'										# INT_fun2
+	| GCD '(' expr (',' expr)+ ')'							# GCD_fun2
+	| LCM '(' expr (',' expr)+ ')'							# LCM_fun2
+	| COMBIN '(' expr ',' expr ')'							# COMBIN_fun2
+	| PERMUT '(' expr ',' expr ')'							# PERMUT_fun2
+	| DEGREES '(' expr ')'									# DEGREES_fun2
+	| RADIANS '(' expr ')'									# RADIANS_fun2
+	| COS '(' expr ')'										# COS_fun2
+	| COSH '(' expr ')'										# COSH_fun2
+	| SIN '(' expr ')'										# SIN_fun2
+	| SINH '(' expr ')'										# SINH_fun2
+	| TAN '(' expr ')'										# TAN_fun2
+	| TANH '(' expr ')'										# TANH_fun2
+	| ACOS '(' expr ')'										# ACOS_fun2
+	| ACOSH '(' expr ')'									# ACOSH_fun2
+	| ASIN '(' expr ')'										# ASIN_fun2
+	| ASINH '(' expr ')'									# ASINH_fun2
+	| ATAN '(' expr ')'										# ATAN_fun2
+	| ATANH '(' expr ')'									# ATANH_fun2
+	| ATAN2 '(' expr ',' expr ')'							# ATAN2_fun2
+	| ROUND '(' expr ',' expr ')'							# ROUND_fun2
+	| ROUNDDOWN '(' expr ',' expr ')'						# ROUNDDOWN_fun2
+	| ROUNDUP '(' expr ',' expr ')'							# ROUNDUP_fun2
+	| CEILING '(' expr (',' expr)? ')'						# CEILING_fun2
+	| FLOOR '(' expr (',' expr)? ')'						# FLOOR_fun2
+	| EVEN '(' expr ')'										# EVEN_fun2
+	| ODD '(' expr ')'										# ODD_fun2
+	| MROUND '(' expr ',' expr ')'							# MROUND_fun2
+	| RAND '(' ')'											# RAND_fun2
+	| RANDBETWEEN '(' expr ',' expr ')'						# RANDBETWEEN_fun2
+	| FACT '(' expr ')'										# FACT_fun2
+	| FACTDOUBLE '(' expr ')'								# FACTDOUBLE_fun2
+	| POWER '(' expr ',' expr ')'							# POWER_fun2
+	| EXP '(' expr ')'										# EXP_fun2
+	| LN '(' expr ')'										# LN_fun2
+	| LOG '(' expr (',' expr)? ')'							# LOG_fun2
+	| LOG10 '(' expr ')'									# LOG10_fun2
+	| MULTINOMIAL '(' expr (',' expr)* ')'					# MULTINOMIAL_fun2
+	| PRODUCT '(' expr (',' expr)* ')'						# PRODUCT_fun2
+	| SQRTPI '(' expr ')'									# SQRTPI_fun2
+	| SUMSQ '(' expr (',' expr)* ')'						# SUMSQ_fun2
+	| ASC '(' expr ')'										# ASC_fun2
+	| JIS '(' expr ')'										# JIS_fun2
+	| CHAR '(' expr ')'										# CHAR_fun2
+	| CLEAN '(' expr ')'									# CLEAN_fun2
+	| CODE '(' expr ')'										# CODE_fun2
+	| CONCATENATE '(' expr (',' expr)* ')'					# CONCATENATE_fun2
+	| EXACT '(' expr ',' expr ')'							# EXACT_fun2
+	| FIND '(' expr ',' expr (',' expr)? ')'				# FIND_fun2
+	| FIXED '(' expr (',' expr (',' expr)?)? ')'			# FIXED_fun2
+	| LEFT '(' expr (',' expr)? ')'							# LEFT_fun2
+	| LEN '(' expr ')'										# LEN_fun2
+	| LOWER '(' expr ')'									# LOWER_fun2
+	| MID '(' expr ',' expr ',' expr ')'					# MID_fun2
+	| PROPER '(' expr ')'									# PROPER_fun2
+	| REPLACE '(' expr ',' expr ',' expr (',' expr)? ')'	# REPLACE_fun2
+	| REPT '(' expr ',' expr ')'							# REPT_fun2
+	| RIGHT '(' expr (',' expr)? ')'						# RIGHT_fun2
+	| RMB '(' expr ')'										# RMB_fun2
+	| SEARCH '(' expr ',' expr (',' expr)? ')'				# SEARCH_fun2
+	| SUBSTITUTE '(' expr ',' expr ',' expr (',' expr)? ')'	# SUBSTITUTE_fun2
+	| T '(' expr ')'										# T_fun2
+	| TEXT '(' expr ',' expr ')'							# TEXT_fun2
+	| TRIM '(' expr ')'										# TRIM_fun2
+	| UPPER '(' expr ')'									# UPPER_fun2
+	| VALUE '(' expr ')'									# VALUE_fun2
+	| DATEVALUE '(' expr ')'								# DATEVALUE_fun2
+	| TIMEVALUE '(' expr ')'								# TIMEVALUE_fun2
+	| DATE '(' expr ',' expr ',' expr (
+		',' expr (',' expr (',' expr)?)?
+	)? ')'														# DATE_fun2
+	| TIME '(' expr ',' expr (',' expr)? ')'					# TIME_fun2
+	| NOW '(' ')'												# NOW_fun2
+	| TODAY '(' ')'												# TODAY_fun2
+	| YEAR '(' expr ')'											# YEAR_fun2
+	| MONTH '(' expr ')'										# MONTH_fun2
+	| DAY '(' expr ')'											# DAY_fun2
+	| HOUR '(' expr ')'											# HOUR_fun2
+	| MINUTE '(' expr ')'										# MINUTE_fun2
+	| SECOND '(' expr ')'										# SECOND_fun2
+	| WEEKDAY '(' expr (',' expr)? ')'							# WEEKDAY_fun2
+	| DATEDIF '(' expr ',' expr ',' expr ')'					# DATEDIF_fun2
+	| DAYS360 '(' expr ',' expr (',' expr)? ')'					# DAYS360_fun2
+	| EDATE '(' expr ',' expr ')'								# EDATE_fun2
+	| EOMONTH '(' expr ',' expr ')'								# EOMONTH_fun2
+	| NETWORKDAYS '(' expr ',' expr (',' expr)? ')'				# NETWORKDAYS_fun2
+	| WORKDAY '(' expr ',' expr (',' expr)? ')'					# WORKDAY_fun2
+	| WEEKNUM '(' expr (',' expr)? ')'							# WEEKNUM_fun2
+	| MAX '(' expr (',' expr)+ ')'								# MAX_fun2
+	| MEDIAN '(' expr (',' expr)+ ')'							# MEDIAN_fun2
+	| MIN '(' expr (',' expr)+ ')'								# MIN_fun2
+	| QUARTILE '(' expr ',' expr ')'							# QUARTILE_fun2
+	| MODE '(' expr (',' expr)* ')'								# MODE_fun2
+	| LARGE '(' expr ',' expr ')'								# LARGE_fun2
+	| SMALL '(' expr ',' expr ')'								# SMALL_fun2
+	| PERCENTILE '(' expr ',' expr ')'							# PERCENTILE_fun2
+	| PERCENTRANK '(' expr ',' expr ')'							# PERCENTRANK_fun2
+	| AVERAGE '(' expr (',' expr)* ')'							# AVERAGE_fun2
+	| AVERAGEIF '(' expr ',' expr (',' expr)? ')'				# AVERAGEIF_fun2
+	| GEOMEAN '(' expr (',' expr)* ')'							# GEOMEAN_fun2
+	| HARMEAN '(' expr (',' expr)* ')'							# HARMEAN_fun2
+	| COUNT '(' expr (',' expr)* ')'							# COUNT_fun2
+	| COUNTIF '(' expr (',' expr)* ')'							# COUNTIF_fun2
+	| SUM '(' expr (',' expr)* ')'								# SUM_fun2
+	| SUMIF '(' expr ',' expr (',' expr)? ')'					# SUMIF_fun2
+	| AVEDEV '(' expr (',' expr)* ')'							# AVEDEV_fun2
+	| STDEV '(' expr (',' expr)* ')'							# STDEV_fun2
+	| STDEVP '(' expr (',' expr)* ')'							# STDEVP_fun2
+	| DEVSQ '(' expr (',' expr)* ')'							# DEVSQ_fun2
+	| VAR '(' expr (',' expr)* ')'								# VAR_fun2
+	| VARP '(' expr (',' expr)* ')'								# VARP_fun2
+	| NORMDIST '(' expr ',' expr ',' expr ',' expr ')'			# NORMDIST_fun2
+	| NORMINV '(' expr ',' expr ',' expr ')'					# NORMINV_fun2
+	| NORMSDIST '(' expr ')'									# NORMSDIST_fun2
+	| NORMSINV '(' expr ')'										# NORMSINV_fun2
+	| BETADIST '(' expr ',' expr ',' expr ')'					# BETADIST_fun2
+	| BETAINV '(' expr ',' expr ',' expr ')'					# BETAINV_fun2
+	| BINOMDIST '(' expr ',' expr ',' expr ',' expr ')'			# BINOMDIST_fun2
+	| EXPONDIST '(' expr ',' expr ',' expr ')'					# EXPONDIST_fun2
+	| FDIST '(' expr ',' expr ',' expr ')'						# FDIST_fun2
+	| FINV '(' expr ',' expr ',' expr ')'						# FINV_fun2
+	| FISHER '(' expr ')'										# FISHER_fun2
+	| FISHERINV '(' expr ')'									# FISHERINV_fun2
+	| GAMMADIST '(' expr ',' expr ',' expr ',' expr ')'			# GAMMADIST_fun2
+	| GAMMAINV '(' expr ',' expr ',' expr ')'					# GAMMAINV_fun2
+	| GAMMALN '(' expr ')'										# GAMMALN_fun2
+	| HYPGEOMDIST '(' expr ',' expr ',' expr ',' expr ')'		# HYPGEOMDIST_fun2
+	| LOGINV '(' expr ',' expr ',' expr ')'						# LOGINV_fun2
+	| LOGNORMDIST '(' expr ',' expr ',' expr ')'				# LOGNORMDIST_fun2
+	| NEGBINOMDIST '(' expr ',' expr ',' expr ')'				# NEGBINOMDIST_fun2
+	| POISSON '(' expr ',' expr ',' expr ')'					# POISSON_fun2
+	| TDIST '(' expr ',' expr ',' expr ')'						# TDIST_fun2
+	| TINV '(' expr ',' expr ')'								# TINV_fun2
+	| WEIBULL '(' expr ',' expr ',' expr ',' expr ')'			# WEIBULL_fun2
+	| URLENCODE '(' expr ')'									# URLENCODE_fun2
+	| URLDECODE '(' expr ')'									# URLDECODE_fun2
+	| HTMLENCODE '(' expr ')'									# HTMLENCODE_fun2
+	| HTMLDECODE '(' expr ')'									# HTMLDECODE_fun2
+	| BASE64TOTEXT '(' expr (',' expr)? ')'						# BASE64TOTEXT_fun2
+	| BASE64URLTOTEXT '(' expr (',' expr)? ')'					# BASE64URLTOTEXT_fun2
+	| TEXTTOBASE64 '(' expr (',' expr)? ')'						# TEXTTOBASE64_fun2
+	| TEXTTOBASE64URL '(' expr (',' expr)? ')'					# TEXTTOBASE64URL_fun2
+	| REGEX '(' expr ',' expr (',' expr (',' expr)?)? ')'		# REGEX_fun2
+	| REGEXREPALCE '(' expr ',' expr ',' expr ')'				# REGEXREPALCE_fun2
+	| ISREGEX '(' expr ',' expr ')'								# ISREGEX_fun2
+	| GUID '(' ')'												# GUID_fun2
+	| MD5 '(' expr (',' expr)? ')'								# MD5_fun2
+	| SHA1 '(' expr (',' expr)? ')'								# SHA1_fun2
+	| SHA256 '(' expr (',' expr)? ')'							# SHA256_fun2
+	| SHA512 '(' expr (',' expr)? ')'							# SHA512_fun2
+	| CRC8 '(' expr (',' expr)? ')'								# CRC8_fun2
+	| CRC16 '(' expr (',' expr)? ')'							# CRC16_fun2
+	| CRC32 '(' expr (',' expr)? ')'							# CRC32_fun2
+	| HMACMD5 '(' expr ',' expr (',' expr)? ')'					# HMACMD5_fun2
+	| HMACSHA1 '(' expr ',' expr (',' expr)? ')'				# HMACSHA1_fun2
+	| HMACSHA256 '(' expr ',' expr (',' expr)? ')'				# HMACSHA256_fun2
+	| HMACSHA512 '(' expr ',' expr (',' expr)? ')'				# HMACSHA512_fun2
+	| TRIMSTART '(' expr (',' expr)? ')'						# TRIMSTART_fun2
+	| TRIMEND '(' expr (',' expr)? ')'							# TRIMEND_fun2
+	| INDEXOF '(' expr ',' expr (',' expr (',' expr)?)? ')'		# INDEXOF_fun2
+	| LASTINDEXOF '(' expr ',' expr (',' expr (',' expr)?)? ')'	# LASTINDEXOF_fun2
+	| SPLIT '(' expr ',' expr ')'								# SPLIT_fun2
+	| JOIN '(' expr (',' expr)+ ')'								# JOIN_fun2
+	| SUBSTRING '(' expr ',' expr (',' expr)? ')'				# SUBSTRING_fun2
+	| STARTSWITH '(' expr ',' expr (',' expr)? ')'				# STARTSWITH_fun2
+	| ENDSWITH '(' expr ',' expr (',' expr)? ')'				# ENDSWITH_fun2
+	| ISNULLOREMPTY '(' expr ')'								# ISNULLOREMPTY_fun2
+	| ISNULLORWHITESPACE '(' expr ')'							# ISNULLORWHITESPACE_fun2
+	| REMOVESTART '(' expr ',' expr ')'							# REMOVESTART_fun2
+	| REMOVEEND '(' expr ',' expr ')'							# REMOVEEND_fun2
+	| JSON '(' expr ')'											# JSON_fun2
+	| '[' parameter ']'											# PARAMETER_fun2
+	| '-'? NUM													# NUM_fun2
+	| STRING													# STRING_fun2;
 
 parameter: expr | parameter2;
 

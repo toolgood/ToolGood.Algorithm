@@ -1538,4 +1538,10 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitParameter2([NotNull] mathParser.Parameter2Context context);
+
+ 
+	Result VisitExpr2_fun([NotNull] mathParser.Expr2_funContext context);
+
+
+	
 }

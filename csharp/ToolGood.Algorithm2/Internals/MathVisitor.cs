@@ -3545,6 +3545,11 @@ namespace ToolGood.Algorithm
             return Operand.Error(" Operator is error!");
         }
 
+        public Operand VisitExpr2_fun([NotNull] mathParser.Expr2_funContext context)
+        {
+            return VisitChildren(context);
+        }
+
         #endregion
     }
 }
