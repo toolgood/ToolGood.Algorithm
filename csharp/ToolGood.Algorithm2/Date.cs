@@ -51,12 +51,12 @@ namespace ToolGood.Algorithm
                 }
             }
             if (Day != null) {
-                return ((TimeSpan)this).ToString("dd HH:mm:ss");
+                return ((TimeSpan)this).ToString();
             }
             if (Second == 0) {
-                return ((TimeSpan)this).ToString("HH:mm");
+                return ((TimeSpan)this).ToString("hh':'mm");
             }
-            return ((TimeSpan)this).ToString("HH:mm:ss");
+            return ((TimeSpan)this).ToString();
         }
 
         public string ToString(string f)

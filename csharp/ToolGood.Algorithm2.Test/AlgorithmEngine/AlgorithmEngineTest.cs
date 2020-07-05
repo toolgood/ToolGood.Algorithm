@@ -124,6 +124,13 @@ namespace ToolGood.Algorithm
 
         }
 
+        [Test]
+        public void base_test2()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("1+(3*2+2)/2 & '11' & '11:20'*9 & isnumber(22)*3", "");
+  
+        }
 
         [Test]
         public void Cylinder_Test()
@@ -138,9 +145,6 @@ namespace ToolGood.Algorithm
             }
 
             c.TryEvaluate("['半径']*[半径]*pi()*[高]", 0.0); //圆的体积
-
-
-
         }
 
     }
