@@ -53,15 +53,15 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
 
         protected override Operand GetParameter(string parameter)
         {
-            if (parameter == "[半径]")
+            if (parameter == "半径")
             {
                 return Operand.Create(_radius);
             }
-            if (parameter == "[直径]")
+            if (parameter == "直径")
             {
                 return Operand.Create(_radius * 2);
             }
-            if (parameter == "[高]")
+            if (parameter == "高")
             {
                 return Operand.Create(_height);
             }

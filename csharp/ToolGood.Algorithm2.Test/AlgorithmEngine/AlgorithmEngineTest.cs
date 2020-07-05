@@ -129,22 +129,22 @@ namespace ToolGood.Algorithm
         {
             AlgorithmEngine engine = new AlgorithmEngine();
             var t = engine.TryEvaluate("1+(3*2+2)/2 & '11' & '11:20'*9 & isnumber(22)*3", "");
-  
+
         }
 
         [Test]
         public void Cylinder_Test()
         {
             Cylinder c = new Cylinder(3, 10);
-            c.TryEvaluate("[半径]*[半径]*pi()", 0.0);      //圆底面积
-            c.TryEvaluate("[直径]*pi()", 0.0);            //圆的长
-            c.TryEvaluate("[半径]*[半径]*pi()*[高]", 0.0); //圆的体积
+            var t = c.TryEvaluate("[半径]*[半径]*pi()", 0.0);      //圆底面积
+            t = c.TryEvaluate("[直径]*pi()", 0.0);            //圆的长
+            t = c.TryEvaluate("[半径]*[半径]*pi()*[高]", 0.0); //圆的体积
 
-            if (c.Parse("[直径1]*pi()")==false) {
+            if (c.Parse("[直径1]*pi()") == false) {
                 Assert.AreEqual("参数[直径1]无效!", c.LastError);
             }
 
-            c.TryEvaluate("['半径']*[半径]*pi()*[高]", 0.0); //圆的体积
+            t = c.TryEvaluate("['半径']*[半径]*pi()*[高]", 0.0); //圆的体积
         }
 
     }
