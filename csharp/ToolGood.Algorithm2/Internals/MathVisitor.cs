@@ -154,7 +154,7 @@ namespace ToolGood.Algorithm
                     if (firstValue.IsError) { return firstValue; }
                     return Operand.Create(secondValue.DateValue + firstValue.NumberValue);
                 }
-                firstValue = firstValue.ToNumber("");
+                firstValue = firstValue.ToNumber($"Function '{t}' parameter 1 is error!");
                 if (firstValue.IsError) { return firstValue; }
                 secondValue = secondValue.ToNumber($"Function '{t}' parameter 2 is error!");
                 if (secondValue.IsError) { return secondValue; }
@@ -179,7 +179,7 @@ namespace ToolGood.Algorithm
                     if (firstValue.IsError) { return firstValue; }
                     return Operand.Create(secondValue.DateValue - firstValue.NumberValue);
                 }
-                firstValue = firstValue.ToNumber("");
+                firstValue = firstValue.ToNumber(null);
                 if (firstValue.IsError) { return firstValue; }
                 secondValue = secondValue.ToNumber($"Function '{t}' parameter 2 is error!");
                 if (secondValue.IsError) { return secondValue; }
@@ -2831,12 +2831,12 @@ namespace ToolGood.Algorithm
                     var o = F_base_GetList(item.ArrayValue, list);
                     if (o == false) { return false; }
                 } else if (item.Type == OperandType.JSON) {
-                    var i = item.ToArray("");
+                    var i = item.ToArray(null);
                     if (i.IsError) { return false; }
                     var o = F_base_GetList(i.ArrayValue, list);
                     if (o == false) { return false; }
                 } else {
-                    var o = item.ToNumber("");
+                    var o = item.ToNumber(null);
                     if (o.IsError) { return false; }
                     list.Add(o.NumberValue);
                 }
@@ -2852,12 +2852,12 @@ namespace ToolGood.Algorithm
                 var o = F_base_GetList(args.ArrayValue, list);
                 if (o == false) { return false; }
             } else if (args.Type == OperandType.JSON) {
-                var i = args.ToArray("");
+                var i = args.ToArray(null);
                 if (i.IsError) { return false; }
                 var o = F_base_GetList(i.ArrayValue, list);
                 if (o == false) { return false; }
             } else {
-                var o = args.ToNumber("");
+                var o = args.ToNumber(null);
                 if (o.IsError) { return false; }
                 list.Add(o.NumberValue);
             }
@@ -2871,12 +2871,12 @@ namespace ToolGood.Algorithm
                 var o = F_base_GetList(args.ArrayValue, list);
                 if (o == false) { return false; }
             } else if (args.Type == OperandType.JSON) {
-                var i = args.ToArray("");
+                var i = args.ToArray(null);
                 if (i.IsError) { return false; }
                 var o = F_base_GetList(i.ArrayValue, list);
                 if (o == false) { return false; }
             } else {
-                var o = args.ToString("");
+                var o = args.ToString(null);
                 if (o.IsError) { return false; }
                 list.Add(o.StringValue);
             }
@@ -2891,12 +2891,12 @@ namespace ToolGood.Algorithm
                     var o = F_base_GetList(item.ArrayValue, list);
                     if (o == false) { return false; }
                 } else if (item.Type == OperandType.JSON) {
-                    var i = item.ToArray("");
+                    var i = item.ToArray(null);
                     if (i.IsError) { return false; }
                     var o = F_base_GetList(i.ArrayValue, list);
                     if (o == false) { return false; }
                 } else {
-                    var o = item.ToString("");
+                    var o = item.ToString(null);
                     if (o.IsError) { return false; }
                     list.Add(o.StringValue);
                 }
@@ -3289,7 +3289,7 @@ namespace ToolGood.Algorithm
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
             if (args[0].Type == OperandType.JSON) {
-                var o = args[0].ToArray("");
+                var o = args[0].ToArray(null);
                 if (o.IsError == false) {
                     args[0] = o;
                 }
@@ -3478,18 +3478,12 @@ namespace ToolGood.Algorithm
                 if (fourthValue.IsError) { return fourthValue; }
                 vague = fourthValue.BooleanValue;
             }
-
-            var sv = secondValue.ToNumber("Function VLOOKUP parameter 2 is error!");
-            if (sv.IsError == false)
-            {
-                secondValue = sv;
-            }
-            else
-            {
-                sv = secondValue.ToString("Function VLOOKUP parameter 2 is error!");
+            if (secondValue.Type!= OperandType.NULL) {
+                var sv = secondValue.ToString("Function VLOOKUP parameter 2 is error!");
                 if (sv.IsError) { return sv; }
                 secondValue = sv;
             }
+ 
             foreach (var item in firstValue.ArrayValue)
             {
                 var o = item.ToArray("Function VLOOKUP parameter 1 error!");
@@ -3500,14 +3494,14 @@ namespace ToolGood.Algorithm
                     int b = -1;
                     if (secondValue.Type == OperandType.NUMBER)
                     {
-                        if (o1.Type == OperandType.NUMBER)
-                        {
-                            b = Compare(o1.NumberValue, secondValue.NumberValue);
+                        var o2 = o1.ToNumber(null);
+                        if (o2.IsError==false) {
+                            b = Compare(o2.NumberValue, secondValue.NumberValue);
                         }
                     }
                     else
                     {
-                        var o2 = o1.ToString("");
+                        var o2 = o1.ToString(null);
                         if (o2.IsError == false)
                         {
                             b = string.CompareOrdinal(o2.StringValue, secondValue.StringValue);
@@ -3530,7 +3524,7 @@ namespace ToolGood.Algorithm
                 var index = thirdValue.IntValue - excelIndex;
                 foreach (var item in firstValue.ArrayValue)
                 {
-                    var o = item.ToArray("");
+                    var o = item.ToArray(null);
                     if (o.IsError) { return o; }
                     if (o.ArrayValue.Count > 0)
                     {
@@ -3538,14 +3532,14 @@ namespace ToolGood.Algorithm
                         int b = -1;
                         if (secondValue.Type == OperandType.NUMBER)
                         {
-                            if (o1.Type == OperandType.NUMBER)
-                            {
-                                b = Compare(o1.NumberValue, secondValue.NumberValue);
-                            }
+                          var o2 = o1.ToNumber(null);
+                        if (o2.IsError==false) {
+                            b = Compare(o2.NumberValue, secondValue.NumberValue);
+                        }
                         }
                         else
                         {
-                            var o2 = o1.ToString("");
+                            var o2 = o1.ToString(null);
                             if (o2.IsError == false)
                             {
                                 b = string.CompareOrdinal(o2.StringValue, secondValue.StringValue);
@@ -3596,7 +3590,7 @@ namespace ToolGood.Algorithm
                     engine.Json = json;
                     try
                     {
-                        var o = engine.Evaluate().ToBoolean("");
+                        var o = engine.Evaluate().ToBoolean(null);
                         if (o.IsError == false)
                         {
                             if (o.BooleanValue)
@@ -3680,7 +3674,7 @@ namespace ToolGood.Algorithm
             if (GetParameter != null) {
                 return GetParameter(p.StringValue);
             }
-            return Operand.Error("");
+            return Operand.Error("Function PARAMETER first parameter is error!");
         }
 
         public Operand VisitParameter([NotNull] mathParser.ParameterContext context)

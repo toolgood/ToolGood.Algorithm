@@ -108,7 +108,7 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public bool Parse(string exp)
         {
-            if (string.IsNullOrEmpty(exp) || exp.Trim() == "")
+            if (string.IsNullOrWhiteSpace(exp))
             {
                 LastError = "Parameter exp invalid !";
                 return false;
@@ -174,7 +174,7 @@ namespace ToolGood.Algorithm
                 try
                 {
                     var obj = Evaluate();
-                    obj = obj.ToNumber("");
+                    obj = obj.ToNumber("It can't be converted to number!");
                     if (obj.IsError)
                     {
                         LastError = obj.ErrorMsg;
@@ -197,7 +197,7 @@ namespace ToolGood.Algorithm
                 try
                 {
                     var obj = Evaluate();
-                    obj = obj.ToNumber("");
+                    obj = obj.ToNumber("It can't be converted to number!");
                     if (obj.IsError)
                     {
                         LastError = obj.ErrorMsg;
@@ -223,7 +223,7 @@ namespace ToolGood.Algorithm
                     if (obj.IsNull) {
                         return null;
                     }
-                    obj = obj.ToString("");
+                    obj = obj.ToString("It can't be converted to string!");
                     if (obj.IsError)
                     {
                         LastError = obj.ErrorMsg;
@@ -245,7 +245,7 @@ namespace ToolGood.Algorithm
                 try
                 {
                     var obj = Evaluate();
-                    obj = obj.ToBoolean("");
+                    obj = obj.ToBoolean("It can't be converted to bool!");
                     if (obj.IsError)
                     {
                         LastError = obj.ErrorMsg;
@@ -268,7 +268,7 @@ namespace ToolGood.Algorithm
                 try
                 {
                     var obj = Evaluate();
-                    obj = obj.ToDate("");
+                    obj = obj.ToDate("It can't be converted to date!");
                     if (obj.IsError)
                     {
                         LastError = obj.ErrorMsg;
@@ -291,7 +291,7 @@ namespace ToolGood.Algorithm
                 try
                 {
                     var obj = Evaluate();
-                    obj = obj.ToDate("");
+                    obj = obj.ToDate("It can't be converted to date!");
                     if (obj.IsError)
                     {
                         LastError = obj.ErrorMsg;
