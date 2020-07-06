@@ -15,7 +15,6 @@ namespace ToolGood.Algorithm
         public static readonly Operand False = Operand.Create(false);
 
         public virtual bool IsNull => false;
-        public virtual bool IsNullOrError => false;
         public virtual bool IsError => false;
         public virtual string ErrorMsg => null;
         public abstract OperandType Type { get; }
@@ -268,7 +267,6 @@ namespace ToolGood.Algorithm
     {
         public override OperandType Type => OperandType.ERROR;
         public override bool IsError => true;
-        public override bool IsNullOrError => true;
         private string _errorMsg;
         public override string ErrorMsg => _errorMsg;
         public OperandError(string msg)
@@ -280,7 +278,6 @@ namespace ToolGood.Algorithm
     class OperandNull : Operand
     {
         public override OperandType Type => OperandType.NULL;
-        public override bool IsNullOrError => true;
         public override bool IsNull => true;
 
     }

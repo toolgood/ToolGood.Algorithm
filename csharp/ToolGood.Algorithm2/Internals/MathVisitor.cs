@@ -400,12 +400,12 @@ namespace ToolGood.Algorithm
             foreach (var item in context.expr()) { var aa = this.Visit(item);  args.Add(aa); }
 
             if (args.Count == 2) {
-                if (args[0].IsNullOrError) {
+                if (args[0].IsNull || args[0].IsError) {
                     return args[1];
                 }
                 return args[0];
             }
-            if (args[0].IsNullOrError) {
+            if (args[0].IsNull || args[0].IsError) {
                 return Operand.True;
             }
             return Operand.False;
