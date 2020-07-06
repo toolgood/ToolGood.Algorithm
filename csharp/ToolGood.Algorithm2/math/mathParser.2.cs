@@ -3088,5 +3088,17 @@ partial class mathParser : Parser
 		}
 	}
 
-
+	public partial class LOOKUP_funContext : ExprContext
+	{
+		public ExprContext[] expr()
+		{
+			return GetRuleContexts<ExprContext>();
+		}
+		public LOOKUP_funContext(ExprContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+		{
+			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+			return typedVisitor.VisitLOOKUP_fun(this);
+		}
+	}
 }

@@ -39,14 +39,17 @@ namespace ToolGood.Algorithm.LitJson
         public JsonData this[string prop_name] {
             get {
                 EnsureDictionary();
-                return inst_object[prop_name];
+                JsonData data;
+                if (inst_object.TryGetValue(prop_name,out data))
+                {
+                    return data;
+                }
+                return null;
             }
-
             set {
                 EnsureDictionary();
 
-                KeyValuePair<string, JsonData> entry =
-                    new KeyValuePair<string, JsonData>(prop_name, value);
+                KeyValuePair<string, JsonData> entry = new KeyValuePair<string, JsonData>(prop_name, value);
 
                 if (inst_object.ContainsKey(prop_name)) {
                     for (int i = 0; i < object_list.Count; i++) {
@@ -59,8 +62,6 @@ namespace ToolGood.Algorithm.LitJson
                     object_list.Add(entry);
 
                 inst_object[prop_name] = value;
-
-                //json = null;
             }
         }
 
@@ -81,8 +82,7 @@ namespace ToolGood.Algorithm.LitJson
                     inst_array[index] = value;
                 else {
                     KeyValuePair<string, JsonData> entry = object_list[index];
-                    KeyValuePair<string, JsonData> new_entry =
-                        new KeyValuePair<string, JsonData>(entry.Key, value);
+                    KeyValuePair<string, JsonData> new_entry = new KeyValuePair<string, JsonData>(entry.Key, value);
 
                     object_list[index] = new_entry;
                     inst_object[entry.Key] = value;

@@ -1544,7 +1544,7 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 
 	Result VisitVLOOKUP_fun([NotNull] mathParser.VLOOKUP_funContext context);
 
+	Result VisitLOOKUP_fun([NotNull] mathParser.LOOKUP_funContext context);
 
-	
 
 }
