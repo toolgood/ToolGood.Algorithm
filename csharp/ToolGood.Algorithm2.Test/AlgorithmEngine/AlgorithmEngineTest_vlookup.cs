@@ -35,7 +35,7 @@ namespace ToolGood.Algorithm
     {'白色':'L','canBookCount':862,'saleCount':136,'specId':'82114cbd2c10b5e97b01af1510807e2d'},
     {'白色':'XL','canBookCount':881,'saleCount':118,'specId':'c45d8408137e34adf8e695250c42a2e9'},
     {'白色':'XXL','canBookCount':917,'saleCount':82,'specId':'df78564262818d6eb0c428a37ab4a251'},
-    {'蓝色':'L','canBookCount':962,'saleCount':35,'specId':'e959b6ab7c355e403a3312c75bd3d5b4'},
+    {'蓝色':'L','canBookCount':962,'saleCount':35,'specId':'e959b6ab7c355e403a3312c75bd3d5b4','key':null},
     {'蓝色':'XL','canBookCount':973,'saleCount':26,'specId':'27402e07efd89afa50733afa94cd6976'},
     {'蓝色':'XXL','canBookCount':985,'saleCount':14,'specId':'358b6c3b52bf711ac8ecfe7513a4f3ad'}
 ]";
@@ -53,6 +53,8 @@ namespace ToolGood.Algorithm
             num = engine.TryEvaluate("lookup([jsonArray].Json(),'[蓝色]=\"L\"','specId')", null);
             Assert.AreEqual(num, "e959b6ab7c355e403a3312c75bd3d5b4");
 
+            num = engine.TryEvaluate("lookup([jsonArray].Json(),'[蓝色]=\"L\"','key')", "1");
+            Assert.AreEqual(null, num);
         }
 
     }

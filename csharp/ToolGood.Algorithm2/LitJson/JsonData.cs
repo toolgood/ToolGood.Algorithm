@@ -31,6 +31,7 @@ namespace ToolGood.Algorithm.LitJson
         public bool IsLong { get { return type == JsonType.Long; } }
         public bool IsObject { get { return type == JsonType.Object; } }
         public bool IsString { get { return type == JsonType.String; } }
+        public bool IsNull { get { return type == JsonType.Null; } }
         #endregion
 
 
@@ -170,6 +171,10 @@ namespace ToolGood.Algorithm.LitJson
             type = JsonType.String;
             inst_string = val;
         }
+        void IJsonWrapper.SetNull()
+        {
+            type = JsonType.Null;
+        }
 
         void IJsonWrapper.Add(IJsonWrapper val)
         {
@@ -290,7 +295,10 @@ namespace ToolGood.Algorithm.LitJson
 
                 case JsonType.String:
                     return inst_string;
+                case JsonType.Null:
+                    return null;
             }
+
 
             return "Uninitialized JsonData";
         }

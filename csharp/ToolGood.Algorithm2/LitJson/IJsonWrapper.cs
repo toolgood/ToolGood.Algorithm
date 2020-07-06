@@ -14,7 +14,8 @@ namespace ToolGood.Algorithm.LitJson
         Int,
         Long,
         Double,
-        Boolean
+        Boolean,
+        Null
     }
 
     interface IJsonWrapper  
@@ -26,6 +27,7 @@ namespace ToolGood.Algorithm.LitJson
         bool IsLong { get; }
         bool IsObject { get; }
         bool IsString { get; }
+        bool IsNull { get; }
 
         void SetBoolean(bool val);
         void SetDouble(double val);
@@ -33,6 +35,7 @@ namespace ToolGood.Algorithm.LitJson
         void SetJsonType(JsonType type);
         void SetLong(long val);
         void SetString(string val);
+        void SetNull();
 
         void Add(IJsonWrapper val);
 

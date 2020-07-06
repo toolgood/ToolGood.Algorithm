@@ -18,7 +18,7 @@ namespace ToolGood.Algorithm.LitJson
         {
             reader.Read();
 
-            if (reader.Token == JsonToken.ArrayEnd || reader.Token == JsonToken.Null) return null;
+            if (reader.Token == JsonToken.ArrayEnd) return null;
 
             IJsonWrapper instance = new JsonData();
 
@@ -46,6 +46,12 @@ namespace ToolGood.Algorithm.LitJson
                 instance.SetBoolean((bool)reader.Value);
                 return instance;
             }
+            if (reader.Token == JsonToken.Null)
+            {
+                instance.SetNull();
+                return instance;
+            }
+
 
             if (reader.Token == JsonToken.ArrayStart) {
                 instance.SetJsonType(JsonType.Array);
