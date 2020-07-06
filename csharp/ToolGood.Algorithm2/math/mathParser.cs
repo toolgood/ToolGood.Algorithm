@@ -169,7 +169,6 @@ partial class mathParser : Parser {
 		ParserRuleContext _parentctx = Context;
 		int _parentState = State;
 		ExprContext _localctx = new ExprContext(Context, _parentState);
-		ExprContext _prevctx = _localctx;
 		int _startState = 2;
 		EnterRecursionRule(_localctx, 2, 1, _p);
 		int _la;
@@ -180,7 +179,6 @@ partial class mathParser : Parser {
 			{
 			_localctx = new Expr2_funContext(_localctx);
 			Context = _localctx;
-			_prevctx = _localctx;
 
 			expr2();
 			}
@@ -192,7 +190,6 @@ partial class mathParser : Parser {
 				if ( _alt==1 ) {
 					if ( ParseListeners!=null )
 						TriggerExitRuleEvent();
-					_prevctx = _localctx;
 					{
 					
 					ErrorHandler.Sync(this);
