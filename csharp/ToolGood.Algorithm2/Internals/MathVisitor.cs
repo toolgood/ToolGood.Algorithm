@@ -2351,7 +2351,7 @@ namespace ToolGood.Algorithm
                         var o2 = o1.ToString("");
                         if (o2.IsError == false)
                         {
-                            b = string.CompareOrdinal(firstValue.StringValue, secondValue.StringValue);
+                            b = string.CompareOrdinal(o1.StringValue, secondValue.StringValue);
                         }
                     }
                     if (b == 0)
@@ -2384,7 +2384,7 @@ namespace ToolGood.Algorithm
                             var o2 = o1.ToString("");
                             if (o2.IsError == false)
                             {
-                                b = string.CompareOrdinal(firstValue.StringValue, secondValue.StringValue);
+                                b = string.CompareOrdinal(o1.StringValue, secondValue.StringValue);
                             }
                         }
                         if (b > 0)
