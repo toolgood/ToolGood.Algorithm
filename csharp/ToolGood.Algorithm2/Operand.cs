@@ -202,6 +202,8 @@ namespace ToolGood.Algorithm
                             list.Add(Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo)));
                         else if (v.IsLong)
                             list.Add(Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo)));
+                        else if (v.IsLong)
+                            list.Add(Operand.CreateNull());
                         else
                             list.Add(Operand.Create(v));
                     }
@@ -210,7 +212,7 @@ namespace ToolGood.Algorithm
             }
             return Error(errorMessage);
         }
- 
+
 
         public void Dispose() { }
     }
