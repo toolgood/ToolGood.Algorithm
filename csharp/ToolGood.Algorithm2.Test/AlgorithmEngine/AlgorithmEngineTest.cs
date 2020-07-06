@@ -24,6 +24,8 @@ namespace ToolGood.Algorithm
             Assert.AreEqual(5, c);
             c = engine.TryEvaluate("(2)+3", 0);
             Assert.AreEqual(5, c);
+            c = engine.TryEvaluate("2+3*2+10/2*4", 0);
+            Assert.AreEqual(28, c);
 
             var e = engine.TryEvaluate("e", 0.0);
             Assert.AreEqual(Math.E, e);
