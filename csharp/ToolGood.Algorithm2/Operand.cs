@@ -43,6 +43,9 @@ namespace ToolGood.Algorithm
         }
         public static Operand Create(string obj)
         {
+            if (object.Equals(null,obj)) {
+                return Operand.CreateNull();
+            }
             return new OperandString(obj);
         }
         public static Operand CreateJson(string txt)
@@ -202,7 +205,7 @@ namespace ToolGood.Algorithm
                             list.Add(Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo)));
                         else if (v.IsLong)
                             list.Add(Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo)));
-                        else if (v.IsLong)
+                        else if (v.IsNull)
                             list.Add(Operand.CreateNull());
                         else
                             list.Add(Operand.Create(v));
@@ -212,7 +215,6 @@ namespace ToolGood.Algorithm
             }
             return Error(errorMessage);
         }
-
 
         public void Dispose() { }
     }

@@ -220,6 +220,9 @@ namespace ToolGood.Algorithm
                 try
                 {
                     var obj = Evaluate();
+                    if (obj.IsNull) {
+                        return null;
+                    }
                     obj = obj.ToString("");
                     if (obj.IsError)
                     {

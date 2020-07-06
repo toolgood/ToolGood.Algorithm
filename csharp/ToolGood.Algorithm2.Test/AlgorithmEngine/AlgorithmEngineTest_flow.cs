@@ -36,7 +36,43 @@ namespace ToolGood.Algorithm
             t = engine.TryEvaluate("iferror(1-'rrr',1,2)", 0);
             Assert.AreEqual(1, t);
         }
- 
+
+        [Test]
+        public void iserror_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("iserror(1/0,1)", 0);
+            Assert.AreEqual(1, t);
+
+            t = engine.TryEvaluate("iserror(1-'rrr',1)", 0);
+            Assert.AreEqual(1, t);
+        }
+        [Test]
+        public void ifnull_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("isnull(null,1)", 0);
+            Assert.AreEqual(1, t);
+
+            t = engine.TryEvaluate("isnull(1,2)", 0);
+            Assert.AreEqual(1, t);
+        }
+
+        [Test]
+        public void isnullorerror_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("isnullorerror(null,1)", 0);
+            Assert.AreEqual(1, t);
+
+            t = engine.TryEvaluate("isnullorerror(1/0,1)", 0);
+            Assert.AreEqual(1, t);
+
+            t = engine.TryEvaluate("isnullorerror(1,2)", 0);
+            Assert.AreEqual(1, t);
+        }
+
+
 
         [Test]
         public void ISNUMBER_test()
@@ -229,7 +265,7 @@ namespace ToolGood.Algorithm
 
         }
 
-  
+
 
 
     }
