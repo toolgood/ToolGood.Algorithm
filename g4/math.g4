@@ -122,6 +122,7 @@ expr2:
 	| ISLOGICAL '(' expr ')'								# ISLOGICAL_fun2
 	| ISEVEN '(' expr ')'									# ISEVEN_fun2
 	| ISODD '(' expr ')'									# ISODD_fun2
+	| ISNULL '(' expr ',' expr ')'							# ISNULL_fun2
 	| AND '(' expr (',' expr)* ')'							# AND_fun2
 	| OR '(' expr (',' expr)* ')'							# OR_fun2
 	| NOT '(' expr ')'										# NOT_fun2
@@ -322,7 +323,9 @@ expr2:
 	| LOOKUP '(' expr ',' expr ',' expr ')'						# LOOKUP_fun2
 	| '[' parameter ']'											# PARAMETER_fun2
 	| '-'? NUM													# NUM_fun2
-	| STRING													# STRING_fun2;
+	| STRING													# STRING_fun2
+	| NULL														# NULL_fun2
+	;
 
 parameter: expr | parameter2;
 
@@ -532,10 +535,13 @@ parameter2:
 	| JSON
 	| VLOOKUP
 	| LOOKUP
+	| NULL
 	| PARAMETER;
 SUB: '-';
 NUM: '0' ('.' [0-9]+)? | [1-9][0-9]* ('.' [0-9]+)?;
 STRING: '\'' ( ~'\'' | '\\\'')* '\'' | '"' ( ~'"' | '\\"')* '"';
+NULL:'NULL';
+
 // 逻辑函数
 IF: 'IF';
 IFERROR: 'IFERROR';
@@ -546,6 +552,7 @@ ISNONTEXT: 'ISNONTEXT';
 ISLOGICAL: 'ISLOGICAL';
 ISEVEN: 'ISEVEN';
 ISODD: 'ISODD';
+ISNULL:'ISNULL'|'IFNULL';
 AND: 'AND';
 OR: 'OR';
 NOT: 'NOT';
