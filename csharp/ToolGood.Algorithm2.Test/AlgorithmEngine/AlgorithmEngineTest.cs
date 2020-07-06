@@ -27,6 +27,11 @@ namespace ToolGood.Algorithm
             c = engine.TryEvaluate("2+3*2+10/2*4", 0);
             Assert.AreEqual(28, c);
 
+            c = engine.TryEvaluate("if(2+3*2+10/2*4,1", 0);
+            Assert.AreEqual(0, c);
+
+
+
             var e = engine.TryEvaluate("e", 0.0);
             Assert.AreEqual(Math.E, e);
             e = engine.TryEvaluate("pi", 0.0);

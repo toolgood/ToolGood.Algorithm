@@ -22,8 +22,7 @@ namespace ToolGood.Algorithm
         #region GetParameter
         protected virtual Operand GetParameter(string parameter)
         {
-            if (_dict.TryGetValue(parameter, out Operand operand))
-            {
+            if (_dict.TryGetValue(parameter, out Operand operand)) {
                 return operand;
             }
             return Operand.Error($"Parameter [{parameter}] is missing.");
@@ -108,8 +107,7 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public bool Parse(string exp)
         {
-            if (string.IsNullOrWhiteSpace(exp))
-            {
+            if (string.IsNullOrWhiteSpace(exp)) {
                 LastError = "Parameter exp invalid !";
                 return false;
             }
@@ -125,14 +123,12 @@ namespace ToolGood.Algorithm
 
             var context = parser.prog();
             var end = context.Stop.StopIndex;
-            if (end + 1 < exp.Length)
-            {
+            if (end + 1 < exp.Length) {
                 _context = null;
                 LastError = "Parameter exp invalid !";
                 return false;
             }
-            if (antlrErrorListener.IsError)
-            {
+            if (antlrErrorListener.IsError) {
                 _context = null;
                 LastError = antlrErrorListener.ErrorMsg;
                 return false;
@@ -153,8 +149,7 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public Operand Evaluate()
         {
-            if (_context == null)
-            {
+            if (_context == null) {
                 LastError = "Please use Parse to compile formula !";
                 throw new Exception("Please use Parse to compile formula !");
             }
@@ -162,147 +157,119 @@ namespace ToolGood.Algorithm
             visitor.GetParameter += GetParameter;
             visitor.excelIndex = UseExcelIndex ? 1 : 0;
             return visitor.Visit(_context);
-        } 
+        }
         #endregion
 
         #region TryEvaluate
 
         public int TryEvaluate(string exp, int def)
         {
-            if (Parse(exp))
-            {
-                try
-                {
+            try {
+                if (Parse(exp)) {
+
                     var obj = Evaluate();
                     obj = obj.ToNumber("It can't be converted to number!");
-                    if (obj.IsError)
-                    {
+                    if (obj.IsError) {
                         LastError = obj.ErrorMsg;
                         return def;
                     }
                     return obj.IntValue;
                 }
-                catch (Exception ex)
-                {
-                    LastError = ex.Message;
-                }
+            } catch (Exception ex) {
+                LastError = ex.Message;
             }
             return def;
         }
 
         public double TryEvaluate(string exp, double def)
         {
-            if (Parse(exp))
-            {
-                try
-                {
+            try {
+                if (Parse(exp)) {
+
                     var obj = Evaluate();
                     obj = obj.ToNumber("It can't be converted to number!");
-                    if (obj.IsError)
-                    {
+                    if (obj.IsError) {
                         LastError = obj.ErrorMsg;
                         return def;
                     }
                     return obj.NumberValue;
                 }
-                catch (Exception ex)
-                {
-                    LastError = ex.Message;
-                }
+            } catch (Exception ex) {
+                LastError = ex.Message;
             }
             return def;
         }
 
         public string TryEvaluate(string exp, string def)
         {
-            if (Parse(exp))
-            {
-                try
-                {
+            try {
+                if (Parse(exp)) {
                     var obj = Evaluate();
                     if (obj.IsNull) {
                         return null;
                     }
                     obj = obj.ToString("It can't be converted to string!");
-                    if (obj.IsError)
-                    {
+                    if (obj.IsError) {
                         LastError = obj.ErrorMsg;
                         return def;
                     }
                     return obj.StringValue;
                 }
-                catch (Exception ex)
-                {
-                    LastError = ex.Message;
-                }
+            } catch (Exception ex) {
+                LastError = ex.Message;
             }
             return def;
         }
         public bool TryEvaluate(string exp, bool def)
         {
-            if (Parse(exp))
-            {
-                try
-                {
+            try {
+                if (Parse(exp)) {
                     var obj = Evaluate();
                     obj = obj.ToBoolean("It can't be converted to bool!");
-                    if (obj.IsError)
-                    {
+                    if (obj.IsError) {
                         LastError = obj.ErrorMsg;
                         return def;
                     }
                     return obj.BooleanValue;
                 }
-                catch (Exception ex)
-                {
-                    LastError = ex.Message;
-                }
+            } catch (Exception ex) {
+                LastError = ex.Message;
             }
             return def;
         }
 
         public DateTime TryEvaluate(string exp, DateTime def)
         {
-            if (Parse(exp))
-            {
-                try
-                {
+            try {
+                if (Parse(exp)) {
                     var obj = Evaluate();
                     obj = obj.ToDate("It can't be converted to date!");
-                    if (obj.IsError)
-                    {
+                    if (obj.IsError) {
                         LastError = obj.ErrorMsg;
                         return def;
                     }
-                    return (DateTime) obj.DateValue;
+                    return (DateTime)obj.DateValue;
                 }
-                catch (Exception ex)
-                {
-                    LastError = ex.Message;
-                }
+            } catch (Exception ex) {
+                LastError = ex.Message;
             }
             return def;
         }
 
         public TimeSpan TryEvaluate(string exp, TimeSpan def)
         {
-            if (Parse(exp))
-            {
-                try
-                {
+            try {
+                if (Parse(exp)) {
                     var obj = Evaluate();
                     obj = obj.ToDate("It can't be converted to date!");
-                    if (obj.IsError)
-                    {
+                    if (obj.IsError) {
                         LastError = obj.ErrorMsg;
                         return def;
                     }
-                    return (TimeSpan) obj.DateValue;
+                    return (TimeSpan)obj.DateValue;
                 }
-                catch (Exception ex)
-                {
-                    LastError = ex.Message;
-                }
+            } catch (Exception ex) {
+                LastError = ex.Message;
             }
             return def;
         }
