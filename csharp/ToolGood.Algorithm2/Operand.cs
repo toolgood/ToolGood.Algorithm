@@ -43,6 +43,17 @@ namespace ToolGood.Algorithm
         {
             return new OperandString(obj);
         }
+        public static Operand CreateJson(string obj)
+        {
+            try
+            {
+                var json = JsonMapper.ToObject(obj);
+                return Create(json);
+            }
+            catch (Exception) { }
+            return Operand.Error("string to json is error!");
+        }
+
         public static Operand Create(Date obj)
         {
             return new OperandDate(obj);

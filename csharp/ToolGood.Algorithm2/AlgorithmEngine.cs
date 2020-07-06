@@ -27,10 +27,14 @@ namespace ToolGood.Algorithm
                 return operand;
             }
             return Operand.Error($"Parameter [{parameter}] is missing.");
-        } 
+        }
         #endregion
 
         #region AddParameter
+        public void AddParameter(string key, Operand obj)
+        {
+            _dict[key] = obj;
+        }
         public void AddParameter(string key, bool obj)
         {
             _dict[key] = Operand.Create(obj);

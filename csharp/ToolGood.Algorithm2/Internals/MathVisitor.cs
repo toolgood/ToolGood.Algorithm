@@ -3495,7 +3495,6 @@ namespace ToolGood.Algorithm
             return Operand.Error("Function VLOOKUP is not match !");
         }
 
-        private Dictionary<string, LookupAlgorithmEngine> _engine = new Dictionary<string, LookupAlgorithmEngine>();
         public Operand VisitLOOKUP_fun([NotNull] mathParser.LOOKUP_funContext context)
         {
             var args = new List<Operand>();
@@ -3513,15 +3512,10 @@ namespace ToolGood.Algorithm
                 return Operand.Error("Function LOOKUP parameter 2 is null!");
             }
 
-            LookupAlgorithmEngine engine;
-            if (_engine.TryGetValue(secondValue.StringValue,out engine)==false)
+            var engine = new LookupAlgorithmEngine();
+            if (engine.Parse(secondValue.StringValue) == false)
             {
-                engine = new LookupAlgorithmEngine();
-                if (engine.Parse(secondValue.StringValue)==false)
-                {
-                    return Operand.Error("Function LOOKUP parameter 2 Parse is error!");
-                }
-                _engine[secondValue.StringValue] = engine;
+                return Operand.Error("Function LOOKUP parameter 2 Parse is error!");
             }
 
             foreach (var item in firstValue.ArrayValue)
@@ -3672,7 +3666,6 @@ namespace ToolGood.Algorithm
                     op = op.ToString("JSON parameter name is error!");
                     if (op.IsError) { return op; }
                     var v = json[op.StringValue];
-                    if (v == null) return Operand.Create(v);
                     if (v.IsString) return Operand.Create(v.ToString());
                     if (v.IsBoolean) return Operand.Create(bool.Parse(v.ToString()));
                     if (v.IsDouble) return Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo));
@@ -3680,7 +3673,6 @@ namespace ToolGood.Algorithm
                     if (v.IsLong) return Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo));
                     if (v.IsObject) return Operand.Create(v);
                     if (v.IsArray) return Operand.Create(v);
-                    return Operand.Create(v);
                 }
             }
             return Operand.Error(" Operator is error!");
