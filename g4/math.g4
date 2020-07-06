@@ -101,9 +101,11 @@ expr:
 	| expr '.' ENDSWITH '(' expr (',' expr)? ')'				# ENDSWITH_fun
 	| expr '.' ISNULLOREMPTY '(' ')'							# ISNULLOREMPTY_fun
 	| expr '.' ISNULLORWHITESPACE '(' ')'						# ISNULLORWHITESPACE_fun
-	| expr '.' REMOVESTART '(' expr ')'							# REMOVESTART_fun
-	| expr '.' REMOVEEND '(' expr ')'							# REMOVEEND_fun
+	| expr '.' REMOVESTART '(' expr (',' expr)? ')'				# REMOVESTART_fun
+	| expr '.' REMOVEEND '(' expr (',' expr)? ')'				# REMOVEEND_fun
 	| expr '.' JSON '(' ')'										# JSON_fun
+	| expr '.' VLOOKUP '(' expr ',' expr (',' expr)? ')'		# VLOOKUP_fun
+	| expr '.' LOOKUP '(' expr ',' expr ')'						# LOOKUP_fun
 	| expr '[' parameter ']'									# GetJsonValue_fun
 	| expr '.' parameter2										# GetJsonValue_fun
 	| expr2														# expr2_fun;
@@ -313,10 +315,11 @@ expr2:
 	| ENDSWITH '(' expr ',' expr (',' expr)? ')'				# ENDSWITH_fun2
 	| ISNULLOREMPTY '(' expr ')'								# ISNULLOREMPTY_fun2
 	| ISNULLORWHITESPACE '(' expr ')'							# ISNULLORWHITESPACE_fun2
-	| REMOVESTART '(' expr ',' expr ')'							# REMOVESTART_fun2
-	| REMOVEEND '(' expr ',' expr ')'							# REMOVEEND_fun2
+	| REMOVESTART '(' expr (',' expr (',' expr)?)? ')'			# REMOVESTART_fun2
+	| REMOVEEND '(' expr (',' expr (',' expr)?)? ')'			# REMOVEEND_fun2
 	| JSON '(' expr ')'											# JSON_fun2
 	| VLOOKUP '(' expr ',' expr ',' expr (',' expr)? ')'		# VLOOKUP_fun2
+	| LOOKUP '(' expr ',' expr ',' expr ')'						# LOOKUP_fun2
 	| '[' parameter ']'											# PARAMETER_fun2
 	| '-'? NUM													# NUM_fun2
 	| STRING													# STRING_fun2;
@@ -528,6 +531,7 @@ parameter2:
 	| REMOVEEND
 	| JSON
 	| VLOOKUP
+	| LOOKUP
 	| PARAMETER;
 SUB: '-';
 NUM: '0' ('.' [0-9]+)? | [1-9][0-9]* ('.' [0-9]+)?;
@@ -742,7 +746,7 @@ REMOVESTART: 'REMOVESTART';
 REMOVEEND: 'REMOVEEND';
 JSON: 'JSON';
 VLOOKUP: 'VLOOKUP';
-
+LOOKUP: 'LOOKUP';
 
 PARAMETER: [A-Z\u3400-\u9FD5][A-Z0-9_\u3400-\u9FD5]*;
 

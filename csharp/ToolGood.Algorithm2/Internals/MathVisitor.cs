@@ -219,7 +219,7 @@ namespace ToolGood.Algorithm
                 secondValue = secondValue.ToString($"Function '{type}' parameter 2 is error!");
                 if (secondValue.IsError) { return secondValue; }
 
-                r = Compare2(firstValue.StringValue, secondValue.StringValue);
+                r= string.Compare(firstValue.StringValue, secondValue.StringValue, true);
             } else if (firstValue.Type == OperandType.STRING || secondValue.Type == OperandType.STRING
                   || firstValue.Type == OperandType.JSON || secondValue.Type == OperandType.JSON
                   || firstValue.Type == OperandType.ARRARY || secondValue.Type == OperandType.ARRARY
@@ -253,19 +253,6 @@ namespace ToolGood.Algorithm
             if (b == 0) {
                 return 0;
             } else if (b > 0) {
-                return 1;
-            }
-            return -1;
-        }
-
-        private int Compare2(string t1, string t2)
-        {
-            if (t1.Equals(t2, StringComparison.OrdinalIgnoreCase)) {
-                return 0;
-            }
-            List<string> ts = new List<string>() { t1, t2 };
-            ts = ts.OrderBy(q => q).ToList();
-            if (t1 == ts[1]) {
                 return 1;
             }
             return -1;
@@ -3390,7 +3377,7 @@ namespace ToolGood.Algorithm
             }
             args[2] = args[2].ToBoolean("Function STARTSWITH parameter 3 is error!");
             if (args[2].IsError) { return args[2]; }
-            return Operand.Create(text.StartsWith(args[1].StringValue, args[2].BooleanValue ? StringComparison.CurrentCultureIgnoreCase : StringComparison.CurrentCulture));
+            return Operand.Create(text.StartsWith(args[1].StringValue, args[2].BooleanValue ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
         }
         public Operand VisitENDSWITH_fun([NotNull] mathParser.ENDSWITH_funContext context)
         {
@@ -3408,7 +3395,7 @@ namespace ToolGood.Algorithm
             }
             args[2] = args[2].ToBoolean("Function ENDSWITH parameter 3 is error!"); ;
             if (args[2].IsError) { return args[2]; }
-            return Operand.Create(text.EndsWith(args[1].StringValue, args[2].BooleanValue ? StringComparison.CurrentCultureIgnoreCase : StringComparison.CurrentCulture));
+            return Operand.Create(text.EndsWith(args[1].StringValue, args[2].BooleanValue ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
 
         }
         public Operand VisitISNULLOREMPTY_fun([NotNull] mathParser.ISNULLOREMPTY_funContext context)
@@ -3435,24 +3422,20 @@ namespace ToolGood.Algorithm
             args[1] = args[1].ToString("Function REMOVESTART parameter 2 is error!");
             if (args[1].IsError) { return args[1]; }
 
-            var text = args[0].StringValue;
-            if (args.Count == 2) {
-                if (text.StartsWith(args[1].StringValue)) {
-                    return Operand.Create(text.Substring(args[1].StringValue.Length));
-                }
-            } else {
+            StringComparison comparison = StringComparison.Ordinal;
+            if (args.Count == 3)
+            {
                 args[2] = args[2].ToBoolean("Function REMOVESTART parameter 3 is error!");
                 if (args[2].IsError) { return args[2]; }
-                if (args[2].BooleanValue) {
-                    if (text.StartsWith(args[1].StringValue, StringComparison.OrdinalIgnoreCase)) {
-                        return Operand.Create(text.Substring(args[1].StringValue.Length));
-                    }
-                } else {
-                    if (text.StartsWith(args[1].StringValue)) {
-                        return Operand.Create(text.Substring(args[1].StringValue.Length));
-                    }
+                if (args[2].BooleanValue)
+                {
+                    comparison = StringComparison.OrdinalIgnoreCase;
                 }
-
+            }
+            var text = args[0].StringValue;
+            if (text.StartsWith(args[1].StringValue, comparison))
+            {
+                return Operand.Create(text.Substring(args[1].StringValue.Length));
             }
             return args[0];
         }
@@ -3466,24 +3449,20 @@ namespace ToolGood.Algorithm
             args[1] = args[1].ToString("Function REMOVEEND parameter 2 is error!");
             if (args[1].IsError) { return args[1]; }
 
-            var text = args[0].StringValue;
-            if (args.Count == 2) {
-                if (text.EndsWith(args[1].StringValue)) {
-                    return Operand.Create(text.Substring(0, text.Length - args[1].StringValue.Length));
-                }
-            } else {
-                args[2] = args[2].ToBoolean("Function REMOVEEND parameter 3 is error!");
+            StringComparison comparison = StringComparison.Ordinal;
+            if (args.Count == 3)
+            {
+                args[2] = args[2].ToBoolean("Function REMOVESTART parameter 3 is error!");
                 if (args[2].IsError) { return args[2]; }
-                if (args[2].BooleanValue) {
-                    if (text.EndsWith(args[1].StringValue, StringComparison.OrdinalIgnoreCase)) {
-                        return Operand.Create(text.Substring(0, text.Length - args[1].StringValue.Length));
-                    }
-                } else {
-                    if (text.EndsWith(args[1].StringValue)) {
-                        return Operand.Create(text.Substring(0, text.Length - args[1].StringValue.Length));
-                    }
+                if (args[2].BooleanValue)
+                {
+                    comparison = StringComparison.OrdinalIgnoreCase;
                 }
-
+            }
+            var text = args[0].StringValue;
+            if (text.EndsWith(args[1].StringValue, comparison))
+            {
+                return Operand.Create(text.Substring(0, text.Length - args[1].StringValue.Length));
             }
             return args[0];
         }

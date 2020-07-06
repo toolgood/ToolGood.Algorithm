@@ -26,10 +26,10 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
 ```
 支持常量`pi`,`e`,`true`,`false`。
 
-数字转bool，非零为真,零为假。
+数值转bool，非零为真,零为假。
 字符串转bool,`0`、`FALSE`为假，`1`、`TRUE`为真。不区分大小写
 
-bool转数字，假为`0`，真为`1`。
+bool转数值，假为`0`，真为`1`。
 bool转字符串，假为`FALSE`，真为`TRUE`。
 
 索引默认为`Excel索引`，如果想用c#索引，请设置`UseExcelIndex`为`false`。
@@ -102,7 +102,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>isError(1) <br>>>false</td>
     </tr>
     <tr>
-        <td>isNumber ★</td><td>isNumber(值)<br>判断是否数字,返回 TRUE 或 FALSE</td>
+        <td>isNumber ★</td><td>isNumber(值)<br>判断是否数值,返回 TRUE 或 FALSE</td>
         <td>isNumber(1) <br>>>true</td>
     </tr>
     <tr>
@@ -118,11 +118,11 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>IsLogical('1') <br>>>false </td>
     </tr>
     <tr>
-        <td>IsEven ★</td><td>IsEven(值)<br>如果数字是偶数,返回 TRUE 或 FALSE</td>
+        <td>IsEven ★</td><td>IsEven(值)<br>如果数值是偶数,返回 TRUE 或 FALSE</td>
         <td>IsEven('1') <br>>>false </td>
     </tr>
     <tr>
-        <td>IsOdd ★</td><td>IsOdd(值)<br>如果数字是奇数,返回 TRUE 或 FALSE</td>
+        <td>IsOdd ★</td><td>IsOdd(值)<br>如果数值是奇数,返回 TRUE 或 FALSE</td>
         <td>IsOdd('1') <br>>>true </td>
     </tr>
     <tr>
@@ -160,7 +160,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>pi() <br>>>3.141592654</td>
     </tr>
     <tr>
-        <td>abs</td><td>abs(数字)<br>返回数字的绝对值</td>
+        <td>abs</td><td>abs(数值)<br>返回数值的绝对值</td>
         <td>abs(-1) <br>>>1</td>
     </tr>
     <tr>
@@ -172,27 +172,27 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>MOD(7,3) <br>>>1</td>
     </tr>
     <tr>
-        <td>SIGN</td><td>sign(数字)<br>返回数字的符号。当数字为正数时返回 1,为零时返回 0,为负数时返回 -1。</td>
+        <td>SIGN</td><td>sign(数值)<br>返回数值的符号。当数值为正数时返回 1,为零时返回 0,为负数时返回 -1。</td>
         <td>SIGN(-9) <br>>>-1</td>
     </tr>
    <tr>
-        <td>SQRT</td><td>sqrt(数字)<br>返回正平方根</td>
+        <td>SQRT</td><td>sqrt(数值)<br>返回正平方根</td>
         <td>SQRT(9) <br>>>3</td>
     </tr>
     <tr>
-        <td>TRUNC</td><td>trunc(数字)<br>将数字截尾取整</td>
+        <td>TRUNC</td><td>trunc(数值)<br>将数值截尾取整</td>
         <td>TRUNC(9.222) <br>>>9</td>
     </tr>
     <tr>
-        <td>int ★</td><td>int(数字)<br>将数字向下舍入到最接近的整数。</td>
+        <td>int ★</td><td>int(数值)<br>将数值向下舍入到最接近的整数。</td>
         <td>int(9.222) <br>>>9</td>
     </tr>
     <tr>
-        <td>gcd</td><td>gcd(数字1,...)<br>返回最大公约数</td>
+        <td>gcd</td><td>gcd(数值,...)<br>返回最大公约数</td>
         <td>GCD(3,5,7) <br>>>1</td>
     </tr>
     <tr>
-        <td>LCM</td><td>lcm(数字1,...)<br>返回整数参数的最小公倍数</td>
+        <td>LCM</td><td>lcm(数值,...)<br>返回整数参数的最小公倍数</td>
         <td>LCM(3,5,7) <br>>>105</td>
     </tr>
     <tr>
@@ -204,7 +204,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>PERMUT(10,2) <br>>>990</td>
     </tr>
     <tr>
-        <td>FIXED</td><td>fixed(数值[,小数位数[,有无逗号分隔符]])<br>将数字设置为具有固定小数位的文本格式</td>
+        <td>FIXED</td><td>fixed(数值[,小数位数[,有无逗号分隔符]])<br>将数值设置为具有固定小数位的文本格式</td>
         <td>FIXED(4567.89,1) <br>>>4,567.9</td>
     </tr>
     <tr>
@@ -217,11 +217,11 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>RADIANS(180) <br>>>3.141592654</td>
     </tr>
     <tr>
-        <td>cos</td><td>cos(弧度)<br>返回数字的余弦值</td>
+        <td>cos</td><td>cos(弧度)<br>返回数值的余弦值</td>
         <td>cos(1) <br>>>0.540302305868</td>
     </tr>
     <tr>
-        <td>cosh</td><td>cosh(弧度)<br>返回数字的双曲余弦值</td>
+        <td>cosh</td><td>cosh(弧度)<br>返回数值的双曲余弦值</td>
         <td>cosh(1) <br>>>1.54308063481</td>
     </tr>
     <tr>
@@ -229,35 +229,35 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>sin(1) <br>>>0.84147098480</td>
     </tr>
     <tr>
-        <td>SINH</td><td>sinh(弧度)<br>返回数字的双曲正弦值</td>
+        <td>SINH</td><td>sinh(弧度)<br>返回数值的双曲正弦值</td>
         <td>sinh(1) <br>>>1.1752011936</td>
     </tr>
     <tr>
-        <td>TAN</td><td>tan(弧度)<br>返回数字的正切值</td>
+        <td>TAN</td><td>tan(弧度)<br>返回数值的正切值</td>
         <td>tan(1) <br>>>1.55740772465</td>
     </tr>
     <tr>
-        <td>TANH</td><td>tanh(弧度)<br>返回数字的双曲正切值</td>
+        <td>TANH</td><td>tanh(弧度)<br>返回数值的双曲正切值</td>
         <td>tanh(1) <br>>>0.761594155955</td>
     </tr>
     <tr>
-        <td>acos</td><td>acos(数值)<br>返回数字的反余弦值</td>
+        <td>acos</td><td>acos(数值)<br>返回数值的反余弦值</td>
         <td>acos(0.5) <br>>>1.04719755119</td>
     </tr>
     <tr>
-        <td>acosh</td><td>acosh(数值)<br>返回数字的反双曲余弦值</td>
+        <td>acosh</td><td>acosh(数值)<br>返回数值的反双曲余弦值</td>
         <td>acosh(1.5) <br>>>0.962423650119</td>
     </tr>
     <tr>
-        <td>asin</td><td>asin(数值)<br>返回数字的反正弦值</td>
+        <td>asin</td><td>asin(数值)<br>返回数值的反正弦值</td>
         <td>asin(0.5) <br>>>0.523598775598</td>
     </tr>
     <tr>
-        <td>asinh</td><td>asinh(数值)<br>返回数字的反双曲正弦值。</td>
+        <td>asinh</td><td>asinh(数值)<br>返回数值的反双曲正弦值。</td>
         <td>asinh(1.5) <br>>>1.1947632172</td>
     </tr>
     <tr>
-        <td>atan</td><td>atan(数值)<br>返回数字的反正切值</td>
+        <td>atan</td><td>atan(数值)<br>返回数值的反正切值</td>
         <td>atan(1) <br>>>0.785398163397</td>
     </tr>
    <tr>
@@ -270,15 +270,15 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
     </tr>
     <tr>
         <td rowspan="8">四<br><br>舍<br><br>五<br><br>入</td>
-        <td>ROUND</td><td>round(数值,小数位数)<br>返回某个数字按指定位数取整后的数字。</td>
+        <td>ROUND</td><td>round(数值,小数位数)<br>返回某个数值按指定位数取整后的数值。</td>
         <td>ROUND(4.333,2) <br>>>4.33</td>
     </tr>
     <tr>
-        <td>roundDown</td><td>roundDown(数值,小数位数)<br>靠近零值,向下（绝对值减小的方向）舍入数字。</td>
+        <td>roundDown</td><td>roundDown(数值,小数位数)<br>靠近零值,向下（绝对值减小的方向）舍入数值。</td>
         <td>roundDown(4.333,2) <br>>>4.33</td>
     </tr>
     <tr>
-        <td>roundUp</td><td>roundUp(数值,小数位数)<br>远离零值,向上（绝对值增长的方向）舍入数字。</td>
+        <td>roundUp</td><td>roundUp(数值,小数位数)<br>远离零值,向上（绝对值增长的方向）舍入数值。</td>
         <td>roundUp(4.333,2) <br>>>4.34</td>
     </tr>
     <tr>
@@ -294,11 +294,11 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>EVEN(3) <br>>>4</td>
     </tr>
     <tr>
-        <td>ODD</td><td>odd(数值)<br>将数字向上舍入为最接近的奇型整数</td>
+        <td>ODD</td><td>odd(数值)<br>将数值向上舍入为最接近的奇型整数</td>
         <td>ODD(3.1) <br>>>5</td>
     </tr>
     <tr>
-        <td>MROUND</td><td>mround(数值,舍入基数)<br>返回一个舍入到所需倍数的数字</td>
+        <td>MROUND</td><td>mround(数值,舍入基数)<br>返回一个舍入到所需倍数的数值</td>
         <td>MROUND(13,5) <br>>>15</td>
     </tr>
     <tr>
@@ -316,7 +316,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>FACT(3) <br>>>6</td>
     </tr>
     <tr>
-        <td>factdouble</td><td>factDouble(数值)<br>返回数字的双倍阶乘</td>
+        <td>factdouble</td><td>factDouble(数值)<br>返回数值的双倍阶乘</td>
         <td>factDouble(10) <br>>>3840</td>
     </tr>
     <tr>
@@ -328,23 +328,23 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>exp(2) <br>>>7.389056099</td>
     </tr>
     <tr>
-        <td>ln</td><td>ln(数值)<br>返回数字的自然对数</td>
+        <td>ln</td><td>ln(数值)<br>返回数值的自然对数</td>
         <td>LN(4) <br>>>1.386294361</td>
     </tr>
     <tr>
-        <td>log</td><td>log(数值[,底数])<br>返回数字的常用对数,如省略底数,默认为10</td>
+        <td>log</td><td>log(数值[,底数])<br>返回数值的常用对数,如省略底数,默认为10</td>
         <td>LOG(100,10) <br>>>2</td>
     </tr>
     <tr>
-        <td>LOG10</td><td>log10(数值)<br>返回数字的10对数</td>
+        <td>LOG10</td><td>log10(数值)<br>返回数值的10对数</td>
         <td>LOG10(100) <br>>>2</td>
     </tr>
     <tr>
-        <td>MULTINOMIAL</td><td>multinomial(数值1,...)<br>返回参数和的阶乘与各参数阶乘乘积的比值</td>
+        <td>MULTINOMIAL</td><td>multinomial(数值,...)<br>返回参数和的阶乘与各参数阶乘乘积的比值</td>
         <td>MULTINOMIAL(1,2,3) <br>>>60</td>
     </tr>
     <tr>
-        <td>PRODUCT</td><td>product(数值1,...)<br>将所有以参数形式给出的数字相乘,并返回乘积值。</td>
+        <td>PRODUCT</td><td>product(数值,...)<br>将所有以参数形式给出的数值相乘,并返回乘积值。</td>
         <td>PRODUCT(1,2,3,4) <br>>>24</td>
     </tr>
     <tr>
@@ -418,7 +418,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>jis('abcABC123') <br>>>ａｂｃＡＢＣ１２３</td>
     </tr>
     <tr>
-        <td>CHAR ★</td><td>CHAR(数值)<br>返回由代码数字指定的字符</td>
+        <td>CHAR ★</td><td>CHAR(数值)<br>返回由代码数值指定的字符</td>
         <td>char(49) <br>>>1</td>
     </tr>
     <tr>
@@ -426,7 +426,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>clean('\r112\t') <br>>>112</td>
     </tr>
     <tr>
-        <td>CODE ★</td><td>code(字符串)<br>返回文本字符串中第一个字符的数字代码</td>
+        <td>CODE ★</td><td>code(字符串)<br>返回文本字符串中第一个字符的数值代码</td>
         <td>CODE("1") <br>>>49</td>
     </tr>
     <tr>
@@ -475,7 +475,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>RIGHT("123q",3) <br>>>23q</td>
     </tr>
     <tr>
-        <td>RMB ★</td><td>RMB(数值)<br>将数字转换为大写数字文本</td>
+        <td>RMB ★</td><td>RMB(数值)<br>将数值转换为大写数值文本</td>
         <td>RMB(12.3) <br>>>壹拾贰元叁角</td>
     </tr>
     <tr>
@@ -491,7 +491,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>T('123') <br>>>123</td>
     </tr>
     <tr>
-        <td>TEXT ★</td><td>text(数值,数值格式)<br>设置数字的格式并将数字转换为文本</td>
+        <td>TEXT ★</td><td>text(数值,数值格式)<br>设置数值的格式并将数值转换为文本</td>
         <td>TEXT(123,"0.00") <br>>>123.00</td>
     </tr>
     <tr>
@@ -507,7 +507,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>UPPER("abc") <br>>>ABC</td>
     </tr>
     <tr>
-        <td>VALUE ★</td><td>value(字符串)<br>将文本参数转换为数字</td>
+        <td>VALUE ★</td><td>value(字符串)<br>将文本参数转换为数值</td>
         <td>VALUE("123") <br>>>123</td>
     </tr>
 </table>
@@ -601,15 +601,15 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
 <table>
     <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
-        <td>MAX</td><td>max(数值1,...)<br>返回参数列表中的最大值</td>
+        <td>MAX</td><td>max(数值,...)<br>返回参数列表中的最大值</td>
         <td>max(1,2,3,4,2,2,1,4) <br>>>4</td>
     </tr>
     <tr>
-        <td>MEDIAN</td><td>median(数值1,...)<br>返回给定数字的中值</td>
+        <td>MEDIAN</td><td>median(数值,...)<br>返回给定数值的中值</td>
         <td>MEDIAN(1,2,3,4,2,2,1,4) <br>>>2</td>
     </tr>
     <tr>
-        <td>MIN</td><td>min(数值1,...)<br>返回参数列表中的最小值</td>
+        <td>MIN</td><td>min(数值,...)<br>返回参数列表中的最小值</td>
         <td>MIN(1,2,3,4,2,2,1,4) <br>>>1</td>
     </tr>
     <tr>
@@ -617,7 +617,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>QUARTILE({1,2,3,4,2,2,1,4},0) <br>>>1</td>
     </tr>
     <tr>
-        <td>MODE</td><td>mode(数值1,...)<br>返回在数组中出现频率最多的数值</td>
+        <td>MODE</td><td>mode(数值,...)<br>返回在数组中出现频率最多的数值</td>
         <td>MODE(1,2,3,4,2,2,1,4) <br>>>2</td>
     </tr>
     <tr>
@@ -637,59 +637,59 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>PERCENTRANK({1,2,3,4,2,2,1,4},3) <br>>>0.714</td>
     </tr>
     <tr>
-        <td>AVERAGE</td><td>average(数值1,...)<br>返回参数的平均值</td>
+        <td>AVERAGE</td><td>average(数值,...)<br>返回参数的平均值</td>
         <td>AVERAGE(1,2,3,4,2,2,1,4) <br>>>2.375</td>
     </tr>
     <tr>
-        <td>averageIf</td><td>averageIf({数值1,...},条件[,{值1,...}])<br>返回参数的平均值</td>
+        <td>averageIf</td><td>averageIf({数值,...},条件[,{值1,...}])<br>返回参数的平均值</td>
         <td>averageIf({1,2,3,4,2,2,1,4},'>1') <br>>>2.833333333</td>
     </tr>
     <tr>
-        <td>GEOMEAN</td><td>geoMean(数值1,...)<br>返回正数数组或区域的几何平均值</td>
+        <td>GEOMEAN</td><td>geoMean(数值,...)<br>返回正数数组或区域的几何平均值</td>
         <td>GEOMEAN(1,2,3,4) <br>>>2.213363839</td>
     </tr>
     <tr>
-        <td>HARMEAN</td><td>harMean(数值1,...)<br>返回数据集合的调和平均值</td>
+        <td>HARMEAN</td><td>harMean(数值,...)<br>返回数据集合的调和平均值</td>
         <td>HARMEAN(1,2,3,4) <br>>>1.92</td>
     </tr>
     <tr>
-        <td>COUNT</td><td>count(数值1,...)<br>计算参数列表中数字的个数</td>
+        <td>COUNT</td><td>count(数值,...)<br>计算参数列表中数值的个数</td>
         <td>COUNT(1,2,3,4,2,2,1,4) <br>>>8</td>
     </tr>
     <tr>
-        <td>countIf</td><td>countIf({数值1,...},条件[,{值1,...}])<br>计算参数列表中数字的个数</td>
+        <td>countIf</td><td>countIf({数值,...},条件[,{值1,...}])<br>计算参数列表中数值的个数</td>
         <td>countIf({1,2,3,4,2,2,1,4},'>1') <br>>>6</td>
     </tr>
     <tr>
-        <td>SUM</td><td>sum(数值1,...)<br>返回所有数字之和。</td>
+        <td>SUM</td><td>sum(数值,...)<br>返回所有数值之和。</td>
         <td>SUM(1,2,3,4) <br>>>10</td>
     </tr>
     <tr>
-        <td>sumIf</td><td>sumIf({数值1,...},条件[,{值1,...}])<br>返回所有数字之和</td>
+        <td>sumIf</td><td>sumIf({数值,...},条件[,{值1,...}])<br>返回所有数值之和</td>
         <td>sumIf({1,2,3,4,2,2,1,4},'>1') <br>>>17</td>
     </tr>
     <tr>
-        <td>AVEDEV</td><td>aveDev(数值1,...)<br>返回数据点与其平均值的绝对偏差的平均值</td>
+        <td>AVEDEV</td><td>aveDev(数值,...)<br>返回数据点与其平均值的绝对偏差的平均值</td>
         <td>AVEDEV(1,2,3,4,2,2,1,4) <br>>>0.96875</td>
     </tr>
     <tr>
-        <td>STDEV</td><td>stDev(数值1,...)<br>基于样本估算标准偏差</td>
+        <td>STDEV</td><td>stDev(数值,...)<br>基于样本估算标准偏差</td>
         <td>STDEV(1,2,3,4,2,2,1,4) <br>>>1.1877349391654208</td>
     </tr>
     <tr>
-        <td>STDEVP</td><td>stDevp(数值1,...)<br>计算基于整个样本总体的标准偏差</td>
+        <td>STDEVP</td><td>stDevp(数值,...)<br>计算基于整个样本总体的标准偏差</td>
         <td>STDEVP(1,2,3,4,2,2,1,4) <br>>>1.1110243021644486</td>
     </tr>
     <tr>
-        <td>DEVSQ</td><td>devSq(数值1,...)<br>返回偏差的平方和</td>
+        <td>DEVSQ</td><td>devSq(数值,...)<br>返回偏差的平方和</td>
         <td>DEVSQ(1,2,3,4,2,2,1,4) <br>>>9.875</td>
     </tr>
     <tr>
-        <td>VAR</td><td>var(数值1,...)<br>基于样本估算方差</td>
+        <td>VAR</td><td>var(数值,...)<br>基于样本估算方差</td>
         <td>VAR(1,2,3,4,2,2,1,4) <br>>>1.4107142857142858</td>
     </tr>
     <tr>
-        <td>VARP</td><td>varp(数值1,...)<br>基于整个样本总体计算方差</td>
+        <td>VARP</td><td>varp(数值,...)<br>基于整个样本总体计算方差</td>
         <td>VARP(1,2,3,4,2,2,1,4) <br>>>1.234375</td>
     </tr>
     <tr>
@@ -784,16 +784,17 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>WEIBULL</td><td>weibull(数值,分布参数α,分布参数β,返回类型：0/1)<br>返回 Weibull 分布</td>
         <td>WEIBULL(1,2,3,1) <br>>>0.105160683</td>
     </tr>
-
 </table>
 
 #### 查找引用
 <table>
     <tr>
-        <td>VLookUp ▲</td><td>VLookUp({数组1,...},{值},{列索引}[,{模糊匹配:0/1，默认1}])<br>纵向查找函数。</td> <td></td>
+        <td>VLookUp ★ ▲</td><td>VLookUp({数组,...},值,{列索引}[,模糊匹配:0/1])<br>纵向查找函数。模糊匹配默认1</td> <td></td>
+    </tr>
+    <tr>
+        <td>VLookUp ★ ▲</td><td>VLookUp({Json,...},公式字符串,属性名)<br>JSON数组查找函数。</td> <td></td>
     </tr>
 </table>
-
 
 #### 增加函数 类C#方法
 <table>
@@ -901,10 +902,10 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>IsNullOrWhiteSpace ★</td><td>IsNullOrWhiteSpace(文本)<br>  指示指定的字符串是 null、空还是仅由空白字符组成。</td> <td></td>
     </tr>
 	<tr>
-        <td>RemoveStart ★</td><td>RemoveStart(文本,左边文本)<br>匹配左边，成功则去除左边字符串。</td> <td></td>
+        <td>RemoveStart ★</td><td>RemoveStart(文本,左边文本[,忽略大小写])<br>匹配左边，成功则去除左边字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>RemoveEnd ★</td><td>RemoveEnd(文本,右边文本)<br>匹配右边，成功则去除右边字符串。</td> <td></td>
+        <td>RemoveEnd ★</td><td>RemoveEnd(文本,右边文本[,忽略大小写])<br>匹配右边，成功则去除右边字符串。</td> <td></td>
     </tr>
 	<tr>
         <td>Json ★</td><td>json(文本)<br>动态json查询。</td> <td></td>
