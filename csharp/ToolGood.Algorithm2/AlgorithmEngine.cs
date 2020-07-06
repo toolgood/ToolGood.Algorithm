@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Antlr4.Runtime;
 using static mathParser;
@@ -15,14 +16,75 @@ namespace ToolGood.Algorithm
         /// 最后一个错误
         /// </summary>
         public string LastError { get; private set; }
+        private ProgContext _context;
+        private Dictionary<string, Operand> _dict = new Dictionary<string, Operand>();
 
-        private ProgContext ProgContext;
-
+        #region GetParameter
         protected virtual Operand GetParameter(string parameter)
         {
+            if (_dict.TryGetValue(parameter, out Operand operand))
+            {
+                return operand;
+            }
             return Operand.Error($"Parameter [{parameter}] is missing.");
+        } 
+        #endregion
+
+        #region AddParameter
+        public void AddParameter(string key, bool obj)
+        {
+            _dict[key] = Operand.Create(obj);
+        }
+        public void AddParameter(string key, int obj)
+        {
+            _dict[key] = Operand.Create(obj);
+        }
+        public void AddParameter(string key, double obj)
+        {
+            _dict[key] = Operand.Create(obj);
+        }
+        public void AddParameter(string key, string obj)
+        {
+            _dict[key] = Operand.Create(obj);
+        }
+        public void AddParameter(string key, Date obj)
+        {
+            _dict[key] = Operand.Create(obj);
+        }
+        public void AddParameter(string key, DateTime obj)
+        {
+            _dict[key] = Operand.Create(obj);
+        }
+        public void AddParameter(string key, TimeSpan obj)
+        {
+            _dict[key] = Operand.Create(obj);
         }
 
+        public void AddParameter(string key, List<Operand> obj)
+        {
+            _dict[key] = Operand.Create(obj);
+        }
+        public void AddParameter(string key, ICollection<string> obj)
+        {
+            _dict[key] = Operand.Create(obj);
+        }
+        public void AddParameter(string key, ICollection<double> obj)
+        {
+            _dict[key] = Operand.Create(obj);
+
+        }
+        public void AddParameter(string key, ICollection<int> obj)
+        {
+            _dict[key] = Operand.Create(obj);
+
+        }
+        public void AddParameter(string key, ICollection<bool> obj)
+        {
+            _dict[key] = Operand.Create(obj);
+        }
+        #endregion
+
+        #region Parse
         class AntlrErrorListener : IAntlrErrorListener<IToken>
         {
             public bool IsError { get; private set; }
@@ -42,7 +104,8 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public bool Parse(string exp)
         {
-            if (string.IsNullOrEmpty(exp) || exp.Trim() == "") {
+            if (string.IsNullOrEmpty(exp) || exp.Trim() == "")
+            {
                 LastError = "Parameter exp invalid !";
                 return false;
             }
@@ -58,54 +121,65 @@ namespace ToolGood.Algorithm
 
             var context = parser.prog();
             var end = context.Stop.StopIndex;
-            if (end + 1 < exp.Length) {
-                ProgContext = null;
+            if (end + 1 < exp.Length)
+            {
+                _context = null;
                 LastError = "Parameter exp invalid !";
                 return false;
             }
-            if (antlrErrorListener.IsError) {
-                ProgContext = null;
+            if (antlrErrorListener.IsError)
+            {
+                _context = null;
                 LastError = antlrErrorListener.ErrorMsg;
                 return false;
             }
-            ProgContext = context;
+            _context = context;
             return true;
             //} catch (Exception ex) {
             //    LastError = ex.Message;
             //    return false;
             //}
         }
+        #endregion
 
+        #region Evaluate
         /// <summary>
         /// 执行函数
         /// </summary>
         /// <returns></returns>
         public Operand Evaluate()
         {
-            if (ProgContext == null) {
+            if (_context == null)
+            {
                 LastError = "Please use Parse to compile formula !";
                 throw new Exception("Please use Parse to compile formula !");
             }
             var visitor = new MathVisitor();
             visitor.GetParameter += GetParameter;
             visitor.excelIndex = UseExcelIndex ? 1 : 0;
-            return visitor.Visit(ProgContext);
-        }
+            return visitor.Visit(_context);
+        } 
+        #endregion
 
         #region TryEvaluate
 
         public int TryEvaluate(string exp, int def)
         {
-            if (Parse(exp)) {
-                try {
+            if (Parse(exp))
+            {
+                try
+                {
                     var obj = Evaluate();
                     obj = obj.ToNumber("");
-                    if (obj.IsError) {
+                    if (obj.IsError)
+                    {
                         LastError = obj.ErrorMsg;
                         return def;
                     }
                     return obj.IntValue;
-                } catch (Exception ex) {
+                }
+                catch (Exception ex)
+                {
                     LastError = ex.Message;
                 }
             }
@@ -114,16 +188,21 @@ namespace ToolGood.Algorithm
 
         public double TryEvaluate(string exp, double def)
         {
-            if (Parse(exp)) {
-                try {
+            if (Parse(exp))
+            {
+                try
+                {
                     var obj = Evaluate();
                     obj = obj.ToNumber("");
-                    if (obj.IsError) {
+                    if (obj.IsError)
+                    {
                         LastError = obj.ErrorMsg;
                         return def;
                     }
                     return obj.NumberValue;
-                } catch (Exception ex) {
+                }
+                catch (Exception ex)
+                {
                     LastError = ex.Message;
                 }
             }
@@ -132,16 +211,21 @@ namespace ToolGood.Algorithm
 
         public string TryEvaluate(string exp, string def)
         {
-            if (Parse(exp)) {
-                try {
+            if (Parse(exp))
+            {
+                try
+                {
                     var obj = Evaluate();
                     obj = obj.ToString("");
-                    if (obj.IsError) {
+                    if (obj.IsError)
+                    {
                         LastError = obj.ErrorMsg;
                         return def;
                     }
                     return obj.StringValue;
-                } catch (Exception ex) {
+                }
+                catch (Exception ex)
+                {
                     LastError = ex.Message;
                 }
             }
@@ -149,16 +233,21 @@ namespace ToolGood.Algorithm
         }
         public bool TryEvaluate(string exp, bool def)
         {
-            if (Parse(exp)) {
-                try {
+            if (Parse(exp))
+            {
+                try
+                {
                     var obj = Evaluate();
                     obj = obj.ToBoolean("");
-                    if (obj.IsError) {
+                    if (obj.IsError)
+                    {
                         LastError = obj.ErrorMsg;
                         return def;
                     }
                     return obj.BooleanValue;
-                } catch (Exception ex) {
+                }
+                catch (Exception ex)
+                {
                     LastError = ex.Message;
                 }
             }
@@ -167,16 +256,21 @@ namespace ToolGood.Algorithm
 
         public DateTime TryEvaluate(string exp, DateTime def)
         {
-            if (Parse(exp)) {
-                try {
+            if (Parse(exp))
+            {
+                try
+                {
                     var obj = Evaluate();
                     obj = obj.ToDate("");
-                    if (obj.IsError) {
+                    if (obj.IsError)
+                    {
                         LastError = obj.ErrorMsg;
                         return def;
                     }
-                    return (DateTime)obj.DateValue;
-                } catch (Exception ex) {
+                    return (DateTime) obj.DateValue;
+                }
+                catch (Exception ex)
+                {
                     LastError = ex.Message;
                 }
             }
@@ -185,16 +279,21 @@ namespace ToolGood.Algorithm
 
         public TimeSpan TryEvaluate(string exp, TimeSpan def)
         {
-            if (Parse(exp)) {
-                try {
+            if (Parse(exp))
+            {
+                try
+                {
                     var obj = Evaluate();
                     obj = obj.ToDate("");
-                    if (obj.IsError) {
+                    if (obj.IsError)
+                    {
                         LastError = obj.ErrorMsg;
                         return def;
                     }
-                    return (TimeSpan)obj.DateValue;
-                } catch (Exception ex) {
+                    return (TimeSpan) obj.DateValue;
+                }
+                catch (Exception ex)
+                {
                     LastError = ex.Message;
                 }
             }
