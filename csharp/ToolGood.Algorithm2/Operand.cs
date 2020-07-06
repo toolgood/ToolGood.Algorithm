@@ -43,14 +43,17 @@ namespace ToolGood.Algorithm
         {
             return new OperandString(obj);
         }
-        public static Operand CreateJson(string obj)
+        public static Operand CreateJson(string txt)
         {
-            try
+            if ((txt.StartsWith("{") && txt.EndsWith("}")) || (txt.StartsWith("[") && txt.EndsWith("]")))
             {
-                var json = JsonMapper.ToObject(obj);
-                return Create(json);
+                try
+                {
+                    var json = JsonMapper.ToObject(txt);
+                    return Operand.Create(json);
+                }
+                catch (Exception) { }
             }
-            catch (Exception) { }
             return Operand.Error("string to json is error!");
         }
 
@@ -168,10 +171,16 @@ namespace ToolGood.Algorithm
             if (Type == OperandType.JSON) { return this; }
             if (IsError) { return this; }
             if (Type == OperandType.STRING) {
-                try {
-                    var json = JsonMapper.ToObject(StringValue);
-                    return Create(json);
-                } catch (Exception) { }
+                var txt = StringValue;
+                if ((txt.StartsWith("{") && txt.EndsWith("}")) || (txt.StartsWith("[") && txt.EndsWith("]")))
+                {
+                    try
+                    {
+                        var json = JsonMapper.ToObject(txt);
+                        return Operand.Create(json);
+                    }
+                    catch (Exception) { }
+                }
             }
             return Error(errorMessage);
         }

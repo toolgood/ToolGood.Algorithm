@@ -3378,11 +3378,16 @@ namespace ToolGood.Algorithm
         {
             var firstValue = this.Visit(context.expr()).ToString("Function JSON parameter is error!");
             if (firstValue.IsError) { return firstValue; }
-
-            try {
-                var json = JsonMapper.ToObject(firstValue.StringValue);
-                return Operand.Create(json);
-            } catch (Exception) { }
+            var txt = firstValue.StringValue;
+            if ((txt.StartsWith("{") && txt.EndsWith("}")) || (txt.StartsWith("[") && txt.EndsWith("]")))
+            {
+                try
+                {
+                    var json = JsonMapper.ToObject(txt);
+                    return Operand.Create(json);
+                }
+                catch (Exception) { }
+            }
             return Operand.Error("Function JSON parameter is error!");
         }
 
@@ -3666,13 +3671,16 @@ namespace ToolGood.Algorithm
                     op = op.ToString("JSON parameter name is error!");
                     if (op.IsError) { return op; }
                     var v = json[op.StringValue];
-                    if (v.IsString) return Operand.Create(v.ToString());
-                    if (v.IsBoolean) return Operand.Create(bool.Parse(v.ToString()));
-                    if (v.IsDouble) return Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo));
-                    if (v.IsInt) return Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo));
-                    if (v.IsLong) return Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo));
-                    if (v.IsObject) return Operand.Create(v);
-                    if (v.IsArray) return Operand.Create(v);
+                    if (v!=null)
+                    {
+                        if (v.IsString) return Operand.Create(v.ToString());
+                        if (v.IsBoolean) return Operand.Create(bool.Parse(v.ToString()));
+                        if (v.IsDouble) return Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo));
+                        if (v.IsInt) return Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo));
+                        if (v.IsLong) return Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo));
+                        if (v.IsObject) return Operand.Create(v);
+                        if (v.IsArray) return Operand.Create(v);
+                    }
                 }
             }
             return Operand.Error(" Operator is error!");

@@ -274,6 +274,12 @@ namespace ToolGood.Algorithm.Test
 
             dt = engine.TryEvaluate("json('[1,2,3,4,5,6]')[1].Trim()", null);
             Assert.AreEqual(dt, "1");
+
+            dt = engine.TryEvaluate("json('[1,2,3,4,5,6]22')[1].Trim()", null);
+            Assert.AreEqual(dt, null);
+
+            dt = engine.TryEvaluate("json('22[1,2,3,4,5,6]')[1].Trim()", null);
+            Assert.AreEqual(dt, null);
         }
     }
 }
