@@ -194,7 +194,7 @@ namespace ToolGood.Algorithm
                     secondValue = secondValue.ToString($"Function '{type}' parameter 2 is error!");
                     if (secondValue.IsError) { return secondValue; }
 
-                    r = Compare(firstValue.StringValue, secondValue.StringValue);
+                    r = string.CompareOrdinal(firstValue.StringValue, secondValue.StringValue);
                 } else if (firstValue.Type == OperandType.ARRARY) {
                     return Operand.Error("两个类型无法比较");
                 } else {
@@ -212,7 +212,7 @@ namespace ToolGood.Algorithm
                 secondValue = secondValue.ToString($"Function '{type}' parameter 2 is error!");
                 if (secondValue.IsError) { return secondValue; }
 
-                r = Compare(firstValue.StringValue, secondValue.StringValue);
+                r = string.CompareOrdinal(firstValue.StringValue, secondValue.StringValue);
             } else if ((firstValue.Type == OperandType.BOOLEAN && secondValue.Type == OperandType.STRING) || (secondValue.Type == OperandType.BOOLEAN && firstValue.Type == OperandType.STRING)) {
                 firstValue = firstValue.ToString($"Function '{type}' parameter 1 is error!");
                 if (firstValue.IsError) { return firstValue; }
@@ -249,27 +249,15 @@ namespace ToolGood.Algorithm
 
         private int Compare(double t1, double t2)
         {
-            t1 = Math.Round(t1, 12, MidpointRounding.AwayFromZero);
-            t2 = Math.Round(t2, 12, MidpointRounding.AwayFromZero);
-            if (t1 == t2) {
+            var b = Math.Round(t1 - t2, 12, MidpointRounding.AwayFromZero);
+            if (b == 0) {
                 return 0;
-            } else if (t1 > t2) {
+            } else if (b > 0) {
                 return 1;
             }
             return -1;
         }
-        private int Compare(string t1, string t2)
-        {
-            if (t1 == t2) {
-                return 0;
-            }
-            List<string> ts = new List<string>() { t1, t2 };
-            ts = ts.OrderBy(q => q).ToList();
-            if (t1 == ts[1]) {
-                return 1;
-            }
-            return -1;
-        }
+
         private int Compare2(string t1, string t2)
         {
             if (t1.Equals(t2, StringComparison.OrdinalIgnoreCase)) {
@@ -1189,7 +1177,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitMULTINOMIAL_fun([NotNull] mathParser.MULTINOMIAL_funContext context)
         {
-            var args = new List<Operand>();  
+            var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
             List<double> list = new List<double>();
@@ -1208,7 +1196,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitPRODUCT_fun([NotNull] mathParser.PRODUCT_funContext context)
         {
-            var args = new List<Operand>();  
+            var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
             List<double> list = new List<double>();
@@ -1219,7 +1207,7 @@ namespace ToolGood.Algorithm
             foreach (var a in list) {
                 d *= a;
             }
-    
+
             return Operand.Create(d);
         }
         public Operand VisitSQRTPI_fun([NotNull] mathParser.SQRTPI_funContext context)
@@ -1241,7 +1229,7 @@ namespace ToolGood.Algorithm
             foreach (var a in list) {
                 d += a * a;
             }
- 
+
             return Operand.Create(d);
         }
         private int F_base_Factorial(int a)
@@ -2317,6 +2305,98 @@ namespace ToolGood.Algorithm
                 sum += Math.Abs(list[i] - avg);
             }
             return Operand.Create(sum / list.Count);
+        }
+
+        public Operand VisitVLOOKUP_fun([NotNull] mathParser.VLOOKUP_funContext context)
+        {
+            var args = new List<Operand>();
+            foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            var firstValue = args[0].ToArray("Function VLOOKUP parameter 1 error!");
+            if (firstValue.IsError) { return firstValue; }
+            var secondValue = args[1];
+
+            var thirdValue = args[2].ToNumber("Function VLOOKUP parameter 3 is error!");
+            if (thirdValue.IsError) { return thirdValue; }
+
+            var vague = true;
+            if (args.Count == 4) {
+                var fourthValue = args[2].ToBoolean("Function VLOOKUP parameter 4 is error!");
+                if (fourthValue.IsError) { return fourthValue; }
+                vague = fourthValue.BooleanValue;
+            }
+
+            var sv = secondValue.ToNumber("Function VLOOKUP parameter 2 is error!");
+            if (sv.IsError == false) {
+                secondValue = sv;
+            } else {
+                sv = secondValue.ToString("Function VLOOKUP parameter 2 is error!");
+                if (sv.IsError) { return sv; }
+                secondValue = sv;
+            }
+
+            if (vague == false) {
+                foreach (var item in firstValue.ArrayValue) {
+                    var o = item.ToArray("Function VLOOKUP parameter 1 error!");
+                    if (o.IsError) { return o; }
+                    if (o.ArrayValue.Count > 0) {
+                        var o1 = o.ArrayValue[0];
+                        int b = -1;
+                        if (o1.Type == OperandType.NUMBER && secondValue.Type == OperandType.NUMBER) {
+                            b = Compare(o1.NumberValue, secondValue.NumberValue);
+                        } else {
+                            var o2 = o1.ToString("");
+                            if (o2.IsError == false) {
+                                b = string.CompareOrdinal(firstValue.StringValue, secondValue.StringValue);
+                            }
+                        }
+                        if (b == 0) {
+                            var index = thirdValue.IntValue - excelIndex;
+                            if (index < o.ArrayValue.Count) {
+                                return o.ArrayValue[index];
+                            }
+                        }
+                    }
+                }
+            } else {
+                Operand last = null;
+                foreach (var item in firstValue.ArrayValue) {
+                    var o = item.ToArray("");
+                    if (o.IsError) { return o; }
+                    if (o.ArrayValue.Count > 0) {
+                        var o1 = o.ArrayValue[0];
+                        int b = -1;
+                        if (o1.Type == OperandType.NUMBER && secondValue.Type == OperandType.NUMBER) {
+                            b = Compare(o1.NumberValue, secondValue.NumberValue);
+                        } else {
+                            var o2 = o1.ToString("");
+                            if (o2.IsError == false) {
+                                b = string.CompareOrdinal(firstValue.StringValue, secondValue.StringValue);
+                            }
+                        }
+                        if (b == 0) {
+                            var index = thirdValue.IntValue - excelIndex;
+                            if (index < o.ArrayValue.Count) {
+                                return o.ArrayValue[index];
+                            }
+                        } else if (b > 0) {
+                            var index = thirdValue.IntValue - excelIndex;
+                            if (index < o.ArrayValue.Count) {
+                                last = o1;
+                            }
+                        }
+
+                    }
+                }
+                if (last != null) {
+                    var index = thirdValue.IntValue - excelIndex;
+                    if (index < last.ArrayValue.Count) {
+                        return last.ArrayValue[index];
+                    }
+                }
+            }
+
+            return Operand.Error("Function VLOOKUP is not match !");
         }
         public Operand VisitSTDEV_fun([NotNull] mathParser.STDEV_funContext context)
         {
@@ -3549,6 +3629,8 @@ namespace ToolGood.Algorithm
         {
             return VisitChildren(context);
         }
+
+
 
         #endregion
     }

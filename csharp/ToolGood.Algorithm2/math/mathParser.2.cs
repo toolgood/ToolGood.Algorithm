@@ -71,13 +71,34 @@ partial class mathParser : Parser
 		}
 	}
 
+	public partial class Parameter2Context : ParserRuleContext
+	{
+		public Parameter2Context(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return 4; } }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+		{
+			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+			return typedVisitor.VisitParameter2(this);
+		}
+	}
+
+
 	public partial class ExprContext : ParserRuleContext
 	{
+		private int _RuleIndex = 1;
 		public ExprContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return 1; } }
+		public ExprContext(ParserRuleContext parent, int invokingState,int ruleIndex)
+			: base(parent, invokingState)
+		{
+			_RuleIndex = ruleIndex;
+		}
+		public override int RuleIndex { get { return _RuleIndex; } }
 
 		public ExprContext() { }
 		public virtual void CopyFrom(ExprContext context)
@@ -1186,7 +1207,7 @@ partial class mathParser : Parser
 	}
 	public partial class NUM_funContext : ExprContext
 	{
-		public ITerminalNode NUM() { return GetToken(228, 0); }
+		public ITerminalNode NUM() { return GetToken(25, 0); }
 		public ITerminalNode SUB() { return GetToken(24, 0); }
 		public NUM_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
@@ -2138,7 +2159,7 @@ partial class mathParser : Parser
 	}
 	public partial class STRING_funContext : ExprContext
 	{
-		public ITerminalNode STRING() { return GetToken(229, 0); }
+		public ITerminalNode STRING() { return GetToken(26, 0); }
 		public STRING_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -3053,17 +3074,17 @@ partial class mathParser : Parser
 		}
 	}
 
-	public partial class Parameter2Context : ParserRuleContext
+	public partial class VLOOKUP_funContext : ExprContext
 	{
-		public Parameter2Context(ParserRuleContext parent, int invokingState)
-			: base(parent, invokingState)
+		public ExprContext[] expr()
 		{
+			return GetRuleContexts<ExprContext>();
 		}
-		public override int RuleIndex { get { return 4; } }
+		public VLOOKUP_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			 return typedVisitor.VisitParameter2(this);
+			return typedVisitor.VisitVLOOKUP_fun(this);
 		}
 	}
 

@@ -530,6 +530,8 @@ parameter2:
 	| VLOOKUP
 	| PARAMETER;
 SUB: '-';
+NUM: '0' ('.' [0-9]+)? | [1-9][0-9]* ('.' [0-9]+)?;
+STRING: '\'' ( ~'\'' | '\\\'')* '\'' | '"' ( ~'"' | '\\"')* '"';
 // 逻辑函数
 IF: 'IF';
 IFERROR: 'IFERROR';
@@ -741,8 +743,7 @@ REMOVEEND: 'REMOVEEND';
 JSON: 'JSON';
 VLOOKUP: 'VLOOKUP';
 
-NUM: '0' ('.' [0-9]+)? | [1-9][0-9]* ('.' [0-9]+)?;
-STRING: '\'' ( ~'\'' | '\\\'')* '\'' | '"' ( ~'"' | '\\"')* '"';
+
 PARAMETER: [A-Z\u3400-\u9FD5][A-Z0-9_\u3400-\u9FD5]*;
 
 WS: [ \t\r\n]+ -> skip;

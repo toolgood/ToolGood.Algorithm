@@ -1542,6 +1542,9 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
  
 	Result VisitExpr2_fun([NotNull] mathParser.Expr2_funContext context);
 
+	Result VisitVLOOKUP_fun([NotNull] mathParser.VLOOKUP_funContext context);
+
 
 	
+
 }
