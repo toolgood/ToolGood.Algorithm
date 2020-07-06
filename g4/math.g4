@@ -18,11 +18,13 @@ expr:
 	| expr op = ('&&' | '||' | AND | OR) expr					# AndOr_fun
 	| expr '.' ISNUMBER '(' ')'									# ISNUMBER_fun
 	| expr '.' ISTEXT '(' ')'									# ISTEXT_fun
-	| expr '.' ISERROR '(' ')'									# ISERROR_fun
 	| expr '.' ISNONTEXT '(' ')'								# ISNONTEXT_fun
 	| expr '.' ISLOGICAL '(' ')'								# ISLOGICAL_fun
 	| expr '.' ISEVEN '(' ')'									# ISEVEN_fun
 	| expr '.' ISODD '(' ')'									# ISODD_fun
+	| expr '.' ISERROR '(' expr? ')'							# ISERROR_fun
+	| expr '.' ISNULL '(' expr? ')'								# ISNULL_fun
+	| expr '.' ISNULLORERROR '(' expr? ')'						# ISNULLORERROR_fun
 	| expr '.' DEC2BIN ('(' expr? ')')							# DEC2BIN_fun
 	| expr '.' DEC2HEX ('(' expr? ')')							# DEC2HEX_fun
 	| expr '.' DEC2OCT ('(' expr? ')')							# DEC2OCT_fun
@@ -114,15 +116,16 @@ expr2:
 	'{' expr (',' expr)* '}'								# Array_fun2
 	| '(' expr ')'											# Bracket_fun2
 	| IF '(' expr ',' expr (',' expr)? ')'					# IF_fun2
-	| IFERROR '(' expr ',' expr (',' expr)? ')'				# IFERROR_fun2
 	| ISNUMBER '(' expr ')'									# ISNUMBER_fun2
 	| ISTEXT '(' expr ')'									# ISTEXT_fun2
-	| ISERROR '(' expr ')'									# ISERROR_fun2
+	| ISERROR '(' expr (',' expr)? ')'						# ISERROR_fun2
 	| ISNONTEXT '(' expr ')'								# ISNONTEXT_fun2
 	| ISLOGICAL '(' expr ')'								# ISLOGICAL_fun2
 	| ISEVEN '(' expr ')'									# ISEVEN_fun2
 	| ISODD '(' expr ')'									# ISODD_fun2
-	| ISNULL '(' expr ',' expr ')'							# ISNULL_fun2
+	| IFERROR '(' expr ',' expr (',' expr)? ')'				# IFERROR_fun2
+	| ISNULL '(' expr (',' expr)? ')'						# ISNULL_fun2
+	| ISNULLORERROR '(' expr (',' expr)? ')'				# ISNULLORERROR_fun2
 	| AND '(' expr (',' expr)* ')'							# AND_fun2
 	| OR '(' expr (',' expr)* ')'							# OR_fun2
 	| NOT '(' expr ')'										# NOT_fun2
@@ -324,8 +327,7 @@ expr2:
 	| '[' parameter ']'											# PARAMETER_fun2
 	| '-'? NUM													# NUM_fun2
 	| STRING													# STRING_fun2
-	| NULL														# NULL_fun2
-	;
+	| NULL														# NULL_fun2;
 
 parameter: expr | parameter2;
 
@@ -340,6 +342,9 @@ parameter2:
 	| ISLOGICAL
 	| ISEVEN
 	| ISODD
+	| IFERROR
+	| ISNULL
+	| ISNULLORERROR
 	| AND
 	| OR
 	| NOT
@@ -540,7 +545,7 @@ parameter2:
 SUB: '-';
 NUM: '0' ('.' [0-9]+)? | [1-9][0-9]* ('.' [0-9]+)?;
 STRING: '\'' ( ~'\'' | '\\\'')* '\'' | '"' ( ~'"' | '\\"')* '"';
-NULL:'NULL';
+NULL: 'NULL';
 
 // 逻辑函数
 IF: 'IF';
@@ -552,7 +557,8 @@ ISNONTEXT: 'ISNONTEXT';
 ISLOGICAL: 'ISLOGICAL';
 ISEVEN: 'ISEVEN';
 ISODD: 'ISODD';
-ISNULL:'ISNULL'|'IFNULL';
+ISNULL: 'ISNULL';
+ISNULLORERROR: 'ISNULLORERROR';
 AND: 'AND';
 OR: 'OR';
 NOT: 'NOT';
