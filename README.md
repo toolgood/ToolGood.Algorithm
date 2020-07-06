@@ -98,8 +98,28 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>ifError(1/0,1,2) <br>>>1</td>
     </tr>
     <tr>
-        <td>isError ★</td><td>isError(值)<br>判断出错,返回 TRUE 或 FALSE</td>
+        <td>isError ★</td>
+        <td>
+        isError(值)<br>判断是否出错,返回 TRUE 或 FALSE
+        isError(值,替换值)<br>如果出错,返回替换值，否则返回原值
+        </td>
         <td>isError(1) <br>>>false</td>
+    </tr>
+    <tr>
+        <td>isNull ★</td>
+        <td>
+        isNull(值)<br>判断是否为空,返回 TRUE 或 FALSE
+        isNull(值,替换值)<br>如果为空,返回替换值，否则返回原值
+        </td>
+        <td>isNull(null) <br>>>true</td>
+    </tr>
+    <tr>
+        <td>isNullOrError ★</td>
+        <td>
+        isNullOrError(值)<br>判断是否为空或错误,返回 TRUE 或 FALSE
+        isNullOrError(值,替换值)<br>如果为空或错误,返回替换值，否则返回原值
+        </td>
+        <td>isNullOrError(null) <br>>>true</td>
     </tr>
     <tr>
         <td>isNumber ★</td><td>isNumber(值)<br>判断是否数值,返回 TRUE 或 FALSE</td>
