@@ -3428,16 +3428,19 @@ namespace ToolGood.Algorithm
                 {
                     var o1 = o.ArrayValue[0];
                     int b = -1;
-                    if (o1.Type == OperandType.NUMBER && secondValue.Type == OperandType.NUMBER)
+                    if (secondValue.Type == OperandType.NUMBER)
                     {
-                        b = Compare(o1.NumberValue, secondValue.NumberValue);
+                        if (o1.Type == OperandType.NUMBER)
+                        {
+                            b = Compare(o1.NumberValue, secondValue.NumberValue);
+                        }
                     }
                     else
                     {
                         var o2 = o1.ToString("");
                         if (o2.IsError == false)
                         {
-                            b = string.CompareOrdinal(o1.StringValue, secondValue.StringValue);
+                            b = string.CompareOrdinal(o2.StringValue, secondValue.StringValue);
                         }
                     }
                     if (b == 0)
@@ -3453,6 +3456,8 @@ namespace ToolGood.Algorithm
 
             if (vague) //进行模糊匹配
             {
+                Operand last = null;
+                var index = thirdValue.IntValue - excelIndex;
                 foreach (var item in firstValue.ArrayValue)
                 {
                     var o = item.ToArray("");
@@ -3461,25 +3466,28 @@ namespace ToolGood.Algorithm
                     {
                         var o1 = o.ArrayValue[0];
                         int b = -1;
-                        if (o1.Type == OperandType.NUMBER && secondValue.Type == OperandType.NUMBER)
+                        if (secondValue.Type == OperandType.NUMBER)
                         {
-                            b = Compare(o1.NumberValue, secondValue.NumberValue);
+                            if (o1.Type == OperandType.NUMBER)
+                            {
+                                b = Compare(o1.NumberValue, secondValue.NumberValue);
+                            }
                         }
                         else
                         {
                             var o2 = o1.ToString("");
                             if (o2.IsError == false)
                             {
-                                b = string.CompareOrdinal(o1.StringValue, secondValue.StringValue);
+                                b = string.CompareOrdinal(o2.StringValue, secondValue.StringValue);
                             }
                         }
-                        if (b > 0)
+                        if (b < 0 && index < o.ArrayValue.Count)
                         {
-                            var index = thirdValue.IntValue - excelIndex;
-                            if (index < o.ArrayValue.Count)
-                            {
-                                return o.ArrayValue[index];
-                            }
+                            last = o;
+                        }
+                        else if (b > 0 && last != null)
+                        {
+                            return last.ArrayValue[index];
                         }
                     }
                 }
