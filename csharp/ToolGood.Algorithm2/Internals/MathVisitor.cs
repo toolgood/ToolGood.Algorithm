@@ -2334,68 +2334,70 @@ namespace ToolGood.Algorithm
                 if (sv.IsError) { return sv; }
                 secondValue = sv;
             }
-
-            if (vague == false) {
-                foreach (var item in firstValue.ArrayValue) {
-                    var o = item.ToArray("Function VLOOKUP parameter 1 error!");
-                    if (o.IsError) { return o; }
-                    if (o.ArrayValue.Count > 0) {
-                        var o1 = o.ArrayValue[0];
-                        int b = -1;
-                        if (o1.Type == OperandType.NUMBER && secondValue.Type == OperandType.NUMBER) {
-                            b = Compare(o1.NumberValue, secondValue.NumberValue);
-                        } else {
-                            var o2 = o1.ToString("");
-                            if (o2.IsError == false) {
-                                b = string.CompareOrdinal(firstValue.StringValue, secondValue.StringValue);
-                            }
-                        }
-                        if (b == 0) {
-                            var index = thirdValue.IntValue - excelIndex;
-                            if (index < o.ArrayValue.Count) {
-                                return o.ArrayValue[index];
-                            }
+            foreach (var item in firstValue.ArrayValue)
+            {
+                var o = item.ToArray("Function VLOOKUP parameter 1 error!");
+                if (o.IsError) { return o; }
+                if (o.ArrayValue.Count > 0)
+                {
+                    var o1 = o.ArrayValue[0];
+                    int b = -1;
+                    if (o1.Type == OperandType.NUMBER && secondValue.Type == OperandType.NUMBER)
+                    {
+                        b = Compare(o1.NumberValue, secondValue.NumberValue);
+                    }
+                    else
+                    {
+                        var o2 = o1.ToString("");
+                        if (o2.IsError == false)
+                        {
+                            b = string.CompareOrdinal(firstValue.StringValue, secondValue.StringValue);
                         }
                     }
-                }
-            } else {
-                Operand last = null;
-                foreach (var item in firstValue.ArrayValue) {
-                    var o = item.ToArray("");
-                    if (o.IsError) { return o; }
-                    if (o.ArrayValue.Count > 0) {
-                        var o1 = o.ArrayValue[0];
-                        int b = -1;
-                        if (o1.Type == OperandType.NUMBER && secondValue.Type == OperandType.NUMBER) {
-                            b = Compare(o1.NumberValue, secondValue.NumberValue);
-                        } else {
-                            var o2 = o1.ToString("");
-                            if (o2.IsError == false) {
-                                b = string.CompareOrdinal(firstValue.StringValue, secondValue.StringValue);
-                            }
+                    if (b == 0)
+                    {
+                        var index = thirdValue.IntValue - excelIndex;
+                        if (index < o.ArrayValue.Count)
+                        {
+                            return o.ArrayValue[index];
                         }
-                        if (b == 0) {
-                            var index = thirdValue.IntValue - excelIndex;
-                            if (index < o.ArrayValue.Count) {
-                                return o.ArrayValue[index];
-                            }
-                        } else if (b > 0) {
-                            var index = thirdValue.IntValue - excelIndex;
-                            if (index < o.ArrayValue.Count) {
-                                last = o1;
-                            }
-                        }
-
-                    }
-                }
-                if (last != null) {
-                    var index = thirdValue.IntValue - excelIndex;
-                    if (index < last.ArrayValue.Count) {
-                        return last.ArrayValue[index];
                     }
                 }
             }
 
+            if (vague) //进行模糊匹配
+            {
+                foreach (var item in firstValue.ArrayValue)
+                {
+                    var o = item.ToArray("");
+                    if (o.IsError) { return o; }
+                    if (o.ArrayValue.Count > 0)
+                    {
+                        var o1 = o.ArrayValue[0];
+                        int b = -1;
+                        if (o1.Type == OperandType.NUMBER && secondValue.Type == OperandType.NUMBER)
+                        {
+                            b = Compare(o1.NumberValue, secondValue.NumberValue);
+                        }
+                        else
+                        {
+                            var o2 = o1.ToString("");
+                            if (o2.IsError == false)
+                            {
+                                b = string.CompareOrdinal(firstValue.StringValue, secondValue.StringValue);
+                            }
+                        }
+                        if (b > 0)
+                        {
+                            var index = thirdValue.IntValue - excelIndex;
+                            if (index < o.ArrayValue.Count)
+                            {
+                                return o.ArrayValue[index];
+                            }
+                        }
+                    }
+                }
+            }
             return Operand.Error("Function VLOOKUP is not match !");
         }
         public Operand VisitSTDEV_fun([NotNull] mathParser.STDEV_funContext context)

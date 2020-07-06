@@ -787,6 +787,13 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
 
 </table>
 
+#### 查找引用
+<table>
+    <tr>
+        <td>VLookUp ▲</td><td>VLookUp({数组1,...},{值},{列索引}[,{模糊匹配:0/1，默认1}])<br>纵向查找函数。</td> <td></td>
+    </tr>
+</table>
+
 
 #### 增加函数 类C#方法
 <table>
