@@ -19,7 +19,7 @@ namespace Antlr4Helper.JavaScriptHelper.Helpers
             if (JsEngineSwitcher == null)
             {
                 JsEngineSwitcher engineSwitcher = JsEngineSwitcher.Current as JsEngineSwitcher;
-
+                engineSwitcher.EngineFactories.AddJint(new JintSettings { StrictMode = true });
                 //engineSwitcher.EngineFactories.AddJurassic(new JurassicSettings { StrictMode = true, });
                 JsEngineSwitcher = engineSwitcher;
             }
@@ -32,7 +32,8 @@ namespace Antlr4Helper.JavaScriptHelper.Helpers
         public static string GetCondition(List<string> constants, List<int> useConstants, string condition, string className)
         {
             GetJsEngineSwitcher();
-            return antiDupCache.GetOrAdd(condition, () => {
+            return antiDupCache.GetOrAdd(condition, () =>
+            {
                 var js = @"var antlr4={};
 antlr4.Token={};
 antlr4.Token.EOF=-1;
