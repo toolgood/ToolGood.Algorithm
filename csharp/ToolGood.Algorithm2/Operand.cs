@@ -14,6 +14,8 @@ namespace ToolGood.Algorithm
         public static readonly Operand True = Operand.Create(true);
         public static readonly Operand False = Operand.Create(false);
 
+        public virtual bool IsNull => false;
+        public virtual bool IsNullOrError => false;
         public virtual bool IsError => false;
         public virtual string ErrorMsg => null;
         public abstract OperandType Type { get; }
@@ -45,14 +47,11 @@ namespace ToolGood.Algorithm
         }
         public static Operand CreateJson(string txt)
         {
-            if ((txt.StartsWith("{") && txt.EndsWith("}")) || (txt.StartsWith("[") && txt.EndsWith("]")))
-            {
-                try
-                {
+            if ((txt.StartsWith("{") && txt.EndsWith("}")) || (txt.StartsWith("[") && txt.EndsWith("]"))) {
+                try {
                     var json = JsonMapper.ToObject(txt);
                     return Operand.Create(json);
-                }
-                catch (Exception) { }
+                } catch (Exception) { }
             }
             return Operand.Error("string to json is error!");
         }
@@ -115,6 +114,10 @@ namespace ToolGood.Algorithm
             return new OperandError(msg);
         }
 
+        public static Operand CreateNull()
+        {
+            return new OperandNull();
+        }
 
         #endregion
         public Operand ToNumber(string errorMessage)
@@ -172,14 +175,11 @@ namespace ToolGood.Algorithm
             if (IsError) { return this; }
             if (Type == OperandType.STRING) {
                 var txt = StringValue;
-                if ((txt.StartsWith("{") && txt.EndsWith("}")) || (txt.StartsWith("[") && txt.EndsWith("]")))
-                {
-                    try
-                    {
+                if ((txt.StartsWith("{") && txt.EndsWith("}")) || (txt.StartsWith("[") && txt.EndsWith("]"))) {
+                    try {
                         var json = JsonMapper.ToObject(txt);
                         return Operand.Create(json);
-                    }
-                    catch (Exception) { }
+                    } catch (Exception) { }
                 }
             }
             return Error(errorMessage);
@@ -210,6 +210,7 @@ namespace ToolGood.Algorithm
             }
             return Error(errorMessage);
         }
+ 
 
         public void Dispose() { }
     }
@@ -222,53 +223,62 @@ namespace ToolGood.Algorithm
         }
     }
 
-    public class OperandNumber : Operand<double>
+    class OperandNumber : Operand<double>
     {
         public OperandNumber(double obj) : base(obj) { }
         public override OperandType Type => OperandType.NUMBER;
         public override int IntValue => (int)Value;
         public override double NumberValue => Value;
     }
-    public class OperandBoolean : Operand<bool>
+    class OperandBoolean : Operand<bool>
     {
         public OperandBoolean(bool obj) : base(obj) { }
         public override OperandType Type => OperandType.BOOLEAN;
         public override bool BooleanValue => Value;
     }
-    public class OperandString : Operand<string>
+    class OperandString : Operand<string>
     {
         public OperandString(string obj) : base(obj) { }
         public override OperandType Type => OperandType.STRING;
         public override string StringValue => Value;
     }
-    public class OperandDate : Operand<Date>
+    class OperandDate : Operand<Date>
     {
         public OperandDate(Date obj) : base(obj) { }
         public override OperandType Type => OperandType.DATE;
         public override Date DateValue => Value;
     }
-    internal class OperandJson : Operand<JsonData>
+    class OperandJson : Operand<JsonData>
     {
         public OperandJson(JsonData obj) : base(obj) { }
         public override OperandType Type => OperandType.JSON;
         internal override JsonData JsonValue => Value;
     }
-    public class OperandArray : Operand<List<Operand>>
+    class OperandArray : Operand<List<Operand>>
     {
         public OperandArray(List<Operand> obj) : base(obj) { }
         public override OperandType Type => OperandType.ARRARY;
         public override List<Operand> ArrayValue => Value;
     }
-    public class OperandError : Operand
+    class OperandError : Operand
     {
         public override OperandType Type => OperandType.ERROR;
         public override bool IsError => true;
+        public override bool IsNullOrError => true;
         private string _errorMsg;
         public override string ErrorMsg => _errorMsg;
         public OperandError(string msg)
         {
             _errorMsg = msg;
         }
+    }
+
+    class OperandNull : Operand
+    {
+        public override OperandType Type => OperandType.NULL;
+        public override bool IsNullOrError => true;
+        public override bool IsNull => true;
+
     }
 
 }

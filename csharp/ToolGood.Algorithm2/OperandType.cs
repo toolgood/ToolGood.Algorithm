@@ -6,7 +6,11 @@
     public enum OperandType
     {
         /// <summary>
-        /// 函数
+        /// NULL
+        /// </summary>
+        NULL,
+        /// <summary>
+        /// 错误
         /// </summary>
         ERROR,
 

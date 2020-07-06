@@ -118,6 +118,16 @@ namespace ToolGood.Algorithm
             var t = context.op.Text;
 
             if (t == "&") {
+                if (firstValue.IsNull && secondValue.IsNull) {
+                    return firstValue;
+                } else if (firstValue.IsNull) {
+                    secondValue = secondValue.ToString($"Function '{t}' parameter 2 is error!");
+                    return secondValue;
+                } else if (secondValue.IsNull) {
+                    firstValue = firstValue.ToString($"Function '{t}' parameter 1 is error!");
+                    return firstValue;
+                }
+ 
                 firstValue = firstValue.ToString($"Function '{t}' parameter 1 is error!");
                 if (firstValue.IsError) { return secondValue; }
                 secondValue = secondValue.ToString($"Function '{t}' parameter 2 is error!");
@@ -186,6 +196,20 @@ namespace ToolGood.Algorithm
             var firstValue = args[0];
             var secondValue = args[1];
             string type = context.op.Text;
+
+            if (firstValue.IsNull) {
+                if (secondValue.IsNull && (type=="==" || type == "=")) {
+                    return Operand.True;
+                } else if (secondValue.IsNull==false && (type == "<>" || type == "!=")) {
+                    return Operand.True;
+                }
+                return Operand.False;
+            } else if (secondValue.IsNull) {
+                if (type == "==" || type == "=") {
+                    return Operand.False;
+                }
+                return Operand.True;
+            }
 
             int r;
             if (firstValue.Type == secondValue.Type) {
@@ -315,7 +339,6 @@ namespace ToolGood.Algorithm
                 return args[2];
             }
             return Operand.False;
-
         }
         public Operand VisitISNUMBER_fun([NotNull] mathParser.ISNUMBER_funContext context)
         {
@@ -339,8 +362,50 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitISERROR_fun([NotNull] mathParser.ISERROR_funContext context)
         {
-            var firstValue = this.Visit(context.expr());
-            if (firstValue.Type == OperandType.ERROR) {
+            var args = new List<Operand>();
+            foreach (var item in context.expr()) { var aa = this.Visit(item);  args.Add(aa); }
+            if (args.Count==2) {
+                if (args[0].IsError) {
+                    return args[1];
+                }
+                return args[0];
+            }
+
+            if (args[0].IsError) {
+                return Operand.True;
+            }
+            return Operand.False;
+        }
+
+        public Operand VisitISNULL_fun([NotNull] mathParser.ISNULL_funContext context)
+        {
+            var args = new List<Operand>();
+            foreach (var item in context.expr()) { var aa = this.Visit(item); args.Add(aa); }
+
+            if (args.Count == 2) {
+                if (args[0].IsNull) {
+                    return args[1];
+                }
+                return args[0];
+            }
+            if (args[0].IsNull) {
+                return Operand.True;
+            }
+            return Operand.False;
+        }
+
+        public Operand VisitISNULLORERROR_fun([NotNull] mathParser.ISNULLORERROR_funContext context)
+        {
+            var args = new List<Operand>();
+            foreach (var item in context.expr()) { var aa = this.Visit(item);  args.Add(aa); }
+
+            if (args.Count == 2) {
+                if (args[0].IsNullOrError) {
+                    return args[1];
+                }
+                return args[0];
+            }
+            if (args[0].IsNullOrError) {
                 return Operand.True;
             }
             return Operand.False;
@@ -2744,17 +2809,17 @@ namespace ToolGood.Algorithm
         private bool F_base_compare(double a, double b, string ss)
         {
             if (ss == "<") {
-                return Math.Round(a, 12, MidpointRounding.AwayFromZero) < Math.Round(b, 12, MidpointRounding.AwayFromZero);
+                return Math.Round(a-b, 12, MidpointRounding.AwayFromZero) < 0;
             } else if (ss == "<=") {
-                return Math.Round(a, 12, MidpointRounding.AwayFromZero) <= Math.Round(b, 12, MidpointRounding.AwayFromZero);
+                return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) <= 0;
             } else if (ss == ">") {
-                return Math.Round(a, 12, MidpointRounding.AwayFromZero) > Math.Round(b, 12, MidpointRounding.AwayFromZero);
+                return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) > 0;
             } else if (ss == ">=") {
-                return Math.Round(a, 12, MidpointRounding.AwayFromZero) >= Math.Round(b, 12, MidpointRounding.AwayFromZero);
+                return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) >= 0;
             } else if (ss == "=" || ss == "==") {
-                return Math.Round(a, 12, MidpointRounding.AwayFromZero) == Math.Round(b, 12, MidpointRounding.AwayFromZero);
+                return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) == 0;
             }
-            return Math.Round(a, 12, MidpointRounding.AwayFromZero) != Math.Round(b, 12, MidpointRounding.AwayFromZero);
+            return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) !=0;
         }
 
         private bool F_base_GetList(List<Operand> args, List<double> list)
@@ -3602,6 +3667,10 @@ namespace ToolGood.Algorithm
             }
             return Operand.Create(sb.ToString());
         }
+        public Operand VisitNULL_fun([NotNull] mathParser.NULL_funContext context)
+        {
+            return Operand.CreateNull();
+        }
         public Operand VisitPARAMETER_fun([NotNull] mathParser.PARAMETER_funContext context)
         {
             var p = this.Visit(context.parameter()).ToString("Function PARAMETER first parameter is error!");
@@ -3664,6 +3733,7 @@ namespace ToolGood.Algorithm
                         if (v.IsLong) return Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo));
                         if (v.IsObject) return Operand.Create(v);
                         if (v.IsArray) return Operand.Create(v);
+                        if (v.IsNull) return Operand.CreateNull();
                         return Operand.Create(v);
                     }
                     return Operand.Error($"JSON index {index} greater than maximum length!");
@@ -3680,6 +3750,7 @@ namespace ToolGood.Algorithm
                         if (v.IsLong) return Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo));
                         if (v.IsObject) return Operand.Create(v);
                         if (v.IsArray) return Operand.Create(v);
+                        if (v.IsNull) return Operand.CreateNull();
                         return Operand.Create(v);
                     }
                 }
@@ -3691,6 +3762,7 @@ namespace ToolGood.Algorithm
         {
             return VisitChildren(context);
         }
+
 
 
 

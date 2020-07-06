@@ -539,9 +539,9 @@ partial class mathParser : Parser
 	}
 	public partial class ISERROR_funContext : ExprContext
 	{
-		public ExprContext expr()
+		public ExprContext[] expr()
 		{
-			return GetRuleContext<ExprContext>(0);
+			return GetRuleContexts<ExprContext>();
 		}
 		public ISERROR_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
@@ -3101,4 +3101,45 @@ partial class mathParser : Parser
 			return typedVisitor.VisitLOOKUP_fun(this);
 		}
 	}
+
+	public partial class NULL_funContext : ExprContext
+	{
+ 
+		public NULL_funContext(ExprContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+		{
+			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+			return typedVisitor.VisitNULL_fun(this);
+		}
+	}
+	public partial class ISNULL_funContext : ExprContext
+	{
+		public ExprContext[] expr()
+		{
+			return GetRuleContexts<ExprContext>();
+		}
+		public ISNULL_funContext(ExprContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+		{
+			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+			return typedVisitor.VisitISNULL_fun(this);
+		}
+	}
+
+	
+
+	public partial class ISNULLORERROR_funContext : ExprContext
+	{
+		public ExprContext[] expr()
+		{
+			return GetRuleContexts<ExprContext>();
+		}
+		public ISNULLORERROR_funContext(ExprContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+		{
+			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+			return typedVisitor.VisitISNULLORERROR_fun(this);
+		}
+	}
+
 }

@@ -24,6 +24,7 @@ namespace ToolGood.Algorithm.Internals
                 if (v.IsLong) return Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo));
                 if (v.IsObject) return Operand.Create(v);
                 if (v.IsArray) return Operand.Create(v);
+                if (v.IsNull) return Operand.CreateNull();
                 return Operand.Create(v);
             }
             return base.GetParameter(parameter);
