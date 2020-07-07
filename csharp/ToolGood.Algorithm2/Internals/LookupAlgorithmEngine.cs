@@ -8,8 +8,6 @@ namespace ToolGood.Algorithm.Internals
 {
     class LookupAlgorithmEngine : AlgorithmEngine
     {
-        private static readonly CultureInfo cultureInfo = CultureInfo.GetCultureInfo("en-US");
-
         public Operand Json;
 
         protected override Operand GetParameter(string parameter)
