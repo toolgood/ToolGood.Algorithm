@@ -168,31 +168,6 @@ namespace ToolGood.Algorithm.LitJson
             this.type = type;
         }
 
-        public override string ToString()
-        {
-            switch (type) {
-                case JsonType.Array:
-                    return "JsonData array";
-
-                case JsonType.Boolean:
-                    return inst_boolean.ToString();
-
-                case JsonType.Double:
-                    return inst_double.ToString();
-
-                case JsonType.Object:
-                    return "JsonData object";
-
-                case JsonType.String:
-                    return inst_string;
-                case JsonType.Null:
-                    return null;
-            }
-
-
-            return "Uninitialized JsonData";
-        }
-
         public IEnumerator GetEnumerator()
         {
             return EnsureList().GetEnumerator();

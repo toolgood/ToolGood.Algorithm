@@ -156,7 +156,6 @@ namespace ToolGood.Algorithm
             if (Type == OperandType.NUMBER) { return Create(NumberValue.ToString(cultureInfo)); }
             if (Type == OperandType.BOOLEAN) { return Create(BooleanValue ? "TRUE" : "FALSE"); }
             if (Type == OperandType.DATE) { return Create(DateValue.ToString()); }
-            if (Type == OperandType.JSON) { return Create(JsonValue.ToString()); }
 
             return Error(errorMessage);
         }
