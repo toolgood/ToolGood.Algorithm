@@ -18,8 +18,6 @@ namespace ToolGood.Algorithm.LitJson
         ArrayStart,
         ArrayEnd,
 
-        Int,
-        Long,
         Double,
 
         String,
@@ -151,43 +149,6 @@ namespace ToolGood.Algorithm.LitJson
 
 
         #region Private Methods
-        private void ProcessNumber(string number)
-        {
-            if (number.IndexOf('.') != -1 || number.IndexOf('e') != -1 || number.IndexOf('E') != -1) {
-
-                if (double.TryParse(number, NumberStyles.Any, CultureInfo.InvariantCulture, out double n_double)) {
-                    token = JsonToken.Double;
-                    token_value = n_double;
-
-                    return;
-                }
-            }
-
-            if (int.TryParse(number, NumberStyles.Integer, CultureInfo.InvariantCulture, out int n_int32)) {
-                token = JsonToken.Int;
-                token_value = n_int32;
-
-                return;
-            }
-
-            if (long.TryParse(number, NumberStyles.Integer, CultureInfo.InvariantCulture, out long n_int64)) {
-                token = JsonToken.Long;
-                token_value = n_int64;
-
-                return;
-            }
-
-            if (ulong.TryParse(number, NumberStyles.Integer, CultureInfo.InvariantCulture, out ulong n_uint64)) {
-                token = JsonToken.Long;
-                token_value = n_uint64;
-
-                return;
-            }
-
-            // Shouldn't happen, but just in case, return something
-            token = JsonToken.Int;
-            token_value = 0;
-        }
 
         private void ProcessSymbol()
         {
@@ -232,8 +193,15 @@ namespace ToolGood.Algorithm.LitJson
                 parser_return = true;
 
             } else if (current_symbol == (int)ParserToken.Number) {
-                ProcessNumber(lexer.StringValue);
-
+                token = JsonToken.Double;
+                if (double.TryParse(lexer.StringValue, NumberStyles.Any, CultureInfo.InvariantCulture, out double n_double))
+                {
+                    token_value = n_double;
+                }
+                else
+                {
+                    token_value = 0;
+                }
                 parser_return = true;
 
             } else if (current_symbol == (int)ParserToken.Pair) {

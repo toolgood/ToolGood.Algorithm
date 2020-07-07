@@ -31,16 +31,6 @@ namespace ToolGood.Algorithm.LitJson
                 return instance;
             }
 
-            if (reader.Token == JsonToken.Int) {
-                instance.SetInt((int)reader.Value);
-                return instance;
-            }
-
-            if (reader.Token == JsonToken.Long) {
-                instance.SetLong((long)reader.Value);
-                return instance;
-            }
-
             if (reader.Token == JsonToken.Boolean) {
                 instance.SetBoolean((bool)reader.Value);
                 return instance;

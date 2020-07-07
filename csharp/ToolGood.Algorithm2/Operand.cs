@@ -195,15 +195,11 @@ namespace ToolGood.Algorithm
                     List<Operand> list = new List<Operand>();
                     foreach (JsonData v in JsonValue) {
                         if (v.IsString)
-                            list.Add(Operand.Create(v.ToString()));
+                            list.Add(Operand.Create(v.StringValue));
                         else if (v.IsBoolean)
-                            list.Add(Operand.Create(bool.Parse(v.ToString())));
+                            list.Add(Operand.Create(v.BooleanValue));
                         else if (v.IsDouble)
-                            list.Add(Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo)));
-                        else if (v.IsInt)
-                            list.Add(Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo)));
-                        else if (v.IsLong)
-                            list.Add(Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo)));
+                            list.Add(Operand.Create(v.NumberValue));
                         else if (v.IsNull)
                             list.Add(Operand.CreateNull());
                         else

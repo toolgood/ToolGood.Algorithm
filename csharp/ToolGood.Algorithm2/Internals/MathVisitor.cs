@@ -3662,11 +3662,9 @@ namespace ToolGood.Algorithm
                                 var v = json.JsonValue[thirdValue.StringValue];
                                 if (v != null)
                                 {
-                                    if (v.IsString) return Operand.Create(v.ToString());
-                                    if (v.IsBoolean) return Operand.Create(bool.Parse(v.ToString()));
-                                    if (v.IsDouble) return Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo));
-                                    if (v.IsInt) return Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo));
-                                    if (v.IsLong) return Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo));
+                                    if (v.IsString) return Operand.Create(v.StringValue);
+                                    if (v.IsBoolean) return Operand.Create(v.BooleanValue);
+                                    if (v.IsDouble) return Operand.Create(v.NumberValue);
                                     if (v.IsObject) return Operand.Create(v);
                                     if (v.IsArray) return Operand.Create(v);
                                     if (v.IsNull) return Operand.CreateNull();
@@ -3785,11 +3783,9 @@ namespace ToolGood.Algorithm
                     var index = op.IntValue - excelIndex;
                     if (index < json.Count) {
                         var v = json[op.IntValue - excelIndex];
-                        if (v.IsString) return Operand.Create(v.ToString());
-                        if (v.IsBoolean) return Operand.Create(bool.Parse(v.ToString()));
-                        if (v.IsDouble) return Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo));
-                        if (v.IsInt) return Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo));
-                        if (v.IsLong) return Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo));
+                        if (v.IsString) return Operand.Create(v.StringValue);
+                        if (v.IsBoolean) return Operand.Create(v.BooleanValue);
+                        if (v.IsDouble) return Operand.Create(v.NumberValue);
                         if (v.IsObject) return Operand.Create(v);
                         if (v.IsArray) return Operand.Create(v);
                         if (v.IsNull) return Operand.CreateNull();
@@ -3802,11 +3798,9 @@ namespace ToolGood.Algorithm
                     var v = json[op.StringValue];
                     if (v!=null)
                     {
-                        if (v.IsString) return Operand.Create(v.ToString());
-                        if (v.IsBoolean) return Operand.Create(bool.Parse(v.ToString()));
-                        if (v.IsDouble) return Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo));
-                        if (v.IsInt) return Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo));
-                        if (v.IsLong) return Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo));
+                        if (v.IsString) return Operand.Create(v.StringValue);
+                        if (v.IsBoolean) return Operand.Create(v.BooleanValue);
+                        if (v.IsDouble) return Operand.Create(v.NumberValue);
                         if (v.IsObject) return Operand.Create(v);
                         if (v.IsArray) return Operand.Create(v);
                         if (v.IsNull) return Operand.CreateNull();

@@ -13,8 +13,6 @@ namespace ToolGood.Algorithm.LitJson
         private IList<JsonData> inst_array;
         private bool inst_boolean;
         private double inst_double;
-        private int inst_int;
-        private long inst_long;
         private IDictionary<string, JsonData> inst_object;
         private string inst_string;
         private JsonType type;
@@ -27,8 +25,6 @@ namespace ToolGood.Algorithm.LitJson
         public bool IsArray { get { return type == JsonType.Array; } }
         public bool IsBoolean { get { return type == JsonType.Boolean; } }
         public bool IsDouble { get { return type == JsonType.Double; } }
-        public bool IsInt { get { return type == JsonType.Int; } }
-        public bool IsLong { get { return type == JsonType.Long; } }
         public bool IsObject { get { return type == JsonType.Object; } }
         public bool IsString { get { return type == JsonType.String; } }
         public bool IsNull { get { return type == JsonType.Null; } }
@@ -83,18 +79,6 @@ namespace ToolGood.Algorithm.LitJson
         {
             type = JsonType.Double;
             inst_double = val;
-        }
-
-        void IJsonWrapper.SetInt(int val)
-        {
-            type = JsonType.Int;
-            inst_int = val;
-        }
-
-        void IJsonWrapper.SetLong(long val)
-        {
-            type = JsonType.Long;
-            inst_long = val;
         }
 
         void IJsonWrapper.SetString(string val)
@@ -174,15 +158,7 @@ namespace ToolGood.Algorithm.LitJson
                 case JsonType.String:
                     inst_string = default(String);
                     break;
-
-                case JsonType.Int:
-                    inst_int = default(Int32);
-                    break;
-
-                case JsonType.Long:
-                    inst_long = default(Int64);
-                    break;
-
+            
                 case JsonType.Double:
                     inst_double = default(Double);
                     break;
@@ -207,12 +183,6 @@ namespace ToolGood.Algorithm.LitJson
                 case JsonType.Double:
                     return inst_double.ToString();
 
-                case JsonType.Int:
-                    return inst_int.ToString();
-
-                case JsonType.Long:
-                    return inst_long.ToString();
-
                 case JsonType.Object:
                     return "JsonData object";
 
@@ -230,5 +200,10 @@ namespace ToolGood.Algorithm.LitJson
         {
             return EnsureList().GetEnumerator();
         }
+
+
+        public bool BooleanValue { get { return inst_boolean; } }
+        public double NumberValue { get { return inst_double; } }
+        public string StringValue { get { return inst_string; } }
     }
 }

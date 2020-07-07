@@ -17,11 +17,9 @@ namespace ToolGood.Algorithm.Internals
             var v = Json.JsonValue[parameter];
             if (v!=null)
             {
-                if (v.IsString) return Operand.Create(v.ToString());
-                if (v.IsBoolean) return Operand.Create(bool.Parse(v.ToString()));
-                if (v.IsDouble) return Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo));
-                if (v.IsInt) return Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo));
-                if (v.IsLong) return Operand.Create(double.Parse(v.ToString(), NumberStyles.Any, cultureInfo));
+                if (v.IsString) return Operand.Create(v.StringValue);
+                if (v.IsBoolean) return Operand.Create(v.BooleanValue);
+                if (v.IsDouble) return Operand.Create(v.NumberValue);
                 if (v.IsObject) return Operand.Create(v);
                 if (v.IsArray) return Operand.Create(v);
                 if (v.IsNull) return Operand.CreateNull();
