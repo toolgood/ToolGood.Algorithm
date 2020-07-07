@@ -47,23 +47,6 @@ namespace ToolGood.Algorithm.LitJson
                 }
                 return null;
             }
-            set {
-                EnsureDictionary();
-
-                KeyValuePair<string, JsonData> entry = new KeyValuePair<string, JsonData>(prop_name, value);
-
-                if (inst_object.ContainsKey(prop_name)) {
-                    for (int i = 0; i < object_list.Count; i++) {
-                        if (object_list[i].Key == prop_name) {
-                            object_list[i] = entry;
-                            break;
-                        }
-                    }
-                } else
-                    object_list.Add(entry);
-
-                inst_object[prop_name] = value;
-            }
         }
 
         public JsonData this[int index] {
@@ -75,22 +58,6 @@ namespace ToolGood.Algorithm.LitJson
 
                 return object_list[index].Value;
             }
-
-            set {
-                EnsureCollection();
-
-                if (type == JsonType.Array)
-                    inst_array[index] = value;
-                else {
-                    KeyValuePair<string, JsonData> entry = object_list[index];
-                    KeyValuePair<string, JsonData> new_entry = new KeyValuePair<string, JsonData>(entry.Key, value);
-
-                    object_list[index] = new_entry;
-                    inst_object[entry.Key] = value;
-                }
-
-                //json = null;
-            }
         }
         #endregion
 
@@ -98,42 +65,6 @@ namespace ToolGood.Algorithm.LitJson
         #region Constructors
         public JsonData()
         {
-        }
-
-        public JsonData(object obj)
-        {
-            if (obj is Boolean) {
-                type = JsonType.Boolean;
-                inst_boolean = (bool)obj;
-                return;
-            }
-
-            if (obj is Double) {
-                type = JsonType.Double;
-                inst_double = (double)obj;
-                return;
-            }
-
-            if (obj is Int32) {
-                type = JsonType.Int;
-                inst_int = (int)obj;
-                return;
-            }
-
-            if (obj is Int64) {
-                type = JsonType.Long;
-                inst_long = (long)obj;
-                return;
-            }
-
-            if (obj is String) {
-                type = JsonType.String;
-                inst_string = (string)obj;
-                return;
-            }
-
-            throw new ArgumentException(
-                "Unable to wrap the given object with JsonData");
         }
 
         #endregion
@@ -178,13 +109,12 @@ namespace ToolGood.Algorithm.LitJson
 
         void IJsonWrapper.Add(IJsonWrapper val)
         {
-            JsonData data = ToJsonData(val);
-            EnsureList().Add(data);
+            EnsureList().Add((JsonData) val);
         }
 
         void IJsonWrapper.Set(string key, IJsonWrapper val)
         {
-            JsonData data = ToJsonData(val);
+            JsonData data = val as JsonData;
             EnsureDictionary().Add(key, data);
             KeyValuePair<string, JsonData> entry = new KeyValuePair<string, JsonData>((string)key, data);
             object_list.Add(entry);
@@ -219,13 +149,6 @@ namespace ToolGood.Algorithm.LitJson
             type = JsonType.Array;
             inst_array = new List<JsonData>();
             return (IList)inst_array;
-        }
-
-        private JsonData ToJsonData(object obj)
-        {
-            if (obj == null) return null;
-            if (obj is JsonData) return (JsonData)obj;
-            return new JsonData(obj);
         }
 
         #endregion
