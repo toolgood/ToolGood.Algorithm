@@ -724,7 +724,12 @@ namespace ToolGood.Algorithm
         {
             var firstValue = this.Visit(context.expr()).ToNumber("Function ACOS parameter is error!");
             if (firstValue.IsError) { return firstValue; }
-            return Operand.Create(Math.Acos(firstValue.NumberValue));
+            var x = firstValue.NumberValue;
+            if (x < -1 && x > 1)
+            {
+                return Operand.Error("Function ACOS parameter is error!");
+            }
+            return Operand.Create(Math.Acos(x));
         }
         public Operand VisitACOSH_fun( mathParser.ACOSH_funContext context)
         {
@@ -746,8 +751,12 @@ namespace ToolGood.Algorithm
         {
             var firstValue = this.Visit(context.expr()).ToNumber("Function ASIN parameter is error!");
             if (firstValue.IsError) { return firstValue; }
-
-            return Operand.Create(Math.Asin(firstValue.NumberValue));
+            var x = firstValue.NumberValue;
+            if (x < -1 && x > 1)
+            {
+                return Operand.Error("Function ASIN parameter is error!");
+            }
+            return Operand.Create(Math.Asin(x));
         }
         public Operand VisitASINH_fun( mathParser.ASINH_funContext context)
         {
