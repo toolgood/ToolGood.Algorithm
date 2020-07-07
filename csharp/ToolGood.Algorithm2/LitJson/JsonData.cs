@@ -16,7 +16,7 @@ namespace ToolGood.Algorithm.LitJson
         private IDictionary<string, JsonData> inst_object;
         private string inst_string;
         private JsonType type;
-        private IList<KeyValuePair<string, JsonData>> object_list;
+        //private IList<KeyValuePair<string, JsonData>> object_list;
         #endregion
 
 
@@ -51,8 +51,8 @@ namespace ToolGood.Algorithm.LitJson
 
                 if (type == JsonType.Array)
                     return inst_array[index];
-
-                return object_list[index].Value;
+                return null;
+                //return object_list[index].Value;
             }
         }
         #endregion
@@ -99,9 +99,9 @@ namespace ToolGood.Algorithm.LitJson
         void IJsonWrapper.Set(string key, IJsonWrapper val)
         {
             JsonData data = val as JsonData;
-            EnsureDictionary().Add(key, data);
-            KeyValuePair<string, JsonData> entry = new KeyValuePair<string, JsonData>((string)key, data);
-            object_list.Add(entry);
+            EnsureDictionary()[key]=data;
+            //KeyValuePair<string, JsonData> entry = new KeyValuePair<string, JsonData>((string)key, data);
+            //object_list.Add(entry);
         }
 
         #endregion
@@ -112,24 +112,21 @@ namespace ToolGood.Algorithm.LitJson
         private ICollection EnsureCollection()
         {
             if (type == JsonType.Array) return (ICollection)inst_array;
-            if (type == JsonType.Object) return (ICollection)inst_object;
-            throw new InvalidOperationException("The JsonData instance has to be initialized first");
+             return (ICollection)inst_object;
         }
 
         private IDictionary EnsureDictionary()
         {
             if (type == JsonType.Object) return (IDictionary)inst_object;
-            if (type != JsonType.None) throw new InvalidOperationException("Instance of JsonData is not a dictionary");
             type = JsonType.Object;
             inst_object = new Dictionary<string, JsonData>();
-            object_list = new List<KeyValuePair<string, JsonData>>();
+            //object_list = new List<KeyValuePair<string, JsonData>>();
             return (IDictionary)inst_object;
         }
 
         private IList EnsureList()
         {
             if (type == JsonType.Array) return (IList)inst_array;
-            if (type != JsonType.None) throw new InvalidOperationException("Instance of JsonData is not a list");
             type = JsonType.Array;
             inst_array = new List<JsonData>();
             return (IList)inst_array;
@@ -148,7 +145,7 @@ namespace ToolGood.Algorithm.LitJson
 
                 case JsonType.Object:
                     inst_object = new Dictionary<string, JsonData>();
-                    object_list = new List<KeyValuePair<string, JsonData>>();
+                    //object_list = new List<KeyValuePair<string, JsonData>>();
                     break;
 
                 case JsonType.Array:
