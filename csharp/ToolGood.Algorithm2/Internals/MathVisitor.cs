@@ -798,19 +798,19 @@ namespace ToolGood.Algorithm
 
             var num = 2;
             if (args.Count > 1) {
-                args[1] = args[1].ToNumber("Function FIXED parameter 2 is error!");
-                if (args[1].IsError) { return args[1]; }
-                num = args[1].IntValue;
+                var secondValue =args[1].ToNumber("Function FIXED parameter 2 is error!");
+                if (secondValue.IsError) { return secondValue; }
+                num = secondValue.IntValue;
             }
-            args[0] = args[0].ToNumber("Function FIXED parameter 1 is error!");
-            if (args[0].IsError) { return args[0]; }
+            var firstValue = args[0].ToNumber("Function FIXED parameter 1 is error!");
+            if (firstValue.IsError) { return firstValue; }
 
             var s = Math.Round(args[0].NumberValue, num, MidpointRounding.AwayFromZero);
             var no = false;
             if (args.Count == 3) {
-                args[2] = args[2].ToBoolean("Function FIXED parameter 3 is error!");
-                if (args[2].IsError) { return args[2]; }
-                no = args[2].BooleanValue;
+                var thirdValue =args[2].ToBoolean("Function FIXED parameter 3 is error!");
+                if (thirdValue.IsError) { return thirdValue; }
+                no = thirdValue.BooleanValue;
             }
             if (no == false) {
                 return Operand.Create(s.ToString("N" + num, cultureInfo));
@@ -1453,24 +1453,28 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            args[0] = args[0].ToString("Function REPLACE parameter 1 is error!");
+            var firstValue = args[0].ToString("Function REPLACE parameter 1 is error!");
+            if (firstValue.IsError) { return firstValue; }
+            var oldtext = firstValue.StringValue;
             if (args.Count == 3) {
-                args[1] = args[1].ToString("Function REPLACE parameter 2 is error!");
-                args[2] = args[2].ToString("Function REPLACE parameter 3 is error!");
-                var srcText = args[0].StringValue;
-                var old = args[1].StringValue;
-                var newstr = args[2].StringValue;
-                return Operand.Create(srcText.Replace(old, newstr));
+                var secondValue2 =args[1].ToString("Function REPLACE parameter 2 is error!");
+                var thirdValue2 =args[2].ToString("Function REPLACE parameter 3 is error!");
+                var old = secondValue2.StringValue;
+                var newstr = thirdValue2.StringValue;
+                return Operand.Create(oldtext.Replace(old, newstr));
             }
 
-            var oldtext = args[0].StringValue;
-            args[1] = args[1].ToNumber("Function REPLACE parameter 2 is error!");
-            args[2] = args[2].ToNumber("Function REPLACE parameter 3 is error!");
-            args[3] = args[3].ToString("Function REPLACE parameter 3 is error!");
+   
+            var secondValue =args[1].ToNumber("Function REPLACE parameter 2 is error!");
+            if (secondValue.IsError) { return secondValue; }
+            var thirdValue =args[2].ToNumber("Function REPLACE parameter 3 is error!");
+            if (thirdValue.IsError) { return thirdValue; }
+            var fourthValue =args[3].ToString("Function REPLACE parameter 3 is error!");
+            if (fourthValue.IsError) { return fourthValue; }
 
-            var start = args[1].IntValue - excelIndex;
-            var length = args[2].IntValue;
-            var newtext = args[3].StringValue;
+            var start = secondValue.IntValue - excelIndex;
+            var length = thirdValue.IntValue;
+            var newtext = fourthValue.StringValue;
 
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < oldtext.Length; i++) {
@@ -1529,33 +1533,39 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            args[0] = args[0].ToString("Function SEARCH parameter 1 is error!");
-            args[1] = args[1].ToString("Function SEARCH parameter 2 is error!");
+            var firstValue = args[0].ToString("Function SEARCH parameter 1 is error!");
+            if (firstValue.IsError) { return firstValue; }
+            var secondValue =args[1].ToString("Function SEARCH parameter 2 is error!");
+            if (secondValue.IsError) { return secondValue; }
             if (args.Count == 2) {
-                var p = args[1].StringValue.IndexOf(args[0].StringValue, StringComparison.OrdinalIgnoreCase) + excelIndex;
+                var p = secondValue.StringValue.IndexOf(firstValue.StringValue, StringComparison.OrdinalIgnoreCase) + excelIndex;
                 return Operand.Create(p);
             }
-            args[2] = args[2].ToNumber("Function SEARCH parameter 3 is error!");
-            var p2 = args[1].StringValue.IndexOf(args[0].StringValue, args[2].IntValue, StringComparison.OrdinalIgnoreCase) + excelIndex;
+            var thirdValue =args[2].ToNumber("Function SEARCH parameter 3 is error!");
+            if (thirdValue.IsError) { return thirdValue; }
+            var p2 = secondValue.StringValue.IndexOf(firstValue.StringValue, thirdValue.IntValue, StringComparison.OrdinalIgnoreCase) + excelIndex;
             return Operand.Create(p2);
         }
         public Operand VisitSUBSTITUTE_fun([NotNull] mathParser.SUBSTITUTE_funContext context)
         {
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
-            args[0] = args[0].ToString("Function SUBSTITUTE parameter 1 is error!");
-            args[1] = args[1].ToString("Function SUBSTITUTE parameter 2 is error!");
-            args[2] = args[2].ToString("Function SUBSTITUTE parameter 3 is error!"); ;
+            var firstValue = args[0].ToString("Function SUBSTITUTE parameter 1 is error!");
+            if (firstValue.IsError) { return firstValue; }
+            var secondValue =args[1].ToString("Function SUBSTITUTE parameter 2 is error!");
+            if (secondValue.IsError) { return secondValue; }
+            var thirdValue =args[2].ToString("Function SUBSTITUTE parameter 3 is error!");
+            if (thirdValue.IsError) { return thirdValue; }
             if (args.Count == 3) {
-                return Operand.Create(args[0].StringValue.Replace(args[1].StringValue, args[2].StringValue));
+                return Operand.Create(firstValue.StringValue.Replace(secondValue.StringValue, thirdValue.StringValue));
             }
-            args[3] = args[3].ToNumber("Function SUBSTITUTE parameter 4 is error!");
-            if (args[3].IsError) { return args[3]; }
+            var fourthValue =args[3].ToNumber("Function SUBSTITUTE parameter 4 is error!");
+            if (fourthValue.IsError) { return fourthValue; }
 
-            string text = args[0].StringValue;
-            string oldtext = args[1].StringValue;
-            string newtext = args[2].StringValue;
-            int index = args[3].IntValue;
+            string text = firstValue.StringValue;
+            string oldtext = secondValue.StringValue;
+            string newtext = thirdValue.StringValue;
+            int index = fourthValue.IntValue;
 
             int index2 = 0;
             StringBuilder sb = new StringBuilder();
@@ -1779,17 +1789,17 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            args[0] = args[0].ToDate("Function WEEKDAY parameter 1 is error!");
-            if (args[0].IsError) { return args[0]; }
+            var firstValue = args[0].ToDate("Function WEEKDAY parameter 1 is error!");
+            if (firstValue.IsError) { return firstValue; }
 
             var type = 1;
             if (args.Count == 2) {
-                args[1] = args[1].ToNumber("Function WEEKDAY parameter 2 is error!");
-                if (args[1].IsError) { return args[1]; }
-                type = args[1].IntValue;
+                var secondValue =args[1].ToNumber("Function WEEKDAY parameter 2 is error!");
+                if (secondValue.IsError) { return secondValue; }
+                type = secondValue.IntValue;
             }
 
-            var t = ((DateTime)args[0].DateValue).DayOfWeek;
+            var t = ((DateTime) firstValue.DateValue).DayOfWeek;
             if (type == 1) {
                 return Operand.Create((double)(t + 1));
             } else if (type == 2) {
@@ -1806,16 +1816,16 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            args[0] = args[0].ToDate("Function DATEDIF parameter 1 is error!");
-            if (args[0].IsError) { return args[0]; }
-            args[1] = args[1].ToDate("Function DATEDIF parameter 2 is error!");
-            if (args[1].IsError) { return args[1]; }
-            args[2] = args[2].ToString("Function DATEDIF parameter 3 is error!");
-            if (args[2].IsError) { return args[2]; }
+            var firstValue = args[0].ToDate("Function DATEDIF parameter 1 is error!");
+            if (firstValue.IsError) { return firstValue; }
+            var secondValue =args[1].ToDate("Function DATEDIF parameter 2 is error!");
+            if (secondValue.IsError) { return secondValue; }
+            var thirdValue =args[2].ToString("Function DATEDIF parameter 3 is error!");
+            if (thirdValue.IsError) { return thirdValue; }
 
-            var startDate = (DateTime)args[0].DateValue;
-            var endDate = (DateTime)args[1].DateValue;
-            var t = args[2].StringValue.ToLower();
+            var startDate = (DateTime) firstValue.DateValue;
+            var endDate = (DateTime) secondValue.DateValue;
+            var t = thirdValue.StringValue.ToLower();
 
             if (t == "y") {
                 #region y
@@ -1876,19 +1886,19 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            args[0] = args[0].ToDate("Function DAYS360 parameter 1 is error!");
-            if (args[0].IsError) { return args[0]; }
-            args[1] = args[1].ToDate("Function DAYS360 parameter 2 is error!");
-            if (args[1].IsError) { return args[1]; }
+            var firstValue = args[0].ToDate("Function DAYS360 parameter 1 is error!");
+            if (firstValue.IsError) { return firstValue; }
+            var secondValue =args[1].ToDate("Function DAYS360 parameter 2 is error!");
+            if (secondValue.IsError) { return secondValue; }
 
-            var startDate = (DateTime)args[0].DateValue;
-            var endDate = (DateTime)args[1].DateValue;
+            var startDate = (DateTime) firstValue.DateValue;
+            var endDate = (DateTime) secondValue.DateValue;
 
             var method = false;
             if (args.Count == 3) {
-                args[2] = args[2].ToDate("Function DAYS360 parameter 3 is error!");
-                if (args[2].IsError) { return args[2]; }
-                method = args[2].BooleanValue;
+                var thirdValue =args[2].ToDate("Function DAYS360 parameter 3 is error!");
+                if (thirdValue.IsError) { return thirdValue; }
+                method = thirdValue.BooleanValue;
             }
             var days = endDate.Year * 360 + (endDate.Month - 1) * 30
                         - startDate.Year * 360 - (startDate.Month - 1) * 30;
@@ -1918,24 +1928,24 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            args[0] = args[0].ToDate("Function EDATE parameter 1 is error!");
-            if (args[0].IsError) { return args[0]; }
-            args[1] = args[1].ToNumber("Function EDATE parameter 2 is error!");
-            if (args[1].IsError) { return args[1]; }
+            var firstValue = args[0].ToDate("Function EDATE parameter 1 is error!");
+            if (firstValue.IsError) { return firstValue; }
+            var secondValue =args[1].ToNumber("Function EDATE parameter 2 is error!");
+            if (secondValue.IsError) { return secondValue; }
 
-            return Operand.Create((Date)(((DateTime)args[0].DateValue).AddMonths(args[1].IntValue)));
+            return Operand.Create((Date)(((DateTime) firstValue.DateValue).AddMonths(secondValue.IntValue)));
         }
         public Operand VisitEOMONTH_fun([NotNull] mathParser.EOMONTH_funContext context)
         {
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            args[0] = args[0].ToDate("Function EOMONTH parameter 1 is error!");
-            if (args[0].IsError) { return args[0]; }
-            args[1] = args[1].ToNumber("Function EOMONTH parameter 2 is error!");
-            if (args[1].IsError) { return args[1]; }
+            var firstValue = args[0].ToDate("Function EOMONTH parameter 1 is error!");
+            if (firstValue.IsError) { return firstValue; }
+            var secondValue =args[1].ToNumber("Function EOMONTH parameter 2 is error!");
+            if (secondValue.IsError) { return secondValue; }
 
-            var dt = ((DateTime)args[0].DateValue).AddMonths(args[1].IntValue + 1);
+            var dt = ((DateTime) firstValue.DateValue).AddMonths(secondValue.IntValue + 1);
             dt = new DateTime(dt.Year, dt.Month, 1).AddDays(-1);
             return Operand.Create(dt);
         }
@@ -1968,14 +1978,14 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            args[0] = args[0].ToDate("Function WORKDAY parameter 1 is error!");
-            if (args[0].IsError) { return args[0]; }
-            args[1] = args[1].ToNumber("Function WORKDAY parameter 2 is error!");
-            if (args[1].IsError) { return args[1]; }
+            var firstValue = args[0].ToDate("Function WORKDAY parameter 1 is error!");
+            if (firstValue.IsError) { return firstValue; }
+            var secondValue =args[1].ToNumber("Function WORKDAY parameter 2 is error!");
+            if (secondValue.IsError) { return secondValue; }
 
 
-            var startDate = (DateTime)args[0].DateValue;
-            var days = args[1].IntValue;
+            var startDate = (DateTime) firstValue.DateValue;
+            var days = secondValue.IntValue;
             List<DateTime> list = new List<DateTime>();
             for (int i = 2; i < args.Count; i++) {
                 args[i] = args[i].ToDate($"Function WORKDAY parameter {i + 1} is error!");
@@ -1996,16 +2006,16 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            args[0] = args[0].ToDate("Function WEEKNUM parameter 1 is error!");
-            if (args[0].IsError) { return args[0]; }
+            var firstValue = args[0].ToDate("Function WEEKNUM parameter 1 is error!");
+            if (firstValue.IsError) { return firstValue; }
 
-            var startDate = (DateTime)args[0].DateValue;
+            var startDate = (DateTime) firstValue.DateValue;
 
             var days = startDate.DayOfYear + (int)(new DateTime(startDate.Year, 1, 1).DayOfWeek);
             if (args.Count == 2) {
-                args[1] = args[1].ToNumber("Function WEEKNUM parameter 2 is error!");
-                if (args[1].IsError) { return args[1]; }
-                if (args[1].IntValue == 2) {
+                var secondValue =args[1].ToNumber("Function WEEKNUM parameter 2 is error!");
+                if (secondValue.IsError) { return secondValue; }
+                if (secondValue.IntValue == 2) {
                     days--;
                 }
             }
@@ -2448,20 +2458,20 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            args[0] = args[0].ToNumber("Function NORMDIST parameter 1 error!");
-            if (args[0].IsError) return args[0];
-            args[1] = args[1].ToNumber("Function NORMDIST parameter 2 error!");
-            if (args[1].IsError) return args[1];
-            args[2] = args[2].ToNumber("Function NORMDIST parameter 3 error!");
-            if (args[2].IsError) return args[2];
+            var firstValue = args[0].ToNumber("Function NORMDIST parameter 1 error!");
+            if (firstValue.IsError) return firstValue;
+            var secondValue =args[1].ToNumber("Function NORMDIST parameter 2 error!");
+            if (secondValue.IsError) return secondValue;
+            var thirdValue =args[2].ToNumber("Function NORMDIST parameter 3 error!");
+            if (thirdValue.IsError) return thirdValue;
 
-            args[3] = args[3].ToBoolean("Function NORMDIST parameter 4 error!");
-            if (args[3].IsError) return args[3];
+            var fourthValue =args[3].ToBoolean("Function NORMDIST parameter 4 error!");
+            if (fourthValue.IsError) return fourthValue;
 
-            var num = args[0].NumberValue;
-            var avg = args[1].NumberValue;
-            var STDEV = args[2].NumberValue;
-            var b = args[3].BooleanValue;
+            var num = firstValue.NumberValue;
+            var avg = secondValue.NumberValue;
+            var STDEV = thirdValue.NumberValue;
+            var b = fourthValue.BooleanValue;
             return Operand.Create(ExcelFunctions.NormDist(num, avg, STDEV, b));
         }
         public Operand VisitNORMINV_fun([NotNull] mathParser.NORMINV_funContext context)
@@ -2523,38 +2533,38 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            args[0] = args[0].ToNumber("Function BINOMDIST parameter 1 error!");
-            if (args[0].IsError) return args[0];
-            args[1] = args[1].ToNumber("Function BINOMDIST parameter 2 error!");
-            if (args[1].IsError) return args[1];
-            args[2] = args[2].ToNumber("Function BINOMDIST parameter 3 error!");
-            if (args[2].IsError) return args[2];
+            var firstValue = args[0].ToNumber("Function BINOMDIST parameter 1 error!");
+            if (firstValue.IsError) return firstValue;
+            var secondValue =args[1].ToNumber("Function BINOMDIST parameter 2 error!");
+            if (secondValue.IsError) return secondValue;
+            var thirdValue =args[2].ToNumber("Function BINOMDIST parameter 3 error!");
+            if (thirdValue.IsError) return thirdValue;
 
-            args[3] = args[3].ToBoolean("Function BINOMDIST parameter 4 error!");
-            if (args[3].IsError) return args[3];
+            var fourthValue =args[3].ToBoolean("Function BINOMDIST parameter 4 error!");
+            if (fourthValue.IsError) return fourthValue;
 
-            if (!(args[2].NumberValue >= 0.0 && args[2].NumberValue <= 1.0 && args[1].NumberValue >= 0)) {
+            if (!(thirdValue.NumberValue >= 0.0 && thirdValue.NumberValue <= 1.0 && secondValue.NumberValue >= 0)) {
                 return Operand.Error("Function BINOMDIST parameter error!");
             }
-            return Operand.Create(ExcelFunctions.BinomDist(args[0].IntValue, args[1].IntValue, args[2].NumberValue, args[3].BooleanValue));
+            return Operand.Create(ExcelFunctions.BinomDist(firstValue.IntValue, secondValue.IntValue, thirdValue.NumberValue, fourthValue.BooleanValue));
         }
         public Operand VisitEXPONDIST_fun([NotNull] mathParser.EXPONDIST_funContext context)
         {
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            args[0] = args[0].ToNumber("Function EXPONDIST parameter 1 error!");
-            if (args[0].IsError) return args[0];
-            args[1] = args[1].ToNumber("Function EXPONDIST parameter 2 error!");
-            if (args[1].IsError) return args[1];
-            args[2] = args[2].ToBoolean("Function EXPONDIST parameter 3 error!");
-            if (args[2].IsError) return args[2];
+            var firstValue = args[0].ToNumber("Function EXPONDIST parameter 1 error!");
+            if (firstValue.IsError) return firstValue;
+            var secondValue =args[1].ToNumber("Function EXPONDIST parameter 2 error!");
+            if (secondValue.IsError) return secondValue;
+            var thirdValue =args[2].ToBoolean("Function EXPONDIST parameter 3 error!");
+            if (thirdValue.IsError) return thirdValue;
 
-            if (args[1].NumberValue < 0.0) {
+            if (firstValue.NumberValue < 0.0) {
                 return Operand.Error("Function EXPONDIST parameter error!");
             }
 
-            return Operand.Create(ExcelFunctions.ExponDist(args[0].NumberValue, args[1].NumberValue, args[2].BooleanValue));
+            return Operand.Create(ExcelFunctions.ExponDist(firstValue.NumberValue, secondValue.NumberValue, thirdValue.BooleanValue));
         }
         public Operand VisitFDIST_fun([NotNull] mathParser.FDIST_funContext context)
         {
@@ -2608,21 +2618,21 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            args[0] = args[0].ToNumber("Function GAMMADIST parameter 1 error!");
-            if (args[0].IsError) return args[0];
-            args[1] = args[1].ToNumber("Function GAMMADIST parameter 2 error!");
-            if (args[1].IsError) return args[1];
-            args[2] = args[2].ToNumber("Function GAMMADIST parameter 3 error!");
-            if (args[2].IsError) return args[2];
+            var firstValue = args[0].ToNumber("Function GAMMADIST parameter 1 error!");
+            if (firstValue.IsError) return firstValue;
+            var secondValue =args[1].ToNumber("Function GAMMADIST parameter 2 error!");
+            if (secondValue.IsError) return secondValue;
+            var thirdValue =args[2].ToNumber("Function GAMMADIST parameter 3 error!");
+            if (thirdValue.IsError) return thirdValue;
 
-            args[3] = args[3].ToBoolean("Function GAMMADIST parameter 4 error!");
-            if (args[3].IsError) return args[3];
+            var fourthValue =args[3].ToBoolean("Function GAMMADIST parameter 4 error!");
+            if (fourthValue.IsError) return fourthValue;
 
 
-            var x = args[0].NumberValue;
-            var alpha = args[1].NumberValue;
-            var beta = args[2].NumberValue;
-            var cumulative = args[3].BooleanValue;
+            var x = firstValue.NumberValue;
+            var alpha = secondValue.NumberValue;
+            var beta = thirdValue.NumberValue;
+            var cumulative = fourthValue.BooleanValue;
             if (alpha < 0.0 || beta < 0.0) {
                 return Operand.Error("Function GAMMADIST parameter error!");
             }
@@ -2701,16 +2711,16 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            args[0] = args[0].ToNumber("Function POISSON parameter 1 error!");
-            if (args[0].IsError) return args[0];
-            args[1] = args[1].ToNumber("Function POISSON parameter 2 error!");
-            if (args[1].IsError) return args[1];
-            args[2] = args[2].ToBoolean("Function POISSON parameter 3 error!");
-            if (args[2].IsError) return args[2];
+            var firstValue = args[0].ToNumber("Function POISSON parameter 1 error!");
+            if (firstValue.IsError) return firstValue;
+            var secondValue =args[1].ToNumber("Function POISSON parameter 2 error!");
+            if (secondValue.IsError) return secondValue;
+            var thirdValue =args[2].ToBoolean("Function POISSON parameter 3 error!");
+            if (thirdValue.IsError) return thirdValue;
 
-            int k = args[0].IntValue;
-            double lambda = args[1].NumberValue;
-            bool state = args[2].BooleanValue;
+            int k = firstValue.IntValue;
+            double lambda = secondValue.NumberValue;
+            bool state = thirdValue.BooleanValue;
             if (!(lambda > 0.0)) {
                 return Operand.Error("Function POISSON parameter error!");
             }
@@ -2746,20 +2756,20 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            args[0] = args[0].ToNumber("Function WEIBULL parameter 1 error!");
-            if (args[0].IsError) return args[0];
-            args[1] = args[1].ToNumber("Function WEIBULL parameter 2 error!");
-            if (args[1].IsError) return args[1];
-            args[2] = args[2].ToNumber("Function WEIBULL parameter 3 error!");
-            if (args[2].IsError) return args[2];
+            var firstValue = args[0].ToNumber("Function WEIBULL parameter 1 error!");
+            if (firstValue.IsError) return firstValue;
+            var secondValue =args[1].ToNumber("Function WEIBULL parameter 2 error!");
+            if (secondValue.IsError) return secondValue;
+            var thirdValue =args[2].ToNumber("Function WEIBULL parameter 3 error!");
+            if (thirdValue.IsError) return thirdValue;
 
-            args[3] = args[3].ToBoolean("Function WEIBULL parameter 4 error!");
-            if (args[3].IsError) return args[3];
+            var fourthValue =args[3].ToBoolean("Function WEIBULL parameter 4 error!");
+            if (fourthValue.IsError) return fourthValue;
 
-            var x = args[0].NumberValue;
-            var shape = args[1].NumberValue;
-            var scale = args[2].NumberValue;
-            var state = args[3].BooleanValue;
+            var x = firstValue.NumberValue;
+            var shape = secondValue.NumberValue;
+            var scale = thirdValue.NumberValue;
+            var state = fourthValue.BooleanValue;
             if (shape <= 0.0 || scale <= 0.0) {
                 return Operand.Error("Function WEIBULL parameter error!");
             }
@@ -3005,29 +3015,29 @@ namespace ToolGood.Algorithm
             if (secondValue.IsError) { return secondValue; }
 
             if (args.Count == 2) {
-                var b = Regex.Match(args[0].StringValue, args[1].StringValue);
+                var b = Regex.Match(firstValue.StringValue, secondValue.StringValue);
                 if (b.Success == false) {
                     return Operand.Error("Function REGEX is error!");
                 }
                 return Operand.Create(b.Value);
             } else if (args.Count == 3) {
-                var ms = Regex.Matches(args[0].StringValue, args[1].StringValue);
-                args[2] = args[2].ToNumber("Function REGEX parameter 3 is error!");
-                if (args[2].IsError) { return args[2]; }
-                if (ms.Count <= args[2].IntValue - excelIndex) {
+                var ms = Regex.Matches(firstValue.StringValue, secondValue.StringValue);
+                var thirdValue =args[2].ToNumber("Function REGEX parameter 3 is error!");
+                if (thirdValue.IsError) { return thirdValue; }
+                if (ms.Count <= thirdValue.IntValue - excelIndex) {
                     return Operand.Error("Function REGEX is error!");
                 }
-                return Operand.Create(ms[args[2].IntValue - excelIndex].Value);
+                return Operand.Create(ms[thirdValue.IntValue - excelIndex].Value);
             } else {
-                var ms = Regex.Matches(args[0].StringValue, args[1].StringValue);
-                args[2] = args[2].ToNumber("Function REGEX parameter 3 is error!");
-                if (args[2].IsError) { return args[2]; }
-                if (ms.Count <= args[2].IntValue + excelIndex) {
+                var ms = Regex.Matches(firstValue.StringValue, secondValue.StringValue);
+                var thirdValue =args[2].ToNumber("Function REGEX parameter 3 is error!");
+                if (thirdValue.IsError) { return thirdValue; }
+                if (ms.Count <= thirdValue.IntValue + excelIndex) {
                     return Operand.Error("Function REGEX parameter 3 is error!");
                 }
-                args[3] = args[3].ToNumber("Function REGEX parameter 4 is error!");
-                if (args[3].IsError) { return args[3]; }
-                return Operand.Create(ms[args[2].IntValue - excelIndex].Groups[args[3].IntValue].Value);
+                var fourthValue =args[3].ToNumber("Function REGEX parameter 4 is error!");
+                if (fourthValue.IsError) { return fourthValue; }
+                return Operand.Create(ms[thirdValue.IntValue - excelIndex].Groups[fourthValue.IntValue].Value);
             }
         }
         public Operand VisitREGEXREPALCE_fun([NotNull] mathParser.REGEXREPALCE_funContext context)
@@ -3235,45 +3245,45 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            args[0] = args[0].ToString("Function INDEXOF parameter 1 is error!");
-            if (args[0].IsError) { return args[0]; }
-            args[1] = args[1].ToString("Function INDEXOF parameter 2 is error!");
-            if (args[1].IsError) { return args[1]; }
+            var firstValue = args[0].ToString("Function INDEXOF parameter 1 is error!");
+            if (firstValue.IsError) { return firstValue; }
+            var secondValue =args[1].ToString("Function INDEXOF parameter 2 is error!");
+            if (secondValue.IsError) { return secondValue; }
 
-            var text = args[0].StringValue;
+            var text = firstValue.StringValue;
             if (args.Count == 2) {
-                return Operand.Create(text.IndexOf(args[1].StringValue) + excelIndex);
+                return Operand.Create(text.IndexOf(secondValue.StringValue) + excelIndex);
             }
-            args[2] = args[2].ToString("Function INDEXOF parameter 3 is error!");
-            if (args[2].IsError) { return args[2]; }
+            var thirdValue =args[2].ToString("Function INDEXOF parameter 3 is error!");
+            if (thirdValue.IsError) { return thirdValue; }
             if (args.Count == 3) {
-                return Operand.Create(text.IndexOf(args[1].StringValue, args[2].IntValue) + excelIndex);
+                return Operand.Create(text.IndexOf(secondValue.StringValue, thirdValue.IntValue) + excelIndex);
             }
-            args[3] = args[3].ToString("Function INDEXOF parameter 4 is error!");
-            if (args[3].IsError) { return args[3]; }
-            return Operand.Create(text.IndexOf(args[1].StringValue, args[2].IntValue, args[3].IntValue) + excelIndex);
+            var fourthValue =args[3].ToString("Function INDEXOF parameter 4 is error!");
+            if (fourthValue.IsError) { return fourthValue; }
+            return Operand.Create(text.IndexOf(secondValue.StringValue, thirdValue.IntValue, fourthValue.IntValue) + excelIndex);
         }
         public Operand VisitLASTINDEXOF_fun([NotNull] mathParser.LASTINDEXOF_funContext context)
         {
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            args[0] = args[0].ToString("Function LASTINDEXOF parameter 1 is error!");
-            if (args[0].IsError) { return args[0]; }
-            args[1] = args[1].ToString("Function LASTINDEXOF parameter 2 is error!");
-            if (args[1].IsError) { return args[1]; }
+            var firstValue = args[0].ToString("Function LASTINDEXOF parameter 1 is error!");
+                        if (firstValue.IsError) { return firstValue; }
+            var secondValue =args[1].ToString("Function LASTINDEXOF parameter 2 is error!");
+            if (secondValue.IsError) { return secondValue; }
 
             var text = args[0].StringValue;
             if (args.Count == 2) {
                 return Operand.Create(text.LastIndexOf(args[1].StringValue) + excelIndex);
             }
-            args[2] = args[2].ToString("Function LASTINDEXOF parameter 3 is error!");
-            if (args[2].IsError) { return args[2]; }
+            var thirdValue =args[2].ToString("Function LASTINDEXOF parameter 3 is error!");
+                        if (thirdValue.IsError) { return thirdValue; }
             if (args.Count == 3) {
                 return Operand.Create(text.LastIndexOf(args[1].StringValue, args[2].IntValue) + excelIndex);
             }
-            args[3] = args[3].ToString("Function LASTINDEXOF parameter 4 is error!");
-            if (args[3].IsError) { return args[3]; }
+            var fourthValue =args[3].ToString("Function LASTINDEXOF parameter 4 is error!");
+            if (fourthValue.IsError) { return fourthValue; }
             return Operand.Create(text.LastIndexOf(args[1].StringValue, args[2].IntValue, args[3].IntValue) + excelIndex);
         }
         public Operand VisitSPLIT_fun([NotNull] mathParser.SPLIT_funContext context)
@@ -3299,13 +3309,13 @@ namespace ToolGood.Algorithm
                 var o = F_base_GetList(args[0], list);
                 if (o == false) return Operand.Error("Function JOIN parameter 1 is error!");
 
-                args[1] = args[1].ToString("Function JOIN parameter 2 is error!");
-                if (args[1].IsError) { return args[2]; }
+                var secondValue =args[1].ToString("Function JOIN parameter 2 is error!");
+                if (secondValue.IsError) { return secondValue; }
 
-                return Operand.Create(string.Join(args[1].StringValue, list));
+                return Operand.Create(string.Join(secondValue.StringValue, list));
             } else {
-                args[0] = args[0].ToString("Function JOIN parameter 1 is error!");
-                if (args[0].IsError) { return args[0]; }
+                var firstValue = args[0].ToString("Function JOIN parameter 1 is error!");
+                            if (firstValue.IsError) { return firstValue; }
 
                 List<string> list = new List<string>();
                 for (int i = 1; i < args.Count; i++) {
@@ -3313,7 +3323,7 @@ namespace ToolGood.Algorithm
                     if (o == false) return Operand.Error($"Function JOIN parameter {i + 1} is error!");
                 }
 
-                return Operand.Create(string.Join(args[0].StringValue, list));
+                return Operand.Create(string.Join(firstValue.StringValue, list));
             }
         }
         public Operand VisitSUBSTRING_fun([NotNull] mathParser.SUBSTRING_funContext context)
@@ -3321,54 +3331,54 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            args[0] = args[0].ToString("Function SUBSTRING parameter 1 is error!");
-            if (args[0].IsError) { return args[0]; }
-            args[1] = args[1].ToNumber("Function SUBSTRING parameter 2 is error!");
-            if (args[1].IsError) { return args[1]; }
+            var firstValue = args[0].ToString("Function SUBSTRING parameter 1 is error!");
+                        if (firstValue.IsError) { return firstValue; }
+            var secondValue =args[1].ToNumber("Function SUBSTRING parameter 2 is error!");
+            if (secondValue.IsError) { return secondValue; }
 
-            var text = args[0].StringValue;
+            var text = firstValue.StringValue;
             if (args.Count == 2) {
-                return Operand.Create(text.Substring(args[1].IntValue - excelIndex));
+                return Operand.Create(text.Substring(secondValue.IntValue - excelIndex));
             }
-            args[2] = args[2].ToNumber("Function SUBSTRING parameter 3 is error!");
-            if (args[2].IsError) { return args[2]; }
-            return Operand.Create(text.Substring(args[1].IntValue - excelIndex, args[2].IntValue));
+            var thirdValue =args[2].ToNumber("Function SUBSTRING parameter 3 is error!");
+                        if (thirdValue.IsError) { return thirdValue; }
+            return Operand.Create(text.Substring(secondValue.IntValue - excelIndex, thirdValue.IntValue));
         }
         public Operand VisitSTARTSWITH_fun([NotNull] mathParser.STARTSWITH_funContext context)
         {
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            args[0] = args[0].ToString("Function STARTSWITH parameter 1 is error!");
-            if (args[0].IsError) { return args[0]; }
-            args[1] = args[1].ToString("Function STARTSWITH parameter 2 is error!");
-            if (args[1].IsError) { return args[1]; }
+            var firstValue = args[0].ToString("Function STARTSWITH parameter 1 is error!");
+                        if (firstValue.IsError) { return firstValue; }
+            var secondValue =args[1].ToString("Function STARTSWITH parameter 2 is error!");
+            if (secondValue.IsError) { return secondValue; }
 
             var text = args[0].StringValue;
             if (args.Count == 2) {
-                return Operand.Create(text.StartsWith(args[1].StringValue));
+                return Operand.Create(text.StartsWith(secondValue.StringValue));
             }
-            args[2] = args[2].ToBoolean("Function STARTSWITH parameter 3 is error!");
-            if (args[2].IsError) { return args[2]; }
-            return Operand.Create(text.StartsWith(args[1].StringValue, args[2].BooleanValue ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
+            var thirdValue =args[2].ToBoolean("Function STARTSWITH parameter 3 is error!");
+                        if (thirdValue.IsError) { return thirdValue; }
+            return Operand.Create(text.StartsWith(secondValue.StringValue, thirdValue.BooleanValue ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
         }
         public Operand VisitENDSWITH_fun([NotNull] mathParser.ENDSWITH_funContext context)
         {
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            args[0] = args[0].ToString("Function ENDSWITH parameter 1 is error!");
-            if (args[0].IsError) { return args[0]; }
-            args[1] = args[1].ToString("Function ENDSWITH parameter 2 is error!");
-            if (args[1].IsError) { return args[1]; }
+            var firstValue = args[0].ToString("Function ENDSWITH parameter 1 is error!");
+                        if (firstValue.IsError) { return firstValue; }
+            var secondValue =args[1].ToString("Function ENDSWITH parameter 2 is error!");
+            if (secondValue.IsError) { return secondValue; }
 
-            var text = args[0].StringValue;
+            var text = firstValue.StringValue;
             if (args.Count == 2) {
-                return Operand.Create(text.EndsWith(args[1].StringValue));
+                return Operand.Create(text.EndsWith(secondValue.StringValue));
             }
-            args[2] = args[2].ToBoolean("Function ENDSWITH parameter 3 is error!"); ;
-            if (args[2].IsError) { return args[2]; }
-            return Operand.Create(text.EndsWith(args[1].StringValue, args[2].BooleanValue ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
+            var thirdValue =args[2].ToBoolean("Function ENDSWITH parameter 3 is error!"); ;
+                        if (thirdValue.IsError) { return thirdValue; }
+            return Operand.Create(text.EndsWith(secondValue.StringValue, thirdValue.BooleanValue ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
 
         }
         public Operand VisitISNULLOREMPTY_fun([NotNull] mathParser.ISNULLOREMPTY_funContext context)
@@ -3390,54 +3400,54 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            args[0] = args[0].ToString("Function REMOVESTART parameter 1 is error!");
-            if (args[0].IsError) { return args[0]; }
-            args[1] = args[1].ToString("Function REMOVESTART parameter 2 is error!");
-            if (args[1].IsError) { return args[1]; }
+            var firstValue = args[0].ToString("Function REMOVESTART parameter 1 is error!");
+                        if (firstValue.IsError) { return firstValue; }
+            var secondValue =args[1].ToString("Function REMOVESTART parameter 2 is error!");
+            if (secondValue.IsError) { return secondValue; }
 
             StringComparison comparison = StringComparison.Ordinal;
             if (args.Count == 3)
             {
-                args[2] = args[2].ToBoolean("Function REMOVESTART parameter 3 is error!");
-                if (args[2].IsError) { return args[2]; }
-                if (args[2].BooleanValue)
+                var thirdValue =args[2].ToBoolean("Function REMOVESTART parameter 3 is error!");
+                            if (thirdValue.IsError) { return thirdValue; }
+                if (thirdValue.BooleanValue)
                 {
                     comparison = StringComparison.OrdinalIgnoreCase;
                 }
             }
-            var text = args[0].StringValue;
-            if (text.StartsWith(args[1].StringValue, comparison))
+            var text = firstValue.StringValue;
+            if (text.StartsWith(secondValue.StringValue, comparison))
             {
-                return Operand.Create(text.Substring(args[1].StringValue.Length));
+                return Operand.Create(text.Substring(secondValue.StringValue.Length));
             }
-            return args[0];
+            return firstValue;
         }
         public Operand VisitREMOVEEND_fun([NotNull] mathParser.REMOVEEND_funContext context)
         {
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            args[0] = args[0].ToString("Function REMOVEEND parameter 1 is error!");
-            if (args[0].IsError) { return args[0]; }
-            args[1] = args[1].ToString("Function REMOVEEND parameter 2 is error!");
-            if (args[1].IsError) { return args[1]; }
+            var firstValue = args[0].ToString("Function REMOVEEND parameter 1 is error!");
+                        if (firstValue.IsError) { return firstValue; }
+            var secondValue =args[1].ToString("Function REMOVEEND parameter 2 is error!");
+            if (secondValue.IsError) { return secondValue; }
 
             StringComparison comparison = StringComparison.Ordinal;
             if (args.Count == 3)
             {
-                args[2] = args[2].ToBoolean("Function REMOVESTART parameter 3 is error!");
-                if (args[2].IsError) { return args[2]; }
-                if (args[2].BooleanValue)
+                var thirdValue =args[2].ToBoolean("Function REMOVESTART parameter 3 is error!");
+                            if (thirdValue.IsError) { return thirdValue; }
+                if (thirdValue.BooleanValue)
                 {
                     comparison = StringComparison.OrdinalIgnoreCase;
                 }
             }
-            var text = args[0].StringValue;
-            if (text.EndsWith(args[1].StringValue, comparison))
+            var text = firstValue.StringValue;
+            if (text.EndsWith(secondValue.StringValue, comparison))
             {
-                return Operand.Create(text.Substring(0, text.Length - args[1].StringValue.Length));
+                return Operand.Create(text.Substring(0, text.Length - secondValue.StringValue.Length));
             }
-            return args[0];
+            return firstValue;
         }
         public Operand VisitJSON_fun([NotNull] mathParser.JSON_funContext context)
         {
