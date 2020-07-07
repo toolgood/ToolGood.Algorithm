@@ -772,10 +772,14 @@ namespace ToolGood.Algorithm
         {
             var firstValue = this.Visit(context.expr()).ToNumber("Function ATANH parameter is error!");
             if (firstValue.IsError) { return firstValue; }
-#if NETSTANDARD2_1
-            return Operand.Create(Math.Atanh(firstValue.NumberValue));
-#else
             var x = firstValue.NumberValue;
+            if (x>=1 || x<=-1)
+            {
+                return Operand.Error("Function ATANH parameter is error!");
+            }
+#if NETSTANDARD2_1
+            return Operand.Create(Math.Atanh(x));
+#else
             var d = Math.Log((1 + x) / (1 - x)) / 2;
             return Operand.Create(d);
 #endif        
@@ -1033,7 +1037,10 @@ namespace ToolGood.Algorithm
 
             var firstValue = args[0];
             var secondValue = args[1];
-
+            if (firstValue.NumberValue==0.0)
+            {
+                return firstValue;
+            }
             var a = Math.Pow(10, secondValue.IntValue);
             var b = firstValue.NumberValue;
 
@@ -1047,7 +1054,10 @@ namespace ToolGood.Algorithm
 
             var firstValue = args[0];
             var secondValue = args[1];
-
+            if (firstValue.NumberValue == 0.0)
+            {
+                return firstValue;
+            }
             var a = Math.Pow(10, secondValue.IntValue);
             var b = firstValue.NumberValue;
 
@@ -1058,15 +1068,23 @@ namespace ToolGood.Algorithm
         public Operand VisitCEILING_fun( mathParser.CEILING_funContext context)
         {
             var args = new List<Operand>(); var index = 1;
-            foreach (var item in context.expr()) { var aa = this.Visit(item).ToNumber($"Function ROUNDUP parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
+            foreach (var item in context.expr()) { var aa = this.Visit(item).ToNumber($"Function CEILING parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
 
             var firstValue = args[0];
             if (args.Count == 1)
                 return Operand.Create(Math.Ceiling(firstValue.NumberValue));
 
             var secondValue = args[1];
-            var a = firstValue.NumberValue;
             var b = secondValue.NumberValue;
+            if (b==0)
+            {
+                return Operand.Create(0);
+            }
+            if (b < 0)
+            {
+                return Operand.Error("Function CEILING parameter 2 is error!");
+            }
+            var a = firstValue.NumberValue;
             var d = Math.Ceiling(a / b) * b;
             return Operand.Create(d);
         }
@@ -1080,8 +1098,16 @@ namespace ToolGood.Algorithm
                 return Operand.Create(Math.Floor(firstValue.NumberValue));
 
             var secondValue = args[1];
-            var a = firstValue.NumberValue;
             var b = secondValue.NumberValue;
+            if (b>=1)
+            {
+                return Operand.Create(firstValue.IntValue);
+            }
+            if (b<=0)
+            {
+                return Operand.Error("Function FLOOR parameter 2 is error!");
+            }
+            var a = firstValue.NumberValue;
             var d = Math.Floor(a / b) * b;
             return Operand.Create(d);
         }
@@ -1126,6 +1152,10 @@ namespace ToolGood.Algorithm
             var secondValue = args[1];
 
             var a = secondValue.NumberValue;
+            if (a<=0)
+            {
+                return Operand.Error("Function MROUND parameter 2 is error!");
+            }
             var b = firstValue.NumberValue;
             var r = Math.Round(b / a, 0, MidpointRounding.AwayFromZero) * a;
             return Operand.Create(r);
@@ -1286,6 +1316,10 @@ namespace ToolGood.Algorithm
         }
         private int F_base_Factorial(int a)
         {
+            if (a==0)
+            {
+                return 1;
+            }
             int r = 1;
             for (int i = a; i > 0; i--) {
                 r *= i;
@@ -2262,6 +2296,10 @@ namespace ToolGood.Algorithm
 
             double sum = 0;
             foreach (var db in list) {
+                if (db==0)
+                {
+                    return Operand.Error("Function HARMEAN parameter error!");
+                }
                 sum += 1 / db;
             }
             return Operand.Create(list.Count / sum);
@@ -2374,6 +2412,10 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
+            if (args.Count==1)
+            {
+               return Operand.Error("Function STDEV parameter only one error!");
+            }
             List<double> list = new List<double>();
             var o = F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function STDEV parameter error!"); }
@@ -2423,13 +2465,16 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
+            if (args.Count == 1)
+            {
+                return Operand.Error("Function VAR parameter only one error!");
+            }
             List<double> list = new List<double>();
             var o = F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function VAR parameter error!"); }
 
             double sum = 0;
             double sum2 = 0;
-            //double avg = list.Average();
             for (int i = 0; i < list.Count; i++) {
                 sum += list[i] * list[i];
                 sum2 += list[i];
