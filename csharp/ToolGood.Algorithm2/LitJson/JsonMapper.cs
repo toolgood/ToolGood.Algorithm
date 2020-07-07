@@ -8,7 +8,6 @@ using System.Reflection;
 
 namespace ToolGood.Algorithm.LitJson
 {
-    internal delegate object ImporterFunc(object input);
     class JsonMapper
     {
 
@@ -60,7 +59,6 @@ namespace ToolGood.Algorithm.LitJson
                     IJsonWrapper item = ReadValue(reader);
                     if (item == null && reader.Token == JsonToken.ArrayEnd) break;
                     instance.Add(item);
-                    //((IList)instance).Add(item);
                 }
             } else if (reader.Token == JsonToken.ObjectStart) {
                 instance.SetJsonType(JsonType.Object);
@@ -72,7 +70,6 @@ namespace ToolGood.Algorithm.LitJson
 
                     string property = (string)reader.Value;
                     instance.Set(property, ReadValue(reader));
-                    //((IDictionary)instance)[property] = ReadValue(factory, reader);
                 }
 
             }
@@ -86,17 +83,9 @@ namespace ToolGood.Algorithm.LitJson
 
         public static JsonData ToObject(string json)
         {
-            return (JsonData)ToWrapper(json);
-        }
-
-
-        public static IJsonWrapper ToWrapper(string json)
-        {
             JsonReader reader = new JsonReader(json);
-            return ReadValue(reader);
+            return ReadValue(reader) as JsonData;
         }
-
-
 
     }
 }

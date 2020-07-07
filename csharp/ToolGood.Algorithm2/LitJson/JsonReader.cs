@@ -43,8 +43,6 @@ namespace ToolGood.Algorithm.LitJson
         private bool parser_in_string;
         private bool parser_return;
         private bool read_started;
-        private TextReader reader;
-        private readonly bool reader_is_owned;
         private object token_value;
         private JsonToken token;
         #endregion
@@ -64,13 +62,9 @@ namespace ToolGood.Algorithm.LitJson
             parse_table = PopulateParseTable();
         }
 
-        public JsonReader(string json_text) : this(new StringReader(json_text), true)
+        public JsonReader(string json_text)  
         {
-        }
-
-        private JsonReader(TextReader reader, bool owned)
-        {
-            if (reader == null) throw new ArgumentNullException("reader");
+            var reader = new StringReader(json_text);
 
             parser_in_string = false;
             parser_return = false;
@@ -85,8 +79,6 @@ namespace ToolGood.Algorithm.LitJson
             end_of_input = false;
             end_of_json = false;
 
-            this.reader = reader;
-            reader_is_owned = owned;
         }
         #endregion
 
@@ -281,8 +273,6 @@ namespace ToolGood.Algorithm.LitJson
 
             end_of_input = true;
             end_of_json = true;
-
-            reader = null;
         }
 
         public bool Read()

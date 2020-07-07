@@ -109,7 +109,7 @@ namespace ToolGood.Algorithm.LitJson
 
         void IJsonWrapper.Add(IJsonWrapper val)
         {
-            EnsureList().Add((JsonData) val);
+            EnsureList().Add((val as JsonData));
         }
 
         void IJsonWrapper.Set(string key, IJsonWrapper val)
