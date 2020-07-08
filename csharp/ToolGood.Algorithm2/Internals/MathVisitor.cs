@@ -3646,6 +3646,14 @@ namespace ToolGood.Algorithm
             {
                 return Operand.Error("Function LOOKUP parameter 2 Parse is error!");
             }
+            engine.DiyFunction += (funcName, list) =>
+            {
+                if (DiyFunction != null)
+                {
+                    return DiyFunction(funcName, list);
+                }
+                return Operand.Error($"Function name [{funcName}] is missing.");
+            };
 
             foreach (var item in firstValue.ArrayValue)
             {

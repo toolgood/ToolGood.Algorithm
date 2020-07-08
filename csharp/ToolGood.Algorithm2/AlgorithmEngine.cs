@@ -18,6 +18,10 @@ namespace ToolGood.Algorithm
         public string LastError { get; private set; }
         private ProgContext _context;
         private Dictionary<string, Operand> _dict = new Dictionary<string, Operand>();
+        /// <summary>
+        /// 自定义 函数
+        /// </summary>
+        public event Func<string, List<Operand>, Operand> DiyFunction;
 
         #region GetParameter
         /// <summary>
@@ -43,6 +47,10 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         protected virtual Operand ExecuteDiyFunction(string funcName,List<Operand> operands)
         {
+            if (DiyFunction != null)
+            {
+                return DiyFunction.Invoke(funcName, operands);
+            }
             return Operand.Error($"DiyFunction [{funcName}] is missing.");
         }
 

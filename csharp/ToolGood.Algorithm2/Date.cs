@@ -2,8 +2,20 @@
 
 namespace ToolGood.Algorithm
 {
+    /// <summary>
+    /// Date
+    /// </summary>
     public class Date
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="year"></param>
+        /// <param name="month"></param>
+        /// <param name="day"></param>
+        /// <param name="hour"></param>
+        /// <param name="minute"></param>
+        /// <param name="second"></param>
         public Date(int year, int month, int day, int hour, int minute, int second)
         {
             Year = year;
@@ -13,6 +25,10 @@ namespace ToolGood.Algorithm
             Minute = minute;
             Second = second;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dt"></param>
         public Date(DateTime dt)
         {
             Year = dt.Year;
@@ -22,6 +38,10 @@ namespace ToolGood.Algorithm
             Minute = dt.Minute;
             Second = dt.Second;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dt"></param>
         public Date(TimeSpan dt)
         {
             Day = dt.Days;
