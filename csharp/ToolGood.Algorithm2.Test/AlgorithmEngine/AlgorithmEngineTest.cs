@@ -152,6 +152,10 @@ namespace ToolGood.Algorithm
             }
 
             t = c.TryEvaluate("['半径']*[半径]*pi()*[高]", 0.0); //圆的体积
+
+            t = c.TryEvaluate("求面积（10）", 0.0); //圆的体积
+            Assert.AreEqual(10 * 10 * Math.PI, t);
+            
         }
 
     }

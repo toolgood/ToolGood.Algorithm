@@ -3142,4 +3142,19 @@ partial class mathParser : Parser
 		}
 	}
 
+	public partial class DiyFunction_funContext : ExprContext
+	{
+		public ExprContext[] expr()
+		{
+			return GetRuleContexts<ExprContext>();
+		}
+		public ITerminalNode PARAMETER() { return GetToken(235, 0); }
+		public DiyFunction_funContext(ExprContext context) { CopyFrom(context); }
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+		{
+			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+			return typedVisitor.VisitDiyFunction_fun(this);
+		}
+	}
+
 }

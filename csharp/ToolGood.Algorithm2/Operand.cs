@@ -122,7 +122,7 @@ namespace ToolGood.Algorithm
         }
 
         #endregion
-        public Operand ToNumber(string errorMessage)
+        public Operand ToNumber(string errorMessage = null)
         {
             if (Type == OperandType.NUMBER) { return this; }
             if (IsError) { return this; }
@@ -135,7 +135,7 @@ namespace ToolGood.Algorithm
             }
             return Error(errorMessage);
         }
-        public Operand ToBoolean(string errorMessage)
+        public Operand ToBoolean(string errorMessage = null)
         {
             if (Type == OperandType.BOOLEAN) { return this; }
             if (IsError) { return this; }
@@ -149,7 +149,7 @@ namespace ToolGood.Algorithm
             }
             return Error(errorMessage);
         }
-        public Operand ToString(string errorMessage)
+        public Operand ToString(string errorMessage=null)
         {
             if (Type == OperandType.STRING) { return this; }
             if (IsError) { return this; }
@@ -159,7 +159,7 @@ namespace ToolGood.Algorithm
 
             return Error(errorMessage);
         }
-        public Operand ToDate(string errorMessage)
+        public Operand ToDate(string errorMessage = null)
         {
             if (Type == OperandType.DATE) { return this; }
             if (IsError) { return this; }
@@ -170,7 +170,7 @@ namespace ToolGood.Algorithm
             }
             return Error(errorMessage);
         }
-        public Operand ToJson(string errorMessage)
+        public Operand ToJson(string errorMessage = null)
         {
             if (Type == OperandType.JSON) { return this; }
             if (IsError) { return this; }
@@ -185,7 +185,7 @@ namespace ToolGood.Algorithm
             }
             return Error(errorMessage);
         }
-        public Operand ToArray(string errorMessage)
+        public Operand ToArray(string errorMessage = null)
         {
             if (Type == OperandType.ARRARY) { return this; }
             if (IsError) { return this; }
@@ -211,6 +211,82 @@ namespace ToolGood.Algorithm
         }
 
         public void Dispose() { }
+
+
+        #region Operand
+        #region number
+        public static implicit operator Operand(Int16 obj)
+        {
+            return Operand.Create((int) obj);
+        }
+        public static implicit operator Operand(Int32 obj)
+        {
+            return Operand.Create(obj);
+        }
+        public static implicit operator Operand(Int64 obj)
+        {
+            return Operand.Create((double) obj);
+        }
+        public static implicit operator Operand(UInt16 obj)
+        {
+            return Operand.Create((double) obj);
+        }
+        public static implicit operator Operand(UInt32 obj)
+        {
+            return Operand.Create((double) obj);
+        }
+        public static implicit operator Operand(UInt64 obj)
+        {
+            return Operand.Create((double) obj);
+        }
+
+        public static implicit operator Operand(float obj)
+        {
+            return Operand.Create((double) obj);
+        }
+        public static implicit operator Operand(double obj)
+        {
+            return Operand.Create(obj);
+        }
+        public static implicit operator Operand(decimal obj)
+        {
+            return Operand.Create((double) obj);
+        } 
+        #endregion
+
+        public static implicit operator Operand(bool obj)
+        {
+            return Operand.Create(obj);
+        }
+        public static implicit operator Operand(string obj)
+        {
+            return Operand.Create(obj);
+        }
+        public static implicit operator Operand(DateTime obj)
+        {
+            return Operand.Create(obj);
+        }
+        public static implicit operator Operand(TimeSpan obj)
+        {
+            return Operand.Create(obj);
+        }
+        public static implicit operator Operand(List<string> obj)
+        {
+            return Operand.Create(obj);
+        }
+        public static implicit operator Operand(List<bool> obj)
+        {
+            return Operand.Create(obj);
+        }
+        public static implicit operator Operand(List<int> obj)
+        {
+            return Operand.Create(obj);
+        }
+        public static implicit operator Operand(List<double> obj)
+        {
+            return Operand.Create(obj);
+        }
+        #endregion
     }
     public abstract class Operand<T> : Operand
     {

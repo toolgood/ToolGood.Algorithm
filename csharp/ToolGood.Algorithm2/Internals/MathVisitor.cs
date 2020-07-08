@@ -21,6 +21,7 @@ namespace ToolGood.Algorithm
         private static readonly Regex clearRegex = new Regex(@"[\f\n\r\t\v]", RegexOptions.IgnoreCase | RegexOptions.Compiled);
         private static readonly CultureInfo cultureInfo = CultureInfo.GetCultureInfo("en-US");
         public event Func<string, Operand> GetParameter;
+        public event Func<string,List<Operand>, Operand> DiyFunction;
         public int excelIndex;
 
         #region base
@@ -3814,6 +3815,18 @@ namespace ToolGood.Algorithm
         public Operand VisitExpr2_fun( mathParser.Expr2_funContext context)
         {
             return VisitChildren(context);
+        }
+
+        public Operand VisitDiyFunction_fun(mathParser.DiyFunction_funContext context)
+        {
+            if (DiyFunction!=null)
+            {
+                var funName = context.PARAMETER().GetText();
+                var args = new List<Operand>();
+                foreach (var item in context.expr()) { var aa = this.Visit(item); args.Add(aa); }
+                return DiyFunction(funName, args);
+            }
+            return Operand.Error("DiyFunction is error!");
         }
 
 

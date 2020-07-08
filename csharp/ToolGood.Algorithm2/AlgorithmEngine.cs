@@ -20,6 +20,11 @@ namespace ToolGood.Algorithm
         private Dictionary<string, Operand> _dict = new Dictionary<string, Operand>();
 
         #region GetParameter
+        /// <summary>
+        /// 自定义参数
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
         protected virtual Operand GetParameter(string parameter)
         {
             if (_dict.TryGetValue(parameter, out Operand operand)) {
@@ -29,58 +34,136 @@ namespace ToolGood.Algorithm
         }
         #endregion
 
+        #region ExecuteDiyFunction
+        /// <summary>
+        /// 自定义 函数
+        /// </summary>
+        /// <param name="funcName"></param>
+        /// <param name="operands"></param>
+        /// <returns></returns>
+        protected virtual Operand ExecuteDiyFunction(string funcName,List<Operand> operands)
+        {
+            return Operand.Error($"DiyFunction [{funcName}] is missing.");
+        }
+
+        #endregion
+
+
         #region AddParameter
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
         public void AddParameter(string key, Operand obj)
         {
             _dict[key] = obj;
         }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
         public void AddParameter(string key, bool obj)
         {
             _dict[key] = Operand.Create(obj);
         }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
         public void AddParameter(string key, int obj)
         {
             _dict[key] = Operand.Create(obj);
         }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
         public void AddParameter(string key, double obj)
         {
             _dict[key] = Operand.Create(obj);
         }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
         public void AddParameter(string key, string obj)
         {
             _dict[key] = Operand.Create(obj);
         }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
         public void AddParameter(string key, Date obj)
         {
             _dict[key] = Operand.Create(obj);
         }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
         public void AddParameter(string key, DateTime obj)
         {
             _dict[key] = Operand.Create(obj);
         }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
         public void AddParameter(string key, TimeSpan obj)
         {
             _dict[key] = Operand.Create(obj);
         }
-
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
         public void AddParameter(string key, List<Operand> obj)
         {
             _dict[key] = Operand.Create(obj);
         }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
         public void AddParameter(string key, ICollection<string> obj)
         {
             _dict[key] = Operand.Create(obj);
         }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
         public void AddParameter(string key, ICollection<double> obj)
         {
             _dict[key] = Operand.Create(obj);
 
         }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
         public void AddParameter(string key, ICollection<int> obj)
         {
             _dict[key] = Operand.Create(obj);
-
         }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
         public void AddParameter(string key, ICollection<bool> obj)
         {
             _dict[key] = Operand.Create(obj);
@@ -156,6 +239,7 @@ namespace ToolGood.Algorithm
             var visitor = new MathVisitor();
             visitor.GetParameter += GetParameter;
             visitor.excelIndex = UseExcelIndex ? 1 : 0;
+            visitor.DiyFunction += ExecuteDiyFunction;
             return visitor.Visit(_context);
         }
         #endregion

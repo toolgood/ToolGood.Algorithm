@@ -108,6 +108,7 @@ expr:
 	| expr '.' JSON '(' ')'										# JSON_fun
 	| expr '.' VLOOKUP '(' expr ',' expr (',' expr)? ')'		# VLOOKUP_fun
 	| expr '.' LOOKUP '(' expr ',' expr ')'						# LOOKUP_fun
+	| expr '.' PARAMETER '(' (expr (',' expr)*)? ')'			# DiyFunction_fun
 	| expr '[' parameter ']'									# GetJsonValue_fun
 	| expr '.' parameter2										# GetJsonValue_fun
 	| expr2														# expr2_fun;
@@ -324,6 +325,7 @@ expr2:
 	| JSON '(' expr ')'											# JSON_fun2
 	| VLOOKUP '(' expr ',' expr ',' expr (',' expr)? ')'		# VLOOKUP_fun2
 	| LOOKUP '(' expr ',' expr ',' expr ')'						# LOOKUP_fun2
+	| PARAMETER '(' (expr (',' expr)*)? ')'						# DiyFunction_fun2
 	| '[' parameter ']'											# PARAMETER_fun2
 	| '-'? NUM													# NUM_fun2
 	| STRING													# STRING_fun2
@@ -761,6 +763,23 @@ JSON: 'JSON';
 VLOOKUP: 'VLOOKUP';
 LOOKUP: 'LOOKUP';
 
-PARAMETER: [A-Z\u3400-\u9FD5][A-Z0-9_\u3400-\u9FD5]*;
+PARAMETER: ([A-Z_]| FullWidthLetter)([A-Z0-9_] | FullWidthLetter)*;
+
+fragment FullWidthLetter
+    : '\u00c0'..'\u00d6'
+    | '\u00d8'..'\u00f6'
+    | '\u00f8'..'\u00ff'
+    | '\u0100'..'\u1fff'
+    | '\u2c00'..'\u2fff'
+    | '\u3040'..'\u318f'
+    | '\u3300'..'\u337f'
+    | '\u3400'..'\u3fff'
+    | '\u4e00'..'\u9fff'
+    | '\ua000'..'\ud7ff'
+    | '\uf900'..'\ufaff'
+    | '\uff00'..'\ufff0'
+    // | '\u10000'..'\u1F9FF'  //not support four bytes chars
+    // | '\u20000'..'\u2FA1F'
+    ;
 
 WS: [ \t\r\n]+ -> skip;

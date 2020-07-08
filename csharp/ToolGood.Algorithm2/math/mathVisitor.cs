@@ -1548,5 +1548,5 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	Result VisitISNULL_fun( mathParser.ISNULL_funContext context);
 	Result VisitISNULLORERROR_fun( mathParser.ISNULLORERROR_funContext context);
 
-
+	Result VisitDiyFunction_fun(mathParser.DiyFunction_funContext context);
 }

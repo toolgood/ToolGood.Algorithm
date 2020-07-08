@@ -33,5 +33,18 @@ namespace ToolGood.Algorithm
             return base.GetParameter(parameter);
         }
 
+        protected override Operand ExecuteDiyFunction(string funcName, List<Operand> operands)
+        {
+            if (funcName == "求面积")
+            {
+                if (operands.Count == 1)
+                {
+                    var r = operands[0].ToNumber().NumberValue;
+                    return r * r * Math.PI;
+                }
+            }
+            return base.ExecuteDiyFunction(funcName, operands);
+        }
+
     }
 }
