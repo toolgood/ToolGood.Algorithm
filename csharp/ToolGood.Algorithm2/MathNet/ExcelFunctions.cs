@@ -136,7 +136,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
 
         public static double PercentRank(double[] array, double x)
         {
-            return array.QuantileRank(x, RankDefinition.Min);
+            return array.QuantileRank(x);
         }
     }
 }

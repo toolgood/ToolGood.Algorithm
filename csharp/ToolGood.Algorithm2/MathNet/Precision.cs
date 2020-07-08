@@ -41,11 +41,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
             if (double.IsInfinity(value) || double.IsNaN(value) || count == 0) {
                 return value;
             }
-
-            if (count < 0) {
-                return Decrement(value, -count);
-            }
-
+  
             // Translate the bit pattern of the double to an integer.
             // Note that this leads to:
             // double > 0 --> long > 0, growing as the double value grows
@@ -62,52 +58,6 @@ namespace ToolGood.Algorithm.MathNet.Numerics
             // Note that long.MinValue has the same bit pattern as -0.0.
             if (intValue == long.MinValue) {
                 return 0;
-            }
-
-            // Note that not all long values can be translated into double values. There's a whole bunch of them
-            // which return weird values like infinity and NaN
-            return BitConverter.Int64BitsToDouble(intValue);
-        }
-
-        /// <summary>
-        /// Decrements a floating point number to the next smaller number representable by the data type.
-        /// </summary>
-        /// <param name="value">The value which should be decremented.</param>
-        /// <param name="count">How many times the number should be decremented.</param>
-        /// <remarks>
-        /// The decrementation step length depends on the provided value.
-        /// Decrement(double.MinValue) will return negative infinity.
-        /// </remarks>
-        /// <returns>The next smaller floating point value.</returns>
-        public static double Decrement(this double value, int count = 1)
-        {
-            if (double.IsInfinity(value) || double.IsNaN(value) || count == 0) {
-                return value;
-            }
-
-            if (count < 0) {
-                return Decrement(value, -count);
-            }
-
-            // Translate the bit pattern of the double to an integer.
-            // Note that this leads to:
-            // double > 0 --> long > 0, growing as the double value grows
-            // double < 0 --> long < 0, increasing in absolute magnitude as the double
-            //                          gets closer to zero!
-            //                          i.e. 0 - double.epsilon will give the largest long value!
-            long intValue = BitConverter.DoubleToInt64Bits(value);
-
-            // If the value is zero then we'd really like the value to be -0. So we'll make it -0
-            // and then everything else should work out.
-            if (intValue == 0) {
-                // Note that long.MinValue has the same bit pattern as -0.0.
-                intValue = long.MinValue;
-            }
-
-            if (intValue < 0) {
-                intValue += count;
-            } else {
-                intValue -= count;
             }
 
             // Note that not all long values can be translated into double values. There's a whole bunch of them

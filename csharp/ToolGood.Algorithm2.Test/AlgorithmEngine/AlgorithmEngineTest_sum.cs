@@ -306,6 +306,11 @@ namespace ToolGood.Algorithm
             Assert.AreEqual(Math.Round(t, 6), Math.Round(0.105160683, 6));
             t = engine.TryEvaluate("WEIBULL(1,2,3,0)", 0.0);
             Assert.AreEqual(Math.Round(t, 6), Math.Round(0.198853182, 6));
+            t = engine.TryEvaluate("WEIBULL(-1,2,3,0)", 0.0);
+            t = engine.TryEvaluate("WEIBULL(-1,-2,3,0)", 0.0);
+            t = engine.TryEvaluate("WEIBULL(-1,-2,-3,0)", 0.0);
+            t = engine.TryEvaluate("WEIBULL(-1,-2,-3,-1)", 0.0);
+
         }
 
         [Test]

@@ -12,11 +12,11 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Statistics
             double[] array = data.ToArray();
             return ArrayStatistics.QuantileCustomInplace(array, tau, definition);
         }
-        public static double QuantileRank(this IEnumerable<double> data, double x, RankDefinition definition = RankDefinition.Default)
+        public static double QuantileRank(this IEnumerable<double> data, double x)
         {
             double[] array = data.ToArray();
             Array.Sort(array);
-            return SortedArrayStatistics.QuantileRank(array, x, definition);
+            return SortedArrayStatistics.QuantileRank(array, x);
         }
 
 
