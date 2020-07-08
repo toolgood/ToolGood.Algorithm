@@ -40,7 +40,7 @@ namespace ToolGood.Algorithm
         /// <summary>
         /// 字符串值
         /// </summary>
-        public virtual string StringValue => throw new NotImplementedException();
+        public virtual string TextValue => throw new NotImplementedException();
         /// <summary>
         /// 布尔值
         /// </summary>
@@ -234,7 +234,7 @@ namespace ToolGood.Algorithm
             if (Type == OperandType.BOOLEAN) { return Create(BooleanValue ? 1.0 : 0.0); }
             if (Type == OperandType.DATE) { return Create((double)DateValue); }
             if (Type == OperandType.STRING) {
-                if (double.TryParse(StringValue, NumberStyles.Any, cultureInfo, out double d)) {
+                if (double.TryParse(TextValue, NumberStyles.Any, cultureInfo, out double d)) {
                     return Create(d);
                 }
             }
@@ -252,10 +252,10 @@ namespace ToolGood.Algorithm
             if (Type == OperandType.NUMBER) { return Create(NumberValue != 0); }
             if (Type == OperandType.DATE) { return Create(((double)DateValue) != 0); }
             if (Type == OperandType.STRING) {
-                if (StringValue.Equals("true", StringComparison.OrdinalIgnoreCase)) { return Create(true); }
-                if (StringValue.Equals("false", StringComparison.OrdinalIgnoreCase)) { return Create(false); }
-                if (StringValue.Equals("1", StringComparison.OrdinalIgnoreCase)) { return Create(true); }
-                if (StringValue.Equals("0", StringComparison.OrdinalIgnoreCase)) { return Create(false); }
+                if (TextValue.Equals("true", StringComparison.OrdinalIgnoreCase)) { return Create(true); }
+                if (TextValue.Equals("false", StringComparison.OrdinalIgnoreCase)) { return Create(false); }
+                if (TextValue.Equals("1", StringComparison.OrdinalIgnoreCase)) { return Create(true); }
+                if (TextValue.Equals("0", StringComparison.OrdinalIgnoreCase)) { return Create(false); }
             }
             return Error(errorMessage);
         }
@@ -264,7 +264,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="errorMessage"></param>
         /// <returns></returns>
-        public Operand ToString(string errorMessage=null)
+        public Operand ToText(string errorMessage=null)
         {
             if (Type == OperandType.STRING) { return this; }
             if (IsError) { return this; }
@@ -285,8 +285,8 @@ namespace ToolGood.Algorithm
             if (IsError) { return this; }
             if (Type == OperandType.NUMBER) { return Create((Date)NumberValue); }
             if (Type == OperandType.STRING) {
-                if (TimeSpan.TryParse(StringValue, cultureInfo, out TimeSpan t)) { return Create(new Date(t)); }
-                if (DateTime.TryParse(StringValue, cultureInfo, DateTimeStyles.None, out DateTime d)) { return Create(new Date(d)); }
+                if (TimeSpan.TryParse(TextValue, cultureInfo, out TimeSpan t)) { return Create(new Date(t)); }
+                if (DateTime.TryParse(TextValue, cultureInfo, DateTimeStyles.None, out DateTime d)) { return Create(new Date(d)); }
             }
             return Error(errorMessage);
         }
@@ -300,7 +300,7 @@ namespace ToolGood.Algorithm
             if (Type == OperandType.JSON) { return this; }
             if (IsError) { return this; }
             if (Type == OperandType.STRING) {
-                var txt = StringValue;
+                var txt = TextValue;
                 if ((txt.StartsWith("{") && txt.EndsWith("}")) || (txt.StartsWith("[") && txt.EndsWith("]"))) {
                     try {
                         var json = JsonMapper.ToObject(txt);
@@ -444,7 +444,7 @@ namespace ToolGood.Algorithm
     {
         public OperandString(string obj) : base(obj) { }
         public override OperandType Type => OperandType.STRING;
-        public override string StringValue => Value;
+        public override string TextValue => Value;
     }
     class OperandDate : Operand<Date>
     {

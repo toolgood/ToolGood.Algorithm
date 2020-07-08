@@ -121,18 +121,18 @@ namespace ToolGood.Algorithm
                 if (firstValue.IsNull && secondValue.IsNull) {
                     return firstValue;
                 } else if (firstValue.IsNull) {
-                    secondValue = secondValue.ToString($"Function '{t}' parameter 2 is error!");
+                    secondValue = secondValue.ToText($"Function '{t}' parameter 2 is error!");
                     return secondValue;
                 } else if (secondValue.IsNull) {
-                    firstValue = firstValue.ToString($"Function '{t}' parameter 1 is error!");
+                    firstValue = firstValue.ToText($"Function '{t}' parameter 1 is error!");
                     return firstValue;
                 }
  
-                firstValue = firstValue.ToString($"Function '{t}' parameter 1 is error!");
+                firstValue = firstValue.ToText($"Function '{t}' parameter 1 is error!");
                 if (firstValue.IsError) { return secondValue; }
-                secondValue = secondValue.ToString($"Function '{t}' parameter 2 is error!");
+                secondValue = secondValue.ToText($"Function '{t}' parameter 2 is error!");
                 if (secondValue.IsError) { return secondValue; }
-                return Operand.Create(firstValue.StringValue + secondValue.StringValue);
+                return Operand.Create(firstValue.TextValue + secondValue.TextValue);
             }
             if (t == "+") {
                 if (firstValue.Type == OperandType.STRING) {
@@ -214,12 +214,12 @@ namespace ToolGood.Algorithm
             int r;
             if (firstValue.Type == secondValue.Type) {
                 if (firstValue.Type == OperandType.STRING || firstValue.Type == OperandType.JSON) {
-                    firstValue = firstValue.ToString($"Function '{type}' parameter 1 is error!");
+                    firstValue = firstValue.ToText($"Function '{type}' parameter 1 is error!");
                     if (firstValue.IsError) { return firstValue; }
-                    secondValue = secondValue.ToString($"Function '{type}' parameter 2 is error!");
+                    secondValue = secondValue.ToText($"Function '{type}' parameter 2 is error!");
                     if (secondValue.IsError) { return secondValue; }
 
-                    r = string.CompareOrdinal(firstValue.StringValue, secondValue.StringValue);
+                    r = string.CompareOrdinal(firstValue.TextValue, secondValue.TextValue);
                 } else if (firstValue.Type == OperandType.ARRARY) {
                     return Operand.Error("两个类型无法比较");
                 } else {
@@ -232,19 +232,19 @@ namespace ToolGood.Algorithm
             } else if ((firstValue.Type == OperandType.DATE && secondValue.Type == OperandType.STRING) || (secondValue.Type == OperandType.DATE && firstValue.Type == OperandType.STRING)
                  || (firstValue.Type == OperandType.NUMBER && secondValue.Type == OperandType.STRING) || (secondValue.Type == OperandType.NUMBER && firstValue.Type == OperandType.STRING)
                   ) {
-                firstValue = firstValue.ToString($"Function '{type}' parameter 1 is error!");
+                firstValue = firstValue.ToText($"Function '{type}' parameter 1 is error!");
                 if (firstValue.IsError) { return firstValue; }
-                secondValue = secondValue.ToString($"Function '{type}' parameter 2 is error!");
+                secondValue = secondValue.ToText($"Function '{type}' parameter 2 is error!");
                 if (secondValue.IsError) { return secondValue; }
 
-                r = string.CompareOrdinal(firstValue.StringValue, secondValue.StringValue);
+                r = string.CompareOrdinal(firstValue.TextValue, secondValue.TextValue);
             } else if ((firstValue.Type == OperandType.BOOLEAN && secondValue.Type == OperandType.STRING) || (secondValue.Type == OperandType.BOOLEAN && firstValue.Type == OperandType.STRING)) {
-                firstValue = firstValue.ToString($"Function '{type}' parameter 1 is error!");
+                firstValue = firstValue.ToText($"Function '{type}' parameter 1 is error!");
                 if (firstValue.IsError) { return firstValue; }
-                secondValue = secondValue.ToString($"Function '{type}' parameter 2 is error!");
+                secondValue = secondValue.ToText($"Function '{type}' parameter 2 is error!");
                 if (secondValue.IsError) { return secondValue; }
 
-                r= string.Compare(firstValue.StringValue, secondValue.StringValue, true);
+                r= string.Compare(firstValue.TextValue, secondValue.TextValue, true);
             } else if (firstValue.Type == OperandType.STRING || secondValue.Type == OperandType.STRING
                   || firstValue.Type == OperandType.JSON || secondValue.Type == OperandType.JSON
                   || firstValue.Type == OperandType.ARRARY || secondValue.Type == OperandType.ARRARY
@@ -839,9 +839,9 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToString("Function BIN2OCT parameter 1 is error!");
-            if (bit_2.IsMatch(firstValue.StringValue) == false) { return Operand.Error("Function BIN2OCT parameter 1 is error!"); }
-            var num = Convert.ToString(Convert.ToInt32(firstValue.StringValue, 2), 8);
+            var firstValue = args[0].ToText("Function BIN2OCT parameter 1 is error!");
+            if (bit_2.IsMatch(firstValue.TextValue) == false) { return Operand.Error("Function BIN2OCT parameter 1 is error!"); }
+            var num = Convert.ToString(Convert.ToInt32(firstValue.TextValue, 2), 8);
             if (args.Count == 2) {
                 var secondValue = args[1].ToNumber("Function BIN2OCT parameter 2 is error!");
                 if (secondValue.IsError) { return secondValue; }
@@ -854,11 +854,11 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitBIN2DEC_fun( mathParser.BIN2DEC_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToString("Function BIN2DEC parameter is error!");
+            var firstValue = this.Visit(context.expr()).ToText("Function BIN2DEC parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            if (bit_2.IsMatch(firstValue.StringValue) == false) { return Operand.Error("Function BIN2DEC parameter is error!"); }
-            var num = Convert.ToInt32(firstValue.StringValue, 2);
+            if (bit_2.IsMatch(firstValue.TextValue) == false) { return Operand.Error("Function BIN2DEC parameter is error!"); }
+            var num = Convert.ToInt32(firstValue.TextValue, 2);
             return Operand.Create(num);
         }
         public Operand VisitBIN2HEX_fun( mathParser.BIN2HEX_funContext context)
@@ -866,9 +866,9 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToString("Function BIN2HEX parameter 1 is error!");
-            if (bit_2.IsMatch(firstValue.StringValue) == false) { return Operand.Error("Function BIN2HEX parameter 1 is error!"); }
-            var num = Convert.ToString(Convert.ToInt32(firstValue.StringValue, 2), 16).ToUpper();
+            var firstValue = args[0].ToText("Function BIN2HEX parameter 1 is error!");
+            if (bit_2.IsMatch(firstValue.TextValue) == false) { return Operand.Error("Function BIN2HEX parameter 1 is error!"); }
+            var num = Convert.ToString(Convert.ToInt32(firstValue.TextValue, 2), 16).ToUpper();
             if (args.Count == 2) {
                 var secondValue = args[1].ToNumber("Function BIN2HEX parameter 2 is error!");
                 if (secondValue.IsError) { return secondValue; }
@@ -885,9 +885,9 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToString("Function OCT2BIN parameter 1 is error!");
-            if (bit_8.IsMatch(firstValue.StringValue) == false) { return Operand.Error("Function OCT2BIN parameter 1 is error!"); }
-            var num = Convert.ToString(Convert.ToInt32(firstValue.StringValue, 8), 2);
+            var firstValue = args[0].ToText("Function OCT2BIN parameter 1 is error!");
+            if (bit_8.IsMatch(firstValue.TextValue) == false) { return Operand.Error("Function OCT2BIN parameter 1 is error!"); }
+            var num = Convert.ToString(Convert.ToInt32(firstValue.TextValue, 8), 2);
             if (args.Count == 2) {
                 var secondValue = args[1].ToNumber("Function OCT2BIN parameter 2 is error!");
                 if (secondValue.IsError) { return secondValue; }
@@ -900,11 +900,11 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitOCT2DEC_fun( mathParser.OCT2DEC_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToString("Function OCT2DEC parameter is error!");
+            var firstValue = this.Visit(context.expr()).ToText("Function OCT2DEC parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            if (bit_8.IsMatch(firstValue.StringValue) == false) { return Operand.Error("Function OCT2DEC parameter is error!"); }
-            var num = Convert.ToInt32(firstValue.StringValue, 8);
+            if (bit_8.IsMatch(firstValue.TextValue) == false) { return Operand.Error("Function OCT2DEC parameter is error!"); }
+            var num = Convert.ToInt32(firstValue.TextValue, 8);
             return Operand.Create(num);
         }
         public Operand VisitOCT2HEX_fun( mathParser.OCT2HEX_funContext context)
@@ -912,9 +912,9 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToString("Function OCT2HEX parameter 1 is error!");
-            if (bit_8.IsMatch(firstValue.StringValue) == false) { return Operand.Error("Function OCT2HEX parameter 1 is error!"); }
-            var num = Convert.ToString(Convert.ToInt32(firstValue.StringValue, 8), 16).ToUpper();
+            var firstValue = args[0].ToText("Function OCT2HEX parameter 1 is error!");
+            if (bit_8.IsMatch(firstValue.TextValue) == false) { return Operand.Error("Function OCT2HEX parameter 1 is error!"); }
+            var num = Convert.ToString(Convert.ToInt32(firstValue.TextValue, 8), 16).ToUpper();
             if (args.Count == 2) {
                 var secondValue = args[1].ToNumber("Function OCT2HEX parameter 2 is error!");
                 if (secondValue.IsError) { return secondValue; }
@@ -982,11 +982,11 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToString("Function HEX2BIN parameter 1 is error!");
+            var firstValue = args[0].ToText("Function HEX2BIN parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
-            if (bit_16.IsMatch(firstValue.StringValue) == false) { return Operand.Error("Function HEX2BIN parameter 1 is error!"); }
+            if (bit_16.IsMatch(firstValue.TextValue) == false) { return Operand.Error("Function HEX2BIN parameter 1 is error!"); }
 
-            var num = Convert.ToString(Convert.ToInt32(firstValue.StringValue, 16), 2);
+            var num = Convert.ToString(Convert.ToInt32(firstValue.TextValue, 16), 2);
             if (args.Count == 2) {
                 var secondValue = args[1].ToNumber("Function HEX2BIN parameter 2 is error!");
                 if (secondValue.IsError) { return secondValue; }
@@ -1002,10 +1002,10 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToString("Function HEX2OCT parameter 1 is error!");
+            var firstValue = args[0].ToText("Function HEX2OCT parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
-            if (bit_16.IsMatch(firstValue.StringValue) == false) { return Operand.Error("Function HEX2OCT parameter 1 is error!"); }
-            var num = Convert.ToString(Convert.ToInt32(firstValue.StringValue, 16), 8);
+            if (bit_16.IsMatch(firstValue.TextValue) == false) { return Operand.Error("Function HEX2OCT parameter 1 is error!"); }
+            var num = Convert.ToString(Convert.ToInt32(firstValue.TextValue, 16), 8);
             if (args.Count == 2) {
                 var secondValue = args[1].ToNumber("Function HEX2OCT parameter 2 is error!");
                 if (secondValue.IsError) { return secondValue; }
@@ -1018,11 +1018,11 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitHEX2DEC_fun( mathParser.HEX2DEC_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToString("Function HEX2DEC parameter is error!");
+            var firstValue = this.Visit(context.expr()).ToText("Function HEX2DEC parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            if (bit_16.IsMatch(firstValue.StringValue) == false) { return Operand.Error("Function HEX2DEC parameter is error!"); }
-            var num = Convert.ToInt32(firstValue.StringValue, 16);
+            if (bit_16.IsMatch(firstValue.TextValue) == false) { return Operand.Error("Function HEX2DEC parameter is error!"); }
+            var num = Convert.ToInt32(firstValue.TextValue, 16);
             return Operand.Create(num);
         }
         #endregion
@@ -1344,17 +1344,17 @@ namespace ToolGood.Algorithm
 
         public Operand VisitASC_fun( mathParser.ASC_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToString("Function ASC parameter is error!");
+            var firstValue = this.Visit(context.expr()).ToText("Function ASC parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            return Operand.Create(F_base_ToDBC(firstValue.StringValue));
+            return Operand.Create(F_base_ToDBC(firstValue.TextValue));
         }
         public Operand VisitJIS_fun( mathParser.JIS_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToString("Function JIS parameter is error!");
+            var firstValue = this.Visit(context.expr()).ToText("Function JIS parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            return Operand.Create(F_base_ToSBC(firstValue.StringValue));
+            return Operand.Create(F_base_ToSBC(firstValue.TextValue));
         }
         public Operand VisitCHAR_fun( mathParser.CHAR_funContext context)
         {
@@ -1366,19 +1366,19 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitCLEAN_fun( mathParser.CLEAN_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToString("Function CLEAN parameter is error!");
+            var firstValue = this.Visit(context.expr()).ToText("Function CLEAN parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            var t = firstValue.StringValue;
+            var t = firstValue.TextValue;
             t = clearRegex.Replace(t, "");
             return Operand.Create(t);
         }
         public Operand VisitCODE_fun( mathParser.CODE_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToString("Function CODE parameter is error!");
+            var firstValue = this.Visit(context.expr()).ToText("Function CODE parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            var t = firstValue.StringValue;
+            var t = firstValue.TextValue;
             if (t.Length == 0) {
                 return Operand.Error("Function CODE parameter is error!");
             }
@@ -1388,14 +1388,14 @@ namespace ToolGood.Algorithm
         {
             var args = new List<Operand>(); var index = 1;
             foreach (var item in context.expr()) {
-                var a = this.Visit(item).ToString($"Function CONCATENATE parameter {index++} is error!");
+                var a = this.Visit(item).ToText($"Function CONCATENATE parameter {index++} is error!");
                 if (a.IsError) { return a; }
                 args.Add(a);
             }
 
             StringBuilder sb = new StringBuilder();
             foreach (var item in args) {
-                sb.Append(item.StringValue);
+                sb.Append(item.TextValue);
             }
             return Operand.Create(sb.ToString());
         }
@@ -1407,26 +1407,26 @@ namespace ToolGood.Algorithm
             var firstValue = args[0];
             var secondValue = args[1];
 
-            return Operand.Create(firstValue.StringValue == secondValue.StringValue);
+            return Operand.Create(firstValue.TextValue == secondValue.TextValue);
         }
         public Operand VisitFIND_fun( mathParser.FIND_funContext context)
         {
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToString("Function FIND parameter 1 is error!");
+            var firstValue = args[0].ToText("Function FIND parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
-            var secondValue = args[1].ToString("Function FIND parameter 2 is error!");
+            var secondValue = args[1].ToText("Function FIND parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
 
             if (args.Count == 2) {
-                var p = secondValue.StringValue.IndexOf(firstValue.StringValue) + excelIndex;
+                var p = secondValue.TextValue.IndexOf(firstValue.TextValue) + excelIndex;
                 return Operand.Create(p);
             }
             var count = args[2].ToNumber("Function FIND parameter 3 is error!");
             if (count.IsError) { return count; }
 
-            var p2 = secondValue.StringValue.IndexOf(firstValue.StringValue, count.IntValue) + excelIndex;
+            var p2 = secondValue.TextValue.IndexOf(firstValue.TextValue, count.IntValue) + excelIndex;
             return Operand.Create(p2);
         }
         public Operand VisitLEFT_fun( mathParser.LEFT_funContext context)
@@ -1434,50 +1434,50 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToString("Function LEFT parameter 1 is error!");
+            var firstValue = args[0].ToText("Function LEFT parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
 
             if (args.Count == 1) {
-                return Operand.Create(firstValue.StringValue[0].ToString());
+                return Operand.Create(firstValue.TextValue[0].ToString());
             }
             var secondValue = args[1].ToNumber("Function LEFT parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
-            return Operand.Create(firstValue.StringValue.Substring(0, secondValue.IntValue));
+            return Operand.Create(firstValue.TextValue.Substring(0, secondValue.IntValue));
         }
         public Operand VisitLEN_fun( mathParser.LEN_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToString("Function LEN parameter is error!");
+            var firstValue = this.Visit(context.expr()).ToText("Function LEN parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            return Operand.Create(firstValue.StringValue.Length);
+            return Operand.Create(firstValue.TextValue.Length);
         }
         public Operand VisitLOWER_fun( mathParser.LOWER_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToString("Function LOWER/TOLOWER parameter is error!");
+            var firstValue = this.Visit(context.expr()).ToText("Function LOWER/TOLOWER parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            return Operand.Create(firstValue.StringValue.ToLower());
+            return Operand.Create(firstValue.TextValue.ToLower());
         }
         public Operand VisitMID_fun( mathParser.MID_funContext context)
         {
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToString("Function MID parameter 1 is error!");
+            var firstValue = args[0].ToText("Function MID parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
             var secondValue = args[1].ToNumber("Function MID parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
             var thirdValue = args[2].ToNumber("Function MID parameter 3 is error!");
             if (thirdValue.IsError) { return thirdValue; }
 
-            return Operand.Create(firstValue.StringValue.Substring(secondValue.IntValue - excelIndex, thirdValue.IntValue));
+            return Operand.Create(firstValue.TextValue.Substring(secondValue.IntValue - excelIndex, thirdValue.IntValue));
         }
         public Operand VisitPROPER_fun( mathParser.PROPER_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToString("Function PROPER parameter is error!");
+            var firstValue = this.Visit(context.expr()).ToText("Function PROPER parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            var text = firstValue.StringValue;
+            var text = firstValue.TextValue;
             StringBuilder sb = new StringBuilder(text);
             bool isFirst = true;
             for (int i = 0; i < text.Length; i++) {
@@ -1496,14 +1496,14 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToString("Function REPLACE parameter 1 is error!");
+            var firstValue = args[0].ToText("Function REPLACE parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
-            var oldtext = firstValue.StringValue;
+            var oldtext = firstValue.TextValue;
             if (args.Count == 3) {
-                var secondValue2 =args[1].ToString("Function REPLACE parameter 2 is error!");
-                var thirdValue2 =args[2].ToString("Function REPLACE parameter 3 is error!");
-                var old = secondValue2.StringValue;
-                var newstr = thirdValue2.StringValue;
+                var secondValue2 =args[1].ToText("Function REPLACE parameter 2 is error!");
+                var thirdValue2 =args[2].ToText("Function REPLACE parameter 3 is error!");
+                var old = secondValue2.TextValue;
+                var newstr = thirdValue2.TextValue;
                 return Operand.Create(oldtext.Replace(old, newstr));
             }
 
@@ -1512,12 +1512,12 @@ namespace ToolGood.Algorithm
             if (secondValue.IsError) { return secondValue; }
             var thirdValue =args[2].ToNumber("Function REPLACE parameter 3 is error!");
             if (thirdValue.IsError) { return thirdValue; }
-            var fourthValue =args[3].ToString("Function REPLACE parameter 3 is error!");
+            var fourthValue =args[3].ToText("Function REPLACE parameter 3 is error!");
             if (fourthValue.IsError) { return fourthValue; }
 
             var start = secondValue.IntValue - excelIndex;
             var length = thirdValue.IntValue;
-            var newtext = fourthValue.StringValue;
+            var newtext = fourthValue.TextValue;
 
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < oldtext.Length; i++) {
@@ -1536,12 +1536,12 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToString("Function REPT parameter 1 is error!");
+            var firstValue = args[0].ToText("Function REPT parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
             var secondValue = args[1].ToNumber("Function REPT parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
 
-            var newtext = firstValue.StringValue;
+            var newtext = firstValue.TextValue;
             var length = secondValue.IntValue;
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < length; i++) {
@@ -1554,15 +1554,15 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToString("Function RIGHT parameter 1 is error!");
+            var firstValue = args[0].ToText("Function RIGHT parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
 
             if (args.Count == 1) {
-                return Operand.Create(firstValue.StringValue[firstValue.StringValue.Length - 1].ToString());
+                return Operand.Create(firstValue.TextValue[firstValue.TextValue.Length - 1].ToString());
             }
             var secondValue = args[1].ToNumber("Function RIGHT parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
-            return Operand.Create(firstValue.StringValue.Substring(firstValue.StringValue.Length - secondValue.IntValue, secondValue.IntValue));
+            return Operand.Create(firstValue.TextValue.Substring(firstValue.TextValue.Length - secondValue.IntValue, secondValue.IntValue));
         }
         public Operand VisitRMB_fun( mathParser.RMB_funContext context)
         {
@@ -1576,38 +1576,38 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToString("Function SEARCH parameter 1 is error!");
+            var firstValue = args[0].ToText("Function SEARCH parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
-            var secondValue =args[1].ToString("Function SEARCH parameter 2 is error!");
+            var secondValue =args[1].ToText("Function SEARCH parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
             if (args.Count == 2) {
-                var p = secondValue.StringValue.IndexOf(firstValue.StringValue, StringComparison.OrdinalIgnoreCase) + excelIndex;
+                var p = secondValue.TextValue.IndexOf(firstValue.TextValue, StringComparison.OrdinalIgnoreCase) + excelIndex;
                 return Operand.Create(p);
             }
             var thirdValue =args[2].ToNumber("Function SEARCH parameter 3 is error!");
             if (thirdValue.IsError) { return thirdValue; }
-            var p2 = secondValue.StringValue.IndexOf(firstValue.StringValue, thirdValue.IntValue, StringComparison.OrdinalIgnoreCase) + excelIndex;
+            var p2 = secondValue.TextValue.IndexOf(firstValue.TextValue, thirdValue.IntValue, StringComparison.OrdinalIgnoreCase) + excelIndex;
             return Operand.Create(p2);
         }
         public Operand VisitSUBSTITUTE_fun( mathParser.SUBSTITUTE_funContext context)
         {
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
-            var firstValue = args[0].ToString("Function SUBSTITUTE parameter 1 is error!");
+            var firstValue = args[0].ToText("Function SUBSTITUTE parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
-            var secondValue =args[1].ToString("Function SUBSTITUTE parameter 2 is error!");
+            var secondValue =args[1].ToText("Function SUBSTITUTE parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
-            var thirdValue =args[2].ToString("Function SUBSTITUTE parameter 3 is error!");
+            var thirdValue =args[2].ToText("Function SUBSTITUTE parameter 3 is error!");
             if (thirdValue.IsError) { return thirdValue; }
             if (args.Count == 3) {
-                return Operand.Create(firstValue.StringValue.Replace(secondValue.StringValue, thirdValue.StringValue));
+                return Operand.Create(firstValue.TextValue.Replace(secondValue.TextValue, thirdValue.TextValue));
             }
             var fourthValue =args[3].ToNumber("Function SUBSTITUTE parameter 4 is error!");
             if (fourthValue.IsError) { return fourthValue; }
 
-            string text = firstValue.StringValue;
-            string oldtext = secondValue.StringValue;
-            string newtext = thirdValue.StringValue;
+            string text = firstValue.TextValue;
+            string oldtext = secondValue.TextValue;
+            string newtext = thirdValue.TextValue;
             int index = fourthValue.IntValue;
 
             int index2 = 0;
@@ -1649,7 +1649,7 @@ namespace ToolGood.Algorithm
 
             var firstValue = args[0];
             if (firstValue.IsError) { return firstValue; }
-            var secondValue = args[1].ToString("Function TEXT parameter 2 is error!");
+            var secondValue = args[1].ToText("Function TEXT parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
 
             if (firstValue.Type == OperandType.STRING) {
@@ -1657,34 +1657,34 @@ namespace ToolGood.Algorithm
             } else if (firstValue.Type == OperandType.BOOLEAN) {
                 return Operand.Create(firstValue.BooleanValue ? "TRUE" : "FALSE");
             } else if (firstValue.Type == OperandType.NUMBER) {
-                return Operand.Create(firstValue.NumberValue.ToString(secondValue.StringValue, cultureInfo));
+                return Operand.Create(firstValue.NumberValue.ToString(secondValue.TextValue, cultureInfo));
             } else if (firstValue.Type == OperandType.DATE) {
-                return Operand.Create(firstValue.DateValue.ToString(secondValue.StringValue));
+                return Operand.Create(firstValue.DateValue.ToString(secondValue.TextValue));
             }
-            firstValue = firstValue.ToString("Function TEXT parameter 1 is error!");
+            firstValue = firstValue.ToText("Function TEXT parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
-            return Operand.Create(firstValue.StringValue.ToString());
+            return Operand.Create(firstValue.TextValue.ToString());
         }
         public Operand VisitTRIM_fun( mathParser.TRIM_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToString("Function TRIM parameter is error!");
+            var firstValue = this.Visit(context.expr()).ToText("Function TRIM parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            return Operand.Create(firstValue.StringValue.Trim());
+            return Operand.Create(firstValue.TextValue.Trim());
         }
         public Operand VisitUPPER_fun( mathParser.UPPER_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToString("Function UPPER/TOUPPER parameter is error!");
+            var firstValue = this.Visit(context.expr()).ToText("Function UPPER/TOUPPER parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            return Operand.Create(firstValue.StringValue.ToUpper());
+            return Operand.Create(firstValue.TextValue.ToUpper());
         }
         public Operand VisitVALUE_fun( mathParser.VALUE_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToString("Function VALUE parameter is error!");
+            var firstValue = this.Visit(context.expr()).ToText("Function VALUE parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            if (double.TryParse(firstValue.StringValue, NumberStyles.Any, cultureInfo, out double d)) {
+            if (double.TryParse(firstValue.TextValue, NumberStyles.Any, cultureInfo, out double d)) {
                 return Operand.Create(d);
             }
             return Operand.Error("Function VALUE parameter is error!");
@@ -1729,20 +1729,20 @@ namespace ToolGood.Algorithm
 
         public Operand VisitDATEVALUE_fun( mathParser.DATEVALUE_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToString("Function DATEVALUE parameter is error!");
+            var firstValue = this.Visit(context.expr()).ToText("Function DATEVALUE parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            if (DateTime.TryParse(firstValue.StringValue, cultureInfo, DateTimeStyles.None, out DateTime dt)) {
+            if (DateTime.TryParse(firstValue.TextValue, cultureInfo, DateTimeStyles.None, out DateTime dt)) {
                 return Operand.Create(dt);
             }
             return Operand.Error("Function DATEVALUE parameter is error!");
         }
         public Operand VisitTIMEVALUE_fun( mathParser.TIMEVALUE_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToString("Function TIMEVALUE parameter is error!");
+            var firstValue = this.Visit(context.expr()).ToText("Function TIMEVALUE parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            if (TimeSpan.TryParse(firstValue.StringValue, cultureInfo, out TimeSpan dt)) {
+            if (TimeSpan.TryParse(firstValue.TextValue, cultureInfo, out TimeSpan dt)) {
                 return Operand.Create(dt);
             }
             return Operand.Error("Function TIMEVALUE parameter is error!");
@@ -1863,12 +1863,12 @@ namespace ToolGood.Algorithm
             if (firstValue.IsError) { return firstValue; }
             var secondValue =args[1].ToDate("Function DATEDIF parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
-            var thirdValue =args[2].ToString("Function DATEDIF parameter 3 is error!");
+            var thirdValue =args[2].ToText("Function DATEDIF parameter 3 is error!");
             if (thirdValue.IsError) { return thirdValue; }
 
             var startDate = (DateTime) firstValue.DateValue;
             var endDate = (DateTime) secondValue.DateValue;
-            var t = thirdValue.StringValue.ToLower();
+            var t = thirdValue.TextValue.ToLower();
 
             if (t == "y") {
                 #region y
@@ -2261,11 +2261,11 @@ namespace ToolGood.Algorithm
                 count = F_base_countif(list, args[1].NumberValue);
                 sum = count * args[1].NumberValue;
             } else {
-                if (double.TryParse(args[1].StringValue.Trim(), NumberStyles.Any, cultureInfo, out double d)) {
+                if (double.TryParse(args[1].TextValue.Trim(), NumberStyles.Any, cultureInfo, out double d)) {
                     count = F_base_countif(list, d);
-                    sum = F_base_sumif(list, "=" + args[1].StringValue.Trim(), sumdbs);
+                    sum = F_base_sumif(list, "=" + args[1].TextValue.Trim(), sumdbs);
                 } else {
-                    var sunif = args[1].StringValue.Trim();
+                    var sunif = args[1].TextValue.Trim();
                     if (sumifRegex.IsMatch(sunif)) {
                         count = F_base_countif(list, sunif);
                         sum = F_base_sumif(list, sunif, sumdbs);
@@ -2338,10 +2338,10 @@ namespace ToolGood.Algorithm
             if (args[1].Type == OperandType.NUMBER) {
                 count = F_base_countif(list, args[1].NumberValue);
             } else {
-                if (double.TryParse(args[1].StringValue.Trim(), NumberStyles.Any, cultureInfo, out double d)) {
+                if (double.TryParse(args[1].TextValue.Trim(), NumberStyles.Any, cultureInfo, out double d)) {
                     count = F_base_countif(list, d);
                 } else {
-                    var sunif = args[1].StringValue.Trim();
+                    var sunif = args[1].TextValue.Trim();
                     if (sumifRegex.IsMatch(sunif)) {
                         count = F_base_countif(list, sunif);
                     } else {
@@ -2387,10 +2387,10 @@ namespace ToolGood.Algorithm
             if (args[1].Type == OperandType.NUMBER) {
                 sum = F_base_countif(list, args[1].NumberValue) * args[1].NumberValue;
             } else {
-                if (double.TryParse(args[1].StringValue.Trim(), NumberStyles.Any, cultureInfo, out _)) {
-                    sum = F_base_sumif(list, "=" + args[1].StringValue.Trim(), sumdbs);
+                if (double.TryParse(args[1].TextValue.Trim(), NumberStyles.Any, cultureInfo, out _)) {
+                    sum = F_base_sumif(list, "=" + args[1].TextValue.Trim(), sumdbs);
                 } else {
-                    var sunif = args[1].StringValue.Trim();
+                    var sunif = args[1].TextValue.Trim();
                     if (sumifRegex.IsMatch(sunif)) {
                         sum = F_base_sumif(list, sunif, sumdbs);
                     } else {
@@ -2940,9 +2940,9 @@ namespace ToolGood.Algorithm
                 var o = F_base_GetList(i.ArrayValue, list);
                 if (o == false) { return false; }
             } else {
-                var o = args.ToString(null);
+                var o = args.ToText(null);
                 if (o.IsError) { return false; }
-                list.Add(o.StringValue);
+                list.Add(o.TextValue);
             }
             return true;
         }
@@ -2960,9 +2960,9 @@ namespace ToolGood.Algorithm
                     var o = F_base_GetList(i.ArrayValue, list);
                     if (o == false) { return false; }
                 } else {
-                    var o = item.ToString(null);
+                    var o = item.ToText(null);
                     if (o.IsError) { return false; }
-                    list.Add(o.StringValue);
+                    list.Add(o.TextValue);
                 }
             }
             return true;
@@ -2974,87 +2974,87 @@ namespace ToolGood.Algorithm
 
         public Operand VisitURLENCODE_fun( mathParser.URLENCODE_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToString("Function URLENCODE parameter 1 is error!");
+            var firstValue = this.Visit(context.expr()).ToText("Function URLENCODE parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            return Operand.Create(HttpUtility.UrlEncode(firstValue.StringValue));
+            return Operand.Create(HttpUtility.UrlEncode(firstValue.TextValue));
         }
         public Operand VisitURLDECODE_fun( mathParser.URLDECODE_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToString("Function URLDECODE parameter 1 is error!");
+            var firstValue = this.Visit(context.expr()).ToText("Function URLDECODE parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            return Operand.Create(HttpUtility.UrlDecode(firstValue.StringValue));
+            return Operand.Create(HttpUtility.UrlDecode(firstValue.TextValue));
         }
         public Operand VisitHTMLENCODE_fun( mathParser.HTMLENCODE_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToString("Function HTMLENCODE parameter 1 is error!");
+            var firstValue = this.Visit(context.expr()).ToText("Function HTMLENCODE parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            return Operand.Create(HttpUtility.HtmlEncode(firstValue.StringValue));
+            return Operand.Create(HttpUtility.HtmlEncode(firstValue.TextValue));
         }
         public Operand VisitHTMLDECODE_fun( mathParser.HTMLDECODE_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToString("Function HTMLDECODE parameter 1 is error!");
+            var firstValue = this.Visit(context.expr()).ToText("Function HTMLDECODE parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            return Operand.Create(HttpUtility.HtmlDecode(firstValue.StringValue));
+            return Operand.Create(HttpUtility.HtmlDecode(firstValue.TextValue));
         }
         public Operand VisitBASE64TOTEXT_fun( mathParser.BASE64TOTEXT_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = this.Visit(item).ToString($"Function BASE64TOTEXT parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function BASE64TOTEXT parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
 
             Encoding encoding;
             if (args.Count == 1) {
                 encoding = Encoding.UTF8;
             } else {
-                encoding = Encoding.GetEncoding(args[1].StringValue);
+                encoding = Encoding.GetEncoding(args[1].TextValue);
             }
-            var t = encoding.GetString(Base64.FromBase64String(args[0].StringValue));
+            var t = encoding.GetString(Base64.FromBase64String(args[0].TextValue));
             return Operand.Create(t);
         }
         public Operand VisitBASE64URLTOTEXT_fun( mathParser.BASE64URLTOTEXT_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = this.Visit(item).ToString($"Function BASE64URLTOTEXT parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function BASE64URLTOTEXT parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
 
             Encoding encoding;
             if (args.Count == 1) {
                 encoding = Encoding.UTF8;
             } else {
-                encoding = Encoding.GetEncoding(args[1].StringValue);
+                encoding = Encoding.GetEncoding(args[1].TextValue);
             }
-            var t = encoding.GetString(Base64.FromBase64ForUrlString(args[0].StringValue));
+            var t = encoding.GetString(Base64.FromBase64ForUrlString(args[0].TextValue));
             return Operand.Create(t);
         }
         public Operand VisitTEXTTOBASE64_fun( mathParser.TEXTTOBASE64_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = this.Visit(item).ToString($"Function TEXTTOBASE64 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function TEXTTOBASE64 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
 
             Encoding encoding;
             if (args.Count == 1) {
                 encoding = Encoding.UTF8;
             } else {
-                encoding = Encoding.GetEncoding(args[1].StringValue);
+                encoding = Encoding.GetEncoding(args[1].TextValue);
             }
-            var bytes = encoding.GetBytes(args[0].StringValue);
+            var bytes = encoding.GetBytes(args[0].TextValue);
             var t = Base64.ToBase64String(bytes);
             return Operand.Create(t);
         }
         public Operand VisitTEXTTOBASE64URL_fun( mathParser.TEXTTOBASE64URL_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = this.Visit(item).ToString($"Function TEXTTOBASE64URL parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function TEXTTOBASE64URL parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
 
             Encoding encoding;
             if (args.Count == 1) {
                 encoding = Encoding.UTF8;
             } else {
-                encoding = Encoding.GetEncoding(args[1].StringValue);
+                encoding = Encoding.GetEncoding(args[1].TextValue);
             }
-            var bytes = encoding.GetBytes(args[0].StringValue);
+            var bytes = encoding.GetBytes(args[0].TextValue);
             var t = Base64.ToBase64ForUrlString(bytes);
             return Operand.Create(t);
         }
@@ -3063,19 +3063,19 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToString("Function REGEX parameter 1 is error!");
+            var firstValue = args[0].ToText("Function REGEX parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
-            var secondValue = args[1].ToString("Function REGEX parameter 2 is error!");
+            var secondValue = args[1].ToText("Function REGEX parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
 
             if (args.Count == 2) {
-                var b = Regex.Match(firstValue.StringValue, secondValue.StringValue);
+                var b = Regex.Match(firstValue.TextValue, secondValue.TextValue);
                 if (b.Success == false) {
                     return Operand.Error("Function REGEX is error!");
                 }
                 return Operand.Create(b.Value);
             } else if (args.Count == 3) {
-                var ms = Regex.Matches(firstValue.StringValue, secondValue.StringValue);
+                var ms = Regex.Matches(firstValue.TextValue, secondValue.TextValue);
                 var thirdValue =args[2].ToNumber("Function REGEX parameter 3 is error!");
                 if (thirdValue.IsError) { return thirdValue; }
                 if (ms.Count <= thirdValue.IntValue - excelIndex) {
@@ -3083,7 +3083,7 @@ namespace ToolGood.Algorithm
                 }
                 return Operand.Create(ms[thirdValue.IntValue - excelIndex].Value);
             } else {
-                var ms = Regex.Matches(firstValue.StringValue, secondValue.StringValue);
+                var ms = Regex.Matches(firstValue.TextValue, secondValue.TextValue);
                 var thirdValue =args[2].ToNumber("Function REGEX parameter 3 is error!");
                 if (thirdValue.IsError) { return thirdValue; }
                 if (ms.Count <= thirdValue.IntValue + excelIndex) {
@@ -3097,17 +3097,17 @@ namespace ToolGood.Algorithm
         public Operand VisitREGEXREPALCE_fun( mathParser.REGEXREPALCE_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = this.Visit(item).ToString($"Function REGEXREPALCE parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function REGEXREPALCE parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
 
-            var b = Regex.Replace(args[0].StringValue, args[1].StringValue, args[2].StringValue);
+            var b = Regex.Replace(args[0].TextValue, args[1].TextValue, args[2].TextValue);
             return Operand.Create(b);
         }
         public Operand VisitISREGEX_fun( mathParser.ISREGEX_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = this.Visit(item).ToString($"Function ISREGEX parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function ISREGEX parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
 
-            var b = Regex.IsMatch(args[0].StringValue, args[1].StringValue);
+            var b = Regex.IsMatch(args[0].TextValue, args[1].TextValue);
             return Operand.Create(b);
         }
         public Operand VisitGUID_fun( mathParser.GUID_funContext context)
@@ -3117,166 +3117,166 @@ namespace ToolGood.Algorithm
         public Operand VisitMD5_fun( mathParser.MD5_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = this.Visit(item).ToString($"Function MD5 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function MD5 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
 
             Encoding encoding;
             if (args.Count == 1) {
                 encoding = Encoding.UTF8;
             } else {
-                encoding = Encoding.GetEncoding(args[1].StringValue);
+                encoding = Encoding.GetEncoding(args[1].TextValue);
             }
-            var t = Hash.GetMd5String(encoding.GetBytes(args[0].StringValue));
+            var t = Hash.GetMd5String(encoding.GetBytes(args[0].TextValue));
             return Operand.Create(t);
         }
         public Operand VisitSHA1_fun( mathParser.SHA1_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = this.Visit(item).ToString($"Function SHA1 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function SHA1 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
 
             Encoding encoding;
             if (args.Count == 1) {
                 encoding = Encoding.UTF8;
             } else {
-                encoding = Encoding.GetEncoding(args[1].StringValue);
+                encoding = Encoding.GetEncoding(args[1].TextValue);
             }
-            var t = Hash.GetSha1String(encoding.GetBytes(args[0].StringValue));
+            var t = Hash.GetSha1String(encoding.GetBytes(args[0].TextValue));
             return Operand.Create(t);
         }
         public Operand VisitSHA256_fun( mathParser.SHA256_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = this.Visit(item).ToString($"Function SHA256 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function SHA256 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
 
             Encoding encoding;
             if (args.Count == 1) {
                 encoding = Encoding.UTF8;
             } else {
-                encoding = Encoding.GetEncoding(args[1].StringValue);
+                encoding = Encoding.GetEncoding(args[1].TextValue);
             }
-            var t = Hash.GetSha256String(encoding.GetBytes(args[0].StringValue));
+            var t = Hash.GetSha256String(encoding.GetBytes(args[0].TextValue));
             return Operand.Create(t);
         }
         public Operand VisitSHA512_fun( mathParser.SHA512_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = this.Visit(item).ToString($"Function SHA512 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function SHA512 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
 
             Encoding encoding;
             if (args.Count == 1) {
                 encoding = Encoding.UTF8;
             } else {
-                encoding = Encoding.GetEncoding(args[1].StringValue);
+                encoding = Encoding.GetEncoding(args[1].TextValue);
             }
-            var t = Hash.GetSha512String(encoding.GetBytes(args[0].StringValue));
+            var t = Hash.GetSha512String(encoding.GetBytes(args[0].TextValue));
             return Operand.Create(t);
         }
         public Operand VisitCRC8_fun( mathParser.CRC8_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = this.Visit(item).ToString($"Function CRC8 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function CRC8 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
 
             Encoding encoding;
             if (args.Count == 1) {
                 encoding = Encoding.UTF8;
             } else {
-                encoding = Encoding.GetEncoding(args[1].StringValue);
+                encoding = Encoding.GetEncoding(args[1].TextValue);
             }
-            var t = Hash.GetCrc8String(encoding.GetBytes(args[0].StringValue));
+            var t = Hash.GetCrc8String(encoding.GetBytes(args[0].TextValue));
             return Operand.Create(t);
         }
         public Operand VisitCRC16_fun( mathParser.CRC16_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = this.Visit(item).ToString($"Function CRC16 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function CRC16 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
 
             Encoding encoding;
             if (args.Count == 1) {
                 encoding = Encoding.UTF8;
             } else {
-                encoding = Encoding.GetEncoding(args[1].StringValue);
+                encoding = Encoding.GetEncoding(args[1].TextValue);
             }
-            var t = Hash.GetCrc16String(encoding.GetBytes(args[0].StringValue));
+            var t = Hash.GetCrc16String(encoding.GetBytes(args[0].TextValue));
             return Operand.Create(t);
         }
         public Operand VisitCRC32_fun( mathParser.CRC32_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = this.Visit(item).ToString($"Function CRC32 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function CRC32 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
 
             Encoding encoding;
             if (args.Count == 1) {
                 encoding = Encoding.UTF8;
             } else {
-                encoding = Encoding.GetEncoding(args[1].StringValue);
+                encoding = Encoding.GetEncoding(args[1].TextValue);
             }
-            var t = Hash.GetCrc32String(encoding.GetBytes(args[0].StringValue));
+            var t = Hash.GetCrc32String(encoding.GetBytes(args[0].TextValue));
             return Operand.Create(t);
         }
         public Operand VisitHMACMD5_fun( mathParser.HMACMD5_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = this.Visit(item).ToString($"Function HMACMD5 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function HMACMD5 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
 
             Encoding encoding;
             if (args.Count == 2) {
                 encoding = Encoding.UTF8;
             } else {
-                encoding = Encoding.GetEncoding(args[2].StringValue);
+                encoding = Encoding.GetEncoding(args[2].TextValue);
             }
-            var t = Hash.GetHmacMd5String(encoding.GetBytes(args[0].StringValue), args[1].StringValue);
+            var t = Hash.GetHmacMd5String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
             return Operand.Create(t);
         }
         public Operand VisitHMACSHA1_fun( mathParser.HMACSHA1_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = this.Visit(item).ToString($"Function HMACSHA1 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function HMACSHA1 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
 
             Encoding encoding;
             if (args.Count == 2) {
                 encoding = Encoding.UTF8;
             } else {
-                encoding = Encoding.GetEncoding(args[2].StringValue);
+                encoding = Encoding.GetEncoding(args[2].TextValue);
             }
-            var t = Hash.GetHmacSha1String(encoding.GetBytes(args[0].StringValue), args[1].StringValue);
+            var t = Hash.GetHmacSha1String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
             return Operand.Create(t);
         }
         public Operand VisitHMACSHA256_fun( mathParser.HMACSHA256_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = this.Visit(item).ToString($"Function HMACSHA256 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function HMACSHA256 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
 
             Encoding encoding;
             if (args.Count == 2) {
                 encoding = Encoding.UTF8;
             } else {
-                encoding = Encoding.GetEncoding(args[2].StringValue);
+                encoding = Encoding.GetEncoding(args[2].TextValue);
             }
-            var t = Hash.GetHmacSha256String(encoding.GetBytes(args[0].StringValue), args[1].StringValue);
+            var t = Hash.GetHmacSha256String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
             return Operand.Create(t);
         }
         public Operand VisitHMACSHA512_fun( mathParser.HMACSHA512_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = this.Visit(item).ToString($"Function HMACSHA512 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function HMACSHA512 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
 
             Encoding encoding;
             if (args.Count == 2) {
                 encoding = Encoding.UTF8;
             } else {
-                encoding = Encoding.GetEncoding(args[2].StringValue);
+                encoding = Encoding.GetEncoding(args[2].TextValue);
             }
-            var t = Hash.GetHmacSha512String(encoding.GetBytes(args[0].StringValue), args[1].StringValue);
+            var t = Hash.GetHmacSha512String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
             return Operand.Create(t);
         }
         public Operand VisitTRIMSTART_fun( mathParser.TRIMSTART_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = this.Visit(item).ToString($"Function TRIMSTART parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function TRIMSTART parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
 
-            var text = args[0].StringValue;
+            var text = args[0].TextValue;
             if (args.Count == 2) {
 
-                return Operand.Create(text.TrimStart(args[1].StringValue.ToArray()));
+                return Operand.Create(text.TrimStart(args[1].TextValue.ToArray()));
             }
             return Operand.Create(text.TrimStart());
         }
@@ -3284,12 +3284,12 @@ namespace ToolGood.Algorithm
         public Operand VisitTRIMEND_fun( mathParser.TRIMEND_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = this.Visit(item).ToString($"Function TRIMEND parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function TRIMEND parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
 
-            var text = args[0].StringValue;
+            var text = args[0].TextValue;
             if (args.Count == 2) {
 
-                return Operand.Create(text.TrimEnd(args[1].StringValue.ToArray()));
+                return Operand.Create(text.TrimEnd(args[1].TextValue.ToArray()));
             }
             return Operand.Create(text.TrimEnd());
         }
@@ -3299,53 +3299,53 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToString("Function INDEXOF parameter 1 is error!");
+            var firstValue = args[0].ToText("Function INDEXOF parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
-            var secondValue =args[1].ToString("Function INDEXOF parameter 2 is error!");
+            var secondValue =args[1].ToText("Function INDEXOF parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
 
-            var text = firstValue.StringValue;
+            var text = firstValue.TextValue;
             if (args.Count == 2) {
-                return Operand.Create(text.IndexOf(secondValue.StringValue) + excelIndex);
+                return Operand.Create(text.IndexOf(secondValue.TextValue) + excelIndex);
             }
-            var thirdValue =args[2].ToString("Function INDEXOF parameter 3 is error!");
+            var thirdValue =args[2].ToText("Function INDEXOF parameter 3 is error!");
             if (thirdValue.IsError) { return thirdValue; }
             if (args.Count == 3) {
-                return Operand.Create(text.IndexOf(secondValue.StringValue, thirdValue.IntValue) + excelIndex);
+                return Operand.Create(text.IndexOf(secondValue.TextValue, thirdValue.IntValue) + excelIndex);
             }
-            var fourthValue =args[3].ToString("Function INDEXOF parameter 4 is error!");
+            var fourthValue =args[3].ToText("Function INDEXOF parameter 4 is error!");
             if (fourthValue.IsError) { return fourthValue; }
-            return Operand.Create(text.IndexOf(secondValue.StringValue, thirdValue.IntValue, fourthValue.IntValue) + excelIndex);
+            return Operand.Create(text.IndexOf(secondValue.TextValue, thirdValue.IntValue, fourthValue.IntValue) + excelIndex);
         }
         public Operand VisitLASTINDEXOF_fun( mathParser.LASTINDEXOF_funContext context)
         {
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToString("Function LASTINDEXOF parameter 1 is error!");
+            var firstValue = args[0].ToText("Function LASTINDEXOF parameter 1 is error!");
                         if (firstValue.IsError) { return firstValue; }
-            var secondValue =args[1].ToString("Function LASTINDEXOF parameter 2 is error!");
+            var secondValue =args[1].ToText("Function LASTINDEXOF parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
 
-            var text = args[0].StringValue;
+            var text = args[0].TextValue;
             if (args.Count == 2) {
-                return Operand.Create(text.LastIndexOf(args[1].StringValue) + excelIndex);
+                return Operand.Create(text.LastIndexOf(args[1].TextValue) + excelIndex);
             }
-            var thirdValue =args[2].ToString("Function LASTINDEXOF parameter 3 is error!");
+            var thirdValue =args[2].ToText("Function LASTINDEXOF parameter 3 is error!");
                         if (thirdValue.IsError) { return thirdValue; }
             if (args.Count == 3) {
-                return Operand.Create(text.LastIndexOf(args[1].StringValue, args[2].IntValue) + excelIndex);
+                return Operand.Create(text.LastIndexOf(args[1].TextValue, args[2].IntValue) + excelIndex);
             }
-            var fourthValue =args[3].ToString("Function LASTINDEXOF parameter 4 is error!");
+            var fourthValue =args[3].ToText("Function LASTINDEXOF parameter 4 is error!");
             if (fourthValue.IsError) { return fourthValue; }
-            return Operand.Create(text.LastIndexOf(args[1].StringValue, args[2].IntValue, args[3].IntValue) + excelIndex);
+            return Operand.Create(text.LastIndexOf(args[1].TextValue, args[2].IntValue, args[3].IntValue) + excelIndex);
         }
         public Operand VisitSPLIT_fun( mathParser.SPLIT_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = this.Visit(item).ToString($"Function SPLIT parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function SPLIT parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
 
-            return Operand.Create(args[0].StringValue.Split(args[1].StringValue.ToArray()));
+            return Operand.Create(args[0].TextValue.Split(args[1].TextValue.ToArray()));
         }
         public Operand VisitJOIN_fun( mathParser.JOIN_funContext context)
         {
@@ -3364,12 +3364,12 @@ namespace ToolGood.Algorithm
                 var o = F_base_GetList(firstValue, list);
                 if (o == false) return Operand.Error("Function JOIN parameter 1 is error!");
 
-                var secondValue =args[1].ToString("Function JOIN parameter 2 is error!");
+                var secondValue =args[1].ToText("Function JOIN parameter 2 is error!");
                 if (secondValue.IsError) { return secondValue; }
 
-                return Operand.Create(string.Join(secondValue.StringValue, list));
+                return Operand.Create(string.Join(secondValue.TextValue, list));
             } else {
-                firstValue = firstValue.ToString("Function JOIN parameter 1 is error!");
+                firstValue = firstValue.ToText("Function JOIN parameter 1 is error!");
                 if (firstValue.IsError) { return firstValue; }
 
                 List<string> list = new List<string>();
@@ -3378,7 +3378,7 @@ namespace ToolGood.Algorithm
                     if (o == false) return Operand.Error($"Function JOIN parameter {i + 1} is error!");
                 }
 
-                return Operand.Create(string.Join(firstValue.StringValue, list));
+                return Operand.Create(string.Join(firstValue.TextValue, list));
             }
         }
         public Operand VisitSUBSTRING_fun( mathParser.SUBSTRING_funContext context)
@@ -3386,12 +3386,12 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToString("Function SUBSTRING parameter 1 is error!");
+            var firstValue = args[0].ToText("Function SUBSTRING parameter 1 is error!");
                         if (firstValue.IsError) { return firstValue; }
             var secondValue =args[1].ToNumber("Function SUBSTRING parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
 
-            var text = firstValue.StringValue;
+            var text = firstValue.TextValue;
             if (args.Count == 2) {
                 return Operand.Create(text.Substring(secondValue.IntValue - excelIndex));
             }
@@ -3404,60 +3404,60 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToString("Function STARTSWITH parameter 1 is error!");
+            var firstValue = args[0].ToText("Function STARTSWITH parameter 1 is error!");
                         if (firstValue.IsError) { return firstValue; }
-            var secondValue =args[1].ToString("Function STARTSWITH parameter 2 is error!");
+            var secondValue =args[1].ToText("Function STARTSWITH parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
 
-            var text = args[0].StringValue;
+            var text = args[0].TextValue;
             if (args.Count == 2) {
-                return Operand.Create(text.StartsWith(secondValue.StringValue));
+                return Operand.Create(text.StartsWith(secondValue.TextValue));
             }
             var thirdValue =args[2].ToBoolean("Function STARTSWITH parameter 3 is error!");
                         if (thirdValue.IsError) { return thirdValue; }
-            return Operand.Create(text.StartsWith(secondValue.StringValue, thirdValue.BooleanValue ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
+            return Operand.Create(text.StartsWith(secondValue.TextValue, thirdValue.BooleanValue ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
         }
         public Operand VisitENDSWITH_fun( mathParser.ENDSWITH_funContext context)
         {
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToString("Function ENDSWITH parameter 1 is error!");
+            var firstValue = args[0].ToText("Function ENDSWITH parameter 1 is error!");
                         if (firstValue.IsError) { return firstValue; }
-            var secondValue =args[1].ToString("Function ENDSWITH parameter 2 is error!");
+            var secondValue =args[1].ToText("Function ENDSWITH parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
 
-            var text = firstValue.StringValue;
+            var text = firstValue.TextValue;
             if (args.Count == 2) {
-                return Operand.Create(text.EndsWith(secondValue.StringValue));
+                return Operand.Create(text.EndsWith(secondValue.TextValue));
             }
             var thirdValue =args[2].ToBoolean("Function ENDSWITH parameter 3 is error!"); ;
                         if (thirdValue.IsError) { return thirdValue; }
-            return Operand.Create(text.EndsWith(secondValue.StringValue, thirdValue.BooleanValue ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
+            return Operand.Create(text.EndsWith(secondValue.TextValue, thirdValue.BooleanValue ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
 
         }
         public Operand VisitISNULLOREMPTY_fun( mathParser.ISNULLOREMPTY_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToString("Function ISNULLOREMPTY parameter 1 is error!");
+            var firstValue = this.Visit(context.expr()).ToText("Function ISNULLOREMPTY parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            return Operand.Create(string.IsNullOrEmpty(firstValue.StringValue));
+            return Operand.Create(string.IsNullOrEmpty(firstValue.TextValue));
         }
         public Operand VisitISNULLORWHITESPACE_fun( mathParser.ISNULLORWHITESPACE_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToString("Function ISNULLORWHITESPACE parameter 1 is error!");
+            var firstValue = this.Visit(context.expr()).ToText("Function ISNULLORWHITESPACE parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            return Operand.Create(string.IsNullOrWhiteSpace(firstValue.StringValue));
+            return Operand.Create(string.IsNullOrWhiteSpace(firstValue.TextValue));
         }
         public Operand VisitREMOVESTART_fun( mathParser.REMOVESTART_funContext context)
         {
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToString("Function REMOVESTART parameter 1 is error!");
+            var firstValue = args[0].ToText("Function REMOVESTART parameter 1 is error!");
                         if (firstValue.IsError) { return firstValue; }
-            var secondValue =args[1].ToString("Function REMOVESTART parameter 2 is error!");
+            var secondValue =args[1].ToText("Function REMOVESTART parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
 
             StringComparison comparison = StringComparison.Ordinal;
@@ -3470,10 +3470,10 @@ namespace ToolGood.Algorithm
                     comparison = StringComparison.OrdinalIgnoreCase;
                 }
             }
-            var text = firstValue.StringValue;
-            if (text.StartsWith(secondValue.StringValue, comparison))
+            var text = firstValue.TextValue;
+            if (text.StartsWith(secondValue.TextValue, comparison))
             {
-                return Operand.Create(text.Substring(secondValue.StringValue.Length));
+                return Operand.Create(text.Substring(secondValue.TextValue.Length));
             }
             return firstValue;
         }
@@ -3482,9 +3482,9 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToString("Function REMOVEEND parameter 1 is error!");
+            var firstValue = args[0].ToText("Function REMOVEEND parameter 1 is error!");
                         if (firstValue.IsError) { return firstValue; }
-            var secondValue =args[1].ToString("Function REMOVEEND parameter 2 is error!");
+            var secondValue =args[1].ToText("Function REMOVEEND parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
 
             StringComparison comparison = StringComparison.Ordinal;
@@ -3497,18 +3497,18 @@ namespace ToolGood.Algorithm
                     comparison = StringComparison.OrdinalIgnoreCase;
                 }
             }
-            var text = firstValue.StringValue;
-            if (text.EndsWith(secondValue.StringValue, comparison))
+            var text = firstValue.TextValue;
+            if (text.EndsWith(secondValue.TextValue, comparison))
             {
-                return Operand.Create(text.Substring(0, text.Length - secondValue.StringValue.Length));
+                return Operand.Create(text.Substring(0, text.Length - secondValue.TextValue.Length));
             }
             return firstValue;
         }
         public Operand VisitJSON_fun( mathParser.JSON_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToString("Function JSON parameter is error!");
+            var firstValue = this.Visit(context.expr()).ToText("Function JSON parameter is error!");
             if (firstValue.IsError) { return firstValue; }
-            var txt = firstValue.StringValue;
+            var txt = firstValue.TextValue;
             if ((txt.StartsWith("{") && txt.EndsWith("}")) || (txt.StartsWith("[") && txt.EndsWith("]")))
             {
                 try
@@ -3544,7 +3544,7 @@ namespace ToolGood.Algorithm
                 vague = fourthValue.BooleanValue;
             }
             if (secondValue.Type!= OperandType.NULL) {
-                var sv = secondValue.ToString("Function VLOOKUP parameter 2 is error!");
+                var sv = secondValue.ToText("Function VLOOKUP parameter 2 is error!");
                 if (sv.IsError) { return sv; }
                 secondValue = sv;
             }
@@ -3566,10 +3566,10 @@ namespace ToolGood.Algorithm
                     }
                     else
                     {
-                        var o2 = o1.ToString(null);
+                        var o2 = o1.ToText(null);
                         if (o2.IsError == false)
                         {
-                            b = string.CompareOrdinal(o2.StringValue, secondValue.StringValue);
+                            b = string.CompareOrdinal(o2.TextValue, secondValue.TextValue);
                         }
                     }
                     if (b == 0)
@@ -3604,10 +3604,10 @@ namespace ToolGood.Algorithm
                         }
                         else
                         {
-                            var o2 = o1.ToString(null);
+                            var o2 = o1.ToText(null);
                             if (o2.IsError == false)
                             {
-                                b = string.CompareOrdinal(o2.StringValue, secondValue.StringValue);
+                                b = string.CompareOrdinal(o2.TextValue, secondValue.TextValue);
                             }
                         }
                         if (b < 0 && index < o.ArrayValue.Count)
@@ -3631,18 +3631,18 @@ namespace ToolGood.Algorithm
 
             var firstValue = args[0].ToArray("Function LOOKUP parameter 1 error!");
             if (firstValue.IsError) { return firstValue; }
-            var secondValue = args[1].ToString("Function LOOKUP parameter 2 is error!");
+            var secondValue = args[1].ToText("Function LOOKUP parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
-            var thirdValue = args[2].ToString("Function LOOKUP parameter 3 is error!");
+            var thirdValue = args[2].ToText("Function LOOKUP parameter 3 is error!");
             if (thirdValue.IsError) { return thirdValue; }
 
-            if (string.IsNullOrWhiteSpace( secondValue.StringValue))
+            if (string.IsNullOrWhiteSpace( secondValue.TextValue))
             {
                 return Operand.Error("Function LOOKUP parameter 2 is null!");
             }
 
             var engine = new LookupAlgorithmEngine();
-            if (engine.Parse(secondValue.StringValue) == false)
+            if (engine.Parse(secondValue.TextValue) == false)
             {
                 return Operand.Error("Function LOOKUP parameter 2 Parse is error!");
             }
@@ -3668,7 +3668,7 @@ namespace ToolGood.Algorithm
                         {
                             if (o.BooleanValue)
                             {
-                                var v = json.JsonValue[thirdValue.StringValue];
+                                var v = json.JsonValue[thirdValue.TextValue];
                                 if (v != null)
                                 {
                                     if (v.IsString) return Operand.Create(v.StringValue);
@@ -3739,11 +3739,11 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitPARAMETER_fun( mathParser.PARAMETER_funContext context)
         {
-            var p = this.Visit(context.parameter()).ToString("Function PARAMETER first parameter is error!");
+            var p = this.Visit(context.parameter()).ToText("Function PARAMETER first parameter is error!");
             if (p.IsError) return p;
 
             if (GetParameter != null) {
-                return GetParameter(p.StringValue);
+                return GetParameter(p.TextValue);
             }
             return Operand.Error("Function PARAMETER first parameter is error!");
         }
@@ -3802,9 +3802,9 @@ namespace ToolGood.Algorithm
                     }
                     return Operand.Error($"JSON index {index} greater than maximum length!");
                 } else {
-                    op = op.ToString("JSON parameter name is error!");
+                    op = op.ToText("JSON parameter name is error!");
                     if (op.IsError) { return op; }
-                    var v = json[op.StringValue];
+                    var v = json[op.TextValue];
                     if (v!=null)
                     {
                         if (v.IsString) return Operand.Create(v.StringValue);

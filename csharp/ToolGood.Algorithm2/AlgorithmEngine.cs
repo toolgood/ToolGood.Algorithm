@@ -315,12 +315,12 @@ namespace ToolGood.Algorithm
                     if (obj.IsNull) {
                         return null;
                     }
-                    obj = obj.ToString("It can't be converted to string!");
+                    obj = obj.ToText("It can't be converted to string!");
                     if (obj.IsError) {
                         LastError = obj.ErrorMsg;
                         return def;
                     }
-                    return obj.StringValue;
+                    return obj.TextValue;
                 }
             } catch (Exception ex) {
                 LastError = ex.Message;
