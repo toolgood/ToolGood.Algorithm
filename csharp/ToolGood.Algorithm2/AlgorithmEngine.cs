@@ -272,6 +272,7 @@ namespace ToolGood.Algorithm
                         else if (v.IsNull)
                             _dict[item.Key] = Operand.CreateNull();
                     }
+                    return;
                 }
             }
             throw new Exception("Parameter is not json string.");
