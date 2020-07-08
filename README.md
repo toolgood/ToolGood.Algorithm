@@ -77,6 +77,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
 ```
 参数以方括号定义，如 `[参数名]`。 
 
+注：还可以使用`AddParameter`、`AddParameterFromJson`添加方法，使用`DiyFunction`+=来自定义函数。
 
 ## Excel函数
 函数：`逻辑函数`、`数学与三角函数`、`文本函数`、`统计函数`、`日期与时间函数`
