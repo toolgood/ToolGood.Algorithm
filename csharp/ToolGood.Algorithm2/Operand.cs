@@ -11,7 +11,13 @@ namespace ToolGood.Algorithm
     public abstract class Operand : IDisposable
     {
         private static readonly CultureInfo cultureInfo = CultureInfo.GetCultureInfo("en-US");
+        /// <summary>
+        /// True 值
+        /// </summary>
         public static readonly Operand True = Operand.Create(true);
+        /// <summary>
+        /// False 值
+        /// </summary>
         public static readonly Operand False = Operand.Create(false);
         /// <summary>
         /// 是否为空
@@ -91,7 +97,7 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public static Operand Create(string obj)
         {
-            if (object.Equals(null,obj)) {
+            if (object.Equals(null, obj)) {
                 return Operand.CreateNull();
             }
             return new OperandString(obj);
@@ -147,6 +153,11 @@ namespace ToolGood.Algorithm
         {
             return new OperandJson(obj);
         }
+        /// <summary>
+        /// 创建操作数
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static Operand Create(List<Operand> obj)
         {
             return new OperandArray(obj);
@@ -264,7 +275,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="errorMessage"></param>
         /// <returns></returns>
-        public Operand ToText(string errorMessage=null)
+        public Operand ToText(string errorMessage = null)
         {
             if (Type == OperandType.STRING) { return this; }
             if (IsError) { return this; }
@@ -347,7 +358,7 @@ namespace ToolGood.Algorithm
         #region number
         public static implicit operator Operand(Int16 obj)
         {
-            return Operand.Create((int) obj);
+            return Operand.Create((int)obj);
         }
         public static implicit operator Operand(Int32 obj)
         {
@@ -355,24 +366,24 @@ namespace ToolGood.Algorithm
         }
         public static implicit operator Operand(Int64 obj)
         {
-            return Operand.Create((double) obj);
+            return Operand.Create((double)obj);
         }
         public static implicit operator Operand(UInt16 obj)
         {
-            return Operand.Create((double) obj);
+            return Operand.Create((double)obj);
         }
         public static implicit operator Operand(UInt32 obj)
         {
-            return Operand.Create((double) obj);
+            return Operand.Create((double)obj);
         }
         public static implicit operator Operand(UInt64 obj)
         {
-            return Operand.Create((double) obj);
+            return Operand.Create((double)obj);
         }
 
         public static implicit operator Operand(float obj)
         {
-            return Operand.Create((double) obj);
+            return Operand.Create((double)obj);
         }
         public static implicit operator Operand(double obj)
         {
@@ -380,8 +391,8 @@ namespace ToolGood.Algorithm
         }
         public static implicit operator Operand(decimal obj)
         {
-            return Operand.Create((double) obj);
-        } 
+            return Operand.Create((double)obj);
+        }
         #endregion
 
         public static implicit operator Operand(bool obj)

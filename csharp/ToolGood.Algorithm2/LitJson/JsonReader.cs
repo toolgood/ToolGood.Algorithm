@@ -60,7 +60,7 @@ namespace ToolGood.Algorithm.LitJson
             parse_table = PopulateParseTable();
         }
 
-        public JsonReader(string json_text)  
+        public JsonReader(string json_text)
         {
             var reader = new StringReader(json_text);
 
@@ -151,27 +151,22 @@ namespace ToolGood.Algorithm.LitJson
         #region Private Methods
         private void ProcessNumber(string number)
         {
-            if (number.IndexOf('.') != -1 || number.IndexOf('e') != -1 || number.IndexOf('E') != -1)
-            {
-                if (double.TryParse(number, NumberStyles.Any, CultureInfo.InvariantCulture, out double n_double))
-                {
+            if (number.IndexOf('.') != -1 || number.IndexOf('e') != -1 || number.IndexOf('E') != -1) {
+                if (double.TryParse(number, NumberStyles.Any, CultureInfo.InvariantCulture, out double n_double)) {
                     token_value = n_double;
                     return;
                 }
             }
-            if (int.TryParse(number, NumberStyles.Integer, CultureInfo.InvariantCulture, out int n_int32))
-            {
+            if (int.TryParse(number, NumberStyles.Integer, CultureInfo.InvariantCulture, out int n_int32)) {
                 token_value = (double)n_int32;
                 return;
             }
-            if (long.TryParse(number, NumberStyles.Integer, CultureInfo.InvariantCulture, out long n_int64))
-            {
-                token_value = (double) n_int64;
+            if (long.TryParse(number, NumberStyles.Integer, CultureInfo.InvariantCulture, out long n_int64)) {
+                token_value = (double)n_int64;
                 return;
             }
-            if (ulong.TryParse(number, NumberStyles.Integer, CultureInfo.InvariantCulture, out ulong n_uint64))
-            {
-                token_value = (double) n_uint64;
+            if (ulong.TryParse(number, NumberStyles.Integer, CultureInfo.InvariantCulture, out ulong n_uint64)) {
+                token_value = (double)n_uint64;
                 return;
             }
             // Shouldn't happen, but just in case, return something

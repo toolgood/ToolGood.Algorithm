@@ -13,7 +13,7 @@ namespace ToolGood.Algorithm.LitJson
         private IList<JsonData> inst_array;
         private bool inst_boolean;
         private double inst_double;
-        private IDictionary<string, JsonData> inst_object;
+        internal IDictionary<string, JsonData> inst_object;
         private string inst_string;
         private JsonType type;
         //private IList<KeyValuePair<string, JsonData>> object_list;
@@ -37,8 +37,7 @@ namespace ToolGood.Algorithm.LitJson
             get {
                 EnsureDictionary();
                 JsonData data;
-                if (inst_object.TryGetValue(prop_name,out data))
-                {
+                if (inst_object.TryGetValue(prop_name, out data)) {
                     return data;
                 }
                 return null;
@@ -99,7 +98,7 @@ namespace ToolGood.Algorithm.LitJson
         void IJsonWrapper.Set(string key, IJsonWrapper val)
         {
             JsonData data = val as JsonData;
-            EnsureDictionary()[key]=data;
+            EnsureDictionary()[key] = data;
             //KeyValuePair<string, JsonData> entry = new KeyValuePair<string, JsonData>((string)key, data);
             //object_list.Add(entry);
         }
@@ -112,7 +111,7 @@ namespace ToolGood.Algorithm.LitJson
         private ICollection EnsureCollection()
         {
             if (type == JsonType.Array) return (ICollection)inst_array;
-             return (ICollection)inst_object;
+            return (ICollection)inst_object;
         }
 
         private IDictionary EnsureDictionary()
@@ -155,7 +154,7 @@ namespace ToolGood.Algorithm.LitJson
                 case JsonType.String:
                     inst_string = default(String);
                     break;
-            
+
                 case JsonType.Double:
                     inst_double = default(Double);
                     break;

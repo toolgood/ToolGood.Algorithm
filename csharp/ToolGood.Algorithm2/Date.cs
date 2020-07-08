@@ -8,14 +8,14 @@ namespace ToolGood.Algorithm
     public class Date
     {
         /// <summary>
-        /// 
+        /// 构造函数
         /// </summary>
-        /// <param name="year"></param>
-        /// <param name="month"></param>
-        /// <param name="day"></param>
-        /// <param name="hour"></param>
-        /// <param name="minute"></param>
-        /// <param name="second"></param>
+        /// <param name="year">年</param>
+        /// <param name="month">月</param>
+        /// <param name="day">日</param>
+        /// <param name="hour">时</param>
+        /// <param name="minute">分</param>
+        /// <param name="second">秒</param>
         public Date(int year, int month, int day, int hour, int minute, int second)
         {
             Year = year;
@@ -26,9 +26,9 @@ namespace ToolGood.Algorithm
             Second = second;
         }
         /// <summary>
-        /// 
+        /// 构造函数
         /// </summary>
-        /// <param name="dt"></param>
+        /// <param name="dt">日期时间</param>
         public Date(DateTime dt)
         {
             Year = dt.Year;
@@ -39,9 +39,9 @@ namespace ToolGood.Algorithm
             Second = dt.Second;
         }
         /// <summary>
-        /// 
+        /// 构造函数
         /// </summary>
-        /// <param name="dt"></param>
+        /// <param name="dt">时间</param>
         public Date(TimeSpan dt)
         {
             Day = dt.Days;

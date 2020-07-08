@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using Antlr4.Runtime;
+using ToolGood.Algorithm.LitJson;
 using static mathParser;
 
 namespace ToolGood.Algorithm
 {
+    /// <summary>
+    /// 算法引擎
+    /// </summary>
     public class AlgorithmEngine
     {
         /// <summary>
@@ -45,10 +49,9 @@ namespace ToolGood.Algorithm
         /// <param name="funcName"></param>
         /// <param name="operands"></param>
         /// <returns></returns>
-        protected virtual Operand ExecuteDiyFunction(string funcName,List<Operand> operands)
+        protected virtual Operand ExecuteDiyFunction(string funcName, List<Operand> operands)
         {
-            if (DiyFunction != null)
-            {
+            if (DiyFunction != null) {
                 return DiyFunction.Invoke(funcName, operands);
             }
             return Operand.Error($"DiyFunction [{funcName}] is missing.");
@@ -76,6 +79,16 @@ namespace ToolGood.Algorithm
         {
             _dict[key] = Operand.Create(obj);
         }
+        #region number
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        public void AddParameter(string key, short obj)
+        {
+            _dict[key] = Operand.Create((int)obj);
+        }
         /// <summary>
         /// 添加自定义参数
         /// </summary>
@@ -84,6 +97,51 @@ namespace ToolGood.Algorithm
         public void AddParameter(string key, int obj)
         {
             _dict[key] = Operand.Create(obj);
+        }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        public void AddParameter(string key, long obj)
+        {
+            _dict[key] = Operand.Create((double)obj);
+        }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        public void AddParameter(string key, ushort obj)
+        {
+            _dict[key] = Operand.Create((int)obj);
+        }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        public void AddParameter(string key, uint obj)
+        {
+            _dict[key] = Operand.Create((double)obj);
+        }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        public void AddParameter(string key, ulong obj)
+        {
+            _dict[key] = Operand.Create((double)obj);
+        }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        public void AddParameter(string key, float obj)
+        {
+            _dict[key] = Operand.Create((double)obj);
         }
         /// <summary>
         /// 添加自定义参数
@@ -99,10 +157,21 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="key"></param>
         /// <param name="obj"></param>
+        public void AddParameter(string key, decimal obj)
+        {
+            _dict[key] = Operand.Create((double)obj);
+        }
+        #endregion
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
         public void AddParameter(string key, string obj)
         {
             _dict[key] = Operand.Create(obj);
         }
+        #region Date
         /// <summary>
         /// 添加自定义参数
         /// </summary>
@@ -130,6 +199,8 @@ namespace ToolGood.Algorithm
         {
             _dict[key] = Operand.Create(obj);
         }
+        #endregion
+        #region array
         /// <summary>
         /// 添加自定义参数
         /// </summary>
@@ -176,6 +247,36 @@ namespace ToolGood.Algorithm
         {
             _dict[key] = Operand.Create(obj);
         }
+        #endregion
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="json"></param>
+        public void AddParameterFromJson(string json)
+        {
+            if (json.StartsWith("{") && json.EndsWith("}")) {
+                var jo = JsonMapper.ToObject(json);
+                if (jo.IsObject) {
+                    foreach (var item in jo.inst_object) {
+                        var v = item.Value;
+                        if (v.IsString)
+                            _dict[item.Key] = Operand.Create(v.StringValue);
+                        else if (v.IsBoolean)
+                            _dict[item.Key] = Operand.Create(v.BooleanValue);
+                        else if (v.IsDouble)
+                            _dict[item.Key] = Operand.Create(v.NumberValue);
+                        else if (v.IsObject)
+                            _dict[item.Key] = Operand.Create(v);
+                        else if (v.IsArray)
+                            _dict[item.Key] = Operand.Create(v);
+                        else if (v.IsNull)
+                            _dict[item.Key] = Operand.CreateNull();
+                    }
+                }
+            }
+            throw new Exception("Parameter is not json string.");
+        }
+
         #endregion
 
         #region Parse
