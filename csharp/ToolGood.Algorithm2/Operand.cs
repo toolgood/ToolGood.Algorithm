@@ -72,6 +72,17 @@ namespace ToolGood.Algorithm
         {
             return new OperandBoolean(obj);
         }
+
+        #region number
+        /// <summary>
+        /// 创建操作数
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static Operand Create(short obj)
+        {
+            return new OperandNumber(obj);
+        }
         /// <summary>
         /// 创建操作数
         /// </summary>
@@ -86,10 +97,66 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
+        public static Operand Create(long obj)
+        {
+            return new OperandNumber((double)obj);
+        }
+        /// <summary>
+        /// 创建操作数
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static Operand Create(ushort obj)
+        {
+            return new OperandNumber((double)obj);
+        }
+        /// <summary>
+        /// 创建操作数
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static Operand Create(uint obj)
+        {
+            return new OperandNumber((double)obj);
+        }
+        /// <summary>
+        /// 创建操作数
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static Operand Create(ulong obj)
+        {
+            return new OperandNumber((double)obj);
+        }
+        /// <summary>
+        /// 创建操作数
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static Operand Create(float obj)
+        {
+            return new OperandNumber((double)obj);
+        }
+        /// <summary>
+        /// 创建操作数
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static Operand Create(double obj)
         {
             return new OperandNumber(obj);
         }
+        /// <summary>
+        /// 创建操作数
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static Operand Create(decimal obj)
+        {
+            return new OperandNumber((double)obj);
+        } 
+        #endregion
+
         /// <summary>
         /// 创建操作数
         /// </summary>
