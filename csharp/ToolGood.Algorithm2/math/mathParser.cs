@@ -33,94 +33,18 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 partial class mathParser : Parser {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
-	public static readonly string[] ruleNames = {
-		"prog", "expr", "expr2", "parameter", "parameter2"
-	};
-
-	private static readonly string[] _LiteralNames = {
-		null, "'*'", "'/'", "'%'", "'+'", "'&'", "'>'", "'>='", "'<'", "'<='", 
-		"'='", "'=='", "'!='", "'<>'", "'&&'", "'||'", "'.'", "'('", "')'", "','", 
-		"'['", "']'", "'{'", "'}'", "'-'", null, null, "'NULL'", "'IF'", "'IFERROR'", 
-		"'ISNUMBER'", "'ISTEXT'", "'ISERROR'", "'ISNONTEXT'", "'ISLOGICAL'", "'ISEVEN'", 
-		"'ISODD'", "'ISNULL'", "'ISNULLORERROR'", "'AND'", "'OR'", "'NOT'", "'TRUE'", 
-		"'FALSE'", "'E'", "'PI'", "'DEC2BIN'", "'DEC2HEX'", "'DEC2OCT'", "'HEX2BIN'", 
-		"'HEX2DEC'", "'HEX2OCT'", "'OCT2BIN'", "'OCT2DEC'", "'OCT2HEX'", "'BIN2OCT'", 
-		"'BIN2DEC'", "'BIN2HEX'", "'ABS'", "'QUOTIENT'", "'MOD'", "'SIGN'", "'SQRT'", 
-		"'TRUNC'", "'INT'", "'GCD'", "'LCM'", "'COMBIN'", "'PERMUT'", "'DEGREES'", 
-		"'RADIANS'", "'COS'", "'COSH'", "'SIN'", "'SINH'", "'TAN'", "'TANH'", 
-		"'ACOS'", "'ACOSH'", "'ASIN'", "'ASINH'", "'ATAN'", "'ATANH'", "'ATAN2'", 
-		"'ROUND'", "'ROUNDDOWN'", "'ROUNDUP'", "'CEILING'", "'FLOOR'", "'EVEN'", 
-		"'ODD'", "'MROUND'", "'RAND'", "'RANDBETWEEN'", "'FACT'", "'FACTDOUBLE'", 
-		"'POWER'", "'EXP'", "'LN'", "'LOG'", "'LOG10'", "'MULTINOMIAL'", "'PRODUCT'", 
-		"'SQRTPI'", "'SUMSQ'", "'ASC'", null, "'CHAR'", "'CLEAN'", "'CODE'", "'CONCATENATE'", 
-		"'EXACT'", "'FIND'", "'FIXED'", "'LEFT'", "'LEN'", null, "'MID'", "'PROPER'", 
-		"'REPLACE'", "'REPT'", "'RIGHT'", "'RMB'", "'SEARCH'", "'SUBSTITUTE'", 
-		"'T'", "'TEXT'", "'TRIM'", null, "'VALUE'", "'DATEVALUE'", "'TIMEVALUE'", 
-		"'DATE'", "'TIME'", "'NOW'", "'TODAY'", "'YEAR'", "'MONTH'", "'DAY'", 
-		"'HOUR'", "'MINUTE'", "'SECOND'", "'WEEKDAY'", "'DATEDIF'", "'DAYS360'", 
-		"'EDATE'", "'EOMONTH'", "'NETWORKDAYS'", "'WORKDAY'", "'WEEKNUM'", "'MAX'", 
-		"'MEDIAN'", "'MIN'", "'QUARTILE'", "'MODE'", "'LARGE'", "'SMALL'", "'PERCENTILE'", 
-		"'PERCENTRANK'", "'AVERAGE'", "'AVERAGEIF'", "'GEOMEAN'", "'HARMEAN'", 
-		"'COUNT'", "'COUNTIF'", "'SUM'", "'SUMIF'", "'AVEDEV'", "'STDEV'", "'STDEVP'", 
-		"'DEVSQ'", "'VAR'", "'VARP'", "'NORMDIST'", "'NORMINV'", "'NORMSDIST'", 
-		"'NORMSINV'", "'BETADIST'", "'BETAINV'", "'BINOMDIST'", "'EXPONDIST'", 
-		"'FDIST'", "'FINV'", "'FISHER'", "'FISHERINV'", "'GAMMADIST'", "'GAMMAINV'", 
-		"'GAMMALN'", "'HYPGEOMDIST'", "'LOGINV'", "'LOGNORMDIST'", "'NEGBINOMDIST'", 
-		"'POISSON'", "'TDIST'", "'TINV'", "'WEIBULL'", "'URLENCODE'", "'URLDECODE'", 
-		"'HTMLENCODE'", "'HTMLDECODE'", "'BASE64TOTEXT'", "'BASE64URLTOTEXT'", 
-		"'TEXTTOBASE64'", "'TEXTTOBASE64URL'", "'REGEX'", "'REGEXREPALCE'", null, 
-		"'GUID'", "'MD5'", "'SHA1'", "'SHA256'", "'SHA512'", "'CRC8'", "'CRC16'", 
-		"'CRC32'", "'HMACMD5'", "'HMACSHA1'", "'HMACSHA256'", "'HMACSHA512'", 
-		null, null, "'INDEXOF'", "'LASTINDEXOF'", "'SPLIT'", "'JOIN'", "'SUBSTRING'", 
-		"'STARTSWITH'", "'ENDSWITH'", "'ISNULLOREMPTY'", "'ISNULLORWHITESPACE'", 
-		"'REMOVESTART'", "'REMOVEEND'", "'JSON'", "'VLOOKUP'", "'LOOKUP'"
-	};
-	private static readonly string[] _SymbolicNames = {
-		null, null, null, null, null, null, null, null, null, null, null, null, 
-		null, null, null, null, null, null, null, null, null, null, null, null, 
-		"SUB", "NUM", "STRING", "NULL", "IF", "IFERROR", "ISNUMBER", "ISTEXT", 
-		"ISERROR", "ISNONTEXT", "ISLOGICAL", "ISEVEN", "ISODD", "ISNULL", "ISNULLORERROR", 
-		"AND", "OR", "NOT", "TRUE", "FALSE", "E", "PI", "DEC2BIN", "DEC2HEX", 
-		"DEC2OCT", "HEX2BIN", "HEX2DEC", "HEX2OCT", "OCT2BIN", "OCT2DEC", "OCT2HEX", 
-		"BIN2OCT", "BIN2DEC", "BIN2HEX", "ABS", "QUOTIENT", "MOD", "SIGN", "SQRT", 
-		"TRUNC", "INT", "GCD", "LCM", "COMBIN", "PERMUT", "DEGREES", "RADIANS", 
-		"COS", "COSH", "SIN", "SINH", "TAN", "TANH", "ACOS", "ACOSH", "ASIN", 
-		"ASINH", "ATAN", "ATANH", "ATAN2", "ROUND", "ROUNDDOWN", "ROUNDUP", "CEILING", 
-		"FLOOR", "EVEN", "ODD", "MROUND", "RAND", "RANDBETWEEN", "FACT", "FACTDOUBLE", 
-		"POWER", "EXP", "LN", "LOG", "LOG10", "MULTINOMIAL", "PRODUCT", "SQRTPI", 
-		"SUMSQ", "ASC", "JIS", "CHAR", "CLEAN", "CODE", "CONCATENATE", "EXACT", 
-		"FIND", "FIXED", "LEFT", "LEN", "LOWER", "MID", "PROPER", "REPLACE", "REPT", 
-		"RIGHT", "RMB", "SEARCH", "SUBSTITUTE", "T", "TEXT", "TRIM", "UPPER", 
-		"VALUE", "DATEVALUE", "TIMEVALUE", "DATE", "TIME", "NOW", "TODAY", "YEAR", 
-		"MONTH", "DAY", "HOUR", "MINUTE", "SECOND", "WEEKDAY", "DATEDIF", "DAYS360", 
-		"EDATE", "EOMONTH", "NETWORKDAYS", "WORKDAY", "WEEKNUM", "MAX", "MEDIAN", 
-		"MIN", "QUARTILE", "MODE", "LARGE", "SMALL", "PERCENTILE", "PERCENTRANK", 
-		"AVERAGE", "AVERAGEIF", "GEOMEAN", "HARMEAN", "COUNT", "COUNTIF", "SUM", 
-		"SUMIF", "AVEDEV", "STDEV", "STDEVP", "DEVSQ", "VAR", "VARP", "NORMDIST", 
-		"NORMINV", "NORMSDIST", "NORMSINV", "BETADIST", "BETAINV", "BINOMDIST", 
-		"EXPONDIST", "FDIST", "FINV", "FISHER", "FISHERINV", "GAMMADIST", "GAMMAINV", 
-		"GAMMALN", "HYPGEOMDIST", "LOGINV", "LOGNORMDIST", "NEGBINOMDIST", "POISSON", 
-		"TDIST", "TINV", "WEIBULL", "URLENCODE", "URLDECODE", "HTMLENCODE", "HTMLDECODE", 
-		"BASE64TOTEXT", "BASE64URLTOTEXT", "TEXTTOBASE64", "TEXTTOBASE64URL", 
-		"REGEX", "REGEXREPALCE", "ISREGEX", "GUID", "MD5", "SHA1", "SHA256", "SHA512", 
-		"CRC8", "CRC16", "CRC32", "HMACMD5", "HMACSHA1", "HMACSHA256", "HMACSHA512", 
-		"TRIMSTART", "TRIMEND", "INDEXOF", "LASTINDEXOF", "SPLIT", "JOIN", "SUBSTRING", 
-		"STARTSWITH", "ENDSWITH", "ISNULLOREMPTY", "ISNULLORWHITESPACE", "REMOVESTART", 
-		"REMOVEEND", "JSON", "VLOOKUP", "LOOKUP", "PARAMETER", "WS"
-	};
-	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
-
+ 
 	public override IVocabulary Vocabulary
 	{
 		get
 		{
-			return DefaultVocabulary;
+			return null;
 		}
 	}
 
-	public override string GrammarFileName { get { return "math.g4"; } }
+	public override string GrammarFileName { get { return null; } }
 
-	public override string[] RuleNames { get { return ruleNames; } }
+	public override string[] RuleNames { get { return null; } }
 
 	public override string SerializedAtn { get { return new string(_serializedATN); } }
 
