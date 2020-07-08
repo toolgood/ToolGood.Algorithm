@@ -13,33 +13,82 @@ namespace ToolGood.Algorithm
         private static readonly CultureInfo cultureInfo = CultureInfo.GetCultureInfo("en-US");
         public static readonly Operand True = Operand.Create(true);
         public static readonly Operand False = Operand.Create(false);
-
+        /// <summary>
+        /// 是否为空
+        /// </summary>
         public virtual bool IsNull => false;
+        /// <summary>
+        /// 是否出错
+        /// </summary>
         public virtual bool IsError => false;
+        /// <summary>
+        /// 错误信息
+        /// </summary>
         public virtual string ErrorMsg => null;
+        /// <summary>
+        /// 操作数类型
+        /// </summary>
         public abstract OperandType Type { get; }
+        /// <summary>
+        /// 数字值
+        /// </summary>
         public virtual double NumberValue => throw new NotImplementedException();
+        /// <summary>
+        /// int值
+        /// </summary>
         public virtual int IntValue => throw new NotImplementedException();
+        /// <summary>
+        /// 字符串值
+        /// </summary>
         public virtual string StringValue => throw new NotImplementedException();
+        /// <summary>
+        /// 布尔值
+        /// </summary>
         public virtual bool BooleanValue => throw new NotImplementedException();
+        /// <summary>
+        /// 数组值
+        /// </summary>
         public virtual List<Operand> ArrayValue => throw new NotImplementedException();
         internal virtual JsonData JsonValue => throw new NotImplementedException();
+        /// <summary>
+        /// 时间值
+        /// </summary>
         public virtual Date DateValue => throw new NotImplementedException();
 
         #region Create
 
+        /// <summary>
+        /// 创建操作数
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static Operand Create(bool obj)
         {
             return new OperandBoolean(obj);
         }
+        /// <summary>
+        /// 创建操作数
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static Operand Create(int obj)
         {
             return new OperandNumber(obj);
         }
+        /// <summary>
+        /// 创建操作数
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static Operand Create(double obj)
         {
             return new OperandNumber(obj);
         }
+        /// <summary>
+        /// 创建操作数
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static Operand Create(string obj)
         {
             if (object.Equals(null,obj)) {
@@ -47,6 +96,11 @@ namespace ToolGood.Algorithm
             }
             return new OperandString(obj);
         }
+        /// <summary>
+        /// 创建操作数
+        /// </summary>
+        /// <param name="txt"></param>
+        /// <returns></returns>
         public static Operand CreateJson(string txt)
         {
             if ((txt.StartsWith("{") && txt.EndsWith("}")) || (txt.StartsWith("[") && txt.EndsWith("]"))) {
@@ -57,19 +111,38 @@ namespace ToolGood.Algorithm
             }
             return Operand.Error("string to json is error!");
         }
-
+        /// <summary>
+        /// 创建操作数
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static Operand Create(Date obj)
         {
             return new OperandDate(obj);
         }
+        /// <summary>
+        /// 创建操作数
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static Operand Create(DateTime obj)
         {
             return new OperandDate(new Date(obj));
         }
+        /// <summary>
+        /// 创建操作数
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static Operand Create(TimeSpan obj)
         {
             return new OperandDate(new Date(obj));
         }
+        /// <summary>
+        /// 创建操作数
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         internal static Operand Create(JsonData obj)
         {
             return new OperandJson(obj);
@@ -78,6 +151,11 @@ namespace ToolGood.Algorithm
         {
             return new OperandArray(obj);
         }
+        /// <summary>
+        /// 创建操作数
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static Operand Create(ICollection<string> obj)
         {
             var array = new List<Operand>();
@@ -86,6 +164,11 @@ namespace ToolGood.Algorithm
             }
             return new OperandArray(array);
         }
+        /// <summary>
+        /// 创建操作数
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static Operand Create(ICollection<double> obj)
         {
             var array = new List<Operand>();
@@ -94,6 +177,11 @@ namespace ToolGood.Algorithm
             }
             return new OperandArray(array);
         }
+        /// <summary>
+        /// 创建操作数
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static Operand Create(ICollection<int> obj)
         {
             var array = new List<Operand>();
@@ -102,6 +190,11 @@ namespace ToolGood.Algorithm
             }
             return new OperandArray(array);
         }
+        /// <summary>
+        /// 创建操作数
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static Operand Create(ICollection<bool> obj)
         {
             var array = new List<Operand>();
@@ -110,18 +203,30 @@ namespace ToolGood.Algorithm
             }
             return new OperandArray(array);
         }
-
+        /// <summary>
+        /// 创建操作数
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns></returns>
         public static Operand Error(string msg)
         {
             return new OperandError(msg);
         }
-
+        /// <summary>
+        /// 创建操作数
+        /// </summary>
+        /// <returns></returns>
         public static Operand CreateNull()
         {
             return new OperandNull();
         }
 
         #endregion
+        /// <summary>
+        /// 转数值类型
+        /// </summary>
+        /// <param name="errorMessage"></param>
+        /// <returns></returns>
         public Operand ToNumber(string errorMessage = null)
         {
             if (Type == OperandType.NUMBER) { return this; }
@@ -135,6 +240,11 @@ namespace ToolGood.Algorithm
             }
             return Error(errorMessage);
         }
+        /// <summary>
+        /// 转bool类型
+        /// </summary>
+        /// <param name="errorMessage"></param>
+        /// <returns></returns>
         public Operand ToBoolean(string errorMessage = null)
         {
             if (Type == OperandType.BOOLEAN) { return this; }
@@ -149,6 +259,11 @@ namespace ToolGood.Algorithm
             }
             return Error(errorMessage);
         }
+        /// <summary>
+        /// 转String类型
+        /// </summary>
+        /// <param name="errorMessage"></param>
+        /// <returns></returns>
         public Operand ToString(string errorMessage=null)
         {
             if (Type == OperandType.STRING) { return this; }
@@ -159,6 +274,11 @@ namespace ToolGood.Algorithm
 
             return Error(errorMessage);
         }
+        /// <summary>
+        /// 转Date类型
+        /// </summary>
+        /// <param name="errorMessage"></param>
+        /// <returns></returns>
         public Operand ToDate(string errorMessage = null)
         {
             if (Type == OperandType.DATE) { return this; }
@@ -170,6 +290,11 @@ namespace ToolGood.Algorithm
             }
             return Error(errorMessage);
         }
+        /// <summary>
+        /// 转Json类型
+        /// </summary>
+        /// <param name="errorMessage"></param>
+        /// <returns></returns>
         public Operand ToJson(string errorMessage = null)
         {
             if (Type == OperandType.JSON) { return this; }
@@ -185,6 +310,11 @@ namespace ToolGood.Algorithm
             }
             return Error(errorMessage);
         }
+        /// <summary>
+        /// 转Array类型
+        /// </summary>
+        /// <param name="errorMessage"></param>
+        /// <returns></returns>
         public Operand ToArray(string errorMessage = null)
         {
             if (Type == OperandType.ARRARY) { return this; }
@@ -210,7 +340,7 @@ namespace ToolGood.Algorithm
             return Error(errorMessage);
         }
 
-        public void Dispose() { }
+        void IDisposable.Dispose() { }
 
 
         #region Operand
@@ -288,7 +418,7 @@ namespace ToolGood.Algorithm
         }
         #endregion
     }
-    public abstract class Operand<T> : Operand
+    abstract class Operand<T> : Operand
     {
         public T Value { get; private set; }
         public Operand(T obj)

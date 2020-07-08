@@ -245,7 +245,12 @@ namespace ToolGood.Algorithm
         #endregion
 
         #region TryEvaluate
-
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
         public int TryEvaluate(string exp, int def)
         {
             try {
@@ -264,7 +269,12 @@ namespace ToolGood.Algorithm
             }
             return def;
         }
-
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
         public double TryEvaluate(string exp, double def)
         {
             try {
@@ -283,7 +293,12 @@ namespace ToolGood.Algorithm
             }
             return def;
         }
-
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
         public string TryEvaluate(string exp, string def)
         {
             try {
@@ -304,6 +319,12 @@ namespace ToolGood.Algorithm
             }
             return def;
         }
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
         public bool TryEvaluate(string exp, bool def)
         {
             try {
@@ -321,7 +342,12 @@ namespace ToolGood.Algorithm
             }
             return def;
         }
-
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
         public DateTime TryEvaluate(string exp, DateTime def)
         {
             try {
@@ -339,7 +365,12 @@ namespace ToolGood.Algorithm
             }
             return def;
         }
-
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
         public TimeSpan TryEvaluate(string exp, TimeSpan def)
         {
             try {

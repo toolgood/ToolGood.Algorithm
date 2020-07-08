@@ -24,6 +24,7 @@
     <Version>2.0.2.3</Version>
     <AssemblyOriginatorKeyFile>ToolGood.Algorithm.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\ToolGood.Algorithm.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -44,5 +45,5 @@
       <PackagePath></PackagePath>
     </None>
   </ItemGroup>
-
+ 
 </Project>

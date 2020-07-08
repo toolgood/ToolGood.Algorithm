@@ -30,11 +30,29 @@ namespace ToolGood.Algorithm
             Second = dt.Seconds;
         }
 
+        /// <summary>
+        /// 年
+        /// </summary>
         public int? Year { get; set; }
+        /// <summary>
+        /// 月
+        /// </summary>
         public int? Month { get; set; }
+        /// <summary>
+        /// 日
+        /// </summary>
         public int? Day { get; set; }
+        /// <summary>
+        /// 时
+        /// </summary>
         public int Hour { get; set; }
+        /// <summary>
+        /// 分
+        /// </summary>
         public int Minute { get; set; }
+        /// <summary>
+        /// 秒
+        /// </summary>
         public int Second { get; set; }
 
 
