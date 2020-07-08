@@ -12,7 +12,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
         var o = engine.Evaluate();
         a=o.NumberValue;
     }
-    var b = engine.TryEvaluate("1=1 && 1<2", 0);
+    var b = engine.TryEvaluate("1=1 && 1<2 and 7-8>1", 0);// 支持 && || and or 
     var c = engine.TryEvaluate("2+3", 0);
     var d = engine.TryEvaluate("count({1,2,3,4})", 0);//{}代表数组,返回:4
     var s = engine.TryEvaluate("'aa'&'bb'", ""); //字符串连接,返回:aabb
@@ -808,6 +808,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
 
 #### 查找引用
 <table>
+    <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
         <td>VLookUp ★ ▲</td><td>VLookUp({数组,...},值,{列索引}[,模糊匹配:0/1])<br>纵向查找函数。模糊匹配默认1</td> <td></td>
     </tr>
