@@ -19,6 +19,13 @@ namespace ToolGood.Algorithm
         /// False 值
         /// </summary>
         public static readonly Operand False = Operand.Create(false);
+        private bool _isError = false;
+        private string _errorMsg = null;
+
+        public Operand() { }
+        public Operand(string errMsg) { _isError = true; _errorMsg = errMsg; }
+
+
         /// <summary>
         /// 是否为空
         /// </summary>
@@ -26,11 +33,11 @@ namespace ToolGood.Algorithm
         /// <summary>
         /// 是否出错
         /// </summary>
-        public virtual bool IsError => false;
+        public virtual bool IsError => _isError;
         /// <summary>
         /// 错误信息
         /// </summary>
-        public virtual string ErrorMsg => null;
+        public virtual string ErrorMsg => _errorMsg;
         /// <summary>
         /// 操作数类型
         /// </summary>
@@ -99,7 +106,7 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public static Operand Create(long obj)
         {
-            return new OperandNumber((double)obj);
+            return new OperandNumber((double) obj);
         }
         /// <summary>
         /// 创建操作数
@@ -108,7 +115,7 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public static Operand Create(ushort obj)
         {
-            return new OperandNumber((double)obj);
+            return new OperandNumber((double) obj);
         }
         /// <summary>
         /// 创建操作数
@@ -117,7 +124,7 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public static Operand Create(uint obj)
         {
-            return new OperandNumber((double)obj);
+            return new OperandNumber((double) obj);
         }
         /// <summary>
         /// 创建操作数
@@ -126,7 +133,7 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public static Operand Create(ulong obj)
         {
-            return new OperandNumber((double)obj);
+            return new OperandNumber((double) obj);
         }
         /// <summary>
         /// 创建操作数
@@ -135,7 +142,7 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public static Operand Create(float obj)
         {
-            return new OperandNumber((double)obj);
+            return new OperandNumber((double) obj);
         }
         /// <summary>
         /// 创建操作数
@@ -153,8 +160,8 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public static Operand Create(decimal obj)
         {
-            return new OperandNumber((double)obj);
-        } 
+            return new OperandNumber((double) obj);
+        }
         #endregion
 
         /// <summary>
@@ -164,7 +171,8 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public static Operand Create(string obj)
         {
-            if (object.Equals(null, obj)) {
+            if (object.Equals(null, obj))
+            {
                 return Operand.CreateNull();
             }
             return new OperandString(obj);
@@ -176,11 +184,14 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public static Operand CreateJson(string txt)
         {
-            if ((txt.StartsWith("{") && txt.EndsWith("}")) || (txt.StartsWith("[") && txt.EndsWith("]"))) {
-                try {
+            if ((txt.StartsWith("{") && txt.EndsWith("}")) || (txt.StartsWith("[") && txt.EndsWith("]")))
+            {
+                try
+                {
                     var json = JsonMapper.ToObject(txt);
                     return Operand.Create(json);
-                } catch (Exception) { }
+                }
+                catch (Exception) { }
             }
             return Operand.Error("string to json is error!");
         }
@@ -237,7 +248,8 @@ namespace ToolGood.Algorithm
         public static Operand Create(ICollection<string> obj)
         {
             var array = new List<Operand>();
-            foreach (var item in obj) {
+            foreach (var item in obj)
+            {
                 array.Add(Create(item));
             }
             return new OperandArray(array);
@@ -250,7 +262,8 @@ namespace ToolGood.Algorithm
         public static Operand Create(ICollection<double> obj)
         {
             var array = new List<Operand>();
-            foreach (var item in obj) {
+            foreach (var item in obj)
+            {
                 array.Add(Create(item));
             }
             return new OperandArray(array);
@@ -263,7 +276,8 @@ namespace ToolGood.Algorithm
         public static Operand Create(ICollection<int> obj)
         {
             var array = new List<Operand>();
-            foreach (var item in obj) {
+            foreach (var item in obj)
+            {
                 array.Add(Create(item));
             }
             return new OperandArray(array);
@@ -276,7 +290,8 @@ namespace ToolGood.Algorithm
         public static Operand Create(ICollection<bool> obj)
         {
             var array = new List<Operand>();
-            foreach (var item in obj) {
+            foreach (var item in obj)
+            {
                 array.Add(Create(item));
             }
             return new OperandArray(array);
@@ -310,13 +325,20 @@ namespace ToolGood.Algorithm
             if (Type == OperandType.NUMBER) { return this; }
             if (IsError) { return this; }
             if (Type == OperandType.BOOLEAN) { return Create(BooleanValue ? 1.0 : 0.0); }
-            if (Type == OperandType.DATE) { return Create((double)DateValue); }
-            if (Type == OperandType.STRING) {
-                if (double.TryParse(TextValue, NumberStyles.Any, cultureInfo, out double d)) {
+            if (Type == OperandType.DATE) { return Create((double) DateValue); }
+            if (Type == OperandType.STRING)
+            {
+                if (double.TryParse(TextValue, NumberStyles.Any, cultureInfo, out double d))
+                {
                     return Create(d);
                 }
             }
-            return Error(errorMessage);
+            _isError = true;
+            if (null == _errorMsg)
+            {
+                _errorMsg = errorMessage;
+            }
+            return this;
         }
         /// <summary>
         /// 转bool类型
@@ -328,14 +350,20 @@ namespace ToolGood.Algorithm
             if (Type == OperandType.BOOLEAN) { return this; }
             if (IsError) { return this; }
             if (Type == OperandType.NUMBER) { return Create(NumberValue != 0); }
-            if (Type == OperandType.DATE) { return Create(((double)DateValue) != 0); }
-            if (Type == OperandType.STRING) {
+            if (Type == OperandType.DATE) { return Create(((double) DateValue) != 0); }
+            if (Type == OperandType.STRING)
+            {
                 if (TextValue.Equals("true", StringComparison.OrdinalIgnoreCase)) { return Create(true); }
                 if (TextValue.Equals("false", StringComparison.OrdinalIgnoreCase)) { return Create(false); }
                 if (TextValue.Equals("1", StringComparison.OrdinalIgnoreCase)) { return Create(true); }
                 if (TextValue.Equals("0", StringComparison.OrdinalIgnoreCase)) { return Create(false); }
             }
-            return Error(errorMessage);
+            _isError = true;
+            if (null == _errorMsg)
+            {
+                _errorMsg = errorMessage;
+            }
+            return this;
         }
         /// <summary>
         /// 转String类型
@@ -350,7 +378,12 @@ namespace ToolGood.Algorithm
             if (Type == OperandType.BOOLEAN) { return Create(BooleanValue ? "TRUE" : "FALSE"); }
             if (Type == OperandType.DATE) { return Create(DateValue.ToString()); }
 
-            return Error(errorMessage);
+            _isError = true;
+            if (null == _errorMsg)
+            {
+                _errorMsg = errorMessage;
+            }
+            return this;
         }
         /// <summary>
         /// 转Date类型
@@ -361,12 +394,18 @@ namespace ToolGood.Algorithm
         {
             if (Type == OperandType.DATE) { return this; }
             if (IsError) { return this; }
-            if (Type == OperandType.NUMBER) { return Create((Date)NumberValue); }
-            if (Type == OperandType.STRING) {
+            if (Type == OperandType.NUMBER) { return Create((Date) NumberValue); }
+            if (Type == OperandType.STRING)
+            {
                 if (TimeSpan.TryParse(TextValue, cultureInfo, out TimeSpan t)) { return Create(new Date(t)); }
                 if (DateTime.TryParse(TextValue, cultureInfo, DateTimeStyles.None, out DateTime d)) { return Create(new Date(d)); }
             }
-            return Error(errorMessage);
+            _isError = true;
+            if (null == _errorMsg)
+            {
+                _errorMsg = errorMessage;
+            }
+            return this;
         }
         /// <summary>
         /// 转Json类型
@@ -377,16 +416,25 @@ namespace ToolGood.Algorithm
         {
             if (Type == OperandType.JSON) { return this; }
             if (IsError) { return this; }
-            if (Type == OperandType.STRING) {
+            if (Type == OperandType.STRING)
+            {
                 var txt = TextValue;
-                if ((txt.StartsWith("{") && txt.EndsWith("}")) || (txt.StartsWith("[") && txt.EndsWith("]"))) {
-                    try {
+                if ((txt.StartsWith("{") && txt.EndsWith("}")) || (txt.StartsWith("[") && txt.EndsWith("]")))
+                {
+                    try
+                    {
                         var json = JsonMapper.ToObject(txt);
                         return Operand.Create(json);
-                    } catch (Exception) { }
+                    }
+                    catch (Exception) { }
                 }
             }
-            return Error(errorMessage);
+            _isError = true;
+            if (null == _errorMsg)
+            {
+                _errorMsg = errorMessage;
+            }
+            return this;
         }
         /// <summary>
         /// 转Array类型
@@ -397,10 +445,13 @@ namespace ToolGood.Algorithm
         {
             if (Type == OperandType.ARRARY) { return this; }
             if (IsError) { return this; }
-            if (Type == OperandType.JSON) {
-                if (JsonValue.IsArray) {
+            if (Type == OperandType.JSON)
+            {
+                if (JsonValue.IsArray)
+                {
                     List<Operand> list = new List<Operand>();
-                    foreach (JsonData v in JsonValue) {
+                    foreach (JsonData v in JsonValue)
+                    {
                         if (v.IsString)
                             list.Add(Operand.Create(v.StringValue));
                         else if (v.IsBoolean)
@@ -415,7 +466,27 @@ namespace ToolGood.Algorithm
                     return Create(list);
                 }
             }
-            return Error(errorMessage);
+            _isError = true;
+            if (null == _errorMsg)
+            {
+                _errorMsg = errorMessage;
+            }
+            return this;
+        }
+
+        /// <summary>
+        /// 设置失败
+        /// </summary>
+        /// <param name="errorMessage"></param>
+        /// <returns></returns>
+        public Operand SetError(string errorMessage)
+        {
+            _isError = true;
+            if (null==_errorMsg)
+            {
+                _errorMsg = errorMessage;
+            }
+            return this;
         }
 
         void IDisposable.Dispose() { }
@@ -425,7 +496,7 @@ namespace ToolGood.Algorithm
         #region number
         public static implicit operator Operand(Int16 obj)
         {
-            return Operand.Create((int)obj);
+            return Operand.Create((int) obj);
         }
         public static implicit operator Operand(Int32 obj)
         {
@@ -433,24 +504,24 @@ namespace ToolGood.Algorithm
         }
         public static implicit operator Operand(Int64 obj)
         {
-            return Operand.Create((double)obj);
+            return Operand.Create((double) obj);
         }
         public static implicit operator Operand(UInt16 obj)
         {
-            return Operand.Create((double)obj);
+            return Operand.Create((double) obj);
         }
         public static implicit operator Operand(UInt32 obj)
         {
-            return Operand.Create((double)obj);
+            return Operand.Create((double) obj);
         }
         public static implicit operator Operand(UInt64 obj)
         {
-            return Operand.Create((double)obj);
+            return Operand.Create((double) obj);
         }
 
         public static implicit operator Operand(float obj)
         {
-            return Operand.Create((double)obj);
+            return Operand.Create((double) obj);
         }
         public static implicit operator Operand(double obj)
         {
@@ -458,7 +529,7 @@ namespace ToolGood.Algorithm
         }
         public static implicit operator Operand(decimal obj)
         {
-            return Operand.Create((double)obj);
+            return Operand.Create((double) obj);
         }
         #endregion
 
@@ -499,7 +570,7 @@ namespace ToolGood.Algorithm
     abstract class Operand<T> : Operand
     {
         public T Value { get; private set; }
-        public Operand(T obj)
+        public Operand(T obj):base()
         {
             Value = obj;
         }
@@ -509,7 +580,7 @@ namespace ToolGood.Algorithm
     {
         public OperandNumber(double obj) : base(obj) { }
         public override OperandType Type => OperandType.NUMBER;
-        public override int IntValue => (int)Value;
+        public override int IntValue => (int) Value;
         public override double NumberValue => Value;
     }
     class OperandBoolean : Operand<bool>
@@ -545,12 +616,8 @@ namespace ToolGood.Algorithm
     class OperandError : Operand
     {
         public override OperandType Type => OperandType.ERROR;
-        public override bool IsError => true;
-        private string _errorMsg;
-        public override string ErrorMsg => _errorMsg;
-        public OperandError(string msg)
+        public OperandError(string msg):base(msg)
         {
-            _errorMsg = msg;
         }
     }
 
