@@ -474,20 +474,20 @@ namespace ToolGood.Algorithm
             return this;
         }
 
-        /// <summary>
-        /// 设置失败
-        /// </summary>
-        /// <param name="errorMessage"></param>
-        /// <returns></returns>
-        public Operand SetError(string errorMessage)
-        {
-            _isError = true;
-            if (null==_errorMsg)
-            {
-                _errorMsg = errorMessage;
-            }
-            return this;
-        }
+        ///// <summary>
+        ///// 设置失败
+        ///// </summary>
+        ///// <param name="errorMessage"></param>
+        ///// <returns></returns>
+        //public Operand SetError(string errorMessage)
+        //{
+        //    _isError = true;
+        //    if (null==_errorMsg)
+        //    {
+        //        _errorMsg = errorMessage;
+        //    }
+        //    return this;
+        //}
 
         void IDisposable.Dispose() { }
 
