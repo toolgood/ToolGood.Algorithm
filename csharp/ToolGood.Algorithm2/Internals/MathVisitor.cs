@@ -129,7 +129,7 @@ namespace ToolGood.Algorithm
                 }
 
                 firstValue = firstValue.ToText($"Function '{t}' parameter 1 is error!");
-                if (firstValue.IsError) { return secondValue; }
+                if (firstValue.IsError) { return firstValue; }
                 secondValue = secondValue.ToText($"Function '{t}' parameter 2 is error!");
                 if (secondValue.IsError) { return secondValue; }
                 return Operand.Create(firstValue.TextValue + secondValue.TextValue);
