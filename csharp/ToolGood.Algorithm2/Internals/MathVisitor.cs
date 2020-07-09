@@ -815,7 +815,7 @@ namespace ToolGood.Algorithm
             var firstValue = args[0].ToNumber("Function FIXED parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            var s = Math.Round(args[0].NumberValue, num, MidpointRounding.AwayFromZero);
+            var s = Math.Round(firstValue.NumberValue, num, MidpointRounding.AwayFromZero);
             var no = false;
             if (args.Count == 3) {
                 var thirdValue = args[2].ToBoolean("Function FIXED parameter 3 is error!");
@@ -3323,18 +3323,18 @@ namespace ToolGood.Algorithm
             var secondValue = args[1].ToText("Function LASTINDEXOF parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
 
-            var text = args[0].TextValue;
+            var text = firstValue.TextValue;
             if (args.Count == 2) {
-                return Operand.Create(text.LastIndexOf(args[1].TextValue) + excelIndex);
+                return Operand.Create(text.LastIndexOf(secondValue.TextValue) + excelIndex);
             }
             var thirdValue = args[2].ToText("Function LASTINDEXOF parameter 3 is error!");
             if (thirdValue.IsError) { return thirdValue; }
             if (args.Count == 3) {
-                return Operand.Create(text.LastIndexOf(args[1].TextValue, args[2].IntValue) + excelIndex);
+                return Operand.Create(text.LastIndexOf(secondValue.TextValue, thirdValue.IntValue) + excelIndex);
             }
             var fourthValue = args[3].ToText("Function LASTINDEXOF parameter 4 is error!");
             if (fourthValue.IsError) { return fourthValue; }
-            return Operand.Create(text.LastIndexOf(args[1].TextValue, args[2].IntValue, args[3].IntValue) + excelIndex);
+            return Operand.Create(text.LastIndexOf(secondValue.TextValue, thirdValue.IntValue, fourthValue.IntValue) + excelIndex);
         }
         public Operand VisitSPLIT_fun(mathParser.SPLIT_funContext context)
         {
@@ -3405,7 +3405,7 @@ namespace ToolGood.Algorithm
             var secondValue = args[1].ToText("Function STARTSWITH parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
 
-            var text = args[0].TextValue;
+            var text = firstValue.TextValue;
             if (args.Count == 2) {
                 return Operand.Create(text.StartsWith(secondValue.TextValue));
             }
