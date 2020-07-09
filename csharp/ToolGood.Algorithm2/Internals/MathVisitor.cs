@@ -78,10 +78,6 @@ namespace ToolGood.Algorithm
                 if (secondValue.IsError) { return secondValue; }
                 return Operand.Create(firstValue.NumberValue * secondValue.NumberValue);
             } else if (t == "/") {
-                secondValue = secondValue.ToNumber("Div fun right value");
-                if (secondValue.NumberValue == 0) {
-                    return Operand.Error($"Function '{t}' parameter 2 is error!");
-                }
                 if (firstValue.Type == OperandType.STRING) {
                     var a = firstValue.ToDate(null);
                     if (a.IsError == false) firstValue = a;
@@ -92,8 +88,12 @@ namespace ToolGood.Algorithm
 
                 firstValue = firstValue.ToNumber($"Function '{t}' parameter 1 is error!");
                 if (firstValue.IsError) { return firstValue; }
-                secondValue = secondValue.ToNumber($"Function '{t}' parameter 2 is error!");
+                secondValue = secondValue.ToNumber("Div fun right value");
                 if (secondValue.IsError) { return secondValue; }
+                if (secondValue.NumberValue == 0)
+                {
+                    return Operand.Error($"Function '{t}' parameter 2 is error!");
+                }
                 return Operand.Create(firstValue.NumberValue / secondValue.NumberValue);
             } else if (t == "%") {
                 firstValue = firstValue.ToNumber("% fun right value");
@@ -837,6 +837,8 @@ namespace ToolGood.Algorithm
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
             var firstValue = args[0].ToText("Function BIN2OCT parameter 1 is error!");
+            if (firstValue.IsError) { return firstValue; }
+
             if (bit_2.IsMatch(firstValue.TextValue) == false) { return Operand.Error("Function BIN2OCT parameter 1 is error!"); }
             var num = Convert.ToString(Convert.ToInt32(firstValue.TextValue, 2), 8);
             if (args.Count == 2) {
@@ -864,6 +866,8 @@ namespace ToolGood.Algorithm
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
             var firstValue = args[0].ToText("Function BIN2HEX parameter 1 is error!");
+            if (firstValue.IsError) { return firstValue; }
+
             if (bit_2.IsMatch(firstValue.TextValue) == false) { return Operand.Error("Function BIN2HEX parameter 1 is error!"); }
             var num = Convert.ToString(Convert.ToInt32(firstValue.TextValue, 2), 16).ToUpper();
             if (args.Count == 2) {
@@ -883,6 +887,8 @@ namespace ToolGood.Algorithm
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
             var firstValue = args[0].ToText("Function OCT2BIN parameter 1 is error!");
+            if (firstValue.IsError) { return firstValue; }
+
             if (bit_8.IsMatch(firstValue.TextValue) == false) { return Operand.Error("Function OCT2BIN parameter 1 is error!"); }
             var num = Convert.ToString(Convert.ToInt32(firstValue.TextValue, 8), 2);
             if (args.Count == 2) {
@@ -910,6 +916,7 @@ namespace ToolGood.Algorithm
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
             var firstValue = args[0].ToText("Function OCT2HEX parameter 1 is error!");
+            if (firstValue.IsError) { return firstValue; }
             if (bit_8.IsMatch(firstValue.TextValue) == false) { return Operand.Error("Function OCT2HEX parameter 1 is error!"); }
             var num = Convert.ToString(Convert.ToInt32(firstValue.TextValue, 8), 16).ToUpper();
             if (args.Count == 2) {
@@ -928,6 +935,7 @@ namespace ToolGood.Algorithm
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
             var firstValue = args[0].ToNumber("Function DEC2BIN parameter 1 is error!");
+            if (firstValue.IsError) { return firstValue; }
             var num = System.Convert.ToString(firstValue.IntValue, 2);
             if (args.Count == 2) {
                 var secondValue = args[1].ToNumber("Function DEC2BIN parameter 2 is error!");
@@ -945,6 +953,7 @@ namespace ToolGood.Algorithm
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
             var firstValue = args[0].ToNumber("Function DEC2OCT parameter 1 is error!");
+            if (firstValue.IsError) { return firstValue; }
             var num = System.Convert.ToString(firstValue.IntValue, 8);
             if (args.Count == 2) {
                 var secondValue = args[1].ToNumber("Function DEC2OCT parameter 2 is error!");
@@ -962,6 +971,7 @@ namespace ToolGood.Algorithm
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
             var firstValue = args[0].ToNumber("Function DEC2HEX parameter 1 is error!");
+            if (firstValue.IsError) { return firstValue; }
             var num = System.Convert.ToString(firstValue.IntValue, 16).ToUpper();
             if (args.Count == 2) {
                 var secondValue = args[1].ToNumber("Function DEC2HEX parameter 2 is error!");
