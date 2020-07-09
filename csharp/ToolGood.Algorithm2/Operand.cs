@@ -19,13 +19,6 @@ namespace ToolGood.Algorithm
         /// False 值
         /// </summary>
         public static readonly Operand False = Operand.Create(false);
-        private bool _isError = false;
-        private string _errorMsg = null;
-
-        public Operand() { }
-        public Operand(string errMsg) { _isError = true; _errorMsg = errMsg; }
-
-
         /// <summary>
         /// 是否为空
         /// </summary>
@@ -33,11 +26,11 @@ namespace ToolGood.Algorithm
         /// <summary>
         /// 是否出错
         /// </summary>
-        public virtual bool IsError => _isError;
+        public virtual bool IsError => false;
         /// <summary>
         /// 错误信息
         /// </summary>
-        public virtual string ErrorMsg => _errorMsg;
+        public virtual string ErrorMsg => null;
         /// <summary>
         /// 操作数类型
         /// </summary>
@@ -333,12 +326,7 @@ namespace ToolGood.Algorithm
                     return Create(d);
                 }
             }
-            _isError = true;
-            if (null == _errorMsg)
-            {
-                _errorMsg = errorMessage;
-            }
-            return this;
+            return Error(errorMessage);
         }
         /// <summary>
         /// 转bool类型
@@ -358,12 +346,7 @@ namespace ToolGood.Algorithm
                 if (TextValue.Equals("1", StringComparison.OrdinalIgnoreCase)) { return Create(true); }
                 if (TextValue.Equals("0", StringComparison.OrdinalIgnoreCase)) { return Create(false); }
             }
-            _isError = true;
-            if (null == _errorMsg)
-            {
-                _errorMsg = errorMessage;
-            }
-            return this;
+            return Error(errorMessage);
         }
         /// <summary>
         /// 转String类型
@@ -378,12 +361,7 @@ namespace ToolGood.Algorithm
             if (Type == OperandType.BOOLEAN) { return Create(BooleanValue ? "TRUE" : "FALSE"); }
             if (Type == OperandType.DATE) { return Create(DateValue.ToString()); }
 
-            _isError = true;
-            if (null == _errorMsg)
-            {
-                _errorMsg = errorMessage;
-            }
-            return this;
+            return Error(errorMessage);
         }
         /// <summary>
         /// 转Date类型
@@ -400,12 +378,7 @@ namespace ToolGood.Algorithm
                 if (TimeSpan.TryParse(TextValue, cultureInfo, out TimeSpan t)) { return Create(new Date(t)); }
                 if (DateTime.TryParse(TextValue, cultureInfo, DateTimeStyles.None, out DateTime d)) { return Create(new Date(d)); }
             }
-            _isError = true;
-            if (null == _errorMsg)
-            {
-                _errorMsg = errorMessage;
-            }
-            return this;
+            return Error(errorMessage);
         }
         /// <summary>
         /// 转Json类型
@@ -429,12 +402,7 @@ namespace ToolGood.Algorithm
                     catch (Exception) { }
                 }
             }
-            _isError = true;
-            if (null == _errorMsg)
-            {
-                _errorMsg = errorMessage;
-            }
-            return this;
+            return Error(errorMessage);
         }
         /// <summary>
         /// 转Array类型
@@ -466,28 +434,8 @@ namespace ToolGood.Algorithm
                     return Create(list);
                 }
             }
-            _isError = true;
-            if (null == _errorMsg)
-            {
-                _errorMsg = errorMessage;
-            }
-            return this;
+            return Error(errorMessage);
         }
-
-        ///// <summary>
-        ///// 设置失败
-        ///// </summary>
-        ///// <param name="errorMessage"></param>
-        ///// <returns></returns>
-        //public Operand SetError(string errorMessage)
-        //{
-        //    _isError = true;
-        //    if (null==_errorMsg)
-        //    {
-        //        _errorMsg = errorMessage;
-        //    }
-        //    return this;
-        //}
 
         void IDisposable.Dispose() { }
 
@@ -570,7 +518,7 @@ namespace ToolGood.Algorithm
     abstract class Operand<T> : Operand
     {
         public T Value { get; private set; }
-        public Operand(T obj):base()
+        public Operand(T obj)
         {
             Value = obj;
         }
@@ -616,8 +564,12 @@ namespace ToolGood.Algorithm
     class OperandError : Operand
     {
         public override OperandType Type => OperandType.ERROR;
-        public OperandError(string msg):base(msg)
+        public override bool IsError => true;
+        private string _errorMsg;
+        public override string ErrorMsg => _errorMsg;
+        public OperandError(string msg)
         {
+            _errorMsg = msg;
         }
     }
 
