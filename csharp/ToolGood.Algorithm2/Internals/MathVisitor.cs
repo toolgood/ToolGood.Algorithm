@@ -53,7 +53,7 @@ namespace ToolGood.Algorithm
                         return Operand.Create(0);
                 }
                 if (firstValue.Type == OperandType.STRING) {
-                    var a = firstValue.ToDate($"Function '{t}' parameter 1 is error!");
+                    var a = firstValue.ToDate(null);
                     if (a.IsError == false) firstValue = a;
                 }
                 if (firstValue.Type == OperandType.DATE) {
@@ -63,7 +63,7 @@ namespace ToolGood.Algorithm
                 }
 
                 if (secondValue.Type == OperandType.STRING) {
-                    var a = secondValue.ToDate($"Function '{t}' parameter 2 is error!");
+                    var a = secondValue.ToDate(null);
                     if (a.IsError == false) secondValue = a;
                 }
                 if (secondValue.Type == OperandType.DATE) {
@@ -83,7 +83,7 @@ namespace ToolGood.Algorithm
                     return Operand.Error($"Function '{t}' parameter 2 is error!");
                 }
                 if (firstValue.Type == OperandType.STRING) {
-                    var a = firstValue.ToDate($"Div 0 is error!");
+                    var a = firstValue.ToDate(null);
                     if (a.IsError == false) firstValue = a;
                 }
                 if (firstValue.Type == OperandType.DATE) {
@@ -136,11 +136,11 @@ namespace ToolGood.Algorithm
             }
             if (t == "+") {
                 if (firstValue.Type == OperandType.STRING) {
-                    var a = firstValue.ToDate($"Function '{t}' parameter 1 is error!");
+                    var a = firstValue.ToDate(null);
                     if (a.IsError == false) firstValue = a;
                 }
                 if (secondValue.Type == OperandType.STRING) {
-                    var a = secondValue.ToDate($"Function '{t}' parameter 2 is error!");
+                    var a = secondValue.ToDate(null);
                     if (a.IsError == false) secondValue = a;
                 }
                 if (firstValue.Type == OperandType.DATE && secondValue.Type == OperandType.DATE) {
@@ -161,11 +161,11 @@ namespace ToolGood.Algorithm
                 return Operand.Create(firstValue.NumberValue + secondValue.NumberValue);
             } else if (t == "-") {
                 if (firstValue.Type == OperandType.STRING) {
-                    var a = firstValue.ToDate($"Function '{t}' parameter 1 is error!");
+                    var a = firstValue.ToDate(null);
                     if (a.IsError == false) firstValue = a;
                 }
                 if (secondValue.Type == OperandType.STRING) {
-                    var a = secondValue.ToDate($"Function '{t}' parameter 2 is error!");
+                    var a = secondValue.ToDate(null);
                     if (a.IsError == false) secondValue = a;
                 }
                 if (firstValue.Type == OperandType.DATE && secondValue.Type == OperandType.DATE) {
@@ -3611,7 +3611,7 @@ namespace ToolGood.Algorithm
             };
 
             foreach (var item in firstValue.ArrayValue) {
-                var json = item.ToJson("Function LOOKUP parameter 1 error!");
+                var json = item.ToJson(null);
                 if (json.IsError == false) {
                     engine.Json = json;
                     try {
