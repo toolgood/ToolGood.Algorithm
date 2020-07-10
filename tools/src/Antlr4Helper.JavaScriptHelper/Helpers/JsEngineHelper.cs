@@ -26,6 +26,41 @@ namespace Antlr4Helper.JavaScriptHelper.Helpers
             return JsEngineSwitcher;
         }
 
+        public static string GetCondition( string condition,int max)
+        {
+            GetJsEngineSwitcher();
+            return antiDupCache.GetOrAdd(condition, () =>
+            {
+                List<int> useConstants = new List<int>();
+                for (int i = 1; i <= max; i++)
+                {
+                    useConstants.Add(i);
+                }
+
+                var js = @"var antlr4={};
+antlr4.Token={};
+antlr4.Token.EOF=-1;
+var testNums=[{1}];
+var result=[];
+for(var i=0;i<testNums.length;i++){
+    var _la=testNums[i];
+    if({2}){
+        result.push(_la)
+    }
+}
+outResult=result.join(',');
+";
+                js = js.Replace("{1}", string.Join(",", useConstants));
+                js = js.Replace("{2}", condition);
+
+                IJsEngine engine = JsEngineSwitcher.Current.CreateEngine(JintJsEngine.EngineName);
+                engine.SetVariableValue("outResult", "");
+                engine.Evaluate(js);
+                var result = engine.GetVariableValue<string>("outResult");
+                engine.Dispose();
+                return result;
+            });
+        }
 
 
 

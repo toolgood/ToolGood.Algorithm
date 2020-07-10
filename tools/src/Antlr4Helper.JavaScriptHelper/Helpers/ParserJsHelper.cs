@@ -11,12 +11,12 @@ namespace Antlr4Helper.JavaScriptHelper.Helpers
     {
         private static Regex ifnotReg = new Regex(@"if\(!(.*)\)", RegexOptions.Compiled);
         private static Regex whileReg = new Regex(@"while\((.*)\)", RegexOptions.Compiled);
-        private static Regex ifReg = new Regex(@"if\(([^!].*)\)", RegexOptions.Compiled);
+        private static Regex ifReg = new Regex(@"if\((.*)\)", RegexOptions.Compiled);
 
         public static Dictionary<string, int> GetKeyword(string lines)
         {
             Dictionary<string, int> dict = new Dictionary<string, int>();
-            var ms = Regex.Matches(lines, @"(.*Parser.[A-Za-z0-9_]+) = (\d+);");
+            var ms = Regex.Matches(lines, @"(.*?Parser.[A-Za-z0-9_]+) = (\d+);");
             foreach (Match m in ms)
             {
                 var name = m.Groups[1].Value;
@@ -29,13 +29,25 @@ namespace Antlr4Helper.JavaScriptHelper.Helpers
         {
             Dictionary<string, int> dict = GetKeyword(lines);
             var ls = dict.Keys.OrderByDescending(q => q.Length).ToList();
-
+            dict["antlr4.Token.EOF"] = -1;
+            var max = dict.Max(q => q.Value);
             foreach (var item in ls)
             {
                 lines = lines.Replace(item + ")", dict[item].ToString() + ")");
                 lines = lines.Replace(" " + item, " " + dict[item].ToString());
                 lines = lines.Replace("(" + item, "(" + dict[item].ToString());
             }
+
+            var ms = ifReg.Matches(lines);
+            foreach (Match m in ms)
+            {
+                if (m.Groups[1].Value.Length > 20 && m.Groups[1].Value.Contains("_la"))
+                {
+                    var t = JsEngineHelper.GetCondition(m.Groups[1].Value, max);
+                    lines = lines.Replace(m.Groups[1].Value, $"[{t}].indexOf(_la)>-1");
+                }
+            }
+
             return lines;
         }
 
@@ -118,6 +130,7 @@ namespace Antlr4Helper.JavaScriptHelper.Helpers
                     lines.RemoveAt(i);
                     continue;
                 }
+                //mathParser.Parameter2Context = Parameter2Context;
                 if (Regex.IsMatch(line, name + @"_funContext\.prototype\.[a-z]+ ="))
                 {
                     lines.RemoveAt(i);
