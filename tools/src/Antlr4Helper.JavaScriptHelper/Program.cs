@@ -12,15 +12,20 @@ namespace Antlr4Helper.JavaScriptHelper
             var text = File.ReadAllText("mathParser.js");
             var lines = text.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).ToList();
             ParserJsHelper.RemoveState(lines);
+            ParserJsHelper.RemoveState2(lines);
             ParserJsHelper.MiniAccept(lines);
             ParserJsHelper.MiniExpr(lines);
             ParserJsHelper.MiniToken(lines);
             ParserJsHelper.RemovePrecpred(lines);
             ParserJsHelper.Remove_fun2Context(lines);
+            ParserJsHelper.Remove_sempred(lines);
+            ParserJsHelper.Remove_expr_sempred(lines);
+
 
 
             text = string.Join("\r\n", lines);
             text = MiniSerializedATN.MiniAtn(text);
+            text = ParserJsHelper.RemoveOthers(text);
             File.WriteAllText("mathParser.bak.js", text);
 
 

@@ -15,7 +15,8 @@ namespace Antlr4Helper.JavaScriptHelper.Helpers
             for (int i = lines.Count - 1; i >= 0; i--)
             {
                 var line = lines[i];
-                lines[i] = line.Replace("_fun2Context", "_funContext");
+                line = line.Replace("_fun2Context", "_funContext");
+                lines[i] = line.Replace("Expr2Context", "ExprContext");
             }
             for (int i = lines.Count - 1; i >= 0; i--)
             {
@@ -50,7 +51,7 @@ namespace Antlr4Helper.JavaScriptHelper.Helpers
             }
 
         }
-        private static void Remove_func(List<string> lines,int start,string name)
+        private static void Remove_func(List<string> lines, int start, string name)
         {
             var i = start + 50;
             while (i < lines.Count)
@@ -60,7 +61,7 @@ namespace Antlr4Helper.JavaScriptHelper.Helpers
                 {
                     lines.RemoveAt(i);
                     line = lines[i];
-                    while (line!="}")
+                    while (line != "}")
                     {
                         lines.RemoveAt(i);
                         line = lines[i];
@@ -83,7 +84,7 @@ namespace Antlr4Helper.JavaScriptHelper.Helpers
                     lines.RemoveAt(i);
                     continue;
                 }
-                if (Regex.IsMatch(line,name+ @"_funContext\.prototype\.[a-z]+ ="))
+                if (Regex.IsMatch(line, name + @"_funContext\.prototype\.[a-z]+ ="))
                 {
                     lines.RemoveAt(i);
                     line = lines[i];
@@ -104,7 +105,7 @@ namespace Antlr4Helper.JavaScriptHelper.Helpers
             }
 
 
-        
+
 
         }
 
@@ -131,6 +132,49 @@ namespace Antlr4Helper.JavaScriptHelper.Helpers
         #endregion
 
         #region remove expr_sempred
+        public static void Remove_sempred(List<string> lines)
+        {
+            var i = 0;
+            while (i < lines.Count)
+            {
+                var line = lines[i];
+                if (line == "mathParser.prototype.sempred = function(localctx, ruleIndex, predIndex) {")
+                {
+                    lines.RemoveAt(i);
+                    line = lines[i];
+                    while (line != "};")
+                    {
+                        lines.RemoveAt(i);
+                        line = lines[i];
+                    }
+                    lines.RemoveAt(i);
+                    continue;
+                }
+                i++;
+            }
+        }
+        public static void Remove_expr_sempred(List<string> lines)
+        {
+            var i = 0;
+            while (i < lines.Count)
+            {
+                var line = lines[i];
+                if (line == "mathParser.prototype.expr_sempred = function(localctx, predIndex) {")
+                {
+                    lines.RemoveAt(i);
+                    line = lines[i];
+                    while (line != "};")
+                    {
+                        lines.RemoveAt(i);
+                        line = lines[i];
+                    }
+                    lines.RemoveAt(i);
+                    continue;
+                }
+                i++;
+            }
+        }
+
         //mathParser.prototype.sempred = function(localctx, ruleIndex, predIndex)
         //{
         //    switch (ruleIndex)
@@ -234,6 +278,28 @@ namespace Antlr4Helper.JavaScriptHelper.Helpers
             }
         }
 
+        public static void RemoveState2(List<string> lines)
+        {
+            var b = false;
+            var i = 0;
+            while (i < lines.Count)
+            {
+                var line = lines[i];
+                if (line == "mathParser.prototype.expr2 = function() {")
+                {
+                    b = true;
+                }
+                if (b)
+                {
+                    if (Regex.IsMatch(line, @"this\.state = \d+;"))
+                    {
+                        lines.RemoveAt(i);
+                    }
+                }
+                i++;
+            }
+
+        }
 
         //this.state = 621;
         // this.match(mathParser.T__18);
