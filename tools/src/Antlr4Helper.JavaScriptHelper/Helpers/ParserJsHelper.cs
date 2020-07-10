@@ -10,26 +10,124 @@ namespace Antlr4Helper.JavaScriptHelper.Helpers
     public class ParserJsHelper
     {
         #region remove _fun2Context
+        public static void Remove_fun2Context(List<string> lines)
+        {
+            for (int i = lines.Count - 1; i >= 0; i--)
+            {
+                var line = lines[i];
+                lines[i] = line.Replace("_fun2Context", "_funContext");
+            }
+            for (int i = lines.Count - 1; i >= 0; i--)
+            {
+                var line = lines[i];
+                if (Regex.IsMatch(line, @"[A-Za-z0-9]+?Parser\.[A-Za-z0-9]+?_funContext = [A-Za-z0-9]+?_funContext;"))
+                {
+                    lines.RemoveAt(i);
+                }
+            }
+            List<string> funNames = new List<string>();
+            for (int i = lines.Count - 1; i >= 0; i--)
+            {
+                var line = lines[i];
+                if (Regex.IsMatch(line, @"function (.*?)_funContext\(parser, ctx\) \{"))
+                {
+                    Match m = Regex.Match(line, @"function (.*?)_funContext\(parser, ctx\) \{");
+                    if (m.Success)
+                    {
+                        var name = m.Groups[1].Value;
+                        if (funNames.Contains(name))
+                        {
+                            Remove_func(lines, i, name);
 
+
+                        }
+                        else
+                        {
+                            funNames.Add(m.Groups[1].Value);
+                        }
+                    }
+                }
+            }
+
+        }
+        private static void Remove_func(List<string> lines,int start,string name)
+        {
+            var i = start + 50;
+            while (i < lines.Count)
+            {
+                var line = lines[i];
+                if (line == $"function {name}_funContext(parser, ctx) {{")
+                {
+                    lines.RemoveAt(i);
+                    line = lines[i];
+                    while (line!="}")
+                    {
+                        lines.RemoveAt(i);
+                        line = lines[i];
+                    }
+                    lines.RemoveAt(i);
+                    continue;
+                }
+                if (line.StartsWith($"{name}_funContext.prototype = Object.create("))
+                {
+                    lines.RemoveAt(i);
+                    continue;
+                }
+                if (line.StartsWith($"{name}_funContext.prototype.constructor = {name}_funContext;"))
+                {
+                    lines.RemoveAt(i);
+                    continue;
+                }
+                if (line.EndsWith($"Parser.{name}_funContext = {name}_funContext;"))
+                {
+                    lines.RemoveAt(i);
+                    continue;
+                }
+                if (Regex.IsMatch(line,name+ @"_funContext\.prototype\.[a-z]+ ="))
+                {
+                    lines.RemoveAt(i);
+                    line = lines[i];
+                    while (line != "};")
+                    {
+                        lines.RemoveAt(i);
+                        line = lines[i];
+                    }
+                    lines.RemoveAt(i);
+                    continue;
+                }
+
+                //HOUR_funContext.prototype = Object.create(ExprContext.prototype);
+                //HOUR_funContext.prototype.constructor = HOUR_funContext;
+                //mathParser.HOUR_funContext = HOUR_funContext;
+
+                i++;
+            }
+
+
+        
+
+        }
 
         #endregion
 
         #region mini expr
-        //TEXTTOBASE64URL_funContext.prototype.expr = function(i)
-        //{
-        //    if (i === undefined)
-        //    {
-        //        i = null;
-        //    }
-        //    if (i === null)
-        //    {
-        //        return this.getTypedRuleContexts(ExprContext);
-        //    }
-        //    else
-        //    {
-        //        return this.getTypedRuleContext(ExprContext, i);
-        //    }
-        //};
+        public static void MiniExpr(List<string> lines)
+        {
+            for (int i = lines.Count - 1; i >= 0; i--)
+            {
+                var line = lines[i];
+                if (Regex.IsMatch(line, @".*Context\.prototype\.expr = function\(i\) \{"))
+                {
+                    lines.RemoveAt(i + 8);
+                    lines.RemoveAt(i + 7);
+                    lines.RemoveAt(i + 6);
+                    lines.RemoveAt(i + 4);
+                    lines.RemoveAt(i + 3);
+                    lines.RemoveAt(i + 2);
+                    lines.RemoveAt(i + 1);
+                }
+            }
+        }
         #endregion
 
         #region remove expr_sempred
@@ -51,30 +149,66 @@ namespace Antlr4Helper.JavaScriptHelper.Helpers
 
 
         #region remove token
-        //TDIST_fun2Context.prototype.TDIST = function()
-        //{
-        //    return this.getToken(mathParser.TDIST, 0);
-        //};
-
-
+        public static void MiniToken(List<string> lines)
+        {
+            for (int i = lines.Count - 1; i >= 0; i--)
+            {
+                var line = lines[i];
+                if (Regex.IsMatch(line, @".*\.prototype\.[A-Z0-9]+ = function\(\) \{"))
+                {
+                    if (Regex.IsMatch(line, @".*\.prototype\.(NUM|SUB|STRING|PARAMETER) = function\(\) \{"))
+                    {
+                        continue;
+                    }
+                    lines.RemoveAt(i);
+                    lines.RemoveAt(i);
+                    lines.RemoveAt(i);
+                    continue;
+                }
+                if (Regex.IsMatch(line, @"^.*Parser.[A-Z0-9_]+ = \d+;$"))
+                {
+                    lines.RemoveAt(i);
+                }
+                if (Regex.IsMatch(line, @"^.*Parser.RULE_[a-z0-9_]+ = \d+;$"))
+                {
+                    lines.RemoveAt(i);
+                }
+            }
+        }
         #endregion
 
         #region min accept
-        //TDIST_fun2Context.prototype.accept = function(visitor)
-        //{
-        //    if (visitor instanceof mathVisitor ) {
-        //        return visitor.visitTDIST_fun2(this);
-        //    } else
-        //    {
-        //        return visitor.visitChildren(this);
-        //    }
-        //};
-
-
-
+        public static void MiniAccept(List<string> lines)
+        {
+            for (int i = lines.Count - 1; i >= 0; i--)
+            {
+                var line = lines[i];
+                if (Regex.IsMatch(line, @".*\.prototype\.accept = function\(visitor\)"))
+                {
+                    lines.RemoveAt(i + 5);
+                    lines.RemoveAt(i + 4);
+                    lines.RemoveAt(i + 3);
+                    lines.RemoveAt(i + 1);
+                }
+            }
+        }
         #endregion
 
         #region remove precpred
+        public static void RemovePrecpred(List<string> lines)
+        {
+            for (int i = lines.Count - 1; i >= 0; i--)
+            {
+                var line = lines[i];
+                if (Regex.IsMatch(line, @"if \(!\( this\.precpred\(this\._ctx, \d+\)\)\) \{"))
+                {
+                    lines.RemoveAt(i);
+                    lines.RemoveAt(i);
+                    lines.RemoveAt(i);
+                }
+            }
+        }
+
         //if (!( this.precpred(this._ctx, 13))) {
         //    throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 13)");
         //}
@@ -83,6 +217,24 @@ namespace Antlr4Helper.JavaScriptHelper.Helpers
         #endregion
 
         #region remove state
+        public static void RemoveState(List<string> lines)
+        {
+            for (int i = lines.Count - 1; i >= 0; i--)
+            {
+                var line = lines[i];
+                if (Regex.IsMatch(line, @"this\.state = \d+;"))
+                {
+                    var line2 = lines[i + 1];
+                    if (Regex.IsMatch(line2, @"this\.(expr|parameter2)\((.*?)\);") == false)
+                    {
+                        lines.RemoveAt(i);
+                        continue;
+                    }
+                }
+            }
+        }
+
+
         //this.state = 621;
         // this.match(mathParser.T__18);
 
@@ -98,7 +250,7 @@ namespace Antlr4Helper.JavaScriptHelper.Helpers
         }
         #endregion
         #region ReplaceTokens
-        public static string ReplaceTokens(string txt,string fileName, Dictionary<string,string> dict)
+        public static string ReplaceTokens(string txt, string fileName, Dictionary<string, string> dict)
         {
             var list = dict.Select(q => q.Key).OrderByDescending(q => q.Length).ToList();
             foreach (var item in list)
