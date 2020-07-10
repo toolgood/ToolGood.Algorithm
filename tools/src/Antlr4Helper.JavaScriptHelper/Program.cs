@@ -11,6 +11,8 @@ namespace Antlr4Helper.JavaScriptHelper
         {
             var text = File.ReadAllText("mathParser.js");
             text = ParserJsHelper.ReplaceNumber(text);
+            text = ParserJsHelper.ReplaceKey(text);
+
             var lines = text.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).ToList();
             ParserJsHelper.RemoveState(lines);
             ParserJsHelper.RemoveState2(lines);

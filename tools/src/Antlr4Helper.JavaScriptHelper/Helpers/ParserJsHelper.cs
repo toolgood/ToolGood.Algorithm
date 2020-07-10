@@ -13,6 +13,32 @@ namespace Antlr4Helper.JavaScriptHelper.Helpers
         private static Regex whileReg = new Regex(@"while\((.*)\)", RegexOptions.Compiled);
         private static Regex ifReg = new Regex(@"if\(([^!].*)\)", RegexOptions.Compiled);
 
+        public static Dictionary<string, int> GetKeyword(string lines)
+        {
+            Dictionary<string, int> dict = new Dictionary<string, int>();
+            var ms = Regex.Matches(lines, @"(.*Parser.[A-Za-z0-9_]+) = (\d+);");
+            foreach (Match m in ms)
+            {
+                var name = m.Groups[1].Value;
+                var id = m.Groups[2].Value;
+                dict[name] = int.Parse(id);
+            }
+            return dict;
+        }
+        public static string ReplaceKey(string lines)
+        {
+            Dictionary<string, int> dict = GetKeyword(lines);
+            var ls = dict.Keys.OrderByDescending(q => q.Length).ToList();
+
+            foreach (var item in ls)
+            {
+                lines = lines.Replace(item + ")", dict[item].ToString() + ")");
+                lines = lines.Replace(" " + item, " " + dict[item].ToString());
+                lines = lines.Replace("(" + item, "(" + dict[item].ToString());
+            }
+            return lines;
+        }
+
 
 
 
@@ -208,6 +234,10 @@ namespace Antlr4Helper.JavaScriptHelper.Helpers
                     lines.RemoveAt(i);
                 }
                 if (Regex.IsMatch(line, @"^.*Parser.RULE_[a-z0-9_]+ = \d+;$"))
+                {
+                    lines.RemoveAt(i);
+                }
+                if (Regex.IsMatch(line, @"^\d+ = \d+;$"))
                 {
                     lines.RemoveAt(i);
                 }
