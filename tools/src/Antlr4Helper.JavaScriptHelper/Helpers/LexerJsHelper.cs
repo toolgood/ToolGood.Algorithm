@@ -39,6 +39,19 @@ namespace Antlr4Helper.JavaScriptHelper.Helpers
         }
         #endregion
 
+        public static void MiniToken(List<string> lines)
+        {
+            for (int i = lines.Count - 1; i >= 0; i--)
+            {
+                var line = lines[i];
+                if (Regex.IsMatch(line, @"^.*Lexer.[A-Z0-9_]+ = \d+;$"))
+                {
+                    //mathLexer.IFERROR = 29;
+                    lines.RemoveAt(i);
+                }
+            }
+        }
+
         #region RemoveOthers
         public static string RemoveOthers(string txt)
         {
