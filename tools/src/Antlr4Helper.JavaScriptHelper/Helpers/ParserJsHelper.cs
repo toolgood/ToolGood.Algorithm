@@ -9,6 +9,14 @@ namespace Antlr4Helper.JavaScriptHelper.Helpers
 {
     public class ParserJsHelper
     {
+        private static Regex ifnotReg = new Regex(@"if\(!(.*)\)", RegexOptions.Compiled);
+        private static Regex whileReg = new Regex(@"while\((.*)\)", RegexOptions.Compiled);
+        private static Regex ifReg = new Regex(@"if\(([^!].*)\)", RegexOptions.Compiled);
+
+
+
+
+
         #region remove _fun2Context
         public static void Remove_fun2Context(List<string> lines)
         {
@@ -175,20 +183,6 @@ namespace Antlr4Helper.JavaScriptHelper.Helpers
             }
         }
 
-        //mathParser.prototype.sempred = function(localctx, ruleIndex, predIndex)
-        //{
-        //    switch (ruleIndex)
-        //    {
-        //        case 1:
-        //            return this.expr_sempred(localctx, predIndex);
-        //        default:
-        //            throw "No predicate with index:" + ruleIndex;
-        //    }
-        //};
-        //mathParser.prototype.expr_sempred = function(localctx, predIndex) {
-
-
-
         #endregion
 
 
@@ -253,10 +247,6 @@ namespace Antlr4Helper.JavaScriptHelper.Helpers
             }
         }
 
-        //if (!( this.precpred(this._ctx, 13))) {
-        //    throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 13)");
-        //}
-
 
         #endregion
 
@@ -300,12 +290,6 @@ namespace Antlr4Helper.JavaScriptHelper.Helpers
             }
 
         }
-
-        //this.state = 621;
-        // this.match(mathParser.T__18);
-
-
-
 
         #endregion
 
