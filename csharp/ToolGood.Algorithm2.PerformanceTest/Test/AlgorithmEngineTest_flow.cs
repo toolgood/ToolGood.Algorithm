@@ -1,118 +1,120 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using ToolGood.Algorithm;
 
 namespace ToolGood.Algorithm2.PerformanceTest.Test
 {
-    public class AlgorithmEngineTest
+    class AlgorithmEngineTest_flow
     {
         [Benchmark]
-        public void Test_Add()
+        public void If_Test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            var c = engine.TryEvaluate("2+3", 0);
+            engine.TryEvaluate("if(1=1,1,2)", 0);
         }
 
         [Benchmark]
-        public void Test_Add2()
+        public void iferror_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            var s = engine.TryEvaluate("'aa'&'bb'", "");
+            engine.TryEvaluate("iferror(1/0,1,2)", 0);
         }
 
         [Benchmark]
-        public void Test_Add_3()
+        public void iferror_test_2()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            var c = engine.TryEvaluate("2+true", 0);
+            engine.TryEvaluate("iferror(1-'rrr',1,2)", 0);
         }
 
         [Benchmark]
-        public void Test_Add_4()
+        public void iserror_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            var c = engine.TryEvaluate("2+'12:0'", 0);
+            engine.TryEvaluate("iserror(1/0,1)", 0);
+        }
+        [Benchmark]
+        public void ifnull_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            engine.TryEvaluate("isnull(null,1)", 0);
         }
 
         [Benchmark]
-        public void Test_Sub()
+        public void isnullorerror_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            var c = engine.TryEvaluate("2-3", 0);
+            engine.TryEvaluate("isnullorerror(null,1)", 0);
         }
 
 
+
         [Benchmark]
-        public void Test_Mul()
+        public void ISNUMBER_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            var c = engine.TryEvaluate("2*3", 0);
+            engine.TryEvaluate("if(ISNUMBER(1),1,2)", 0);
         }
 
         [Benchmark]
-        public void Test_Mul_2()
+        public void ISTEXT_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            var c = engine.TryEvaluate("'1:0'*3", 0);
-        }
-
-        [Benchmark]
-        public void Test_Div()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var c = engine.TryEvaluate("2/3", 0);
-        }
-
-        [Benchmark]
-        public void Test_Div_2()
-        {
-            AlgorithmEngine engine = new AlgorithmEngine();
-            var c = engine.TryEvaluate("'9:0'/3", 0);
+            engine.TryEvaluate("if(ISTEXT(1),1,2)", 0);
         }
 
 
         [Benchmark]
-        public void Test_c()
+        public void ISNONTEXT_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            var c = engine.TryEvaluate("2>3", false);
+            engine.TryEvaluate("if(ISNONTEXT(1),1,2)", 0);
+        }
+
+
+        [Benchmark]
+        public void ISLOGICAL_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            engine.TryEvaluate("if(ISLOGICAL(1),1,2)", 0);
         }
 
         [Benchmark]
-        public void Test_c2()
+        public void ISEVEN_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            var c = engine.TryEvaluate("2>=3", false);
+            engine.TryEvaluate("if(ISEVEN(1),1,2)", 0);
         }
 
         [Benchmark]
-        public void Test_c3()
+        public void ISODD_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            var c = engine.TryEvaluate("2<3", false);
+            engine.TryEvaluate("if(ISODD(1),1,2)", 0);
         }
 
         [Benchmark]
-        public void Test_c4()
+        public void And_Test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            var c = engine.TryEvaluate("2<=3", false);
+            engine.TryEvaluate("and(true(),1=1)", false);
         }
 
         [Benchmark]
-        public void Test_c5()
+        public void Or_Test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            var c = engine.TryEvaluate("2==3", false);
+            engine.TryEvaluate("or(true(),1=1)", false);
         }
 
-    
-
-
+        [Benchmark]
+        public void Not_Test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            engine.TryEvaluate("not(true())", false);
+        }
 
     }
 }

@@ -14,8 +14,11 @@ namespace ToolGood.Algorithm2.PerformanceTest
                 var c = engine.TryEvaluate("2+3", 0);
             }
 
-            var boKar = BenchmarkRunner.Run<AlgorithmEngineTest>();
-            //Console.WriteLine("Hello World!");
+            //   BenchmarkRunner.Run<AlgorithmEngineTest>();
+            BenchmarkRunner.Run<AlgorithmEngineTest_csharp>();
+            BenchmarkRunner.Run<AlgorithmEngineTest_dateTime>();
+
+
         }
     }
 }
