@@ -1419,7 +1419,11 @@ namespace ToolGood.Algorithm
             if (secondValue.IsError) { return secondValue; }
 
             if (args.Count == 2) {
+#if NETSTANDARD2_1
+                var p = secondValue.TextValue.AsSpan().IndexOf(firstValue.TextValue) + excelIndex;
+#else
                 var p = secondValue.TextValue.IndexOf(firstValue.TextValue) + excelIndex;
+#endif
                 return Operand.Create(p);
             }
             var count = args[2].ToNumber("Function FIND parameter 3 is error!");
@@ -1441,7 +1445,11 @@ namespace ToolGood.Algorithm
             }
             var secondValue = args[1].ToNumber("Function LEFT parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
+#if NETSTANDARD2_1
+            return Operand.Create(firstValue.TextValue.AsSpan(0, secondValue.IntValue).ToString());
+#else
             return Operand.Create(firstValue.TextValue.Substring(0, secondValue.IntValue));
+#endif
         }
         public Operand VisitLEN_fun(mathParser.LEN_funContext context)
         {
@@ -1468,8 +1476,11 @@ namespace ToolGood.Algorithm
             if (secondValue.IsError) { return secondValue; }
             var thirdValue = args[2].ToNumber("Function MID parameter 3 is error!");
             if (thirdValue.IsError) { return thirdValue; }
-
+#if NETSTANDARD2_1
+            return Operand.Create(firstValue.TextValue.AsSpan(secondValue.IntValue - excelIndex, thirdValue.IntValue).ToString());
+#else
             return Operand.Create(firstValue.TextValue.Substring(secondValue.IntValue - excelIndex, thirdValue.IntValue));
+#endif
         }
         public Operand VisitPROPER_fun(mathParser.PROPER_funContext context)
         {
@@ -1561,7 +1572,12 @@ namespace ToolGood.Algorithm
             }
             var secondValue = args[1].ToNumber("Function RIGHT parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
+#if NETSTANDARD2_1
+            return Operand.Create(firstValue.TextValue.AsSpan(firstValue.TextValue.Length - secondValue.IntValue, secondValue.IntValue).ToString());
+#else
             return Operand.Create(firstValue.TextValue.Substring(firstValue.TextValue.Length - secondValue.IntValue, secondValue.IntValue));
+#endif
+
         }
         public Operand VisitRMB_fun(mathParser.RMB_funContext context)
         {
@@ -1580,7 +1596,11 @@ namespace ToolGood.Algorithm
             var secondValue = args[1].ToText("Function SEARCH parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
             if (args.Count == 2) {
+#if NETSTANDARD2_1
+                var p = secondValue.TextValue.AsSpan().IndexOf(firstValue.TextValue, StringComparison.OrdinalIgnoreCase) + excelIndex;
+#else
                 var p = secondValue.TextValue.IndexOf(firstValue.TextValue, StringComparison.OrdinalIgnoreCase) + excelIndex;
+#endif
                 return Operand.Create(p);
             }
             var thirdValue = args[2].ToNumber("Function SEARCH parameter 3 is error!");
@@ -3302,7 +3322,11 @@ namespace ToolGood.Algorithm
 
             var text = firstValue.TextValue;
             if (args.Count == 2) {
+#if NETSTANDARD2_1
+                return Operand.Create(text.AsSpan().IndexOf(secondValue.TextValue) + excelIndex);
+#else
                 return Operand.Create(text.IndexOf(secondValue.TextValue) + excelIndex);
+#endif
             }
             var thirdValue = args[2].ToText("Function INDEXOF parameter 3 is error!");
             if (thirdValue.IsError) { return thirdValue; }
@@ -3325,7 +3349,11 @@ namespace ToolGood.Algorithm
 
             var text = firstValue.TextValue;
             if (args.Count == 2) {
+#if NETSTANDARD2_1
+                return Operand.Create(text.AsSpan().LastIndexOf(secondValue.TextValue) + excelIndex);
+#else
                 return Operand.Create(text.LastIndexOf(secondValue.TextValue) + excelIndex);
+#endif
             }
             var thirdValue = args[2].ToText("Function LASTINDEXOF parameter 3 is error!");
             if (thirdValue.IsError) { return thirdValue; }
@@ -3389,11 +3417,19 @@ namespace ToolGood.Algorithm
 
             var text = firstValue.TextValue;
             if (args.Count == 2) {
+#if NETSTANDARD2_1
+                return Operand.Create(text.AsSpan(secondValue.IntValue - excelIndex).ToString());
+#else
                 return Operand.Create(text.Substring(secondValue.IntValue - excelIndex));
+#endif
             }
             var thirdValue = args[2].ToNumber("Function SUBSTRING parameter 3 is error!");
             if (thirdValue.IsError) { return thirdValue; }
+#if NETSTANDARD2_1
+            return Operand.Create(text.AsSpan(secondValue.IntValue - excelIndex, thirdValue.IntValue).ToString());
+#else
             return Operand.Create(text.Substring(secondValue.IntValue - excelIndex, thirdValue.IntValue));
+#endif
         }
         public Operand VisitSTARTSWITH_fun(mathParser.STARTSWITH_funContext context)
         {
@@ -3466,7 +3502,11 @@ namespace ToolGood.Algorithm
             }
             var text = firstValue.TextValue;
             if (text.StartsWith(secondValue.TextValue, comparison)) {
+#if NETSTANDARD2_1
+                return Operand.Create(text.AsSpan(secondValue.TextValue.Length).ToString());
+#else
                 return Operand.Create(text.Substring(secondValue.TextValue.Length));
+#endif
             }
             return firstValue;
         }
@@ -3490,7 +3530,11 @@ namespace ToolGood.Algorithm
             }
             var text = firstValue.TextValue;
             if (text.EndsWith(secondValue.TextValue, comparison)) {
+#if NETSTANDARD2_1
+                return Operand.Create(text.AsSpan(0, text.Length - secondValue.TextValue.Length).ToString());
+#else
                 return Operand.Create(text.Substring(0, text.Length - secondValue.TextValue.Length));
+#endif
             }
             return firstValue;
         }
