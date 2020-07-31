@@ -56,6 +56,9 @@ namespace ToolGood.Algorithm
             var s = engine.TryEvaluate("'aa'&'bb'", "");
             Assert.AreEqual("aabb", s);
 
+            s = engine.TryEvaluate("'3'+2", "");
+            Assert.AreEqual("5", s);
+
             var r = engine.TryEvaluate("count({ 1,2,3,4})", 0);
             Assert.AreEqual(4, r);
 

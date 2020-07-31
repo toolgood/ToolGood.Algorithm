@@ -19,6 +19,7 @@ namespace ToolGood.Algorithm
         private static readonly Regex bit_8 = new Regex("^[0-8]+$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
         private static readonly Regex bit_16 = new Regex("^[0-9a-f]+$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
         private static readonly Regex clearRegex = new Regex(@"[\f\n\r\t\v]", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        private static readonly Regex numberRegex = new Regex(@"^-?(0|[1-9])\d*(\.\d+)?$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
         private static readonly CultureInfo cultureInfo = CultureInfo.GetCultureInfo("en-US");
         public event Func<string, Operand> GetParameter;
         public event Func<string, List<Operand>, Operand> DiyFunction;
@@ -39,7 +40,24 @@ namespace ToolGood.Algorithm
             var firstValue = args[0];
             var secondValue = args[1];
             var t = context.op.Text;
-
+            if (firstValue.Type == OperandType.STRING) {
+                    if (numberRegex.IsMatch(firstValue.TextValue)){
+                        var a = firstValue.ToNumber(null);
+                        if (a.IsError == false) firstValue = a;
+                    }else{
+                        var a = firstValue.ToDate(null);
+                        if (a.IsError == false) firstValue = a;
+                    }
+                }
+                if (secondValue.Type == OperandType.STRING) {
+                    if (numberRegex.IsMatch(secondValue.TextValue)) {
+                        var a = secondValue.ToNumber(null);
+                        if (a.IsError == false) secondValue = a;
+                    } else {
+                        var a = secondValue.ToDate(null);
+                        if (a.IsError == false) secondValue = a;
+                    }
+                }
             if (t == "*") {
                 if (secondValue.Type == OperandType.BOOLEAN) {
                     if (secondValue.BooleanValue)
@@ -52,19 +70,10 @@ namespace ToolGood.Algorithm
                     else
                         return Operand.Create(0);
                 }
-                if (firstValue.Type == OperandType.STRING) {
-                    var a = firstValue.ToDate(null);
-                    if (a.IsError == false) firstValue = a;
-                }
                 if (firstValue.Type == OperandType.DATE) {
                     secondValue = secondValue.ToNumber($"Function '{t}' parameter 2 is error!");
                     if (secondValue.IsError) { return secondValue; }
                     return Operand.Create((Date)(firstValue.DateValue * secondValue.NumberValue));
-                }
-
-                if (secondValue.Type == OperandType.STRING) {
-                    var a = secondValue.ToDate(null);
-                    if (a.IsError == false) secondValue = a;
                 }
                 if (secondValue.Type == OperandType.DATE) {
                     firstValue = firstValue.ToNumber($"Function '{t}' parameter 1 is error!");
@@ -78,10 +87,6 @@ namespace ToolGood.Algorithm
                 if (secondValue.IsError) { return secondValue; }
                 return Operand.Create(firstValue.NumberValue * secondValue.NumberValue);
             } else if (t == "/") {
-                if (firstValue.Type == OperandType.STRING) {
-                    var a = firstValue.ToDate(null);
-                    if (a.IsError == false) firstValue = a;
-                }
                 if (firstValue.Type == OperandType.DATE) {
                     return Operand.Create(firstValue.DateValue / secondValue.NumberValue);
                 }
@@ -134,15 +139,25 @@ namespace ToolGood.Algorithm
                 if (secondValue.IsError) { return secondValue; }
                 return Operand.Create(firstValue.TextValue + secondValue.TextValue);
             }
-            if (t == "+") {
-                if (firstValue.Type == OperandType.STRING) {
-                    var a = firstValue.ToDate(null);
-                    if (a.IsError == false) firstValue = a;
+            if (firstValue.Type == OperandType.STRING) {
+                    if (numberRegex.IsMatch(firstValue.TextValue)){
+                        var a = firstValue.ToNumber(null);
+                        if (a.IsError == false) firstValue = a;
+                    }else{
+                        var a = firstValue.ToDate(null);
+                        if (a.IsError == false) firstValue = a;
+                    }
                 }
                 if (secondValue.Type == OperandType.STRING) {
-                    var a = secondValue.ToDate(null);
-                    if (a.IsError == false) secondValue = a;
+                    if (numberRegex.IsMatch(secondValue.TextValue)) {
+                        var a = secondValue.ToNumber(null);
+                        if (a.IsError == false) secondValue = a;
+                    } else {
+                        var a = secondValue.ToDate(null);
+                        if (a.IsError == false) secondValue = a;
+                    }
                 }
+            if (t == "+") {
                 if (firstValue.Type == OperandType.DATE && secondValue.Type == OperandType.DATE) {
                     return Operand.Create(firstValue.DateValue + secondValue.DateValue);
                 } else if (firstValue.Type == OperandType.DATE) {
@@ -160,14 +175,6 @@ namespace ToolGood.Algorithm
                 if (secondValue.IsError) { return secondValue; }
                 return Operand.Create(firstValue.NumberValue + secondValue.NumberValue);
             } else if (t == "-") {
-                if (firstValue.Type == OperandType.STRING) {
-                    var a = firstValue.ToDate(null);
-                    if (a.IsError == false) firstValue = a;
-                }
-                if (secondValue.Type == OperandType.STRING) {
-                    var a = secondValue.ToDate(null);
-                    if (a.IsError == false) secondValue = a;
-                }
                 if (firstValue.Type == OperandType.DATE && secondValue.Type == OperandType.DATE) {
                     return Operand.Create(firstValue.DateValue - secondValue.DateValue);
                 } else if (firstValue.Type == OperandType.DATE) {
