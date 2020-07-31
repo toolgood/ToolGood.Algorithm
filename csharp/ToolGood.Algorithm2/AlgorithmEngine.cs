@@ -56,11 +56,26 @@ namespace ToolGood.Algorithm
             }
             return Operand.Error($"DiyFunction [{funcName}] is missing.");
         }
+        /// <summary>
+        /// 清理 自定义函数
+        /// </summary>
+        public void ClearDiyFunctions()
+        {
+            DiyFunction = null;
+        }
 
         #endregion
 
 
-        #region AddParameter
+        #region Parameter
+        /// <summary>
+        /// 清理参数
+        /// </summary>
+        public void ClearParameters()
+        {
+            _dict.Clear();
+        }
+
         /// <summary>
         /// 添加自定义参数
         /// </summary>
