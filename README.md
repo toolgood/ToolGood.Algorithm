@@ -6,11 +6,13 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
 
 **适用场景：** 代码与算法分离，避免项目强制升级
 
-1）项目初，未确定的算法
+1）项目初期，未确定的算法；
 
-2）财务数据、统计数据之中的算法
+2）项目维护时，经常改动的算法；
 
-3）报表导出，数据来源使用存储过程，Word文档内设置算法。例 https://github.com/toolgood/ToolGood.WordTemplate
+3）财务数据、统计数据之中的算法，(注:本项目使用double类型，建议使用`分`为单位)；
+
+4）报表导出，数据来源使用存储过程，Word文档内设置算法。例 https://github.com/toolgood/ToolGood.WordTemplate
 
 ## 快速上手
 ``` csharp
