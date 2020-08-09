@@ -138,7 +138,7 @@ public class AlgorithmEngine {
     /// </summary>
     /// <param name="key"></param>
     /// <param name="obj"></param>
-    public void AddParameter(final String key, final DecimalFormat obj) {
+    public void AddParameter(final String key, final BigDecimal obj) {
         _dict.put(key, Operand.Create(obj));
     }
 

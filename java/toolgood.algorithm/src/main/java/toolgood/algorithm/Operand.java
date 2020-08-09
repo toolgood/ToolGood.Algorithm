@@ -8,7 +8,8 @@ import toolgood.algorithm.litJson.JsonMapper;
 import toolgood.algorithm.litJson.JsonData;
 
 public abstract class Operand {
-    private static CultureInfo cultureInfo = CultureInfo.GetCultureInfo("en-US");
+    private static Locale cultureInfo = Locale.US;
+
     /// <summary>
     /// True 值
     /// </summary>
@@ -129,7 +130,7 @@ public abstract class Operand {
     /// </summary>
     /// <param name="obj"></param>
     /// <returns></returns>
-    public static Operand Create(final DecimalFormat obj) {
+    public static Operand Create(final BigDecimal obj) {
         return new OperandNumber((double) obj);
     }
 

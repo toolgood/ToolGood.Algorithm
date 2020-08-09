@@ -3,11 +3,11 @@ package toolgood.algorithm.internals;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import jdk.nashorn.internal.runtime.regexp.joni.Regex;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.litJson.JsonData;
 import toolgood.algorithm.math.mathParser;
@@ -18,16 +18,13 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 public class MathVisitor extends mathBaseVisitor<Operand> {
-    private static Pattern sumifRegex = new Pattern("(<|<=|>|>=|=|==|!=|<>) *([-+]?\\d+(\\.(\\d+)?)?)",
-            RegexOptions.Compiled);
-    private static Pattern bit_2 = new Pattern("^[01]+", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-    private static Pattern bit_8 = new Pattern("^[0-8]+", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-    private static Pattern bit_16 = new Pattern("^[0-9a-f]+", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-    private static Pattern clearRegex = new Pattern("[\\f\\n\\r\\t\\v]",
-            RegexOptions.IgnoreCase | RegexOptions.Compiled);
-    private static Pattern numberRegex = new Pattern("^-?(0|[1-9])\\d*(\\.\\d+)?",
-            RegexOptions.IgnoreCase | RegexOptions.Compiled);
-    private static CultureInfo cultureInfo = CultureInfo.GetCultureInfo("en-US");
+    private static Pattern sumifRegex = new Pattern("(<|<=|>|>=|=|==|!=|<>) *([-+]?\\d+(\\.(\\d+)?)?)");
+    private static Pattern bit_2 = new Pattern("^[01]+");
+    private static Pattern bit_8 = new Pattern("^[0-8]+");
+    private static Pattern bit_16 = new Pattern("^[0-9a-fA-F]+");
+    private static Pattern clearRegex = new Pattern("[\\f\\n\\r\\t\\v]");
+    private static Pattern numberRegex = new Pattern("^-?(0|[1-9])\\d*(\\.\\d+)?");
+    private static Locale  cultureInfo = Locale.US;
     public Func<String, Operand> GetParameter;
     public Func<String, List<Operand>, Operand> DiyFunction;
     public int excelIndex;
@@ -430,7 +427,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand a = Visit(item);
-            args.Add(a);
+            args.add(a);
         }
 
         if (args.get(0).IsError()) {
@@ -567,7 +564,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (a.IsError()) {
                 return a;
             }
-            args.Add(a);
+            args.add(a);
         }
 
         Operand b = true;
@@ -588,7 +585,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (a.IsError()) {
                 return a;
             }
-            args.Add(a);
+            args.add(a);
         }
 
         boolean b = false;
@@ -1423,7 +1420,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         double a = Math.pow(10, secondValue.IntValue());
         double b = firstValue.NumberValue();
 
-        double t = (Math.ceil(Math.Abs(b) * a)) / a;
+        double t = (Math.ceil(Math.abs(b) * a)) / a;
         if (b > 0)
             return Operand.Create(t);
         return Operand.Create(-t);
@@ -1470,7 +1467,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
         Operand firstValue = args.get(0);
         if (args.Count == 1)
-            return Operand.Create(Math.Floor(firstValue.NumberValue()));
+            return Operand.Create(Math.floor(firstValue.NumberValue()));
 
         Operand secondValue = args.get(1);
         double b = secondValue.NumberValue();
@@ -1646,7 +1643,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (a.IsError()) {
                 return a;
             }
-            args.Add(a);
+            args.add(a);
         }
 
         if (args.Count > 1) {
@@ -1816,12 +1813,12 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (a.IsError()) {
                 return a;
             }
-            args.Add(a);
+            args.add(a);
         }
 
         StringBuilder sb = new StringBuilder();
         for (Operand item : args) {
-            sb.Append(item.TextValue());
+            sb.append(item.TextValue());
         }
         return Operand.Create(sb.ToString());
     }
@@ -2006,11 +2003,11 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < oldtext.Length; i++) {
             if (i < start) {
-                sb.Append(oldtext.charAt(i));
+                sb.append(oldtext.charAt(i));
             } else if (i == start) {
-                sb.Append(newtext);
+                sb.append(newtext);
             } else if (i >= start + length) {
-                sb.Append(oldtext.charAt(i));
+                sb.append(oldtext.charAt(i));
             }
         }
         return Operand.Create(sb.ToString());
@@ -2039,7 +2036,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         int length = secondValue.IntValue();
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < length; i++) {
-            sb.Append(newtext);
+            sb.append(newtext);
         }
         return Operand.Create(sb.ToString());
     }
@@ -2161,10 +2158,10 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
                 index2++;
             }
             if (b && index2 == index) {
-                sb.Append(newtext);
+                sb.append(newtext);
                 i += oldtext.Length - 1;
             } else {
-                sb.Append(text.charAt(i));
+                sb.append(text.charAt(i));
             }
         }
         return Operand.Create(sb.ToString());
@@ -2271,9 +2268,70 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
     private String F_base_ToChineseRMB(double x)
     {
-        String s = x.ToString("#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A", cultureInfo);
-        String d = Regex.Replace(s, "((?<=-|^)[^1-9]*)|((?'z'0)[0A-E]*((?=[1-9])|(?'-z'(?=[F-L\\.]|$))))|((?'b'[F-L])(?'z'0)[0A-L]*((?=[1-9])|(?'-z'(?=[\\.]|$))))", "${b}${z}", RegexOptions.Compiled);
-        return Regex.Replace(d, ".", m => "负元空零壹贰叁肆伍陆柒捌玖空空空空空空空分角拾佰仟万亿兆京垓秭穰"[m.Value[0] - '-'].ToString(), RegexOptions.Compiled);
+        // String s = x.ToString("#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A", cultureInfo);
+        // String d = Regex.Replace(s, "((?<=-|^)[^1-9]*)|((?'z'0)[0A-E]*((?=[1-9])|(?'-z'(?=[F-L\\.]|$))))|((?'b'[F-L])(?'z'0)[0A-L]*((?=[1-9])|(?'-z'(?=[\\.]|$))))", "${b}${z}", RegexOptions.Compiled);
+        // return Regex.Replace(d, ".", m -> "负元空零壹贰叁肆伍陆柒捌玖空空空空空空空分角拾佰仟万亿兆京垓秭穰"[m.Value[0] - '-'].ToString(), RegexOptions.Compiled);
+        
+        StringBuffer chineseNumber = new StringBuffer();
+        String [] num={"零","壹","贰","叁","肆","伍","陆","柒","捌","玖"};
+        String [] unit = {"分","角","圆","拾","佰","仟","万","拾","佰","仟","亿","拾","佰","仟","万"};
+        String tempNumber = String.valueOf(Math.round((number * 100)));
+        int tempNumberLength = tempNumber.length();
+        if ("0".equals(tempNumber))
+        {
+            return "零圆整";
+        }
+        if (tempNumberLength > 15)
+        {
+            throw new InputException("超出转化范围.");
+        }
+        boolean preReadZero = true;     //前面的字符是否读零
+        for (int i=tempNumberLength; i>0; i--)
+        {
+            if ((tempNumberLength - i + 2) % 4 == 0)
+            {
+                //如果在（圆，万，亿，万）位上的四个数都为零,如果标志为未读零，则只读零，如果标志为已读零，则略过这四位
+                if (i - 4 >= 0 && "0000".equals(tempNumber.substring(i - 4, i)))
+                {
+                    if (!preReadZero)
+                    {
+                        chineseNumber.insert(0, "零");
+                        preReadZero = true;
+                    }
+                    i -= 3;     //下面还有一个i--
+                    continue;
+                }
+                //如果当前位在（圆，万，亿，万）位上，则设置标志为已读零（即重置读零标志）
+                preReadZero = true;
+            }
+            Integer digit = Integer.parseInt(tempNumber.substring(i - 1, i));
+            if (digit == 0)
+            {
+                //如果当前位是零并且标志为未读零，则读零，并设置标志为已读零
+                if (!preReadZero)
+                {
+                    chineseNumber.insert(0, "零");
+                    preReadZero = true;
+                }
+                //如果当前位是零并且在（圆，万，亿，万）位上，则读出（圆，万，亿，万）
+                if ((tempNumberLength - i + 2) % 4 == 0)
+                {
+                    chineseNumber.insert(0, unit[tempNumberLength - i]);
+                }
+            }
+            //如果当前位不为零，则读出此位，并且设置标志为未读零
+            else
+            {
+                chineseNumber.insert(0, num[digit] + unit[tempNumberLength - i]);
+                preReadZero = false;
+            }
+        }
+        //如果分角两位上的值都为零，则添加一个“整”字
+        if (tempNumberLength - 2 >= 0 && "00".equals(tempNumber.substring(tempNumberLength - 2, tempNumberLength)))
+        {
+            chineseNumber.append("整");
+        }
+        return chineseNumber.toString();
     }
 
     public Operand VisitDATEVALUE_fun(DATEVALUE_funContext context)
@@ -2630,7 +2688,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (a.IsError()) {
                 return a;
             }
-            args.Add(a);
+            args.add(a);
         }
 
         Date startDate = (DateTime) args.get(0).DateValue;
@@ -2638,7 +2696,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
         List<DateTime> list = new List<DateTime>();
         for (int i = 2; i < args.Count; i++) {
-            list.Add(args.get(i).DateValue);
+            list.add(args.get(i).DateValue);
         }
 
         int days = 0;
@@ -2680,7 +2738,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (args.get(i).IsError()) {
                 return args.get(i);
             }
-            list.Add(args.get(i).DateValue);
+            list.add(args.get(i).DateValue);
         }
         while (days > 0) {
             startDate = startDate.AddDays(1);
@@ -3847,7 +3905,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     private boolean F_base_GetList(List<Operand> args, List<Double> list) {
         for (Operand item : args) {
             if (item.Type == OperandType.NUMBER) {
-                list.Add(item.NumberValue());
+                list.add(item.NumberValue());
             } else if (item.Type == OperandType.ARRARY) {
                 boolean o = F_base_GetList(item.ArrayValue(), list);
                 if (o == false) {
@@ -3867,7 +3925,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
                 if (o.IsError()) {
                     return false;
                 }
-                list.Add(o.NumberValue());
+                list.add(o.NumberValue());
             }
         }
         return true;
@@ -3878,7 +3936,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             return false;
         }
         if (args.Type == OperandType.NUMBER) {
-            list.Add(args.NumberValue());
+            list.add(args.NumberValue());
         } else if (args.Type == OperandType.ARRARY) {
             boolean o = F_base_GetList(args.ArrayValue(), list);
             if (o == false) {
@@ -3898,7 +3956,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (o.IsError()) {
                 return false;
             }
-            list.Add(o.NumberValue());
+            list.add(o.NumberValue());
         }
         return true;
     }
@@ -3926,7 +3984,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (o.IsError()) {
                 return false;
             }
-            list.Add(o.TextValue());
+            list.add(o.TextValue());
         }
         return true;
     }
@@ -3952,7 +4010,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
                 if (o.IsError()) {
                     return false;
                 }
-                list.Add(o.TextValue());
+                list.add(o.TextValue());
             }
         }
         return true;
@@ -4002,7 +4060,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (a.IsError()) {
                 return a;
             }
-            args.Add(a);
+            args.add(a);
         }
 
         Encoding encoding;
@@ -4023,7 +4081,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (a.IsError()) {
                 return a;
             }
-            args.Add(a);
+            args.add(a);
         }
 
         Encoding encoding;
@@ -4044,7 +4102,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (a.IsError()) {
                 return a;
             }
-            args.Add(a);
+            args.add(a);
         }
 
         Encoding encoding;
@@ -4066,7 +4124,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (a.IsError()) {
                 return a;
             }
-            args.Add(a);
+            args.add(a);
         }
 
         Encoding encoding;
@@ -4140,7 +4198,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (a.IsError()) {
                 return a;
             }
-            args.Add(a);
+            args.add(a);
         }
 
         String b = Regex.Replace(args.get(0).TextValue(), args.get(1).TextValue(), args.get(2).TextValue());
@@ -4155,7 +4213,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (a.IsError()) {
                 return a;
             }
-            args.Add(a);
+            args.add(a);
         }
 
         boolean b = Regex.IsMatch(args.get(0).TextValue(), args.get(1).TextValue());
@@ -4174,7 +4232,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (a.IsError()) {
                 return a;
             }
-            args.Add(a);
+            args.add(a);
         }
 
         Encoding encoding;
@@ -4195,7 +4253,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (a.IsError()) {
                 return a;
             }
-            args.Add(a);
+            args.add(a);
         }
 
         Encoding encoding;
@@ -4216,7 +4274,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (a.IsError()) {
                 return a;
             }
-            args.Add(a);
+            args.add(a);
         }
 
         Encoding encoding;
@@ -4237,7 +4295,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (a.IsError()) {
                 return a;
             }
-            args.Add(a);
+            args.add(a);
         }
 
         Encoding encoding;
@@ -4258,7 +4316,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (a.IsError()) {
                 return a;
             }
-            args.Add(a);
+            args.add(a);
         }
 
         Encoding encoding;
@@ -4279,7 +4337,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (a.IsError()) {
                 return a;
             }
-            args.Add(a);
+            args.add(a);
         }
 
         Encoding encoding;
@@ -4300,7 +4358,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (a.IsError()) {
                 return a;
             }
-            args.Add(a);
+            args.add(a);
         }
 
         Encoding encoding;
@@ -4321,7 +4379,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (a.IsError()) {
                 return a;
             }
-            args.Add(a);
+            args.add(a);
         }
 
         Encoding encoding;
@@ -4342,7 +4400,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (a.IsError()) {
                 return a;
             }
-            args.Add(a);
+            args.add(a);
         }
 
         Encoding encoding;
@@ -4363,7 +4421,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (a.IsError()) {
                 return a;
             }
-            args.Add(a);
+            args.add(a);
         }
 
         Encoding encoding;
@@ -4384,7 +4442,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (a.IsError()) {
                 return a;
             }
-            args.Add(a);
+            args.add(a);
         }
 
         Encoding encoding;
@@ -4405,7 +4463,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (a.IsError()) {
                 return a;
             }
-            args.Add(a);
+            args.add(a);
         }
 
         String text = args.get(0).TextValue();
@@ -4423,7 +4481,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (a.IsError()) {
                 return a;
             }
-            args.Add(a);
+            args.add(a);
         }
 
         String text = args.get(0).TextValue();
@@ -4517,7 +4575,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (a.IsError()) {
                 return a;
             }
-            args.Add(a);
+            args.add(a);
         }
         return Operand.Create(args.get(0).TextValue().Split(args.get(1).TextValue().ToArray()));
     }
@@ -4948,23 +5006,23 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (c == '\\') {
                 char c2 = opd.charAt(index++);
                 if (c2 == 'n')
-                    sb.Append('\n');
+                    sb.append('\n');
                 else if (c2 == 'r')
-                    sb.Append('\r');
+                    sb.append('\r');
                 else if (c2 == 't')
-                    sb.Append('\t');
+                    sb.append('\t');
                 else if (c2 == '0')
-                    sb.Append('\0');
-                // else if (c2 == 'v') sb.Append('\v');
-                // else if (c2 == 'a') sb.Append('\a');
+                    sb.append('\0');
+                // else if (c2 == 'v') sb.append('\v');
+                // else if (c2 == 'a') sb.append('\a');
                 else if (c2 == 'b')
-                    sb.Append('\b');
+                    sb.append('\b');
                 else if (c2 == 'f')
-                    sb.Append('\f');
+                    sb.append('\f');
                 else
-                    sb.Append(opd.charAt(index++););
+                    sb.append(opd.charAt(index++););
             } else {
-                sb.Append(c);
+                sb.append(c);
             }
         }
         return Operand.Create(sb.ToString());

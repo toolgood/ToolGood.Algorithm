@@ -65,49 +65,49 @@ public class ArrayStatistics {
 
             case QuantileDefinition.R4: {
                     double h = data.Length * tau;
-                    var hf = (int)h;
-                    var lower = SelectInplace(data, hf - 1);
-                    var upper = SelectInplace(data, hf);
+                    int hf = (int)h;
+                    double lower = SelectInplace(data, hf - 1);
+                    double upper = SelectInplace(data, hf);
                     return lower + (h - hf) * (upper - lower);
                 }
 
             case QuantileDefinition.R5: {
                     double h = data.Length * tau + 0.5d;
-                    var hf = (int)h;
-                    var lower = SelectInplace(data, hf - 1);
-                    var upper = SelectInplace(data, hf);
+                    int hf = (int)h;
+                    double lower = SelectInplace(data, hf - 1);
+                    double upper = SelectInplace(data, hf);
                     return lower + (h - hf) * (upper - lower);
                 }
 
             case QuantileDefinition.R6: {
                     double h = (data.Length + 1) * tau;
-                    var hf = (int)h;
-                    var lower = SelectInplace(data, hf - 1);
-                    var upper = SelectInplace(data, hf);
+                    int hf = (int)h;
+                    double lower = SelectInplace(data, hf - 1);
+                    double upper = SelectInplace(data, hf);
                     return lower + (h - hf) * (upper - lower);
                 }
 
             case QuantileDefinition.R7: {
                     double h = (data.Length - 1) * tau + 1d;
-                    var hf = (int)h;
-                    var lower = SelectInplace(data, hf - 1);
-                    var upper = SelectInplace(data, hf);
+                    int hf = (int)h;
+                    double lower = SelectInplace(data, hf - 1);
+                    double upper = SelectInplace(data, hf);
                     return lower + (h - hf) * (upper - lower);
                 }
 
             case QuantileDefinition.R8: {
                     double h = (data.Length + 1 / 3d) * tau + 1 / 3d;
-                    var hf = (int)h;
-                    var lower = SelectInplace(data, hf - 1);
-                    var upper = SelectInplace(data, hf);
+                    int hf = (int)h;
+                    double lower = SelectInplace(data, hf - 1);
+                    double upper = SelectInplace(data, hf);
                     return lower + (h - hf) * (upper - lower);
                 }
 
             case QuantileDefinition.R9: {
                     double h = (data.Length + 0.25d) * tau + 0.375d;
-                    var hf = (int)h;
-                    var lower = SelectInplace(data, hf - 1);
-                    var upper = SelectInplace(data, hf);
+                    int hf = (int)h;
+                    double lower = SelectInplace(data, hf - 1);
+                    double upper = SelectInplace(data, hf);
                     return lower + (h - hf) * (upper - lower);
                 }
 

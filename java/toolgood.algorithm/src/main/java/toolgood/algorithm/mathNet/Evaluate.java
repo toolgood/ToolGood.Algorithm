@@ -29,7 +29,7 @@ public class Evaluate {
             compensation = t - sum;
             compensation -= y;
             sum = t;
-        } while (Math.Abs(sum) < Math.Abs(factor * current));
+        } while (Math.abs(sum) < Math.abs(factor * current));
 
         return sum;
     }
