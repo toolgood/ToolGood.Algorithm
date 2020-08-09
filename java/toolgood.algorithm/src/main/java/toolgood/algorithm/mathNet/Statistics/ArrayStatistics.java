@@ -4,12 +4,12 @@ public class ArrayStatistics {
     public static double Minimum(double[] data)
     {
         if (data.Length == 0) {
-            return double.NaN;
+            return Double.NaN;
         }
 
-        double min = double.PositiveInfinity;
+        double min = Double.POSITIVE_INFINITY;
         for (int i = 0; i < data.Length; i++) {
-            if (data[i] < min || double.IsNaN(data[i])) {
+            if (data[i] < min || Double.isNaN(data[i])) {
                 min = data[i];
             }
         }
@@ -19,12 +19,12 @@ public class ArrayStatistics {
     public static double Maximum(double[] data)
     {
         if (data.Length == 0) {
-            return double.NaN;
+            return Double.NaN;
         }
 
-        double max = double.NegativeInfinity;
+        double max = Double.NEGATIVE_INFINITY;
         for (int i = 0; i < data.Length; i++) {
-            if (data[i] > max || double.IsNaN(data[i])) {
+            if (data[i] > max || Double.isNaN(data[i])) {
                 max = data[i];
             }
         }
@@ -36,7 +36,7 @@ public class ArrayStatistics {
     public static double QuantileCustomInplace(double[] data, double tau, QuantileDefinition definition)
     {
         if (tau < 0d || tau > 1d || data.Length == 0) {
-            return double.NaN;
+            return Double.NaN;
         }
 
         if (tau == 0d || data.Length == 1) {

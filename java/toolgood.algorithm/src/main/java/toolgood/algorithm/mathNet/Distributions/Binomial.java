@@ -38,7 +38,7 @@ public class Binomial {
             return k == n ? 1.0 : 0.0;
         }
 
-        return Math.Exp(SpecialFunctions.BinomialLn(n, k) + (k * Math.log(p)) + ((n - k) * Math.log(1.0 - p)));
+        return Math.exp(SpecialFunctions.BinomialLn(n, k) + (k * Math.log(p)) + ((n - k) * Math.log(1.0 - p)));
     }
 
     /// <summary>

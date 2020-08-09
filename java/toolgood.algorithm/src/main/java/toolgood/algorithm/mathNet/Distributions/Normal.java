@@ -28,7 +28,7 @@ public class Normal {
         //}
 
         var d = (x - mean) / stddev;
-        return Math.Exp(-0.5 * d * d) / (Constants.Sqrt2Pi * stddev);
+        return Math.exp(-0.5 * d * d) / (Constants.Sqrt2Pi * stddev);
     }
 
 }

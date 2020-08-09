@@ -1,12 +1,12 @@
-package toolgood.algorithm;
+package toolgood.algorithm.internals;
 
-public class Base64{
+public static class Base64{
     public static string ToBase64String(byte[] input)
     {
         return Convert.ToBase64String(input);
     }
 
-    public static byte[] FromBase64String(string base64)
+    public static byte[] FromBase64String(String base64)
     {
         return FromBase64ForUrlString(base64);
     }
@@ -23,12 +23,12 @@ public class Base64{
     public static string ToBase64ForUrlString(byte[] input)
     {
         StringBuilder result = new StringBuilder(Convert.ToBase64String(input).TrimEnd('='));
-        result.Replace('+', '-');
-        result.Replace('/', '_');
+        result.replace('+', '-');
+        result.replace('/', '_');
         return result.ToString();
     }
 
-    private const string base64 = "===========================================+=+=/0123456789=======ABCDEFGHIJKLMNOPQRSTUVWXYZ====/=abcdefghijklmnopqrstuvwxyz=====";
+    private const String base64 = "===========================================+=+=/0123456789=======ABCDEFGHIJKLMNOPQRSTUVWXYZ====/=abcdefghijklmnopqrstuvwxyz=====";
 
     /// <summary>
     /// Modified Base64 for URL applications ('base64url' encoding)
@@ -38,18 +38,19 @@ public class Base64{
     /// </summary>
     /// <param name="base64ForUrlInput"></param>
     /// <returns>Input base64ForUrl encoded string as the original byte array</returns>
-    public static byte[] FromBase64ForUrlString(string base64ForUrlInput)
+    public static byte[] FromBase64ForUrlString(String base64ForUrlInput)
     {
         StringBuilder sb = new StringBuilder();
-        foreach (var c in base64ForUrlInput) {
+        for (int i = 0; i < base64ForUrlInput.length; i++) {
+            char c = base64ForUrlInput.charAt(i)
             if ((int)c >= 128) continue;
-            var k = base64[c];
+            var k = base64.charAt(c);// [c];
             if (k == '=') continue;
-            sb.Append(k);
+            sb.append(k);
         }
-        var len = sb.Length;
+        var len = sb.length;
         int padChars = (len % 4) == 0 ? 0 : (4 - (len % 4));
-        if (padChars > 0) sb.Append(String.Empty.PadRight(padChars, '='));
+        if (padChars > 0) sb.append(String.Empty.PadRight(padChars, '='));
         return Convert.FromBase64String(sb.ToString());
 
         //base64ForUrlInput = Regex.Replace(base64ForUrlInput, @"[^a-zA-Z0-9+/\-_]", "");

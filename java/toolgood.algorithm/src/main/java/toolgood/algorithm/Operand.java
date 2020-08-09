@@ -245,9 +245,9 @@ public abstract class Operand {
     /// </summary>
     /// <param name="obj"></param>
     /// <returns></returns>
-    public static Operand Create(ICollection<inter> obj)
+    public static Operand Create(ICollection<Inter> obj)
     {
-        var array = new List<Operand>();
+        var array = new ArrayList<Operand>();
         foreach (final var item final in obj)
         {
             array.Add(Create(item));

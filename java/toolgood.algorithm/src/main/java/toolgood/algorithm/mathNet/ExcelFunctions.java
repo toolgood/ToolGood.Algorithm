@@ -94,7 +94,8 @@ public class ExcelFunctions {
     }
 
     public static double PercentRank(double[] array, double x) {
-        return array.QuantileRank(x);
+        return Statistics.QuantileRank(array,x);
+        // return array.QuantileRank(x);
     }
 
     public static double GAMMALN(double z) {

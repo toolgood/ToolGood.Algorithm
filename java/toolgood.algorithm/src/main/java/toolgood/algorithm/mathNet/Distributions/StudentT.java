@@ -1,5 +1,7 @@
 package toolgood.algorithm.mathNet.Distributions;
 
+import java.util.function.Function;
+
 import toolgood.algorithm.mathNet.SpecialFunctions;
 
 public class StudentT {
@@ -10,7 +12,7 @@ public class StudentT {
         //}
 
         // TODO JVG we can probably do a better job for Cauchy special case
-        if (double.IsPositiveInfinity(freedom)) {
+        if (Double.isInfinite(freedom)) {
             return Normal.CDF(location, scale, x);
         }
 
@@ -26,7 +28,7 @@ public class StudentT {
         //}
 
         // TODO JVG we can probably do a better job for Cauchy special case
-        if (double.IsPositiveInfinity(freedom)) {
+        if (Double.isInfinite(freedom)) {
             return Normal.InvCDF(location, scale, p);
         }
 
@@ -35,12 +37,12 @@ public class StudentT {
         }
 
         // TODO PERF: We must implement this explicitly instead of solving for CDF^-1
-        return Brent.FindRoot(x => {
+        return Brent.FindRoot(x -> {
             double k = (x - location) / scale;
             double h = freedom / (freedom + (k * k));
             double ib = 0.5 * SpecialFunctions.BetaRegularized(freedom / 2.0, 0.5, h);
             return x <= location ? ib - p : 1.0 - ib - p;
-        }, -800, 800, accuracy: 1e-12);
+        }, -800, 800,  1e-12);
     }
 
 }

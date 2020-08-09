@@ -19,15 +19,15 @@ public class Beta {
             return 1.0;
         }
         
-        if (Double.IsPositiveInfinity(a) && Double.IsPositiveInfinity(b)) {
+        if (Double.isInfinite(a) && Double.isInfinite(b)) {
             return x < 0.5 ? 0.0 : 1.0;
         }
 
-        if (Double.IsPositiveInfinity(a)) {
+        if (Double.isInfinite(a)) {
             return x < 1.0 ? 0.0 : 1.0;
         }
 
-        if (Double.IsPositiveInfinity(b)) {
+        if (Double.isInfinite(b)) {
             return x >= 0.0 ? 1.0 : 0.0;
         }
 
@@ -56,10 +56,12 @@ public class Beta {
 
     public static double InvCDF(double a, double b, double p)
     {
+
         //if (a < 0.0 || b < 0.0 || p < 0.0 || p > 1.0) {
         //    throw new ArgumentException(Resources.InvalidDistributionParameters);
         //}
 
-        return Brent.FindRoot(x => SpecialFunctions.BetaRegularized(a, b, x) - p, 0.0, 1.0,   1e-12);
+        return Brent.FindRoot(x -> SpecialFunctions.BetaRegularized(a, b, x) - p, 0.0, 1.0,   1e-12);
     }
+ 
 }

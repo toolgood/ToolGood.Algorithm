@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
+import javax.lang.model.element.VariableElement;
+
 import jdk.nashorn.internal.parser.Lexer;
 
 public class JsonReader {
@@ -132,24 +134,27 @@ public class JsonReader {
 
     private void ProcessNumber(String number)
     {
-        if (number.indexOf('.') != -1 || number.indexOf('e') != -1 || number.indexOf('E') != -1) {
-            if (double.TryParse(number, NumberStyles.Any, CultureInfo.InvariantCulture, out double n_double)) {
-                token_value = n_double;
-                return;
-            }
-        }
-        if (int.TryParse(number, NumberStyles.Integer, CultureInfo.InvariantCulture, out int n_int32)) {
-            token_value = (double)n_int32;
+        Double n_double=Double.valueOf(number);
+        if (n_double.isNaN()==false) {
+            token_value = n_double.doubleValue();
             return;
         }
-        if (long.TryParse(number, NumberStyles.Integer, CultureInfo.InvariantCulture, out long n_int64)) {
-            token_value = (double)n_int64;
-            return;
-        }
-        if (ulong.TryParse(number, NumberStyles.Integer, CultureInfo.InvariantCulture, out ulong n_uint64)) {
-            token_value = (double)n_uint64;
-            return;
-        }
+        // if (number.indexOf('.') != -1 || number.indexOf('e') != -1 || number.indexOf('E') != -1) {
+        //     Double n_double=Double.valueOf(number);
+        //     if (n_double.isNaN()==false) {
+        //         token_value = n_double.doubleValue();
+        //         return;
+        //     }
+        // }
+        // if (int.TryParse(number, NumberStyles.Integer, CultureInfo.InvariantCulture, out int n_int32)) {
+        //     token_value = (double)n_int32;
+        //     return;
+        // }
+        // if (long.TryParse(number, NumberStyles.Integer, CultureInfo.InvariantCulture, out long n_int64)) {
+        //     token_value = (double)n_int64;
+        //     return;
+        // }
+ 
         // Shouldn't happen, but just in case, return something
         token_value = 0;
     }

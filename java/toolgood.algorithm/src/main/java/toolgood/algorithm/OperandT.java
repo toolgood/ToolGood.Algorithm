@@ -9,7 +9,7 @@ abstract class OperandT<T> extends Operand {
         Value = obj;
     }
     @Override
-	public boolean IsNull() {
+	public boolean IsNull() throws Exception {
         throw new Exception();
 	}
 
@@ -23,19 +23,19 @@ abstract class OperandT<T> extends Operand {
         return null;
     }
     @Override
-    public double NumberValue() {
+    public double NumberValue() throws Exception {
         throw new Exception();
 
     }
 
     @Override
-    public int IntValue() {
+    public int IntValue() throws Exception {
         throw new Exception();
 
     }
 
     @Override
-    public String TextValue() {
+    public String TextValue() throws Exception {
         throw new Exception();
 
     }

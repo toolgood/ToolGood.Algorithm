@@ -1,34 +1,42 @@
 package toolgood.algorithm.mathNet.RootFinding;
 
+import java.lang.annotation.Retention;
+import java.util.function.Function;
+
 public class Brent {
-    public static double FindRoot(Func<double, double> f, double lowerBound, double upperBound, double accuracy , int maxIterations = 100)
+    public static double FindRoot(Fucntion<Double, Double> f, double lowerBound, double upperBound, double accuracy) {
+        return FindRoot(f, lowerBound, upperBound, accuracy, 100);
+    }
+
+    public static double FindRoot(Function<Double, Double> f, double lowerBound, double upperBound, double accuracy,
+            int maxIterations)
     {
-        if (TryFindRoot(f, lowerBound, upperBound, accuracy, maxIterations, out double root)) {
+        Double root;
+        if (TryFindRoot(f, lowerBound, upperBound, accuracy, maxIterations,   root)) {
             return root;
         }
-
         throw new Exception("RootFindingFailed");
     }
 
 
-    public static boolean TryFindRoot(Func<double, double> f, double lowerBound, double upperBound, double accuracy, int maxIterations, out double root)
+    public static boolean TryFindRoot(Fucntion<Double, Double> f, double lowerBound, double upperBound, double accuracy, int maxIterations, Double root)
     {
-        double fmin = f(lowerBound);
-        double fmax = f(upperBound);
+        double fmin = f.apply(lowerBound);
+        double fmax = f.apply(upperBound);
         double froot = fmax;
         double d = 0.0, e = 0.0;
 
         root = upperBound;
-        double xMid = double.NaN;
+        double xMid = Double.NaN;
 
         // Root must be bracketed.
-        if (Math.Sign(fmin) == Math.Sign(fmax)) {
+        if (Math.sign(fmin) == Math.sign(fmax)) {
             return false;
         }
 
         for (int i = 0; i <= maxIterations; i++) {
             // adjust bounds
-            if (Math.Sign(froot) == Math.Sign(fmax)) {
+            if (Math.sign(froot) == Math.sign(fmax)) {
                 upperBound = lowerBound;
                 fmax = fmin;
                 e = d = root - lowerBound;
@@ -48,7 +56,7 @@ public class Brent {
             double xMidOld = xMid;
             xMid = (upperBound - root) / 2.0;
 
-            if (Math.Abs(xMid) <= xAcc1 || froot.AlmostEqualNormRelative(0, froot, accuracy)) {
+            if (Math.Abs(xMid) <= xAcc1 || Precision.AlmostEqualNormRelative(froot,0, froot, accuracy)) {
                 return true;
             }
 
@@ -62,7 +70,7 @@ public class Brent {
                 double s = froot / fmin;
                 double p;
                 double q;
-                if (lowerBound.AlmostEqualRelative(upperBound)) {
+                if (Precision.AlmostEqualRelative(lowerBound,upperBound)) {
                     p = 2.0 * xMid * s;
                     q = 1.0 - s;
                 } else {

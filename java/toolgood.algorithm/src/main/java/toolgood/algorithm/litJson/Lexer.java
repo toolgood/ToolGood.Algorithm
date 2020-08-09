@@ -1,12 +1,15 @@
 package main.java.toolgood.algorithm.litJson;
 
+import java.io.StringReader;
+import java.util.function.Function;
+
 public class Lexer {
     // private delegate boolean
 
     // StateHandler(FsmContext ctx);
 
-    private static int[] fsm_return_table;
-    private static StateHandler[] fsm_handler_table;
+    private static int[] fsm_return_table ;
+    private static Object[] fsm_handler_table;
 
     private boolean allow_comments;
     private boolean allow_single_quoted_strings;
@@ -14,7 +17,7 @@ public class Lexer {
     private FsmContext fsm_context;
     private int input_buffer;
     private int input_char;
-    private TextReader reader;
+    private StringReader reader;
     private int state;
     private StringBuilder string_buffer;
     private String string_value;
@@ -34,10 +37,10 @@ public class Lexer {
     }
 
     Lexer() {
-        PopulateFsmTables(fsm_handler_table, fsm_return_table);
+        PopulateFsmTables();
     }
 
-    public Lexer(TextReader _reader) {
+    public Lexer(StringReader _reader) {
         allow_comments = true;
         allow_single_quoted_strings = true;
 
@@ -82,13 +85,13 @@ public class Lexer {
         }
     }
 
-    private static void PopulateFsmTables(StateHandler[] fsm_handler_table, int[] fsm_return_table) {
+    private static void PopulateFsmTables( ) {
         // See section A.1. of the manual for details of the finite state machine.
-        fsm_handler_table = new StateHandler[28] { State1, State2, State3, State4, State5, State6, State7, State8,
+        fsm_handler_table = new Object[] { State1, State2, State3, State4, State5, State6, State7, State8,
                 State9, State10, State11, State12, State13, State14, State15, State16, State17, State18, State19,
                 State20, State21, State22, State23, State24, State25, State26, State27, State28 };
 
-        fsm_return_table = new int[28] { (int) ParserToken.Char.value, 0, (int) ParserToken.Number.value,
+        fsm_return_table = new int[] { (int) ParserToken.Char.value, 0, (int) ParserToken.Number.value,
                 (int) ParserToken.Number.value, 0, (int) ParserToken.Number.value, 0, (int) ParserToken.Number.value, 0,
                 0, (int) ParserToken.True.value, 0, 0, 0, (int) ParserToken.False.value, 0, 0,
                 (int) ParserToken.Null.value, (int) ParserToken.CharSeq.value, (int) ParserToken.Char.value, 0, 0,
@@ -101,7 +104,7 @@ public class Lexer {
             case '\'':
             case '\\':
             case '/':
-                return Convert.ToChar(esc_char);
+                return (char)esc_char;// Convert.ToChar(esc_char);
             case 'n':
                 return '\n';
             case 't':
@@ -720,17 +723,17 @@ public class Lexer {
             return tmp;
         }
 
-        return reader.Read();
+        return reader.read();
     }
 
     public boolean NextToken() {
-        StateHandler handler;
+        Function<FsmContext,Boolean> handler;
         fsm_context.Return = false;
 
         while (true) {
-            handler = fsm_handler_table[state - 1];
-
-            if (!handler(fsm_context))
+            handler =(Function<FsmContext,Boolean>) fsm_handler_table[state - 1];
+            
+            if (!handler.apply(fsm_context))
                 throw new JsonException(input_char);
 
             if (end_of_input)
@@ -738,7 +741,8 @@ public class Lexer {
 
             if (fsm_context.Return) {
                 string_value = string_buffer.toString();
-                string_buffer.Remove(0, string_buffer.length());
+                string_buffer.delete(0, string_buffer.length());
+                // string_buffer.Remove(0, string_buffer.length());
                 token = fsm_return_table[state - 1];
 
                 if (token == (int) ParserToken.Char.value)

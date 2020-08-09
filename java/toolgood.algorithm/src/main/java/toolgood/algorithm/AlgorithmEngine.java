@@ -9,8 +9,10 @@ import toolgood.algorithm.Operand;
 import toolgood.algorithm.litJson.JsonData;
 import toolgood.algorithm.litJson.JsonMapper;
 import toolgood.algorithm.math.mathLexer;
-import toolgood.algorithm.math.mathParser;
-import toolgood.algorithm.math.mathParser.ProgContext;
+import toolgood.algorithm.math.mathParser2.*;
+
+import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CommonTokenStream;
 
 public class AlgorithmEngine {
 
@@ -231,8 +233,11 @@ public class AlgorithmEngine {
             if (json.startsWith("{") && json.endsWith("}")) {
                 final JsonData jo = (JsonData)JsonMapper.ToObject(json);
                 if (jo.IsObject()) {
+                    for (JsonData item : jo.inst_object) {
+                        
+                    }
                     foreach (var item in jo.inst_object) {
-                        final var v = item.Value;
+                        final JsonData v = item.Value;
                         if (v.IsString())
                             _dict[item.Key] = Operand.Create(v.StringValue);
                         else if (v.IsBoolean())
@@ -252,7 +257,7 @@ public class AlgorithmEngine {
             throw new Exception("Parameter is not json String.");
         }
 
-    class AntlrErrorListener extends IAntlrErrorListener<IToken> {
+    class AntlrErrorListener extends AntlrErrorListener<Token> {
         public boolean IsError;
         public String ErrorMsg;
 

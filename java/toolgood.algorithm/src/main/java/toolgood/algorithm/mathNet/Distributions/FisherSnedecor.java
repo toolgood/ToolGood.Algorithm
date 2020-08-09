@@ -19,7 +19,7 @@ public class FisherSnedecor {
         //}
 
         return Brent.FindRoot(
-            x => SpecialFunctions.BetaRegularized(d1 / 2.0, d2 / 2.0, d1 * x / (d1 * x + d2)) - p,
+            x -> SpecialFunctions.BetaRegularized(d1 / 2.0, d2 / 2.0, d1 * x / (d1 * x + d2)) - p,
             0, 1000,  1e-12);
     }
 }

@@ -9,7 +9,7 @@ public class Gamma {
         //    throw new ArgumentException(Resources.InvalidDistributionParameters);
         //}
 
-        if (double.IsPositiveInfinity(rate)) {
+        if (Double.isInfinite(rate)) {
             return x >= shape ? 1.0 : 0.0;
         }
 
@@ -26,8 +26,8 @@ public class Gamma {
         //    throw new ArgumentException(Resources.InvalidDistributionParameters);
         //}
 
-        if (Double.IsPositiveInfinity(rate)) {
-            return x == shape ? Double.PositiveInfinity : 0.0;
+        if (Double.isInfinite(rate)) {
+            return x == shape ? Double.POSITIVE_INFINITY : 0.0;
         }
 
         if (shape == 0.0 && rate == 0.0) {
@@ -35,14 +35,14 @@ public class Gamma {
         }
 
         if (shape == 1.0) {
-            return rate * Math.Exp(-rate * x);
+            return rate * Math.exp(-rate * x);
         }
 
         if (shape > 160.0) {
-            return Math.Exp(PDFLn(shape, rate, x));
+            return Math.exp(PDFLn(shape, rate, x));
         }
 
-        return Math.Pow(rate, shape) * Math.Pow(x, shape - 1.0) * Math.Exp(-rate * x) / SpecialFunctions.Gamma(shape);
+        return Math.pow(rate, shape) * Math.pow(x, shape - 1.0) * Math.exp(-rate * x) / SpecialFunctions.Gamma(shape);
     }
     public static double PDFLn(double shape, double rate, double x)
     {
@@ -50,12 +50,12 @@ public class Gamma {
         //    throw new ArgumentException(Resources.InvalidDistributionParameters);
         //}
 
-        if (Double.IsPositiveInfinity(rate)) {
-            return x == shape ? Double.PositiveInfinity : Double.NegativeInfinity;
+        if (Double.isInfinite(rate)) {
+            return x == shape ? Double.POSITIVE_INFINITY : Double.NEGATIVE_INFINITY;
         }
 
         if (shape == 0.0 && rate == 0.0) {
-            return Double.NegativeInfinity;
+            return Double.NEGATIVE_INFINITY;
         }
 
         if (shape == 1.0) {

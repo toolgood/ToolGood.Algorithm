@@ -15,7 +15,7 @@ public class Poisson {
             //    throw new ArgumentException("InvalidDistributionParameters");
             //}
 
-            return Math.Exp(-lambda + (k * Math.log(lambda)) - SpecialFunctions.FactorialLn(k));
+            return Math.exp(-lambda + (k * Math.log(lambda)) - SpecialFunctions.FactorialLn(k));
         }
 
         /// <summary>

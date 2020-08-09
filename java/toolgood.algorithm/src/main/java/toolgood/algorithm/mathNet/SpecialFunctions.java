@@ -6,13 +6,11 @@ public class SpecialFunctions {
     /// <summary>
     /// Initializes static members of the SpecialFunctions class.
     /// </summary>
-      SpecialFunctions()
-    {
+    SpecialFunctions() {
         InitializeFactorial();
     }
 
-    static void InitializeFactorial()
-    {
+    static void InitializeFactorial() {
         _factorialCache = new double[171];
         _factorialCache[0] = 1.0;
         for (int i = 1; i < _factorialCache.length; i++) {
@@ -20,19 +18,18 @@ public class SpecialFunctions {
         }
     }
 
-    public static double Binomial(int n, int k)
-    {
+    public static double Binomial(int n, int k) {
         if (k < 0 || n < 0 || k > n) {
             return 0.0;
         }
 
         return Math.Floor(0.5 + Math.Exp(FactorialLn(n) - FactorialLn(k) - FactorialLn(n - k)));
     }
-    public static double FactorialLn(int x)
-    {
-        //if (x < 0) {
-        //    throw new ArgumentOutOfRangeException("x", "ArgumentPositive");
-        //}
+
+    public static double FactorialLn(int x) {
+        // if (x < 0) {
+        // throw new ArgumentOutOfRangeException("x", "ArgumentPositive");
+        // }
 
         if (x <= 1) {
             return 0d;
@@ -44,16 +41,14 @@ public class SpecialFunctions {
 
         return GammaLn(x + 1.0);
     }
-    public static double BinomialLn(int n, int k)
-    {
+
+    public static double BinomialLn(int n, int k) {
         if (k < 0 || n < 0 || k > n) {
-            return double.NegativeInfinity;
+            return Double.NEGATIVE_INFINITY;
         }
 
         return FactorialLn(n) - FactorialLn(k) - FactorialLn(n - k);
     }
-
-
 
     public static double GammaLn(double z) {
         if (z < 0.5) {
@@ -91,11 +86,11 @@ public class SpecialFunctions {
         double bt = (x == 0.0 || x == 1.0) ? 0.0
                 : Math.Exp(GammaLn(a + b) - GammaLn(a) - GammaLn(b) + (a * Math.Log(x)) + (b * Math.Log(1.0 - x)));
 
-                boolean symmetryTransformation = x >= (a + 1.0) / (a + b + 2.0);
+        boolean symmetryTransformation = x >= (a + 1.0) / (a + b + 2.0);
 
         /* Continued fraction representation */
         double eps = Precision.DoublePrecision;
-        double fpmin = 0.0.Increment() / eps;
+        double fpmin = Precision.Increment(0.0) / eps;
 
         if (symmetryTransformation) {
             x = 1.0 - x;
@@ -157,42 +152,6 @@ public class SpecialFunctions {
         return symmetryTransformation ? 1.0 - (bt * h / a) : bt * h / a;
     }
 
-    public static double Polynomial(double z, params double[] coefficients)
-    {
-        double sum = coefficients[coefficients.Length - 1];
-        for (int i = coefficients.Length - 2; i >= 0; --i) {
-            sum *= z;
-            sum += coefficients[i];
-        }
-
-        return sum;
-    }
-
-     
-
-    static double Series(Func<Double> nextSummand)
-    {
-        double compensation = 0.0;
-        double current;
-        final double factor = 1 << 16;
-
-        double sum = nextSummand();
-
-        do {
-            // Kahan Summation
-            // NOTE (ruegg): do NOT optimize. Now, how to tell that the compiler?
-            current = nextSummand();
-            double y = current - compensation;
-            double t = sum + y;
-            compensation = t - sum;
-            compensation -= y;
-            sum = t;
-        }
-        while (Math.abs(sum) < Math.abs(factor * current));
-
-        return sum;
-    }
-
     final static int GammaN = 10;
 
     /// <summary>
@@ -205,30 +164,32 @@ public class SpecialFunctions {
             1.70970543404441224307e-2, -5.71926117404305781283e-4, 4.63399473359905636708e-6,
             -2.71994908488607703910e-9 };
 
-    public static double GammaLowerRegularized(double a, double x)
-    {
+    public static double GammaLowerRegularized(double a, double x) {
         final double epsilon = 0.000000000000001;
         final double big = 4503599627370496.0;
         final double bigInv = 2.22044604925031308085e-16;
 
-        //if (a < 0d) {
-        //    throw new ArgumentOutOfRangeException("a", Properties.Resources.ArgumentNotNegative);
-        //}
+        // if (a < 0d) {
+        // throw new ArgumentOutOfRangeException("a",
+        // Properties.Resources.ArgumentNotNegative);
+        // }
 
-        //if (x < 0d) {
-        //    throw new ArgumentOutOfRangeException("x", Properties.Resources.ArgumentNotNegative);
-        //}
+        // if (x < 0d) {
+        // throw new ArgumentOutOfRangeException("x",
+        // Properties.Resources.ArgumentNotNegative);
+        // }
 
-        if (a.AlmostEqual(0.0)) {
-            if (x.AlmostEqual(0.0)) {
-                //use right hand limit value because so that regularized upper/lower gamma definition holds.
+        if (Precision.AlmostEqual(a, 0.0)) {
+            if (Precision.AlmostEqual(x, 0.0)) {
+                // use right hand limit value because so that regularized upper/lower gamma
+                // definition holds.
                 return 1d;
             }
 
             return 1d;
         }
 
-        if (x.AlmostEqual(0.0)) {
+        if (Precision.AlmostEqual(x, 0.0)) {
             return 0d;
         }
 
@@ -246,8 +207,7 @@ public class SpecialFunctions {
                 r2 = r2 + 1;
                 c2 = c2 * x / r2;
                 ans2 += c2;
-            }
-            while ((c2 / ans2) > epsilon);
+            } while ((c2 / ans2) > epsilon);
 
             return Math.exp(ax) * ans2 / a;
         }
@@ -295,36 +255,34 @@ public class SpecialFunctions {
                 q3 *= bigInv;
                 q2 *= bigInv;
             }
-        }
-        while (error > epsilon);
+        } while (error > epsilon);
 
         return 1d - (Math.exp(ax) * ans);
     }
 
-    public static double GammaLowerRegularizedInv(double a, double y0)
-    {
+    public static double GammaLowerRegularizedInv(double a, double y0) {
         final double epsilon = 0.000000000000001;
         final double big = 4503599627370496.0;
         final double threshold = 5 * epsilon;
 
-        if (double.IsNaN(a) || double.IsNaN(y0)) {
-            return double.NaN;
+        if (Double.isNaN(a) || Double.isNaN(y0)) {
+            return Double.NaN;
         }
 
-        //if (a < 0 || a.AlmostEqual(0.0)) {
-        //    throw new ArgumentOutOfRangeException("a");
-        //}
+        // if (a < 0 || a.AlmostEqual(0.0)) {
+        // throw new ArgumentOutOfRangeException("a");
+        // }
 
-        //if (y0 < 0 || y0 > 1) {
-        //    throw new ArgumentOutOfRangeException("y0");
-        //}
+        // if (y0 < 0 || y0 > 1) {
+        // throw new ArgumentOutOfRangeException("y0");
+        // }
 
-        if (y0.AlmostEqual(0.0)) {
+        if (Precision.AlmostEqual(y0, 0.0)) {
             return 0d;
         }
 
-        if (y0.AlmostEqual(1.0)) {
-            return double.PositiveInfinity;
+        if (Precision.AlmostEqual(y0, 1.0)) {
+            return Double.POSITIVE_INFINITY;
         }
 
         y0 = 1 - y0;
@@ -336,7 +294,7 @@ public class SpecialFunctions {
 
         // Initial Guess
         double d = 1 / (9 * a);
-        double y = 1 - d - (0.98 * Constants.Sqrt2 * ErfInv((2.0 * y0) - 1.0) * Math.Sqrt(d));
+        double y = 1 - d - (0.98 * Constants.Sqrt2 * ErfInv((2.0 * y0) - 1.0) * Math.sqrt(d));
         double x = a * y * y * y;
         double lgm = GammaLn(a);
 
@@ -586,28 +544,27 @@ public class SpecialFunctions {
             0.468292921940894236786e-4, 0.399968812193862100054e-6, 0.161809290887904476097e-8,
             0.231558608310259605225e-11 };
 
-    public static double Erfc(double x)
-    {
+    public static double Erfc(double x) {
         if (x == 0) {
             return 1;
         }
 
-        if (double.IsPositiveInfinity(x)) {
+        if (Double.isInfinite(x) && x > 0) {
             return 0;
         }
 
-        if (double.IsNegativeInfinity(x)) {
+        if (Double.isInfinite(x) && x < 0) {
             return 2;
         }
 
-        if (double.IsNaN(x)) {
-            return double.NaN;
+        if (Double.isNaN(x)) {
+            return Double.NaN;
         }
 
         return ErfImp(x, true);
     }
 
-    static double ErfImp(double z, bool invert) {
+    static double ErfImp(double z, boolean invert) {
         if (z < 0) {
             if (!invert) {
                 return -ErfImp(-z, false);
@@ -706,14 +663,13 @@ public class SpecialFunctions {
         return result;
     }
 
-    public static double ErfcInv(double z)
-    {
+    public static double ErfcInv(double z) {
         if (z <= 0.0) {
-            return double.PositiveInfinity;
+            return Double.POSITIVE_INFINITY;
         }
 
         if (z >= 2.0) {
-            return double.NegativeInfinity;
+            return Double.NEGATIVE_INFINITY;
         }
 
         double p, q, s;
@@ -730,8 +686,7 @@ public class SpecialFunctions {
         return ErfInvImpl(p, q, s);
     }
 
-    static double ErfInvImpl(double p, double q, double s)
-    {
+    static double ErfInvImpl(double p, double q, double s) {
         double result;
 
         if (p <= 0.5) {
@@ -780,10 +735,10 @@ public class SpecialFunctions {
             // absolute error compared to Y.
             //
             // Note that almost all code will really go through the first
-            // or maybe second approximation.  After than we're dealing with very
+            // or maybe second approximation. After than we're dealing with very
             // small input values indeed: 80 and 128 bit long double's go all the
             // way down to ~ 1e-5000 so the "tail" is rather long...
-            double x = Math.Sqrt(-Math.Log(q));
+            double x = Math.Sqrt(-Math.log(q));
             if (x < 3) {
                 // Max error found: 1.089051e-20
                 final float y = 0.807220458984375f;
@@ -820,18 +775,17 @@ public class SpecialFunctions {
         return s * result;
     }
 
-    public static double ErfInv(double z)
-    {
+    public static double ErfInv(double z) {
         if (z == 0.0) {
             return 0.0;
         }
 
         if (z >= 1.0) {
-            return double.PositiveInfinity;
+            return Double.POSITIVE_INFINITY;
         }
 
         if (z <= -1.0) {
-            return double.NegativeInfinity;
+            return Double.NEGATIVE_INFINITY;
         }
 
         double p, q, s;
@@ -848,22 +802,21 @@ public class SpecialFunctions {
         return ErfInvImpl(p, q, s);
     }
 
-    public static double Erf(double x)
-    {
+    public static double Erf(double x) {
         if (x == 0) {
             return 0;
         }
 
-        if (double.IsPositiveInfinity(x)) {
+        if (Double.isInfinite(x) && x > 0) {
             return 1;
         }
 
-        if (double.IsNegativeInfinity(x)) {
+        if (Double.isInfinite(x) && x < 0) {
             return -1;
         }
 
-        if (double.IsNaN(x)) {
-            return double.NaN;
+        if (Double.isNaN(x)) {
+            return Double.NaN;
         }
 
         return ErfImp(x, false);
@@ -876,7 +829,7 @@ public class SpecialFunctions {
                 return Math.exp(power) - 1.0;
             }
 
-            if (x < x.PositiveEpsilonOf()) {
+            if (x <Precision.PositiveEpsilonOf(x)) {
                 return x;
             }
 
@@ -884,7 +837,7 @@ public class SpecialFunctions {
             int k = 0;
             double term = 1.0;
             return Evaluate.Series(
-                () => {
+                () -> {
                     k++;
                     term *= power;
                     term /= k;

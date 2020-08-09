@@ -1,9 +1,11 @@
 package toolgood.algorithm;
 
+import java.util.date.*;  
+
 /// <summary>
 /// Date
 /// </summary>
-public class Date {
+public class MyDate {
     /// <summary>
     /// 构造函数
     /// </summary>
@@ -13,7 +15,7 @@ public class Date {
     /// <param name="hour">时</param>
     /// <param name="minute">分</param>
     /// <param name="second">秒</param>
-    public Date(int year, int month, int day, int hour, int minute, int second) {
+    public MyDate(int year, int month, int day, int hour, int minute, int second) {
         Year = year;
         Month = month;
         Day = day;
@@ -26,7 +28,7 @@ public class Date {
     /// 构造函数
     /// </summary>
     /// <param name="dt">日期时间</param>
-    public Date(DateTime dt) {
+    public MyDate(Date dt) {
         Year = dt.Year;
         Month = dt.Month;
         Day = dt.Day;
@@ -39,7 +41,7 @@ public class Date {
     /// 构造函数
     /// </summary>
     /// <param name="dt">时间</param>
-    public Date(TimeSpan dt) {
+    public MyDate(TimeSpan dt) {
         Day = dt.Days;
         Hour = dt.Hours;
         Minute = dt.Minutes;
@@ -98,88 +100,88 @@ public class Date {
         return ((DateTime) this).ToString(f);
     }
 
-     public static implicit operator
+    //  public static implicit operator
 
-    Date(DateTime date) {
-        return new Date(date);
-    }
+    // Date(DateTime date) {
+    //     return new Date(date);
+    // }
 
-    public static implicit operator
+    // public static implicit operator
 
-    DateTime(Date date)
-        {
-            return new DateTime(date.Year ?? 0, date.Month ?? 0, date.Day ?? 0, date.Hour, date.Minute, date.Second);
-        }
+    // DateTime(Date date)
+    //     {
+    //         return new DateTime(date.Year ?? 0, date.Month ?? 0, date.Day ?? 0, date.Hour, date.Minute, date.Second);
+    //     }
 
-    public static implicit operator
+    // public static implicit operator
 
-    TimeSpan(Date date)
-        {
-            return new TimeSpan(date.Day ?? 0, date.Hour, date.Minute, date.Second);
-        }
+    // TimeSpan(Date date)
+    //     {
+    //         return new TimeSpan(date.Day ?? 0, date.Hour, date.Minute, date.Second);
+    //     }
 
-    public static implicit operator
+    // public static implicit operator
 
-    Date(double days) {
-        var dt = DateTime.MinValue.AddDays((int) days);
-        if (dt.Year > 1900) {
-            dt = dt.AddSeconds((days - (int) days) * 24 * 60 * 60);
-            return new Date(dt);
-        }
-        var day = (int) days;
-        days = (days - day) * 24;
-        var hour = (int) days;
-        days = (days - hour) * 60;
-        var minute = (int) days * 24;
-        days = (days - minute) * 60;
-        var second = (int) days;
-        return new Date(new TimeSpan(day, hour, minute, second));
-    }
+    // Date(double days) {
+    //     var dt = DateTime.MinValue.AddDays((int) days);
+    //     if (dt.Year > 1900) {
+    //         dt = dt.AddSeconds((days - (int) days) * 24 * 60 * 60);
+    //         return new Date(dt);
+    //     }
+    //     var day = (int) days;
+    //     days = (days - day) * 24;
+    //     var hour = (int) days;
+    //     days = (days - hour) * 60;
+    //     var minute = (int) days * 24;
+    //     days = (days - minute) * 60;
+    //     var second = (int) days;
+    //     return new Date(new TimeSpan(day, hour, minute, second));
+    // }
 
-    public static implicit operator double(
-    Date date)
-    {
-            if (date.Year > 1900) {
-                var dt = new DateTime((date.Year ?? 0), (date.Month ?? 0), (date.Day ?? 0), date.Hour, date.Minute, date.Second);
-                double days = (double)(dt - DateTime.MinValue).TotalDays;
-                days += (date.Hour + (date.Minute + date.Second / 60.0) / 60) / 24;
-                return days;
-            }
-            return (date.Day ?? 0) + (date.Hour + (date.Minute + date.Second / 60.0) / 60) / 24;
-        }
+    // public static implicit operator double(
+    // Date date)
+    // {
+    //         if (date.Year > 1900) {
+    //             var dt = new DateTime((date.Year ?? 0), (date.Month ?? 0), (date.Day ?? 0), date.Hour, date.Minute, date.Second);
+    //             double days = (double)(dt - DateTime.MinValue).TotalDays;
+    //             days += (date.Hour + (date.Minute + date.Second / 60.0) / 60) / 24;
+    //             return days;
+    //         }
+    //         return (date.Day ?? 0) + (date.Hour + (date.Minute + date.Second / 60.0) / 60) / 24;
+    //     }
 
-    public static Date operator+(
-    Date date, Date num)
-    {
-        return (Date) ((double) date + (double) num);
-    }
-    public static Date operator-(
-    Date date, Date num)
-    {
-        return (Date) ((double) date - (double) num);
-    }
-    public static Date operator+(
-    Date date,
-    double num)
-    {
-        return (Date) ((double) date + (double) num);
-    }
-    public static Date operator-(
-    Date date,
-    double num)
-    {
-        return (Date) ((double) date - (double) num);
-    }
-    public static Date operator*(
-    Date date,
-    double num)
-    {
-        return (Date) ((double) date * (double) num);
-    }
-    public static Date operator/(
-    Date date,
-    double num)
-    {
-        return (Date) ((double) date / (double) num);
-    }
+    // public static Date operator+(
+    // Date date, Date num)
+    // {
+    //     return (Date) ((double) date + (double) num);
+    // }
+    // public static Date operator-(
+    // Date date, Date num)
+    // {
+    //     return (Date) ((double) date - (double) num);
+    // }
+    // public static Date operator+(
+    // Date date,
+    // double num)
+    // {
+    //     return (Date) ((double) date + (double) num);
+    // }
+    // public static Date operator-(
+    // Date date,
+    // double num)
+    // {
+    //     return (Date) ((double) date - (double) num);
+    // }
+    // public static Date operator*(
+    // Date date,
+    // double num)
+    // {
+    //     return (Date) ((double) date * (double) num);
+    // }
+    // public static Date operator/(
+    // Date date,
+    // double num)
+    // {
+    //     return (Date) ((double) date / (double) num);
+    // }
 }

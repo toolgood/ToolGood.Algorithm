@@ -46,7 +46,7 @@ public class CaseChangingCharStream implements CharStream {
         } else if (o == '”') {
             o = '"';
         }
-        return return Character.toUpperCase(0);
+        return Character.toUpperCase(0);
 	}
 
 	@Override

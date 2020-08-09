@@ -1,16 +1,17 @@
 package toolgood.algorithm.litJson;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class JsonData extends IJsonWrapper {
+public class JsonData implements IJsonWrapper {
 
     private ArrayList<JsonData> inst_array;
     private boolean inst_boolean;
     private double inst_double;
-    final Map<String, JsonData> inst_object;
+    public Map<String, JsonData> inst_object;
     private String inst_string;
     private JsonType type;
     // private IList<KeyValuePair<string, JsonData>> object_list;
@@ -62,30 +63,30 @@ public class JsonData extends IJsonWrapper {
     public JsonData() {
     }
 
-    void SetBoolean(final boolean val) {
+    public void SetBoolean(final boolean val) {
         type = JsonType.Boolean;
         inst_boolean = val;
     }
 
-    void SetDouble(final double val) {
+    public void SetDouble(final double val) {
         type = JsonType.Double;
         inst_double = val;
     }
 
-    void SetString(final String val) {
+    public void SetString(final String val) {
         type = JsonType.String;
         inst_string = val;
     }
 
-    void SetNull() {
+    public void SetNull() {
         type = JsonType.Null;
     }
 
-    void Add(final IJsonWrapper val) {
+    public void Add(final IJsonWrapper val) {
         EnsureList().add((JsonData) val);
     }
 
-    void Set(final String key, final IJsonWrapper val) {
+    public void Set(final String key, final IJsonWrapper val) {
         final JsonData data = (JsonData) val;
         EnsureDictionary().put(key, data);
         // KeyValuePair<string, JsonData> entry = new KeyValuePair<string,
@@ -93,10 +94,10 @@ public class JsonData extends IJsonWrapper {
         // object_list.Add(entry);
     }
 
-    private ICollection EnsureCollection() {
+    private Collection EnsureCollection() {
         if (type == JsonType.Array)
-            return (ICollection) inst_array;
-        return (ICollection) inst_object;
+            return (Collection) inst_array;
+        return (Collection) inst_object;
     }
 
     private Map<String, JsonData> EnsureDictionary() {
@@ -116,7 +117,7 @@ public class JsonData extends IJsonWrapper {
         return inst_array;
     }
 
-    void SetJsonType(final JsonType type) {
+    public void SetJsonType(final JsonType type) {
         if (this.type == type)
             return;
 
@@ -148,10 +149,7 @@ public class JsonData extends IJsonWrapper {
         this.type = type;
     }
 
-    // public IEnumerator GetEnumerator()
-    // {
-    // return EnsureList().GetEnumerator();
-    // }
+ 
 
     public boolean BooleanValue() {
         return inst_boolean;
