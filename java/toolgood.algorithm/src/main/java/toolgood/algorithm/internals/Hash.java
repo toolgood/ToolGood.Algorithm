@@ -3,7 +3,7 @@ package toolgood.algorithm.internals;
 static class Hash
 {
     public static String GetCrc8String(final byte[] buffer) {
-        final var b = Crc8Hash.CRC(buffer);
+        final int b = Crc8Hash.CRC(buffer);
         return BitConverter.ToString(new byte[] { b });
     }
 
@@ -40,7 +40,7 @@ static class Hash
     }
 
     public static String GetCrc16String(final byte[] buffer) {
-        final var buffer1 = Crc16Hash.makeCrc16(buffer);
+        final int buffer1 = Crc16Hash.makeCrc16(buffer);
         return BitConverter.ToString(buffer1);
     }
 
@@ -218,7 +218,7 @@ static class Hash
     public static String GetHmacMd5String(final byte[] buffer, final String secret)
     {
         final byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret ?? "");
-        using (var hmacsha256 = new HMACMD5(keyByte)) {
+        using (HMACMD5 hmacsha256 = new HMACMD5(keyByte)) {
             byte[] hashmessage = hmacsha256.ComputeHash(buffer);
             return BitConverter.ToString(hashmessage).Replace("-", "");
         }
@@ -227,7 +227,7 @@ static class Hash
     public static String GetHmacSha1String(final byte[] buffer, final String secret)
     {
         final byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret ?? "");
-        using (var hmacsha256 = new HMACSHA1(keyByte)) {
+        using (HMACSHA1 hmacsha256 = new HMACSHA1(keyByte)) {
             byte[] hashmessage = hmacsha256.ComputeHash(buffer);
             return BitConverter.ToString(hashmessage).Replace("-", "");
         }
@@ -236,7 +236,7 @@ static class Hash
     public static String GetHmacSha256String(final byte[] buffer, final String secret)
     {
         final byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret ?? "");
-        using (var hmacsha256 = new HMACSHA256(keyByte)) {
+        using (HMACSHA256 hmacsha256 = new HMACSHA256(keyByte)) {
             byte[] hashmessage = hmacsha256.ComputeHash(buffer);
             return BitConverter.ToString(hashmessage).Replace("-", "");
         }
@@ -245,7 +245,7 @@ static class Hash
     public static String GetHmacSha512String(final byte[] buffer, final String secret)
     {
         final byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret ?? "");
-        using (var hmacsha256 = new HMACSHA512(keyByte)) {
+        using (HMACSHA512 hmacsha256 = new HMACSHA512(keyByte)) {
             byte[] hashmessage = hmacsha256.ComputeHash(buffer);
             return BitConverter.ToString(hashmessage).Replace("-", "");
         }
