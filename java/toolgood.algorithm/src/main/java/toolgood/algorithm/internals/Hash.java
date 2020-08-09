@@ -1,4 +1,4 @@
-package main.java.toolgood.algorithm.internals;
+package toolgood.algorithm.internals;
 
 static class Hash
 {

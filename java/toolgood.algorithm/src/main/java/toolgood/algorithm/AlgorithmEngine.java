@@ -8,6 +8,9 @@ import java.util.Map;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.litJson.JsonData;
 import toolgood.algorithm.litJson.JsonMapper;
+import toolgood.algorithm.math.mathLexer;
+import toolgood.algorithm.math.mathParser;
+import toolgood.algorithm.math.mathParser.ProgContext;
 
 public class AlgorithmEngine {
 
@@ -20,7 +23,7 @@ public class AlgorithmEngine {
     /// </summary>
     public String LastError;
     private ProgContext _context;
-    private Map<String, Operand> _dict = new HashMap<String, Operand>();
+    private final Map<String, Operand> _dict = new HashMap<String, Operand>();
     /// <summary>
     /// 自定义 函数
     /// </summary>
@@ -31,7 +34,7 @@ public class AlgorithmEngine {
     /// </summary>
     /// <param name="parameter"></param>
     /// <returns></returns>
-    protected Operand GetParameter(String parameter) {
+    protected Operand GetParameter(final String parameter) {
         if (_dict.containsKey(parameter)) {
             return _dict.get(parameter);
         }
@@ -44,7 +47,7 @@ public class AlgorithmEngine {
     /// <param name="funcName"></param>
     /// <param name="operands"></param>
     /// <returns></returns>
-    protected Operand ExecuteDiyFunction(String funcName, List<Operand> operands) {
+    protected Operand ExecuteDiyFunction(final String funcName, final List<Operand> operands) {
         if (DiyFunction != null) {
             return DiyFunction.Invoke(funcName, operands);
         }
@@ -70,7 +73,7 @@ public class AlgorithmEngine {
     /// </summary>
     /// <param name="key"></param>
     /// <param name="obj"></param>
-    public void AddParameter(String key, Operand obj) {
+    public void AddParameter(final String key, final Operand obj) {
         _dict.put(key, obj);
     }
 
@@ -79,7 +82,7 @@ public class AlgorithmEngine {
     /// </summary>
     /// <param name="key"></param>
     /// <param name="obj"></param>
-    public void AddParameter(String key, boolean obj) {
+    public void AddParameter(final String key, final boolean obj) {
         _dict.put(key, Operand.Create(obj));
     }
 
@@ -88,7 +91,7 @@ public class AlgorithmEngine {
     /// </summary>
     /// <param name="key"></param>
     /// <param name="obj"></param>
-    public void AddParameter(String key, short obj) {
+    public void AddParameter(final String key, final short obj) {
         _dict.put(key, Operand.Create(obj));
     }
 
@@ -97,7 +100,7 @@ public class AlgorithmEngine {
     /// </summary>
     /// <param name="key"></param>
     /// <param name="obj"></param>
-    public void AddParameter(String key, int obj) {
+    public void AddParameter(final String key, final int obj) {
         _dict.put(key, Operand.Create(obj));
     }
 
@@ -106,7 +109,7 @@ public class AlgorithmEngine {
     /// </summary>
     /// <param name="key"></param>
     /// <param name="obj"></param>
-    public void AddParameter(String key, long obj) {
+    public void AddParameter(final String key, final long obj) {
         _dict.put(key, Operand.Create(obj));
     }
 
@@ -115,7 +118,7 @@ public class AlgorithmEngine {
     /// </summary>
     /// <param name="key"></param>
     /// <param name="obj"></param>
-    public void AddParameter(String key, ushort obj) {
+    public void AddParameter(final String key, final ushort obj) {
         _dict.put(key, Operand.Create(obj));
     }
 
@@ -124,7 +127,7 @@ public class AlgorithmEngine {
     /// </summary>
     /// <param name="key"></param>
     /// <param name="obj"></param>
-    public void AddParameter(String key, uint obj) {
+    public void AddParameter(final String key, final uint obj) {
         _dict.put(key, Operand.Create(obj));
     }
 
@@ -133,7 +136,7 @@ public class AlgorithmEngine {
     /// </summary>
     /// <param name="key"></param>
     /// <param name="obj"></param>
-    public void AddParameter(String key, ulong obj) {
+    public void AddParameter(final String key, final ulong obj) {
         _dict.put(key, Operand.Create(obj));
     }
 
@@ -142,7 +145,7 @@ public class AlgorithmEngine {
     /// </summary>
     /// <param name="key"></param>
     /// <param name="obj"></param>
-    public void AddParameter(String key, float obj) {
+    public void AddParameter(final String key, final float obj) {
         _dict.put(key, Operand.Create(obj));
     }
 
@@ -151,7 +154,7 @@ public class AlgorithmEngine {
     /// </summary>
     /// <param name="key"></param>
     /// <param name="obj"></param>
-    public void AddParameter(String key, double obj) {
+    public void AddParameter(final String key, final double obj) {
         _dict.put(key, Operand.Create(obj));
     }
 
@@ -160,7 +163,7 @@ public class AlgorithmEngine {
     /// </summary>
     /// <param name="key"></param>
     /// <param name="obj"></param>
-    public void AddParameter(String key, DecimalFormat obj) {
+    public void AddParameter(final String key, final DecimalFormat obj) {
         _dict.put(key, Operand.Create(obj));
     }
 
@@ -169,7 +172,7 @@ public class AlgorithmEngine {
     /// </summary>
     /// <param name="key"></param>
     /// <param name="obj"></param>
-    public void AddParameter(String key, String obj) {
+    public void AddParameter(final String key, final String obj) {
         _dict.put(key, Operand.Create(obj));
     }
 
@@ -178,7 +181,7 @@ public class AlgorithmEngine {
     /// </summary>
     /// <param name="key"></param>
     /// <param name="obj"></param>
-    public void AddParameter(String key, Date obj) {
+    public void AddParameter(final String key, final Date obj) {
         _dict.put(key, Operand.Create(obj));
     }
 
@@ -187,7 +190,7 @@ public class AlgorithmEngine {
     /// </summary>
     /// <param name="key"></param>
     /// <param name="obj"></param>
-    public void AddParameter(String key, DateTime obj) {
+    public void AddParameter(final String key, final DateTime obj) {
         _dict.put(key, Operand.Create(obj));
     }
 
@@ -196,7 +199,7 @@ public class AlgorithmEngine {
     /// </summary>
     /// <param name="key"></param>
     /// <param name="obj"></param>
-    public void AddParameter(String key, TimeSpan obj) {
+    public void AddParameter(final String key, final TimeSpan obj) {
         _dict.put(key, Operand.Create(obj));
     }
 
@@ -205,7 +208,7 @@ public class AlgorithmEngine {
     /// </summary>
     /// <param name="key"></param>
     /// <param name="obj"></param>
-    public void AddParameter(String key, List<Operand> obj) {
+    public void AddParameter(final String key, final List<Operand> obj) {
         _dict.put(key, Operand.Create(obj));
     }
 
@@ -214,7 +217,7 @@ public class AlgorithmEngine {
     /// </summary>
     /// <param name="key"></param>
     /// <param name="obj"></param>
-    public void AddParameter(String key, List<String> obj) {
+    public void AddParameter(final String key, final List<String> obj) {
         _dict.put(key, Operand.Create(obj));
     }
 
@@ -223,28 +226,26 @@ public class AlgorithmEngine {
     /// </summary>
     /// <param name="key"></param>
     /// <param name="obj"></param>
-    public void AddParameter(String key, List<Double> obj)
-        {
-            _dict.put(key, Operand.Create(obj));
+    public void AddParameter(final String key, final List<Double> obj) {
+        _dict.put(key, Operand.Create(obj));
 
-        }
-
-    /// <summary>
-    /// 添加自定义参数
-    /// </summary>
-    /// <param name="key"></param>
-    /// <param name="obj"></param>
-    public void AddParameter(String key, List<Integer> obj)
-        {
-            _dict.put(key, Operand.Create(obj));
-        }
+    }
 
     /// <summary>
     /// 添加自定义参数
     /// </summary>
     /// <param name="key"></param>
     /// <param name="obj"></param>
-    public void AddParameter(String key, List<Boolean> obj) {
+    public void AddParameter(final String key, final List<Integer> obj) {
+        _dict.put(key, Operand.Create(obj));
+    }
+
+    /// <summary>
+    /// 添加自定义参数
+    /// </summary>
+    /// <param name="key"></param>
+    /// <param name="obj"></param>
+    public void AddParameter(final String key, final List<Boolean> obj) {
         _dict.put(key, Operand.Create(obj));
     }
 
@@ -252,13 +253,13 @@ public class AlgorithmEngine {
     /// 添加自定义参数
     /// </summary>
     /// <param name="json"></param>
-    public void AddParameterFromJson(String json)
+    public void AddParameterFromJson(final String json)
         {
             if (json.startsWith("{") && json.endsWith("}")) {
-                JsonData jo = (JsonData)JsonMapper.ToObject(json);
+                final JsonData jo = (JsonData)JsonMapper.ToObject(json);
                 if (jo.IsObject()) {
                     foreach (var item in jo.inst_object) {
-                        var v = item.Value;
+                        final var v = item.Value;
                         if (v.IsString())
                             _dict[item.Key] = Operand.Create(v.StringValue);
                         else if (v.IsBoolean())
@@ -282,8 +283,8 @@ public class AlgorithmEngine {
         public boolean IsError;
         public String ErrorMsg;
 
-        public void SyntaxError(TextWriter output, IRecognizer recognizer, IToken offendingSymbol, int line,
-                int charPositionInLine, String msg, RecognitionException e) {
+        public void SyntaxError(final TextWriter output, final IRecognizer recognizer, final IToken offendingSymbol,
+                final int line, final int charPositionInLine, final String msg, final RecognitionException e) {
             IsError = true;
             ErrorMsg = msg;
         }
@@ -294,23 +295,23 @@ public class AlgorithmEngine {
     /// </summary>
     /// <param name="exp">公式</param>
     /// <returns></returns>
-    public boolean Parse(String exp) {
+    public boolean Parse(final String exp) throws RecognitionException  {
         if (String.isNullOrWhiteSpace(exp)) {
             LastError = "Parameter exp invalid !";
             return false;
         }
         // try {
 
-        AntlrInputStream stream = new CaseChangingCharStream(new AntlrInputStream(exp));
-        var lexer = new mathLexer(stream);
-        var tokens = new CommonTokenStream(lexer);
-        var parser = new mathParser(tokens);
-        var antlrErrorListener = new AntlrErrorListener();
+        final AntlrInputStream stream = new CaseChangingCharStream(new AntlrInputStream(exp));
+        final mathLexer lexer = new mathLexer(stream);
+        final var tokens = new CommonTokenStream(lexer);
+        final mathParser parser = new mathParser(tokens);
+        final var antlrErrorListener = new AntlrErrorListener();
         parser.RemoveErrorListeners();
         parser.AddErrorListener(antlrErrorListener);
 
-        var context = parser.prog();
-        var end = context.Stop.StopIndex;
+        final ProgContext context = parser.prog();
+        final var end = context.Stop.StopIndex;
         if (end + 1 < exp.length()) {
             _context = null;
             LastError = "Parameter exp invalid !";
@@ -338,7 +339,7 @@ public class AlgorithmEngine {
             LastError = "Please use Parse to compile formula !";
             throw new Exception("Please use Parse to compile formula !");
         }
-        MathVisitor visitor = new MathVisitor();
+        final MathVisitor visitor = new MathVisitor();
         visitor.GetParameter += GetParameter;
         visitor.excelIndex = UseExcelIndex ? 1 : 0;
         visitor.DiyFunction += ExecuteDiyFunction;
@@ -351,19 +352,19 @@ public class AlgorithmEngine {
     /// <param name="exp"></param>
     /// <param name="def"></param>
     /// <returns></returns>
-    public int TryEvaluate(String exp, int def) {
+    public int TryEvaluate(final String exp, final int def) {
         try {
             if (Parse(exp)) {
 
                 Operand obj = Evaluate();
                 obj = obj.ToNumber("It can't be converted to number!");
-                if (obj.IsError) {
+                if (obj.IsError()) {
                     LastError = obj.ErrorMsg;
                     return def;
                 }
                 return obj.IntValue;
             }
-        } catch (Exception ex) {
+        } catch (final Exception ex) {
             LastError = ex.Message;
         }
         return def;
@@ -375,19 +376,19 @@ public class AlgorithmEngine {
     /// <param name="exp"></param>
     /// <param name="def"></param>
     /// <returns></returns>
-    public double TryEvaluate(String exp, double def) {
+    public double TryEvaluate(final String exp, final double def) {
         try {
             if (Parse(exp)) {
 
                 Operand obj = Evaluate();
                 obj = obj.ToNumber("It can't be converted to number!");
-                if (obj.IsError) {
+                if (obj.IsError()) {
                     LastError = obj.ErrorMsg;
                     return def;
                 }
                 return obj.NumberValue;
             }
-        } catch (Exception ex) {
+        } catch (final Exception ex) {
             LastError = ex.Message;
         }
         return def;
@@ -399,7 +400,7 @@ public class AlgorithmEngine {
     /// <param name="exp"></param>
     /// <param name="def"></param>
     /// <returns></returns>
-    public String TryEvaluate(String exp, String def) {
+    public String TryEvaluate(final String exp, final String def) {
         try {
             if (Parse(exp)) {
                 Operand obj = Evaluate();
@@ -407,13 +408,13 @@ public class AlgorithmEngine {
                     return null;
                 }
                 obj = obj.ToText("It can't be converted to String!");
-                if (obj.IsError) {
+                if (obj.IsError()) {
                     LastError = obj.ErrorMsg;
                     return def;
                 }
                 return obj.TextValue;
             }
-        } catch (Exception ex) {
+        } catch (final Exception ex) {
             LastError = ex.Message;
         }
         return def;
@@ -425,18 +426,18 @@ public class AlgorithmEngine {
     /// <param name="exp"></param>
     /// <param name="def"></param>
     /// <returns></returns>
-    public boolean TryEvaluate(String exp, boolean def) {
+    public boolean TryEvaluate(final String exp, final boolean def) {
         try {
             if (Parse(exp)) {
                 Operand obj = Evaluate();
                 obj = obj.ToBoolean("It can't be converted to bool!");
-                if (obj.IsError) {
+                if (obj.IsError()) {
                     LastError = obj.ErrorMsg;
                     return def;
                 }
                 return obj.BooleanValue;
             }
-        } catch (Exception ex) {
+        } catch (final Exception ex) {
             LastError = ex.Message;
         }
         return def;
@@ -448,18 +449,18 @@ public class AlgorithmEngine {
     /// <param name="exp"></param>
     /// <param name="def"></param>
     /// <returns></returns>
-    public DateTime TryEvaluate(String exp, DateTime def) {
+    public DateTime TryEvaluate(final String exp, final DateTime def) {
         try {
             if (Parse(exp)) {
                 Operand obj = Evaluate();
                 obj = obj.ToDate("It can't be converted to date!");
-                if (obj.IsError) {
+                if (obj.IsError()) {
                     LastError = obj.ErrorMsg;
                     return def;
                 }
                 return (DateTime) obj.DateValue;
             }
-        } catch (Exception ex) {
+        } catch (final Exception ex) {
             LastError = ex.Message;
         }
         return def;
@@ -471,18 +472,18 @@ public class AlgorithmEngine {
     /// <param name="exp"></param>
     /// <param name="def"></param>
     /// <returns></returns>
-    public TimeSpan TryEvaluate(String exp, TimeSpan def) {
+    public TimeSpan TryEvaluate(final String exp, final TimeSpan def) {
         try {
             if (Parse(exp)) {
                 Operand obj = Evaluate();
                 obj = obj.ToDate("It can't be converted to date!");
-                if (obj.IsError) {
+                if (obj.IsError()) {
                     LastError = obj.ErrorMsg;
                     return def;
                 }
                 return (TimeSpan) obj.DateValue;
             }
-        } catch (Exception ex) {
+        } catch (final Exception ex) {
             LastError = ex.Message;
         }
         return def;

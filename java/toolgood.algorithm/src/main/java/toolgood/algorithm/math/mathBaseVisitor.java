@@ -1,3 +1,5 @@
+package toolgood.algorithm.math;
+
 // Generated from math.g4 by ANTLR 4.8
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
