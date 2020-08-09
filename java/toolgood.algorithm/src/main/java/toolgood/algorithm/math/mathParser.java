@@ -1,6 +1,5 @@
 package toolgood.algorithm.math;
 
-// Generated from math.g4 by ANTLR 4.8
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -9,6 +8,8 @@ import org.antlr.v4.runtime.tree.*;
 import java.util.List;
 import java.util.Iterator;
 import java.util.ArrayList;
+import toolgood.algorithm.math.mathParser2.*;
+
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class mathParser extends Parser {
@@ -193,21 +194,6 @@ public class mathParser extends Parser {
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 
-	public static class ProgContext extends ParserRuleContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public ProgContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_prog; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitProg(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
 	public final ProgContext prog() throws RecognitionException {
 		ProgContext _localctx = new ProgContext(_ctx, getState());
 		enterRule(_localctx, 0, RULE_prog);
@@ -229,1389 +215,6 @@ public class mathParser extends Parser {
 		return _localctx;
 	}
 
-	public static class ExprContext extends ParserRuleContext {
-		public ExprContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_expr; }
-	 
-		public ExprContext() { }
-		public void copyFrom(ExprContext ctx) {
-			super.copyFrom(ctx);
-		}
-	}
-	public static class URLDECODE_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode URLDECODE() { return getToken(mathParser.URLDECODE, 0); }
-		public URLDECODE_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitURLDECODE_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class REGEXREPALCE_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode REGEXREPALCE() { return getToken(mathParser.REGEXREPALCE, 0); }
-		public REGEXREPALCE_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitREGEXREPALCE_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class AddSub_funContext extends ExprContext {
-		public Token op;
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode SUB() { return getToken(mathParser.SUB, 0); }
-		public AddSub_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitAddSub_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ISNULLORERROR_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode ISNULLORERROR() { return getToken(mathParser.ISNULLORERROR, 0); }
-		public ISNULLORERROR_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitISNULLORERROR_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class CRC16_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode CRC16() { return getToken(mathParser.CRC16, 0); }
-		public CRC16_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitCRC16_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class RIGHT_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode RIGHT() { return getToken(mathParser.RIGHT, 0); }
-		public RIGHT_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitRIGHT_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class VALUE_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode VALUE() { return getToken(mathParser.VALUE, 0); }
-		public VALUE_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitVALUE_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class DAY_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode DAY() { return getToken(mathParser.DAY, 0); }
-		public DAY_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitDAY_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class HMACSHA256_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode HMACSHA256() { return getToken(mathParser.HMACSHA256, 0); }
-		public HMACSHA256_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitHMACSHA256_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class Judge_funContext extends ExprContext {
-		public Token op;
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public Judge_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitJudge_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class OCT2BIN_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode OCT2BIN() { return getToken(mathParser.OCT2BIN, 0); }
-		public OCT2BIN_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitOCT2BIN_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class MINUTE_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode MINUTE() { return getToken(mathParser.MINUTE, 0); }
-		public MINUTE_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitMINUTE_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class INDEXOF_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode INDEXOF() { return getToken(mathParser.INDEXOF, 0); }
-		public INDEXOF_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitINDEXOF_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class UPPER_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode UPPER() { return getToken(mathParser.UPPER, 0); }
-		public UPPER_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitUPPER_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class HTMLDECODE_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode HTMLDECODE() { return getToken(mathParser.HTMLDECODE, 0); }
-		public HTMLDECODE_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitHTMLDECODE_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ISREGEX_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode ISREGEX() { return getToken(mathParser.ISREGEX, 0); }
-		public ISREGEX_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitISREGEX_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class VLOOKUP_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode VLOOKUP() { return getToken(mathParser.VLOOKUP, 0); }
-		public VLOOKUP_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitVLOOKUP_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class DEC2BIN_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode DEC2BIN() { return getToken(mathParser.DEC2BIN, 0); }
-		public DEC2BIN_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitDEC2BIN_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class LOOKUP_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode LOOKUP() { return getToken(mathParser.LOOKUP, 0); }
-		public LOOKUP_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitLOOKUP_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class HEX2DEC_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode HEX2DEC() { return getToken(mathParser.HEX2DEC, 0); }
-		public HEX2DEC_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitHEX2DEC_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class DiyFunction_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode PARAMETER() { return getToken(mathParser.PARAMETER, 0); }
-		public DiyFunction_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitDiyFunction_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class SHA256_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode SHA256() { return getToken(mathParser.SHA256, 0); }
-		public SHA256_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitSHA256_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class TEXTTOBASE64_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode TEXTTOBASE64() { return getToken(mathParser.TEXTTOBASE64, 0); }
-		public TEXTTOBASE64_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitTEXTTOBASE64_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class MID_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode MID() { return getToken(mathParser.MID, 0); }
-		public MID_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitMID_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class TRIMSTART_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode TRIMSTART() { return getToken(mathParser.TRIMSTART, 0); }
-		public TRIMSTART_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitTRIMSTART_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class RMB_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode RMB() { return getToken(mathParser.RMB, 0); }
-		public RMB_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitRMB_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ISNUMBER_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode ISNUMBER() { return getToken(mathParser.ISNUMBER, 0); }
-		public ISNUMBER_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitISNUMBER_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class DEC2HEX_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode DEC2HEX() { return getToken(mathParser.DEC2HEX, 0); }
-		public DEC2HEX_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitDEC2HEX_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class CLEAN_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode CLEAN() { return getToken(mathParser.CLEAN, 0); }
-		public CLEAN_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitCLEAN_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class LASTINDEXOF_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode LASTINDEXOF() { return getToken(mathParser.LASTINDEXOF, 0); }
-		public LASTINDEXOF_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitLASTINDEXOF_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class LOWER_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode LOWER() { return getToken(mathParser.LOWER, 0); }
-		public LOWER_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitLOWER_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class CHAR_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode CHAR() { return getToken(mathParser.CHAR, 0); }
-		public CHAR_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitCHAR_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class REGEX_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode REGEX() { return getToken(mathParser.REGEX, 0); }
-		public REGEX_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitREGEX_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class TEXTTOBASE64URL_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode TEXTTOBASE64URL() { return getToken(mathParser.TEXTTOBASE64URL, 0); }
-		public TEXTTOBASE64URL_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitTEXTTOBASE64URL_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class MD5_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode MD5() { return getToken(mathParser.MD5, 0); }
-		public MD5_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitMD5_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class REPLACE_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode REPLACE() { return getToken(mathParser.REPLACE, 0); }
-		public REPLACE_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitREPLACE_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class LEFT_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode LEFT() { return getToken(mathParser.LEFT, 0); }
-		public LEFT_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitLEFT_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ISODD_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode ISODD() { return getToken(mathParser.ISODD, 0); }
-		public ISODD_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitISODD_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ISEVEN_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode ISEVEN() { return getToken(mathParser.ISEVEN, 0); }
-		public ISEVEN_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitISEVEN_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ASC_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode ASC() { return getToken(mathParser.ASC, 0); }
-		public ASC_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitASC_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ISERROR_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode ISERROR() { return getToken(mathParser.ISERROR, 0); }
-		public ISERROR_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitISERROR_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class BIN2DEC_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode BIN2DEC() { return getToken(mathParser.BIN2DEC, 0); }
-		public BIN2DEC_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitBIN2DEC_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class JIS_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode JIS() { return getToken(mathParser.JIS, 0); }
-		public JIS_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitJIS_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class CRC32_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode CRC32() { return getToken(mathParser.CRC32, 0); }
-		public CRC32_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitCRC32_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class HMACMD5_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode HMACMD5() { return getToken(mathParser.HMACMD5, 0); }
-		public HMACMD5_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitHMACMD5_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class EXACT_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode EXACT() { return getToken(mathParser.EXACT, 0); }
-		public EXACT_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitEXACT_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class SECOND_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode SECOND() { return getToken(mathParser.SECOND, 0); }
-		public SECOND_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitSECOND_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class OCT2HEX_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode OCT2HEX() { return getToken(mathParser.OCT2HEX, 0); }
-		public OCT2HEX_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitOCT2HEX_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class TRIMEND_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode TRIMEND() { return getToken(mathParser.TRIMEND, 0); }
-		public TRIMEND_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitTRIMEND_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class TRIM_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode TRIM() { return getToken(mathParser.TRIM, 0); }
-		public TRIM_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitTRIM_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class CRC8_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode CRC8() { return getToken(mathParser.CRC8, 0); }
-		public CRC8_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitCRC8_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ISLOGICAL_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode ISLOGICAL() { return getToken(mathParser.ISLOGICAL, 0); }
-		public ISLOGICAL_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitISLOGICAL_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class INT_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode INT() { return getToken(mathParser.INT, 0); }
-		public INT_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitINT_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class HEX2OCT_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode HEX2OCT() { return getToken(mathParser.HEX2OCT, 0); }
-		public HEX2OCT_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitHEX2OCT_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class TEXT_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode TEXT() { return getToken(mathParser.TEXT, 0); }
-		public TEXT_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitTEXT_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class YEAR_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode YEAR() { return getToken(mathParser.YEAR, 0); }
-		public YEAR_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitYEAR_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class BIN2HEX_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode BIN2HEX() { return getToken(mathParser.BIN2HEX, 0); }
-		public BIN2HEX_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitBIN2HEX_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class CONCATENATE_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode CONCATENATE() { return getToken(mathParser.CONCATENATE, 0); }
-		public CONCATENATE_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitCONCATENATE_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class MONTH_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode MONTH() { return getToken(mathParser.MONTH, 0); }
-		public MONTH_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitMONTH_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class HTMLENCODE_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode HTMLENCODE() { return getToken(mathParser.HTMLENCODE, 0); }
-		public HTMLENCODE_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitHTMLENCODE_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class BASE64URLTOTEXT_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode BASE64URLTOTEXT() { return getToken(mathParser.BASE64URLTOTEXT, 0); }
-		public BASE64URLTOTEXT_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitBASE64URLTOTEXT_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class URLENCODE_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode URLENCODE() { return getToken(mathParser.URLENCODE, 0); }
-		public URLENCODE_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitURLENCODE_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class HMACSHA1_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode HMACSHA1() { return getToken(mathParser.HMACSHA1, 0); }
-		public HMACSHA1_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitHMACSHA1_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ENDSWITH_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode ENDSWITH() { return getToken(mathParser.ENDSWITH, 0); }
-		public ENDSWITH_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitENDSWITH_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ISTEXT_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode ISTEXT() { return getToken(mathParser.ISTEXT, 0); }
-		public ISTEXT_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitISTEXT_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class Expr2_funContext extends ExprContext {
-		public Expr2Context expr2() {
-			return getRuleContext(Expr2Context.class,0);
-		}
-		public Expr2_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitExpr2_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class TIMEVALUE_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode TIMEVALUE() { return getToken(mathParser.TIMEVALUE, 0); }
-		public TIMEVALUE_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitTIMEVALUE_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class JSON_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode JSON() { return getToken(mathParser.JSON, 0); }
-		public JSON_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitJSON_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class DEC2OCT_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode DEC2OCT() { return getToken(mathParser.DEC2OCT, 0); }
-		public DEC2OCT_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitDEC2OCT_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class PROPER_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode PROPER() { return getToken(mathParser.PROPER, 0); }
-		public PROPER_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitPROPER_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class GetJsonValue_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public ParameterContext parameter() {
-			return getRuleContext(ParameterContext.class,0);
-		}
-		public Parameter2Context parameter2() {
-			return getRuleContext(Parameter2Context.class,0);
-		}
-		public GetJsonValue_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitGetJsonValue_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class HEX2BIN_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode HEX2BIN() { return getToken(mathParser.HEX2BIN, 0); }
-		public HEX2BIN_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitHEX2BIN_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class HOUR_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode HOUR() { return getToken(mathParser.HOUR, 0); }
-		public HOUR_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitHOUR_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class LEN_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode LEN() { return getToken(mathParser.LEN, 0); }
-		public LEN_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitLEN_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class SHA512_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode SHA512() { return getToken(mathParser.SHA512, 0); }
-		public SHA512_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitSHA512_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ISNULLORWHITESPACE_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode ISNULLORWHITESPACE() { return getToken(mathParser.ISNULLORWHITESPACE, 0); }
-		public ISNULLORWHITESPACE_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitISNULLORWHITESPACE_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ISNONTEXT_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode ISNONTEXT() { return getToken(mathParser.ISNONTEXT, 0); }
-		public ISNONTEXT_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitISNONTEXT_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class JOIN_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode JOIN() { return getToken(mathParser.JOIN, 0); }
-		public JOIN_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitJOIN_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class FIND_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode FIND() { return getToken(mathParser.FIND, 0); }
-		public FIND_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitFIND_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class SUBSTITUTE_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode SUBSTITUTE() { return getToken(mathParser.SUBSTITUTE, 0); }
-		public SUBSTITUTE_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitSUBSTITUTE_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class REPT_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode REPT() { return getToken(mathParser.REPT, 0); }
-		public REPT_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitREPT_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ISNULL_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode ISNULL() { return getToken(mathParser.ISNULL, 0); }
-		public ISNULL_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitISNULL_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class OCT2DEC_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode OCT2DEC() { return getToken(mathParser.OCT2DEC, 0); }
-		public OCT2DEC_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitOCT2DEC_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class SEARCH_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode SEARCH() { return getToken(mathParser.SEARCH, 0); }
-		public SEARCH_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitSEARCH_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class CODE_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode CODE() { return getToken(mathParser.CODE, 0); }
-		public CODE_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitCODE_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class MulDiv_funContext extends ExprContext {
-		public Token op;
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public MulDiv_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitMulDiv_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class REMOVESTART_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode REMOVESTART() { return getToken(mathParser.REMOVESTART, 0); }
-		public REMOVESTART_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitREMOVESTART_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class SUBSTRING_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode SUBSTRING() { return getToken(mathParser.SUBSTRING, 0); }
-		public SUBSTRING_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitSUBSTRING_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class T_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode T() { return getToken(mathParser.T, 0); }
-		public T_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitT_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class BIN2OCT_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode BIN2OCT() { return getToken(mathParser.BIN2OCT, 0); }
-		public BIN2OCT_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitBIN2OCT_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class HMACSHA512_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode HMACSHA512() { return getToken(mathParser.HMACSHA512, 0); }
-		public HMACSHA512_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitHMACSHA512_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class BASE64TOTEXT_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode BASE64TOTEXT() { return getToken(mathParser.BASE64TOTEXT, 0); }
-		public BASE64TOTEXT_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitBASE64TOTEXT_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class DATEVALUE_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode DATEVALUE() { return getToken(mathParser.DATEVALUE, 0); }
-		public DATEVALUE_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitDATEVALUE_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class STARTSWITH_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode STARTSWITH() { return getToken(mathParser.STARTSWITH, 0); }
-		public STARTSWITH_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitSTARTSWITH_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ISNULLOREMPTY_funContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode ISNULLOREMPTY() { return getToken(mathParser.ISNULLOREMPTY, 0); }
-		public ISNULLOREMPTY_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitISNULLOREMPTY_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class AndOr_funContext extends ExprContext {
-		public Token op;
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode AND() { return getToken(mathParser.AND, 0); }
-		public TerminalNode OR() { return getToken(mathParser.OR, 0); }
-		public AndOr_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitAndOr_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class SHA1_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode SHA1() { return getToken(mathParser.SHA1, 0); }
-		public SHA1_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitSHA1_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class REMOVEEND_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode REMOVEEND() { return getToken(mathParser.REMOVEEND, 0); }
-		public REMOVEEND_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitREMOVEEND_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class SPLIT_funContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode SPLIT() { return getToken(mathParser.SPLIT, 0); }
-		public SPLIT_funContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitSPLIT_fun(this);
-			else return visitor.visitChildren(this);
-		}
-	}
 
 	public final ExprContext expr() throws RecognitionException {
 		return expr(0);
@@ -1654,7 +257,7 @@ public class mathParser extends Parser {
 						_localctx = new MulDiv_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(15);
-						if (!(precpred(_ctx, 100))) throw new FailedPredicateException(this, "precpred(_ctx, 100)");
+						//if (!(precpred(_ctx, 100))) throw new FailedPredicateException(this, "precpred(_ctx, 100)");
 						setState(16);
 						((MulDiv_funContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
@@ -1675,7 +278,7 @@ public class mathParser extends Parser {
 						_localctx = new AddSub_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(18);
-						if (!(precpred(_ctx, 99))) throw new FailedPredicateException(this, "precpred(_ctx, 99)");
+						//if (!(precpred(_ctx, 99))) throw new FailedPredicateException(this, "precpred(_ctx, 99)");
 						setState(19);
 						((AddSub_funContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
@@ -1696,7 +299,7 @@ public class mathParser extends Parser {
 						_localctx = new Judge_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(21);
-						if (!(precpred(_ctx, 98))) throw new FailedPredicateException(this, "precpred(_ctx, 98)");
+						//if (!(precpred(_ctx, 98))) throw new FailedPredicateException(this, "precpred(_ctx, 98)");
 						setState(22);
 						((Judge_funContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
@@ -1717,7 +320,7 @@ public class mathParser extends Parser {
 						_localctx = new AndOr_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(24);
-						if (!(precpred(_ctx, 97))) throw new FailedPredicateException(this, "precpred(_ctx, 97)");
+						//if (!(precpred(_ctx, 97))) throw new FailedPredicateException(this, "precpred(_ctx, 97)");
 						setState(25);
 						((AndOr_funContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
@@ -1738,7 +341,7 @@ public class mathParser extends Parser {
 						_localctx = new ISNUMBER_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(27);
-						if (!(precpred(_ctx, 96))) throw new FailedPredicateException(this, "precpred(_ctx, 96)");
+						//if (!(precpred(_ctx, 96))) throw new FailedPredicateException(this, "precpred(_ctx, 96)");
 						setState(28);
 						match(T__15);
 						setState(29);
@@ -1754,7 +357,7 @@ public class mathParser extends Parser {
 						_localctx = new ISTEXT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(32);
-						if (!(precpred(_ctx, 95))) throw new FailedPredicateException(this, "precpred(_ctx, 95)");
+						//if (!(precpred(_ctx, 95))) throw new FailedPredicateException(this, "precpred(_ctx, 95)");
 						setState(33);
 						match(T__15);
 						setState(34);
@@ -1770,7 +373,7 @@ public class mathParser extends Parser {
 						_localctx = new ISNONTEXT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(37);
-						if (!(precpred(_ctx, 94))) throw new FailedPredicateException(this, "precpred(_ctx, 94)");
+						//if (!(precpred(_ctx, 94))) throw new FailedPredicateException(this, "precpred(_ctx, 94)");
 						setState(38);
 						match(T__15);
 						setState(39);
@@ -1786,7 +389,7 @@ public class mathParser extends Parser {
 						_localctx = new ISLOGICAL_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(42);
-						if (!(precpred(_ctx, 93))) throw new FailedPredicateException(this, "precpred(_ctx, 93)");
+						//if (!(precpred(_ctx, 93))) throw new FailedPredicateException(this, "precpred(_ctx, 93)");
 						setState(43);
 						match(T__15);
 						setState(44);
@@ -1802,7 +405,7 @@ public class mathParser extends Parser {
 						_localctx = new ISEVEN_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(47);
-						if (!(precpred(_ctx, 92))) throw new FailedPredicateException(this, "precpred(_ctx, 92)");
+						//if (!(precpred(_ctx, 92))) throw new FailedPredicateException(this, "precpred(_ctx, 92)");
 						setState(48);
 						match(T__15);
 						setState(49);
@@ -1818,7 +421,7 @@ public class mathParser extends Parser {
 						_localctx = new ISODD_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(52);
-						if (!(precpred(_ctx, 91))) throw new FailedPredicateException(this, "precpred(_ctx, 91)");
+						//if (!(precpred(_ctx, 91))) throw new FailedPredicateException(this, "precpred(_ctx, 91)");
 						setState(53);
 						match(T__15);
 						setState(54);
@@ -1834,7 +437,7 @@ public class mathParser extends Parser {
 						_localctx = new ISERROR_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(57);
-						if (!(precpred(_ctx, 90))) throw new FailedPredicateException(this, "precpred(_ctx, 90)");
+						//if (!(precpred(_ctx, 90))) throw new FailedPredicateException(this, "precpred(_ctx, 90)");
 						setState(58);
 						match(T__15);
 						setState(59);
@@ -1860,7 +463,7 @@ public class mathParser extends Parser {
 						_localctx = new ISNULL_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(65);
-						if (!(precpred(_ctx, 89))) throw new FailedPredicateException(this, "precpred(_ctx, 89)");
+						//if (!(precpred(_ctx, 89))) throw new FailedPredicateException(this, "precpred(_ctx, 89)");
 						setState(66);
 						match(T__15);
 						setState(67);
@@ -1886,7 +489,7 @@ public class mathParser extends Parser {
 						_localctx = new ISNULLORERROR_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(73);
-						if (!(precpred(_ctx, 88))) throw new FailedPredicateException(this, "precpred(_ctx, 88)");
+						//if (!(precpred(_ctx, 88))) throw new FailedPredicateException(this, "precpred(_ctx, 88)");
 						setState(74);
 						match(T__15);
 						setState(75);
@@ -1912,7 +515,7 @@ public class mathParser extends Parser {
 						_localctx = new DEC2BIN_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(81);
-						if (!(precpred(_ctx, 87))) throw new FailedPredicateException(this, "precpred(_ctx, 87)");
+						//if (!(precpred(_ctx, 87))) throw new FailedPredicateException(this, "precpred(_ctx, 87)");
 						setState(82);
 						match(T__15);
 						setState(83);
@@ -1940,7 +543,7 @@ public class mathParser extends Parser {
 						_localctx = new DEC2HEX_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(89);
-						if (!(precpred(_ctx, 86))) throw new FailedPredicateException(this, "precpred(_ctx, 86)");
+						//if (!(precpred(_ctx, 86))) throw new FailedPredicateException(this, "precpred(_ctx, 86)");
 						setState(90);
 						match(T__15);
 						setState(91);
@@ -1968,7 +571,7 @@ public class mathParser extends Parser {
 						_localctx = new DEC2OCT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(97);
-						if (!(precpred(_ctx, 85))) throw new FailedPredicateException(this, "precpred(_ctx, 85)");
+						//if (!(precpred(_ctx, 85))) throw new FailedPredicateException(this, "precpred(_ctx, 85)");
 						setState(98);
 						match(T__15);
 						setState(99);
@@ -1996,7 +599,7 @@ public class mathParser extends Parser {
 						_localctx = new HEX2BIN_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(105);
-						if (!(precpred(_ctx, 84))) throw new FailedPredicateException(this, "precpred(_ctx, 84)");
+						//if (!(precpred(_ctx, 84))) throw new FailedPredicateException(this, "precpred(_ctx, 84)");
 						setState(106);
 						match(T__15);
 						setState(107);
@@ -2024,7 +627,7 @@ public class mathParser extends Parser {
 						_localctx = new HEX2DEC_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(113);
-						if (!(precpred(_ctx, 83))) throw new FailedPredicateException(this, "precpred(_ctx, 83)");
+						//if (!(precpred(_ctx, 83))) throw new FailedPredicateException(this, "precpred(_ctx, 83)");
 						setState(114);
 						match(T__15);
 						setState(115);
@@ -2042,7 +645,7 @@ public class mathParser extends Parser {
 						_localctx = new HEX2OCT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(118);
-						if (!(precpred(_ctx, 82))) throw new FailedPredicateException(this, "precpred(_ctx, 82)");
+						//if (!(precpred(_ctx, 82))) throw new FailedPredicateException(this, "precpred(_ctx, 82)");
 						setState(119);
 						match(T__15);
 						setState(120);
@@ -2070,7 +673,7 @@ public class mathParser extends Parser {
 						_localctx = new OCT2BIN_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(126);
-						if (!(precpred(_ctx, 81))) throw new FailedPredicateException(this, "precpred(_ctx, 81)");
+						//if (!(precpred(_ctx, 81))) throw new FailedPredicateException(this, "precpred(_ctx, 81)");
 						setState(127);
 						match(T__15);
 						setState(128);
@@ -2098,7 +701,7 @@ public class mathParser extends Parser {
 						_localctx = new OCT2DEC_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(134);
-						if (!(precpred(_ctx, 80))) throw new FailedPredicateException(this, "precpred(_ctx, 80)");
+						//if (!(precpred(_ctx, 80))) throw new FailedPredicateException(this, "precpred(_ctx, 80)");
 						setState(135);
 						match(T__15);
 						setState(136);
@@ -2116,7 +719,7 @@ public class mathParser extends Parser {
 						_localctx = new OCT2HEX_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(139);
-						if (!(precpred(_ctx, 79))) throw new FailedPredicateException(this, "precpred(_ctx, 79)");
+						//if (!(precpred(_ctx, 79))) throw new FailedPredicateException(this, "precpred(_ctx, 79)");
 						setState(140);
 						match(T__15);
 						setState(141);
@@ -2144,7 +747,7 @@ public class mathParser extends Parser {
 						_localctx = new BIN2OCT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(147);
-						if (!(precpred(_ctx, 78))) throw new FailedPredicateException(this, "precpred(_ctx, 78)");
+						//if (!(precpred(_ctx, 78))) throw new FailedPredicateException(this, "precpred(_ctx, 78)");
 						setState(148);
 						match(T__15);
 						setState(149);
@@ -2172,7 +775,7 @@ public class mathParser extends Parser {
 						_localctx = new BIN2DEC_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(155);
-						if (!(precpred(_ctx, 77))) throw new FailedPredicateException(this, "precpred(_ctx, 77)");
+						//if (!(precpred(_ctx, 77))) throw new FailedPredicateException(this, "precpred(_ctx, 77)");
 						setState(156);
 						match(T__15);
 						setState(157);
@@ -2190,7 +793,7 @@ public class mathParser extends Parser {
 						_localctx = new BIN2HEX_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(160);
-						if (!(precpred(_ctx, 76))) throw new FailedPredicateException(this, "precpred(_ctx, 76)");
+						//if (!(precpred(_ctx, 76))) throw new FailedPredicateException(this, "precpred(_ctx, 76)");
 						setState(161);
 						match(T__15);
 						setState(162);
@@ -2218,7 +821,7 @@ public class mathParser extends Parser {
 						_localctx = new INT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(168);
-						if (!(precpred(_ctx, 75))) throw new FailedPredicateException(this, "precpred(_ctx, 75)");
+						//if (!(precpred(_ctx, 75))) throw new FailedPredicateException(this, "precpred(_ctx, 75)");
 						setState(169);
 						match(T__15);
 						setState(170);
@@ -2234,7 +837,7 @@ public class mathParser extends Parser {
 						_localctx = new ASC_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(173);
-						if (!(precpred(_ctx, 74))) throw new FailedPredicateException(this, "precpred(_ctx, 74)");
+						//if (!(precpred(_ctx, 74))) throw new FailedPredicateException(this, "precpred(_ctx, 74)");
 						setState(174);
 						match(T__15);
 						setState(175);
@@ -2250,7 +853,7 @@ public class mathParser extends Parser {
 						_localctx = new JIS_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(178);
-						if (!(precpred(_ctx, 73))) throw new FailedPredicateException(this, "precpred(_ctx, 73)");
+						//if (!(precpred(_ctx, 73))) throw new FailedPredicateException(this, "precpred(_ctx, 73)");
 						setState(179);
 						match(T__15);
 						setState(180);
@@ -2266,7 +869,7 @@ public class mathParser extends Parser {
 						_localctx = new CHAR_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(183);
-						if (!(precpred(_ctx, 72))) throw new FailedPredicateException(this, "precpred(_ctx, 72)");
+						//if (!(precpred(_ctx, 72))) throw new FailedPredicateException(this, "precpred(_ctx, 72)");
 						setState(184);
 						match(T__15);
 						setState(185);
@@ -2282,7 +885,7 @@ public class mathParser extends Parser {
 						_localctx = new CLEAN_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(188);
-						if (!(precpred(_ctx, 71))) throw new FailedPredicateException(this, "precpred(_ctx, 71)");
+						//if (!(precpred(_ctx, 71))) throw new FailedPredicateException(this, "precpred(_ctx, 71)");
 						setState(189);
 						match(T__15);
 						setState(190);
@@ -2298,7 +901,7 @@ public class mathParser extends Parser {
 						_localctx = new CODE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(193);
-						if (!(precpred(_ctx, 70))) throw new FailedPredicateException(this, "precpred(_ctx, 70)");
+						//if (!(precpred(_ctx, 70))) throw new FailedPredicateException(this, "precpred(_ctx, 70)");
 						setState(194);
 						match(T__15);
 						setState(195);
@@ -2314,7 +917,7 @@ public class mathParser extends Parser {
 						_localctx = new CONCATENATE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(198);
-						if (!(precpred(_ctx, 69))) throw new FailedPredicateException(this, "precpred(_ctx, 69)");
+						//if (!(precpred(_ctx, 69))) throw new FailedPredicateException(this, "precpred(_ctx, 69)");
 						setState(199);
 						match(T__15);
 						setState(200);
@@ -2356,7 +959,7 @@ public class mathParser extends Parser {
 						_localctx = new EXACT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(213);
-						if (!(precpred(_ctx, 68))) throw new FailedPredicateException(this, "precpred(_ctx, 68)");
+						//if (!(precpred(_ctx, 68))) throw new FailedPredicateException(this, "precpred(_ctx, 68)");
 						setState(214);
 						match(T__15);
 						setState(215);
@@ -2374,7 +977,7 @@ public class mathParser extends Parser {
 						_localctx = new FIND_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(220);
-						if (!(precpred(_ctx, 67))) throw new FailedPredicateException(this, "precpred(_ctx, 67)");
+						//if (!(precpred(_ctx, 67))) throw new FailedPredicateException(this, "precpred(_ctx, 67)");
 						setState(221);
 						match(T__15);
 						setState(222);
@@ -2404,7 +1007,7 @@ public class mathParser extends Parser {
 						_localctx = new LEFT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(231);
-						if (!(precpred(_ctx, 66))) throw new FailedPredicateException(this, "precpred(_ctx, 66)");
+						//if (!(precpred(_ctx, 66))) throw new FailedPredicateException(this, "precpred(_ctx, 66)");
 						setState(232);
 						match(T__15);
 						setState(233);
@@ -2430,7 +1033,7 @@ public class mathParser extends Parser {
 						_localctx = new LEN_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(239);
-						if (!(precpred(_ctx, 65))) throw new FailedPredicateException(this, "precpred(_ctx, 65)");
+						//if (!(precpred(_ctx, 65))) throw new FailedPredicateException(this, "precpred(_ctx, 65)");
 						setState(240);
 						match(T__15);
 						setState(241);
@@ -2446,7 +1049,7 @@ public class mathParser extends Parser {
 						_localctx = new LOWER_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(244);
-						if (!(precpred(_ctx, 64))) throw new FailedPredicateException(this, "precpred(_ctx, 64)");
+						//if (!(precpred(_ctx, 64))) throw new FailedPredicateException(this, "precpred(_ctx, 64)");
 						setState(245);
 						match(T__15);
 						setState(246);
@@ -2462,7 +1065,7 @@ public class mathParser extends Parser {
 						_localctx = new MID_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(249);
-						if (!(precpred(_ctx, 63))) throw new FailedPredicateException(this, "precpred(_ctx, 63)");
+						//if (!(precpred(_ctx, 63))) throw new FailedPredicateException(this, "precpred(_ctx, 63)");
 						setState(250);
 						match(T__15);
 						setState(251);
@@ -2484,7 +1087,7 @@ public class mathParser extends Parser {
 						_localctx = new PROPER_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(258);
-						if (!(precpred(_ctx, 62))) throw new FailedPredicateException(this, "precpred(_ctx, 62)");
+						//if (!(precpred(_ctx, 62))) throw new FailedPredicateException(this, "precpred(_ctx, 62)");
 						setState(259);
 						match(T__15);
 						setState(260);
@@ -2500,7 +1103,7 @@ public class mathParser extends Parser {
 						_localctx = new REPLACE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(263);
-						if (!(precpred(_ctx, 61))) throw new FailedPredicateException(this, "precpred(_ctx, 61)");
+						//if (!(precpred(_ctx, 61))) throw new FailedPredicateException(this, "precpred(_ctx, 61)");
 						setState(264);
 						match(T__15);
 						setState(265);
@@ -2534,7 +1137,7 @@ public class mathParser extends Parser {
 						_localctx = new REPT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(276);
-						if (!(precpred(_ctx, 60))) throw new FailedPredicateException(this, "precpred(_ctx, 60)");
+						//if (!(precpred(_ctx, 60))) throw new FailedPredicateException(this, "precpred(_ctx, 60)");
 						setState(277);
 						match(T__15);
 						setState(278);
@@ -2552,7 +1155,7 @@ public class mathParser extends Parser {
 						_localctx = new RIGHT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(283);
-						if (!(precpred(_ctx, 59))) throw new FailedPredicateException(this, "precpred(_ctx, 59)");
+						//if (!(precpred(_ctx, 59))) throw new FailedPredicateException(this, "precpred(_ctx, 59)");
 						setState(284);
 						match(T__15);
 						setState(285);
@@ -2578,7 +1181,7 @@ public class mathParser extends Parser {
 						_localctx = new RMB_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(291);
-						if (!(precpred(_ctx, 58))) throw new FailedPredicateException(this, "precpred(_ctx, 58)");
+						//if (!(precpred(_ctx, 58))) throw new FailedPredicateException(this, "precpred(_ctx, 58)");
 						setState(292);
 						match(T__15);
 						setState(293);
@@ -2594,7 +1197,7 @@ public class mathParser extends Parser {
 						_localctx = new SEARCH_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(296);
-						if (!(precpred(_ctx, 57))) throw new FailedPredicateException(this, "precpred(_ctx, 57)");
+						//if (!(precpred(_ctx, 57))) throw new FailedPredicateException(this, "precpred(_ctx, 57)");
 						setState(297);
 						match(T__15);
 						setState(298);
@@ -2624,7 +1227,7 @@ public class mathParser extends Parser {
 						_localctx = new SUBSTITUTE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(307);
-						if (!(precpred(_ctx, 56))) throw new FailedPredicateException(this, "precpred(_ctx, 56)");
+						//if (!(precpred(_ctx, 56))) throw new FailedPredicateException(this, "precpred(_ctx, 56)");
 						setState(308);
 						match(T__15);
 						setState(309);
@@ -2658,7 +1261,7 @@ public class mathParser extends Parser {
 						_localctx = new T_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(320);
-						if (!(precpred(_ctx, 55))) throw new FailedPredicateException(this, "precpred(_ctx, 55)");
+						//if (!(precpred(_ctx, 55))) throw new FailedPredicateException(this, "precpred(_ctx, 55)");
 						setState(321);
 						match(T__15);
 						setState(322);
@@ -2674,7 +1277,7 @@ public class mathParser extends Parser {
 						_localctx = new TEXT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(325);
-						if (!(precpred(_ctx, 54))) throw new FailedPredicateException(this, "precpred(_ctx, 54)");
+						//if (!(precpred(_ctx, 54))) throw new FailedPredicateException(this, "precpred(_ctx, 54)");
 						setState(326);
 						match(T__15);
 						setState(327);
@@ -2692,7 +1295,7 @@ public class mathParser extends Parser {
 						_localctx = new TRIM_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(332);
-						if (!(precpred(_ctx, 53))) throw new FailedPredicateException(this, "precpred(_ctx, 53)");
+						//if (!(precpred(_ctx, 53))) throw new FailedPredicateException(this, "precpred(_ctx, 53)");
 						setState(333);
 						match(T__15);
 						setState(334);
@@ -2708,7 +1311,7 @@ public class mathParser extends Parser {
 						_localctx = new UPPER_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(337);
-						if (!(precpred(_ctx, 52))) throw new FailedPredicateException(this, "precpred(_ctx, 52)");
+						//if (!(precpred(_ctx, 52))) throw new FailedPredicateException(this, "precpred(_ctx, 52)");
 						setState(338);
 						match(T__15);
 						setState(339);
@@ -2724,7 +1327,7 @@ public class mathParser extends Parser {
 						_localctx = new VALUE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(342);
-						if (!(precpred(_ctx, 51))) throw new FailedPredicateException(this, "precpred(_ctx, 51)");
+						//if (!(precpred(_ctx, 51))) throw new FailedPredicateException(this, "precpred(_ctx, 51)");
 						setState(343);
 						match(T__15);
 						setState(344);
@@ -2740,7 +1343,7 @@ public class mathParser extends Parser {
 						_localctx = new DATEVALUE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(347);
-						if (!(precpred(_ctx, 50))) throw new FailedPredicateException(this, "precpred(_ctx, 50)");
+						//if (!(precpred(_ctx, 50))) throw new FailedPredicateException(this, "precpred(_ctx, 50)");
 						setState(348);
 						match(T__15);
 						setState(349);
@@ -2756,7 +1359,7 @@ public class mathParser extends Parser {
 						_localctx = new TIMEVALUE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(352);
-						if (!(precpred(_ctx, 49))) throw new FailedPredicateException(this, "precpred(_ctx, 49)");
+						//if (!(precpred(_ctx, 49))) throw new FailedPredicateException(this, "precpred(_ctx, 49)");
 						setState(353);
 						match(T__15);
 						setState(354);
@@ -2772,7 +1375,7 @@ public class mathParser extends Parser {
 						_localctx = new YEAR_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(357);
-						if (!(precpred(_ctx, 48))) throw new FailedPredicateException(this, "precpred(_ctx, 48)");
+						//if (!(precpred(_ctx, 48))) throw new FailedPredicateException(this, "precpred(_ctx, 48)");
 						setState(358);
 						match(T__15);
 						setState(359);
@@ -2796,7 +1399,7 @@ public class mathParser extends Parser {
 						_localctx = new MONTH_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(364);
-						if (!(precpred(_ctx, 47))) throw new FailedPredicateException(this, "precpred(_ctx, 47)");
+						//if (!(precpred(_ctx, 47))) throw new FailedPredicateException(this, "precpred(_ctx, 47)");
 						setState(365);
 						match(T__15);
 						setState(366);
@@ -2820,7 +1423,7 @@ public class mathParser extends Parser {
 						_localctx = new DAY_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(371);
-						if (!(precpred(_ctx, 46))) throw new FailedPredicateException(this, "precpred(_ctx, 46)");
+						//if (!(precpred(_ctx, 46))) throw new FailedPredicateException(this, "precpred(_ctx, 46)");
 						setState(372);
 						match(T__15);
 						setState(373);
@@ -2844,7 +1447,7 @@ public class mathParser extends Parser {
 						_localctx = new HOUR_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(378);
-						if (!(precpred(_ctx, 45))) throw new FailedPredicateException(this, "precpred(_ctx, 45)");
+						//if (!(precpred(_ctx, 45))) throw new FailedPredicateException(this, "precpred(_ctx, 45)");
 						setState(379);
 						match(T__15);
 						setState(380);
@@ -2868,7 +1471,7 @@ public class mathParser extends Parser {
 						_localctx = new MINUTE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(385);
-						if (!(precpred(_ctx, 44))) throw new FailedPredicateException(this, "precpred(_ctx, 44)");
+						//if (!(precpred(_ctx, 44))) throw new FailedPredicateException(this, "precpred(_ctx, 44)");
 						setState(386);
 						match(T__15);
 						setState(387);
@@ -2892,7 +1495,7 @@ public class mathParser extends Parser {
 						_localctx = new SECOND_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(392);
-						if (!(precpred(_ctx, 43))) throw new FailedPredicateException(this, "precpred(_ctx, 43)");
+						//if (!(precpred(_ctx, 43))) throw new FailedPredicateException(this, "precpred(_ctx, 43)");
 						setState(393);
 						match(T__15);
 						setState(394);
@@ -2916,7 +1519,7 @@ public class mathParser extends Parser {
 						_localctx = new URLENCODE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(399);
-						if (!(precpred(_ctx, 42))) throw new FailedPredicateException(this, "precpred(_ctx, 42)");
+						//if (!(precpred(_ctx, 42))) throw new FailedPredicateException(this, "precpred(_ctx, 42)");
 						setState(400);
 						match(T__15);
 						setState(401);
@@ -2932,7 +1535,7 @@ public class mathParser extends Parser {
 						_localctx = new URLDECODE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(404);
-						if (!(precpred(_ctx, 41))) throw new FailedPredicateException(this, "precpred(_ctx, 41)");
+						//if (!(precpred(_ctx, 41))) throw new FailedPredicateException(this, "precpred(_ctx, 41)");
 						setState(405);
 						match(T__15);
 						setState(406);
@@ -2948,7 +1551,7 @@ public class mathParser extends Parser {
 						_localctx = new HTMLENCODE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(409);
-						if (!(precpred(_ctx, 40))) throw new FailedPredicateException(this, "precpred(_ctx, 40)");
+						//if (!(precpred(_ctx, 40))) throw new FailedPredicateException(this, "precpred(_ctx, 40)");
 						setState(410);
 						match(T__15);
 						setState(411);
@@ -2964,7 +1567,7 @@ public class mathParser extends Parser {
 						_localctx = new HTMLDECODE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(414);
-						if (!(precpred(_ctx, 39))) throw new FailedPredicateException(this, "precpred(_ctx, 39)");
+						//if (!(precpred(_ctx, 39))) throw new FailedPredicateException(this, "precpred(_ctx, 39)");
 						setState(415);
 						match(T__15);
 						setState(416);
@@ -2980,7 +1583,7 @@ public class mathParser extends Parser {
 						_localctx = new BASE64TOTEXT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(419);
-						if (!(precpred(_ctx, 38))) throw new FailedPredicateException(this, "precpred(_ctx, 38)");
+						//if (!(precpred(_ctx, 38))) throw new FailedPredicateException(this, "precpred(_ctx, 38)");
 						setState(420);
 						match(T__15);
 						setState(421);
@@ -3006,7 +1609,7 @@ public class mathParser extends Parser {
 						_localctx = new BASE64URLTOTEXT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(427);
-						if (!(precpred(_ctx, 37))) throw new FailedPredicateException(this, "precpred(_ctx, 37)");
+						//if (!(precpred(_ctx, 37))) throw new FailedPredicateException(this, "precpred(_ctx, 37)");
 						setState(428);
 						match(T__15);
 						setState(429);
@@ -3032,7 +1635,7 @@ public class mathParser extends Parser {
 						_localctx = new TEXTTOBASE64_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(435);
-						if (!(precpred(_ctx, 36))) throw new FailedPredicateException(this, "precpred(_ctx, 36)");
+						//if (!(precpred(_ctx, 36))) throw new FailedPredicateException(this, "precpred(_ctx, 36)");
 						setState(436);
 						match(T__15);
 						setState(437);
@@ -3058,7 +1661,7 @@ public class mathParser extends Parser {
 						_localctx = new TEXTTOBASE64URL_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(443);
-						if (!(precpred(_ctx, 35))) throw new FailedPredicateException(this, "precpred(_ctx, 35)");
+						//if (!(precpred(_ctx, 35))) throw new FailedPredicateException(this, "precpred(_ctx, 35)");
 						setState(444);
 						match(T__15);
 						setState(445);
@@ -3084,7 +1687,7 @@ public class mathParser extends Parser {
 						_localctx = new REGEX_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(451);
-						if (!(precpred(_ctx, 34))) throw new FailedPredicateException(this, "precpred(_ctx, 34)");
+						//if (!(precpred(_ctx, 34))) throw new FailedPredicateException(this, "precpred(_ctx, 34)");
 						setState(452);
 						match(T__15);
 						setState(453);
@@ -3126,7 +1729,7 @@ public class mathParser extends Parser {
 						_localctx = new REGEXREPALCE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(466);
-						if (!(precpred(_ctx, 33))) throw new FailedPredicateException(this, "precpred(_ctx, 33)");
+						//if (!(precpred(_ctx, 33))) throw new FailedPredicateException(this, "precpred(_ctx, 33)");
 						setState(467);
 						match(T__15);
 						setState(468);
@@ -3148,7 +1751,7 @@ public class mathParser extends Parser {
 						_localctx = new ISREGEX_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(475);
-						if (!(precpred(_ctx, 32))) throw new FailedPredicateException(this, "precpred(_ctx, 32)");
+						//if (!(precpred(_ctx, 32))) throw new FailedPredicateException(this, "precpred(_ctx, 32)");
 						setState(476);
 						match(T__15);
 						setState(477);
@@ -3166,7 +1769,7 @@ public class mathParser extends Parser {
 						_localctx = new MD5_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(482);
-						if (!(precpred(_ctx, 31))) throw new FailedPredicateException(this, "precpred(_ctx, 31)");
+						//if (!(precpred(_ctx, 31))) throw new FailedPredicateException(this, "precpred(_ctx, 31)");
 						setState(483);
 						match(T__15);
 						setState(484);
@@ -3192,7 +1795,7 @@ public class mathParser extends Parser {
 						_localctx = new SHA1_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(490);
-						if (!(precpred(_ctx, 30))) throw new FailedPredicateException(this, "precpred(_ctx, 30)");
+						//if (!(precpred(_ctx, 30))) throw new FailedPredicateException(this, "precpred(_ctx, 30)");
 						setState(491);
 						match(T__15);
 						setState(492);
@@ -3218,7 +1821,7 @@ public class mathParser extends Parser {
 						_localctx = new SHA256_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(498);
-						if (!(precpred(_ctx, 29))) throw new FailedPredicateException(this, "precpred(_ctx, 29)");
+						//if (!(precpred(_ctx, 29))) throw new FailedPredicateException(this, "precpred(_ctx, 29)");
 						setState(499);
 						match(T__15);
 						setState(500);
@@ -3244,7 +1847,7 @@ public class mathParser extends Parser {
 						_localctx = new SHA512_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(506);
-						if (!(precpred(_ctx, 28))) throw new FailedPredicateException(this, "precpred(_ctx, 28)");
+						//if (!(precpred(_ctx, 28))) throw new FailedPredicateException(this, "precpred(_ctx, 28)");
 						setState(507);
 						match(T__15);
 						setState(508);
@@ -3270,7 +1873,7 @@ public class mathParser extends Parser {
 						_localctx = new CRC8_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(514);
-						if (!(precpred(_ctx, 27))) throw new FailedPredicateException(this, "precpred(_ctx, 27)");
+						//if (!(precpred(_ctx, 27))) throw new FailedPredicateException(this, "precpred(_ctx, 27)");
 						setState(515);
 						match(T__15);
 						setState(516);
@@ -3296,7 +1899,7 @@ public class mathParser extends Parser {
 						_localctx = new CRC16_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(522);
-						if (!(precpred(_ctx, 26))) throw new FailedPredicateException(this, "precpred(_ctx, 26)");
+						//if (!(precpred(_ctx, 26))) throw new FailedPredicateException(this, "precpred(_ctx, 26)");
 						setState(523);
 						match(T__15);
 						setState(524);
@@ -3322,7 +1925,7 @@ public class mathParser extends Parser {
 						_localctx = new CRC32_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(530);
-						if (!(precpred(_ctx, 25))) throw new FailedPredicateException(this, "precpred(_ctx, 25)");
+						//if (!(precpred(_ctx, 25))) throw new FailedPredicateException(this, "precpred(_ctx, 25)");
 						setState(531);
 						match(T__15);
 						setState(532);
@@ -3348,7 +1951,7 @@ public class mathParser extends Parser {
 						_localctx = new HMACMD5_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(538);
-						if (!(precpred(_ctx, 24))) throw new FailedPredicateException(this, "precpred(_ctx, 24)");
+						//if (!(precpred(_ctx, 24))) throw new FailedPredicateException(this, "precpred(_ctx, 24)");
 						setState(539);
 						match(T__15);
 						setState(540);
@@ -3378,7 +1981,7 @@ public class mathParser extends Parser {
 						_localctx = new HMACSHA1_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(549);
-						if (!(precpred(_ctx, 23))) throw new FailedPredicateException(this, "precpred(_ctx, 23)");
+						//if (!(precpred(_ctx, 23))) throw new FailedPredicateException(this, "precpred(_ctx, 23)");
 						setState(550);
 						match(T__15);
 						setState(551);
@@ -3408,7 +2011,7 @@ public class mathParser extends Parser {
 						_localctx = new HMACSHA256_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(560);
-						if (!(precpred(_ctx, 22))) throw new FailedPredicateException(this, "precpred(_ctx, 22)");
+						//if (!(precpred(_ctx, 22))) throw new FailedPredicateException(this, "precpred(_ctx, 22)");
 						setState(561);
 						match(T__15);
 						setState(562);
@@ -3438,7 +2041,7 @@ public class mathParser extends Parser {
 						_localctx = new HMACSHA512_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(571);
-						if (!(precpred(_ctx, 21))) throw new FailedPredicateException(this, "precpred(_ctx, 21)");
+						//if (!(precpred(_ctx, 21))) throw new FailedPredicateException(this, "precpred(_ctx, 21)");
 						setState(572);
 						match(T__15);
 						setState(573);
@@ -3468,7 +2071,7 @@ public class mathParser extends Parser {
 						_localctx = new TRIMSTART_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(582);
-						if (!(precpred(_ctx, 20))) throw new FailedPredicateException(this, "precpred(_ctx, 20)");
+						//if (!(precpred(_ctx, 20))) throw new FailedPredicateException(this, "precpred(_ctx, 20)");
 						setState(583);
 						match(T__15);
 						setState(584);
@@ -3494,7 +2097,7 @@ public class mathParser extends Parser {
 						_localctx = new TRIMEND_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(590);
-						if (!(precpred(_ctx, 19))) throw new FailedPredicateException(this, "precpred(_ctx, 19)");
+						//if (!(precpred(_ctx, 19))) throw new FailedPredicateException(this, "precpred(_ctx, 19)");
 						setState(591);
 						match(T__15);
 						setState(592);
@@ -3520,7 +2123,7 @@ public class mathParser extends Parser {
 						_localctx = new INDEXOF_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(598);
-						if (!(precpred(_ctx, 18))) throw new FailedPredicateException(this, "precpred(_ctx, 18)");
+						//if (!(precpred(_ctx, 18))) throw new FailedPredicateException(this, "precpred(_ctx, 18)");
 						setState(599);
 						match(T__15);
 						setState(600);
@@ -3562,7 +2165,7 @@ public class mathParser extends Parser {
 						_localctx = new LASTINDEXOF_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(613);
-						if (!(precpred(_ctx, 17))) throw new FailedPredicateException(this, "precpred(_ctx, 17)");
+						//if (!(precpred(_ctx, 17))) throw new FailedPredicateException(this, "precpred(_ctx, 17)");
 						setState(614);
 						match(T__15);
 						setState(615);
@@ -3604,7 +2207,7 @@ public class mathParser extends Parser {
 						_localctx = new SPLIT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(628);
-						if (!(precpred(_ctx, 16))) throw new FailedPredicateException(this, "precpred(_ctx, 16)");
+						//if (!(precpred(_ctx, 16))) throw new FailedPredicateException(this, "precpred(_ctx, 16)");
 						setState(629);
 						match(T__15);
 						setState(630);
@@ -3622,7 +2225,7 @@ public class mathParser extends Parser {
 						_localctx = new JOIN_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(635);
-						if (!(precpred(_ctx, 15))) throw new FailedPredicateException(this, "precpred(_ctx, 15)");
+						//if (!(precpred(_ctx, 15))) throw new FailedPredicateException(this, "precpred(_ctx, 15)");
 						setState(636);
 						match(T__15);
 						setState(637);
@@ -3656,7 +2259,7 @@ public class mathParser extends Parser {
 						_localctx = new SUBSTRING_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(649);
-						if (!(precpred(_ctx, 14))) throw new FailedPredicateException(this, "precpred(_ctx, 14)");
+						//if (!(precpred(_ctx, 14))) throw new FailedPredicateException(this, "precpred(_ctx, 14)");
 						setState(650);
 						match(T__15);
 						setState(651);
@@ -3686,7 +2289,7 @@ public class mathParser extends Parser {
 						_localctx = new STARTSWITH_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(660);
-						if (!(precpred(_ctx, 13))) throw new FailedPredicateException(this, "precpred(_ctx, 13)");
+						//if (!(precpred(_ctx, 13))) throw new FailedPredicateException(this, "precpred(_ctx, 13)");
 						setState(661);
 						match(T__15);
 						setState(662);
@@ -3716,7 +2319,7 @@ public class mathParser extends Parser {
 						_localctx = new ENDSWITH_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(671);
-						if (!(precpred(_ctx, 12))) throw new FailedPredicateException(this, "precpred(_ctx, 12)");
+						//if (!(precpred(_ctx, 12))) throw new FailedPredicateException(this, "precpred(_ctx, 12)");
 						setState(672);
 						match(T__15);
 						setState(673);
@@ -3746,7 +2349,7 @@ public class mathParser extends Parser {
 						_localctx = new ISNULLOREMPTY_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(682);
-						if (!(precpred(_ctx, 11))) throw new FailedPredicateException(this, "precpred(_ctx, 11)");
+						//if (!(precpred(_ctx, 11))) throw new FailedPredicateException(this, "precpred(_ctx, 11)");
 						setState(683);
 						match(T__15);
 						setState(684);
@@ -3762,7 +2365,7 @@ public class mathParser extends Parser {
 						_localctx = new ISNULLORWHITESPACE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(687);
-						if (!(precpred(_ctx, 10))) throw new FailedPredicateException(this, "precpred(_ctx, 10)");
+						//if (!(precpred(_ctx, 10))) throw new FailedPredicateException(this, "precpred(_ctx, 10)");
 						setState(688);
 						match(T__15);
 						setState(689);
@@ -3778,7 +2381,7 @@ public class mathParser extends Parser {
 						_localctx = new REMOVESTART_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(692);
-						if (!(precpred(_ctx, 9))) throw new FailedPredicateException(this, "precpred(_ctx, 9)");
+						//if (!(precpred(_ctx, 9))) throw new FailedPredicateException(this, "precpred(_ctx, 9)");
 						setState(693);
 						match(T__15);
 						setState(694);
@@ -3808,7 +2411,7 @@ public class mathParser extends Parser {
 						_localctx = new REMOVEEND_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(703);
-						if (!(precpred(_ctx, 8))) throw new FailedPredicateException(this, "precpred(_ctx, 8)");
+						//if (!(precpred(_ctx, 8))) throw new FailedPredicateException(this, "precpred(_ctx, 8)");
 						setState(704);
 						match(T__15);
 						setState(705);
@@ -3838,7 +2441,7 @@ public class mathParser extends Parser {
 						_localctx = new JSON_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(714);
-						if (!(precpred(_ctx, 7))) throw new FailedPredicateException(this, "precpred(_ctx, 7)");
+						//if (!(precpred(_ctx, 7))) throw new FailedPredicateException(this, "precpred(_ctx, 7)");
 						setState(715);
 						match(T__15);
 						setState(716);
@@ -3854,7 +2457,7 @@ public class mathParser extends Parser {
 						_localctx = new VLOOKUP_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(719);
-						if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");
+						//if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");
 						setState(720);
 						match(T__15);
 						setState(721);
@@ -3888,7 +2491,7 @@ public class mathParser extends Parser {
 						_localctx = new LOOKUP_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(732);
-						if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
+						//if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
 						setState(733);
 						match(T__15);
 						setState(734);
@@ -3910,7 +2513,7 @@ public class mathParser extends Parser {
 						_localctx = new DiyFunction_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(741);
-						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
+						//if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
 						setState(742);
 						match(T__15);
 						setState(743);
@@ -3952,7 +2555,7 @@ public class mathParser extends Parser {
 						_localctx = new GetJsonValue_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(756);
-						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
+						//if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
 						setState(757);
 						match(T__19);
 						setState(758);
@@ -3966,7 +2569,7 @@ public class mathParser extends Parser {
 						_localctx = new GetJsonValue_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(761);
-						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
+						//if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
 						setState(762);
 						match(T__15);
 						setState(763);
@@ -3993,2943 +2596,6 @@ public class mathParser extends Parser {
 		return _localctx;
 	}
 
-	public static class Expr2Context extends ParserRuleContext {
-		public Expr2Context(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_expr2; }
-	 
-		public Expr2Context() { }
-		public void copyFrom(Expr2Context ctx) {
-			super.copyFrom(ctx);
-		}
-	}
-	public static class DAYS360_fun2Context extends Expr2Context {
-		public TerminalNode DAYS360() { return getToken(mathParser.DAYS360, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public DAYS360_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitDAYS360_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class REGEXREPALCE_fun2Context extends Expr2Context {
-		public TerminalNode REGEXREPALCE() { return getToken(mathParser.REGEXREPALCE, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public REGEXREPALCE_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitREGEXREPALCE_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ATAN2_fun2Context extends Expr2Context {
-		public TerminalNode ATAN2() { return getToken(mathParser.ATAN2, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public ATAN2_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitATAN2_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class REPT_fun2Context extends Expr2Context {
-		public TerminalNode REPT() { return getToken(mathParser.REPT, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public REPT_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitREPT_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class SIGN_fun2Context extends Expr2Context {
-		public TerminalNode SIGN() { return getToken(mathParser.SIGN, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public SIGN_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitSIGN_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class NUM_fun2Context extends Expr2Context {
-		public TerminalNode NUM() { return getToken(mathParser.NUM, 0); }
-		public TerminalNode SUB() { return getToken(mathParser.SUB, 0); }
-		public NUM_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitNUM_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class STRING_fun2Context extends Expr2Context {
-		public TerminalNode STRING() { return getToken(mathParser.STRING, 0); }
-		public STRING_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitSTRING_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class LASTINDEXOF_fun2Context extends Expr2Context {
-		public TerminalNode LASTINDEXOF() { return getToken(mathParser.LASTINDEXOF, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public LASTINDEXOF_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitLASTINDEXOF_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class FIXED_fun2Context extends Expr2Context {
-		public TerminalNode FIXED() { return getToken(mathParser.FIXED, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public FIXED_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitFIXED_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class MROUND_fun2Context extends Expr2Context {
-		public TerminalNode MROUND() { return getToken(mathParser.MROUND, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public MROUND_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitMROUND_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class YEAR_fun2Context extends Expr2Context {
-		public TerminalNode YEAR() { return getToken(mathParser.YEAR, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public YEAR_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitYEAR_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class COMBIN_fun2Context extends Expr2Context {
-		public TerminalNode COMBIN() { return getToken(mathParser.COMBIN, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public COMBIN_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitCOMBIN_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class SUMIF_fun2Context extends Expr2Context {
-		public TerminalNode SUMIF() { return getToken(mathParser.SUMIF, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public SUMIF_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitSUMIF_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class EOMONTH_fun2Context extends Expr2Context {
-		public TerminalNode EOMONTH() { return getToken(mathParser.EOMONTH, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public EOMONTH_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitEOMONTH_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class EVEN_fun2Context extends Expr2Context {
-		public TerminalNode EVEN() { return getToken(mathParser.EVEN, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public EVEN_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitEVEN_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class SHA512_fun2Context extends Expr2Context {
-		public TerminalNode SHA512() { return getToken(mathParser.SHA512, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public SHA512_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitSHA512_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class TRIMSTART_fun2Context extends Expr2Context {
-		public TerminalNode TRIMSTART() { return getToken(mathParser.TRIMSTART, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TRIMSTART_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitTRIMSTART_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class TODAY_fun2Context extends Expr2Context {
-		public TerminalNode TODAY() { return getToken(mathParser.TODAY, 0); }
-		public TODAY_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitTODAY_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class REPLACE_fun2Context extends Expr2Context {
-		public TerminalNode REPLACE() { return getToken(mathParser.REPLACE, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public REPLACE_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitREPLACE_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class BINOMDIST_fun2Context extends Expr2Context {
-		public TerminalNode BINOMDIST() { return getToken(mathParser.BINOMDIST, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public BINOMDIST_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitBINOMDIST_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ISLOGICAL_fun2Context extends Expr2Context {
-		public TerminalNode ISLOGICAL() { return getToken(mathParser.ISLOGICAL, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public ISLOGICAL_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitISLOGICAL_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class VARP_fun2Context extends Expr2Context {
-		public TerminalNode VARP() { return getToken(mathParser.VARP, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public VARP_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitVARP_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ENDSWITH_fun2Context extends Expr2Context {
-		public TerminalNode ENDSWITH() { return getToken(mathParser.ENDSWITH, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public ENDSWITH_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitENDSWITH_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class BETAINV_fun2Context extends Expr2Context {
-		public TerminalNode BETAINV() { return getToken(mathParser.BETAINV, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public BETAINV_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitBETAINV_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class FLOOR_fun2Context extends Expr2Context {
-		public TerminalNode FLOOR() { return getToken(mathParser.FLOOR, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public FLOOR_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitFLOOR_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class VALUE_fun2Context extends Expr2Context {
-		public TerminalNode VALUE() { return getToken(mathParser.VALUE, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public VALUE_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitVALUE_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class AVERAGE_fun2Context extends Expr2Context {
-		public TerminalNode AVERAGE() { return getToken(mathParser.AVERAGE, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public AVERAGE_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitAVERAGE_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class TAN_fun2Context extends Expr2Context {
-		public TerminalNode TAN() { return getToken(mathParser.TAN, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TAN_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitTAN_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ISNUMBER_fun2Context extends Expr2Context {
-		public TerminalNode ISNUMBER() { return getToken(mathParser.ISNUMBER, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public ISNUMBER_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitISNUMBER_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class FALSE_fun2Context extends Expr2Context {
-		public TerminalNode FALSE() { return getToken(mathParser.FALSE, 0); }
-		public FALSE_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitFALSE_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class PERCENTILE_fun2Context extends Expr2Context {
-		public TerminalNode PERCENTILE() { return getToken(mathParser.PERCENTILE, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public PERCENTILE_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitPERCENTILE_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class NULL_fun2Context extends Expr2Context {
-		public TerminalNode NULL() { return getToken(mathParser.NULL, 0); }
-		public NULL_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitNULL_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class MEDIAN_fun2Context extends Expr2Context {
-		public TerminalNode MEDIAN() { return getToken(mathParser.MEDIAN, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public MEDIAN_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitMEDIAN_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class HTMLDECODE_fun2Context extends Expr2Context {
-		public TerminalNode HTMLDECODE() { return getToken(mathParser.HTMLDECODE, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public HTMLDECODE_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitHTMLDECODE_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class PERMUT_fun2Context extends Expr2Context {
-		public TerminalNode PERMUT() { return getToken(mathParser.PERMUT, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public PERMUT_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitPERMUT_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class Array_fun2Context extends Expr2Context {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public Array_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitArray_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class PRODUCT_fun2Context extends Expr2Context {
-		public TerminalNode PRODUCT() { return getToken(mathParser.PRODUCT, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public PRODUCT_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitPRODUCT_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class COS_fun2Context extends Expr2Context {
-		public TerminalNode COS() { return getToken(mathParser.COS, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public COS_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitCOS_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class MIN_fun2Context extends Expr2Context {
-		public TerminalNode MIN() { return getToken(mathParser.MIN, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public MIN_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitMIN_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class MAX_fun2Context extends Expr2Context {
-		public TerminalNode MAX() { return getToken(mathParser.MAX, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public MAX_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitMAX_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class SHA1_fun2Context extends Expr2Context {
-		public TerminalNode SHA1() { return getToken(mathParser.SHA1, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public SHA1_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitSHA1_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class FISHERINV_fun2Context extends Expr2Context {
-		public TerminalNode FISHERINV() { return getToken(mathParser.FISHERINV, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public FISHERINV_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitFISHERINV_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class TEXT_fun2Context extends Expr2Context {
-		public TerminalNode TEXT() { return getToken(mathParser.TEXT, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TEXT_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitTEXT_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ROUNDUP_fun2Context extends Expr2Context {
-		public TerminalNode ROUNDUP() { return getToken(mathParser.ROUNDUP, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public ROUNDUP_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitROUNDUP_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ROUNDDOWN_fun2Context extends Expr2Context {
-		public TerminalNode ROUNDDOWN() { return getToken(mathParser.ROUNDDOWN, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public ROUNDDOWN_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitROUNDDOWN_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class DATEVALUE_fun2Context extends Expr2Context {
-		public TerminalNode DATEVALUE() { return getToken(mathParser.DATEVALUE, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public DATEVALUE_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitDATEVALUE_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class LEFT_fun2Context extends Expr2Context {
-		public TerminalNode LEFT() { return getToken(mathParser.LEFT, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public LEFT_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitLEFT_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class LOGINV_fun2Context extends Expr2Context {
-		public TerminalNode LOGINV() { return getToken(mathParser.LOGINV, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public LOGINV_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitLOGINV_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class AVEDEV_fun2Context extends Expr2Context {
-		public TerminalNode AVEDEV() { return getToken(mathParser.AVEDEV, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public AVEDEV_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitAVEDEV_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class URLENCODE_fun2Context extends Expr2Context {
-		public TerminalNode URLENCODE() { return getToken(mathParser.URLENCODE, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public URLENCODE_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitURLENCODE_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ATANH_fun2Context extends Expr2Context {
-		public TerminalNode ATANH() { return getToken(mathParser.ATANH, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public ATANH_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitATANH_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ISREGEX_fun2Context extends Expr2Context {
-		public TerminalNode ISREGEX() { return getToken(mathParser.ISREGEX, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public ISREGEX_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitISREGEX_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class TRUE_fun2Context extends Expr2Context {
-		public TerminalNode TRUE() { return getToken(mathParser.TRUE, 0); }
-		public TRUE_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitTRUE_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class CRC16_fun2Context extends Expr2Context {
-		public TerminalNode CRC16() { return getToken(mathParser.CRC16, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public CRC16_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitCRC16_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class SECOND_fun2Context extends Expr2Context {
-		public TerminalNode SECOND() { return getToken(mathParser.SECOND, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public SECOND_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitSECOND_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class VLOOKUP_fun2Context extends Expr2Context {
-		public TerminalNode VLOOKUP() { return getToken(mathParser.VLOOKUP, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public VLOOKUP_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitVLOOKUP_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class OCT2HEX_fun2Context extends Expr2Context {
-		public TerminalNode OCT2HEX() { return getToken(mathParser.OCT2HEX, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public OCT2HEX_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitOCT2HEX_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class WORKDAY_fun2Context extends Expr2Context {
-		public TerminalNode WORKDAY() { return getToken(mathParser.WORKDAY, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public WORKDAY_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitWORKDAY_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class AVERAGEIF_fun2Context extends Expr2Context {
-		public TerminalNode AVERAGEIF() { return getToken(mathParser.AVERAGEIF, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public AVERAGEIF_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitAVERAGEIF_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class LCM_fun2Context extends Expr2Context {
-		public TerminalNode LCM() { return getToken(mathParser.LCM, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public LCM_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitLCM_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class HMACMD5_fun2Context extends Expr2Context {
-		public TerminalNode HMACMD5() { return getToken(mathParser.HMACMD5, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public HMACMD5_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitHMACMD5_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class HYPGEOMDIST_fun2Context extends Expr2Context {
-		public TerminalNode HYPGEOMDIST() { return getToken(mathParser.HYPGEOMDIST, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public HYPGEOMDIST_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitHYPGEOMDIST_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class SQRT_fun2Context extends Expr2Context {
-		public TerminalNode SQRT() { return getToken(mathParser.SQRT, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public SQRT_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitSQRT_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class GCD_fun2Context extends Expr2Context {
-		public TerminalNode GCD() { return getToken(mathParser.GCD, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public GCD_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitGCD_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class REGEX_fun2Context extends Expr2Context {
-		public TerminalNode REGEX() { return getToken(mathParser.REGEX, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public REGEX_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitREGEX_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class CEILING_fun2Context extends Expr2Context {
-		public TerminalNode CEILING() { return getToken(mathParser.CEILING, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public CEILING_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitCEILING_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ISNULLORWHITESPACE_fun2Context extends Expr2Context {
-		public TerminalNode ISNULLORWHITESPACE() { return getToken(mathParser.ISNULLORWHITESPACE, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public ISNULLORWHITESPACE_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitISNULLORWHITESPACE_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class HMACSHA512_fun2Context extends Expr2Context {
-		public TerminalNode HMACSHA512() { return getToken(mathParser.HMACSHA512, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public HMACSHA512_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitHMACSHA512_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class NORMDIST_fun2Context extends Expr2Context {
-		public TerminalNode NORMDIST() { return getToken(mathParser.NORMDIST, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public NORMDIST_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitNORMDIST_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class REMOVESTART_fun2Context extends Expr2Context {
-		public TerminalNode REMOVESTART() { return getToken(mathParser.REMOVESTART, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public REMOVESTART_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitREMOVESTART_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class LOG_fun2Context extends Expr2Context {
-		public TerminalNode LOG() { return getToken(mathParser.LOG, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public LOG_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitLOG_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class MONTH_fun2Context extends Expr2Context {
-		public TerminalNode MONTH() { return getToken(mathParser.MONTH, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public MONTH_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitMONTH_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class BETADIST_fun2Context extends Expr2Context {
-		public TerminalNode BETADIST() { return getToken(mathParser.BETADIST, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public BETADIST_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitBETADIST_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class HARMEAN_fun2Context extends Expr2Context {
-		public TerminalNode HARMEAN() { return getToken(mathParser.HARMEAN, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public HARMEAN_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitHARMEAN_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class FINV_fun2Context extends Expr2Context {
-		public TerminalNode FINV() { return getToken(mathParser.FINV, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public FINV_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitFINV_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class SUMSQ_fun2Context extends Expr2Context {
-		public TerminalNode SUMSQ() { return getToken(mathParser.SUMSQ, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public SUMSQ_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitSUMSQ_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class OCT2DEC_fun2Context extends Expr2Context {
-		public TerminalNode OCT2DEC() { return getToken(mathParser.OCT2DEC, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public OCT2DEC_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitOCT2DEC_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ACOS_fun2Context extends Expr2Context {
-		public TerminalNode ACOS() { return getToken(mathParser.ACOS, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public ACOS_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitACOS_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ROUND_fun2Context extends Expr2Context {
-		public TerminalNode ROUND() { return getToken(mathParser.ROUND, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public ROUND_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitROUND_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class NETWORKDAYS_fun2Context extends Expr2Context {
-		public TerminalNode NETWORKDAYS() { return getToken(mathParser.NETWORKDAYS, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public NETWORKDAYS_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitNETWORKDAYS_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class TRUNC_fun2Context extends Expr2Context {
-		public TerminalNode TRUNC() { return getToken(mathParser.TRUNC, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TRUNC_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitTRUNC_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ACOSH_fun2Context extends Expr2Context {
-		public TerminalNode ACOSH() { return getToken(mathParser.ACOSH, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public ACOSH_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitACOSH_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class LOG10_fun2Context extends Expr2Context {
-		public TerminalNode LOG10() { return getToken(mathParser.LOG10, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public LOG10_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitLOG10_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class LOGNORMDIST_fun2Context extends Expr2Context {
-		public TerminalNode LOGNORMDIST() { return getToken(mathParser.LOGNORMDIST, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public LOGNORMDIST_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitLOGNORMDIST_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class MODE_fun2Context extends Expr2Context {
-		public TerminalNode MODE() { return getToken(mathParser.MODE, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public MODE_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitMODE_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class SPLIT_fun2Context extends Expr2Context {
-		public TerminalNode SPLIT() { return getToken(mathParser.SPLIT, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public SPLIT_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitSPLIT_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class JSON_fun2Context extends Expr2Context {
-		public TerminalNode JSON() { return getToken(mathParser.JSON, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public JSON_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitJSON_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class MINUTE_fun2Context extends Expr2Context {
-		public TerminalNode MINUTE() { return getToken(mathParser.MINUTE, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public MINUTE_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitMINUTE_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class PARAMETER_fun2Context extends Expr2Context {
-		public ParameterContext parameter() {
-			return getRuleContext(ParameterContext.class,0);
-		}
-		public PARAMETER_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitPARAMETER_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class Bracket_fun2Context extends Expr2Context {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public Bracket_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitBracket_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class HMACSHA256_fun2Context extends Expr2Context {
-		public TerminalNode HMACSHA256() { return getToken(mathParser.HMACSHA256, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public HMACSHA256_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitHMACSHA256_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class CHAR_fun2Context extends Expr2Context {
-		public TerminalNode CHAR() { return getToken(mathParser.CHAR, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public CHAR_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitCHAR_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class TIME_fun2Context extends Expr2Context {
-		public TerminalNode TIME() { return getToken(mathParser.TIME, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TIME_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitTIME_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ISODD_fun2Context extends Expr2Context {
-		public TerminalNode ISODD() { return getToken(mathParser.ISODD, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public ISODD_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitISODD_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class DEC2BIN_fun2Context extends Expr2Context {
-		public TerminalNode DEC2BIN() { return getToken(mathParser.DEC2BIN, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public DEC2BIN_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitDEC2BIN_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class SQRTPI_fun2Context extends Expr2Context {
-		public TerminalNode SQRTPI() { return getToken(mathParser.SQRTPI, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public SQRTPI_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitSQRTPI_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class FDIST_fun2Context extends Expr2Context {
-		public TerminalNode FDIST() { return getToken(mathParser.FDIST, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public FDIST_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitFDIST_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ODD_fun2Context extends Expr2Context {
-		public TerminalNode ODD() { return getToken(mathParser.ODD, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public ODD_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitODD_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class CLEAN_fun2Context extends Expr2Context {
-		public TerminalNode CLEAN() { return getToken(mathParser.CLEAN, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public CLEAN_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitCLEAN_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class FIND_fun2Context extends Expr2Context {
-		public TerminalNode FIND() { return getToken(mathParser.FIND, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public FIND_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitFIND_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class COUNT_fun2Context extends Expr2Context {
-		public TerminalNode COUNT() { return getToken(mathParser.COUNT, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public COUNT_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitCOUNT_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ISNULLOREMPTY_fun2Context extends Expr2Context {
-		public TerminalNode ISNULLOREMPTY() { return getToken(mathParser.ISNULLOREMPTY, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public ISNULLOREMPTY_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitISNULLOREMPTY_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class SHA256_fun2Context extends Expr2Context {
-		public TerminalNode SHA256() { return getToken(mathParser.SHA256, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public SHA256_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitSHA256_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class LOWER_fun2Context extends Expr2Context {
-		public TerminalNode LOWER() { return getToken(mathParser.LOWER, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public LOWER_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitLOWER_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class MOD_fun2Context extends Expr2Context {
-		public TerminalNode MOD() { return getToken(mathParser.MOD, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public MOD_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitMOD_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class SMALL_fun2Context extends Expr2Context {
-		public TerminalNode SMALL() { return getToken(mathParser.SMALL, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public SMALL_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitSMALL_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class IF_fun2Context extends Expr2Context {
-		public TerminalNode IF() { return getToken(mathParser.IF, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public IF_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitIF_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class HEX2BIN_fun2Context extends Expr2Context {
-		public TerminalNode HEX2BIN() { return getToken(mathParser.HEX2BIN, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public HEX2BIN_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitHEX2BIN_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class GAMMAINV_fun2Context extends Expr2Context {
-		public TerminalNode GAMMAINV() { return getToken(mathParser.GAMMAINV, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public GAMMAINV_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitGAMMAINV_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class HMACSHA1_fun2Context extends Expr2Context {
-		public TerminalNode HMACSHA1() { return getToken(mathParser.HMACSHA1, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public HMACSHA1_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitHMACSHA1_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ABS_fun2Context extends Expr2Context {
-		public TerminalNode ABS() { return getToken(mathParser.ABS, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public ABS_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitABS_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class NOT_fun2Context extends Expr2Context {
-		public TerminalNode NOT() { return getToken(mathParser.NOT, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public NOT_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitNOT_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class PI_fun2Context extends Expr2Context {
-		public TerminalNode PI() { return getToken(mathParser.PI, 0); }
-		public PI_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitPI_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class JOIN_fun2Context extends Expr2Context {
-		public TerminalNode JOIN() { return getToken(mathParser.JOIN, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public JOIN_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitJOIN_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class DAY_fun2Context extends Expr2Context {
-		public TerminalNode DAY() { return getToken(mathParser.DAY, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public DAY_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitDAY_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class WEEKDAY_fun2Context extends Expr2Context {
-		public TerminalNode WEEKDAY() { return getToken(mathParser.WEEKDAY, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public WEEKDAY_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitWEEKDAY_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class RMB_fun2Context extends Expr2Context {
-		public TerminalNode RMB() { return getToken(mathParser.RMB, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public RMB_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitRMB_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class STARTSWITH_fun2Context extends Expr2Context {
-		public TerminalNode STARTSWITH() { return getToken(mathParser.STARTSWITH, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public STARTSWITH_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitSTARTSWITH_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class COSH_fun2Context extends Expr2Context {
-		public TerminalNode COSH() { return getToken(mathParser.COSH, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public COSH_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitCOSH_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class EDATE_fun2Context extends Expr2Context {
-		public TerminalNode EDATE() { return getToken(mathParser.EDATE, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public EDATE_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitEDATE_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class SUBSTITUTE_fun2Context extends Expr2Context {
-		public TerminalNode SUBSTITUTE() { return getToken(mathParser.SUBSTITUTE, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public SUBSTITUTE_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitSUBSTITUTE_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class RIGHT_fun2Context extends Expr2Context {
-		public TerminalNode RIGHT() { return getToken(mathParser.RIGHT, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public RIGHT_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitRIGHT_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class MD5_fun2Context extends Expr2Context {
-		public TerminalNode MD5() { return getToken(mathParser.MD5, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public MD5_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitMD5_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class IFERROR_fun2Context extends Expr2Context {
-		public TerminalNode IFERROR() { return getToken(mathParser.IFERROR, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public IFERROR_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitIFERROR_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class OR_fun2Context extends Expr2Context {
-		public TerminalNode OR() { return getToken(mathParser.OR, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public OR_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitOR_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class URLDECODE_fun2Context extends Expr2Context {
-		public TerminalNode URLDECODE() { return getToken(mathParser.URLDECODE, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public URLDECODE_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitURLDECODE_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class CODE_fun2Context extends Expr2Context {
-		public TerminalNode CODE() { return getToken(mathParser.CODE, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public CODE_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitCODE_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class COUNTIF_fun2Context extends Expr2Context {
-		public TerminalNode COUNTIF() { return getToken(mathParser.COUNTIF, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public COUNTIF_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitCOUNTIF_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class DiyFunction_fun2Context extends Expr2Context {
-		public TerminalNode PARAMETER() { return getToken(mathParser.PARAMETER, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public DiyFunction_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitDiyFunction_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class TEXTTOBASE64URL_fun2Context extends Expr2Context {
-		public TerminalNode TEXTTOBASE64URL() { return getToken(mathParser.TEXTTOBASE64URL, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TEXTTOBASE64URL_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitTEXTTOBASE64URL_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class NORMSDIST_fun2Context extends Expr2Context {
-		public TerminalNode NORMSDIST() { return getToken(mathParser.NORMSDIST, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public NORMSDIST_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitNORMSDIST_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class PERCENTRANK_fun2Context extends Expr2Context {
-		public TerminalNode PERCENTRANK() { return getToken(mathParser.PERCENTRANK, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public PERCENTRANK_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitPERCENTRANK_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ISEVEN_fun2Context extends Expr2Context {
-		public TerminalNode ISEVEN() { return getToken(mathParser.ISEVEN, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public ISEVEN_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitISEVEN_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class INT_fun2Context extends Expr2Context {
-		public TerminalNode INT() { return getToken(mathParser.INT, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public INT_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitINT_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class DEGREES_fun2Context extends Expr2Context {
-		public TerminalNode DEGREES() { return getToken(mathParser.DEGREES, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public DEGREES_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitDEGREES_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class BASE64URLTOTEXT_fun2Context extends Expr2Context {
-		public TerminalNode BASE64URLTOTEXT() { return getToken(mathParser.BASE64URLTOTEXT, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public BASE64URLTOTEXT_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitBASE64URLTOTEXT_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class SINH_fun2Context extends Expr2Context {
-		public TerminalNode SINH() { return getToken(mathParser.SINH, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public SINH_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitSINH_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class SEARCH_fun2Context extends Expr2Context {
-		public TerminalNode SEARCH() { return getToken(mathParser.SEARCH, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public SEARCH_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitSEARCH_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class JIS_fun2Context extends Expr2Context {
-		public TerminalNode JIS() { return getToken(mathParser.JIS, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public JIS_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitJIS_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class BIN2HEX_fun2Context extends Expr2Context {
-		public TerminalNode BIN2HEX() { return getToken(mathParser.BIN2HEX, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public BIN2HEX_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitBIN2HEX_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class RADIANS_fun2Context extends Expr2Context {
-		public TerminalNode RADIANS() { return getToken(mathParser.RADIANS, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public RADIANS_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitRADIANS_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class LOOKUP_fun2Context extends Expr2Context {
-		public TerminalNode LOOKUP() { return getToken(mathParser.LOOKUP, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public LOOKUP_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitLOOKUP_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ISERROR_fun2Context extends Expr2Context {
-		public TerminalNode ISERROR() { return getToken(mathParser.ISERROR, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public ISERROR_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitISERROR_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class OCT2BIN_fun2Context extends Expr2Context {
-		public TerminalNode OCT2BIN() { return getToken(mathParser.OCT2BIN, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public OCT2BIN_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitOCT2BIN_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ASC_fun2Context extends Expr2Context {
-		public TerminalNode ASC() { return getToken(mathParser.ASC, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public ASC_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitASC_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class GUID_fun2Context extends Expr2Context {
-		public TerminalNode GUID() { return getToken(mathParser.GUID, 0); }
-		public GUID_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitGUID_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class EXP_fun2Context extends Expr2Context {
-		public TerminalNode EXP() { return getToken(mathParser.EXP, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public EXP_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitEXP_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class POWER_fun2Context extends Expr2Context {
-		public TerminalNode POWER() { return getToken(mathParser.POWER, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public POWER_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitPOWER_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class MULTINOMIAL_fun2Context extends Expr2Context {
-		public TerminalNode MULTINOMIAL() { return getToken(mathParser.MULTINOMIAL, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public MULTINOMIAL_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitMULTINOMIAL_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ISNONTEXT_fun2Context extends Expr2Context {
-		public TerminalNode ISNONTEXT() { return getToken(mathParser.ISNONTEXT, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public ISNONTEXT_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitISNONTEXT_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class TDIST_fun2Context extends Expr2Context {
-		public TerminalNode TDIST() { return getToken(mathParser.TDIST, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TDIST_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitTDIST_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class T_fun2Context extends Expr2Context {
-		public TerminalNode T() { return getToken(mathParser.T, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public T_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitT_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class TEXTTOBASE64_fun2Context extends Expr2Context {
-		public TerminalNode TEXTTOBASE64() { return getToken(mathParser.TEXTTOBASE64, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TEXTTOBASE64_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitTEXTTOBASE64_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class FACT_fun2Context extends Expr2Context {
-		public TerminalNode FACT() { return getToken(mathParser.FACT, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public FACT_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitFACT_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class EXPONDIST_fun2Context extends Expr2Context {
-		public TerminalNode EXPONDIST() { return getToken(mathParser.EXPONDIST, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public EXPONDIST_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitEXPONDIST_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class POISSON_fun2Context extends Expr2Context {
-		public TerminalNode POISSON() { return getToken(mathParser.POISSON, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public POISSON_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitPOISSON_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class E_fun2Context extends Expr2Context {
-		public TerminalNode E() { return getToken(mathParser.E, 0); }
-		public E_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitE_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class SUM_fun2Context extends Expr2Context {
-		public TerminalNode SUM() { return getToken(mathParser.SUM, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public SUM_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitSUM_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class LARGE_fun2Context extends Expr2Context {
-		public TerminalNode LARGE() { return getToken(mathParser.LARGE, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public LARGE_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitLARGE_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ISTEXT_fun2Context extends Expr2Context {
-		public TerminalNode ISTEXT() { return getToken(mathParser.ISTEXT, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public ISTEXT_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitISTEXT_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class TINV_fun2Context extends Expr2Context {
-		public TerminalNode TINV() { return getToken(mathParser.TINV, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TINV_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitTINV_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class GEOMEAN_fun2Context extends Expr2Context {
-		public TerminalNode GEOMEAN() { return getToken(mathParser.GEOMEAN, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public GEOMEAN_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitGEOMEAN_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class EXACT_fun2Context extends Expr2Context {
-		public TerminalNode EXACT() { return getToken(mathParser.EXACT, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public EXACT_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitEXACT_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class STDEVP_fun2Context extends Expr2Context {
-		public TerminalNode STDEVP() { return getToken(mathParser.STDEVP, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public STDEVP_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitSTDEVP_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ASIN_fun2Context extends Expr2Context {
-		public TerminalNode ASIN() { return getToken(mathParser.ASIN, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public ASIN_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitASIN_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ISNULL_fun2Context extends Expr2Context {
-		public TerminalNode ISNULL() { return getToken(mathParser.ISNULL, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public ISNULL_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitISNULL_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class WEEKNUM_fun2Context extends Expr2Context {
-		public TerminalNode WEEKNUM() { return getToken(mathParser.WEEKNUM, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public WEEKNUM_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitWEEKNUM_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class DATEDIF_fun2Context extends Expr2Context {
-		public TerminalNode DATEDIF() { return getToken(mathParser.DATEDIF, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public DATEDIF_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitDATEDIF_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class DEC2HEX_fun2Context extends Expr2Context {
-		public TerminalNode DEC2HEX() { return getToken(mathParser.DEC2HEX, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public DEC2HEX_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitDEC2HEX_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class DATE_fun2Context extends Expr2Context {
-		public TerminalNode DATE() { return getToken(mathParser.DATE, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public DATE_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitDATE_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class HOUR_fun2Context extends Expr2Context {
-		public TerminalNode HOUR() { return getToken(mathParser.HOUR, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public HOUR_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitHOUR_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class CONCATENATE_fun2Context extends Expr2Context {
-		public TerminalNode CONCATENATE() { return getToken(mathParser.CONCATENATE, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public CONCATENATE_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitCONCATENATE_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class CRC32_fun2Context extends Expr2Context {
-		public TerminalNode CRC32() { return getToken(mathParser.CRC32, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public CRC32_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitCRC32_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class NORMSINV_fun2Context extends Expr2Context {
-		public TerminalNode NORMSINV() { return getToken(mathParser.NORMSINV, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public NORMSINV_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitNORMSINV_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class GAMMADIST_fun2Context extends Expr2Context {
-		public TerminalNode GAMMADIST() { return getToken(mathParser.GAMMADIST, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public GAMMADIST_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitGAMMADIST_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class INDEXOF_fun2Context extends Expr2Context {
-		public TerminalNode INDEXOF() { return getToken(mathParser.INDEXOF, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public INDEXOF_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitINDEXOF_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class SIN_fun2Context extends Expr2Context {
-		public TerminalNode SIN() { return getToken(mathParser.SIN, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public SIN_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitSIN_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class TRIM_fun2Context extends Expr2Context {
-		public TerminalNode TRIM() { return getToken(mathParser.TRIM, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TRIM_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitTRIM_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class NEGBINOMDIST_fun2Context extends Expr2Context {
-		public TerminalNode NEGBINOMDIST() { return getToken(mathParser.NEGBINOMDIST, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public NEGBINOMDIST_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitNEGBINOMDIST_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class MID_fun2Context extends Expr2Context {
-		public TerminalNode MID() { return getToken(mathParser.MID, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public MID_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitMID_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class BASE64TOTEXT_fun2Context extends Expr2Context {
-		public TerminalNode BASE64TOTEXT() { return getToken(mathParser.BASE64TOTEXT, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public BASE64TOTEXT_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitBASE64TOTEXT_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class BIN2DEC_fun2Context extends Expr2Context {
-		public TerminalNode BIN2DEC() { return getToken(mathParser.BIN2DEC, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public BIN2DEC_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitBIN2DEC_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class NORMINV_fun2Context extends Expr2Context {
-		public TerminalNode NORMINV() { return getToken(mathParser.NORMINV, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public NORMINV_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitNORMINV_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class CRC8_fun2Context extends Expr2Context {
-		public TerminalNode CRC8() { return getToken(mathParser.CRC8, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public CRC8_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitCRC8_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class SUBSTRING_fun2Context extends Expr2Context {
-		public TerminalNode SUBSTRING() { return getToken(mathParser.SUBSTRING, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public SUBSTRING_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitSUBSTRING_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class HEX2DEC_fun2Context extends Expr2Context {
-		public TerminalNode HEX2DEC() { return getToken(mathParser.HEX2DEC, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public HEX2DEC_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitHEX2DEC_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class STDEV_fun2Context extends Expr2Context {
-		public TerminalNode STDEV() { return getToken(mathParser.STDEV, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public STDEV_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitSTDEV_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class WEIBULL_fun2Context extends Expr2Context {
-		public TerminalNode WEIBULL() { return getToken(mathParser.WEIBULL, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public WEIBULL_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitWEIBULL_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ASINH_fun2Context extends Expr2Context {
-		public TerminalNode ASINH() { return getToken(mathParser.ASINH, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public ASINH_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitASINH_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class UPPER_fun2Context extends Expr2Context {
-		public TerminalNode UPPER() { return getToken(mathParser.UPPER, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public UPPER_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitUPPER_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class VAR_fun2Context extends Expr2Context {
-		public TerminalNode VAR() { return getToken(mathParser.VAR, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public VAR_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitVAR_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class HEX2OCT_fun2Context extends Expr2Context {
-		public TerminalNode HEX2OCT() { return getToken(mathParser.HEX2OCT, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public HEX2OCT_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitHEX2OCT_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class PROPER_fun2Context extends Expr2Context {
-		public TerminalNode PROPER() { return getToken(mathParser.PROPER, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public PROPER_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitPROPER_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class FACTDOUBLE_fun2Context extends Expr2Context {
-		public TerminalNode FACTDOUBLE() { return getToken(mathParser.FACTDOUBLE, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public FACTDOUBLE_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitFACTDOUBLE_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class GAMMALN_fun2Context extends Expr2Context {
-		public TerminalNode GAMMALN() { return getToken(mathParser.GAMMALN, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public GAMMALN_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitGAMMALN_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class HTMLENCODE_fun2Context extends Expr2Context {
-		public TerminalNode HTMLENCODE() { return getToken(mathParser.HTMLENCODE, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public HTMLENCODE_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitHTMLENCODE_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ISNULLORERROR_fun2Context extends Expr2Context {
-		public TerminalNode ISNULLORERROR() { return getToken(mathParser.ISNULLORERROR, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public ISNULLORERROR_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitISNULLORERROR_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class AND_fun2Context extends Expr2Context {
-		public TerminalNode AND() { return getToken(mathParser.AND, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public AND_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitAND_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class REMOVEEND_fun2Context extends Expr2Context {
-		public TerminalNode REMOVEEND() { return getToken(mathParser.REMOVEEND, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public REMOVEEND_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitREMOVEEND_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class QUOTIENT_fun2Context extends Expr2Context {
-		public TerminalNode QUOTIENT() { return getToken(mathParser.QUOTIENT, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public QUOTIENT_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitQUOTIENT_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class DEVSQ_fun2Context extends Expr2Context {
-		public TerminalNode DEVSQ() { return getToken(mathParser.DEVSQ, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public DEVSQ_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitDEVSQ_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class BIN2OCT_fun2Context extends Expr2Context {
-		public TerminalNode BIN2OCT() { return getToken(mathParser.BIN2OCT, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public BIN2OCT_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitBIN2OCT_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class RAND_fun2Context extends Expr2Context {
-		public TerminalNode RAND() { return getToken(mathParser.RAND, 0); }
-		public RAND_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitRAND_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class TRIMEND_fun2Context extends Expr2Context {
-		public TerminalNode TRIMEND() { return getToken(mathParser.TRIMEND, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TRIMEND_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitTRIMEND_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class TANH_fun2Context extends Expr2Context {
-		public TerminalNode TANH() { return getToken(mathParser.TANH, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TANH_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitTANH_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class DEC2OCT_fun2Context extends Expr2Context {
-		public TerminalNode DEC2OCT() { return getToken(mathParser.DEC2OCT, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public DEC2OCT_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitDEC2OCT_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class FISHER_fun2Context extends Expr2Context {
-		public TerminalNode FISHER() { return getToken(mathParser.FISHER, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public FISHER_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitFISHER_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ATAN_fun2Context extends Expr2Context {
-		public TerminalNode ATAN() { return getToken(mathParser.ATAN, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public ATAN_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitATAN_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class LN_fun2Context extends Expr2Context {
-		public TerminalNode LN() { return getToken(mathParser.LN, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public LN_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitLN_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class RANDBETWEEN_fun2Context extends Expr2Context {
-		public TerminalNode RANDBETWEEN() { return getToken(mathParser.RANDBETWEEN, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public RANDBETWEEN_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitRANDBETWEEN_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class LEN_fun2Context extends Expr2Context {
-		public TerminalNode LEN() { return getToken(mathParser.LEN, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public LEN_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitLEN_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class NOW_fun2Context extends Expr2Context {
-		public TerminalNode NOW() { return getToken(mathParser.NOW, 0); }
-		public NOW_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitNOW_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class TIMEVALUE_fun2Context extends Expr2Context {
-		public TerminalNode TIMEVALUE() { return getToken(mathParser.TIMEVALUE, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TIMEVALUE_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitTIMEVALUE_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class QUARTILE_fun2Context extends Expr2Context {
-		public TerminalNode QUARTILE() { return getToken(mathParser.QUARTILE, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public QUARTILE_fun2Context(Expr2Context ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitQUARTILE_fun2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
 
 	public final Expr2Context expr2() throws RecognitionException {
 		Expr2Context _localctx = new Expr2Context(_ctx, getState());
@@ -6940,7 +2606,7 @@ public class mathParser extends Parser {
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__21:
-				_localctx = new Array_fun2Context(_localctx);
+				_localctx = new Array_funContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(769);
@@ -6968,7 +2634,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case T__16:
-				_localctx = new Bracket_fun2Context(_localctx);
+				_localctx = new Bracket_funContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(780);
@@ -6980,7 +2646,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case IF:
-				_localctx = new IF_fun2Context(_localctx);
+				_localctx = new IF_funContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(784);
@@ -7010,7 +2676,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case ISNUMBER:
-				_localctx = new ISNUMBER_fun2Context(_localctx);
+				_localctx = new ISNUMBER_funContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
 				setState(795);
@@ -7024,7 +2690,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case ISTEXT:
-				_localctx = new ISTEXT_fun2Context(_localctx);
+				_localctx = new ISTEXT_funContext(_localctx);
 				enterOuterAlt(_localctx, 5);
 				{
 				setState(800);
@@ -7038,7 +2704,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case ISERROR:
-				_localctx = new ISERROR_fun2Context(_localctx);
+				_localctx = new ISERROR_funContext(_localctx);
 				enterOuterAlt(_localctx, 6);
 				{
 				setState(805);
@@ -7064,7 +2730,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case ISNONTEXT:
-				_localctx = new ISNONTEXT_fun2Context(_localctx);
+				_localctx = new ISNONTEXT_funContext(_localctx);
 				enterOuterAlt(_localctx, 7);
 				{
 				setState(814);
@@ -7078,7 +2744,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case ISLOGICAL:
-				_localctx = new ISLOGICAL_fun2Context(_localctx);
+				_localctx = new ISLOGICAL_funContext(_localctx);
 				enterOuterAlt(_localctx, 8);
 				{
 				setState(819);
@@ -7092,7 +2758,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case ISEVEN:
-				_localctx = new ISEVEN_fun2Context(_localctx);
+				_localctx = new ISEVEN_funContext(_localctx);
 				enterOuterAlt(_localctx, 9);
 				{
 				setState(824);
@@ -7106,7 +2772,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case ISODD:
-				_localctx = new ISODD_fun2Context(_localctx);
+				_localctx = new ISODD_funContext(_localctx);
 				enterOuterAlt(_localctx, 10);
 				{
 				setState(829);
@@ -7120,7 +2786,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case IFERROR:
-				_localctx = new IFERROR_fun2Context(_localctx);
+				_localctx = new IFERROR_funContext(_localctx);
 				enterOuterAlt(_localctx, 11);
 				{
 				setState(834);
@@ -7150,7 +2816,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case ISNULL:
-				_localctx = new ISNULL_fun2Context(_localctx);
+				_localctx = new ISNULL_funContext(_localctx);
 				enterOuterAlt(_localctx, 12);
 				{
 				setState(845);
@@ -7176,7 +2842,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case ISNULLORERROR:
-				_localctx = new ISNULLORERROR_fun2Context(_localctx);
+				_localctx = new ISNULLORERROR_funContext(_localctx);
 				enterOuterAlt(_localctx, 13);
 				{
 				setState(854);
@@ -7202,7 +2868,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case AND:
-				_localctx = new AND_fun2Context(_localctx);
+				_localctx = new AND_funContext(_localctx);
 				enterOuterAlt(_localctx, 14);
 				{
 				setState(863);
@@ -7232,7 +2898,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case OR:
-				_localctx = new OR_fun2Context(_localctx);
+				_localctx = new OR_funContext(_localctx);
 				enterOuterAlt(_localctx, 15);
 				{
 				setState(875);
@@ -7262,7 +2928,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case NOT:
-				_localctx = new NOT_fun2Context(_localctx);
+				_localctx = new NOT_funContext(_localctx);
 				enterOuterAlt(_localctx, 16);
 				{
 				setState(887);
@@ -7276,7 +2942,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case TRUE:
-				_localctx = new TRUE_fun2Context(_localctx);
+				_localctx = new TRUE_funContext(_localctx);
 				enterOuterAlt(_localctx, 17);
 				{
 				setState(892);
@@ -7296,7 +2962,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case FALSE:
-				_localctx = new FALSE_fun2Context(_localctx);
+				_localctx = new FALSE_funContext(_localctx);
 				enterOuterAlt(_localctx, 18);
 				{
 				setState(897);
@@ -7316,7 +2982,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case E:
-				_localctx = new E_fun2Context(_localctx);
+				_localctx = new E_funContext(_localctx);
 				enterOuterAlt(_localctx, 19);
 				{
 				setState(902);
@@ -7336,7 +3002,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case PI:
-				_localctx = new PI_fun2Context(_localctx);
+				_localctx = new PI_funContext(_localctx);
 				enterOuterAlt(_localctx, 20);
 				{
 				setState(907);
@@ -7356,7 +3022,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case DEC2BIN:
-				_localctx = new DEC2BIN_fun2Context(_localctx);
+				_localctx = new DEC2BIN_funContext(_localctx);
 				enterOuterAlt(_localctx, 21);
 				{
 				setState(912);
@@ -7384,7 +3050,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case DEC2HEX:
-				_localctx = new DEC2HEX_fun2Context(_localctx);
+				_localctx = new DEC2HEX_funContext(_localctx);
 				enterOuterAlt(_localctx, 22);
 				{
 				setState(921);
@@ -7412,7 +3078,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case DEC2OCT:
-				_localctx = new DEC2OCT_fun2Context(_localctx);
+				_localctx = new DEC2OCT_funContext(_localctx);
 				enterOuterAlt(_localctx, 23);
 				{
 				setState(930);
@@ -7440,7 +3106,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case HEX2BIN:
-				_localctx = new HEX2BIN_fun2Context(_localctx);
+				_localctx = new HEX2BIN_funContext(_localctx);
 				enterOuterAlt(_localctx, 24);
 				{
 				setState(939);
@@ -7468,7 +3134,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case HEX2DEC:
-				_localctx = new HEX2DEC_fun2Context(_localctx);
+				_localctx = new HEX2DEC_funContext(_localctx);
 				enterOuterAlt(_localctx, 25);
 				{
 				setState(948);
@@ -7484,7 +3150,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case HEX2OCT:
-				_localctx = new HEX2OCT_fun2Context(_localctx);
+				_localctx = new HEX2OCT_funContext(_localctx);
 				enterOuterAlt(_localctx, 26);
 				{
 				setState(953);
@@ -7512,7 +3178,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case OCT2BIN:
-				_localctx = new OCT2BIN_fun2Context(_localctx);
+				_localctx = new OCT2BIN_funContext(_localctx);
 				enterOuterAlt(_localctx, 27);
 				{
 				setState(962);
@@ -7540,7 +3206,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case OCT2DEC:
-				_localctx = new OCT2DEC_fun2Context(_localctx);
+				_localctx = new OCT2DEC_funContext(_localctx);
 				enterOuterAlt(_localctx, 28);
 				{
 				setState(971);
@@ -7556,7 +3222,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case OCT2HEX:
-				_localctx = new OCT2HEX_fun2Context(_localctx);
+				_localctx = new OCT2HEX_funContext(_localctx);
 				enterOuterAlt(_localctx, 29);
 				{
 				setState(976);
@@ -7584,7 +3250,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case BIN2OCT:
-				_localctx = new BIN2OCT_fun2Context(_localctx);
+				_localctx = new BIN2OCT_funContext(_localctx);
 				enterOuterAlt(_localctx, 30);
 				{
 				setState(985);
@@ -7612,7 +3278,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case BIN2DEC:
-				_localctx = new BIN2DEC_fun2Context(_localctx);
+				_localctx = new BIN2DEC_funContext(_localctx);
 				enterOuterAlt(_localctx, 31);
 				{
 				setState(994);
@@ -7628,7 +3294,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case BIN2HEX:
-				_localctx = new BIN2HEX_fun2Context(_localctx);
+				_localctx = new BIN2HEX_funContext(_localctx);
 				enterOuterAlt(_localctx, 32);
 				{
 				setState(999);
@@ -7656,7 +3322,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case ABS:
-				_localctx = new ABS_fun2Context(_localctx);
+				_localctx = new ABS_funContext(_localctx);
 				enterOuterAlt(_localctx, 33);
 				{
 				setState(1008);
@@ -7670,7 +3336,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case QUOTIENT:
-				_localctx = new QUOTIENT_fun2Context(_localctx);
+				_localctx = new QUOTIENT_funContext(_localctx);
 				enterOuterAlt(_localctx, 34);
 				{
 				setState(1013);
@@ -7690,7 +3356,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case MOD:
-				_localctx = new MOD_fun2Context(_localctx);
+				_localctx = new MOD_funContext(_localctx);
 				enterOuterAlt(_localctx, 35);
 				{
 				setState(1021);
@@ -7710,7 +3376,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case SIGN:
-				_localctx = new SIGN_fun2Context(_localctx);
+				_localctx = new SIGN_funContext(_localctx);
 				enterOuterAlt(_localctx, 36);
 				{
 				setState(1029);
@@ -7724,7 +3390,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case SQRT:
-				_localctx = new SQRT_fun2Context(_localctx);
+				_localctx = new SQRT_funContext(_localctx);
 				enterOuterAlt(_localctx, 37);
 				{
 				setState(1034);
@@ -7738,7 +3404,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case TRUNC:
-				_localctx = new TRUNC_fun2Context(_localctx);
+				_localctx = new TRUNC_funContext(_localctx);
 				enterOuterAlt(_localctx, 38);
 				{
 				setState(1039);
@@ -7752,7 +3418,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case INT:
-				_localctx = new INT_fun2Context(_localctx);
+				_localctx = new INT_funContext(_localctx);
 				enterOuterAlt(_localctx, 39);
 				{
 				setState(1044);
@@ -7766,7 +3432,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case GCD:
-				_localctx = new GCD_fun2Context(_localctx);
+				_localctx = new GCD_funContext(_localctx);
 				enterOuterAlt(_localctx, 40);
 				{
 				setState(1049);
@@ -7796,7 +3462,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case LCM:
-				_localctx = new LCM_fun2Context(_localctx);
+				_localctx = new LCM_funContext(_localctx);
 				enterOuterAlt(_localctx, 41);
 				{
 				setState(1060);
@@ -7826,7 +3492,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case COMBIN:
-				_localctx = new COMBIN_fun2Context(_localctx);
+				_localctx = new COMBIN_funContext(_localctx);
 				enterOuterAlt(_localctx, 42);
 				{
 				setState(1071);
@@ -7844,7 +3510,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case PERMUT:
-				_localctx = new PERMUT_fun2Context(_localctx);
+				_localctx = new PERMUT_funContext(_localctx);
 				enterOuterAlt(_localctx, 43);
 				{
 				setState(1078);
@@ -7862,7 +3528,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case DEGREES:
-				_localctx = new DEGREES_fun2Context(_localctx);
+				_localctx = new DEGREES_funContext(_localctx);
 				enterOuterAlt(_localctx, 44);
 				{
 				setState(1085);
@@ -7876,7 +3542,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case RADIANS:
-				_localctx = new RADIANS_fun2Context(_localctx);
+				_localctx = new RADIANS_funContext(_localctx);
 				enterOuterAlt(_localctx, 45);
 				{
 				setState(1090);
@@ -7890,7 +3556,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case COS:
-				_localctx = new COS_fun2Context(_localctx);
+				_localctx = new COS_funContext(_localctx);
 				enterOuterAlt(_localctx, 46);
 				{
 				setState(1095);
@@ -7904,7 +3570,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case COSH:
-				_localctx = new COSH_fun2Context(_localctx);
+				_localctx = new COSH_funContext(_localctx);
 				enterOuterAlt(_localctx, 47);
 				{
 				setState(1100);
@@ -7918,7 +3584,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case SIN:
-				_localctx = new SIN_fun2Context(_localctx);
+				_localctx = new SIN_funContext(_localctx);
 				enterOuterAlt(_localctx, 48);
 				{
 				setState(1105);
@@ -7932,7 +3598,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case SINH:
-				_localctx = new SINH_fun2Context(_localctx);
+				_localctx = new SINH_funContext(_localctx);
 				enterOuterAlt(_localctx, 49);
 				{
 				setState(1110);
@@ -7946,7 +3612,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case TAN:
-				_localctx = new TAN_fun2Context(_localctx);
+				_localctx = new TAN_funContext(_localctx);
 				enterOuterAlt(_localctx, 50);
 				{
 				setState(1115);
@@ -7960,7 +3626,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case TANH:
-				_localctx = new TANH_fun2Context(_localctx);
+				_localctx = new TANH_funContext(_localctx);
 				enterOuterAlt(_localctx, 51);
 				{
 				setState(1120);
@@ -7974,7 +3640,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case ACOS:
-				_localctx = new ACOS_fun2Context(_localctx);
+				_localctx = new ACOS_funContext(_localctx);
 				enterOuterAlt(_localctx, 52);
 				{
 				setState(1125);
@@ -7988,7 +3654,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case ACOSH:
-				_localctx = new ACOSH_fun2Context(_localctx);
+				_localctx = new ACOSH_funContext(_localctx);
 				enterOuterAlt(_localctx, 53);
 				{
 				setState(1130);
@@ -8002,7 +3668,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case ASIN:
-				_localctx = new ASIN_fun2Context(_localctx);
+				_localctx = new ASIN_funContext(_localctx);
 				enterOuterAlt(_localctx, 54);
 				{
 				setState(1135);
@@ -8016,7 +3682,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case ASINH:
-				_localctx = new ASINH_fun2Context(_localctx);
+				_localctx = new ASINH_funContext(_localctx);
 				enterOuterAlt(_localctx, 55);
 				{
 				setState(1140);
@@ -8030,7 +3696,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case ATAN:
-				_localctx = new ATAN_fun2Context(_localctx);
+				_localctx = new ATAN_funContext(_localctx);
 				enterOuterAlt(_localctx, 56);
 				{
 				setState(1145);
@@ -8044,7 +3710,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case ATANH:
-				_localctx = new ATANH_fun2Context(_localctx);
+				_localctx = new ATANH_funContext(_localctx);
 				enterOuterAlt(_localctx, 57);
 				{
 				setState(1150);
@@ -8058,7 +3724,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case ATAN2:
-				_localctx = new ATAN2_fun2Context(_localctx);
+				_localctx = new ATAN2_funContext(_localctx);
 				enterOuterAlt(_localctx, 58);
 				{
 				setState(1155);
@@ -8076,7 +3742,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case ROUND:
-				_localctx = new ROUND_fun2Context(_localctx);
+				_localctx = new ROUND_funContext(_localctx);
 				enterOuterAlt(_localctx, 59);
 				{
 				setState(1162);
@@ -8094,7 +3760,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case ROUNDDOWN:
-				_localctx = new ROUNDDOWN_fun2Context(_localctx);
+				_localctx = new ROUNDDOWN_funContext(_localctx);
 				enterOuterAlt(_localctx, 60);
 				{
 				setState(1169);
@@ -8112,7 +3778,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case ROUNDUP:
-				_localctx = new ROUNDUP_fun2Context(_localctx);
+				_localctx = new ROUNDUP_funContext(_localctx);
 				enterOuterAlt(_localctx, 61);
 				{
 				setState(1176);
@@ -8130,7 +3796,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case CEILING:
-				_localctx = new CEILING_fun2Context(_localctx);
+				_localctx = new CEILING_funContext(_localctx);
 				enterOuterAlt(_localctx, 62);
 				{
 				setState(1183);
@@ -8156,7 +3822,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case FLOOR:
-				_localctx = new FLOOR_fun2Context(_localctx);
+				_localctx = new FLOOR_funContext(_localctx);
 				enterOuterAlt(_localctx, 63);
 				{
 				setState(1192);
@@ -8182,7 +3848,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case EVEN:
-				_localctx = new EVEN_fun2Context(_localctx);
+				_localctx = new EVEN_funContext(_localctx);
 				enterOuterAlt(_localctx, 64);
 				{
 				setState(1201);
@@ -8196,7 +3862,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case ODD:
-				_localctx = new ODD_fun2Context(_localctx);
+				_localctx = new ODD_funContext(_localctx);
 				enterOuterAlt(_localctx, 65);
 				{
 				setState(1206);
@@ -8210,7 +3876,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case MROUND:
-				_localctx = new MROUND_fun2Context(_localctx);
+				_localctx = new MROUND_funContext(_localctx);
 				enterOuterAlt(_localctx, 66);
 				{
 				setState(1211);
@@ -8228,7 +3894,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case RAND:
-				_localctx = new RAND_fun2Context(_localctx);
+				_localctx = new RAND_funContext(_localctx);
 				enterOuterAlt(_localctx, 67);
 				{
 				setState(1218);
@@ -8240,7 +3906,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case RANDBETWEEN:
-				_localctx = new RANDBETWEEN_fun2Context(_localctx);
+				_localctx = new RANDBETWEEN_funContext(_localctx);
 				enterOuterAlt(_localctx, 68);
 				{
 				setState(1221);
@@ -8258,7 +3924,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case FACT:
-				_localctx = new FACT_fun2Context(_localctx);
+				_localctx = new FACT_funContext(_localctx);
 				enterOuterAlt(_localctx, 69);
 				{
 				setState(1228);
@@ -8272,7 +3938,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case FACTDOUBLE:
-				_localctx = new FACTDOUBLE_fun2Context(_localctx);
+				_localctx = new FACTDOUBLE_funContext(_localctx);
 				enterOuterAlt(_localctx, 70);
 				{
 				setState(1233);
@@ -8286,7 +3952,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case POWER:
-				_localctx = new POWER_fun2Context(_localctx);
+				_localctx = new POWER_funContext(_localctx);
 				enterOuterAlt(_localctx, 71);
 				{
 				setState(1238);
@@ -8304,7 +3970,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case EXP:
-				_localctx = new EXP_fun2Context(_localctx);
+				_localctx = new EXP_funContext(_localctx);
 				enterOuterAlt(_localctx, 72);
 				{
 				setState(1245);
@@ -8318,7 +3984,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case LN:
-				_localctx = new LN_fun2Context(_localctx);
+				_localctx = new LN_funContext(_localctx);
 				enterOuterAlt(_localctx, 73);
 				{
 				setState(1250);
@@ -8332,7 +3998,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case LOG:
-				_localctx = new LOG_fun2Context(_localctx);
+				_localctx = new LOG_funContext(_localctx);
 				enterOuterAlt(_localctx, 74);
 				{
 				setState(1255);
@@ -8358,7 +4024,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case LOG10:
-				_localctx = new LOG10_fun2Context(_localctx);
+				_localctx = new LOG10_funContext(_localctx);
 				enterOuterAlt(_localctx, 75);
 				{
 				setState(1264);
@@ -8372,7 +4038,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case MULTINOMIAL:
-				_localctx = new MULTINOMIAL_fun2Context(_localctx);
+				_localctx = new MULTINOMIAL_funContext(_localctx);
 				enterOuterAlt(_localctx, 76);
 				{
 				setState(1269);
@@ -8402,7 +4068,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case PRODUCT:
-				_localctx = new PRODUCT_fun2Context(_localctx);
+				_localctx = new PRODUCT_funContext(_localctx);
 				enterOuterAlt(_localctx, 77);
 				{
 				setState(1281);
@@ -8432,7 +4098,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case SQRTPI:
-				_localctx = new SQRTPI_fun2Context(_localctx);
+				_localctx = new SQRTPI_funContext(_localctx);
 				enterOuterAlt(_localctx, 78);
 				{
 				setState(1293);
@@ -8446,7 +4112,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case SUMSQ:
-				_localctx = new SUMSQ_fun2Context(_localctx);
+				_localctx = new SUMSQ_funContext(_localctx);
 				enterOuterAlt(_localctx, 79);
 				{
 				setState(1298);
@@ -8476,7 +4142,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case ASC:
-				_localctx = new ASC_fun2Context(_localctx);
+				_localctx = new ASC_funContext(_localctx);
 				enterOuterAlt(_localctx, 80);
 				{
 				setState(1310);
@@ -8490,7 +4156,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case JIS:
-				_localctx = new JIS_fun2Context(_localctx);
+				_localctx = new JIS_funContext(_localctx);
 				enterOuterAlt(_localctx, 81);
 				{
 				setState(1315);
@@ -8504,7 +4170,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case CHAR:
-				_localctx = new CHAR_fun2Context(_localctx);
+				_localctx = new CHAR_funContext(_localctx);
 				enterOuterAlt(_localctx, 82);
 				{
 				setState(1320);
@@ -8518,7 +4184,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case CLEAN:
-				_localctx = new CLEAN_fun2Context(_localctx);
+				_localctx = new CLEAN_funContext(_localctx);
 				enterOuterAlt(_localctx, 83);
 				{
 				setState(1325);
@@ -8532,7 +4198,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case CODE:
-				_localctx = new CODE_fun2Context(_localctx);
+				_localctx = new CODE_funContext(_localctx);
 				enterOuterAlt(_localctx, 84);
 				{
 				setState(1330);
@@ -8546,7 +4212,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case CONCATENATE:
-				_localctx = new CONCATENATE_fun2Context(_localctx);
+				_localctx = new CONCATENATE_funContext(_localctx);
 				enterOuterAlt(_localctx, 85);
 				{
 				setState(1335);
@@ -8576,7 +4242,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case EXACT:
-				_localctx = new EXACT_fun2Context(_localctx);
+				_localctx = new EXACT_funContext(_localctx);
 				enterOuterAlt(_localctx, 86);
 				{
 				setState(1347);
@@ -8594,7 +4260,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case FIND:
-				_localctx = new FIND_fun2Context(_localctx);
+				_localctx = new FIND_funContext(_localctx);
 				enterOuterAlt(_localctx, 87);
 				{
 				setState(1354);
@@ -8624,7 +4290,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case FIXED:
-				_localctx = new FIXED_fun2Context(_localctx);
+				_localctx = new FIXED_funContext(_localctx);
 				enterOuterAlt(_localctx, 88);
 				{
 				setState(1365);
@@ -8662,7 +4328,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case LEFT:
-				_localctx = new LEFT_fun2Context(_localctx);
+				_localctx = new LEFT_funContext(_localctx);
 				enterOuterAlt(_localctx, 89);
 				{
 				setState(1378);
@@ -8688,7 +4354,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case LEN:
-				_localctx = new LEN_fun2Context(_localctx);
+				_localctx = new LEN_funContext(_localctx);
 				enterOuterAlt(_localctx, 90);
 				{
 				setState(1387);
@@ -8702,7 +4368,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case LOWER:
-				_localctx = new LOWER_fun2Context(_localctx);
+				_localctx = new LOWER_funContext(_localctx);
 				enterOuterAlt(_localctx, 91);
 				{
 				setState(1392);
@@ -8716,7 +4382,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case MID:
-				_localctx = new MID_fun2Context(_localctx);
+				_localctx = new MID_funContext(_localctx);
 				enterOuterAlt(_localctx, 92);
 				{
 				setState(1397);
@@ -8738,7 +4404,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case PROPER:
-				_localctx = new PROPER_fun2Context(_localctx);
+				_localctx = new PROPER_funContext(_localctx);
 				enterOuterAlt(_localctx, 93);
 				{
 				setState(1406);
@@ -8752,7 +4418,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case REPLACE:
-				_localctx = new REPLACE_fun2Context(_localctx);
+				_localctx = new REPLACE_funContext(_localctx);
 				enterOuterAlt(_localctx, 94);
 				{
 				setState(1411);
@@ -8786,7 +4452,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case REPT:
-				_localctx = new REPT_fun2Context(_localctx);
+				_localctx = new REPT_funContext(_localctx);
 				enterOuterAlt(_localctx, 95);
 				{
 				setState(1424);
@@ -8804,7 +4470,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case RIGHT:
-				_localctx = new RIGHT_fun2Context(_localctx);
+				_localctx = new RIGHT_funContext(_localctx);
 				enterOuterAlt(_localctx, 96);
 				{
 				setState(1431);
@@ -8830,7 +4496,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case RMB:
-				_localctx = new RMB_fun2Context(_localctx);
+				_localctx = new RMB_funContext(_localctx);
 				enterOuterAlt(_localctx, 97);
 				{
 				setState(1440);
@@ -8844,7 +4510,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case SEARCH:
-				_localctx = new SEARCH_fun2Context(_localctx);
+				_localctx = new SEARCH_funContext(_localctx);
 				enterOuterAlt(_localctx, 98);
 				{
 				setState(1445);
@@ -8874,7 +4540,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case SUBSTITUTE:
-				_localctx = new SUBSTITUTE_fun2Context(_localctx);
+				_localctx = new SUBSTITUTE_funContext(_localctx);
 				enterOuterAlt(_localctx, 99);
 				{
 				setState(1456);
@@ -8908,7 +4574,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case T:
-				_localctx = new T_fun2Context(_localctx);
+				_localctx = new T_funContext(_localctx);
 				enterOuterAlt(_localctx, 100);
 				{
 				setState(1469);
@@ -8922,7 +4588,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case TEXT:
-				_localctx = new TEXT_fun2Context(_localctx);
+				_localctx = new TEXT_funContext(_localctx);
 				enterOuterAlt(_localctx, 101);
 				{
 				setState(1474);
@@ -8940,7 +4606,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case TRIM:
-				_localctx = new TRIM_fun2Context(_localctx);
+				_localctx = new TRIM_funContext(_localctx);
 				enterOuterAlt(_localctx, 102);
 				{
 				setState(1481);
@@ -8954,7 +4620,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case UPPER:
-				_localctx = new UPPER_fun2Context(_localctx);
+				_localctx = new UPPER_funContext(_localctx);
 				enterOuterAlt(_localctx, 103);
 				{
 				setState(1486);
@@ -8968,7 +4634,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case VALUE:
-				_localctx = new VALUE_fun2Context(_localctx);
+				_localctx = new VALUE_funContext(_localctx);
 				enterOuterAlt(_localctx, 104);
 				{
 				setState(1491);
@@ -8982,7 +4648,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case DATEVALUE:
-				_localctx = new DATEVALUE_fun2Context(_localctx);
+				_localctx = new DATEVALUE_funContext(_localctx);
 				enterOuterAlt(_localctx, 105);
 				{
 				setState(1496);
@@ -8996,7 +4662,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case TIMEVALUE:
-				_localctx = new TIMEVALUE_fun2Context(_localctx);
+				_localctx = new TIMEVALUE_funContext(_localctx);
 				enterOuterAlt(_localctx, 106);
 				{
 				setState(1501);
@@ -9010,7 +4676,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case DATE:
-				_localctx = new DATE_fun2Context(_localctx);
+				_localctx = new DATE_funContext(_localctx);
 				enterOuterAlt(_localctx, 107);
 				{
 				setState(1506);
@@ -9068,7 +4734,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case TIME:
-				_localctx = new TIME_fun2Context(_localctx);
+				_localctx = new TIME_funContext(_localctx);
 				enterOuterAlt(_localctx, 108);
 				{
 				setState(1527);
@@ -9098,7 +4764,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case NOW:
-				_localctx = new NOW_fun2Context(_localctx);
+				_localctx = new NOW_funContext(_localctx);
 				enterOuterAlt(_localctx, 109);
 				{
 				setState(1538);
@@ -9110,7 +4776,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case TODAY:
-				_localctx = new TODAY_fun2Context(_localctx);
+				_localctx = new TODAY_funContext(_localctx);
 				enterOuterAlt(_localctx, 110);
 				{
 				setState(1541);
@@ -9122,7 +4788,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case YEAR:
-				_localctx = new YEAR_fun2Context(_localctx);
+				_localctx = new YEAR_funContext(_localctx);
 				enterOuterAlt(_localctx, 111);
 				{
 				setState(1544);
@@ -9136,7 +4802,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case MONTH:
-				_localctx = new MONTH_fun2Context(_localctx);
+				_localctx = new MONTH_funContext(_localctx);
 				enterOuterAlt(_localctx, 112);
 				{
 				setState(1549);
@@ -9150,7 +4816,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case DAY:
-				_localctx = new DAY_fun2Context(_localctx);
+				_localctx = new DAY_funContext(_localctx);
 				enterOuterAlt(_localctx, 113);
 				{
 				setState(1554);
@@ -9164,7 +4830,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case HOUR:
-				_localctx = new HOUR_fun2Context(_localctx);
+				_localctx = new HOUR_funContext(_localctx);
 				enterOuterAlt(_localctx, 114);
 				{
 				setState(1559);
@@ -9178,7 +4844,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case MINUTE:
-				_localctx = new MINUTE_fun2Context(_localctx);
+				_localctx = new MINUTE_funContext(_localctx);
 				enterOuterAlt(_localctx, 115);
 				{
 				setState(1564);
@@ -9192,7 +4858,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case SECOND:
-				_localctx = new SECOND_fun2Context(_localctx);
+				_localctx = new SECOND_funContext(_localctx);
 				enterOuterAlt(_localctx, 116);
 				{
 				setState(1569);
@@ -9206,7 +4872,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case WEEKDAY:
-				_localctx = new WEEKDAY_fun2Context(_localctx);
+				_localctx = new WEEKDAY_funContext(_localctx);
 				enterOuterAlt(_localctx, 117);
 				{
 				setState(1574);
@@ -9232,7 +4898,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case DATEDIF:
-				_localctx = new DATEDIF_fun2Context(_localctx);
+				_localctx = new DATEDIF_funContext(_localctx);
 				enterOuterAlt(_localctx, 118);
 				{
 				setState(1583);
@@ -9254,7 +4920,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case DAYS360:
-				_localctx = new DAYS360_fun2Context(_localctx);
+				_localctx = new DAYS360_funContext(_localctx);
 				enterOuterAlt(_localctx, 119);
 				{
 				setState(1592);
@@ -9284,7 +4950,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case EDATE:
-				_localctx = new EDATE_fun2Context(_localctx);
+				_localctx = new EDATE_funContext(_localctx);
 				enterOuterAlt(_localctx, 120);
 				{
 				setState(1603);
@@ -9302,7 +4968,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case EOMONTH:
-				_localctx = new EOMONTH_fun2Context(_localctx);
+				_localctx = new EOMONTH_funContext(_localctx);
 				enterOuterAlt(_localctx, 121);
 				{
 				setState(1610);
@@ -9320,7 +4986,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case NETWORKDAYS:
-				_localctx = new NETWORKDAYS_fun2Context(_localctx);
+				_localctx = new NETWORKDAYS_funContext(_localctx);
 				enterOuterAlt(_localctx, 122);
 				{
 				setState(1617);
@@ -9350,7 +5016,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case WORKDAY:
-				_localctx = new WORKDAY_fun2Context(_localctx);
+				_localctx = new WORKDAY_funContext(_localctx);
 				enterOuterAlt(_localctx, 123);
 				{
 				setState(1628);
@@ -9380,7 +5046,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case WEEKNUM:
-				_localctx = new WEEKNUM_fun2Context(_localctx);
+				_localctx = new WEEKNUM_funContext(_localctx);
 				enterOuterAlt(_localctx, 124);
 				{
 				setState(1639);
@@ -9406,7 +5072,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case MAX:
-				_localctx = new MAX_fun2Context(_localctx);
+				_localctx = new MAX_funContext(_localctx);
 				enterOuterAlt(_localctx, 125);
 				{
 				setState(1648);
@@ -9436,7 +5102,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case MEDIAN:
-				_localctx = new MEDIAN_fun2Context(_localctx);
+				_localctx = new MEDIAN_funContext(_localctx);
 				enterOuterAlt(_localctx, 126);
 				{
 				setState(1659);
@@ -9466,7 +5132,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case MIN:
-				_localctx = new MIN_fun2Context(_localctx);
+				_localctx = new MIN_funContext(_localctx);
 				enterOuterAlt(_localctx, 127);
 				{
 				setState(1670);
@@ -9496,7 +5162,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case QUARTILE:
-				_localctx = new QUARTILE_fun2Context(_localctx);
+				_localctx = new QUARTILE_funContext(_localctx);
 				enterOuterAlt(_localctx, 128);
 				{
 				setState(1681);
@@ -9514,7 +5180,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case MODE:
-				_localctx = new MODE_fun2Context(_localctx);
+				_localctx = new MODE_funContext(_localctx);
 				enterOuterAlt(_localctx, 129);
 				{
 				setState(1688);
@@ -9544,7 +5210,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case LARGE:
-				_localctx = new LARGE_fun2Context(_localctx);
+				_localctx = new LARGE_funContext(_localctx);
 				enterOuterAlt(_localctx, 130);
 				{
 				setState(1700);
@@ -9562,7 +5228,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case SMALL:
-				_localctx = new SMALL_fun2Context(_localctx);
+				_localctx = new SMALL_funContext(_localctx);
 				enterOuterAlt(_localctx, 131);
 				{
 				setState(1707);
@@ -9580,7 +5246,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case PERCENTILE:
-				_localctx = new PERCENTILE_fun2Context(_localctx);
+				_localctx = new PERCENTILE_funContext(_localctx);
 				enterOuterAlt(_localctx, 132);
 				{
 				setState(1714);
@@ -9598,7 +5264,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case PERCENTRANK:
-				_localctx = new PERCENTRANK_fun2Context(_localctx);
+				_localctx = new PERCENTRANK_funContext(_localctx);
 				enterOuterAlt(_localctx, 133);
 				{
 				setState(1721);
@@ -9616,7 +5282,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case AVERAGE:
-				_localctx = new AVERAGE_fun2Context(_localctx);
+				_localctx = new AVERAGE_funContext(_localctx);
 				enterOuterAlt(_localctx, 134);
 				{
 				setState(1728);
@@ -9646,7 +5312,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case AVERAGEIF:
-				_localctx = new AVERAGEIF_fun2Context(_localctx);
+				_localctx = new AVERAGEIF_funContext(_localctx);
 				enterOuterAlt(_localctx, 135);
 				{
 				setState(1740);
@@ -9676,7 +5342,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case GEOMEAN:
-				_localctx = new GEOMEAN_fun2Context(_localctx);
+				_localctx = new GEOMEAN_funContext(_localctx);
 				enterOuterAlt(_localctx, 136);
 				{
 				setState(1751);
@@ -9706,7 +5372,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case HARMEAN:
-				_localctx = new HARMEAN_fun2Context(_localctx);
+				_localctx = new HARMEAN_funContext(_localctx);
 				enterOuterAlt(_localctx, 137);
 				{
 				setState(1763);
@@ -9736,7 +5402,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case COUNT:
-				_localctx = new COUNT_fun2Context(_localctx);
+				_localctx = new COUNT_funContext(_localctx);
 				enterOuterAlt(_localctx, 138);
 				{
 				setState(1775);
@@ -9766,7 +5432,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case COUNTIF:
-				_localctx = new COUNTIF_fun2Context(_localctx);
+				_localctx = new COUNTIF_funContext(_localctx);
 				enterOuterAlt(_localctx, 139);
 				{
 				setState(1787);
@@ -9796,7 +5462,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case SUM:
-				_localctx = new SUM_fun2Context(_localctx);
+				_localctx = new SUM_funContext(_localctx);
 				enterOuterAlt(_localctx, 140);
 				{
 				setState(1799);
@@ -9826,7 +5492,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case SUMIF:
-				_localctx = new SUMIF_fun2Context(_localctx);
+				_localctx = new SUMIF_funContext(_localctx);
 				enterOuterAlt(_localctx, 141);
 				{
 				setState(1811);
@@ -9856,7 +5522,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case AVEDEV:
-				_localctx = new AVEDEV_fun2Context(_localctx);
+				_localctx = new AVEDEV_funContext(_localctx);
 				enterOuterAlt(_localctx, 142);
 				{
 				setState(1822);
@@ -9886,7 +5552,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case STDEV:
-				_localctx = new STDEV_fun2Context(_localctx);
+				_localctx = new STDEV_funContext(_localctx);
 				enterOuterAlt(_localctx, 143);
 				{
 				setState(1834);
@@ -9916,7 +5582,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case STDEVP:
-				_localctx = new STDEVP_fun2Context(_localctx);
+				_localctx = new STDEVP_funContext(_localctx);
 				enterOuterAlt(_localctx, 144);
 				{
 				setState(1846);
@@ -9946,7 +5612,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case DEVSQ:
-				_localctx = new DEVSQ_fun2Context(_localctx);
+				_localctx = new DEVSQ_funContext(_localctx);
 				enterOuterAlt(_localctx, 145);
 				{
 				setState(1858);
@@ -9976,7 +5642,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case VAR:
-				_localctx = new VAR_fun2Context(_localctx);
+				_localctx = new VAR_funContext(_localctx);
 				enterOuterAlt(_localctx, 146);
 				{
 				setState(1870);
@@ -10006,7 +5672,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case VARP:
-				_localctx = new VARP_fun2Context(_localctx);
+				_localctx = new VARP_funContext(_localctx);
 				enterOuterAlt(_localctx, 147);
 				{
 				setState(1882);
@@ -10036,7 +5702,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case NORMDIST:
-				_localctx = new NORMDIST_fun2Context(_localctx);
+				_localctx = new NORMDIST_funContext(_localctx);
 				enterOuterAlt(_localctx, 148);
 				{
 				setState(1894);
@@ -10062,7 +5728,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case NORMINV:
-				_localctx = new NORMINV_fun2Context(_localctx);
+				_localctx = new NORMINV_funContext(_localctx);
 				enterOuterAlt(_localctx, 149);
 				{
 				setState(1905);
@@ -10084,7 +5750,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case NORMSDIST:
-				_localctx = new NORMSDIST_fun2Context(_localctx);
+				_localctx = new NORMSDIST_funContext(_localctx);
 				enterOuterAlt(_localctx, 150);
 				{
 				setState(1914);
@@ -10098,7 +5764,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case NORMSINV:
-				_localctx = new NORMSINV_fun2Context(_localctx);
+				_localctx = new NORMSINV_funContext(_localctx);
 				enterOuterAlt(_localctx, 151);
 				{
 				setState(1919);
@@ -10112,7 +5778,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case BETADIST:
-				_localctx = new BETADIST_fun2Context(_localctx);
+				_localctx = new BETADIST_funContext(_localctx);
 				enterOuterAlt(_localctx, 152);
 				{
 				setState(1924);
@@ -10134,7 +5800,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case BETAINV:
-				_localctx = new BETAINV_fun2Context(_localctx);
+				_localctx = new BETAINV_funContext(_localctx);
 				enterOuterAlt(_localctx, 153);
 				{
 				setState(1933);
@@ -10156,7 +5822,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case BINOMDIST:
-				_localctx = new BINOMDIST_fun2Context(_localctx);
+				_localctx = new BINOMDIST_funContext(_localctx);
 				enterOuterAlt(_localctx, 154);
 				{
 				setState(1942);
@@ -10182,7 +5848,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case EXPONDIST:
-				_localctx = new EXPONDIST_fun2Context(_localctx);
+				_localctx = new EXPONDIST_funContext(_localctx);
 				enterOuterAlt(_localctx, 155);
 				{
 				setState(1953);
@@ -10204,7 +5870,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case FDIST:
-				_localctx = new FDIST_fun2Context(_localctx);
+				_localctx = new FDIST_funContext(_localctx);
 				enterOuterAlt(_localctx, 156);
 				{
 				setState(1962);
@@ -10226,7 +5892,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case FINV:
-				_localctx = new FINV_fun2Context(_localctx);
+				_localctx = new FINV_funContext(_localctx);
 				enterOuterAlt(_localctx, 157);
 				{
 				setState(1971);
@@ -10248,7 +5914,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case FISHER:
-				_localctx = new FISHER_fun2Context(_localctx);
+				_localctx = new FISHER_funContext(_localctx);
 				enterOuterAlt(_localctx, 158);
 				{
 				setState(1980);
@@ -10262,7 +5928,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case FISHERINV:
-				_localctx = new FISHERINV_fun2Context(_localctx);
+				_localctx = new FISHERINV_funContext(_localctx);
 				enterOuterAlt(_localctx, 159);
 				{
 				setState(1985);
@@ -10276,7 +5942,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case GAMMADIST:
-				_localctx = new GAMMADIST_fun2Context(_localctx);
+				_localctx = new GAMMADIST_funContext(_localctx);
 				enterOuterAlt(_localctx, 160);
 				{
 				setState(1990);
@@ -10302,7 +5968,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case GAMMAINV:
-				_localctx = new GAMMAINV_fun2Context(_localctx);
+				_localctx = new GAMMAINV_funContext(_localctx);
 				enterOuterAlt(_localctx, 161);
 				{
 				setState(2001);
@@ -10324,7 +5990,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case GAMMALN:
-				_localctx = new GAMMALN_fun2Context(_localctx);
+				_localctx = new GAMMALN_funContext(_localctx);
 				enterOuterAlt(_localctx, 162);
 				{
 				setState(2010);
@@ -10338,7 +6004,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case HYPGEOMDIST:
-				_localctx = new HYPGEOMDIST_fun2Context(_localctx);
+				_localctx = new HYPGEOMDIST_funContext(_localctx);
 				enterOuterAlt(_localctx, 163);
 				{
 				setState(2015);
@@ -10364,7 +6030,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case LOGINV:
-				_localctx = new LOGINV_fun2Context(_localctx);
+				_localctx = new LOGINV_funContext(_localctx);
 				enterOuterAlt(_localctx, 164);
 				{
 				setState(2026);
@@ -10386,7 +6052,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case LOGNORMDIST:
-				_localctx = new LOGNORMDIST_fun2Context(_localctx);
+				_localctx = new LOGNORMDIST_funContext(_localctx);
 				enterOuterAlt(_localctx, 165);
 				{
 				setState(2035);
@@ -10408,7 +6074,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case NEGBINOMDIST:
-				_localctx = new NEGBINOMDIST_fun2Context(_localctx);
+				_localctx = new NEGBINOMDIST_funContext(_localctx);
 				enterOuterAlt(_localctx, 166);
 				{
 				setState(2044);
@@ -10430,7 +6096,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case POISSON:
-				_localctx = new POISSON_fun2Context(_localctx);
+				_localctx = new POISSON_funContext(_localctx);
 				enterOuterAlt(_localctx, 167);
 				{
 				setState(2053);
@@ -10452,7 +6118,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case TDIST:
-				_localctx = new TDIST_fun2Context(_localctx);
+				_localctx = new TDIST_funContext(_localctx);
 				enterOuterAlt(_localctx, 168);
 				{
 				setState(2062);
@@ -10474,7 +6140,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case TINV:
-				_localctx = new TINV_fun2Context(_localctx);
+				_localctx = new TINV_funContext(_localctx);
 				enterOuterAlt(_localctx, 169);
 				{
 				setState(2071);
@@ -10492,7 +6158,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case WEIBULL:
-				_localctx = new WEIBULL_fun2Context(_localctx);
+				_localctx = new WEIBULL_funContext(_localctx);
 				enterOuterAlt(_localctx, 170);
 				{
 				setState(2078);
@@ -10518,7 +6184,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case URLENCODE:
-				_localctx = new URLENCODE_fun2Context(_localctx);
+				_localctx = new URLENCODE_funContext(_localctx);
 				enterOuterAlt(_localctx, 171);
 				{
 				setState(2089);
@@ -10532,7 +6198,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case URLDECODE:
-				_localctx = new URLDECODE_fun2Context(_localctx);
+				_localctx = new URLDECODE_funContext(_localctx);
 				enterOuterAlt(_localctx, 172);
 				{
 				setState(2094);
@@ -10546,7 +6212,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case HTMLENCODE:
-				_localctx = new HTMLENCODE_fun2Context(_localctx);
+				_localctx = new HTMLENCODE_funContext(_localctx);
 				enterOuterAlt(_localctx, 173);
 				{
 				setState(2099);
@@ -10560,7 +6226,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case HTMLDECODE:
-				_localctx = new HTMLDECODE_fun2Context(_localctx);
+				_localctx = new HTMLDECODE_funContext(_localctx);
 				enterOuterAlt(_localctx, 174);
 				{
 				setState(2104);
@@ -10574,7 +6240,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case BASE64TOTEXT:
-				_localctx = new BASE64TOTEXT_fun2Context(_localctx);
+				_localctx = new BASE64TOTEXT_funContext(_localctx);
 				enterOuterAlt(_localctx, 175);
 				{
 				setState(2109);
@@ -10600,7 +6266,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case BASE64URLTOTEXT:
-				_localctx = new BASE64URLTOTEXT_fun2Context(_localctx);
+				_localctx = new BASE64URLTOTEXT_funContext(_localctx);
 				enterOuterAlt(_localctx, 176);
 				{
 				setState(2118);
@@ -10626,7 +6292,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case TEXTTOBASE64:
-				_localctx = new TEXTTOBASE64_fun2Context(_localctx);
+				_localctx = new TEXTTOBASE64_funContext(_localctx);
 				enterOuterAlt(_localctx, 177);
 				{
 				setState(2127);
@@ -10652,7 +6318,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case TEXTTOBASE64URL:
-				_localctx = new TEXTTOBASE64URL_fun2Context(_localctx);
+				_localctx = new TEXTTOBASE64URL_funContext(_localctx);
 				enterOuterAlt(_localctx, 178);
 				{
 				setState(2136);
@@ -10678,7 +6344,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case REGEX:
-				_localctx = new REGEX_fun2Context(_localctx);
+				_localctx = new REGEX_funContext(_localctx);
 				enterOuterAlt(_localctx, 179);
 				{
 				setState(2145);
@@ -10720,7 +6386,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case REGEXREPALCE:
-				_localctx = new REGEXREPALCE_fun2Context(_localctx);
+				_localctx = new REGEXREPALCE_funContext(_localctx);
 				enterOuterAlt(_localctx, 180);
 				{
 				setState(2160);
@@ -10742,7 +6408,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case ISREGEX:
-				_localctx = new ISREGEX_fun2Context(_localctx);
+				_localctx = new ISREGEX_funContext(_localctx);
 				enterOuterAlt(_localctx, 181);
 				{
 				setState(2169);
@@ -10760,7 +6426,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case GUID:
-				_localctx = new GUID_fun2Context(_localctx);
+				_localctx = new GUID_funContext(_localctx);
 				enterOuterAlt(_localctx, 182);
 				{
 				setState(2176);
@@ -10772,7 +6438,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case MD5:
-				_localctx = new MD5_fun2Context(_localctx);
+				_localctx = new MD5_funContext(_localctx);
 				enterOuterAlt(_localctx, 183);
 				{
 				setState(2179);
@@ -10798,7 +6464,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case SHA1:
-				_localctx = new SHA1_fun2Context(_localctx);
+				_localctx = new SHA1_funContext(_localctx);
 				enterOuterAlt(_localctx, 184);
 				{
 				setState(2188);
@@ -10824,7 +6490,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case SHA256:
-				_localctx = new SHA256_fun2Context(_localctx);
+				_localctx = new SHA256_funContext(_localctx);
 				enterOuterAlt(_localctx, 185);
 				{
 				setState(2197);
@@ -10850,7 +6516,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case SHA512:
-				_localctx = new SHA512_fun2Context(_localctx);
+				_localctx = new SHA512_funContext(_localctx);
 				enterOuterAlt(_localctx, 186);
 				{
 				setState(2206);
@@ -10876,7 +6542,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case CRC8:
-				_localctx = new CRC8_fun2Context(_localctx);
+				_localctx = new CRC8_funContext(_localctx);
 				enterOuterAlt(_localctx, 187);
 				{
 				setState(2215);
@@ -10902,7 +6568,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case CRC16:
-				_localctx = new CRC16_fun2Context(_localctx);
+				_localctx = new CRC16_funContext(_localctx);
 				enterOuterAlt(_localctx, 188);
 				{
 				setState(2224);
@@ -10928,7 +6594,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case CRC32:
-				_localctx = new CRC32_fun2Context(_localctx);
+				_localctx = new CRC32_funContext(_localctx);
 				enterOuterAlt(_localctx, 189);
 				{
 				setState(2233);
@@ -10954,7 +6620,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case HMACMD5:
-				_localctx = new HMACMD5_fun2Context(_localctx);
+				_localctx = new HMACMD5_funContext(_localctx);
 				enterOuterAlt(_localctx, 190);
 				{
 				setState(2242);
@@ -10984,7 +6650,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case HMACSHA1:
-				_localctx = new HMACSHA1_fun2Context(_localctx);
+				_localctx = new HMACSHA1_funContext(_localctx);
 				enterOuterAlt(_localctx, 191);
 				{
 				setState(2253);
@@ -11014,7 +6680,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case HMACSHA256:
-				_localctx = new HMACSHA256_fun2Context(_localctx);
+				_localctx = new HMACSHA256_funContext(_localctx);
 				enterOuterAlt(_localctx, 192);
 				{
 				setState(2264);
@@ -11044,7 +6710,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case HMACSHA512:
-				_localctx = new HMACSHA512_fun2Context(_localctx);
+				_localctx = new HMACSHA512_funContext(_localctx);
 				enterOuterAlt(_localctx, 193);
 				{
 				setState(2275);
@@ -11074,7 +6740,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case TRIMSTART:
-				_localctx = new TRIMSTART_fun2Context(_localctx);
+				_localctx = new TRIMSTART_funContext(_localctx);
 				enterOuterAlt(_localctx, 194);
 				{
 				setState(2286);
@@ -11100,7 +6766,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case TRIMEND:
-				_localctx = new TRIMEND_fun2Context(_localctx);
+				_localctx = new TRIMEND_funContext(_localctx);
 				enterOuterAlt(_localctx, 195);
 				{
 				setState(2295);
@@ -11126,7 +6792,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case INDEXOF:
-				_localctx = new INDEXOF_fun2Context(_localctx);
+				_localctx = new INDEXOF_funContext(_localctx);
 				enterOuterAlt(_localctx, 196);
 				{
 				setState(2304);
@@ -11168,7 +6834,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case LASTINDEXOF:
-				_localctx = new LASTINDEXOF_fun2Context(_localctx);
+				_localctx = new LASTINDEXOF_funContext(_localctx);
 				enterOuterAlt(_localctx, 197);
 				{
 				setState(2319);
@@ -11210,7 +6876,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case SPLIT:
-				_localctx = new SPLIT_fun2Context(_localctx);
+				_localctx = new SPLIT_funContext(_localctx);
 				enterOuterAlt(_localctx, 198);
 				{
 				setState(2334);
@@ -11228,7 +6894,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case JOIN:
-				_localctx = new JOIN_fun2Context(_localctx);
+				_localctx = new JOIN_funContext(_localctx);
 				enterOuterAlt(_localctx, 199);
 				{
 				setState(2341);
@@ -11258,7 +6924,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case SUBSTRING:
-				_localctx = new SUBSTRING_fun2Context(_localctx);
+				_localctx = new SUBSTRING_funContext(_localctx);
 				enterOuterAlt(_localctx, 200);
 				{
 				setState(2352);
@@ -11288,7 +6954,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case STARTSWITH:
-				_localctx = new STARTSWITH_fun2Context(_localctx);
+				_localctx = new STARTSWITH_funContext(_localctx);
 				enterOuterAlt(_localctx, 201);
 				{
 				setState(2363);
@@ -11318,7 +6984,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case ENDSWITH:
-				_localctx = new ENDSWITH_fun2Context(_localctx);
+				_localctx = new ENDSWITH_funContext(_localctx);
 				enterOuterAlt(_localctx, 202);
 				{
 				setState(2374);
@@ -11348,7 +7014,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case ISNULLOREMPTY:
-				_localctx = new ISNULLOREMPTY_fun2Context(_localctx);
+				_localctx = new ISNULLOREMPTY_funContext(_localctx);
 				enterOuterAlt(_localctx, 203);
 				{
 				setState(2385);
@@ -11362,7 +7028,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case ISNULLORWHITESPACE:
-				_localctx = new ISNULLORWHITESPACE_fun2Context(_localctx);
+				_localctx = new ISNULLORWHITESPACE_funContext(_localctx);
 				enterOuterAlt(_localctx, 204);
 				{
 				setState(2390);
@@ -11376,7 +7042,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case REMOVESTART:
-				_localctx = new REMOVESTART_fun2Context(_localctx);
+				_localctx = new REMOVESTART_funContext(_localctx);
 				enterOuterAlt(_localctx, 205);
 				{
 				setState(2395);
@@ -11414,7 +7080,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case REMOVEEND:
-				_localctx = new REMOVEEND_fun2Context(_localctx);
+				_localctx = new REMOVEEND_funContext(_localctx);
 				enterOuterAlt(_localctx, 206);
 				{
 				setState(2408);
@@ -11452,7 +7118,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case JSON:
-				_localctx = new JSON_fun2Context(_localctx);
+				_localctx = new JSON_funContext(_localctx);
 				enterOuterAlt(_localctx, 207);
 				{
 				setState(2421);
@@ -11466,7 +7132,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case VLOOKUP:
-				_localctx = new VLOOKUP_fun2Context(_localctx);
+				_localctx = new VLOOKUP_funContext(_localctx);
 				enterOuterAlt(_localctx, 208);
 				{
 				setState(2426);
@@ -11500,7 +7166,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case LOOKUP:
-				_localctx = new LOOKUP_fun2Context(_localctx);
+				_localctx = new LOOKUP_funContext(_localctx);
 				enterOuterAlt(_localctx, 209);
 				{
 				setState(2439);
@@ -11522,7 +7188,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case PARAMETER:
-				_localctx = new DiyFunction_fun2Context(_localctx);
+				_localctx = new DiyFunction_funContext(_localctx);
 				enterOuterAlt(_localctx, 210);
 				{
 				setState(2448);
@@ -11560,7 +7226,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case T__19:
-				_localctx = new PARAMETER_fun2Context(_localctx);
+				_localctx = new PARAMETER_funContext(_localctx);
 				enterOuterAlt(_localctx, 211);
 				{
 				setState(2461);
@@ -11573,7 +7239,7 @@ public class mathParser extends Parser {
 				break;
 			case SUB:
 			case NUM:
-				_localctx = new NUM_fun2Context(_localctx);
+				_localctx = new NUM_funContext(_localctx);
 				enterOuterAlt(_localctx, 212);
 				{
 				setState(2466);
@@ -11591,7 +7257,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case STRING:
-				_localctx = new STRING_fun2Context(_localctx);
+				_localctx = new STRING_funContext(_localctx);
 				enterOuterAlt(_localctx, 213);
 				{
 				setState(2469);
@@ -11599,7 +7265,7 @@ public class mathParser extends Parser {
 				}
 				break;
 			case NULL:
-				_localctx = new NULL_fun2Context(_localctx);
+				_localctx = new NULL_funContext(_localctx);
 				enterOuterAlt(_localctx, 214);
 				{
 				setState(2470);
@@ -11621,23 +7287,7 @@ public class mathParser extends Parser {
 		return _localctx;
 	}
 
-	public static class ParameterContext extends ParserRuleContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public Parameter2Context parameter2() {
-			return getRuleContext(Parameter2Context.class,0);
-		}
-		public ParameterContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_parameter; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitParameter(this);
-			else return visitor.visitChildren(this);
-		}
-	}
+
 
 	public final ParameterContext parameter() throws RecognitionException {
 		ParameterContext _localctx = new ParameterContext(_ctx, getState());
@@ -11673,227 +7323,6 @@ public class mathParser extends Parser {
 		return _localctx;
 	}
 
-	public static class Parameter2Context extends ParserRuleContext {
-		public TerminalNode E() { return getToken(mathParser.E, 0); }
-		public TerminalNode IF() { return getToken(mathParser.IF, 0); }
-		public TerminalNode IFERROR() { return getToken(mathParser.IFERROR, 0); }
-		public TerminalNode ISNUMBER() { return getToken(mathParser.ISNUMBER, 0); }
-		public TerminalNode ISTEXT() { return getToken(mathParser.ISTEXT, 0); }
-		public TerminalNode ISERROR() { return getToken(mathParser.ISERROR, 0); }
-		public TerminalNode ISNONTEXT() { return getToken(mathParser.ISNONTEXT, 0); }
-		public TerminalNode ISLOGICAL() { return getToken(mathParser.ISLOGICAL, 0); }
-		public TerminalNode ISEVEN() { return getToken(mathParser.ISEVEN, 0); }
-		public TerminalNode ISODD() { return getToken(mathParser.ISODD, 0); }
-		public TerminalNode ISNULL() { return getToken(mathParser.ISNULL, 0); }
-		public TerminalNode ISNULLORERROR() { return getToken(mathParser.ISNULLORERROR, 0); }
-		public TerminalNode AND() { return getToken(mathParser.AND, 0); }
-		public TerminalNode OR() { return getToken(mathParser.OR, 0); }
-		public TerminalNode NOT() { return getToken(mathParser.NOT, 0); }
-		public TerminalNode TRUE() { return getToken(mathParser.TRUE, 0); }
-		public TerminalNode FALSE() { return getToken(mathParser.FALSE, 0); }
-		public TerminalNode PI() { return getToken(mathParser.PI, 0); }
-		public TerminalNode DEC2BIN() { return getToken(mathParser.DEC2BIN, 0); }
-		public TerminalNode DEC2HEX() { return getToken(mathParser.DEC2HEX, 0); }
-		public TerminalNode DEC2OCT() { return getToken(mathParser.DEC2OCT, 0); }
-		public TerminalNode HEX2BIN() { return getToken(mathParser.HEX2BIN, 0); }
-		public TerminalNode HEX2DEC() { return getToken(mathParser.HEX2DEC, 0); }
-		public TerminalNode HEX2OCT() { return getToken(mathParser.HEX2OCT, 0); }
-		public TerminalNode OCT2BIN() { return getToken(mathParser.OCT2BIN, 0); }
-		public TerminalNode OCT2DEC() { return getToken(mathParser.OCT2DEC, 0); }
-		public TerminalNode OCT2HEX() { return getToken(mathParser.OCT2HEX, 0); }
-		public TerminalNode BIN2OCT() { return getToken(mathParser.BIN2OCT, 0); }
-		public TerminalNode BIN2DEC() { return getToken(mathParser.BIN2DEC, 0); }
-		public TerminalNode BIN2HEX() { return getToken(mathParser.BIN2HEX, 0); }
-		public TerminalNode ABS() { return getToken(mathParser.ABS, 0); }
-		public TerminalNode QUOTIENT() { return getToken(mathParser.QUOTIENT, 0); }
-		public TerminalNode MOD() { return getToken(mathParser.MOD, 0); }
-		public TerminalNode SIGN() { return getToken(mathParser.SIGN, 0); }
-		public TerminalNode SQRT() { return getToken(mathParser.SQRT, 0); }
-		public TerminalNode TRUNC() { return getToken(mathParser.TRUNC, 0); }
-		public TerminalNode INT() { return getToken(mathParser.INT, 0); }
-		public TerminalNode GCD() { return getToken(mathParser.GCD, 0); }
-		public TerminalNode LCM() { return getToken(mathParser.LCM, 0); }
-		public TerminalNode COMBIN() { return getToken(mathParser.COMBIN, 0); }
-		public TerminalNode PERMUT() { return getToken(mathParser.PERMUT, 0); }
-		public TerminalNode DEGREES() { return getToken(mathParser.DEGREES, 0); }
-		public TerminalNode RADIANS() { return getToken(mathParser.RADIANS, 0); }
-		public TerminalNode COS() { return getToken(mathParser.COS, 0); }
-		public TerminalNode COSH() { return getToken(mathParser.COSH, 0); }
-		public TerminalNode SIN() { return getToken(mathParser.SIN, 0); }
-		public TerminalNode SINH() { return getToken(mathParser.SINH, 0); }
-		public TerminalNode TAN() { return getToken(mathParser.TAN, 0); }
-		public TerminalNode TANH() { return getToken(mathParser.TANH, 0); }
-		public TerminalNode ACOS() { return getToken(mathParser.ACOS, 0); }
-		public TerminalNode ACOSH() { return getToken(mathParser.ACOSH, 0); }
-		public TerminalNode ASIN() { return getToken(mathParser.ASIN, 0); }
-		public TerminalNode ASINH() { return getToken(mathParser.ASINH, 0); }
-		public TerminalNode ATAN() { return getToken(mathParser.ATAN, 0); }
-		public TerminalNode ATANH() { return getToken(mathParser.ATANH, 0); }
-		public TerminalNode ATAN2() { return getToken(mathParser.ATAN2, 0); }
-		public TerminalNode ROUND() { return getToken(mathParser.ROUND, 0); }
-		public TerminalNode ROUNDDOWN() { return getToken(mathParser.ROUNDDOWN, 0); }
-		public TerminalNode ROUNDUP() { return getToken(mathParser.ROUNDUP, 0); }
-		public TerminalNode CEILING() { return getToken(mathParser.CEILING, 0); }
-		public TerminalNode FLOOR() { return getToken(mathParser.FLOOR, 0); }
-		public TerminalNode EVEN() { return getToken(mathParser.EVEN, 0); }
-		public TerminalNode ODD() { return getToken(mathParser.ODD, 0); }
-		public TerminalNode MROUND() { return getToken(mathParser.MROUND, 0); }
-		public TerminalNode RAND() { return getToken(mathParser.RAND, 0); }
-		public TerminalNode RANDBETWEEN() { return getToken(mathParser.RANDBETWEEN, 0); }
-		public TerminalNode FACT() { return getToken(mathParser.FACT, 0); }
-		public TerminalNode FACTDOUBLE() { return getToken(mathParser.FACTDOUBLE, 0); }
-		public TerminalNode POWER() { return getToken(mathParser.POWER, 0); }
-		public TerminalNode EXP() { return getToken(mathParser.EXP, 0); }
-		public TerminalNode LN() { return getToken(mathParser.LN, 0); }
-		public TerminalNode LOG() { return getToken(mathParser.LOG, 0); }
-		public TerminalNode LOG10() { return getToken(mathParser.LOG10, 0); }
-		public TerminalNode MULTINOMIAL() { return getToken(mathParser.MULTINOMIAL, 0); }
-		public TerminalNode PRODUCT() { return getToken(mathParser.PRODUCT, 0); }
-		public TerminalNode SQRTPI() { return getToken(mathParser.SQRTPI, 0); }
-		public TerminalNode SUMSQ() { return getToken(mathParser.SUMSQ, 0); }
-		public TerminalNode ASC() { return getToken(mathParser.ASC, 0); }
-		public TerminalNode JIS() { return getToken(mathParser.JIS, 0); }
-		public TerminalNode CHAR() { return getToken(mathParser.CHAR, 0); }
-		public TerminalNode CLEAN() { return getToken(mathParser.CLEAN, 0); }
-		public TerminalNode CODE() { return getToken(mathParser.CODE, 0); }
-		public TerminalNode CONCATENATE() { return getToken(mathParser.CONCATENATE, 0); }
-		public TerminalNode EXACT() { return getToken(mathParser.EXACT, 0); }
-		public TerminalNode FIND() { return getToken(mathParser.FIND, 0); }
-		public TerminalNode FIXED() { return getToken(mathParser.FIXED, 0); }
-		public TerminalNode LEFT() { return getToken(mathParser.LEFT, 0); }
-		public TerminalNode LEN() { return getToken(mathParser.LEN, 0); }
-		public TerminalNode LOWER() { return getToken(mathParser.LOWER, 0); }
-		public TerminalNode MID() { return getToken(mathParser.MID, 0); }
-		public TerminalNode PROPER() { return getToken(mathParser.PROPER, 0); }
-		public TerminalNode REPLACE() { return getToken(mathParser.REPLACE, 0); }
-		public TerminalNode REPT() { return getToken(mathParser.REPT, 0); }
-		public TerminalNode RIGHT() { return getToken(mathParser.RIGHT, 0); }
-		public TerminalNode RMB() { return getToken(mathParser.RMB, 0); }
-		public TerminalNode SEARCH() { return getToken(mathParser.SEARCH, 0); }
-		public TerminalNode SUBSTITUTE() { return getToken(mathParser.SUBSTITUTE, 0); }
-		public TerminalNode T() { return getToken(mathParser.T, 0); }
-		public TerminalNode TEXT() { return getToken(mathParser.TEXT, 0); }
-		public TerminalNode TRIM() { return getToken(mathParser.TRIM, 0); }
-		public TerminalNode UPPER() { return getToken(mathParser.UPPER, 0); }
-		public TerminalNode VALUE() { return getToken(mathParser.VALUE, 0); }
-		public TerminalNode DATEVALUE() { return getToken(mathParser.DATEVALUE, 0); }
-		public TerminalNode TIMEVALUE() { return getToken(mathParser.TIMEVALUE, 0); }
-		public TerminalNode DATE() { return getToken(mathParser.DATE, 0); }
-		public TerminalNode TIME() { return getToken(mathParser.TIME, 0); }
-		public TerminalNode NOW() { return getToken(mathParser.NOW, 0); }
-		public TerminalNode TODAY() { return getToken(mathParser.TODAY, 0); }
-		public TerminalNode YEAR() { return getToken(mathParser.YEAR, 0); }
-		public TerminalNode MONTH() { return getToken(mathParser.MONTH, 0); }
-		public TerminalNode DAY() { return getToken(mathParser.DAY, 0); }
-		public TerminalNode HOUR() { return getToken(mathParser.HOUR, 0); }
-		public TerminalNode MINUTE() { return getToken(mathParser.MINUTE, 0); }
-		public TerminalNode SECOND() { return getToken(mathParser.SECOND, 0); }
-		public TerminalNode WEEKDAY() { return getToken(mathParser.WEEKDAY, 0); }
-		public TerminalNode DATEDIF() { return getToken(mathParser.DATEDIF, 0); }
-		public TerminalNode DAYS360() { return getToken(mathParser.DAYS360, 0); }
-		public TerminalNode EDATE() { return getToken(mathParser.EDATE, 0); }
-		public TerminalNode EOMONTH() { return getToken(mathParser.EOMONTH, 0); }
-		public TerminalNode NETWORKDAYS() { return getToken(mathParser.NETWORKDAYS, 0); }
-		public TerminalNode WORKDAY() { return getToken(mathParser.WORKDAY, 0); }
-		public TerminalNode WEEKNUM() { return getToken(mathParser.WEEKNUM, 0); }
-		public TerminalNode MAX() { return getToken(mathParser.MAX, 0); }
-		public TerminalNode MEDIAN() { return getToken(mathParser.MEDIAN, 0); }
-		public TerminalNode MIN() { return getToken(mathParser.MIN, 0); }
-		public TerminalNode QUARTILE() { return getToken(mathParser.QUARTILE, 0); }
-		public TerminalNode MODE() { return getToken(mathParser.MODE, 0); }
-		public TerminalNode LARGE() { return getToken(mathParser.LARGE, 0); }
-		public TerminalNode SMALL() { return getToken(mathParser.SMALL, 0); }
-		public TerminalNode PERCENTILE() { return getToken(mathParser.PERCENTILE, 0); }
-		public TerminalNode PERCENTRANK() { return getToken(mathParser.PERCENTRANK, 0); }
-		public TerminalNode AVERAGE() { return getToken(mathParser.AVERAGE, 0); }
-		public TerminalNode AVERAGEIF() { return getToken(mathParser.AVERAGEIF, 0); }
-		public TerminalNode GEOMEAN() { return getToken(mathParser.GEOMEAN, 0); }
-		public TerminalNode HARMEAN() { return getToken(mathParser.HARMEAN, 0); }
-		public TerminalNode COUNT() { return getToken(mathParser.COUNT, 0); }
-		public TerminalNode COUNTIF() { return getToken(mathParser.COUNTIF, 0); }
-		public TerminalNode SUM() { return getToken(mathParser.SUM, 0); }
-		public TerminalNode SUMIF() { return getToken(mathParser.SUMIF, 0); }
-		public TerminalNode AVEDEV() { return getToken(mathParser.AVEDEV, 0); }
-		public TerminalNode STDEV() { return getToken(mathParser.STDEV, 0); }
-		public TerminalNode STDEVP() { return getToken(mathParser.STDEVP, 0); }
-		public TerminalNode DEVSQ() { return getToken(mathParser.DEVSQ, 0); }
-		public TerminalNode VAR() { return getToken(mathParser.VAR, 0); }
-		public TerminalNode VARP() { return getToken(mathParser.VARP, 0); }
-		public TerminalNode NORMDIST() { return getToken(mathParser.NORMDIST, 0); }
-		public TerminalNode NORMINV() { return getToken(mathParser.NORMINV, 0); }
-		public TerminalNode NORMSDIST() { return getToken(mathParser.NORMSDIST, 0); }
-		public TerminalNode NORMSINV() { return getToken(mathParser.NORMSINV, 0); }
-		public TerminalNode BETADIST() { return getToken(mathParser.BETADIST, 0); }
-		public TerminalNode BETAINV() { return getToken(mathParser.BETAINV, 0); }
-		public TerminalNode BINOMDIST() { return getToken(mathParser.BINOMDIST, 0); }
-		public TerminalNode EXPONDIST() { return getToken(mathParser.EXPONDIST, 0); }
-		public TerminalNode FDIST() { return getToken(mathParser.FDIST, 0); }
-		public TerminalNode FINV() { return getToken(mathParser.FINV, 0); }
-		public TerminalNode FISHER() { return getToken(mathParser.FISHER, 0); }
-		public TerminalNode FISHERINV() { return getToken(mathParser.FISHERINV, 0); }
-		public TerminalNode GAMMADIST() { return getToken(mathParser.GAMMADIST, 0); }
-		public TerminalNode GAMMAINV() { return getToken(mathParser.GAMMAINV, 0); }
-		public TerminalNode GAMMALN() { return getToken(mathParser.GAMMALN, 0); }
-		public TerminalNode HYPGEOMDIST() { return getToken(mathParser.HYPGEOMDIST, 0); }
-		public TerminalNode LOGINV() { return getToken(mathParser.LOGINV, 0); }
-		public TerminalNode LOGNORMDIST() { return getToken(mathParser.LOGNORMDIST, 0); }
-		public TerminalNode NEGBINOMDIST() { return getToken(mathParser.NEGBINOMDIST, 0); }
-		public TerminalNode POISSON() { return getToken(mathParser.POISSON, 0); }
-		public TerminalNode TDIST() { return getToken(mathParser.TDIST, 0); }
-		public TerminalNode TINV() { return getToken(mathParser.TINV, 0); }
-		public TerminalNode WEIBULL() { return getToken(mathParser.WEIBULL, 0); }
-		public TerminalNode URLENCODE() { return getToken(mathParser.URLENCODE, 0); }
-		public TerminalNode URLDECODE() { return getToken(mathParser.URLDECODE, 0); }
-		public TerminalNode HTMLENCODE() { return getToken(mathParser.HTMLENCODE, 0); }
-		public TerminalNode HTMLDECODE() { return getToken(mathParser.HTMLDECODE, 0); }
-		public TerminalNode BASE64TOTEXT() { return getToken(mathParser.BASE64TOTEXT, 0); }
-		public TerminalNode BASE64URLTOTEXT() { return getToken(mathParser.BASE64URLTOTEXT, 0); }
-		public TerminalNode TEXTTOBASE64() { return getToken(mathParser.TEXTTOBASE64, 0); }
-		public TerminalNode TEXTTOBASE64URL() { return getToken(mathParser.TEXTTOBASE64URL, 0); }
-		public TerminalNode REGEX() { return getToken(mathParser.REGEX, 0); }
-		public TerminalNode REGEXREPALCE() { return getToken(mathParser.REGEXREPALCE, 0); }
-		public TerminalNode ISREGEX() { return getToken(mathParser.ISREGEX, 0); }
-		public TerminalNode GUID() { return getToken(mathParser.GUID, 0); }
-		public TerminalNode MD5() { return getToken(mathParser.MD5, 0); }
-		public TerminalNode SHA1() { return getToken(mathParser.SHA1, 0); }
-		public TerminalNode SHA256() { return getToken(mathParser.SHA256, 0); }
-		public TerminalNode SHA512() { return getToken(mathParser.SHA512, 0); }
-		public TerminalNode CRC8() { return getToken(mathParser.CRC8, 0); }
-		public TerminalNode CRC16() { return getToken(mathParser.CRC16, 0); }
-		public TerminalNode CRC32() { return getToken(mathParser.CRC32, 0); }
-		public TerminalNode HMACMD5() { return getToken(mathParser.HMACMD5, 0); }
-		public TerminalNode HMACSHA1() { return getToken(mathParser.HMACSHA1, 0); }
-		public TerminalNode HMACSHA256() { return getToken(mathParser.HMACSHA256, 0); }
-		public TerminalNode HMACSHA512() { return getToken(mathParser.HMACSHA512, 0); }
-		public TerminalNode TRIMSTART() { return getToken(mathParser.TRIMSTART, 0); }
-		public TerminalNode TRIMEND() { return getToken(mathParser.TRIMEND, 0); }
-		public TerminalNode INDEXOF() { return getToken(mathParser.INDEXOF, 0); }
-		public TerminalNode LASTINDEXOF() { return getToken(mathParser.LASTINDEXOF, 0); }
-		public TerminalNode SPLIT() { return getToken(mathParser.SPLIT, 0); }
-		public TerminalNode JOIN() { return getToken(mathParser.JOIN, 0); }
-		public TerminalNode SUBSTRING() { return getToken(mathParser.SUBSTRING, 0); }
-		public TerminalNode STARTSWITH() { return getToken(mathParser.STARTSWITH, 0); }
-		public TerminalNode ENDSWITH() { return getToken(mathParser.ENDSWITH, 0); }
-		public TerminalNode ISNULLOREMPTY() { return getToken(mathParser.ISNULLOREMPTY, 0); }
-		public TerminalNode ISNULLORWHITESPACE() { return getToken(mathParser.ISNULLORWHITESPACE, 0); }
-		public TerminalNode REMOVESTART() { return getToken(mathParser.REMOVESTART, 0); }
-		public TerminalNode REMOVEEND() { return getToken(mathParser.REMOVEEND, 0); }
-		public TerminalNode JSON() { return getToken(mathParser.JSON, 0); }
-		public TerminalNode VLOOKUP() { return getToken(mathParser.VLOOKUP, 0); }
-		public TerminalNode LOOKUP() { return getToken(mathParser.LOOKUP, 0); }
-		public TerminalNode NULL() { return getToken(mathParser.NULL, 0); }
-		public TerminalNode PARAMETER() { return getToken(mathParser.PARAMETER, 0); }
-		public Parameter2Context(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_parameter2; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor ) return ((mathVisitor<? extends T>)visitor).visitParameter2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
 	public final Parameter2Context parameter2() throws RecognitionException {
 		Parameter2Context _localctx = new Parameter2Context(_ctx, getState());
 		enterRule(_localctx, 8, RULE_parameter2);
@@ -11925,215 +7354,9 @@ public class mathParser extends Parser {
 	}
 
 	public boolean sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
-		switch (ruleIndex) {
-		case 1:
-			return expr_sempred((ExprContext)_localctx, predIndex);
-		}
 		return true;
 	}
-	private boolean expr_sempred(ExprContext _localctx, int predIndex) {
-		switch (predIndex) {
-		case 0:
-			return precpred(_ctx, 100);
-		case 1:
-			return precpred(_ctx, 99);
-		case 2:
-			return precpred(_ctx, 98);
-		case 3:
-			return precpred(_ctx, 97);
-		case 4:
-			return precpred(_ctx, 96);
-		case 5:
-			return precpred(_ctx, 95);
-		case 6:
-			return precpred(_ctx, 94);
-		case 7:
-			return precpred(_ctx, 93);
-		case 8:
-			return precpred(_ctx, 92);
-		case 9:
-			return precpred(_ctx, 91);
-		case 10:
-			return precpred(_ctx, 90);
-		case 11:
-			return precpred(_ctx, 89);
-		case 12:
-			return precpred(_ctx, 88);
-		case 13:
-			return precpred(_ctx, 87);
-		case 14:
-			return precpred(_ctx, 86);
-		case 15:
-			return precpred(_ctx, 85);
-		case 16:
-			return precpred(_ctx, 84);
-		case 17:
-			return precpred(_ctx, 83);
-		case 18:
-			return precpred(_ctx, 82);
-		case 19:
-			return precpred(_ctx, 81);
-		case 20:
-			return precpred(_ctx, 80);
-		case 21:
-			return precpred(_ctx, 79);
-		case 22:
-			return precpred(_ctx, 78);
-		case 23:
-			return precpred(_ctx, 77);
-		case 24:
-			return precpred(_ctx, 76);
-		case 25:
-			return precpred(_ctx, 75);
-		case 26:
-			return precpred(_ctx, 74);
-		case 27:
-			return precpred(_ctx, 73);
-		case 28:
-			return precpred(_ctx, 72);
-		case 29:
-			return precpred(_ctx, 71);
-		case 30:
-			return precpred(_ctx, 70);
-		case 31:
-			return precpred(_ctx, 69);
-		case 32:
-			return precpred(_ctx, 68);
-		case 33:
-			return precpred(_ctx, 67);
-		case 34:
-			return precpred(_ctx, 66);
-		case 35:
-			return precpred(_ctx, 65);
-		case 36:
-			return precpred(_ctx, 64);
-		case 37:
-			return precpred(_ctx, 63);
-		case 38:
-			return precpred(_ctx, 62);
-		case 39:
-			return precpred(_ctx, 61);
-		case 40:
-			return precpred(_ctx, 60);
-		case 41:
-			return precpred(_ctx, 59);
-		case 42:
-			return precpred(_ctx, 58);
-		case 43:
-			return precpred(_ctx, 57);
-		case 44:
-			return precpred(_ctx, 56);
-		case 45:
-			return precpred(_ctx, 55);
-		case 46:
-			return precpred(_ctx, 54);
-		case 47:
-			return precpred(_ctx, 53);
-		case 48:
-			return precpred(_ctx, 52);
-		case 49:
-			return precpred(_ctx, 51);
-		case 50:
-			return precpred(_ctx, 50);
-		case 51:
-			return precpred(_ctx, 49);
-		case 52:
-			return precpred(_ctx, 48);
-		case 53:
-			return precpred(_ctx, 47);
-		case 54:
-			return precpred(_ctx, 46);
-		case 55:
-			return precpred(_ctx, 45);
-		case 56:
-			return precpred(_ctx, 44);
-		case 57:
-			return precpred(_ctx, 43);
-		case 58:
-			return precpred(_ctx, 42);
-		case 59:
-			return precpred(_ctx, 41);
-		case 60:
-			return precpred(_ctx, 40);
-		case 61:
-			return precpred(_ctx, 39);
-		case 62:
-			return precpred(_ctx, 38);
-		case 63:
-			return precpred(_ctx, 37);
-		case 64:
-			return precpred(_ctx, 36);
-		case 65:
-			return precpred(_ctx, 35);
-		case 66:
-			return precpred(_ctx, 34);
-		case 67:
-			return precpred(_ctx, 33);
-		case 68:
-			return precpred(_ctx, 32);
-		case 69:
-			return precpred(_ctx, 31);
-		case 70:
-			return precpred(_ctx, 30);
-		case 71:
-			return precpred(_ctx, 29);
-		case 72:
-			return precpred(_ctx, 28);
-		case 73:
-			return precpred(_ctx, 27);
-		case 74:
-			return precpred(_ctx, 26);
-		case 75:
-			return precpred(_ctx, 25);
-		case 76:
-			return precpred(_ctx, 24);
-		case 77:
-			return precpred(_ctx, 23);
-		case 78:
-			return precpred(_ctx, 22);
-		case 79:
-			return precpred(_ctx, 21);
-		case 80:
-			return precpred(_ctx, 20);
-		case 81:
-			return precpred(_ctx, 19);
-		case 82:
-			return precpred(_ctx, 18);
-		case 83:
-			return precpred(_ctx, 17);
-		case 84:
-			return precpred(_ctx, 16);
-		case 85:
-			return precpred(_ctx, 15);
-		case 86:
-			return precpred(_ctx, 14);
-		case 87:
-			return precpred(_ctx, 13);
-		case 88:
-			return precpred(_ctx, 12);
-		case 89:
-			return precpred(_ctx, 11);
-		case 90:
-			return precpred(_ctx, 10);
-		case 91:
-			return precpred(_ctx, 9);
-		case 92:
-			return precpred(_ctx, 8);
-		case 93:
-			return precpred(_ctx, 7);
-		case 94:
-			return precpred(_ctx, 6);
-		case 95:
-			return precpred(_ctx, 5);
-		case 96:
-			return precpred(_ctx, 4);
-		case 97:
-			return precpred(_ctx, 3);
-		case 98:
-			return precpred(_ctx, 2);
-		}
-		return true;
-	}
+ 
 
 	private static final int _serializedATNSegments = 2;
 	private static final String _serializedATNSegment0 =

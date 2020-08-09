@@ -112,34 +112,7 @@ public class AlgorithmEngine {
     public void AddParameter(final String key, final long obj) {
         _dict.put(key, Operand.Create(obj));
     }
-
-    /// <summary>
-    /// 添加自定义参数
-    /// </summary>
-    /// <param name="key"></param>
-    /// <param name="obj"></param>
-    public void AddParameter(final String key, final ushort obj) {
-        _dict.put(key, Operand.Create(obj));
-    }
-
-    /// <summary>
-    /// 添加自定义参数
-    /// </summary>
-    /// <param name="key"></param>
-    /// <param name="obj"></param>
-    public void AddParameter(final String key, final uint obj) {
-        _dict.put(key, Operand.Create(obj));
-    }
-
-    /// <summary>
-    /// 添加自定义参数
-    /// </summary>
-    /// <param name="key"></param>
-    /// <param name="obj"></param>
-    public void AddParameter(final String key, final ulong obj) {
-        _dict.put(key, Operand.Create(obj));
-    }
-
+ 
     /// <summary>
     /// 添加自定义参数
     /// </summary>
@@ -350,9 +323,9 @@ public class AlgorithmEngine {
     /// 执行函数,如果异常，返回默认值
     /// </summary>
     /// <param name="exp"></param>
-    /// <param name="def"></param>
+    /// <param name="defvalue"></param>
     /// <returns></returns>
-    public int TryEvaluate(final String exp, final int def) {
+    public int TryEvaluate(final String exp, final int defvalue) {
         try {
             if (Parse(exp)) {
 
@@ -360,23 +333,23 @@ public class AlgorithmEngine {
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError()) {
                     LastError = obj.ErrorMsg;
-                    return def;
+                    return defvalue;
                 }
                 return obj.IntValue;
             }
         } catch (final Exception ex) {
             LastError = ex.Message;
         }
-        return def;
+        return defvalue;
     }
 
     /// <summary>
     /// 执行函数,如果异常，返回默认值
     /// </summary>
     /// <param name="exp"></param>
-    /// <param name="def"></param>
+    /// <param name="defvalue"></param>
     /// <returns></returns>
-    public double TryEvaluate(final String exp, final double def) {
+    public double TryEvaluate(final String exp, final double defvalue) {
         try {
             if (Parse(exp)) {
 
@@ -384,23 +357,23 @@ public class AlgorithmEngine {
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError()) {
                     LastError = obj.ErrorMsg;
-                    return def;
+                    return defvalue;
                 }
                 return obj.NumberValue;
             }
         } catch (final Exception ex) {
             LastError = ex.Message;
         }
-        return def;
+        return defvalue;
     }
 
     /// <summary>
     /// 执行函数,如果异常，返回默认值
     /// </summary>
     /// <param name="exp"></param>
-    /// <param name="def"></param>
+    /// <param name="defvalue"></param>
     /// <returns></returns>
-    public String TryEvaluate(final String exp, final String def) {
+    public String TryEvaluate(final String exp, final String defvalue) {
         try {
             if (Parse(exp)) {
                 Operand obj = Evaluate();
@@ -410,82 +383,82 @@ public class AlgorithmEngine {
                 obj = obj.ToText("It can't be converted to String!");
                 if (obj.IsError()) {
                     LastError = obj.ErrorMsg;
-                    return def;
+                    return defvalue;
                 }
                 return obj.TextValue;
             }
         } catch (final Exception ex) {
             LastError = ex.Message;
         }
-        return def;
+        return defvalue;
     }
 
     /// <summary>
     /// 执行函数,如果异常，返回默认值
     /// </summary>
     /// <param name="exp"></param>
-    /// <param name="def"></param>
+    /// <param name="defvalue"></param>
     /// <returns></returns>
-    public boolean TryEvaluate(final String exp, final boolean def) {
+    public boolean TryEvaluate(final String exp, final boolean defvalue) {
         try {
             if (Parse(exp)) {
                 Operand obj = Evaluate();
                 obj = obj.ToBoolean("It can't be converted to bool!");
                 if (obj.IsError()) {
                     LastError = obj.ErrorMsg;
-                    return def;
+                    return defvalue;
                 }
                 return obj.BooleanValue;
             }
         } catch (final Exception ex) {
             LastError = ex.Message;
         }
-        return def;
+        return defvalue;
     }
 
     /// <summary>
     /// 执行函数,如果异常，返回默认值
     /// </summary>
     /// <param name="exp"></param>
-    /// <param name="def"></param>
+    /// <param name="defvalue"></param>
     /// <returns></returns>
-    public DateTime TryEvaluate(final String exp, final DateTime def) {
+    public DateTime TryEvaluate(final String exp, final DateTime defvalue) {
         try {
             if (Parse(exp)) {
                 Operand obj = Evaluate();
                 obj = obj.ToDate("It can't be converted to date!");
                 if (obj.IsError()) {
                     LastError = obj.ErrorMsg;
-                    return def;
+                    return defvalue;
                 }
                 return (DateTime) obj.DateValue;
             }
         } catch (final Exception ex) {
             LastError = ex.Message;
         }
-        return def;
+        return defvalue;
     }
 
     /// <summary>
     /// 执行函数,如果异常，返回默认值
     /// </summary>
     /// <param name="exp"></param>
-    /// <param name="def"></param>
+    /// <param name="defvalue"></param>
     /// <returns></returns>
-    public TimeSpan TryEvaluate(final String exp, final TimeSpan def) {
+    public TimeSpan TryEvaluate(final String exp, final TimeSpan defvalue) {
         try {
             if (Parse(exp)) {
                 Operand obj = Evaluate();
                 obj = obj.ToDate("It can't be converted to date!");
                 if (obj.IsError()) {
                     LastError = obj.ErrorMsg;
-                    return def;
+                    return defvalue;
                 }
                 return (TimeSpan) obj.DateValue;
             }
         } catch (final Exception ex) {
             LastError = ex.Message;
         }
-        return def;
+        return defvalue;
     }
 }

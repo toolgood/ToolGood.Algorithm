@@ -1,93 +1,81 @@
 package toolgood.algorithm.internals;
 
-public class CaseChangingCharStream extends ICharStream {
-        private ICharStream stream;
+import org.antlr.v4.runtime.misc.Interval;
 
-        /// <summary>
-        /// Constructs a new CaseChangingCharStream wrapping the given <paramref name="stream"/> forcing
-        /// all characters to upper case or lower case.
-        /// </summary>
-        /// <param name="stream">The stream to wrap.</param>
-        /// <param name="upper">If true force each symbol to upper case, otherwise force to lower.</param>
-        public CaseChangingCharStream(ICharStream stream)
-        {
-            this.stream = stream;
+public class CaseChangingCharStream implements CharStream {
+	final CharStream stream;
+
+	public CaseChangingCharStream(CharStream stream) {
+		this.stream = stream;
+	}
+
+	@Override
+	public String getText(Interval interval) {
+		return stream.getText(interval);
+	}
+
+	@Override
+	public void consume() {
+		stream.consume();
+	}
+
+	@Override
+	public int LA(int i) {
+		int c = stream.LA(i);
+		if (c <= 0) {
+			return c;
         }
 
-        public int Index {
-            get {
-                return stream.Index;
-            }
+        char o = (char)c;
+        if (o == '（') {
+            o = '(';
+        } else if (o == '）') {
+            o = ')';
+        } else if (o == '，') {
+            o = ',';
+        } else if (o == '【') {
+            o = '[';
+        } else if (o == '】') {
+            o = ']';
+        } else if (o == '‘') {
+            o = '\'';
+        } else if (o == '’') {
+            o = '\'';
+        } else if (o == '“') {
+            o = '"';
+        } else if (o == '”') {
+            o = '"';
         }
+        return return Character.toUpperCase(0);
+	}
 
-        public int Size {
-            get {
-                return stream.Size;
-            }
-        }
+	@Override
+	public int mark() {
+		return stream.mark();
+	}
 
-        public string SourceName {
-            get {
-                return stream.SourceName;
-            }
-        }
+	@Override
+	public void release(int marker) {
+		stream.release(marker);
+	}
 
-        public void Consume()
-        {
-            stream.Consume();
-        }
+	@Override
+	public int index() {
+		return stream.index();
+	}
 
-        [return: NotNull]
-        public string GetText(Interval interval)
-        {
-            return stream.GetText(interval);
-        }
+	@Override
+	public void seek(int index) {
+		stream.seek(index);
+	}
 
-        public int LA(int i)
-        {
-            int c = stream.LA(i);
+	@Override
+	public int size() {
+		return stream.size();
+	}
 
-            if (c <= 0) {
-                return c;
-            }
-
-            char o = (char)c;
-            if (o == '（') {
-                o = '(';
-            } else if (o == '）') {
-                o = ')';
-            } else if (o == '，') {
-                o = ',';
-            } else if (o == '【') {
-                o = '[';
-            } else if (o == '】') {
-                o = ']';
-            } else if (o == '‘') {
-                o = '\'';
-            } else if (o == '’') {
-                o = '\'';
-            } else if (o == '“') {
-                o = '"';
-            } else if (o == '”') {
-                o = '"';
-            }
-
-            return (int)char.ToUpperInvariant(o);
-
-        }
-
-        public int Mark()
-        {
-            return stream.Mark();
-        }
-
-        public void Release(int marker)
-        {
-            stream.Release(marker);
-        }
-
-        public void Seek(int index)
-        {
-            stream.Seek(index);
-        }
+	@Override
+	public String getSourceName() {
+		return stream.getSourceName();
+	}
 }

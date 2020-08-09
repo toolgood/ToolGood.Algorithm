@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import jdk.nashorn.internal.runtime.regexp.joni.Regex;
 import toolgood.algorithm.Operand;
@@ -12,16 +13,16 @@ import toolgood.algorithm.math.mathParser;
 import toolgood.algorithm.math.mathParser.*;
  
  
-public class MathVisitor {
-    private static  Regex sumifRegex = new Regex("(<|<=|>|>=|=|==|!=|<>) *([-+]?\d+(\.(\d+)?)?)", RegexOptions.Compiled);
-    private static  Regex bit_2 = new Regex("^[01]+", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-    private static  Regex bit_8 = new Regex("^[0-8]+", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-    private static  Regex bit_16 = new Regex("^[0-9a-f]+", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-    private static  Regex clearRegex = new Regex(@"[\f\n\r\t\v]", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-    private static  Regex numberRegex = new Regex(@"^-?(0|[1-9])\d*(\.\d+)?", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+public class MathVisitor extends mathBaseVisitor<Operand> {
+    private static  Pattern sumifRegex = new Pattern("(<|<=|>|>=|=|==|!=|<>) *([-+]?\\d+(\\.(\\d+)?)?)", RegexOptions.Compiled);
+    private static  Pattern bit_2 = new Pattern("^[01]+", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+    private static  Pattern bit_8 = new Pattern("^[0-8]+", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+    private static  Pattern bit_16 = new Pattern("^[0-9a-f]+", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+    private static  Pattern clearRegex = new Pattern("[\\f\\n\\r\\t\\v]", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+    private static  Pattern numberRegex = new Pattern("^-?(0|[1-9])\\d*(\\.\\d+)?", RegexOptions.IgnoreCase | RegexOptions.Compiled);
     private static  CultureInfo cultureInfo = CultureInfo.GetCultureInfo("en-US");
-    public event Func<String, Operand> GetParameter;
-    public event Func<String, List<Operand>, Operand> DiyFunction;
+    public   Func<String, Operand> GetParameter;
+    public   Func<String, List<Operand>, Operand> DiyFunction;
     public int excelIndex;
 
 

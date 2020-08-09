@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.toolgood.algorithm.litJson.JsonMapper;
+import toolgood.algorithm.litJson.JsonMapper;
 import toolgood.algorithm.litJson.JsonData;
 
 public abstract class Operand {
@@ -111,33 +111,6 @@ public abstract class Operand {
     /// </summary>
     /// <param name="obj"></param>
     /// <returns></returns>
-    public static Operand Create(final ushort obj) {
-        return new OperandNumber((double) obj);
-    }
-
-    /// <summary>
-    /// 创建操作数
-    /// </summary>
-    /// <param name="obj"></param>
-    /// <returns></returns>
-    public static Operand Create(final uint obj) {
-        return new OperandNumber((double) obj);
-    }
-
-    /// <summary>
-    /// 创建操作数
-    /// </summary>
-    /// <param name="obj"></param>
-    /// <returns></returns>
-    public static Operand Create(final ulong obj) {
-        return new OperandNumber((double) obj);
-    }
-
-    /// <summary>
-    /// 创建操作数
-    /// </summary>
-    /// <param name="obj"></param>
-    /// <returns></returns>
     public static Operand Create(final float obj) {
         return new OperandNumber((double) obj);
     }
@@ -184,11 +157,11 @@ public abstract class Operand {
             try
             {
                   JsonData json = (JsonData)JsonMapper.ToObject(txt);
-                return Operand.Create(json);
+                return Create(json);
             }
             catch (final Exception) { }
         }
-        return Operand.Error("string to json is error!");
+        return Error("string to json is error!");
     }
 
     /// <summary>
@@ -259,6 +232,7 @@ public abstract class Operand {
     public static Operand Create(List<Double> obj)
     {
         var array = new List<Operand>();
+        
         foreach (final var item final in obj)
         {
             array.Add(Create(item));
@@ -445,129 +419,19 @@ public abstract class Operand {
                 foreach (JsonData v in JsonValue)
                 {
                     if (v.IsString)
-                        list.Add(Operand.Create(v.StringValue));
+                        list.Add(Create(v.StringValue));
                     else if (v.IsBoolean)
-                        list.Add(Operand.Create(v.BooleanValue));
+                        list.Add(Create(v.BooleanValue));
                     else if (v.IsDouble)
-                        list.Add(Operand.Create(v.NumberValue));
+                        list.Add(Create(v.NumberValue));
                     else if (v.IsNull)
-                        list.Add(Operand.CreateNull());
+                        list.Add(CreateNull());
                     else
-                        list.Add(Operand.Create(v));
+                        list.Add(Create(v));
                 }
                 return Create(list);
             }
         }
         return Error(errorMessage);
     }
-
- 
-
- 
-
-    region Operand#region number
-    public static implicit operator
-
-    Operand(final Int16 obj) {
-        return Operand.Create((int) obj);
-    }
-
-    public static implicit operator
-
-    Operand(final Int32 obj) {
-        return Operand.Create(obj);
-    }
-
-    public static implicit operator
-
-    Operand(final Int64 obj) {
-        return Operand.Create((double) obj);
-    }
-
-    public static implicit operator
-
-    Operand(final UInt16 obj) {
-        return Operand.Create((double) obj);
-    }
-
-    public static implicit operator
-
-    Operand(final UInt32 obj) {
-        return Operand.Create((double) obj);
-    }
-
-    public static implicit operator
-
-    Operand(final UInt64 obj) {
-        return Operand.Create((double) obj);
-    }
-
-    public static implicit operator
-
-    Operand(final float obj) {
-        return Operand.Create((double) obj);
-    }
-
-    public static implicit operator
-
-    Operand(final double obj) {
-        return Operand.Create(obj);
-    }
-
-    public static implicit operator
-
-    Operand(final decimal obj) {
-        return Operand.Create((double) obj);
-    }#endregion
-
-    public static implicit operator
-
-    Operand(final bool obj) {
-        return Operand.Create(obj);
-    }
-
-    public static implicit operator
-
-    Operand(final string obj) {
-        return Operand.Create(obj);
-    }
-
-    public static implicit operator
-
-    Operand(final DateTime obj) {
-        return Operand.Create(obj);
-    }
-
-    public static implicit operator
-
-    Operand(final TimeSpan obj) {
-        return Operand.Create(obj);
-    }
-
-    public static implicit operator
-
-    Operand(final List<string> obj) {
-        return Operand.Create(obj);
-    }
-
-    public static implicit operator
-
-    Operand(final List<bool> obj) {
-        return Operand.Create(obj);
-    }
-
-    public static implicit operator
-
-    Operand(List<int> obj)
-    {
-        return Operand.Create(obj);
-    }
-
-    public static implicit operator
-
-    Operand(List<double> obj)
-    {
-        return Operand.Create(obj);
-    }
-   
 }
