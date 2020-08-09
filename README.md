@@ -4,6 +4,14 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
 
 注：不兼容1.x版本
 
+**适用场景：** 代码与算法分离，避免项目强制升级
+
+1）项目初，未确定的算法
+
+2）财务数据、统计数据之中的算法
+
+3）报表导出，数据来源使用存储过程，Word文档内设置算法。例 https://github.com/toolgood/ToolGood.WordTemplate
+
 ## 快速上手
 ``` csharp
     AlgorithmEngine engine = new AlgorithmEngine();
@@ -933,3 +941,13 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>Json ★</td><td>json(文本)<br>动态json查询。</td> <td></td>
     </tr>
 </table>
+
+
+## 捐赠
+
+如果这个类库有帮助到您，请 Star 这个仓库。
+
+你也可以选择使用支付宝或微信给我捐赠：
+
+![Alipay, WeChat](https://toolgood.github.io/image/toolgood.png)
+
