@@ -50,17 +50,17 @@ public class ArrayStatistics {
         switch (definition) {
             case QuantileDefinition.R1: {
                     double h = data.Length * tau + 0.5d;
-                    return SelectInplace(data, (int)Math.Ceiling(h - 0.5d) - 1);
+                    return SelectInplace(data, (int)Math.ceil(h - 0.5d) - 1);
                 }
 
             case QuantileDefinition.R2: {
                     double h = data.Length * tau + 0.5d;
-                    return (SelectInplace(data, (int)Math.Ceiling(h - 0.5d) - 1) + SelectInplace(data, (int)(h + 0.5d) - 1)) * 0.5d;
+                    return (SelectInplace(data, (int)Math.ceil(h - 0.5d) - 1) + SelectInplace(data, (int)(h + 0.5d) - 1)) * 0.5d;
                 }
 
             case QuantileDefinition.R3: {
                     double h = data.Length * tau;
-                    return SelectInplace(data, (int)Math.Round(h) - 1);
+                    return SelectInplace(data, (int)Math.round(h) - 1);
                 }
 
             case QuantileDefinition.R4: {

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,8 +15,7 @@ import toolgood.algorithm.math.mathParser;
 import toolgood.algorithm.math.mathParser2;
 import toolgood.algorithm.math.mathParser2.*;
 import toolgood.algorithm.math.mathBaseVisitor;
-import org.antlr.v4.runtime.tree.ParseTreeVisitor;
-import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
+import toolgood.algorithm.internals.MyFunction;
 
 public class MathVisitor extends mathBaseVisitor<Operand> {
     private static Pattern sumifRegex = new Pattern("(<|<=|>|>=|=|==|!=|<>) *([-+]?\\d+(\\.(\\d+)?)?)");
@@ -24,19 +24,19 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     private static Pattern bit_16 = new Pattern("^[0-9a-fA-F]+");
     private static Pattern clearRegex = new Pattern("[\\f\\n\\r\\t\\v]");
     private static Pattern numberRegex = new Pattern("^-?(0|[1-9])\\d*(\\.\\d+)?");
-    private static Locale  cultureInfo = Locale.US;
-    public Func<String, Operand> GetParameter;
-    public Func<String, List<Operand>, Operand> DiyFunction;
+    private static Locale cultureInfo = Locale.US;
+    public Function<String, Operand> GetParameter;
+    public Function<MyFunction, Operand> DiyFunction;
     public int excelIndex;
 
     public Operand VisitProg(ProgContext context) {
-        return VisitChildren(context);
+        return visitChildren(context);
     }
 
     public Operand VisitMulDiv_fun(MulDiv_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -141,7 +141,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitAddSub_fun(AddSub_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -252,7 +252,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitJudge_fun(Judge_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -360,7 +360,8 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     private int Compare(double t1, double t2) {
-        double b = Math.round(t1 - t2, 12, MidpointRounding.AwayFromZero);
+
+        double b = round(t1 - t2, 12);
         if (b == 0) {
             return 0;
         } else if (b > 0) {
@@ -374,7 +375,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToBoolean("Function '" + t + "' parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToBoolean("Function '" + t + "' parameter " + (index++) + " is error!");
             ;
             if (aa.IsError()) {
                 return aa;
@@ -399,7 +400,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitIF_fun(IF_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -426,7 +427,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitIFERROR_fun(IFERROR_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand a = Visit(item);
+            Operand a = visit(item);
             args.add(a);
         }
 
@@ -440,7 +441,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitISNUMBER_fun(ISNUMBER_funContext context) {
-        Operand firstValue = Visit(context.expr());
+        Operand firstValue = visit(context.expr());
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -452,7 +453,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitISTEXT_fun(ISTEXT_funContext context) {
-        Operand firstValue = Visit(context.expr());
+        Operand firstValue = visit(context.expr());
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -466,7 +467,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitIsError_fun(IsError_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             args.add(aa);
         }
         if (args.Count == 2) {
@@ -485,7 +486,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitISNULL_fun(ISNULL_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             args.add(aa);
         }
 
@@ -504,7 +505,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitISNULLORERROR_fun(ISNULLORERROR_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             args.add(aa);
         }
 
@@ -521,7 +522,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitISEVEN_fun(ISEVEN_funContext context) {
-        Operand firstValue = Visit(context.expr());
+        Operand firstValue = visit(context.expr());
         if (firstValue.Type == OperandType.NUMBER) {
             if (firstValue.IntValue() % 2 == 0) {
                 return Operand.True;
@@ -531,7 +532,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitISLOGICAL_fun(ISLOGICAL_funContext context) {
-        Operand firstValue = Visit(context.expr());
+        Operand firstValue = visit(context.expr());
         if (firstValue.Type == OperandType.BOOLEAN) {
             return Operand.True;
         }
@@ -539,7 +540,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitISODD_fun(ISODD_funContext context) {
-        Operand firstValue = Visit(context.expr());
+        Operand firstValue = visit(context.expr());
         if (firstValue.Type == OperandType.NUMBER) {
             if (firstValue.IntValue() % 2 == 1) {
                 return Operand.True;
@@ -549,7 +550,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitISNONTEXT_fun(ISNONTEXT_funContext context) {
-        Operand firstValue = Visit(context.expr());
+        Operand firstValue = visit(context.expr());
         if (firstValue.Type != OperandType.STRING) {
             return Operand.True;
         }
@@ -560,7 +561,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand a = Visit(item).ToBoolean("Function AND parameter " + (index++) + " is error!");
+            Operand a = visit(item).ToBoolean("Function AND parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -581,7 +582,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         Operand index = 1;
         for (ExprContext item : context.expr()) {
-            Operand a = Visit(item).ToBoolean("Function OR parameter " + (index++) + " is error!");
+            Operand a = visit(item).ToBoolean("Function OR parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -599,7 +600,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitNOT_fun(NOT_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToBoolean("Function NOT parameter is error!");
+        Operand firstValue = visit(context.expr()).ToBoolean("Function NOT parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -623,7 +624,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitABS_fun(ABS_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function ABS parameter is error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function ABS parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -635,7 +636,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToNumber("Function QUOTIENT parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToNumber("Function QUOTIENT parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -655,7 +656,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToNumber("Function MOD parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToNumber("Function MOD parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -673,7 +674,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitSIGN_fun(SIGN_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function SIGN parameter is error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function SIGN parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -682,7 +683,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitSQRT_fun(SQRT_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function SQRT parameter is error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function SQRT parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -691,7 +692,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitTRUNC_fun(TRUNC_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function TRUNC parameter is error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function TRUNC parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -699,7 +700,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitINT_fun(INT_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function INT parameter is error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function INT parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -709,7 +710,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitGCD_fun(GCD_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -728,7 +729,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitLCM_fun(LCM_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -748,7 +749,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToNumber("Function COMBIN parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToNumber("Function COMBIN parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -773,7 +774,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToNumber("Function PERMUT parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToNumber("Function PERMUT parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -853,7 +854,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitDEGREES_fun(DEGREES_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function DEGREES parameter is error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function DEGREES parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -864,7 +865,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitRADIANS_fun(RADIANS_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function RADIANS parameter is error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function RADIANS parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -874,7 +875,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitCOS_fun(COS_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function COS parameter is error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function COS parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -882,7 +883,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitCOSH_fun(COSH_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function COSH parameter is error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function COSH parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -891,7 +892,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitSIN_fun(SIN_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function SIN parameter is error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function SIN parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -899,7 +900,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitSINH_fun(SINH_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function SINH parameter is error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function SINH parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -907,7 +908,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitTAN_fun(TAN_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function TAN parameter is error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function TAN parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -915,7 +916,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitTANH_fun(TANH_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function TANH parameter is error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function TANH parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -923,7 +924,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitACOS_fun(ACOS_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function ACOS parameter is error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function ACOS parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -935,7 +936,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitACOSH_fun(ACOSH_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function ACOSH parameter is error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function ACOSH parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -949,7 +950,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitASIN_fun(ASIN_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function ASIN parameter is error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function ASIN parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -961,7 +962,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitASINH_fun(ASINH_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function ASINH parameter is error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function ASINH parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -971,7 +972,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitATAN_fun(ATAN_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function ATAN parameter is error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function ATAN parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -980,7 +981,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitATANH_fun(ATANH_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function ATANH parameter is error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function ATANH parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -996,7 +997,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToNumber("Function ATAN2 parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToNumber("Function ATAN2 parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -1012,7 +1013,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitFIXED_fun(FIXED_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1032,7 +1033,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             return firstValue;
         }
 
-        double s = Math.round(firstValue.NumberValue(), num, MidpointRounding.AwayFromZero);
+        double s = round(firstValue.NumberValue(), num);
         boolean no = false;
         if (args.Count == 3) {
             Operand thirdValue = args.get(2).ToBoolean("Function FIXED parameter 3 is error!");
@@ -1042,15 +1043,15 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             no = thirdValue.BooleanValue();
         }
         if (no == false) {
-            return Operand.Create(s.ToString("N" + num, cultureInfo));
+            return Operand.Create(s.toString("N" + num, cultureInfo));
         }
-        return Operand.Create(s.ToString(cultureInfo));
+        return Operand.Create(s.toString(cultureInfo));
     }
 
     public Operand VisitBIN2OCT_fun(BIN2OCT_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1065,7 +1066,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         if (bit_2.IsMatch(firstValue.TextValue()) == false) {
             return Operand.Error("Function BIN2OCT parameter 1 is error!");
         }
-        String num = Convert.ToString(Convert.ToInt32(firstValue.TextValue(), 2), 8);
+        String num = Convert.toString(Convert.ToInt32(firstValue.TextValue(), 2), 8);
         if (args.Count == 2) {
             Operand secondValue = args.get(1).ToNumber("Function BIN2OCT parameter 2 is error!");
             if (secondValue.IsError()) {
@@ -1080,7 +1081,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitBIN2DEC_fun(BIN2DEC_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToText("Function BIN2DEC parameter is error!");
+        Operand firstValue = visit(context.expr()).ToText("Function BIN2DEC parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1095,7 +1096,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitBIN2HEX_fun(BIN2HEX_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1110,7 +1111,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         if (bit_2.IsMatch(firstValue.TextValue()) == false) {
             return Operand.Error("Function BIN2HEX parameter 1 is error!");
         }
-        String num = Convert.ToString(Convert.ToInt32(firstValue.TextValue(), 2), 16).ToUpper();
+        String num = Convert.toString(Convert.ToInt32(firstValue.TextValue(), 2), 16).ToUpper();
         if (args.Count == 2) {
             Operand secondValue = args.get(1).ToNumber("Function BIN2HEX parameter 2 is error!");
             if (secondValue.IsError()) {
@@ -1127,7 +1128,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitOCT2BIN_fun(OCT2BIN_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1142,7 +1143,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         if (bit_8.IsMatch(firstValue.TextValue()) == false) {
             return Operand.Error("Function OCT2BIN parameter 1 is error!");
         }
-        String num = Convert.ToString(Convert.ToInt32(firstValue.TextValue(), 8), 2);
+        String num = Convert.toString(Convert.ToInt32(firstValue.TextValue(), 8), 2);
         if (args.Count == 2) {
             Operand secondValue = args.get(1).ToNumber("Function OCT2BIN parameter 2 is error!");
             if (secondValue.IsError()) {
@@ -1157,7 +1158,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitOCT2DEC_fun(OCT2DEC_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToText("Function OCT2DEC parameter is error!");
+        Operand firstValue = visit(context.expr()).ToText("Function OCT2DEC parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1172,7 +1173,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitOCT2HEX_fun(OCT2HEX_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1186,7 +1187,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         if (bit_8.IsMatch(firstValue.TextValue()) == false) {
             return Operand.Error("Function OCT2HEX parameter 1 is error!");
         }
-        String num = Convert.ToString(Convert.ToInt32(firstValue.TextValue(), 8), 16).ToUpper();
+        String num = Convert.toString(Convert.ToInt32(firstValue.TextValue(), 8), 16).ToUpper();
         if (args.Count == 2) {
             Operand secondValue = args.get(1).ToNumber("Function OCT2HEX parameter 2 is error!");
             if (secondValue.IsError()) {
@@ -1203,7 +1204,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitDEC2BIN_fun(DEC2BIN_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1214,7 +1215,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         if (firstValue.IsError()) {
             return firstValue;
         }
-        String num = System.Convert.ToString(firstValue.IntValue(), 2);
+        String num = System.Convert.toString(firstValue.IntValue(), 2);
         if (args.Count == 2) {
             Operand secondValue = args.get(1).ToNumber("Function DEC2BIN parameter 2 is error!");
             if (secondValue.IsError()) {
@@ -1231,7 +1232,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitDEC2OCT_fun(DEC2OCT_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1242,7 +1243,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         if (firstValue.IsError()) {
             return firstValue;
         }
-        String num = System.Convert.ToString(firstValue.IntValue(), 8);
+        String num = System.Convert.toString(firstValue.IntValue(), 8);
         if (args.Count == 2) {
             Operand secondValue = args.get(1).ToNumber("Function DEC2OCT parameter 2 is error!");
             if (secondValue.IsError()) {
@@ -1259,7 +1260,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitDEC2HEX_fun(DEC2HEX_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1270,7 +1271,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         if (firstValue.IsError()) {
             return firstValue;
         }
-        String num = System.Convert.ToString(firstValue.IntValue(), 16).ToUpper();
+        String num = System.Convert.toString(firstValue.IntValue(), 16).ToUpper();
         if (args.Count == 2) {
             Operand secondValue = args.get(1).ToNumber("Function DEC2HEX parameter 2 is error!");
             if (secondValue.IsError()) {
@@ -1287,7 +1288,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitHEX2BIN_fun(HEX2BIN_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1302,7 +1303,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             return Operand.Error("Function HEX2BIN parameter 1 is error!");
         }
 
-        String num = Convert.ToString(Convert.ToInt32(firstValue.TextValue(), 16), 2);
+        String num = Convert.toString(Convert.ToInt32(firstValue.TextValue(), 16), 2);
         if (args.Count == 2) {
             Operand secondValue = args.get(1).ToNumber("Function HEX2BIN parameter 2 is error!");
             if (secondValue.IsError()) {
@@ -1319,7 +1320,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitHEX2OCT_fun(HEX2OCT_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1333,7 +1334,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         if (bit_16.IsMatch(firstValue.TextValue()) == false) {
             return Operand.Error("Function HEX2OCT parameter 1 is error!");
         }
-        String num = Convert.ToString(Convert.ToInt32(firstValue.TextValue(), 16), 8);
+        String num = Convert.toString(Convert.ToInt32(firstValue.TextValue(), 16), 8);
         if (args.Count == 2) {
             Operand secondValue = args.get(1).ToNumber("Function HEX2OCT parameter 2 is error!");
             if (secondValue.IsError()) {
@@ -1348,7 +1349,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitHEX2DEC_fun(HEX2DEC_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToText("Function HEX2DEC parameter is error!");
+        Operand firstValue = visit(context.expr()).ToText("Function HEX2DEC parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1364,7 +1365,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToNumber("Function ROUND parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToNumber("Function ROUND parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -1374,7 +1375,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         Operand firstValue = args.get(0);
         Operand secondValue = args.get(1);
 
-        return Operand.Create((double) Math.round((decimal) firstValue.NumberValue(), secondValue.IntValue(),
+        return Operand.Create((double) round((decimal) firstValue.NumberValue(), secondValue.IntValue(),
                 MidpointRounding.AwayFromZero));
     }
 
@@ -1382,7 +1383,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToNumber("Function ROUNDDOWN parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToNumber("Function ROUNDDOWN parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -1405,7 +1406,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToNumber("Function ROUNDUP parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToNumber("Function ROUNDUP parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -1430,7 +1431,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToNumber("Function CEILING parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToNumber("Function CEILING parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -1458,7 +1459,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToNumber("Function FLOOR parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToNumber("Function FLOOR parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -1483,7 +1484,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitEVEN_fun(EVEN_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function EVEN parameter is error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function EVEN parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1502,7 +1503,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
     public Operand VisitODD_fun(ODD_funContext context) {
 
-        Operand firstValue = Visit(context.expr()).ToNumber("Function ODD parameter is error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function ODD parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1522,7 +1523,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToNumber("Function MROUND parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToNumber("Function MROUND parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -1537,7 +1538,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             return Operand.Error("Function MROUND parameter 2 is error!");
         }
         double b = firstValue.NumberValue();
-        double r = Math.round(b / a, 0, MidpointRounding.AwayFromZero) * a;
+        double r = round(b / a, 0) * a;
         return Operand.Create(r);
     }
 
@@ -1551,7 +1552,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToNumber("Function RANDBETWEEN parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToNumber("Function RANDBETWEEN parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -1568,7 +1569,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitFACT_fun(FACT_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function FACT parameter is error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function FACT parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1585,7 +1586,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitFACTDOUBLE_fun(FACTDOUBLE_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function FACTDOUBLE parameter is error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function FACTDOUBLE parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1605,7 +1606,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToNumber("Function POWER parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToNumber("Function POWER parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -1619,7 +1620,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitEXP_fun(EXP_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function EXP parameter is error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function EXP parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1628,7 +1629,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitLN_fun(LN_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function LN parameter is error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function LN parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1639,7 +1640,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand a = Visit(item).ToNumber("Function LOG parameter " + (index++) + " is error!");
+            Operand a = visit(item).ToNumber("Function LOG parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -1653,7 +1654,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitLOG10_fun(LOG10_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function LOG10 parameter is error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function LOG10 parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1663,7 +1664,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitMULTINOMIAL_fun(MULTINOMIAL_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1689,7 +1690,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitPRODUCT_fun(PRODUCT_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1711,7 +1712,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitSQRTPI_fun(SQRTPI_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function SQRTPI parameter is error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function SQRTPI parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1721,7 +1722,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitSUMSQ_fun(SUMSQ_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1754,7 +1755,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitASC_fun(ASC_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToText("Function ASC parameter is error!");
+        Operand firstValue = visit(context.expr()).ToText("Function ASC parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1763,7 +1764,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitJIS_fun(JIS_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToText("Function JIS parameter is error!");
+        Operand firstValue = visit(context.expr()).ToText("Function JIS parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1772,17 +1773,17 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitCHAR_fun(CHAR_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function CHAR parameter is error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function CHAR parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
 
         char c = (char) (int) firstValue.NumberValue();
-        return Operand.Create(c.ToString());
+        return Operand.Create(c.toString());
     }
 
     public Operand VisitCLEAN_fun(CLEAN_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToText("Function CLEAN parameter is error!");
+        Operand firstValue = visit(context.expr()).ToText("Function CLEAN parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1793,7 +1794,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitCODE_fun(CODE_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToText("Function CODE parameter is error!");
+        Operand firstValue = visit(context.expr()).ToText("Function CODE parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1809,7 +1810,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand a = Visit(item).ToText("Function CONCATENATE parameter " + (index++) + " is error!");
+            Operand a = visit(item).ToText("Function CONCATENATE parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -1820,14 +1821,14 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         for (Operand item : args) {
             sb.append(item.TextValue());
         }
-        return Operand.Create(sb.ToString());
+        return Operand.Create(sb.toString());
     }
 
     public Operand VisitEXACT_fun(EXACT_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToNumber("Function EXACT parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToNumber("Function EXACT parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -1843,7 +1844,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitFIND_fun(FIND_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1874,7 +1875,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitLEFT_fun(LEFT_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1887,7 +1888,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         if (args.Count == 1) {
-            return Operand.Create(firstValue.TextValue().charAt(0).ToString());
+            return Operand.Create(firstValue.TextValue().charAt(0).toString());
         }
         Operand secondValue = args.get(1).ToNumber("Function LEFT parameter 2 is error!");
         if (secondValue.IsError()) {
@@ -1897,7 +1898,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitLEN_fun(LEN_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToText("Function LEN parameter is error!");
+        Operand firstValue = visit(context.expr()).ToText("Function LEN parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1906,7 +1907,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitLOWER_fun(LOWER_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToText("Function LOWER/TOLOWER parameter is error!");
+        Operand firstValue = visit(context.expr()).ToText("Function LOWER/TOLOWER parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1917,7 +1918,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitMID_fun(MID_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1942,7 +1943,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
     public Operand VisitPROPER_fun(PROPER_funContext context)
     {
-        Operand firstValue = Visit(context.expr()).ToText("Function PROPER parameter is error!");
+        Operand firstValue = visit(context.expr()).ToText("Function PROPER parameter is error!");
         if (firstValue.IsError()) { return firstValue; }
 
         String text = firstValue.TextValue();
@@ -1957,13 +1958,13 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
                 isFirst = false;
             }
         }
-        return Operand.Create(sb.ToString());
+        return Operand.Create(sb.toString());
     }
 
     public Operand VisitREPLACE_fun(REPLACE_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -2010,13 +2011,13 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
                 sb.append(oldtext.charAt(i));
             }
         }
-        return Operand.Create(sb.ToString());
+        return Operand.Create(sb.toString());
     }
 
     public Operand VisitREPT_fun(REPT_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -2038,13 +2039,13 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         for (int i = 0; i < length; i++) {
             sb.append(newtext);
         }
-        return Operand.Create(sb.ToString());
+        return Operand.Create(sb.toString());
     }
 
     public Operand VisitRIGHT_fun(RIGHT_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -2057,7 +2058,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         if (args.Count == 1) {
-            return Operand.Create(firstValue.TextValue().charAt(firstValue.TextValue().Length - 1).ToString());
+            return Operand.Create(firstValue.TextValue().charAt(firstValue.TextValue().Length - 1).toString());
         }
         Operand secondValue = args.get(1).ToNumber("Function RIGHT parameter 2 is error!");
         if (secondValue.IsError()) {
@@ -2068,7 +2069,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitRMB_fun(RMB_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function RMB parameter is error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function RMB parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -2079,7 +2080,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitSEARCH_fun(SEARCH_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -2111,7 +2112,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitSUBSTITUTE_fun(SUBSTITUTE_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -2164,11 +2165,11 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
                 sb.append(text.charAt(i));
             }
         }
-        return Operand.Create(sb.ToString());
+        return Operand.Create(sb.toString());
     }
 
     public Operand VisitT_fun(T_funContext context) {
-        Operand firstValue = Visit(context.expr());
+        Operand firstValue = visit(context.expr());
         if (firstValue.Type == OperandType.STRING) {
             return firstValue;
         }
@@ -2178,7 +2179,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitTEXT_fun(TEXT_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -2199,19 +2200,19 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         } else if (firstValue.Type == OperandType.BOOLEAN) {
             return Operand.Create(firstValue.BooleanValue() ? "TRUE" : "FALSE");
         } else if (firstValue.Type == OperandType.NUMBER) {
-            return Operand.Create(firstValue.NumberValue().ToString(secondValue.TextValue(), cultureInfo));
+            return Operand.Create(firstValue.NumberValue().toString(secondValue.TextValue(), cultureInfo));
         } else if (firstValue.Type == OperandType.DATE) {
-            return Operand.Create(firstValue.DateValue.ToString(secondValue.TextValue()));
+            return Operand.Create(firstValue.DateValue.toString(secondValue.TextValue()));
         }
         firstValue = firstValue.ToText("Function TEXT parameter 1 is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
-        return Operand.Create(firstValue.TextValue().ToString());
+        return Operand.Create(firstValue.TextValue().toString());
     }
 
     public Operand VisitTRIM_fun(TRIM_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToText("Function TRIM parameter is error!");
+        Operand firstValue = visit(context.expr()).ToText("Function TRIM parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -2219,7 +2220,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitUPPER_fun(UPPER_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToText("Function UPPER/TOUPPER parameter is error!");
+        Operand firstValue = visit(context.expr()).ToText("Function UPPER/TOUPPER parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -2228,7 +2229,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
     public Operand VisitVALUE_fun(VALUE_funContext context)
     {
-        Operand firstValue = Visit(context.expr()).ToText("Function VALUE parameter is error!");
+        Operand firstValue = visit(context.expr()).ToText("Function VALUE parameter is error!");
         if (firstValue.IsError()) { return firstValue; }
 
         if (double.TryParse(firstValue.TextValue(), NumberStyles.Any, cultureInfo, out double d)) {
@@ -2249,7 +2250,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
                 // sb[i] = (char) (c + 65248);
             }
         }
-        return sb.ToString();
+        return sb.toString();
     }
 
     private String F_base_ToDBC(String input) {
@@ -2263,72 +2264,66 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
                 sb.setCharAt(i, (char) (c - 65248));
             }
         }
-        return sb.ToString();
+        return sb.toString();
     }
 
-    private String F_base_ToChineseRMB(double x)
-    {
-        // String s = x.ToString("#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A", cultureInfo);
-        // String d = Regex.Replace(s, "((?<=-|^)[^1-9]*)|((?'z'0)[0A-E]*((?=[1-9])|(?'-z'(?=[F-L\\.]|$))))|((?'b'[F-L])(?'z'0)[0A-L]*((?=[1-9])|(?'-z'(?=[\\.]|$))))", "${b}${z}", RegexOptions.Compiled);
-        // return Regex.Replace(d, ".", m -> "负元空零壹贰叁肆伍陆柒捌玖空空空空空空空分角拾佰仟万亿兆京垓秭穰"[m.Value[0] - '-'].ToString(), RegexOptions.Compiled);
-        
+    private String F_base_ToChineseRMB(double x) {
+        // String s =
+        // x.toString("#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A",
+        // cultureInfo);
+        // String d = Regex.Replace(s,
+        // "((?<=-|^)[^1-9]*)|((?'z'0)[0A-E]*((?=[1-9])|(?'-z'(?=[F-L\\.]|$))))|((?'b'[F-L])(?'z'0)[0A-L]*((?=[1-9])|(?'-z'(?=[\\.]|$))))",
+        // "${b}${z}", RegexOptions.Compiled);
+        // return Regex.Replace(d, ".", m ->
+        // "负元空零壹贰叁肆伍陆柒捌玖空空空空空空空分角拾佰仟万亿兆京垓秭穰"[m.Value[0] - '-'].toString(),
+        // RegexOptions.Compiled);
+
         StringBuffer chineseNumber = new StringBuffer();
-        String [] num={"零","壹","贰","叁","肆","伍","陆","柒","捌","玖"};
-        String [] unit = {"分","角","圆","拾","佰","仟","万","拾","佰","仟","亿","拾","佰","仟","万"};
-        String tempNumber = String.valueOf(Math.round((number * 100)));
+        String[] num = { "零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖" };
+        String[] unit = { "分", "角", "圆", "拾", "佰", "仟", "万", "拾", "佰", "仟", "亿", "拾", "佰", "仟", "万" };
+        String tempNumber = String.valueOf(round((number * 100)));
         int tempNumberLength = tempNumber.length();
-        if ("0".equals(tempNumber))
-        {
+        if ("0".equals(tempNumber)) {
             return "零圆整";
         }
-        if (tempNumberLength > 15)
-        {
+        if (tempNumberLength > 15) {
             throw new InputException("超出转化范围.");
         }
-        boolean preReadZero = true;     //前面的字符是否读零
-        for (int i=tempNumberLength; i>0; i--)
-        {
-            if ((tempNumberLength - i + 2) % 4 == 0)
-            {
-                //如果在（圆，万，亿，万）位上的四个数都为零,如果标志为未读零，则只读零，如果标志为已读零，则略过这四位
-                if (i - 4 >= 0 && "0000".equals(tempNumber.substring(i - 4, i)))
-                {
-                    if (!preReadZero)
-                    {
+        boolean preReadZero = true; // 前面的字符是否读零
+        for (int i = tempNumberLength; i > 0; i--) {
+            if ((tempNumberLength - i + 2) % 4 == 0) {
+                // 如果在（圆，万，亿，万）位上的四个数都为零,如果标志为未读零，则只读零，如果标志为已读零，则略过这四位
+                if (i - 4 >= 0 && "0000".equals(tempNumber.substring(i - 4, i))) {
+                    if (!preReadZero) {
                         chineseNumber.insert(0, "零");
                         preReadZero = true;
                     }
-                    i -= 3;     //下面还有一个i--
+                    i -= 3; // 下面还有一个i--
                     continue;
                 }
-                //如果当前位在（圆，万，亿，万）位上，则设置标志为已读零（即重置读零标志）
+                // 如果当前位在（圆，万，亿，万）位上，则设置标志为已读零（即重置读零标志）
                 preReadZero = true;
             }
             Integer digit = Integer.parseInt(tempNumber.substring(i - 1, i));
-            if (digit == 0)
-            {
-                //如果当前位是零并且标志为未读零，则读零，并设置标志为已读零
-                if (!preReadZero)
-                {
+            if (digit == 0) {
+                // 如果当前位是零并且标志为未读零，则读零，并设置标志为已读零
+                if (!preReadZero) {
                     chineseNumber.insert(0, "零");
                     preReadZero = true;
                 }
-                //如果当前位是零并且在（圆，万，亿，万）位上，则读出（圆，万，亿，万）
-                if ((tempNumberLength - i + 2) % 4 == 0)
-                {
+                // 如果当前位是零并且在（圆，万，亿，万）位上，则读出（圆，万，亿，万）
+                if ((tempNumberLength - i + 2) % 4 == 0) {
                     chineseNumber.insert(0, unit[tempNumberLength - i]);
                 }
             }
-            //如果当前位不为零，则读出此位，并且设置标志为未读零
-            else
-            {
+            // 如果当前位不为零，则读出此位，并且设置标志为未读零
+            else {
                 chineseNumber.insert(0, num[digit] + unit[tempNumberLength - i]);
                 preReadZero = false;
             }
         }
-        //如果分角两位上的值都为零，则添加一个“整”字
-        if (tempNumberLength - 2 >= 0 && "00".equals(tempNumber.substring(tempNumberLength - 2, tempNumberLength)))
-        {
+        // 如果分角两位上的值都为零，则添加一个“整”字
+        if (tempNumberLength - 2 >= 0 && "00".equals(tempNumber.substring(tempNumberLength - 2, tempNumberLength))) {
             chineseNumber.append("整");
         }
         return chineseNumber.toString();
@@ -2336,7 +2331,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
     public Operand VisitDATEVALUE_fun(DATEVALUE_funContext context)
     {
-        Operand firstValue = Visit(context.expr()).ToText("Function DATEVALUE parameter is error!");
+        Operand firstValue = visit(context.expr()).ToText("Function DATEVALUE parameter is error!");
         if (firstValue.IsError()) { return firstValue; }
 
         if (DateTime.TryParse(firstValue.TextValue(), cultureInfo, DateTimeStyles.None, out DateTime dt)) {
@@ -2347,7 +2342,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
     public Operand VisitTIMEVALUE_fun(TIMEVALUE_funContext context)
     {
-        Operand firstValue = Visit(context.expr()).ToText("Function TIMEVALUE parameter is error!");
+        Operand firstValue = visit(context.expr()).ToText("Function TIMEVALUE parameter is error!");
         if (firstValue.IsError()) { return firstValue; }
 
         if (TimeSpan.TryParse(firstValue.TextValue(), cultureInfo, out TimeSpan dt)) {
@@ -2360,7 +2355,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToNumber("Function DATE parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToNumber("Function DATE parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -2387,7 +2382,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToNumber("Function TIME parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToNumber("Function TIME parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -2412,7 +2407,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitYEAR_fun(YEAR_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToDate("Function YEAR parameter is error!");
+        Operand firstValue = visit(context.expr()).ToDate("Function YEAR parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -2421,7 +2416,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitMONTH_fun(MONTH_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToDate("Function MONTH parameter is error!");
+        Operand firstValue = visit(context.expr()).ToDate("Function MONTH parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -2430,7 +2425,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitDAY_fun(DAY_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToDate("Function DAY parameter is error!");
+        Operand firstValue = visit(context.expr()).ToDate("Function DAY parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -2439,7 +2434,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitHOUR_fun(HOUR_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToDate("Function HOUR parameter is error!");
+        Operand firstValue = visit(context.expr()).ToDate("Function HOUR parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -2448,7 +2443,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitMINUTE_fun(MINUTE_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToDate("Function MINUTE parameter is error!");
+        Operand firstValue = visit(context.expr()).ToDate("Function MINUTE parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -2457,7 +2452,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitSECOND_fun(SECOND_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToDate("Function SECOND parameter is error!");
+        Operand firstValue = visit(context.expr()).ToDate("Function SECOND parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -2468,7 +2463,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitWEEKDAY_fun(WEEKDAY_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -2506,7 +2501,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitDATEDIF_fun(DATEDIF_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -2582,7 +2577,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitDAYS360_fun(DAYS360_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -2637,7 +2632,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitEDATE_fun(EDATE_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -2659,7 +2654,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitEOMONTH_fun(EOMONTH_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -2684,7 +2679,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand a = Visit(item).ToDate("Function NETWORKDAYS parameter " + (index++) + " is error!");
+            Operand a = visit(item).ToDate("Function NETWORKDAYS parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -2714,7 +2709,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitWORKDAY_fun(WORKDAY_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -2756,7 +2751,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitWEEKNUM_fun(WEEKNUM_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -2789,7 +2784,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToNumber("Function MAX parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToNumber("Function MAX parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -2808,7 +2803,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitMEDIAN_fun(MEDIAN_funContext context)
     {
         List<Operand> args = new ArrayList<Operand>(); int index = 1;
-        for (ExprContext item : context.expr()) { Operand aa = Visit(item).ToNumber("Function MEDIAN parameter "+(index++)+" is error!"); if (aa.IsError()) { return aa; } args.add(aa); }
+        for (ExprContext item : context.expr()) { Operand aa = visit(item).ToNumber("Function MEDIAN parameter "+(index++)+" is error!"); if (aa.IsError()) { return aa; } args.add(aa); }
 
         List<Double>  list = new List<Double> ();
         boolean o = F_base_GetList(args, list);
@@ -2822,7 +2817,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToNumber("Function MIN parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToNumber("Function MIN parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -2841,7 +2836,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitQUARTILE_fun(QUARTILE_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -2873,7 +2868,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitMODE_fun(MODE_funContext context)
     {
         List<Operand> args = new ArrayList<Operand>(); int index = 1;
-        for (ExprContext item : context.expr()) { Operand aa = Visit(item).ToNumber("Function MODE parameter "+(index++)+" is error!"); if (aa.IsError()) { return aa; } args.add(aa); }
+        for (ExprContext item : context.expr()) { Operand aa = visit(item).ToNumber("Function MODE parameter "+(index++)+" is error!"); if (aa.IsError()) { return aa; } args.add(aa); }
 
         List<Double>  list = new List<Double> ();
         boolean o = F_base_GetList(args, list);
@@ -2894,7 +2889,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitLARGE_fun(LARGE_funContext context)
     {
         List<Operand> args = new ArrayList<Operand>();
-        for (ExprContext item : context.expr()) { Operand aa = Visit(item); if (aa.IsError()) { return aa; } args.add(aa); }
+        for (ExprContext item : context.expr()) { Operand aa = visit(item); if (aa.IsError()) { return aa; } args.add(aa); }
 
         Operand firstValue = args.get(0).ToArray("Function LARGE parameter 1 is error!");
         if (firstValue.IsError()) { return firstValue; }
@@ -2915,7 +2910,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitSMALL_fun(SMALL_funContext context)
     {
         List<Operand> args = new ArrayList<Operand>();
-        for (ExprContext item : context.expr()) { Operand aa = Visit(item); if (aa.IsError()) { return aa; } args.add(aa); }
+        for (ExprContext item : context.expr()) { Operand aa = visit(item); if (aa.IsError()) { return aa; } args.add(aa); }
 
         Operand firstValue = args.get(0).ToArray("Function SMALL parameter 1 is error!");
         if (firstValue.IsError()) { return firstValue; }
@@ -2935,7 +2930,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitPERCENTILE_fun(PERCENTILE_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -2964,7 +2959,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitPERCENTRANK_fun(PERCENTRANK_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -2996,13 +2991,13 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             }
             d = thirdValue.IntValue();
         }
-        return Operand.Create(Math.round(v, d, MidpointRounding.AwayFromZero));
+        return Operand.Create(round(v, d));
     }
 
     public Operand VisitAVERAGE_fun(AVERAGE_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3021,7 +3016,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitAVERAGEIF_fun(AVERAGEIF_funContext context)
     {
         List<Operand> args = new ArrayList<Operand>();
-        for (ExprContext item : context.expr()) { Operand aa = Visit(item); if (aa.IsError()) { return aa; } args.add(aa); }
+        for (ExprContext item : context.expr()) { Operand aa = visit(item); if (aa.IsError()) { return aa; } args.add(aa); }
 
         List<Double>  list = new List<Double> ();
         boolean o = F_base_GetList(args.get(0), list);
@@ -3061,7 +3056,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitGEOMEAN_fun(GEOMEAN_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3087,7 +3082,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitHARMEAN_fun(HARMEAN_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3116,7 +3111,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitCOUNT_fun(COUNT_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3135,7 +3130,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitCOUNTIF_fun(COUNTIF_funContext context)
     {
         List<Operand> args = new ArrayList<Operand>();
-        for (ExprContext item : context.expr()) { Operand aa = Visit(item); if (aa.IsError()) { return aa; } args.add(aa); }
+        for (ExprContext item : context.expr()) { Operand aa = visit(item); if (aa.IsError()) { return aa; } args.add(aa); }
 
         List<Double>  list = new List<Double> ();
         boolean o = F_base_GetList(args.get(0), list);
@@ -3162,7 +3157,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitSUM_fun(SUM_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3185,7 +3180,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitSUMIF_fun(SUMIF_funContext context)
     {
         List<Operand> args = new ArrayList<Operand>();
-        for (ExprContext item : context.expr()) { Operand aa = Visit(item); if (aa.IsError()) { return aa; } args.add(aa); }
+        for (ExprContext item : context.expr()) { Operand aa = visit(item); if (aa.IsError()) { return aa; } args.add(aa); }
 
         List<Double>  list = new List<Double> ();
         boolean o = F_base_GetList(args.get(0), list);
@@ -3221,7 +3216,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitAVEDEV_fun(AVEDEV_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3245,7 +3240,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitSTDEV_fun(STDEV_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3272,7 +3267,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitSTDEVP_fun(STDEVP_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3297,7 +3292,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitDEVSQ_fun(DEVSQ_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3321,7 +3316,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitVAR_fun(VAR_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3349,7 +3344,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitVARP_fun(VARP_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3373,7 +3368,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitNORMDIST_fun(NORMDIST_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3405,7 +3400,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToNumber("Function NORMINV parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToNumber("Function NORMINV parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -3419,7 +3414,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitNORMSDIST_fun(NORMSDIST_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function NORMSDIST parameter 1 error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function NORMSDIST parameter 1 error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -3429,7 +3424,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitNORMSINV_fun(NORMSINV_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function NORMSINV parameter 1 error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function NORMSINV parameter 1 error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -3442,7 +3437,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToNumber("Function BETADIST parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToNumber("Function BETADIST parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -3464,7 +3459,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToNumber("Function BETAINV parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToNumber("Function BETAINV parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -3483,7 +3478,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitBINOMDIST_fun(BINOMDIST_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3514,7 +3509,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitEXPONDIST_fun(EXPONDIST_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3543,7 +3538,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToNumber("Function FDIST parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToNumber("Function FDIST parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -3563,7 +3558,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToNumber("Function FINV parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToNumber("Function FINV parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -3580,7 +3575,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitFISHER_fun(FISHER_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function FISHER parameter error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function FISHER parameter error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -3594,7 +3589,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitFISHERINV_fun(FISHERINV_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function FISHERINV parameter error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function FISHERINV parameter error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -3607,7 +3602,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitGAMMADIST_fun(GAMMADIST_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3642,7 +3637,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToNumber("Function GAMMAINV parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToNumber("Function GAMMAINV parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -3659,7 +3654,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitGAMMALN_fun(GAMMALN_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToNumber("Function GAMMALN parameter error!");
+        Operand firstValue = visit(context.expr()).ToNumber("Function GAMMALN parameter error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -3671,7 +3666,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToNumber("Function HYPGEOMDIST parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToNumber("Function HYPGEOMDIST parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -3692,7 +3687,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToNumber("Function LOGINV parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToNumber("Function LOGINV parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -3710,7 +3705,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToNumber("Function LOGNORMDIST parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToNumber("Function LOGNORMDIST parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -3728,7 +3723,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToNumber("Function NEGBINOMDIST parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToNumber("Function NEGBINOMDIST parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -3748,7 +3743,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitPOISSON_fun(POISSON_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3778,7 +3773,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToNumber("Function TDIST parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToNumber("Function TDIST parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -3798,7 +3793,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item).ToNumber("Function TINV parameter " + (index++) + " is error!");
+            Operand aa = visit(item).ToNumber("Function TINV parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -3816,7 +3811,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitWEIBULL_fun(WEIBULL_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3850,9 +3845,9 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
     private int F_base_countif(List<Double> dbs, double d) {
         int count = 0;
-        d = Math.round(d, 12, MidpointRounding.AwayFromZero);
+        d = round(d, 12);
         for (double item : dbs) {
-            if (Math.round(item, 12, MidpointRounding.AwayFromZero) == d) {
+            if (round(item, 12) == d) {
                 count++;
             }
         }
@@ -3889,17 +3884,17 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
     private boolean F_base_compare(double a, double b, String ss) {
         if (ss == "<") {
-            return Math.round(a - b, 12, MidpointRounding.AwayFromZero) < 0;
+            return round(a - b, 12) < 0;
         } else if (ss == "<=") {
-            return Math.round(a - b, 12, MidpointRounding.AwayFromZero) <= 0;
+            return round(a - b, 12) <= 0;
         } else if (ss == ">") {
-            return Math.round(a - b, 12, MidpointRounding.AwayFromZero) > 0;
+            return round(a - b, 12) > 0;
         } else if (ss == ">=") {
-            return Math.round(a - b, 12, MidpointRounding.AwayFromZero) >= 0;
+            return round(a - b, 12) >= 0;
         } else if (ss == "=" || ss == "==") {
-            return Math.round(a - b, 12, MidpointRounding.AwayFromZero) == 0;
+            return round(a - b, 12) == 0;
         }
-        return Math.round(a - b, 12, MidpointRounding.AwayFromZero) != 0;
+        return round(a - b, 12) != 0;
     }
 
     private boolean F_base_GetList(List<Operand> args, List<Double> list) {
@@ -4017,7 +4012,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitURLENCODE_fun(URLENCODE_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToText("Function URLENCODE parameter 1 is error!");
+        Operand firstValue = visit(context.expr()).ToText("Function URLENCODE parameter 1 is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -4026,7 +4021,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitURLDECODE_fun(URLDECODE_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToText("Function URLDECODE parameter 1 is error!");
+        Operand firstValue = visit(context.expr()).ToText("Function URLDECODE parameter 1 is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -4035,7 +4030,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitHTMLENCODE_fun(HTMLENCODE_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToText("Function HTMLENCODE parameter 1 is error!");
+        Operand firstValue = visit(context.expr()).ToText("Function HTMLENCODE parameter 1 is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -4044,7 +4039,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitHTMLDECODE_fun(HTMLDECODE_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToText("Function HTMLDECODE parameter 1 is error!");
+        Operand firstValue = visit(context.expr()).ToText("Function HTMLDECODE parameter 1 is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -4056,7 +4051,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand a = Visit(item).ToText("Function BASE64TOTEXT parameter " + (index++) + " is error!");
+            Operand a = visit(item).ToText("Function BASE64TOTEXT parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4077,7 +4072,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand a = Visit(item).ToText("Function BASE64URLTOTEXT parameter " + (index++) + " is error!");
+            Operand a = visit(item).ToText("Function BASE64URLTOTEXT parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4098,7 +4093,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand a = Visit(item).ToText("Function TEXTTOBASE64 parameter " + (index++) + " is error!");
+            Operand a = visit(item).ToText("Function TEXTTOBASE64 parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4120,7 +4115,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand a = Visit(item).ToText("Function TEXTTOBASE64URL parameter " + (index++) + " is error!");
+            Operand a = visit(item).ToText("Function TEXTTOBASE64URL parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4141,7 +4136,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitREGEX_fun(REGEX_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -4194,7 +4189,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand a = Visit(item).ToText("Function REGEXREPALCE parameter " + (index++) + " is error!");
+            Operand a = visit(item).ToText("Function REGEXREPALCE parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4209,7 +4204,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand a = Visit(item).ToText("Function ISREGEX parameter " + (index++) + " is error!");
+            Operand a = visit(item).ToText("Function ISREGEX parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4221,14 +4216,14 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitGUID_fun(GUID_funContext context) {
-        return Operand.Create(System.Guid.NewGuid().ToString());
+        return Operand.Create(System.Guid.NewGuid().toString());
     }
 
     public Operand VisitMD5_fun(MD5_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand a = Visit(item).ToText("Function MD5 parameter " + (index++) + " is error!");
+            Operand a = visit(item).ToText("Function MD5 parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4249,7 +4244,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand a = Visit(item).ToText("Function SHA1 parameter " + (index++) + " is error!");
+            Operand a = visit(item).ToText("Function SHA1 parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4270,7 +4265,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand a = Visit(item).ToText("Function SHA256 parameter " + (index++) + " is error!");
+            Operand a = visit(item).ToText("Function SHA256 parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4291,7 +4286,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand a = Visit(item).ToText("Function SHA512 parameter " + (index++) + " is error!");
+            Operand a = visit(item).ToText("Function SHA512 parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4312,7 +4307,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand a = Visit(item).ToText("Function CRC8 parameter " + (index++) + " is error!");
+            Operand a = visit(item).ToText("Function CRC8 parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4333,7 +4328,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand a = Visit(item).ToText("Function CRC16 parameter " + (index++) + " is error!");
+            Operand a = visit(item).ToText("Function CRC16 parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4354,7 +4349,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand a = Visit(item).ToText("Function CRC32 parameter " + (index++) + " is error!");
+            Operand a = visit(item).ToText("Function CRC32 parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4375,7 +4370,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand a = Visit(item).ToText("Function HMACMD5 parameter " + (index++) + " is error!");
+            Operand a = visit(item).ToText("Function HMACMD5 parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4396,7 +4391,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand a = Visit(item).ToText("Function HMACSHA1 parameter " + (index++) + " is error!");
+            Operand a = visit(item).ToText("Function HMACSHA1 parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4417,7 +4412,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand a = Visit(item).ToText("Function HMACSHA256 parameter " + (index++) + " is error!");
+            Operand a = visit(item).ToText("Function HMACSHA256 parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4438,7 +4433,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand a = Visit(item).ToText("Function HMACSHA512 parameter " + (index++) + " is error!");
+            Operand a = visit(item).ToText("Function HMACSHA512 parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4459,7 +4454,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand a = Visit(item).ToText("Function TRIMSTART parameter " + (index++) + " is error!");
+            Operand a = visit(item).ToText("Function TRIMSTART parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4477,7 +4472,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand a = Visit(item).ToText("Function TRIMEND parameter " + (index++) + " is error!");
+            Operand a = visit(item).ToText("Function TRIMEND parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4494,7 +4489,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitINDEXOF_fun(INDEXOF_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -4532,7 +4527,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitLASTINDEXOF_fun(LASTINDEXOF_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -4571,7 +4566,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
-            Operand a = Visit(item).ToText("Function SPLIT parameter " + (index++) + " is error!");
+            Operand a = visit(item).ToText("Function SPLIT parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4583,7 +4578,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitJOIN_fun(JOIN_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -4629,7 +4624,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitSUBSTRING_fun(SUBSTRING_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -4659,7 +4654,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitSTARTSWITH_fun(STARTSWITH_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -4690,7 +4685,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitENDSWITH_fun(ENDSWITH_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -4720,7 +4715,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitISNULLOREMPTY_fun(ISNULLOREMPTY_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToText("Function ISNULLOREMPTY parameter 1 is error!");
+        Operand firstValue = visit(context.expr()).ToText("Function ISNULLOREMPTY parameter 1 is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -4729,7 +4724,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitISNULLORWHITESPACE_fun(ISNULLORWHITESPACE_funContext context) {
-        Operand firstValue = Visit(context.expr()).ToText("Function ISNULLORWHITESPACE parameter 1 is error!");
+        Operand firstValue = visit(context.expr()).ToText("Function ISNULLORWHITESPACE parameter 1 is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -4740,7 +4735,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitREMOVESTART_fun(REMOVESTART_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -4776,7 +4771,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitREMOVEEND_fun(REMOVEEND_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -4811,7 +4806,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
     public Operand VisitJSON_fun(JSON_funContext context)
     {
-        Operand firstValue = Visit(context.expr()).ToText("Function JSON parameter is error!");
+        Operand firstValue = visit(context.expr()).ToText("Function JSON parameter is error!");
         if (firstValue.IsError()) { return firstValue; }
         String txt = firstValue.TextValue();
         if ((txt.StartsWith("{") && txt.EndsWith("}")) || (txt.StartsWith("[") && txt.EndsWith("]"))) {
@@ -4826,7 +4821,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitVLOOKUP_fun(VLOOKUP_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -4924,7 +4919,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitLOOKUP_fun(LOOKUP_funContext context)
     {
         List<Operand> args = new ArrayList<Operand>();
-        for (ExprContext item : context.expr()) { Operand aa = Visit(item); if (aa.IsError()) { return aa; } args.add(aa); }
+        for (ExprContext item : context.expr()) { Operand aa = visit(item); if (aa.IsError()) { return aa; } args.add(aa); }
 
         Operand firstValue = args.get(0).ToArray("Function LOOKUP parameter 1 error!");
         if (firstValue.IsError()) { return firstValue; }
@@ -4941,12 +4936,9 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         if (engine.Parse(secondValue.TextValue()) == false) {
             return Operand.Error("Function LOOKUP parameter 2 Parse is error!");
         }
-        engine.DiyFunction += (funcName, list) => {
-            if (DiyFunction != null) {
-                return DiyFunction(funcName, list);
-            }
-            return Operand.Error("Function name ["+funcName+"] is missing.");
-        };
+ 
+        engine.DiyFunction = DoDiyFunction;
+
         for (Operand item : firstValue.ArrayValue()) {
             Operand json = item.ToJson(null);
             if (json.IsError() == false) {
@@ -4973,10 +4965,17 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         return Operand.Error("Function LOOKUP not find!");
     }
 
+    private Operand DoDiyFunction(MyFunction fun) {
+        if (DiyFunction != null) {
+            return DiyFunction.apply(fun);
+        }
+        return Operand.Error("Function name [" + fun.Name + "] is missing.");
+    }
+
     public Operand VisitArray_fun(Array_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
-            Operand aa = Visit(item);
+            Operand aa = visit(item);
             if (aa.IsError()) {
                 return aa;
             }
@@ -4986,7 +4985,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitBracket_fun(Bracket_funContext context) {
-        return Visit(context.expr());
+        return visit(context.expr());
     }
 
     public Operand VisitNUM_fun(NUM_funContext context)
@@ -5025,7 +5024,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
                 sb.append(c);
             }
         }
-        return Operand.Create(sb.ToString());
+        return Operand.Create(sb.toString());
     }
 
     public Operand VisitNULL_fun(NULL_funContext context) {
@@ -5033,12 +5032,12 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitPARAMETER_fun(PARAMETER_funContext context) {
-        Operand p = Visit(context.parameter()).ToText("Function PARAMETER first parameter is error!");
+        Operand p = visit(context.parameter()).ToText("Function PARAMETER first parameter is error!");
         if (p.IsError())
             return p;
 
         if (GetParameter != null) {
-            return GetParameter(p.TextValue());
+            return GetParameter.apply(p.TextValue());
         }
         return Operand.Error("Function PARAMETER first parameter is error!");
     }
@@ -5046,9 +5045,9 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     public Operand VisitParameter(ParameterContext context) {
         Operand expr = context.expr();
         if (expr != null) {
-            return Visit(expr);
+            return visit(expr);
         }
-        return Visit(context.parameter2());
+        return visit(context.parameter2());
     }
 
     public Operand VisitParameter2(Parameter2Context context) {
@@ -5056,7 +5055,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitGetJsonValue_fun(GetJsonValue_funContext context) {
-        Operand firstValue = Visit(context.expr());
+        Operand firstValue = visit(context.expr());
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -5065,9 +5064,9 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         Operand op;
         ParameterContext p1 = context.parameter();
         if (p1 != null) {
-            op = Visit(p1);
+            op = visit(p1);
         } else {
-            op = Visit(context.parameter2());
+            op = visit(context.parameter2());
         }
 
         if (obj.Type == OperandType.ARRARY) {
@@ -5089,7 +5088,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
                 }
                 int index = op.IntValue() - excelIndex;
                 if (index < json.Count) {
-                    JsonData v = json.GetChild(index) ;//[op.IntValue() - excelIndex];
+                    JsonData v = json.GetChild(index);// [op.IntValue() - excelIndex];
                     if (v.IsString())
                         return Operand.Create(v.StringValue);
                     if (v.IsBoolean())
@@ -5110,7 +5109,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
                 if (op.IsError()) {
                     return op;
                 }
-                JsonData v = json.GetChild(op.TextValue());//[op.TextValue()];
+                JsonData v = json.GetChild(op.TextValue());// [op.TextValue()];
                 if (v != null) {
                     if (v.IsString())
                         return Operand.Create(v.StringValue);
@@ -5140,7 +5139,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             String funName = context.PARAMETER().GetText();
             List<Operand> args = new ArrayList<Operand>();
             for (ExprContext item : context.expr()) {
-                Operand aa = Visit(item);
+                Operand aa = visit(item);
                 args.add(aa);
             }
             return DiyFunction(funName, args);
@@ -5148,4 +5147,8 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         return Operand.Error("DiyFunction is error!");
     }
 
+    private double round(double value, int p) {
+        BigDecimal bigD = new BigDecimal(tpD);
+        return bigD.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+    }
 }

@@ -130,7 +130,7 @@ public class Precision {
             return true;
         }
 
-        return Math.abs(diff) < maximumError * Math.max(Math.Abs(a), Math.abs(b));
+        return Math.abs(diff) < maximumError * Math.max(Math.abs(a), Math.abs(b));
     }
 
     public static boolean AlmostEqualRelative(double a, double b) {

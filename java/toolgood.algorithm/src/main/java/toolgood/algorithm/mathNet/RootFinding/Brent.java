@@ -42,7 +42,7 @@ public class Brent {
                 e = d = root - lowerBound;
             }
 
-            if (Math.Abs(fmax) < Math.Abs(froot)) {
+            if (Math.abs(fmax) < Math.abs(froot)) {
                 lowerBound = root;
                 root = upperBound;
                 upperBound = lowerBound;
@@ -52,11 +52,11 @@ public class Brent {
             }
 
             // convergence check
-            double xAcc1 = Precision.PositiveDoublePrecision * Math.Abs(root) + 0.5 * accuracy;
+            double xAcc1 = Precision.PositiveDoublePrecision * Math.abs(root) + 0.5 * accuracy;
             double xMidOld = xMid;
             xMid = (upperBound - root) / 2.0;
 
-            if (Math.Abs(xMid) <= xAcc1 || Precision.AlmostEqualNormRelative(froot,0, froot, accuracy)) {
+            if (Math.abs(xMid) <= xAcc1 || Precision.AlmostEqualNormRelative(froot,0, froot, accuracy)) {
                 return true;
             }
 
@@ -65,7 +65,7 @@ public class Brent {
                 return false;
             }
 
-            if (Math.Abs(e) >= xAcc1 && Math.Abs(fmin) > Math.Abs(froot)) {
+            if (Math.abs(e) >= xAcc1 && Math.abs(fmin) > Math.abs(froot)) {
                 // Attempt inverse quadratic interpolation
                 double s = froot / fmin;
                 double p;
@@ -85,8 +85,8 @@ public class Brent {
                     q = -q;
                 }
 
-                p = Math.Abs(p);
-                if (2.0 * p < Math.Min(3.0 * xMid * q - Math.Abs(xAcc1 * q), Math.Abs(e * q))) {
+                p = Math.abs(p);
+                if (2.0 * p < Math.min(3.0 * xMid * q - Math.abs(xAcc1 * q), Math.abs(e * q))) {
                     // Accept interpolation
                     e = d;
                     d = p / q;
@@ -103,7 +103,7 @@ public class Brent {
 
             lowerBound = root;
             fmin = froot;
-            if (Math.Abs(d) > xAcc1) {
+            if (Math.abs(d) > xAcc1) {
                 root += d;
             } else {
                 root += Sign(xAcc1, xMid);

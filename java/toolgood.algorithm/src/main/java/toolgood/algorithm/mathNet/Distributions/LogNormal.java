@@ -21,6 +21,6 @@ public class LogNormal {
         //}
 
         return p <= 0.0 ? 0.0 : p >= 1.0 ? Double.POSITIVE_INFINITY
-            : Math.Exp(mu - sigma * Constants.Sqrt2 * SpecialFunctions.ErfcInv(2.0 * p));
+            : Math.exp(mu - sigma * Constants.Sqrt2 * SpecialFunctions.ErfcInv(2.0 * p));
     }
 }

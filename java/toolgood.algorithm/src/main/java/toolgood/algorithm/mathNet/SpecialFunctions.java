@@ -23,7 +23,7 @@ public class SpecialFunctions {
             return 0.0;
         }
 
-        return Math.Floor(0.5 + Math.Exp(FactorialLn(n) - FactorialLn(k) - FactorialLn(n - k)));
+        return Math.floor(0.5 + Math.exp(FactorialLn(n) - FactorialLn(k) - FactorialLn(n - k)));
     }
 
     public static double FactorialLn(int x) {
@@ -35,8 +35,8 @@ public class SpecialFunctions {
             return 0d;
         }
 
-        if (x < _factorialCache.Length) {
-            return Math.Log(_factorialCache[x]);
+        if (x < _factorialCache.length) {
+            return Math.log(_factorialCache[x]);
         }
 
         return GammaLn(x + 1.0);
@@ -57,15 +57,15 @@ public class SpecialFunctions {
                 s += GammaDk[i] / (i - z);
             }
 
-            return Constants.LnPi - Math.Log(Math.Sin(Math.PI * z)) - Math.Log(s) - Constants.LogTwoSqrtEOverPi
-                    - ((0.5 - z) * Math.Log((0.5 - z + GammaR) / Math.E));
+            return Constants.LnPi - Math.log(Math.sin(Math.PI * z)) - Math.log(s) - Constants.LogTwoSqrtEOverPi
+                    - ((0.5 - z) * Math.log((0.5 - z + GammaR) / Math.E));
         } else {
             double s = GammaDk[0];
             for (int i = 1; i <= GammaN; i++) {
                 s += GammaDk[i] / (z + i - 1.0);
             }
 
-            return Math.Log(s) + Constants.LogTwoSqrtEOverPi + ((z - 0.5) * Math.Log((z - 0.5 + GammaR) / Math.E));
+            return Math.log(s) + Constants.LogTwoSqrtEOverPi + ((z - 0.5) * Math.log((z - 0.5 + GammaR) / Math.E));
         }
     }
 
@@ -84,7 +84,7 @@ public class SpecialFunctions {
         // }
 
         double bt = (x == 0.0 || x == 1.0) ? 0.0
-                : Math.Exp(GammaLn(a + b) - GammaLn(a) - GammaLn(b) + (a * Math.Log(x)) + (b * Math.Log(1.0 - x)));
+                : Math.exp(GammaLn(a + b) - GammaLn(a) - GammaLn(b) + (a * Math.log(x)) + (b * Math.log(1.0 - x)));
 
         boolean symmetryTransformation = x >= (a + 1.0) / (a + b + 2.0);
 
@@ -318,15 +318,15 @@ public class SpecialFunctions {
                 yUpper = y;
             }
 
-            d = ((a - 1) * Math.Log(x)) - x - lgm;
+            d = ((a - 1) * Math.log(x)) - x - lgm;
             if (d < -709.78271289338399) {
                 d = 0.0625;
                 break;
             }
 
-            d = -Math.Exp(d);
+            d = -Math.exp(d);
             d = (y - y0) / d;
-            if (Math.Abs(d / x) < epsilon) {
+            if (Math.abs(d / x) < epsilon) {
                 return x;
             }
 
@@ -362,12 +362,12 @@ public class SpecialFunctions {
             x = xLower + (d * (xUpper - xLower));
             y = 1 - GammaLowerRegularized(a, x);
             lgm = (xUpper - xLower) / (xLower + xUpper);
-            if (Math.Abs(lgm) < threshold) {
+            if (Math.abs(lgm) < threshold) {
                 return x;
             }
 
             lgm = (y - y0) / y0;
-            if (Math.Abs(lgm) < threshold) {
+            if (Math.abs(lgm) < threshold) {
                 return x;
             }
 
@@ -648,7 +648,7 @@ public class SpecialFunctions {
                 b = 0.5641584396F;
             }
 
-            double g = Math.Exp(-z * z) / z;
+            double g = Math.exp(-z * z) / z;
             result = (g * b) + (g * r);
         } else {
             // Any value of z larger than 28 will underflow to zero:
@@ -716,7 +716,7 @@ public class SpecialFunctions {
             // long double : Max error found: 6.084616e-20
             // Maximum Deviation Found (error term) 4.811e-20
             final float y = 2.249481201171875f;
-            double g = Math.sqrt(-2 * Math.Log(q));
+            double g = Math.sqrt(-2 * Math.log(q));
             double xs = q - 0.25;
             double r = Evaluate.Polynomial(xs, ErvInvImpBn) / Evaluate.Polynomial(xs, ErvInvImpBd);
             result = g / (y + r);
@@ -738,7 +738,7 @@ public class SpecialFunctions {
             // or maybe second approximation. After than we're dealing with very
             // small input values indeed: 80 and 128 bit long double's go all the
             // way down to ~ 1e-5000 so the "tail" is rather long...
-            double x = Math.Sqrt(-Math.log(q));
+            double x = Math.sqrt(-Math.log(q));
             if (x < 3) {
                 // Max error found: 1.089051e-20
                 final float y = 0.807220458984375f;
