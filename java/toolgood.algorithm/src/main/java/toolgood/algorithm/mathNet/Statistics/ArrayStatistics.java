@@ -48,22 +48,22 @@ public class ArrayStatistics {
         }
 
         switch (definition) {
-            case QuantileDefinition.R1: {
+            case R1: {
                     double h = data.Length * tau + 0.5d;
                     return SelectInplace(data, (int)Math.ceil(h - 0.5d) - 1);
                 }
 
-            case QuantileDefinition.R2: {
+            case R2: {
                     double h = data.Length * tau + 0.5d;
                     return (SelectInplace(data, (int)Math.ceil(h - 0.5d) - 1) + SelectInplace(data, (int)(h + 0.5d) - 1)) * 0.5d;
                 }
 
-            case QuantileDefinition.R3: {
+            case R3: {
                     double h = data.Length * tau;
                     return SelectInplace(data, (int)Math.round(h) - 1);
                 }
 
-            case QuantileDefinition.R4: {
+            case R4: {
                     double h = data.Length * tau;
                     int hf = (int)h;
                     double lower = SelectInplace(data, hf - 1);
@@ -71,7 +71,7 @@ public class ArrayStatistics {
                     return lower + (h - hf) * (upper - lower);
                 }
 
-            case QuantileDefinition.R5: {
+            case R5: {
                     double h = data.Length * tau + 0.5d;
                     int hf = (int)h;
                     double lower = SelectInplace(data, hf - 1);
@@ -79,7 +79,7 @@ public class ArrayStatistics {
                     return lower + (h - hf) * (upper - lower);
                 }
 
-            case QuantileDefinition.R6: {
+            case R6: {
                     double h = (data.Length + 1) * tau;
                     int hf = (int)h;
                     double lower = SelectInplace(data, hf - 1);
@@ -87,7 +87,7 @@ public class ArrayStatistics {
                     return lower + (h - hf) * (upper - lower);
                 }
 
-            case QuantileDefinition.R7: {
+            case R7: {
                     double h = (data.Length - 1) * tau + 1d;
                     int hf = (int)h;
                     double lower = SelectInplace(data, hf - 1);
@@ -95,7 +95,7 @@ public class ArrayStatistics {
                     return lower + (h - hf) * (upper - lower);
                 }
 
-            case QuantileDefinition.R8: {
+            case R8: {
                     double h = (data.Length + 1 / 3d) * tau + 1 / 3d;
                     int hf = (int)h;
                     double lower = SelectInplace(data, hf - 1);
@@ -103,7 +103,7 @@ public class ArrayStatistics {
                     return lower + (h - hf) * (upper - lower);
                 }
 
-            case QuantileDefinition.R9: {
+            case R9: {
                     double h = (data.Length + 0.25d) * tau + 0.375d;
                     int hf = (int)h;
                     double lower = SelectInplace(data, hf - 1);

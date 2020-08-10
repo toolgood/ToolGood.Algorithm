@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.function.DoubleToIntFunction;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -1954,7 +1955,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (t == ' ' || t == '\r' || t == '\n' || t == '\t' || t == '.') {
                 isFirst = true;
             } else if (isFirst) {
-                sb.setCharAt(i, char.ToUpper(t));
+                sb.setCharAt(i, Character.toUpperCase(t));
                 isFirst = false;
             }
         }
@@ -2216,7 +2217,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         if (firstValue.IsError()) {
             return firstValue;
         }
-        return Operand.Create(firstValue.TextValue().Trim());
+        return Operand.Create(firstValue.TextValue().trim());
     }
 
     public Operand VisitUPPER_fun(UPPER_funContext context) {
@@ -2231,10 +2232,14 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     {
         Operand firstValue = visit(context.expr()).ToText("Function VALUE parameter is error!");
         if (firstValue.IsError()) { return firstValue; }
-
-        if (double.TryParse(firstValue.TextValue(), NumberStyles.Any, cultureInfo, out double d)) {
+        try {
+            Double d=  Double.parseDouble(firstValue.TextValue());
             return Operand.Create(d);
-        }
+        } catch (Exception e) {
+         }
+        // if (double.TryParse(firstValue.TextValue(), NumberStyles.Any, cultureInfo, out double d)) {
+        //     return Operand.Create(d);
+        // }
         return Operand.Error("Function VALUE parameter is error!");
     }
 
@@ -2333,10 +2338,15 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     {
         Operand firstValue = visit(context.expr()).ToText("Function DATEVALUE parameter is error!");
         if (firstValue.IsError()) { return firstValue; }
-
-        if (DateTime.TryParse(firstValue.TextValue(), cultureInfo, DateTimeStyles.None, out DateTime dt)) {
-            return Operand.Create(dt);
+        try {
+            SimpleDateFormat fmt=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date= fmt.parse(firstValue.TextValue());
+            return Operand.Create(date);
+        } catch (Exception e) {
         }
+        // if (DateTime.TryParse(firstValue.TextValue(), cultureInfo, DateTimeStyles.None, out DateTime dt)) {
+        //     return Operand.Create(dt);
+        // }
         return Operand.Error("Function DATEVALUE parameter is error!");
     }
 
@@ -2809,7 +2819,8 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         boolean o = F_base_GetList(args, list);
         if (o == false) { return Operand.Error("Function MEDIAN parameter error!"); }
 
-        list = list.OrderBy(q => q).ToList();
+        list=ShellSort(list);
+        // list = list.OrderBy(q => q).ToList();
         return Operand.Create(list[list.Count / 2]);
     }
 
@@ -2883,7 +2894,17 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
                 dict[item] = 1;
             }
         }
-        return Operand.Create(dict.OrderByDescending(q => q.Value).First().Key);
+        int maxCount=0;
+        double maxValue=0;
+        for (Double d : dict.keySet()) {
+            int count= dict.get(d);
+            if(count> maxCount){
+                maxCount=count;
+                maxValue=d;
+            }
+        }
+        return Operand.Create(maxValue);
+        // return Operand.Create(dict.OrderByDescending(q => q.Value).First().Key);
     }
 
     public Operand VisitLARGE_fun(LARGE_funContext context)
@@ -2901,10 +2922,10 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         boolean o = F_base_GetList(args, list);
         if (o == false) { return Operand.Error("Function LARGE parameter error!"); }
 
-
-        list = list.OrderByDescending(q => q).ToList();
+        list=ShellSort(list);
+        // list = list.OrderByDescending(q => q).ToList();
         int quant = secondValue.IntValue();
-        return Operand.Create(list.get(secondValue.IntValue() - excelIndex) );
+        return Operand.Create(list.get(list.size()-1-(secondValue.IntValue() - excelIndex)));
     }
 
     public Operand VisitSMALL_fun(SMALL_funContext context)
@@ -2921,7 +2942,8 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         boolean o = F_base_GetList(args, list);
         if (o == false) { return Operand.Error("Function SMALL parameter error!"); }
 
-        list = list.OrderBy(q => q).ToList();
+        list=ShellSort(list);
+        // list = list.OrderBy(q => q).ToList();
         int quant = secondValue.IntValue();
         return Operand.Create(list.get(secondValue.IntValue() - excelIndex) );
         // return Operand.Create(list[secondValue.IntValue() - excelIndex]);
@@ -3037,11 +3059,12 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             count = F_base_countif(list, args.get(1).NumberValue());
             sum = count * args.get(1).NumberValue();
         } else {
-            if (double.TryParse(args.get(1).TextValue().Trim(), NumberStyles.Any, cultureInfo, out double d)) {
+            try {
+                Double d=Double.parseDouble(args.get(1).TextValue().trim());
                 count = F_base_countif(list, d);
-                sum = F_base_sumif(list, "=" + args.get(1).TextValue().Trim(), sumdbs);
-            } else {
-                String sunif = args.get(1).TextValue().Trim();
+                sum = F_base_sumif(list, "=" + args.get(1).TextValue().trim(), sumdbs);
+            } catch (Exception e) {
+                String sunif = args.get(1).TextValue().trim();
                 if (sumifRegex.IsMatch(sunif)) {
                     count = F_base_countif(list, sunif);
                     sum = F_base_sumif(list, sunif, sumdbs);
@@ -3049,6 +3072,18 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
                     return Operand.Error("Function AVERAGE parameter 2 error!");
                 }
             }
+            // if (double.TryParse(args.get(1).TextValue().trim(), NumberStyles.Any, cultureInfo, out double d)) {
+            //     count = F_base_countif(list, d);
+            //     sum = F_base_sumif(list, "=" + args.get(1).TextValue().trim(), sumdbs);
+            // } else {
+            //     String sunif = args.get(1).TextValue().trim();
+            //     if (sumifRegex.IsMatch(sunif)) {
+            //         count = F_base_countif(list, sunif);
+            //         sum = F_base_sumif(list, sunif, sumdbs);
+            //     } else {
+            //         return Operand.Error("Function AVERAGE parameter 2 error!");
+            //     }
+            // }
         }
         return Operand.Create(sum / count);
     }
@@ -3140,16 +3175,27 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         if (args.get(1).Type == OperandType.NUMBER) {
             count = F_base_countif(list, args.get(1).NumberValue());
         } else {
-            if (double.TryParse(args.get(1).TextValue().Trim(), NumberStyles.Any, cultureInfo, out double d)) {
+            try {
+                Double d=Double.parseDouble(args.get(1).TextValue().trim());
                 count = F_base_countif(list, d);
-            } else {
-                String sunif = args.get(1).TextValue().Trim();
+            } catch (Exception e) {
+                String sunif = args.get(1).TextValue().trim();
                 if (sumifRegex.IsMatch(sunif)) {
                     count = F_base_countif(list, sunif);
                 } else {
                     return Operand.Error("Function COUNTIF parameter 2 error!");
                 }
             }
+            // if (double.TryParse(args.get(1).TextValue().trim(), NumberStyles.Any, cultureInfo, out double d)) {
+            //     count = F_base_countif(list, d);
+            // } else {
+            //     String sunif = args.get(1).TextValue().trim();
+            //     if (sumifRegex.IsMatch(sunif)) {
+            //         count = F_base_countif(list, sunif);
+            //     } else {
+            //         return Operand.Error("Function COUNTIF parameter 2 error!");
+            //     }
+            // }
         }
         return Operand.Create(count);
     }
@@ -3199,16 +3245,27 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         if (args.get(1).Type == OperandType.NUMBER) {
             sum = F_base_countif(list, args.get(1).NumberValue()) * args.get(1).NumberValue();
         } else {
-            if (double.TryParse(args.get(1).TextValue().Trim(), NumberStyles.Any, cultureInfo, out _)) {
-                sum = F_base_sumif(list, "=" + args.get(1).TextValue().Trim(), sumdbs);
-            } else {
-                String sunif = args.get(1).TextValue().Trim();
+            try {
+                Double d=Double.parseDouble(args.get(1).TextValue().trim());
+                sum = F_base_sumif(list, "=" + args.get(1).TextValue().trim(), sumdbs);
+            } catch (Exception e) {
+                String sunif = args.get(1).TextValue().trim();
                 if (sumifRegex.IsMatch(sunif)) {
                     sum = F_base_sumif(list, sunif, sumdbs);
                 } else {
                     return Operand.Error("Function SUMIF parameter 2 error!");
                 }
             }
+            // if (double.TryParse(args.get(1).TextValue().trim(), NumberStyles.Any, cultureInfo, out _)) {
+            //     sum = F_base_sumif(list, "=" + args.get(1).TextValue().trim(), sumdbs);
+            // } else {
+            //     String sunif = args.get(1).TextValue().trim();
+            //     if (sumifRegex.IsMatch(sunif)) {
+            //         sum = F_base_sumif(list, sunif, sumdbs);
+            //     } else {
+            //         return Operand.Error("Function SUMIF parameter 2 error!");
+            //     }
+            // }
         }
         return Operand.Create(sum);
     }
@@ -3854,10 +3911,10 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         return count;
     }
 
-    private int F_base_countif(List<Double>  dbs, String s)
+    private int F_base_countif(List<Double> dbs, String s)
     {
         Matcher m = sumifRegex.Match(s);
-        double d = double.Parse(m.Groups[2].Value, NumberStyles.Any, cultureInfo);
+        Double d = Double.parseDouble(m.Groups[2].Value);
         int count = 0;
 
         for (double item : dbs) {
@@ -3871,7 +3928,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     private double F_base_sumif(List<Double>  dbs, String s, List<Double>  sumdbs)
     {
         Matcher m = sumifRegex.Match(s);
-        double d = double.Parse(m.Groups[2].Value, NumberStyles.Any, cultureInfo);
+        Double d = Double.parseDouble(m.Groups[2].Value);
         double sum = 0;
 
         for (int i = 0; i < dbs.Count; i++) {
@@ -4813,7 +4870,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             try {
                 JsonData json = JsonMapper.ToObject(txt);
                 return Operand.Create(json);
-            } catch (Exception) { }
+            } catch (Exception e) { }
         }
         return Operand.Error("Function JSON parameter is error!");
     }
@@ -4959,7 +5016,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
                             }
                         }
                     }
-                } catch (Exception) { }
+                } catch (Exception e) { }
             }
         }
         return Operand.Error("Function LOOKUP not find!");
@@ -4990,9 +5047,12 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
     public Operand VisitNUM_fun(NUM_funContext context)
     {
-        String sub = context.SUB()?.GetText() ?? "";
-        String t = context.NUM().GetText();
-        double d = double.Parse(sub + t, NumberStyles.Any, cultureInfo);
+        String sub = context.SUB().getText();
+        // String sub = context.SUB()?.GetText() ?? "";
+        String t = context.NUM().getText();
+
+        Double d=Double.parseDouble(sub + t);
+        // double d = double.Parse(sub + t, NumberStyles.Any, cultureInfo);
         return Operand.Create(d);
     }
 
@@ -5019,7 +5079,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
                 else if (c2 == 'f')
                     sb.append('\f');
                 else
-                    sb.append(opd.charAt(index++););
+                    sb.append(opd.charAt(index++));
             } else {
                 sb.append(c);
             }

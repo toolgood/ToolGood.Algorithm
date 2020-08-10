@@ -1250,6 +1250,8 @@ public   class mathParser2{
         }
     }
     public static class NUM_funContext extends ExprContext {
+        public TerminalNode NUM() { return getToken(mathParser.NUM, 0); }
+		public TerminalNode SUB() { return getToken(mathParser.SUB, 0); }
         public NUM_funContext(final ExprContext ctx) {
             copyFrom(ctx);
         }

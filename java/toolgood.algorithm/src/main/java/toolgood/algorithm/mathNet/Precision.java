@@ -6,7 +6,7 @@ public class Precision {
     /// double-precision floating numbers (64 bit).
     /// According to the definition of Prof. Demmel and used in LAPACK and Scilab.
     /// </summary>
-    public static double DoublePrecision = Math.pow(2, -53);
+    public final static double DoublePrecision = Math.pow(2, -53);
 
     /// <summary>
     /// Standard epsilon, the maximum relative precision of IEEE 754
@@ -14,12 +14,12 @@ public class Precision {
     /// According to the definition of Prof. Higham and used in the ISO C standard
     /// and MATLAB.
     /// </summary>
-    public static double PositiveDoublePrecision = 2 * DoublePrecision;
+    public final static double PositiveDoublePrecision = 2 * DoublePrecision;
 
     /// <summary>
     /// Value representing 10 * 2^(-53) = 1.11022302462516E-15
     /// </summary>
-    static double DefaultDoubleAccuracy = DoublePrecision * 10;
+   final static double DefaultDoubleAccuracy = DoublePrecision * 10;
 
     public static double Increment(double value) {
         return Increment(value, -1);

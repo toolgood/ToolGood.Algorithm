@@ -6,7 +6,7 @@ public class SpecialFunctions {
     /// <summary>
     /// Initializes static members of the SpecialFunctions class.
     /// </summary>
-    SpecialFunctions() {
+    static   {
         InitializeFactorial();
     }
 
