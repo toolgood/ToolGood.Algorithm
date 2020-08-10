@@ -3,12 +3,12 @@ package toolgood.algorithm.internals;
 public static class Base64{
     public static string ToBase64String(byte[] input)
     {
-        return Convert.ToBase64String(input);
+        return Base64Util.encode(bytes);
     }
 
     public static byte[] FromBase64String(String base64)
     {
-        return FromBase64ForUrlString(base64);
+        return Base64Util.decode(base64);
     }
 
 
@@ -22,7 +22,7 @@ public static class Base64{
     /// <returns>Input byte array converted to a base64ForUrl encoded string</returns>
     public static string ToBase64ForUrlString(byte[] input)
     {
-        StringBuilder result = new StringBuilder(Convert.ToBase64String(input).TrimEnd('='));
+        StringBuilder result = new StringBuilder(ToBase64String(input).trim('='));
         result.replace('+', '-');
         result.replace('/', '_');
         return result.ToString();
@@ -44,14 +44,16 @@ public static class Base64{
         for (int i = 0; i < base64ForUrlInput.length; i++) {
             char c = base64ForUrlInput.charAt(i)
             if ((int)c >= 128) continue;
-            var k = base64.charAt(c);// [c];
+            char k = base64.charAt(c);// [c];
             if (k == '=') continue;
             sb.append(k);
         }
-        var len = sb.length;
+        int len = sb.length;
         int padChars = (len % 4) == 0 ? 0 : (4 - (len % 4));
-        if (padChars > 0) sb.append(String.Empty.PadRight(padChars, '='));
-        return Convert.FromBase64String(sb.ToString());
+        for (int i = 0; i < padChars; i++) {
+            sb.append('=');
+        }
+        return FromBase64String(sb.toString());
 
         //base64ForUrlInput = Regex.Replace(base64ForUrlInput, @"[^a-zA-Z0-9+/\-_]", "");
 

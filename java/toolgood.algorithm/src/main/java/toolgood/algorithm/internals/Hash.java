@@ -10,12 +10,12 @@ import java.security.NoSuchAlgorithmException;
 static class Hash {
     public static String GetCrc8String(final byte[] buffer) {
         final int b = Crc8Hash.calcCrc8(buffer);
-        return BitConverter.ToString(new byte[] { b });
+        return byteArrayToHexString(toLH(b));
     }
 
     public static String GetCrc16String(final byte[] buffer) {
         final int buffer1 = Crc16Hash.CRC16_CCITT(buffer);
-        return BitConverter.ToString(buffer1);
+        return byteArrayToHexString(toLH(buffer1));
     }
 
     public static String GetCrc32String(final byte[] buffer) {
@@ -23,72 +23,101 @@ static class Hash {
         c.reset();// Resets CRC-32 to initial value.
         c.update(buffer, 0, buffer.length);// 将数据丢入CRC32解码器
         int value = (int) c.getValue();
-
-        // final Crc32Hash crc32 = new Crc32Hash();
-        // crc32.Append(buffer);
-        // final byte[] retVal = crc32.Finish();
-        return BitConverter.ToString(value).Replace("-", "");
+        return byteArrayToHexString(toLH(value));
     }
 
-    public static String GetMd5String(final byte[] buffer) {
-        return MD5Hash.encrypt(buffer);
+    public static String GetMd5String(final byte[] buffer) throws NoSuchAlgorithmException {
+        MessageDigest m = MessageDigest.getInstance("MD5");
+        m.update(buffer);
+        byte[] result = m.digest();
+        return byteArrayToHexString(result);
     }
 
-    public static String GetSha1String(final byte[] buffer) {
-        final SHA1 sha512 = new SHA1Managed();
-        final byte[] retVal = sha512.ComputeHash(buffer); // 计算指定Stream 对象的哈希值
-        sha512.Dispose();
-        return BitConverter.ToString(retVal).Replace("-", "");
+    public static String GetSha1String(final byte[] buffer) throws NoSuchAlgorithmException  {
+        MessageDigest mDigest = MessageDigest.getInstance("SHA1");
+        byte[] result = mDigest.digest(buffer);
+        return byteArrayToHexString(result);
     }
 
-    public static String GetSha256String(final byte[] buffer) {
-        final SHA256 sha512 = new SHA256Managed();
-        final byte[] retVal = sha512.ComputeHash(buffer); // 计算指定Stream 对象的哈希值
-        sha512.Dispose();
-        return BitConverter.ToString(retVal).Replace("-", "");
+    public static String GetSha256String(final byte[] buffer) throws NoSuchAlgorithmException {
+        MessageDigest mDigest = MessageDigest.getInstance("SHA-256");
+        byte[] result = mDigest.digest(buffer);
+        return byteArrayToHexString(result);
     }
 
     public static String GetSha512String(final byte[] buffer) {
-        final SHA512 sha512 = new SHA512Managed();
-        final byte[] retVal = sha512.ComputeHash(buffer); // 计算指定Stream 对象的哈希值
-        sha512.Dispose();
-        return BitConverter.ToString(retVal).Replace("-", "");
+        MessageDigest mDigest = MessageDigest.getInstance("SHA-512");
+        byte[] result = mDigest.digest(buffer);
+        return byteArrayToHexString(result);
+    }
+    public static String GetHmacMd5String(final byte[] buffer)
+    {
+        return GetHmacMd5String(buffer,"");
     }
 
     public static String GetHmacMd5String(final byte[] buffer, final String secret)
     {
-        final byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret ?? "");
-        using (HMACMD5 hmacsha256 = new HMACMD5(keyByte)) {
-            byte[] hashmessage = hmacsha256.ComputeHash(buffer);
-            return BitConverter.ToString(hashmessage).Replace("-", "");
-        }
+        SecretKey secretKey = new SecretKeySpec(secret.getBytes(), "HmacMD5");
+        Mac mac = Mac.getInstance(secretKey.getAlgorithm());
+        mac.init(secretKey);
+        byte[] result= mac.doFinal(buffer);
+        return byteArrayToHexString(result);
     }
 
     public static String GetHmacSha1String(final byte[] buffer, final String secret)
     {
-        final byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret ?? "");
-        using (HMACSHA1 hmacsha256 = new HMACSHA1(keyByte)) {
-            byte[] hashmessage = hmacsha256.ComputeHash(buffer);
-            return BitConverter.ToString(hashmessage).Replace("-", "");
-        }
+        SecretKey secretKey = new SecretKeySpec(secret.getBytes(), "HmacSHA1");
+        Mac mac = Mac.getInstance(secretKey.getAlgorithm());
+        mac.init(secretKey);
+        byte[] result= mac.doFinal(buffer);
+        return byteArrayToHexString(result);
     }
 
     public static String GetHmacSha256String(final byte[] buffer, final String secret)
     {
-        final byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret ?? "");
-        using (HMACSHA256 hmacsha256 = new HMACSHA256(keyByte)) {
-            byte[] hashmessage = hmacsha256.ComputeHash(buffer);
-            return BitConverter.ToString(hashmessage).Replace("-", "");
-        }
+        SecretKey secretKey = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
+        Mac mac = Mac.getInstance(secretKey.getAlgorithm());
+        mac.init(secretKey);
+        byte[] result= mac.doFinal(buffer);
+        return byteArrayToHexString(result);
     }
 
     public static String GetHmacSha512String(final byte[] buffer, final String secret)
     {
-        final byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret ?? "");
-        using (HMACSHA512 hmacsha256 = new HMACSHA512(keyByte)) {
-            byte[] hashmessage = hmacsha256.ComputeHash(buffer);
-            return BitConverter.ToString(hashmessage).Replace("-", "");
+        SecretKey secretKey = new SecretKeySpec(secret.getBytes(), "HmacSHA512");
+        Mac mac = Mac.getInstance(secretKey.getAlgorithm());
+        mac.init(secretKey);
+        byte[] result= mac.doFinal(buffer);
+        return byteArrayToHexString(result);
+    }
+
+    private static byte[] toLH(int n) {  
+        byte[] b = new byte[4];  
+        b[0] = (byte) (n & 0xff);  
+        b[1] = (byte) (n >> 8 & 0xff);  
+        b[2] = (byte) (n >> 16 & 0xff);  
+        b[3] = (byte) (n >> 24 & 0xff);  
+        return b;  
+      }
+      private static byte[] toHH(int n) {  
+        byte[] b = new byte[4];  
+        b[3] = (byte) (n & 0xff);  
+        b[2] = (byte) (n >> 8 & 0xff);  
+        b[1] = (byte) (n >> 16 & 0xff);  
+        b[0] = (byte) (n >> 24 & 0xff);  
+        return b;  
+      }
+
+    private static String byteArrayToHexString(byte[] b) {
+        StringBuffer sb = new StringBuffer(b.length * 2);
+        for (int i = 0; i < b.length; i++) {
+            int v = b[i] & 0xff;
+            if (v < 16) {
+                sb.append('0');
+            }
+            sb.append(Integer.toHexString(v));
         }
+        return sb.toString();
     }
 
 }
