@@ -1,4 +1,4 @@
-package main.java.toolgood.algorithm.litJson;
+package toolgood.algorithm.litJson;
 
 import java.io.StringReader;
 import java.util.function.Function;
@@ -9,7 +9,7 @@ public class Lexer {
     // StateHandler(FsmContext ctx);
 
     private static int[] fsm_return_table ;
-    private static Object[] fsm_handler_table;
+    private static Function<FsmContext,Boolean>[] fsm_handler_table;
 
     private boolean allow_comments;
     private boolean allow_single_quoted_strings;
@@ -87,7 +87,7 @@ public class Lexer {
 
     private static void PopulateFsmTables( ) {
         // See section A.1. of the manual for details of the finite state machine.
-        fsm_handler_table = new Object[] { State1, State2, State3, State4, State5, State6, State7, State8,
+        fsm_handler_table = new Function<FsmContext,Boolean>[] { State1, State2, State3, State4, State5, State6, State7, State8,
                 State9, State10, State11, State12, State13, State14, State15, State16, State17, State18, State19,
                 State20, State21, State22, State23, State24, State25, State26, State27, State28 };
 

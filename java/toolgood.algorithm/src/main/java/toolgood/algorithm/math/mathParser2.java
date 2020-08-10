@@ -1,7 +1,15 @@
 package toolgood.algorithm.math;
+
 import java.util.List;
 import org.antlr.v4.runtime.ParserRuleContext;
-public   class mathParser2{
+import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.tree.ParseTreeVisitor;
+import org.antlr.v4.runtime.tree.TerminalNode;
+import toolgood.algorithm.math.mathVisitor;
+
+public class mathParser2{
+    public static final int RULE_prog = 0, RULE_expr = 1, RULE_expr2 = 2, RULE_parameter = 3, RULE_parameter2 = 4;
+
 	public static class ParameterContext extends ParserRuleContext {
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
@@ -2634,4 +2642,15 @@ public   class mathParser2{
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
         return ((mathVisitor<? extends T>)visitor).visitParameter2(this);
     }
+    public static class DATE_funContext extends ExprContext {
+		public List<ExprContext> expr() {
+			return getRuleContexts(ExprContext.class);
+		}
+ 
+		public DATE_funContext(ExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			return ((mathVisitor<? extends T>)visitor).visitDATE_fun(this);
+		}
+	}
 }

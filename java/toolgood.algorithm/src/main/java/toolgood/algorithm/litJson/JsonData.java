@@ -17,7 +17,7 @@ public class JsonData implements IJsonWrapper {
     // private IList<KeyValuePair<string, JsonData>> object_list;
 
     public int Count() {
-        return EnsureCollection().Count;
+        return EnsureCollection().size();
     }
 
     public boolean IsArray() {

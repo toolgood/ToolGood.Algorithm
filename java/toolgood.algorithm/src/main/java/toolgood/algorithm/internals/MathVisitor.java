@@ -1065,7 +1065,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         if (firstValue.IsError()) {
             return firstValue;
         }
-
+        
         if (bit_2.IsMatch(firstValue.TextValue()) == false) {
             return Operand.Error("Function BIN2OCT parameter 1 is error!");
         }

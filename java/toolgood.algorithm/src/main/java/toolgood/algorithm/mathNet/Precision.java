@@ -78,7 +78,7 @@ public class Precision {
     /// epsilon is equal to two times this negative epsilon.</remarks>
     ///// <seealso cref="PositiveEpsilonOf(double)"/>
     public static double EpsilonOf(double value) {
-        if (Double.isInfinity(value) || Double.isNaN(value)) {
+        if (Double.isInfinite(value) || Double.isNaN(value)) {
             return Double.NaN;
         }
 
@@ -111,7 +111,7 @@ public class Precision {
         // If A or B are infinity (positive or negative) then
         // only return true if they are exactly equal to each other -
         // that is, if they are both infinities of the same sign.
-        if (Double.isInfinity(a) || Double.isInfinity(b)) {
+        if (Double.isInfinite(a) || Double.isInfinite(b)) {
             return a == b;
         }
 
@@ -145,7 +145,7 @@ public class Precision {
         // If A or B are infinity (positive or negative) then
         // only return true if they are exactly equal to each other -
         // that is, if they are both infinities of the same sign.
-        if (Double.isInfinity(a) || Double.isInfinity(b)) {
+        if (Double.isInfinite(a) || Double.isInfinite(b)) {
             return a == b;
         }
 

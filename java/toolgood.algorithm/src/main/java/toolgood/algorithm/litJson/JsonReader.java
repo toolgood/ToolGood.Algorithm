@@ -32,7 +32,7 @@ public class JsonReader {
         return token_value;
     }
 
-    JsonReader() {
+    static {
         parse_table = PopulateParseTable();
     }
 
