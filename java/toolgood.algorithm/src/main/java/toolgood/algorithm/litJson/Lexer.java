@@ -36,7 +36,7 @@ public class Lexer {
         return string_value;
     }
 
-    Lexer() {
+    static {
         PopulateFsmTables();
     }
 
