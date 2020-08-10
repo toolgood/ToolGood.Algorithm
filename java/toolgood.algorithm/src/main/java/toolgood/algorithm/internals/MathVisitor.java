@@ -1,5 +1,6 @@
 package toolgood.algorithm.internals;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -86,14 +87,14 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
                 if (secondValue.IsError()) {
                     return secondValue;
                 }
-                return Operand.Create((Date) (firstValue.DateValue() * secondValue.NumberValue()));
+                return Operand.Create((MyDate) (firstValue.DateValue() * secondValue.NumberValue()));
             }
             if (secondValue.Type == OperandType.DATE) {
                 firstValue = firstValue.ToNumber("Function '" + t + "' parameter 1 is error!");
                 if (firstValue.IsError()) {
                     return firstValue;
                 }
-                return Operand.Create((Date) (secondValue.DateValue() * firstValue.NumberValue()));
+                return Operand.Create((MyDate) (secondValue.DateValue() * firstValue.NumberValue()));
             }
 
             firstValue = firstValue.ToNumber("Function '" + t + "' parameter 1 is error!");
@@ -2354,10 +2355,16 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     {
         Operand firstValue = visit(context.expr()).ToText("Function TIMEVALUE parameter is error!");
         if (firstValue.IsError()) { return firstValue; }
-
-        if (TimeSpan.TryParse(firstValue.TextValue(), cultureInfo, out TimeSpan dt)) {
+        try {
+            SimpleDateFormat fmt = new SimpleDateFormat("d HH:mm:ss");
+            Date dt= fmt.parse( firstValue.TextValue() ); 
             return Operand.Create(dt);
+        } catch (Exception e) {
         }
+ 
+        // if (TimeSpan.TryParse(firstValue.TextValue(), cultureInfo, out TimeSpan dt)) {
+        //     return Operand.Create(dt);
+        // }
         return Operand.Error("Function TIMEVALUE parameter is error!");
     }
 
@@ -2372,17 +2379,17 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             args.add(aa);
         }
 
-        Date d;
+        MyDate d;
         if (args.Count == 3) {
-            d = new Date(args.get(0).IntValue(), args.get(1).IntValue(), args.get(2).IntValue(), 0, 0, 0);
+            d = new MyDate(args.get(0).IntValue(), args.get(1).IntValue(), args.get(2).IntValue(), 0, 0, 0);
         } else if (args.Count == 4) {
-            d = new Date(args.get(0).IntValue(), args.get(1).IntValue(), args.get(2).IntValue(), args.get(3).IntValue(),
+            d = new MyDate(args.get(0).IntValue(), args.get(1).IntValue(), args.get(2).IntValue(), args.get(3).IntValue(),
                     0, 0);
         } else if (args.Count == 5) {
-            d = new Date(args.get(0).IntValue(), args.get(1).IntValue(), args.get(2).IntValue(), args.get(3).IntValue(),
+            d = new MyDate(args.get(0).IntValue(), args.get(1).IntValue(), args.get(2).IntValue(), args.get(3).IntValue(),
                     args.get(4).IntValue(), 0);
         } else {
-            d = new Date(args.get(0).IntValue(), args.get(1).IntValue(), args.get(2).IntValue(), args.get(3).IntValue(),
+            d = new MyDate(args.get(0).IntValue(), args.get(1).IntValue(), args.get(2).IntValue(), args.get(3).IntValue(),
                     args.get(4).IntValue(), args.get(5).IntValue());
         }
         return Operand.Create(d);
@@ -2399,21 +2406,21 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             args.add(aa);
         }
 
-        Date d;
+        MyDate d;
         if (args.Count == 3) {
-            d = new Date(0, 0, 0, args.get(0).IntValue(), args.get(1).IntValue(), args.get(2).IntValue());
+            d = new MyDate(0, 0, 0, args.get(0).IntValue(), args.get(1).IntValue(), args.get(2).IntValue());
         } else {
-            d = new Date(0, 0, 0, args.get(0).IntValue(), args.get(1).IntValue(), 0);
+            d = new MyDate(0, 0, 0, args.get(0).IntValue(), args.get(1).IntValue(), 0);
         }
         return Operand.Create(d);
     }
 
     public Operand VisitNOW_fun(NOW_funContext context) {
-        return Operand.Create(new Date(DateTime.Now));
+        return Operand.Create(new MyDate(new Date()));
     }
 
     public Operand VisitTODAY_fun(TODAY_funContext context) {
-        return Operand.Create(new Date(DateTime.Today));
+        return Operand.Create(new MyDate(DateTime.Today));
     }
 
     public Operand VisitYEAR_fun(YEAR_funContext context) {
@@ -2531,8 +2538,8 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             return thirdValue;
         }
 
-        Date startDate = (DateTime) firstValue.DateValue();
-        Date endDate = (DateTime) secondValue.DateValue();
+        MyDate startDate = (DateTime) firstValue.DateValue();
+        MyDate endDate = (DateTime) secondValue.DateValue();
         String t = thirdValue.TextValue().ToLower();
 
         if (t == "y") {
@@ -2603,8 +2610,8 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             return secondValue;
         }
 
-        Date startDate = (DateTime) firstValue.DateValue();
-        Date endDate = (DateTime) secondValue.DateValue();
+        MyDate startDate = (DateTime) firstValue.DateValue();
+        MyDate endDate = (DateTime) secondValue.DateValue();
 
         boolean method = false;
         if (args.Count == 3) {
@@ -2658,7 +2665,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             return secondValue;
         }
 
-        return Operand.Create((Date) (((DateTime) firstValue.DateValue()).AddMonths(secondValue.IntValue())));
+        return Operand.Create((MyDate) (((DateTime) firstValue.DateValue()).AddMonths(secondValue.IntValue())));
     }
 
     public Operand VisitEOMONTH_fun(EOMONTH_funContext context) {
@@ -2696,8 +2703,8 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             args.add(a);
         }
 
-        Date startDate = (DateTime) args.get(0).DateValue();
-        Date endDate = (DateTime) args.get(1).DateValue();
+        MyDate startDate = (DateTime) args.get(0).DateValue();
+        MyDate endDate = (DateTime) args.get(1).DateValue();
 
         List<DateTime> list = new List<DateTime>();
         for (int i = 2; i < args.Count; i++) {
@@ -2735,7 +2742,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             return secondValue;
         }
 
-        Date startDate = (DateTime) firstValue.DateValue();
+        MyDate startDate = (DateTime) firstValue.DateValue();
         int days = secondValue.IntValue();
         List<DateTime> list = new List<DateTime>();
         for (int i = 2; i < args.Count; i++) {
@@ -2773,7 +2780,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             return firstValue;
         }
 
-        Date startDate = (DateTime) firstValue.DateValue();
+        MyDate startDate = (DateTime) firstValue.DateValue();
 
         int days = startDate.DayOfYear + (int) (new DateTime(startDate.Year, 1, 1).DayOfWeek);
         if (args.Count == 2) {
