@@ -13,10 +13,10 @@ public abstract class Operand {
     public final static Operand True = Create(true);
     public final static Operand False = Create(false);
 
-    public boolean IsNull() throws Exception {throw new Exception("");}
-    public boolean IsError() throws Exception   {throw new Exception("");}
+    public boolean IsNull() {return false;}
+    public boolean IsError() {return false;}
 
-    public String ErrorMsg() throws Exception  {throw new Exception("");}
+    public String ErrorMsg() {return null;}
     public OperandType Type() throws Exception  {throw new Exception("");}
     public double NumberValue() throws Exception  {throw new Exception("");}
     public int IntValue() throws Exception {throw new Exception("");}

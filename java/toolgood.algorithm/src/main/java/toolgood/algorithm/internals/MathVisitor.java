@@ -153,12 +153,12 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         String t = context.op.Text;
 
         if (t == "&") {
-            if (firstValue.IsNull && secondValue.IsNull) {
+            if (firstValue.IsNull() && secondValue.IsNull()) {
                 return firstValue;
-            } else if (firstValue.IsNull) {
+            } else if (firstValue.IsNull()) {
                 secondValue = secondValue.ToText("Function '" + t + "' parameter 2 is error!");
                 return secondValue;
-            } else if (secondValue.IsNull) {
+            } else if (secondValue.IsNull()) {
                 firstValue = firstValue.ToText("Function '" + t + "' parameter 1 is error!");
                 return firstValue;
             }
@@ -263,14 +263,14 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         Operand secondValue = args.get(1);
         String type = context.op.Text;
 
-        if (firstValue.IsNull) {
-            if (secondValue.IsNull && (type == "==" || type == "=")) {
+        if (firstValue.IsNull()) {
+            if (secondValue.IsNull() && (type == "==" || type == "=")) {
                 return Operand.True;
-            } else if (secondValue.IsNull == false && (type == "<>" || type == "!=")) {
+            } else if (secondValue.IsNull() == false && (type == "<>" || type == "!=")) {
                 return Operand.True;
             }
             return Operand.False;
-        } else if (secondValue.IsNull) {
+        } else if (secondValue.IsNull()) {
             if (type == "==" || type == "=") {
                 return Operand.False;
             }
@@ -491,12 +491,12 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         if (args.Count == 2) {
-            if (args.get(0).IsNull) {
+            if (args.get(0).IsNull()) {
                 return args.get(1);
             }
             return args.get(0);
         }
-        if (args.get(0).IsNull) {
+        if (args.get(0).IsNull()) {
             return Operand.True;
         }
         return Operand.False;
@@ -510,12 +510,12 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         if (args.Count == 2) {
-            if (args.get(0).IsNull || args.get(0).IsError()) {
+            if (args.get(0).IsNull() || args.get(0).IsError()) {
                 return args.get(1);
             }
             return args.get(0);
         }
-        if (args.get(0).IsNull || args.get(0).IsError()) {
+        if (args.get(0).IsNull() || args.get(0).IsError()) {
             return Operand.True;
         }
         return Operand.False;

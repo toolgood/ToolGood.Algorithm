@@ -1,12 +1,24 @@
 package toolgood.algorithm;
 
 class OperandError extends Operand {
-    public override OperandType Type => OperandType.ERROR;
-    public override bool IsError => true;
-    private final string _errorMsg;
-    public override string ErrorMsg => _errorMsg;
-    public OperandError(final string msg)
+    private final String _errorMsg;
+ 
+    public OperandError(final String msg)
     {
         _errorMsg = msg;
+    }
+
+    @Override
+    public OperandType Type() {
+        return OperandType.ERROR;
+    }
+
+    @Override
+    public boolean IsError() {
+        return true;
+    }
+    
+    public String ErrorMsg(){
+        return _errorMsg;
     }
 }

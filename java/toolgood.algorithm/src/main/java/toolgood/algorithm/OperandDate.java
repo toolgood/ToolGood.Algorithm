@@ -1,10 +1,17 @@
 package toolgood.algorithm;
 
-class OperandDate extends OperandT<Date> {
-    public OperandDate(final Date obj) {
+class OperandDate extends OperandT<MyDate> {
+    public OperandDate(final MyDate obj) {
         super(obj);
     }
+ 
+    @Override
+    public OperandType Type() {
+        return OperandType.DATE;
+    }
 
-    public override OperandType Type=>OperandType.DATE;
-    public override Date DateValue=>Value;
+    @Override
+    public MyDate DateValue(){
+        return Value;
+    }
 }

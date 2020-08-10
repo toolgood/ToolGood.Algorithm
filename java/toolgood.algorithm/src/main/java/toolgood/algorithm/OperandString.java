@@ -1,8 +1,20 @@
 package toolgood.algorithm;
 
 class OperandString extends OperandT<String> {
-    public OperandString(final String obj) : base(obj) { }
+ 
+    public OperandString(String obj) {
+        super(obj);
+    }
 
-    public override OperandType Type=>OperandType.STRING;
-    public override string TextValue=>Value;
+    @Override
+    public OperandType Type() {
+        return OperandType.STRING;
+    }
+
+    @Override
+    public String TextValue(){
+        return Value;
+    }
+
+
 }

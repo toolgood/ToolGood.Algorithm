@@ -74,16 +74,32 @@ public class AlgorithmEngine {
         _dict.put(key, Operand.Create(obj));
     }
     public void AddParameter(final String key, final List<String> obj) {
-        _dict.put(key, Operand.Create(obj));
+        List<Operand> array = new ArrayList<Operand>();
+        for (String item : obj) {
+            array.Add(Create(item));
+        }
+        _dict.put(key, Operand.Create(array));
     }
     public void AddParameter(final String key, final List<Double> obj) {
-        _dict.put(key, Operand.Create(obj));
+        List<Operand> array = new ArrayList<Operand>();
+        for (Double item : obj) {
+            array.Add(Create(item));
+        }
+        _dict.put(key, Operand.Create(array));
     }
     public void AddParameter(final String key, final List<Integer> obj) {
-        _dict.put(key, Operand.Create(obj));
+        List<Operand> array = new ArrayList<Operand>();
+        for (Integer item : obj) {
+            array.Add(Create(item));
+        }
+        _dict.put(key, Operand.Create(array));
     }
     public void AddParameter(final String key, final List<Boolean> obj) {
-        _dict.put(key, Operand.Create(obj));
+        List<Operand> array = new ArrayList<Operand>();
+        for (Boolean item : obj) {
+            array.Add(Create(item));
+        }
+        _dict.put(key, Operand.Create(array));
     }
     public void AddParameterFromJson(final String json)
         {
