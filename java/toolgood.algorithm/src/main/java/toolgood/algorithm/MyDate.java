@@ -1,6 +1,9 @@
 package toolgood.algorithm;
 
-import java.util.Calendar;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.TimeSpan;
 /// <summary>
 /// Date
 /// </summary>
@@ -72,24 +75,29 @@ public class MyDate {
     /// </summary>
     public int Second;
 
-    public String toString()        {
-            if (Year != null) {
-                if (Second > 0) {
-                    return ((DateTime)this).ToString("yyyy-MM-dd HH:mm:ss");
-                } else if (Hour > 0 || Minute > 0) {
-                    return ((DateTime)this).ToString("yyyy-MM-dd HH:mm");
-                } else {
-                    return ((DateTime)this).ToString("yyyy-MM-dd");
-                }
+    public String toString() {
+        if (Year != null) {
+            SimpleDateFormat fmt=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date= fmt.parse(Year+"-"+Month+"-"+Day+" "+Hour+":"+Minute+":"+Second);
+            if (Second > 0) {
+                return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+            } else if (Hour > 0 || Minute > 0) {
+                return new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date);
+            } else {
+                return new SimpleDateFormat("yyyy-MM-dd").format(date);
             }
-            if (Day != null) {
-                return ((TimeSpan)this).ToString();
-            }
-            if (Second == 0) {
-                return ((TimeSpan)this).ToString("hh':'mm");
-            }
-            return ((TimeSpan)this).ToString();
         }
+        double sp= Day+ (Hour + (Minute + Second / 60.0) / 60) / 24;
+        TimeSpan ts = new TimeSpan(timeSpan);
+
+        if (Day != null) {
+            return new SimpleDateFormat("d HH:mm:ss").format(ts);
+        }
+        if (Second == 0) {
+            return new SimpleDateFormat("HH:mm").format(ts);
+        }
+        return new SimpleDateFormat("HH:mm:ss").format(ts);
+    }
 
     public string ToString(string f) {
         if (Year == null) {
@@ -138,15 +146,12 @@ public class MyDate {
 
     public double ToNumber(){
         if (Year > 1900) {
-            Calendar calendar=Calendar.getInstance(); 
-            
-
-                var dt = new DateTime((date.Year ?? 0), (date.Month ?? 0), (date.Day ?? 0), date.Hour, date.Minute, date.Second);
-                double days = (double)(dt - DateTime.MinValue).TotalDays;
-                days += (date.Hour + (date.Minute + date.Second / 60.0) / 60) / 24;
-                return days;
+            LocalDate start = LocalDate.of(Year, Month-1, Day);
+            LocalDate end = LocalDate.of(1900, 1, 1);
+            long days = ChronoUnit.DAYS.between(start, end)+1;
+            return days + (Hour + (Minute + Second / 60.0) / 60) / 24;
         }
-        return   Day+ (Hour + (Minute + Second / 60.0) / 60) / 24;
+        return Day+ (Hour + (Minute + Second / 60.0) / 60) / 24;
     }
 
     // public static implicit operator double(

@@ -78,12 +78,12 @@ public abstract class Operand {
     public static Operand Create(final JsonData obj) {
         return new OperandJson(obj);
     }
-    public static Operand Create(final List<Operand> obj) {
+    public static Operand Create(List<Operand> obj) {
         return new OperandArray(obj);
     }
-    public static Operand Create(final List<String> obj)
+    public static Operand Create(List<String> obj)
     {
-        final var array = new List<Operand>();
+        List<Operand> array = new ArrayList<Operand>();
         for (String item : obj) {
             array.Add(Create(item));
         }
@@ -91,7 +91,7 @@ public abstract class Operand {
     }
     public static Operand Create(List<Double> obj)
     {
-        var array = new List<Operand>();
+        List<Operand> array = new ArrayList<Operand>();
         for (Double item : obj) {
             array.Add(Create(item));
         }
@@ -99,13 +99,13 @@ public abstract class Operand {
     }
     public static Operand Create(List<Integer> obj)
     {
-        var array = new ArrayList<Operand>();
+        List<Operand> array = new ArrayList<Operand>();
         for (Integer item : obj) {
             array.Add(Create(item));
         }
         return new OperandArray(array);
     }
-    public static Operand Create(final List<Boolean> obj)
+    public static Operand Create(List<Boolean> obj)
     {
         final List<Operand> array = new ArrayList<Operand>();
         for (Boolean item : obj) {
@@ -128,7 +128,7 @@ public abstract class Operand {
         if (Type == OperandType.STRING)
         {
             try {
-                var d= Double.parseDouble(TextValue());
+                Double d= Double.parseDouble(TextValue());
                 return Create(d);
             } catch (Exception e) {
             }

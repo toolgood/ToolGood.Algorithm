@@ -143,8 +143,8 @@ public class JsonData implements IJsonWrapper {
             case Boolean:
                 inst_boolean = false;
                 break;
+            default:
         }
-
         this.type = type;
     }
 
