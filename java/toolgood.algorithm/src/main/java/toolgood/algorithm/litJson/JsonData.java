@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class JsonData implements IJsonWrapper {
 
-    private ArrayList<JsonData> inst_array;
+    public ArrayList<JsonData> inst_array;
     private boolean inst_boolean;
     private double inst_double;
     public Map<String, JsonData> inst_object;
@@ -46,7 +46,6 @@ public class JsonData implements IJsonWrapper {
 
     public JsonData GetChild(final String prop_name) {
         EnsureDictionary();
-        final JsonData data;
         if (inst_object.containsKey(prop_name)) {
             return inst_object.get(prop_name);
         }
@@ -121,27 +120,27 @@ public class JsonData implements IJsonWrapper {
         if (this.type == type)
             return;
 
-        switch (type.value) {
-            case JsonType.None.value:
+        switch (type) {
+            case None:
                 break;
 
-            case JsonType.Object.value:
+            case Object:
                 inst_object = new HashMap<String, JsonData>();
                 break;
 
-            case JsonType.Array.value:
+            case Array:
                 inst_array = new ArrayList<JsonData>();
                 break;
 
-            case JsonType.String.value:
+            case String:
                 inst_string = null;
                 break;
 
-            case JsonType.Double.value:
+            case Double:
                 inst_double = 0;
                 break;
 
-            case JsonType.Boolean.value:
+            case Boolean:
                 inst_boolean = false;
                 break;
         }

@@ -10,7 +10,7 @@ public class LookupAlgorithmEngine extends AlgorithmEngine {
     @Override
     protected Operand GetParameter(String parameter)
     {
-        JsonData v = Json.JsonValue() [parameter];
+        JsonData v = Json.JsonValue().GetChild(parameter);
         if (v!=null)
         {
             if (v.IsString()) return Operand.Create(v.StringValue());

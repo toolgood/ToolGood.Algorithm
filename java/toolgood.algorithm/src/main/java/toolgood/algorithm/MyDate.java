@@ -1,7 +1,6 @@
 package toolgood.algorithm;
 
-import java.util.date.*;  
-
+import java.util.Calendar;
 /// <summary>
 /// Date
 /// </summary>
@@ -73,8 +72,7 @@ public class MyDate {
     /// </summary>
     public int Second;
 
-    public String toString()
-        {
+    public String toString()        {
             if (Year != null) {
                 if (Second > 0) {
                     return ((DateTime)this).ToString("yyyy-MM-dd HH:mm:ss");
@@ -137,6 +135,19 @@ public class MyDate {
     //     var second = (int) days;
     //     return new Date(new TimeSpan(day, hour, minute, second));
     // }
+
+    public double ToNumber(){
+        if (Year > 1900) {
+            Calendar calendar=Calendar.getInstance(); 
+            
+
+                var dt = new DateTime((date.Year ?? 0), (date.Month ?? 0), (date.Day ?? 0), date.Hour, date.Minute, date.Second);
+                double days = (double)(dt - DateTime.MinValue).TotalDays;
+                days += (date.Hour + (date.Minute + date.Second / 60.0) / 60) / 24;
+                return days;
+        }
+        return   Day+ (Hour + (Minute + Second / 60.0) / 60) / 24;
+    }
 
     // public static implicit operator double(
     // Date date)
