@@ -11,6 +11,7 @@ import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import toolgood.algorithm.MyDate;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.litJson.JsonData;
 import toolgood.algorithm.math.mathParser;
@@ -47,7 +48,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
         Operand firstValue = args.get(0);
         Operand secondValue = args.get(1);
-        String t = context.op.Text;
+        String t = context.op.getText();
         if (firstValue.Type == OperandType.STRING) {
             if (numberRegex.IsMatch(firstValue.TextValue())) {
                 Operand a = firstValue.ToNumber(null);

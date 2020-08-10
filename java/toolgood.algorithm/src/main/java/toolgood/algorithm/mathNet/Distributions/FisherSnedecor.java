@@ -1,6 +1,7 @@
 package toolgood.algorithm.mathNet.Distributions;
 
 import toolgood.algorithm.mathNet.SpecialFunctions;
+import toolgood.algorithm.mathNet.RootFinding.Brent;
 
 public class FisherSnedecor {
     public static double CDF(double d1, double d2, double x)

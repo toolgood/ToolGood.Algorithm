@@ -1,6 +1,6 @@
 package toolgood.algorithm.mathNet.Distributions;
 
-import sun.security.pkcs11.wrapper.Constants;
+import toolgood.algorithm.mathNet.Constants;
 import toolgood.algorithm.mathNet.SpecialFunctions;
 
 public class LogNormal {

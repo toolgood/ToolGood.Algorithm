@@ -14,6 +14,7 @@ import toolgood.algorithm.mathNet.Distributions.StudentT;
 import toolgood.algorithm.mathNet.Distributions.Weibull;
 import toolgood.algorithm.mathNet.Statistics.ArrayStatistics;
 import toolgood.algorithm.mathNet.Statistics.QuantileDefinition;
+import toolgood.algorithm.mathNet.Statistics.Statistics;
 
 public class ExcelFunctions {
 
@@ -85,7 +86,7 @@ public class ExcelFunctions {
             case 4:
                 return ArrayStatistics.Maximum(array);
             default:
-                throw new ArgumentOutOfRangeException("quant");
+                throw new Exception("quant");
         }
     }
 

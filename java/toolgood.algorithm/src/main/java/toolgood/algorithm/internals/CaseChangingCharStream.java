@@ -1,5 +1,6 @@
 package toolgood.algorithm.internals;
 
+import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.misc.Interval;
 
 public class CaseChangingCharStream implements CharStream {

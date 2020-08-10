@@ -1,10 +1,10 @@
 package toolgood.algorithm.mathNet.Statistics;
 
-import java.awt.List;
+import java.util.List;
 
 public class Statistics {
     public static double QuantileCustom(final List<Double> data, final double tau,
-            final QuantileDefinition definition) {
+            final QuantileDefinition definition) throws Exception {
         double[] array = new double[data.size()];
         for (int i = 0; i < data.size(); i++) {
             array[i]=data.get(i);

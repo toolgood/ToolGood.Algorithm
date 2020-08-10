@@ -3,6 +3,7 @@ package toolgood.algorithm.mathNet.Distributions;
 import java.util.function.Function;
 
 import toolgood.algorithm.mathNet.SpecialFunctions;
+import toolgood.algorithm.mathNet.RootFinding.Brent;
 
 public class StudentT {
     public static double CDF(double location, double scale, double freedom, double x)

@@ -13,7 +13,7 @@ class OperandNumber extends OperandT<Double> {
 
     @Override
     public int IntValue(){
-        return (int)Value;
+        return (int)(double)Value;
     }
     @Override
     public double NumberValue(){

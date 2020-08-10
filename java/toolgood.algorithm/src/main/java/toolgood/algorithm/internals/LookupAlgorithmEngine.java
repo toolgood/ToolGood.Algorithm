@@ -8,7 +8,7 @@ public class LookupAlgorithmEngine extends AlgorithmEngine {
     public Operand Json;
 
     @Override
-    protected Operand GetParameter(String parameter)
+    protected Operand GetParameter(String parameter) throws Exception
     {
         JsonData v = Json.JsonValue().GetChild(parameter);
         if (v!=null)

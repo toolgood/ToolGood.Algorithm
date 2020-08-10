@@ -2,12 +2,17 @@ package toolgood.algorithm.internals;
 
 import toolgood.algorithm.internals.Crc8Hash;
 import toolgood.algorithm.internals.Crc16Hash;
-import toolgood.algorithm.internals.MD5Hash;
 import java.util.zip.CRC32;
+
+import javax.crypto.Mac;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+
+import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-static class Hash {
+class Hash {
     public static String GetCrc8String(final byte[] buffer) {
         final int b = Crc8Hash.calcCrc8(buffer);
         return byteArrayToHexString(toLH(b));
@@ -33,7 +38,7 @@ static class Hash {
         return byteArrayToHexString(result);
     }
 
-    public static String GetSha1String(final byte[] buffer) throws NoSuchAlgorithmException  {
+    public static String GetSha1String(final byte[] buffer) throws NoSuchAlgorithmException {
         MessageDigest mDigest = MessageDigest.getInstance("SHA1");
         byte[] result = mDigest.digest(buffer);
         return byteArrayToHexString(result);
@@ -45,26 +50,28 @@ static class Hash {
         return byteArrayToHexString(result);
     }
 
-    public static String GetSha512String(final byte[] buffer) {
+    public static String GetSha512String(final byte[] buffer) throws NoSuchAlgorithmException {
         MessageDigest mDigest = MessageDigest.getInstance("SHA-512");
         byte[] result = mDigest.digest(buffer);
         return byteArrayToHexString(result);
     }
-    public static String GetHmacMd5String(final byte[] buffer)
-    {
-        return GetHmacMd5String(buffer,"");
-    }
 
-    public static String GetHmacMd5String(final byte[] buffer, final String secret)
-    {
+    public static String GetHmacMd5String(final byte[] buffer) throws NoSuchAlgorithmException {
+        MessageDigest mDigest = MessageDigest.getInstance("MD5");
+        byte[] result = mDigest.digest(buffer);
+        return byteArrayToHexString(result);    }
+
+    public static String GetHmacMd5String(final byte[] buffer, final String secret) throws NoSuchAlgorithmException,
+            InvalidKeyException {
         SecretKey secretKey = new SecretKeySpec(secret.getBytes(), "HmacMD5");
         Mac mac = Mac.getInstance(secretKey.getAlgorithm());
         mac.init(secretKey);
-        byte[] result= mac.doFinal(buffer);
+        byte[] result = mac.doFinal(buffer);
         return byteArrayToHexString(result);
     }
 
     public static String GetHmacSha1String(final byte[] buffer, final String secret)
+            throws NoSuchAlgorithmException, InvalidKeyException
     {
         SecretKey secretKey = new SecretKeySpec(secret.getBytes(), "HmacSHA1");
         Mac mac = Mac.getInstance(secretKey.getAlgorithm());
@@ -73,7 +80,8 @@ static class Hash {
         return byteArrayToHexString(result);
     }
 
-    public static String GetHmacSha256String(final byte[] buffer, final String secret)
+    public static String GetHmacSha256String(final byte[] buffer, final String secret) throws NoSuchAlgorithmException,
+            InvalidKeyException
     {
         SecretKey secretKey = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
         Mac mac = Mac.getInstance(secretKey.getAlgorithm());
@@ -82,7 +90,8 @@ static class Hash {
         return byteArrayToHexString(result);
     }
 
-    public static String GetHmacSha512String(final byte[] buffer, final String secret)
+    public static String GetHmacSha512String(final byte[] buffer, final String secret) throws NoSuchAlgorithmException,
+            InvalidKeyException
     {
         SecretKey secretKey = new SecretKeySpec(secret.getBytes(), "HmacSHA512");
         Mac mac = Mac.getInstance(secretKey.getAlgorithm());
