@@ -5,6 +5,9 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+
 /// <summary>
 /// Date
 /// </summary>
@@ -18,13 +21,23 @@ public class MyDate {
         Second = second;
     }
     public MyDate(Date dt) {
-        Year = dt.getYear();
-        Month = dt.getMonth()+1;
-        Day = dt.getDay();
-        Hour = dt.getHours();
-        Minute = dt.getMinutes();
-        Second = dt.getSeconds();
+        DateTime dTime=new DateTime(dt);
+        Year = dTime.getYear();
+        Month = dTime.getMonthOfYear();
+        Day = dTime.getDayOfMonth();
+        Hour = dTime.getHourOfDay();
+        Minute = dTime.getMinuteOfHour();
+        Second = dTime.getSecondOfMinute();
     }
+    public MyDate(DateTime dTime) {
+        Year = dTime.getYear();
+        Month = dTime.getMonthOfYear();
+        Day = dTime.getDayOfMonth();
+        Hour = dTime.getHourOfDay();
+        Minute = dTime.getMinuteOfHour();
+        Second = dTime.getSecondOfMinute();
+    }
+
     // public MyDate(TimeSpan dt) {
     //     Day = dt.Days;
     //     Hour = dt.Hours;
@@ -75,7 +88,7 @@ public class MyDate {
         }
         double sp= Day+ (Hour + (Minute + Second / 60.0) / 60) / 24;
         TimeSpan ts = new TimeSpan(timeSpan);
-
+         
         if (Day != null) {
             return new SimpleDateFormat("d HH:mm:ss").format(ts);
         }
@@ -92,6 +105,35 @@ public class MyDate {
         // }
         // return ((DateTime) this).ToString(f);
     }
+    public DateTime ToDateTime(){
+        return new DateTime(Year,Month,Day,Hour,Minute,Second,DateTimeZone.UTC);
+    }
+
+    public int DayOfWeek(){
+        return  new DateTime(Year,Month,Day,0,0,0,DateTimeZone.UTC).dayOfWeek().get();
+    }
+    public int DayOfYear(){
+        return  new DateTime(Year,Month,Day,0,0,0,DateTimeZone.UTC).getDayOfYear();
+    }
+    public MyDate AddYears(int d){
+        return new MyDate( ToDateTime().plusDays(d))  ;
+    }
+    public MyDate AddMonths(int d){
+        return new MyDate( ToDateTime().plusMonths(d))  ;
+    }
+    public MyDate AddDays(int d){
+        return new MyDate( ToDateTime().plusDays(d))  ;
+    }
+    public MyDate AddHours(int d){
+        return new MyDate( ToDateTime().plusHours(d))  ;
+    } 
+    public MyDate AddMinutes(int d){
+        return new MyDate( ToDateTime().plusMinutes(d))  ;
+    }
+    public MyDate AddSeconds(int d){
+        return new MyDate( ToDateTime().plusSeconds(d))  ;
+    }
+
 
     //  public static implicit operator
 

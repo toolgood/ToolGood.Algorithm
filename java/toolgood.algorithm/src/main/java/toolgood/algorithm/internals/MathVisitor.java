@@ -19,6 +19,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeConstants;
+import org.joda.time.DateTimeZone;
 import org.springframework.util.StringUtils;
 
 import toolgood.algorithm.MyDate;
@@ -2532,7 +2535,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             type = secondValue.IntValue();
         }
 
-        int t = ((DateTime) firstValue.DateValue()).DayOfWeek;
+        int t = firstValue.DateValue().DayOfWeek();
         if (type == 1) {
             return Operand.Create((double) (t + 1));
         } else if (type == 2) {
@@ -2569,8 +2572,8 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return thirdValue;
         }
 
-        MyDate startDate = (DateTime) firstValue.DateValue();
-        MyDate endDate = (DateTime) secondValue.DateValue();
+        MyDate startDate =  firstValue.DateValue();
+        MyDate endDate =   secondValue.DateValue();
         String t = thirdValue.TextValue().toLowerCase();
 
         if (t == "y") {
@@ -2596,18 +2599,18 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                 return Operand.Create((endDate.Year * 12 + endDate.Month - startDate.Year * 12 - startDate.Month - 1));
             }
         } else if (t == "d") {
-            return Operand.Create((endDate - startDate).Days);
+            return Operand.Create((int)endDate.SUB(startDate).ToNumber());
         } else if (t == "yd") {
-            int day = endDate.DayOfYear - startDate.DayOfYear;
+            int day = endDate.DayOfYear() - startDate.DayOfYear();
             if (endDate.Year > startDate.Year && day < 0) {
-                int days = new DateTime(startDate.Year, 12, 31).DayOfYear;
+                int days = new DateTime(startDate.Year, 12, 31,0,0,0,DateTimeZone.UTC).getDayOfYear();
                 day = days + day;
             }
             return Operand.Create((day));
         } else if (t == "md") {
             int mo = endDate.Day - startDate.Day;
             if (mo < 0) {
-                int days = new DateTime(startDate.Year, startDate.Month + 1, 1).AddDays(-1).Day;
+                int days = new DateTime(startDate.Year, startDate.Month + 1, 1,0,00,DateTimeZone.UTC).plusDays(-1).dayOfMonth().get();
                 mo += days;
             }
             return Operand.Create((mo));
@@ -2641,8 +2644,8 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return secondValue;
         }
 
-        MyDate startDate = (DateTime) firstValue.DateValue();
-        MyDate endDate = (DateTime) secondValue.DateValue();
+        MyDate startDate = firstValue.DateValue();
+        MyDate endDate = secondValue.DateValue();
 
         boolean method = false;
         if (args.size() == 3) {
@@ -2659,12 +2662,12 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             if (startDate.Day == 31)
                 days -= 30;
         } else {
-            if (startDate.Day == new DateTime(startDate.Year, startDate.Month + 1, 1).AddDays(-1).Day) {
+            if (startDate.Day == new DateTime(startDate.Year, startDate.Month + 1, 1,0,0,0,DateTimeZone.UTC).plusDays(-1).dayOfMonth().get()) {
                 days -= 30;
             } else {
                 days -= startDate.Day;
             }
-            if (endDate.Day == new DateTime(endDate.Year, endDate.Month + 1, 1).AddDays(-1).Day) {
+            if (endDate.Day == new DateTime(endDate.Year, endDate.Month + 1, 1,0,0,0,DateTimeZone.UTC).plusDays(-1).dayOfMonth().get()) {
                 if (startDate.Day < 30) {
                     days += 31;
                 } else {
@@ -2696,7 +2699,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return secondValue;
         }
 
-        return Operand.Create((MyDate) (((DateTime) firstValue.DateValue()).AddMonths(secondValue.IntValue())));
+        return Operand.Create(firstValue.DateValue().AddMonths(secondValue.IntValue()));
     }
 
     public Operand visitEOMONTH_fun(EOMONTH_funContext context) {
@@ -2718,9 +2721,9 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return secondValue;
         }
 
-        DateTime dt = ((DateTime) firstValue.DateValue()).AddMonths(secondValue.IntValue() + 1);
-        dt = new DateTime(dt.Year, dt.Month, 1).AddDays(-1);
-        return Operand.Create(dt);
+        MyDate dt = firstValue.DateValue().AddMonths(secondValue.IntValue() + 1);
+        DateTime dt2 = new DateTime(dt.Year, dt.Month, 1,0,0,0,DateTimeZone.UTC).plusDays(-1);
+        return Operand.Create(dt2);
     }
 
     public Operand visitNETWORKDAYS_fun(NETWORKDAYS_funContext context) {
@@ -2734,22 +2737,22 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             args.add(a);
         }
 
-        MyDate startDate = (DateTime) args.get(0).DateValue();
-        MyDate endDate = (DateTime) args.get(1).DateValue();
+        DateTime startDate = args.get(0).DateValue().ToDateTime();
+        DateTime endDate = args.get(1).DateValue().ToDateTime();
 
         List<DateTime> list = new ArrayList<DateTime>();
         for (int i = 2; i < args.size(); i++) {
-            list.add(args.get(i).DateValue());
+            list.add(args.get(i).DateValue().ToDateTime());
         }
 
         int days = 0;
-        while (startDate <= endDate) {
-            if (startDate.DayOfWeek != DayOfWeek.Sunday && startDate.DayOfWeek != DayOfWeek.Saturday) {
-                if (list.Contains(startDate) == false) {
+        while (startDate.isBefore(endDate)) {
+            if (startDate.dayOfWeek().get() != DateTimeConstants.SUNDAY && startDate.dayOfWeek().get() != DateTimeConstants.SATURDAY) {
+                if (list.contains(startDate) == false) {
                     days++;
                 }
             }
-            startDate = startDate.addDays(1);
+            startDate = startDate.plusDays(1);
         }
         return Operand.Create(days);
     }
@@ -2773,7 +2776,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return secondValue;
         }
 
-        MyDate startDate =  firstValue.DateValue();
+        DateTime startDate =  firstValue.DateValue().ToDateTime();
         int days = secondValue.IntValue();
         List<DateTime> list = new ArrayList<DateTime>();
         for (int i = 2; i < args.size(); i++) {
@@ -2781,15 +2784,15 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             if (args.get(i).IsError()) {
                 return args.get(i);
             }
-            list.add(args.get(i).DateValue());
+            list.add(args.get(i).DateValue().ToDateTime());
         }
         while (days > 0) {
-            startDate = startDate.addDays(1);
-            if (startDate.DayOfWeek == DayOfWeek.Saturday)
+            startDate = startDate.plusDays(1);
+            if (startDate.dayOfWeek().get() == DateTimeConstants.SATURDAY)
                 continue;
-            if (startDate.DayOfWeek == DayOfWeek.Sunday)
+            if (startDate.dayOfWeek().get() == DateTimeConstants.SUNDAY)
                 continue;
-            if (list.Contains(startDate))
+            if (list.contains(startDate))
                 continue;
             days--;
         }
@@ -2811,9 +2814,9 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return firstValue;
         }
 
-        MyDate startDate =  firstValue.DateValue();
+        DateTime startDate =  firstValue.DateValue().ToDateTime();
 
-        int days = startDate.DayOfYear + (int) (new DateTime(startDate.Year, 1, 1).DayOfWeek);
+        int days = startDate.dayOfYear().get() +  new DateTime(startDate.getYear(), 1, 1,0,0,0,DateTimeZone.UTC).dayOfWeek().get();
         if (args.size() == 2) {
             Operand secondValue = args.get(1).ToNumber("Function WEEKNUM parameter 2 is error!");
             if (secondValue.IsError()) {
@@ -4153,7 +4156,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return firstValue;
         }
 
-        return Operand.Create(StringUtils.unescapeHtml(firstValue.TextValue()));
+        return Operand.Create(StringEscapeUtils.unescapeHtml4(firstValue.TextValue()));
     }
 
     public Operand visitHTMLDECODE_fun(HTMLDECODE_funContext context) {
@@ -4702,14 +4705,15 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return thirdValue;
         }
         if (args.size() == 3) {
-            return Operand.Create(text.indexOf(secondValue.TextValue(), thirdValue.IntValue()) + excelIndex);
+            return Operand.Create(text.substring(thirdValue.IntValue(), text.length())
+                .indexOf(secondValue.TextValue())+text.length() + excelIndex);
         }
         Operand fourthValue = args.get(3).ToText("Function INDEXOF parameter 4 is error!");
         if (fourthValue.IsError()) {
             return fourthValue;
         }
-        return Operand.Create(
-                text.indexOf(secondValue.TextValue(), thirdValue.IntValue(), fourthValue.IntValue()) + excelIndex);
+        return Operand.Create( text.substring(thirdValue.IntValue(), text.length())
+            .indexOf(secondValue.TextValue(), fourthValue.IntValue())+thirdValue.IntValue() + excelIndex);
     }
 
     public Operand visitLASTINDEXOF_fun(LASTINDEXOF_funContext context) {
@@ -4740,14 +4744,16 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return thirdValue;
         }
         if (args.size() == 3) {
-            return Operand.Create(text.lastIndexOf(secondValue.TextValue(), thirdValue.IntValue()) + excelIndex);
+            return Operand.Create(text.substring(thirdValue.IntValue(), text.length())
+                    .lastIndexOf(secondValue.TextValue()) + thirdValue.IntValue() + excelIndex);
         }
         Operand fourthValue = args.get(3).ToText("Function LASTINDEXOF parameter 4 is error!");
         if (fourthValue.IsError()) {
             return fourthValue;
         }
         return Operand.Create(
-                text.lastIndexOf(secondValue.TextValue(), thirdValue.IntValue(), fourthValue.IntValue()) + excelIndex);
+                text.substring(thirdValue.IntValue(), text.length())
+                    .lastIndexOf(secondValue.TextValue(), fourthValue.IntValue()) + thirdValue.IntValue() + excelIndex);
     }
 
     public Operand visitSPLIT_fun(SPLIT_funContext context) {

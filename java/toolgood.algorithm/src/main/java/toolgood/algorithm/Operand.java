@@ -8,11 +8,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import org.joda.time.DateTime;
+
 import toolgood.algorithm.litJson.JsonMapper;
 import toolgood.algorithm.litJson.JsonData;
 
 public abstract class Operand {
-    private static Locale cultureInfo = Locale.US;
     public final static Operand True = Create(true);
     public final static Operand False = Create(false);
 
@@ -71,6 +72,12 @@ public abstract class Operand {
     }
     public static Operand Create(final MyDate obj) {
         return new OperandDate(obj);
+    }
+    public static Operand Create(final DateTime obj) {
+        return new OperandDate(new MyDate(obj));
+    }
+    public static Operand Create(final Date obj) {
+        return new OperandDate(new MyDate(obj));
     }
     // public static Operand Create(final DateTime obj) {
     //     return new OperandDate(new Date(obj));
