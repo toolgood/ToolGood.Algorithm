@@ -4645,7 +4645,8 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         String text = args.get(0).TextValue();
         if (args.size() == 2) {
             if(text.startsWith(args.get(1).TextValue())){
-                return Operand.Create(text.substring(args.get(1).TextValue().length()));
+                text= text.replace("^["+args.get(1).TextValue()+"]*", "");
+                return Operand.Create(text);
             }
             return Operand.Create(text);
         }
@@ -4666,9 +4667,11 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
 
         String text = args.get(0).TextValue();
         if (args.size() == 2) {
-            return Operand.Create(text.trimEnd(args.get(1).TextValue().ToArray()));
+            text= text.replace("["+args.get(1).TextValue()+"]*$", "");
+            return Operand.Create(text);
         }
-        return Operand.Create(text.trimEnd());
+        text= text.replace("\\s*$", "");
+        return Operand.Create(text);
     }
 
     public Operand visitINDEXOF_fun(INDEXOF_funContext context) {

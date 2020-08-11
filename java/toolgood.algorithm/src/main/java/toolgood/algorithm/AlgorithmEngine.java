@@ -13,16 +13,17 @@ import toolgood.algorithm.internals.CaseChangingCharStream;
 import toolgood.algorithm.internals.MathVisitor;
 import toolgood.algorithm.internals.MyFunction;
 import toolgood.algorithm.litJson.JsonData;
-import toolgood.algorithm.litJson.JsonException;
 import toolgood.algorithm.litJson.JsonMapper;
 import toolgood.algorithm.math.mathLexer;
 import toolgood.algorithm.math.mathParser;
 import toolgood.algorithm.math.mathParser2.*;
 
-import org.antlr.v4.runtime.ANTLRFileStream;
 import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
+import org.antlr.v4.runtime.Recognizer;
+
 
 public class AlgorithmEngine {
     public boolean UseExcelIndex = true;
@@ -40,7 +41,10 @@ public class AlgorithmEngine {
 
     protected Operand ExecuteDiyFunction(final String funcName, final List<Operand> operands) {
         if (DiyFunction != null) {
-            return DiyFunction.Invoke(funcName, operands);
+            MyFunction f=new MyFunction();
+            f.Name=funcName;
+            f.OperandList=operands;
+            return DiyFunction.apply(f);
         }
         return Operand.Error("DiyFunction [" + funcName + "] is missing.");
     }
@@ -122,19 +126,25 @@ public class AlgorithmEngine {
         throw new Exception("Parameter is not json String.");
     }
 
-    class AntlrErrorListener extends AntlrErrorListener<Token> {
+    class AntlrErrorListener extends BaseErrorListener {
         public boolean IsError;
         public String ErrorMsg;
 
-        public void SyntaxError(final TextWriter output, final IRecognizer recognizer, final IToken offendingSymbol,
-                final int line, final int charPositionInLine, final String msg, final RecognitionException e) {
+        @Override
+        public void syntaxError(Recognizer<?, ?> recognizer,
+                                Object offendingSymbol,
+                                int line,
+                                int charPositionInLine,
+                                String msg,
+                                RecognitionException e)
+        {
             IsError = true;
             ErrorMsg = msg;
         }
     }
 
     public boolean Parse(final String exp) throws RecognitionException {
-        if (exp==null || exp.equals("")) {
+        if (exp == null || exp.equals("")) {
             LastError = "Parameter exp invalid !";
             return false;
         }
@@ -147,7 +157,8 @@ public class AlgorithmEngine {
         parser.removeErrorListeners();
         parser.addErrorListener(antlrErrorListener);
         final ProgContext context = parser.prog();
-        final int end = context.Stop.StopIndex;
+
+        final int end = context.stop.getStopIndex();
         if (end + 1 < exp.length()) {
             _context = null;
             LastError = "Parameter exp invalid !";
@@ -165,15 +176,22 @@ public class AlgorithmEngine {
         // return false;
         // }
     }
-    public Operand Evaluate() {
+
+    public Operand Evaluate() throws Exception {
         if (_context == null) {
             LastError = "Please use Parse to compile formula !";
             throw new Exception("Please use Parse to compile formula !");
         }
         final MathVisitor visitor = new MathVisitor();
-        visitor.GetParameter = GetParameter;
+        visitor.GetParameter = f -> {
+            try {
+                return GetParameter(f);
+            } catch (Exception e) {
+            }
+            return null;
+        };
         visitor.excelIndex = UseExcelIndex ? 1 : 0;
-        visitor.DiyFunction = ExecuteDiyFunction;
+        visitor.DiyFunction = f->{ return ExecuteDiyFunction(f.Name,f.OperandList); };
         return visitor.visit(_context);
     }
     public int TryEvaluate(final String exp, final int defvalue) {
