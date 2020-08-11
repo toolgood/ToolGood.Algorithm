@@ -4155,13 +4155,13 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             args.add(a);
         }
         
-        Encoding encoding;
+        String encoding;
         if (args.size() == 1) {
-            encoding = Encoding.UTF8;
+            encoding = "utf-8";
         } else {
-            encoding = Encoding.GetEncoding(args.get(1).TextValue());
+            encoding = args.get(1).TextValue();
         }
-        String t = encoding.GetString(Base64.FromBase64String(args.get(0).TextValue()));
+        String t = new String(Base64.FromBase64String(args.get(0).TextValue()),encoding);
         return Operand.Create(t);
     }
 
@@ -4176,13 +4176,13 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             args.add(a);
         }
 
-        Encoding encoding;
+        String encoding;
         if (args.size() == 1) {
-            encoding = Encoding.UTF8;
+            encoding = "utf-8";
         } else {
-            encoding = Encoding.GetEncoding(args.get(1).TextValue());
+            encoding = args.get(1).TextValue();
         }
-        String t = encoding.GetString(Base64.FromBase64ForUrlString(args.get(0).TextValue()));
+        String t = new String(Base64.FromBase64ForUrlString(args.get(0).TextValue()),encoding);
         return Operand.Create(t);
     }
 
@@ -4197,11 +4197,11 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             args.add(a);
         }
 
-        Encoding encoding;
+        String encoding;
         if (args.size() == 1) {
-            encoding = Encoding.UTF8;
+            encoding = "utf-8";
         } else {
-            encoding = Encoding.GetEncoding(args.get(1).TextValue());
+            encoding = args.get(1).TextValue();
         }
         byte[] bytes = encoding.GetBytes(args.get(0).TextValue());
         String t = Base64.ToBase64String(bytes);
@@ -4219,11 +4219,11 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             args.add(a);
         }
 
-        Encoding encoding;
+        String encoding;
         if (args.size() == 1) {
-            encoding = Encoding.UTF8;
+            encoding = "utf-8";
         } else {
-            encoding = Encoding.GetEncoding(args.get(1).TextValue());
+            encoding = args.get(1).TextValue();
         }
         byte[] bytes = encoding.GetBytes(args.get(0).TextValue());
         String t = Base64.ToBase64ForUrlString(bytes);
@@ -4332,14 +4332,18 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             args.add(a);
         }
 
-        Encoding encoding;
+        String encoding;
         if (args.size() == 1) {
-            encoding = Encoding.UTF8;
+            encoding = "utf-8";
         } else {
-            encoding = Encoding.GetEncoding(args.get(1).TextValue());
+            encoding = args.get(1).TextValue();
         }
-        String t = Hash.GetMd5String(encoding.GetBytes(args.get(0).TextValue()));
-        return Operand.Create(t);
+        try {
+            String t = Hash.GetMd5String(args.get(0).TextValue().getBytes(encoding));
+            return Operand.Create(t);
+        } catch (Exception e) {
+        }
+        return Operand.Error("Function MD5 is error!");
     }
 
     public Operand visitSHA1_fun(SHA1_funContext context) {
@@ -4353,14 +4357,18 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             args.add(a);
         }
 
-        Encoding encoding;
+        String encoding;
         if (args.size() == 1) {
-            encoding = Encoding.UTF8;
+            encoding = "utf-8";
         } else {
-            encoding = Encoding.GetEncoding(args.get(1).TextValue());
+            encoding = args.get(1).TextValue();
         }
-        String t = Hash.GetSha1String(encoding.GetBytes(args.get(0).TextValue()));
-        return Operand.Create(t);
+        try {
+            String t = Hash.GetSha1String(args.get(0).TextValue().getBytes(encoding));
+            return Operand.Create(t);
+        } catch (Exception e) {
+        }
+        return Operand.Error("Function SHA1 is error!");
     }
 
     public Operand visitSHA256_fun(SHA256_funContext context) {
@@ -4374,14 +4382,18 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             args.add(a);
         }
 
-        Encoding encoding;
+        String encoding;
         if (args.size() == 1) {
-            encoding = Encoding.UTF8;
+            encoding = "utf-8";
         } else {
-            encoding = Encoding.GetEncoding(args.get(1).TextValue());
+            encoding = args.get(1).TextValue();
         }
-        String t = Hash.GetSha256String(encoding.GetBytes(args.get(0).TextValue()));
-        return Operand.Create(t);
+        try {
+            String t = Hash.GetSha256String(args.get(0).TextValue().getBytes(encoding));
+            return Operand.Create(t);
+        } catch (Exception e) {
+        }
+        return Operand.Error("Function SHA256 is error!");
     }
 
     public Operand visitSHA512_fun(SHA512_funContext context) {
@@ -4395,14 +4407,18 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             args.add(a);
         }
 
-        Encoding encoding;
+        String encoding;
         if (args.size() == 1) {
-            encoding = Encoding.UTF8;
+            encoding = "utf-8";
         } else {
-            encoding = Encoding.GetEncoding(args.get(1).TextValue());
+            encoding = args.get(1).TextValue();
         }
-        String t = Hash.GetSha512String(encoding.GetBytes(args.get(0).TextValue()));
-        return Operand.Create(t);
+        try {
+            String t = Hash.GetSha512String(args.get(0).TextValue().getBytes(encoding));
+            return Operand.Create(t);
+        } catch (Exception e) {
+        }
+        return Operand.Error("Function SHA512 is error!");
     }
 
     public Operand visitCRC8_fun(CRC8_funContext context) {
@@ -4416,14 +4432,18 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             args.add(a);
         }
 
-        Encoding encoding;
+        String encoding;
         if (args.size() == 1) {
-            encoding = Encoding.UTF8;
+            encoding = "utf-8";
         } else {
-            encoding = Encoding.GetEncoding(args.get(1).TextValue());
+            encoding = args.get(1).TextValue();
         }
-        String t = Hash.GetCrc8String(encoding.GetBytes(args.get(0).TextValue()));
-        return Operand.Create(t);
+        try {
+            String t = Hash.GetCrc8String(args.get(0).TextValue().getBytes(encoding));
+            return Operand.Create(t);
+        } catch (Exception e) {
+        }
+        return Operand.Error("Function CRC8 is error!");
     }
 
     public Operand visitCRC16_fun(CRC16_funContext context) {
@@ -4437,14 +4457,18 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             args.add(a);
         }
 
-        Encoding encoding;
+        String encoding;
         if (args.size() == 1) {
-            encoding = Encoding.UTF8;
+            encoding = "utf-8";
         } else {
-            encoding = Encoding.GetEncoding(args.get(1).TextValue());
+            encoding = args.get(1).TextValue();
         }
-        String t = Hash.GetCrc16String(encoding.GetBytes(args.get(0).TextValue()));
-        return Operand.Create(t);
+        try {
+            String t = Hash.GetCrc16String(args.get(0).TextValue().getBytes(encoding));
+            return Operand.Create(t);
+        } catch (Exception e) {
+        }
+        return Operand.Error("Function CRC16 is error!");
     }
 
     public Operand visitCRC32_fun(CRC32_funContext context) {
@@ -4458,14 +4482,18 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             args.add(a);
         }
 
-        Encoding encoding;
+        String encoding;
         if (args.size() == 1) {
-            encoding = Encoding.UTF8;
+            encoding = "utf-8";
         } else {
-            encoding = Encoding.GetEncoding(args.get(1).TextValue());
+            encoding = args.get(1).TextValue();
         }
-        String t = Hash.GetCrc32String(encoding.GetBytes(args.get(0).TextValue()));
-        return Operand.Create(t);
+        try {
+            String t = Hash.GetCrc32String(args.get(0).TextValue().getBytes(encoding));
+            return Operand.Create(t);
+        } catch (Exception e) {
+        }
+        return Operand.Error("Function CRC32 is error!");
     }
 
     public Operand visitHMACMD5_fun(HMACMD5_funContext context) {
@@ -4479,14 +4507,18 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             args.add(a);
         }
 
-        Encoding encoding;
+        String encoding;
         if (args.size() == 2) {
-            encoding = Encoding.UTF8;
+            encoding = "utf-8";
         } else {
-            encoding = Encoding.GetEncoding(args.get(2).TextValue());
+            encoding = args.get(2).TextValue();
         }
-        String t = Hash.GetHmacMd5String(encoding.GetBytes(args.get(0).TextValue()), args.get(1).TextValue());
-        return Operand.Create(t);
+        try {
+            String t = Hash.GetHmacMd5String(args.get(0).TextValue().getBytes(encoding), args.get(1).TextValue());
+            return Operand.Create(t);
+        } catch (Exception e) {
+        }
+        return Operand.Error("Function HMACMD5 is error!");
     }
 
     public Operand visitHMACSHA1_fun(HMACSHA1_funContext context) {
@@ -4500,14 +4532,18 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             args.add(a);
         }
 
-        Encoding encoding;
+        String encoding;
         if (args.size() == 2) {
-            encoding = Encoding.UTF8;
+            encoding = "utf-8";
         } else {
-            encoding = Encoding.GetEncoding(args.get(2).TextValue());
+            encoding = args.get(2).TextValue();
         }
-        String t = Hash.GetHmacSha1String(encoding.GetBytes(args.get(0).TextValue()), args.get(1).TextValue());
-        return Operand.Create(t);
+        try {
+            String t = Hash.GetHmacSha1String(args.get(0).TextValue().getBytes(encoding), args.get(1).TextValue());
+            return Operand.Create(t);
+        } catch (Exception e) {
+        }
+        return Operand.Error("Function HMACSHA1 is error!");
     }
 
     public Operand visitHMACSHA256_fun(HMACSHA256_funContext context) {
@@ -4521,14 +4557,18 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             args.add(a);
         }
 
-        Encoding encoding;
+        String encoding;
         if (args.size() == 2) {
-            encoding = Encoding.UTF8;
+            encoding = "utf-8";
         } else {
-            encoding = Encoding.GetEncoding(args.get(2).TextValue());
+            encoding = args.get(2).TextValue();
         }
-        String t = Hash.GetHmacSha256String(encoding.GetBytes(args.get(0).TextValue()), args.get(1).TextValue());
-        return Operand.Create(t);
+        try {
+            String t = Hash.GetHmacSha256String(args.get(0).TextValue().getBytes(encoding), args.get(1).TextValue());
+            return Operand.Create(t);
+        } catch (Exception e) {
+        }
+        return Operand.Error("Function HMACSHA256 is error!");
     }
 
     public Operand visitHMACSHA512_fun(HMACSHA512_funContext context) {
@@ -4542,14 +4582,18 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             args.add(a);
         }
 
-        Encoding encoding;
+        String encoding;
         if (args.size() == 2) {
-            encoding = Encoding.UTF8;
+            encoding = "utf-8";
         } else {
-            encoding = Encoding.GetEncoding(args.get(2).TextValue());
+            encoding = args.get(2).TextValue();
         }
-        String t = Hash.GetHmacSha512String(encoding.GetBytes(args.get(0).TextValue()), args.get(1).TextValue());
-        return Operand.Create(t);
+        try {
+            String t = Hash.GetHmacSha512String(args.get(0).TextValue().getBytes(encoding), args.get(1).TextValue());
+            return Operand.Create(t);
+        } catch (Exception e) {
+        }
+        return Operand.Error("Function HMACSHA512 is error!");
     }
 
     public Operand visitTRIMSTART_fun(TRIMSTART_funContext context) {
@@ -5271,7 +5315,10 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                 Operand aa = visit(item);
                 args.add(aa);
             }
-            return DiyFunction(funName, args);
+            MyFunction myFunction=new MyFunction();
+            myFunction.Name=funName;
+            myFunction.OperandList=args;
+            return DiyFunction.apply(myFunction);
         }
         return Operand.Error("DiyFunction is error!");
     }
