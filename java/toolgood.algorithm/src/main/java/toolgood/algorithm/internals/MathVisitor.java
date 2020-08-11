@@ -2,6 +2,7 @@ package toolgood.algorithm.internals;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -36,11 +37,11 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Function<MyFunction, Operand> DiyFunction;
     public int excelIndex;
 
-    public Operand VisitProg(ProgContext context) {
+    public Operand visitProg(ProgContext context) {
         return visitChildren(context);
     }
 
-    public Operand VisitMulDiv_fun(MulDiv_funContext context) {
+    public Operand visitMulDiv_fun(MulDiv_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -145,7 +146,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Error("Function '" + t + "' parameter is error!");
     }
 
-    public Operand VisitAddSub_fun(AddSub_funContext context) {
+    public Operand visitAddSub_fun(AddSub_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -256,7 +257,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Error("Function '" + t + "' parameter is error!");
     }
 
-    public Operand VisitJudge_fun(Judge_funContext context) {
+    public Operand visitJudge_fun(Judge_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -285,7 +286,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
 
         int r;
-        if (firstValue.Type == secondValue.Type) {
+        if (firstValue.Type() == secondValue.Type()) {
             if (firstValue.Type() == OperandType.STRING || firstValue.Type() == OperandType.JSON) {
                 firstValue = firstValue.ToText("Function '" + type + "' parameter 1 is error!");
                 if (firstValue.IsError()) {
@@ -377,7 +378,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return -1;
     }
 
-    public Operand VisitAndOr_fun(AndOr_funContext context) {
+    public Operand visitAndOr_fun(AndOr_funContext context) {
         String t = context.op.getText();
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
@@ -404,7 +405,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.False;
     }
 
-    public Operand VisitIF_fun(IF_funContext context) {
+    public Operand visitIF_fun(IF_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -431,7 +432,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.False;
     }
 
-    public Operand VisitIFERROR_fun(IFERROR_funContext context) {
+    public Operand visitIFERROR_fun(IFERROR_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand a = visit(item);
@@ -447,7 +448,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.False;
     }
 
-    public Operand VisitISNUMBER_fun(ISNUMBER_funContext context) {
+    public Operand visitISNUMBER_fun(ISNUMBER_funContext context) {
         Operand firstValue = visit(context.expr());
         if (firstValue.IsError()) {
             return firstValue;
@@ -459,7 +460,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.False;
     }
 
-    public Operand VisitISTEXT_fun(ISTEXT_funContext context) {
+    public Operand visitISTEXT_fun(ISTEXT_funContext context) {
         Operand firstValue = visit(context.expr());
         if (firstValue.IsError()) {
             return firstValue;
@@ -471,7 +472,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.False;
     }
 
-    public Operand VisitIsError_fun(IsError_funContext context) {
+    public Operand visitISERROR_fun(IsError_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -490,7 +491,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.False;
     }
 
-    public Operand VisitISNULL_fun(ISNULL_funContext context) {
+    public Operand visitISNULL_fun(ISNULL_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -509,7 +510,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.False;
     }
 
-    public Operand VisitISNULLORERROR_fun(ISNULLORERROR_funContext context) {
+    public Operand visitISNULLORERROR_fun(ISNULLORERROR_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -528,7 +529,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.False;
     }
 
-    public Operand VisitISEVEN_fun(ISEVEN_funContext context) {
+    public Operand visitISEVEN_fun(ISEVEN_funContext context) {
         Operand firstValue = visit(context.expr());
         if (firstValue.Type() == OperandType.NUMBER) {
             if (firstValue.IntValue() % 2 == 0) {
@@ -538,7 +539,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.False;
     }
 
-    public Operand VisitISLOGICAL_fun(ISLOGICAL_funContext context) {
+    public Operand visitISLOGICAL_fun(ISLOGICAL_funContext context) {
         Operand firstValue = visit(context.expr());
         if (firstValue.Type() == OperandType.BOOLEAN) {
             return Operand.True;
@@ -546,7 +547,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.False;
     }
 
-    public Operand VisitISODD_fun(ISODD_funContext context) {
+    public Operand visitISODD_fun(ISODD_funContext context) {
         Operand firstValue = visit(context.expr());
         if (firstValue.Type() == OperandType.NUMBER) {
             if (firstValue.IntValue() % 2 == 1) {
@@ -556,7 +557,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.False;
     }
 
-    public Operand VisitISNONTEXT_fun(ISNONTEXT_funContext context) {
+    public Operand visitISNONTEXT_fun(ISNONTEXT_funContext context) {
         Operand firstValue = visit(context.expr());
         if (firstValue.Type() != OperandType.STRING) {
             return Operand.True;
@@ -564,7 +565,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.False;
     }
 
-    public Operand VisitAND_fun(AND_funContext context) {
+    public Operand visitAND_fun(AND_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -575,7 +576,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             args.add(a);
         }
 
-        Operand b = true;
+        boolean b = true;
         for (Operand item : args) {
             if (item.BooleanValue() == false) {
                 b = false;
@@ -585,9 +586,9 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(b);
     }
 
-    public Operand VisitOR_fun(OR_funContext context) {
+    public Operand visitOR_fun(OR_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
-        Operand index = 1;
+        int index =1;
         for (ExprContext item : context.expr()) {
             Operand a = visit(item).ToBoolean("Function OR parameter " + (index++) + " is error!");
             if (a.IsError()) {
@@ -606,7 +607,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(b);
     }
 
-    public Operand VisitNOT_fun(NOT_funContext context) {
+    public Operand visitNOT_fun(NOT_funContext context) {
         Operand firstValue = visit(context.expr()).ToBoolean("Function NOT parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -614,23 +615,23 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(!firstValue.BooleanValue());
     }
 
-    public Operand VisitTRUE_fun(TRUE_funContext context) {
+    public Operand visitTRUE_fun(TRUE_funContext context) {
         return Operand.True;
     }
 
-    public Operand VisitFALSE_fun(FALSE_funContext context) {
+    public Operand visitFALSE_fun(FALSE_funContext context) {
         return Operand.False;
     }
 
-    public Operand VisitE_fun(E_funContext context) {
+    public Operand visitE_fun(E_funContext context) {
         return Operand.Create(Math.E);
     }
 
-    public Operand VisitPI_fun(PI_funContext context) {
+    public Operand visitPI_fun(PI_funContext context) {
         return Operand.Create(Math.PI);
     }
 
-    public Operand VisitABS_fun(ABS_funContext context) {
+    public Operand visitABS_fun(ABS_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function ABS parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -639,7 +640,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(Math.abs(firstValue.NumberValue()));
     }
 
-    public Operand VisitQUOTIENT_fun(QUOTIENT_funContext context) {
+    public Operand visitQUOTIENT_fun(QUOTIENT_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -659,7 +660,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create((double) (int) (firstValue.NumberValue() / secondValue.NumberValue()));
     }
 
-    public Operand VisitMOD_fun(MOD_funContext context) {
+    public Operand visitMOD_fun(MOD_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -680,7 +681,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
 
     }
 
-    public Operand VisitSIGN_fun(SIGN_funContext context) {
+    public Operand visitSIGN_fun(SIGN_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function SIGN parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -689,7 +690,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(Math.sign(firstValue.NumberValue()));
     }
 
-    public Operand VisitSQRT_fun(SQRT_funContext context) {
+    public Operand visitSQRT_fun(SQRT_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function SQRT parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -698,7 +699,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(Math.sqrt(firstValue.NumberValue()));
     }
 
-    public Operand VisitTRUNC_fun(TRUNC_funContext context) {
+    public Operand visitTRUNC_fun(TRUNC_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function TRUNC parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -706,7 +707,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create((int) (firstValue.NumberValue()));
     }
 
-    public Operand VisitINT_fun(INT_funContext context) {
+    public Operand visitINT_fun(INT_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function INT parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -714,7 +715,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create((int) (firstValue.NumberValue()));
     }
 
-    public Operand VisitGCD_fun(GCD_funContext context) {
+    public Operand visitGCD_fun(GCD_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -725,7 +726,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
 
         List<Double> list = new ArrayList<Double>();
-        boolean o = F_base_GetList(args, list);
+        boolean o = F_base_GetList_1(args, list);
         if (o == false) {
             return Operand.Error("Function GCD parameter is error!");
         }
@@ -733,7 +734,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(F_base_gcd(list));
     }
 
-    public Operand VisitLCM_fun(LCM_funContext context) {
+    public Operand visitLCM_fun(LCM_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -744,7 +745,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
 
         List<Double> list = new ArrayList<Double>();
-        boolean o = F_base_GetList(args, list);
+        boolean o = F_base_GetList_1(args, list);
         if (o == false) {
             return Operand.Error("Function GCD parameter is error!");
         }
@@ -752,7 +753,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(F_base_lgm(list));
     }
 
-    public Operand VisitCOMBIN_fun(COMBIN_funContext context) {
+    public Operand visitCOMBIN_fun(COMBIN_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -777,7 +778,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(sum / sum2);
     }
 
-    public Operand VisitPERMUT_fun(PERMUT_funContext context) {
+    public Operand visitPERMUT_fun(PERMUT_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -804,9 +805,9 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     private int F_base_gcd(List<Double> list) {
         list = ShellSort(list);
         // list = list.OrderBy(q => q).ToList();
-        int g = F_base_gcd((int) list.get(1), (int) list.get(0));
+        int g = F_base_gcd((int)(double) list.get(1), (int)(double) list.get(0));
         for (int i = 2; i < list.size(); i++) {
-            g = F_base_gcd((int) list.get(i), g);
+            g = F_base_gcd((int)(double) list.get(i), g);
         }
         return g;
     }
@@ -823,16 +824,16 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
 
     private int F_base_lgm(List<Double> list) {
         for (int i = list.size() - 1; i >= 0; i--) {
-            int item = list.get(i);// [i];
+            int item =(int)(double) list.get(i);// [i];
             if (item <= 1) {
                 list.remove(i);
             }
         }
         list = ShellSort(list);
 
-        int a = (int) list.get(0);// [0];
+        int a = (int)(double)  list.get(0);// [0];
         for (int i = 1; i < list.size(); i++) {
-            int b = (int) list.get(i);
+            int b = (int)(double)  list.get(i);
             int g = b > a ? F_base_gcd(b, a) : F_base_gcd(a, b);
             a = a / g * b;
         }
@@ -860,7 +861,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return array;
     }
 
-    public Operand VisitDEGREES_fun(DEGREES_funContext context) {
+    public Operand visitDEGREES_fun(DEGREES_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function DEGREES parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -871,7 +872,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(r);
     }
 
-    public Operand VisitRADIANS_fun(RADIANS_funContext context) {
+    public Operand visitRADIANS_fun(RADIANS_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function RADIANS parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -881,7 +882,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(r);
     }
 
-    public Operand VisitCOS_fun(COS_funContext context) {
+    public Operand visitCOS_fun(COS_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function COS parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -889,7 +890,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(Math.cos(firstValue.NumberValue()));
     }
 
-    public Operand VisitCOSH_fun(COSH_funContext context) {
+    public Operand visitCOSH_fun(COSH_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function COSH parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -898,7 +899,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(Math.cosh(firstValue.NumberValue()));
     }
 
-    public Operand VisitSIN_fun(SIN_funContext context) {
+    public Operand visitSIN_fun(SIN_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function SIN parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -906,7 +907,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(Math.sin(firstValue.NumberValue()));
     }
 
-    public Operand VisitSINH_fun(SINH_funContext context) {
+    public Operand visitSINH_fun(SINH_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function SINH parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -914,7 +915,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(Math.sinh(firstValue.NumberValue()));
     }
 
-    public Operand VisitTAN_fun(TAN_funContext context) {
+    public Operand visitTAN_fun(TAN_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function TAN parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -922,7 +923,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(Math.tan(firstValue.NumberValue()));
     }
 
-    public Operand VisitTANH_fun(TANH_funContext context) {
+    public Operand visitTANH_fun(TANH_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function TANH parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -930,7 +931,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(Math.tanh(firstValue.NumberValue()));
     }
 
-    public Operand VisitACOS_fun(ACOS_funContext context) {
+    public Operand visitACOS_fun(ACOS_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function ACOS parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -942,7 +943,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(Math.acos(x));
     }
 
-    public Operand VisitACOSH_fun(ACOSH_funContext context) {
+    public Operand visitACOSH_fun(ACOSH_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function ACOSH parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -956,7 +957,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(r);
     }
 
-    public Operand VisitASIN_fun(ASIN_funContext context) {
+    public Operand visitASIN_fun(ASIN_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function ASIN parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -968,7 +969,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(Math.asin(x));
     }
 
-    public Operand VisitASINH_fun(ASINH_funContext context) {
+    public Operand visitASINH_fun(ASINH_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function ASINH parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -978,7 +979,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(d);
     }
 
-    public Operand VisitATAN_fun(ATAN_funContext context) {
+    public Operand visitATAN_fun(ATAN_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function ATAN parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -987,7 +988,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(Math.atan(firstValue.NumberValue()));
     }
 
-    public Operand VisitATANH_fun(ATANH_funContext context) {
+    public Operand visitATANH_fun(ATANH_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function ATANH parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -1000,7 +1001,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(d);
     }
 
-    public Operand VisitATAN2_fun(ATAN2_funContext context) {
+    public Operand visitATAN2_fun(ATAN2_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -1017,7 +1018,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(Math.atan2(secondValue.NumberValue(), firstValue.NumberValue()));
     }
 
-    public Operand VisitFIXED_fun(FIXED_funContext context) {
+    public Operand visitFIXED_fun(FIXED_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -1055,7 +1056,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(s.toString(cultureInfo));
     }
 
-    public Operand VisitBIN2OCT_fun(BIN2OCT_funContext context) {
+    public Operand visitBIN2OCT_fun(BIN2OCT_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -1087,7 +1088,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(num);
     }
 
-    public Operand VisitBIN2DEC_fun(BIN2DEC_funContext context) {
+    public Operand visitBIN2DEC_fun(BIN2DEC_funContext context) {
         Operand firstValue = visit(context.expr()).ToText("Function BIN2DEC parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -1100,7 +1101,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(num);
     }
 
-    public Operand VisitBIN2HEX_fun(BIN2HEX_funContext context) {
+    public Operand visitBIN2HEX_fun(BIN2HEX_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -1132,7 +1133,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(num);
     }
 
-    public Operand VisitOCT2BIN_fun(OCT2BIN_funContext context) {
+    public Operand visitOCT2BIN_fun(OCT2BIN_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -1164,7 +1165,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(num);
     }
 
-    public Operand VisitOCT2DEC_fun(OCT2DEC_funContext context) {
+    public Operand visitOCT2DEC_fun(OCT2DEC_funContext context) {
         Operand firstValue = visit(context.expr()).ToText("Function OCT2DEC parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -1177,7 +1178,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(num);
     }
 
-    public Operand VisitOCT2HEX_fun(OCT2HEX_funContext context) {
+    public Operand visitOCT2HEX_fun(OCT2HEX_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -1208,7 +1209,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(num);
     }
 
-    public Operand VisitDEC2BIN_fun(DEC2BIN_funContext context) {
+    public Operand visitDEC2BIN_fun(DEC2BIN_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -1236,7 +1237,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(num);
     }
 
-    public Operand VisitDEC2OCT_fun(DEC2OCT_funContext context) {
+    public Operand visitDEC2OCT_fun(DEC2OCT_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -1264,7 +1265,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(num);
     }
 
-    public Operand VisitDEC2HEX_fun(DEC2HEX_funContext context) {
+    public Operand visitDEC2HEX_fun(DEC2HEX_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -1292,7 +1293,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(num);
     }
 
-    public Operand VisitHEX2BIN_fun(HEX2BIN_funContext context) {
+    public Operand visitHEX2BIN_fun(HEX2BIN_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -1324,7 +1325,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(num);
     }
 
-    public Operand VisitHEX2OCT_fun(HEX2OCT_funContext context) {
+    public Operand visitHEX2OCT_fun(HEX2OCT_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -1355,7 +1356,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(num);
     }
 
-    public Operand VisitHEX2DEC_fun(HEX2DEC_funContext context) {
+    public Operand visitHEX2DEC_fun(HEX2DEC_funContext context) {
         Operand firstValue = visit(context.expr()).ToText("Function HEX2DEC parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -1368,7 +1369,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(num);
     }
 
-    public Operand VisitROUND_fun(ROUND_funContext context) {
+    public Operand visitROUND_fun(ROUND_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -1382,11 +1383,10 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         Operand firstValue = args.get(0);
         Operand secondValue = args.get(1);
 
-        return Operand.Create((double) round((decimal) firstValue.NumberValue(), secondValue.IntValue(),
-                MidpointRounding.AwayFromZero));
+        return Operand.Create((double) round((double) firstValue.NumberValue(), secondValue.IntValue()));
     }
 
-    public Operand VisitROUNDDOWN_fun(ROUNDDOWN_funContext context) {
+    public Operand visitROUNDDOWN_fun(ROUNDDOWN_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -1409,7 +1409,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(b);
     }
 
-    public Operand VisitROUNDUP_fun(ROUNDUP_funContext context) {
+    public Operand visitROUNDUP_fun(ROUNDUP_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -1434,7 +1434,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(-t);
     }
 
-    public Operand VisitCEILING_fun(CEILING_funContext context) {
+    public Operand visitCEILING_fun(CEILING_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -1462,7 +1462,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(d);
     }
 
-    public Operand VisitFLOOR_fun(FLOOR_funContext context) {
+    public Operand visitFLOOR_fun(FLOOR_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -1490,7 +1490,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(d);
     }
 
-    public Operand VisitEVEN_fun(EVEN_funContext context) {
+    public Operand visitEVEN_fun(EVEN_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function EVEN parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -1508,7 +1508,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(z);
     }
 
-    public Operand VisitODD_fun(ODD_funContext context) {
+    public Operand visitODD_fun(ODD_funContext context) {
 
         Operand firstValue = visit(context.expr()).ToNumber("Function ODD parameter is error!");
         if (firstValue.IsError()) {
@@ -1526,7 +1526,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(z);
     }
 
-    public Operand VisitMROUND_fun(MROUND_funContext context) {
+    public Operand visitMROUND_fun(MROUND_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -1549,13 +1549,13 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(r);
     }
 
-    public Operand VisitRAND_fun(RAND_funContext context) {
+    public Operand visitRAND_fun(RAND_funContext context) {
         long tick = DateTime.Now.Ticks;
         Random rand = new Random((int) (tick & 0xffffffffL) | (int) (tick >> 32));
         return Operand.Create(rand.NextDouble());
     }
 
-    public Operand VisitRANDBETWEEN_fun(RANDBETWEEN_funContext context) {
+    public Operand visitRANDBETWEEN_fun(RANDBETWEEN_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -1575,7 +1575,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                 rand.NextDouble() * (secondValue.NumberValue() - firstValue.NumberValue()) + firstValue.NumberValue());
     }
 
-    public Operand VisitFACT_fun(FACT_funContext context) {
+    public Operand visitFACT_fun(FACT_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function FACT parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -1592,7 +1592,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(d);
     }
 
-    public Operand VisitFACTDOUBLE_fun(FACTDOUBLE_funContext context) {
+    public Operand visitFACTDOUBLE_fun(FACTDOUBLE_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function FACTDOUBLE parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -1609,7 +1609,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(d);
     }
 
-    public Operand VisitPOWER_fun(POWER_funContext context) {
+    public Operand visitPOWER_fun(POWER_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -1626,7 +1626,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(Math.pow(firstValue.NumberValue(), secondValue.NumberValue()));
     }
 
-    public Operand VisitEXP_fun(EXP_funContext context) {
+    public Operand visitEXP_fun(EXP_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function EXP parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -1635,7 +1635,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(Math.exp(firstValue.NumberValue()));
     }
 
-    public Operand VisitLN_fun(LN_funContext context) {
+    public Operand visitLN_fun(LN_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function LN parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -1643,7 +1643,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(Math.log(firstValue.NumberValue()));
     }
 
-    public Operand VisitLOG_fun(LOG_funContext context) {
+    public Operand visitLOG_fun(LOG_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -1660,7 +1660,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(Math.log(args.get(0).NumberValue(), 10));
     }
 
-    public Operand VisitLOG10_fun(LOG10_funContext context) {
+    public Operand visitLOG10_fun(LOG10_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function LOG10 parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -1668,7 +1668,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(Math.log(firstValue.NumberValue(), 10));
     }
 
-    public Operand VisitMULTINOMIAL_fun(MULTINOMIAL_funContext context) {
+    public Operand visitMULTINOMIAL_fun(MULTINOMIAL_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -1679,7 +1679,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
 
         List<Double> list = new ArrayList<Double>();
-        boolean o = F_base_GetList(args, list);
+        boolean o = F_base_GetList_1(args, list);
         if (o == false) {
             return Operand.Error("Function MULTINOMIAL parameter is error!");
         }
@@ -1694,7 +1694,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(r);
     }
 
-    public Operand VisitPRODUCT_fun(PRODUCT_funContext context) {
+    public Operand visitPRODUCT_fun(PRODUCT_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -1705,7 +1705,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
 
         List<Double> list = new ArrayList<Double>();
-        boolean o = F_base_GetList(args, list);
+        boolean o = F_base_GetList_1(args, list);
         if (o == false) {
             return Operand.Error("Function PRODUCT parameter is error!");
         }
@@ -1718,7 +1718,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(d);
     }
 
-    public Operand VisitSQRTPI_fun(SQRTPI_funContext context) {
+    public Operand visitSQRTPI_fun(SQRTPI_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function SQRTPI parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -1726,7 +1726,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(Math.sqrt(firstValue.NumberValue() * Math.PI));
     }
 
-    public Operand VisitSUMSQ_fun(SUMSQ_funContext context) {
+    public Operand visitSUMSQ_fun(SUMSQ_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -1737,7 +1737,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
 
         List<Double> list = new ArrayList<Double>();
-        boolean o = F_base_GetList(args, list);
+        boolean o = F_base_GetList_1(args, list);
         if (o == false) {
             return Operand.Error("Function SUMSQ parameter is error!");
         }
@@ -1761,7 +1761,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return r;
     }
 
-    public Operand VisitASC_fun(ASC_funContext context) {
+    public Operand visitASC_fun(ASC_funContext context) {
         Operand firstValue = visit(context.expr()).ToText("Function ASC parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -1770,7 +1770,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(F_base_ToDBC(firstValue.TextValue()));
     }
 
-    public Operand VisitJIS_fun(JIS_funContext context) {
+    public Operand visitJIS_fun(JIS_funContext context) {
         Operand firstValue = visit(context.expr()).ToText("Function JIS parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -1779,7 +1779,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(F_base_ToSBC(firstValue.TextValue()));
     }
 
-    public Operand VisitCHAR_fun(CHAR_funContext context) {
+    public Operand visitCHAR_fun(CHAR_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function CHAR parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -1789,18 +1789,18 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(c.toString());
     }
 
-    public Operand VisitCLEAN_fun(CLEAN_funContext context) {
+    public Operand visitCLEAN_fun(CLEAN_funContext context) {
         Operand firstValue = visit(context.expr()).ToText("Function CLEAN parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
 
         String t = firstValue.TextValue();
-        t = clearRegex.Replace(t, "");
+        t = clearRegex.replace(t, "");
         return Operand.Create(t);
     }
 
-    public Operand VisitCODE_fun(CODE_funContext context) {
+    public Operand visitCODE_fun(CODE_funContext context) {
         Operand firstValue = visit(context.expr()).ToText("Function CODE parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -1813,7 +1813,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create((double) (int) (char) t.charAt(0));
     }
 
-    public Operand VisitCONCATENATE_fun(CONCATENATE_funContext context) {
+    public Operand visitCONCATENATE_fun(CONCATENATE_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -1831,7 +1831,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(sb.toString());
     }
 
-    public Operand VisitEXACT_fun(EXACT_funContext context) {
+    public Operand visitEXACT_fun(EXACT_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -1848,7 +1848,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(firstValue.TextValue() == secondValue.TextValue());
     }
 
-    public Operand VisitFIND_fun(FIND_funContext context) {
+    public Operand visitFIND_fun(FIND_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -1879,7 +1879,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(p2);
     }
 
-    public Operand VisitLEFT_fun(LEFT_funContext context) {
+    public Operand visitLEFT_fun(LEFT_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -1901,10 +1901,10 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (secondValue.IsError()) {
             return secondValue;
         }
-        return Operand.Create(firstValue.TextValue().Substring(0, secondValue.IntValue()));
+        return Operand.Create(firstValue.TextValue().substring(0, secondValue.IntValue()));
     }
 
-    public Operand VisitLEN_fun(LEN_funContext context) {
+    public Operand visitLEN_fun(LEN_funContext context) {
         Operand firstValue = visit(context.expr()).ToText("Function LEN parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -1913,16 +1913,16 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(firstValue.TextValue().length());
     }
 
-    public Operand VisitLOWER_fun(LOWER_funContext context) {
+    public Operand visitLOWER_fun(LOWER_funContext context) {
         Operand firstValue = visit(context.expr()).ToText("Function LOWER/TOLOWER parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
 
-        return Operand.Create(firstValue.TextValue().toLower());
+        return Operand.Create(firstValue.TextValue().toLowerCase());
     }
 
-    public Operand VisitMID_fun(MID_funContext context) {
+    public Operand visitMID_fun(MID_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -1945,10 +1945,10 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return thirdValue;
         }
         return Operand
-                .Create(firstValue.TextValue().Substring(secondValue.IntValue() - excelIndex, thirdValue.IntValue()));
+                .Create(firstValue.TextValue().substring(secondValue.IntValue() - excelIndex, thirdValue.IntValue()));
     }
 
-    public Operand VisitPROPER_fun(PROPER_funContext context)
+    public Operand visitPROPER_fun(PROPER_funContext context)
     {
         Operand firstValue = visit(context.expr()).ToText("Function PROPER parameter is error!");
         if (firstValue.IsError()) { return firstValue; }
@@ -1968,7 +1968,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(sb.toString());
     }
 
-    public Operand VisitREPLACE_fun(REPLACE_funContext context) {
+    public Operand visitREPLACE_fun(REPLACE_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -1988,7 +1988,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             Operand thirdValue2 = args.get(2).ToText("Function REPLACE parameter 3 is error!");
             String old = secondValue2.TextValue();
             String newstr = thirdValue2.TextValue();
-            return Operand.Create(oldtext.Replace(old, newstr));
+            return Operand.Create(oldtext.replace(old, newstr));
         }
 
         Operand secondValue = args.get(1).ToNumber("Function REPLACE parameter 2 is error!");
@@ -2009,7 +2009,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         String newtext = fourthValue.TextValue();
 
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < oldtext.Length; i++) {
+        for (int i = 0; i < oldtext.length(); i++) {
             if (i < start) {
                 sb.append(oldtext.charAt(i));
             } else if (i == start) {
@@ -2021,7 +2021,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(sb.toString());
     }
 
-    public Operand VisitREPT_fun(REPT_funContext context) {
+    public Operand visitREPT_fun(REPT_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -2049,7 +2049,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(sb.toString());
     }
 
-    public Operand VisitRIGHT_fun(RIGHT_funContext context) {
+    public Operand visitRIGHT_fun(RIGHT_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -2071,11 +2071,11 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (secondValue.IsError()) {
             return secondValue;
         }
-        return Operand.Create(firstValue.TextValue().Substring(firstValue.TextValue().length() - secondValue.IntValue(),
+        return Operand.Create(firstValue.TextValue().substring(firstValue.TextValue().length() - secondValue.IntValue(),
                 secondValue.IntValue()));
     }
 
-    public Operand VisitRMB_fun(RMB_funContext context) {
+    public Operand visitRMB_fun(RMB_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function RMB parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -2084,7 +2084,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(F_base_ToChineseRMB(firstValue.NumberValue()));
     }
 
-    public Operand VisitSEARCH_fun(SEARCH_funContext context) {
+    public Operand visitSEARCH_fun(SEARCH_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -2103,20 +2103,18 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return secondValue;
         }
         if (args.size() == 2) {
-            int p = secondValue.TextValue().indexOf(firstValue.TextValue(), StringComparison.OrdinalIgnoreCase)
-                    + excelIndex;
+            int p = secondValue.TextValue().toLowerCase().indexOf(firstValue.TextValue().toLowerCase()) + excelIndex;
             return Operand.Create(p);
         }
         Operand thirdValue = args.get(2).ToNumber("Function SEARCH parameter 3 is error!");
         if (thirdValue.IsError()) {
             return thirdValue;
         }
-        int p2 = secondValue.TextValue().indexOf(firstValue.TextValue(), thirdValue.IntValue(),
-                StringComparison.OrdinalIgnoreCase) + excelIndex;
+        int p2 = secondValue.TextValue().toLowerCase().indexOf(firstValue.TextValue().toLowerCase(), thirdValue.IntValue()) + excelIndex;
         return Operand.Create(p2);
     }
 
-    public Operand VisitSUBSTITUTE_fun(SUBSTITUTE_funContext context) {
+    public Operand visitSUBSTITUTE_fun(SUBSTITUTE_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -2175,7 +2173,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(sb.toString());
     }
 
-    public Operand VisitT_fun(T_funContext context) {
+    public Operand visitT_fun(T_funContext context) {
         Operand firstValue = visit(context.expr());
         if (firstValue.Type() == OperandType.STRING) {
             return firstValue;
@@ -2183,7 +2181,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create("");
     }
 
-    public Operand VisitTEXT_fun(TEXT_funContext context) {
+    public Operand visitTEXT_fun(TEXT_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -2218,7 +2216,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(firstValue.TextValue().toString());
     }
 
-    public Operand VisitTRIM_fun(TRIM_funContext context) {
+    public Operand visitTRIM_fun(TRIM_funContext context) {
         Operand firstValue = visit(context.expr()).ToText("Function TRIM parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -2226,15 +2224,15 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(firstValue.TextValue().trim());
     }
 
-    public Operand VisitUPPER_fun(UPPER_funContext context) {
+    public Operand visitUPPER_fun(UPPER_funContext context) {
         Operand firstValue = visit(context.expr()).ToText("Function UPPER/TOUPPER parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
-        return Operand.Create(firstValue.TextValue().ToUpper());
+        return Operand.Create(firstValue.TextValue().toUpperCase());
     }
 
-    public Operand VisitVALUE_fun(VALUE_funContext context)
+    public Operand visitVALUE_fun(VALUE_funContext context)
     {
         Operand firstValue = visit(context.expr()).ToText("Function VALUE parameter is error!");
         if (firstValue.IsError()) { return firstValue; }
@@ -2278,7 +2276,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return sb.toString();
     }
 
-    private String F_base_ToChineseRMB(double x) {
+    private String F_base_ToChineseRMB(double number) {
         // String s =
         // x.toString("#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A",
         // cultureInfo);
@@ -2292,7 +2290,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         StringBuffer chineseNumber = new StringBuffer();
         String[] num = { "零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖" };
         String[] unit = { "分", "角", "圆", "拾", "佰", "仟", "万", "拾", "佰", "仟", "亿", "拾", "佰", "仟", "万" };
-        String tempNumber = String.valueOf(round((number * 100)));
+        String tempNumber = String.valueOf(round(number * 100,0));
         int tempNumberLength = tempNumber.length();
         if ("0".equals(tempNumber)) {
             return "零圆整";
@@ -2340,7 +2338,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return chineseNumber.toString();
     }
 
-    public Operand VisitDATEVALUE_fun(DATEVALUE_funContext context)
+    public Operand visitDATEVALUE_fun(DATEVALUE_funContext context)
     {
         Operand firstValue = visit(context.expr()).ToText("Function DATEVALUE parameter is error!");
         if (firstValue.IsError()) { return firstValue; }
@@ -2356,7 +2354,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Error("Function DATEVALUE parameter is error!");
     }
 
-    public Operand VisitTIMEVALUE_fun(TIMEVALUE_funContext context)
+    public Operand visitTIMEVALUE_fun(TIMEVALUE_funContext context)
     {
         Operand firstValue = visit(context.expr()).ToText("Function TIMEVALUE parameter is error!");
         if (firstValue.IsError()) { return firstValue; }
@@ -2373,7 +2371,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Error("Function TIMEVALUE parameter is error!");
     }
 
-    public Operand VisitDATE_fun(DATE_funContext context) {
+    public Operand visitDATE_fun(DATE_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -2400,7 +2398,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(d);
     }
 
-    public Operand VisitTIME_fun(TIME_funContext context) {
+    public Operand visitTIME_fun(TIME_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -2420,15 +2418,15 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(d);
     }
 
-    public Operand VisitNOW_fun(NOW_funContext context) {
+    public Operand visitNOW_fun(NOW_funContext context) {
         return Operand.Create(new MyDate(new Date()));
     }
 
-    public Operand VisitTODAY_fun(TODAY_funContext context) {
+    public Operand visitTODAY_fun(TODAY_funContext context) {
         return Operand.Create(new MyDate(DateTime.Today));
     }
 
-    public Operand VisitYEAR_fun(YEAR_funContext context) {
+    public Operand visitYEAR_fun(YEAR_funContext context) {
         Operand firstValue = visit(context.expr()).ToDate("Function YEAR parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -2437,7 +2435,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(firstValue.DateValue().Year);
     }
 
-    public Operand VisitMONTH_fun(MONTH_funContext context) {
+    public Operand visitMONTH_fun(MONTH_funContext context) {
         Operand firstValue = visit(context.expr()).ToDate("Function MONTH parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -2446,7 +2444,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(firstValue.DateValue().Month);
     }
 
-    public Operand VisitDAY_fun(DAY_funContext context) {
+    public Operand visitDAY_fun(DAY_funContext context) {
         Operand firstValue = visit(context.expr()).ToDate("Function DAY parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -2455,7 +2453,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(firstValue.DateValue().Day);
     }
 
-    public Operand VisitHOUR_fun(HOUR_funContext context) {
+    public Operand visitHOUR_fun(HOUR_funContext context) {
         Operand firstValue = visit(context.expr()).ToDate("Function HOUR parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -2464,7 +2462,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(firstValue.DateValue().Hour);
     }
 
-    public Operand VisitMINUTE_fun(MINUTE_funContext context) {
+    public Operand visitMINUTE_fun(MINUTE_funContext context) {
         Operand firstValue = visit(context.expr()).ToDate("Function MINUTE parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -2473,7 +2471,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(firstValue.DateValue().Minute);
     }
 
-    public Operand VisitSECOND_fun(SECOND_funContext context) {
+    public Operand visitSECOND_fun(SECOND_funContext context) {
         Operand firstValue = visit(context.expr()).ToDate("Function SECOND parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -2482,7 +2480,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(firstValue.DateValue().Second);
     }
 
-    public Operand VisitWEEKDAY_fun(WEEKDAY_funContext context) {
+    public Operand visitWEEKDAY_fun(WEEKDAY_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -2520,7 +2518,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create((double) (t - 1));
     }
 
-    public Operand VisitDATEDIF_fun(DATEDIF_funContext context) {
+    public Operand visitDATEDIF_fun(DATEDIF_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -2596,7 +2594,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Error("Function DATEDIF parameter 3 is error!");
     }
 
-    public Operand VisitDAYS360_fun(DAYS360_funContext context) {
+    public Operand visitDAYS360_fun(DAYS360_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -2651,7 +2649,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(days);
     }
 
-    public Operand VisitEDATE_fun(EDATE_funContext context) {
+    public Operand visitEDATE_fun(EDATE_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -2673,7 +2671,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create((MyDate) (((DateTime) firstValue.DateValue()).AddMonths(secondValue.IntValue())));
     }
 
-    public Operand VisitEOMONTH_fun(EOMONTH_funContext context) {
+    public Operand visitEOMONTH_fun(EOMONTH_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -2697,7 +2695,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(dt);
     }
 
-    public Operand VisitNETWORKDAYS_fun(NETWORKDAYS_funContext context) {
+    public Operand visitNETWORKDAYS_fun(NETWORKDAYS_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -2728,7 +2726,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(days);
     }
 
-    public Operand VisitWORKDAY_fun(WORKDAY_funContext context) {
+    public Operand visitWORKDAY_fun(WORKDAY_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -2770,7 +2768,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(startDate);
     }
 
-    public Operand VisitWEEKNUM_fun(WEEKNUM_funContext context) {
+    public Operand visitWEEKNUM_fun(WEEKNUM_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -2802,7 +2800,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(week);
     }
 
-    public Operand VisitMAX_fun(MAX_funContext context) {
+    public Operand visitMAX_fun(MAX_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -2814,7 +2812,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
 
         List<Double> list = new ArrayList<Double>();
-        boolean o = F_base_GetList(args, list);
+        boolean o = F_base_GetList_1(args, list);
         if (o == false) {
             return Operand.Error("Function MAX parameter error!");
         }
@@ -2822,21 +2820,21 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(list.max());
     }
 
-    public Operand VisitMEDIAN_fun(MEDIAN_funContext context)
+    public Operand visitMEDIAN_fun(MEDIAN_funContext context)
     {
         List<Operand> args = new ArrayList<Operand>(); int index = 1;
         for (ExprContext item : context.expr()) { Operand aa = visit(item).ToNumber("Function MEDIAN parameter "+(index++)+" is error!"); if (aa.IsError()) { return aa; } args.add(aa); }
 
         List<Double>  list = new ArrayList<Double> ();
-        boolean o = F_base_GetList(args, list);
+        boolean o = F_base_GetList_1(args, list);
         if (o == false) { return Operand.Error("Function MEDIAN parameter error!"); }
 
         list=ShellSort(list);
         // list = list.OrderBy(q => q).ToList();
-        return Operand.Create(list[list.size() / 2]);
+        return Operand.Create(list.get(list.size() / 2));
     }
 
-    public Operand VisitMIN_fun(MIN_funContext context) {
+    public Operand visitMIN_fun(MIN_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -2848,7 +2846,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
 
         List<Double> list = new ArrayList<Double>();
-        boolean o = F_base_GetList(args, list);
+        boolean o = F_base_GetList_1(args, list);
         if (o == false) {
             return Operand.Error("Function MIN parameter error!");
         }
@@ -2856,7 +2854,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(list.Min());
     }
 
-    public Operand VisitQUARTILE_fun(QUARTILE_funContext context) {
+    public Operand visitQUARTILE_fun(QUARTILE_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -2876,7 +2874,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
 
         List<Double> list = new ArrayList<Double>();
-        boolean o = F_base_GetList(firstValue, list);
+        boolean o = F_base_GetList_2(firstValue, list);
         if (o == false) {
             return Operand.Error("Function QUARTILE parameter 1 error!");
         }
@@ -2888,22 +2886,22 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(ExcelFunctions.Quartile(list.ToArray(), quant));
     }
 
-    public Operand VisitMODE_fun(MODE_funContext context)
+    public Operand visitMODE_fun(MODE_funContext context)
     {
         List<Operand> args = new ArrayList<Operand>(); int index = 1;
         for (ExprContext item : context.expr()) { Operand aa = visit(item).ToNumber("Function MODE parameter "+(index++)+" is error!"); if (aa.IsError()) { return aa; } args.add(aa); }
 
         List<Double>  list = new ArrayList<Double> ();
-        boolean o = F_base_GetList(args, list);
+        boolean o = F_base_GetList_1(args, list);
         if (o == false) { return Operand.Error("Function MODE parameter error!"); }
 
 
         Map<Double, Integer> dict = new HashMap<Double, Integer>();
         for (double item : list) { 
             if (dict.containsKey(item)) {
-                dict[item] += 1;
+                dict.put(item, dict.get(item)+1);
             } else {
-                dict[item] = 1;
+                dict.put(item, 1);
             }
         }
         int maxCount=0;
@@ -2919,7 +2917,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         // return Operand.Create(dict.OrderByDescending(q => q.Value).First().Key);
     }
 
-    public Operand VisitLARGE_fun(LARGE_funContext context)
+    public Operand visitLARGE_fun(LARGE_funContext context)
     {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) { Operand aa = visit(item); if (aa.IsError()) { return aa; } args.add(aa); }
@@ -2931,7 +2929,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
 
 
         List<Double>  list = new ArrayList<Double> ();
-        boolean o = F_base_GetList(args, list);
+        boolean o = F_base_GetList_1(args, list);
         if (o == false) { return Operand.Error("Function LARGE parameter error!"); }
 
         list=ShellSort(list);
@@ -2940,7 +2938,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(list.get(list.size()-1-(secondValue.IntValue() - excelIndex)));
     }
 
-    public Operand VisitSMALL_fun(SMALL_funContext context)
+    public Operand visitSMALL_fun(SMALL_funContext context)
     {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) { Operand aa = visit(item); if (aa.IsError()) { return aa; } args.add(aa); }
@@ -2951,7 +2949,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (secondValue.IsError()) { return secondValue; }
 
         List<Double>  list = new ArrayList<Double> ();
-        boolean o = F_base_GetList(args, list);
+        boolean o = F_base_GetList_1(args, list);
         if (o == false) { return Operand.Error("Function SMALL parameter error!"); }
 
         list=ShellSort(list);
@@ -2961,7 +2959,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         // return Operand.Create(list[secondValue.IntValue() - excelIndex]);
     }
 
-    public Operand VisitPERCENTILE_fun(PERCENTILE_funContext context) {
+    public Operand visitPERCENTILE_fun(PERCENTILE_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -2990,7 +2988,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(ExcelFunctions.Percentile(list.ToArray(), k));
     }
 
-    public Operand VisitPERCENTRANK_fun(PERCENTRANK_funContext context) {
+    public Operand visitPERCENTRANK_fun(PERCENTRANK_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -3028,7 +3026,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(round(v, d));
     }
 
-    public Operand VisitAVERAGE_fun(AVERAGE_funContext context) {
+    public Operand visitAVERAGE_fun(AVERAGE_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -3039,7 +3037,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
 
         List<Double> list = new ArrayList<Double>();
-        boolean o = F_base_GetList(args, list);
+        boolean o = F_base_GetList_1(args, list);
         if (o == false) {
             return Operand.Error("Function AVERAGE parameter error!");
         }
@@ -3047,13 +3045,13 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(list.Average());
     }
 
-    public Operand VisitAVERAGEIF_fun(AVERAGEIF_funContext context)
+    public Operand visitAVERAGEIF_fun(AVERAGEIF_funContext context)
     {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) { Operand aa = visit(item); if (aa.IsError()) { return aa; } args.add(aa); }
 
         List<Double>  list = new ArrayList<Double> ();
-        boolean o = F_base_GetList(args.get(0), list);
+        boolean o = F_base_GetList_2(args.get(0), list);
         if (o == false) { return Operand.Error("Function AVERAGE parameter 1 error!"); }
 
         List<Double>  sumdbs;
@@ -3100,7 +3098,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(sum / count);
     }
 
-    public Operand VisitGEOMEAN_fun(GEOMEAN_funContext context) {
+    public Operand visitGEOMEAN_fun(GEOMEAN_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -3114,7 +3112,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return args.get(0);
 
         List<Double> list = new ArrayList<Double>();
-        boolean o = F_base_GetList(args, list);
+        boolean o = F_base_GetList_1(args, list);
         if (o == false) {
             return Operand.Error("Function GEOMEAN parameter error!");
         }
@@ -3123,10 +3121,10 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         for (double db : list) {
             sum *= db;
         }
-        return Operand.Create(Math.pow(sum, 1.0 / list.size());
+        return Operand.Create(Math.pow(sum, 1.0 / list.size()));
     }
 
-    public Operand VisitHARMEAN_fun(HARMEAN_funContext context) {
+    public Operand visitHARMEAN_fun(HARMEAN_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -3140,7 +3138,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return args.get(0);
 
         List<Double> list = new ArrayList<Double>();
-        boolean o = F_base_GetList(args, list);
+        boolean o = F_base_GetList_1(args, list);
         if (o == false) {
             return Operand.Error("Function HARMEAN parameter error!");
         }
@@ -3155,7 +3153,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(list.size() / sum);
     }
 
-    public Operand VisitCOUNT_fun(COUNT_funContext context) {
+    public Operand visitCOUNT_fun(COUNT_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -3166,7 +3164,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
 
         List<Double> list = new ArrayList<Double>();
-        boolean o = F_base_GetList(args, list);
+        boolean o = F_base_GetList_1(args, list);
         if (o == false) {
             return Operand.Error("Function COUNT parameter error!");
         }
@@ -3174,13 +3172,13 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(list.size());
     }
 
-    public Operand VisitCOUNTIF_fun(COUNTIF_funContext context)
+    public Operand visitCOUNTIF_fun(COUNTIF_funContext context)
     {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) { Operand aa = visit(item); if (aa.IsError()) { return aa; } args.add(aa); }
 
-        List<Double>  list = new List<Double> ();
-        boolean o = F_base_GetList(args.get(0), list);
+        List<Double>  list = new ArrayList<Double> ();
+        boolean o = F_base_GetList_2(args.get(0), list);
         if (o == false) { return Operand.Error("Function COUNTIF parameter error!"); }
 
         int count;
@@ -3212,7 +3210,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(count);
     }
 
-    public Operand VisitSUM_fun(SUM_funContext context) {
+    public Operand visitSUM_fun(SUM_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -3226,7 +3224,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return args.get(0);
 
         List<Double> list = new ArrayList<Double>();
-        boolean o = F_base_GetList(args, list);
+        boolean o = F_base_GetList_1(args, list);
         if (o == false) {
             return Operand.Error("Function SUM parameter error!");
         }
@@ -3235,19 +3233,19 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(sum);
     }
 
-    public Operand VisitSUMIF_fun(SUMIF_funContext context)
+    public Operand visitSUMIF_fun(SUMIF_funContext context)
     {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) { Operand aa = visit(item); if (aa.IsError()) { return aa; } args.add(aa); }
 
-        List<Double>  list = new List<Double> ();
-        boolean o = F_base_GetList(args.get(0), list);
+        List<Double>  list = new ArrayList<Double> ();
+        boolean o = F_base_GetList_2(args.get(0), list);
         if (o == false) { return Operand.Error("Function SUMIF parameter 1 error!"); }
 
         List<Double>  sumdbs;
         if (args.size() == 3) {
-            sumdbs = new List<Double> ();
-            boolean o2 = F_base_GetList(args.get(2), sumdbs);
+            sumdbs = new ArrayList<Double> ();
+            boolean o2 = F_base_GetList_2(args.get(2), sumdbs);
             if (o2 == false) { return Operand.Error("Function SUMIF parameter 3 error!"); }
         } else {
             sumdbs = list;
@@ -3282,7 +3280,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(sum);
     }
 
-    public Operand VisitAVEDEV_fun(AVEDEV_funContext context) {
+    public Operand visitAVEDEV_fun(AVEDEV_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -3293,7 +3291,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
 
         List<Double> list = new ArrayList<Double>();
-        boolean o = F_base_GetList(args, list);
+        boolean o = F_base_GetList_1(args, list);
         if (o == false) {
             return Operand.Error("Function AVEDEV parameter error!");
         }
@@ -3306,7 +3304,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(sum / list.size());
     }
 
-    public Operand VisitSTDEV_fun(STDEV_funContext context) {
+    public Operand visitSTDEV_fun(STDEV_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -3320,7 +3318,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return Operand.Error("Function STDEV parameter only one error!");
         }
         List<Double> list = new ArrayList<Double>();
-        boolean o = F_base_GetList(args, list);
+        boolean o = F_base_GetList_1(args, list);
         if (o == false) {
             return Operand.Error("Function STDEV parameter error!");
         }
@@ -3333,7 +3331,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(Math.sqrt(sum / (list.size() - 1)));
     }
 
-    public Operand VisitSTDEVP_fun(STDEVP_funContext context) {
+    public Operand visitSTDEVP_fun(STDEVP_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -3344,7 +3342,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
 
         List<Double> list = new ArrayList<Double>();
-        boolean o = F_base_GetList(args, list);
+        boolean o = F_base_GetList_1(args, list);
         if (o == false) {
             return Operand.Error("Function STDEVP parameter error!");
         }
@@ -3358,7 +3356,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(Math.sqrt(sum / (list.size())));
     }
 
-    public Operand VisitDEVSQ_fun(DEVSQ_funContext context) {
+    public Operand visitDEVSQ_fun(DEVSQ_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -3369,7 +3367,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
 
         List<Double> list = new ArrayList<Double>();
-        boolean o = F_base_GetList(args, list);
+        boolean o = F_base_GetList_1(args, list);
         if (o == false) {
             return Operand.Error("Function DEVSQ parameter error!");
         }
@@ -3382,7 +3380,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(sum);
     }
 
-    public Operand VisitVAR_fun(VAR_funContext context) {
+    public Operand visitVAR_fun(VAR_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -3396,7 +3394,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return Operand.Error("Function VAR parameter only one error!");
         }
         List<Double> list = new ArrayList<Double>();
-        boolean o = F_base_GetList(args, list);
+        boolean o = F_base_GetList_1(args, list);
         if (o == false) {
             return Operand.Error("Function VAR parameter error!");
         }
@@ -3410,7 +3408,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create((list.size() * sum - sum2 * sum2) / list.size() / (list.size() - 1));
     }
 
-    public Operand VisitVARP_fun(VARP_funContext context) {
+    public Operand visitVARP_fun(VARP_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -3421,7 +3419,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
 
         List<Double> list = new ArrayList<Double>();
-        boolean o = F_base_GetList(args, list);
+        boolean o = F_base_GetList_1(args, list);
         if (o == false) {
             return Operand.Error("Function VARP parameter error!");
         }
@@ -3434,7 +3432,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(sum / list.size());
     }
 
-    public Operand VisitNORMDIST_fun(NORMDIST_funContext context) {
+    public Operand visitNORMDIST_fun(NORMDIST_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -3465,7 +3463,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(ExcelFunctions.NormDist(num, avg, STDEV, b));
     }
 
-    public Operand VisitNORMINV_fun(NORMINV_funContext context) {
+    public Operand visitNORMINV_fun(NORMINV_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -3482,7 +3480,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(ExcelFunctions.NormInv(num, avg, STDEV));
     }
 
-    public Operand VisitNORMSDIST_fun(NORMSDIST_funContext context) {
+    public Operand visitNORMSDIST_fun(NORMSDIST_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function NORMSDIST parameter 1 error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -3492,7 +3490,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(ExcelFunctions.NormSDist(k));
     }
 
-    public Operand VisitNORMSINV_fun(NORMSINV_funContext context) {
+    public Operand visitNORMSINV_fun(NORMSINV_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function NORMSINV parameter 1 error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -3502,7 +3500,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(ExcelFunctions.NormSInv(k));
     }
 
-    public Operand VisitBETADIST_fun(BETADIST_funContext context) {
+    public Operand visitBETADIST_fun(BETADIST_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -3524,7 +3522,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(ExcelFunctions.BetaDist(x, alpha, beta));
     }
 
-    public Operand VisitBETAINV_fun(BETAINV_funContext context) {
+    public Operand visitBETAINV_fun(BETAINV_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -3544,7 +3542,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(ExcelFunctions.BetaInv(probability, alpha, beta));
     }
 
-    public Operand VisitBINOMDIST_fun(BINOMDIST_funContext context) {
+    public Operand visitBINOMDIST_fun(BINOMDIST_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -3575,7 +3573,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                 thirdValue.NumberValue(), fourthValue.BooleanValue()));
     }
 
-    public Operand VisitEXPONDIST_fun(EXPONDIST_funContext context) {
+    public Operand visitEXPONDIST_fun(EXPONDIST_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -3603,7 +3601,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                 thirdValue.BooleanValue()));
     }
 
-    public Operand VisitFDIST_fun(FDIST_funContext context) {
+    public Operand visitFDIST_fun(FDIST_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -3623,7 +3621,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(ExcelFunctions.FDist(x, degreesFreedom, degreesFreedom2));
     }
 
-    public Operand VisitFINV_fun(FINV_funContext context) {
+    public Operand visitFINV_fun(FINV_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -3643,7 +3641,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(ExcelFunctions.FInv(probability, degreesFreedom, degreesFreedom2));
     }
 
-    public Operand VisitFISHER_fun(FISHER_funContext context) {
+    public Operand visitFISHER_fun(FISHER_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function FISHER parameter error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -3657,7 +3655,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(n);
     }
 
-    public Operand VisitFISHERINV_fun(FISHERINV_funContext context) {
+    public Operand visitFISHERINV_fun(FISHERINV_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function FISHERINV parameter error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -3668,7 +3666,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(n);
     }
 
-    public Operand VisitGAMMADIST_fun(GAMMADIST_funContext context) {
+    public Operand visitGAMMADIST_fun(GAMMADIST_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -3702,7 +3700,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(ExcelFunctions.GammaDist(x, alpha, beta, cumulative));
     }
 
-    public Operand VisitGAMMAINV_fun(GAMMAINV_funContext context) {
+    public Operand visitGAMMAINV_fun(GAMMAINV_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -3722,7 +3720,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(ExcelFunctions.GammaInv(probability, alpha, beta));
     }
 
-    public Operand VisitGAMMALN_fun(GAMMALN_funContext context) {
+    public Operand visitGAMMALN_fun(GAMMALN_funContext context) {
         Operand firstValue = visit(context.expr()).ToNumber("Function GAMMALN parameter error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -3731,7 +3729,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(ExcelFunctions.GAMMALN(firstValue.NumberValue()));
     }
 
-    public Operand VisitHYPGEOMDIST_fun(HYPGEOMDIST_funContext context) {
+    public Operand visitHYPGEOMDIST_fun(HYPGEOMDIST_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -3752,7 +3750,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(ExcelFunctions.HypgeomDist(k, draws, success, population));
     }
 
-    public Operand VisitLOGINV_fun(LOGINV_funContext context) {
+    public Operand visitLOGINV_fun(LOGINV_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -3770,7 +3768,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                 ExcelFunctions.LogInv(args.get(0).NumberValue(), args.get(1).NumberValue(), args.get(2).NumberValue()));
     }
 
-    public Operand VisitLOGNORMDIST_fun(LOGNORMDIST_funContext context) {
+    public Operand visitLOGNORMDIST_fun(LOGNORMDIST_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -3788,7 +3786,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                 args.get(2).NumberValue()));
     }
 
-    public Operand VisitNEGBINOMDIST_fun(NEGBINOMDIST_funContext context) {
+    public Operand visitNEGBINOMDIST_fun(NEGBINOMDIST_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -3809,7 +3807,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(ExcelFunctions.NegbinomDist(k, r, p));
     }
 
-    public Operand VisitPOISSON_fun(POISSON_funContext context) {
+    public Operand visitPOISSON_fun(POISSON_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -3838,7 +3836,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(ExcelFunctions.POISSON(k, lambda, state));
     }
 
-    public Operand VisitTDIST_fun(TDIST_funContext context) {
+    public Operand visitTDIST_fun(TDIST_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -3858,7 +3856,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(ExcelFunctions.TDist(x, degreesFreedom, tails));
     }
 
-    public Operand VisitTINV_fun(TINV_funContext context) {
+    public Operand visitTINV_fun(TINV_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -3877,7 +3875,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(ExcelFunctions.TInv(probability, degreesFreedom));
     }
 
-    public Operand VisitWEIBULL_fun(WEIBULL_funContext context) {
+    public Operand visitWEIBULL_fun(WEIBULL_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -3904,7 +3902,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         double x = firstValue.NumberValue();
         double shape = secondValue.NumberValue();
         double scale = thirdValue.NumberValue();
-        int state = fourthValue.BooleanValue();
+        boolean state = fourthValue.BooleanValue();
         if (shape <= 0.0 || scale <= 0.0) {
             return Operand.Error("Function WEIBULL parameter error!");
         }
@@ -3966,12 +3964,12 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return round(a - b, 12) != 0;
     }
 
-    private boolean F_base_GetList(List<Operand> args, List<Double> list) {
+    private boolean F_base_GetList_1(List<Operand> args, List<Double> list) {
         for (Operand item : args) {
             if (item.Type() == OperandType.NUMBER) {
                 list.add(item.NumberValue());
             } else if (item.Type() == OperandType.ARRARY) {
-                boolean o = F_base_GetList(item.ArrayValue(), list);
+                boolean o = F_base_GetList_1(item.ArrayValue(), list);
                 if (o == false) {
                     return false;
                 }
@@ -3980,7 +3978,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                 if (i.IsError()) {
                     return false;
                 }
-                boolean o = F_base_GetList(i.ArrayValue(), list);
+                boolean o = F_base_GetList_1(i.ArrayValue(), list);
                 if (o == false) {
                     return false;
                 }
@@ -3995,14 +3993,14 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return true;
     }
 
-    private boolean F_base_GetList(Operand args, List<Double> list) {
+    private boolean F_base_GetList_2(Operand args, List<Double> list) {
         if (args.IsError()) {
             return false;
         }
         if (args.Type() == OperandType.NUMBER) {
             list.add(args.NumberValue());
         } else if (args.Type() == OperandType.ARRARY) {
-            boolean o = F_base_GetList(args.ArrayValue(), list);
+            boolean o = F_base_GetList_1(args.ArrayValue(), list);
             if (o == false) {
                 return false;
             }
@@ -4011,7 +4009,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             if (i.IsError()) {
                 return false;
             }
-            boolean o = F_base_GetList(i.ArrayValue(), list);
+            boolean o = F_base_GetList_1(i.ArrayValue(), list);
             if (o == false) {
                 return false;
             }
@@ -4080,7 +4078,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return true;
     }
 
-    public Operand VisitURLENCODE_fun(URLENCODE_funContext context) {
+    public Operand visitURLENCODE_fun(URLENCODE_funContext context) {
         Operand firstValue = visit(context.expr()).ToText("Function URLENCODE parameter 1 is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -4089,7 +4087,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(HttpUtility.UrlEncode(firstValue.TextValue()));
     }
 
-    public Operand VisitURLDECODE_fun(URLDECODE_funContext context) {
+    public Operand visitURLDECODE_fun(URLDECODE_funContext context) {
         Operand firstValue = visit(context.expr()).ToText("Function URLDECODE parameter 1 is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -4098,7 +4096,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(HttpUtility.UrlDecode(firstValue.TextValue()));
     }
 
-    public Operand VisitHTMLENCODE_fun(HTMLENCODE_funContext context) {
+    public Operand visitHTMLENCODE_fun(HTMLENCODE_funContext context) {
         Operand firstValue = visit(context.expr()).ToText("Function HTMLENCODE parameter 1 is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -4107,7 +4105,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(HttpUtility.HtmlEncode(firstValue.TextValue()));
     }
 
-    public Operand VisitHTMLDECODE_fun(HTMLDECODE_funContext context) {
+    public Operand visitHTMLDECODE_fun(HTMLDECODE_funContext context) {
         Operand firstValue = visit(context.expr()).ToText("Function HTMLDECODE parameter 1 is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -4116,7 +4114,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(HttpUtility.HtmlDecode(firstValue.TextValue()));
     }
 
-    public Operand VisitBASE64TOTEXT_fun(BASE64TOTEXT_funContext context) {
+    public Operand visitBASE64TOTEXT_fun(BASE64TOTEXT_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -4137,7 +4135,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(t);
     }
 
-    public Operand VisitBASE64URLTOTEXT_fun(BASE64URLTOTEXT_funContext context) {
+    public Operand visitBASE64URLTOTEXT_fun(BASE64URLTOTEXT_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -4158,7 +4156,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(t);
     }
 
-    public Operand VisitTEXTTOBASE64_fun(TEXTTOBASE64_funContext context) {
+    public Operand visitTEXTTOBASE64_fun(TEXTTOBASE64_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -4180,7 +4178,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(t);
     }
 
-    public Operand VisitTEXTTOBASE64URL_fun(TEXTTOBASE64URL_funContext context) {
+    public Operand visitTEXTTOBASE64URL_fun(TEXTTOBASE64URL_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -4202,7 +4200,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(t);
     }
 
-    public Operand VisitREGEX_fun(REGEX_funContext context) {
+    public Operand visitREGEX_fun(REGEX_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -4254,7 +4252,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
     }
 
-    public Operand VisitREGEXREPALCE_fun(REGEXREPALCE_funContext context) {
+    public Operand visitREGEXREPALCE_fun(REGEXREPALCE_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -4269,7 +4267,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(b);
     }
 
-    public Operand VisitISREGEX_fun(ISREGEX_funContext context) {
+    public Operand visitISREGEX_fun(ISREGEX_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -4284,11 +4282,11 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(b);
     }
 
-    public Operand VisitGUID_fun(GUID_funContext context) {
+    public Operand visitGUID_fun(GUID_funContext context) {
         return Operand.Create(System.Guid.NewGuid().toString());
     }
 
-    public Operand VisitMD5_fun(MD5_funContext context) {
+    public Operand visitMD5_fun(MD5_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -4309,7 +4307,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(t);
     }
 
-    public Operand VisitSHA1_fun(SHA1_funContext context) {
+    public Operand visitSHA1_fun(SHA1_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -4330,7 +4328,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(t);
     }
 
-    public Operand VisitSHA256_fun(SHA256_funContext context) {
+    public Operand visitSHA256_fun(SHA256_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -4351,7 +4349,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(t);
     }
 
-    public Operand VisitSHA512_fun(SHA512_funContext context) {
+    public Operand visitSHA512_fun(SHA512_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -4372,7 +4370,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(t);
     }
 
-    public Operand VisitCRC8_fun(CRC8_funContext context) {
+    public Operand visitCRC8_fun(CRC8_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -4393,7 +4391,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(t);
     }
 
-    public Operand VisitCRC16_fun(CRC16_funContext context) {
+    public Operand visitCRC16_fun(CRC16_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -4414,7 +4412,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(t);
     }
 
-    public Operand VisitCRC32_fun(CRC32_funContext context) {
+    public Operand visitCRC32_fun(CRC32_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -4435,7 +4433,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(t);
     }
 
-    public Operand VisitHMACMD5_fun(HMACMD5_funContext context) {
+    public Operand visitHMACMD5_fun(HMACMD5_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -4456,7 +4454,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(t);
     }
 
-    public Operand VisitHMACSHA1_fun(HMACSHA1_funContext context) {
+    public Operand visitHMACSHA1_fun(HMACSHA1_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -4477,7 +4475,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(t);
     }
 
-    public Operand VisitHMACSHA256_fun(HMACSHA256_funContext context) {
+    public Operand visitHMACSHA256_fun(HMACSHA256_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -4498,7 +4496,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(t);
     }
 
-    public Operand VisitHMACSHA512_fun(HMACSHA512_funContext context) {
+    public Operand visitHMACSHA512_fun(HMACSHA512_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -4519,7 +4517,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(t);
     }
 
-    public Operand VisitTRIMSTART_fun(TRIMSTART_funContext context) {
+    public Operand visitTRIMSTART_fun(TRIMSTART_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -4537,7 +4535,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(text.TrimStart());
     }
 
-    public Operand VisitTRIMEND_fun(TRIMEND_funContext context) {
+    public Operand visitTRIMEND_fun(TRIMEND_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -4555,7 +4553,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(text.TrimEnd());
     }
 
-    public Operand VisitINDEXOF_fun(INDEXOF_funContext context) {
+    public Operand visitINDEXOF_fun(INDEXOF_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -4593,7 +4591,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                 text.indexOf(secondValue.TextValue(), thirdValue.IntValue(), fourthValue.IntValue()) + excelIndex);
     }
 
-    public Operand VisitLASTINDEXOF_fun(LASTINDEXOF_funContext context) {
+    public Operand visitLASTINDEXOF_fun(LASTINDEXOF_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -4614,24 +4612,24 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
 
         String text = firstValue.TextValue();
         if (args.size() == 2) {
-            return Operand.Create(text.LastIndexOf(secondValue.TextValue()) + excelIndex);
+            return Operand.Create(text.lastIndexOf(secondValue.TextValue()) + excelIndex);
         }
         Operand thirdValue = args.get(2).ToText("Function LASTINDEXOF parameter 3 is error!");
         if (thirdValue.IsError()) {
             return thirdValue;
         }
         if (args.size() == 3) {
-            return Operand.Create(text.LastIndexOf(secondValue.TextValue(), thirdValue.IntValue()) + excelIndex);
+            return Operand.Create(text.lastIndexOf(secondValue.TextValue(), thirdValue.IntValue()) + excelIndex);
         }
         Operand fourthValue = args.get(3).ToText("Function LASTINDEXOF parameter 4 is error!");
         if (fourthValue.IsError()) {
             return fourthValue;
         }
         return Operand.Create(
-                text.LastIndexOf(secondValue.TextValue(), thirdValue.IntValue(), fourthValue.IntValue()) + excelIndex);
+                text.lastIndexOf(secondValue.TextValue(), thirdValue.IntValue(), fourthValue.IntValue()) + excelIndex);
     }
 
-    public Operand VisitSPLIT_fun(SPLIT_funContext context) {
+    public Operand visitSPLIT_fun(SPLIT_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -4641,10 +4639,10 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             }
             args.add(a);
         }
-        return Operand.Create(args.get(0).TextValue().Split(args.get(1).TextValue().ToArray()));
+        return Operand.Create(args.get(0).TextValue().split(args.get(1).TextValue().ToArray()));
     }
 
-    public Operand VisitJOIN_fun(JOIN_funContext context) {
+    public Operand visitJOIN_fun(JOIN_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -4662,7 +4660,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             }
         }
         if (firstValue.Type() == OperandType.ARRARY) {
-            List<String> list = new List<String>();
+            List<String> list = new ArrayList<String>();
             boolean o = F_base_GetList(firstValue, list);
             if (o == false)
                 return Operand.Error("Function JOIN parameter 1 is error!");
@@ -4690,7 +4688,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
     }
 
-    public Operand VisitSUBSTRING_fun(SUBSTRING_funContext context) {
+    public Operand visitSUBSTRING_fun(SUBSTRING_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -4711,16 +4709,16 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
 
         String text = firstValue.TextValue();
         if (args.size() == 2) {
-            return Operand.Create(text.Substring(secondValue.IntValue() - excelIndex));
+            return Operand.Create(text.substring(secondValue.IntValue() - excelIndex));
         }
         Operand thirdValue = args.get(2).ToNumber("Function SUBSTRING parameter 3 is error!");
         if (thirdValue.IsError()) {
             return thirdValue;
         }
-        return Operand.Create(text.Substring(secondValue.IntValue() - excelIndex, thirdValue.IntValue()));
+        return Operand.Create(text.substring(secondValue.IntValue() - excelIndex, thirdValue.IntValue()));
     }
 
-    public Operand VisitSTARTSWITH_fun(STARTSWITH_funContext context) {
+    public Operand visitSTARTSWITH_fun(STARTSWITH_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -4741,17 +4739,17 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
 
         String text = firstValue.TextValue();
         if (args.size() == 2) {
-            return Operand.Create(text.StartsWith(secondValue.TextValue()));
+            return Operand.Create(text.startsWith(secondValue.TextValue()));
         }
         Operand thirdValue = args.get(2).ToBoolean("Function STARTSWITH parameter 3 is error!");
         if (thirdValue.IsError()) {
             return thirdValue;
         }
-        return Operand.Create(text.StartsWith(secondValue.TextValue(),
+        return Operand.Create(text.startsWith(secondValue.TextValue(),
                 thirdValue.BooleanValue() ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
     }
 
-    public Operand VisitENDSWITH_fun(ENDSWITH_funContext context) {
+    public Operand visitENDSWITH_fun(ENDSWITH_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -4772,18 +4770,18 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
 
         String text = firstValue.TextValue();
         if (args.size() == 2) {
-            return Operand.Create(text.EndsWith(secondValue.TextValue()));
+            return Operand.Create(text.endsWith(secondValue.TextValue()));
         }
         Operand thirdValue = args.get(2).ToBoolean("Function ENDSWITH parameter 3 is error!");
         ;
         if (thirdValue.IsError()) {
             return thirdValue;
         }
-        return Operand.Create(text.EndsWith(secondValue.TextValue(),
+        return Operand.Create(text.endsWith(secondValue.TextValue(),
                 thirdValue.BooleanValue() ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
     }
 
-    public Operand VisitISNULLOREMPTY_fun(ISNULLOREMPTY_funContext context) {
+    public Operand visitISNULLOREMPTY_fun(ISNULLOREMPTY_funContext context) {
         Operand firstValue = visit(context.expr()).ToText("Function ISNULLOREMPTY parameter 1 is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -4792,7 +4790,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(String.IsNullOrEmpty(firstValue.TextValue()));
     }
 
-    public Operand VisitISNULLORWHITESPACE_fun(ISNULLORWHITESPACE_funContext context) {
+    public Operand visitISNULLORWHITESPACE_fun(ISNULLORWHITESPACE_funContext context) {
         Operand firstValue = visit(context.expr()).ToText("Function ISNULLORWHITESPACE parameter 1 is error!");
         if (firstValue.IsError()) {
             return firstValue;
@@ -4801,7 +4799,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(String.IsNullOrWhiteSpace(firstValue.TextValue()));
     }
 
-    public Operand VisitREMOVESTART_fun(REMOVESTART_funContext context) {
+    public Operand visitREMOVESTART_fun(REMOVESTART_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -4831,13 +4829,13 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             }
         }
         String text = firstValue.TextValue();
-        if (text.StartsWith(secondValue.TextValue(), comparison)) {
-            return Operand.Create(text.Substring(secondValue.TextValue().length()));
+        if (text.startsWith(secondValue.TextValue(), comparison)) {
+            return Operand.Create(text.substring(secondValue.TextValue().length()));
         }
         return firstValue;
     }
 
-    public Operand VisitREMOVEEND_fun(REMOVEEND_funContext context) {
+    public Operand visitREMOVEEND_fun(REMOVEEND_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -4867,18 +4865,18 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             }
         }
         String text = firstValue.TextValue();
-        if (text.EndsWith(secondValue.TextValue(), comparison)) {
-            return Operand.Create(text.Substring(0, text.Length - secondValue.TextValue().length()));
+        if (text.endsWith(secondValue.TextValue(), comparison)) {
+            return Operand.Create(text.substring(0, text.Length - secondValue.TextValue().length()));
         }
         return firstValue;
     }
 
-    public Operand VisitJSON_fun(JSON_funContext context)
+    public Operand visitJSON_fun(JSON_funContext context)
     {
         Operand firstValue = visit(context.expr()).ToText("Function JSON parameter is error!");
         if (firstValue.IsError()) { return firstValue; }
         String txt = firstValue.TextValue();
-        if ((txt.StartsWith("{") && txt.EndsWith("}")) || (txt.StartsWith("[") && txt.EndsWith("]"))) {
+        if ((txt.startsWith("{") && txt.endsWith("}")) || (txt.startsWith("[") && txt.endsWith("]"))) {
             try {
                 JsonData json = JsonMapper.ToObject(txt);
                 return Operand.Create(json);
@@ -4887,7 +4885,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Error("Function JSON parameter is error!");
     }
 
-    public Operand VisitVLOOKUP_fun(VLOOKUP_funContext context) {
+    public Operand visitVLOOKUP_fun(VLOOKUP_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -4985,7 +4983,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Error("Function VLOOKUP is not match !");
     }
 
-    public Operand VisitLOOKUP_fun(LOOKUP_funContext context)
+    public Operand visitLOOKUP_fun(LOOKUP_funContext context)
     {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) { Operand aa = visit(item); if (aa.IsError()) { return aa; } args.add(aa); }
@@ -5041,7 +5039,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Error("Function name [" + fun.Name + "] is missing.");
     }
 
-    public Operand VisitArray_fun(Array_funContext context) {
+    public Operand visitArray_fun(Array_funContext context) {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) {
             Operand aa = visit(item);
@@ -5053,11 +5051,11 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(args);
     }
 
-    public Operand VisitBracket_fun(Bracket_funContext context) {
+    public Operand visitBracket_fun(Bracket_funContext context) {
         return visit(context.expr());
     }
 
-    public Operand VisitNUM_fun(NUM_funContext context)
+    public Operand visitNUM_fun(NUM_funContext context)
     {
         String sub = context.SUB().getText();
         // String sub = context.SUB()?.GetText() ?? "";
@@ -5068,7 +5066,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(d);
     }
 
-    public Operand VisitSTRING_fun(STRING_funContext context) {
+    public Operand visitSTRING_fun(STRING_funContext context) {
         String opd = context.STRING().GetText();
         StringBuilder sb = new StringBuilder();
         int index = 1;
@@ -5099,11 +5097,11 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(sb.toString());
     }
 
-    public Operand VisitNULL_fun(NULL_funContext context) {
+    public Operand visitNULL_fun(NULL_funContext context) {
         return Operand.CreateNull();
     }
 
-    public Operand VisitPARAMETER_fun(PARAMETER_funContext context) {
+    public Operand visitPARAMETER_fun(PARAMETER_funContext context) {
         Operand p = visit(context.parameter()).ToText("Function PARAMETER first parameter is error!");
         if (p.IsError())
             return p;
@@ -5114,7 +5112,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Error("Function PARAMETER first parameter is error!");
     }
 
-    public Operand VisitParameter(ParameterContext context) {
+    public Operand visitParameter(ParameterContext context) {
         Operand expr = context.expr();
         if (expr != null) {
             return visit(expr);
@@ -5122,11 +5120,11 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return visit(context.parameter2());
     }
 
-    public Operand VisitParameter2(Parameter2Context context) {
+    public Operand visitParameter2(Parameter2Context context) {
         return Operand.Create(context.children[0].GetText());
     }
 
-    public Operand VisitGetJsonValue_fun(GetJsonValue_funContext context) {
+    public Operand visitGetJsonValue_fun(GetJsonValue_funContext context) {
         Operand firstValue = visit(context.expr());
         if (firstValue.IsError()) {
             return firstValue;
@@ -5202,11 +5200,11 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Error(" Operator is error!");
     }
 
-    public Operand VisitExpr2_fun(Expr2_funContext context) {
+    public Operand visitExpr2_fun(Expr2_funContext context) {
         return VisitChildren(context);
     }
 
-    public Operand VisitDiyFunction_fun(DiyFunction_funContext context) {
+    public Operand visitDiyFunction_fun(DiyFunction_funContext context) {
         if (DiyFunction != null) {
             String funName = context.PARAMETER().GetText();
             List<Operand> args = new ArrayList<Operand>();
@@ -5223,4 +5221,5 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         BigDecimal bigD = new BigDecimal(tpD);
         return bigD.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
     }
+ 
 }

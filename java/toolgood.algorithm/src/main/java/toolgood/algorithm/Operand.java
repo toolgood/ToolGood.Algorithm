@@ -72,12 +72,12 @@ public abstract class Operand {
     public static Operand Create(final MyDate obj) {
         return new OperandDate(obj);
     }
-    public static Operand Create(final DateTime obj) {
-        return new OperandDate(new Date(obj));
-    }
-    public static Operand Create(final TimeSpan obj) {
-        return new OperandDate(new Date(obj));
-    }
+    // public static Operand Create(final DateTime obj) {
+    //     return new OperandDate(new Date(obj));
+    // }
+    // public static Operand Create(final TimeSpan obj) {
+    //     return new OperandDate(new Date(obj));
+    // }
     public static Operand Create(final JsonData obj) {
         return new OperandJson(obj);
     }
@@ -91,12 +91,12 @@ public abstract class Operand {
     public static Operand CreateNull() {
         return new OperandNull();
     }
-    public Operand ToNumber(final String errorMessage  )
+    public Operand ToNumber(final String errorMessage  ) throws Exception
     {
         if (Type() == OperandType.NUMBER) { return this; }
         if (IsError()) { return this; }
         if (Type() == OperandType.BOOLEAN) { return Create(BooleanValue() ? 1.0 : 0.0); }
-        if (Type() == OperandType.DATE) { return Create((double) DateValue()); }
+        if (Type() == OperandType.DATE) { return Create((double) DateValue().ToNumber()); }
         if (Type() == OperandType.STRING)
         {
             try {
@@ -107,7 +107,7 @@ public abstract class Operand {
         }
         return Error(errorMessage);
     }
-    public Operand ToBoolean(final String errorMessage) {
+    public Operand ToBoolean(final String errorMessage) throws Exception {
         if (Type() == OperandType.BOOLEAN) {
             return this;
         }
@@ -118,7 +118,7 @@ public abstract class Operand {
             return Create(NumberValue() != 0);
         }
         if (Type() == OperandType.DATE) {
-            return Create(((double) DateValue()) != 0);
+            return Create(((double) DateValue().ToNumber()) != 0);
         }
         if (Type() == OperandType.STRING) {
             if (TextValue().toLowerCase().equals("true")) {
@@ -140,7 +140,7 @@ public abstract class Operand {
     {
         if (Type() == OperandType.STRING) { return this; }
         if (IsError()) { return this; }
-        if (Type() == OperandType.NUMBER) { return Create(NumberValue().ToString(cultureInfo)); }
+        if (Type() == OperandType.NUMBER) { return Create(NumberValue().toString(cultureInfo)); }
         if (Type() == OperandType.BOOLEAN) { return Create(BooleanValue() ? "TRUE" : "FALSE"); }
         if (Type() == OperandType.DATE) { return Create(DateValue().toString()); }
 

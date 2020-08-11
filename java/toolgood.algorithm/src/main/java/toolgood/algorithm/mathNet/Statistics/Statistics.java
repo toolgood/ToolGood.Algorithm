@@ -1,5 +1,6 @@
 package toolgood.algorithm.mathNet.Statistics;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Statistics {
@@ -10,6 +11,16 @@ public class Statistics {
             array[i]=data.get(i);
         }
         return ArrayStatistics.QuantileCustomInplace(array, tau, definition);
+    }
+    public static double QuantileCustom(final double[] data, final double tau, final QuantileDefinition definition) throws Exception {
+        return ArrayStatistics.QuantileCustomInplace(data, tau, definition);
+    }
+    public static double QuantileRank(final double[] data, final double x) {
+        List<Double> dt= new ArrayList<Double>();
+         for (int i = 0; i < data.length; i++) {
+            dt.add(data[i]);
+        }
+        return QuantileRank(dt, x);
     }
 
     public static double QuantileRank(final List<Double> data, final double x) {

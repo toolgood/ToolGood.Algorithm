@@ -11,6 +11,7 @@ import java.util.function.Function;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.internals.CaseChangingCharStream;
 import toolgood.algorithm.internals.MathVisitor;
+import toolgood.algorithm.internals.MyFunction;
 import toolgood.algorithm.litJson.JsonData;
 import toolgood.algorithm.litJson.JsonMapper;
 import toolgood.algorithm.math.mathLexer;
@@ -27,7 +28,7 @@ public class AlgorithmEngine {
     public String LastError;
     private ProgContext _context;
     private final Map<String, Operand> _dict = new HashMap<String, Operand>();
-    public Function<String, List<Operand>, Operand> DiyFunction;
+    public Function<MyFunction, Operand> DiyFunction;
 
     protected Operand GetParameter(final String parameter) throws Exception {
         if (_dict.containsKey(parameter)) {
@@ -90,43 +91,10 @@ public class AlgorithmEngine {
     public void AddParameter(final String key, final MyDate obj) {
         _dict.put(key, Operand.Create(obj));
     }
- 
-
     public void AddParameter(final String key, final List<Operand> obj) {
         _dict.put(key, Operand.Create(obj));
     }
-
-    public void AddParameter(final String key, final List<String> obj) {
-        List<Operand> array = new ArrayList<Operand>();
-        for (String item : obj) {
-            array.add(Operand.Create(item));
-        }
-        _dict.put(key, Operand.Create(array));
-    }
-
-    public void AddParameter(final String key, final List<Double> obj) {
-        List<Operand> array = new ArrayList<Operand>();
-        for (Double item : obj) {
-            array.add(Operand.Create(item));
-        }
-        _dict.put(key, Operand.Create(array));
-    }
-
-    public void AddParameter(final String key, final List<Integer> obj) {
-        List<Operand> array = new ArrayList<Operand>();
-        for (Integer item : obj) {
-            array.add(Operand.Create(item));
-        }
-        _dict.put(key, Operand.Create(array));
-    }
-
-    public void AddParameter(final String key, final List<Boolean> obj) {
-        List<Operand> array = new ArrayList<Operand>();
-        for (Boolean item : obj) {
-            array.add(Operand.Create(item));
-        }
-        _dict.put(key, Operand.Create(array));
-    }
+ 
 
     public void AddParameterFromJson(final String json) {
         if (json.startsWith("{") && json.endsWith("}")) {
@@ -170,7 +138,7 @@ public class AlgorithmEngine {
             return false;
         }
         // try {
-        final CaseChangingCharStream stream = new CaseChangingCharStream(new AntlrInputStream(exp));
+        final CaseChangingCharStream stream = new CaseChangingCharStream(new ANTLRInputStream(exp));
         final mathLexer lexer = new mathLexer(stream);
         final CommonTokenStream tokens = new CommonTokenStream(lexer);
         final mathParser parser = new mathParser(tokens);

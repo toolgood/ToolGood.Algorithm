@@ -12,7 +12,6 @@ public class StudentT {
         //    throw new ArgumentException(Resources.InvalidDistributionParameters);
         //}
 
-        // TODO JVG we can probably do a better job for Cauchy special case
         if (Double.isInfinite(freedom)) {
             return Normal.CDF(location, scale, x);
         }
@@ -28,7 +27,6 @@ public class StudentT {
         //    throw new ArgumentException(Resources.InvalidDistributionParameters);
         //}
 
-        // TODO JVG we can probably do a better job for Cauchy special case
         if (Double.isInfinite(freedom)) {
             return Normal.InvCDF(location, scale, p);
         }
@@ -37,7 +35,6 @@ public class StudentT {
             return location;
         }
 
-        // TODO PERF: We must implement this explicitly instead of solving for CDF^-1
         return Brent.FindRoot(x -> {
             double k = (x - location) / scale;
             double h = freedom / (freedom + (k * k));

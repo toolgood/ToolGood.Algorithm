@@ -34,14 +34,14 @@ public class ExcelFunctions {
         return Normal.InvCDF(mean, standardDev, probability);
     }
 
-    public static double TDist(double x, int degreesFreedom, int tails) {
+    public static double TDist(double x, int degreesFreedom, int tails) throws Exception {
         switch (tails) {
             case 1:
                 return 1d - StudentT.CDF(0d, 1d, degreesFreedom, x);
             case 2:
                 return 1d - StudentT.CDF(0d, 1d, degreesFreedom, x) + StudentT.CDF(0d, 1d, degreesFreedom, -x);
             default:
-                throw new ArgumentOutOfRangeException("tails");
+                throw new Exception("tails");
         }
     }
 
@@ -73,7 +73,7 @@ public class ExcelFunctions {
         return Gamma.InvCDF(alpha, 1 / beta, probability);
     }
 
-    public static double Quartile(double[] array, int quant) {
+    public static double Quartile(double[] array, int quant) throws Exception {
         switch (quant) {
             case 0:
                 return ArrayStatistics.Minimum(array);
@@ -90,7 +90,7 @@ public class ExcelFunctions {
         }
     }
 
-    public static double Percentile(double[] array, double k) {
+    public static double Percentile(double[] array, double k) throws Exception {
         return Statistics.QuantileCustom(array,k, QuantileDefinition.Excel);
     }
 
