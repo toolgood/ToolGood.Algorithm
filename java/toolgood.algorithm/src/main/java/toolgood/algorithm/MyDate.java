@@ -25,12 +25,12 @@ public class MyDate {
         Minute = dt.getMinutes();
         Second = dt.getSeconds();
     }
-    public MyDate(TimeSpan dt) {
-        Day = dt.Days;
-        Hour = dt.Hours;
-        Minute = dt.Minutes;
-        Second = dt.Seconds;
-    }
+    // public MyDate(TimeSpan dt) {
+    //     Day = dt.Days;
+    //     Hour = dt.Hours;
+    //     Minute = dt.Minutes;
+    //     Second = dt.Seconds;
+    // }
 
     public MyDate(double d){
         

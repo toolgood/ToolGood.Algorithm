@@ -2450,7 +2450,8 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitTODAY_fun(TODAY_funContext context) {
-        return Operand.Create(new MyDate(DateTime.Today));
+        Date dt= new Date();
+        return Operand.Create(new MyDate(dt.getYear(),dt.getMonth()+1,dt.getDay(),0,0,0));
     }
 
     public Operand visitYEAR_fun(YEAR_funContext context) {

@@ -140,7 +140,7 @@ public abstract class Operand {
     {
         if (Type() == OperandType.STRING) { return this; }
         if (IsError()) { return this; }
-        if (Type() == OperandType.NUMBER) { return Create(NumberValue().toString(cultureInfo)); }
+        if (Type() == OperandType.NUMBER) { return Create(new Double(NumberValue()).toString()); }
         if (Type() == OperandType.BOOLEAN) { return Create(BooleanValue() ? "TRUE" : "FALSE"); }
         if (Type() == OperandType.DATE) { return Create(DateValue().toString()); }
 
@@ -150,11 +150,15 @@ public abstract class Operand {
     {
         if (Type() == OperandType.DATE) { return this; }
         if (IsError()) { return this; }
-        if (Type() == OperandType.NUMBER) { return Create((Date) NumberValue()); }
+        if (Type() == OperandType.NUMBER) { return Create(new MyDate(NumberValue())); }
         if (Type() == OperandType.STRING)
         {
-            Date d= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(TextValue());
-            return Create(new MyDate(t));
+            try {
+                Date d= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(TextValue());
+                return Create(new MyDate(d));
+            } catch (Exception e) {
+            }
+      
             // if (TimeSpan.TryParse(TextValue, cultureInfo, out TimeSpan t)) { return Create(new Date(t)); }
             // if (DateTime.TryParse(TextValue, cultureInfo, DateTimeStyles.None, out DateTime d)) { return Create(new Date(d)); }
         }
