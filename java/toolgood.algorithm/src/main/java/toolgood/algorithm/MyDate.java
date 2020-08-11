@@ -2,6 +2,7 @@ package toolgood.algorithm;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.TimeSpan;
 /// <summary>
@@ -99,7 +100,7 @@ public class MyDate {
         return new SimpleDateFormat("HH:mm:ss").format(ts);
     }
 
-    public string ToString(string f) {
+    public String ToString(String f) {
         if (Year == null) {
             return ((DateTime) this).ToString(f);
         }

@@ -20,14 +20,14 @@ public abstract class Operand {
     public boolean IsError() {return false;}
 
     public String ErrorMsg() {return null;}
-    public OperandType Type() throws Exception  {throw new Exception("");}
-    public double NumberValue() throws Exception  {throw new Exception("");}
-    public int IntValue() throws Exception {throw new Exception("");}
-    public String TextValue() throws Exception {throw new Exception("");}
-    public boolean BooleanValue() throws Exception {throw new Exception("");}
-    public List<Operand> ArrayValue() throws Exception  {throw new Exception("");}
-    public JsonData JsonValue() throws Exception  {throw new Exception("");}
-    public MyDate DateValue() throws Exception  {throw new Exception("");}
+    public OperandType Type() {return OperandType.ERROR;}
+    public double NumberValue()  {return 0.0;}
+    public int IntValue(){return 0;}
+    public String TextValue()   {return null;}
+    public boolean BooleanValue()  {return false;}
+    public List<Operand> ArrayValue()   {return null;}
+    public JsonData JsonValue()   {return null;}
+    public MyDate DateValue()   {return null;}
 
     public static Operand Create(final boolean obj) {
         return new OperandBoolean(obj);
@@ -91,7 +91,7 @@ public abstract class Operand {
     public static Operand CreateNull() {
         return new OperandNull();
     }
-    public Operand ToNumber(final String errorMessage  ) throws Exception
+    public Operand ToNumber(final String errorMessage  )
     {
         if (Type() == OperandType.NUMBER) { return this; }
         if (IsError()) { return this; }
@@ -107,7 +107,7 @@ public abstract class Operand {
         }
         return Error(errorMessage);
     }
-    public Operand ToBoolean(final String errorMessage) throws Exception {
+    public Operand ToBoolean(final String errorMessage) {
         if (Type() == OperandType.BOOLEAN) {
             return this;
         }
@@ -160,7 +160,7 @@ public abstract class Operand {
         }
         return Error(errorMessage);
     }
-    public Operand ToJson(final String errorMessage  ) throws Exception
+    public Operand ToJson(final String errorMessage  ) 
     {
         if (Type() == OperandType.JSON) { return this; }
         if (IsError()) { return this; }
@@ -179,7 +179,7 @@ public abstract class Operand {
         }
         return Error(errorMessage);
     }
-    public Operand ToArray(final String errorMessage ) throws Exception
+    public Operand ToArray(final String errorMessage )  
     {
         if (Type() == OperandType.ARRARY) { return this; }
         if (IsError()) { return this; }

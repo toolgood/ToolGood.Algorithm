@@ -1,6 +1,5 @@
 package toolgood.algorithm.mathNet;
 
-import java.util.function.Function;
 
 public class Evaluate {
     public static double Polynomial(double z, double[] coefficients) {

@@ -301,6 +301,7 @@ public class mathParser2{
         }
     }
     public static class DiyFunction_funContext extends ExprContext {
+        public TerminalNode PARAMETER() { return getToken(mathParser.PARAMETER, 0); }
         public List<ExprContext> expr() {
             return getRuleContexts(ExprContext.class);
         }
@@ -1268,6 +1269,7 @@ public class mathParser2{
         }
     }
     public static class STRING_funContext extends ExprContext {
+        public TerminalNode STRING() { return getToken(mathParser.STRING, 0); }
         public STRING_funContext(final ExprContext ctx) {
             copyFrom(ctx);
         }

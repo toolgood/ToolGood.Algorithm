@@ -13,6 +13,7 @@ import toolgood.algorithm.internals.CaseChangingCharStream;
 import toolgood.algorithm.internals.MathVisitor;
 import toolgood.algorithm.internals.MyFunction;
 import toolgood.algorithm.litJson.JsonData;
+import toolgood.algorithm.litJson.JsonException;
 import toolgood.algorithm.litJson.JsonMapper;
 import toolgood.algorithm.math.mathLexer;
 import toolgood.algorithm.math.mathParser;
@@ -91,12 +92,12 @@ public class AlgorithmEngine {
     public void AddParameter(final String key, final MyDate obj) {
         _dict.put(key, Operand.Create(obj));
     }
+
     public void AddParameter(final String key, final List<Operand> obj) {
         _dict.put(key, Operand.Create(obj));
     }
- 
 
-    public void AddParameterFromJson(final String json) {
+    public void AddParameterFromJson(final String json) throws Exception {
         if (json.startsWith("{") && json.endsWith("}")) {
             final JsonData jo = (JsonData) JsonMapper.ToObject(json);
             if (jo.IsObject()) {
@@ -133,7 +134,7 @@ public class AlgorithmEngine {
     }
 
     public boolean Parse(final String exp) throws RecognitionException {
-        if (String.isNullOrWhiteSpace(exp)) {
+        if (exp==null || exp.equals("")) {
             LastError = "Parameter exp invalid !";
             return false;
         }

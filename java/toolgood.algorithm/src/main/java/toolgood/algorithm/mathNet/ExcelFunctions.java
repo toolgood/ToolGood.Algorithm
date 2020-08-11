@@ -1,5 +1,7 @@
 package toolgood.algorithm.mathNet;
 
+import java.util.List;
+
 import toolgood.algorithm.mathNet.Distributions.Beta;
 import toolgood.algorithm.mathNet.Distributions.Binomial;
 import toolgood.algorithm.mathNet.Distributions.Exponential;
@@ -72,7 +74,13 @@ public class ExcelFunctions {
     public static double GammaInv(double probability, double alpha, double beta) {
         return Gamma.InvCDF(alpha, 1 / beta, probability);
     }
-
+    public static double Quartile(List<Double> data, int quant) throws Exception {
+        double[] array=new double[data.size()];
+        for (int i = 0; i < data.size(); i++) {
+            array[i]=data.get(i);
+        }
+        return Quartile(array,quant);
+    }
     public static double Quartile(double[] array, int quant) throws Exception {
         switch (quant) {
             case 0:
@@ -93,7 +101,13 @@ public class ExcelFunctions {
     public static double Percentile(double[] array, double k) throws Exception {
         return Statistics.QuantileCustom(array,k, QuantileDefinition.Excel);
     }
-
+    public static double PercentRank(List<Double> data, double x) {
+        double[] array=new double[data.size()];
+        for (int i = 0; i < data.size(); i++) {
+            array[i]=data.get(i);
+        }
+        return Statistics.QuantileRank(array,x);
+    }
     public static double PercentRank(double[] array, double x) {
         return Statistics.QuantileRank(array,x);
         // return array.QuantileRank(x);
