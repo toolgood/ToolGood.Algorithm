@@ -9,15 +9,6 @@ import java.util.Date;
 /// Date
 /// </summary>
 public class MyDate {
-    /// <summary>
-    /// 构造函数
-    /// </summary>
-    /// <param name="year">年</param>
-    /// <param name="month">月</param>
-    /// <param name="day">日</param>
-    /// <param name="hour">时</param>
-    /// <param name="minute">分</param>
-    /// <param name="second">秒</param>
     public MyDate(int year, int month, int day, int hour, int minute, int second) {
         Year = year;
         Month = month;
@@ -26,11 +17,6 @@ public class MyDate {
         Minute = minute;
         Second = second;
     }
-
-    /// <summary>
-    /// 构造函数
-    /// </summary>
-    /// <param name="dt">日期时间</param>
     public MyDate(Date dt) {
         Year = dt.getYear();
         Month = dt.getMonth()+1;
@@ -39,16 +25,15 @@ public class MyDate {
         Minute = dt.getMinutes();
         Second = dt.getSeconds();
     }
-
-    /// <summary>
-    /// 构造函数
-    /// </summary>
-    /// <param name="dt">时间</param>
     public MyDate(TimeSpan dt) {
         Day = dt.Days;
         Hour = dt.Hours;
         Minute = dt.Minutes;
         Second = dt.Seconds;
+    }
+
+    public MyDate(double d){
+        
     }
 
     /// <summary>
@@ -100,11 +85,12 @@ public class MyDate {
         return new SimpleDateFormat("HH:mm:ss").format(ts);
     }
 
-    public String ToString(String f) {
-        if (Year == null) {
-            return ((DateTime) this).ToString(f);
-        }
-        return ((DateTime) this).ToString(f);
+    public String toString(String f) {
+        return null;
+        // if (Year == null) {
+        //     return ((DateTime) this).ToString(f);
+        // }
+        // return ((DateTime) this).ToString(f);
     }
 
     //  public static implicit operator
@@ -167,38 +153,23 @@ public class MyDate {
     //         return (date.Day ?? 0) + (date.Hour + (date.Minute + date.Second / 60.0) / 60) / 24;
     //     }
 
-    // public static Date operator+(
-    // Date date, Date num)
-    // {
-    //     return (Date) ((double) date + (double) num);
-    // }
-    // public static Date operator-(
-    // Date date, Date num)
-    // {
-    //     return (Date) ((double) date - (double) num);
-    // }
-    // public static Date operator+(
-    // Date date,
-    // double num)
-    // {
-    //     return (Date) ((double) date + (double) num);
-    // }
-    // public static Date operator-(
-    // Date date,
-    // double num)
-    // {
-    //     return (Date) ((double) date - (double) num);
-    // }
-    // public static Date operator*(
-    // Date date,
-    // double num)
-    // {
-    //     return (Date) ((double) date * (double) num);
-    // }
-    // public static Date operator/(
-    // Date date,
-    // double num)
-    // {
-    //     return (Date) ((double) date / (double) num);
-    // }
+    public MyDate ADD(MyDate num){
+        return new MyDate(this.ToNumber()+num.ToNumber());
+    }
+    public MyDate ADD(Double num){
+        return new MyDate(this.ToNumber()+num);
+    }
+    public MyDate SUB(MyDate num){
+        return new MyDate(this.ToNumber()-num.ToNumber());
+    }
+    public MyDate SUB(Double num){
+        return new MyDate(this.ToNumber()-num);
+    }
+    public MyDate MUL(Double num){
+        return new MyDate(this.ToNumber()*num);
+    }
+    public MyDate DIV(Double num){
+        return new MyDate(this.ToNumber()/num);
+    }
+
 }
