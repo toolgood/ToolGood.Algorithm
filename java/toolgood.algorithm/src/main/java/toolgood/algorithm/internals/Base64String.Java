@@ -1,7 +1,7 @@
 package toolgood.algorithm.internals;
 
-public static class Base64{
-    public static string ToBase64String(byte[] input)
+public class Base64String{
+    public static String ToBase64String(byte[] input)
     {
         return Base64Util.encode(bytes);
     }
@@ -20,7 +20,7 @@ public static class Base64{
     /// </summary>
     /// <param name="input"></param>
     /// <returns>Input byte array converted to a base64ForUrl encoded string</returns>
-    public static string ToBase64ForUrlString(byte[] input)
+    public static String ToBase64ForUrlString(byte[] input)
     {
         StringBuilder result = new StringBuilder(ToBase64String(input).trim('='));
         result.replace('+', '-');

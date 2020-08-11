@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
-import java.util.TimeSpan;
+
 /// <summary>
 /// Date
 /// </summary>
@@ -32,12 +32,12 @@ public class MyDate {
     /// </summary>
     /// <param name="dt">日期时间</param>
     public MyDate(Date dt) {
-        Year = dt.Year;
-        Month = dt.Month;
-        Day = dt.Day;
-        Hour = dt.Hour;
-        Minute = dt.Minute;
-        Second = dt.Second;
+        Year = dt.getYear();
+        Month = dt.getMonth()+1;
+        Day = dt.getDay();
+        Hour = dt.getHours();
+        Minute = dt.getMinutes();
+        Second = dt.getSeconds();
     }
 
     /// <summary>

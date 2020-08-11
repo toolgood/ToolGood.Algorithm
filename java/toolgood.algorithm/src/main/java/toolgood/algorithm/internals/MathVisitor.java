@@ -31,6 +31,7 @@ import toolgood.algorithm.math.mathVisitor;
 import toolgood.algorithm.math.mathParser2.*;
 import toolgood.algorithm.mathNet.ExcelFunctions;
 import toolgood.algorithm.internals.MyFunction;
+import toolgood.algorithm.internals.Base64String;
 
 public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements mathVisitor<Operand> {
     private static Pattern sumifRegex = Pattern.compile("(<|<=|>|>=|=|==|!=|<>) *([-+]?\\d+(\\.(\\d+)?)?)");
@@ -2754,7 +2755,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
 
         MyDate startDate = (DateTime) firstValue.DateValue();
         int days = secondValue.IntValue();
-        List<DateTime> list = new List<DateTime>();
+        List<DateTime> list = new ArrayList<DateTime>();
         for (int i = 2; i < args.size(); i++) {
             args.get(i) = args.get(i).ToDate("Function WORKDAY parameter {i + 1} is error!");
             if (args.get(i).IsError()) {
@@ -2763,7 +2764,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             list.add(args.get(i).DateValue());
         }
         while (days > 0) {
-            startDate = startDate.AddDays(1);
+            startDate = startDate.addDays(1);
             if (startDate.DayOfWeek == DayOfWeek.Saturday)
                 continue;
             if (startDate.DayOfWeek == DayOfWeek.Sunday)
@@ -4161,7 +4162,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         } else {
             encoding = args.get(1).TextValue();
         }
-        String t = new String(Base64.FromBase64String(args.get(0).TextValue()),encoding);
+        String t = new String(Base64String.FromBase64String(args.get(0).TextValue()),encoding);
         return Operand.Create(t);
     }
 
@@ -4182,7 +4183,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         } else {
             encoding = args.get(1).TextValue();
         }
-        String t = new String(Base64.FromBase64ForUrlString(args.get(0).TextValue()),encoding);
+        String t = new String(Base64String.FromBase64ForUrlString(args.get(0).TextValue()),encoding);
         return Operand.Create(t);
     }
 
@@ -4203,9 +4204,12 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         } else {
             encoding = args.get(1).TextValue();
         }
-        byte[] bytes = encoding.GetBytes(args.get(0).TextValue());
-        String t = Base64.ToBase64String(bytes);
-        return Operand.Create(t);
+        try {
+            String t = Base64String.ToBase64String(args.get(0).TextValue().getBytes(encoding));
+            return Operand.Create(t);
+        } catch (Exception e) {
+        }
+        return Operand.Error("Function TEXTTOBASE64 is error!");
     }
 
     public Operand visitTEXTTOBASE64URL_fun(TEXTTOBASE64URL_funContext context) {
@@ -4225,9 +4229,12 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         } else {
             encoding = args.get(1).TextValue();
         }
-        byte[] bytes = encoding.GetBytes(args.get(0).TextValue());
-        String t = Base64.ToBase64ForUrlString(bytes);
-        return Operand.Create(t);
+        try {
+            String t = Base64String.ToBase64ForUrlString(args.get(0).TextValue().getBytes(encoding));
+            return Operand.Create(t);
+        } catch (Exception e) {
+        }
+        return Operand.Error("Function TEXTTOBASE64 is error!");
     }
 
     public Operand visitREGEX_fun(REGEX_funContext context) {
