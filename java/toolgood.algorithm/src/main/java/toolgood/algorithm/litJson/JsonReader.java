@@ -1,13 +1,9 @@
-package main.java.toolgood.algorithm.litJson;
+package toolgood.algorithm.litJson;
 
 import java.io.StringReader;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
-
-import javax.lang.model.element.VariableElement;
-
-import jdk.nashorn.internal.parser.Lexer;
 
 public class JsonReader {
     private static Map<Integer, Map<Integer, int[]>> parse_table;
@@ -154,7 +150,7 @@ public class JsonReader {
         //     token_value = (double)n_int64;
         //     return;
         // }
- 
+
         // Shouldn't happen, but just in case, return something
         token_value = 0;
     }
@@ -226,7 +222,7 @@ public class JsonReader {
         }
     }
 
-    private boolean ReadToken() {
+    private boolean ReadToken() throws JsonException {
         if (end_of_input)
             return false;
 
@@ -238,7 +234,7 @@ public class JsonReader {
             return false;
         }
 
-        current_input = lexer.Token().value;
+        current_input = lexer.Token();
 
         return true;
     }
@@ -251,7 +247,7 @@ public class JsonReader {
         end_of_json = true;
     }
 
-    public boolean Read() {
+    public boolean Read() throws JsonException {
         if (end_of_input)
             return false;
 
@@ -308,8 +304,8 @@ public class JsonReader {
             try {
                 entry_symbols =  parse_table.get(current_symbol).get(current_input);
 
-            } catch (KeyNotFoundException e) {
-                throw new JsonException((ParserToken) current_input, e);
+            } catch (Exception e) {
+                throw new JsonException(ParserToken.values()[current_input], e);
             }
 
             if (entry_symbols[0] == (int) ParserToken.Epsilon.value)

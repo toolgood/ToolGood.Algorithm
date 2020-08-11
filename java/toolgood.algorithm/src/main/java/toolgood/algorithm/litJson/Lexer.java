@@ -1,6 +1,9 @@
 package toolgood.algorithm.litJson;
 
+import java.io.IOException;
 import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Function;
 
 public class Lexer {
@@ -8,8 +11,8 @@ public class Lexer {
 
     // StateHandler(FsmContext ctx);
 
-    private static int[] fsm_return_table ;
-    private static Function<FsmContext,Boolean>[] fsm_handler_table;
+    private static int[] fsm_return_table;
+    private static List<Function<FsmContext, Boolean>> fsm_handler_table;
 
     private boolean allow_comments;
     private boolean allow_single_quoted_strings;
@@ -85,11 +88,65 @@ public class Lexer {
         }
     }
 
-    private static void PopulateFsmTables( ) {
+    private static void PopulateFsmTables() {
         // See section A.1. of the manual for details of the finite state machine.
-        fsm_handler_table = new Function<FsmContext,Boolean>[] { State1, State2, State3, State4, State5, State6, State7, State8,
-                State9, State10, State11, State12, State13, State14, State15, State16, State17, State18, State19,
-                State20, State21, State22, State23, State24, State25, State26, State27, State28 };
+        fsm_handler_table = new ArrayList<Function<FsmContext, Boolean>>();//
+        Function<FsmContext, Boolean> state1 = ctx -> State1(ctx);
+        fsm_handler_table.add(state1);
+        Function<FsmContext, Boolean> state2 = ctx -> State2(ctx);
+        fsm_handler_table.add(state2);
+        Function<FsmContext, Boolean> state3 = ctx -> State3(ctx);
+        fsm_handler_table.add(state3);
+        Function<FsmContext, Boolean> state4 = ctx -> State4(ctx);
+        fsm_handler_table.add(state4);
+        Function<FsmContext, Boolean> state5 = ctx -> State5(ctx);
+        fsm_handler_table.add(state5);
+        Function<FsmContext, Boolean> state6 = ctx -> State6(ctx);
+        fsm_handler_table.add(state6);
+        Function<FsmContext, Boolean> state7 = ctx -> State7(ctx);
+        fsm_handler_table.add(state7);
+        Function<FsmContext, Boolean> state8 = ctx -> State8(ctx);
+        fsm_handler_table.add(state8);
+        Function<FsmContext, Boolean> state9 = ctx -> State9(ctx);
+        fsm_handler_table.add(state9);
+        Function<FsmContext, Boolean> state10 = ctx -> State10(ctx);
+        fsm_handler_table.add(state10);
+        Function<FsmContext, Boolean> state11 = ctx -> State11(ctx);
+        fsm_handler_table.add(state11);
+        Function<FsmContext, Boolean> state12 = ctx -> State12(ctx);
+        fsm_handler_table.add(state12);
+        Function<FsmContext, Boolean> state13 = ctx -> State13(ctx);
+        fsm_handler_table.add(state13);
+        Function<FsmContext, Boolean> state14 = ctx -> State14(ctx);
+        fsm_handler_table.add(state14);
+        Function<FsmContext, Boolean> state15 = ctx -> State15(ctx);
+        fsm_handler_table.add(state15);
+        Function<FsmContext, Boolean> state16 = ctx -> State16(ctx);
+        fsm_handler_table.add(state16);
+        Function<FsmContext, Boolean> state17 = ctx -> State17(ctx);
+        fsm_handler_table.add(state17);
+        Function<FsmContext, Boolean> state18 = ctx -> State18(ctx);
+        fsm_handler_table.add(state18);
+        Function<FsmContext, Boolean> state19 = ctx -> State19(ctx);
+        fsm_handler_table.add(state19);
+        Function<FsmContext, Boolean> state20 = ctx -> State20(ctx);
+        fsm_handler_table.add(state20);
+        Function<FsmContext, Boolean> state21 = ctx -> State21(ctx);
+        fsm_handler_table.add(state21);
+        Function<FsmContext, Boolean> state22 = ctx -> State22(ctx);
+        fsm_handler_table.add(state22);
+        Function<FsmContext, Boolean> state23 = ctx -> State23(ctx);
+        fsm_handler_table.add(state23);
+        Function<FsmContext, Boolean> state24 = ctx -> State24(ctx);
+        fsm_handler_table.add(state24);
+        Function<FsmContext, Boolean> state25 = ctx -> State25(ctx);
+        fsm_handler_table.add(state25);
+        Function<FsmContext, Boolean> state26 = ctx -> State26(ctx);
+        fsm_handler_table.add(state26);
+        Function<FsmContext, Boolean> state27 = ctx -> State27(ctx);
+        fsm_handler_table.add(state27);
+        Function<FsmContext, Boolean> state28 = ctx -> State28(ctx);
+        fsm_handler_table.add(state28);
 
         fsm_return_table = new int[] { (int) ParserToken.Char.value, 0, (int) ParserToken.Number.value,
                 (int) ParserToken.Number.value, 0, (int) ParserToken.Number.value, 0, (int) ParserToken.Number.value, 0,
@@ -104,7 +161,7 @@ public class Lexer {
             case '\'':
             case '\\':
             case '/':
-                return (char)esc_char;// Convert.ToChar(esc_char);
+                return (char) esc_char;// Convert.ToChar(esc_char);
             case 'n':
                 return '\n';
             case 't':
@@ -599,7 +656,7 @@ public class Lexer {
                 mult /= 16;
 
                 if (counter == 4) {
-                    ctx.L.string_buffer.append(Convert.ToChar(ctx.L.unichar));
+                    ctx.L.string_buffer.append((char) (ctx.L.unichar));
                     ctx.NextState = ctx.StateStack;
                     return true;
                 }
@@ -708,14 +765,16 @@ public class Lexer {
     }
 
     private boolean GetChar() {
-        if ((input_char = NextChar()) != -1)
+        try {
+            if ((input_char = NextChar()) != -1)
             return true;
-
+        } catch (Exception e) {
+        }
         end_of_input = true;
         return false;
     }
 
-    private int NextChar() {
+    private int NextChar() throws IOException {
         if (input_buffer != 0) {
             int tmp = input_buffer;
             input_buffer = 0;
@@ -726,12 +785,12 @@ public class Lexer {
         return reader.read();
     }
 
-    public boolean NextToken() {
+    public boolean NextToken() throws JsonException {
         Function<FsmContext,Boolean> handler;
         fsm_context.Return = false;
 
         while (true) {
-            handler =(Function<FsmContext,Boolean>) fsm_handler_table[state - 1];
+            handler =(Function<FsmContext,Boolean>) fsm_handler_table.get(state - 1);// [state - 1];
             
             if (!handler.apply(fsm_context))
                 throw new JsonException(input_char);

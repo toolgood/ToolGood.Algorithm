@@ -5,7 +5,6 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 import org.antlr.v4.runtime.tree.TerminalNode;
-import toolgood.algorithm.math.mathVisitor;
 
 public class mathParser2{
     public static final int RULE_prog = 0, RULE_expr = 1, RULE_expr2 = 2, RULE_parameter = 3, RULE_parameter2 = 4;
@@ -1230,7 +1229,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitDAYS360_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitDAYS360_fun(this);
         }
     }
     public static class ATAN2_funContext extends ExprContext {
@@ -1242,7 +1241,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitATAN2_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitATAN2_fun(this);
         }
     }
     public static class SIGN_funContext extends ExprContext {
@@ -1254,7 +1253,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitSIGN_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitSIGN_fun(this);
         }
     }
     public static class NUM_funContext extends ExprContext {
@@ -1265,7 +1264,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitNUM_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitNUM_fun(this);
         }
     }
     public static class STRING_funContext extends ExprContext {
@@ -1274,7 +1273,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitSTRING_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitSTRING_fun(this);
         }
     }
     public static class FIXED_funContext extends ExprContext {
@@ -1286,7 +1285,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitFIXED_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitFIXED_fun(this);
         }
     }
     public static class MROUND_funContext extends ExprContext {
@@ -1298,7 +1297,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitMROUND_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitMROUND_fun(this);
         }
     }
     public static class COMBIN_funContext extends ExprContext {
@@ -1310,7 +1309,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitCOMBIN_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitCOMBIN_fun(this);
         }
     }
     public static class SUMIF_funContext extends ExprContext {
@@ -1322,7 +1321,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitSUMIF_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitSUMIF_fun(this);
         }
     }
     public static class EOMONTH_funContext extends ExprContext {
@@ -1334,7 +1333,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitEOMONTH_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitEOMONTH_fun(this);
         }
     }
     public static class EVEN_funContext extends ExprContext {
@@ -1346,7 +1345,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitEVEN_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitEVEN_fun(this);
         }
     }
     public static class TODAY_funContext extends ExprContext {
@@ -1355,7 +1354,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitTODAY_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitTODAY_fun(this);
         }
     }
     public static class BINOMDIST_funContext extends ExprContext {
@@ -1367,7 +1366,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitBINOMDIST_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitBINOMDIST_fun(this);
         }
     }
     public static class VARP_funContext extends ExprContext {
@@ -1379,7 +1378,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitVARP_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitVARP_fun(this);
         }
     }
     public static class BETAINV_funContext extends ExprContext {
@@ -1391,7 +1390,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitBETAINV_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitBETAINV_fun(this);
         }
     }
     public static class FLOOR_funContext extends ExprContext {
@@ -1403,7 +1402,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitFLOOR_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitFLOOR_fun(this);
         }
     }
     public static class AVERAGE_funContext extends ExprContext {
@@ -1415,7 +1414,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitAVERAGE_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitAVERAGE_fun(this);
         }
     }
     public static class TAN_funContext extends ExprContext {
@@ -1427,7 +1426,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitTAN_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitTAN_fun(this);
         }
     }
     public static class FALSE_funContext extends ExprContext {
@@ -1436,7 +1435,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitFALSE_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitFALSE_fun(this);
         }
     }
     public static class PERCENTILE_funContext extends ExprContext {
@@ -1448,7 +1447,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitPERCENTILE_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitPERCENTILE_fun(this);
         }
     }
     public static class NULL_funContext extends ExprContext {
@@ -1457,7 +1456,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitNULL_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitNULL_fun(this);
         }
     }
     public static class MEDIAN_funContext extends ExprContext {
@@ -1469,7 +1468,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitMEDIAN_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitMEDIAN_fun(this);
         }
     }
     public static class PERMUT_funContext extends ExprContext {
@@ -1481,7 +1480,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitPERMUT_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitPERMUT_fun(this);
         }
     }
     public static class Array_funContext extends ExprContext {
@@ -1493,7 +1492,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitArray_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitArray_fun(this);
         }
     }
     public static class PRODUCT_funContext extends ExprContext {
@@ -1505,7 +1504,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitPRODUCT_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitPRODUCT_fun(this);
         }
     }
     public static class COS_funContext extends ExprContext {
@@ -1517,7 +1516,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitCOS_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitCOS_fun(this);
         }
     }
     public static class MIN_funContext extends ExprContext {
@@ -1529,7 +1528,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitMIN_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitMIN_fun(this);
         }
     }
     public static class MAX_funContext extends ExprContext {
@@ -1541,7 +1540,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitMAX_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitMAX_fun(this);
         }
     }
     public static class FISHERINV_funContext extends ExprContext {
@@ -1553,7 +1552,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitFISHERINV_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitFISHERINV_fun(this);
         }
     }
     public static class ROUNDUP_funContext extends ExprContext {
@@ -1565,7 +1564,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitROUNDUP_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitROUNDUP_fun(this);
         }
     }
     public static class ROUNDDOWN_funContext extends ExprContext {
@@ -1577,7 +1576,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitROUNDDOWN_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitROUNDDOWN_fun(this);
         }
     }
     public static class LOGINV_funContext extends ExprContext {
@@ -1589,7 +1588,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitLOGINV_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitLOGINV_fun(this);
         }
     }
     public static class AVEDEV_funContext extends ExprContext {
@@ -1601,7 +1600,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitAVEDEV_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitAVEDEV_fun(this);
         }
     }
     public static class ATANH_funContext extends ExprContext {
@@ -1613,7 +1612,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitATANH_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitATANH_fun(this);
         }
     }
     public static class TRUE_funContext extends ExprContext {
@@ -1622,7 +1621,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitTRUE_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitTRUE_fun(this);
         }
     }
     public static class WORKDAY_funContext extends ExprContext {
@@ -1634,7 +1633,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitWORKDAY_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitWORKDAY_fun(this);
         }
     }
     public static class AVERAGEIF_funContext extends ExprContext {
@@ -1646,7 +1645,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitAVERAGEIF_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitAVERAGEIF_fun(this);
         }
     }
     public static class LCM_funContext extends ExprContext {
@@ -1658,7 +1657,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitLCM_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitLCM_fun(this);
         }
     }
     public static class HYPGEOMDIST_funContext extends ExprContext {
@@ -1670,7 +1669,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitHYPGEOMDIST_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitHYPGEOMDIST_fun(this);
         }
     }
     public static class SQRT_funContext extends ExprContext {
@@ -1682,7 +1681,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitSQRT_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitSQRT_fun(this);
         }
     }
     public static class GCD_funContext extends ExprContext {
@@ -1694,7 +1693,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitGCD_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitGCD_fun(this);
         }
     }
     public static class CEILING_funContext extends ExprContext {
@@ -1706,7 +1705,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitCEILING_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitCEILING_fun(this);
         }
     }
     public static class NORMDIST_funContext extends ExprContext {
@@ -1718,7 +1717,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitNORMDIST_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitNORMDIST_fun(this);
         }
     }
     public static class REMOVESTART_funContext extends ExprContext {
@@ -1730,7 +1729,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitREMOVESTART_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitREMOVESTART_fun(this);
         }
     }
     public static class LOG_funContext extends ExprContext {
@@ -1742,7 +1741,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitLOG_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitLOG_fun(this);
         }
     }
     public static class MONTH_funContext extends ExprContext {
@@ -1754,7 +1753,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitMONTH_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitMONTH_fun(this);
         }
     }
     public static class BETADIST_funContext extends ExprContext {
@@ -1766,7 +1765,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitBETADIST_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitBETADIST_fun(this);
         }
     }
     public static class HARMEAN_funContext extends ExprContext {
@@ -1778,7 +1777,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitHARMEAN_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitHARMEAN_fun(this);
         }
     }
     public static class FINV_funContext extends ExprContext {
@@ -1790,7 +1789,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitFINV_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitFINV_fun(this);
         }
     }
     public static class SUMSQ_funContext extends ExprContext {
@@ -1802,7 +1801,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitSUMSQ_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitSUMSQ_fun(this);
         }
     }
     public static class ACOS_funContext extends ExprContext {
@@ -1814,7 +1813,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitACOS_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitACOS_fun(this);
         }
     }
     public static class ROUND_funContext extends ExprContext {
@@ -1826,7 +1825,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitROUND_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitROUND_fun(this);
         }
     }
     public static class NETWORKDAYS_funContext extends ExprContext {
@@ -1838,7 +1837,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitNETWORKDAYS_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitNETWORKDAYS_fun(this);
         }
     }
     public static class TRUNC_funContext extends ExprContext {
@@ -1850,7 +1849,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitTRUNC_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitTRUNC_fun(this);
         }
     }
     public static class ACOSH_funContext extends ExprContext {
@@ -1862,7 +1861,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitACOSH_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitACOSH_fun(this);
         }
     }
     public static class LOG10_funContext extends ExprContext {
@@ -1874,7 +1873,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitLOG10_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitLOG10_fun(this);
         }
     }
     public static class LOGNORMDIST_funContext extends ExprContext {
@@ -1886,7 +1885,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitLOGNORMDIST_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitLOGNORMDIST_fun(this);
         }
     }
     public static class MODE_funContext extends ExprContext {
@@ -1898,7 +1897,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitMODE_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitMODE_fun(this);
         }
     }
     public static class PARAMETER_funContext extends ExprContext {
@@ -1910,7 +1909,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitPARAMETER_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitPARAMETER_fun(this);
         }
     }
     public static class Bracket_funContext extends ExprContext {
@@ -1922,7 +1921,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitBracket_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitBracket_fun(this);
         }
     }
     public static class TIME_funContext extends ExprContext {
@@ -1934,7 +1933,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitTIME_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitTIME_fun(this);
         }
     }
     public static class SQRTPI_funContext extends ExprContext {
@@ -1946,7 +1945,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitSQRTPI_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitSQRTPI_fun(this);
         }
     }
     public static class FDIST_funContext extends ExprContext {
@@ -1958,7 +1957,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitFDIST_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitFDIST_fun(this);
         }
     }
     public static class ODD_funContext extends ExprContext {
@@ -1970,7 +1969,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitODD_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitODD_fun(this);
         }
     }
     public static class COUNT_funContext extends ExprContext {
@@ -1982,7 +1981,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitCOUNT_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitCOUNT_fun(this);
         }
     }
     public static class MOD_funContext extends ExprContext {
@@ -1994,7 +1993,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitMOD_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitMOD_fun(this);
         }
     }
     public static class SMALL_funContext extends ExprContext {
@@ -2006,7 +2005,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitSMALL_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitSMALL_fun(this);
         }
     }
     public static class IF_funContext extends ExprContext {
@@ -2018,7 +2017,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitIF_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitIF_fun(this);
         }
     }
     public static class GAMMAINV_funContext extends ExprContext {
@@ -2030,7 +2029,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitGAMMAINV_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitGAMMAINV_fun(this);
         }
     }
     public static class ABS_funContext extends ExprContext {
@@ -2042,7 +2041,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitABS_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitABS_fun(this);
         }
     }
     public static class NOT_funContext extends ExprContext {
@@ -2054,7 +2053,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitNOT_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitNOT_fun(this);
         }
     }
     public static class PI_funContext extends ExprContext {
@@ -2063,7 +2062,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitPI_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitPI_fun(this);
         }
     }
     public static class WEEKDAY_funContext extends ExprContext {
@@ -2075,7 +2074,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitWEEKDAY_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitWEEKDAY_fun(this);
         }
     }
     public static class COSH_funContext extends ExprContext {
@@ -2087,7 +2086,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitCOSH_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitCOSH_fun(this);
         }
     }
     public static class EDATE_funContext extends ExprContext {
@@ -2099,7 +2098,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitEDATE_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitEDATE_fun(this);
         }
     }
     public static class IFERROR_funContext extends ExprContext {
@@ -2111,7 +2110,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitIFERROR_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitIFERROR_fun(this);
         }
     }
     public static class OR_funContext extends ExprContext {
@@ -2123,7 +2122,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitOR_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitOR_fun(this);
         }
     }
     public static class CODE_funContext extends ExprContext {
@@ -2135,7 +2134,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitCODE_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitCODE_fun(this);
         }
     }
     public static class COUNTIF_funContext extends ExprContext {
@@ -2147,7 +2146,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitCOUNTIF_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitCOUNTIF_fun(this);
         }
     }
     public static class NORMSDIST_funContext extends ExprContext {
@@ -2159,7 +2158,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitNORMSDIST_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitNORMSDIST_fun(this);
         }
     }
     public static class PERCENTRANK_funContext extends ExprContext {
@@ -2171,7 +2170,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitPERCENTRANK_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitPERCENTRANK_fun(this);
         }
     }
     public static class DEGREES_funContext extends ExprContext {
@@ -2183,7 +2182,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitDEGREES_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitDEGREES_fun(this);
         }
     }
     public static class RADIANS_funContext extends ExprContext {
@@ -2195,7 +2194,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitRADIANS_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitRADIANS_fun(this);
         }
     }
     public static class GUID_funContext extends ExprContext {
@@ -2204,7 +2203,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitGUID_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitGUID_fun(this);
         }
     }
     public static class EXP_funContext extends ExprContext {
@@ -2216,7 +2215,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitEXP_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitEXP_fun(this);
         }
     }
     public static class POWER_funContext extends ExprContext {
@@ -2228,7 +2227,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitPOWER_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitPOWER_fun(this);
         }
     }
     public static class MULTINOMIAL_funContext extends ExprContext {
@@ -2240,7 +2239,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitMULTINOMIAL_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitMULTINOMIAL_fun(this);
         }
     }
     public static class TDIST_funContext extends ExprContext {
@@ -2252,7 +2251,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitTDIST_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitTDIST_fun(this);
         }
     }
     public static class FACT_funContext extends ExprContext {
@@ -2264,7 +2263,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitFACT_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitFACT_fun(this);
         }
     }
     public static class EXPONDIST_funContext extends ExprContext {
@@ -2276,7 +2275,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitEXPONDIST_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitEXPONDIST_fun(this);
         }
     }
     public static class POISSON_funContext extends ExprContext {
@@ -2288,7 +2287,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitPOISSON_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitPOISSON_fun(this);
         }
     }
     public static class E_funContext extends ExprContext {
@@ -2297,7 +2296,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitE_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitE_fun(this);
         }
     }
     public static class SUM_funContext extends ExprContext {
@@ -2309,7 +2308,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitSUM_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitSUM_fun(this);
         }
     }
     public static class LARGE_funContext extends ExprContext {
@@ -2321,7 +2320,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitLARGE_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitLARGE_fun(this);
         }
     }
     public static class TINV_funContext extends ExprContext {
@@ -2333,7 +2332,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitTINV_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitTINV_fun(this);
         }
     }
     public static class GEOMEAN_funContext extends ExprContext {
@@ -2345,7 +2344,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitGEOMEAN_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitGEOMEAN_fun(this);
         }
     }
     public static class STDEVP_funContext extends ExprContext {
@@ -2357,7 +2356,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitSTDEVP_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitSTDEVP_fun(this);
         }
     }
     public static class ASIN_funContext extends ExprContext {
@@ -2369,7 +2368,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitASIN_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitASIN_fun(this);
         }
     }
     public static class WEEKNUM_funContext extends ExprContext {
@@ -2381,7 +2380,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitWEEKNUM_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitWEEKNUM_fun(this);
         }
     }
     public static class DATEDIF_funContext extends ExprContext {
@@ -2393,7 +2392,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitDATEDIF_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitDATEDIF_fun(this);
         }
     }
     public static class NORMSINV_funContext extends ExprContext {
@@ -2405,7 +2404,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitNORMSINV_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitNORMSINV_fun(this);
         }
     }
     public static class GAMMADIST_funContext extends ExprContext {
@@ -2417,7 +2416,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitGAMMADIST_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitGAMMADIST_fun(this);
         }
     }
     public static class NEGBINOMDIST_funContext extends ExprContext {
@@ -2429,7 +2428,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitNEGBINOMDIST_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitNEGBINOMDIST_fun(this);
         }
     }
     public static class NORMINV_funContext extends ExprContext {
@@ -2441,7 +2440,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitNORMINV_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitNORMINV_fun(this);
         }
     }
     public static class STDEV_funContext extends ExprContext {
@@ -2453,7 +2452,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitSTDEV_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitSTDEV_fun(this);
         }
     }
     public static class WEIBULL_funContext extends ExprContext {
@@ -2465,7 +2464,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitWEIBULL_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitWEIBULL_fun(this);
         }
     }
     public static class ASINH_funContext extends ExprContext {
@@ -2477,7 +2476,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitASINH_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitASINH_fun(this);
         }
     }
     public static class VAR_funContext extends ExprContext {
@@ -2489,7 +2488,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitVAR_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitVAR_fun(this);
         }
     }
     public static class FACTDOUBLE_funContext extends ExprContext {
@@ -2501,7 +2500,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitFACTDOUBLE_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitFACTDOUBLE_fun(this);
         }
     }
     public static class GAMMALN_funContext extends ExprContext {
@@ -2513,7 +2512,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitGAMMALN_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitGAMMALN_fun(this);
         }
     }
     public static class QUOTIENT_funContext extends ExprContext {
@@ -2525,7 +2524,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitQUOTIENT_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitQUOTIENT_fun(this);
         }
     }
     public static class DEVSQ_funContext extends ExprContext {
@@ -2537,7 +2536,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitDEVSQ_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitDEVSQ_fun(this);
         }
     }
     public static class RAND_funContext extends ExprContext {
@@ -2546,7 +2545,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitRAND_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitRAND_fun(this);
         }
     }
     public static class TANH_funContext extends ExprContext {
@@ -2558,7 +2557,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitTANH_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitTANH_fun(this);
         }
     }
     public static class FISHER_funContext extends ExprContext {
@@ -2570,7 +2569,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitFISHER_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitFISHER_fun(this);
         }
     }
     public static class ATAN_funContext extends ExprContext {
@@ -2582,7 +2581,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitATAN_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitATAN_fun(this);
         }
     }
     public static class LN_funContext extends ExprContext {
@@ -2594,7 +2593,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitLN_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitLN_fun(this);
         }
     }
     public static class RANDBETWEEN_funContext extends ExprContext {
@@ -2606,7 +2605,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitRANDBETWEEN_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitRANDBETWEEN_fun(this);
         }
     }
     public static class NOW_funContext extends ExprContext {
@@ -2615,7 +2614,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitNOW_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitNOW_fun(this);
         }
     }
     public static class QUARTILE_funContext extends ExprContext {
@@ -2627,7 +2626,7 @@ public class mathParser2{
         }
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitQUARTILE_fun2(this);
+            return ((mathVisitor<? extends T>) visitor).visitQUARTILE_fun(this);
         }
     }
     public static class Parameter2Context extends ParserRuleContext {
@@ -2641,16 +2640,46 @@ public class mathParser2{
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
         return ((mathVisitor<? extends T>)visitor).visitParameter2(this);
+        }
     }
-    public static class DATE_funContext extends ExprContext {
+    public static class SIN_funContext extends ExprContext {
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
+		}
+		public SIN_funContext(ExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			return ((mathVisitor<? extends T>)visitor).visitSIN_fun(this);
+		}
+    }
+	public static class DATE_funContext extends ExprContext {
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
- 
 		public DATE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			return ((mathVisitor<? extends T>)visitor).visitDATE_fun(this);
+		}
+    }
+    public static class AND_funContext extends ExprContext {
+		public List<ExprContext> expr() {
+			return getRuleContexts(ExprContext.class);
+		}
+		public AND_funContext(ExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			return ((mathVisitor<? extends T>)visitor).visitAND_fun(this);
+		}
+    }
+    public static class SINH_funContext extends ExprContext {
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
+		}
+		public SINH_funContext(ExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			return ((mathVisitor<? extends T>)visitor).visitSINH_fun(this);
 		}
 	}
 }

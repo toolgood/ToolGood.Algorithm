@@ -2530,8 +2530,8 @@ public class mathParser extends Parser {
 	}
 
 
-	public final Expr2Context expr2() throws RecognitionException {
-		Expr2Context _localctx = new Expr2Context(_ctx, getState());
+	public final ExprContext expr2() throws RecognitionException {
+		ExprContext _localctx = new ExprContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_expr2);
 		int _la;
 		try {

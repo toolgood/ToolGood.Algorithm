@@ -1,6 +1,11 @@
 package toolgood.algorithm.litJson;
 
-public class JsonException {
+public class JsonException extends Exception {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+
     public JsonException(ParserToken token, Exception inner_exception) {
         super();
         // base(String.Format("Invalid token '{0}' in input string", token),

@@ -11,16 +11,20 @@ import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
+
 import toolgood.algorithm.MyDate;
 import toolgood.algorithm.Operand;
+import toolgood.algorithm.OperandType;
 import toolgood.algorithm.litJson.JsonData;
 import toolgood.algorithm.math.mathParser;
 import toolgood.algorithm.math.mathParser2;
+import toolgood.algorithm.math.mathVisitor;
 import toolgood.algorithm.math.mathParser2.*;
-import toolgood.algorithm.math.mathBaseVisitor;
+import toolgood.algorithm.mathNet.ExcelFunctions;
 import toolgood.algorithm.internals.MyFunction;
 
-public class MathVisitor extends mathBaseVisitor<Operand> {
+public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements mathVisitor<Operand> {
     private static Pattern sumifRegex = new Pattern("(<|<=|>|>=|=|==|!=|<>) *([-+]?\\d+(\\.(\\d+)?)?)");
     private static Pattern bit_2 = new Pattern("^[01]+");
     private static Pattern bit_8 = new Pattern("^[0-8]+");
@@ -49,7 +53,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         Operand firstValue = args.get(0);
         Operand secondValue = args.get(1);
         String t = context.op.getText();
-        if (firstValue.Type == OperandType.STRING) {
+        if (firstValue.Type() == OperandType.STRING) {
             if (numberRegex.IsMatch(firstValue.TextValue())) {
                 Operand a = firstValue.ToNumber(null);
                 if (a.IsError() == false)
@@ -60,7 +64,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
                     firstValue = a;
             }
         }
-        if (secondValue.Type == OperandType.STRING) {
+        if (secondValue.Type() == OperandType.STRING) {
             if (numberRegex.IsMatch(secondValue.TextValue())) {
                 Operand a = secondValue.ToNumber(null);
                 if (a.IsError() == false)
@@ -72,25 +76,25 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             }
         }
         if (t == "*") {
-            if (secondValue.Type == OperandType.BOOLEAN) {
+            if (secondValue.Type() == OperandType.BOOLEAN) {
                 if (secondValue.BooleanValue())
                     return firstValue;
                 else
                     return Operand.Create(0);
-            } else if (firstValue.Type == OperandType.BOOLEAN) {
+            } else if (firstValue.Type() == OperandType.BOOLEAN) {
                 if (firstValue.BooleanValue())
                     return secondValue;
                 else
                     return Operand.Create(0);
             }
-            if (firstValue.Type == OperandType.DATE) {
+            if (firstValue.Type() == OperandType.DATE) {
                 secondValue = secondValue.ToNumber("Function '" + t + "' parameter 2 is error!");
                 if (secondValue.IsError()) {
                     return secondValue;
                 }
                 return Operand.Create((MyDate) (firstValue.DateValue() * secondValue.NumberValue()));
             }
-            if (secondValue.Type == OperandType.DATE) {
+            if (secondValue.Type() == OperandType.DATE) {
                 firstValue = firstValue.ToNumber("Function '" + t + "' parameter 1 is error!");
                 if (firstValue.IsError()) {
                     return firstValue;
@@ -108,7 +112,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             }
             return Operand.Create(firstValue.NumberValue() * secondValue.NumberValue());
         } else if (t == "/") {
-            if (firstValue.Type == OperandType.DATE) {
+            if (firstValue.Type() == OperandType.DATE) {
                 return Operand.Create(firstValue.DateValue() / secondValue.NumberValue());
             }
 
@@ -153,7 +157,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
         Operand firstValue = args.get(0);
         Operand secondValue = args.get(1);
-        String t = context.op.Text;
+        String t = context.op.getText();
 
         if (t == "&") {
             if (firstValue.IsNull() && secondValue.IsNull()) {
@@ -176,7 +180,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             }
             return Operand.Create(firstValue.TextValue() + secondValue.TextValue());
         }
-        if (firstValue.Type == OperandType.STRING) {
+        if (firstValue.Type() == OperandType.STRING) {
             if (numberRegex.IsMatch(firstValue.TextValue())) {
                 Operand a = firstValue.ToNumber(null);
                 if (a.IsError() == false)
@@ -187,7 +191,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
                     firstValue = a;
             }
         }
-        if (secondValue.Type == OperandType.STRING) {
+        if (secondValue.Type() == OperandType.STRING) {
             if (numberRegex.IsMatch(secondValue.TextValue())) {
                 Operand a = secondValue.ToNumber(null);
                 if (a.IsError() == false)
@@ -199,15 +203,15 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             }
         }
         if (t == "+") {
-            if (firstValue.Type == OperandType.DATE && secondValue.Type == OperandType.DATE) {
+            if (firstValue.Type() == OperandType.DATE && secondValue.Type() == OperandType.DATE) {
                 return Operand.Create(firstValue.DateValue() + secondValue.DateValue());
-            } else if (firstValue.Type == OperandType.DATE) {
+            } else if (firstValue.Type() == OperandType.DATE) {
                 secondValue = secondValue.ToNumber("Function '" + t + "' parameter 2 is error!");
                 if (secondValue.IsError()) {
                     return secondValue;
                 }
                 return Operand.Create(firstValue.DateValue() + secondValue.NumberValue());
-            } else if (secondValue.Type == OperandType.DATE) {
+            } else if (secondValue.Type() == OperandType.DATE) {
                 firstValue = firstValue.ToNumber("Function '" + t + "' parameter 1 is error!");
                 if (firstValue.IsError()) {
                     return firstValue;
@@ -224,15 +228,15 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             }
             return Operand.Create(firstValue.NumberValue() + secondValue.NumberValue());
         } else if (t == "-") {
-            if (firstValue.Type == OperandType.DATE && secondValue.Type == OperandType.DATE) {
+            if (firstValue.Type() == OperandType.DATE && secondValue.Type() == OperandType.DATE) {
                 return Operand.Create(firstValue.DateValue() - secondValue.DateValue());
-            } else if (firstValue.Type == OperandType.DATE) {
+            } else if (firstValue.Type() == OperandType.DATE) {
                 secondValue = secondValue.ToNumber("Function '" + t + "' parameter 2 is error!");
                 if (secondValue.IsError()) {
                     return secondValue;
                 }
                 return Operand.Create(firstValue.DateValue() - secondValue.NumberValue());
-            } else if (secondValue.Type == OperandType.DATE) {
+            } else if (secondValue.Type() == OperandType.DATE) {
                 firstValue = firstValue.ToNumber("Function '" + t + "' parameter 1 is error!");
                 if (firstValue.IsError()) {
                     return firstValue;
@@ -264,7 +268,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
         Operand firstValue = args.get(0);
         Operand secondValue = args.get(1);
-        String type = context.op.Text;
+        String type = context.op.getText();
 
         if (firstValue.IsNull()) {
             if (secondValue.IsNull() && (type == "==" || type == "=")) {
@@ -282,7 +286,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
         int r;
         if (firstValue.Type == secondValue.Type) {
-            if (firstValue.Type == OperandType.STRING || firstValue.Type == OperandType.JSON) {
+            if (firstValue.Type() == OperandType.STRING || firstValue.Type() == OperandType.JSON) {
                 firstValue = firstValue.ToText("Function '" + type + "' parameter 1 is error!");
                 if (firstValue.IsError()) {
                     return firstValue;
@@ -293,7 +297,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
                 }
 
                 r = String.CompareOrdinal(firstValue.TextValue(), secondValue.TextValue());
-            } else if (firstValue.Type == OperandType.ARRARY) {
+            } else if (firstValue.Type() == OperandType.ARRARY) {
                 return Operand.Error("两个类型无法比较");
             } else {
                 firstValue = firstValue.ToNumber("Function '" + type + "' parameter 1 is error!");
@@ -306,10 +310,10 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
                 }
                 r = Compare(firstValue.NumberValue(), secondValue.NumberValue());
             }
-        } else if ((firstValue.Type == OperandType.DATE && secondValue.Type == OperandType.STRING)
-                || (secondValue.Type == OperandType.DATE && firstValue.Type == OperandType.STRING)
-                || (firstValue.Type == OperandType.NUMBER && secondValue.Type == OperandType.STRING)
-                || (secondValue.Type == OperandType.NUMBER && firstValue.Type == OperandType.STRING)) {
+        } else if ((firstValue.Type() == OperandType.DATE && secondValue.Type() == OperandType.STRING)
+                || (secondValue.Type() == OperandType.DATE && firstValue.Type() == OperandType.STRING)
+                || (firstValue.Type() == OperandType.NUMBER && secondValue.Type() == OperandType.STRING)
+                || (secondValue.Type() == OperandType.NUMBER && firstValue.Type() == OperandType.STRING)) {
             firstValue = firstValue.ToText("Function '" + type + "' parameter 1 is error!");
             if (firstValue.IsError()) {
                 return firstValue;
@@ -320,8 +324,8 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             }
 
             r = String.CompareOrdinal(firstValue.TextValue(), secondValue.TextValue());
-        } else if ((firstValue.Type == OperandType.BOOLEAN && secondValue.Type == OperandType.STRING)
-                || (secondValue.Type == OperandType.BOOLEAN && firstValue.Type == OperandType.STRING)) {
+        } else if ((firstValue.Type() == OperandType.BOOLEAN && secondValue.Type() == OperandType.STRING)
+                || (secondValue.Type() == OperandType.BOOLEAN && firstValue.Type() == OperandType.STRING)) {
             firstValue = firstValue.ToText("Function '" + type + "' parameter 1 is error!");
             if (firstValue.IsError()) {
                 return firstValue;
@@ -332,9 +336,9 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             }
 
             r = String.Compare(firstValue.TextValue(), secondValue.TextValue(), true);
-        } else if (firstValue.Type == OperandType.STRING || secondValue.Type == OperandType.STRING
-                || firstValue.Type == OperandType.JSON || secondValue.Type == OperandType.JSON
-                || firstValue.Type == OperandType.ARRARY || secondValue.Type == OperandType.ARRARY) {
+        } else if (firstValue.Type() == OperandType.STRING || secondValue.Type() == OperandType.STRING
+                || firstValue.Type() == OperandType.JSON || secondValue.Type() == OperandType.JSON
+                || firstValue.Type() == OperandType.ARRARY || secondValue.Type() == OperandType.ARRARY) {
             return Operand.Error("两个类型无法比较");
         } else {
             firstValue = firstValue.ToNumber("Function '" + type + "' parameter 1 is error!");
@@ -374,7 +378,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
     }
 
     public Operand VisitAndOr_fun(AndOr_funContext context) {
-        String t = context.op.Text;
+        String t = context.op.getText();
         List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (ExprContext item : context.expr()) {
@@ -416,12 +420,12 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         if (b.BooleanValue()) {
-            if (args.Count > 1) {
+            if (args.size()>1) {
                 return args.get(1);
             }
             return Operand.True;
         }
-        if (args.Count == 3) {
+        if (args.size() == 3) {
             return args.get(2);
         }
         return Operand.False;
@@ -437,7 +441,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         if (args.get(0).IsError()) {
             return args.get(1);
         }
-        if (args.Count == 3) {
+        if (args.size() == 3) {
             return args.get(2);
         }
         return Operand.False;
@@ -449,7 +453,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             return firstValue;
         }
 
-        if (firstValue.Type == OperandType.NUMBER) {
+        if (firstValue.Type() == OperandType.NUMBER) {
             return Operand.True;
         }
         return Operand.False;
@@ -461,7 +465,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             return firstValue;
         }
 
-        if (firstValue.Type == OperandType.STRING) {
+        if (firstValue.Type() == OperandType.STRING) {
             return Operand.True;
         }
         return Operand.False;
@@ -473,7 +477,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             Operand aa = visit(item);
             args.add(aa);
         }
-        if (args.Count == 2) {
+        if (args.size() == 2) {
             if (args.get(0).IsError()) {
                 return args.get(1);
             }
@@ -493,7 +497,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             args.add(aa);
         }
 
-        if (args.Count == 2) {
+        if (args.size() == 2) {
             if (args.get(0).IsNull()) {
                 return args.get(1);
             }
@@ -512,7 +516,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             args.add(aa);
         }
 
-        if (args.Count == 2) {
+        if (args.size() == 2) {
             if (args.get(0).IsNull() || args.get(0).IsError()) {
                 return args.get(1);
             }
@@ -526,7 +530,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
     public Operand VisitISEVEN_fun(ISEVEN_funContext context) {
         Operand firstValue = visit(context.expr());
-        if (firstValue.Type == OperandType.NUMBER) {
+        if (firstValue.Type() == OperandType.NUMBER) {
             if (firstValue.IntValue() % 2 == 0) {
                 return Operand.True;
             }
@@ -536,7 +540,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
     public Operand VisitISLOGICAL_fun(ISLOGICAL_funContext context) {
         Operand firstValue = visit(context.expr());
-        if (firstValue.Type == OperandType.BOOLEAN) {
+        if (firstValue.Type() == OperandType.BOOLEAN) {
             return Operand.True;
         }
         return Operand.False;
@@ -544,7 +548,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
     public Operand VisitISODD_fun(ISODD_funContext context) {
         Operand firstValue = visit(context.expr());
-        if (firstValue.Type == OperandType.NUMBER) {
+        if (firstValue.Type() == OperandType.NUMBER) {
             if (firstValue.IntValue() % 2 == 1) {
                 return Operand.True;
             }
@@ -554,7 +558,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
     public Operand VisitISNONTEXT_fun(ISNONTEXT_funContext context) {
         Operand firstValue = visit(context.expr());
-        if (firstValue.Type != OperandType.STRING) {
+        if (firstValue.Type() != OperandType.STRING) {
             return Operand.True;
         }
         return Operand.False;
@@ -720,7 +724,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             args.add(aa);
         }
 
-        List<Double> list = new List<Double>();
+        List<Double> list = new ArrayList<Double>();
         boolean o = F_base_GetList(args, list);
         if (o == false) {
             return Operand.Error("Function GCD parameter is error!");
@@ -801,7 +805,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         list = ShellSort(list);
         // list = list.OrderBy(q => q).ToList();
         int g = F_base_gcd((int) list.get(1), (int) list.get(0));
-        for (int i = 2; i < list.Count; i++) {
+        for (int i = 2; i < list.size(); i++) {
             g = F_base_gcd((int) list.get(i), g);
         }
         return g;
@@ -827,7 +831,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         list = ShellSort(list);
 
         int a = (int) list.get(0);// [0];
-        for (int i = 1; i < list.Count; i++) {
+        for (int i = 1; i < list.size(); i++) {
             int b = (int) list.get(i);
             int g = b > a ? F_base_gcd(b, a) : F_base_gcd(a, b);
             a = a / g * b;
@@ -1024,7 +1028,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         int num = 2;
-        if (args.Count > 1) {
+        if (args.size() > 1) {
             Operand secondValue = args.get(1).ToNumber("Function FIXED parameter 2 is error!");
             if (secondValue.IsError()) {
                 return secondValue;
@@ -1038,7 +1042,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
         double s = round(firstValue.NumberValue(), num);
         boolean no = false;
-        if (args.Count == 3) {
+        if (args.size() == 3) {
             Operand thirdValue = args.get(2).ToBoolean("Function FIXED parameter 3 is error!");
             if (thirdValue.IsError()) {
                 return thirdValue;
@@ -1070,7 +1074,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             return Operand.Error("Function BIN2OCT parameter 1 is error!");
         }
         String num = Convert.toString(Convert.ToInt32(firstValue.TextValue(), 2), 8);
-        if (args.Count == 2) {
+        if (args.size() == 2) {
             Operand secondValue = args.get(1).ToNumber("Function BIN2OCT parameter 2 is error!");
             if (secondValue.IsError()) {
                 return secondValue;
@@ -1115,7 +1119,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             return Operand.Error("Function BIN2HEX parameter 1 is error!");
         }
         String num = Convert.toString(Convert.ToInt32(firstValue.TextValue(), 2), 16).ToUpper();
-        if (args.Count == 2) {
+        if (args.size() == 2) {
             Operand secondValue = args.get(1).ToNumber("Function BIN2HEX parameter 2 is error!");
             if (secondValue.IsError()) {
                 return secondValue;
@@ -1147,7 +1151,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             return Operand.Error("Function OCT2BIN parameter 1 is error!");
         }
         String num = Convert.toString(Convert.ToInt32(firstValue.TextValue(), 8), 2);
-        if (args.Count == 2) {
+        if (args.size() == 2) {
             Operand secondValue = args.get(1).ToNumber("Function OCT2BIN parameter 2 is error!");
             if (secondValue.IsError()) {
                 return secondValue;
@@ -1191,7 +1195,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             return Operand.Error("Function OCT2HEX parameter 1 is error!");
         }
         String num = Convert.toString(Convert.ToInt32(firstValue.TextValue(), 8), 16).ToUpper();
-        if (args.Count == 2) {
+        if (args.size() == 2) {
             Operand secondValue = args.get(1).ToNumber("Function OCT2HEX parameter 2 is error!");
             if (secondValue.IsError()) {
                 return secondValue;
@@ -1219,7 +1223,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             return firstValue;
         }
         String num = System.Convert.toString(firstValue.IntValue(), 2);
-        if (args.Count == 2) {
+        if (args.size() == 2) {
             Operand secondValue = args.get(1).ToNumber("Function DEC2BIN parameter 2 is error!");
             if (secondValue.IsError()) {
                 return secondValue;
@@ -1247,7 +1251,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             return firstValue;
         }
         String num = System.Convert.toString(firstValue.IntValue(), 8);
-        if (args.Count == 2) {
+        if (args.size() == 2) {
             Operand secondValue = args.get(1).ToNumber("Function DEC2OCT parameter 2 is error!");
             if (secondValue.IsError()) {
                 return secondValue;
@@ -1275,7 +1279,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             return firstValue;
         }
         String num = System.Convert.toString(firstValue.IntValue(), 16).ToUpper();
-        if (args.Count == 2) {
+        if (args.size() == 2) {
             Operand secondValue = args.get(1).ToNumber("Function DEC2HEX parameter 2 is error!");
             if (secondValue.IsError()) {
                 return secondValue;
@@ -1307,7 +1311,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         String num = Convert.toString(Convert.ToInt32(firstValue.TextValue(), 16), 2);
-        if (args.Count == 2) {
+        if (args.size() == 2) {
             Operand secondValue = args.get(1).ToNumber("Function HEX2BIN parameter 2 is error!");
             if (secondValue.IsError()) {
                 return secondValue;
@@ -1338,7 +1342,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             return Operand.Error("Function HEX2OCT parameter 1 is error!");
         }
         String num = Convert.toString(Convert.ToInt32(firstValue.TextValue(), 16), 8);
-        if (args.Count == 2) {
+        if (args.size() == 2) {
             Operand secondValue = args.get(1).ToNumber("Function HEX2OCT parameter 2 is error!");
             if (secondValue.IsError()) {
                 return secondValue;
@@ -1442,7 +1446,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         Operand firstValue = args.get(0);
-        if (args.Count == 1)
+        if (args.size() == 1)
             return Operand.Create(Math.ceil(firstValue.NumberValue()));
 
         Operand secondValue = args.get(1);
@@ -1470,7 +1474,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         Operand firstValue = args.get(0);
-        if (args.Count == 1)
+        if (args.size() == 1)
             return Operand.Create(Math.floor(firstValue.NumberValue()));
 
         Operand secondValue = args.get(1);
@@ -1650,7 +1654,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             args.add(a);
         }
 
-        if (args.Count > 1) {
+        if (args.size() > 1) {
             return Operand.Create(Math.log(args.get(0).NumberValue(), args.get(1).NumberValue()));
         }
         return Operand.Create(Math.log(args.get(0).NumberValue(), 10));
@@ -1674,7 +1678,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             args.add(aa);
         }
 
-        List<Double> list = new List<Double>();
+        List<Double> list = new ArrayList<Double>();
         boolean o = F_base_GetList(args, list);
         if (o == false) {
             return Operand.Error("Function MULTINOMIAL parameter is error!");
@@ -1683,8 +1687,8 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         int sum = 0;
         int n = 1;
         for (Double a : list) {
-            n *= F_base_Factorial((int) a);
-            sum += (int) a;
+            n *= F_base_Factorial((int) (double)a);
+            sum += (int)(double) a;
         }
         int r = F_base_Factorial(sum) / n;
         return Operand.Create(r);
@@ -1700,7 +1704,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             args.add(aa);
         }
 
-        List<Double> list = new List<Double>();
+        List<Double> list = new ArrayList<Double>();
         boolean o = F_base_GetList(args, list);
         if (o == false) {
             return Operand.Error("Function PRODUCT parameter is error!");
@@ -1732,7 +1736,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             args.add(aa);
         }
 
-        List<Double> list = new List<Double>();
+        List<Double> list = new ArrayList<Double>();
         boolean o = F_base_GetList(args, list);
         if (o == false) {
             return Operand.Error("Function SUMSQ parameter is error!");
@@ -1803,7 +1807,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         String t = firstValue.TextValue();
-        if (t.Length == 0) {
+        if (t.length() == 0) {
             return Operand.Error("Function CODE parameter is error!");
         }
         return Operand.Create((double) (int) (char) t.charAt(0));
@@ -1863,15 +1867,15 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             return secondValue;
         }
 
-        if (args.Count == 2) {
-            int p = secondValue.TextValue().IndexOf(firstValue.TextValue()) + excelIndex;
+        if (args.size() == 2) {
+            int p = secondValue.TextValue().indexOf(firstValue.TextValue()) + excelIndex;
             return Operand.Create(p);
         }
         Operand count = args.get(2).ToNumber("Function FIND parameter 3 is error!");
         if (count.IsError()) {
             return count;
         }
-        int p2 = secondValue.TextValue().IndexOf(firstValue.TextValue(), count.IntValue()) + excelIndex;
+        int p2 = secondValue.TextValue().indexOf(firstValue.TextValue(), count.IntValue()) + excelIndex;
         return Operand.Create(p2);
     }
 
@@ -1890,7 +1894,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             return firstValue;
         }
 
-        if (args.Count == 1) {
+        if (args.size() == 1) {
             return Operand.Create(firstValue.TextValue().charAt(0).toString());
         }
         Operand secondValue = args.get(1).ToNumber("Function LEFT parameter 2 is error!");
@@ -1906,7 +1910,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             return firstValue;
         }
 
-        return Operand.Create(firstValue.TextValue().Length);
+        return Operand.Create(firstValue.TextValue().length());
     }
 
     public Operand VisitLOWER_fun(LOWER_funContext context) {
@@ -1915,7 +1919,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             return firstValue;
         }
 
-        return Operand.Create(firstValue.TextValue().ToLower());
+        return Operand.Create(firstValue.TextValue().toLower());
     }
 
     public Operand VisitMID_fun(MID_funContext context) {
@@ -1979,7 +1983,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             return firstValue;
         }
         String oldtext = firstValue.TextValue();
-        if (args.Count == 3) {
+        if (args.size() == 3) {
             Operand secondValue2 = args.get(1).ToText("Function REPLACE parameter 2 is error!");
             Operand thirdValue2 = args.get(2).ToText("Function REPLACE parameter 3 is error!");
             String old = secondValue2.TextValue();
@@ -2060,14 +2064,14 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             return firstValue;
         }
 
-        if (args.Count == 1) {
-            return Operand.Create(firstValue.TextValue().charAt(firstValue.TextValue().Length - 1).toString());
+        if (args.size() == 1) {
+            return Operand.Create(firstValue.TextValue().charAt(firstValue.TextValue().length() - 1).toString());
         }
         Operand secondValue = args.get(1).ToNumber("Function RIGHT parameter 2 is error!");
         if (secondValue.IsError()) {
             return secondValue;
         }
-        return Operand.Create(firstValue.TextValue().Substring(firstValue.TextValue().Length - secondValue.IntValue(),
+        return Operand.Create(firstValue.TextValue().Substring(firstValue.TextValue().length() - secondValue.IntValue(),
                 secondValue.IntValue()));
     }
 
@@ -2098,8 +2102,8 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         if (secondValue.IsError()) {
             return secondValue;
         }
-        if (args.Count == 2) {
-            int p = secondValue.TextValue().IndexOf(firstValue.TextValue(), StringComparison.OrdinalIgnoreCase)
+        if (args.size() == 2) {
+            int p = secondValue.TextValue().indexOf(firstValue.TextValue(), StringComparison.OrdinalIgnoreCase)
                     + excelIndex;
             return Operand.Create(p);
         }
@@ -2107,7 +2111,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         if (thirdValue.IsError()) {
             return thirdValue;
         }
-        int p2 = secondValue.TextValue().IndexOf(firstValue.TextValue(), thirdValue.IntValue(),
+        int p2 = secondValue.TextValue().indexOf(firstValue.TextValue(), thirdValue.IntValue(),
                 StringComparison.OrdinalIgnoreCase) + excelIndex;
         return Operand.Create(p2);
     }
@@ -2133,7 +2137,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         if (thirdValue.IsError()) {
             return thirdValue;
         }
-        if (args.Count == 3) {
+        if (args.size() == 3) {
             return Operand.Create(firstValue.TextValue().Replace(secondValue.TextValue(), thirdValue.TextValue()));
         }
         Operand fourthValue = args.get(3).ToNumber("Function SUBSTITUTE parameter 4 is error!");
@@ -2173,7 +2177,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
     public Operand VisitT_fun(T_funContext context) {
         Operand firstValue = visit(context.expr());
-        if (firstValue.Type == OperandType.STRING) {
+        if (firstValue.Type() == OperandType.STRING) {
             return firstValue;
         }
         return Operand.Create("");
@@ -2198,13 +2202,13 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             return secondValue;
         }
 
-        if (firstValue.Type == OperandType.STRING) {
+        if (firstValue.Type() == OperandType.STRING) {
             return firstValue;
-        } else if (firstValue.Type == OperandType.BOOLEAN) {
+        } else if (firstValue.Type() == OperandType.BOOLEAN) {
             return Operand.Create(firstValue.BooleanValue() ? "TRUE" : "FALSE");
-        } else if (firstValue.Type == OperandType.NUMBER) {
+        } else if (firstValue.Type() == OperandType.NUMBER) {
             return Operand.Create(firstValue.NumberValue().toString(secondValue.TextValue(), cultureInfo));
-        } else if (firstValue.Type == OperandType.DATE) {
+        } else if (firstValue.Type() == OperandType.DATE) {
             return Operand.Create(firstValue.DateValue().toString(secondValue.TextValue()));
         }
         firstValue = firstValue.ToText("Function TEXT parameter 1 is error!");
@@ -2247,7 +2251,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
     private String F_base_ToSBC(String input) {
         StringBuilder sb = new StringBuilder(input);
-        for (int i = 0; i < input.Length; i++) {
+        for (int i = 0; i < input.length(); i++) {
             char c = input.charAt(i);// [i];
             if (c == ' ') {
                 sb.setCharAt(i, (char) 12288);
@@ -2262,7 +2266,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
     private String F_base_ToDBC(String input) {
         StringBuilder sb = new StringBuilder(input);
-        for (int i = 0; i < input.Length; i++) {
+        for (int i = 0; i < input.length(); i++) {
             char c = input.charAt(i);// [i];
             if (c == 12288) {
                 sb.setCharAt(i, (char) 32);
@@ -2381,12 +2385,12 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         MyDate d;
-        if (args.Count == 3) {
+        if (args.size() == 3) {
             d = new MyDate(args.get(0).IntValue(), args.get(1).IntValue(), args.get(2).IntValue(), 0, 0, 0);
-        } else if (args.Count == 4) {
+        } else if (args.size() == 4) {
             d = new MyDate(args.get(0).IntValue(), args.get(1).IntValue(), args.get(2).IntValue(), args.get(3).IntValue(),
                     0, 0);
-        } else if (args.Count == 5) {
+        } else if (args.size() == 5) {
             d = new MyDate(args.get(0).IntValue(), args.get(1).IntValue(), args.get(2).IntValue(), args.get(3).IntValue(),
                     args.get(4).IntValue(), 0);
         } else {
@@ -2408,7 +2412,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         MyDate d;
-        if (args.Count == 3) {
+        if (args.size() == 3) {
             d = new MyDate(0, 0, 0, args.get(0).IntValue(), args.get(1).IntValue(), args.get(2).IntValue());
         } else {
             d = new MyDate(0, 0, 0, args.get(0).IntValue(), args.get(1).IntValue(), 0);
@@ -2494,7 +2498,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         int type = 1;
-        if (args.Count == 2) {
+        if (args.size() == 2) {
             Operand secondValue = args.get(1).ToNumber("Function WEEKDAY parameter 2 is error!");
             if (secondValue.IsError()) {
                 return secondValue;
@@ -2541,7 +2545,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
         MyDate startDate = (DateTime) firstValue.DateValue();
         MyDate endDate = (DateTime) secondValue.DateValue();
-        String t = thirdValue.TextValue().ToLower();
+        String t = thirdValue.TextValue().toLower();
 
         if (t == "y") {
             boolean b = false;
@@ -2615,7 +2619,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         MyDate endDate = (DateTime) secondValue.DateValue();
 
         boolean method = false;
-        if (args.Count == 3) {
+        if (args.size() == 3) {
             Operand thirdValue = args.get(2).ToDate("Function DAYS360 parameter 3 is error!");
             if (thirdValue.IsError()) {
                 return thirdValue;
@@ -2708,7 +2712,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         MyDate endDate = (DateTime) args.get(1).DateValue();
 
         List<DateTime> list = new List<DateTime>();
-        for (int i = 2; i < args.Count; i++) {
+        for (int i = 2; i < args.size(); i++) {
             list.add(args.get(i).DateValue());
         }
 
@@ -2746,7 +2750,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         MyDate startDate = (DateTime) firstValue.DateValue();
         int days = secondValue.IntValue();
         List<DateTime> list = new List<DateTime>();
-        for (int i = 2; i < args.Count; i++) {
+        for (int i = 2; i < args.size(); i++) {
             args.get(i) = args.get(i).ToDate("Function WORKDAY parameter {i + 1} is error!");
             if (args.get(i).IsError()) {
                 return args.get(i);
@@ -2784,7 +2788,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         MyDate startDate = (DateTime) firstValue.DateValue();
 
         int days = startDate.DayOfYear + (int) (new DateTime(startDate.Year, 1, 1).DayOfWeek);
-        if (args.Count == 2) {
+        if (args.size() == 2) {
             Operand secondValue = args.get(1).ToNumber("Function WEEKNUM parameter 2 is error!");
             if (secondValue.IsError()) {
                 return secondValue;
@@ -2809,13 +2813,13 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             args.add(aa);
         }
 
-        List<Double> list = new List<Double>();
+        List<Double> list = new ArrayList<Double>();
         boolean o = F_base_GetList(args, list);
         if (o == false) {
             return Operand.Error("Function MAX parameter error!");
         }
 
-        return Operand.Create(list.Max());
+        return Operand.Create(list.max());
     }
 
     public Operand VisitMEDIAN_fun(MEDIAN_funContext context)
@@ -2823,13 +2827,13 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>(); int index = 1;
         for (ExprContext item : context.expr()) { Operand aa = visit(item).ToNumber("Function MEDIAN parameter "+(index++)+" is error!"); if (aa.IsError()) { return aa; } args.add(aa); }
 
-        List<Double>  list = new List<Double> ();
+        List<Double>  list = new ArrayList<Double> ();
         boolean o = F_base_GetList(args, list);
         if (o == false) { return Operand.Error("Function MEDIAN parameter error!"); }
 
         list=ShellSort(list);
         // list = list.OrderBy(q => q).ToList();
-        return Operand.Create(list[list.Count / 2]);
+        return Operand.Create(list[list.size() / 2]);
     }
 
     public Operand VisitMIN_fun(MIN_funContext context) {
@@ -2843,7 +2847,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             args.add(aa);
         }
 
-        List<Double> list = new List<Double>();
+        List<Double> list = new ArrayList<Double>();
         boolean o = F_base_GetList(args, list);
         if (o == false) {
             return Operand.Error("Function MIN parameter error!");
@@ -2871,7 +2875,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             return secondValue;
         }
 
-        List<Double> list = new List<Double>();
+        List<Double> list = new ArrayList<Double>();
         boolean o = F_base_GetList(firstValue, list);
         if (o == false) {
             return Operand.Error("Function QUARTILE parameter 1 error!");
@@ -2889,7 +2893,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>(); int index = 1;
         for (ExprContext item : context.expr()) { Operand aa = visit(item).ToNumber("Function MODE parameter "+(index++)+" is error!"); if (aa.IsError()) { return aa; } args.add(aa); }
 
-        List<Double>  list = new List<Double> ();
+        List<Double>  list = new ArrayList<Double> ();
         boolean o = F_base_GetList(args, list);
         if (o == false) { return Operand.Error("Function MODE parameter error!"); }
 
@@ -2926,7 +2930,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         if (secondValue.IsError()) { return secondValue; }
 
 
-        List<Double>  list = new List<Double> ();
+        List<Double>  list = new ArrayList<Double> ();
         boolean o = F_base_GetList(args, list);
         if (o == false) { return Operand.Error("Function LARGE parameter error!"); }
 
@@ -2946,7 +2950,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         Operand secondValue = args.get(1).ToNumber("Function SMALL parameter 2 is error!");
         if (secondValue.IsError()) { return secondValue; }
 
-        List<Double>  list = new List<Double> ();
+        List<Double>  list = new ArrayList<Double> ();
         boolean o = F_base_GetList(args, list);
         if (o == false) { return Operand.Error("Function SMALL parameter error!"); }
 
@@ -2976,7 +2980,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             return secondValue;
         }
 
-        List<Double> list = new List<Double>();
+        List<Double> list = new ArrayList<Double>();
         boolean o = F_base_GetList(firstValue, list);
         if (o == false) {
             return Operand.Error("Function PERCENTILE parameter error!");
@@ -3005,16 +3009,16 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             return secondValue;
         }
 
-        List<Double> list = new List<Double>();
+        List<Double> list = new ArrayList<Double>();
         boolean o = F_base_GetList(firstValue, list);
         if (o == false) {
             return Operand.Error("Function PERCENTRANK parameter error!");
         }
 
         double k = secondValue.NumberValue();
-        double v = ExcelFunctions.PercentRank(list.ToArray(), k);
+        double v = ExcelFunctions.PercentRank(list.toArray(), k);
         int d = 3;
-        if (args.Count == 3) {
+        if (args.size() == 3) {
             Operand thirdValue = args.get(2).ToNumber("Function PERCENTRANK parameter 3 is error!");
             if (thirdValue.IsError()) {
                 return thirdValue;
@@ -3034,7 +3038,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             args.add(aa);
         }
 
-        List<Double> list = new List<Double>();
+        List<Double> list = new ArrayList<Double>();
         boolean o = F_base_GetList(args, list);
         if (o == false) {
             return Operand.Error("Function AVERAGE parameter error!");
@@ -3048,13 +3052,13 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         List<Operand> args = new ArrayList<Operand>();
         for (ExprContext item : context.expr()) { Operand aa = visit(item); if (aa.IsError()) { return aa; } args.add(aa); }
 
-        List<Double>  list = new List<Double> ();
+        List<Double>  list = new ArrayList<Double> ();
         boolean o = F_base_GetList(args.get(0), list);
         if (o == false) { return Operand.Error("Function AVERAGE parameter 1 error!"); }
 
         List<Double>  sumdbs;
-        if (args.Count == 3) {
-            sumdbs = new List<Double> ();
+        if (args.size() == 3) {
+            sumdbs = new ArrayList<Double> ();
             boolean o2 = F_base_GetList(args.get(2), sumdbs);
             if (o2 == false) { return Operand.Error("Function AVERAGE parameter 3 error!"); }
         } else {
@@ -3063,7 +3067,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
         double sum;
         int count;
-        if (args.get(1).Type == OperandType.NUMBER) {
+        if (args.get(1).Type() == OperandType.NUMBER) {
             count = F_base_countif(list, args.get(1).NumberValue());
             sum = count * args.get(1).NumberValue();
         } else {
@@ -3106,10 +3110,10 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             args.add(aa);
         }
 
-        if (args.Count == 1)
+        if (args.size() == 1)
             return args.get(0);
 
-        List<Double> list = new List<Double>();
+        List<Double> list = new ArrayList<Double>();
         boolean o = F_base_GetList(args, list);
         if (o == false) {
             return Operand.Error("Function GEOMEAN parameter error!");
@@ -3119,7 +3123,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         for (double db : list) {
             sum *= db;
         }
-        return Operand.Create(Math.pow(sum, 1.0 / list.Count));
+        return Operand.Create(Math.pow(sum, 1.0 / list.size());
     }
 
     public Operand VisitHARMEAN_fun(HARMEAN_funContext context) {
@@ -3132,10 +3136,10 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             args.add(aa);
         }
 
-        if (args.Count == 1)
+        if (args.size() == 1)
             return args.get(0);
 
-        List<Double> list = new List<Double>();
+        List<Double> list = new ArrayList<Double>();
         boolean o = F_base_GetList(args, list);
         if (o == false) {
             return Operand.Error("Function HARMEAN parameter error!");
@@ -3148,7 +3152,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             }
             sum += 1 / db;
         }
-        return Operand.Create(list.Count / sum);
+        return Operand.Create(list.size() / sum);
     }
 
     public Operand VisitCOUNT_fun(COUNT_funContext context) {
@@ -3161,13 +3165,13 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             args.add(aa);
         }
 
-        List<Double> list = new List<Double>();
+        List<Double> list = new ArrayList<Double>();
         boolean o = F_base_GetList(args, list);
         if (o == false) {
             return Operand.Error("Function COUNT parameter error!");
         }
 
-        return Operand.Create(list.Count);
+        return Operand.Create(list.size());
     }
 
     public Operand VisitCOUNTIF_fun(COUNTIF_funContext context)
@@ -3180,7 +3184,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         if (o == false) { return Operand.Error("Function COUNTIF parameter error!"); }
 
         int count;
-        if (args.get(1).Type == OperandType.NUMBER) {
+        if (args.get(1).Type() == OperandType.NUMBER) {
             count = F_base_countif(list, args.get(1).NumberValue());
         } else {
             try {
@@ -3218,10 +3222,10 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             args.add(aa);
         }
 
-        if (args.Count == 1)
+        if (args.size() == 1)
             return args.get(0);
 
-        List<Double> list = new List<Double>();
+        List<Double> list = new ArrayList<Double>();
         boolean o = F_base_GetList(args, list);
         if (o == false) {
             return Operand.Error("Function SUM parameter error!");
@@ -3241,7 +3245,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         if (o == false) { return Operand.Error("Function SUMIF parameter 1 error!"); }
 
         List<Double>  sumdbs;
-        if (args.Count == 3) {
+        if (args.size() == 3) {
             sumdbs = new List<Double> ();
             boolean o2 = F_base_GetList(args.get(2), sumdbs);
             if (o2 == false) { return Operand.Error("Function SUMIF parameter 3 error!"); }
@@ -3250,7 +3254,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         double sum;
-        if (args.get(1).Type == OperandType.NUMBER) {
+        if (args.get(1).Type() == OperandType.NUMBER) {
             sum = F_base_countif(list, args.get(1).NumberValue()) * args.get(1).NumberValue();
         } else {
             try {
@@ -3288,7 +3292,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             args.add(aa);
         }
 
-        List<Double> list = new List<Double>();
+        List<Double> list = new ArrayList<Double>();
         boolean o = F_base_GetList(args, list);
         if (o == false) {
             return Operand.Error("Function AVEDEV parameter error!");
@@ -3296,10 +3300,10 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
         double avg = list.Average();
         double sum = 0;
-        for (int i = 0; i < list.Count; i++) {
+        for (int i = 0; i < list.size(); i++) {
             sum += Math.abs(list.get(i) - avg);
         }
-        return Operand.Create(sum / list.Count);
+        return Operand.Create(sum / list.size());
     }
 
     public Operand VisitSTDEV_fun(STDEV_funContext context) {
@@ -3312,10 +3316,10 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             args.add(aa);
         }
 
-        if (args.Count == 1) {
+        if (args.size() == 1) {
             return Operand.Error("Function STDEV parameter only one error!");
         }
-        List<Double> list = new List<Double>();
+        List<Double> list = new ArrayList<Double>();
         boolean o = F_base_GetList(args, list);
         if (o == false) {
             return Operand.Error("Function STDEV parameter error!");
@@ -3323,10 +3327,10 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
         double avg = list.Average();
         double sum = 0;
-        for (int i = 0; i < list.Count; i++) {
+        for (int i = 0; i < list.size(); i++) {
             sum += (list.get(i) - avg) * (list.get(i) - avg);
         }
-        return Operand.Create(Math.sqrt(sum / (list.Count - 1)));
+        return Operand.Create(Math.sqrt(sum / (list.size() - 1)));
     }
 
     public Operand VisitSTDEVP_fun(STDEVP_funContext context) {
@@ -3339,7 +3343,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             args.add(aa);
         }
 
-        List<Double> list = new List<Double>();
+        List<Double> list = new ArrayList<Double>();
         boolean o = F_base_GetList(args, list);
         if (o == false) {
             return Operand.Error("Function STDEVP parameter error!");
@@ -3348,10 +3352,10 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         double sum = 0;
         double avg = list.Average();
 
-        for (int i = 0; i < list.Count; i++) {
+        for (int i = 0; i < list.size(); i++) {
             sum += (list.get(i) - avg) * (list.get(i) - avg);
         }
-        return Operand.Create(Math.sqrt(sum / (list.Count)));
+        return Operand.Create(Math.sqrt(sum / (list.size())));
     }
 
     public Operand VisitDEVSQ_fun(DEVSQ_funContext context) {
@@ -3364,7 +3368,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             args.add(aa);
         }
 
-        List<Double> list = new List<Double>();
+        List<Double> list = new ArrayList<Double>();
         boolean o = F_base_GetList(args, list);
         if (o == false) {
             return Operand.Error("Function DEVSQ parameter error!");
@@ -3372,7 +3376,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
         double avg = list.Average();
         double sum = 0;
-        for (int i = 0; i < list.Count; i++) {
+        for (int i = 0; i < list.size(); i++) {
             sum += (list.get(i) - avg) * (list.get(i) - avg);
         }
         return Operand.Create(sum);
@@ -3388,10 +3392,10 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             args.add(aa);
         }
 
-        if (args.Count == 1) {
+        if (args.size() == 1) {
             return Operand.Error("Function VAR parameter only one error!");
         }
-        List<Double> list = new List<Double>();
+        List<Double> list = new ArrayList<Double>();
         boolean o = F_base_GetList(args, list);
         if (o == false) {
             return Operand.Error("Function VAR parameter error!");
@@ -3399,11 +3403,11 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
         double sum = 0;
         double sum2 = 0;
-        for (int i = 0; i < list.Count; i++) {
+        for (int i = 0; i < list.size(); i++) {
             sum += list.get(i) * list.get(i);
             sum2 += list.get(i);
         }
-        return Operand.Create((list.Count * sum - sum2 * sum2) / list.Count / (list.Count - 1));
+        return Operand.Create((list.size() * sum - sum2 * sum2) / list.size() / (list.size() - 1));
     }
 
     public Operand VisitVARP_fun(VARP_funContext context) {
@@ -3416,7 +3420,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             args.add(aa);
         }
 
-        List<Double> list = new List<Double>();
+        List<Double> list = new ArrayList<Double>();
         boolean o = F_base_GetList(args, list);
         if (o == false) {
             return Operand.Error("Function VARP parameter error!");
@@ -3424,10 +3428,10 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
         double sum = 0;
         double avg = list.Average();
-        for (int i = 0; i < list.Count; i++) {
+        for (int i = 0; i < list.size(); i++) {
             sum += (avg - list.get(i)) * (avg - list.get(i));
         }
-        return Operand.Create(sum / list.Count);
+        return Operand.Create(sum / list.size());
     }
 
     public Operand VisitNORMDIST_fun(NORMDIST_funContext context) {
@@ -3939,7 +3943,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         Double d = Double.parseDouble(m.Groups[2].Value);
         double sum = 0;
 
-        for (int i = 0; i < dbs.Count; i++) {
+        for (int i = 0; i < dbs.size(); i++) {
             if (F_base_compare(dbs.get(i), d, s)) {
                 sum += sumdbs.get(i);
             }
@@ -3964,14 +3968,14 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
     private boolean F_base_GetList(List<Operand> args, List<Double> list) {
         for (Operand item : args) {
-            if (item.Type == OperandType.NUMBER) {
+            if (item.Type() == OperandType.NUMBER) {
                 list.add(item.NumberValue());
-            } else if (item.Type == OperandType.ARRARY) {
+            } else if (item.Type() == OperandType.ARRARY) {
                 boolean o = F_base_GetList(item.ArrayValue(), list);
                 if (o == false) {
                     return false;
                 }
-            } else if (item.Type == OperandType.JSON) {
+            } else if (item.Type() == OperandType.JSON) {
                 Operand i = item.ToArray(null);
                 if (i.IsError()) {
                     return false;
@@ -3995,14 +3999,14 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         if (args.IsError()) {
             return false;
         }
-        if (args.Type == OperandType.NUMBER) {
+        if (args.Type() == OperandType.NUMBER) {
             list.add(args.NumberValue());
-        } else if (args.Type == OperandType.ARRARY) {
+        } else if (args.Type() == OperandType.ARRARY) {
             boolean o = F_base_GetList(args.ArrayValue(), list);
             if (o == false) {
                 return false;
             }
-        } else if (args.Type == OperandType.JSON) {
+        } else if (args.Type() == OperandType.JSON) {
             Operand i = args.ToArray(null);
             if (i.IsError()) {
                 return false;
@@ -4025,12 +4029,12 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         if (args.IsError()) {
             return false;
         }
-        if (args.Type == OperandType.ARRARY) {
+        if (args.Type() == OperandType.ARRARY) {
             boolean o = F_base_GetList(args.ArrayValue(), list);
             if (o == false) {
                 return false;
             }
-        } else if (args.Type == OperandType.JSON) {
+        } else if (args.Type() == OperandType.JSON) {
             Operand i = args.ToArray(null);
             if (i.IsError()) {
                 return false;
@@ -4051,12 +4055,12 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
 
     private boolean F_base_GetList(List<Operand> args, List<String> list) {
         for (Operand item : args) {
-            if (item.Type == OperandType.ARRARY) {
+            if (item.Type() == OperandType.ARRARY) {
                 boolean o = F_base_GetList(item.ArrayValue(), list);
                 if (o == false) {
                     return false;
                 }
-            } else if (item.Type == OperandType.JSON) {
+            } else if (item.Type() == OperandType.JSON) {
                 Operand i = item.ToArray(null);
                 if (i.IsError()) {
                     return false;
@@ -4124,7 +4128,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         Encoding encoding;
-        if (args.Count == 1) {
+        if (args.size() == 1) {
             encoding = Encoding.UTF8;
         } else {
             encoding = Encoding.GetEncoding(args.get(1).TextValue());
@@ -4145,7 +4149,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         Encoding encoding;
-        if (args.Count == 1) {
+        if (args.size() == 1) {
             encoding = Encoding.UTF8;
         } else {
             encoding = Encoding.GetEncoding(args.get(1).TextValue());
@@ -4166,7 +4170,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         Encoding encoding;
-        if (args.Count == 1) {
+        if (args.size() == 1) {
             encoding = Encoding.UTF8;
         } else {
             encoding = Encoding.GetEncoding(args.get(1).TextValue());
@@ -4188,7 +4192,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         Encoding encoding;
-        if (args.Count == 1) {
+        if (args.size() == 1) {
             encoding = Encoding.UTF8;
         } else {
             encoding = Encoding.GetEncoding(args.get(1).TextValue());
@@ -4217,19 +4221,19 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             return secondValue;
         }
 
-        if (args.Count == 2) {
+        if (args.size() == 2) {
             Match b = Regex.Match(firstValue.TextValue(), secondValue.TextValue());
             if (b.Success == false) {
                 return Operand.Error("Function REGEX is error!");
             }
             return Operand.Create(b.Value);
-        } else if (args.Count == 3) {
+        } else if (args.size() == 3) {
             Matches ms = Regex.Matches(firstValue.TextValue(), secondValue.TextValue());
             Operand thirdValue = args.get(2).ToNumber("Function REGEX parameter 3 is error!");
             if (thirdValue.IsError()) {
                 return thirdValue;
             }
-            if (ms.Count <= thirdValue.IntValue() - excelIndex) {
+            if (ms.size() <= thirdValue.IntValue() - excelIndex) {
                 return Operand.Error("Function REGEX is error!");
             }
             return Operand.Create(ms[thirdValue.IntValue() - excelIndex].Value);
@@ -4239,7 +4243,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (thirdValue.IsError()) {
                 return thirdValue;
             }
-            if (ms.Count <= thirdValue.IntValue() + excelIndex) {
+            if (ms.size() <= thirdValue.IntValue() + excelIndex) {
                 return Operand.Error("Function REGEX parameter 3 is error!");
             }
             Operand fourthValue = args.get(3).ToNumber("Function REGEX parameter 4 is error!");
@@ -4296,7 +4300,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         Encoding encoding;
-        if (args.Count == 1) {
+        if (args.size() == 1) {
             encoding = Encoding.UTF8;
         } else {
             encoding = Encoding.GetEncoding(args.get(1).TextValue());
@@ -4317,7 +4321,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         Encoding encoding;
-        if (args.Count == 1) {
+        if (args.size() == 1) {
             encoding = Encoding.UTF8;
         } else {
             encoding = Encoding.GetEncoding(args.get(1).TextValue());
@@ -4338,7 +4342,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         Encoding encoding;
-        if (args.Count == 1) {
+        if (args.size() == 1) {
             encoding = Encoding.UTF8;
         } else {
             encoding = Encoding.GetEncoding(args.get(1).TextValue());
@@ -4359,7 +4363,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         Encoding encoding;
-        if (args.Count == 1) {
+        if (args.size() == 1) {
             encoding = Encoding.UTF8;
         } else {
             encoding = Encoding.GetEncoding(args.get(1).TextValue());
@@ -4380,7 +4384,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         Encoding encoding;
-        if (args.Count == 1) {
+        if (args.size() == 1) {
             encoding = Encoding.UTF8;
         } else {
             encoding = Encoding.GetEncoding(args.get(1).TextValue());
@@ -4401,7 +4405,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         Encoding encoding;
-        if (args.Count == 1) {
+        if (args.size() == 1) {
             encoding = Encoding.UTF8;
         } else {
             encoding = Encoding.GetEncoding(args.get(1).TextValue());
@@ -4422,7 +4426,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         Encoding encoding;
-        if (args.Count == 1) {
+        if (args.size() == 1) {
             encoding = Encoding.UTF8;
         } else {
             encoding = Encoding.GetEncoding(args.get(1).TextValue());
@@ -4443,7 +4447,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         Encoding encoding;
-        if (args.Count == 2) {
+        if (args.size() == 2) {
             encoding = Encoding.UTF8;
         } else {
             encoding = Encoding.GetEncoding(args.get(2).TextValue());
@@ -4464,7 +4468,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         Encoding encoding;
-        if (args.Count == 2) {
+        if (args.size() == 2) {
             encoding = Encoding.UTF8;
         } else {
             encoding = Encoding.GetEncoding(args.get(2).TextValue());
@@ -4485,7 +4489,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         Encoding encoding;
-        if (args.Count == 2) {
+        if (args.size() == 2) {
             encoding = Encoding.UTF8;
         } else {
             encoding = Encoding.GetEncoding(args.get(2).TextValue());
@@ -4506,7 +4510,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         Encoding encoding;
-        if (args.Count == 2) {
+        if (args.size() == 2) {
             encoding = Encoding.UTF8;
         } else {
             encoding = Encoding.GetEncoding(args.get(2).TextValue());
@@ -4527,7 +4531,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         String text = args.get(0).TextValue();
-        if (args.Count == 2) {
+        if (args.size() == 2) {
             return Operand.Create(text.TrimStart(args.get(1).TextValue().ToArray()));
         }
         return Operand.Create(text.TrimStart());
@@ -4545,7 +4549,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         String text = args.get(0).TextValue();
-        if (args.Count == 2) {
+        if (args.size() == 2) {
             return Operand.Create(text.TrimEnd(args.get(1).TextValue().ToArray()));
         }
         return Operand.Create(text.TrimEnd());
@@ -4571,22 +4575,22 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         String text = firstValue.TextValue();
-        if (args.Count == 2) {
-            return Operand.Create(text.IndexOf(secondValue.TextValue()) + excelIndex);
+        if (args.size() == 2) {
+            return Operand.Create(text.indexOf(secondValue.TextValue()) + excelIndex);
         }
         Operand thirdValue = args.get(2).ToText("Function INDEXOF parameter 3 is error!");
         if (thirdValue.IsError()) {
             return thirdValue;
         }
-        if (args.Count == 3) {
-            return Operand.Create(text.IndexOf(secondValue.TextValue(), thirdValue.IntValue()) + excelIndex);
+        if (args.size() == 3) {
+            return Operand.Create(text.indexOf(secondValue.TextValue(), thirdValue.IntValue()) + excelIndex);
         }
         Operand fourthValue = args.get(3).ToText("Function INDEXOF parameter 4 is error!");
         if (fourthValue.IsError()) {
             return fourthValue;
         }
         return Operand.Create(
-                text.IndexOf(secondValue.TextValue(), thirdValue.IntValue(), fourthValue.IntValue()) + excelIndex);
+                text.indexOf(secondValue.TextValue(), thirdValue.IntValue(), fourthValue.IntValue()) + excelIndex);
     }
 
     public Operand VisitLASTINDEXOF_fun(LASTINDEXOF_funContext context) {
@@ -4609,14 +4613,14 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         String text = firstValue.TextValue();
-        if (args.Count == 2) {
+        if (args.size() == 2) {
             return Operand.Create(text.LastIndexOf(secondValue.TextValue()) + excelIndex);
         }
         Operand thirdValue = args.get(2).ToText("Function LASTINDEXOF parameter 3 is error!");
         if (thirdValue.IsError()) {
             return thirdValue;
         }
-        if (args.Count == 3) {
+        if (args.size() == 3) {
             return Operand.Create(text.LastIndexOf(secondValue.TextValue(), thirdValue.IntValue()) + excelIndex);
         }
         Operand fourthValue = args.get(3).ToText("Function LASTINDEXOF parameter 4 is error!");
@@ -4651,13 +4655,13 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         Operand firstValue = args.get(0);
-        if (firstValue.Type == OperandType.JSON) {
+        if (firstValue.Type() == OperandType.JSON) {
             Operand o = firstValue.ToArray(null);
             if (o.IsError() == false) {
                 firstValue = o;
             }
         }
-        if (firstValue.Type == OperandType.ARRARY) {
+        if (firstValue.Type() == OperandType.ARRARY) {
             List<String> list = new List<String>();
             boolean o = F_base_GetList(firstValue, list);
             if (o == false)
@@ -4676,7 +4680,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             }
 
             List<String> list = new List<String>();
-            for (int i = 1; i < args.Count; i++) {
+            for (int i = 1; i < args.size(); i++) {
                 boolean o = F_base_GetList(args.get(i), list);
                 if (o == false)
                     return Operand.Error("Function JOIN parameter {i + 1} is error!");
@@ -4706,7 +4710,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         String text = firstValue.TextValue();
-        if (args.Count == 2) {
+        if (args.size() == 2) {
             return Operand.Create(text.Substring(secondValue.IntValue() - excelIndex));
         }
         Operand thirdValue = args.get(2).ToNumber("Function SUBSTRING parameter 3 is error!");
@@ -4736,7 +4740,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         String text = firstValue.TextValue();
-        if (args.Count == 2) {
+        if (args.size() == 2) {
             return Operand.Create(text.StartsWith(secondValue.TextValue()));
         }
         Operand thirdValue = args.get(2).ToBoolean("Function STARTSWITH parameter 3 is error!");
@@ -4767,7 +4771,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         String text = firstValue.TextValue();
-        if (args.Count == 2) {
+        if (args.size() == 2) {
             return Operand.Create(text.EndsWith(secondValue.TextValue()));
         }
         Operand thirdValue = args.get(2).ToBoolean("Function ENDSWITH parameter 3 is error!");
@@ -4817,7 +4821,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         StringComparison comparison = StringComparison.Ordinal;
-        if (args.Count == 3) {
+        if (args.size() == 3) {
             Operand thirdValue = args.get(2).ToBoolean("Function REMOVESTART parameter 3 is error!");
             if (thirdValue.IsError()) {
                 return thirdValue;
@@ -4828,7 +4832,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
         String text = firstValue.TextValue();
         if (text.StartsWith(secondValue.TextValue(), comparison)) {
-            return Operand.Create(text.Substring(secondValue.TextValue().Length));
+            return Operand.Create(text.Substring(secondValue.TextValue().length()));
         }
         return firstValue;
     }
@@ -4853,7 +4857,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         StringComparison comparison = StringComparison.Ordinal;
-        if (args.Count == 3) {
+        if (args.size() == 3) {
             Operand thirdValue = args.get(2).ToBoolean("Function REMOVESTART parameter 3 is error!");
             if (thirdValue.IsError()) {
                 return thirdValue;
@@ -4864,7 +4868,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
         String text = firstValue.TextValue();
         if (text.EndsWith(secondValue.TextValue(), comparison)) {
-            return Operand.Create(text.Substring(0, text.Length - secondValue.TextValue().Length));
+            return Operand.Create(text.Substring(0, text.Length - secondValue.TextValue().length()));
         }
         return firstValue;
     }
@@ -4905,7 +4909,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
         }
 
         boolean vague = true;
-        if (args.Count == 4) {
+        if (args.size() == 4) {
             Operand fourthValue = args.get(2).ToBoolean("Function VLOOKUP parameter 4 is error!");
             if (fourthValue.IsError()) {
                 return fourthValue;
@@ -4924,10 +4928,10 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             if (o.IsError()) {
                 return o;
             }
-            if (o.ArrayValue().Count > 0) {
+            if (o.ArrayValue().size() > 0) {
                 Operand o1 = o.ArrayValue().get(0);// [0];
                 int b = -1;
-                if (secondValue.Type == OperandType.NUMBER) {
+                if (secondValue.Type() == OperandType.NUMBER) {
                     Operand o2 = o1.ToNumber(null);
                     if (o2.IsError() == false) {
                         b = Compare(o2.NumberValue(), secondValue.NumberValue());
@@ -4940,7 +4944,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
                 }
                 if (b == 0) {
                     int index = thirdValue.IntValue() - excelIndex;
-                    if (index < o.ArrayValue().Count) {
+                    if (index < o.ArrayValue().size()) {
                         return o.ArrayValue().get(index);// [index];
                     }
                 }
@@ -4956,10 +4960,10 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
                 if (o.IsError()) {
                     return o;
                 }
-                if (o.ArrayValue().Count > 0) {
+                if (o.ArrayValue().size() > 0) {
                     Operand o1 = o.ArrayValue().get(0);// [0];
                     int b = -1;
-                    if (secondValue.Type == OperandType.NUMBER) {
+                    if (secondValue.Type() == OperandType.NUMBER) {
                         Operand o2 = o1.ToNumber(null);
                         if (o2.IsError() == false) {
                             b = Compare(o2.NumberValue(), secondValue.NumberValue());
@@ -4970,7 +4974,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
                             b = String.CompareOrdinal(o2.TextValue(), secondValue.TextValue());
                         }
                     }
-                    if (b < 0 && index < o.ArrayValue().Count) {
+                    if (b < 0 && index < o.ArrayValue().size()) {
                         last = o;
                     } else if (b > 0 && last != null) {
                         return last.ArrayValue().get(index);// [index];
@@ -5137,17 +5141,17 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
             op = visit(context.parameter2());
         }
 
-        if (obj.Type == OperandType.ARRARY) {
+        if (obj.Type() == OperandType.ARRARY) {
             op = op.ToNumber("ARRARY index is error!");
             if (op.IsError()) {
                 return op;
             }
             int index = op.IntValue() - excelIndex;
-            if (index < obj.ArrayValue().Count)
+            if (index < obj.ArrayValue().size())
                 return obj.ArrayValue().get(index);// [index];
             return Operand.Error("ARRARY index " + index + " greater than maximum length!");
         }
-        if (obj.Type == OperandType.JSON) {
+        if (obj.Type() == OperandType.JSON) {
             JsonData json = obj.JsonValue();
             if (json.IsArray) {
                 op = op.ToNumber("JSON parameter index is error!");
@@ -5155,7 +5159,7 @@ public class MathVisitor extends mathBaseVisitor<Operand> {
                     return op;
                 }
                 int index = op.IntValue() - excelIndex;
-                if (index < json.Count) {
+                if (index < json.size()) {
                     JsonData v = json.GetChild(index);// [op.IntValue() - excelIndex];
                     if (v.IsString())
                         return Operand.Create(v.StringValue);

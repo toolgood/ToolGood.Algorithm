@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import toolgood.algorithm.litJson.JsonMapper;
 import toolgood.algorithm.litJson.JsonData;
@@ -83,38 +84,7 @@ public abstract class Operand {
     public static Operand Create(List<Operand> obj) {
         return new OperandArray(obj);
     }
-    public static Operand Create(List<String> obj)
-    {
-        List<Operand> array = new ArrayList<Operand>();
-        for (String item : obj) {
-            array.add(Create(item));
-        }
-        return new OperandArray(array);
-    }
-    public static Operand Create(List<Double> obj)
-    {
-        List<Operand> array = new ArrayList<Operand>();
-        for (Double item : obj) {
-            array.add(Create(item));
-        }
-        return new OperandArray(array);
-    }
-    public static Operand Create(List<Integer> obj)
-    {
-        List<Operand> array = new ArrayList<Operand>();
-        for (Integer item : obj) {
-            array.add(Create(item));
-        }
-        return new OperandArray(array);
-    }
-    public static Operand Create(List<Boolean> obj)
-    {
-        final List<Operand> array = new ArrayList<Operand>();
-        for (Boolean item : obj) {
-            array.add(Create(item));
-        }
-        return new OperandArray(array);
-    }
+  
     public static Operand Error(final String msg) {
         return new OperandError(msg);
     }
@@ -151,16 +121,16 @@ public abstract class Operand {
             return Create(((double) DateValue()) != 0);
         }
         if (Type() == OperandType.STRING) {
-            if (TextValue().equals("true", StringComparison.OrdinalIgnoreCase)) {
+            if (TextValue().toLowerCase().equals("true")) {
                 return Create(true);
             }
-            if (TextValue().Equals("false", StringComparison.OrdinalIgnoreCase)) {
+            if (TextValue().toLowerCase().equals("false")) {
                 return Create(false);
             }
-            if (TextValue().Equals("1", StringComparison.OrdinalIgnoreCase)) {
+            if (TextValue().equals("1")) {
                 return Create(true);
             }
-            if (TextValue().Equals("0", StringComparison.OrdinalIgnoreCase)) {
+            if (TextValue().equals("0")) {
                 return Create(false);
             }
         }
@@ -190,7 +160,7 @@ public abstract class Operand {
         }
         return Error(errorMessage);
     }
-    public Operand ToJson(final String errorMessage  )
+    public Operand ToJson(final String errorMessage  ) throws Exception
     {
         if (Type() == OperandType.JSON) { return this; }
         if (IsError()) { return this; }
@@ -209,7 +179,7 @@ public abstract class Operand {
         }
         return Error(errorMessage);
     }
-    public Operand ToArray(final String errorMessage )
+    public Operand ToArray(final String errorMessage ) throws Exception
     {
         if (Type() == OperandType.ARRARY) { return this; }
         if (IsError()) { return this; }

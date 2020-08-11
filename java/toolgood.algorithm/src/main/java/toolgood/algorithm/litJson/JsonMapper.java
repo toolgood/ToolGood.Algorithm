@@ -1,7 +1,7 @@
 package toolgood.algorithm.litJson;
 
 public class JsonMapper {
-    private static JsonData ReadValue(JsonReader reader)
+    private static JsonData ReadValue(JsonReader reader) throws JsonException
     {
         reader.Read();
 
@@ -56,7 +56,7 @@ public class JsonMapper {
     }
 
 
-    public static JsonData ToObject(String json)
+    public static JsonData ToObject(String json) throws JsonException
     {
         JsonReader reader = new JsonReader(json);
         return (JsonData)ReadValue(reader) ;
