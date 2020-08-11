@@ -40,7 +40,6 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     private static Pattern bit_16 = Pattern.compile("^[0-9a-fA-F]+");
     private static Pattern clearRegex = Pattern.compile("[\\f\\n\\r\\t\\v]");
     private static Pattern numberRegex = Pattern.compile("^-?(0|[1-9])\\d*(\\.\\d+)?");
-    private static Locale cultureInfo = Locale.US;
     public Function<String, Operand> GetParameter;
     public Function<MyFunction, Operand> DiyFunction;
     public int excelIndex;
@@ -1682,7 +1681,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
 
         if (args.size() > 1) {
-            return Operand.Create(Math.log(args.get(0).NumberValue(), args.get(1).NumberValue()));
+            return Operand.Create(log(args.get(0).NumberValue(), args.get(1).NumberValue()));
         }
         return Operand.Create(Math.log10(args.get(0).NumberValue()));
     }
@@ -5075,7 +5074,8 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                 } else {
                     Operand o2 = o1.ToText(null);
                     if (o2.IsError() == false) {
-                        b = String.CompareOrdinal(o2.TextValue(), secondValue.TextValue());
+                        b =  o2.TextValue().compareTo(secondValue.TextValue());
+                        // b = String.CompareOrdinal(o2.TextValue(), secondValue.TextValue());
                     }
                 }
                 if (b == 0) {
@@ -5107,7 +5107,8 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                     } else {
                         Operand o2 = o1.ToText(null);
                         if (o2.IsError() == false) {
-                            b = String.CompareOrdinal(o2.TextValue(), secondValue.TextValue());
+                            b =  o2.TextValue().compareTo(secondValue.TextValue());
+                            // b = String.CompareOrdinal(o2.TextValue(), secondValue.TextValue());
                         }
                     }
                     if (b < 0 && index < o.ArrayValue().size()) {
@@ -5141,8 +5142,12 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (engine.Parse(secondValue.TextValue()) == false) {
             return Operand.Error("Function LOOKUP parameter 2 Parse is error!");
         }
- 
-        engine.DiyFunction = DoDiyFunction;
+        // Function<MyFunction, Operand> f=s->{
+        //   return DoDiyFunction(s);
+        // }
+        engine.DiyFunction = s->{
+            return DoDiyFunction(s);
+        };
 
         for (Operand item : firstValue.ArrayValue()) {
             Operand json = item.ToJson(null);
@@ -5440,7 +5445,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Base64Util.decode(base64);
     }
  
-    private static String ToBase64ForUrlString(byte[] input)
+    private String ToBase64ForUrlString(byte[] input)
     {
         return ToBase64String(input).replace("=*$", "").replace("\\+", "-").replace("/", "-");
     }
@@ -5462,6 +5467,9 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             sb.append('=');
         }
         return FromBase64String(sb.toString());
+    }
+    private double log(double value, double base) {
+        return Math.log(value) / Math.log(base);
     }
 
 }
