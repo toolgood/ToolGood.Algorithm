@@ -97,7 +97,13 @@ public class ExcelFunctions {
                 throw new Exception("quant");
         }
     }
-
+    public static double Percentile(List<Double> data, double quant) throws Exception {
+        double[] array=new double[data.size()];
+        for (int i = 0; i < data.size(); i++) {
+            array[i]=data.get(i);
+        }
+        return Percentile(array,quant);
+    }
     public static double Percentile(double[] array, double k) throws Exception {
         return Statistics.QuantileCustom(array,k, QuantileDefinition.Excel);
     }
