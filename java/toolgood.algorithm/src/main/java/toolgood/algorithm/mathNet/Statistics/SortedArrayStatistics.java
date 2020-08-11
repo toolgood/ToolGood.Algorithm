@@ -10,7 +10,7 @@ public class SortedArrayStatistics {
             return 1.0;
         }
 
-        int right = Array.BinarySearch(data, x);
+        int right = binarySearch(data, x);
         if (right >= 0) {
             int left = right;
 
@@ -32,5 +32,20 @@ public class SortedArrayStatistics {
             double b = right / (double) (data.length - 1);
             return ((data[right] - x) * a + (x - data[left]) * b) / (data[right] - data[left]);
         }
+    }
+    private static int binarySearch(double[] array, double key) {
+        int low = 0;
+        int high = array.length - 1;
+        while (low <= high) {
+            int mid = (low + high) >>> 1;
+            if (key < array[mid]) {
+                high = mid - 1;
+            } else if (key > array[mid]) {
+                low = mid + 1;
+            } else {
+                return mid;
+            }
+        }
+        return -1;
     }
 }

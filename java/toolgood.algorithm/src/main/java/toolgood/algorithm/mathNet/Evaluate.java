@@ -13,25 +13,25 @@ public class Evaluate {
         return sum;
     }
 
-    public static double Series(Function<Double> nextSummand) {
-        double compensation = 0.0;
-        double current;
-        double factor = 1 << 16;
+    // public static double Series(Function<Double, Double> f) {
+    //     double compensation = 0.0;
+    //     double current;
+    //     double factor = 1 << 16;
 
-        double sum = nextSummand.apply();
+    //     double sum = f.apply(0.0);
 
-        do {
-            // Kahan Summation
-            // NOTE (ruegg): do NOT optimize. Now, how to tell that the compiler?
-            current = nextSummand.apply();
-            double y = current - compensation;
-            double t = sum + y;
-            compensation = t - sum;
-            compensation -= y;
-            sum = t;
-        } while (Math.abs(sum) < Math.abs(factor * current));
+    //     do {
+    //         // Kahan Summation
+    //         // NOTE (ruegg): do NOT optimize. Now, how to tell that the compiler?
+    //         current = f.apply(0.0);
+    //         double y = current - compensation;
+    //         double t = sum + y;
+    //         compensation = t - sum;
+    //         compensation -= y;
+    //         sum = t;
+    //     } while (Math.abs(sum) < Math.abs(factor * current));
 
-        return sum;
-    }
+    //     return sum;
+    // }
 
 }

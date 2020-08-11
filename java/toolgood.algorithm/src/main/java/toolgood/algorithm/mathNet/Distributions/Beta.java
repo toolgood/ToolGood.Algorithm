@@ -1,5 +1,7 @@
 package toolgood.algorithm.mathNet.Distributions;
 
+import java.util.function.Function;
+
 import toolgood.algorithm.mathNet.SpecialFunctions;
 import toolgood.algorithm.mathNet.RootFinding.Brent;
 
@@ -54,14 +56,17 @@ public class Beta {
         return SpecialFunctions.BetaRegularized(a, b, x);
     }
 
-    public static double InvCDF(double a, double b, double p)
+    public static double InvCDF(double a, double b, double p) throws Exception
     {
 
         //if (a < 0.0 || b < 0.0 || p < 0.0 || p > 1.0) {
         //    throw new ArgumentException(Resources.InvalidDistributionParameters);
         //}
+        Function<Double,Double> f= x->{
+            return SpecialFunctions.BetaRegularized(a, b, x) - p;
+        };
 
-        return Brent.FindRoot(x -> SpecialFunctions.BetaRegularized(a, b, x) - p, 0.0, 1.0,   1e-12);
+        return Brent.FindRoot(f, 0.0, 1.0,   1e-12);
     }
  
 }

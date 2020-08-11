@@ -834,15 +834,44 @@ public class SpecialFunctions {
             }
 
             // Series Expansion to x^k / k!
+            // int k = 0;
+            // double term = 1.0;
+            // Function<Double,Double> f= (yyy)->{
+            //     k++;
+            //     term *= power;
+            //     term /= k;
+            //     return term;
+            // };
+
+            return Series(power);
+        }
+        public static double Series(double power) {
+            double compensation = 0.0;
+            double current;
+            double factor = 1 << 16;
             int k = 0;
             double term = 1.0;
-            return Evaluate.Series(
-                () -> {
-                    k++;
-                    term *= power;
-                    term /= k;
-                    return term;
-                });
-        }
 
+            k++;
+            term *= power;
+            term /= k;
+            double sum = term;
+    
+            do {
+                k++;
+                term *= power;
+                term /= k;
+                current=term;
+                // Kahan Summation
+                // NOTE (ruegg): do NOT optimize. Now, how to tell that the compiler?
+                // current = f.apply(0.0);
+                double y = current - compensation;
+                double t = sum + y;
+                compensation = t - sum;
+                compensation -= y;
+                sum = t;
+            } while (Math.abs(sum) < Math.abs(factor * current));
+    
+            return sum;
+        }
 }

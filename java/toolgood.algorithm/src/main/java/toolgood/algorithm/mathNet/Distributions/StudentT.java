@@ -21,7 +21,7 @@ public class StudentT {
         double ib = 0.5 * SpecialFunctions.BetaRegularized(freedom / 2.0, 0.5, h);
         return x <= location ? ib : 1.0 - ib;
     }
-    public static double InvCDF(double location, double scale, double freedom, double p)
+    public static double InvCDF(double location, double scale, double freedom, double p) throws Exception
     {
         //if (scale <= 0.0 || freedom <= 0.0) {
         //    throw new ArgumentException(Resources.InvalidDistributionParameters);
@@ -34,13 +34,14 @@ public class StudentT {
         if (p == 0.5d) {
             return location;
         }
-
-        return Brent.FindRoot(x -> {
+        Function<Double,Double> f=x->{
             double k = (x - location) / scale;
             double h = freedom / (freedom + (k * k));
             double ib = 0.5 * SpecialFunctions.BetaRegularized(freedom / 2.0, 0.5, h);
             return x <= location ? ib - p : 1.0 - ib - p;
-        }, -800, 800,  1e-12);
+        };
+
+        return Brent.FindRoot(f, -800, 800,  1e-12);
     }
 
 }

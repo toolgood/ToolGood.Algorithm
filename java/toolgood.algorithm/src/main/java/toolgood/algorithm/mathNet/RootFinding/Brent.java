@@ -1,25 +1,28 @@
 package toolgood.algorithm.mathNet.RootFinding;
 
-import java.lang.annotation.Retention;
 import java.util.function.Function;
 
+import toolgood.algorithm.mathNet.Precision;
+
 public class Brent {
-    public static double FindRoot(Fucntion<Double, Double> f, double lowerBound, double upperBound, double accuracy) {
+    public static double FindRoot(Function<Double, Double> f, double lowerBound, double upperBound, double accuracy)
+            throws Exception {
         return FindRoot(f, lowerBound, upperBound, accuracy, 100);
     }
 
     public static double FindRoot(Function<Double, Double> f, double lowerBound, double upperBound, double accuracy,
-            int maxIterations)
+            int maxIterations) throws Exception
     {
-        Double root;
-        if (TryFindRoot(f, lowerBound, upperBound, accuracy, maxIterations,   root)) {
+        Double root=0.0;
+        if (TryFindRoot(f, lowerBound, upperBound, accuracy, maxIterations,root)) {
             return root;
         }
         throw new Exception("RootFindingFailed");
     }
 
 
-    public static boolean TryFindRoot(Fucntion<Double, Double> f, double lowerBound, double upperBound, double accuracy, int maxIterations, Double root)
+    public static boolean TryFindRoot(Function<Double, Double> f, double lowerBound, double upperBound, double accuracy,
+            int maxIterations, Double root)
     {
         double fmin = f.apply(lowerBound);
         double fmax = f.apply(upperBound);
@@ -30,13 +33,13 @@ public class Brent {
         double xMid = Double.NaN;
 
         // Root must be bracketed.
-        if (Math.sign(fmin) == Math.sign(fmax)) {
+        if (sign(fmin) == sign(fmax)) {
             return false;
         }
 
         for (int i = 0; i <= maxIterations; i++) {
             // adjust bounds
-            if (Math.sign(froot) == Math.sign(fmax)) {
+            if (sign(froot) == sign(fmax)) {
                 upperBound = lowerBound;
                 fmax = fmin;
                 e = d = root - lowerBound;
@@ -109,10 +112,19 @@ public class Brent {
                 root += Sign(xAcc1, xMid);
             }
 
-            froot = f(root);
+            froot = f.apply(root);
         }
 
         return false;
+    }
+    static int sign(double a){
+        if(a==0.0){
+            return 0;
+        }
+        if(a<0){
+            return -1;
+        }
+        return 1;
     }
 
     /// <summary>Helper method useful for preventing rounding errors.</summary>

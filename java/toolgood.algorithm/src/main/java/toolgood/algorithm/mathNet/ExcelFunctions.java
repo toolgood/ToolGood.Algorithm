@@ -45,7 +45,7 @@ public class ExcelFunctions {
         }
     }
 
-    public static double TInv(double probability, int degreesFreedom) {
+    public static double TInv(double probability, int degreesFreedom) throws Exception {
         return -StudentT.InvCDF(0d, 1d, degreesFreedom, probability / 2);
     }
 
@@ -53,7 +53,7 @@ public class ExcelFunctions {
         return 1d - FisherSnedecor.CDF(degreesFreedom1, degreesFreedom2, x);
     }
 
-    public static double FInv(double probability, int degreesFreedom1, int degreesFreedom2) {
+    public static double FInv(double probability, int degreesFreedom1, int degreesFreedom2) throws Exception {
         return FisherSnedecor.InvCDF(degreesFreedom1, degreesFreedom2, 1d - probability);
     }
 
@@ -61,7 +61,7 @@ public class ExcelFunctions {
         return Beta.CDF(alpha, beta, x);
     }
 
-    public static double BetaInv(double probability, double alpha, double beta) {
+    public static double BetaInv(double probability, double alpha, double beta) throws Exception {
         return Beta.InvCDF(alpha, beta, probability);
     }
 
