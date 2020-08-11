@@ -3,6 +3,7 @@ package toolgood.algorithm.internals;
 import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,8 +31,7 @@ import toolgood.algorithm.math.mathParser2;
 import toolgood.algorithm.math.mathVisitor;
 import toolgood.algorithm.math.mathParser2.*;
 import toolgood.algorithm.mathNet.ExcelFunctions;
-import toolgood.algorithm.internals.MyFunction;
-import toolgood.algorithm.internals.Base64String;
+import toolgood.algorithm.internals.*;
 
 public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements mathVisitor<Operand> {
     private static Pattern sumifRegex = Pattern.compile("(<|<=|>|>=|=|==|!=|<>) *([-+]?\\d+(\\.(\\d+)?)?)");
@@ -101,14 +101,14 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                 if (secondValue.IsError()) {
                     return secondValue;
                 }
-                return Operand.Create((MyDate) (firstValue.DateValue() * secondValue.NumberValue()));
+                return Operand.Create( firstValue.DateValue().MUL(secondValue.NumberValue()));
             }
             if (secondValue.Type() == OperandType.DATE) {
                 firstValue = firstValue.ToNumber("Function '" + t + "' parameter 1 is error!");
                 if (firstValue.IsError()) {
                     return firstValue;
                 }
-                return Operand.Create((MyDate) (secondValue.DateValue() * firstValue.NumberValue()));
+                return Operand.Create(secondValue.DateValue().MUL(firstValue.NumberValue() ));
             }
 
             firstValue = firstValue.ToNumber("Function '" + t + "' parameter 1 is error!");
@@ -122,7 +122,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return Operand.Create(firstValue.NumberValue() * secondValue.NumberValue());
         } else if (t == "/") {
             if (firstValue.Type() == OperandType.DATE) {
-                return Operand.Create(firstValue.DateValue() / secondValue.NumberValue());
+                return Operand.Create(firstValue.DateValue().DIV(secondValue.NumberValue()));
             }
 
             firstValue = firstValue.ToNumber("Function '" + t + "' parameter 1 is error!");
@@ -213,19 +213,19 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
         if (t == "+") {
             if (firstValue.Type() == OperandType.DATE && secondValue.Type() == OperandType.DATE) {
-                return Operand.Create(firstValue.DateValue() + secondValue.DateValue());
+                return Operand.Create(firstValue.DateValue().ADD(secondValue.DateValue()));
             } else if (firstValue.Type() == OperandType.DATE) {
                 secondValue = secondValue.ToNumber("Function '" + t + "' parameter 2 is error!");
                 if (secondValue.IsError()) {
                     return secondValue;
                 }
-                return Operand.Create(firstValue.DateValue() + secondValue.NumberValue());
+                return Operand.Create(firstValue.DateValue().ADD(secondValue.NumberValue()));
             } else if (secondValue.Type() == OperandType.DATE) {
                 firstValue = firstValue.ToNumber("Function '" + t + "' parameter 1 is error!");
                 if (firstValue.IsError()) {
                     return firstValue;
                 }
-                return Operand.Create(secondValue.DateValue() + firstValue.NumberValue());
+                return Operand.Create(secondValue.DateValue().ADD(firstValue.NumberValue()));
             }
             firstValue = firstValue.ToNumber("Function '" + t + "' parameter 1 is error!");
             if (firstValue.IsError()) {
@@ -238,19 +238,19 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return Operand.Create(firstValue.NumberValue() + secondValue.NumberValue());
         } else if (t == "-") {
             if (firstValue.Type() == OperandType.DATE && secondValue.Type() == OperandType.DATE) {
-                return Operand.Create(firstValue.DateValue() - secondValue.DateValue());
+                return Operand.Create(firstValue.DateValue().SUB(secondValue.DateValue()));
             } else if (firstValue.Type() == OperandType.DATE) {
                 secondValue = secondValue.ToNumber("Function '" + t + "' parameter 2 is error!");
                 if (secondValue.IsError()) {
                     return secondValue;
                 }
-                return Operand.Create(firstValue.DateValue() - secondValue.NumberValue());
+                return Operand.Create(firstValue.DateValue().SUB(secondValue.NumberValue()));
             } else if (secondValue.Type() == OperandType.DATE) {
                 firstValue = firstValue.ToNumber("Function '" + t + "' parameter 1 is error!");
                 if (firstValue.IsError()) {
                     return firstValue;
                 }
-                return Operand.Create(secondValue.DateValue() - firstValue.NumberValue());
+                return Operand.Create(secondValue.DateValue().SUB(firstValue.NumberValue()));
             }
             firstValue = firstValue.ToNumber(null);
             if (firstValue.IsError()) {
@@ -305,7 +305,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                     return secondValue;
                 }
 
-                r = String.CompareOrdinal(firstValue.TextValue(), secondValue.TextValue());
+                r = firstValue.TextValue().compareTo(secondValue.TextValue());
             } else if (firstValue.Type() == OperandType.ARRARY) {
                 return Operand.Error("两个类型无法比较");
             } else {
@@ -332,7 +332,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                 return secondValue;
             }
 
-            r = String.CompareOrdinal(firstValue.TextValue(), secondValue.TextValue());
+            r = firstValue.TextValue().compareTo(secondValue.TextValue());
         } else if ((firstValue.Type() == OperandType.BOOLEAN && secondValue.Type() == OperandType.STRING)
                 || (secondValue.Type() == OperandType.BOOLEAN && firstValue.Type() == OperandType.STRING)) {
             firstValue = firstValue.ToText("Function '" + type + "' parameter 1 is error!");
@@ -343,8 +343,8 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             if (secondValue.IsError()) {
                 return secondValue;
             }
-
-            r = String.Compare(firstValue.TextValue(), secondValue.TextValue(), true);
+            r =  firstValue.TextValue().compareToIgnoreCase( secondValue.TextValue());
+            // r = String.Compare(firstValue.TextValue(), secondValue.TextValue(), true);
         } else if (firstValue.Type() == OperandType.STRING || secondValue.Type() == OperandType.STRING
                 || firstValue.Type() == OperandType.JSON || secondValue.Type() == OperandType.JSON
                 || firstValue.Type() == OperandType.ARRARY || secondValue.Type() == OperandType.ARRARY) {
@@ -1059,9 +1059,19 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             no = thirdValue.BooleanValue();
         }
         if (no == false) {
-            return Operand.Create(s.toString("N" + num, cultureInfo));
+            if(num<=0){
+                DecimalFormat myFormatter = new DecimalFormat("#"); 
+                return Operand.Create(myFormatter.format(s));
+            }else{
+                String f="#.";
+                for (int i = 0; i < num; i++) {
+                    f+="#";
+                }
+                DecimalFormat myFormatter = new DecimalFormat(f); 
+                return Operand.Create(myFormatter.format(s));
+            }
         }
-        return Operand.Create(s.toString());
+        return Operand.Create(new Double(s).toString());
     }
 
     public Operand visitBIN2OCT_fun(BIN2OCT_funContext context) {
@@ -1082,7 +1092,8 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (bit_2.matcher(firstValue.TextValue()).find() == false) {
             return Operand.Error("Function BIN2OCT parameter 1 is error!");
         }
-        String num = Convert.toString(Convert.ToInt32(firstValue.TextValue(), 2), 8);
+        String num =Integer.toOctalString(Integer.parseUnsignedInt(firstValue.TextValue(), 2));
+        // String num = Convert.toString(Convert.ToInt32(firstValue.TextValue(), 2), 8);
         if (args.size() == 2) {
             Operand secondValue = args.get(1).ToNumber("Function BIN2OCT parameter 2 is error!");
             if (secondValue.IsError()) {
@@ -1105,7 +1116,8 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (bit_2.matcher(firstValue.TextValue()).find()== false) {
             return Operand.Error("Function BIN2DEC parameter is error!");
         }
-        String num = Convert.ToInt32(firstValue.TextValue(), 2);
+        int num = Integer.parseUnsignedInt(firstValue.TextValue(), 2);
+        // String num = Convert.ToInt32(firstValue.TextValue(), 2);
         return Operand.Create(num);
     }
 
@@ -1127,7 +1139,8 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (bit_2.matcher(firstValue.TextValue()).find() == false) {
             return Operand.Error("Function BIN2HEX parameter 1 is error!");
         }
-        String num = Convert.toString(Convert.ToInt32(firstValue.TextValue(), 2), 16).ToUpper();
+        String num = Integer.toHexString(Integer.parseUnsignedInt(firstValue.TextValue(), 2)).toUpperCase();     
+        // String num = Convert.toString(Convert.ToInt32(firstValue.TextValue(), 2), 16).ToUpper();
         if (args.size() == 2) {
             Operand secondValue = args.get(1).ToNumber("Function BIN2HEX parameter 2 is error!");
             if (secondValue.IsError()) {
@@ -1159,7 +1172,8 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (bit_8.matcher(firstValue.TextValue()).find() == false) {
             return Operand.Error("Function OCT2BIN parameter 1 is error!");
         }
-        String num = Convert.toString(Convert.ToInt32(firstValue.TextValue(), 8), 2);
+        String num = Integer.toBinaryString(Integer.parseUnsignedInt(firstValue.TextValue(), 8));  
+        // String num = Convert.toString(Convert.ToInt32(firstValue.TextValue(), 8), 2);
         if (args.size() == 2) {
             Operand secondValue = args.get(1).ToNumber("Function OCT2BIN parameter 2 is error!");
             if (secondValue.IsError()) {
@@ -1182,7 +1196,8 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (bit_8.matcher(firstValue.TextValue()).find() == false) {
             return Operand.Error("Function OCT2DEC parameter is error!");
         }
-        String num = Convert.ToInt32(firstValue.TextValue(), 8);
+        int num= Integer.parseUnsignedInt(firstValue.TextValue(),8);
+        //String num = Convert.ToInt32(firstValue.TextValue(), 8);
         return Operand.Create(num);
     }
 
@@ -1203,7 +1218,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (bit_8.matcher(firstValue.TextValue()).find() == false) {
             return Operand.Error("Function OCT2HEX parameter 1 is error!");
         }
-        String num = Convert.toString(Convert.ToInt32(firstValue.TextValue(), 8), 16).ToUpper();
+        String num=Integer.toHexString( Integer.parseUnsignedInt(firstValue.TextValue(),8)).toUpperCase();
         if (args.size() == 2) {
             Operand secondValue = args.get(1).ToNumber("Function OCT2HEX parameter 2 is error!");
             if (secondValue.IsError()) {
@@ -1231,7 +1246,8 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (firstValue.IsError()) {
             return firstValue;
         }
-        String num = System.Convert.toString(firstValue.IntValue(), 2);
+        String num = Integer.toBinaryString(firstValue.IntValue());  
+        // String num = System.Convert.toString(firstValue.IntValue(), 2);
         if (args.size() == 2) {
             Operand secondValue = args.get(1).ToNumber("Function DEC2BIN parameter 2 is error!");
             if (secondValue.IsError()) {
@@ -1259,7 +1275,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (firstValue.IsError()) {
             return firstValue;
         }
-        String num = System.Convert.toString(firstValue.IntValue(), 8);
+        String num =Integer.toOctalString(firstValue.IntValue());
         if (args.size() == 2) {
             Operand secondValue = args.get(1).ToNumber("Function DEC2OCT parameter 2 is error!");
             if (secondValue.IsError()) {
@@ -1287,7 +1303,8 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (firstValue.IsError()) {
             return firstValue;
         }
-        String num = System.Convert.toString(firstValue.IntValue(), 16).ToUpper();
+        String num = Integer.toHexString(firstValue.IntValue()).toUpperCase();
+        // String num = System.Convert.toString(firstValue.IntValue(), 16).ToUpper();
         if (args.size() == 2) {
             Operand secondValue = args.get(1).ToNumber("Function DEC2HEX parameter 2 is error!");
             if (secondValue.IsError()) {
@@ -1318,8 +1335,8 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (bit_16.matcher(firstValue.TextValue()).find() == false) {
             return Operand.Error("Function HEX2BIN parameter 1 is error!");
         }
-
-        String num = Convert.toString(Convert.ToInt32(firstValue.TextValue(), 16), 2);
+        String num = Integer.toBinaryString(Integer.parseUnsignedInt(firstValue.TextValue(), 16)) ;
+        // String num = Convert.toString(Convert.ToInt32(firstValue.TextValue(), 16), 2);
         if (args.size() == 2) {
             Operand secondValue = args.get(1).ToNumber("Function HEX2BIN parameter 2 is error!");
             if (secondValue.IsError()) {
@@ -1350,7 +1367,8 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (bit_16.matcher(firstValue.TextValue()).find() == false) {
             return Operand.Error("Function HEX2OCT parameter 1 is error!");
         }
-        String num = Convert.toString(Convert.ToInt32(firstValue.TextValue(), 16), 8);
+        String num = Integer.toOctalString(Integer.parseUnsignedInt(firstValue.TextValue(), 16)) ;
+        // String num = Convert.toString(Convert.ToInt32(firstValue.TextValue(), 16), 8);
         if (args.size() == 2) {
             Operand secondValue = args.get(1).ToNumber("Function HEX2OCT parameter 2 is error!");
             if (secondValue.IsError()) {
@@ -1373,7 +1391,8 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (bit_16.matcher(firstValue.TextValue()).find() == false) {
             return Operand.Error("Function HEX2DEC parameter is error!");
         }
-        String num = Convert.ToInt32(firstValue.TextValue(), 16);
+        int num =Integer.parseUnsignedInt(firstValue.TextValue(), 16);
+        // String num = Convert.ToInt32(firstValue.TextValue(), 16);
         return Operand.Create(num);
     }
 
@@ -2213,7 +2232,8 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         } else if (firstValue.Type() == OperandType.BOOLEAN) {
             return Operand.Create(firstValue.BooleanValue() ? "TRUE" : "FALSE");
         } else if (firstValue.Type() == OperandType.NUMBER) {
-            return Operand.Create(firstValue.NumberValue().toString(secondValue.TextValue(), cultureInfo));
+            DecimalFormat myFormatter = new DecimalFormat(secondValue.TextValue()); 
+            return Operand.Create(myFormatter.format(firstValue.NumberValue()));
         } else if (firstValue.Type() == OperandType.DATE) {
             return Operand.Create(firstValue.DateValue().toString(secondValue.TextValue()));
         }
@@ -2717,7 +2737,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         MyDate startDate = (DateTime) args.get(0).DateValue();
         MyDate endDate = (DateTime) args.get(1).DateValue();
 
-        List<DateTime> list = new List<DateTime>();
+        List<DateTime> list = new ArrayList<DateTime>();
         for (int i = 2; i < args.size(); i++) {
             list.add(args.get(i).DateValue());
         }
@@ -2753,11 +2773,11 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return secondValue;
         }
 
-        MyDate startDate = (DateTime) firstValue.DateValue();
+        MyDate startDate =  firstValue.DateValue();
         int days = secondValue.IntValue();
         List<DateTime> list = new ArrayList<DateTime>();
         for (int i = 2; i < args.size(); i++) {
-            args.get(i) = args.get(i).ToDate("Function WORKDAY parameter {i + 1} is error!");
+            args.set(i, args.get(i).ToDate("Function WORKDAY parameter {i + 1} is error!"));
             if (args.get(i).IsError()) {
                 return args.get(i);
             }
@@ -2791,7 +2811,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return firstValue;
         }
 
-        MyDate startDate = (DateTime) firstValue.DateValue();
+        MyDate startDate =  firstValue.DateValue();
 
         int days = startDate.DayOfYear + (int) (new DateTime(startDate.Year, 1, 1).DayOfWeek);
         if (args.size() == 2) {
@@ -2945,7 +2965,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
 
         list=ShellSort(list);
         // list = list.OrderByDescending(q => q).ToList();
-        int quant = secondValue.IntValue();
+        // int quant = secondValue.IntValue();
         return Operand.Create(list.get(list.size()-1-(secondValue.IntValue() - excelIndex)));
     }
 
@@ -2965,7 +2985,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
 
         list=ShellSort(list);
         // list = list.OrderBy(q => q).ToList();
-        int quant = secondValue.IntValue();
+        // int quant = secondValue.IntValue();
         return Operand.Create(list.get(secondValue.IntValue() - excelIndex) );
         // return Operand.Create(list[secondValue.IntValue() - excelIndex]);
     }
@@ -4162,8 +4182,12 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         } else {
             encoding = args.get(1).TextValue();
         }
-        String t = new String(Base64String.FromBase64String(args.get(0).TextValue()),encoding);
-        return Operand.Create(t);
+        try {
+            String t = new String(FromBase64String(args.get(0).TextValue()),encoding);
+            return Operand.Create(t);
+        } catch (Exception e) {
+        }
+        return Operand.Error("Function BASE64TOTEXT is error!");
     }
 
     public Operand visitBASE64URLTOTEXT_fun(BASE64URLTOTEXT_funContext context) {
@@ -4183,8 +4207,12 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         } else {
             encoding = args.get(1).TextValue();
         }
-        String t = new String(Base64String.FromBase64ForUrlString(args.get(0).TextValue()),encoding);
-        return Operand.Create(t);
+        try {
+            String t = new String(FromBase64ForUrlString(args.get(0).TextValue()),encoding);
+            return Operand.Create(t);
+        } catch (Exception e) {
+        }
+        return Operand.Error("Function BASE64URLTOTEXT is error!");
     }
 
     public Operand visitTEXTTOBASE64_fun(TEXTTOBASE64_funContext context) {
@@ -4205,7 +4233,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             encoding = args.get(1).TextValue();
         }
         try {
-            String t = Base64String.ToBase64String(args.get(0).TextValue().getBytes(encoding));
+            String t = ToBase64String(args.get(0).TextValue().getBytes(encoding));
             return Operand.Create(t);
         } catch (Exception e) {
         }
@@ -4230,7 +4258,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             encoding = args.get(1).TextValue();
         }
         try {
-            String t = Base64String.ToBase64ForUrlString(args.get(0).TextValue().getBytes(encoding));
+            String t = ToBase64ForUrlString(args.get(0).TextValue().getBytes(encoding));
             return Operand.Create(t);
         } catch (Exception e) {
         }
@@ -5126,7 +5154,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                         if (o.BooleanValue()) {
                             JsonData v = json.JsonValue().GetChild(thirdValue.TextValue());// [thirdValue.TextValue()];
                             if (v != null) {
-                                if (v.IsString()) return Operand.Create(v.StringValue);
+                                if (v.IsString()) return Operand.Create(v.StringValue());
                                 if (v.IsBoolean()) return Operand.Create(v.BooleanValue());
                                 if (v.IsDouble()) return Operand.Create(v.NumberValue());
                                 if (v.IsObject()) return Operand.Create(v);
@@ -5400,6 +5428,40 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             charr[i] = ch;
         }
         return new String(charr);
+    }
+
+    private String ToBase64String(byte[] input)
+    {
+        return Base64Util.encode(input);
+    }
+
+    private byte[] FromBase64String(String base64)
+    {
+        return Base64Util.decode(base64);
+    }
+ 
+    private static String ToBase64ForUrlString(byte[] input)
+    {
+        return ToBase64String(input).replace("=*$", "").replace("\\+", "-").replace("/", "-");
+    }
+
+    private byte[] FromBase64ForUrlString(String base64ForUrlInput)
+    {
+        String base64 = "===========================================+=+=/0123456789=======ABCDEFGHIJKLMNOPQRSTUVWXYZ====/=abcdefghijklmnopqrstuvwxyz=====";
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < base64ForUrlInput.length(); i++) {
+            char c = base64ForUrlInput.charAt(i);
+            if ((int)c >= 128) continue;
+            char k = base64.charAt(c);// [c];
+            if (k == '=') continue;
+            sb.append(k);
+        }
+        int len = sb.length();
+        int padChars = (len % 4) == 0 ? 0 : (4 - (len % 4));
+        for (int i = 0; i < padChars; i++) {
+            sb.append('=');
+        }
+        return FromBase64String(sb.toString());
     }
 
 }
