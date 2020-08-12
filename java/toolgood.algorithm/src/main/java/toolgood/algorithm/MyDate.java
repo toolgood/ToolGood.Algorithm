@@ -4,14 +4,18 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
+import org.w3c.dom.Text;
 
 /// <summary>
 /// Date
 /// </summary>
 public class MyDate {
+    private MyDate(){}
     public MyDate(int year, int month, int day, int hour, int minute, int second) {
         Year = year;
         Month = month;
@@ -37,6 +41,57 @@ public class MyDate {
         Minute = dTime.getMinuteOfHour();
         Second = dTime.getSecondOfMinute();
     }
+    public static MyDate parse(String txt) throws Exception {
+        String t=txt.trim();
+        Matcher m= Pattern.compile("^(\\d{4})-(0?\\d|11|12)-([012]\\d|30|31) ([01]\\d?|2[1234]):([012345]?\\d):([012345]?\\d)$").matcher(t);
+        if(m.find()){
+            MyDate date=new MyDate();
+            date.Year=Integer.parseInt(m.group(1));
+            date.Month=Integer.parseInt(m.group(2));
+            date.Day=Integer.parseInt(m.group(3));
+            date.Hour=Integer.parseInt(m.group(4));
+            date.Minute=Integer.parseInt(m.group(5));
+            date.Second=Integer.parseInt(m.group(6));
+            return date;
+        }
+        m= Pattern.compile("(\\d{4})-(0?\\d|11|12)-([012]\\d|30|31) ([01]\\d?|2[1234]):([012345]?\\d)").matcher(t);
+        if(m.find()){
+            MyDate date=new MyDate();
+            date.Year=Integer.parseInt(m.group(1));
+            date.Month=Integer.parseInt(m.group(2));
+            date.Day=Integer.parseInt(m.group(3));
+            date.Hour=Integer.parseInt(m.group(4));
+            date.Minute=Integer.parseInt(m.group(5));
+            return date;
+        }
+        m= Pattern.compile("^(\\d+) ([01]\\d?|2[1234]):([012345]?\\d):([012345]?\\d)$").matcher(t);
+        if(m.find()){
+            MyDate date=new MyDate();
+            date.Day=Integer.parseInt(m.group(1));
+            date.Hour=Integer.parseInt(m.group(2));
+            date.Minute=Integer.parseInt(m.group(3));
+            date.Second=Integer.parseInt(m.group(4));
+            return date;
+        }
+        m= Pattern.compile("^([01]\\d?|2[1234]):([012345]?\\d):([012345]?\\d)$").matcher(t);
+        if(m.find()){
+            MyDate date=new MyDate();
+            date.Hour=Integer.parseInt(m.group(1));
+            date.Minute=Integer.parseInt(m.group(2));
+            date.Second=Integer.parseInt(m.group(3));
+            return date;
+        }
+        m= Pattern.compile("^([01]\\d?|2[1234]):([012345]?\\d)$").matcher(t);
+        if(m.find()){
+            MyDate date=new MyDate();
+            date.Hour=Integer.parseInt(m.group(1));
+            date.Minute=Integer.parseInt(m.group(2));
+            return date;
+        }
+        throw new Exception("");
+    }
+
+
 
     // public MyDate(TimeSpan dt) {
     //     Day = dt.Days;
@@ -49,29 +104,11 @@ public class MyDate {
         
     }
 
-    /// <summary>
-    /// 年
-    /// </summary>
     public Integer Year; 
-    /// <summary>
-    /// 月
-    /// </summary>
     public Integer Month;
-    /// <summary>
-    /// 日
-    /// </summary>
     public Integer Day;
-    /// <summary>
-    /// 时
-    /// </summary>
     public int Hour;
-    /// <summary>
-    /// 分
-    /// </summary>
     public int Minute;
-    /// <summary>
-    /// 秒
-    /// </summary>
     public int Second;
 
     public String toString() {

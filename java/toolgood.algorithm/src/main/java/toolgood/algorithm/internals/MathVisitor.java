@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,8 +19,6 @@ import org.apache.commons.text.StringEscapeUtils;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeConstants;
 import org.joda.time.DateTimeZone;
-import org.joda.time.format.DateTimeFormatter;
-import org.joda.time.format.ISODateTimeFormat;
 
 import toolgood.algorithm.MyDate;
 import toolgood.algorithm.Operand;
@@ -1069,7 +1066,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                 return Operand.Create(myFormatter.format(s));
             }
         }
-        return Operand.Create(new Double(s).toString());
+        return Operand.Create(((Double)s).toString());
     }
 
     public Operand visitBIN2OCT_fun(final BIN2OCT_funContext context) {
@@ -1814,7 +1811,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
 
         final char c = (char) (int) firstValue.NumberValue();
-        return Operand.Create(new Character(c).toString());
+        return Operand.Create(((Character)c).toString());
     }
 
     public Operand visitCLEAN_fun(final CLEAN_funContext context) {
@@ -1923,7 +1920,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
 
         if (args.size() == 1) {
-            return Operand.Create(new Character(firstValue.TextValue().charAt(0)).toString());
+            return Operand.Create(((Character)firstValue.TextValue().charAt(0)).toString());
         }
         final Operand secondValue = args.get(1).ToNumber("Function LEFT parameter 2 is error!");
         if (secondValue.IsError()) {
@@ -2095,7 +2092,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
 
         if (args.size() == 1) {
             return Operand.Create(
-                    new Character(firstValue.TextValue().charAt(firstValue.TextValue().length() - 1)).toString());
+                      ((Character)firstValue.TextValue().charAt(firstValue.TextValue().length() - 1)).toString());
         }
         final Operand secondValue = args.get(1).ToNumber("Function RIGHT parameter 2 is error!");
         if (secondValue.IsError()) {
@@ -2379,15 +2376,9 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return firstValue;
         }
         try {
-            DateTimeFormatter fmt = ISODateTimeFormat.dateHourMinuteSecond();
-            DateTime date =  DateTime.parse(firstValue.TextValue(),fmt);
-            return Operand.Create(date);
+            return Operand.Create(MyDate.parse(firstValue.TextValue()));
         } catch (final Exception e) {
         }
-        // if (DateTime.TryParse(firstValue.TextValue(), cultureInfo,
-        // DateTimeStyles.None, out DateTime dt)) {
-        // return Operand.Create(dt);
-        // }
         return Operand.Error("Function DATEVALUE parameter is error!");
     }
 
@@ -2397,18 +2388,9 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return firstValue;
         }
         try {
-            DateTimeFormatter fmt = ISODateTimeFormat.mi();
-
-            final SimpleDateFormat fmt = new SimpleDateFormat("d HH:mm:ss");
-            final Date dt = fmt.parse(firstValue.TextValue());
-            return Operand.Create(dt);
+            return Operand.Create(MyDate.parse(firstValue.TextValue()));
         } catch (final Exception e) {
         }
-
-        // if (TimeSpan.TryParse(firstValue.TextValue(), cultureInfo, out TimeSpan dt))
-        // {
-        // return Operand.Create(dt);
-        // }
         return Operand.Error("Function TIMEVALUE parameter is error!");
     }
 
@@ -3372,17 +3354,16 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (args.get(1).Type() == OperandType.NUMBER) {
             sum = F_base_countif(list, args.get(1).NumberValue()) * args.get(1).NumberValue();
         } else {
-            try {
-                final Double d = Double.parseDouble(args.get(1).TextValue().trim());
-                sum = F_base_sumif(list, "=" + args.get(1).TextValue().trim(), sumdbs);
-            } catch (final Exception e) {
-                final String sunif = args.get(1).TextValue().trim();
-                if (sumifRegex.matcher(sunif).find()) {
-                    sum = F_base_sumif(list, sunif, sumdbs);
-                } else {
-                    return Operand.Error("Function SUMIF parameter 2 error!");
+                if (Pattern.compile("^-?(\\d+)(\\.\\d+)?$").matcher(args.get(1).TextValue().trim()).find()){
+                    sum = F_base_sumif(list, "=" + args.get(1).TextValue().trim(), sumdbs);
+                }else{
+                    final String sunif = args.get(1).TextValue().trim();
+                    if (sumifRegex.matcher(sunif).find()) {
+                        sum = F_base_sumif(list, sunif, sumdbs);
+                    } else {
+                        return Operand.Error("Function SUMIF parameter 2 error!");
+                    }
                 }
-            }
             // if (double.TryParse(args.get(1).TextValue().trim(), NumberStyles.Any,
             // cultureInfo, out _)) {
             // sum = F_base_sumif(list, "=" + args.get(1).TextValue().trim(), sumdbs);
@@ -4215,8 +4196,11 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (firstValue.IsError()) {
             return firstValue;
         }
-
-        return Operand.Create(URLEncoder.encode(firstValue.TextValue()));
+        try {
+            return Operand.Create(URLEncoder.encode(firstValue.TextValue(),"GB18030"));
+        } catch (Exception e) {
+        }
+        return Operand.Error("Function URLENCODE is error!");
     }
 
     public Operand visitURLDECODE_fun(final URLDECODE_funContext context) {
@@ -4224,8 +4208,11 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (firstValue.IsError()) {
             return firstValue;
         }
-
-        return Operand.Create(URLDecoder.decode(firstValue.TextValue()));
+        try {
+            return Operand.Create(URLDecoder.decode(firstValue.TextValue(),"GB18030"));
+        } catch (Exception e) {
+        }
+        return Operand.Error("Function URLDECODE is error!");
     }
 
     public Operand visitHTMLENCODE_fun(final HTMLENCODE_funContext context) {
@@ -5480,6 +5467,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Error("DiyFunction is error!");
     }
 
+    @SuppressWarnings("deprecation")
     private double round(final double value, final int p) {
         final BigDecimal bigD = new BigDecimal(value);
         return bigD.setScale(p, BigDecimal.ROUND_HALF_UP).doubleValue();
@@ -5545,19 +5533,19 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return new String(charr);
     }
 
-    private String padRight(final String src, final int len, final char ch) {
-        final int diff = len - src.length();
-        if (diff <= 0) {
-            return src;
-        }
+    // private String padRight(final String src, final int len, final char ch) {
+    //     final int diff = len - src.length();
+    //     if (diff <= 0) {
+    //         return src;
+    //     }
 
-        final char[] charr = new char[len];
-        System.arraycopy(src.toCharArray(), 0, charr, diff, src.length());
-        for (int i = 0; i < diff; i++) {
-            charr[i] = ch;
-        }
-        return new String(charr);
-    }
+    //     final char[] charr = new char[len];
+    //     System.arraycopy(src.toCharArray(), 0, charr, diff, src.length());
+    //     for (int i = 0; i < diff; i++) {
+    //         charr[i] = ch;
+    //     }
+    //     return new String(charr);
+    // }
 
     private String ToBase64String(final byte[] input) {
         return Base64Util.encode(input);
