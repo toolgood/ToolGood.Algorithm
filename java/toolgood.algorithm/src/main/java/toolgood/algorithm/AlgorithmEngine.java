@@ -15,13 +15,12 @@ import toolgood.algorithm.math.mathLexer;
 import toolgood.algorithm.math.mathParser;
 import toolgood.algorithm.math.mathParser2.*;
 
-import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.BaseErrorListener;
-import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
+import org.joda.time.DateTime;
 
 
 public class AlgorithmEngine {
@@ -260,5 +259,22 @@ public class AlgorithmEngine {
         }
         return defvalue;
     }
+    public DateTime TryEvaluate(final String exp, final DateTime defvalue) {
+        try {
+            if (Parse(exp)) {
+                Operand obj = Evaluate();
+                obj = obj.ToDate("It can't be converted to bool!");
+                if (obj.IsError()) {
+                    LastError = obj.ErrorMsg();
+                    return defvalue;
+                }
+                return obj.DateValue().ToDateTime();
+            }
+        } catch (final Exception ex) {
+            LastError = ex.getMessage();
+        }
+        return defvalue;
+    }
+
     
 }
