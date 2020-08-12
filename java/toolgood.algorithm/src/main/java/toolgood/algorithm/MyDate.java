@@ -38,7 +38,7 @@ public class MyDate {
     }
     public static MyDate parse(String txt) {
         String t=txt.trim();
-        Matcher m= Pattern.compile("^(\\d{4})-(0?\\d|11|12)-([012]\\d|30|31) ([01]\\d?|2[1234]):([012345]?\\d):([012345]?\\d)$").matcher(t);
+        Matcher m= Pattern.compile("^(\\d{4})-(0?\\d|11|12)-([012]?\\d|30|31) ([01]\\d?|2[1234]):([012345]?\\d):([012345]?\\d)$").matcher(t);
         if(m.find()){
             MyDate date=new MyDate();
             date.Year=Integer.parseInt(m.group(1));
@@ -49,7 +49,7 @@ public class MyDate {
             date.Second=Integer.parseInt(m.group(6));
             return date;
         }
-        m= Pattern.compile("(\\d{4})-(0?\\d|11|12)-([012]\\d|30|31) ([01]\\d?|2[1234]):([012345]?\\d)").matcher(t);
+        m= Pattern.compile("(\\d{4})-(0?\\d|11|12)-([012]?\\d|30|31) ([01]\\d?|2[1234]):([012345]?\\d)").matcher(t);
         if(m.find()){
             MyDate date=new MyDate();
             date.Year=Integer.parseInt(m.group(1));
@@ -59,7 +59,15 @@ public class MyDate {
             date.Minute=Integer.parseInt(m.group(5));
             return date;
         }
-        m= Pattern.compile("^(\\d+) ([01]\\d?|2[1234]):([012345]?\\d):([012345]?\\d)$").matcher(t);
+        m= Pattern.compile("(\\d{4})-(0?\\d|11|12)-([012]?\\d|30|31)").matcher(t);
+        if(m.find()){
+            MyDate date=new MyDate();
+            date.Year=Integer.parseInt(m.group(1));
+            date.Month=Integer.parseInt(m.group(2));
+            date.Day=Integer.parseInt(m.group(3));
+            return date;
+        }
+        m= Pattern.compile("^(\\d+) ([01]?\\d|2[1234]):([012345]?\\d):([012345]?\\d)$").matcher(t);
         if(m.find()){
             MyDate date=new MyDate();
             date.Day=Integer.parseInt(m.group(1));
@@ -68,7 +76,7 @@ public class MyDate {
             date.Second=Integer.parseInt(m.group(4));
             return date;
         }
-        m= Pattern.compile("^([01]\\d?|2[1234]):([012345]?\\d):([012345]?\\d)$").matcher(t);
+        m= Pattern.compile("^([01]?\\d|2[1234]):([012345]?\\d):([012345]?\\d)$").matcher(t);
         if(m.find()){
             MyDate date=new MyDate();
             date.Hour=Integer.parseInt(m.group(1));
@@ -76,7 +84,7 @@ public class MyDate {
             date.Second=Integer.parseInt(m.group(3));
             return date;
         }
-        m= Pattern.compile("^([01]\\d?|2[1234]):([012345]?\\d)$").matcher(t);
+        m= Pattern.compile("^([01]?\\d|2[1234]):([012345]?\\d)$").matcher(t);
         if(m.find()){
             MyDate date=new MyDate();
             date.Hour=Integer.parseInt(m.group(1));
@@ -95,8 +103,21 @@ public class MyDate {
     //     Second = dt.Seconds;
     // }
 
-    public MyDate(double d){
-        
+    public MyDate(double num){
+        int days=(int)num;
+        if(days>365){
+            LocalDate start = LocalDate.of(1900, 1, 1);
+            start = start.plusDays(days-1);
+            Year= start.getYear();
+            Month=start.getMonthValue();
+            Day=start.getDayOfMonth();
+        }else{
+            Day=days;
+        }
+        double d=num-days;
+        Hour=(int)(d*24);
+        Minute=(int)((d*24-Hour)*60.0); 
+        Second=(int)(((d*24-Hour)*60.0-Minute)*60.0); 
     }
 
     public Integer Year; 
@@ -106,6 +127,7 @@ public class MyDate {
     public int Minute;
     public int Second;
 
+    @Override
     public String toString() {
         StringBuffer stringBuffer=new StringBuffer();
         if (Year != null) {
@@ -113,6 +135,7 @@ public class MyDate {
             stringBuffer.append("-");
             if(Month<10){ stringBuffer.append("0"); }
             stringBuffer.append(Month);
+            stringBuffer.append("-");
             if(Day<10){ stringBuffer.append("0"); }
             stringBuffer.append(Day);
 
@@ -224,9 +247,9 @@ public class MyDate {
 
     public double ToNumber(){
         if (Year > 1900) {
-            LocalDate start = LocalDate.of(Year, Month-1, Day);
+            LocalDate start = LocalDate.of(Year, Month, Day);
             LocalDate end = LocalDate.of(1900, 1, 1);
-            long days = ChronoUnit.DAYS.between(start, end)+1;
+            long days = ChronoUnit.DAYS.between(end,start)+1;
             return days + (Hour + (Minute + Second / 60.0) / 60) / 24;
         }
         return Day+ (Hour + (Minute + Second / 60.0) / 60) / 24;

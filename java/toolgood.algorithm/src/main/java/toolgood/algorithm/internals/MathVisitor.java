@@ -36,7 +36,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     private static Pattern bit_8 = Pattern.compile("^[0-8]+");
     private static Pattern bit_16 = Pattern.compile("^[0-9a-fA-F]+");
     private static Pattern clearRegex = Pattern.compile("[\\f\\n\\r\\t\\v]");
-    private static Pattern numberRegex = Pattern.compile("^-?(0|[1-9])\\d*(\\.\\d+)?");
+    private static Pattern numberRegex = Pattern.compile("^-?(0|[1-9])\\d*(\\.\\d+)?$");
     public Function<String, Operand> GetParameter;
     public Function<MyFunction, Operand> DiyFunction;
     public int excelIndex;

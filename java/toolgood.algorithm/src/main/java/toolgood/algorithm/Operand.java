@@ -1,10 +1,10 @@
 package toolgood.algorithm;
 
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.joda.time.DateTime;
 
@@ -145,7 +145,13 @@ public abstract class Operand {
     {
         if (Type() == OperandType.STRING) { return this; }
         if (IsError()) { return this; }
-        if (Type() == OperandType.NUMBER) { return Create(  ((Double)NumberValue()).toString()); }
+        if (Type() == OperandType.NUMBER) {
+            String str=((Double)NumberValue()).toString();
+            if(str.contains(".")){
+                str= Pattern.compile("(\\.)?0+$").matcher(str).replaceAll("");
+            }
+            return Create(str); 
+        }
         if (Type() == OperandType.BOOLEAN) { return Create(BooleanValue() ? "TRUE" : "FALSE"); }
         if (Type() == OperandType.DATE) { return Create(DateValue().toString()); }
 
@@ -158,12 +164,10 @@ public abstract class Operand {
         if (Type() == OperandType.NUMBER) { return Create(new MyDate(NumberValue())); }
         if (Type() == OperandType.STRING)
         {
-            try {
-                Date d= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(TextValue());
-                return Create(new MyDate(d));
-            } catch (Exception e) {
+            MyDate date=MyDate.parse(TextValue());
+            if (date != null){
+                return Create(date);
             }
-      
             // if (TimeSpan.TryParse(TextValue, cultureInfo, out TimeSpan t)) { return Create(new Date(t)); }
             // if (DateTime.TryParse(TextValue, cultureInfo, DateTimeStyles.None, out DateTime d)) { return Create(new Date(d)); }
         }
