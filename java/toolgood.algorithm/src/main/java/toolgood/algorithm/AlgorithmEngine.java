@@ -17,6 +17,8 @@ import toolgood.algorithm.math.mathParser2.*;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.BaseErrorListener;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
@@ -146,7 +148,7 @@ public class AlgorithmEngine {
             return false;
         }
         // try {
-        final CaseChangingCharStream stream = new CaseChangingCharStream(new ANTLRInputStream(exp));
+        final CaseChangingCharStream stream = new CaseChangingCharStream(CharStreams.fromString(exp));
         final mathLexer lexer = new mathLexer(stream);
         final CommonTokenStream tokens = new CommonTokenStream(lexer);
         final mathParser parser = new mathParser(tokens);

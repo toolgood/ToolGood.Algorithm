@@ -15,6 +15,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
+import org.antlr.v4.runtime.tree.TerminalNode;
 import org.apache.commons.text.StringEscapeUtils;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeConstants;
@@ -5304,13 +5305,15 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitNUM_fun(final NUM_funContext context) {
-        final String sub = context.SUB().getText();
-        // String sub = context.SUB()?.GetText() ?? "";
         final String t = context.NUM().getText();
-
-        final Double d = Double.parseDouble(sub + t);
-        // double d = double.Parse(sub + t, NumberStyles.Any, cultureInfo);
-        return Operand.Create(d);
+        TerminalNode subNode=  context.SUB();
+        if(subNode!=null){
+            final String sub =subNode.getText();
+            final Double d = Double.parseDouble(sub + t);
+            return Operand.Create(d);
+        }
+        final Double d2 = Double.parseDouble( t);
+        return Operand.Create(d2);
     }
 
     public Operand visitSTRING_fun(final STRING_funContext context) {
