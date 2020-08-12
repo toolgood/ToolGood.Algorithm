@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.math.BigDecimal;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.junit.Test;
 
 import toolgood.algorithm.AlgorithmEngine;
@@ -68,11 +69,6 @@ public class AlgorithmEngineTest {
         r = engine.TryEvaluate("(1=2)*9+2", 0);
         assertEquals(2, r); ;
 
-        DateTime dt = engine.TryEvaluate("'2016-1-1'+1", DateTime.now());
-        assertEquals(DateTime.parse("2016-1-2"), dt); ;
-        dt = engine.TryEvaluate("'2016-1-1'+9*'1:0'", DateTime.now());
-        assertEquals(DateTime.parse("2016-1-1 9:0"), dt); ;
-
         boolean value = engine.TryEvaluate("1 > (-2)", false);
         assertEquals(value, true);
 
@@ -93,6 +89,11 @@ public class AlgorithmEngineTest {
 
         boolean value3 = engine.TryEvaluate("-7 < -2", false);
         assertEquals(value3, true);
+
+        DateTime dt = engine.TryEvaluate("'2016-1-1'+1", DateTime.now());
+        assertEquals(new DateTime(2016,1,2,0,0,0,DateTimeZone.UTC), dt); 
+        dt = engine.TryEvaluate("'2016-1-1'+9*'1:0'", DateTime.now());
+        assertEquals(new DateTime(2016,1,1,9,0,0,DateTimeZone.UTC), dt); 
     }
 
     @Test

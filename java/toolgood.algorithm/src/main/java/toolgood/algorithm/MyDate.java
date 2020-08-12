@@ -246,13 +246,16 @@ public class MyDate {
     // }
 
     public double ToNumber(){
-        if (Year > 1900) {
+        if (Year!=null && Year > 1900) {
             LocalDate start = LocalDate.of(Year, Month, Day);
             LocalDate end = LocalDate.of(1900, 1, 1);
             long days = ChronoUnit.DAYS.between(end,start)+1;
             return days + (Hour + (Minute + Second / 60.0) / 60) / 24;
         }
-        return Day+ (Hour + (Minute + Second / 60.0) / 60) / 24;
+        if(Day!=null){
+            return Day+ (Hour + (Minute + Second / 60.0) / 60) / 24;
+        }
+        return (Hour + (Minute + Second / 60.0) / 60) / 24;
     }
 
     // public static implicit operator double(
