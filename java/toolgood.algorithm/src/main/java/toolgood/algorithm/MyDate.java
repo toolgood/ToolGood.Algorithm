@@ -94,7 +94,9 @@ public class MyDate {
         return null;
     }
 
-
+    public static MyDate now(){
+        return new MyDate(DateTime.now());
+    }
 
     // public MyDate(TimeSpan dt) {
     //     Day = dt.Days;

@@ -275,6 +275,21 @@ public class AlgorithmEngine {
         }
         return defvalue;
     }
-
+    public MyDate TryEvaluate(final String exp, final MyDate defvalue) {
+        try {
+            if (Parse(exp)) {
+                Operand obj = Evaluate();
+                obj = obj.ToDate("It can't be converted to bool!");
+                if (obj.IsError()) {
+                    LastError = obj.ErrorMsg();
+                    return defvalue;
+                }
+                return obj.DateValue();
+            }
+        } catch (final Exception ex) {
+            LastError = ex.getMessage();
+        }
+        return defvalue;
+    }
     
 }

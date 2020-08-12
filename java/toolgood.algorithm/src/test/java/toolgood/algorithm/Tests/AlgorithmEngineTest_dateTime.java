@@ -7,7 +7,7 @@ import org.joda.time.DateTimeZone;
 import org.junit.Test;
 
 import toolgood.algorithm.AlgorithmEngine;
-import toolgood.algorithm.math.mathParser2.DEC2OCT_funContext;
+import toolgood.algorithm.MyDate;
 
 public class AlgorithmEngineTest_dateTime {
  
@@ -22,8 +22,10 @@ public class AlgorithmEngineTest_dateTime {
     public void TIMEVALUE_test()
     {
         AlgorithmEngine engine = new AlgorithmEngine();
-        DateTime dt = engine.TryEvaluate("TIMEVALUE('12:12:12')", DateTime.now());
-        assertEquals(dt, new DateTime(2016, 1, 1, 12, 12, 12).toTimeOfDay());
+        MyDate dt = engine.TryEvaluate("TIMEVALUE('11:12:13')", MyDate.now());
+        assertEquals(dt.Hour,11);
+        assertEquals(dt.Minute,12);
+        assertEquals(dt.Second,13);
     }
     @Test
     public void DATE_test()
@@ -36,8 +38,10 @@ public class AlgorithmEngineTest_dateTime {
     public void time_test()
     {
         AlgorithmEngine engine = new AlgorithmEngine();
-        DateTime dt = engine.TryEvaluate("time(11,12,13)", DateTime.now().plusDays(1));
-        assertEquals(dt, new DateTime(2016, 1, 1, 11, 12, 13).toTimeOfDay());
+        MyDate dt = engine.TryEvaluate("time(11,12,13)", MyDate.now());
+        assertEquals(dt.Hour,11);
+        assertEquals(dt.Minute,12);
+        assertEquals(dt.Second,13);
     }
     @Test
     public void Now_test()
