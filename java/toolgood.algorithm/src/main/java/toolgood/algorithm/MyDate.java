@@ -1,6 +1,5 @@
 package toolgood.algorithm;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
@@ -9,11 +8,7 @@ import java.util.regex.Pattern;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
-import org.w3c.dom.Text;
 
-/// <summary>
-/// Date
-/// </summary>
 public class MyDate {
     private MyDate(){}
     public MyDate(int year, int month, int day, int hour, int minute, int second) {
@@ -41,7 +36,7 @@ public class MyDate {
         Minute = dTime.getMinuteOfHour();
         Second = dTime.getSecondOfMinute();
     }
-    public static MyDate parse(String txt) throws Exception {
+    public static MyDate parse(String txt) {
         String t=txt.trim();
         Matcher m= Pattern.compile("^(\\d{4})-(0?\\d|11|12)-([012]\\d|30|31) ([01]\\d?|2[1234]):([012345]?\\d):([012345]?\\d)$").matcher(t);
         if(m.find()){
@@ -88,7 +83,7 @@ public class MyDate {
             date.Minute=Integer.parseInt(m.group(2));
             return date;
         }
-        throw new Exception("");
+        return null;
     }
 
 
@@ -112,27 +107,44 @@ public class MyDate {
     public int Second;
 
     public String toString() {
+        StringBuffer stringBuffer=new StringBuffer();
         if (Year != null) {
-            SimpleDateFormat fmt=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Date date= fmt.parse(Year+"-"+Month+"-"+Day+" "+Hour+":"+Minute+":"+Second);
-            if (Second > 0) {
-                return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
-            } else if (Hour > 0 || Minute > 0) {
-                return new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date);
-            } else {
-                return new SimpleDateFormat("yyyy-MM-dd").format(date);
+            stringBuffer.append(Year);
+            stringBuffer.append("-");
+            if(Month<10){ stringBuffer.append("0"); }
+            stringBuffer.append(Month);
+            if(Day<10){ stringBuffer.append("0"); }
+            stringBuffer.append(Day);
+
+            if (Second > 0 || Hour > 0 || Minute > 0) {
+                stringBuffer.append(" ");
+                if(Hour<10){ stringBuffer.append("0"); }
+                stringBuffer.append(Hour);
+                stringBuffer.append(":");
+                if(Minute<10){ stringBuffer.append("0"); }
+                stringBuffer.append(Minute);
+                if(Second>0){
+                    if(Second<10){ stringBuffer.append("0"); }
+                    stringBuffer.append(Second);
+                }
+            }
+        }else{
+            if(Day!=null){
+                stringBuffer.append(Day);
+                stringBuffer.append(" ");
+            }
+            if(Hour<10){ stringBuffer.append("0"); }
+            stringBuffer.append(Hour);
+            stringBuffer.append(":");
+            if(Minute<10){ stringBuffer.append("0"); }
+            stringBuffer.append(Minute);
+            if(Second>0){
+                if(Second<10){ stringBuffer.append("0"); }
+                stringBuffer.append(Second);
             }
         }
-        double sp= Day+ (Hour + (Minute + Second / 60.0) / 60) / 24;
-        TimeSpan ts = new TimeSpan(timeSpan);
-         
-        if (Day != null) {
-            return new SimpleDateFormat("d HH:mm:ss").format(ts);
-        }
-        if (Second == 0) {
-            return new SimpleDateFormat("HH:mm").format(ts);
-        }
-        return new SimpleDateFormat("HH:mm:ss").format(ts);
+      
+        return stringBuffer.toString();
     }
 
     public String toString(String f) {
@@ -153,7 +165,7 @@ public class MyDate {
         return  new DateTime(Year,Month,Day,0,0,0,DateTimeZone.UTC).getDayOfYear();
     }
     public MyDate AddYears(int d){
-        return new MyDate( ToDateTime().plusDays(d))  ;
+        return new MyDate( ToDateTime().plusYears(d))  ;
     }
     public MyDate AddMonths(int d){
         return new MyDate( ToDateTime().plusMonths(d))  ;

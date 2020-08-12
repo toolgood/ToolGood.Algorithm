@@ -2375,9 +2375,9 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (firstValue.IsError()) {
             return firstValue;
         }
-        try {
-            return Operand.Create(MyDate.parse(firstValue.TextValue()));
-        } catch (final Exception e) {
+        MyDate date= MyDate.parse(firstValue.TextValue());
+        if(date !=null){
+            return Operand.Create(date);
         }
         return Operand.Error("Function DATEVALUE parameter is error!");
     }
@@ -2387,9 +2387,9 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (firstValue.IsError()) {
             return firstValue;
         }
-        try {
-            return Operand.Create(MyDate.parse(firstValue.TextValue()));
-        } catch (final Exception e) {
+        MyDate date= MyDate.parse(firstValue.TextValue());
+        if(date !=null){
+            return Operand.Create(date);
         }
         return Operand.Error("Function TIMEVALUE parameter is error!");
     }
