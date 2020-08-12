@@ -425,11 +425,11 @@ public class AlgorithmEngineTest_math {
     {
         AlgorithmEngine engine = new AlgorithmEngine();
         double num = engine.TryEvaluate("BIN2DEC(10101)", 0);
-        assertEquals(num, 21);
+        assertEquals(num, 21,0.001);
         num = engine.TryEvaluate("OCT2DEC(12456)", 0);
-        assertEquals(num, 5422);
+        assertEquals(num, 5422,0.001);
         num = engine.TryEvaluate("HEX2DEC('213adf')", 0);
-        assertEquals(num, 2177759);
+        assertEquals(num, 2177759,0.001);
 
         String t = engine.TryEvaluate("DEC2BIN(10)", "");
         assertEquals(t, "1010");
@@ -447,7 +447,7 @@ public class AlgorithmEngineTest_math {
         t = engine.TryEvaluate("HEX2OCT('f5')", "");
         assertEquals(t, "365");
 
-        t = engine.TryEvaluate("BIN2HEX(101010100)", "");
+        t = engine.TryEvaluate("BIN2HEX('101010100')", "");
         assertEquals(t, "154");
         t = engine.TryEvaluate("OCT2HEX(75212)", "");
         assertEquals(t, "7A8A");

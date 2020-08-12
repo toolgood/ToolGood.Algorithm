@@ -2110,7 +2110,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return firstValue;
         }
 
-        return Operand.Create(F_base_ToChineseRMB(firstValue.NumberValue()));
+        return Operand.Create(F_base_ToChineseRMB(new BigDecimal(firstValue.NumberValue())));
     }
 
     public Operand visitSEARCH_fun(final SEARCH_funContext context) {
@@ -2310,66 +2310,78 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return sb.toString();
     }
 
-    private String F_base_ToChineseRMB(final double number) {
-        // String s =
-        // x.toString("#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A",
-        // cultureInfo);
-        // String d = Regex.Replace(s,
-        // "((?<=-|^)[^1-9]*)|((?'z'0)[0A-E]*((?=[1-9])|(?'-z'(?=[F-L\\.]|$))))|((?'b'[F-L])(?'z'0)[0A-L]*((?=[1-9])|(?'-z'(?=[\\.]|$))))",
-        // "${b}${z}", RegexOptions.Compiled);
-        // return Regex.Replace(d, ".", m ->
-        // "负元空零壹贰叁肆伍陆柒捌玖空空空空空空空分角拾佰仟万亿兆京垓秭穰"[m.Value[0] - '-'].toString(),
-        // RegexOptions.Compiled);
-
-        final StringBuffer chineseNumber = new StringBuffer();
-        final String[] num = { "零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖" };
-        final String[] unit = { "分", "角", "圆", "拾", "佰", "仟", "万", "拾", "佰", "仟", "亿", "拾", "佰", "仟", "万" };
-        final String tempNumber = String.valueOf(round(number * 100, 0));
-        final int tempNumberLength = tempNumber.length();
-        if ("0".equals(tempNumber)) {
-            return "零圆整";
+    static final String[] CN_UPPER_NUMBER = { "零", "壹", "贰", "叁", "肆","伍", "陆", "柒", "捌", "玖" };
+    static final String[] CN_UPPER_MONETRAY_UNIT = { "分", "角", "元", "拾", "佰", "仟", "万", "拾", "佰", "仟", "亿", "拾", "佰", "仟", "兆", "拾",    "佰", "仟" };
+    static final String CN_FULL = "整";
+    static final String CN_NEGATIVE = "负";
+    static final int MONEY_PRECISION = 2;
+    static final String CN_ZEOR_FULL = "零元" + CN_FULL;
+    private String F_base_ToChineseRMB(final BigDecimal  numberOfMoney) {
+        StringBuffer sb = new StringBuffer();
+        int signum = numberOfMoney.signum();
+        if (signum == 0) {
+            return CN_ZEOR_FULL;
         }
-        if (tempNumberLength > 15) {
-            // throw new Exception("超出转化范围.");
+        long number = numberOfMoney.movePointRight(MONEY_PRECISION).setScale(0, 4).abs().longValue();
+        long scale = number % 100;
+        int numUnit = 0; 
+        int numIndex = 0;
+        boolean getZero = false;
+        if (!(scale > 0)) {
+            numIndex = 2;
+            number = number / 100;
+            getZero = true;
         }
-        boolean preReadZero = true; // 前面的字符是否读零
-        for (int i = tempNumberLength; i > 0; i--) {
-            if ((tempNumberLength - i + 2) % 4 == 0) {
-                // 如果在（圆，万，亿，万）位上的四个数都为零,如果标志为未读零，则只读零，如果标志为已读零，则略过这四位
-                if (i - 4 >= 0 && "0000".equals(tempNumber.substring(i - 4, i))) {
-                    if (!preReadZero) {
-                        chineseNumber.insert(0, "零");
-                        preReadZero = true;
+        if ((scale > 0) && (!(scale % 10 > 0))) {
+            numIndex = 1;
+            number = number / 10;
+            getZero = true;
+        }
+        int zeroSize = 0;
+        while (true) {
+            if (number <= 0) {
+                break;
+            }
+            // 每次获取到最后一个数
+            numUnit = (int) (number % 10);
+            if (numUnit > 0) {
+                if ((numIndex == 9) && (zeroSize >= 3)) {
+                    sb.insert(0, CN_UPPER_MONETRAY_UNIT[6]);
+                }
+                if ((numIndex == 13) && (zeroSize >= 3)) {
+                    sb.insert(0, CN_UPPER_MONETRAY_UNIT[10]);
+                }
+                sb.insert(0, CN_UPPER_MONETRAY_UNIT[numIndex]);
+                sb.insert(0, CN_UPPER_NUMBER[numUnit]);
+                getZero = false;
+                zeroSize = 0;
+            } else {
+                ++zeroSize;
+                if (!(getZero)) {
+                    sb.insert(0, CN_UPPER_NUMBER[numUnit]);
+                }
+                if (numIndex == 2) {
+                    if (number > 0) {
+                        sb.insert(0, CN_UPPER_MONETRAY_UNIT[numIndex]);
                     }
-                    i -= 3; // 下面还有一个i--
-                    continue;
+                } else if (((numIndex - 2) % 4 == 0) && (number % 1000 > 0)) {
+                    sb.insert(0, CN_UPPER_MONETRAY_UNIT[numIndex]);
                 }
-                // 如果当前位在（圆，万，亿，万）位上，则设置标志为已读零（即重置读零标志）
-                preReadZero = true;
+                getZero = true;
             }
-            final Integer digit = Integer.parseInt(tempNumber.substring(i - 1, i));
-            if (digit == 0) {
-                // 如果当前位是零并且标志为未读零，则读零，并设置标志为已读零
-                if (!preReadZero) {
-                    chineseNumber.insert(0, "零");
-                    preReadZero = true;
-                }
-                // 如果当前位是零并且在（圆，万，亿，万）位上，则读出（圆，万，亿，万）
-                if ((tempNumberLength - i + 2) % 4 == 0) {
-                    chineseNumber.insert(0, unit[tempNumberLength - i]);
-                }
-            }
-            // 如果当前位不为零，则读出此位，并且设置标志为未读零
-            else {
-                chineseNumber.insert(0, num[digit] + unit[tempNumberLength - i]);
-                preReadZero = false;
-            }
+            // 让number每次都去掉最后一个数
+            number = number / 10;
+            ++numIndex;
         }
-        // 如果分角两位上的值都为零，则添加一个“整”字
-        if (tempNumberLength - 2 >= 0 && "00".equals(tempNumber.substring(tempNumberLength - 2, tempNumberLength))) {
-            chineseNumber.append("整");
+        // 如果signum == -1，则说明输入的数字为负数，就在最前面追加特殊字符：负
+        if (signum == -1) {
+            sb.insert(0, CN_NEGATIVE);
         }
-        return chineseNumber.toString();
+        // 输入的数字小数点后两位为"00"的情况，则要在最后追加特殊字符：整
+        if (!(scale > 0)) {
+            sb.append(CN_FULL);
+        }
+        return sb.toString();
     }
 
     public Operand visitDATEVALUE_fun(final DATEVALUE_funContext context) {
