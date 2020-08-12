@@ -86,11 +86,11 @@ public class ExcelFunctions {
             case 0:
                 return ArrayStatistics.Minimum(array);
             case 1:
-                return Statistics.QuantileCustom(array,0.25, QuantileDefinition.Excel);
+                return Statistics.QuantileCustom(array,0.25, QuantileDefinition.R7);
             case 2:
-                return Statistics.QuantileCustom(array,0.5, QuantileDefinition.Excel);
+                return Statistics.QuantileCustom(array,0.5, QuantileDefinition.R7);
             case 3:
-                return Statistics.QuantileCustom(array,0.75, QuantileDefinition.Excel);
+                return Statistics.QuantileCustom(array,0.75, QuantileDefinition.R7);
             case 4:
                 return ArrayStatistics.Maximum(array);
             default:
@@ -105,7 +105,7 @@ public class ExcelFunctions {
         return Percentile(array,quant);
     }
     public static double Percentile(double[] array, double k) throws Exception {
-        return Statistics.QuantileCustom(array,k, QuantileDefinition.Excel);
+        return Statistics.QuantileCustom(array,k, QuantileDefinition.R7);
     }
     public static double PercentRank(List<Double> data, double x) {
         double[] array=new double[data.size()];

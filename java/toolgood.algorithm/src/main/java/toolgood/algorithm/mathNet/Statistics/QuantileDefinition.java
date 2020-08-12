@@ -7,8 +7,7 @@ public enum QuantileDefinition {
     R4,// = 4, //SAS1 = 4, California = 4,
     R5,// = 5, //Hydrology = 5, Hazen = 5,
     R6,// = 6, //SAS4 = 6, Nist = 6, Weibull = 6, SPSS = 6,
-    R7 ,//= 7,
-     Excel,// = 7,// Mode = 7, S = 7,
+    R7 ,//= 7,     Excel,// = 7,// Mode = 7, S = 7,
     R8,// = 8, //Median = 8, Default = 8,
     R9,// = 9, //Normal = 9,
 }
