@@ -2,6 +2,8 @@ package toolgood.algorithm.Tests;
 
 import static org.junit.Assert.assertEquals;
 
+import java.math.BigDecimal;
+
 import org.joda.time.DateTime;
 import org.junit.Test;
 
@@ -30,12 +32,10 @@ public class AlgorithmEngineTest {
         c = engine.TryEvaluate("if(2+3*2+10/2*4,1", 0);
         assertEquals(0, c);
 
-
-
         double e = engine.TryEvaluate("e", 0.0);
-        assertEquals(Math.E, e);
+        assertEquals(Math.E-e,0.0,0.01);
         e = engine.TryEvaluate("pi", 0.0);
-        assertEquals(Math.PI, e);
+        assertEquals(Math.PI-e,0.0,0.01);
 
         boolean b = engine.TryEvaluate("true", true);
         assertEquals(true, b);
@@ -49,9 +49,9 @@ public class AlgorithmEngineTest {
         assertEquals(2, b1);
 
         double b2 = engine.TryEvaluate("pi*4", 0.0);
-        assertEquals(Math.PI * 4, b2);
+        assertEquals(Math.PI * 4, b2,0.01);
         b2 = engine.TryEvaluate("e*4", 0.0);
-        assertEquals(Math.E * 4, b2);
+        assertEquals(Math.E * 4, b2,0.01);
 
         String s = engine.TryEvaluate("'aa'&'bb'", "");
         assertEquals("aabb", s);
@@ -140,4 +140,9 @@ public class AlgorithmEngineTest {
         String t = engine.TryEvaluate("1+(3*2+2)/2 & '11' & '11:20'*9 & isnumber(22)*3", "");
     }
 
+
+    private double round(final double value, final int p) {
+        final BigDecimal bigD = new BigDecimal(value);
+        return bigD.setScale(p, BigDecimal.ROUND_HALF_UP).doubleValue();
+    }
 }
