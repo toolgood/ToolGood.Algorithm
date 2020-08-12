@@ -1,5 +1,7 @@
 package toolgood.algorithm.internals;
-public final class Base64Util {
+
+
+public class Base64Util {
     private static final int BASELENGTH = 128;
     private static final int LOOKUPLENGTH = 64;
     private static final int TWENTYFOURBITGROUP = 24;
@@ -46,9 +48,6 @@ public final class Base64Util {
     private static boolean isData(char octect) {
       return (octect < BASELENGTH && base64Alphabet[octect] != -1);
     }
-    /**
-     把64位byte数组转换成String
-     */
     public static String encode(byte[] binaryData) {
       if (binaryData == null) {
         return null;
@@ -109,9 +108,6 @@ public final class Base64Util {
       }
       return new String(encodedData);
     }
-    /**
-     * 把Base64位编码转换成byte数组
-     */
     public static byte[] decode(String encoded) {
       if (encoded == null) {
         return null;
