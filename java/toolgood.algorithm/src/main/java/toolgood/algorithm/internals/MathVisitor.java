@@ -1054,20 +1054,19 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             }
             no = thirdValue.BooleanValue();
         }
-        if (no == false) {
             if (num <= 0) {
-                final DecimalFormat myFormatter = new DecimalFormat("#");
+                String f = no? "#":"#,###";
+                final DecimalFormat myFormatter = new DecimalFormat(f);
                 return Operand.Create(myFormatter.format(s));
             } else {
-                String f = "#.";
+                String f = no? "#.":"#,###.";
                 for (int i = 0; i < num; i++) {
                     f += "#";
                 }
                 final DecimalFormat myFormatter = new DecimalFormat(f);
                 return Operand.Create(myFormatter.format(s));
             }
-        }
-        return Operand.Create(((Double)s).toString());
+        // return Operand.Create(((Double)s).toString());
     }
 
     public Operand visitBIN2OCT_fun(final BIN2OCT_funContext context) {
@@ -1971,7 +1970,8 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return thirdValue;
         }
         return Operand
-                .Create(firstValue.TextValue().substring(secondValue.IntValue() - excelIndex, thirdValue.IntValue()));
+                .Create(firstValue.TextValue().substring(secondValue.IntValue() - excelIndex,
+                    secondValue.IntValue() - excelIndex + thirdValue.IntValue()));
     }
 
     public Operand visitPROPER_fun(final PROPER_funContext context) {
@@ -2099,8 +2099,9 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (secondValue.IsError()) {
             return secondValue;
         }
-        return Operand.Create(firstValue.TextValue().substring(firstValue.TextValue().length() - secondValue.IntValue(),
-                secondValue.IntValue()));
+        return Operand.Create(firstValue.TextValue()
+                .substring(firstValue.TextValue().length() - secondValue.IntValue(),
+                    firstValue.TextValue().length()));
     }
 
     public Operand visitRMB_fun(final RMB_funContext context) {
