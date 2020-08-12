@@ -133,7 +133,7 @@ public class AlgorithmEngineTest {
         assertEquals(false, b);
 
     }
-
+    @Test
     public void base_test2()
     {
         AlgorithmEngine engine = new AlgorithmEngine();
