@@ -35,8 +35,7 @@ namespace ToolGood.Algorithm.LitJson
                 instance.SetBoolean((bool)reader.Value);
                 return instance;
             }
-            if (reader.Token == JsonToken.Null)
-            {
+            if (reader.Token == JsonToken.Null) {
                 instance.SetNull();
                 return instance;
             }

@@ -58,7 +58,7 @@ namespace ToolGood.Algorithm
         public static string GetCrc16String(byte[] buffer)
         {
             var buffer1 = Crc16Hash.makeCrc16(buffer);
-            return BitConverter.ToString(buffer1);
+            return BitConverter.ToString(buffer1).Replace("-","");
         }
 
         class Crc16Hash

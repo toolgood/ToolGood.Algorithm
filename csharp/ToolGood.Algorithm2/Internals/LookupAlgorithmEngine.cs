@@ -13,8 +13,7 @@ namespace ToolGood.Algorithm.Internals
         protected override Operand GetParameter(string parameter)
         {
             var v = Json.JsonValue[parameter];
-            if (v!=null)
-            {
+            if (v != null) {
                 if (v.IsString) return Operand.Create(v.StringValue);
                 if (v.IsBoolean) return Operand.Create(v.BooleanValue);
                 if (v.IsDouble) return Operand.Create(v.NumberValue);
