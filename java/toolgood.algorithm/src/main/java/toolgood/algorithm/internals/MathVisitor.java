@@ -2544,6 +2544,9 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
 
         final int t = firstValue.DateValue().DayOfWeek();
         if (type == 1) {
+            if(t==7){
+                return Operand.Create(1);
+            }
             return Operand.Create((double) (t + 1));
         } else if (type == 2) {
             if (t == 0)
@@ -4051,26 +4054,30 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     private int F_base_countif(final List<Double> dbs, final String s) {
-        final Matcher m = sumifRegex.matcher(s);
-        final Double d = Double.parseDouble(m.group(2));
+        Matcher m = sumifRegex.matcher(s);
         int count = 0;
-
-        for (final double item : dbs) {
-            if (F_base_compare(item, d, s)) {
-                count++;
+        if(m.find()){
+            final Double d = Double.parseDouble(m.group(2));
+            for (final double item : dbs) {
+                if (F_base_compare(item, d, s)) {
+                    count++;
+                }
             }
         }
+
         return count;
     }
 
     private double F_base_sumif(final List<Double> dbs, final String s, final List<Double> sumdbs) {
         final Matcher m = sumifRegex.matcher(s);
-        final Double d = Double.parseDouble(m.group(2));
         double sum = 0;
+        if(m.find()){
+            final Double d = Double.parseDouble(m.group(2));
 
-        for (int i = 0; i < dbs.size(); i++) {
-            if (F_base_compare(dbs.get(i), d, s)) {
-                sum += sumdbs.get(i);
+            for (int i = 0; i < dbs.size(); i++) {
+                if (F_base_compare(dbs.get(i), d, s)) {
+                    sum += sumdbs.get(i);
+                }
             }
         }
         return sum;

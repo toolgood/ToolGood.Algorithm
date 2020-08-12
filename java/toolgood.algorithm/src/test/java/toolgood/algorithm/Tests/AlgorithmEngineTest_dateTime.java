@@ -98,7 +98,10 @@ public class AlgorithmEngineTest_dateTime {
     public void WEEKDAY_test()
     {
         AlgorithmEngine engine = new AlgorithmEngine();
-        int dt = engine.TryEvaluate("WEEKDAY(date(2017,1,7))", 0);
+        int dt = engine.TryEvaluate("WEEKDAY(date(2017,2,18),1)", 0);
+        assertEquals(dt, 7);
+
+        dt = engine.TryEvaluate("WEEKDAY(date(2017,1,7))", 0);
         assertEquals(dt, 7);
         dt = engine.TryEvaluate("WEEKDAY(date(2017,1,7),1)", 0);
         assertEquals(dt, 7);
