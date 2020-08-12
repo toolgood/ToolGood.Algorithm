@@ -1,12 +1,10 @@
 package toolgood.algorithm;
 
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import org.joda.time.DateTime;
 
@@ -34,10 +32,10 @@ public abstract class Operand {
         return new OperandBoolean(obj);
     }
     public static Operand Create(final short obj) {
-        return new OperandNumber(new Double(obj));
+        return new OperandNumber( (double)obj);
     }
     public static Operand Create(final int obj) {
-        return new OperandNumber(new Double(obj));
+        return new OperandNumber( (double)obj);
     }
     public static Operand Create(final long obj) {
         return new OperandNumber((double) obj);
@@ -147,7 +145,7 @@ public abstract class Operand {
     {
         if (Type() == OperandType.STRING) { return this; }
         if (IsError()) { return this; }
-        if (Type() == OperandType.NUMBER) { return Create(new Double(NumberValue()).toString()); }
+        if (Type() == OperandType.NUMBER) { return Create(  ((Double)NumberValue()).toString()); }
         if (Type() == OperandType.BOOLEAN) { return Create(BooleanValue() ? "TRUE" : "FALSE"); }
         if (Type() == OperandType.DATE) { return Create(DateValue().toString()); }
 

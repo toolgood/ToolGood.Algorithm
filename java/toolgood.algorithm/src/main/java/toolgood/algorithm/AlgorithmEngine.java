@@ -1,14 +1,11 @@
 package toolgood.algorithm;
 
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-import toolgood.algorithm.Operand;
 import toolgood.algorithm.internals.CaseChangingCharStream;
 import toolgood.algorithm.internals.MathVisitor;
 import toolgood.algorithm.internals.MyFunction;

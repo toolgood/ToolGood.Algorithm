@@ -8,5 +8,9 @@ import toolgood.algorithm.AlgorithmEngine;
 public class DemoApplication {
 	public static void main(String[] args) throws Exception {
         AlgorithmEngine e=new AlgorithmEngine();
+        int t= e.TryEvaluate("1+2", 0);
+        if (t!=3){
+            System.out.println(t);
+        }
     }
 }
