@@ -38,7 +38,7 @@ public class MyDate {
     }
     public static MyDate parse(String txt) {
         String t=txt.trim();
-        Matcher m= Pattern.compile("^(\\d{4})-(0?\\d|11|12)-([012]?\\d|30|31) ([01]\\d?|2[1234]):([012345]?\\d):([012345]?\\d)$").matcher(t);
+        Matcher m= Pattern.compile("^(\\d{4})-(11|12|0?\\d)-(30|31|[012]?\\d) ([01]\\d?|2[1234]):([012345]?\\d):([012345]?\\d)$").matcher(t);
         if(m.find()){
             MyDate date=new MyDate();
             date.Year=Integer.parseInt(m.group(1));
@@ -49,7 +49,7 @@ public class MyDate {
             date.Second=Integer.parseInt(m.group(6));
             return date;
         }
-        m= Pattern.compile("(\\d{4})-(0?\\d|11|12)-([012]?\\d|30|31) ([01]\\d?|2[1234]):([012345]?\\d)").matcher(t);
+        m= Pattern.compile("(\\d{4})-(11|12|0?\\d)-(30|31|[012]?\\d) ([01]\\d?|2[1234]):([012345]?\\d)").matcher(t);
         if(m.find()){
             MyDate date=new MyDate();
             date.Year=Integer.parseInt(m.group(1));
@@ -59,7 +59,7 @@ public class MyDate {
             date.Minute=Integer.parseInt(m.group(5));
             return date;
         }
-        m= Pattern.compile("(\\d{4})-(0?\\d|11|12)-([012]?\\d|30|31)").matcher(t);
+        m= Pattern.compile("(\\d{4})-(11|12|0?\\d)-(30|31|[012]?\\d)").matcher(t);
         if(m.find()){
             MyDate date=new MyDate();
             date.Year=Integer.parseInt(m.group(1));
@@ -67,7 +67,7 @@ public class MyDate {
             date.Day=Integer.parseInt(m.group(3));
             return date;
         }
-        m= Pattern.compile("^(\\d+) ([01]?\\d|2[1234]):([012345]?\\d):([012345]?\\d)$").matcher(t);
+        m= Pattern.compile("^(\\d+) (2[1234]|[01]?\\d):([012345]?\\d):([012345]?\\d)$").matcher(t);
         if(m.find()){
             MyDate date=new MyDate();
             date.Day=Integer.parseInt(m.group(1));
@@ -76,7 +76,7 @@ public class MyDate {
             date.Second=Integer.parseInt(m.group(4));
             return date;
         }
-        m= Pattern.compile("^([01]?\\d|2[1234]):([012345]?\\d):([012345]?\\d)$").matcher(t);
+        m= Pattern.compile("^(2[1234]|[01]?\\d):([012345]?\\d):([012345]?\\d)$").matcher(t);
         if(m.find()){
             MyDate date=new MyDate();
             date.Hour=Integer.parseInt(m.group(1));
@@ -84,7 +84,7 @@ public class MyDate {
             date.Second=Integer.parseInt(m.group(3));
             return date;
         }
-        m= Pattern.compile("^([01]?\\d|2[1234]):([012345]?\\d)$").matcher(t);
+        m= Pattern.compile("^(2[1234]|[01]?\\d):([012345]?\\d)$").matcher(t);
         if(m.find()){
             MyDate date=new MyDate();
             date.Hour=Integer.parseInt(m.group(1));

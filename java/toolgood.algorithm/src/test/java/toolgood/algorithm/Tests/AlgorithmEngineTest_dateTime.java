@@ -7,6 +7,7 @@ import org.joda.time.DateTimeZone;
 import org.junit.Test;
 
 import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.math.mathParser2.DEC2OCT_funContext;
 
 public class AlgorithmEngineTest_dateTime {
  
@@ -43,14 +44,17 @@ public class AlgorithmEngineTest_dateTime {
     {
         AlgorithmEngine engine = new AlgorithmEngine();
         DateTime dt = engine.TryEvaluate("now()", DateTime.now().plusDays(1));
-        assertEquals(dt.toString(), DateTime.now().toString());
+        DateTime dt2=DateTime.now();
+        assertEquals(dt, new DateTime(dt2.getYear(),dt2.getMonthOfYear(),dt2.getDayOfMonth()
+            ,dt2.getHourOfDay(),dt2.getMinuteOfHour(),dt2.getSecondOfMinute(),DateTimeZone.UTC));
     }
     @Test
     public void Today_test()
     {
         AlgorithmEngine engine = new AlgorithmEngine();
         DateTime dt = engine.TryEvaluate("Today()", DateTime.now());
-        assertEquals(dt.toString(), DateTime.now().toDate().toString());
+        DateTime dt2=DateTime.now();
+        assertEquals(dt, new DateTime(dt2.getYear(),dt2.getMonthOfYear(),dt2.getDayOfMonth(),0,0,0,DateTimeZone.UTC));
     }
     @Test
     public void Year_test()
@@ -161,14 +165,14 @@ public class AlgorithmEngineTest_dateTime {
     {
         AlgorithmEngine engine = new AlgorithmEngine();
         DateTime dt = engine.TryEvaluate("EDATE(\"2012-1-31\",32)", DateTime.now());
-        assertEquals(dt, DateTime.parse("2014-09-30"));
+        assertEquals(dt,new DateTime(2014,9,30,0,0,0,DateTimeZone.UTC));
     }
     @Test
     public void EOMONTH_test()
     {
         AlgorithmEngine engine = new AlgorithmEngine();
         DateTime dt = engine.TryEvaluate("EOMONTH(\"2012-2-1\",32)", DateTime.now());
-        assertEquals(dt, DateTime.parse("2014-10-31"));
+        assertEquals(dt, new DateTime(2014,10,31,0,0,0,DateTimeZone.UTC));
     }
 
     @Test
@@ -183,7 +187,7 @@ public class AlgorithmEngineTest_dateTime {
     {
         AlgorithmEngine engine = new AlgorithmEngine();
         DateTime dt = engine.TryEvaluate("WORKDAY(\"2012-1-2\",145)", DateTime.now());
-        assertEquals(dt, DateTime.parse("2012-07-23"));
+        assertEquals(dt,new DateTime(2012,07,23,0,0,0,DateTimeZone.UTC));
     }
 
     @Test

@@ -2759,7 +2759,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
 
         int days = 0;
-        while (startDate.isBefore(endDate)) {
+        while (startDate.isBefore(endDate) || startDate.isEqual(endDate)) {
             if (startDate.dayOfWeek().get() != DateTimeConstants.SUNDAY
                     && startDate.dayOfWeek().get() != DateTimeConstants.SATURDAY) {
                 if (list.contains(startDate) == false) {
