@@ -4,6 +4,7 @@ import java.util.function.Function;
 
 import toolgood.algorithm.mathNet.Precision;
 
+ 
 public class Brent {
     public static double FindRoot(Function<Double, Double> f, double lowerBound, double upperBound, double accuracy)
             throws Exception {
@@ -13,23 +14,23 @@ public class Brent {
     public static double FindRoot(Function<Double, Double> f, double lowerBound, double upperBound, double accuracy,
             int maxIterations) throws Exception
     {
-        Double root=0.0;
+        RootNumber root=new RootNumber();
         if (TryFindRoot(f, lowerBound, upperBound, accuracy, maxIterations,root)) {
-            return root;
+            return root.root;
         }
         throw new Exception("RootFindingFailed");
     }
 
 
     public static boolean TryFindRoot(Function<Double, Double> f, double lowerBound, double upperBound, double accuracy,
-            int maxIterations, Double root)
+            int maxIterations, RootNumber root)
     {
         double fmin = f.apply(lowerBound);
         double fmax = f.apply(upperBound);
         double froot = fmax;
         double d = 0.0, e = 0.0;
 
-        root = upperBound;
+        root.root = upperBound;
         double xMid = Double.NaN;
 
         // Root must be bracketed.
@@ -42,12 +43,12 @@ public class Brent {
             if (sign(froot) == sign(fmax)) {
                 upperBound = lowerBound;
                 fmax = fmin;
-                e = d = root - lowerBound;
+                e = d = root.root - lowerBound;
             }
 
             if (Math.abs(fmax) < Math.abs(froot)) {
-                lowerBound = root;
-                root = upperBound;
+                lowerBound = root.root;
+                root.root = upperBound;
                 upperBound = lowerBound;
                 fmin = froot;
                 froot = fmax;
@@ -55,9 +56,9 @@ public class Brent {
             }
 
             // convergence check
-            double xAcc1 = Precision.PositiveDoublePrecision * Math.abs(root) + 0.5 * accuracy;
+            double xAcc1 = Precision.PositiveDoublePrecision * Math.abs(root.root) + 0.5 * accuracy;
             double xMidOld = xMid;
-            xMid = (upperBound - root) / 2.0;
+            xMid = (upperBound - root.root) / 2.0;
 
             if (Math.abs(xMid) <= xAcc1 || Precision.AlmostEqualNormRelative(froot,0, froot, accuracy)) {
                 return true;
@@ -79,7 +80,7 @@ public class Brent {
                 } else {
                     q = fmin / fmax;
                     double r = froot / fmax;
-                    p = s * (2.0 * xMid * q * (q - r) - (root - lowerBound) * (r - 1.0));
+                    p = s * (2.0 * xMid * q * (q - r) - (root.root - lowerBound) * (r - 1.0));
                     q = (q - 1.0) * (r - 1.0) * (s - 1.0);
                 }
 
@@ -104,15 +105,15 @@ public class Brent {
                 e = d;
             }
 
-            lowerBound = root;
+            lowerBound = root.root;
             fmin = froot;
             if (Math.abs(d) > xAcc1) {
-                root += d;
+                root.root += d;
             } else {
-                root += Sign(xAcc1, xMid);
+                root.root += Sign(xAcc1, xMid);
             }
 
-            froot = f.apply(root);
+            froot = f.apply(root.root);
         }
 
         return false;
