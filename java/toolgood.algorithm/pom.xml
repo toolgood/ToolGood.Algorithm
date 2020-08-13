@@ -5,10 +5,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>toolgood</groupId>
-  <artifactId>algorithm</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <artifactId>toolgood-algorithm</artifactId>
+  <version>2.0</version>
 
-  <name>algorithm</name>
+  <name>toolgood.algorithm</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -71,6 +71,17 @@
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.0.2</version>
+               <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>toolgood.algorithm</mainClass>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>main/</classpathPrefix>
+                        </manifest>
+                    </archive>
+                    <classesDirectory>
+                    </classesDirectory>
+                </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
