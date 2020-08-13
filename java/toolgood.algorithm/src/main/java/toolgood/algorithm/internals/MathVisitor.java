@@ -4211,26 +4211,27 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
         return true;
     }
-
+    @SuppressWarnings("deprecation")
     public Operand visitURLENCODE_fun(final URLENCODE_funContext context) {
         final Operand firstValue = visit(context.expr()).ToText("Function URLENCODE parameter 1 is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
         try {
-            return Operand.Create(URLEncoder.encode(firstValue.TextValue(),"GB18030"));
+            return Operand.Create(URLEncoder.encode(firstValue.TextValue()));
         } catch (Exception e) {
         }
         return Operand.Error("Function URLENCODE is error!");
     }
 
+    @SuppressWarnings("deprecation")
     public Operand visitURLDECODE_fun(final URLDECODE_funContext context) {
         final Operand firstValue = visit(context.expr()).ToText("Function URLDECODE parameter 1 is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
         try {
-            return Operand.Create(URLDecoder.decode(firstValue.TextValue(),"GB18030"));
+            return Operand.Create(URLDecoder.decode(firstValue.TextValue()));
         } catch (Exception e) {
         }
         return Operand.Error("Function URLDECODE is error!");
@@ -4242,7 +4243,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return firstValue;
         }
 
-        return Operand.Create(StringEscapeUtils.unescapeHtml4(firstValue.TextValue()));
+        return Operand.Create(StringEscapeUtils.escapeHtml4(firstValue.TextValue()));
     }
 
     public Operand visitHTMLDECODE_fun(final HTMLDECODE_funContext context) {
@@ -4251,7 +4252,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return firstValue;
         }
 
-        return Operand.Create(StringEscapeUtils.escapeHtml4(firstValue.TextValue()));
+        return Operand.Create(StringEscapeUtils.unescapeHtml4(firstValue.TextValue()));
     }
 
     public Operand visitBASE64TOTEXT_fun(final BASE64TOTEXT_funContext context) {
@@ -4374,23 +4375,28 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
 
         if (args.size() == 2) {
-            final Matcher b = Pattern.compile(firstValue.TextValue()).matcher(secondValue.TextValue());
+            Matcher b = Pattern.compile(secondValue.TextValue()).matcher(firstValue.TextValue());
             if (b.find() == false) {
                 return Operand.Error("Function REGEX is error!");
             }
             return Operand.Create(b.group(0));
         } else {
-            // } else if (args.size() == 3) {
-            final Matcher ms = Pattern.compile(firstValue.TextValue()).matcher(secondValue.TextValue());
-            // Matches ms = Regex.Matches(firstValue.TextValue(), secondValue.TextValue());
-            final Operand thirdValue = args.get(2).ToNumber("Function REGEX parameter 3 is error!");
-            if (thirdValue.IsError()) {
-                return thirdValue;
-            }
-            if (ms.groupCount() <= thirdValue.IntValue() - excelIndex) {
-                return Operand.Error("Function REGEX is error!");
-            }
-            return Operand.Create(ms.group(thirdValue.IntValue() - excelIndex));
+            return Operand.Error("Function REGEX is error!");
+
+            // // } else if (args.size() == 3) {
+            // final Matcher ms = Pattern.compile(secondValue.TextValue()).matcher(firstValue.TextValue());
+            // // Matches ms = Regex.Matches(firstValue.TextValue(), secondValue.TextValue());
+            // final Operand thirdValue = args.get(2).ToNumber("Function REGEX parameter 3 is error!");
+            // if (thirdValue.IsError()) {
+            //     return thirdValue;
+            // }
+            // if (ms.find() == false) {
+            //     return Operand.Error("Function REGEX is error!");
+            // } 
+            // if (ms.groupCount() <= thirdValue.IntValue() - excelIndex) {
+            //     return Operand.Error("Function REGEX is error!");
+            // }
+            // return Operand.Create(ms.group(thirdValue.IntValue() - excelIndex));
             // [thirdValue.IntValue() - excelIndex].Value);
             // } else {
             // Matcher ms =
@@ -4444,7 +4450,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             args.add(a);
         }
 
-        final boolean b = Pattern.compile(args.get(0).TextValue()).matcher(args.get(1).TextValue()).find();
+        final boolean b = Pattern.compile(args.get(1).TextValue()).matcher(args.get(0).TextValue()).find();
         return Operand.Create(b);
     }
 
@@ -5579,7 +5585,10 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     private String ToBase64ForUrlString(final byte[] input) {
-        return ToBase64String(input).replace("=*$", "").replace("\\+", "-").replace("/", "-");
+        String t=Pattern.compile("=*$").matcher(ToBase64String(input)).replaceAll("");
+        t=Pattern.compile("\\+").matcher(t).replaceAll("-");
+        t=Pattern.compile("/").matcher(t).replaceAll("_");
+        return t;
     }
 
     private byte[] FromBase64ForUrlString(final String base64ForUrlInput) {
