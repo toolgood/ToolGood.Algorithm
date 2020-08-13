@@ -78,15 +78,13 @@ expr:
 	| expr '.' BASE64URLTOTEXT '(' expr? ')'					# BASE64URLTOTEXT_fun
 	| expr '.' TEXTTOBASE64 '(' expr? ')'						# TEXTTOBASE64_fun
 	| expr '.' TEXTTOBASE64URL '(' expr? ')'					# TEXTTOBASE64URL_fun
-	| expr '.' REGEX '(' expr (',' expr (',' expr)?)? ')'		# REGEX_fun
+	| expr '.' REGEX '(' expr ')'								# REGEX_fun
 	| expr '.' REGEXREPALCE '(' expr ',' expr ')'				# REGEXREPALCE_fun
 	| expr '.' ISREGEX '(' expr ')'								# ISREGEX_fun
 	| expr '.' MD5 '(' expr? ')'								# MD5_fun
 	| expr '.' SHA1 '(' expr? ')'								# SHA1_fun
 	| expr '.' SHA256 '(' expr? ')'								# SHA256_fun
 	| expr '.' SHA512 '(' expr? ')'								# SHA512_fun
-	| expr '.' CRC8 '(' expr? ')'								# CRC8_fun
-	| expr '.' CRC16 '(' expr? ')'								# CRC16_fun
 	| expr '.' CRC32 '(' expr? ')'								# CRC32_fun
 	| expr '.' HMACMD5 '(' expr (',' expr)? ')'					# HMACMD5_fun
 	| expr '.' HMACSHA1 '(' expr (',' expr)? ')'				# HMACSHA1_fun
@@ -294,7 +292,7 @@ expr2:
 	| BASE64URLTOTEXT '(' expr (',' expr)? ')'					# BASE64URLTOTEXT_fun2
 	| TEXTTOBASE64 '(' expr (',' expr)? ')'						# TEXTTOBASE64_fun2
 	| TEXTTOBASE64URL '(' expr (',' expr)? ')'					# TEXTTOBASE64URL_fun2
-	| REGEX '(' expr ',' expr (',' expr (',' expr)?)? ')'		# REGEX_fun2
+	| REGEX '(' expr ',' expr ')'								# REGEX_fun2
 	| REGEXREPALCE '(' expr ',' expr ',' expr ')'				# REGEXREPALCE_fun2
 	| ISREGEX '(' expr ',' expr ')'								# ISREGEX_fun2
 	| GUID '(' ')'												# GUID_fun2
@@ -302,8 +300,6 @@ expr2:
 	| SHA1 '(' expr (',' expr)? ')'								# SHA1_fun2
 	| SHA256 '(' expr (',' expr)? ')'							# SHA256_fun2
 	| SHA512 '(' expr (',' expr)? ')'							# SHA512_fun2
-	| CRC8 '(' expr (',' expr)? ')'								# CRC8_fun2
-	| CRC16 '(' expr (',' expr)? ')'							# CRC16_fun2
 	| CRC32 '(' expr (',' expr)? ')'							# CRC32_fun2
 	| HMACMD5 '(' expr ',' expr (',' expr)? ')'					# HMACMD5_fun2
 	| HMACSHA1 '(' expr ',' expr (',' expr)? ')'				# HMACSHA1_fun2
@@ -519,8 +515,6 @@ parameter2:
 	| SHA1
 	| SHA256
 	| SHA512
-	| CRC8
-	| CRC16
 	| CRC32
 	| HMACMD5
 	| HMACSHA1
@@ -739,8 +733,6 @@ MD5: 'MD5';
 SHA1: 'SHA1';
 SHA256: 'SHA256';
 SHA512: 'SHA512';
-CRC8: 'CRC8';
-CRC16: 'CRC16';
 CRC32: 'CRC32';
 HMACMD5: 'HMACMD5';
 HMACSHA1: 'HMACSHA1';
