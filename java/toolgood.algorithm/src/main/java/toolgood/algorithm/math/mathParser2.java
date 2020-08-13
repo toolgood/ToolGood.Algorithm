@@ -107,18 +107,6 @@ public class mathParser2{
             return ((mathVisitor<? extends T>) visitor).visitISNULLORERROR_fun(this);
         }
     }
-    public static class CRC16_funContext extends ExprContext {
-        public List<ExprContext> expr() {
-            return getRuleContexts(ExprContext.class);
-        }
-        public CRC16_funContext(final ExprContext ctx) {
-            copyFrom(ctx);
-        }
-        @Override
-        public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitCRC16_fun(this);
-        }
-    }
     public static class RIGHT_funContext extends ExprContext {
         public List<ExprContext> expr() {
             return getRuleContexts(ExprContext.class);
@@ -659,18 +647,6 @@ public class mathParser2{
         @Override
         public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
             return ((mathVisitor<? extends T>) visitor).visitTRIM_fun(this);
-        }
-    }
-    public static class CRC8_funContext extends ExprContext {
-        public List<ExprContext> expr() {
-            return getRuleContexts(ExprContext.class);
-        }
-        public CRC8_funContext(final ExprContext ctx) {
-            copyFrom(ctx);
-        }
-        @Override
-        public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitCRC8_fun(this);
         }
     }
     public static class ISLOGICAL_funContext extends ExprContext {

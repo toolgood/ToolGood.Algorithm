@@ -11,16 +11,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 class Hash {
-    public static String GetCrc8String(final byte[] buffer) {
-        final byte b = Crc8Hash.calcCrc(buffer);
-        return byteArrayToHexString(new byte[]{b});
-    }
-
-    public static String GetCrc16String(final byte[] buffer) {
-        final byte[] buffer1 = Crc16Hash.getCrc16(buffer);
-        return byteArrayToHexString(buffer1);
-    }
-
     public static String GetCrc32String(final byte[] buffer) {
         CRC32 c = new CRC32();
         c.reset();// Resets CRC-32 to initial value.

@@ -4373,52 +4373,11 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (secondValue.IsError()) {
             return secondValue;
         }
-
-        if (args.size() == 2) {
             Matcher b = Pattern.compile(secondValue.TextValue()).matcher(firstValue.TextValue());
             if (b.find() == false) {
                 return Operand.Error("Function REGEX is error!");
             }
             return Operand.Create(b.group(0));
-        } else {
-            return Operand.Error("Function REGEX is error!");
-
-            // // } else if (args.size() == 3) {
-            // final Matcher ms = Pattern.compile(secondValue.TextValue()).matcher(firstValue.TextValue());
-            // // Matches ms = Regex.Matches(firstValue.TextValue(), secondValue.TextValue());
-            // final Operand thirdValue = args.get(2).ToNumber("Function REGEX parameter 3 is error!");
-            // if (thirdValue.IsError()) {
-            //     return thirdValue;
-            // }
-            // if (ms.find() == false) {
-            //     return Operand.Error("Function REGEX is error!");
-            // } 
-            // if (ms.groupCount() <= thirdValue.IntValue() - excelIndex) {
-            //     return Operand.Error("Function REGEX is error!");
-            // }
-            // return Operand.Create(ms.group(thirdValue.IntValue() - excelIndex));
-            // [thirdValue.IntValue() - excelIndex].Value);
-            // } else {
-            // Matcher ms =
-            // Pattern.compile(firstValue.TextValue()).matcher(secondValue.TextValue());
-            // // Matches ms = Regex.Matches(firstValue.TextValue(),
-            // secondValue.TextValue());
-            // Operand thirdValue = args.get(2).ToNumber("Function REGEX parameter 3 is
-            // error!");
-            // if (thirdValue.IsError()) {
-            // return thirdValue;
-            // }
-            // if (ms.groupCount() <= thirdValue.IntValue() + excelIndex) {
-            // return Operand.Error("Function REGEX parameter 3 is error!");
-            // }
-            // Operand fourthValue = args.get(3).ToNumber("Function REGEX parameter 4 is
-            // error!");
-            // if (fourthValue.IsError()) {
-            // return fourthValue;
-            // }
-            // return Operand.Create(ms[thirdValue.IntValue() -
-            // excelIndex].Groups[fourthValue.IntValue()].Value);
-        }
     }
 
     public Operand visitREGEXREPALCE_fun(final REGEXREPALCE_funContext context) {
@@ -4556,56 +4515,6 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         } catch (final Exception e) {
         }
         return Operand.Error("Function SHA512 is error!");
-    }
-
-    public Operand visitCRC8_fun(final CRC8_funContext context) {
-        final List<Operand> args = new ArrayList<Operand>();
-        int index = 1;
-        for (final ExprContext item : context.expr()) {
-            final Operand a = visit(item).ToText("Function CRC8 parameter " + (index++) + " is error!");
-            if (a.IsError()) {
-                return a;
-            }
-            args.add(a);
-        }
-
-        String encoding;
-        if (args.size() == 1) {
-            encoding = "utf-8";
-        } else {
-            encoding = args.get(1).TextValue();
-        }
-        try {
-            final String t = Hash.GetCrc8String(args.get(0).TextValue().getBytes(encoding));
-            return Operand.Create(t);
-        } catch (final Exception e) {
-        }
-        return Operand.Error("Function CRC8 is error!");
-    }
-
-    public Operand visitCRC16_fun(final CRC16_funContext context) {
-        final List<Operand> args = new ArrayList<Operand>();
-        int index = 1;
-        for (final ExprContext item : context.expr()) {
-            final Operand a = visit(item).ToText("Function CRC16 parameter " + (index++) + " is error!");
-            if (a.IsError()) {
-                return a;
-            }
-            args.add(a);
-        }
-
-        String encoding;
-        if (args.size() == 1) {
-            encoding = "utf-8";
-        } else {
-            encoding = args.get(1).TextValue();
-        }
-        try {
-            final String t = Hash.GetCrc16String(args.get(0).TextValue().getBytes(encoding));
-            return Operand.Create(t);
-        } catch (final Exception e) {
-        }
-        return Operand.Error("Function CRC16 is error!");
     }
 
     public Operand visitCRC32_fun(final CRC32_funContext context) {

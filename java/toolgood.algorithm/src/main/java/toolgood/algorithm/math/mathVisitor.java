@@ -16,7 +16,6 @@ public interface mathVisitor<Result> extends ParseTreeVisitor<Result> {
 	Result visitREGEXREPALCE_fun( REGEXREPALCE_funContext context);
 	Result visitAddSub_fun( AddSub_funContext context);
 	Result visitAVERAGEIF_fun( AVERAGEIF_funContext context);
-	Result visitCRC16_fun( CRC16_funContext context);
 	Result visitRIGHT_fun( RIGHT_funContext context);
 	Result visitOCT2BIN_fun( OCT2BIN_funContext context);
 	Result visitQUARTILE_fun( QUARTILE_funContext context);
@@ -54,7 +53,6 @@ public interface mathVisitor<Result> extends ParseTreeVisitor<Result> {
 	Result visitMROUND_fun( MROUND_funContext context);
 	Result visitDATEDIF_fun( DATEDIF_funContext context);
 	Result visitTRIMEND_fun( TRIMEND_funContext context);
-	Result visitCRC8_fun( CRC8_funContext context);
 	Result visitISLOGICAL_fun( ISLOGICAL_funContext context);
 	Result visitINT_fun( INT_funContext context);
 	Result visitSUMIF_fun( SUMIF_funContext context);
