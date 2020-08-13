@@ -1,6 +1,7 @@
 package toolgood.algorithm.Tests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import java.math.BigDecimal;
 
@@ -139,6 +140,37 @@ public class AlgorithmEngineTest {
     {
         AlgorithmEngine engine = new AlgorithmEngine();
         String t = engine.TryEvaluate("1+(3*2+2)/2 & '11' & '11:20'*9 & isnumber(22)*3", "");
+        assertNotEquals(t, "");
+    }
+
+    
+    @Test
+    public void Cylinder_Test() throws Exception
+    {
+        Cylinder c = new Cylinder(3, 10);
+        double t = c.TryEvaluate("[半径]*[半径]*pi()", 0.0);      //圆底面积
+        assertEquals(3 * 3 * Math.PI, t,0.001);
+        t = c.TryEvaluate("[直径]*pi()", 0.0);            //圆的长
+        assertEquals(2 * 3 * Math.PI, t,0.001);
+        t = c.TryEvaluate("[半径]*[半径]*pi()*[高]", 0.0); //圆的体积
+        assertEquals(3 * 3 * Math.PI*10, t,0.001);
+
+        if (c.Parse("[直径1]*pi()") == false) {
+            assertEquals("参数[直径1]无效!", c.LastError);
+        }
+
+        t = c.TryEvaluate("['半径']*[半径]*pi()*[高]", 0.0); //圆的体积
+        assertEquals(3 * 3 * Math.PI*10, t,0.001);
+
+        t = c.TryEvaluate("求面积（10）", 0.0); //圆的体积
+        assertEquals(10 * 10 * Math.PI, t,0.001);
+
+        String json = "{'灰色':'L','canBookCount':905,'saleCount':91,'specId':'43b0e72e98731aed69e1f0cc7d64bf4d'}";
+        c.AddParameterFromJson(json);
+
+        String tt = c.TryEvaluate("['灰色']", ""); //圆的体积
+        assertEquals("L", tt);
+
     }
 
 
