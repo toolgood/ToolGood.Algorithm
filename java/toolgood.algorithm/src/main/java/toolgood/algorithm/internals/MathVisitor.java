@@ -2110,7 +2110,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return firstValue;
         }
 
-        return Operand.Create(F_base_ToChineseRMB(new BigDecimal(firstValue.NumberValue())));
+        return Operand.Create(F_base_ToChineseRMB(BigDecimal.valueOf(firstValue.NumberValue())));
     }
 
     public Operand visitSEARCH_fun(final SEARCH_funContext context) {
@@ -5407,7 +5407,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
 
     @SuppressWarnings("deprecation")
     private double round(final double value, final int p) {
-        final BigDecimal bigD = new BigDecimal(value);
+        final BigDecimal bigD = BigDecimal.valueOf(value);
         return bigD.setScale(p, BigDecimal.ROUND_HALF_UP).doubleValue();
     }
 
