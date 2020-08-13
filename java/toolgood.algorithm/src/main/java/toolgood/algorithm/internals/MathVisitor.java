@@ -4749,13 +4749,11 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
 
         String text = args.get(0).TextValue();
         if (args.size() == 2) {
-            if (text.startsWith(args.get(1).TextValue())) {
-                text = text.replace("^[" + args.get(1).TextValue() + "]*", "");
-                return Operand.Create(text);
-            }
+            text = Pattern.compile("^[" + args.get(1).TextValue().replace("[", "\\[").replace("]", "\\]").replace("\\", "\\\\")
+            + "]*").matcher(text).replaceAll("");
             return Operand.Create(text);
         }
-        text = text.replaceAll("\\s+$", "");
+        text = Pattern.compile("^\\s*").matcher(text).replaceAll("");
         return Operand.Create(text);
     }
 
@@ -4772,10 +4770,11 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
 
         String text = args.get(0).TextValue();
         if (args.size() == 2) {
-            text = text.replace("[" + args.get(1).TextValue() + "]*$", "");
+            text = Pattern.compile("[" + args.get(1).TextValue().replace("[", "\\[").replace("]", "\\]").replace("\\", "\\\\")
+            + "]*$").matcher(text).replaceAll("");
             return Operand.Create(text);
         }
-        text = text.replace("\\s*$", "");
+        text = Pattern.compile("\\s*$").matcher(text).replaceAll("");
         return Operand.Create(text);
     }
 
@@ -4949,7 +4948,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (thirdValue.IsError()) {
             return thirdValue;
         }
-        return Operand.Create(text.substring(secondValue.IntValue() - excelIndex, thirdValue.IntValue()));
+        return Operand.Create(text.substring(secondValue.IntValue() - excelIndex, secondValue.IntValue() - excelIndex+ thirdValue.IntValue()));
     }
 
     public Operand visitSTARTSWITH_fun(final STARTSWITH_funContext context) {
