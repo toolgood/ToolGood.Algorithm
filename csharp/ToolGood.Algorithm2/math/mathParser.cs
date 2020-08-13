@@ -34,27 +34,18 @@ public partial class mathParser : Parser {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	 
-	public static readonly string[] ruleNames = {
-		"prog", "expr", "expr2", "parameter", "parameter2"
-	};
 
-	private static readonly string[] _LiteralNames = {
-	};
-	private static readonly string[] _SymbolicNames = {
-	};
-	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
 	public override IVocabulary Vocabulary
 	{
 		get
 		{
-			return DefaultVocabulary;
+			return null;
 		}
 	}
+	public override string GrammarFileName { get { return null; } }
 
-	public override string GrammarFileName { get { return "math.g4"; } }
-
-	public override string[] RuleNames { get { return ruleNames; } }
+	public override string[] RuleNames { get { return null; } }
 
 	public override string SerializedAtn { get { return new string(_serializedATN); } }
 
