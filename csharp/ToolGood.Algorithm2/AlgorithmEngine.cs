@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Antlr4.Runtime;
+using Antlr4.Runtime.Misc;
 using ToolGood.Algorithm.LitJson;
 using static mathParser;
 
@@ -376,6 +377,78 @@ namespace ToolGood.Algorithm
         /// <param name="exp"></param>
         /// <param name="def"></param>
         /// <returns></returns>
+        public ushort TryEvaluate(string exp, ushort def)
+        {
+            try {
+                if (Parse(exp)) {
+
+                    var obj = Evaluate();
+                    obj = obj.ToNumber("It can't be converted to number!");
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
+                        return def;
+                    }
+                    return (ushort)obj.IntValue;
+                }
+            } catch (Exception ex) {
+                LastError = ex.Message;
+            }
+            return def;
+        }
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
+        public uint TryEvaluate(string exp, uint def)
+        {
+            try {
+                if (Parse(exp)) {
+
+                    var obj = Evaluate();
+                    obj = obj.ToNumber("It can't be converted to number!");
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
+                        return def;
+                    }
+                    return (uint)obj.IntValue;
+                }
+            } catch (Exception ex) {
+                LastError = ex.Message;
+            }
+            return def;
+        }
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
+        public ulong TryEvaluate(string exp, ulong def)
+        {
+            try {
+                if (Parse(exp)) {
+
+                    var obj = Evaluate();
+                    obj = obj.ToNumber("It can't be converted to number!");
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
+                        return def;
+                    }
+                    return (ulong)obj.IntValue;
+                }
+            } catch (Exception ex) {
+                LastError = ex.Message;
+            }
+            return def;
+        }
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
         public short TryEvaluate(string exp, short def)
         {
             try {
@@ -610,12 +683,13 @@ namespace ToolGood.Algorithm
             return def;
         }
         /// <summary>
-        /// 执行函数,如果异常，返回默认值
+        /// 执行函数,如果异常，返回默认值。
+        /// 解决 def 为 null 二义性问题
         /// </summary>
         /// <param name="exp"></param>
         /// <param name="def"></param>
         /// <returns></returns>
-        public MyDate TryEvaluate(string exp, MyDate def)
+        public MyDate TryEvaluate_MyDate(string exp, MyDate def)
         {
             try {
                 if (Parse(exp)) {
@@ -632,8 +706,7 @@ namespace ToolGood.Algorithm
             }
             return def;
         }
-
-
         #endregion
+
     }
 }

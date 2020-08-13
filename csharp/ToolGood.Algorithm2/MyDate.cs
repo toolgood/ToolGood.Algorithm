@@ -34,7 +34,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         public int Second { get; private set; }
 
-        private MyDate() {}
+        private MyDate() { }
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -109,7 +109,7 @@ namespace ToolGood.Algorithm
         public static MyDate Parse(String txt)
         {
             String t = txt.Trim();
-            var m = Regex.Match(t, "^(\\d{4})-(11|12|0?\\d)-(30|31|[012]?\\d) ([01]\\d?|2[1234]):([012345]?\\d):([012345]?\\d)$",RegexOptions.Compiled);
+            var m = Regex.Match(t, "^(\\d{4})-(11|12|0?\\d)-(30|31|[012]?\\d) ([01]\\d?|2[1234]):([012345]?\\d):([012345]?\\d)$", RegexOptions.Compiled);
             if (m.Success) {
                 MyDate date = new MyDate();
                 date.Year = int.Parse(m.Groups[(1)].Value);
@@ -228,18 +228,85 @@ namespace ToolGood.Algorithm
             return new TimeSpan(Day ?? 0, Hour, Minute, Second);
         }
 
+        /// <summary>
+        /// 添加年
+        /// </summary>
+        /// <param name="year"></param>
+        /// <returns></returns>
+        public MyDate AddYears(int year)
+        {
+            return new MyDate(ToDateTime().AddYears(year));
+        }
+        /// <summary>
+        /// 添加月
+        /// </summary>
+        /// <param name="month"></param>
+        /// <returns></returns>
+        public MyDate AddMonths(int month)
+        {
+            return new MyDate(ToDateTime().AddMonths(month));
+        }
+        /// <summary>
+        /// 添加日
+        /// </summary>
+        /// <param name="day"></param>
+        /// <returns></returns>
+        public MyDate AddDays(int day)
+        {
+            if (Year != null && Year > 1900) {
+                return new MyDate(ToDateTime().AddDays(day));
+            }
+            return new MyDate(ToTimeSpan().Add(new TimeSpan(day, 0, 0, 0)));
+        }
+        /// <summary>
+        /// 添加时
+        /// </summary>
+        /// <param name="hour"></param>
+        /// <returns></returns>
+        public MyDate AddHours(int hour)
+        {
+            if (Year != null && Year > 1900) {
+                return new MyDate(ToDateTime().AddHours(hour));
+            }
+            return new MyDate(ToTimeSpan().Add(new TimeSpan(hour, 0, 0)));
+        }
+        /// <summary>
+        /// 添加分
+        /// </summary>
+        /// <param name="minute"></param>
+        /// <returns></returns>
+        public MyDate AddMinutes(int minute)
+        {
+            if (Year != null && Year > 1900) {
+                return new MyDate(ToDateTime().AddMinutes(minute));
+            }
+            return new MyDate(ToTimeSpan().Add(new TimeSpan(0, minute, 0)));
+        }
+        /// <summary>
+        /// 添加秒
+        /// </summary>
+        /// <param name="second"></param>
+        /// <returns></returns>
+        public MyDate AddSeconds(int second)
+        {
+            if (Year != null && Year > 1900) {
+                return new MyDate(ToDateTime().AddSeconds(second));
+            }
+            return new MyDate(ToTimeSpan().Add(new TimeSpan(0, 0, second)));
+        }
+
         #region operator
-        public static implicit operator MyDate(DateTime MyDate)
+        public static implicit operator MyDate(DateTime myDate)
         {
-            return new MyDate(MyDate);
+            return new MyDate(myDate);
         }
-        public static implicit operator DateTime(MyDate MyDate)
+        public static implicit operator DateTime(MyDate myDate)
         {
-            return new DateTime(MyDate.Year ?? 0, MyDate.Month ?? 0, MyDate.Day ?? 0, MyDate.Hour, MyDate.Minute, MyDate.Second);
+            return myDate.ToDateTime();
         }
-        public static implicit operator TimeSpan(MyDate MyDate)
+        public static implicit operator TimeSpan(MyDate myDate)
         {
-            return new TimeSpan(MyDate.Day ?? 0, MyDate.Hour, MyDate.Minute, MyDate.Second);
+            return myDate.ToTimeSpan();
         }
 
         public static implicit operator MyDate(double days)
@@ -249,7 +316,7 @@ namespace ToolGood.Algorithm
 
         public static implicit operator double(MyDate MyDate)
         {
-            if (MyDate.Year != null) {
+            if (MyDate.Year != null && MyDate.Year>1900) {
                 var dt = new DateTime((MyDate.Year ?? 0), (MyDate.Month ?? 0), (MyDate.Day ?? 0), MyDate.Hour, MyDate.Minute, MyDate.Second);
                 double days = (double)(dt - DateTime.MinValue).TotalDays;
                 days += (MyDate.Hour + (MyDate.Minute + MyDate.Second / 60.0) / 60) / 24;
@@ -259,30 +326,49 @@ namespace ToolGood.Algorithm
         }
 
 
-
-        public static MyDate operator +(MyDate MyDate, MyDate num)
+        public static MyDate operator +(MyDate myDate, MyDate num)
         {
-            return (MyDate)((double)MyDate + (double)num);
+            if (myDate.Year != null && num.Year == null) {
+                return new MyDate(myDate.ToDateTime().Add(num.ToTimeSpan()));
+            } else if (myDate.Year != null && num.Year == null) {
+                return new MyDate(num.ToDateTime().Add(myDate.ToTimeSpan()));
+            }
+            return (MyDate)((double)myDate + (double)num);
         }
-        public static MyDate operator -(MyDate MyDate, MyDate num)
+        public static MyDate operator -(MyDate myDate, MyDate num)
         {
-            return (MyDate)((double)MyDate - (double)num);
+            if (myDate.Year != null && num.Year == null) {
+                return new MyDate(myDate.ToDateTime().Add(num.ToTimeSpan().Negate()));
+            } else if (myDate.Year != null && num.Year == null) {
+                return new MyDate(num.ToDateTime().Add(myDate.ToTimeSpan().Negate()));
+            }
+            return (MyDate)((double)myDate - (double)num);
         }
-        public static MyDate operator +(MyDate MyDate, double num)
+        public static MyDate operator +(MyDate myDate, double num)
         {
-            return (MyDate)((double)MyDate + (double)num);
+            return (MyDate)((double)myDate + (double)num);
         }
-        public static MyDate operator -(MyDate MyDate, double num)
+        public static MyDate operator -(MyDate myDate, double num)
         {
-            return (MyDate)((double)MyDate - (double)num);
+            return (MyDate)((double)myDate - (double)num);
         }
-        public static MyDate operator *(MyDate MyDate, double num)
+        public static MyDate operator *(MyDate myDate, double num)
         {
-            return (MyDate)((double)MyDate * (double)num);
+#if NETSTANDARD2_1
+            if (myDate.Year != null) {
+                return new MyDate(myDate.ToTimeSpan().Multiply(num));
+            }
+#endif
+            return (MyDate)((double)myDate * (double)num);
         }
-        public static MyDate operator /(MyDate MyDate, double num)
+        public static MyDate operator /(MyDate myDate, double num)
         {
-            return (MyDate)((double)MyDate / (double)num);
+#if NETSTANDARD2_1
+            if (myDate.Year != null) {
+                return new MyDate(myDate.ToTimeSpan().Divide(num));
+            }
+#endif
+            return (MyDate)((double)myDate / (double)num);
         }
         #endregion
     }

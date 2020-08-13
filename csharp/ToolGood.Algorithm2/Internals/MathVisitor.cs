@@ -1823,22 +1823,28 @@ namespace ToolGood.Algorithm
         {
             var firstValue = this.Visit(context.expr()).ToMyDate("Function YEAR parameter is error!");
             if (firstValue.IsError) { return firstValue; }
-
-            return Operand.Create(firstValue.DateValue.Year);
+            if (firstValue.DateValue.Year==null) {
+                return Operand.Error("Function YEAR is error!");
+            }
+            return Operand.Create(firstValue.DateValue.Year.Value);
         }
         public Operand VisitMONTH_fun(mathParser.MONTH_funContext context)
         {
             var firstValue = this.Visit(context.expr()).ToMyDate("Function MONTH parameter is error!");
             if (firstValue.IsError) { return firstValue; }
-
-            return Operand.Create(firstValue.DateValue.Month);
+            if (firstValue.DateValue.Month == null) {
+                return Operand.Error("Function MONTH is error!");
+            }
+            return Operand.Create((int)firstValue.DateValue.Month.Value);
         }
         public Operand VisitDAY_fun(mathParser.DAY_funContext context)
         {
             var firstValue = this.Visit(context.expr()).ToMyDate("Function DAY parameter is error!");
             if (firstValue.IsError) { return firstValue; }
-
-            return Operand.Create(firstValue.DateValue.Day);
+            if (firstValue.DateValue.Day == null) {
+                return Operand.Error("Function DAY is error!");
+            }
+            return Operand.Create(firstValue.DateValue.Day.Value);
         }
         public Operand VisitHOUR_fun(mathParser.HOUR_funContext context)
         {
