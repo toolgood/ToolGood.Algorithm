@@ -3111,14 +3111,11 @@ namespace ToolGood.Algorithm
             var secondValue = args[1].ToText("Function REGEX parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
 
-            if (args.Count == 2) {
                 var b = Regex.Match(firstValue.TextValue, secondValue.TextValue);
                 if (b.Success == false) {
                     return Operand.Error("Function REGEX is error!");
                 }
                 return Operand.Create(b.Value);
-            }
-            return Operand.Error("Function REGEX is error!");
         }
         public Operand VisitREGEXREPALCE_fun(mathParser.REGEXREPALCE_funContext context)
         {
@@ -3210,38 +3207,7 @@ namespace ToolGood.Algorithm
             }
             return Operand.Error("Function SHA512 is error!");
         }
-        public Operand VisitCRC8_fun(mathParser.CRC8_funContext context)
-        {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function CRC8 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
-            try {
-                Encoding encoding;
-                if (args.Count == 1) {
-                    encoding = Encoding.UTF8;
-                } else {
-                    encoding = Encoding.GetEncoding(args[1].TextValue);
-                }
-                var t = Hash.GetCrc8String(encoding.GetBytes(args[0].TextValue));
-                return Operand.Create(t);
-            } catch (Exception) { }
-            return Operand.Error("Function CRC8 is error!");
-        }
-        public Operand VisitCRC16_fun(mathParser.CRC16_funContext context)
-        {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function CRC16 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
-            try {
-                Encoding encoding;
-                if (args.Count == 1) {
-                    encoding = Encoding.UTF8;
-                } else {
-                    encoding = Encoding.GetEncoding(args[1].TextValue);
-                }
-                var t = Hash.GetCrc16String(encoding.GetBytes(args[0].TextValue));
-                return Operand.Create(t);
-            } catch (Exception) { }
-            return Operand.Error("Function CRC16 is error!");
-        }
+ 
         public Operand VisitCRC32_fun(mathParser.CRC32_funContext context)
         {
             var args = new List<Operand>(); int index = 1;

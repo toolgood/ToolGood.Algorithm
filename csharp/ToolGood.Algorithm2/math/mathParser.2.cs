@@ -187,20 +187,6 @@ partial class mathParser : Parser
 
 		}
 	}
-	public partial class CRC16_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public CRC16_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitCRC16_fun(this);
-
-		}
-	}
 	public partial class RIGHT_funContext : ExprContext
 	{
 		public ExprContext[] expr()
@@ -716,20 +702,6 @@ partial class mathParser : Parser
 		{
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 			return typedVisitor.VisitTRIMEND_fun(this);
-
-		}
-	}
-	public partial class CRC8_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public CRC8_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitCRC8_fun(this);
 
 		}
 	}
@@ -3148,7 +3120,7 @@ partial class mathParser : Parser
 		{
 			return GetRuleContexts<ExprContext>();
 		}
-		public ITerminalNode PARAMETER() { return GetToken(235, 0); }
+		public ITerminalNode PARAMETER() { return GetToken(233, 0); }
 		public DiyFunction_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
