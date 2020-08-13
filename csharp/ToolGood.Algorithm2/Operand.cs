@@ -59,7 +59,7 @@ namespace ToolGood.Algorithm
         /// <summary>
         /// 时间值
         /// </summary>
-        public virtual Date DateValue => throw new NotImplementedException();
+        public virtual MyDate DateValue => throw new NotImplementedException();
 
         #region Create
 
@@ -169,6 +169,7 @@ namespace ToolGood.Algorithm
             }
             return new OperandString(obj);
         }
+ 
         /// <summary>
         /// 创建操作数
         /// </summary>
@@ -189,9 +190,9 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public static Operand Create(Date obj)
+        public static Operand Create(MyDate obj)
         {
-            return new OperandDate(obj);
+            return new OperandMyDate(obj);
         }
         /// <summary>
         /// 创建操作数
@@ -200,7 +201,7 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public static Operand Create(DateTime obj)
         {
-            return new OperandDate(new Date(obj));
+            return new OperandMyDate(new MyDate(obj));
         }
         /// <summary>
         /// 创建操作数
@@ -209,7 +210,7 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public static Operand Create(TimeSpan obj)
         {
-            return new OperandDate(new Date(obj));
+            return new OperandMyDate(new MyDate(obj));
         }
         /// <summary>
         /// 创建操作数
@@ -353,18 +354,18 @@ namespace ToolGood.Algorithm
             return Error(errorMessage);
         }
         /// <summary>
-        /// 转Date类型
+        /// 转MyDate类型
         /// </summary>
         /// <param name="errorMessage"></param>
         /// <returns></returns>
-        public Operand ToDate(string errorMessage = null)
+        public Operand ToMyDate(string errorMessage = null)
         {
             if (Type == OperandType.DATE) { return this; }
             if (IsError) { return this; }
-            if (Type == OperandType.NUMBER) { return Create((Date)NumberValue); }
+            if (Type == OperandType.NUMBER) { return Create((MyDate)NumberValue); }
             if (Type == OperandType.STRING) {
-                if (TimeSpan.TryParse(TextValue, cultureInfo, out TimeSpan t)) { return Create(new Date(t)); }
-                if (DateTime.TryParse(TextValue, cultureInfo, DateTimeStyles.None, out DateTime d)) { return Create(new Date(d)); }
+                if (TimeSpan.TryParse(TextValue, cultureInfo, out TimeSpan t)) { return Create(new MyDate(t)); }
+                if (DateTime.TryParse(TextValue, cultureInfo, DateTimeStyles.None, out DateTime d)) { return Create(new MyDate(d)); }
             }
             return Error(errorMessage);
         }
@@ -524,11 +525,11 @@ namespace ToolGood.Algorithm
         public override OperandType Type => OperandType.STRING;
         public override string TextValue => Value;
     }
-    class OperandDate : Operand<Date>
+    class OperandMyDate : Operand<MyDate>
     {
-        public OperandDate(Date obj) : base(obj) { }
+        public OperandMyDate(MyDate obj) : base(obj) { }
         public override OperandType Type => OperandType.DATE;
-        public override Date DateValue => Value;
+        public override MyDate DateValue => Value;
     }
     class OperandJson : Operand<JsonData>
     {

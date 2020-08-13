@@ -1,8 +1,6 @@
-ToolGood.Algorithm
+ToolGood.Algorithm (JAVA版本)
 ===================
 ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数`。
-
-注：不兼容1.x版本
 
 **适用场景：** 代码与算法分离，避免项目强制升级
 
@@ -12,26 +10,26 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
 
 3）财务数据、统计数据之中的算法，(注:本项目使用double类型，建议使用`分`为单位)；
 
-4）报表导出，数据来源使用存储过程，Word文档内设置算法。例 https://github.com/toolgood/ToolGood.WordTemplate
+4）报表导出，数据来源使用存储过程，Word文档内设置算法。(C#版本 例 https://github.com/toolgood/ToolGood.WordTemplate)
 
 ## 快速上手
-``` csharp
+``` java
     AlgorithmEngine engine = new AlgorithmEngine();
     double a=0.0;
     if (engine.Parse("1+2")) {
         var o = engine.Evaluate();
         a=o.NumberValue;
     }
-    var b = engine.TryEvaluate("1=1 && 1<2 and 7-8>1", 0);// 支持 && || and or 
-    var c = engine.TryEvaluate("2+3", 0);
-    var d = engine.TryEvaluate("count({1,2,3,4})", 0);//{}代表数组,返回:4
-    var s = engine.TryEvaluate("'aa'&'bb'", ""); //字符串连接,返回:aabb
-    var r = engine.TryEvaluate("(1=1)*9+2", 0); //返回:11
-    var d = engine.TryEvaluate("'2016-1-1'+1", DateTime.MinValue); //返回日期:2016-1-2
-    var t = engine.TryEvaluate("'2016-1-1'+9*'1:0'", DateTime.MinValue);//返回日期:2016-1-1 9:0
-    var j = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Age", null);//返回51
-    var k = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')[Name].Trim()", null);//返回"William Shakespeare" (不带空格)
-    var l = engine.TryEvaluate("json('{\"Name1\":\"William Shakespeare \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')['Name'& 1].Trim().substring(2,3)", null); ;//返回"ill"
+    double b = engine.TryEvaluate("1=1 && 1<2 and 7-8>1", 0.0);// 支持 && || and or 
+    double c = engine.TryEvaluate("2+3", 0);
+    double d = engine.TryEvaluate("count({1,2,3,4})", 0.0);//{}代表数组,返回:4
+    String s = engine.TryEvaluate("'aa'&'bb'", ""); //字符串连接,返回:aabb
+    int r = engine.TryEvaluate("(1=1)*9+2", 0); //返回:11
+    DateTime d = engine.TryEvaluate("'2016-1-1'+1", DateTime.now()); //返回日期:2016-1-2
+    DateTime t = engine.TryEvaluate("'2016-1-1'+9*'1:0'", DateTime.now());//返回日期:2016-1-1 9:0
+    String j = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Age", "");//返回51
+    String k = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')[Name].Trim()", "");//返回"William Shakespeare" (不带空格)
+    String l = engine.TryEvaluate("json('{\"Name1\":\"William Shakespeare \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')['Name'& 1].Trim().substring(2,3)", ""); ;//返回"ill"
 
 ```
 支持常量`pi`,`e`,`true`,`false`。
@@ -48,38 +46,38 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
 
 注：字符串拼接使用`&`。
 
+注：`substring`为C#版本，Substring(文本,位置[,数量])
+
 注：`find`为Excel函数，find(要查找的字符串,被查找的字符串[,开始位置])
 
 ## 自定义参数
-``` csharp
+``` java
     //定义圆柱信息
-    public class Cylinder : AlgorithmEngine
-    {
-        private int _radius;
-        private int _height;
-        public Cylinder(int radius, int height)
-        {
-            _radius = radius;
-            _height = height;
-        }
+public class Cylinder extends AlgorithmEngine {
+    private int _radius;
+    private int _height;
 
-        protected override Operand GetParameter(string parameter)
-        {
-            if (parameter == "半径")
-            {
-                return Operand.Create(_radius);
-            }
-            if (parameter == "直径")
-            {
-                return Operand.Create(_radius * 2);
-            }
-            if (parameter == "高")
-            {
-                return Operand.Create(_height);
-            }
-            return base.GetParameter(parameter);
-        }
+    public Cylinder(int radius, int height) {
+        _radius = radius;
+        _height = height;
     }
+
+    @Override
+    protected Operand GetParameter(String parameter) throws Exception {
+        if (parameter.equals("半径")) {
+            return Operand.Create(_radius);
+        }
+        if (parameter.equals("直径"))
+        {
+            return Operand.Create(_radius * 2);
+        }
+        if (parameter.equals("高"))
+        {
+            return Operand.Create(_height);
+        }
+        return super.GetParameter(parameter);
+    }
+}
     //调用方法
     Cylinder c = new Cylinder(3, 10);
     c.TryEvaluate("[半径]*[半径]*pi()", 0.0);      //圆底面积
@@ -89,7 +87,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
 ```
 参数以方括号定义，如 `[参数名]`。 
 
-注：还可以使用`AddParameter`、`AddParameterFromJson`添加方法，使用`DiyFunction`+=来自定义函数。
+注：还可以使用`AddParameter`、`AddParameterFromJson`添加方法，使用`DiyFunction`来自定义函数。
 
 ## Excel函数
 函数：`逻辑函数`、`数学与三角函数`、`文本函数`、`统计函数`、`日期与时间函数`
@@ -914,7 +912,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
 	<tr>
         <td>Join ★</td><td>Join(文本1,文本2....)<br>  合并字符串。</td> <td></td>
     </tr>
-	<tr>
+    <tr style="color:red">
         <td>Substring ★ ▲</td><td>Substring(文本,位置)<br>Substring(文本,位置,数量)<br>  切割字符串。</td> <td></td>
     </tr>
 	<tr>

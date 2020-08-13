@@ -45,7 +45,7 @@ namespace ToolGood.Algorithm
                     var a = firstValue.ToNumber(null);
                     if (a.IsError == false) firstValue = a;
                 } else {
-                    var a = firstValue.ToDate(null);
+                    var a = firstValue.ToMyDate(null);
                     if (a.IsError == false) firstValue = a;
                 }
             }
@@ -54,7 +54,7 @@ namespace ToolGood.Algorithm
                     var a = secondValue.ToNumber(null);
                     if (a.IsError == false) secondValue = a;
                 } else {
-                    var a = secondValue.ToDate(null);
+                    var a = secondValue.ToMyDate(null);
                     if (a.IsError == false) secondValue = a;
                 }
             }
@@ -73,12 +73,12 @@ namespace ToolGood.Algorithm
                 if (firstValue.Type == OperandType.DATE) {
                     secondValue = secondValue.ToNumber($"Function '{t}' parameter 2 is error!");
                     if (secondValue.IsError) { return secondValue; }
-                    return Operand.Create((Date)(firstValue.DateValue * secondValue.NumberValue));
+                    return Operand.Create((MyDate)(firstValue.DateValue * secondValue.NumberValue));
                 }
                 if (secondValue.Type == OperandType.DATE) {
                     firstValue = firstValue.ToNumber($"Function '{t}' parameter 1 is error!");
                     if (firstValue.IsError) { return firstValue; }
-                    return Operand.Create((Date)(secondValue.DateValue * firstValue.NumberValue));
+                    return Operand.Create((MyDate)(secondValue.DateValue * firstValue.NumberValue));
                 }
 
                 firstValue = firstValue.ToNumber($"Function '{t}' parameter 1 is error!");
@@ -143,7 +143,7 @@ namespace ToolGood.Algorithm
                     var a = firstValue.ToNumber(null);
                     if (a.IsError == false) firstValue = a;
                 } else {
-                    var a = firstValue.ToDate(null);
+                    var a = firstValue.ToMyDate(null);
                     if (a.IsError == false) firstValue = a;
                 }
             }
@@ -152,7 +152,7 @@ namespace ToolGood.Algorithm
                     var a = secondValue.ToNumber(null);
                     if (a.IsError == false) secondValue = a;
                 } else {
-                    var a = secondValue.ToDate(null);
+                    var a = secondValue.ToMyDate(null);
                     if (a.IsError == false) secondValue = a;
                 }
             }
@@ -1759,7 +1759,7 @@ namespace ToolGood.Algorithm
         }
         #endregion
 
-        #region date time
+        #region MyDate time
 
         public Operand VisitDATEVALUE_fun(mathParser.DATEVALUE_funContext context)
         {
@@ -1784,17 +1784,17 @@ namespace ToolGood.Algorithm
         public Operand VisitDATE_fun(mathParser.DATE_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var aa = this.Visit(item).ToNumber($"Function DATE parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
+            foreach (var item in context.expr()) { var aa = this.Visit(item).ToNumber($"Function MyDate parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            Date d;
+            MyDate d;
             if (args.Count == 3) {
-                d = new Date(args[0].IntValue, args[1].IntValue, args[2].IntValue, 0, 0, 0);
+                d = new MyDate(args[0].IntValue, args[1].IntValue, args[2].IntValue, 0, 0, 0);
             } else if (args.Count == 4) {
-                d = new Date(args[0].IntValue, args[1].IntValue, args[2].IntValue, args[3].IntValue, 0, 0);
+                d = new MyDate(args[0].IntValue, args[1].IntValue, args[2].IntValue, args[3].IntValue, 0, 0);
             } else if (args.Count == 5) {
-                d = new Date(args[0].IntValue, args[1].IntValue, args[2].IntValue, args[3].IntValue, args[4].IntValue, 0);
+                d = new MyDate(args[0].IntValue, args[1].IntValue, args[2].IntValue, args[3].IntValue, args[4].IntValue, 0);
             } else {
-                d = new Date(args[0].IntValue, args[1].IntValue, args[2].IntValue, args[3].IntValue, args[4].IntValue, args[5].IntValue);
+                d = new MyDate(args[0].IntValue, args[1].IntValue, args[2].IntValue, args[3].IntValue, args[4].IntValue, args[5].IntValue);
             }
             return Operand.Create(d);
         }
@@ -1803,60 +1803,66 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>(); int index = 1;
             foreach (var item in context.expr()) { var aa = this.Visit(item).ToNumber($"Function TIME parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            Date d;
+            MyDate d;
             if (args.Count == 3) {
-                d = new Date(0, 0, 0, args[0].IntValue, args[1].IntValue, args[2].IntValue);
+                d = new MyDate(0, 0, 0, args[0].IntValue, args[1].IntValue, args[2].IntValue);
             } else {
-                d = new Date(0, 0, 0, args[0].IntValue, args[1].IntValue, 0);
+                d = new MyDate(0, 0, 0, args[0].IntValue, args[1].IntValue, 0);
             }
             return Operand.Create(d);
         }
         public Operand VisitNOW_fun(mathParser.NOW_funContext context)
         {
-            return Operand.Create(new Date(DateTime.Now));
+            return Operand.Create(new MyDate(DateTime.Now));
         }
         public Operand VisitTODAY_fun(mathParser.TODAY_funContext context)
         {
-            return Operand.Create(new Date(DateTime.Today));
+            return Operand.Create(new MyDate(DateTime.Today));
         }
         public Operand VisitYEAR_fun(mathParser.YEAR_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToDate("Function YEAR parameter is error!");
+            var firstValue = this.Visit(context.expr()).ToMyDate("Function YEAR parameter is error!");
             if (firstValue.IsError) { return firstValue; }
-
-            return Operand.Create(firstValue.DateValue.Year);
+            if (firstValue.DateValue.Year==null) {
+                return Operand.Error("Function YEAR is error!");
+            }
+            return Operand.Create(firstValue.DateValue.Year.Value);
         }
         public Operand VisitMONTH_fun(mathParser.MONTH_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToDate("Function MONTH parameter is error!");
+            var firstValue = this.Visit(context.expr()).ToMyDate("Function MONTH parameter is error!");
             if (firstValue.IsError) { return firstValue; }
-
-            return Operand.Create(firstValue.DateValue.Month);
+            if (firstValue.DateValue.Month == null) {
+                return Operand.Error("Function MONTH is error!");
+            }
+            return Operand.Create((int)firstValue.DateValue.Month.Value);
         }
         public Operand VisitDAY_fun(mathParser.DAY_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToDate("Function DAY parameter is error!");
+            var firstValue = this.Visit(context.expr()).ToMyDate("Function DAY parameter is error!");
             if (firstValue.IsError) { return firstValue; }
-
-            return Operand.Create(firstValue.DateValue.Day);
+            if (firstValue.DateValue.Day == null) {
+                return Operand.Error("Function DAY is error!");
+            }
+            return Operand.Create(firstValue.DateValue.Day.Value);
         }
         public Operand VisitHOUR_fun(mathParser.HOUR_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToDate("Function HOUR parameter is error!");
+            var firstValue = this.Visit(context.expr()).ToMyDate("Function HOUR parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(firstValue.DateValue.Hour);
         }
         public Operand VisitMINUTE_fun(mathParser.MINUTE_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToDate("Function MINUTE parameter is error!");
+            var firstValue = this.Visit(context.expr()).ToMyDate("Function MINUTE parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(firstValue.DateValue.Minute);
         }
         public Operand VisitSECOND_fun(mathParser.SECOND_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToDate("Function SECOND parameter is error!");
+            var firstValue = this.Visit(context.expr()).ToMyDate("Function SECOND parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(firstValue.DateValue.Second);
@@ -1866,7 +1872,7 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToDate("Function WEEKDAY parameter 1 is error!");
+            var firstValue = args[0].ToMyDate("Function WEEKDAY parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
 
             var type = 1;
@@ -1893,65 +1899,65 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToDate("Function DATEDIF parameter 1 is error!");
+            var firstValue = args[0].ToMyDate("Function DATEDIF parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
-            var secondValue = args[1].ToDate("Function DATEDIF parameter 2 is error!");
+            var secondValue = args[1].ToMyDate("Function DATEDIF parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
             var thirdValue = args[2].ToText("Function DATEDIF parameter 3 is error!");
             if (thirdValue.IsError) { return thirdValue; }
 
-            var startDate = (DateTime)firstValue.DateValue;
-            var endDate = (DateTime)secondValue.DateValue;
+            var startMyDate = (DateTime)firstValue.DateValue;
+            var endMyDate = (DateTime)secondValue.DateValue;
             var t = thirdValue.TextValue.ToLower();
 
             if (t == "y") {
                 #region y
                 bool b = false;
-                if (startDate.Month < endDate.Month) {
+                if (startMyDate.Month < endMyDate.Month) {
                     b = true;
-                } else if (startDate.Month == endDate.Month) {
-                    if (startDate.Day <= endDate.Day) b = true;
+                } else if (startMyDate.Month == endMyDate.Month) {
+                    if (startMyDate.Day <= endMyDate.Day) b = true;
                 }
                 if (b) {
-                    return Operand.Create((endDate.Year - startDate.Year));
+                    return Operand.Create((endMyDate.Year - startMyDate.Year));
                 } else {
-                    return Operand.Create((endDate.Year - startDate.Year - 1));
+                    return Operand.Create((endMyDate.Year - startMyDate.Year - 1));
                 }
                 #endregion
             } else if (t == "m") {
                 #region m
                 bool b = false;
-                if (startDate.Day <= endDate.Day) b = true;
+                if (startMyDate.Day <= endMyDate.Day) b = true;
                 if (b) {
-                    return Operand.Create((endDate.Year * 12 + endDate.Month - startDate.Year * 12 - startDate.Month));
+                    return Operand.Create((endMyDate.Year * 12 + endMyDate.Month - startMyDate.Year * 12 - startMyDate.Month));
                 } else {
-                    return Operand.Create((endDate.Year * 12 + endDate.Month - startDate.Year * 12 - startDate.Month - 1));
+                    return Operand.Create((endMyDate.Year * 12 + endMyDate.Month - startMyDate.Year * 12 - startMyDate.Month - 1));
                 }
                 #endregion
             } else if (t == "d") {
-                return Operand.Create((endDate - startDate).Days);
+                return Operand.Create((endMyDate - startMyDate).Days);
             } else if (t == "yd") {
                 #region yd
-                var day = endDate.DayOfYear - startDate.DayOfYear;
-                if (endDate.Year > startDate.Year && day < 0) {
-                    var days = new DateTime(startDate.Year, 12, 31).DayOfYear;
+                var day = endMyDate.DayOfYear - startMyDate.DayOfYear;
+                if (endMyDate.Year > startMyDate.Year && day < 0) {
+                    var days = new DateTime(startMyDate.Year, 12, 31).DayOfYear;
                     day = days + day;
                 }
                 return Operand.Create((day));
                 #endregion
             } else if (t == "md") {
                 #region md
-                var mo = endDate.Day - startDate.Day;
+                var mo = endMyDate.Day - startMyDate.Day;
                 if (mo < 0) {
-                    var days = new DateTime(startDate.Year, startDate.Month + 1, 1).AddDays(-1).Day;
+                    var days = new DateTime(startMyDate.Year, startMyDate.Month + 1, 1).AddDays(-1).Day;
                     mo += days;
                 }
                 return Operand.Create((mo));
                 #endregion
             } else if (t == "ym") {
                 #region ym
-                var mo = endDate.Month - startDate.Month;
-                if (endDate.Day < startDate.Day) mo = mo - 1;
+                var mo = endMyDate.Month - startMyDate.Month;
+                if (endMyDate.Day < startMyDate.Day) mo = mo - 1;
                 if (mo < 0) mo += 12;
                 return Operand.Create((mo));
                 #endregion
@@ -1963,39 +1969,39 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToDate("Function DAYS360 parameter 1 is error!");
+            var firstValue = args[0].ToMyDate("Function DAYS360 parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
-            var secondValue = args[1].ToDate("Function DAYS360 parameter 2 is error!");
+            var secondValue = args[1].ToMyDate("Function DAYS360 parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
 
-            var startDate = (DateTime)firstValue.DateValue;
-            var endDate = (DateTime)secondValue.DateValue;
+            var startMyDate = (DateTime)firstValue.DateValue;
+            var endMyDate = (DateTime)secondValue.DateValue;
 
             var method = false;
             if (args.Count == 3) {
-                var thirdValue = args[2].ToDate("Function DAYS360 parameter 3 is error!");
+                var thirdValue = args[2].ToMyDate("Function DAYS360 parameter 3 is error!");
                 if (thirdValue.IsError) { return thirdValue; }
                 method = thirdValue.BooleanValue;
             }
-            var days = endDate.Year * 360 + (endDate.Month - 1) * 30
-                        - startDate.Year * 360 - (startDate.Month - 1) * 30;
+            var days = endMyDate.Year * 360 + (endMyDate.Month - 1) * 30
+                        - startMyDate.Year * 360 - (startMyDate.Month - 1) * 30;
             if (method) {
-                if (endDate.Day == 31) days += 30;
-                if (startDate.Day == 31) days -= 30;
+                if (endMyDate.Day == 31) days += 30;
+                if (startMyDate.Day == 31) days -= 30;
             } else {
-                if (startDate.Day == new DateTime(startDate.Year, startDate.Month + 1, 1).AddDays(-1).Day) {
+                if (startMyDate.Day == new DateTime(startMyDate.Year, startMyDate.Month + 1, 1).AddDays(-1).Day) {
                     days -= 30;
                 } else {
-                    days -= startDate.Day;
+                    days -= startMyDate.Day;
                 }
-                if (endDate.Day == new DateTime(endDate.Year, endDate.Month + 1, 1).AddDays(-1).Day) {
-                    if (startDate.Day < 30) {
+                if (endMyDate.Day == new DateTime(endMyDate.Year, endMyDate.Month + 1, 1).AddDays(-1).Day) {
+                    if (startMyDate.Day < 30) {
                         days += 31;
                     } else {
                         days += 30;
                     }
                 } else {
-                    days += endDate.Day;
+                    days += endMyDate.Day;
                 }
             }
             return Operand.Create(days);
@@ -2005,19 +2011,19 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToDate("Function EDATE parameter 1 is error!");
+            var firstValue = args[0].ToMyDate("Function EDATE parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
             var secondValue = args[1].ToNumber("Function EDATE parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
 
-            return Operand.Create((Date)(((DateTime)firstValue.DateValue).AddMonths(secondValue.IntValue)));
+            return Operand.Create((MyDate)(((DateTime)firstValue.DateValue).AddMonths(secondValue.IntValue)));
         }
         public Operand VisitEOMONTH_fun(mathParser.EOMONTH_funContext context)
         {
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToDate("Function EOMONTH parameter 1 is error!");
+            var firstValue = args[0].ToMyDate("Function EOMONTH parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
             var secondValue = args[1].ToNumber("Function EOMONTH parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
@@ -2029,10 +2035,10 @@ namespace ToolGood.Algorithm
         public Operand VisitNETWORKDAYS_fun(mathParser.NETWORKDAYS_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = this.Visit(item).ToDate($"Function NETWORKDAYS parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in context.expr()) { var a = this.Visit(item).ToMyDate($"Function NETWORKDAYS parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
 
-            var startDate = (DateTime)args[0].DateValue;
-            var endDate = (DateTime)args[1].DateValue;
+            var startMyDate = (DateTime)args[0].DateValue;
+            var endMyDate = (DateTime)args[1].DateValue;
 
             List<DateTime> list = new List<DateTime>();
             for (int i = 2; i < args.Count; i++) {
@@ -2040,13 +2046,13 @@ namespace ToolGood.Algorithm
             }
 
             var days = 0;
-            while (startDate <= endDate) {
-                if (startDate.DayOfWeek != DayOfWeek.Sunday && startDate.DayOfWeek != DayOfWeek.Saturday) {
-                    if (list.Contains(startDate) == false) {
+            while (startMyDate <= endMyDate) {
+                if (startMyDate.DayOfWeek != DayOfWeek.Sunday && startMyDate.DayOfWeek != DayOfWeek.Saturday) {
+                    if (list.Contains(startMyDate) == false) {
                         days++;
                     }
                 }
-                startDate = startDate.AddDays(1);
+                startMyDate = startMyDate.AddDays(1);
             }
             return Operand.Create(days);
         }
@@ -2055,40 +2061,40 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToDate("Function WORKDAY parameter 1 is error!");
+            var firstValue = args[0].ToMyDate("Function WORKDAY parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
             var secondValue = args[1].ToNumber("Function WORKDAY parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
 
 
-            var startDate = (DateTime)firstValue.DateValue;
+            var startMyDate = (DateTime)firstValue.DateValue;
             var days = secondValue.IntValue;
             List<DateTime> list = new List<DateTime>();
             for (int i = 2; i < args.Count; i++) {
-                args[i] = args[i].ToDate($"Function WORKDAY parameter {i + 1} is error!");
+                args[i] = args[i].ToMyDate($"Function WORKDAY parameter {i + 1} is error!");
                 if (args[i].IsError) { return args[i]; }
                 list.Add(args[i].DateValue);
             }
             while (days > 0) {
-                startDate = startDate.AddDays(1);
-                if (startDate.DayOfWeek == DayOfWeek.Saturday) continue;
-                if (startDate.DayOfWeek == DayOfWeek.Sunday) continue;
-                if (list.Contains(startDate)) continue;
+                startMyDate = startMyDate.AddDays(1);
+                if (startMyDate.DayOfWeek == DayOfWeek.Saturday) continue;
+                if (startMyDate.DayOfWeek == DayOfWeek.Sunday) continue;
+                if (list.Contains(startMyDate)) continue;
                 days--;
             }
-            return Operand.Create(startDate);
+            return Operand.Create(startMyDate);
         }
         public Operand VisitWEEKNUM_fun(mathParser.WEEKNUM_funContext context)
         {
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var firstValue = args[0].ToDate("Function WEEKNUM parameter 1 is error!");
+            var firstValue = args[0].ToMyDate("Function WEEKNUM parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            var startDate = (DateTime)firstValue.DateValue;
+            var startMyDate = (DateTime)firstValue.DateValue;
 
-            var days = startDate.DayOfYear + (int)(new DateTime(startDate.Year, 1, 1).DayOfWeek);
+            var days = startMyDate.DayOfYear + (int)(new DateTime(startMyDate.Year, 1, 1).DayOfWeek);
             if (args.Count == 2) {
                 var secondValue = args[1].ToNumber("Function WEEKNUM parameter 2 is error!");
                 if (secondValue.IsError) { return secondValue; }

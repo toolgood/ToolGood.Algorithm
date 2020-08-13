@@ -1,8 +1,7 @@
-ToolGood.Algorithm
+ToolGood.Algorithm(JS版本，未完成)
 ===================
 ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数`。
 
-注：不兼容1.x版本
 
 **适用场景：** 代码与算法分离，避免项目强制升级
 
@@ -15,8 +14,8 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
 4）报表导出，数据来源使用存储过程，Word文档内设置算法。例 https://github.com/toolgood/ToolGood.WordTemplate
 
 ## 快速上手
-``` csharp
-    AlgorithmEngine engine = new AlgorithmEngine();
+``` js
+    var engine = new AlgorithmEngine();
     double a=0.0;
     if (engine.Parse("1+2")) {
         var o = engine.Evaluate();
@@ -51,7 +50,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
 注：`find`为Excel函数，find(要查找的字符串,被查找的字符串[,开始位置])
 
 ## 自定义参数
-``` csharp
+``` js
     //定义圆柱信息
     public class Cylinder : AlgorithmEngine
     {
@@ -81,7 +80,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         }
     }
     //调用方法
-    Cylinder c = new Cylinder(3, 10);
+    var c = new Cylinder(3, 10);
     c.TryEvaluate("[半径]*[半径]*pi()", 0.0);      //圆底面积
     c.TryEvaluate("[直径]*pi()", 0.0);            //圆的长
     c.TryEvaluate("[半径]*[半径]*pi()*[高]", 0.0); //圆的体积
@@ -89,7 +88,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
 ```
 参数以方括号定义，如 `[参数名]`。 
 
-注：还可以使用`AddParameter`、`AddParameterFromJson`添加方法，使用`DiyFunction`+=来自定义函数。
+注：还可以使用`AddParameter`、`AddParameterFromJson`添加方法，使用`DiyFunction`来自定义函数。
 
 ## Excel函数
 函数：`逻辑函数`、`数学与三角函数`、`文本函数`、`统计函数`、`日期与时间函数`

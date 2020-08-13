@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Antlr4.Runtime;
+using Antlr4.Runtime.Misc;
 using ToolGood.Algorithm.LitJson;
 using static mathParser;
 
@@ -186,13 +187,13 @@ namespace ToolGood.Algorithm
         {
             _dict[key] = Operand.Create(obj);
         }
-        #region Date
+        #region MyDate
         /// <summary>
         /// 添加自定义参数
         /// </summary>
         /// <param name="key"></param>
         /// <param name="obj"></param>
-        public void AddParameter(string key, Date obj)
+        public void AddParameter(string key, MyDate obj)
         {
             _dict[key] = Operand.Create(obj);
         }
@@ -376,6 +377,102 @@ namespace ToolGood.Algorithm
         /// <param name="exp"></param>
         /// <param name="def"></param>
         /// <returns></returns>
+        public ushort TryEvaluate(string exp, ushort def)
+        {
+            try {
+                if (Parse(exp)) {
+
+                    var obj = Evaluate();
+                    obj = obj.ToNumber("It can't be converted to number!");
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
+                        return def;
+                    }
+                    return (ushort)obj.IntValue;
+                }
+            } catch (Exception ex) {
+                LastError = ex.Message;
+            }
+            return def;
+        }
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
+        public uint TryEvaluate(string exp, uint def)
+        {
+            try {
+                if (Parse(exp)) {
+
+                    var obj = Evaluate();
+                    obj = obj.ToNumber("It can't be converted to number!");
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
+                        return def;
+                    }
+                    return (uint)obj.IntValue;
+                }
+            } catch (Exception ex) {
+                LastError = ex.Message;
+            }
+            return def;
+        }
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
+        public ulong TryEvaluate(string exp, ulong def)
+        {
+            try {
+                if (Parse(exp)) {
+
+                    var obj = Evaluate();
+                    obj = obj.ToNumber("It can't be converted to number!");
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
+                        return def;
+                    }
+                    return (ulong)obj.IntValue;
+                }
+            } catch (Exception ex) {
+                LastError = ex.Message;
+            }
+            return def;
+        }
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
+        public short TryEvaluate(string exp, short def)
+        {
+            try {
+                if (Parse(exp)) {
+
+                    var obj = Evaluate();
+                    obj = obj.ToNumber("It can't be converted to number!");
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
+                        return def;
+                    }
+                    return (short)obj.IntValue;
+                }
+            } catch (Exception ex) {
+                LastError = ex.Message;
+            }
+            return def;
+        }
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
         public int TryEvaluate(string exp, int def)
         {
             try {
@@ -400,6 +497,54 @@ namespace ToolGood.Algorithm
         /// <param name="exp"></param>
         /// <param name="def"></param>
         /// <returns></returns>
+        public long TryEvaluate(string exp, long def)
+        {
+            try {
+                if (Parse(exp)) {
+
+                    var obj = Evaluate();
+                    obj = obj.ToNumber("It can't be converted to number!");
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
+                        return def;
+                    }
+                    return obj.IntValue;
+                }
+            } catch (Exception ex) {
+                LastError = ex.Message;
+            }
+            return def;
+        }
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
+        public float TryEvaluate(string exp, float def)
+        {
+            try {
+                if (Parse(exp)) {
+
+                    var obj = Evaluate();
+                    obj = obj.ToNumber("It can't be converted to number!");
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
+                        return def;
+                    }
+                    return (float)obj.NumberValue;
+                }
+            } catch (Exception ex) {
+                LastError = ex.Message;
+            }
+            return def;
+        }
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
         public double TryEvaluate(string exp, double def)
         {
             try {
@@ -412,6 +557,30 @@ namespace ToolGood.Algorithm
                         return def;
                     }
                     return obj.NumberValue;
+                }
+            } catch (Exception ex) {
+                LastError = ex.Message;
+            }
+            return def;
+        }
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
+        public decimal TryEvaluate(string exp, decimal def)
+        {
+            try {
+                if (Parse(exp)) {
+
+                    var obj = Evaluate();
+                    obj = obj.ToNumber("It can't be converted to number!");
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
+                        return def;
+                    }
+                    return (decimal)obj.NumberValue;
                 }
             } catch (Exception ex) {
                 LastError = ex.Message;
@@ -478,7 +647,7 @@ namespace ToolGood.Algorithm
             try {
                 if (Parse(exp)) {
                     var obj = Evaluate();
-                    obj = obj.ToDate("It can't be converted to date!");
+                    obj = obj.ToMyDate("It can't be converted to MyDate!");
                     if (obj.IsError) {
                         LastError = obj.ErrorMsg;
                         return def;
@@ -501,7 +670,7 @@ namespace ToolGood.Algorithm
             try {
                 if (Parse(exp)) {
                     var obj = Evaluate();
-                    obj = obj.ToDate("It can't be converted to date!");
+                    obj = obj.ToMyDate("It can't be converted to MyDate!");
                     if (obj.IsError) {
                         LastError = obj.ErrorMsg;
                         return def;
@@ -513,6 +682,31 @@ namespace ToolGood.Algorithm
             }
             return def;
         }
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值。
+        /// 解决 def 为 null 二义性问题
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
+        public MyDate TryEvaluate_MyDate(string exp, MyDate def)
+        {
+            try {
+                if (Parse(exp)) {
+                    var obj = Evaluate();
+                    obj = obj.ToMyDate("It can't be converted to MyDate!");
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
+                        return def;
+                    }
+                    return obj.DateValue;
+                }
+            } catch (Exception ex) {
+                LastError = ex.Message;
+            }
+            return def;
+        }
         #endregion
+
     }
 }

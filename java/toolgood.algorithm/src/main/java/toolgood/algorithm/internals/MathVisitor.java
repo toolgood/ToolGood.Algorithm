@@ -2470,7 +2470,9 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (firstValue.IsError()) {
             return firstValue;
         }
-
+        if(firstValue.DateValue().Year==null){
+            return Operand.Error("Function YEAR is error!");
+        }
         return Operand.Create(firstValue.DateValue().Year);
     }
 
@@ -2479,7 +2481,9 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (firstValue.IsError()) {
             return firstValue;
         }
-
+        if(firstValue.DateValue().Month==null){
+            return Operand.Error("Function MONTH is error!");
+        }
         return Operand.Create(firstValue.DateValue().Month);
     }
 
@@ -2488,7 +2492,9 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (firstValue.IsError()) {
             return firstValue;
         }
-
+        if(firstValue.DateValue().Day==null){
+            return Operand.Error("Function DAY is error!");
+        }
         return Operand.Create(firstValue.DateValue().Day);
     }
 
