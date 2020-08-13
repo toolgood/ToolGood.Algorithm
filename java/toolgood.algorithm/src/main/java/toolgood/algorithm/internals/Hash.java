@@ -12,13 +12,13 @@ import java.security.NoSuchAlgorithmException;
 
 class Hash {
     public static String GetCrc8String(final byte[] buffer) {
-        final int b = Crc8Hash.calcCrc8(buffer);
-        return byteArrayToHexString(toLH(b));
+        final byte b = Crc8Hash.calcCrc(buffer);
+        return byteArrayToHexString(new byte[]{b});
     }
 
     public static String GetCrc16String(final byte[] buffer) {
-        final int buffer1 = Crc16Hash.CRC16_CCITT(buffer);
-        return byteArrayToHexString(toLH(buffer1));
+        final byte[] buffer1 = Crc16Hash.getCrc16(buffer);
+        return byteArrayToHexString(buffer1);
     }
 
     public static String GetCrc32String(final byte[] buffer) {
@@ -26,7 +26,7 @@ class Hash {
         c.reset();// Resets CRC-32 to initial value.
         c.update(buffer, 0, buffer.length);// 将数据丢入CRC32解码器
         int value = (int) c.getValue();
-        return byteArrayToHexString(toLH(value));
+        return byteArrayToHexString(toHH(value));
     }
 
     public static String GetMd5String(final byte[] buffer) throws NoSuchAlgorithmException {
@@ -106,14 +106,14 @@ class Hash {
         b[3] = (byte) (n >> 24 & 0xff);  
         return b;  
       }
-    //   private static byte[] toHH(int n) {  
-    //     byte[] b = new byte[4];  
-    //     b[3] = (byte) (n & 0xff);  
-    //     b[2] = (byte) (n >> 8 & 0xff);  
-    //     b[1] = (byte) (n >> 16 & 0xff);  
-    //     b[0] = (byte) (n >> 24 & 0xff);  
-    //     return b;  
-    //   }
+      private static byte[] toHH(int n) {  
+        byte[] b = new byte[4];  
+        b[3] = (byte) (n & 0xff);  
+        b[2] = (byte) (n >> 8 & 0xff);  
+        b[1] = (byte) (n >> 16 & 0xff);  
+        b[0] = (byte) (n >> 24 & 0xff);  
+        return b;  
+      }
 
     private static String byteArrayToHexString(byte[] b) {
         StringBuffer sb = new StringBuffer(b.length * 2);

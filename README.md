@@ -880,12 +880,6 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>Sha512 ★</td><td>Sha512(文本[,编码类型])<br> 返回Sha512的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Crc8 ★</td><td>Crc8(文本[,编码类型])<br> 返回Crc8的Hash字符串。</td> <td></td>
-    </tr>
-	<tr>
-        <td>Crc16 ★</td><td>Crc16(文本[,编码类型])<br> 返回Crc16的Hash字符串。</td> <td></td>
-    </tr>
-	<tr>
         <td>Crc32 ★</td><td>Crc32(文本[,编码类型])<br> 返回Crc32的Hash字符串。</td> <td></td>
     </tr>
 	<tr>

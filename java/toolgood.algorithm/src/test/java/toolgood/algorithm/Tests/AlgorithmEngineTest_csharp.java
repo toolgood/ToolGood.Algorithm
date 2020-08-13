@@ -121,16 +121,29 @@ public class AlgorithmEngineTest_csharp {
         AlgorithmEngine engine = new AlgorithmEngine();
         String dt = engine.TryEvaluate("Md5('&=我中国人 >||')", "");
         assertEquals(dt, "2E1CEFBDFA3677725B7856E02D225819");
+        dt = engine.TryEvaluate("Md5('&=我中国人 >||','GGG')", "");
+        assertEquals(dt, "");
         dt = engine.TryEvaluate("Sha1('&=我中国人 >||')", "");
+        assertEquals(dt, "F2C250C58F3A40DC54B5A47F0F6B1187AD5AC2EE");
         dt = engine.TryEvaluate("Sha256('&=我中国人 >||')", "");
+        assertEquals(dt, "FA5BF04D13AEF750D62040E492479A16B6B10888D0B19923A1E7B9339990632A");
         dt = engine.TryEvaluate("Sha512('&=我中国人 >||')", "");
-        dt = engine.TryEvaluate("Crc8('&=我中国人 >||')", "");
-        dt = engine.TryEvaluate("Crc16('&=我中国人 >||')", "");
+        assertEquals(dt, "FFEAC98C39D76CD86A3AB8ECEF16BE23166F68E1A3C5C9809A8AD2CE417170465286E4CF6FFA17924613CD7477533B9109A5DD504A2462F9DB693D56AD365C14");
+        // dt = engine.TryEvaluate("Crc8('&=我中国人 >||')", "");
+        // assertEquals(dt, "8F");
+        // dt = engine.TryEvaluate("Crc16('&=我中国人 >||')", "");
+        // assertEquals(dt, "DA5A0000");
         dt = engine.TryEvaluate("Crc32('&=我中国人 >||')", "");
+        assertEquals(dt, "60649EFF");
         dt = engine.TryEvaluate("HmacMd5('&=我中国人 >||','12')", "");
+        assertEquals(dt, "CF3923196E21B1E270FD72B089B092BB");
         dt = engine.TryEvaluate("HmacSha1('&=我中国人 >||','12')", "");
+        assertEquals(dt, "EB4D4FC2AA5637060FD12004DF845801D8902105");
         dt = engine.TryEvaluate("HmacSha256('&=我中国人 >||','12')", "");
+        assertEquals(dt, "3E25E0D14039E8258BBBBD15F7E3B91BB497A8966C12E1DEA3D651BF03CB4B97");
         dt = engine.TryEvaluate("HmacSha512('&=我中国人 >||','12')", "");
+        assertEquals(dt, "4E9CE785C46569965C7C712A841EC7382C64D918D49F992EDB3504BED9C3A5EFBB1C8F712968F6B904417E07F9D72E707FCF148D55A4D3EDF1A9866B7BAC2049");
+   
 
     }
 
