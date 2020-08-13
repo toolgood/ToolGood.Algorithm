@@ -4,7 +4,7 @@ using System.Collections.Specialized;
 
 namespace ToolGood.Algorithm.LitJson
 {
-   enum JsonType
+    enum JsonType
     {
         None,
 
@@ -16,7 +16,7 @@ namespace ToolGood.Algorithm.LitJson
         Null
     }
 
-    interface IJsonWrapper  
+    interface IJsonWrapper
     {
         bool IsArray { get; }
         bool IsBoolean { get; }

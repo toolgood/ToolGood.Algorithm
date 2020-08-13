@@ -99,7 +99,7 @@ namespace ToolGood.Algorithm
 
         public string ToString(string f)
         {
-            if (Year==null) {
+            if (Year == null) {
                 return ((DateTime)this).ToString(f);
             }
             return ((DateTime)this).ToString(f);

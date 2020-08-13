@@ -69,13 +69,6 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitAVERAGEIF_fun( mathParser.AVERAGEIF_funContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>CRC16_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCRC16_fun( mathParser.CRC16_funContext context);
-	/// <summary>
 	/// Visit a parse tree produced by the <c>RIGHT_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// </summary>
@@ -334,13 +327,7 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitTRIMEND_fun( mathParser.TRIMEND_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>CRC8_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCRC8_fun( mathParser.CRC8_funContext context);
+ 
 	/// <summary>
 	/// Visit a parse tree produced by the <c>ISLOGICAL_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.

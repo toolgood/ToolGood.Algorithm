@@ -41,23 +41,23 @@ namespace ToolGood.Algorithm
             var secondValue = args[1];
             var t = context.op.Text;
             if (firstValue.Type == OperandType.STRING) {
-                    if (numberRegex.IsMatch(firstValue.TextValue)){
-                        var a = firstValue.ToNumber(null);
-                        if (a.IsError == false) firstValue = a;
-                    }else{
-                        var a = firstValue.ToDate(null);
-                        if (a.IsError == false) firstValue = a;
-                    }
+                if (numberRegex.IsMatch(firstValue.TextValue)) {
+                    var a = firstValue.ToNumber(null);
+                    if (a.IsError == false) firstValue = a;
+                } else {
+                    var a = firstValue.ToDate(null);
+                    if (a.IsError == false) firstValue = a;
                 }
-                if (secondValue.Type == OperandType.STRING) {
-                    if (numberRegex.IsMatch(secondValue.TextValue)) {
-                        var a = secondValue.ToNumber(null);
-                        if (a.IsError == false) secondValue = a;
-                    } else {
-                        var a = secondValue.ToDate(null);
-                        if (a.IsError == false) secondValue = a;
-                    }
+            }
+            if (secondValue.Type == OperandType.STRING) {
+                if (numberRegex.IsMatch(secondValue.TextValue)) {
+                    var a = secondValue.ToNumber(null);
+                    if (a.IsError == false) secondValue = a;
+                } else {
+                    var a = secondValue.ToDate(null);
+                    if (a.IsError == false) secondValue = a;
                 }
+            }
             if (t == "*") {
                 if (secondValue.Type == OperandType.BOOLEAN) {
                     if (secondValue.BooleanValue)
@@ -95,8 +95,7 @@ namespace ToolGood.Algorithm
                 if (firstValue.IsError) { return firstValue; }
                 secondValue = secondValue.ToNumber("Div fun right value");
                 if (secondValue.IsError) { return secondValue; }
-                if (secondValue.NumberValue == 0)
-                {
+                if (secondValue.NumberValue == 0) {
                     return Operand.Error($"Function '{t}' parameter 2 is error!");
                 }
                 return Operand.Create(firstValue.NumberValue / secondValue.NumberValue);
@@ -140,23 +139,23 @@ namespace ToolGood.Algorithm
                 return Operand.Create(firstValue.TextValue + secondValue.TextValue);
             }
             if (firstValue.Type == OperandType.STRING) {
-                    if (numberRegex.IsMatch(firstValue.TextValue)){
-                        var a = firstValue.ToNumber(null);
-                        if (a.IsError == false) firstValue = a;
-                    }else{
-                        var a = firstValue.ToDate(null);
-                        if (a.IsError == false) firstValue = a;
-                    }
+                if (numberRegex.IsMatch(firstValue.TextValue)) {
+                    var a = firstValue.ToNumber(null);
+                    if (a.IsError == false) firstValue = a;
+                } else {
+                    var a = firstValue.ToDate(null);
+                    if (a.IsError == false) firstValue = a;
                 }
-                if (secondValue.Type == OperandType.STRING) {
-                    if (numberRegex.IsMatch(secondValue.TextValue)) {
-                        var a = secondValue.ToNumber(null);
-                        if (a.IsError == false) secondValue = a;
-                    } else {
-                        var a = secondValue.ToDate(null);
-                        if (a.IsError == false) secondValue = a;
-                    }
+            }
+            if (secondValue.Type == OperandType.STRING) {
+                if (numberRegex.IsMatch(secondValue.TextValue)) {
+                    var a = secondValue.ToNumber(null);
+                    if (a.IsError == false) secondValue = a;
+                } else {
+                    var a = secondValue.ToDate(null);
+                    if (a.IsError == false) secondValue = a;
                 }
+            }
             if (t == "+") {
                 if (firstValue.Type == OperandType.DATE && secondValue.Type == OperandType.DATE) {
                     return Operand.Create(firstValue.DateValue + secondValue.DateValue);
@@ -3037,58 +3036,70 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>(); int index = 1;
             foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function BASE64TOTEXT parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
 
-            Encoding encoding;
-            if (args.Count == 1) {
-                encoding = Encoding.UTF8;
-            } else {
-                encoding = Encoding.GetEncoding(args[1].TextValue);
-            }
-            var t = encoding.GetString(Base64.FromBase64String(args[0].TextValue));
-            return Operand.Create(t);
+            try {
+                Encoding encoding;
+                if (args.Count == 1) {
+                    encoding = Encoding.UTF8;
+                } else {
+                    encoding = Encoding.GetEncoding(args[1].TextValue);
+                }
+                var t = encoding.GetString(Base64.FromBase64String(args[0].TextValue));
+                return Operand.Create(t);
+            } catch (Exception) { }
+            return Operand.Error("Function HTMLDECODE is error!");
         }
         public Operand VisitBASE64URLTOTEXT_fun(mathParser.BASE64URLTOTEXT_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function BASE64URLTOTEXT parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
-
-            Encoding encoding;
-            if (args.Count == 1) {
-                encoding = Encoding.UTF8;
-            } else {
-                encoding = Encoding.GetEncoding(args[1].TextValue);
-            }
-            var t = encoding.GetString(Base64.FromBase64ForUrlString(args[0].TextValue));
-            return Operand.Create(t);
+            try {
+                Encoding encoding;
+                if (args.Count == 1) {
+                    encoding = Encoding.UTF8;
+                } else {
+                    encoding = Encoding.GetEncoding(args[1].TextValue);
+                }
+                var t = encoding.GetString(Base64.FromBase64ForUrlString(args[0].TextValue));
+                return Operand.Create(t);
+            } catch (Exception) { }
+            return Operand.Error("Function BASE64URLTOTEXT is error!");
         }
         public Operand VisitTEXTTOBASE64_fun(mathParser.TEXTTOBASE64_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function TEXTTOBASE64 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
 
-            Encoding encoding;
-            if (args.Count == 1) {
-                encoding = Encoding.UTF8;
-            } else {
-                encoding = Encoding.GetEncoding(args[1].TextValue);
+            try {
+                Encoding encoding;
+                if (args.Count == 1) {
+                    encoding = Encoding.UTF8;
+                } else {
+                    encoding = Encoding.GetEncoding(args[1].TextValue);
+                }
+                var bytes = encoding.GetBytes(args[0].TextValue);
+                var t = Base64.ToBase64String(bytes);
+                return Operand.Create(t);
+            } catch (Exception) {
             }
-            var bytes = encoding.GetBytes(args[0].TextValue);
-            var t = Base64.ToBase64String(bytes);
-            return Operand.Create(t);
+            return Operand.Error("Function TEXTTOBASE64 is error!");
         }
         public Operand VisitTEXTTOBASE64URL_fun(mathParser.TEXTTOBASE64URL_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function TEXTTOBASE64URL parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
 
-            Encoding encoding;
-            if (args.Count == 1) {
-                encoding = Encoding.UTF8;
-            } else {
-                encoding = Encoding.GetEncoding(args[1].TextValue);
-            }
-            var bytes = encoding.GetBytes(args[0].TextValue);
-            var t = Base64.ToBase64ForUrlString(bytes);
-            return Operand.Create(t);
+            try {
+                Encoding encoding;
+                if (args.Count == 1) {
+                    encoding = Encoding.UTF8;
+                } else {
+                    encoding = Encoding.GetEncoding(args[1].TextValue);
+                }
+                var bytes = encoding.GetBytes(args[0].TextValue);
+                var t = Base64.ToBase64ForUrlString(bytes);
+                return Operand.Create(t);
+            } catch (Exception) { }
+            return Operand.Error("Function TEXTTOBASE64URL is error!");
         }
         public Operand VisitREGEX_fun(mathParser.REGEX_funContext context)
         {
@@ -3100,31 +3111,11 @@ namespace ToolGood.Algorithm
             var secondValue = args[1].ToText("Function REGEX parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
 
-            if (args.Count == 2) {
                 var b = Regex.Match(firstValue.TextValue, secondValue.TextValue);
                 if (b.Success == false) {
                     return Operand.Error("Function REGEX is error!");
                 }
                 return Operand.Create(b.Value);
-            } else if (args.Count == 3) {
-                var ms = Regex.Matches(firstValue.TextValue, secondValue.TextValue);
-                var thirdValue = args[2].ToNumber("Function REGEX parameter 3 is error!");
-                if (thirdValue.IsError) { return thirdValue; }
-                if (ms.Count <= thirdValue.IntValue - excelIndex) {
-                    return Operand.Error("Function REGEX is error!");
-                }
-                return Operand.Create(ms[thirdValue.IntValue - excelIndex].Value);
-            } else {
-                var ms = Regex.Matches(firstValue.TextValue, secondValue.TextValue);
-                var thirdValue = args[2].ToNumber("Function REGEX parameter 3 is error!");
-                if (thirdValue.IsError) { return thirdValue; }
-                if (ms.Count <= thirdValue.IntValue + excelIndex) {
-                    return Operand.Error("Function REGEX parameter 3 is error!");
-                }
-                var fourthValue = args[3].ToNumber("Function REGEX parameter 4 is error!");
-                if (fourthValue.IsError) { return fourthValue; }
-                return Operand.Create(ms[thirdValue.IntValue - excelIndex].Groups[fourthValue.IntValue].Value);
-            }
         }
         public Operand VisitREGEXREPALCE_fun(mathParser.REGEXREPALCE_funContext context)
         {
@@ -3151,154 +3142,151 @@ namespace ToolGood.Algorithm
             var args = new List<Operand>(); int index = 1;
             foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function MD5 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
 
-            Encoding encoding;
-            if (args.Count == 1) {
-                encoding = Encoding.UTF8;
-            } else {
-                encoding = Encoding.GetEncoding(args[1].TextValue);
-            }
-            var t = Hash.GetMd5String(encoding.GetBytes(args[0].TextValue));
-            return Operand.Create(t);
+            try {
+                Encoding encoding;
+                if (args.Count == 1) {
+                    encoding = Encoding.UTF8;
+                } else {
+                    encoding = Encoding.GetEncoding(args[1].TextValue);
+                }
+                var t = Hash.GetMd5String(encoding.GetBytes(args[0].TextValue));
+                return Operand.Create(t);
+            } catch (Exception) { }
+            return Operand.Error("Function MD5 is error!");
         }
         public Operand VisitSHA1_fun(mathParser.SHA1_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function SHA1 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
 
-            Encoding encoding;
-            if (args.Count == 1) {
-                encoding = Encoding.UTF8;
-            } else {
-                encoding = Encoding.GetEncoding(args[1].TextValue);
+            try {
+                Encoding encoding;
+                if (args.Count == 1) {
+                    encoding = Encoding.UTF8;
+                } else {
+                    encoding = Encoding.GetEncoding(args[1].TextValue);
+                }
+                var t = Hash.GetSha1String(encoding.GetBytes(args[0].TextValue));
+                return Operand.Create(t);
+            } catch (Exception) {
             }
-            var t = Hash.GetSha1String(encoding.GetBytes(args[0].TextValue));
-            return Operand.Create(t);
+            return Operand.Error("Function SHA1 is error!");
         }
         public Operand VisitSHA256_fun(mathParser.SHA256_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function SHA256 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
 
-            Encoding encoding;
-            if (args.Count == 1) {
-                encoding = Encoding.UTF8;
-            } else {
-                encoding = Encoding.GetEncoding(args[1].TextValue);
-            }
-            var t = Hash.GetSha256String(encoding.GetBytes(args[0].TextValue));
-            return Operand.Create(t);
+            try {
+                Encoding encoding;
+                if (args.Count == 1) {
+                    encoding = Encoding.UTF8;
+                } else {
+                    encoding = Encoding.GetEncoding(args[1].TextValue);
+                }
+                var t = Hash.GetSha256String(encoding.GetBytes(args[0].TextValue));
+                return Operand.Create(t);
+            } catch (Exception) { }
+            return Operand.Error("Function SHA256 is error!");
         }
         public Operand VisitSHA512_fun(mathParser.SHA512_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function SHA512 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
 
-            Encoding encoding;
-            if (args.Count == 1) {
-                encoding = Encoding.UTF8;
-            } else {
-                encoding = Encoding.GetEncoding(args[1].TextValue);
+            try {
+                Encoding encoding;
+                if (args.Count == 1) {
+                    encoding = Encoding.UTF8;
+                } else {
+                    encoding = Encoding.GetEncoding(args[1].TextValue);
+                }
+                var t = Hash.GetSha512String(encoding.GetBytes(args[0].TextValue));
+                return Operand.Create(t);
+            } catch (Exception) {
             }
-            var t = Hash.GetSha512String(encoding.GetBytes(args[0].TextValue));
-            return Operand.Create(t);
+            return Operand.Error("Function SHA512 is error!");
         }
-        public Operand VisitCRC8_fun(mathParser.CRC8_funContext context)
-        {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function CRC8 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
-
-            Encoding encoding;
-            if (args.Count == 1) {
-                encoding = Encoding.UTF8;
-            } else {
-                encoding = Encoding.GetEncoding(args[1].TextValue);
-            }
-            var t = Hash.GetCrc8String(encoding.GetBytes(args[0].TextValue));
-            return Operand.Create(t);
-        }
-        public Operand VisitCRC16_fun(mathParser.CRC16_funContext context)
-        {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function CRC16 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
-
-            Encoding encoding;
-            if (args.Count == 1) {
-                encoding = Encoding.UTF8;
-            } else {
-                encoding = Encoding.GetEncoding(args[1].TextValue);
-            }
-            var t = Hash.GetCrc16String(encoding.GetBytes(args[0].TextValue));
-            return Operand.Create(t);
-        }
+ 
         public Operand VisitCRC32_fun(mathParser.CRC32_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function CRC32 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
-
-            Encoding encoding;
-            if (args.Count == 1) {
-                encoding = Encoding.UTF8;
-            } else {
-                encoding = Encoding.GetEncoding(args[1].TextValue);
-            }
-            var t = Hash.GetCrc32String(encoding.GetBytes(args[0].TextValue));
-            return Operand.Create(t);
+            try {
+                Encoding encoding;
+                if (args.Count == 1) {
+                    encoding = Encoding.UTF8;
+                } else {
+                    encoding = Encoding.GetEncoding(args[1].TextValue);
+                }
+                var t = Hash.GetCrc32String(encoding.GetBytes(args[0].TextValue));
+                return Operand.Create(t);
+            } catch (Exception) { }
+            return Operand.Error("Function CRC32 is error!");
         }
         public Operand VisitHMACMD5_fun(mathParser.HMACMD5_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function HMACMD5 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
-
-            Encoding encoding;
-            if (args.Count == 2) {
-                encoding = Encoding.UTF8;
-            } else {
-                encoding = Encoding.GetEncoding(args[2].TextValue);
-            }
-            var t = Hash.GetHmacMd5String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
-            return Operand.Create(t);
+            try {
+                Encoding encoding;
+                if (args.Count == 2) {
+                    encoding = Encoding.UTF8;
+                } else {
+                    encoding = Encoding.GetEncoding(args[2].TextValue);
+                }
+                var t = Hash.GetHmacMd5String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
+                return Operand.Create(t);
+            } catch (Exception) { }
+            return Operand.Error("Function HMACMD5 is error!");
         }
         public Operand VisitHMACSHA1_fun(mathParser.HMACSHA1_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function HMACSHA1 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
-
-            Encoding encoding;
-            if (args.Count == 2) {
-                encoding = Encoding.UTF8;
-            } else {
-                encoding = Encoding.GetEncoding(args[2].TextValue);
-            }
-            var t = Hash.GetHmacSha1String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
-            return Operand.Create(t);
+            try {
+                Encoding encoding;
+                if (args.Count == 2) {
+                    encoding = Encoding.UTF8;
+                } else {
+                    encoding = Encoding.GetEncoding(args[2].TextValue);
+                }
+                var t = Hash.GetHmacSha1String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
+                return Operand.Create(t);
+            } catch (Exception) { }
+            return Operand.Error("Function HMACSHA1 is error!");
         }
         public Operand VisitHMACSHA256_fun(mathParser.HMACSHA256_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function HMACSHA256 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
-
-            Encoding encoding;
-            if (args.Count == 2) {
-                encoding = Encoding.UTF8;
-            } else {
-                encoding = Encoding.GetEncoding(args[2].TextValue);
-            }
-            var t = Hash.GetHmacSha256String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
-            return Operand.Create(t);
+            try {
+                Encoding encoding;
+                if (args.Count == 2) {
+                    encoding = Encoding.UTF8;
+                } else {
+                    encoding = Encoding.GetEncoding(args[2].TextValue);
+                }
+                var t = Hash.GetHmacSha256String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
+                return Operand.Create(t);
+            } catch (Exception) {            }
+            return Operand.Error("Function HMACSHA256 is error!");
         }
         public Operand VisitHMACSHA512_fun(mathParser.HMACSHA512_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in context.expr()) { var a = this.Visit(item).ToText($"Function HMACSHA512 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
-
-            Encoding encoding;
-            if (args.Count == 2) {
-                encoding = Encoding.UTF8;
-            } else {
-                encoding = Encoding.GetEncoding(args[2].TextValue);
-            }
-            var t = Hash.GetHmacSha512String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
-            return Operand.Create(t);
+            try {
+                Encoding encoding;
+                if (args.Count == 2) {
+                    encoding = Encoding.UTF8;
+                } else {
+                    encoding = Encoding.GetEncoding(args[2].TextValue);
+                }
+                var t = Hash.GetHmacSha512String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
+                return Operand.Create(t);
+            } catch (Exception) {            }
+            return Operand.Error("Function HMACSHA512 is error!");
         }
         public Operand VisitTRIMSTART_fun(mathParser.TRIMSTART_funContext context)
         {

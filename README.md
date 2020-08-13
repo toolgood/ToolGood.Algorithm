@@ -856,7 +856,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
         <td>TextToBase64Url ★</td><td>TextToBase64Url(文本[,编码类型])<br>   将字符串 转换为Url类型的Base64 字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Regex ★ ▲</td><td>Regex(文本,匹配文本[,索引[,组索引]])<br>   并返回匹配的字符串。</td> <td></td>
+        <td>Regex ★ ▲</td><td>Regex(文本,匹配文本])<br>   并返回匹配的字符串。</td> <td></td>
     </tr>
 	<tr>
         <td>RegexRepalce ★</td><td>RegexRepalce(文本,匹配文本,替换文本)<br>  匹配替换字符串。</td> <td></td>
@@ -878,12 +878,6 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
     </tr>
 	<tr>
         <td>Sha512 ★</td><td>Sha512(文本[,编码类型])<br> 返回Sha512的Hash字符串。</td> <td></td>
-    </tr>
-	<tr>
-        <td>Crc8 ★</td><td>Crc8(文本[,编码类型])<br> 返回Crc8的Hash字符串。</td> <td></td>
-    </tr>
-	<tr>
-        <td>Crc16 ★</td><td>Crc16(文本[,编码类型])<br> 返回Crc16的Hash字符串。</td> <td></td>
     </tr>
 	<tr>
         <td>Crc32 ★</td><td>Crc32(文本[,编码类型])<br> 返回Crc32的Hash字符串。</td> <td></td>
