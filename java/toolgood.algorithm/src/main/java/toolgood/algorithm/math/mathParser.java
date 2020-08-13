@@ -200,8 +200,7 @@ public class mathParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(10);
-			expr(0);
+				expr(0);
 			}
 		}
 		catch (RecognitionException re) {
@@ -236,11 +235,9 @@ public class mathParser extends Parser {
 			_ctx = _localctx;
 			_prevctx = _localctx;
 
-			setState(13);
-			expr2();
+				expr2();
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(742);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,55,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -248,16 +245,13 @@ public class mathParser extends Parser {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(740);
 					_errHandler.sync(this);
 					switch ( getInterpreter().adaptivePredict(_input,54,_ctx) ) {
 					case 1:
 						{
 						_localctx = new MulDiv_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(15);
 						if (!(precpred(_ctx, 98))) throw new FailedPredicateException(this, "precpred(_ctx, 98)");
-						setState(16);
 						((MulDiv_funContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__1) | (1L << T__2))) != 0)) ) {
@@ -268,17 +262,14 @@ public class mathParser extends Parser {
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(17);
-						expr(99);
+							expr(99);
 						}
 						break;
 					case 2:
 						{
 						_localctx = new AddSub_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(18);
 						if (!(precpred(_ctx, 97))) throw new FailedPredicateException(this, "precpred(_ctx, 97)");
-						setState(19);
 						((AddSub_funContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__3) | (1L << T__4) | (1L << SUB))) != 0)) ) {
@@ -289,17 +280,14 @@ public class mathParser extends Parser {
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(20);
-						expr(98);
+							expr(98);
 						}
 						break;
 					case 3:
 						{
 						_localctx = new Judge_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(21);
 						if (!(precpred(_ctx, 96))) throw new FailedPredicateException(this, "precpred(_ctx, 96)");
-						setState(22);
 						((Judge_funContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__5) | (1L << T__6) | (1L << T__7) | (1L << T__8) | (1L << T__9) | (1L << T__10) | (1L << T__11) | (1L << T__12))) != 0)) ) {
@@ -310,17 +298,14 @@ public class mathParser extends Parser {
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(23);
-						expr(97);
+							expr(97);
 						}
 						break;
 					case 4:
 						{
 						_localctx = new AndOr_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(24);
 						if (!(precpred(_ctx, 95))) throw new FailedPredicateException(this, "precpred(_ctx, 95)");
-						setState(25);
 						((AndOr_funContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__13) | (1L << T__14) | (1L << AND) | (1L << OR))) != 0)) ) {
@@ -331,23 +316,17 @@ public class mathParser extends Parser {
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(26);
-						expr(96);
+							expr(96);
 						}
 						break;
 					case 5:
 						{
 						_localctx = new ISNUMBER_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(27);
 						if (!(precpred(_ctx, 94))) throw new FailedPredicateException(this, "precpred(_ctx, 94)");
-						setState(28);
 						match(T__15);
-						setState(29);
 						match(ISNUMBER);
-						setState(30);
 						match(T__16);
-						setState(31);
 						match(T__17);
 						}
 						break;
@@ -355,15 +334,10 @@ public class mathParser extends Parser {
 						{
 						_localctx = new ISTEXT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(32);
 						if (!(precpred(_ctx, 93))) throw new FailedPredicateException(this, "precpred(_ctx, 93)");
-						setState(33);
 						match(T__15);
-						setState(34);
 						match(ISTEXT);
-						setState(35);
 						match(T__16);
-						setState(36);
 						match(T__17);
 						}
 						break;
@@ -371,15 +345,10 @@ public class mathParser extends Parser {
 						{
 						_localctx = new ISNONTEXT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(37);
 						if (!(precpred(_ctx, 92))) throw new FailedPredicateException(this, "precpred(_ctx, 92)");
-						setState(38);
 						match(T__15);
-						setState(39);
 						match(ISNONTEXT);
-						setState(40);
 						match(T__16);
-						setState(41);
 						match(T__17);
 						}
 						break;
@@ -387,15 +356,10 @@ public class mathParser extends Parser {
 						{
 						_localctx = new ISLOGICAL_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(42);
 						if (!(precpred(_ctx, 91))) throw new FailedPredicateException(this, "precpred(_ctx, 91)");
-						setState(43);
 						match(T__15);
-						setState(44);
 						match(ISLOGICAL);
-						setState(45);
 						match(T__16);
-						setState(46);
 						match(T__17);
 						}
 						break;
@@ -403,15 +367,10 @@ public class mathParser extends Parser {
 						{
 						_localctx = new ISEVEN_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(47);
 						if (!(precpred(_ctx, 90))) throw new FailedPredicateException(this, "precpred(_ctx, 90)");
-						setState(48);
 						match(T__15);
-						setState(49);
 						match(ISEVEN);
-						setState(50);
 						match(T__16);
-						setState(51);
 						match(T__17);
 						}
 						break;
@@ -419,15 +378,10 @@ public class mathParser extends Parser {
 						{
 						_localctx = new ISODD_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(52);
 						if (!(precpred(_ctx, 89))) throw new FailedPredicateException(this, "precpred(_ctx, 89)");
-						setState(53);
 						match(T__15);
-						setState(54);
 						match(ISODD);
-						setState(55);
 						match(T__16);
-						setState(56);
 						match(T__17);
 						}
 						break;
@@ -435,25 +389,18 @@ public class mathParser extends Parser {
 						{
 						_localctx = new ISERROR_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(57);
 						if (!(precpred(_ctx, 88))) throw new FailedPredicateException(this, "precpred(_ctx, 88)");
-						setState(58);
 						match(T__15);
-						setState(59);
 						match(ISERROR);
-						setState(60);
 						match(T__16);
-						setState(62);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__16) | (1L << T__19) | (1L << T__21) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (PARAMETER - 192)))) != 0)) {
 							{
-							setState(61);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(64);
 						match(T__17);
 						}
 						break;
@@ -461,25 +408,18 @@ public class mathParser extends Parser {
 						{
 						_localctx = new ISNULL_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(65);
 						if (!(precpred(_ctx, 87))) throw new FailedPredicateException(this, "precpred(_ctx, 87)");
-						setState(66);
 						match(T__15);
-						setState(67);
 						match(ISNULL);
-						setState(68);
 						match(T__16);
-						setState(70);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__16) | (1L << T__19) | (1L << T__21) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (PARAMETER - 192)))) != 0)) {
 							{
-							setState(69);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(72);
 						match(T__17);
 						}
 						break;
@@ -487,25 +427,18 @@ public class mathParser extends Parser {
 						{
 						_localctx = new ISNULLORERROR_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(73);
 						if (!(precpred(_ctx, 86))) throw new FailedPredicateException(this, "precpred(_ctx, 86)");
-						setState(74);
 						match(T__15);
-						setState(75);
 						match(ISNULLORERROR);
-						setState(76);
 						match(T__16);
-						setState(78);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__16) | (1L << T__19) | (1L << T__21) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (PARAMETER - 192)))) != 0)) {
 							{
-							setState(77);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(80);
 						match(T__17);
 						}
 						break;
@@ -513,26 +446,19 @@ public class mathParser extends Parser {
 						{
 						_localctx = new DEC2BIN_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(81);
 						if (!(precpred(_ctx, 85))) throw new FailedPredicateException(this, "precpred(_ctx, 85)");
-						setState(82);
 						match(T__15);
-						setState(83);
 						match(DEC2BIN);
 						{
-						setState(84);
 						match(T__16);
-						setState(86);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__16) | (1L << T__19) | (1L << T__21) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (PARAMETER - 192)))) != 0)) {
 							{
-							setState(85);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(88);
 						match(T__17);
 						}
 						}
@@ -541,26 +467,19 @@ public class mathParser extends Parser {
 						{
 						_localctx = new DEC2HEX_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(89);
 						if (!(precpred(_ctx, 84))) throw new FailedPredicateException(this, "precpred(_ctx, 84)");
-						setState(90);
 						match(T__15);
-						setState(91);
 						match(DEC2HEX);
 						{
-						setState(92);
 						match(T__16);
-						setState(94);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__16) | (1L << T__19) | (1L << T__21) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (PARAMETER - 192)))) != 0)) {
 							{
-							setState(93);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(96);
 						match(T__17);
 						}
 						}
@@ -569,26 +488,19 @@ public class mathParser extends Parser {
 						{
 						_localctx = new DEC2OCT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(97);
 						if (!(precpred(_ctx, 83))) throw new FailedPredicateException(this, "precpred(_ctx, 83)");
-						setState(98);
 						match(T__15);
-						setState(99);
 						match(DEC2OCT);
 						{
-						setState(100);
 						match(T__16);
-						setState(102);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__16) | (1L << T__19) | (1L << T__21) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (PARAMETER - 192)))) != 0)) {
 							{
-							setState(101);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(104);
 						match(T__17);
 						}
 						}
@@ -597,26 +509,19 @@ public class mathParser extends Parser {
 						{
 						_localctx = new HEX2BIN_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(105);
 						if (!(precpred(_ctx, 82))) throw new FailedPredicateException(this, "precpred(_ctx, 82)");
-						setState(106);
 						match(T__15);
-						setState(107);
 						match(HEX2BIN);
 						{
-						setState(108);
 						match(T__16);
-						setState(110);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__16) | (1L << T__19) | (1L << T__21) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (PARAMETER - 192)))) != 0)) {
 							{
-							setState(109);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(112);
 						match(T__17);
 						}
 						}
@@ -625,16 +530,11 @@ public class mathParser extends Parser {
 						{
 						_localctx = new HEX2DEC_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(113);
 						if (!(precpred(_ctx, 81))) throw new FailedPredicateException(this, "precpred(_ctx, 81)");
-						setState(114);
 						match(T__15);
-						setState(115);
 						match(HEX2DEC);
 						{
-						setState(116);
 						match(T__16);
-						setState(117);
 						match(T__17);
 						}
 						}
@@ -643,26 +543,19 @@ public class mathParser extends Parser {
 						{
 						_localctx = new HEX2OCT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(118);
 						if (!(precpred(_ctx, 80))) throw new FailedPredicateException(this, "precpred(_ctx, 80)");
-						setState(119);
 						match(T__15);
-						setState(120);
 						match(HEX2OCT);
 						{
-						setState(121);
 						match(T__16);
-						setState(123);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__16) | (1L << T__19) | (1L << T__21) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (PARAMETER - 192)))) != 0)) {
 							{
-							setState(122);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(125);
 						match(T__17);
 						}
 						}
@@ -671,26 +564,19 @@ public class mathParser extends Parser {
 						{
 						_localctx = new OCT2BIN_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(126);
 						if (!(precpred(_ctx, 79))) throw new FailedPredicateException(this, "precpred(_ctx, 79)");
-						setState(127);
 						match(T__15);
-						setState(128);
 						match(OCT2BIN);
 						{
-						setState(129);
 						match(T__16);
-						setState(131);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__16) | (1L << T__19) | (1L << T__21) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (PARAMETER - 192)))) != 0)) {
 							{
-							setState(130);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(133);
 						match(T__17);
 						}
 						}
@@ -699,16 +585,11 @@ public class mathParser extends Parser {
 						{
 						_localctx = new OCT2DEC_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(134);
 						if (!(precpred(_ctx, 78))) throw new FailedPredicateException(this, "precpred(_ctx, 78)");
-						setState(135);
 						match(T__15);
-						setState(136);
 						match(OCT2DEC);
 						{
-						setState(137);
 						match(T__16);
-						setState(138);
 						match(T__17);
 						}
 						}
@@ -717,26 +598,19 @@ public class mathParser extends Parser {
 						{
 						_localctx = new OCT2HEX_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(139);
 						if (!(precpred(_ctx, 77))) throw new FailedPredicateException(this, "precpred(_ctx, 77)");
-						setState(140);
 						match(T__15);
-						setState(141);
 						match(OCT2HEX);
 						{
-						setState(142);
 						match(T__16);
-						setState(144);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__16) | (1L << T__19) | (1L << T__21) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (PARAMETER - 192)))) != 0)) {
 							{
-							setState(143);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(146);
 						match(T__17);
 						}
 						}
@@ -745,26 +619,19 @@ public class mathParser extends Parser {
 						{
 						_localctx = new BIN2OCT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(147);
 						if (!(precpred(_ctx, 76))) throw new FailedPredicateException(this, "precpred(_ctx, 76)");
-						setState(148);
 						match(T__15);
-						setState(149);
 						match(BIN2OCT);
 						{
-						setState(150);
 						match(T__16);
-						setState(152);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__16) | (1L << T__19) | (1L << T__21) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (PARAMETER - 192)))) != 0)) {
 							{
-							setState(151);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(154);
 						match(T__17);
 						}
 						}
@@ -773,16 +640,11 @@ public class mathParser extends Parser {
 						{
 						_localctx = new BIN2DEC_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(155);
 						if (!(precpred(_ctx, 75))) throw new FailedPredicateException(this, "precpred(_ctx, 75)");
-						setState(156);
 						match(T__15);
-						setState(157);
 						match(BIN2DEC);
 						{
-						setState(158);
 						match(T__16);
-						setState(159);
 						match(T__17);
 						}
 						}
@@ -791,26 +653,19 @@ public class mathParser extends Parser {
 						{
 						_localctx = new BIN2HEX_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(160);
 						if (!(precpred(_ctx, 74))) throw new FailedPredicateException(this, "precpred(_ctx, 74)");
-						setState(161);
 						match(T__15);
-						setState(162);
 						match(BIN2HEX);
 						{
-						setState(163);
 						match(T__16);
-						setState(165);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__16) | (1L << T__19) | (1L << T__21) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (PARAMETER - 192)))) != 0)) {
 							{
-							setState(164);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(167);
 						match(T__17);
 						}
 						}
@@ -819,15 +674,10 @@ public class mathParser extends Parser {
 						{
 						_localctx = new INT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(168);
 						if (!(precpred(_ctx, 73))) throw new FailedPredicateException(this, "precpred(_ctx, 73)");
-						setState(169);
 						match(T__15);
-						setState(170);
 						match(INT);
-						setState(171);
 						match(T__16);
-						setState(172);
 						match(T__17);
 						}
 						break;
@@ -835,15 +685,10 @@ public class mathParser extends Parser {
 						{
 						_localctx = new ASC_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(173);
 						if (!(precpred(_ctx, 72))) throw new FailedPredicateException(this, "precpred(_ctx, 72)");
-						setState(174);
 						match(T__15);
-						setState(175);
 						match(ASC);
-						setState(176);
 						match(T__16);
-						setState(177);
 						match(T__17);
 						}
 						break;
@@ -851,15 +696,10 @@ public class mathParser extends Parser {
 						{
 						_localctx = new JIS_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(178);
 						if (!(precpred(_ctx, 71))) throw new FailedPredicateException(this, "precpred(_ctx, 71)");
-						setState(179);
 						match(T__15);
-						setState(180);
 						match(JIS);
-						setState(181);
 						match(T__16);
-						setState(182);
 						match(T__17);
 						}
 						break;
@@ -867,15 +707,10 @@ public class mathParser extends Parser {
 						{
 						_localctx = new CHAR_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(183);
 						if (!(precpred(_ctx, 70))) throw new FailedPredicateException(this, "precpred(_ctx, 70)");
-						setState(184);
 						match(T__15);
-						setState(185);
 						match(CHAR);
-						setState(186);
 						match(T__16);
-						setState(187);
 						match(T__17);
 						}
 						break;
@@ -883,15 +718,10 @@ public class mathParser extends Parser {
 						{
 						_localctx = new CLEAN_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(188);
 						if (!(precpred(_ctx, 69))) throw new FailedPredicateException(this, "precpred(_ctx, 69)");
-						setState(189);
 						match(T__15);
-						setState(190);
 						match(CLEAN);
-						setState(191);
 						match(T__16);
-						setState(192);
 						match(T__17);
 						}
 						break;
@@ -899,15 +729,10 @@ public class mathParser extends Parser {
 						{
 						_localctx = new CODE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(193);
 						if (!(precpred(_ctx, 68))) throw new FailedPredicateException(this, "precpred(_ctx, 68)");
-						setState(194);
 						match(T__15);
-						setState(195);
 						match(CODE);
-						setState(196);
 						match(T__16);
-						setState(197);
 						match(T__17);
 						}
 						break;
@@ -915,41 +740,30 @@ public class mathParser extends Parser {
 						{
 						_localctx = new CONCATENATE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(198);
 						if (!(precpred(_ctx, 67))) throw new FailedPredicateException(this, "precpred(_ctx, 67)");
-						setState(199);
 						match(T__15);
-						setState(200);
 						match(CONCATENATE);
-						setState(201);
 						match(T__16);
-						setState(210);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__16) | (1L << T__19) | (1L << T__21) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (PARAMETER - 192)))) != 0)) {
 							{
-							setState(202);
-							expr(0);
-							setState(207);
+								expr(0);
 							_errHandler.sync(this);
 							_la = _input.LA(1);
 							while (_la==T__18) {
 								{
 								{
-								setState(203);
 								match(T__18);
-								setState(204);
-								expr(0);
+									expr(0);
 								}
 								}
-								setState(209);
 								_errHandler.sync(this);
 								_la = _input.LA(1);
 							}
 							}
 						}
 
-						setState(212);
 						match(T__17);
 						}
 						break;
@@ -957,17 +771,11 @@ public class mathParser extends Parser {
 						{
 						_localctx = new EXACT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(213);
 						if (!(precpred(_ctx, 66))) throw new FailedPredicateException(this, "precpred(_ctx, 66)");
-						setState(214);
 						match(T__15);
-						setState(215);
 						match(EXACT);
-						setState(216);
 						match(T__16);
-						setState(217);
-						expr(0);
-						setState(218);
+							expr(0);
 						match(T__17);
 						}
 						break;
@@ -975,29 +783,20 @@ public class mathParser extends Parser {
 						{
 						_localctx = new FIND_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(220);
 						if (!(precpred(_ctx, 65))) throw new FailedPredicateException(this, "precpred(_ctx, 65)");
-						setState(221);
 						match(T__15);
-						setState(222);
 						match(FIND);
-						setState(223);
 						match(T__16);
-						setState(224);
-						expr(0);
-						setState(227);
+							expr(0);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if (_la==T__18) {
 							{
-							setState(225);
 							match(T__18);
-							setState(226);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(229);
 						match(T__17);
 						}
 						break;
@@ -1005,25 +804,18 @@ public class mathParser extends Parser {
 						{
 						_localctx = new LEFT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(231);
 						if (!(precpred(_ctx, 64))) throw new FailedPredicateException(this, "precpred(_ctx, 64)");
-						setState(232);
 						match(T__15);
-						setState(233);
 						match(LEFT);
-						setState(234);
 						match(T__16);
-						setState(236);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__16) | (1L << T__19) | (1L << T__21) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (PARAMETER - 192)))) != 0)) {
 							{
-							setState(235);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(238);
 						match(T__17);
 						}
 						break;
@@ -1031,15 +823,10 @@ public class mathParser extends Parser {
 						{
 						_localctx = new LEN_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(239);
 						if (!(precpred(_ctx, 63))) throw new FailedPredicateException(this, "precpred(_ctx, 63)");
-						setState(240);
 						match(T__15);
-						setState(241);
 						match(LEN);
-						setState(242);
 						match(T__16);
-						setState(243);
 						match(T__17);
 						}
 						break;
@@ -1047,15 +834,10 @@ public class mathParser extends Parser {
 						{
 						_localctx = new LOWER_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(244);
 						if (!(precpred(_ctx, 62))) throw new FailedPredicateException(this, "precpred(_ctx, 62)");
-						setState(245);
 						match(T__15);
-						setState(246);
 						match(LOWER);
-						setState(247);
 						match(T__16);
-						setState(248);
 						match(T__17);
 						}
 						break;
@@ -1063,21 +845,13 @@ public class mathParser extends Parser {
 						{
 						_localctx = new MID_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(249);
 						if (!(precpred(_ctx, 61))) throw new FailedPredicateException(this, "precpred(_ctx, 61)");
-						setState(250);
 						match(T__15);
-						setState(251);
 						match(MID);
-						setState(252);
 						match(T__16);
-						setState(253);
-						expr(0);
-						setState(254);
+							expr(0);
 						match(T__18);
-						setState(255);
-						expr(0);
-						setState(256);
+							expr(0);
 						match(T__17);
 						}
 						break;
@@ -1085,15 +859,10 @@ public class mathParser extends Parser {
 						{
 						_localctx = new PROPER_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(258);
 						if (!(precpred(_ctx, 60))) throw new FailedPredicateException(this, "precpred(_ctx, 60)");
-						setState(259);
 						match(T__15);
-						setState(260);
 						match(PROPER);
-						setState(261);
 						match(T__16);
-						setState(262);
 						match(T__17);
 						}
 						break;
@@ -1101,33 +870,22 @@ public class mathParser extends Parser {
 						{
 						_localctx = new REPLACE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(263);
 						if (!(precpred(_ctx, 59))) throw new FailedPredicateException(this, "precpred(_ctx, 59)");
-						setState(264);
 						match(T__15);
-						setState(265);
 						match(REPLACE);
-						setState(266);
 						match(T__16);
-						setState(267);
-						expr(0);
-						setState(268);
+							expr(0);
 						match(T__18);
-						setState(269);
-						expr(0);
-						setState(272);
+							expr(0);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if (_la==T__18) {
 							{
-							setState(270);
 							match(T__18);
-							setState(271);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(274);
 						match(T__17);
 						}
 						break;
@@ -1135,17 +893,11 @@ public class mathParser extends Parser {
 						{
 						_localctx = new REPT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(276);
 						if (!(precpred(_ctx, 58))) throw new FailedPredicateException(this, "precpred(_ctx, 58)");
-						setState(277);
 						match(T__15);
-						setState(278);
 						match(REPT);
-						setState(279);
 						match(T__16);
-						setState(280);
-						expr(0);
-						setState(281);
+							expr(0);
 						match(T__17);
 						}
 						break;
@@ -1153,25 +905,18 @@ public class mathParser extends Parser {
 						{
 						_localctx = new RIGHT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(283);
 						if (!(precpred(_ctx, 57))) throw new FailedPredicateException(this, "precpred(_ctx, 57)");
-						setState(284);
 						match(T__15);
-						setState(285);
 						match(RIGHT);
-						setState(286);
 						match(T__16);
-						setState(288);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__16) | (1L << T__19) | (1L << T__21) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (PARAMETER - 192)))) != 0)) {
 							{
-							setState(287);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(290);
 						match(T__17);
 						}
 						break;
@@ -1179,15 +924,10 @@ public class mathParser extends Parser {
 						{
 						_localctx = new RMB_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(291);
 						if (!(precpred(_ctx, 56))) throw new FailedPredicateException(this, "precpred(_ctx, 56)");
-						setState(292);
 						match(T__15);
-						setState(293);
 						match(RMB);
-						setState(294);
 						match(T__16);
-						setState(295);
 						match(T__17);
 						}
 						break;
@@ -1195,29 +935,20 @@ public class mathParser extends Parser {
 						{
 						_localctx = new SEARCH_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(296);
 						if (!(precpred(_ctx, 55))) throw new FailedPredicateException(this, "precpred(_ctx, 55)");
-						setState(297);
 						match(T__15);
-						setState(298);
 						match(SEARCH);
-						setState(299);
 						match(T__16);
-						setState(300);
-						expr(0);
-						setState(303);
+							expr(0);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if (_la==T__18) {
 							{
-							setState(301);
 							match(T__18);
-							setState(302);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(305);
 						match(T__17);
 						}
 						break;
@@ -1225,33 +956,22 @@ public class mathParser extends Parser {
 						{
 						_localctx = new SUBSTITUTE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(307);
 						if (!(precpred(_ctx, 54))) throw new FailedPredicateException(this, "precpred(_ctx, 54)");
-						setState(308);
 						match(T__15);
-						setState(309);
 						match(SUBSTITUTE);
-						setState(310);
 						match(T__16);
-						setState(311);
-						expr(0);
-						setState(312);
+							expr(0);
 						match(T__18);
-						setState(313);
-						expr(0);
-						setState(316);
+							expr(0);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if (_la==T__18) {
 							{
-							setState(314);
 							match(T__18);
-							setState(315);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(318);
 						match(T__17);
 						}
 						break;
@@ -1259,15 +979,10 @@ public class mathParser extends Parser {
 						{
 						_localctx = new T_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(320);
 						if (!(precpred(_ctx, 53))) throw new FailedPredicateException(this, "precpred(_ctx, 53)");
-						setState(321);
 						match(T__15);
-						setState(322);
 						match(T);
-						setState(323);
 						match(T__16);
-						setState(324);
 						match(T__17);
 						}
 						break;
@@ -1275,17 +990,11 @@ public class mathParser extends Parser {
 						{
 						_localctx = new TEXT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(325);
 						if (!(precpred(_ctx, 52))) throw new FailedPredicateException(this, "precpred(_ctx, 52)");
-						setState(326);
 						match(T__15);
-						setState(327);
 						match(TEXT);
-						setState(328);
 						match(T__16);
-						setState(329);
-						expr(0);
-						setState(330);
+							expr(0);
 						match(T__17);
 						}
 						break;
@@ -1293,15 +1002,10 @@ public class mathParser extends Parser {
 						{
 						_localctx = new TRIM_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(332);
 						if (!(precpred(_ctx, 51))) throw new FailedPredicateException(this, "precpred(_ctx, 51)");
-						setState(333);
 						match(T__15);
-						setState(334);
 						match(TRIM);
-						setState(335);
 						match(T__16);
-						setState(336);
 						match(T__17);
 						}
 						break;
@@ -1309,15 +1013,10 @@ public class mathParser extends Parser {
 						{
 						_localctx = new UPPER_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(337);
 						if (!(precpred(_ctx, 50))) throw new FailedPredicateException(this, "precpred(_ctx, 50)");
-						setState(338);
 						match(T__15);
-						setState(339);
 						match(UPPER);
-						setState(340);
 						match(T__16);
-						setState(341);
 						match(T__17);
 						}
 						break;
@@ -1325,15 +1024,10 @@ public class mathParser extends Parser {
 						{
 						_localctx = new VALUE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(342);
 						if (!(precpred(_ctx, 49))) throw new FailedPredicateException(this, "precpred(_ctx, 49)");
-						setState(343);
 						match(T__15);
-						setState(344);
 						match(VALUE);
-						setState(345);
 						match(T__16);
-						setState(346);
 						match(T__17);
 						}
 						break;
@@ -1341,15 +1035,10 @@ public class mathParser extends Parser {
 						{
 						_localctx = new DATEVALUE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(347);
 						if (!(precpred(_ctx, 48))) throw new FailedPredicateException(this, "precpred(_ctx, 48)");
-						setState(348);
 						match(T__15);
-						setState(349);
 						match(DATEVALUE);
-						setState(350);
 						match(T__16);
-						setState(351);
 						match(T__17);
 						}
 						break;
@@ -1357,15 +1046,10 @@ public class mathParser extends Parser {
 						{
 						_localctx = new TIMEVALUE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(352);
 						if (!(precpred(_ctx, 47))) throw new FailedPredicateException(this, "precpred(_ctx, 47)");
-						setState(353);
 						match(T__15);
-						setState(354);
 						match(TIMEVALUE);
-						setState(355);
 						match(T__16);
-						setState(356);
 						match(T__17);
 						}
 						break;
@@ -1373,20 +1057,14 @@ public class mathParser extends Parser {
 						{
 						_localctx = new YEAR_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(357);
 						if (!(precpred(_ctx, 46))) throw new FailedPredicateException(this, "precpred(_ctx, 46)");
-						setState(358);
 						match(T__15);
-						setState(359);
 						match(YEAR);
-						setState(362);
 						_errHandler.sync(this);
 						switch ( getInterpreter().adaptivePredict(_input,20,_ctx) ) {
 						case 1:
 							{
-							setState(360);
 							match(T__16);
-							setState(361);
 							match(T__17);
 							}
 							break;
@@ -1397,20 +1075,14 @@ public class mathParser extends Parser {
 						{
 						_localctx = new MONTH_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(364);
 						if (!(precpred(_ctx, 45))) throw new FailedPredicateException(this, "precpred(_ctx, 45)");
-						setState(365);
 						match(T__15);
-						setState(366);
 						match(MONTH);
-						setState(369);
 						_errHandler.sync(this);
 						switch ( getInterpreter().adaptivePredict(_input,21,_ctx) ) {
 						case 1:
 							{
-							setState(367);
 							match(T__16);
-							setState(368);
 							match(T__17);
 							}
 							break;
@@ -1421,20 +1093,14 @@ public class mathParser extends Parser {
 						{
 						_localctx = new DAY_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(371);
 						if (!(precpred(_ctx, 44))) throw new FailedPredicateException(this, "precpred(_ctx, 44)");
-						setState(372);
 						match(T__15);
-						setState(373);
 						match(DAY);
-						setState(376);
 						_errHandler.sync(this);
 						switch ( getInterpreter().adaptivePredict(_input,22,_ctx) ) {
 						case 1:
 							{
-							setState(374);
 							match(T__16);
-							setState(375);
 							match(T__17);
 							}
 							break;
@@ -1445,20 +1111,14 @@ public class mathParser extends Parser {
 						{
 						_localctx = new HOUR_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(378);
 						if (!(precpred(_ctx, 43))) throw new FailedPredicateException(this, "precpred(_ctx, 43)");
-						setState(379);
 						match(T__15);
-						setState(380);
 						match(HOUR);
-						setState(383);
 						_errHandler.sync(this);
 						switch ( getInterpreter().adaptivePredict(_input,23,_ctx) ) {
 						case 1:
 							{
-							setState(381);
 							match(T__16);
-							setState(382);
 							match(T__17);
 							}
 							break;
@@ -1469,20 +1129,14 @@ public class mathParser extends Parser {
 						{
 						_localctx = new MINUTE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(385);
 						if (!(precpred(_ctx, 42))) throw new FailedPredicateException(this, "precpred(_ctx, 42)");
-						setState(386);
 						match(T__15);
-						setState(387);
 						match(MINUTE);
-						setState(390);
 						_errHandler.sync(this);
 						switch ( getInterpreter().adaptivePredict(_input,24,_ctx) ) {
 						case 1:
 							{
-							setState(388);
 							match(T__16);
-							setState(389);
 							match(T__17);
 							}
 							break;
@@ -1493,20 +1147,14 @@ public class mathParser extends Parser {
 						{
 						_localctx = new SECOND_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(392);
 						if (!(precpred(_ctx, 41))) throw new FailedPredicateException(this, "precpred(_ctx, 41)");
-						setState(393);
 						match(T__15);
-						setState(394);
 						match(SECOND);
-						setState(397);
 						_errHandler.sync(this);
 						switch ( getInterpreter().adaptivePredict(_input,25,_ctx) ) {
 						case 1:
 							{
-							setState(395);
 							match(T__16);
-							setState(396);
 							match(T__17);
 							}
 							break;
@@ -1517,15 +1165,10 @@ public class mathParser extends Parser {
 						{
 						_localctx = new URLENCODE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(399);
 						if (!(precpred(_ctx, 40))) throw new FailedPredicateException(this, "precpred(_ctx, 40)");
-						setState(400);
 						match(T__15);
-						setState(401);
 						match(URLENCODE);
-						setState(402);
 						match(T__16);
-						setState(403);
 						match(T__17);
 						}
 						break;
@@ -1533,15 +1176,10 @@ public class mathParser extends Parser {
 						{
 						_localctx = new URLDECODE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(404);
 						if (!(precpred(_ctx, 39))) throw new FailedPredicateException(this, "precpred(_ctx, 39)");
-						setState(405);
 						match(T__15);
-						setState(406);
 						match(URLDECODE);
-						setState(407);
 						match(T__16);
-						setState(408);
 						match(T__17);
 						}
 						break;
@@ -1549,15 +1187,10 @@ public class mathParser extends Parser {
 						{
 						_localctx = new HTMLENCODE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(409);
 						if (!(precpred(_ctx, 38))) throw new FailedPredicateException(this, "precpred(_ctx, 38)");
-						setState(410);
 						match(T__15);
-						setState(411);
 						match(HTMLENCODE);
-						setState(412);
 						match(T__16);
-						setState(413);
 						match(T__17);
 						}
 						break;
@@ -1565,15 +1198,10 @@ public class mathParser extends Parser {
 						{
 						_localctx = new HTMLDECODE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(414);
 						if (!(precpred(_ctx, 37))) throw new FailedPredicateException(this, "precpred(_ctx, 37)");
-						setState(415);
 						match(T__15);
-						setState(416);
 						match(HTMLDECODE);
-						setState(417);
 						match(T__16);
-						setState(418);
 						match(T__17);
 						}
 						break;
@@ -1581,25 +1209,18 @@ public class mathParser extends Parser {
 						{
 						_localctx = new BASE64TOTEXT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(419);
 						if (!(precpred(_ctx, 36))) throw new FailedPredicateException(this, "precpred(_ctx, 36)");
-						setState(420);
 						match(T__15);
-						setState(421);
 						match(BASE64TOTEXT);
-						setState(422);
 						match(T__16);
-						setState(424);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__16) | (1L << T__19) | (1L << T__21) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (PARAMETER - 192)))) != 0)) {
 							{
-							setState(423);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(426);
 						match(T__17);
 						}
 						break;
@@ -1607,25 +1228,18 @@ public class mathParser extends Parser {
 						{
 						_localctx = new BASE64URLTOTEXT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(427);
 						if (!(precpred(_ctx, 35))) throw new FailedPredicateException(this, "precpred(_ctx, 35)");
-						setState(428);
 						match(T__15);
-						setState(429);
 						match(BASE64URLTOTEXT);
-						setState(430);
 						match(T__16);
-						setState(432);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__16) | (1L << T__19) | (1L << T__21) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (PARAMETER - 192)))) != 0)) {
 							{
-							setState(431);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(434);
 						match(T__17);
 						}
 						break;
@@ -1633,25 +1247,18 @@ public class mathParser extends Parser {
 						{
 						_localctx = new TEXTTOBASE64_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(435);
 						if (!(precpred(_ctx, 34))) throw new FailedPredicateException(this, "precpred(_ctx, 34)");
-						setState(436);
 						match(T__15);
-						setState(437);
 						match(TEXTTOBASE64);
-						setState(438);
 						match(T__16);
-						setState(440);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__16) | (1L << T__19) | (1L << T__21) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (PARAMETER - 192)))) != 0)) {
 							{
-							setState(439);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(442);
 						match(T__17);
 						}
 						break;
@@ -1659,25 +1266,18 @@ public class mathParser extends Parser {
 						{
 						_localctx = new TEXTTOBASE64URL_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(443);
 						if (!(precpred(_ctx, 33))) throw new FailedPredicateException(this, "precpred(_ctx, 33)");
-						setState(444);
 						match(T__15);
-						setState(445);
 						match(TEXTTOBASE64URL);
-						setState(446);
 						match(T__16);
-						setState(448);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__16) | (1L << T__19) | (1L << T__21) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (PARAMETER - 192)))) != 0)) {
 							{
-							setState(447);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(450);
 						match(T__17);
 						}
 						break;
@@ -1685,17 +1285,11 @@ public class mathParser extends Parser {
 						{
 						_localctx = new REGEX_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(451);
 						if (!(precpred(_ctx, 32))) throw new FailedPredicateException(this, "precpred(_ctx, 32)");
-						setState(452);
 						match(T__15);
-						setState(453);
 						match(REGEX);
-						setState(454);
 						match(T__16);
-						setState(455);
-						expr(0);
-						setState(456);
+							expr(0);
 						match(T__17);
 						}
 						break;
@@ -1703,21 +1297,13 @@ public class mathParser extends Parser {
 						{
 						_localctx = new REGEXREPALCE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(458);
 						if (!(precpred(_ctx, 31))) throw new FailedPredicateException(this, "precpred(_ctx, 31)");
-						setState(459);
 						match(T__15);
-						setState(460);
 						match(REGEXREPALCE);
-						setState(461);
 						match(T__16);
-						setState(462);
-						expr(0);
-						setState(463);
+							expr(0);
 						match(T__18);
-						setState(464);
-						expr(0);
-						setState(465);
+							expr(0);
 						match(T__17);
 						}
 						break;
@@ -1725,17 +1311,11 @@ public class mathParser extends Parser {
 						{
 						_localctx = new ISREGEX_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(467);
 						if (!(precpred(_ctx, 30))) throw new FailedPredicateException(this, "precpred(_ctx, 30)");
-						setState(468);
 						match(T__15);
-						setState(469);
 						match(ISREGEX);
-						setState(470);
 						match(T__16);
-						setState(471);
-						expr(0);
-						setState(472);
+							expr(0);
 						match(T__17);
 						}
 						break;
@@ -1743,25 +1323,18 @@ public class mathParser extends Parser {
 						{
 						_localctx = new MD5_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(474);
 						if (!(precpred(_ctx, 29))) throw new FailedPredicateException(this, "precpred(_ctx, 29)");
-						setState(475);
 						match(T__15);
-						setState(476);
 						match(MD5);
-						setState(477);
 						match(T__16);
-						setState(479);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__16) | (1L << T__19) | (1L << T__21) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (PARAMETER - 192)))) != 0)) {
 							{
-							setState(478);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(481);
 						match(T__17);
 						}
 						break;
@@ -1769,25 +1342,18 @@ public class mathParser extends Parser {
 						{
 						_localctx = new SHA1_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(482);
 						if (!(precpred(_ctx, 28))) throw new FailedPredicateException(this, "precpred(_ctx, 28)");
-						setState(483);
 						match(T__15);
-						setState(484);
 						match(SHA1);
-						setState(485);
 						match(T__16);
-						setState(487);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__16) | (1L << T__19) | (1L << T__21) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (PARAMETER - 192)))) != 0)) {
 							{
-							setState(486);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(489);
 						match(T__17);
 						}
 						break;
@@ -1795,25 +1361,18 @@ public class mathParser extends Parser {
 						{
 						_localctx = new SHA256_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(490);
 						if (!(precpred(_ctx, 27))) throw new FailedPredicateException(this, "precpred(_ctx, 27)");
-						setState(491);
 						match(T__15);
-						setState(492);
 						match(SHA256);
-						setState(493);
 						match(T__16);
-						setState(495);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__16) | (1L << T__19) | (1L << T__21) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (PARAMETER - 192)))) != 0)) {
 							{
-							setState(494);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(497);
 						match(T__17);
 						}
 						break;
@@ -1821,25 +1380,18 @@ public class mathParser extends Parser {
 						{
 						_localctx = new SHA512_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(498);
 						if (!(precpred(_ctx, 26))) throw new FailedPredicateException(this, "precpred(_ctx, 26)");
-						setState(499);
 						match(T__15);
-						setState(500);
 						match(SHA512);
-						setState(501);
 						match(T__16);
-						setState(503);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__16) | (1L << T__19) | (1L << T__21) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (PARAMETER - 192)))) != 0)) {
 							{
-							setState(502);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(505);
 						match(T__17);
 						}
 						break;
@@ -1847,25 +1399,18 @@ public class mathParser extends Parser {
 						{
 						_localctx = new CRC32_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(506);
 						if (!(precpred(_ctx, 25))) throw new FailedPredicateException(this, "precpred(_ctx, 25)");
-						setState(507);
 						match(T__15);
-						setState(508);
 						match(CRC32);
-						setState(509);
 						match(T__16);
-						setState(511);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__16) | (1L << T__19) | (1L << T__21) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (PARAMETER - 192)))) != 0)) {
 							{
-							setState(510);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(513);
 						match(T__17);
 						}
 						break;
@@ -1873,29 +1418,20 @@ public class mathParser extends Parser {
 						{
 						_localctx = new HMACMD5_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(514);
 						if (!(precpred(_ctx, 24))) throw new FailedPredicateException(this, "precpred(_ctx, 24)");
-						setState(515);
 						match(T__15);
-						setState(516);
 						match(HMACMD5);
-						setState(517);
 						match(T__16);
-						setState(518);
-						expr(0);
-						setState(521);
+							expr(0);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if (_la==T__18) {
 							{
-							setState(519);
 							match(T__18);
-							setState(520);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(523);
 						match(T__17);
 						}
 						break;
@@ -1903,29 +1439,20 @@ public class mathParser extends Parser {
 						{
 						_localctx = new HMACSHA1_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(525);
 						if (!(precpred(_ctx, 23))) throw new FailedPredicateException(this, "precpred(_ctx, 23)");
-						setState(526);
 						match(T__15);
-						setState(527);
 						match(HMACSHA1);
-						setState(528);
 						match(T__16);
-						setState(529);
-						expr(0);
-						setState(532);
+							expr(0);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if (_la==T__18) {
 							{
-							setState(530);
 							match(T__18);
-							setState(531);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(534);
 						match(T__17);
 						}
 						break;
@@ -1933,29 +1460,20 @@ public class mathParser extends Parser {
 						{
 						_localctx = new HMACSHA256_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(536);
 						if (!(precpred(_ctx, 22))) throw new FailedPredicateException(this, "precpred(_ctx, 22)");
-						setState(537);
 						match(T__15);
-						setState(538);
 						match(HMACSHA256);
-						setState(539);
 						match(T__16);
-						setState(540);
-						expr(0);
-						setState(543);
+							expr(0);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if (_la==T__18) {
 							{
-							setState(541);
 							match(T__18);
-							setState(542);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(545);
 						match(T__17);
 						}
 						break;
@@ -1963,29 +1481,20 @@ public class mathParser extends Parser {
 						{
 						_localctx = new HMACSHA512_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(547);
 						if (!(precpred(_ctx, 21))) throw new FailedPredicateException(this, "precpred(_ctx, 21)");
-						setState(548);
 						match(T__15);
-						setState(549);
 						match(HMACSHA512);
-						setState(550);
 						match(T__16);
-						setState(551);
-						expr(0);
-						setState(554);
+							expr(0);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if (_la==T__18) {
 							{
-							setState(552);
 							match(T__18);
-							setState(553);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(556);
 						match(T__17);
 						}
 						break;
@@ -1993,25 +1502,18 @@ public class mathParser extends Parser {
 						{
 						_localctx = new TRIMSTART_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(558);
 						if (!(precpred(_ctx, 20))) throw new FailedPredicateException(this, "precpred(_ctx, 20)");
-						setState(559);
 						match(T__15);
-						setState(560);
 						match(TRIMSTART);
-						setState(561);
 						match(T__16);
-						setState(563);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__16) | (1L << T__19) | (1L << T__21) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (PARAMETER - 192)))) != 0)) {
 							{
-							setState(562);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(565);
 						match(T__17);
 						}
 						break;
@@ -2019,25 +1521,18 @@ public class mathParser extends Parser {
 						{
 						_localctx = new TRIMEND_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(566);
 						if (!(precpred(_ctx, 19))) throw new FailedPredicateException(this, "precpred(_ctx, 19)");
-						setState(567);
 						match(T__15);
-						setState(568);
 						match(TRIMEND);
-						setState(569);
 						match(T__16);
-						setState(571);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__16) | (1L << T__19) | (1L << T__21) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (PARAMETER - 192)))) != 0)) {
 							{
-							setState(570);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(573);
 						match(T__17);
 						}
 						break;
@@ -2045,41 +1540,29 @@ public class mathParser extends Parser {
 						{
 						_localctx = new INDEXOF_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(574);
 						if (!(precpred(_ctx, 18))) throw new FailedPredicateException(this, "precpred(_ctx, 18)");
-						setState(575);
 						match(T__15);
-						setState(576);
 						match(INDEXOF);
-						setState(577);
 						match(T__16);
-						setState(578);
-						expr(0);
-						setState(585);
+							expr(0);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if (_la==T__18) {
 							{
-							setState(579);
 							match(T__18);
-							setState(580);
-							expr(0);
-							setState(583);
+								expr(0);
 							_errHandler.sync(this);
 							_la = _input.LA(1);
 							if (_la==T__18) {
 								{
-								setState(581);
 								match(T__18);
-								setState(582);
-								expr(0);
+									expr(0);
 								}
 							}
 
 							}
 						}
 
-						setState(587);
 						match(T__17);
 						}
 						break;
@@ -2087,41 +1570,29 @@ public class mathParser extends Parser {
 						{
 						_localctx = new LASTINDEXOF_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(589);
 						if (!(precpred(_ctx, 17))) throw new FailedPredicateException(this, "precpred(_ctx, 17)");
-						setState(590);
 						match(T__15);
-						setState(591);
 						match(LASTINDEXOF);
-						setState(592);
 						match(T__16);
-						setState(593);
-						expr(0);
-						setState(600);
+							expr(0);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if (_la==T__18) {
 							{
-							setState(594);
 							match(T__18);
-							setState(595);
-							expr(0);
-							setState(598);
+								expr(0);
 							_errHandler.sync(this);
 							_la = _input.LA(1);
 							if (_la==T__18) {
 								{
-								setState(596);
 								match(T__18);
-								setState(597);
-								expr(0);
+									expr(0);
 								}
 							}
 
 							}
 						}
 
-						setState(602);
 						match(T__17);
 						}
 						break;
@@ -2129,17 +1600,11 @@ public class mathParser extends Parser {
 						{
 						_localctx = new SPLIT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(604);
 						if (!(precpred(_ctx, 16))) throw new FailedPredicateException(this, "precpred(_ctx, 16)");
-						setState(605);
 						match(T__15);
-						setState(606);
 						match(SPLIT);
-						setState(607);
 						match(T__16);
-						setState(608);
-						expr(0);
-						setState(609);
+							expr(0);
 						match(T__17);
 						}
 						break;
@@ -2147,33 +1612,23 @@ public class mathParser extends Parser {
 						{
 						_localctx = new JOIN_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(611);
 						if (!(precpred(_ctx, 15))) throw new FailedPredicateException(this, "precpred(_ctx, 15)");
-						setState(612);
 						match(T__15);
-						setState(613);
 						match(JOIN);
-						setState(614);
 						match(T__16);
-						setState(615);
-						expr(0);
-						setState(620);
+							expr(0);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						while (_la==T__18) {
 							{
 							{
-							setState(616);
 							match(T__18);
-							setState(617);
-							expr(0);
+								expr(0);
 							}
 							}
-							setState(622);
 							_errHandler.sync(this);
 							_la = _input.LA(1);
 						}
-						setState(623);
 						match(T__17);
 						}
 						break;
@@ -2181,29 +1636,20 @@ public class mathParser extends Parser {
 						{
 						_localctx = new SUBSTRING_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(625);
 						if (!(precpred(_ctx, 14))) throw new FailedPredicateException(this, "precpred(_ctx, 14)");
-						setState(626);
 						match(T__15);
-						setState(627);
 						match(SUBSTRING);
-						setState(628);
 						match(T__16);
-						setState(629);
-						expr(0);
-						setState(632);
+							expr(0);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if (_la==T__18) {
 							{
-							setState(630);
 							match(T__18);
-							setState(631);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(634);
 						match(T__17);
 						}
 						break;
@@ -2211,29 +1657,20 @@ public class mathParser extends Parser {
 						{
 						_localctx = new STARTSWITH_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(636);
 						if (!(precpred(_ctx, 13))) throw new FailedPredicateException(this, "precpred(_ctx, 13)");
-						setState(637);
 						match(T__15);
-						setState(638);
 						match(STARTSWITH);
-						setState(639);
 						match(T__16);
-						setState(640);
-						expr(0);
-						setState(643);
+							expr(0);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if (_la==T__18) {
 							{
-							setState(641);
 							match(T__18);
-							setState(642);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(645);
 						match(T__17);
 						}
 						break;
@@ -2241,29 +1678,20 @@ public class mathParser extends Parser {
 						{
 						_localctx = new ENDSWITH_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(647);
 						if (!(precpred(_ctx, 12))) throw new FailedPredicateException(this, "precpred(_ctx, 12)");
-						setState(648);
 						match(T__15);
-						setState(649);
 						match(ENDSWITH);
-						setState(650);
 						match(T__16);
-						setState(651);
-						expr(0);
-						setState(654);
+							expr(0);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if (_la==T__18) {
 							{
-							setState(652);
 							match(T__18);
-							setState(653);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(656);
 						match(T__17);
 						}
 						break;
@@ -2271,15 +1699,10 @@ public class mathParser extends Parser {
 						{
 						_localctx = new ISNULLOREMPTY_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(658);
 						if (!(precpred(_ctx, 11))) throw new FailedPredicateException(this, "precpred(_ctx, 11)");
-						setState(659);
 						match(T__15);
-						setState(660);
 						match(ISNULLOREMPTY);
-						setState(661);
 						match(T__16);
-						setState(662);
 						match(T__17);
 						}
 						break;
@@ -2287,15 +1710,10 @@ public class mathParser extends Parser {
 						{
 						_localctx = new ISNULLORWHITESPACE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(663);
 						if (!(precpred(_ctx, 10))) throw new FailedPredicateException(this, "precpred(_ctx, 10)");
-						setState(664);
 						match(T__15);
-						setState(665);
 						match(ISNULLORWHITESPACE);
-						setState(666);
 						match(T__16);
-						setState(667);
 						match(T__17);
 						}
 						break;
@@ -2303,29 +1721,20 @@ public class mathParser extends Parser {
 						{
 						_localctx = new REMOVESTART_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(668);
 						if (!(precpred(_ctx, 9))) throw new FailedPredicateException(this, "precpred(_ctx, 9)");
-						setState(669);
 						match(T__15);
-						setState(670);
 						match(REMOVESTART);
-						setState(671);
 						match(T__16);
-						setState(672);
-						expr(0);
-						setState(675);
+							expr(0);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if (_la==T__18) {
 							{
-							setState(673);
 							match(T__18);
-							setState(674);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(677);
 						match(T__17);
 						}
 						break;
@@ -2333,29 +1742,20 @@ public class mathParser extends Parser {
 						{
 						_localctx = new REMOVEEND_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(679);
 						if (!(precpred(_ctx, 8))) throw new FailedPredicateException(this, "precpred(_ctx, 8)");
-						setState(680);
 						match(T__15);
-						setState(681);
 						match(REMOVEEND);
-						setState(682);
 						match(T__16);
-						setState(683);
-						expr(0);
-						setState(686);
+							expr(0);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if (_la==T__18) {
 							{
-							setState(684);
 							match(T__18);
-							setState(685);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(688);
 						match(T__17);
 						}
 						break;
@@ -2363,15 +1763,10 @@ public class mathParser extends Parser {
 						{
 						_localctx = new JSON_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(690);
 						if (!(precpred(_ctx, 7))) throw new FailedPredicateException(this, "precpred(_ctx, 7)");
-						setState(691);
 						match(T__15);
-						setState(692);
 						match(JSON);
-						setState(693);
 						match(T__16);
-						setState(694);
 						match(T__17);
 						}
 						break;
@@ -2379,33 +1774,22 @@ public class mathParser extends Parser {
 						{
 						_localctx = new VLOOKUP_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(695);
 						if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");
-						setState(696);
 						match(T__15);
-						setState(697);
 						match(VLOOKUP);
-						setState(698);
 						match(T__16);
-						setState(699);
-						expr(0);
-						setState(700);
+							expr(0);
 						match(T__18);
-						setState(701);
-						expr(0);
-						setState(704);
+							expr(0);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if (_la==T__18) {
 							{
-							setState(702);
 							match(T__18);
-							setState(703);
-							expr(0);
+								expr(0);
 							}
 						}
 
-						setState(706);
 						match(T__17);
 						}
 						break;
@@ -2413,21 +1797,13 @@ public class mathParser extends Parser {
 						{
 						_localctx = new LOOKUP_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(708);
 						if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
-						setState(709);
 						match(T__15);
-						setState(710);
 						match(LOOKUP);
-						setState(711);
 						match(T__16);
-						setState(712);
-						expr(0);
-						setState(713);
+							expr(0);
 						match(T__18);
-						setState(714);
-						expr(0);
-						setState(715);
+							expr(0);
 						match(T__17);
 						}
 						break;
@@ -2435,41 +1811,30 @@ public class mathParser extends Parser {
 						{
 						_localctx = new DiyFunction_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(717);
 						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
-						setState(718);
 						match(T__15);
-						setState(719);
 						match(PARAMETER);
-						setState(720);
 						match(T__16);
-						setState(729);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__16) | (1L << T__19) | (1L << T__21) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (PARAMETER - 192)))) != 0)) {
 							{
-							setState(721);
-							expr(0);
-							setState(726);
+								expr(0);
 							_errHandler.sync(this);
 							_la = _input.LA(1);
 							while (_la==T__18) {
 								{
 								{
-								setState(722);
 								match(T__18);
-								setState(723);
-								expr(0);
+									expr(0);
 								}
 								}
-								setState(728);
 								_errHandler.sync(this);
 								_la = _input.LA(1);
 							}
 							}
 						}
 
-						setState(731);
 						match(T__17);
 						}
 						break;
@@ -2477,13 +1842,9 @@ public class mathParser extends Parser {
 						{
 						_localctx = new GetJsonValue_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(732);
 						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
-						setState(733);
 						match(T__19);
-						setState(734);
-						parameter();
-						setState(735);
+							parameter();
 						match(T__20);
 						}
 						break;
@@ -2491,18 +1852,14 @@ public class mathParser extends Parser {
 						{
 						_localctx = new GetJsonValue_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(737);
 						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-						setState(738);
 						match(T__15);
-						setState(739);
-						parameter2();
+							parameter2();
 						}
 						break;
 					}
 					} 
 				}
-				setState(744);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,55,_ctx);
 			}
@@ -2524,34 +1881,26 @@ public class mathParser extends Parser {
 		enterRule(_localctx, 4, RULE_expr2);
 		int _la;
 		try {
-			setState(2421);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__21:
 				_localctx = new Array_funContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(745);
 				match(T__21);
-				setState(746);
-				expr(0);
-				setState(751);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__18) {
 					{
 					{
-					setState(747);
 					match(T__18);
-					setState(748);
-					expr(0);
+						expr(0);
 					}
 					}
-					setState(753);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(754);
 				match(T__22);
 				}
 				break;
@@ -2559,11 +1908,8 @@ public class mathParser extends Parser {
 				_localctx = new Bracket_funContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(756);
 				match(T__16);
-				setState(757);
-				expr(0);
-				setState(758);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -2571,29 +1917,20 @@ public class mathParser extends Parser {
 				_localctx = new IF_funContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(760);
 				match(IF);
-				setState(761);
 				match(T__16);
-				setState(762);
-				expr(0);
-				setState(763);
+					expr(0);
 				match(T__18);
-				setState(764);
-				expr(0);
-				setState(767);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(765);
 					match(T__18);
-					setState(766);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(769);
 				match(T__17);
 				}
 				break;
@@ -2601,13 +1938,9 @@ public class mathParser extends Parser {
 				_localctx = new ISNUMBER_funContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(771);
 				match(ISNUMBER);
-				setState(772);
 				match(T__16);
-				setState(773);
-				expr(0);
-				setState(774);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -2615,13 +1948,9 @@ public class mathParser extends Parser {
 				_localctx = new ISTEXT_funContext(_localctx);
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(776);
 				match(ISTEXT);
-				setState(777);
 				match(T__16);
-				setState(778);
-				expr(0);
-				setState(779);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -2629,25 +1958,18 @@ public class mathParser extends Parser {
 				_localctx = new ISERROR_funContext(_localctx);
 				enterOuterAlt(_localctx, 6);
 				{
-				setState(781);
 				match(ISERROR);
-				setState(782);
 				match(T__16);
-				setState(783);
-				expr(0);
-				setState(786);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(784);
 					match(T__18);
-					setState(785);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(788);
 				match(T__17);
 				}
 				break;
@@ -2655,13 +1977,9 @@ public class mathParser extends Parser {
 				_localctx = new ISNONTEXT_funContext(_localctx);
 				enterOuterAlt(_localctx, 7);
 				{
-				setState(790);
 				match(ISNONTEXT);
-				setState(791);
 				match(T__16);
-				setState(792);
-				expr(0);
-				setState(793);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -2669,13 +1987,9 @@ public class mathParser extends Parser {
 				_localctx = new ISLOGICAL_funContext(_localctx);
 				enterOuterAlt(_localctx, 8);
 				{
-				setState(795);
 				match(ISLOGICAL);
-				setState(796);
 				match(T__16);
-				setState(797);
-				expr(0);
-				setState(798);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -2683,13 +1997,9 @@ public class mathParser extends Parser {
 				_localctx = new ISEVEN_funContext(_localctx);
 				enterOuterAlt(_localctx, 9);
 				{
-				setState(800);
 				match(ISEVEN);
-				setState(801);
 				match(T__16);
-				setState(802);
-				expr(0);
-				setState(803);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -2697,13 +2007,9 @@ public class mathParser extends Parser {
 				_localctx = new ISODD_funContext(_localctx);
 				enterOuterAlt(_localctx, 10);
 				{
-				setState(805);
 				match(ISODD);
-				setState(806);
 				match(T__16);
-				setState(807);
-				expr(0);
-				setState(808);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -2711,29 +2017,20 @@ public class mathParser extends Parser {
 				_localctx = new IFERROR_funContext(_localctx);
 				enterOuterAlt(_localctx, 11);
 				{
-				setState(810);
 				match(IFERROR);
-				setState(811);
 				match(T__16);
-				setState(812);
-				expr(0);
-				setState(813);
+					expr(0);
 				match(T__18);
-				setState(814);
-				expr(0);
-				setState(817);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(815);
 					match(T__18);
-					setState(816);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(819);
 				match(T__17);
 				}
 				break;
@@ -2741,25 +2038,18 @@ public class mathParser extends Parser {
 				_localctx = new ISNULL_funContext(_localctx);
 				enterOuterAlt(_localctx, 12);
 				{
-				setState(821);
 				match(ISNULL);
-				setState(822);
 				match(T__16);
-				setState(823);
-				expr(0);
-				setState(826);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(824);
 					match(T__18);
-					setState(825);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(828);
 				match(T__17);
 				}
 				break;
@@ -2767,25 +2057,18 @@ public class mathParser extends Parser {
 				_localctx = new ISNULLORERROR_funContext(_localctx);
 				enterOuterAlt(_localctx, 13);
 				{
-				setState(830);
 				match(ISNULLORERROR);
-				setState(831);
 				match(T__16);
-				setState(832);
-				expr(0);
-				setState(835);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(833);
 					match(T__18);
-					setState(834);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(837);
 				match(T__17);
 				}
 				break;
@@ -2793,29 +2076,21 @@ public class mathParser extends Parser {
 				_localctx = new AND_funContext(_localctx);
 				enterOuterAlt(_localctx, 14);
 				{
-				setState(839);
 				match(AND);
-				setState(840);
 				match(T__16);
-				setState(841);
-				expr(0);
-				setState(846);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__18) {
 					{
 					{
-					setState(842);
 					match(T__18);
-					setState(843);
-					expr(0);
+						expr(0);
 					}
 					}
-					setState(848);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(849);
 				match(T__17);
 				}
 				break;
@@ -2823,29 +2098,21 @@ public class mathParser extends Parser {
 				_localctx = new OR_funContext(_localctx);
 				enterOuterAlt(_localctx, 15);
 				{
-				setState(851);
 				match(OR);
-				setState(852);
 				match(T__16);
-				setState(853);
-				expr(0);
-				setState(858);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__18) {
 					{
 					{
-					setState(854);
 					match(T__18);
-					setState(855);
-					expr(0);
+						expr(0);
 					}
 					}
-					setState(860);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(861);
 				match(T__17);
 				}
 				break;
@@ -2853,13 +2120,9 @@ public class mathParser extends Parser {
 				_localctx = new NOT_funContext(_localctx);
 				enterOuterAlt(_localctx, 16);
 				{
-				setState(863);
 				match(NOT);
-				setState(864);
 				match(T__16);
-				setState(865);
-				expr(0);
-				setState(866);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -2867,16 +2130,12 @@ public class mathParser extends Parser {
 				_localctx = new TRUE_funContext(_localctx);
 				enterOuterAlt(_localctx, 17);
 				{
-				setState(868);
 				match(TRUE);
-				setState(871);
 				_errHandler.sync(this);
 				switch ( getInterpreter().adaptivePredict(_input,64,_ctx) ) {
 				case 1:
 					{
-					setState(869);
 					match(T__16);
-					setState(870);
 					match(T__17);
 					}
 					break;
@@ -2887,16 +2146,12 @@ public class mathParser extends Parser {
 				_localctx = new FALSE_funContext(_localctx);
 				enterOuterAlt(_localctx, 18);
 				{
-				setState(873);
 				match(FALSE);
-				setState(876);
 				_errHandler.sync(this);
 				switch ( getInterpreter().adaptivePredict(_input,65,_ctx) ) {
 				case 1:
 					{
-					setState(874);
 					match(T__16);
-					setState(875);
 					match(T__17);
 					}
 					break;
@@ -2907,16 +2162,12 @@ public class mathParser extends Parser {
 				_localctx = new E_funContext(_localctx);
 				enterOuterAlt(_localctx, 19);
 				{
-				setState(878);
 				match(E);
-				setState(881);
 				_errHandler.sync(this);
 				switch ( getInterpreter().adaptivePredict(_input,66,_ctx) ) {
 				case 1:
 					{
-					setState(879);
 					match(T__16);
-					setState(880);
 					match(T__17);
 					}
 					break;
@@ -2927,16 +2178,12 @@ public class mathParser extends Parser {
 				_localctx = new PI_funContext(_localctx);
 				enterOuterAlt(_localctx, 20);
 				{
-				setState(883);
 				match(PI);
-				setState(886);
 				_errHandler.sync(this);
 				switch ( getInterpreter().adaptivePredict(_input,67,_ctx) ) {
 				case 1:
 					{
-					setState(884);
 					match(T__16);
-					setState(885);
 					match(T__17);
 					}
 					break;
@@ -2947,26 +2194,19 @@ public class mathParser extends Parser {
 				_localctx = new DEC2BIN_funContext(_localctx);
 				enterOuterAlt(_localctx, 21);
 				{
-				setState(888);
 				match(DEC2BIN);
 				{
-				setState(889);
 				match(T__16);
-				setState(890);
-				expr(0);
-				setState(893);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(891);
 					match(T__18);
-					setState(892);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(895);
 				match(T__17);
 				}
 				}
@@ -2975,26 +2215,19 @@ public class mathParser extends Parser {
 				_localctx = new DEC2HEX_funContext(_localctx);
 				enterOuterAlt(_localctx, 22);
 				{
-				setState(897);
 				match(DEC2HEX);
 				{
-				setState(898);
 				match(T__16);
-				setState(899);
-				expr(0);
-				setState(902);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(900);
 					match(T__18);
-					setState(901);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(904);
 				match(T__17);
 				}
 				}
@@ -3003,26 +2236,19 @@ public class mathParser extends Parser {
 				_localctx = new DEC2OCT_funContext(_localctx);
 				enterOuterAlt(_localctx, 23);
 				{
-				setState(906);
 				match(DEC2OCT);
 				{
-				setState(907);
 				match(T__16);
-				setState(908);
-				expr(0);
-				setState(911);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(909);
 					match(T__18);
-					setState(910);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(913);
 				match(T__17);
 				}
 				}
@@ -3031,26 +2257,19 @@ public class mathParser extends Parser {
 				_localctx = new HEX2BIN_funContext(_localctx);
 				enterOuterAlt(_localctx, 24);
 				{
-				setState(915);
 				match(HEX2BIN);
 				{
-				setState(916);
 				match(T__16);
-				setState(917);
-				expr(0);
-				setState(920);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(918);
 					match(T__18);
-					setState(919);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(922);
 				match(T__17);
 				}
 				}
@@ -3059,14 +2278,10 @@ public class mathParser extends Parser {
 				_localctx = new HEX2DEC_funContext(_localctx);
 				enterOuterAlt(_localctx, 25);
 				{
-				setState(924);
 				match(HEX2DEC);
 				{
-				setState(925);
 				match(T__16);
-				setState(926);
-				expr(0);
-				setState(927);
+					expr(0);
 				match(T__17);
 				}
 				}
@@ -3075,26 +2290,19 @@ public class mathParser extends Parser {
 				_localctx = new HEX2OCT_funContext(_localctx);
 				enterOuterAlt(_localctx, 26);
 				{
-				setState(929);
 				match(HEX2OCT);
 				{
-				setState(930);
 				match(T__16);
-				setState(931);
-				expr(0);
-				setState(934);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(932);
 					match(T__18);
-					setState(933);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(936);
 				match(T__17);
 				}
 				}
@@ -3103,26 +2311,19 @@ public class mathParser extends Parser {
 				_localctx = new OCT2BIN_funContext(_localctx);
 				enterOuterAlt(_localctx, 27);
 				{
-				setState(938);
 				match(OCT2BIN);
 				{
-				setState(939);
 				match(T__16);
-				setState(940);
-				expr(0);
-				setState(943);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(941);
 					match(T__18);
-					setState(942);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(945);
 				match(T__17);
 				}
 				}
@@ -3131,14 +2332,10 @@ public class mathParser extends Parser {
 				_localctx = new OCT2DEC_funContext(_localctx);
 				enterOuterAlt(_localctx, 28);
 				{
-				setState(947);
 				match(OCT2DEC);
 				{
-				setState(948);
 				match(T__16);
-				setState(949);
-				expr(0);
-				setState(950);
+					expr(0);
 				match(T__17);
 				}
 				}
@@ -3147,26 +2344,19 @@ public class mathParser extends Parser {
 				_localctx = new OCT2HEX_funContext(_localctx);
 				enterOuterAlt(_localctx, 29);
 				{
-				setState(952);
 				match(OCT2HEX);
 				{
-				setState(953);
 				match(T__16);
-				setState(954);
-				expr(0);
-				setState(957);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(955);
 					match(T__18);
-					setState(956);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(959);
 				match(T__17);
 				}
 				}
@@ -3175,26 +2365,19 @@ public class mathParser extends Parser {
 				_localctx = new BIN2OCT_funContext(_localctx);
 				enterOuterAlt(_localctx, 30);
 				{
-				setState(961);
 				match(BIN2OCT);
 				{
-				setState(962);
 				match(T__16);
-				setState(963);
-				expr(0);
-				setState(966);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(964);
 					match(T__18);
-					setState(965);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(968);
 				match(T__17);
 				}
 				}
@@ -3203,14 +2386,10 @@ public class mathParser extends Parser {
 				_localctx = new BIN2DEC_funContext(_localctx);
 				enterOuterAlt(_localctx, 31);
 				{
-				setState(970);
 				match(BIN2DEC);
 				{
-				setState(971);
 				match(T__16);
-				setState(972);
-				expr(0);
-				setState(973);
+					expr(0);
 				match(T__17);
 				}
 				}
@@ -3219,26 +2398,19 @@ public class mathParser extends Parser {
 				_localctx = new BIN2HEX_funContext(_localctx);
 				enterOuterAlt(_localctx, 32);
 				{
-				setState(975);
 				match(BIN2HEX);
 				{
-				setState(976);
 				match(T__16);
-				setState(977);
-				expr(0);
-				setState(980);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(978);
 					match(T__18);
-					setState(979);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(982);
 				match(T__17);
 				}
 				}
@@ -3247,13 +2419,9 @@ public class mathParser extends Parser {
 				_localctx = new ABS_funContext(_localctx);
 				enterOuterAlt(_localctx, 33);
 				{
-				setState(984);
 				match(ABS);
-				setState(985);
 				match(T__16);
-				setState(986);
-				expr(0);
-				setState(987);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3261,19 +2429,13 @@ public class mathParser extends Parser {
 				_localctx = new QUOTIENT_funContext(_localctx);
 				enterOuterAlt(_localctx, 34);
 				{
-				setState(989);
 				match(QUOTIENT);
-				setState(990);
 				match(T__16);
-				setState(991);
-				expr(0);
+					expr(0);
 				{
-				setState(992);
 				match(T__18);
-				setState(993);
-				expr(0);
+					expr(0);
 				}
-				setState(995);
 				match(T__17);
 				}
 				break;
@@ -3281,19 +2443,13 @@ public class mathParser extends Parser {
 				_localctx = new MOD_funContext(_localctx);
 				enterOuterAlt(_localctx, 35);
 				{
-				setState(997);
 				match(MOD);
-				setState(998);
 				match(T__16);
-				setState(999);
-				expr(0);
+					expr(0);
 				{
-				setState(1000);
 				match(T__18);
-				setState(1001);
-				expr(0);
+					expr(0);
 				}
-				setState(1003);
 				match(T__17);
 				}
 				break;
@@ -3301,13 +2457,9 @@ public class mathParser extends Parser {
 				_localctx = new SIGN_funContext(_localctx);
 				enterOuterAlt(_localctx, 36);
 				{
-				setState(1005);
 				match(SIGN);
-				setState(1006);
 				match(T__16);
-				setState(1007);
-				expr(0);
-				setState(1008);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3315,13 +2467,9 @@ public class mathParser extends Parser {
 				_localctx = new SQRT_funContext(_localctx);
 				enterOuterAlt(_localctx, 37);
 				{
-				setState(1010);
 				match(SQRT);
-				setState(1011);
 				match(T__16);
-				setState(1012);
-				expr(0);
-				setState(1013);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3329,13 +2477,9 @@ public class mathParser extends Parser {
 				_localctx = new TRUNC_funContext(_localctx);
 				enterOuterAlt(_localctx, 38);
 				{
-				setState(1015);
 				match(TRUNC);
-				setState(1016);
 				match(T__16);
-				setState(1017);
-				expr(0);
-				setState(1018);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3343,13 +2487,9 @@ public class mathParser extends Parser {
 				_localctx = new INT_funContext(_localctx);
 				enterOuterAlt(_localctx, 39);
 				{
-				setState(1020);
 				match(INT);
-				setState(1021);
 				match(T__16);
-				setState(1022);
-				expr(0);
-				setState(1023);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3357,29 +2497,23 @@ public class mathParser extends Parser {
 				_localctx = new GCD_funContext(_localctx);
 				enterOuterAlt(_localctx, 40);
 				{
-				setState(1025);
 				match(GCD);
-				setState(1026);
 				match(T__16);
-				setState(1027);
-				expr(0);
+					expr(0);
 				setState(1030); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				do {
 					{
 					{
-					setState(1028);
 					match(T__18);
-					setState(1029);
-					expr(0);
+						expr(0);
 					}
 					}
 					setState(1032); 
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				} while ( _la==T__18 );
-				setState(1034);
 				match(T__17);
 				}
 				break;
@@ -3387,29 +2521,23 @@ public class mathParser extends Parser {
 				_localctx = new LCM_funContext(_localctx);
 				enterOuterAlt(_localctx, 41);
 				{
-				setState(1036);
 				match(LCM);
-				setState(1037);
 				match(T__16);
-				setState(1038);
-				expr(0);
+					expr(0);
 				setState(1041); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				do {
 					{
 					{
-					setState(1039);
 					match(T__18);
-					setState(1040);
-					expr(0);
+						expr(0);
 					}
 					}
 					setState(1043); 
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				} while ( _la==T__18 );
-				setState(1045);
 				match(T__17);
 				}
 				break;
@@ -3417,17 +2545,11 @@ public class mathParser extends Parser {
 				_localctx = new COMBIN_funContext(_localctx);
 				enterOuterAlt(_localctx, 42);
 				{
-				setState(1047);
 				match(COMBIN);
-				setState(1048);
 				match(T__16);
-				setState(1049);
-				expr(0);
-				setState(1050);
+					expr(0);
 				match(T__18);
-				setState(1051);
-				expr(0);
-				setState(1052);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3435,17 +2557,11 @@ public class mathParser extends Parser {
 				_localctx = new PERMUT_funContext(_localctx);
 				enterOuterAlt(_localctx, 43);
 				{
-				setState(1054);
 				match(PERMUT);
-				setState(1055);
 				match(T__16);
-				setState(1056);
-				expr(0);
-				setState(1057);
+					expr(0);
 				match(T__18);
-				setState(1058);
-				expr(0);
-				setState(1059);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3453,13 +2569,9 @@ public class mathParser extends Parser {
 				_localctx = new DEGREES_funContext(_localctx);
 				enterOuterAlt(_localctx, 44);
 				{
-				setState(1061);
 				match(DEGREES);
-				setState(1062);
 				match(T__16);
-				setState(1063);
-				expr(0);
-				setState(1064);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3467,13 +2579,9 @@ public class mathParser extends Parser {
 				_localctx = new RADIANS_funContext(_localctx);
 				enterOuterAlt(_localctx, 45);
 				{
-				setState(1066);
 				match(RADIANS);
-				setState(1067);
 				match(T__16);
-				setState(1068);
-				expr(0);
-				setState(1069);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3481,13 +2589,9 @@ public class mathParser extends Parser {
 				_localctx = new COS_funContext(_localctx);
 				enterOuterAlt(_localctx, 46);
 				{
-				setState(1071);
 				match(COS);
-				setState(1072);
 				match(T__16);
-				setState(1073);
-				expr(0);
-				setState(1074);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3495,13 +2599,9 @@ public class mathParser extends Parser {
 				_localctx = new COSH_funContext(_localctx);
 				enterOuterAlt(_localctx, 47);
 				{
-				setState(1076);
 				match(COSH);
-				setState(1077);
 				match(T__16);
-				setState(1078);
-				expr(0);
-				setState(1079);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3509,13 +2609,9 @@ public class mathParser extends Parser {
 				_localctx = new SIN_funContext(_localctx);
 				enterOuterAlt(_localctx, 48);
 				{
-				setState(1081);
 				match(SIN);
-				setState(1082);
 				match(T__16);
-				setState(1083);
-				expr(0);
-				setState(1084);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3523,13 +2619,9 @@ public class mathParser extends Parser {
 				_localctx = new SINH_funContext(_localctx);
 				enterOuterAlt(_localctx, 49);
 				{
-				setState(1086);
 				match(SINH);
-				setState(1087);
 				match(T__16);
-				setState(1088);
-				expr(0);
-				setState(1089);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3537,13 +2629,9 @@ public class mathParser extends Parser {
 				_localctx = new TAN_funContext(_localctx);
 				enterOuterAlt(_localctx, 50);
 				{
-				setState(1091);
 				match(TAN);
-				setState(1092);
 				match(T__16);
-				setState(1093);
-				expr(0);
-				setState(1094);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3551,13 +2639,9 @@ public class mathParser extends Parser {
 				_localctx = new TANH_funContext(_localctx);
 				enterOuterAlt(_localctx, 51);
 				{
-				setState(1096);
 				match(TANH);
-				setState(1097);
 				match(T__16);
-				setState(1098);
-				expr(0);
-				setState(1099);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3565,13 +2649,9 @@ public class mathParser extends Parser {
 				_localctx = new ACOS_funContext(_localctx);
 				enterOuterAlt(_localctx, 52);
 				{
-				setState(1101);
 				match(ACOS);
-				setState(1102);
 				match(T__16);
-				setState(1103);
-				expr(0);
-				setState(1104);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3579,13 +2659,9 @@ public class mathParser extends Parser {
 				_localctx = new ACOSH_funContext(_localctx);
 				enterOuterAlt(_localctx, 53);
 				{
-				setState(1106);
 				match(ACOSH);
-				setState(1107);
 				match(T__16);
-				setState(1108);
-				expr(0);
-				setState(1109);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3593,13 +2669,9 @@ public class mathParser extends Parser {
 				_localctx = new ASIN_funContext(_localctx);
 				enterOuterAlt(_localctx, 54);
 				{
-				setState(1111);
 				match(ASIN);
-				setState(1112);
 				match(T__16);
-				setState(1113);
-				expr(0);
-				setState(1114);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3607,13 +2679,9 @@ public class mathParser extends Parser {
 				_localctx = new ASINH_funContext(_localctx);
 				enterOuterAlt(_localctx, 55);
 				{
-				setState(1116);
 				match(ASINH);
-				setState(1117);
 				match(T__16);
-				setState(1118);
-				expr(0);
-				setState(1119);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3621,13 +2689,9 @@ public class mathParser extends Parser {
 				_localctx = new ATAN_funContext(_localctx);
 				enterOuterAlt(_localctx, 56);
 				{
-				setState(1121);
 				match(ATAN);
-				setState(1122);
 				match(T__16);
-				setState(1123);
-				expr(0);
-				setState(1124);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3635,13 +2699,9 @@ public class mathParser extends Parser {
 				_localctx = new ATANH_funContext(_localctx);
 				enterOuterAlt(_localctx, 57);
 				{
-				setState(1126);
 				match(ATANH);
-				setState(1127);
 				match(T__16);
-				setState(1128);
-				expr(0);
-				setState(1129);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3649,17 +2709,11 @@ public class mathParser extends Parser {
 				_localctx = new ATAN2_funContext(_localctx);
 				enterOuterAlt(_localctx, 58);
 				{
-				setState(1131);
 				match(ATAN2);
-				setState(1132);
 				match(T__16);
-				setState(1133);
-				expr(0);
-				setState(1134);
+					expr(0);
 				match(T__18);
-				setState(1135);
-				expr(0);
-				setState(1136);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3667,17 +2721,11 @@ public class mathParser extends Parser {
 				_localctx = new ROUND_funContext(_localctx);
 				enterOuterAlt(_localctx, 59);
 				{
-				setState(1138);
 				match(ROUND);
-				setState(1139);
 				match(T__16);
-				setState(1140);
-				expr(0);
-				setState(1141);
+					expr(0);
 				match(T__18);
-				setState(1142);
-				expr(0);
-				setState(1143);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3685,17 +2733,11 @@ public class mathParser extends Parser {
 				_localctx = new ROUNDDOWN_funContext(_localctx);
 				enterOuterAlt(_localctx, 60);
 				{
-				setState(1145);
 				match(ROUNDDOWN);
-				setState(1146);
 				match(T__16);
-				setState(1147);
-				expr(0);
-				setState(1148);
+					expr(0);
 				match(T__18);
-				setState(1149);
-				expr(0);
-				setState(1150);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3703,17 +2745,11 @@ public class mathParser extends Parser {
 				_localctx = new ROUNDUP_funContext(_localctx);
 				enterOuterAlt(_localctx, 61);
 				{
-				setState(1152);
 				match(ROUNDUP);
-				setState(1153);
 				match(T__16);
-				setState(1154);
-				expr(0);
-				setState(1155);
+					expr(0);
 				match(T__18);
-				setState(1156);
-				expr(0);
-				setState(1157);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3721,25 +2757,18 @@ public class mathParser extends Parser {
 				_localctx = new CEILING_funContext(_localctx);
 				enterOuterAlt(_localctx, 62);
 				{
-				setState(1159);
 				match(CEILING);
-				setState(1160);
 				match(T__16);
-				setState(1161);
-				expr(0);
-				setState(1164);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(1162);
 					match(T__18);
-					setState(1163);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(1166);
 				match(T__17);
 				}
 				break;
@@ -3747,25 +2776,18 @@ public class mathParser extends Parser {
 				_localctx = new FLOOR_funContext(_localctx);
 				enterOuterAlt(_localctx, 63);
 				{
-				setState(1168);
 				match(FLOOR);
-				setState(1169);
 				match(T__16);
-				setState(1170);
-				expr(0);
-				setState(1173);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(1171);
 					match(T__18);
-					setState(1172);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(1175);
 				match(T__17);
 				}
 				break;
@@ -3773,13 +2795,9 @@ public class mathParser extends Parser {
 				_localctx = new EVEN_funContext(_localctx);
 				enterOuterAlt(_localctx, 64);
 				{
-				setState(1177);
 				match(EVEN);
-				setState(1178);
 				match(T__16);
-				setState(1179);
-				expr(0);
-				setState(1180);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3787,13 +2805,9 @@ public class mathParser extends Parser {
 				_localctx = new ODD_funContext(_localctx);
 				enterOuterAlt(_localctx, 65);
 				{
-				setState(1182);
 				match(ODD);
-				setState(1183);
 				match(T__16);
-				setState(1184);
-				expr(0);
-				setState(1185);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3801,17 +2815,11 @@ public class mathParser extends Parser {
 				_localctx = new MROUND_funContext(_localctx);
 				enterOuterAlt(_localctx, 66);
 				{
-				setState(1187);
 				match(MROUND);
-				setState(1188);
 				match(T__16);
-				setState(1189);
-				expr(0);
-				setState(1190);
+					expr(0);
 				match(T__18);
-				setState(1191);
-				expr(0);
-				setState(1192);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3819,11 +2827,8 @@ public class mathParser extends Parser {
 				_localctx = new RAND_funContext(_localctx);
 				enterOuterAlt(_localctx, 67);
 				{
-				setState(1194);
 				match(RAND);
-				setState(1195);
 				match(T__16);
-				setState(1196);
 				match(T__17);
 				}
 				break;
@@ -3831,17 +2836,11 @@ public class mathParser extends Parser {
 				_localctx = new RANDBETWEEN_funContext(_localctx);
 				enterOuterAlt(_localctx, 68);
 				{
-				setState(1197);
 				match(RANDBETWEEN);
-				setState(1198);
 				match(T__16);
-				setState(1199);
-				expr(0);
-				setState(1200);
+					expr(0);
 				match(T__18);
-				setState(1201);
-				expr(0);
-				setState(1202);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3849,13 +2848,9 @@ public class mathParser extends Parser {
 				_localctx = new FACT_funContext(_localctx);
 				enterOuterAlt(_localctx, 69);
 				{
-				setState(1204);
 				match(FACT);
-				setState(1205);
 				match(T__16);
-				setState(1206);
-				expr(0);
-				setState(1207);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3863,13 +2858,9 @@ public class mathParser extends Parser {
 				_localctx = new FACTDOUBLE_funContext(_localctx);
 				enterOuterAlt(_localctx, 70);
 				{
-				setState(1209);
 				match(FACTDOUBLE);
-				setState(1210);
 				match(T__16);
-				setState(1211);
-				expr(0);
-				setState(1212);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3877,17 +2868,11 @@ public class mathParser extends Parser {
 				_localctx = new POWER_funContext(_localctx);
 				enterOuterAlt(_localctx, 71);
 				{
-				setState(1214);
 				match(POWER);
-				setState(1215);
 				match(T__16);
-				setState(1216);
-				expr(0);
-				setState(1217);
+					expr(0);
 				match(T__18);
-				setState(1218);
-				expr(0);
-				setState(1219);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3895,13 +2880,9 @@ public class mathParser extends Parser {
 				_localctx = new EXP_funContext(_localctx);
 				enterOuterAlt(_localctx, 72);
 				{
-				setState(1221);
 				match(EXP);
-				setState(1222);
 				match(T__16);
-				setState(1223);
-				expr(0);
-				setState(1224);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3909,13 +2890,9 @@ public class mathParser extends Parser {
 				_localctx = new LN_funContext(_localctx);
 				enterOuterAlt(_localctx, 73);
 				{
-				setState(1226);
 				match(LN);
-				setState(1227);
 				match(T__16);
-				setState(1228);
-				expr(0);
-				setState(1229);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3923,25 +2900,18 @@ public class mathParser extends Parser {
 				_localctx = new LOG_funContext(_localctx);
 				enterOuterAlt(_localctx, 74);
 				{
-				setState(1231);
 				match(LOG);
-				setState(1232);
 				match(T__16);
-				setState(1233);
-				expr(0);
-				setState(1236);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(1234);
 					match(T__18);
-					setState(1235);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(1238);
 				match(T__17);
 				}
 				break;
@@ -3949,13 +2919,9 @@ public class mathParser extends Parser {
 				_localctx = new LOG10_funContext(_localctx);
 				enterOuterAlt(_localctx, 75);
 				{
-				setState(1240);
 				match(LOG10);
-				setState(1241);
 				match(T__16);
-				setState(1242);
-				expr(0);
-				setState(1243);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -3963,29 +2929,21 @@ public class mathParser extends Parser {
 				_localctx = new MULTINOMIAL_funContext(_localctx);
 				enterOuterAlt(_localctx, 76);
 				{
-				setState(1245);
 				match(MULTINOMIAL);
-				setState(1246);
 				match(T__16);
-				setState(1247);
-				expr(0);
-				setState(1252);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__18) {
 					{
 					{
-					setState(1248);
 					match(T__18);
-					setState(1249);
-					expr(0);
+						expr(0);
 					}
 					}
-					setState(1254);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(1255);
 				match(T__17);
 				}
 				break;
@@ -3993,29 +2951,21 @@ public class mathParser extends Parser {
 				_localctx = new PRODUCT_funContext(_localctx);
 				enterOuterAlt(_localctx, 77);
 				{
-				setState(1257);
 				match(PRODUCT);
-				setState(1258);
 				match(T__16);
-				setState(1259);
-				expr(0);
-				setState(1264);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__18) {
 					{
 					{
-					setState(1260);
 					match(T__18);
-					setState(1261);
-					expr(0);
+						expr(0);
 					}
 					}
-					setState(1266);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(1267);
 				match(T__17);
 				}
 				break;
@@ -4023,13 +2973,9 @@ public class mathParser extends Parser {
 				_localctx = new SQRTPI_funContext(_localctx);
 				enterOuterAlt(_localctx, 78);
 				{
-				setState(1269);
 				match(SQRTPI);
-				setState(1270);
 				match(T__16);
-				setState(1271);
-				expr(0);
-				setState(1272);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -4037,29 +2983,21 @@ public class mathParser extends Parser {
 				_localctx = new SUMSQ_funContext(_localctx);
 				enterOuterAlt(_localctx, 79);
 				{
-				setState(1274);
 				match(SUMSQ);
-				setState(1275);
 				match(T__16);
-				setState(1276);
-				expr(0);
-				setState(1281);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__18) {
 					{
 					{
-					setState(1277);
 					match(T__18);
-					setState(1278);
-					expr(0);
+						expr(0);
 					}
 					}
-					setState(1283);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(1284);
 				match(T__17);
 				}
 				break;
@@ -4067,13 +3005,9 @@ public class mathParser extends Parser {
 				_localctx = new ASC_funContext(_localctx);
 				enterOuterAlt(_localctx, 80);
 				{
-				setState(1286);
 				match(ASC);
-				setState(1287);
 				match(T__16);
-				setState(1288);
-				expr(0);
-				setState(1289);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -4081,13 +3015,9 @@ public class mathParser extends Parser {
 				_localctx = new JIS_funContext(_localctx);
 				enterOuterAlt(_localctx, 81);
 				{
-				setState(1291);
 				match(JIS);
-				setState(1292);
 				match(T__16);
-				setState(1293);
-				expr(0);
-				setState(1294);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -4095,13 +3025,9 @@ public class mathParser extends Parser {
 				_localctx = new CHAR_funContext(_localctx);
 				enterOuterAlt(_localctx, 82);
 				{
-				setState(1296);
 				match(CHAR);
-				setState(1297);
 				match(T__16);
-				setState(1298);
-				expr(0);
-				setState(1299);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -4109,13 +3035,9 @@ public class mathParser extends Parser {
 				_localctx = new CLEAN_funContext(_localctx);
 				enterOuterAlt(_localctx, 83);
 				{
-				setState(1301);
 				match(CLEAN);
-				setState(1302);
 				match(T__16);
-				setState(1303);
-				expr(0);
-				setState(1304);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -4123,13 +3045,9 @@ public class mathParser extends Parser {
 				_localctx = new CODE_funContext(_localctx);
 				enterOuterAlt(_localctx, 84);
 				{
-				setState(1306);
 				match(CODE);
-				setState(1307);
 				match(T__16);
-				setState(1308);
-				expr(0);
-				setState(1309);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -4137,29 +3055,21 @@ public class mathParser extends Parser {
 				_localctx = new CONCATENATE_funContext(_localctx);
 				enterOuterAlt(_localctx, 85);
 				{
-				setState(1311);
 				match(CONCATENATE);
-				setState(1312);
 				match(T__16);
-				setState(1313);
-				expr(0);
-				setState(1318);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__18) {
 					{
 					{
-					setState(1314);
 					match(T__18);
-					setState(1315);
-					expr(0);
+						expr(0);
 					}
 					}
-					setState(1320);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(1321);
 				match(T__17);
 				}
 				break;
@@ -4167,17 +3077,11 @@ public class mathParser extends Parser {
 				_localctx = new EXACT_funContext(_localctx);
 				enterOuterAlt(_localctx, 86);
 				{
-				setState(1323);
 				match(EXACT);
-				setState(1324);
 				match(T__16);
-				setState(1325);
-				expr(0);
-				setState(1326);
+					expr(0);
 				match(T__18);
-				setState(1327);
-				expr(0);
-				setState(1328);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -4185,29 +3089,20 @@ public class mathParser extends Parser {
 				_localctx = new FIND_funContext(_localctx);
 				enterOuterAlt(_localctx, 87);
 				{
-				setState(1330);
 				match(FIND);
-				setState(1331);
 				match(T__16);
-				setState(1332);
-				expr(0);
-				setState(1333);
+					expr(0);
 				match(T__18);
-				setState(1334);
-				expr(0);
-				setState(1337);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(1335);
 					match(T__18);
-					setState(1336);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(1339);
 				match(T__17);
 				}
 				break;
@@ -4215,37 +3110,27 @@ public class mathParser extends Parser {
 				_localctx = new FIXED_funContext(_localctx);
 				enterOuterAlt(_localctx, 88);
 				{
-				setState(1341);
 				match(FIXED);
-				setState(1342);
 				match(T__16);
-				setState(1343);
-				expr(0);
-				setState(1350);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(1344);
 					match(T__18);
-					setState(1345);
-					expr(0);
-					setState(1348);
+						expr(0);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 					if (_la==T__18) {
 						{
-						setState(1346);
 						match(T__18);
-						setState(1347);
-						expr(0);
+							expr(0);
 						}
 					}
 
 					}
 				}
 
-				setState(1352);
 				match(T__17);
 				}
 				break;
@@ -4253,25 +3138,18 @@ public class mathParser extends Parser {
 				_localctx = new LEFT_funContext(_localctx);
 				enterOuterAlt(_localctx, 89);
 				{
-				setState(1354);
 				match(LEFT);
-				setState(1355);
 				match(T__16);
-				setState(1356);
-				expr(0);
-				setState(1359);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(1357);
 					match(T__18);
-					setState(1358);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(1361);
 				match(T__17);
 				}
 				break;
@@ -4279,13 +3157,9 @@ public class mathParser extends Parser {
 				_localctx = new LEN_funContext(_localctx);
 				enterOuterAlt(_localctx, 90);
 				{
-				setState(1363);
 				match(LEN);
-				setState(1364);
 				match(T__16);
-				setState(1365);
-				expr(0);
-				setState(1366);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -4293,13 +3167,9 @@ public class mathParser extends Parser {
 				_localctx = new LOWER_funContext(_localctx);
 				enterOuterAlt(_localctx, 91);
 				{
-				setState(1368);
 				match(LOWER);
-				setState(1369);
 				match(T__16);
-				setState(1370);
-				expr(0);
-				setState(1371);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -4307,21 +3177,13 @@ public class mathParser extends Parser {
 				_localctx = new MID_funContext(_localctx);
 				enterOuterAlt(_localctx, 92);
 				{
-				setState(1373);
 				match(MID);
-				setState(1374);
 				match(T__16);
-				setState(1375);
-				expr(0);
-				setState(1376);
+					expr(0);
 				match(T__18);
-				setState(1377);
-				expr(0);
-				setState(1378);
+					expr(0);
 				match(T__18);
-				setState(1379);
-				expr(0);
-				setState(1380);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -4329,13 +3191,9 @@ public class mathParser extends Parser {
 				_localctx = new PROPER_funContext(_localctx);
 				enterOuterAlt(_localctx, 93);
 				{
-				setState(1382);
 				match(PROPER);
-				setState(1383);
 				match(T__16);
-				setState(1384);
-				expr(0);
-				setState(1385);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -4343,33 +3201,22 @@ public class mathParser extends Parser {
 				_localctx = new REPLACE_funContext(_localctx);
 				enterOuterAlt(_localctx, 94);
 				{
-				setState(1387);
 				match(REPLACE);
-				setState(1388);
 				match(T__16);
-				setState(1389);
-				expr(0);
-				setState(1390);
+					expr(0);
 				match(T__18);
-				setState(1391);
-				expr(0);
-				setState(1392);
+					expr(0);
 				match(T__18);
-				setState(1393);
-				expr(0);
-				setState(1396);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(1394);
 					match(T__18);
-					setState(1395);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(1398);
 				match(T__17);
 				}
 				break;
@@ -4377,17 +3224,11 @@ public class mathParser extends Parser {
 				_localctx = new REPT_funContext(_localctx);
 				enterOuterAlt(_localctx, 95);
 				{
-				setState(1400);
 				match(REPT);
-				setState(1401);
 				match(T__16);
-				setState(1402);
-				expr(0);
-				setState(1403);
+					expr(0);
 				match(T__18);
-				setState(1404);
-				expr(0);
-				setState(1405);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -4395,25 +3236,18 @@ public class mathParser extends Parser {
 				_localctx = new RIGHT_funContext(_localctx);
 				enterOuterAlt(_localctx, 96);
 				{
-				setState(1407);
 				match(RIGHT);
-				setState(1408);
 				match(T__16);
-				setState(1409);
-				expr(0);
-				setState(1412);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(1410);
 					match(T__18);
-					setState(1411);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(1414);
 				match(T__17);
 				}
 				break;
@@ -4421,13 +3255,9 @@ public class mathParser extends Parser {
 				_localctx = new RMB_funContext(_localctx);
 				enterOuterAlt(_localctx, 97);
 				{
-				setState(1416);
 				match(RMB);
-				setState(1417);
 				match(T__16);
-				setState(1418);
-				expr(0);
-				setState(1419);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -4435,29 +3265,20 @@ public class mathParser extends Parser {
 				_localctx = new SEARCH_funContext(_localctx);
 				enterOuterAlt(_localctx, 98);
 				{
-				setState(1421);
 				match(SEARCH);
-				setState(1422);
 				match(T__16);
-				setState(1423);
-				expr(0);
-				setState(1424);
+					expr(0);
 				match(T__18);
-				setState(1425);
-				expr(0);
-				setState(1428);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(1426);
 					match(T__18);
-					setState(1427);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(1430);
 				match(T__17);
 				}
 				break;
@@ -4465,33 +3286,22 @@ public class mathParser extends Parser {
 				_localctx = new SUBSTITUTE_funContext(_localctx);
 				enterOuterAlt(_localctx, 99);
 				{
-				setState(1432);
 				match(SUBSTITUTE);
-				setState(1433);
 				match(T__16);
-				setState(1434);
-				expr(0);
-				setState(1435);
+					expr(0);
 				match(T__18);
-				setState(1436);
-				expr(0);
-				setState(1437);
+					expr(0);
 				match(T__18);
-				setState(1438);
-				expr(0);
-				setState(1441);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(1439);
 					match(T__18);
-					setState(1440);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(1443);
 				match(T__17);
 				}
 				break;
@@ -4499,13 +3309,9 @@ public class mathParser extends Parser {
 				_localctx = new T_funContext(_localctx);
 				enterOuterAlt(_localctx, 100);
 				{
-				setState(1445);
 				match(T);
-				setState(1446);
 				match(T__16);
-				setState(1447);
-				expr(0);
-				setState(1448);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -4513,17 +3319,11 @@ public class mathParser extends Parser {
 				_localctx = new TEXT_funContext(_localctx);
 				enterOuterAlt(_localctx, 101);
 				{
-				setState(1450);
 				match(TEXT);
-				setState(1451);
 				match(T__16);
-				setState(1452);
-				expr(0);
-				setState(1453);
+					expr(0);
 				match(T__18);
-				setState(1454);
-				expr(0);
-				setState(1455);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -4531,13 +3331,9 @@ public class mathParser extends Parser {
 				_localctx = new TRIM_funContext(_localctx);
 				enterOuterAlt(_localctx, 102);
 				{
-				setState(1457);
 				match(TRIM);
-				setState(1458);
 				match(T__16);
-				setState(1459);
-				expr(0);
-				setState(1460);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -4545,13 +3341,9 @@ public class mathParser extends Parser {
 				_localctx = new UPPER_funContext(_localctx);
 				enterOuterAlt(_localctx, 103);
 				{
-				setState(1462);
 				match(UPPER);
-				setState(1463);
 				match(T__16);
-				setState(1464);
-				expr(0);
-				setState(1465);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -4559,13 +3351,9 @@ public class mathParser extends Parser {
 				_localctx = new VALUE_funContext(_localctx);
 				enterOuterAlt(_localctx, 104);
 				{
-				setState(1467);
 				match(VALUE);
-				setState(1468);
 				match(T__16);
-				setState(1469);
-				expr(0);
-				setState(1470);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -4573,13 +3361,9 @@ public class mathParser extends Parser {
 				_localctx = new DATEVALUE_funContext(_localctx);
 				enterOuterAlt(_localctx, 105);
 				{
-				setState(1472);
 				match(DATEVALUE);
-				setState(1473);
 				match(T__16);
-				setState(1474);
-				expr(0);
-				setState(1475);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -4587,13 +3371,9 @@ public class mathParser extends Parser {
 				_localctx = new TIMEVALUE_funContext(_localctx);
 				enterOuterAlt(_localctx, 106);
 				{
-				setState(1477);
 				match(TIMEVALUE);
-				setState(1478);
 				match(T__16);
-				setState(1479);
-				expr(0);
-				setState(1480);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -4601,47 +3381,31 @@ public class mathParser extends Parser {
 				_localctx = new DATE_funContext(_localctx);
 				enterOuterAlt(_localctx, 107);
 				{
-				setState(1482);
 				match(DATE);
-				setState(1483);
 				match(T__16);
-				setState(1484);
-				expr(0);
-				setState(1485);
+					expr(0);
 				match(T__18);
-				setState(1486);
-				expr(0);
-				setState(1487);
+					expr(0);
 				match(T__18);
-				setState(1488);
-				expr(0);
-				setState(1499);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(1489);
 					match(T__18);
-					setState(1490);
-					expr(0);
-					setState(1497);
+						expr(0);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 					if (_la==T__18) {
 						{
-						setState(1491);
 						match(T__18);
-						setState(1492);
-						expr(0);
-						setState(1495);
+							expr(0);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if (_la==T__18) {
 							{
-							setState(1493);
 							match(T__18);
-							setState(1494);
-							expr(0);
+								expr(0);
 							}
 						}
 
@@ -4651,7 +3415,6 @@ public class mathParser extends Parser {
 					}
 				}
 
-				setState(1501);
 				match(T__17);
 				}
 				break;
@@ -4659,29 +3422,20 @@ public class mathParser extends Parser {
 				_localctx = new TIME_funContext(_localctx);
 				enterOuterAlt(_localctx, 108);
 				{
-				setState(1503);
 				match(TIME);
-				setState(1504);
 				match(T__16);
-				setState(1505);
-				expr(0);
-				setState(1506);
+					expr(0);
 				match(T__18);
-				setState(1507);
-				expr(0);
-				setState(1510);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(1508);
 					match(T__18);
-					setState(1509);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(1512);
 				match(T__17);
 				}
 				break;
@@ -4689,11 +3443,8 @@ public class mathParser extends Parser {
 				_localctx = new NOW_funContext(_localctx);
 				enterOuterAlt(_localctx, 109);
 				{
-				setState(1514);
 				match(NOW);
-				setState(1515);
 				match(T__16);
-				setState(1516);
 				match(T__17);
 				}
 				break;
@@ -4701,11 +3452,8 @@ public class mathParser extends Parser {
 				_localctx = new TODAY_funContext(_localctx);
 				enterOuterAlt(_localctx, 110);
 				{
-				setState(1517);
 				match(TODAY);
-				setState(1518);
 				match(T__16);
-				setState(1519);
 				match(T__17);
 				}
 				break;
@@ -4713,13 +3461,9 @@ public class mathParser extends Parser {
 				_localctx = new YEAR_funContext(_localctx);
 				enterOuterAlt(_localctx, 111);
 				{
-				setState(1520);
 				match(YEAR);
-				setState(1521);
 				match(T__16);
-				setState(1522);
-				expr(0);
-				setState(1523);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -4727,13 +3471,9 @@ public class mathParser extends Parser {
 				_localctx = new MONTH_funContext(_localctx);
 				enterOuterAlt(_localctx, 112);
 				{
-				setState(1525);
 				match(MONTH);
-				setState(1526);
 				match(T__16);
-				setState(1527);
-				expr(0);
-				setState(1528);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -4741,13 +3481,9 @@ public class mathParser extends Parser {
 				_localctx = new DAY_funContext(_localctx);
 				enterOuterAlt(_localctx, 113);
 				{
-				setState(1530);
 				match(DAY);
-				setState(1531);
 				match(T__16);
-				setState(1532);
-				expr(0);
-				setState(1533);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -4755,13 +3491,9 @@ public class mathParser extends Parser {
 				_localctx = new HOUR_funContext(_localctx);
 				enterOuterAlt(_localctx, 114);
 				{
-				setState(1535);
 				match(HOUR);
-				setState(1536);
 				match(T__16);
-				setState(1537);
-				expr(0);
-				setState(1538);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -4769,13 +3501,9 @@ public class mathParser extends Parser {
 				_localctx = new MINUTE_funContext(_localctx);
 				enterOuterAlt(_localctx, 115);
 				{
-				setState(1540);
 				match(MINUTE);
-				setState(1541);
 				match(T__16);
-				setState(1542);
-				expr(0);
-				setState(1543);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -4783,13 +3511,9 @@ public class mathParser extends Parser {
 				_localctx = new SECOND_funContext(_localctx);
 				enterOuterAlt(_localctx, 116);
 				{
-				setState(1545);
 				match(SECOND);
-				setState(1546);
 				match(T__16);
-				setState(1547);
-				expr(0);
-				setState(1548);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -4797,25 +3521,18 @@ public class mathParser extends Parser {
 				_localctx = new WEEKDAY_funContext(_localctx);
 				enterOuterAlt(_localctx, 117);
 				{
-				setState(1550);
 				match(WEEKDAY);
-				setState(1551);
 				match(T__16);
-				setState(1552);
-				expr(0);
-				setState(1555);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(1553);
 					match(T__18);
-					setState(1554);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(1557);
 				match(T__17);
 				}
 				break;
@@ -4823,21 +3540,13 @@ public class mathParser extends Parser {
 				_localctx = new DATEDIF_funContext(_localctx);
 				enterOuterAlt(_localctx, 118);
 				{
-				setState(1559);
 				match(DATEDIF);
-				setState(1560);
 				match(T__16);
-				setState(1561);
-				expr(0);
-				setState(1562);
+					expr(0);
 				match(T__18);
-				setState(1563);
-				expr(0);
-				setState(1564);
+					expr(0);
 				match(T__18);
-				setState(1565);
-				expr(0);
-				setState(1566);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -4845,29 +3554,20 @@ public class mathParser extends Parser {
 				_localctx = new DAYS360_funContext(_localctx);
 				enterOuterAlt(_localctx, 119);
 				{
-				setState(1568);
 				match(DAYS360);
-				setState(1569);
 				match(T__16);
-				setState(1570);
-				expr(0);
-				setState(1571);
+					expr(0);
 				match(T__18);
-				setState(1572);
-				expr(0);
-				setState(1575);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(1573);
 					match(T__18);
-					setState(1574);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(1577);
 				match(T__17);
 				}
 				break;
@@ -4875,17 +3575,11 @@ public class mathParser extends Parser {
 				_localctx = new EDATE_funContext(_localctx);
 				enterOuterAlt(_localctx, 120);
 				{
-				setState(1579);
 				match(EDATE);
-				setState(1580);
 				match(T__16);
-				setState(1581);
-				expr(0);
-				setState(1582);
+					expr(0);
 				match(T__18);
-				setState(1583);
-				expr(0);
-				setState(1584);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -4893,17 +3587,11 @@ public class mathParser extends Parser {
 				_localctx = new EOMONTH_funContext(_localctx);
 				enterOuterAlt(_localctx, 121);
 				{
-				setState(1586);
 				match(EOMONTH);
-				setState(1587);
 				match(T__16);
-				setState(1588);
-				expr(0);
-				setState(1589);
+					expr(0);
 				match(T__18);
-				setState(1590);
-				expr(0);
-				setState(1591);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -4911,29 +3599,20 @@ public class mathParser extends Parser {
 				_localctx = new NETWORKDAYS_funContext(_localctx);
 				enterOuterAlt(_localctx, 122);
 				{
-				setState(1593);
 				match(NETWORKDAYS);
-				setState(1594);
 				match(T__16);
-				setState(1595);
-				expr(0);
-				setState(1596);
+					expr(0);
 				match(T__18);
-				setState(1597);
-				expr(0);
-				setState(1600);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(1598);
 					match(T__18);
-					setState(1599);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(1602);
 				match(T__17);
 				}
 				break;
@@ -4941,29 +3620,20 @@ public class mathParser extends Parser {
 				_localctx = new WORKDAY_funContext(_localctx);
 				enterOuterAlt(_localctx, 123);
 				{
-				setState(1604);
 				match(WORKDAY);
-				setState(1605);
 				match(T__16);
-				setState(1606);
-				expr(0);
-				setState(1607);
+					expr(0);
 				match(T__18);
-				setState(1608);
-				expr(0);
-				setState(1611);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(1609);
 					match(T__18);
-					setState(1610);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(1613);
 				match(T__17);
 				}
 				break;
@@ -4971,25 +3641,18 @@ public class mathParser extends Parser {
 				_localctx = new WEEKNUM_funContext(_localctx);
 				enterOuterAlt(_localctx, 124);
 				{
-				setState(1615);
 				match(WEEKNUM);
-				setState(1616);
 				match(T__16);
-				setState(1617);
-				expr(0);
-				setState(1620);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(1618);
 					match(T__18);
-					setState(1619);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(1622);
 				match(T__17);
 				}
 				break;
@@ -4997,29 +3660,23 @@ public class mathParser extends Parser {
 				_localctx = new MAX_funContext(_localctx);
 				enterOuterAlt(_localctx, 125);
 				{
-				setState(1624);
 				match(MAX);
-				setState(1625);
 				match(T__16);
-				setState(1626);
-				expr(0);
+					expr(0);
 				setState(1629); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				do {
 					{
 					{
-					setState(1627);
 					match(T__18);
-					setState(1628);
-					expr(0);
+						expr(0);
 					}
 					}
 					setState(1631); 
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				} while ( _la==T__18 );
-				setState(1633);
 				match(T__17);
 				}
 				break;
@@ -5027,29 +3684,23 @@ public class mathParser extends Parser {
 				_localctx = new MEDIAN_funContext(_localctx);
 				enterOuterAlt(_localctx, 126);
 				{
-				setState(1635);
 				match(MEDIAN);
-				setState(1636);
 				match(T__16);
-				setState(1637);
-				expr(0);
+					expr(0);
 				setState(1640); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				do {
 					{
 					{
-					setState(1638);
 					match(T__18);
-					setState(1639);
-					expr(0);
+						expr(0);
 					}
 					}
 					setState(1642); 
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				} while ( _la==T__18 );
-				setState(1644);
 				match(T__17);
 				}
 				break;
@@ -5057,29 +3708,23 @@ public class mathParser extends Parser {
 				_localctx = new MIN_funContext(_localctx);
 				enterOuterAlt(_localctx, 127);
 				{
-				setState(1646);
 				match(MIN);
-				setState(1647);
 				match(T__16);
-				setState(1648);
-				expr(0);
+					expr(0);
 				setState(1651); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				do {
 					{
 					{
-					setState(1649);
 					match(T__18);
-					setState(1650);
-					expr(0);
+						expr(0);
 					}
 					}
 					setState(1653); 
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				} while ( _la==T__18 );
-				setState(1655);
 				match(T__17);
 				}
 				break;
@@ -5087,17 +3732,11 @@ public class mathParser extends Parser {
 				_localctx = new QUARTILE_funContext(_localctx);
 				enterOuterAlt(_localctx, 128);
 				{
-				setState(1657);
 				match(QUARTILE);
-				setState(1658);
 				match(T__16);
-				setState(1659);
-				expr(0);
-				setState(1660);
+					expr(0);
 				match(T__18);
-				setState(1661);
-				expr(0);
-				setState(1662);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -5105,29 +3744,21 @@ public class mathParser extends Parser {
 				_localctx = new MODE_funContext(_localctx);
 				enterOuterAlt(_localctx, 129);
 				{
-				setState(1664);
 				match(MODE);
-				setState(1665);
 				match(T__16);
-				setState(1666);
-				expr(0);
-				setState(1671);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__18) {
 					{
 					{
-					setState(1667);
 					match(T__18);
-					setState(1668);
-					expr(0);
+						expr(0);
 					}
 					}
-					setState(1673);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(1674);
 				match(T__17);
 				}
 				break;
@@ -5135,17 +3766,11 @@ public class mathParser extends Parser {
 				_localctx = new LARGE_funContext(_localctx);
 				enterOuterAlt(_localctx, 130);
 				{
-				setState(1676);
 				match(LARGE);
-				setState(1677);
 				match(T__16);
-				setState(1678);
-				expr(0);
-				setState(1679);
+					expr(0);
 				match(T__18);
-				setState(1680);
-				expr(0);
-				setState(1681);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -5153,17 +3778,11 @@ public class mathParser extends Parser {
 				_localctx = new SMALL_funContext(_localctx);
 				enterOuterAlt(_localctx, 131);
 				{
-				setState(1683);
 				match(SMALL);
-				setState(1684);
 				match(T__16);
-				setState(1685);
-				expr(0);
-				setState(1686);
+					expr(0);
 				match(T__18);
-				setState(1687);
-				expr(0);
-				setState(1688);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -5171,17 +3790,11 @@ public class mathParser extends Parser {
 				_localctx = new PERCENTILE_funContext(_localctx);
 				enterOuterAlt(_localctx, 132);
 				{
-				setState(1690);
 				match(PERCENTILE);
-				setState(1691);
 				match(T__16);
-				setState(1692);
-				expr(0);
-				setState(1693);
+					expr(0);
 				match(T__18);
-				setState(1694);
-				expr(0);
-				setState(1695);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -5189,17 +3802,11 @@ public class mathParser extends Parser {
 				_localctx = new PERCENTRANK_funContext(_localctx);
 				enterOuterAlt(_localctx, 133);
 				{
-				setState(1697);
 				match(PERCENTRANK);
-				setState(1698);
 				match(T__16);
-				setState(1699);
-				expr(0);
-				setState(1700);
+					expr(0);
 				match(T__18);
-				setState(1701);
-				expr(0);
-				setState(1702);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -5207,29 +3814,21 @@ public class mathParser extends Parser {
 				_localctx = new AVERAGE_funContext(_localctx);
 				enterOuterAlt(_localctx, 134);
 				{
-				setState(1704);
 				match(AVERAGE);
-				setState(1705);
 				match(T__16);
-				setState(1706);
-				expr(0);
-				setState(1711);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__18) {
 					{
 					{
-					setState(1707);
 					match(T__18);
-					setState(1708);
-					expr(0);
+						expr(0);
 					}
 					}
-					setState(1713);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(1714);
 				match(T__17);
 				}
 				break;
@@ -5237,29 +3836,20 @@ public class mathParser extends Parser {
 				_localctx = new AVERAGEIF_funContext(_localctx);
 				enterOuterAlt(_localctx, 135);
 				{
-				setState(1716);
 				match(AVERAGEIF);
-				setState(1717);
 				match(T__16);
-				setState(1718);
-				expr(0);
-				setState(1719);
+					expr(0);
 				match(T__18);
-				setState(1720);
-				expr(0);
-				setState(1723);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(1721);
 					match(T__18);
-					setState(1722);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(1725);
 				match(T__17);
 				}
 				break;
@@ -5267,29 +3857,21 @@ public class mathParser extends Parser {
 				_localctx = new GEOMEAN_funContext(_localctx);
 				enterOuterAlt(_localctx, 136);
 				{
-				setState(1727);
 				match(GEOMEAN);
-				setState(1728);
 				match(T__16);
-				setState(1729);
-				expr(0);
-				setState(1734);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__18) {
 					{
 					{
-					setState(1730);
 					match(T__18);
-					setState(1731);
-					expr(0);
+						expr(0);
 					}
 					}
-					setState(1736);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(1737);
 				match(T__17);
 				}
 				break;
@@ -5297,29 +3879,21 @@ public class mathParser extends Parser {
 				_localctx = new HARMEAN_funContext(_localctx);
 				enterOuterAlt(_localctx, 137);
 				{
-				setState(1739);
 				match(HARMEAN);
-				setState(1740);
 				match(T__16);
-				setState(1741);
-				expr(0);
-				setState(1746);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__18) {
 					{
 					{
-					setState(1742);
 					match(T__18);
-					setState(1743);
-					expr(0);
+						expr(0);
 					}
 					}
-					setState(1748);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(1749);
 				match(T__17);
 				}
 				break;
@@ -5327,29 +3901,21 @@ public class mathParser extends Parser {
 				_localctx = new COUNT_funContext(_localctx);
 				enterOuterAlt(_localctx, 138);
 				{
-				setState(1751);
 				match(COUNT);
-				setState(1752);
 				match(T__16);
-				setState(1753);
-				expr(0);
-				setState(1758);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__18) {
 					{
 					{
-					setState(1754);
 					match(T__18);
-					setState(1755);
-					expr(0);
+						expr(0);
 					}
 					}
-					setState(1760);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(1761);
 				match(T__17);
 				}
 				break;
@@ -5357,29 +3923,21 @@ public class mathParser extends Parser {
 				_localctx = new COUNTIF_funContext(_localctx);
 				enterOuterAlt(_localctx, 139);
 				{
-				setState(1763);
 				match(COUNTIF);
-				setState(1764);
 				match(T__16);
-				setState(1765);
-				expr(0);
-				setState(1770);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__18) {
 					{
 					{
-					setState(1766);
 					match(T__18);
-					setState(1767);
-					expr(0);
+						expr(0);
 					}
 					}
-					setState(1772);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(1773);
 				match(T__17);
 				}
 				break;
@@ -5387,29 +3945,21 @@ public class mathParser extends Parser {
 				_localctx = new SUM_funContext(_localctx);
 				enterOuterAlt(_localctx, 140);
 				{
-				setState(1775);
 				match(SUM);
-				setState(1776);
 				match(T__16);
-				setState(1777);
-				expr(0);
-				setState(1782);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__18) {
 					{
 					{
-					setState(1778);
 					match(T__18);
-					setState(1779);
-					expr(0);
+						expr(0);
 					}
 					}
-					setState(1784);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(1785);
 				match(T__17);
 				}
 				break;
@@ -5417,29 +3967,20 @@ public class mathParser extends Parser {
 				_localctx = new SUMIF_funContext(_localctx);
 				enterOuterAlt(_localctx, 141);
 				{
-				setState(1787);
 				match(SUMIF);
-				setState(1788);
 				match(T__16);
-				setState(1789);
-				expr(0);
-				setState(1790);
+					expr(0);
 				match(T__18);
-				setState(1791);
-				expr(0);
-				setState(1794);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(1792);
 					match(T__18);
-					setState(1793);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(1796);
 				match(T__17);
 				}
 				break;
@@ -5447,29 +3988,21 @@ public class mathParser extends Parser {
 				_localctx = new AVEDEV_funContext(_localctx);
 				enterOuterAlt(_localctx, 142);
 				{
-				setState(1798);
 				match(AVEDEV);
-				setState(1799);
 				match(T__16);
-				setState(1800);
-				expr(0);
-				setState(1805);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__18) {
 					{
 					{
-					setState(1801);
 					match(T__18);
-					setState(1802);
-					expr(0);
+						expr(0);
 					}
 					}
-					setState(1807);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(1808);
 				match(T__17);
 				}
 				break;
@@ -5477,29 +4010,21 @@ public class mathParser extends Parser {
 				_localctx = new STDEV_funContext(_localctx);
 				enterOuterAlt(_localctx, 143);
 				{
-				setState(1810);
 				match(STDEV);
-				setState(1811);
 				match(T__16);
-				setState(1812);
-				expr(0);
-				setState(1817);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__18) {
 					{
 					{
-					setState(1813);
 					match(T__18);
-					setState(1814);
-					expr(0);
+						expr(0);
 					}
 					}
-					setState(1819);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(1820);
 				match(T__17);
 				}
 				break;
@@ -5507,29 +4032,21 @@ public class mathParser extends Parser {
 				_localctx = new STDEVP_funContext(_localctx);
 				enterOuterAlt(_localctx, 144);
 				{
-				setState(1822);
 				match(STDEVP);
-				setState(1823);
 				match(T__16);
-				setState(1824);
-				expr(0);
-				setState(1829);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__18) {
 					{
 					{
-					setState(1825);
 					match(T__18);
-					setState(1826);
-					expr(0);
+						expr(0);
 					}
 					}
-					setState(1831);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(1832);
 				match(T__17);
 				}
 				break;
@@ -5537,29 +4054,21 @@ public class mathParser extends Parser {
 				_localctx = new DEVSQ_funContext(_localctx);
 				enterOuterAlt(_localctx, 145);
 				{
-				setState(1834);
 				match(DEVSQ);
-				setState(1835);
 				match(T__16);
-				setState(1836);
-				expr(0);
-				setState(1841);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__18) {
 					{
 					{
-					setState(1837);
 					match(T__18);
-					setState(1838);
-					expr(0);
+						expr(0);
 					}
 					}
-					setState(1843);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(1844);
 				match(T__17);
 				}
 				break;
@@ -5567,29 +4076,21 @@ public class mathParser extends Parser {
 				_localctx = new VAR_funContext(_localctx);
 				enterOuterAlt(_localctx, 146);
 				{
-				setState(1846);
 				match(VAR);
-				setState(1847);
 				match(T__16);
-				setState(1848);
-				expr(0);
-				setState(1853);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__18) {
 					{
 					{
-					setState(1849);
 					match(T__18);
-					setState(1850);
-					expr(0);
+						expr(0);
 					}
 					}
-					setState(1855);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(1856);
 				match(T__17);
 				}
 				break;
@@ -5597,29 +4098,21 @@ public class mathParser extends Parser {
 				_localctx = new VARP_funContext(_localctx);
 				enterOuterAlt(_localctx, 147);
 				{
-				setState(1858);
 				match(VARP);
-				setState(1859);
 				match(T__16);
-				setState(1860);
-				expr(0);
-				setState(1865);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__18) {
 					{
 					{
-					setState(1861);
 					match(T__18);
-					setState(1862);
-					expr(0);
+						expr(0);
 					}
 					}
-					setState(1867);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(1868);
 				match(T__17);
 				}
 				break;
@@ -5627,25 +4120,15 @@ public class mathParser extends Parser {
 				_localctx = new NORMDIST_funContext(_localctx);
 				enterOuterAlt(_localctx, 148);
 				{
-				setState(1870);
 				match(NORMDIST);
-				setState(1871);
 				match(T__16);
-				setState(1872);
-				expr(0);
-				setState(1873);
+					expr(0);
 				match(T__18);
-				setState(1874);
-				expr(0);
-				setState(1875);
+					expr(0);
 				match(T__18);
-				setState(1876);
-				expr(0);
-				setState(1877);
+					expr(0);
 				match(T__18);
-				setState(1878);
-				expr(0);
-				setState(1879);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -5653,21 +4136,13 @@ public class mathParser extends Parser {
 				_localctx = new NORMINV_funContext(_localctx);
 				enterOuterAlt(_localctx, 149);
 				{
-				setState(1881);
 				match(NORMINV);
-				setState(1882);
 				match(T__16);
-				setState(1883);
-				expr(0);
-				setState(1884);
+					expr(0);
 				match(T__18);
-				setState(1885);
-				expr(0);
-				setState(1886);
+					expr(0);
 				match(T__18);
-				setState(1887);
-				expr(0);
-				setState(1888);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -5675,13 +4150,9 @@ public class mathParser extends Parser {
 				_localctx = new NORMSDIST_funContext(_localctx);
 				enterOuterAlt(_localctx, 150);
 				{
-				setState(1890);
 				match(NORMSDIST);
-				setState(1891);
 				match(T__16);
-				setState(1892);
-				expr(0);
-				setState(1893);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -5689,13 +4160,9 @@ public class mathParser extends Parser {
 				_localctx = new NORMSINV_funContext(_localctx);
 				enterOuterAlt(_localctx, 151);
 				{
-				setState(1895);
 				match(NORMSINV);
-				setState(1896);
 				match(T__16);
-				setState(1897);
-				expr(0);
-				setState(1898);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -5703,21 +4170,13 @@ public class mathParser extends Parser {
 				_localctx = new BETADIST_funContext(_localctx);
 				enterOuterAlt(_localctx, 152);
 				{
-				setState(1900);
 				match(BETADIST);
-				setState(1901);
 				match(T__16);
-				setState(1902);
-				expr(0);
-				setState(1903);
+					expr(0);
 				match(T__18);
-				setState(1904);
-				expr(0);
-				setState(1905);
+					expr(0);
 				match(T__18);
-				setState(1906);
-				expr(0);
-				setState(1907);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -5725,21 +4184,13 @@ public class mathParser extends Parser {
 				_localctx = new BETAINV_funContext(_localctx);
 				enterOuterAlt(_localctx, 153);
 				{
-				setState(1909);
 				match(BETAINV);
-				setState(1910);
 				match(T__16);
-				setState(1911);
-				expr(0);
-				setState(1912);
+					expr(0);
 				match(T__18);
-				setState(1913);
-				expr(0);
-				setState(1914);
+					expr(0);
 				match(T__18);
-				setState(1915);
-				expr(0);
-				setState(1916);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -5747,25 +4198,15 @@ public class mathParser extends Parser {
 				_localctx = new BINOMDIST_funContext(_localctx);
 				enterOuterAlt(_localctx, 154);
 				{
-				setState(1918);
 				match(BINOMDIST);
-				setState(1919);
 				match(T__16);
-				setState(1920);
-				expr(0);
-				setState(1921);
+					expr(0);
 				match(T__18);
-				setState(1922);
-				expr(0);
-				setState(1923);
+					expr(0);
 				match(T__18);
-				setState(1924);
-				expr(0);
-				setState(1925);
+					expr(0);
 				match(T__18);
-				setState(1926);
-				expr(0);
-				setState(1927);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -5773,21 +4214,13 @@ public class mathParser extends Parser {
 				_localctx = new EXPONDIST_funContext(_localctx);
 				enterOuterAlt(_localctx, 155);
 				{
-				setState(1929);
 				match(EXPONDIST);
-				setState(1930);
 				match(T__16);
-				setState(1931);
-				expr(0);
-				setState(1932);
+					expr(0);
 				match(T__18);
-				setState(1933);
-				expr(0);
-				setState(1934);
+					expr(0);
 				match(T__18);
-				setState(1935);
-				expr(0);
-				setState(1936);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -5795,21 +4228,13 @@ public class mathParser extends Parser {
 				_localctx = new FDIST_funContext(_localctx);
 				enterOuterAlt(_localctx, 156);
 				{
-				setState(1938);
 				match(FDIST);
-				setState(1939);
 				match(T__16);
-				setState(1940);
-				expr(0);
-				setState(1941);
+					expr(0);
 				match(T__18);
-				setState(1942);
-				expr(0);
-				setState(1943);
+					expr(0);
 				match(T__18);
-				setState(1944);
-				expr(0);
-				setState(1945);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -5817,21 +4242,13 @@ public class mathParser extends Parser {
 				_localctx = new FINV_funContext(_localctx);
 				enterOuterAlt(_localctx, 157);
 				{
-				setState(1947);
 				match(FINV);
-				setState(1948);
 				match(T__16);
-				setState(1949);
-				expr(0);
-				setState(1950);
+					expr(0);
 				match(T__18);
-				setState(1951);
-				expr(0);
-				setState(1952);
+					expr(0);
 				match(T__18);
-				setState(1953);
-				expr(0);
-				setState(1954);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -5839,13 +4256,9 @@ public class mathParser extends Parser {
 				_localctx = new FISHER_funContext(_localctx);
 				enterOuterAlt(_localctx, 158);
 				{
-				setState(1956);
 				match(FISHER);
-				setState(1957);
 				match(T__16);
-				setState(1958);
-				expr(0);
-				setState(1959);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -5853,13 +4266,9 @@ public class mathParser extends Parser {
 				_localctx = new FISHERINV_funContext(_localctx);
 				enterOuterAlt(_localctx, 159);
 				{
-				setState(1961);
 				match(FISHERINV);
-				setState(1962);
 				match(T__16);
-				setState(1963);
-				expr(0);
-				setState(1964);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -5867,25 +4276,15 @@ public class mathParser extends Parser {
 				_localctx = new GAMMADIST_funContext(_localctx);
 				enterOuterAlt(_localctx, 160);
 				{
-				setState(1966);
 				match(GAMMADIST);
-				setState(1967);
 				match(T__16);
-				setState(1968);
-				expr(0);
-				setState(1969);
+					expr(0);
 				match(T__18);
-				setState(1970);
-				expr(0);
-				setState(1971);
+					expr(0);
 				match(T__18);
-				setState(1972);
-				expr(0);
-				setState(1973);
+					expr(0);
 				match(T__18);
-				setState(1974);
-				expr(0);
-				setState(1975);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -5893,21 +4292,13 @@ public class mathParser extends Parser {
 				_localctx = new GAMMAINV_funContext(_localctx);
 				enterOuterAlt(_localctx, 161);
 				{
-				setState(1977);
 				match(GAMMAINV);
-				setState(1978);
 				match(T__16);
-				setState(1979);
-				expr(0);
-				setState(1980);
+					expr(0);
 				match(T__18);
-				setState(1981);
-				expr(0);
-				setState(1982);
+					expr(0);
 				match(T__18);
-				setState(1983);
-				expr(0);
-				setState(1984);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -5915,13 +4306,9 @@ public class mathParser extends Parser {
 				_localctx = new GAMMALN_funContext(_localctx);
 				enterOuterAlt(_localctx, 162);
 				{
-				setState(1986);
 				match(GAMMALN);
-				setState(1987);
 				match(T__16);
-				setState(1988);
-				expr(0);
-				setState(1989);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -5929,25 +4316,15 @@ public class mathParser extends Parser {
 				_localctx = new HYPGEOMDIST_funContext(_localctx);
 				enterOuterAlt(_localctx, 163);
 				{
-				setState(1991);
 				match(HYPGEOMDIST);
-				setState(1992);
 				match(T__16);
-				setState(1993);
-				expr(0);
-				setState(1994);
+					expr(0);
 				match(T__18);
-				setState(1995);
-				expr(0);
-				setState(1996);
+					expr(0);
 				match(T__18);
-				setState(1997);
-				expr(0);
-				setState(1998);
+					expr(0);
 				match(T__18);
-				setState(1999);
-				expr(0);
-				setState(2000);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -5955,21 +4332,13 @@ public class mathParser extends Parser {
 				_localctx = new LOGINV_funContext(_localctx);
 				enterOuterAlt(_localctx, 164);
 				{
-				setState(2002);
 				match(LOGINV);
-				setState(2003);
 				match(T__16);
-				setState(2004);
-				expr(0);
-				setState(2005);
+					expr(0);
 				match(T__18);
-				setState(2006);
-				expr(0);
-				setState(2007);
+					expr(0);
 				match(T__18);
-				setState(2008);
-				expr(0);
-				setState(2009);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -5977,21 +4346,13 @@ public class mathParser extends Parser {
 				_localctx = new LOGNORMDIST_funContext(_localctx);
 				enterOuterAlt(_localctx, 165);
 				{
-				setState(2011);
 				match(LOGNORMDIST);
-				setState(2012);
 				match(T__16);
-				setState(2013);
-				expr(0);
-				setState(2014);
+					expr(0);
 				match(T__18);
-				setState(2015);
-				expr(0);
-				setState(2016);
+					expr(0);
 				match(T__18);
-				setState(2017);
-				expr(0);
-				setState(2018);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -5999,21 +4360,13 @@ public class mathParser extends Parser {
 				_localctx = new NEGBINOMDIST_funContext(_localctx);
 				enterOuterAlt(_localctx, 166);
 				{
-				setState(2020);
 				match(NEGBINOMDIST);
-				setState(2021);
 				match(T__16);
-				setState(2022);
-				expr(0);
-				setState(2023);
+					expr(0);
 				match(T__18);
-				setState(2024);
-				expr(0);
-				setState(2025);
+					expr(0);
 				match(T__18);
-				setState(2026);
-				expr(0);
-				setState(2027);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -6021,21 +4374,13 @@ public class mathParser extends Parser {
 				_localctx = new POISSON_funContext(_localctx);
 				enterOuterAlt(_localctx, 167);
 				{
-				setState(2029);
 				match(POISSON);
-				setState(2030);
 				match(T__16);
-				setState(2031);
-				expr(0);
-				setState(2032);
+					expr(0);
 				match(T__18);
-				setState(2033);
-				expr(0);
-				setState(2034);
+					expr(0);
 				match(T__18);
-				setState(2035);
-				expr(0);
-				setState(2036);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -6043,21 +4388,13 @@ public class mathParser extends Parser {
 				_localctx = new TDIST_funContext(_localctx);
 				enterOuterAlt(_localctx, 168);
 				{
-				setState(2038);
 				match(TDIST);
-				setState(2039);
 				match(T__16);
-				setState(2040);
-				expr(0);
-				setState(2041);
+					expr(0);
 				match(T__18);
-				setState(2042);
-				expr(0);
-				setState(2043);
+					expr(0);
 				match(T__18);
-				setState(2044);
-				expr(0);
-				setState(2045);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -6065,17 +4402,11 @@ public class mathParser extends Parser {
 				_localctx = new TINV_funContext(_localctx);
 				enterOuterAlt(_localctx, 169);
 				{
-				setState(2047);
 				match(TINV);
-				setState(2048);
 				match(T__16);
-				setState(2049);
-				expr(0);
-				setState(2050);
+					expr(0);
 				match(T__18);
-				setState(2051);
-				expr(0);
-				setState(2052);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -6083,25 +4414,15 @@ public class mathParser extends Parser {
 				_localctx = new WEIBULL_funContext(_localctx);
 				enterOuterAlt(_localctx, 170);
 				{
-				setState(2054);
 				match(WEIBULL);
-				setState(2055);
 				match(T__16);
-				setState(2056);
-				expr(0);
-				setState(2057);
+					expr(0);
 				match(T__18);
-				setState(2058);
-				expr(0);
-				setState(2059);
+					expr(0);
 				match(T__18);
-				setState(2060);
-				expr(0);
-				setState(2061);
+					expr(0);
 				match(T__18);
-				setState(2062);
-				expr(0);
-				setState(2063);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -6109,13 +4430,9 @@ public class mathParser extends Parser {
 				_localctx = new URLENCODE_funContext(_localctx);
 				enterOuterAlt(_localctx, 171);
 				{
-				setState(2065);
 				match(URLENCODE);
-				setState(2066);
 				match(T__16);
-				setState(2067);
-				expr(0);
-				setState(2068);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -6123,13 +4440,9 @@ public class mathParser extends Parser {
 				_localctx = new URLDECODE_funContext(_localctx);
 				enterOuterAlt(_localctx, 172);
 				{
-				setState(2070);
 				match(URLDECODE);
-				setState(2071);
 				match(T__16);
-				setState(2072);
-				expr(0);
-				setState(2073);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -6137,13 +4450,9 @@ public class mathParser extends Parser {
 				_localctx = new HTMLENCODE_funContext(_localctx);
 				enterOuterAlt(_localctx, 173);
 				{
-				setState(2075);
 				match(HTMLENCODE);
-				setState(2076);
 				match(T__16);
-				setState(2077);
-				expr(0);
-				setState(2078);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -6151,13 +4460,9 @@ public class mathParser extends Parser {
 				_localctx = new HTMLDECODE_funContext(_localctx);
 				enterOuterAlt(_localctx, 174);
 				{
-				setState(2080);
 				match(HTMLDECODE);
-				setState(2081);
 				match(T__16);
-				setState(2082);
-				expr(0);
-				setState(2083);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -6165,25 +4470,18 @@ public class mathParser extends Parser {
 				_localctx = new BASE64TOTEXT_funContext(_localctx);
 				enterOuterAlt(_localctx, 175);
 				{
-				setState(2085);
 				match(BASE64TOTEXT);
-				setState(2086);
 				match(T__16);
-				setState(2087);
-				expr(0);
-				setState(2090);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(2088);
 					match(T__18);
-					setState(2089);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(2092);
 				match(T__17);
 				}
 				break;
@@ -6191,25 +4489,18 @@ public class mathParser extends Parser {
 				_localctx = new BASE64URLTOTEXT_funContext(_localctx);
 				enterOuterAlt(_localctx, 176);
 				{
-				setState(2094);
 				match(BASE64URLTOTEXT);
-				setState(2095);
 				match(T__16);
-				setState(2096);
-				expr(0);
-				setState(2099);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(2097);
 					match(T__18);
-					setState(2098);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(2101);
 				match(T__17);
 				}
 				break;
@@ -6217,25 +4508,18 @@ public class mathParser extends Parser {
 				_localctx = new TEXTTOBASE64_funContext(_localctx);
 				enterOuterAlt(_localctx, 177);
 				{
-				setState(2103);
 				match(TEXTTOBASE64);
-				setState(2104);
 				match(T__16);
-				setState(2105);
-				expr(0);
-				setState(2108);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(2106);
 					match(T__18);
-					setState(2107);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(2110);
 				match(T__17);
 				}
 				break;
@@ -6243,25 +4527,18 @@ public class mathParser extends Parser {
 				_localctx = new TEXTTOBASE64URL_funContext(_localctx);
 				enterOuterAlt(_localctx, 178);
 				{
-				setState(2112);
 				match(TEXTTOBASE64URL);
-				setState(2113);
 				match(T__16);
-				setState(2114);
-				expr(0);
-				setState(2117);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(2115);
 					match(T__18);
-					setState(2116);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(2119);
 				match(T__17);
 				}
 				break;
@@ -6269,17 +4546,11 @@ public class mathParser extends Parser {
 				_localctx = new REGEX_funContext(_localctx);
 				enterOuterAlt(_localctx, 179);
 				{
-				setState(2121);
 				match(REGEX);
-				setState(2122);
 				match(T__16);
-				setState(2123);
-				expr(0);
-				setState(2124);
+					expr(0);
 				match(T__18);
-				setState(2125);
-				expr(0);
-				setState(2126);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -6287,21 +4558,13 @@ public class mathParser extends Parser {
 				_localctx = new REGEXREPALCE_funContext(_localctx);
 				enterOuterAlt(_localctx, 180);
 				{
-				setState(2128);
 				match(REGEXREPALCE);
-				setState(2129);
 				match(T__16);
-				setState(2130);
-				expr(0);
-				setState(2131);
+					expr(0);
 				match(T__18);
-				setState(2132);
-				expr(0);
-				setState(2133);
+					expr(0);
 				match(T__18);
-				setState(2134);
-				expr(0);
-				setState(2135);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -6309,17 +4572,11 @@ public class mathParser extends Parser {
 				_localctx = new ISREGEX_funContext(_localctx);
 				enterOuterAlt(_localctx, 181);
 				{
-				setState(2137);
 				match(ISREGEX);
-				setState(2138);
 				match(T__16);
-				setState(2139);
-				expr(0);
-				setState(2140);
+					expr(0);
 				match(T__18);
-				setState(2141);
-				expr(0);
-				setState(2142);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -6327,11 +4584,8 @@ public class mathParser extends Parser {
 				_localctx = new GUID_funContext(_localctx);
 				enterOuterAlt(_localctx, 182);
 				{
-				setState(2144);
 				match(GUID);
-				setState(2145);
 				match(T__16);
-				setState(2146);
 				match(T__17);
 				}
 				break;
@@ -6339,25 +4593,18 @@ public class mathParser extends Parser {
 				_localctx = new MD5_funContext(_localctx);
 				enterOuterAlt(_localctx, 183);
 				{
-				setState(2147);
 				match(MD5);
-				setState(2148);
 				match(T__16);
-				setState(2149);
-				expr(0);
-				setState(2152);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(2150);
 					match(T__18);
-					setState(2151);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(2154);
 				match(T__17);
 				}
 				break;
@@ -6365,25 +4612,18 @@ public class mathParser extends Parser {
 				_localctx = new SHA1_funContext(_localctx);
 				enterOuterAlt(_localctx, 184);
 				{
-				setState(2156);
 				match(SHA1);
-				setState(2157);
 				match(T__16);
-				setState(2158);
-				expr(0);
-				setState(2161);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(2159);
 					match(T__18);
-					setState(2160);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(2163);
 				match(T__17);
 				}
 				break;
@@ -6391,25 +4631,18 @@ public class mathParser extends Parser {
 				_localctx = new SHA256_funContext(_localctx);
 				enterOuterAlt(_localctx, 185);
 				{
-				setState(2165);
 				match(SHA256);
-				setState(2166);
 				match(T__16);
-				setState(2167);
-				expr(0);
-				setState(2170);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(2168);
 					match(T__18);
-					setState(2169);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(2172);
 				match(T__17);
 				}
 				break;
@@ -6417,25 +4650,18 @@ public class mathParser extends Parser {
 				_localctx = new SHA512_funContext(_localctx);
 				enterOuterAlt(_localctx, 186);
 				{
-				setState(2174);
 				match(SHA512);
-				setState(2175);
 				match(T__16);
-				setState(2176);
-				expr(0);
-				setState(2179);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(2177);
 					match(T__18);
-					setState(2178);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(2181);
 				match(T__17);
 				}
 				break;
@@ -6443,25 +4669,18 @@ public class mathParser extends Parser {
 				_localctx = new CRC32_funContext(_localctx);
 				enterOuterAlt(_localctx, 187);
 				{
-				setState(2183);
 				match(CRC32);
-				setState(2184);
 				match(T__16);
-				setState(2185);
-				expr(0);
-				setState(2188);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(2186);
 					match(T__18);
-					setState(2187);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(2190);
 				match(T__17);
 				}
 				break;
@@ -6469,29 +4688,20 @@ public class mathParser extends Parser {
 				_localctx = new HMACMD5_funContext(_localctx);
 				enterOuterAlt(_localctx, 188);
 				{
-				setState(2192);
 				match(HMACMD5);
-				setState(2193);
 				match(T__16);
-				setState(2194);
-				expr(0);
-				setState(2195);
+					expr(0);
 				match(T__18);
-				setState(2196);
-				expr(0);
-				setState(2199);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(2197);
 					match(T__18);
-					setState(2198);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(2201);
 				match(T__17);
 				}
 				break;
@@ -6499,29 +4709,20 @@ public class mathParser extends Parser {
 				_localctx = new HMACSHA1_funContext(_localctx);
 				enterOuterAlt(_localctx, 189);
 				{
-				setState(2203);
 				match(HMACSHA1);
-				setState(2204);
 				match(T__16);
-				setState(2205);
-				expr(0);
-				setState(2206);
+					expr(0);
 				match(T__18);
-				setState(2207);
-				expr(0);
-				setState(2210);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(2208);
 					match(T__18);
-					setState(2209);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(2212);
 				match(T__17);
 				}
 				break;
@@ -6529,29 +4730,20 @@ public class mathParser extends Parser {
 				_localctx = new HMACSHA256_funContext(_localctx);
 				enterOuterAlt(_localctx, 190);
 				{
-				setState(2214);
 				match(HMACSHA256);
-				setState(2215);
 				match(T__16);
-				setState(2216);
-				expr(0);
-				setState(2217);
+					expr(0);
 				match(T__18);
-				setState(2218);
-				expr(0);
-				setState(2221);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(2219);
 					match(T__18);
-					setState(2220);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(2223);
 				match(T__17);
 				}
 				break;
@@ -6559,29 +4751,20 @@ public class mathParser extends Parser {
 				_localctx = new HMACSHA512_funContext(_localctx);
 				enterOuterAlt(_localctx, 191);
 				{
-				setState(2225);
 				match(HMACSHA512);
-				setState(2226);
 				match(T__16);
-				setState(2227);
-				expr(0);
-				setState(2228);
+					expr(0);
 				match(T__18);
-				setState(2229);
-				expr(0);
-				setState(2232);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(2230);
 					match(T__18);
-					setState(2231);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(2234);
 				match(T__17);
 				}
 				break;
@@ -6589,25 +4772,18 @@ public class mathParser extends Parser {
 				_localctx = new TRIMSTART_funContext(_localctx);
 				enterOuterAlt(_localctx, 192);
 				{
-				setState(2236);
 				match(TRIMSTART);
-				setState(2237);
 				match(T__16);
-				setState(2238);
-				expr(0);
-				setState(2241);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(2239);
 					match(T__18);
-					setState(2240);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(2243);
 				match(T__17);
 				}
 				break;
@@ -6615,25 +4791,18 @@ public class mathParser extends Parser {
 				_localctx = new TRIMEND_funContext(_localctx);
 				enterOuterAlt(_localctx, 193);
 				{
-				setState(2245);
 				match(TRIMEND);
-				setState(2246);
 				match(T__16);
-				setState(2247);
-				expr(0);
-				setState(2250);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(2248);
 					match(T__18);
-					setState(2249);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(2252);
 				match(T__17);
 				}
 				break;
@@ -6641,41 +4810,29 @@ public class mathParser extends Parser {
 				_localctx = new INDEXOF_funContext(_localctx);
 				enterOuterAlt(_localctx, 194);
 				{
-				setState(2254);
 				match(INDEXOF);
-				setState(2255);
 				match(T__16);
-				setState(2256);
-				expr(0);
-				setState(2257);
+					expr(0);
 				match(T__18);
-				setState(2258);
-				expr(0);
-				setState(2265);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(2259);
 					match(T__18);
-					setState(2260);
-					expr(0);
-					setState(2263);
+						expr(0);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 					if (_la==T__18) {
 						{
-						setState(2261);
 						match(T__18);
-						setState(2262);
-						expr(0);
+							expr(0);
 						}
 					}
 
 					}
 				}
 
-				setState(2267);
 				match(T__17);
 				}
 				break;
@@ -6683,41 +4840,29 @@ public class mathParser extends Parser {
 				_localctx = new LASTINDEXOF_funContext(_localctx);
 				enterOuterAlt(_localctx, 195);
 				{
-				setState(2269);
 				match(LASTINDEXOF);
-				setState(2270);
 				match(T__16);
-				setState(2271);
-				expr(0);
-				setState(2272);
+					expr(0);
 				match(T__18);
-				setState(2273);
-				expr(0);
-				setState(2280);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(2274);
 					match(T__18);
-					setState(2275);
-					expr(0);
-					setState(2278);
+						expr(0);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 					if (_la==T__18) {
 						{
-						setState(2276);
 						match(T__18);
-						setState(2277);
-						expr(0);
+							expr(0);
 						}
 					}
 
 					}
 				}
 
-				setState(2282);
 				match(T__17);
 				}
 				break;
@@ -6725,17 +4870,11 @@ public class mathParser extends Parser {
 				_localctx = new SPLIT_funContext(_localctx);
 				enterOuterAlt(_localctx, 196);
 				{
-				setState(2284);
 				match(SPLIT);
-				setState(2285);
 				match(T__16);
-				setState(2286);
-				expr(0);
-				setState(2287);
+					expr(0);
 				match(T__18);
-				setState(2288);
-				expr(0);
-				setState(2289);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -6743,29 +4882,23 @@ public class mathParser extends Parser {
 				_localctx = new JOIN_funContext(_localctx);
 				enterOuterAlt(_localctx, 197);
 				{
-				setState(2291);
 				match(JOIN);
-				setState(2292);
 				match(T__16);
-				setState(2293);
-				expr(0);
+					expr(0);
 				setState(2296); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				do {
 					{
 					{
-					setState(2294);
 					match(T__18);
-					setState(2295);
-					expr(0);
+						expr(0);
 					}
 					}
 					setState(2298); 
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				} while ( _la==T__18 );
-				setState(2300);
 				match(T__17);
 				}
 				break;
@@ -6773,29 +4906,20 @@ public class mathParser extends Parser {
 				_localctx = new SUBSTRING_funContext(_localctx);
 				enterOuterAlt(_localctx, 198);
 				{
-				setState(2302);
 				match(SUBSTRING);
-				setState(2303);
 				match(T__16);
-				setState(2304);
-				expr(0);
-				setState(2305);
+					expr(0);
 				match(T__18);
-				setState(2306);
-				expr(0);
-				setState(2309);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(2307);
 					match(T__18);
-					setState(2308);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(2311);
 				match(T__17);
 				}
 				break;
@@ -6803,29 +4927,20 @@ public class mathParser extends Parser {
 				_localctx = new STARTSWITH_funContext(_localctx);
 				enterOuterAlt(_localctx, 199);
 				{
-				setState(2313);
 				match(STARTSWITH);
-				setState(2314);
 				match(T__16);
-				setState(2315);
-				expr(0);
-				setState(2316);
+					expr(0);
 				match(T__18);
-				setState(2317);
-				expr(0);
-				setState(2320);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(2318);
 					match(T__18);
-					setState(2319);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(2322);
 				match(T__17);
 				}
 				break;
@@ -6833,29 +4948,20 @@ public class mathParser extends Parser {
 				_localctx = new ENDSWITH_funContext(_localctx);
 				enterOuterAlt(_localctx, 200);
 				{
-				setState(2324);
 				match(ENDSWITH);
-				setState(2325);
 				match(T__16);
-				setState(2326);
-				expr(0);
-				setState(2327);
+					expr(0);
 				match(T__18);
-				setState(2328);
-				expr(0);
-				setState(2331);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(2329);
 					match(T__18);
-					setState(2330);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(2333);
 				match(T__17);
 				}
 				break;
@@ -6863,13 +4969,9 @@ public class mathParser extends Parser {
 				_localctx = new ISNULLOREMPTY_funContext(_localctx);
 				enterOuterAlt(_localctx, 201);
 				{
-				setState(2335);
 				match(ISNULLOREMPTY);
-				setState(2336);
 				match(T__16);
-				setState(2337);
-				expr(0);
-				setState(2338);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -6877,13 +4979,9 @@ public class mathParser extends Parser {
 				_localctx = new ISNULLORWHITESPACE_funContext(_localctx);
 				enterOuterAlt(_localctx, 202);
 				{
-				setState(2340);
 				match(ISNULLORWHITESPACE);
-				setState(2341);
 				match(T__16);
-				setState(2342);
-				expr(0);
-				setState(2343);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -6891,37 +4989,27 @@ public class mathParser extends Parser {
 				_localctx = new REMOVESTART_funContext(_localctx);
 				enterOuterAlt(_localctx, 203);
 				{
-				setState(2345);
 				match(REMOVESTART);
-				setState(2346);
 				match(T__16);
-				setState(2347);
-				expr(0);
-				setState(2354);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(2348);
 					match(T__18);
-					setState(2349);
-					expr(0);
-					setState(2352);
+						expr(0);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 					if (_la==T__18) {
 						{
-						setState(2350);
 						match(T__18);
-						setState(2351);
-						expr(0);
+							expr(0);
 						}
 					}
 
 					}
 				}
 
-				setState(2356);
 				match(T__17);
 				}
 				break;
@@ -6929,37 +5017,27 @@ public class mathParser extends Parser {
 				_localctx = new REMOVEEND_funContext(_localctx);
 				enterOuterAlt(_localctx, 204);
 				{
-				setState(2358);
 				match(REMOVEEND);
-				setState(2359);
 				match(T__16);
-				setState(2360);
-				expr(0);
-				setState(2367);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(2361);
 					match(T__18);
-					setState(2362);
-					expr(0);
-					setState(2365);
+						expr(0);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 					if (_la==T__18) {
 						{
-						setState(2363);
 						match(T__18);
-						setState(2364);
-						expr(0);
+							expr(0);
 						}
 					}
 
 					}
 				}
 
-				setState(2369);
 				match(T__17);
 				}
 				break;
@@ -6967,13 +5045,9 @@ public class mathParser extends Parser {
 				_localctx = new JSON_funContext(_localctx);
 				enterOuterAlt(_localctx, 205);
 				{
-				setState(2371);
 				match(JSON);
-				setState(2372);
 				match(T__16);
-				setState(2373);
-				expr(0);
-				setState(2374);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -6981,33 +5055,22 @@ public class mathParser extends Parser {
 				_localctx = new VLOOKUP_funContext(_localctx);
 				enterOuterAlt(_localctx, 206);
 				{
-				setState(2376);
 				match(VLOOKUP);
-				setState(2377);
 				match(T__16);
-				setState(2378);
-				expr(0);
-				setState(2379);
+					expr(0);
 				match(T__18);
-				setState(2380);
-				expr(0);
-				setState(2381);
+					expr(0);
 				match(T__18);
-				setState(2382);
-				expr(0);
-				setState(2385);
+					expr(0);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__18) {
 					{
-					setState(2383);
 					match(T__18);
-					setState(2384);
-					expr(0);
+						expr(0);
 					}
 				}
 
-				setState(2387);
 				match(T__17);
 				}
 				break;
@@ -7015,21 +5078,13 @@ public class mathParser extends Parser {
 				_localctx = new LOOKUP_funContext(_localctx);
 				enterOuterAlt(_localctx, 207);
 				{
-				setState(2389);
 				match(LOOKUP);
-				setState(2390);
 				match(T__16);
-				setState(2391);
-				expr(0);
-				setState(2392);
+					expr(0);
 				match(T__18);
-				setState(2393);
-				expr(0);
-				setState(2394);
+					expr(0);
 				match(T__18);
-				setState(2395);
-				expr(0);
-				setState(2396);
+					expr(0);
 				match(T__17);
 				}
 				break;
@@ -7037,37 +5092,28 @@ public class mathParser extends Parser {
 				_localctx = new DiyFunction_funContext(_localctx);
 				enterOuterAlt(_localctx, 208);
 				{
-				setState(2398);
 				match(PARAMETER);
-				setState(2399);
 				match(T__16);
-				setState(2408);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__16) | (1L << T__19) | (1L << T__21) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (PARAMETER - 192)))) != 0)) {
 					{
-					setState(2400);
-					expr(0);
-					setState(2405);
+						expr(0);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 					while (_la==T__18) {
 						{
 						{
-						setState(2401);
 						match(T__18);
-						setState(2402);
-						expr(0);
+							expr(0);
 						}
 						}
-						setState(2407);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 					}
 					}
 				}
 
-				setState(2410);
 				match(T__17);
 				}
 				break;
@@ -7075,11 +5121,8 @@ public class mathParser extends Parser {
 				_localctx = new PARAMETER_funContext(_localctx);
 				enterOuterAlt(_localctx, 209);
 				{
-				setState(2411);
 				match(T__19);
-				setState(2412);
-				parameter();
-				setState(2413);
+					parameter();
 				match(T__20);
 				}
 				break;
@@ -7088,17 +5131,14 @@ public class mathParser extends Parser {
 				_localctx = new NUM_funContext(_localctx);
 				enterOuterAlt(_localctx, 210);
 				{
-				setState(2416);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==SUB) {
 					{
-					setState(2415);
 					match(SUB);
 					}
 				}
 
-				setState(2418);
 				match(NUM);
 				}
 				break;
@@ -7106,7 +5146,6 @@ public class mathParser extends Parser {
 				_localctx = new STRING_funContext(_localctx);
 				enterOuterAlt(_localctx, 211);
 				{
-				setState(2419);
 				match(STRING);
 				}
 				break;
@@ -7114,7 +5153,6 @@ public class mathParser extends Parser {
 				_localctx = new NULL_funContext(_localctx);
 				enterOuterAlt(_localctx, 212);
 				{
-				setState(2420);
 				match(NULL);
 				}
 				break;
@@ -7138,21 +5176,18 @@ public class mathParser extends Parser {
 		ParameterContext _localctx = new ParameterContext(_ctx, getState());
 		enterRule(_localctx, 6, RULE_parameter);
 		try {
-			setState(2425);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,153,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(2423);
-				expr(0);
+					expr(0);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(2424);
-				parameter2();
+					parameter2();
 				}
 				break;
 			}
@@ -7175,7 +5210,6 @@ public class mathParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(2427);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN) | (1L << SQRT) | (1L << TRUNC))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)) | (1L << (TEXT - 64)) | (1L << (TRIM - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)) | (1L << (LOGNORMDIST - 128)) | (1L << (NEGBINOMDIST - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (PARAMETER - 192)))) != 0)) ) {
 			_errHandler.recoverInline(this);
