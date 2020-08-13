@@ -93,7 +93,7 @@ public class JsonData implements IJsonWrapper {
         // object_list.Add(entry);
     }
 
-    // @SuppressWarnings("parameterized")
+    @SuppressWarnings("rawtypes") 
     private Collection EnsureCollection() {
         if (type == JsonType.Array)
             return (Collection) inst_array;

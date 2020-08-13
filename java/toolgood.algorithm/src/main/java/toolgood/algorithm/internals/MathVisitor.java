@@ -2316,6 +2316,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     static final String CN_NEGATIVE = "负";
     static final int MONEY_PRECISION = 2;
     static final String CN_ZEOR_FULL = "零元" + CN_FULL;
+    @SuppressWarnings("deprecation")
     private String F_base_ToChineseRMB(final BigDecimal  numberOfMoney) {
         StringBuffer sb = new StringBuffer();
         int signum = numberOfMoney.signum();

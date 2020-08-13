@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import toolgood.algorithm.AlgorithmEngine;
 
-@SuppressWarnings("deprecation")
+//@SuppressWarnings("deprecation")
 public class AlgorithmEngineTest_csharp {
 
     @Test

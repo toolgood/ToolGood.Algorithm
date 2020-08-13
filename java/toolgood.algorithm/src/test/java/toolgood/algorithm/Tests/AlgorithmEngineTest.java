@@ -19,9 +19,8 @@ public class AlgorithmEngineTest {
     {
         AlgorithmEngine engine = new AlgorithmEngine();
 
-        double t = 0.0;
         if (engine.Parse("1+2")) {
-            t = (double)engine.Evaluate().NumberValue();
+            double t = (double)engine.Evaluate().NumberValue();
         }
 
         int c = engine.TryEvaluate("2+3", 0);

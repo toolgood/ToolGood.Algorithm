@@ -26,13 +26,6 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
-
-    <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-core</artifactId>
-      <version>4.3.19.RELEASE</version>
-    </dependency>
  
      <dependency>
             <groupId>org.antlr.v4.runtime</groupId>
