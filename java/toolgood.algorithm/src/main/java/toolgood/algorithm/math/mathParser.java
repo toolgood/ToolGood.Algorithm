@@ -68,7 +68,43 @@ public class mathParser extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			 
+			null, "'*'", "'/'", "'%'", "'+'", "'&'", "'>'", "'>='", "'<'", "'<='", 
+			"'='", "'=='", "'!='", "'<>'", "'&&'", "'||'", "'.'", "'('", "')'", "','", 
+			"'['", "']'", "'{'", "'}'", "'-'", null, null, "'NULL'", "'IF'", "'IFERROR'", 
+			"'ISNUMBER'", "'ISTEXT'", "'ISERROR'", "'ISNONTEXT'", "'ISLOGICAL'", 
+			"'ISEVEN'", "'ISODD'", "'ISNULL'", "'ISNULLORERROR'", "'AND'", "'OR'", 
+			"'NOT'", "'TRUE'", "'FALSE'", "'E'", "'PI'", "'DEC2BIN'", "'DEC2HEX'", 
+			"'DEC2OCT'", "'HEX2BIN'", "'HEX2DEC'", "'HEX2OCT'", "'OCT2BIN'", "'OCT2DEC'", 
+			"'OCT2HEX'", "'BIN2OCT'", "'BIN2DEC'", "'BIN2HEX'", "'ABS'", "'QUOTIENT'", 
+			"'MOD'", "'SIGN'", "'SQRT'", "'TRUNC'", "'INT'", "'GCD'", "'LCM'", "'COMBIN'", 
+			"'PERMUT'", "'DEGREES'", "'RADIANS'", "'COS'", "'COSH'", "'SIN'", "'SINH'", 
+			"'TAN'", "'TANH'", "'ACOS'", "'ACOSH'", "'ASIN'", "'ASINH'", "'ATAN'", 
+			"'ATANH'", "'ATAN2'", "'ROUND'", "'ROUNDDOWN'", "'ROUNDUP'", "'CEILING'", 
+			"'FLOOR'", "'EVEN'", "'ODD'", "'MROUND'", "'RAND'", "'RANDBETWEEN'", 
+			"'FACT'", "'FACTDOUBLE'", "'POWER'", "'EXP'", "'LN'", "'LOG'", "'LOG10'", 
+			"'MULTINOMIAL'", "'PRODUCT'", "'SQRTPI'", "'SUMSQ'", "'ASC'", null, "'CHAR'", 
+			"'CLEAN'", "'CODE'", "'CONCATENATE'", "'EXACT'", "'FIND'", "'FIXED'", 
+			"'LEFT'", "'LEN'", null, "'MID'", "'PROPER'", "'REPLACE'", "'REPT'", 
+			"'RIGHT'", "'RMB'", "'SEARCH'", "'SUBSTITUTE'", "'T'", "'TEXT'", "'TRIM'", 
+			null, "'VALUE'", "'DATEVALUE'", "'TIMEVALUE'", "'DATE'", "'TIME'", "'NOW'", 
+			"'TODAY'", "'YEAR'", "'MONTH'", "'DAY'", "'HOUR'", "'MINUTE'", "'SECOND'", 
+			"'WEEKDAY'", "'DATEDIF'", "'DAYS360'", "'EDATE'", "'EOMONTH'", "'NETWORKDAYS'", 
+			"'WORKDAY'", "'WEEKNUM'", "'MAX'", "'MEDIAN'", "'MIN'", "'QUARTILE'", 
+			"'MODE'", "'LARGE'", "'SMALL'", "'PERCENTILE'", "'PERCENTRANK'", "'AVERAGE'", 
+			"'AVERAGEIF'", "'GEOMEAN'", "'HARMEAN'", "'COUNT'", "'COUNTIF'", "'SUM'", 
+			"'SUMIF'", "'AVEDEV'", "'STDEV'", "'STDEVP'", "'DEVSQ'", "'VAR'", "'VARP'", 
+			"'NORMDIST'", "'NORMINV'", "'NORMSDIST'", "'NORMSINV'", "'BETADIST'", 
+			"'BETAINV'", "'BINOMDIST'", "'EXPONDIST'", "'FDIST'", "'FINV'", "'FISHER'", 
+			"'FISHERINV'", "'GAMMADIST'", "'GAMMAINV'", "'GAMMALN'", "'HYPGEOMDIST'", 
+			"'LOGINV'", "'LOGNORMDIST'", "'NEGBINOMDIST'", "'POISSON'", "'TDIST'", 
+			"'TINV'", "'WEIBULL'", "'URLENCODE'", "'URLDECODE'", "'HTMLENCODE'", 
+			"'HTMLDECODE'", "'BASE64TOTEXT'", "'BASE64URLTOTEXT'", "'TEXTTOBASE64'", 
+			"'TEXTTOBASE64URL'", "'REGEX'", "'REGEXREPALCE'", null, "'GUID'", "'MD5'", 
+			"'SHA1'", "'SHA256'", "'SHA512'", "'CRC32'", "'HMACMD5'", "'HMACSHA1'", 
+			"'HMACSHA256'", "'HMACSHA512'", null, null, "'INDEXOF'", "'LASTINDEXOF'", 
+			"'SPLIT'", "'JOIN'", "'SUBSTRING'", "'STARTSWITH'", "'ENDSWITH'", "'ISNULLOREMPTY'", 
+			"'ISNULLORWHITESPACE'", "'REMOVESTART'", "'REMOVEEND'", "'JSON'", "'VLOOKUP'", 
+			"'LOOKUP'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
@@ -158,7 +194,6 @@ public class mathParser extends Parser {
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 
- 
 	public final ProgContext prog() throws RecognitionException {
 		ProgContext _localctx = new ProgContext(_ctx, getState());
 		enterRule(_localctx, 0, RULE_prog);
@@ -179,7 +214,7 @@ public class mathParser extends Parser {
 		}
 		return _localctx;
 	}
- 
+
 	public final ExprContext expr() throws RecognitionException {
 		return expr(0);
 	}
@@ -2484,7 +2519,6 @@ public class mathParser extends Parser {
 		return _localctx;
 	}
  
-
 	public final ExprContext expr2() throws RecognitionException {
 		ExprContext _localctx = new ExprContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_expr2);
@@ -7099,6 +7133,7 @@ public class mathParser extends Parser {
 		return _localctx;
 	}
 
+ 
 	public final ParameterContext parameter() throws RecognitionException {
 		ParameterContext _localctx = new ParameterContext(_ctx, getState());
 		enterRule(_localctx, 6, RULE_parameter);
@@ -7133,8 +7168,8 @@ public class mathParser extends Parser {
 		return _localctx;
 	}
  
-	public final ParameterContext parameter2() throws RecognitionException {
-		ParameterContext _localctx = new ParameterContext(_ctx, getState());
+	public final Parameter2Context parameter2() throws RecognitionException {
+		Parameter2Context _localctx = new Parameter2Context(_ctx, getState());
 		enterRule(_localctx, 8, RULE_parameter2);
 		int _la;
 		try {
