@@ -186,13 +186,13 @@ namespace ToolGood.Algorithm
         {
             _dict[key] = Operand.Create(obj);
         }
-        #region Date
+        #region MyDate
         /// <summary>
         /// 添加自定义参数
         /// </summary>
         /// <param name="key"></param>
         /// <param name="obj"></param>
-        public void AddParameter(string key, Date obj)
+        public void AddParameter(string key, MyDate obj)
         {
             _dict[key] = Operand.Create(obj);
         }
@@ -478,7 +478,7 @@ namespace ToolGood.Algorithm
             try {
                 if (Parse(exp)) {
                     var obj = Evaluate();
-                    obj = obj.ToDate("It can't be converted to date!");
+                    obj = obj.ToMyDate("It can't be converted to MyDate!");
                     if (obj.IsError) {
                         LastError = obj.ErrorMsg;
                         return def;
@@ -501,7 +501,7 @@ namespace ToolGood.Algorithm
             try {
                 if (Parse(exp)) {
                     var obj = Evaluate();
-                    obj = obj.ToDate("It can't be converted to date!");
+                    obj = obj.ToMyDate("It can't be converted to MyDate!");
                     if (obj.IsError) {
                         LastError = obj.ErrorMsg;
                         return def;

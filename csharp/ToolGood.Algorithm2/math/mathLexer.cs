@@ -21,10 +21,8 @@
 
 using System;
 using System.IO;
-using System.Text;
 using Antlr4.Runtime;
 using Antlr4.Runtime.Atn;
-using Antlr4.Runtime.Misc;
 using DFA = Antlr4.Runtime.Dfa.DFA;
 
 public partial class mathLexer : Lexer {
@@ -39,13 +37,7 @@ public partial class mathLexer : Lexer {
 	{
 		Interpreter = new LexerATNSimulator(this, _ATN, decisionToDFA, sharedContextCache);
 	}
-	public override IVocabulary Vocabulary
-	{
-		get
-		{
-			return null;
-		}
-	}
+	public override IVocabulary Vocabulary { get { return null; } }
 
 	public override string GrammarFileName { get { return null; } }
 

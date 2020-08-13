@@ -21,28 +21,14 @@
 
 using System;
 using System.IO;
-using System.Text;
-using System.Diagnostics;
-using System.Collections.Generic;
 using Antlr4.Runtime;
 using Antlr4.Runtime.Atn;
-using Antlr4.Runtime.Misc;
-using Antlr4.Runtime.Tree;
 using DFA = Antlr4.Runtime.Dfa.DFA;
 
 public partial class mathParser : Parser {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
-	 
-
-
-	public override IVocabulary Vocabulary
-	{
-		get
-		{
-			return null;
-		}
-	}
+	public override IVocabulary Vocabulary { get { return null; } }
 	public override string GrammarFileName { get { return null; } }
 
 	public override string[] RuleNames { get { return null; } }
@@ -56,10 +42,10 @@ public partial class mathParser : Parser {
 		}
 	}
 
-		public mathParser(ITokenStream input) : this(input, Console.Out, Console.Error) { }
+	public mathParser(ITokenStream input) : this(input, Console.Out, Console.Error) { }
 
-		public mathParser(ITokenStream input, TextWriter output, TextWriter errorOutput)
-		: base(input, output, errorOutput)
+	public mathParser(ITokenStream input, TextWriter output, TextWriter errorOutput)
+	: base(input, output, errorOutput)
 	{
 		Interpreter = new ParserATNSimulator(this, _ATN, decisionToDFA, sharedContextCache);
 	}
@@ -83,10 +69,6 @@ public partial class mathParser : Parser {
 		}
 		return _localctx;
 	}
-	 
-	public ExprContext expr() {
-		return expr(0);
-	}
 
 	private ExprContext expr(int _p) {
 		ParserRuleContext _parentctx = Context;
@@ -105,7 +87,7 @@ public partial class mathParser : Parser {
 			Context = _localctx;
 			_prevctx = _localctx;
 
-			State = 13; expr2();
+			expr2();
 			}
 			Context.Stop = TokenStream.LT(-1);
 			 
@@ -5369,10 +5351,6 @@ public partial class mathParser : Parser {
 			ExitRule();
 		}
 		return _localctx;
-	}
-
-	public override bool Sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
-		return true;
 	}
  
 	private static char[] _serializedATN = {
