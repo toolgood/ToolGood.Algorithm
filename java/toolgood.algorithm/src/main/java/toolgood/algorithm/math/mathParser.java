@@ -1,6 +1,6 @@
 package toolgood.algorithm.math;
 
-// Generated from math.g4 by ANTLR 4.8
+
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -251,7 +251,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new MulDiv_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 98))) throw new FailedPredicateException(this, "precpred(_ctx, 98)");
+						
 						((MulDiv_funContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__1) | (1L << T__2))) != 0)) ) {
@@ -269,7 +269,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new AddSub_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 97))) throw new FailedPredicateException(this, "precpred(_ctx, 97)");
+						
 						((AddSub_funContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__3) | (1L << T__4) | (1L << SUB))) != 0)) ) {
@@ -287,7 +287,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new Judge_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 96))) throw new FailedPredicateException(this, "precpred(_ctx, 96)");
+						
 						((Judge_funContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__5) | (1L << T__6) | (1L << T__7) | (1L << T__8) | (1L << T__9) | (1L << T__10) | (1L << T__11) | (1L << T__12))) != 0)) ) {
@@ -305,7 +305,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new AndOr_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 95))) throw new FailedPredicateException(this, "precpred(_ctx, 95)");
+						
 						((AndOr_funContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__13) | (1L << T__14) | (1L << AND) | (1L << OR))) != 0)) ) {
@@ -323,7 +323,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new ISNUMBER_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 94))) throw new FailedPredicateException(this, "precpred(_ctx, 94)");
+						
 						match(T__15);
 						match(ISNUMBER);
 						match(T__16);
@@ -334,7 +334,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new ISTEXT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 93))) throw new FailedPredicateException(this, "precpred(_ctx, 93)");
+						
 						match(T__15);
 						match(ISTEXT);
 						match(T__16);
@@ -345,7 +345,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new ISNONTEXT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 92))) throw new FailedPredicateException(this, "precpred(_ctx, 92)");
+						
 						match(T__15);
 						match(ISNONTEXT);
 						match(T__16);
@@ -356,7 +356,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new ISLOGICAL_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 91))) throw new FailedPredicateException(this, "precpred(_ctx, 91)");
+						
 						match(T__15);
 						match(ISLOGICAL);
 						match(T__16);
@@ -367,7 +367,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new ISEVEN_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 90))) throw new FailedPredicateException(this, "precpred(_ctx, 90)");
+						
 						match(T__15);
 						match(ISEVEN);
 						match(T__16);
@@ -378,7 +378,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new ISODD_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 89))) throw new FailedPredicateException(this, "precpred(_ctx, 89)");
+						
 						match(T__15);
 						match(ISODD);
 						match(T__16);
@@ -389,7 +389,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new ISERROR_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 88))) throw new FailedPredicateException(this, "precpred(_ctx, 88)");
+						
 						match(T__15);
 						match(ISERROR);
 						match(T__16);
@@ -408,7 +408,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new ISNULL_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 87))) throw new FailedPredicateException(this, "precpred(_ctx, 87)");
+						
 						match(T__15);
 						match(ISNULL);
 						match(T__16);
@@ -427,7 +427,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new ISNULLORERROR_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 86))) throw new FailedPredicateException(this, "precpred(_ctx, 86)");
+						
 						match(T__15);
 						match(ISNULLORERROR);
 						match(T__16);
@@ -446,7 +446,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new DEC2BIN_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 85))) throw new FailedPredicateException(this, "precpred(_ctx, 85)");
+						
 						match(T__15);
 						match(DEC2BIN);
 						{
@@ -467,7 +467,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new DEC2HEX_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 84))) throw new FailedPredicateException(this, "precpred(_ctx, 84)");
+						
 						match(T__15);
 						match(DEC2HEX);
 						{
@@ -488,7 +488,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new DEC2OCT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 83))) throw new FailedPredicateException(this, "precpred(_ctx, 83)");
+						
 						match(T__15);
 						match(DEC2OCT);
 						{
@@ -509,7 +509,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new HEX2BIN_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 82))) throw new FailedPredicateException(this, "precpred(_ctx, 82)");
+						
 						match(T__15);
 						match(HEX2BIN);
 						{
@@ -530,7 +530,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new HEX2DEC_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 81))) throw new FailedPredicateException(this, "precpred(_ctx, 81)");
+						
 						match(T__15);
 						match(HEX2DEC);
 						{
@@ -543,7 +543,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new HEX2OCT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 80))) throw new FailedPredicateException(this, "precpred(_ctx, 80)");
+						
 						match(T__15);
 						match(HEX2OCT);
 						{
@@ -564,7 +564,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new OCT2BIN_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 79))) throw new FailedPredicateException(this, "precpred(_ctx, 79)");
+						
 						match(T__15);
 						match(OCT2BIN);
 						{
@@ -585,7 +585,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new OCT2DEC_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 78))) throw new FailedPredicateException(this, "precpred(_ctx, 78)");
+						
 						match(T__15);
 						match(OCT2DEC);
 						{
@@ -598,7 +598,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new OCT2HEX_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 77))) throw new FailedPredicateException(this, "precpred(_ctx, 77)");
+						
 						match(T__15);
 						match(OCT2HEX);
 						{
@@ -619,7 +619,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new BIN2OCT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 76))) throw new FailedPredicateException(this, "precpred(_ctx, 76)");
+						
 						match(T__15);
 						match(BIN2OCT);
 						{
@@ -640,7 +640,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new BIN2DEC_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 75))) throw new FailedPredicateException(this, "precpred(_ctx, 75)");
+						
 						match(T__15);
 						match(BIN2DEC);
 						{
@@ -653,7 +653,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new BIN2HEX_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 74))) throw new FailedPredicateException(this, "precpred(_ctx, 74)");
+						
 						match(T__15);
 						match(BIN2HEX);
 						{
@@ -674,7 +674,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new INT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 73))) throw new FailedPredicateException(this, "precpred(_ctx, 73)");
+						
 						match(T__15);
 						match(INT);
 						match(T__16);
@@ -685,7 +685,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new ASC_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 72))) throw new FailedPredicateException(this, "precpred(_ctx, 72)");
+						
 						match(T__15);
 						match(ASC);
 						match(T__16);
@@ -696,7 +696,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new JIS_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 71))) throw new FailedPredicateException(this, "precpred(_ctx, 71)");
+						
 						match(T__15);
 						match(JIS);
 						match(T__16);
@@ -707,7 +707,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new CHAR_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 70))) throw new FailedPredicateException(this, "precpred(_ctx, 70)");
+						
 						match(T__15);
 						match(CHAR);
 						match(T__16);
@@ -718,7 +718,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new CLEAN_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 69))) throw new FailedPredicateException(this, "precpred(_ctx, 69)");
+						
 						match(T__15);
 						match(CLEAN);
 						match(T__16);
@@ -729,7 +729,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new CODE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 68))) throw new FailedPredicateException(this, "precpred(_ctx, 68)");
+						
 						match(T__15);
 						match(CODE);
 						match(T__16);
@@ -740,7 +740,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new CONCATENATE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 67))) throw new FailedPredicateException(this, "precpred(_ctx, 67)");
+						
 						match(T__15);
 						match(CONCATENATE);
 						match(T__16);
@@ -771,7 +771,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new EXACT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 66))) throw new FailedPredicateException(this, "precpred(_ctx, 66)");
+						
 						match(T__15);
 						match(EXACT);
 						match(T__16);
@@ -783,7 +783,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new FIND_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 65))) throw new FailedPredicateException(this, "precpred(_ctx, 65)");
+						
 						match(T__15);
 						match(FIND);
 						match(T__16);
@@ -804,7 +804,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new LEFT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 64))) throw new FailedPredicateException(this, "precpred(_ctx, 64)");
+						
 						match(T__15);
 						match(LEFT);
 						match(T__16);
@@ -823,7 +823,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new LEN_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 63))) throw new FailedPredicateException(this, "precpred(_ctx, 63)");
+						
 						match(T__15);
 						match(LEN);
 						match(T__16);
@@ -834,7 +834,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new LOWER_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 62))) throw new FailedPredicateException(this, "precpred(_ctx, 62)");
+						
 						match(T__15);
 						match(LOWER);
 						match(T__16);
@@ -845,7 +845,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new MID_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 61))) throw new FailedPredicateException(this, "precpred(_ctx, 61)");
+						
 						match(T__15);
 						match(MID);
 						match(T__16);
@@ -859,7 +859,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new PROPER_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 60))) throw new FailedPredicateException(this, "precpred(_ctx, 60)");
+						
 						match(T__15);
 						match(PROPER);
 						match(T__16);
@@ -870,7 +870,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new REPLACE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 59))) throw new FailedPredicateException(this, "precpred(_ctx, 59)");
+						
 						match(T__15);
 						match(REPLACE);
 						match(T__16);
@@ -893,7 +893,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new REPT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 58))) throw new FailedPredicateException(this, "precpred(_ctx, 58)");
+						
 						match(T__15);
 						match(REPT);
 						match(T__16);
@@ -905,7 +905,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new RIGHT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 57))) throw new FailedPredicateException(this, "precpred(_ctx, 57)");
+						
 						match(T__15);
 						match(RIGHT);
 						match(T__16);
@@ -924,7 +924,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new RMB_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 56))) throw new FailedPredicateException(this, "precpred(_ctx, 56)");
+						
 						match(T__15);
 						match(RMB);
 						match(T__16);
@@ -935,7 +935,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new SEARCH_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 55))) throw new FailedPredicateException(this, "precpred(_ctx, 55)");
+						
 						match(T__15);
 						match(SEARCH);
 						match(T__16);
@@ -956,7 +956,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new SUBSTITUTE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 54))) throw new FailedPredicateException(this, "precpred(_ctx, 54)");
+						
 						match(T__15);
 						match(SUBSTITUTE);
 						match(T__16);
@@ -979,7 +979,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new T_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 53))) throw new FailedPredicateException(this, "precpred(_ctx, 53)");
+						
 						match(T__15);
 						match(T);
 						match(T__16);
@@ -990,7 +990,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new TEXT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 52))) throw new FailedPredicateException(this, "precpred(_ctx, 52)");
+						
 						match(T__15);
 						match(TEXT);
 						match(T__16);
@@ -1002,7 +1002,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new TRIM_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 51))) throw new FailedPredicateException(this, "precpred(_ctx, 51)");
+						
 						match(T__15);
 						match(TRIM);
 						match(T__16);
@@ -1013,7 +1013,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new UPPER_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 50))) throw new FailedPredicateException(this, "precpred(_ctx, 50)");
+						
 						match(T__15);
 						match(UPPER);
 						match(T__16);
@@ -1024,7 +1024,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new VALUE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 49))) throw new FailedPredicateException(this, "precpred(_ctx, 49)");
+						
 						match(T__15);
 						match(VALUE);
 						match(T__16);
@@ -1035,7 +1035,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new DATEVALUE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 48))) throw new FailedPredicateException(this, "precpred(_ctx, 48)");
+						
 						match(T__15);
 						match(DATEVALUE);
 						match(T__16);
@@ -1046,7 +1046,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new TIMEVALUE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 47))) throw new FailedPredicateException(this, "precpred(_ctx, 47)");
+						
 						match(T__15);
 						match(TIMEVALUE);
 						match(T__16);
@@ -1057,7 +1057,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new YEAR_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 46))) throw new FailedPredicateException(this, "precpred(_ctx, 46)");
+						
 						match(T__15);
 						match(YEAR);
 						_errHandler.sync(this);
@@ -1075,7 +1075,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new MONTH_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 45))) throw new FailedPredicateException(this, "precpred(_ctx, 45)");
+						
 						match(T__15);
 						match(MONTH);
 						_errHandler.sync(this);
@@ -1093,7 +1093,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new DAY_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 44))) throw new FailedPredicateException(this, "precpred(_ctx, 44)");
+						
 						match(T__15);
 						match(DAY);
 						_errHandler.sync(this);
@@ -1111,7 +1111,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new HOUR_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 43))) throw new FailedPredicateException(this, "precpred(_ctx, 43)");
+						
 						match(T__15);
 						match(HOUR);
 						_errHandler.sync(this);
@@ -1129,7 +1129,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new MINUTE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 42))) throw new FailedPredicateException(this, "precpred(_ctx, 42)");
+						
 						match(T__15);
 						match(MINUTE);
 						_errHandler.sync(this);
@@ -1147,7 +1147,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new SECOND_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 41))) throw new FailedPredicateException(this, "precpred(_ctx, 41)");
+						
 						match(T__15);
 						match(SECOND);
 						_errHandler.sync(this);
@@ -1165,7 +1165,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new URLENCODE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 40))) throw new FailedPredicateException(this, "precpred(_ctx, 40)");
+						
 						match(T__15);
 						match(URLENCODE);
 						match(T__16);
@@ -1176,7 +1176,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new URLDECODE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 39))) throw new FailedPredicateException(this, "precpred(_ctx, 39)");
+						
 						match(T__15);
 						match(URLDECODE);
 						match(T__16);
@@ -1187,7 +1187,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new HTMLENCODE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 38))) throw new FailedPredicateException(this, "precpred(_ctx, 38)");
+						
 						match(T__15);
 						match(HTMLENCODE);
 						match(T__16);
@@ -1198,7 +1198,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new HTMLDECODE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 37))) throw new FailedPredicateException(this, "precpred(_ctx, 37)");
+						
 						match(T__15);
 						match(HTMLDECODE);
 						match(T__16);
@@ -1209,7 +1209,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new BASE64TOTEXT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 36))) throw new FailedPredicateException(this, "precpred(_ctx, 36)");
+						
 						match(T__15);
 						match(BASE64TOTEXT);
 						match(T__16);
@@ -1228,7 +1228,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new BASE64URLTOTEXT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 35))) throw new FailedPredicateException(this, "precpred(_ctx, 35)");
+						
 						match(T__15);
 						match(BASE64URLTOTEXT);
 						match(T__16);
@@ -1247,7 +1247,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new TEXTTOBASE64_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 34))) throw new FailedPredicateException(this, "precpred(_ctx, 34)");
+						
 						match(T__15);
 						match(TEXTTOBASE64);
 						match(T__16);
@@ -1266,7 +1266,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new TEXTTOBASE64URL_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 33))) throw new FailedPredicateException(this, "precpred(_ctx, 33)");
+						
 						match(T__15);
 						match(TEXTTOBASE64URL);
 						match(T__16);
@@ -1285,7 +1285,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new REGEX_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 32))) throw new FailedPredicateException(this, "precpred(_ctx, 32)");
+						
 						match(T__15);
 						match(REGEX);
 						match(T__16);
@@ -1297,7 +1297,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new REGEXREPALCE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 31))) throw new FailedPredicateException(this, "precpred(_ctx, 31)");
+						
 						match(T__15);
 						match(REGEXREPALCE);
 						match(T__16);
@@ -1311,7 +1311,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new ISREGEX_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 30))) throw new FailedPredicateException(this, "precpred(_ctx, 30)");
+						
 						match(T__15);
 						match(ISREGEX);
 						match(T__16);
@@ -1323,7 +1323,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new MD5_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 29))) throw new FailedPredicateException(this, "precpred(_ctx, 29)");
+						
 						match(T__15);
 						match(MD5);
 						match(T__16);
@@ -1342,7 +1342,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new SHA1_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 28))) throw new FailedPredicateException(this, "precpred(_ctx, 28)");
+						
 						match(T__15);
 						match(SHA1);
 						match(T__16);
@@ -1361,7 +1361,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new SHA256_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 27))) throw new FailedPredicateException(this, "precpred(_ctx, 27)");
+						
 						match(T__15);
 						match(SHA256);
 						match(T__16);
@@ -1380,7 +1380,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new SHA512_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 26))) throw new FailedPredicateException(this, "precpred(_ctx, 26)");
+						
 						match(T__15);
 						match(SHA512);
 						match(T__16);
@@ -1399,7 +1399,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new CRC32_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 25))) throw new FailedPredicateException(this, "precpred(_ctx, 25)");
+						
 						match(T__15);
 						match(CRC32);
 						match(T__16);
@@ -1418,7 +1418,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new HMACMD5_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 24))) throw new FailedPredicateException(this, "precpred(_ctx, 24)");
+						
 						match(T__15);
 						match(HMACMD5);
 						match(T__16);
@@ -1439,7 +1439,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new HMACSHA1_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 23))) throw new FailedPredicateException(this, "precpred(_ctx, 23)");
+						
 						match(T__15);
 						match(HMACSHA1);
 						match(T__16);
@@ -1460,7 +1460,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new HMACSHA256_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 22))) throw new FailedPredicateException(this, "precpred(_ctx, 22)");
+						
 						match(T__15);
 						match(HMACSHA256);
 						match(T__16);
@@ -1481,7 +1481,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new HMACSHA512_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 21))) throw new FailedPredicateException(this, "precpred(_ctx, 21)");
+						
 						match(T__15);
 						match(HMACSHA512);
 						match(T__16);
@@ -1502,7 +1502,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new TRIMSTART_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 20))) throw new FailedPredicateException(this, "precpred(_ctx, 20)");
+						
 						match(T__15);
 						match(TRIMSTART);
 						match(T__16);
@@ -1521,7 +1521,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new TRIMEND_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 19))) throw new FailedPredicateException(this, "precpred(_ctx, 19)");
+						
 						match(T__15);
 						match(TRIMEND);
 						match(T__16);
@@ -1540,7 +1540,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new INDEXOF_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 18))) throw new FailedPredicateException(this, "precpred(_ctx, 18)");
+						
 						match(T__15);
 						match(INDEXOF);
 						match(T__16);
@@ -1570,7 +1570,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new LASTINDEXOF_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 17))) throw new FailedPredicateException(this, "precpred(_ctx, 17)");
+						
 						match(T__15);
 						match(LASTINDEXOF);
 						match(T__16);
@@ -1600,7 +1600,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new SPLIT_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 16))) throw new FailedPredicateException(this, "precpred(_ctx, 16)");
+						
 						match(T__15);
 						match(SPLIT);
 						match(T__16);
@@ -1612,7 +1612,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new JOIN_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 15))) throw new FailedPredicateException(this, "precpred(_ctx, 15)");
+						
 						match(T__15);
 						match(JOIN);
 						match(T__16);
@@ -1636,7 +1636,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new SUBSTRING_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 14))) throw new FailedPredicateException(this, "precpred(_ctx, 14)");
+						
 						match(T__15);
 						match(SUBSTRING);
 						match(T__16);
@@ -1657,7 +1657,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new STARTSWITH_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 13))) throw new FailedPredicateException(this, "precpred(_ctx, 13)");
+						
 						match(T__15);
 						match(STARTSWITH);
 						match(T__16);
@@ -1678,7 +1678,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new ENDSWITH_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 12))) throw new FailedPredicateException(this, "precpred(_ctx, 12)");
+						
 						match(T__15);
 						match(ENDSWITH);
 						match(T__16);
@@ -1699,7 +1699,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new ISNULLOREMPTY_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 11))) throw new FailedPredicateException(this, "precpred(_ctx, 11)");
+						
 						match(T__15);
 						match(ISNULLOREMPTY);
 						match(T__16);
@@ -1710,7 +1710,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new ISNULLORWHITESPACE_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 10))) throw new FailedPredicateException(this, "precpred(_ctx, 10)");
+						
 						match(T__15);
 						match(ISNULLORWHITESPACE);
 						match(T__16);
@@ -1721,7 +1721,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new REMOVESTART_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 9))) throw new FailedPredicateException(this, "precpred(_ctx, 9)");
+						
 						match(T__15);
 						match(REMOVESTART);
 						match(T__16);
@@ -1742,7 +1742,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new REMOVEEND_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 8))) throw new FailedPredicateException(this, "precpred(_ctx, 8)");
+						
 						match(T__15);
 						match(REMOVEEND);
 						match(T__16);
@@ -1763,7 +1763,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new JSON_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 7))) throw new FailedPredicateException(this, "precpred(_ctx, 7)");
+						
 						match(T__15);
 						match(JSON);
 						match(T__16);
@@ -1774,7 +1774,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new VLOOKUP_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");
+						
 						match(T__15);
 						match(VLOOKUP);
 						match(T__16);
@@ -1797,7 +1797,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new LOOKUP_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
+						
 						match(T__15);
 						match(LOOKUP);
 						match(T__16);
@@ -1811,7 +1811,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new DiyFunction_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
+						
 						match(T__15);
 						match(PARAMETER);
 						match(T__16);
@@ -1842,7 +1842,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new GetJsonValue_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
+						
 						match(T__19);
 							parameter();
 						match(T__20);
@@ -1852,7 +1852,7 @@ public class mathParser extends Parser {
 						{
 						_localctx = new GetJsonValue_funContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
+						
 						match(T__15);
 							parameter2();
 						}
