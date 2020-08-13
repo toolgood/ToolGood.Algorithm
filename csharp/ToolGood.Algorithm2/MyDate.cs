@@ -9,7 +9,32 @@ namespace ToolGood.Algorithm
     /// </summary>
     public class MyDate
     {
-        private MyDate() { }
+        /// <summary>
+        /// 年
+        /// </summary>
+        public int? Year { get; private set; }
+        /// <summary>
+        /// 月
+        /// </summary>
+        public int? Month { get; private set; }
+        /// <summary>
+        /// 日
+        /// </summary>
+        public int? Day { get; private set; }
+        /// <summary>
+        /// 时
+        /// </summary>
+        public int Hour { get; private set; }
+        /// <summary>
+        /// 分
+        /// </summary>
+        public int Minute { get; private set; }
+        /// <summary>
+        /// 秒
+        /// </summary>
+        public int Second { get; private set; }
+
+        private MyDate() {}
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -47,6 +72,8 @@ namespace ToolGood.Algorithm
         /// <param name="dt">时间</param>
         public MyDate(TimeSpan dt)
         {
+            Year = null;
+            Month = null;
             Day = dt.Days;
             Hour = dt.Hours;
             Minute = dt.Minutes;
@@ -65,6 +92,8 @@ namespace ToolGood.Algorithm
                 Month = start.Month;
                 Day = start.Day;
             } else {
+                Year = null;
+                Month = null;
                 Day = days;
             }
             double d = num - days;
@@ -72,6 +101,11 @@ namespace ToolGood.Algorithm
             Minute = (int)((d * 24 - Hour) * 60.0);
             Second = (int)(((d * 24 - Hour) * 60.0 - Minute) * 60.0);
         }
+        /// <summary>
+        /// 字符串转MyDate
+        /// </summary>
+        /// <param name="txt"></param>
+        /// <returns></returns>
         public static MyDate Parse(String txt)
         {
             String t = txt.Trim();
@@ -132,32 +166,6 @@ namespace ToolGood.Algorithm
         }
 
 
-        /// <summary>
-        /// 年
-        /// </summary>
-        public int? Year { get; set; }
-        /// <summary>
-        /// 月
-        /// </summary>
-        public int? Month { get; set; }
-        /// <summary>
-        /// 日
-        /// </summary>
-        public int? Day { get; set; }
-        /// <summary>
-        /// 时
-        /// </summary>
-        public int Hour { get; set; }
-        /// <summary>
-        /// 分
-        /// </summary>
-        public int Minute { get; set; }
-        /// <summary>
-        /// 秒
-        /// </summary>
-        public int Second { get; set; }
-
-
 
         public override string ToString()
         {
@@ -201,6 +209,23 @@ namespace ToolGood.Algorithm
                 return ((DateTime)this).ToString(f);
             }
             return ((DateTime)this).ToString(f);
+        }
+
+        /// <summary>
+        /// 转DateTime
+        /// </summary>
+        /// <returns></returns>
+        public DateTime ToDateTime()
+        {
+            return new DateTime(Year ?? 0, Month ?? 0, Day ?? 0, Hour, Minute, Second);
+        }
+        /// <summary>
+        /// 转TimeSpan
+        /// </summary>
+        /// <returns></returns>
+        public TimeSpan ToTimeSpan()
+        {
+            return new TimeSpan(Day ?? 0, Hour, Minute, Second);
         }
 
         #region operator
