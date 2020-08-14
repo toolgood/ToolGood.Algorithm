@@ -348,7 +348,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitISNUMBER_fun(mathParser.ISNUMBER_funContext context)
         {
-            var firstValue = this.Visit(context.expr());
+            var firstValue = this.Visit(context.expr2());
             if (firstValue.IsError) { return firstValue; }
 
             if (firstValue.Type == OperandType.NUMBER) {
@@ -358,7 +358,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitISTEXT_fun(mathParser.ISTEXT_funContext context)
         {
-            var firstValue = this.Visit(context.expr());
+            var firstValue = this.Visit(context.expr2());
             if (firstValue.IsError) { return firstValue; }
 
             if (firstValue.Type == OperandType.STRING) {
@@ -419,7 +419,7 @@ namespace ToolGood.Algorithm
 
         public Operand VisitISEVEN_fun(mathParser.ISEVEN_funContext context)
         {
-            var firstValue = this.Visit(context.expr());
+            var firstValue = this.Visit(context.expr2());
             if (firstValue.Type == OperandType.NUMBER) {
                 if (firstValue.IntValue % 2 == 0) {
                     return Operand.True;
@@ -430,7 +430,7 @@ namespace ToolGood.Algorithm
 
         public Operand VisitISLOGICAL_fun(mathParser.ISLOGICAL_funContext context)
         {
-            var firstValue = this.Visit(context.expr());
+            var firstValue = this.Visit(context.expr2());
             if (firstValue.Type == OperandType.BOOLEAN) {
                 return Operand.True;
             }
@@ -439,7 +439,7 @@ namespace ToolGood.Algorithm
 
         public Operand VisitISODD_fun(mathParser.ISODD_funContext context)
         {
-            var firstValue = this.Visit(context.expr());
+            var firstValue = this.Visit(context.expr2());
             if (firstValue.Type == OperandType.NUMBER) {
                 if (firstValue.IntValue % 2 == 1) {
                     return Operand.True;
@@ -450,7 +450,7 @@ namespace ToolGood.Algorithm
 
         public Operand VisitISNONTEXT_fun(mathParser.ISNONTEXT_funContext context)
         {
-            var firstValue = this.Visit(context.expr());
+            var firstValue = this.Visit(context.expr2());
             if (firstValue.Type != OperandType.STRING) {
                 return Operand.True;
             }
@@ -497,7 +497,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitNOT_fun(mathParser.NOT_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToBoolean("Function NOT parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToBoolean("Function NOT parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             return Operand.Create(!firstValue.BooleanValue);
         }
@@ -526,7 +526,7 @@ namespace ToolGood.Algorithm
 
         public Operand VisitABS_fun(mathParser.ABS_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function ABS parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function ABS parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(Math.Abs(firstValue.NumberValue));
@@ -560,27 +560,27 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitSIGN_fun(mathParser.SIGN_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function SIGN parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function SIGN parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(Math.Sign(firstValue.NumberValue));
         }
         public Operand VisitSQRT_fun(mathParser.SQRT_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function SQRT parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function SQRT parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(Math.Sqrt(firstValue.NumberValue));
         }
         public Operand VisitTRUNC_fun(mathParser.TRUNC_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function TRUNC parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function TRUNC parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             return Operand.Create((int)(firstValue.NumberValue));
         }
         public Operand VisitINT_fun(mathParser.INT_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function INT parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function INT parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             return Operand.Create((int)(firstValue.NumberValue));
         }
@@ -675,7 +675,7 @@ namespace ToolGood.Algorithm
         #region trigonometric functions
         public Operand VisitDEGREES_fun(mathParser.DEGREES_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function DEGREES parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function DEGREES parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             var z = firstValue.NumberValue;
@@ -684,7 +684,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitRADIANS_fun(mathParser.RADIANS_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function RADIANS parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function RADIANS parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             var r = firstValue.NumberValue / 180 * Math.PI;
@@ -692,44 +692,44 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitCOS_fun(mathParser.COS_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function COS parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function COS parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             return Operand.Create(Math.Cos(firstValue.NumberValue));
         }
         public Operand VisitCOSH_fun(mathParser.COSH_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function COSH parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function COSH parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(Math.Cosh(firstValue.NumberValue));
         }
         public Operand VisitSIN_fun(mathParser.SIN_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function SIN parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function SIN parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             return Operand.Create(Math.Sin(firstValue.NumberValue));
         }
         public Operand VisitSINH_fun(mathParser.SINH_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function SINH parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function SINH parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             return Operand.Create(Math.Sinh(firstValue.NumberValue));
         }
         public Operand VisitTAN_fun(mathParser.TAN_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function TAN parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function TAN parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             return Operand.Create(Math.Tan(firstValue.NumberValue));
         }
         public Operand VisitTANH_fun(mathParser.TANH_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function TANH parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function TANH parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             return Operand.Create(Math.Tanh(firstValue.NumberValue));
         }
         public Operand VisitACOS_fun(mathParser.ACOS_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function ACOS parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function ACOS parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             var x = firstValue.NumberValue;
             if (x < -1 && x > 1) {
@@ -739,7 +739,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitACOSH_fun(mathParser.ACOSH_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function ACOSH parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function ACOSH parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             var z = firstValue.NumberValue;
@@ -755,7 +755,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitASIN_fun(mathParser.ASIN_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function ASIN parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function ASIN parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             var x = firstValue.NumberValue;
             if (x < -1 && x > 1) {
@@ -765,7 +765,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitASINH_fun(mathParser.ASINH_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function ASINH parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function ASINH parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 #if NETSTANDARD2_1
             return Operand.Create(Math.Asinh(firstValue.NumberValue));
@@ -777,14 +777,14 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitATAN_fun(mathParser.ATAN_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function ATAN parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function ATAN parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(Math.Atan(firstValue.NumberValue));
         }
         public Operand VisitATANH_fun(mathParser.ATANH_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function ATANH parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function ATANH parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             var x = firstValue.NumberValue;
             if (x >= 1 || x <= -1) {
@@ -859,7 +859,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitBIN2DEC_fun(mathParser.BIN2DEC_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToText("Function BIN2DEC parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToText("Function BIN2DEC parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             if (bit_2.IsMatch(firstValue.TextValue) == false) { return Operand.Error("Function BIN2DEC parameter is error!"); }
@@ -909,7 +909,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitOCT2DEC_fun(mathParser.OCT2DEC_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToText("Function OCT2DEC parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToText("Function OCT2DEC parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             if (bit_8.IsMatch(firstValue.TextValue) == false) { return Operand.Error("Function OCT2DEC parameter is error!"); }
@@ -1031,7 +1031,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitHEX2DEC_fun(mathParser.HEX2DEC_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToText("Function HEX2DEC parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToText("Function HEX2DEC parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             if (bit_16.IsMatch(firstValue.TextValue) == false) { return Operand.Error("Function HEX2DEC parameter is error!"); }
@@ -1130,7 +1130,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitEVEN_fun(mathParser.EVEN_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function EVEN parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function EVEN parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             var z = firstValue.NumberValue;
@@ -1147,7 +1147,7 @@ namespace ToolGood.Algorithm
         public Operand VisitODD_fun(mathParser.ODD_funContext context)
         {
 
-            var firstValue = this.Visit(context.expr()).ToNumber("Function ODD parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function ODD parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             var z = firstValue.NumberValue;
             if (z % 2 == 1) {
@@ -1202,7 +1202,7 @@ namespace ToolGood.Algorithm
         #region  power logarithm factorial
         public Operand VisitFACT_fun(mathParser.FACT_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function FACT parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function FACT parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             var z = firstValue.IntValue;
@@ -1217,7 +1217,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitFACTDOUBLE_fun(mathParser.FACTDOUBLE_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function FACTDOUBLE parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function FACTDOUBLE parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             var z = firstValue.IntValue;
@@ -1242,14 +1242,14 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitEXP_fun(mathParser.EXP_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function EXP parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function EXP parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(Math.Exp(firstValue.NumberValue));
         }
         public Operand VisitLN_fun(mathParser.LN_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function LN parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function LN parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             return Operand.Create(Math.Log(firstValue.NumberValue));
         }
@@ -1269,7 +1269,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitLOG10_fun(mathParser.LOG10_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function LOG10 parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function LOG10 parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             return Operand.Create(Math.Log(firstValue.NumberValue, 10));
         }
@@ -1310,7 +1310,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitSQRTPI_fun(mathParser.SQRTPI_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function SQRTPI parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function SQRTPI parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             return Operand.Create(Math.Sqrt(firstValue.NumberValue * Math.PI));
         }
@@ -1349,21 +1349,21 @@ namespace ToolGood.Algorithm
 
         public Operand VisitASC_fun(mathParser.ASC_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToText("Function ASC parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToText("Function ASC parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(F_base_ToDBC(firstValue.TextValue));
         }
         public Operand VisitJIS_fun(mathParser.JIS_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToText("Function JIS parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToText("Function JIS parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(F_base_ToSBC(firstValue.TextValue));
         }
         public Operand VisitCHAR_fun(mathParser.CHAR_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function CHAR parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function CHAR parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             char c = (char)(int)firstValue.NumberValue;
@@ -1371,7 +1371,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitCLEAN_fun(mathParser.CLEAN_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToText("Function CLEAN parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToText("Function CLEAN parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             var t = firstValue.TextValue;
@@ -1380,7 +1380,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitCODE_fun(mathParser.CODE_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToText("Function CODE parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToText("Function CODE parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             var t = firstValue.TextValue;
@@ -1462,14 +1462,14 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitLEN_fun(mathParser.LEN_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToText("Function LEN parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToText("Function LEN parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(firstValue.TextValue.Length);
         }
         public Operand VisitLOWER_fun(mathParser.LOWER_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToText("Function LOWER/TOLOWER parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToText("Function LOWER/TOLOWER parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(firstValue.TextValue.ToLower());
@@ -1493,7 +1493,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitPROPER_fun(mathParser.PROPER_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToText("Function PROPER parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToText("Function PROPER parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             var text = firstValue.TextValue;
@@ -1590,7 +1590,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitRMB_fun(mathParser.RMB_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function RMB parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function RMB parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(F_base_ToChineseRMB(firstValue.NumberValue));
@@ -1668,7 +1668,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitT_fun(mathParser.T_funContext context)
         {
-            var firstValue = this.Visit(context.expr());
+            var firstValue = this.Visit(context.expr2());
             if (firstValue.Type == OperandType.STRING) {
                 return firstValue;
             }
@@ -1699,7 +1699,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitTRIM_fun(mathParser.TRIM_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToText("Function TRIM parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToText("Function TRIM parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 #if NETSTANDARD2_1
             return Operand.Create(firstValue.TextValue.AsSpan().Trim().ToString());
@@ -1709,13 +1709,13 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitUPPER_fun(mathParser.UPPER_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToText("Function UPPER/TOUPPER parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToText("Function UPPER/TOUPPER parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             return Operand.Create(firstValue.TextValue.ToUpper());
         }
         public Operand VisitVALUE_fun(mathParser.VALUE_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToText("Function VALUE parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToText("Function VALUE parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             if (double.TryParse(firstValue.TextValue, NumberStyles.Any, cultureInfo, out double d)) {
@@ -1763,7 +1763,7 @@ namespace ToolGood.Algorithm
 
         public Operand VisitDATEVALUE_fun(mathParser.DATEVALUE_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToText("Function DATEVALUE parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToText("Function DATEVALUE parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             if (DateTime.TryParse(firstValue.TextValue, cultureInfo, DateTimeStyles.None, out DateTime dt)) {
@@ -1773,7 +1773,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitTIMEVALUE_fun(mathParser.TIMEVALUE_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToText("Function TIMEVALUE parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToText("Function TIMEVALUE parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             if (TimeSpan.TryParse(firstValue.TextValue, cultureInfo, out TimeSpan dt)) {
@@ -1821,7 +1821,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitYEAR_fun(mathParser.YEAR_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToMyDate("Function YEAR parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToMyDate("Function YEAR parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             if (firstValue.DateValue.Year==null) {
                 return Operand.Error("Function YEAR is error!");
@@ -1830,7 +1830,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitMONTH_fun(mathParser.MONTH_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToMyDate("Function MONTH parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToMyDate("Function MONTH parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             if (firstValue.DateValue.Month == null) {
                 return Operand.Error("Function MONTH is error!");
@@ -1839,7 +1839,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitDAY_fun(mathParser.DAY_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToMyDate("Function DAY parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToMyDate("Function DAY parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             if (firstValue.DateValue.Day == null) {
                 return Operand.Error("Function DAY is error!");
@@ -1848,21 +1848,21 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitHOUR_fun(mathParser.HOUR_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToMyDate("Function HOUR parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToMyDate("Function HOUR parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(firstValue.DateValue.Hour);
         }
         public Operand VisitMINUTE_fun(mathParser.MINUTE_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToMyDate("Function MINUTE parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToMyDate("Function MINUTE parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(firstValue.DateValue.Minute);
         }
         public Operand VisitSECOND_fun(mathParser.SECOND_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToMyDate("Function SECOND parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToMyDate("Function SECOND parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(firstValue.DateValue.Second);
@@ -2577,7 +2577,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitNORMSDIST_fun(mathParser.NORMSDIST_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function NORMSDIST parameter 1 error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function NORMSDIST parameter 1 error!");
             if (firstValue.IsError) { return firstValue; }
 
             var k = firstValue.NumberValue;
@@ -2585,7 +2585,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitNORMSINV_fun(mathParser.NORMSINV_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function NORMSINV parameter 1 error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function NORMSINV parameter 1 error!");
             if (firstValue.IsError) { return firstValue; }
 
             var k = firstValue.NumberValue;
@@ -2685,7 +2685,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitFISHER_fun(mathParser.FISHER_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function FISHER parameter error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function FISHER parameter error!");
             if (firstValue.IsError) { return firstValue; }
 
             var x = firstValue.NumberValue;
@@ -2697,7 +2697,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitFISHERINV_fun(mathParser.FISHERINV_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function FISHERINV parameter error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function FISHERINV parameter error!");
             if (firstValue.IsError) { return firstValue; }
 
             var x = firstValue.NumberValue;
@@ -2744,7 +2744,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitGAMMALN_fun(mathParser.GAMMALN_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToNumber("Function GAMMALN parameter error!");
+            var firstValue = this.Visit(context.expr2()).ToNumber("Function GAMMALN parameter error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(ExcelFunctions.GAMMALN(firstValue.NumberValue));
@@ -3011,28 +3011,28 @@ namespace ToolGood.Algorithm
 
         public Operand VisitURLENCODE_fun(mathParser.URLENCODE_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToText("Function URLENCODE parameter 1 is error!");
+            var firstValue = this.Visit(context.expr2()).ToText("Function URLENCODE parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(HttpUtility.UrlEncode(firstValue.TextValue));
         }
         public Operand VisitURLDECODE_fun(mathParser.URLDECODE_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToText("Function URLDECODE parameter 1 is error!");
+            var firstValue = this.Visit(context.expr2()).ToText("Function URLDECODE parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(HttpUtility.UrlDecode(firstValue.TextValue));
         }
         public Operand VisitHTMLENCODE_fun(mathParser.HTMLENCODE_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToText("Function HTMLENCODE parameter 1 is error!");
+            var firstValue = this.Visit(context.expr2()).ToText("Function HTMLENCODE parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(HttpUtility.HtmlEncode(firstValue.TextValue));
         }
         public Operand VisitHTMLDECODE_fun(mathParser.HTMLDECODE_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToText("Function HTMLDECODE parameter 1 is error!");
+            var firstValue = this.Visit(context.expr2()).ToText("Function HTMLDECODE parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(HttpUtility.HtmlDecode(firstValue.TextValue));
@@ -3516,14 +3516,14 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitISNULLOREMPTY_fun(mathParser.ISNULLOREMPTY_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToText("Function ISNULLOREMPTY parameter 1 is error!");
+            var firstValue = this.Visit(context.expr2()).ToText("Function ISNULLOREMPTY parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(string.IsNullOrEmpty(firstValue.TextValue));
         }
         public Operand VisitISNULLORWHITESPACE_fun(mathParser.ISNULLORWHITESPACE_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToText("Function ISNULLORWHITESPACE parameter 1 is error!");
+            var firstValue = this.Visit(context.expr2()).ToText("Function ISNULLORWHITESPACE parameter 1 is error!");
             if (firstValue.IsError) { return firstValue; }
 
             return Operand.Create(string.IsNullOrWhiteSpace(firstValue.TextValue));
@@ -3586,7 +3586,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitJSON_fun(mathParser.JSON_funContext context)
         {
-            var firstValue = this.Visit(context.expr()).ToText("Function JSON parameter is error!");
+            var firstValue = this.Visit(context.expr2()).ToText("Function JSON parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             var txt = firstValue.TextValue;
             if ((txt.StartsWith("{") && txt.EndsWith("}")) || (txt.StartsWith("[") && txt.EndsWith("]"))) {
@@ -3748,7 +3748,7 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitBracket_fun(mathParser.Bracket_funContext context)
         {
-            return this.Visit(context.expr());
+            return this.Visit(context.expr2());
         }
         public Operand VisitNUM_fun(mathParser.NUM_funContext context)
         {
@@ -3798,7 +3798,7 @@ namespace ToolGood.Algorithm
 
         public Operand VisitParameter(mathParser.ParameterContext context)
         {
-            var expr = context.expr();
+            var expr = context.expr2();
             if (expr != null) {
                 return this.Visit(expr);
             }
@@ -3812,7 +3812,7 @@ namespace ToolGood.Algorithm
 
         public Operand VisitGetJsonValue_fun(mathParser.GetJsonValue_funContext context)
         {
-            var firstValue = this.Visit(context.expr());
+            var firstValue = this.Visit(context.expr2());
             if (firstValue.IsError) { return firstValue; }
 
             var obj = firstValue;

@@ -50,10 +50,7 @@ partial class mathParser : Parser
 
 	public partial class ParameterContext : ParserRuleContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		public ExprContext expr2() { return GetRuleContext<ExprContext>(0); }
 		public Parameter2Context parameter2()
 		{
 			return GetRuleContext<Parameter2Context>(0);
@@ -73,6 +70,8 @@ partial class mathParser : Parser
 
 	public partial class Parameter2Context : ParserRuleContext
 	{
+		public ExprContext[] expr() { return GetRuleContexts<ExprContext>(); }
+		public ExprContext expr2() { return GetRuleContext<ExprContext>(0); }
 		public Parameter2Context(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -89,6 +88,9 @@ partial class mathParser : Parser
 	public partial class ExprContext : ParserRuleContext
 	{
 		private int _RuleIndex = 1;
+		public ExprContext[] expr() { return GetRuleContexts<ExprContext>(); }
+		public ExprContext expr2() { return GetRuleContext<ExprContext>(0); }
+
 		public ExprContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -118,10 +120,7 @@ partial class mathParser : Parser
 
 	public partial class CEILING_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public CEILING_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -132,10 +131,6 @@ partial class mathParser : Parser
 	}
 	public partial class FACT_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
 		public FACT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -146,10 +141,7 @@ partial class mathParser : Parser
 	}
 	public partial class REGEXREPALCE_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public REGEXREPALCE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -161,10 +153,7 @@ partial class mathParser : Parser
 	public partial class AddSub_funContext : ExprContext
 	{
 		public IToken op;
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public AddSub_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -175,10 +164,7 @@ partial class mathParser : Parser
 	}
 	public partial class AVERAGEIF_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public AVERAGEIF_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -189,10 +175,7 @@ partial class mathParser : Parser
 	}
 	public partial class RIGHT_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public RIGHT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -203,10 +186,7 @@ partial class mathParser : Parser
 	}
 	public partial class OCT2BIN_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public OCT2BIN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -217,10 +197,7 @@ partial class mathParser : Parser
 	}
 	public partial class QUARTILE_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public QUARTILE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -231,10 +208,7 @@ partial class mathParser : Parser
 	}
 	public partial class FINV_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public FINV_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -245,10 +219,7 @@ partial class mathParser : Parser
 	}
 	public partial class NOT_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public NOT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -259,10 +230,7 @@ partial class mathParser : Parser
 	}
 	public partial class DAYS360_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public DAYS360_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -273,10 +241,7 @@ partial class mathParser : Parser
 	}
 	public partial class WEEKNUM_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public WEEKNUM_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -287,10 +252,7 @@ partial class mathParser : Parser
 	}
 	public partial class POISSON_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public POISSON_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -301,10 +263,7 @@ partial class mathParser : Parser
 	}
 	public partial class ISREGEX_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public ISREGEX_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -315,10 +274,7 @@ partial class mathParser : Parser
 	}
 	public partial class PERCENTILE_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public PERCENTILE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -329,10 +285,7 @@ partial class mathParser : Parser
 	}
 	public partial class SHA256_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public SHA256_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -343,10 +296,7 @@ partial class mathParser : Parser
 	}
 	public partial class HYPGEOMDIST_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public HYPGEOMDIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -357,10 +307,7 @@ partial class mathParser : Parser
 	}
 	public partial class PERMUT_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public PERMUT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -371,10 +318,7 @@ partial class mathParser : Parser
 	}
 	public partial class TRIMSTART_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public TRIMSTART_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -385,10 +329,7 @@ partial class mathParser : Parser
 	}
 	public partial class RMB_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public RMB_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -399,10 +340,7 @@ partial class mathParser : Parser
 	}
 	public partial class DEC2HEX_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public DEC2HEX_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -413,10 +351,7 @@ partial class mathParser : Parser
 	}
 	public partial class CLEAN_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public CLEAN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -427,10 +362,7 @@ partial class mathParser : Parser
 	}
 	public partial class LOWER_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public LOWER_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -441,10 +373,7 @@ partial class mathParser : Parser
 	}
 	public partial class OR_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public OR_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -455,10 +384,7 @@ partial class mathParser : Parser
 	}
 	public partial class NORMSINV_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public NORMSINV_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -469,10 +395,7 @@ partial class mathParser : Parser
 	}
 	public partial class LEFT_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public LEFT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -483,10 +406,7 @@ partial class mathParser : Parser
 	}
 	public partial class ISEVEN_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public ISEVEN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -497,10 +417,7 @@ partial class mathParser : Parser
 	}
 	public partial class LOGINV_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public LOGINV_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -511,10 +428,7 @@ partial class mathParser : Parser
 	}
 	public partial class WORKDAY_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public WORKDAY_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -525,10 +439,7 @@ partial class mathParser : Parser
 	}
 	public partial class ISERROR_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public ISERROR_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -539,10 +450,7 @@ partial class mathParser : Parser
 	}
 	public partial class BIN2DEC_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public BIN2DEC_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -553,10 +461,7 @@ partial class mathParser : Parser
 	}
 	public partial class JIS_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public JIS_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -567,10 +472,7 @@ partial class mathParser : Parser
 	}
 	public partial class CRC32_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public CRC32_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -581,10 +483,7 @@ partial class mathParser : Parser
 	}
 	public partial class LCM_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public LCM_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -595,10 +494,7 @@ partial class mathParser : Parser
 	}
 	public partial class HARMEAN_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public HARMEAN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -609,10 +505,7 @@ partial class mathParser : Parser
 	}
 	public partial class NORMINV_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public NORMINV_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -623,10 +516,7 @@ partial class mathParser : Parser
 	}
 	public partial class GAMMAINV_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public GAMMAINV_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -637,10 +527,7 @@ partial class mathParser : Parser
 	}
 	public partial class SQRT_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public SQRT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -651,10 +538,7 @@ partial class mathParser : Parser
 	}
 	public partial class DEGREES_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public DEGREES_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -665,10 +549,7 @@ partial class mathParser : Parser
 	}
 	public partial class MROUND_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public MROUND_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -679,10 +560,7 @@ partial class mathParser : Parser
 	}
 	public partial class DATEDIF_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public DATEDIF_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -693,10 +571,7 @@ partial class mathParser : Parser
 	}
 	public partial class TRIMEND_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public TRIMEND_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -707,10 +582,7 @@ partial class mathParser : Parser
 	}
 	public partial class ISLOGICAL_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public ISLOGICAL_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -721,10 +593,7 @@ partial class mathParser : Parser
 	}
 	public partial class INT_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public INT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -735,10 +604,7 @@ partial class mathParser : Parser
 	}
 	public partial class SUMIF_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public SUMIF_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -749,10 +615,7 @@ partial class mathParser : Parser
 	}
 	public partial class HEX2OCT_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public HEX2OCT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -773,10 +636,7 @@ partial class mathParser : Parser
 	}
 	public partial class YEAR_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public YEAR_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -787,10 +647,7 @@ partial class mathParser : Parser
 	}
 	public partial class SQRTPI_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public SQRTPI_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -801,10 +658,7 @@ partial class mathParser : Parser
 	}
 	public partial class CONCATENATE_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public CONCATENATE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -815,10 +669,7 @@ partial class mathParser : Parser
 	}
 	public partial class COUNT_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public COUNT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -839,10 +690,7 @@ partial class mathParser : Parser
 	}
 	public partial class HTMLENCODE_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public HTMLENCODE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -853,10 +701,7 @@ partial class mathParser : Parser
 	}
 	public partial class BASE64URLTOTEXT_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public BASE64URLTOTEXT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -867,10 +712,7 @@ partial class mathParser : Parser
 	}
 	public partial class LOG10_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public LOG10_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -881,10 +723,7 @@ partial class mathParser : Parser
 	}
 	public partial class ISTEXT_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public ISTEXT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -895,10 +734,7 @@ partial class mathParser : Parser
 	}
 	public partial class NEGBINOMDIST_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public NEGBINOMDIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -909,10 +745,7 @@ partial class mathParser : Parser
 	}
 	public partial class NETWORKDAYS_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public NETWORKDAYS_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -923,10 +756,7 @@ partial class mathParser : Parser
 	}
 	public partial class FACTDOUBLE_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public FACTDOUBLE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -937,10 +767,7 @@ partial class mathParser : Parser
 	}
 	public partial class TIMEVALUE_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public TIMEVALUE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -951,10 +778,7 @@ partial class mathParser : Parser
 	}
 	public partial class AVEDEV_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public AVEDEV_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -975,10 +799,7 @@ partial class mathParser : Parser
 	}
 	public partial class JSON_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public JSON_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -989,10 +810,7 @@ partial class mathParser : Parser
 	}
 	public partial class FIXED_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public FIXED_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1003,10 +821,7 @@ partial class mathParser : Parser
 	}
 	public partial class GetJsonValue_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public ParameterContext parameter()
 		{
 			return GetRuleContext<ParameterContext>(0);
@@ -1025,10 +840,7 @@ partial class mathParser : Parser
 	}
 	public partial class TINV_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public TINV_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1039,10 +851,7 @@ partial class mathParser : Parser
 	}
 	public partial class EDATE_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public EDATE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1053,10 +862,7 @@ partial class mathParser : Parser
 	}
 	public partial class GEOMEAN_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public GEOMEAN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1067,10 +873,7 @@ partial class mathParser : Parser
 	}
 	public partial class VAR_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public VAR_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1081,10 +884,7 @@ partial class mathParser : Parser
 	}
 	public partial class SIGN_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public SIGN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1095,10 +895,7 @@ partial class mathParser : Parser
 	}
 	public partial class EOMONTH_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public EOMONTH_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1109,10 +906,7 @@ partial class mathParser : Parser
 	}
 	public partial class FLOOR_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public FLOOR_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1123,10 +917,7 @@ partial class mathParser : Parser
 	}
 	public partial class HOUR_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public HOUR_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1137,10 +928,7 @@ partial class mathParser : Parser
 	}
 	public partial class LEN_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public LEN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1151,10 +939,7 @@ partial class mathParser : Parser
 	}
 	public partial class ACOS_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public ACOS_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1165,10 +950,7 @@ partial class mathParser : Parser
 	}
 	public partial class ISNULLORWHITESPACE_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public ISNULLORWHITESPACE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1191,10 +973,7 @@ partial class mathParser : Parser
 	}
 	public partial class COSH_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public COSH_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1205,10 +984,7 @@ partial class mathParser : Parser
 	}
 	public partial class QUOTIENT_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public QUOTIENT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1219,10 +995,7 @@ partial class mathParser : Parser
 	}
 	public partial class OCT2DEC_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public OCT2DEC_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1233,10 +1006,7 @@ partial class mathParser : Parser
 	}
 	public partial class SEARCH_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public SEARCH_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1247,10 +1017,7 @@ partial class mathParser : Parser
 	}
 	public partial class ROUNDUP_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public ROUNDUP_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1261,10 +1028,7 @@ partial class mathParser : Parser
 	}
 	public partial class COMBIN_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public COMBIN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1275,10 +1039,7 @@ partial class mathParser : Parser
 	}
 	public partial class CODE_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public CODE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1289,10 +1050,7 @@ partial class mathParser : Parser
 	}
 	public partial class ASINH_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public ASINH_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1303,10 +1061,7 @@ partial class mathParser : Parser
 	}
 	public partial class SIN_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public SIN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1317,10 +1072,7 @@ partial class mathParser : Parser
 	}
 	public partial class SUBSTRING_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public SUBSTRING_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1331,10 +1083,7 @@ partial class mathParser : Parser
 	}
 	public partial class RANDBETWEEN_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public RANDBETWEEN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1345,10 +1094,7 @@ partial class mathParser : Parser
 	}
 	public partial class AVERAGE_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public AVERAGE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1359,10 +1105,7 @@ partial class mathParser : Parser
 	}
 	public partial class LOG_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public LOG_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1373,10 +1116,7 @@ partial class mathParser : Parser
 	}
 	public partial class HMACSHA512_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public HMACSHA512_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1388,10 +1128,7 @@ partial class mathParser : Parser
 	public partial class AndOr_funContext : ExprContext
 	{
 		public IToken op;
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public AndOr_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1402,10 +1139,7 @@ partial class mathParser : Parser
 	}
 	public partial class STDEVP_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public STDEVP_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1416,10 +1150,7 @@ partial class mathParser : Parser
 	}
 	public partial class Array_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public Array_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1430,10 +1161,7 @@ partial class mathParser : Parser
 	}
 	public partial class ROUND_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public ROUND_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1444,10 +1172,7 @@ partial class mathParser : Parser
 	}
 	public partial class EXP_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public EXP_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1458,10 +1183,7 @@ partial class mathParser : Parser
 	}
 	public partial class COUNTIF_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public COUNTIF_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1472,10 +1194,7 @@ partial class mathParser : Parser
 	}
 	public partial class VARP_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public VARP_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1486,10 +1205,7 @@ partial class mathParser : Parser
 	}
 	public partial class REMOVEEND_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public REMOVEEND_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1500,10 +1216,7 @@ partial class mathParser : Parser
 	}
 	public partial class DATE_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public DATE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1528,10 +1241,7 @@ partial class mathParser : Parser
 	}
 	public partial class SPLIT_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public SPLIT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1542,10 +1252,7 @@ partial class mathParser : Parser
 	}
 	public partial class URLDECODE_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public URLDECODE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1556,10 +1263,7 @@ partial class mathParser : Parser
 	}
 	public partial class LARGE_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public LARGE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1570,10 +1274,7 @@ partial class mathParser : Parser
 	}
 	public partial class VALUE_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public VALUE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1584,10 +1285,7 @@ partial class mathParser : Parser
 	}
 	public partial class DAY_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public DAY_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1598,10 +1296,7 @@ partial class mathParser : Parser
 	}
 	public partial class WEIBULL_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public WEIBULL_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1612,10 +1307,7 @@ partial class mathParser : Parser
 	}
 	public partial class HMACSHA256_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public HMACSHA256_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1626,10 +1318,7 @@ partial class mathParser : Parser
 	}
 	public partial class BINOMDIST_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public BINOMDIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1641,10 +1330,7 @@ partial class mathParser : Parser
 	public partial class Judge_funContext : ExprContext
 	{
 		public IToken op;
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public Judge_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1655,10 +1341,7 @@ partial class mathParser : Parser
 	}
 	public partial class DEVSQ_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public DEVSQ_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1669,10 +1352,7 @@ partial class mathParser : Parser
 	}
 	public partial class MODE_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public MODE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1683,10 +1363,7 @@ partial class mathParser : Parser
 	}
 	public partial class BETAINV_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public BETAINV_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1697,10 +1374,7 @@ partial class mathParser : Parser
 	}
 	public partial class MAX_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public MAX_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1711,10 +1385,7 @@ partial class mathParser : Parser
 	}
 	public partial class MINUTE_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public MINUTE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1725,10 +1396,7 @@ partial class mathParser : Parser
 	}
 	public partial class TAN_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public TAN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1739,10 +1407,7 @@ partial class mathParser : Parser
 	}
 	public partial class IFERROR_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public IFERROR_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1753,10 +1418,7 @@ partial class mathParser : Parser
 	}
 	public partial class FDIST_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public FDIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1767,10 +1429,7 @@ partial class mathParser : Parser
 	}
 	public partial class INDEXOF_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public INDEXOF_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1781,10 +1440,7 @@ partial class mathParser : Parser
 	}
 	public partial class UPPER_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public UPPER_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1795,10 +1451,7 @@ partial class mathParser : Parser
 	}
 	public partial class HTMLDECODE_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public HTMLDECODE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1809,10 +1462,7 @@ partial class mathParser : Parser
 	}
 	public partial class EXPONDIST_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public EXPONDIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1823,10 +1473,7 @@ partial class mathParser : Parser
 	}
 	public partial class DEC2BIN_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public DEC2BIN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1837,10 +1484,7 @@ partial class mathParser : Parser
 	}
 	public partial class HEX2DEC_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public HEX2DEC_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1851,10 +1495,7 @@ partial class mathParser : Parser
 	}
 	public partial class SMALL_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public SMALL_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1865,10 +1506,7 @@ partial class mathParser : Parser
 	}
 	public partial class ODD_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public ODD_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1879,10 +1517,7 @@ partial class mathParser : Parser
 	}
 	public partial class TEXTTOBASE64_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public TEXTTOBASE64_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1893,10 +1528,7 @@ partial class mathParser : Parser
 	}
 	public partial class MID_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public MID_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1907,10 +1539,7 @@ partial class mathParser : Parser
 	}
 	public partial class PERCENTRANK_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public PERCENTRANK_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1921,10 +1550,7 @@ partial class mathParser : Parser
 	}
 	public partial class STDEV_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public STDEV_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1935,10 +1561,7 @@ partial class mathParser : Parser
 	}
 	public partial class NORMSDIST_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public NORMSDIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1949,10 +1572,7 @@ partial class mathParser : Parser
 	}
 	public partial class ISNUMBER_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public ISNUMBER_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1963,10 +1583,7 @@ partial class mathParser : Parser
 	}
 	public partial class LASTINDEXOF_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public LASTINDEXOF_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1977,10 +1594,7 @@ partial class mathParser : Parser
 	}
 	public partial class MOD_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public MOD_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -1991,10 +1605,7 @@ partial class mathParser : Parser
 	}
 	public partial class CHAR_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public CHAR_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2005,10 +1616,7 @@ partial class mathParser : Parser
 	}
 	public partial class REGEX_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public REGEX_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2019,10 +1627,7 @@ partial class mathParser : Parser
 	}
 	public partial class TEXTTOBASE64URL_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public TEXTTOBASE64URL_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2033,10 +1638,7 @@ partial class mathParser : Parser
 	}
 	public partial class MD5_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public MD5_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2047,10 +1649,7 @@ partial class mathParser : Parser
 	}
 	public partial class REPLACE_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public REPLACE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2061,10 +1660,7 @@ partial class mathParser : Parser
 	}
 	public partial class ACOSH_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public ACOSH_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2075,10 +1671,7 @@ partial class mathParser : Parser
 	}
 	public partial class ISODD_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public ISODD_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2089,10 +1682,7 @@ partial class mathParser : Parser
 	}
 	public partial class ASC_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public ASC_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2103,10 +1693,7 @@ partial class mathParser : Parser
 	}
 	public partial class COS_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public COS_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2117,10 +1704,7 @@ partial class mathParser : Parser
 	}
 	public partial class LN_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public LN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2142,10 +1726,7 @@ partial class mathParser : Parser
 	}
 	public partial class HMACMD5_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public HMACMD5_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2156,10 +1737,7 @@ partial class mathParser : Parser
 	}
 	public partial class PRODUCT_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public PRODUCT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2170,10 +1748,7 @@ partial class mathParser : Parser
 	}
 	public partial class EXACT_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public EXACT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2184,10 +1759,7 @@ partial class mathParser : Parser
 	}
 	public partial class SUMSQ_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public SUMSQ_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2198,10 +1770,7 @@ partial class mathParser : Parser
 	}
 	public partial class SUM_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public SUM_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2212,10 +1781,7 @@ partial class mathParser : Parser
 	}
 	public partial class SECOND_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public SECOND_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2226,10 +1792,7 @@ partial class mathParser : Parser
 	}
 	public partial class GAMMADIST_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public GAMMADIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2240,10 +1803,7 @@ partial class mathParser : Parser
 	}
 	public partial class OCT2HEX_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public OCT2HEX_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2264,10 +1824,7 @@ partial class mathParser : Parser
 	}
 	public partial class ATAN_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public ATAN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2288,10 +1845,7 @@ partial class mathParser : Parser
 	}
 	public partial class TRIM_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public TRIM_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2302,10 +1856,7 @@ partial class mathParser : Parser
 	}
 	public partial class RADIANS_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public RADIANS_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2316,10 +1867,7 @@ partial class mathParser : Parser
 	}
 	public partial class GAMMALN_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public GAMMALN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2330,10 +1878,7 @@ partial class mathParser : Parser
 	}
 	public partial class TEXT_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public TEXT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2344,10 +1889,7 @@ partial class mathParser : Parser
 	}
 	public partial class FISHER_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public FISHER_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2358,10 +1900,7 @@ partial class mathParser : Parser
 	}
 	public partial class AND_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public AND_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2372,10 +1911,7 @@ partial class mathParser : Parser
 	}
 	public partial class BIN2HEX_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public BIN2HEX_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2386,10 +1922,7 @@ partial class mathParser : Parser
 	}
 	public partial class MULTINOMIAL_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public MULTINOMIAL_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2400,10 +1933,7 @@ partial class mathParser : Parser
 	}
 	public partial class MONTH_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public MONTH_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2414,10 +1944,7 @@ partial class mathParser : Parser
 	}
 	public partial class URLENCODE_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public URLENCODE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2428,10 +1955,7 @@ partial class mathParser : Parser
 	}
 	public partial class NORMDIST_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public NORMDIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2442,10 +1966,7 @@ partial class mathParser : Parser
 	}
 	public partial class HMACSHA1_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public HMACSHA1_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2456,10 +1977,7 @@ partial class mathParser : Parser
 	}
 	public partial class ENDSWITH_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public ENDSWITH_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2470,10 +1988,7 @@ partial class mathParser : Parser
 	}
 	public partial class Bracket_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public Bracket_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2484,10 +1999,7 @@ partial class mathParser : Parser
 	}
 	public partial class BETADIST_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public BETADIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2498,10 +2010,7 @@ partial class mathParser : Parser
 	}
 	public partial class ATANH_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public ATANH_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2522,10 +2031,7 @@ partial class mathParser : Parser
 	}
 	public partial class MEDIAN_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public MEDIAN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2536,10 +2042,7 @@ partial class mathParser : Parser
 	}
 	public partial class POWER_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public POWER_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2550,10 +2053,7 @@ partial class mathParser : Parser
 	}
 	public partial class DEC2OCT_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public DEC2OCT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2564,10 +2064,7 @@ partial class mathParser : Parser
 	}
 	public partial class PROPER_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public PROPER_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2578,10 +2075,7 @@ partial class mathParser : Parser
 	}
 	public partial class TRUNC_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public TRUNC_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2592,10 +2086,7 @@ partial class mathParser : Parser
 	}
 	public partial class GCD_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public GCD_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2606,10 +2097,7 @@ partial class mathParser : Parser
 	}
 	public partial class TANH_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public TANH_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2620,10 +2108,7 @@ partial class mathParser : Parser
 	}
 	public partial class HEX2BIN_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public HEX2BIN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2634,10 +2119,7 @@ partial class mathParser : Parser
 	}
 	public partial class SINH_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public SINH_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2648,10 +2130,7 @@ partial class mathParser : Parser
 	}
 	public partial class SHA512_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public SHA512_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2662,10 +2141,7 @@ partial class mathParser : Parser
 	}
 	public partial class MIN_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public MIN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2676,10 +2152,7 @@ partial class mathParser : Parser
 	}
 	public partial class ISNONTEXT_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public ISNONTEXT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2690,10 +2163,7 @@ partial class mathParser : Parser
 	}
 	public partial class ABS_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public ABS_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2704,10 +2174,7 @@ partial class mathParser : Parser
 	}
 	public partial class ROUNDDOWN_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public ROUNDDOWN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2718,10 +2185,7 @@ partial class mathParser : Parser
 	}
 	public partial class IF_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public IF_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2732,10 +2196,7 @@ partial class mathParser : Parser
 	}
 	public partial class JOIN_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public JOIN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2746,10 +2207,7 @@ partial class mathParser : Parser
 	}
 	public partial class FIND_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public FIND_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2760,10 +2218,7 @@ partial class mathParser : Parser
 	}
 	public partial class SUBSTITUTE_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public SUBSTITUTE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2774,10 +2229,7 @@ partial class mathParser : Parser
 	}
 	public partial class REPT_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public REPT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2788,10 +2240,7 @@ partial class mathParser : Parser
 	}
 	public partial class ASIN_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public ASIN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2803,10 +2252,7 @@ partial class mathParser : Parser
 	public partial class MulDiv_funContext : ExprContext
 	{
 		public IToken op;
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public MulDiv_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2817,10 +2263,7 @@ partial class mathParser : Parser
 	}
 	public partial class REMOVESTART_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public REMOVESTART_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2831,10 +2274,7 @@ partial class mathParser : Parser
 	}
 	public partial class T_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public T_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2845,10 +2285,7 @@ partial class mathParser : Parser
 	}
 	public partial class WEEKDAY_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public WEEKDAY_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2859,10 +2296,7 @@ partial class mathParser : Parser
 	}
 	public partial class BIN2OCT_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public BIN2OCT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2873,10 +2307,7 @@ partial class mathParser : Parser
 	}
 	public partial class BASE64TOTEXT_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public BASE64TOTEXT_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2887,10 +2318,7 @@ partial class mathParser : Parser
 	}
 	public partial class TDIST_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public TDIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2901,10 +2329,7 @@ partial class mathParser : Parser
 	}
 	public partial class DATEVALUE_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public DATEVALUE_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2915,10 +2340,7 @@ partial class mathParser : Parser
 	}
 	public partial class STARTSWITH_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public STARTSWITH_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2929,10 +2351,7 @@ partial class mathParser : Parser
 	}
 	public partial class EVEN_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public EVEN_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2943,10 +2362,7 @@ partial class mathParser : Parser
 	}
 	public partial class LOGNORMDIST_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public LOGNORMDIST_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2957,10 +2373,7 @@ partial class mathParser : Parser
 	}
 	public partial class ISNULLOREMPTY_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public ISNULLOREMPTY_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2981,10 +2394,7 @@ partial class mathParser : Parser
 	}
 	public partial class FISHERINV_funContext : ExprContext
 	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
+		
 		public FISHERINV_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -2995,10 +2405,7 @@ partial class mathParser : Parser
 	}
 	public partial class SHA1_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public SHA1_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -3009,10 +2416,7 @@ partial class mathParser : Parser
 	}
 	public partial class TIME_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public TIME_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -3023,10 +2427,7 @@ partial class mathParser : Parser
 	}
 	public partial class ATAN2_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public ATAN2_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -3048,10 +2449,7 @@ partial class mathParser : Parser
 
 	public partial class VLOOKUP_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public VLOOKUP_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -3062,10 +2460,7 @@ partial class mathParser : Parser
 
 	public partial class LOOKUP_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public LOOKUP_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -3086,10 +2481,7 @@ partial class mathParser : Parser
 	}
 	public partial class ISNULL_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public ISNULL_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -3102,10 +2494,7 @@ partial class mathParser : Parser
 
 	public partial class ISNULLORERROR_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public ISNULLORERROR_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 		{
@@ -3116,10 +2505,7 @@ partial class mathParser : Parser
 
 	public partial class DiyFunction_funContext : ExprContext
 	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
+		
 		public ITerminalNode PARAMETER() { return GetToken(233, 0); }
 		public DiyFunction_funContext(ExprContext context) { CopyFrom(context); }
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
