@@ -5,9 +5,9 @@ class Beta{}
 Beta.CDF=function(a, b, x){
     if (x < 0.0) { return 0.0; }
     if (x >= 1.0) { return 1.0; }
-    if (Double.isInfinite(a) && Double.isInfinite(b)) { return x < 0.5 ? 0.0 : 1.0; }
-    if (Double.isInfinite(a)) { return x < 1.0 ? 0.0 : 1.0; }
-    if (Double.isInfinite(b)) { return x >= 0.0 ? 1.0 : 0.0; }
+    if (isFinite(a)==false && isFinite(b)==false) { return x < 0.5 ? 0.0 : 1.0; }
+    if (isFinite(a)==false) { return x < 1.0 ? 0.0 : 1.0; }
+    if (isFinite(b)==false) { return x >= 0.0 ? 1.0 : 0.0; }
     if (a == 0.0 && b == 0.0) {
         if (x >= 0.0 && x < 1.0) { return 0.5; }
         return 1.0;
