@@ -666,12 +666,6 @@ ISTEXT_funContext.prototype.constructor = ISTEXT_funContext;
 mathParser2.ISTEXT_funContext = ISTEXT_funContext;
 ISTEXT_funContext.prototype.expr = function() { return this.getTypedRuleContext(ExprContext,0);};
 ISTEXT_funContext.prototype.accept = function(visitor) { return visitor.visitISTEXT_fun(this);};
-function Expr2_funContext(parser, ctx) { ExprContext.call(this, parser);ExprContext.prototype.copyFrom.call(this, ctx);return this;}
-Expr2_funContext.prototype = Object.create(ExprContext.prototype);
-Expr2_funContext.prototype.constructor = Expr2_funContext;
-mathParser2.Expr2_funContext = Expr2_funContext;
-Expr2_funContext.prototype.expr2 = function() { return this.getTypedRuleContext(ExprContext,0);};
-Expr2_funContext.prototype.accept = function(visitor) { return visitor.visitExpr2_fun(this);};
 function TIMEVALUE_funContext(parser, ctx) { ExprContext.call(this, parser);ExprContext.prototype.copyFrom.call(this, ctx);return this;}
 TIMEVALUE_funContext.prototype = Object.create(ExprContext.prototype);
 TIMEVALUE_funContext.prototype.constructor = TIMEVALUE_funContext;
