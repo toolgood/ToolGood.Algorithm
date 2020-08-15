@@ -1,7 +1,6 @@
 const {OperandType} = require('./OperandType');
 const {MyDate} = require('./MyDate');
 
-
 class Operand{}
 Operand.prototype.IsNull=function(){return false;}
 Operand.prototype.IsError=function(){return false;}
@@ -43,8 +42,7 @@ Operand.CreateJson=function(txt){
         try
         {
             return new OperandJson(JSON.parse(txt));
-        }
-        catch (e) { }
+        } catch (e) { }
     }
     return Operand.Error("string to json is error!");
 }
@@ -182,10 +180,8 @@ String.prototype.startsWith = function(s) {
     if (s == null || s == "" || this.length == 0 || s.length > this.length) 
         return false; 
     if (this.substr(0, s.length) == s) 
-         return true;
-    else 
-        return false; 
-    return true; 
+        return true;
+    return false; 
 }
 
 String.prototype.endsWith = function(s) {
@@ -193,9 +189,7 @@ String.prototype.endsWith = function(s) {
           return false;
      if (this.substring(this.length - s.length) == s)
           return true;
-     else
-          return false;
-    return true;
+    return false;
 }
 
 

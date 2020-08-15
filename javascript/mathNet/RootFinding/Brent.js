@@ -1,18 +1,16 @@
+const { Precision } = require('./../Precision');
 
+class Brent { }
 
-class Brent{}
- 
-
-Brent.FindRoot=function( f, lowerBound, upperBound, accuracy, maxIterations)    {
-    var root=new RootNumber();
-    if (TryFindRoot(f, lowerBound, upperBound, accuracy, maxIterations,root)) {
+Brent.FindRoot = function (f, lowerBound, upperBound, accuracy, maxIterations) {
+    var root = new RootNumber();
+    if (TryFindRoot(f, lowerBound, upperBound, accuracy, maxIterations, root)) {
         return root.root;
     }
     throw new Exception("RootFindingFailed");
 }
 
-
-Brent.TryFindRoot=function(f, lowerBound, upperBound, accuracy,maxIterations, root){
+Brent.TryFindRoot = function (f, lowerBound, upperBound, accuracy, maxIterations, root) {
     var fmin = f.apply(lowerBound);
     var fmax = f.apply(upperBound);
     var froot = fmax;
@@ -48,7 +46,7 @@ Brent.TryFindRoot=function(f, lowerBound, upperBound, accuracy,maxIterations, ro
         var xMidOld = xMid;
         xMid = (upperBound - root.root) / 2.0;
 
-        if (Math.abs(xMid) <= xAcc1 || Precision.AlmostEqualNormRelative(froot,0, froot, accuracy)) {
+        if (Math.abs(xMid) <= xAcc1 || Precision.AlmostEqualNormRelative(froot, 0, froot, accuracy)) {
             return true;
         }
 
@@ -62,7 +60,7 @@ Brent.TryFindRoot=function(f, lowerBound, upperBound, accuracy,maxIterations, ro
             var s = froot / fmin;
             var p;
             var q;
-            if (Precision.AlmostEqualRelative(lowerBound,upperBound)) {
+            if (Precision.AlmostEqualRelative(lowerBound, upperBound)) {
                 p = 2.0 * xMid * s;
                 q = 1.0 - s;
             } else {
@@ -106,23 +104,19 @@ Brent.TryFindRoot=function(f, lowerBound, upperBound, accuracy,maxIterations, ro
 
     return false;
 }
-sign=function(  a){
-    if(a==0.0){
-        return 0;
-    }
-    if(a<0){
-        return -1;
-    }
+sign = function (a) {
+    if (a == 0.0) { return 0; }
+    if (a < 0) { return -1; }
     return 1;
 }
 
- Sign=function(a, b)    {
+Sign = function (a, b) {
     return b >= 0 ? (a >= 0 ? a : -a) : (a >= 0 ? -a : a);
 }
 
 function RootNumber() {
-    this.root=0.0;
+    this.root = 0.0;
 }
 
 
-module.exports=Brent;
+module.exports = Brent;

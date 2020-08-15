@@ -1,18 +1,17 @@
+const { SpecialFunctions } = require('./../SpecialFunctions');
 
+class Gamma { }
 
-class Gamma{}
-
-
-Gamma.CDF=function(shape, rate, x) {
-    if (isFinite(rate)==false) { return x >= shape ? 1.0 : 0.0; }
+Gamma.CDF = function (shape, rate, x) {
+    if (isFinite(rate) == false) { return x >= shape ? 1.0 : 0.0; }
 
     if (shape == 0.0 && rate == 0.0) { return 0.0; }
 
     return SpecialFunctions.GammaLowerRegularized(shape, x * rate);
 }
 
-Gamma.PDF=function(shape, rate, x) {
-    if (isFinite(rate)==false) {
+Gamma.PDF = function (shape, rate, x) {
+    if (isFinite(rate) == false) {
         return x == shape ? Double.POSITIVE_INFINITY : 0.0;
     }
 
@@ -30,8 +29,8 @@ Gamma.PDF=function(shape, rate, x) {
 
     return Math.pow(rate, shape) * Math.pow(x, shape - 1.0) * Math.exp(-rate * x) / SpecialFunctions.Gamma(shape);
 }
-Gamma.PDFLn=function(shape, rate, x) {
-    if (isFinite(rate)==false) {
+Gamma.PDFLn = function (shape, rate, x) {
+    if (isFinite(rate) == false) {
         return x == shape ? Double.POSITIVE_INFINITY : Double.NEGATIVE_INFINITY;
     }
 
@@ -46,7 +45,7 @@ Gamma.PDFLn=function(shape, rate, x) {
     return (shape * Math.log(rate)) + ((shape - 1.0) * Math.log(x)) - (rate * x) - SpecialFunctions.GammaLn(shape);
 }
 
-Gamma.InvCDF=function(shape, rate, p) {
+Gamma.InvCDF = function (shape, rate, p) {
     return SpecialFunctions.GammaLowerRegularizedInv(shape, p) / rate;
 }
 

@@ -1,17 +1,17 @@
 
 
-class Statistics{}
+class Statistics { }
 
- 
-Statistics.QuantileCustom=function(data, tau, definition) {
+
+Statistics.QuantileCustom = function (data, tau, definition) {
     return ArrayStatistics.QuantileCustomInplace(data, tau, definition);
 }
-Statistics.QuantileRank=function(data, x) {
- var array=Statistics.ShellSort(data);
+Statistics.QuantileRank = function (data, x) {
+    var array = Statistics.ShellSort(data);
     return SortedArrayStatistics.QuantileRank(array, x);
 }
 
-Statistics.ShellSort=function(array) {
+Statistics.ShellSort = function (array) {
     var len = array.size();
     var temp;
     var gap = len / 2;
@@ -31,9 +31,9 @@ Statistics.ShellSort=function(array) {
     }
     return array;
 }
-    
 
 
 
 
-module.exports=Statistics;
+
+module.exports = Statistics;

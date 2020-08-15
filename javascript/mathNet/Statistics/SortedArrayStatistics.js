@@ -1,8 +1,8 @@
 
 
-class SortedArrayStatistics{}
+class SortedArrayStatistics { }
 
-SortedArrayStatistics.QuantileRank=function( data, x) {
+SortedArrayStatistics.QuantileRank = function (data, x) {
     if (x < data[0]) {
         return 0.0;
     }
@@ -23,18 +23,18 @@ SortedArrayStatistics.QuantileRank=function( data, x) {
             right++;
         }
 
-        return left /  (data.length - 1);
+        return left / (data.length - 1);
 
     } else {
         right = ~right;
         var left = right - 1;
 
-        var a = left /  (data.length - 1);
-        var b = right /   (data.length - 1);
+        var a = left / (data.length - 1);
+        var b = right / (data.length - 1);
         return ((data[right] - x) * a + (x - data[left]) * b) / (data[right] - data[left]);
     }
 }
-SortedArrayStatistics.binarySearch=function(array, key) {
+SortedArrayStatistics.binarySearch = function (array, key) {
     var low = 0;
     var high = array.length - 1;
     while (low <= high) {
@@ -52,4 +52,4 @@ SortedArrayStatistics.binarySearch=function(array, key) {
 
 
 
-module.exports=SortedArrayStatistics;
+module.exports = SortedArrayStatistics;

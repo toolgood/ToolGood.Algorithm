@@ -1,13 +1,11 @@
-const { inflate } = require("zlib");
 
+class ArrayStatistics { }
 
-class ArrayStatistics{}
-
-ArrayStatistics.Minimum=function(data){
+ArrayStatistics.Minimum = function (data) {
     if (data.length == 0) {
         return NaN;
     }
-    var min = Infinity ;
+    var min = Infinity;
     for (var i = 0; i < data.length; i++) {
         if (data[i] < min || isNaN(data[i])) {
             min = data[i];
@@ -16,11 +14,11 @@ ArrayStatistics.Minimum=function(data){
 
     return min;
 }
-ArrayStatistics.Maximum=function(data){
+ArrayStatistics.Maximum = function (data) {
     if (data.length == 0) {
         return NaN;
     }
-    var max = Infinity ;
+    var max = Infinity;
     for (var i = 0; i < data.length; i++) {
         if (data[i] > max || isNaN(data[i])) {
             max = data[i];
@@ -30,7 +28,7 @@ ArrayStatistics.Maximum=function(data){
 }
 
 
-ArrayStatistics.QuantileCustomInplace=function(data, tau, definition){
+ArrayStatistics.QuantileCustomInplace = function (data, tau, definition) {
     if (tau < 0.0 || tau > 1.0 || data.length == 0) {
         return NaN;
     }
@@ -45,75 +43,75 @@ ArrayStatistics.QuantileCustomInplace=function(data, tau, definition){
 
     switch (definition) {
         case QuantileDefinition.R1: {
-                var h = data.length * tau + 0.5;
-                
-                return SelectInplace(data, Math.ceil(h - 0.5) - 1);
-            }
+            var h = data.length * tau + 0.5;
+
+            return SelectInplace(data, Math.ceil(h - 0.5) - 1);
+        }
 
         case QuantileDefinition.R2: {
-                var h = data.length * tau + 0.5;
-                return (SelectInplace(data, Math.ceil(h - 0.5) - 1) + SelectInplace(data, (int)(h + 0.5) - 1)) * 0.5;
-            }
+            var h = data.length * tau + 0.5;
+            return (SelectInplace(data, Math.ceil(h - 0.5) - 1) + SelectInplace(data, (int)(h + 0.5) - 1)) * 0.5;
+        }
 
         case QuantileDefinition.R3: {
-                var h = data.length * tau;
-                return SelectInplace(data, Math.round(h) - 1);
-            }
+            var h = data.length * tau;
+            return SelectInplace(data, Math.round(h) - 1);
+        }
 
         case QuantileDefinition.R4: {
-                var h = data.length * tau;
-                var hf =Math.floor(h);
-                var lower = SelectInplace(data, hf - 1);
-                var upper = SelectInplace(data, hf);
-                return lower + (h - hf) * (upper - lower);
-            }
+            var h = data.length * tau;
+            var hf = Math.floor(h);
+            var lower = SelectInplace(data, hf - 1);
+            var upper = SelectInplace(data, hf);
+            return lower + (h - hf) * (upper - lower);
+        }
 
         case QuantileDefinition.R5: {
-                var h = data.length * tau + 0.5;
-                var hf =Math.floor(h);
-                var lower = SelectInplace(data, hf - 1);
-                var upper = SelectInplace(data, hf);
-                return lower + (h - hf) * (upper - lower);
-            }
+            var h = data.length * tau + 0.5;
+            var hf = Math.floor(h);
+            var lower = SelectInplace(data, hf - 1);
+            var upper = SelectInplace(data, hf);
+            return lower + (h - hf) * (upper - lower);
+        }
 
         case QuantileDefinition.R6: {
-                var h = (data.length + 1) * tau;
-                var hf =Math.floor(h);
-                var lower = SelectInplace(data, hf - 1);
-                var upper = SelectInplace(data, hf);
-                return lower + (h - hf) * (upper - lower);
-            }
+            var h = (data.length + 1) * tau;
+            var hf = Math.floor(h);
+            var lower = SelectInplace(data, hf - 1);
+            var upper = SelectInplace(data, hf);
+            return lower + (h - hf) * (upper - lower);
+        }
 
         case QuantileDefinition.R7: {
-                var h = (data.length - 1) * tau + 1;
-                var hf =Math.floor(h);
-                var lower = SelectInplace(data, hf - 1);
-                var upper = SelectInplace(data, hf);
-                return lower + (h - hf) * (upper - lower);
-            }
+            var h = (data.length - 1) * tau + 1;
+            var hf = Math.floor(h);
+            var lower = SelectInplace(data, hf - 1);
+            var upper = SelectInplace(data, hf);
+            return lower + (h - hf) * (upper - lower);
+        }
 
         case QuantileDefinition.R8: {
-                var h = (data.length + 1 / 3) * tau + 1 / 3;
-                var hf =Math.floor(h);
-                var lower = SelectInplace(data, hf - 1);
-                var upper = SelectInplace(data, hf);
-                return lower + (h - hf) * (upper - lower);
-            }
+            var h = (data.length + 1 / 3) * tau + 1 / 3;
+            var hf = Math.floor(h);
+            var lower = SelectInplace(data, hf - 1);
+            var upper = SelectInplace(data, hf);
+            return lower + (h - hf) * (upper - lower);
+        }
 
         case QuantileDefinition.R9: {
-                var h = (data.length + 0.25) * tau + 0.375;
-                var hf =Math.floor(h);
-                var lower = SelectInplace(data, hf - 1);
-                var upper = SelectInplace(data, hf);
-                return lower + (h - hf) * (upper - lower);
-            }
+            var h = (data.length + 0.25) * tau + 0.375;
+            var hf = Math.floor(h);
+            var lower = SelectInplace(data, hf - 1);
+            var upper = SelectInplace(data, hf);
+            return lower + (h - hf) * (upper - lower);
+        }
 
         default:
             throw new Exception();
     }
 }
 
-ArrayStatistics.SelectInplace=function( workingData, rank){
+ArrayStatistics.SelectInplace = function (workingData, rank) {
     if (rank <= 0) {
         return Minimum(workingData);
     }
@@ -200,4 +198,4 @@ ArrayStatistics.SelectInplace=function( workingData, rank){
 
 
 
-module.exports=ArrayStatistics;
+module.exports = ArrayStatistics;
