@@ -112,7 +112,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
     <tr>
         <td>IsError ★</td>
         <td>
-        IsError(值)<br>判断是否出错,返回 TRUE 或 FALSE
+        IsError(值)<br>判断是否出错,返回 TRUE 或 FALSE<br>
         IsError(值,替换值)<br>如果出错,返回替换值，否则返回原值
         </td>
         <td>IsError(1) <br>>>false</td>
@@ -120,7 +120,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
     <tr>
         <td>IsNull ★</td>
         <td>
-        IsNull(值)<br>判断是否为空,返回 TRUE 或 FALSE
+        IsNull(值)<br>判断是否为空,返回 TRUE 或 FALSE<br>
         IsNull(值,替换值)<br>如果为空,返回替换值，否则返回原值
         </td>
         <td>IsNull(null) <br>>>true</td>
@@ -128,7 +128,7 @@ bool转字符串，假为`FALSE`，真为`TRUE`。
     <tr>
         <td>IsNullOrError ★</td>
         <td>
-        IsNullOrError(值)<br>判断是否为空或错误,返回 TRUE 或 FALSE
+        IsNullOrError(值)<br>判断是否为空或错误,返回 TRUE 或 FALSE<br>
         IsNullOrError(值,替换值)<br>如果为空或错误,返回替换值，否则返回原值
         </td>
         <td>IsNullOrError(null) <br>>>true</td>
