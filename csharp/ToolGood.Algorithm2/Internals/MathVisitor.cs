@@ -1823,7 +1823,7 @@ namespace ToolGood.Algorithm
         {
             var firstValue = this.Visit(context.expr()).ToMyDate("Function YEAR parameter is error!");
             if (firstValue.IsError) { return firstValue; }
-            if (firstValue.DateValue.Year==null) {
+            if (firstValue.DateValue.Year == null) {
                 return Operand.Error("Function YEAR is error!");
             }
             return Operand.Create(firstValue.DateValue.Year.Value);
@@ -1949,7 +1949,13 @@ namespace ToolGood.Algorithm
                 #region md
                 var mo = endMyDate.Day - startMyDate.Day;
                 if (mo < 0) {
-                    var days = new DateTime(startMyDate.Year, startMyDate.Month + 1, 1).AddDays(-1).Day;
+                    int days;
+                    if (startMyDate.Month==12) {
+                        days = new DateTime(startMyDate.Year+1, 1, 1).AddDays(-1).Day;
+                    } else {
+                        days = new DateTime(startMyDate.Year, startMyDate.Month + 1, 1).AddDays(-1).Day;
+
+                    }
                     mo += days;
                 }
                 return Operand.Create((mo));
@@ -1989,19 +1995,39 @@ namespace ToolGood.Algorithm
                 if (endMyDate.Day == 31) days += 30;
                 if (startMyDate.Day == 31) days -= 30;
             } else {
-                if (startMyDate.Day == new DateTime(startMyDate.Year, startMyDate.Month + 1, 1).AddDays(-1).Day) {
-                    days -= 30;
-                } else {
-                    days -= startMyDate.Day;
-                }
-                if (endMyDate.Day == new DateTime(endMyDate.Year, endMyDate.Month + 1, 1).AddDays(-1).Day) {
-                    if (startMyDate.Day < 30) {
-                        days += 31;
+                if (startMyDate.Month == 12) {
+                    if (startMyDate.Day == new DateTime(startMyDate.Year + 1, 1, 1).AddDays(-1).Day) {
+                        days -= 30;
                     } else {
-                        days += 30;
+                        days -= startMyDate.Day;
                     }
                 } else {
-                    days += endMyDate.Day;
+                    if (startMyDate.Day == new DateTime(startMyDate.Year, startMyDate.Month + 1, 1).AddDays(-1).Day) {
+                        days -= 30;
+                    } else {
+                        days -= startMyDate.Day;
+                    }
+                }
+                if (endMyDate.Month == 12) {
+                    if (endMyDate.Day == new DateTime(endMyDate.Year+1, 1, 1).AddDays(-1).Day) {
+                        if (startMyDate.Day < 30) {
+                            days += 31;
+                        } else {
+                            days += 30;
+                        }
+                    } else {
+                        days += endMyDate.Day;
+                    }
+                } else {
+                    if (endMyDate.Day == new DateTime(endMyDate.Year, endMyDate.Month + 1, 1).AddDays(-1).Day) {
+                        if (startMyDate.Day < 30) {
+                            days += 31;
+                        } else {
+                            days += 30;
+                        }
+                    } else {
+                        days += endMyDate.Day;
+                    }
                 }
             }
             return Operand.Create(days);
@@ -3117,11 +3143,11 @@ namespace ToolGood.Algorithm
             var secondValue = args[1].ToText("Function REGEX parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
 
-                var b = Regex.Match(firstValue.TextValue, secondValue.TextValue);
-                if (b.Success == false) {
-                    return Operand.Error("Function REGEX is error!");
-                }
-                return Operand.Create(b.Value);
+            var b = Regex.Match(firstValue.TextValue, secondValue.TextValue);
+            if (b.Success == false) {
+                return Operand.Error("Function REGEX is error!");
+            }
+            return Operand.Create(b.Value);
         }
         public Operand VisitREGEXREPALCE_fun(mathParser.REGEXREPALCE_funContext context)
         {
@@ -3213,7 +3239,7 @@ namespace ToolGood.Algorithm
             }
             return Operand.Error("Function SHA512 is error!");
         }
- 
+
         public Operand VisitCRC32_fun(mathParser.CRC32_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
@@ -3275,7 +3301,7 @@ namespace ToolGood.Algorithm
                 }
                 var t = Hash.GetHmacSha256String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
                 return Operand.Create(t);
-            } catch (Exception) {            }
+            } catch (Exception) { }
             return Operand.Error("Function HMACSHA256 is error!");
         }
         public Operand VisitHMACSHA512_fun(mathParser.HMACSHA512_funContext context)
@@ -3291,7 +3317,7 @@ namespace ToolGood.Algorithm
                 }
                 var t = Hash.GetHmacSha512String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
                 return Operand.Create(t);
-            } catch (Exception) {            }
+            } catch (Exception) { }
             return Operand.Error("Function HMACSHA512 is error!");
         }
         public Operand VisitTRIMSTART_fun(mathParser.TRIMSTART_funContext context)

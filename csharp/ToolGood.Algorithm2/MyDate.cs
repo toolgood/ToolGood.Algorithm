@@ -87,7 +87,7 @@ namespace ToolGood.Algorithm
         {
             int days = (int)num;
             if (days > 365) {
-                var start = DateTime.MinValue.AddDays((int)days);
+                var start = new DateTime(1900, 1, 1).AddDays(((int)days) - 2);
                 Year = start.Year;
                 Month = start.Month;
                 Day = start.Day;
@@ -316,9 +316,10 @@ namespace ToolGood.Algorithm
 
         public static implicit operator double(MyDate MyDate)
         {
-            if (MyDate.Year != null && MyDate.Year>1900) {
+            if (MyDate.Year != null && MyDate.Year > 1900) {
                 var dt = new DateTime((MyDate.Year ?? 0), (MyDate.Month ?? 0), (MyDate.Day ?? 0), MyDate.Hour, MyDate.Minute, MyDate.Second);
-                double days = (double)(dt - DateTime.MinValue).TotalDays;
+                //double days = (double)(dt -  DateTime.MinValue).TotalDays;
+                double days = (double)(dt - new DateTime(1900, 1, 1)).TotalDays + 2;
                 days += (MyDate.Hour + (MyDate.Minute + MyDate.Second / 60.0) / 60) / 24;
                 return days;
             }
