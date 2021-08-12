@@ -19,6 +19,10 @@ namespace ToolGood.Algorithm2.Test.Tests
             Assert.AreEqual(dt, true);
             dt = engine.TryEvaluate("DAY(44406)=29", false);
             Assert.AreEqual(dt, true);
+
+            int num = engine.TryEvaluate("date(2011,2,2)", 0);
+            Assert.AreEqual(num, 40576);
+
         }
 
 
