@@ -1,9 +1,9 @@
 ToolGood.Algorithm
 ===================
 
-ToolGood.Algorithm supports `Four arithmetic`, `Excel function`, and supports `Custom parameters`. 
+ToolGood.Algorithm supports `Four arithmetic`, `Excel formula`, and supports `Custom parameters`. 
 
-ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数`。
+ToolGood.Algorithm支持`四则运算`、`Excel公式`,并支持`自定义参数`。
 
 
 **Applicable scenarios:** Code and algorithm are separated to avoid forced project upgrade 
@@ -52,7 +52,7 @@ Constants`pi`,`e`,`true`,`false`are supported.
 支持常量`pi`,`e`,`true`,`false`。
 
 The value is converted to bool, non-zero is true and zero is false.
-String to bool, ` 0 ', ` false' is false, ` 1 ', ` true' is true. Case insensitive.
+String to bool, ` 0`and`FALSE` is false, `1`and`TRUE` is true. Case insensitive.
 
 数值转bool，非零为真,零为假。字符串转bool,`0`、`FALSE`为假，`1`、`TRUE`为真。不区分大小写。
 
@@ -62,7 +62,7 @@ Bool to string, false to`FALSE`, true to`TRUE`.
 
 bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真为`TRUE`。
 
-The default index is`excel index`. If you want to use c# index, please set`useexcelindex`to`false`.
+The default index is`excel index`. If you want to use c# index, please set`UseExcelIndex`to`false`.
 
 索引默认为`Excel索引`，如果想用c#索引，请设置`UseExcelIndex`为`false`。
 
@@ -75,9 +75,9 @@ Note: Use `&` for string concatenation.
 
 注：字符串拼接使用`&`。
 
-Note: `find` is an Excel function, find (the string to be searched, the string to be searched [,start position]) 
+Note: `find` is an Excel formula , find (the string to be searched, the string to be searched [,start position]) 
 
-注：`find`为Excel函数，find(要查找的字符串,被查找的字符串[,开始位置])
+注：`find`为Excel公式，find(要查找的字符串,被查找的字符串[,开始位置])
 
 ## Custom parameters(自定义参数)
 ``` csharp
@@ -124,7 +124,7 @@ Note: You can also use `AddParameter`, `AddParameterFromJson` to add methods, an
 
 注：还可以使用`AddParameter`、`AddParameterFromJson`添加方法，使用`DiyFunction`+=来自定义函数。
 
-## Excel functions(Excel函数)
+## Excel Formula (Excel公式)
 
 Functions: `logical functions`, `mathematics and trigonometric functions`, `text functions`, `statistical functions`, `date and time functions` 
 
