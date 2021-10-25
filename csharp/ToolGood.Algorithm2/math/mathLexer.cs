@@ -25,7 +25,7 @@ using Antlr4.Runtime;
 using Antlr4.Runtime.Atn;
 using DFA = Antlr4.Runtime.Dfa.DFA;
 
-public partial class mathLexer : Lexer {
+partial class mathLexer : Lexer {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
  
