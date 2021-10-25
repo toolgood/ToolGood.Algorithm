@@ -33,6 +33,19 @@ public class AlgorithmEngineTest {
         c = engine.TryEvaluate("if(2+3*2+10/2*4,1", 0);
         assertEquals(0, c);
 
+        c = engine.TryEvaluate("2.1e3 + 10", 0);
+        assertEquals(2110, c);
+
+        c = engine.TryEvaluate("2.1e+03 + 10", 0);
+        assertEquals(2110, c);
+
+        c = engine.TryEvaluate("2.1e+3 + 10", 0);
+        assertEquals(2110, c);
+
+        double d = engine.TryEvaluate("2.1e-3 + 10", 0.0);
+        assertEquals(10.0021, d,4);
+
+
         double e = engine.TryEvaluate("e", 0.0);
         assertEquals(Math.E-e,0.0,0.01);
         e = engine.TryEvaluate("pi", 0.0);

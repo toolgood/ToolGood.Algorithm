@@ -30,6 +30,17 @@ namespace ToolGood.Algorithm
             c = engine.TryEvaluate("if(2+3*2+10/2*4,1", 0);
             Assert.AreEqual(0, c);
 
+            c = engine.TryEvaluate("2.1e3 + 10", 0);
+            Assert.AreEqual(2110, c);
+
+            c = engine.TryEvaluate("2.1e+03 + 10", 0);
+            Assert.AreEqual(2110, c);
+
+            c = engine.TryEvaluate("2.1e+3 + 10", 0);
+            Assert.AreEqual(2110, c);
+
+            var d = engine.TryEvaluate("2.1e-3 + 10", 0.0);
+            Assert.AreEqual(10.0021, d);
 
 
             var e = engine.TryEvaluate("e", 0.0);
