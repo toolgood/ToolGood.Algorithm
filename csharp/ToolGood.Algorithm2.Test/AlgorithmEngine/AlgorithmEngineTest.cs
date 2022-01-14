@@ -70,7 +70,7 @@ namespace ToolGood.Algorithm
             s = engine.TryEvaluate("'3'+2", "");
             Assert.AreEqual("5", s);
 
-            var r = engine.TryEvaluate("count({ 1,2,3,4})", 0);
+            var r = engine.TryEvaluate("count(Array(1,2,3,4))", 0);
             Assert.AreEqual(4, r);
 
 
@@ -104,6 +104,10 @@ namespace ToolGood.Algorithm
 
             var value3 = engine.TryEvaluate("-7 < -2", false);
             Assert.AreEqual(value3, true);
+
+
+            var t1 = engine.TryEvaluate("-7 < -2？1：2", 1);
+            Assert.AreEqual(t1, 1);
         }
 
         [Test]
@@ -158,6 +162,23 @@ namespace ToolGood.Algorithm
         {
             Cylinder c = new Cylinder(3, 10);
             var t = c.TryEvaluate("[半径]*[半径]*pi()", 0.0);      //圆底面积
+            var t2 = c.TryEvaluate("半径*半径*pi()", 0.0);      //圆底面积
+
+            var t3 = c.TryEvaluate("{半径}*{半径}*pi()", 0.0);      //圆底面积
+            var t4 = c.TryEvaluate("@半径*@半径*pi()", 0.0);      //圆底面积
+            var t5 = c.TryEvaluate("#半径#*#半径#*pi()", 0.0);      //圆底面积
+            var t6 = c.TryEvaluate("【半径】*【半径】*pi()", 0.0);      //圆底面积
+            var t7 = c.TryEvaluate("【半径】*【半径】*pi（）", 0.0);      //圆底面积
+
+
+            Assert.AreEqual(t, t2);
+            Assert.AreEqual(t, t3);
+            Assert.AreEqual(t, t4);
+            Assert.AreEqual(t, t5);
+            Assert.AreEqual(t, t6);
+            Assert.AreEqual(t, t7);
+
+
             t = c.TryEvaluate("[直径]*pi()", 0.0);            //圆的长
             t = c.TryEvaluate("[半径]*[半径]*pi()*[高]", 0.0); //圆的体积
 

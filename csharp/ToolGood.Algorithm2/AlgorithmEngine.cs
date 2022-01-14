@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
+using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.LitJson;
 using static mathParser;
 
@@ -297,17 +298,6 @@ namespace ToolGood.Algorithm
         #endregion
 
         #region Parse
-        class AntlrErrorListener : IAntlrErrorListener<IToken>
-        {
-            public bool IsError { get; private set; }
-            public string ErrorMsg { get; private set; }
-
-            public void SyntaxError(TextWriter output, IRecognizer recognizer, IToken offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
-            {
-                IsError = true;
-                ErrorMsg = msg;
-            }
-        }
 
         /// <summary>
         /// 编译公式，默认

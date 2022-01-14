@@ -13,9 +13,9 @@ namespace ToolGood.Algorithm2.Test
             AlgorithmEngine engine = new AlgorithmEngine();
 
             double t = 0.0;
-            if (engine.Parse("1+2[][]")) {
-                t = (double)engine.Evaluate().NumberValue;
-            }
+            //if (engine.Parse("1+2[][]")) {
+            //    t = (double)engine.Evaluate().NumberValue;
+            //}
 
             Thread.CurrentThread.CurrentCulture = new CultureInfo("fr-FR");
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("fr-FR");

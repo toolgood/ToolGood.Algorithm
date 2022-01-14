@@ -21,1519 +21,237 @@
 
 using Antlr4.Runtime.Tree;
 
-/// <summary>
-/// This interface defines a complete generic visitor for a parse tree produced
-/// by <see cref="mathParser"/>.
-/// </summary>
-/// <typeparam name="Result">The return type of the visit operation.</typeparam>
-interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="mathParser.prog"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitProg( mathParser.ProgContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>CEILING_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCEILING_fun( mathParser.CEILING_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>FACT_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFACT_fun( mathParser.FACT_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>REGEXREPALCE_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitREGEXREPALCE_fun( mathParser.REGEXREPALCE_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>AddSub_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitAddSub_fun( mathParser.AddSub_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>AVERAGEIF_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitAVERAGEIF_fun( mathParser.AVERAGEIF_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>RIGHT_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitRIGHT_fun( mathParser.RIGHT_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>OCT2BIN_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitOCT2BIN_fun( mathParser.OCT2BIN_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>QUARTILE_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitQUARTILE_fun( mathParser.QUARTILE_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>FINV_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFINV_fun( mathParser.FINV_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>NOT_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitNOT_fun( mathParser.NOT_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>DAYS360_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitDAYS360_fun( mathParser.DAYS360_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>WEEKNUM_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitWEEKNUM_fun( mathParser.WEEKNUM_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>POISSON_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitPOISSON_fun( mathParser.POISSON_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ISREGEX_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitISREGEX_fun( mathParser.ISREGEX_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>PERCENTILE_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitPERCENTILE_fun( mathParser.PERCENTILE_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>SHA256_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSHA256_fun( mathParser.SHA256_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>HYPGEOMDIST_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitHYPGEOMDIST_fun( mathParser.HYPGEOMDIST_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>PERMUT_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitPERMUT_fun( mathParser.PERMUT_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>TRIMSTART_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitTRIMSTART_fun( mathParser.TRIMSTART_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>RMB_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitRMB_fun( mathParser.RMB_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>DEC2HEX_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitDEC2HEX_fun( mathParser.DEC2HEX_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>CLEAN_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCLEAN_fun( mathParser.CLEAN_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>LOWER_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitLOWER_fun( mathParser.LOWER_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>OR_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitOR_fun( mathParser.OR_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>NORMSINV_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitNORMSINV_fun( mathParser.NORMSINV_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>LEFT_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitLEFT_fun( mathParser.LEFT_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ISEVEN_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitISEVEN_fun( mathParser.ISEVEN_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>LOGINV_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitLOGINV_fun( mathParser.LOGINV_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>WORKDAY_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitWORKDAY_fun( mathParser.WORKDAY_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ISERROR_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitISERROR_fun( mathParser.ISERROR_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>BIN2DEC_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitBIN2DEC_fun( mathParser.BIN2DEC_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>JIS_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitJIS_fun( mathParser.JIS_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>CRC32_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCRC32_fun( mathParser.CRC32_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>LCM_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitLCM_fun( mathParser.LCM_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>HARMEAN_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitHARMEAN_fun( mathParser.HARMEAN_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>NORMINV_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitNORMINV_fun( mathParser.NORMINV_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>GAMMAINV_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitGAMMAINV_fun( mathParser.GAMMAINV_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>SQRT_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSQRT_fun( mathParser.SQRT_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>DEGREES_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitDEGREES_fun( mathParser.DEGREES_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>MROUND_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitMROUND_fun( mathParser.MROUND_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>DATEDIF_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitDATEDIF_fun( mathParser.DATEDIF_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>TRIMEND_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitTRIMEND_fun( mathParser.TRIMEND_funContext context);
- 
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ISLOGICAL_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitISLOGICAL_fun( mathParser.ISLOGICAL_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>INT_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitINT_fun( mathParser.INT_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>SUMIF_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSUMIF_fun( mathParser.SUMIF_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>HEX2OCT_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitHEX2OCT_fun( mathParser.HEX2OCT_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>PI_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitPI_fun( mathParser.PI_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>YEAR_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitYEAR_fun( mathParser.YEAR_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>SQRTPI_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSQRTPI_fun( mathParser.SQRTPI_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>CONCATENATE_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCONCATENATE_fun( mathParser.CONCATENATE_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>COUNT_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCOUNT_fun( mathParser.COUNT_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>FALSE_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFALSE_fun( mathParser.FALSE_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>HTMLENCODE_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitHTMLENCODE_fun( mathParser.HTMLENCODE_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>BASE64URLTOTEXT_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitBASE64URLTOTEXT_fun( mathParser.BASE64URLTOTEXT_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>LOG10_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitLOG10_fun( mathParser.LOG10_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ISTEXT_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitISTEXT_fun( mathParser.ISTEXT_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>NEGBINOMDIST_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitNEGBINOMDIST_fun( mathParser.NEGBINOMDIST_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>NETWORKDAYS_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitNETWORKDAYS_fun( mathParser.NETWORKDAYS_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>FACTDOUBLE_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFACTDOUBLE_fun( mathParser.FACTDOUBLE_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>TIMEVALUE_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitTIMEVALUE_fun( mathParser.TIMEVALUE_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>AVEDEV_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitAVEDEV_fun( mathParser.AVEDEV_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>GUID_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitGUID_fun( mathParser.GUID_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>JSON_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitJSON_fun( mathParser.JSON_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>FIXED_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFIXED_fun( mathParser.FIXED_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>GetJsonValue_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitGetJsonValue_fun( mathParser.GetJsonValue_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>TINV_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitTINV_fun( mathParser.TINV_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>EDATE_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitEDATE_fun( mathParser.EDATE_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>GEOMEAN_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitGEOMEAN_fun( mathParser.GEOMEAN_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>VAR_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitVAR_fun( mathParser.VAR_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>SIGN_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSIGN_fun( mathParser.SIGN_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>EOMONTH_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitEOMONTH_fun( mathParser.EOMONTH_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>FLOOR_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFLOOR_fun( mathParser.FLOOR_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>HOUR_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitHOUR_fun( mathParser.HOUR_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>LEN_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitLEN_fun( mathParser.LEN_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ACOS_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitACOS_fun( mathParser.ACOS_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ISNULLORWHITESPACE_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitISNULLORWHITESPACE_fun( mathParser.ISNULLORWHITESPACE_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>NUM_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitNUM_fun( mathParser.NUM_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>COSH_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCOSH_fun( mathParser.COSH_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>QUOTIENT_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitQUOTIENT_fun( mathParser.QUOTIENT_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>OCT2DEC_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitOCT2DEC_fun( mathParser.OCT2DEC_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>SEARCH_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSEARCH_fun( mathParser.SEARCH_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ROUNDUP_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitROUNDUP_fun( mathParser.ROUNDUP_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>COMBIN_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCOMBIN_fun( mathParser.COMBIN_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>CODE_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCODE_fun( mathParser.CODE_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ASINH_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitASINH_fun( mathParser.ASINH_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>SIN_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSIN_fun( mathParser.SIN_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>SUBSTRING_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSUBSTRING_fun( mathParser.SUBSTRING_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>RANDBETWEEN_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitRANDBETWEEN_fun( mathParser.RANDBETWEEN_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>AVERAGE_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitAVERAGE_fun( mathParser.AVERAGE_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>LOG_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitLOG_fun( mathParser.LOG_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>HMACSHA512_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitHMACSHA512_fun( mathParser.HMACSHA512_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>AndOr_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitAndOr_fun( mathParser.AndOr_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>STDEVP_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSTDEVP_fun( mathParser.STDEVP_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>Array_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitArray_fun( mathParser.Array_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ROUND_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitROUND_fun( mathParser.ROUND_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>EXP_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitEXP_fun( mathParser.EXP_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>COUNTIF_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCOUNTIF_fun( mathParser.COUNTIF_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>VARP_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitVARP_fun( mathParser.VARP_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>REMOVEEND_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitREMOVEEND_fun( mathParser.REMOVEEND_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>DATE_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitDATE_fun( mathParser.DATE_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>PARAMETER_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitPARAMETER_fun( mathParser.PARAMETER_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>SPLIT_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSPLIT_fun( mathParser.SPLIT_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>URLDECODE_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitURLDECODE_fun( mathParser.URLDECODE_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>LARGE_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitLARGE_fun( mathParser.LARGE_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>VALUE_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitVALUE_fun( mathParser.VALUE_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>DAY_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitDAY_fun( mathParser.DAY_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>WEIBULL_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitWEIBULL_fun( mathParser.WEIBULL_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>HMACSHA256_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitHMACSHA256_fun( mathParser.HMACSHA256_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>BINOMDIST_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitBINOMDIST_fun( mathParser.BINOMDIST_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>Judge_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitJudge_fun( mathParser.Judge_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>DEVSQ_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitDEVSQ_fun( mathParser.DEVSQ_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>MODE_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitMODE_fun( mathParser.MODE_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>BETAINV_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitBETAINV_fun( mathParser.BETAINV_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>MAX_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitMAX_fun( mathParser.MAX_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>MINUTE_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitMINUTE_fun( mathParser.MINUTE_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>TAN_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitTAN_fun( mathParser.TAN_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>IFERROR_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitIFERROR_fun( mathParser.IFERROR_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>FDIST_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFDIST_fun( mathParser.FDIST_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>INDEXOF_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitINDEXOF_fun( mathParser.INDEXOF_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>UPPER_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitUPPER_fun( mathParser.UPPER_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>HTMLDECODE_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitHTMLDECODE_fun( mathParser.HTMLDECODE_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>EXPONDIST_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitEXPONDIST_fun( mathParser.EXPONDIST_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>DEC2BIN_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitDEC2BIN_fun( mathParser.DEC2BIN_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>HEX2DEC_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitHEX2DEC_fun( mathParser.HEX2DEC_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>SMALL_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSMALL_fun( mathParser.SMALL_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ODD_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitODD_fun( mathParser.ODD_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>TEXTTOBASE64_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitTEXTTOBASE64_fun( mathParser.TEXTTOBASE64_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>MID_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitMID_fun( mathParser.MID_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>PERCENTRANK_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitPERCENTRANK_fun( mathParser.PERCENTRANK_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>STDEV_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSTDEV_fun( mathParser.STDEV_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>NORMSDIST_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitNORMSDIST_fun( mathParser.NORMSDIST_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ISNUMBER_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitISNUMBER_fun( mathParser.ISNUMBER_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>LASTINDEXOF_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitLASTINDEXOF_fun( mathParser.LASTINDEXOF_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>MOD_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitMOD_fun( mathParser.MOD_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>CHAR_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCHAR_fun( mathParser.CHAR_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>REGEX_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitREGEX_fun( mathParser.REGEX_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>TEXTTOBASE64URL_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitTEXTTOBASE64URL_fun( mathParser.TEXTTOBASE64URL_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>MD5_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitMD5_fun( mathParser.MD5_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>REPLACE_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitREPLACE_fun( mathParser.REPLACE_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ACOSH_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitACOSH_fun( mathParser.ACOSH_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ISODD_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitISODD_fun( mathParser.ISODD_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ASC_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitASC_fun( mathParser.ASC_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>COS_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCOS_fun( mathParser.COS_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>LN_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitLN_fun( mathParser.LN_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>STRING_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSTRING_fun( mathParser.STRING_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>HMACMD5_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitHMACMD5_fun( mathParser.HMACMD5_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>PRODUCT_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitPRODUCT_fun( mathParser.PRODUCT_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>EXACT_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitEXACT_fun( mathParser.EXACT_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>SUMSQ_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSUMSQ_fun( mathParser.SUMSQ_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>SUM_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSUM_fun( mathParser.SUM_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>SECOND_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSECOND_fun( mathParser.SECOND_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>GAMMADIST_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitGAMMADIST_fun( mathParser.GAMMADIST_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>OCT2HEX_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitOCT2HEX_fun( mathParser.OCT2HEX_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>TODAY_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitTODAY_fun( mathParser.TODAY_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ATAN_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitATAN_fun( mathParser.ATAN_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>E_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitE_fun( mathParser.E_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>TRIM_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitTRIM_fun( mathParser.TRIM_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>RADIANS_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitRADIANS_fun( mathParser.RADIANS_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>GAMMALN_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitGAMMALN_fun( mathParser.GAMMALN_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>TEXT_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitTEXT_fun( mathParser.TEXT_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>FISHER_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFISHER_fun( mathParser.FISHER_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>AND_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitAND_fun( mathParser.AND_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>BIN2HEX_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitBIN2HEX_fun( mathParser.BIN2HEX_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>MULTINOMIAL_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitMULTINOMIAL_fun( mathParser.MULTINOMIAL_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>MONTH_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitMONTH_fun( mathParser.MONTH_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>URLENCODE_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitURLENCODE_fun( mathParser.URLENCODE_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>NORMDIST_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitNORMDIST_fun( mathParser.NORMDIST_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>HMACSHA1_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitHMACSHA1_fun( mathParser.HMACSHA1_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ENDSWITH_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitENDSWITH_fun( mathParser.ENDSWITH_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>Bracket_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitBracket_fun( mathParser.Bracket_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>BETADIST_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitBETADIST_fun( mathParser.BETADIST_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ATANH_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitATANH_fun( mathParser.ATANH_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>NOW_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitNOW_fun( mathParser.NOW_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>MEDIAN_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitMEDIAN_fun( mathParser.MEDIAN_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>POWER_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitPOWER_fun( mathParser.POWER_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>DEC2OCT_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitDEC2OCT_fun( mathParser.DEC2OCT_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>PROPER_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitPROPER_fun( mathParser.PROPER_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>TRUNC_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitTRUNC_fun( mathParser.TRUNC_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>GCD_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitGCD_fun( mathParser.GCD_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>TANH_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitTANH_fun( mathParser.TANH_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>HEX2BIN_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitHEX2BIN_fun( mathParser.HEX2BIN_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>SINH_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSINH_fun( mathParser.SINH_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>SHA512_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSHA512_fun( mathParser.SHA512_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>MIN_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitMIN_fun( mathParser.MIN_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ISNONTEXT_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitISNONTEXT_fun( mathParser.ISNONTEXT_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ABS_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitABS_fun( mathParser.ABS_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ROUNDDOWN_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitROUNDDOWN_fun( mathParser.ROUNDDOWN_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>IF_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitIF_fun( mathParser.IF_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>JOIN_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitJOIN_fun( mathParser.JOIN_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>FIND_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFIND_fun( mathParser.FIND_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>SUBSTITUTE_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSUBSTITUTE_fun( mathParser.SUBSTITUTE_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>REPT_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitREPT_fun( mathParser.REPT_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ASIN_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitASIN_fun( mathParser.ASIN_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>MulDiv_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitMulDiv_fun( mathParser.MulDiv_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>REMOVESTART_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitREMOVESTART_fun( mathParser.REMOVESTART_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>T_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitT_fun( mathParser.T_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>WEEKDAY_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitWEEKDAY_fun( mathParser.WEEKDAY_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>BIN2OCT_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitBIN2OCT_fun( mathParser.BIN2OCT_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>BASE64TOTEXT_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitBASE64TOTEXT_fun( mathParser.BASE64TOTEXT_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>TDIST_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitTDIST_fun( mathParser.TDIST_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>DATEVALUE_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitDATEVALUE_fun( mathParser.DATEVALUE_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>STARTSWITH_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSTARTSWITH_fun( mathParser.STARTSWITH_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>EVEN_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitEVEN_fun( mathParser.EVEN_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>LOGNORMDIST_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitLOGNORMDIST_fun( mathParser.LOGNORMDIST_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ISNULLOREMPTY_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitISNULLOREMPTY_fun( mathParser.ISNULLOREMPTY_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>TRUE_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitTRUE_fun( mathParser.TRUE_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>FISHERINV_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFISHERINV_fun( mathParser.FISHERINV_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>SHA1_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSHA1_fun( mathParser.SHA1_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>TIME_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitTIME_fun( mathParser.TIME_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ATAN2_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitATAN2_fun( mathParser.ATAN2_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>RAND_fun</c>
-	/// labeled alternative in <see cref="mathParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitRAND_fun( mathParser.RAND_funContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="mathParser.parameter"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitParameter( mathParser.ParameterContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="mathParser.parameter2"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitParameter2( mathParser.Parameter2Context context);
+interface ImathVisitor<Result> : IParseTreeVisitor<Result>
+{
+    Result VisitProg(mathParser.ProgContext context);
+    Result VisitCEILING_fun(mathParser.CEILING_funContext context);
+    Result VisitFACT_fun(mathParser.FACT_funContext context);
+    Result VisitREGEXREPALCE_fun(mathParser.REGEXREPALCE_funContext context);
+    Result VisitAddSub_fun(mathParser.AddSub_funContext context);
+    Result VisitAVERAGEIF_fun(mathParser.AVERAGEIF_funContext context);
+    Result VisitRIGHT_fun(mathParser.RIGHT_funContext context);
+    Result VisitOCT2BIN_fun(mathParser.OCT2BIN_funContext context);
+    Result VisitQUARTILE_fun(mathParser.QUARTILE_funContext context);
+    Result VisitFINV_fun(mathParser.FINV_funContext context);
+    Result VisitNOT_fun(mathParser.NOT_funContext context);
+    Result VisitDAYS360_fun(mathParser.DAYS360_funContext context);
+    Result VisitWEEKNUM_fun(mathParser.WEEKNUM_funContext context);
+    Result VisitPOISSON_fun(mathParser.POISSON_funContext context);
+    Result VisitISREGEX_fun(mathParser.ISREGEX_funContext context);
+    Result VisitPERCENTILE_fun(mathParser.PERCENTILE_funContext context);
+    Result VisitSHA256_fun(mathParser.SHA256_funContext context);
+    Result VisitHYPGEOMDIST_fun(mathParser.HYPGEOMDIST_funContext context);
+    Result VisitPERMUT_fun(mathParser.PERMUT_funContext context);
+    Result VisitTRIMSTART_fun(mathParser.TRIMSTART_funContext context);
+    Result VisitRMB_fun(mathParser.RMB_funContext context);
+    Result VisitDEC2HEX_fun(mathParser.DEC2HEX_funContext context);
+    Result VisitCLEAN_fun(mathParser.CLEAN_funContext context);
+    Result VisitLOWER_fun(mathParser.LOWER_funContext context);
+    Result VisitOR_fun(mathParser.OR_funContext context);
+    Result VisitNORMSINV_fun(mathParser.NORMSINV_funContext context);
+    Result VisitLEFT_fun(mathParser.LEFT_funContext context);
+    Result VisitISEVEN_fun(mathParser.ISEVEN_funContext context);
+    Result VisitLOGINV_fun(mathParser.LOGINV_funContext context);
+    Result VisitWORKDAY_fun(mathParser.WORKDAY_funContext context);
+    Result VisitISERROR_fun(mathParser.ISERROR_funContext context);
+    Result VisitBIN2DEC_fun(mathParser.BIN2DEC_funContext context);
+    Result VisitJIS_fun(mathParser.JIS_funContext context);
+    Result VisitCRC32_fun(mathParser.CRC32_funContext context);
+    Result VisitLCM_fun(mathParser.LCM_funContext context);
+    Result VisitHARMEAN_fun(mathParser.HARMEAN_funContext context);
+    Result VisitNORMINV_fun(mathParser.NORMINV_funContext context);
+    Result VisitGAMMAINV_fun(mathParser.GAMMAINV_funContext context);
+    Result VisitSQRT_fun(mathParser.SQRT_funContext context);
+    Result VisitDEGREES_fun(mathParser.DEGREES_funContext context);
+    Result VisitMROUND_fun(mathParser.MROUND_funContext context);
+    Result VisitDATEDIF_fun(mathParser.DATEDIF_funContext context);
+    Result VisitTRIMEND_fun(mathParser.TRIMEND_funContext context);
 
- 
-	Result VisitExpr2_fun( mathParser.Expr2_funContext context);
+    Result VisitISLOGICAL_fun(mathParser.ISLOGICAL_funContext context);
+    Result VisitINT_fun(mathParser.INT_funContext context);
+    Result VisitSUMIF_fun(mathParser.SUMIF_funContext context);
+    Result VisitHEX2OCT_fun(mathParser.HEX2OCT_funContext context);
+    Result VisitPI_fun(mathParser.PI_funContext context);
+    Result VisitYEAR_fun(mathParser.YEAR_funContext context);
+    Result VisitSQRTPI_fun(mathParser.SQRTPI_funContext context);
+    Result VisitCONCATENATE_fun(mathParser.CONCATENATE_funContext context);
+    Result VisitCOUNT_fun(mathParser.COUNT_funContext context);
+    Result VisitFALSE_fun(mathParser.FALSE_funContext context);
+    Result VisitHTMLENCODE_fun(mathParser.HTMLENCODE_funContext context);
+    Result VisitBASE64URLTOTEXT_fun(mathParser.BASE64URLTOTEXT_funContext context);
+    Result VisitLOG10_fun(mathParser.LOG10_funContext context);
+    Result VisitISTEXT_fun(mathParser.ISTEXT_funContext context);
+    Result VisitNEGBINOMDIST_fun(mathParser.NEGBINOMDIST_funContext context);
+    Result VisitNETWORKDAYS_fun(mathParser.NETWORKDAYS_funContext context);
+    Result VisitFACTDOUBLE_fun(mathParser.FACTDOUBLE_funContext context);
+    Result VisitTIMEVALUE_fun(mathParser.TIMEVALUE_funContext context);
+    Result VisitAVEDEV_fun(mathParser.AVEDEV_funContext context);
+    Result VisitGUID_fun(mathParser.GUID_funContext context);
+    Result VisitJSON_fun(mathParser.JSON_funContext context);
+    Result VisitFIXED_fun(mathParser.FIXED_funContext context);
+    Result VisitGetJsonValue_fun(mathParser.GetJsonValue_funContext context);
+    Result VisitTINV_fun(mathParser.TINV_funContext context);
+    Result VisitEDATE_fun(mathParser.EDATE_funContext context);
+    Result VisitGEOMEAN_fun(mathParser.GEOMEAN_funContext context);
+    Result VisitVAR_fun(mathParser.VAR_funContext context);
+    Result VisitSIGN_fun(mathParser.SIGN_funContext context);
+    Result VisitEOMONTH_fun(mathParser.EOMONTH_funContext context);
+    Result VisitFLOOR_fun(mathParser.FLOOR_funContext context);
+    Result VisitHOUR_fun(mathParser.HOUR_funContext context);
+    Result VisitLEN_fun(mathParser.LEN_funContext context);
+    Result VisitACOS_fun(mathParser.ACOS_funContext context);
+    Result VisitISNULLORWHITESPACE_fun(mathParser.ISNULLORWHITESPACE_funContext context);
+    Result VisitNUM_fun(mathParser.NUM_funContext context);
+    Result VisitCOSH_fun(mathParser.COSH_funContext context);
+    Result VisitQUOTIENT_fun(mathParser.QUOTIENT_funContext context);
+    Result VisitOCT2DEC_fun(mathParser.OCT2DEC_funContext context);
+    Result VisitSEARCH_fun(mathParser.SEARCH_funContext context);
+    Result VisitROUNDUP_fun(mathParser.ROUNDUP_funContext context);
+    Result VisitCOMBIN_fun(mathParser.COMBIN_funContext context);
+    Result VisitCODE_fun(mathParser.CODE_funContext context);
+    Result VisitASINH_fun(mathParser.ASINH_funContext context);
+    Result VisitSIN_fun(mathParser.SIN_funContext context);
+    Result VisitSUBSTRING_fun(mathParser.SUBSTRING_funContext context);
+    Result VisitRANDBETWEEN_fun(mathParser.RANDBETWEEN_funContext context);
+    Result VisitAVERAGE_fun(mathParser.AVERAGE_funContext context);
+    Result VisitLOG_fun(mathParser.LOG_funContext context);
+    Result VisitHMACSHA512_fun(mathParser.HMACSHA512_funContext context);
+    Result VisitAndOr_fun(mathParser.AndOr_funContext context);
+    Result VisitSTDEVP_fun(mathParser.STDEVP_funContext context);
+    Result VisitArray_fun(mathParser.Array_funContext context);
+    Result VisitROUND_fun(mathParser.ROUND_funContext context);
+    Result VisitEXP_fun(mathParser.EXP_funContext context);
+    Result VisitCOUNTIF_fun(mathParser.COUNTIF_funContext context);
+    Result VisitVARP_fun(mathParser.VARP_funContext context);
+    Result VisitREMOVEEND_fun(mathParser.REMOVEEND_funContext context);
+    Result VisitDATE_fun(mathParser.DATE_funContext context);
+    Result VisitPARAMETER_fun(mathParser.PARAMETER_funContext context);
+    Result VisitSPLIT_fun(mathParser.SPLIT_funContext context);
+    Result VisitURLDECODE_fun(mathParser.URLDECODE_funContext context);
+    Result VisitLARGE_fun(mathParser.LARGE_funContext context);
+    Result VisitVALUE_fun(mathParser.VALUE_funContext context);
+    Result VisitDAY_fun(mathParser.DAY_funContext context);
+    Result VisitWEIBULL_fun(mathParser.WEIBULL_funContext context);
+    Result VisitHMACSHA256_fun(mathParser.HMACSHA256_funContext context);
+    Result VisitBINOMDIST_fun(mathParser.BINOMDIST_funContext context);
+    Result VisitJudge_fun(mathParser.Judge_funContext context);
+    Result VisitDEVSQ_fun(mathParser.DEVSQ_funContext context);
+    Result VisitMODE_fun(mathParser.MODE_funContext context);
+    Result VisitBETAINV_fun(mathParser.BETAINV_funContext context);
+    Result VisitMAX_fun(mathParser.MAX_funContext context);
+    Result VisitMINUTE_fun(mathParser.MINUTE_funContext context);
+    Result VisitTAN_fun(mathParser.TAN_funContext context);
+    Result VisitIFERROR_fun(mathParser.IFERROR_funContext context);
+    Result VisitFDIST_fun(mathParser.FDIST_funContext context);
+    Result VisitINDEXOF_fun(mathParser.INDEXOF_funContext context);
+    Result VisitUPPER_fun(mathParser.UPPER_funContext context);
+    Result VisitHTMLDECODE_fun(mathParser.HTMLDECODE_funContext context);
+    Result VisitEXPONDIST_fun(mathParser.EXPONDIST_funContext context);
+    Result VisitDEC2BIN_fun(mathParser.DEC2BIN_funContext context);
+    Result VisitHEX2DEC_fun(mathParser.HEX2DEC_funContext context);
+    Result VisitSMALL_fun(mathParser.SMALL_funContext context);
+    Result VisitODD_fun(mathParser.ODD_funContext context);
+    Result VisitTEXTTOBASE64_fun(mathParser.TEXTTOBASE64_funContext context);
+    Result VisitMID_fun(mathParser.MID_funContext context);
+    Result VisitPERCENTRANK_fun(mathParser.PERCENTRANK_funContext context);
+    Result VisitSTDEV_fun(mathParser.STDEV_funContext context);
+    Result VisitNORMSDIST_fun(mathParser.NORMSDIST_funContext context);
+    Result VisitISNUMBER_fun(mathParser.ISNUMBER_funContext context);
+    Result VisitLASTINDEXOF_fun(mathParser.LASTINDEXOF_funContext context);
+    Result VisitMOD_fun(mathParser.MOD_funContext context);
+    Result VisitCHAR_fun(mathParser.CHAR_funContext context);
+    Result VisitREGEX_fun(mathParser.REGEX_funContext context);
+    Result VisitTEXTTOBASE64URL_fun(mathParser.TEXTTOBASE64URL_funContext context);
+    Result VisitMD5_fun(mathParser.MD5_funContext context);
+    Result VisitREPLACE_fun(mathParser.REPLACE_funContext context);
+    Result VisitACOSH_fun(mathParser.ACOSH_funContext context);
+    Result VisitISODD_fun(mathParser.ISODD_funContext context);
+    Result VisitASC_fun(mathParser.ASC_funContext context);
+    Result VisitCOS_fun(mathParser.COS_funContext context);
+    Result VisitLN_fun(mathParser.LN_funContext context);
+    Result VisitSTRING_fun(mathParser.STRING_funContext context);
+    Result VisitHMACMD5_fun(mathParser.HMACMD5_funContext context);
+    Result VisitPRODUCT_fun(mathParser.PRODUCT_funContext context);
+    Result VisitEXACT_fun(mathParser.EXACT_funContext context);
+    Result VisitSUMSQ_fun(mathParser.SUMSQ_funContext context);
+    Result VisitSUM_fun(mathParser.SUM_funContext context);
+    Result VisitSECOND_fun(mathParser.SECOND_funContext context);
+    Result VisitGAMMADIST_fun(mathParser.GAMMADIST_funContext context);
+    Result VisitOCT2HEX_fun(mathParser.OCT2HEX_funContext context);
+    Result VisitTODAY_fun(mathParser.TODAY_funContext context);
+    Result VisitATAN_fun(mathParser.ATAN_funContext context);
+    Result VisitE_fun(mathParser.E_funContext context);
+    Result VisitTRIM_fun(mathParser.TRIM_funContext context);
+    Result VisitRADIANS_fun(mathParser.RADIANS_funContext context);
+    Result VisitGAMMALN_fun(mathParser.GAMMALN_funContext context);
+    Result VisitTEXT_fun(mathParser.TEXT_funContext context);
+    Result VisitFISHER_fun(mathParser.FISHER_funContext context);
+    Result VisitAND_fun(mathParser.AND_funContext context);
+    Result VisitBIN2HEX_fun(mathParser.BIN2HEX_funContext context);
+    Result VisitMULTINOMIAL_fun(mathParser.MULTINOMIAL_funContext context);
+    Result VisitMONTH_fun(mathParser.MONTH_funContext context);
+    Result VisitURLENCODE_fun(mathParser.URLENCODE_funContext context);
+    Result VisitNORMDIST_fun(mathParser.NORMDIST_funContext context);
+    Result VisitHMACSHA1_fun(mathParser.HMACSHA1_funContext context);
+    Result VisitENDSWITH_fun(mathParser.ENDSWITH_funContext context);
+    Result VisitBracket_fun(mathParser.Bracket_funContext context);
+    Result VisitBETADIST_fun(mathParser.BETADIST_funContext context);
+    Result VisitATANH_fun(mathParser.ATANH_funContext context);
+    Result VisitNOW_fun(mathParser.NOW_funContext context);
+    Result VisitMEDIAN_fun(mathParser.MEDIAN_funContext context);
+    Result VisitPOWER_fun(mathParser.POWER_funContext context);
+    Result VisitDEC2OCT_fun(mathParser.DEC2OCT_funContext context);
+    Result VisitPROPER_fun(mathParser.PROPER_funContext context);
+    Result VisitTRUNC_fun(mathParser.TRUNC_funContext context);
+    Result VisitGCD_fun(mathParser.GCD_funContext context);
+    Result VisitTANH_fun(mathParser.TANH_funContext context);
+    Result VisitHEX2BIN_fun(mathParser.HEX2BIN_funContext context);
+    Result VisitSINH_fun(mathParser.SINH_funContext context);
+    Result VisitSHA512_fun(mathParser.SHA512_funContext context);
+    Result VisitMIN_fun(mathParser.MIN_funContext context);
+    Result VisitISNONTEXT_fun(mathParser.ISNONTEXT_funContext context);
+    Result VisitABS_fun(mathParser.ABS_funContext context);
+    Result VisitROUNDDOWN_fun(mathParser.ROUNDDOWN_funContext context);
+    Result VisitIF_fun(mathParser.IF_funContext context);
+    Result VisitJOIN_fun(mathParser.JOIN_funContext context);
+    Result VisitFIND_fun(mathParser.FIND_funContext context);
+    Result VisitSUBSTITUTE_fun(mathParser.SUBSTITUTE_funContext context);
+    Result VisitREPT_fun(mathParser.REPT_funContext context);
+    Result VisitASIN_fun(mathParser.ASIN_funContext context);
+    Result VisitMulDiv_fun(mathParser.MulDiv_funContext context);
+    Result VisitREMOVESTART_fun(mathParser.REMOVESTART_funContext context);
+    Result VisitT_fun(mathParser.T_funContext context);
+    Result VisitWEEKDAY_fun(mathParser.WEEKDAY_funContext context);
+    Result VisitBIN2OCT_fun(mathParser.BIN2OCT_funContext context);
+    Result VisitBASE64TOTEXT_fun(mathParser.BASE64TOTEXT_funContext context);
+    Result VisitTDIST_fun(mathParser.TDIST_funContext context);
+    Result VisitDATEVALUE_fun(mathParser.DATEVALUE_funContext context);
+    Result VisitSTARTSWITH_fun(mathParser.STARTSWITH_funContext context);
+    Result VisitEVEN_fun(mathParser.EVEN_funContext context);
+    Result VisitLOGNORMDIST_fun(mathParser.LOGNORMDIST_funContext context);
+    Result VisitISNULLOREMPTY_fun(mathParser.ISNULLOREMPTY_funContext context);
+    Result VisitTRUE_fun(mathParser.TRUE_funContext context);
+    Result VisitFISHERINV_fun(mathParser.FISHERINV_funContext context);
+    Result VisitSHA1_fun(mathParser.SHA1_funContext context);
+    Result VisitTIME_fun(mathParser.TIME_funContext context);
+    Result VisitATAN2_fun(mathParser.ATAN2_funContext context);
+    Result VisitRAND_fun(mathParser.RAND_funContext context);
+    Result VisitParameter(mathParser.ParameterContext context);
+    Result VisitParameter2(mathParser.Parameter2Context context);
 
-	Result VisitVLOOKUP_fun( mathParser.VLOOKUP_funContext context);
 
-	Result VisitLOOKUP_fun( mathParser.LOOKUP_funContext context);
+    Result VisitExpr2_fun(mathParser.Expr2_funContext context);
 
-	Result VisitNULL_fun( mathParser.NULL_funContext context);
-	Result VisitISNULL_fun( mathParser.ISNULL_funContext context);
-	Result VisitISNULLORERROR_fun( mathParser.ISNULLORERROR_funContext context);
+    Result VisitVLOOKUP_fun(mathParser.VLOOKUP_funContext context);
 
-	Result VisitDiyFunction_fun(mathParser.DiyFunction_funContext context);
+    Result VisitLOOKUP_fun(mathParser.LOOKUP_funContext context);
+
+    Result VisitNULL_fun(mathParser.NULL_funContext context);
+    Result VisitISNULL_fun(mathParser.ISNULL_funContext context);
+    Result VisitISNULLORERROR_fun(mathParser.ISNULLORERROR_funContext context);
+
+    Result VisitDiyFunction_fun(mathParser.DiyFunction_funContext context);
+    Result VisitPercentage_fun(mathParser.Percentage_funContext context);
+
+    Result VisitNot_fun(mathParser.Not_funContext context);
 }

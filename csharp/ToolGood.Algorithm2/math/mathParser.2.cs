@@ -19,3114 +19,3567 @@
 // Ambiguous reference in cref attribute
 #pragma warning disable 419
 
-using System;
-using System.IO;
-using System.Text;
-using System.Diagnostics;
-using System.Collections.Generic;
 using Antlr4.Runtime;
-using Antlr4.Runtime.Atn;
-using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
-using DFA = Antlr4.Runtime.Dfa.DFA;
-
 
 partial class mathParser : Parser
 {
-	public partial class ProgContext : ParserRuleContext
-	{
-		public ProgContext(ParserRuleContext parent, int invokingState)
-			: base(parent, invokingState)
-		{
-		}
-		public override int RuleIndex { get { return 0; } }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			 return typedVisitor.VisitProg(this);
-			
-		}
-	}
-
-	public partial class ParameterContext : ParserRuleContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public Parameter2Context parameter2()
-		{
-			return GetRuleContext<Parameter2Context>(0);
-		}
-		public ParameterContext(ParserRuleContext parent, int invokingState)
-			: base(parent, invokingState)
-		{
-		}
-		public override int RuleIndex { get { return 2; } }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			 return typedVisitor.VisitParameter(this);
-			
-		}
-	}
-
-	public partial class Parameter2Context : ParserRuleContext
-	{
-		public Parameter2Context(ParserRuleContext parent, int invokingState)
-			: base(parent, invokingState)
-		{
-		}
-		public override int RuleIndex { get { return 4; } }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitParameter2(this);
-		}
-	}
-
-
-	public partial class ExprContext : ParserRuleContext
-	{
-		private int _RuleIndex = 1;
-		public ExprContext(ParserRuleContext parent, int invokingState)
-			: base(parent, invokingState)
-		{
-		}
-		public ExprContext(ParserRuleContext parent, int invokingState,int ruleIndex)
-			: base(parent, invokingState)
-		{
-			_RuleIndex = ruleIndex;
-		}
-		public override int RuleIndex { get { return _RuleIndex; } }
-
-		public ExprContext() { }
-		public virtual void CopyFrom(ExprContext context)
-		{
-			base.CopyFrom(context);
-		}
-	}
-	public partial class Expr2_funContext : ExprContext
-	{
-		public Expr2_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			 return typedVisitor.VisitExpr2_fun(this);
-		}
-	}
-
-	public partial class CEILING_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public CEILING_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitCEILING_fun(this);
-
-		}
-	}
-	public partial class FACT_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public FACT_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitFACT_fun(this);
-
-		}
-	}
-	public partial class REGEXREPALCE_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public REGEXREPALCE_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitREGEXREPALCE_fun(this);
-
-		}
-	}
-	public partial class AddSub_funContext : ExprContext
-	{
-		public IToken op;
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public AddSub_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitAddSub_fun(this);
-
-		}
-	}
-	public partial class AVERAGEIF_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public AVERAGEIF_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitAVERAGEIF_fun(this);
-
-		}
-	}
-	public partial class RIGHT_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public RIGHT_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitRIGHT_fun(this);
-
-		}
-	}
-	public partial class OCT2BIN_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public OCT2BIN_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitOCT2BIN_fun(this);
-
-		}
-	}
-	public partial class QUARTILE_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public QUARTILE_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitQUARTILE_fun(this);
-
-		}
-	}
-	public partial class FINV_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public FINV_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitFINV_fun(this);
-
-		}
-	}
-	public partial class NOT_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public NOT_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitNOT_fun(this);
-
-		}
-	}
-	public partial class DAYS360_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public DAYS360_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitDAYS360_fun(this);
-
-		}
-	}
-	public partial class WEEKNUM_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public WEEKNUM_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitWEEKNUM_fun(this);
-
-		}
-	}
-	public partial class POISSON_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public POISSON_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitPOISSON_fun(this);
-
-		}
-	}
-	public partial class ISREGEX_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public ISREGEX_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitISREGEX_fun(this);
-
-		}
-	}
-	public partial class PERCENTILE_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public PERCENTILE_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitPERCENTILE_fun(this);
-
-		}
-	}
-	public partial class SHA256_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public SHA256_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitSHA256_fun(this);
-
-		}
-	}
-	public partial class HYPGEOMDIST_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public HYPGEOMDIST_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitHYPGEOMDIST_fun(this);
-
-		}
-	}
-	public partial class PERMUT_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public PERMUT_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitPERMUT_fun(this);
-
-		}
-	}
-	public partial class TRIMSTART_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public TRIMSTART_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitTRIMSTART_fun(this);
-
-		}
-	}
-	public partial class RMB_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public RMB_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitRMB_fun(this);
-
-		}
-	}
-	public partial class DEC2HEX_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public DEC2HEX_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitDEC2HEX_fun(this);
-
-		}
-	}
-	public partial class CLEAN_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public CLEAN_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitCLEAN_fun(this);
-
-		}
-	}
-	public partial class LOWER_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public LOWER_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitLOWER_fun(this);
-
-		}
-	}
-	public partial class OR_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public OR_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitOR_fun(this);
-
-		}
-	}
-	public partial class NORMSINV_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public NORMSINV_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitNORMSINV_fun(this);
-
-		}
-	}
-	public partial class LEFT_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public LEFT_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitLEFT_fun(this);
-
-		}
-	}
-	public partial class ISEVEN_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public ISEVEN_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitISEVEN_fun(this);
-
-		}
-	}
-	public partial class LOGINV_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public LOGINV_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitLOGINV_fun(this);
-
-		}
-	}
-	public partial class WORKDAY_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public WORKDAY_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitWORKDAY_fun(this);
-
-		}
-	}
-	public partial class ISERROR_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public ISERROR_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitISERROR_fun(this);
-
-		}
-	}
-	public partial class BIN2DEC_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public BIN2DEC_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitBIN2DEC_fun(this);
-
-		}
-	}
-	public partial class JIS_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public JIS_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitJIS_fun(this);
-
-		}
-	}
-	public partial class CRC32_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public CRC32_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitCRC32_fun(this);
-
-		}
-	}
-	public partial class LCM_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public LCM_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitLCM_fun(this);
-
-		}
-	}
-	public partial class HARMEAN_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public HARMEAN_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitHARMEAN_fun(this);
-
-		}
-	}
-	public partial class NORMINV_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public NORMINV_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitNORMINV_fun(this);
-
-		}
-	}
-	public partial class GAMMAINV_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public GAMMAINV_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitGAMMAINV_fun(this);
-
-		}
-	}
-	public partial class SQRT_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public SQRT_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitSQRT_fun(this);
-
-		}
-	}
-	public partial class DEGREES_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public DEGREES_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitDEGREES_fun(this);
-
-		}
-	}
-	public partial class MROUND_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public MROUND_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitMROUND_fun(this);
-
-		}
-	}
-	public partial class DATEDIF_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public DATEDIF_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitDATEDIF_fun(this);
-
-		}
-	}
-	public partial class TRIMEND_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public TRIMEND_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitTRIMEND_fun(this);
-
-		}
-	}
-	public partial class ISLOGICAL_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public ISLOGICAL_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitISLOGICAL_fun(this);
-
-		}
-	}
-	public partial class INT_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public INT_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitINT_fun(this);
-
-		}
-	}
-	public partial class SUMIF_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public SUMIF_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitSUMIF_fun(this);
-
-		}
-	}
-	public partial class HEX2OCT_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public HEX2OCT_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitHEX2OCT_fun(this);
-
-		}
-	}
-	public partial class PI_funContext : ExprContext
-	{
-		public PI_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitPI_fun(this);
-
-		}
-	}
-	public partial class YEAR_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public YEAR_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitYEAR_fun(this);
-
-		}
-	}
-	public partial class SQRTPI_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public SQRTPI_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitSQRTPI_fun(this);
-
-		}
-	}
-	public partial class CONCATENATE_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public CONCATENATE_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitCONCATENATE_fun(this);
-
-		}
-	}
-	public partial class COUNT_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public COUNT_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitCOUNT_fun(this);
-
-		}
-	}
-	public partial class FALSE_funContext : ExprContext
-	{
-		public FALSE_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitFALSE_fun(this);
-
-		}
-	}
-	public partial class HTMLENCODE_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public HTMLENCODE_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitHTMLENCODE_fun(this);
-
-		}
-	}
-	public partial class BASE64URLTOTEXT_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public BASE64URLTOTEXT_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitBASE64URLTOTEXT_fun(this);
-
-		}
-	}
-	public partial class LOG10_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public LOG10_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitLOG10_fun(this);
-
-		}
-	}
-	public partial class ISTEXT_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public ISTEXT_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitISTEXT_fun(this);
-
-		}
-	}
-	public partial class NEGBINOMDIST_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public NEGBINOMDIST_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitNEGBINOMDIST_fun(this);
-
-		}
-	}
-	public partial class NETWORKDAYS_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public NETWORKDAYS_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitNETWORKDAYS_fun(this);
-
-		}
-	}
-	public partial class FACTDOUBLE_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public FACTDOUBLE_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitFACTDOUBLE_fun(this);
-
-		}
-	}
-	public partial class TIMEVALUE_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public TIMEVALUE_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitTIMEVALUE_fun(this);
-
-		}
-	}
-	public partial class AVEDEV_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public AVEDEV_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitAVEDEV_fun(this);
-
-		}
-	}
-	public partial class GUID_funContext : ExprContext
-	{
-		public GUID_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitGUID_fun(this);
-
-		}
-	}
-	public partial class JSON_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public JSON_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitJSON_fun(this);
-
-		}
-	}
-	public partial class FIXED_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public FIXED_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitFIXED_fun(this);
-
-		}
-	}
-	public partial class GetJsonValue_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public ParameterContext parameter()
-		{
-			return GetRuleContext<ParameterContext>(0);
-		}
-		public Parameter2Context parameter2()
-		{
-			return GetRuleContext<Parameter2Context>(0);
-		}
-		public GetJsonValue_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitGetJsonValue_fun(this);
-
-		}
-	}
-	public partial class TINV_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public TINV_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitTINV_fun(this);
-
-		}
-	}
-	public partial class EDATE_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public EDATE_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitEDATE_fun(this);
-
-		}
-	}
-	public partial class GEOMEAN_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public GEOMEAN_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitGEOMEAN_fun(this);
-
-		}
-	}
-	public partial class VAR_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public VAR_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitVAR_fun(this);
-
-		}
-	}
-	public partial class SIGN_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public SIGN_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitSIGN_fun(this);
-
-		}
-	}
-	public partial class EOMONTH_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public EOMONTH_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitEOMONTH_fun(this);
-
-		}
-	}
-	public partial class FLOOR_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public FLOOR_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitFLOOR_fun(this);
-
-		}
-	}
-	public partial class HOUR_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public HOUR_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitHOUR_fun(this);
-
-		}
-	}
-	public partial class LEN_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public LEN_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitLEN_fun(this);
-
-		}
-	}
-	public partial class ACOS_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public ACOS_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitACOS_fun(this);
-
-		}
-	}
-	public partial class ISNULLORWHITESPACE_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public ISNULLORWHITESPACE_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitISNULLORWHITESPACE_fun(this);
-
-		}
-	}
-	public partial class NUM_funContext : ExprContext
-	{
-		public ITerminalNode NUM() { return GetToken(25, 0); }
-		public ITerminalNode SUB() { return GetToken(24, 0); }
-		public NUM_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitNUM_fun(this);
-
-		}
-	}
-	public partial class COSH_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public COSH_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitCOSH_fun(this);
-
-		}
-	}
-	public partial class QUOTIENT_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public QUOTIENT_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitQUOTIENT_fun(this);
-
-		}
-	}
-	public partial class OCT2DEC_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public OCT2DEC_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitOCT2DEC_fun(this);
-
-		}
-	}
-	public partial class SEARCH_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public SEARCH_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitSEARCH_fun(this);
-
-		}
-	}
-	public partial class ROUNDUP_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public ROUNDUP_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitROUNDUP_fun(this);
-
-		}
-	}
-	public partial class COMBIN_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public COMBIN_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitCOMBIN_fun(this);
-
-		}
-	}
-	public partial class CODE_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public CODE_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitCODE_fun(this);
-
-		}
-	}
-	public partial class ASINH_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public ASINH_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitASINH_fun(this);
-
-		}
-	}
-	public partial class SIN_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public SIN_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitSIN_fun(this);
-
-		}
-	}
-	public partial class SUBSTRING_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public SUBSTRING_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitSUBSTRING_fun(this);
-
-		}
-	}
-	public partial class RANDBETWEEN_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public RANDBETWEEN_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitRANDBETWEEN_fun(this);
-
-		}
-	}
-	public partial class AVERAGE_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public AVERAGE_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitAVERAGE_fun(this);
-
-		}
-	}
-	public partial class LOG_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public LOG_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitLOG_fun(this);
-
-		}
-	}
-	public partial class HMACSHA512_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public HMACSHA512_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitHMACSHA512_fun(this);
-
-		}
-	}
-	public partial class AndOr_funContext : ExprContext
-	{
-		public IToken op;
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public AndOr_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitAndOr_fun(this);
-
-		}
-	}
-	public partial class STDEVP_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public STDEVP_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitSTDEVP_fun(this);
-
-		}
-	}
-	public partial class Array_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public Array_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitArray_fun(this);
-
-		}
-	}
-	public partial class ROUND_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public ROUND_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitROUND_fun(this);
-
-		}
-	}
-	public partial class EXP_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public EXP_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitEXP_fun(this);
-
-		}
-	}
-	public partial class COUNTIF_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public COUNTIF_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitCOUNTIF_fun(this);
-
-		}
-	}
-	public partial class VARP_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public VARP_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitVARP_fun(this);
-
-		}
-	}
-	public partial class REMOVEEND_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public REMOVEEND_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitREMOVEEND_fun(this);
-
-		}
-	}
-	public partial class DATE_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public DATE_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitDATE_fun(this);
-
-		}
-	}
-	public partial class PARAMETER_funContext : ExprContext
-	{
-		public ParameterContext parameter()
-		{
-			return GetRuleContext<ParameterContext>(0);
-		}
-		public PARAMETER_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitPARAMETER_fun(this);
-
-		}
-	}
-	public partial class SPLIT_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public SPLIT_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitSPLIT_fun(this);
-
-		}
-	}
-	public partial class URLDECODE_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public URLDECODE_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitURLDECODE_fun(this);
-
-		}
-	}
-	public partial class LARGE_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public LARGE_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitLARGE_fun(this);
-
-		}
-	}
-	public partial class VALUE_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public VALUE_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitVALUE_fun(this);
-
-		}
-	}
-	public partial class DAY_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public DAY_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitDAY_fun(this);
-
-		}
-	}
-	public partial class WEIBULL_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public WEIBULL_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitWEIBULL_fun(this);
-
-		}
-	}
-	public partial class HMACSHA256_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public HMACSHA256_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitHMACSHA256_fun(this);
-
-		}
-	}
-	public partial class BINOMDIST_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public BINOMDIST_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitBINOMDIST_fun(this);
-
-		}
-	}
-	public partial class Judge_funContext : ExprContext
-	{
-		public IToken op;
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public Judge_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitJudge_fun(this);
-
-		}
-	}
-	public partial class DEVSQ_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public DEVSQ_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitDEVSQ_fun(this);
-
-		}
-	}
-	public partial class MODE_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public MODE_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitMODE_fun(this);
-
-		}
-	}
-	public partial class BETAINV_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public BETAINV_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitBETAINV_fun(this);
-
-		}
-	}
-	public partial class MAX_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public MAX_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitMAX_fun(this);
-
-		}
-	}
-	public partial class MINUTE_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public MINUTE_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitMINUTE_fun(this);
-
-		}
-	}
-	public partial class TAN_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public TAN_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitTAN_fun(this);
-
-		}
-	}
-	public partial class IFERROR_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public IFERROR_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitIFERROR_fun(this);
-
-		}
-	}
-	public partial class FDIST_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public FDIST_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitFDIST_fun(this);
-
-		}
-	}
-	public partial class INDEXOF_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public INDEXOF_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitINDEXOF_fun(this);
-
-		}
-	}
-	public partial class UPPER_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public UPPER_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitUPPER_fun(this);
-
-		}
-	}
-	public partial class HTMLDECODE_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public HTMLDECODE_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitHTMLDECODE_fun(this);
-
-		}
-	}
-	public partial class EXPONDIST_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public EXPONDIST_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitEXPONDIST_fun(this);
-
-		}
-	}
-	public partial class DEC2BIN_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public DEC2BIN_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitDEC2BIN_fun(this);
-
-		}
-	}
-	public partial class HEX2DEC_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public HEX2DEC_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitHEX2DEC_fun(this);
-
-		}
-	}
-	public partial class SMALL_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public SMALL_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitSMALL_fun(this);
-
-		}
-	}
-	public partial class ODD_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public ODD_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitODD_fun(this);
-
-		}
-	}
-	public partial class TEXTTOBASE64_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public TEXTTOBASE64_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitTEXTTOBASE64_fun(this);
-
-		}
-	}
-	public partial class MID_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public MID_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitMID_fun(this);
-
-		}
-	}
-	public partial class PERCENTRANK_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public PERCENTRANK_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitPERCENTRANK_fun(this);
-
-		}
-	}
-	public partial class STDEV_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public STDEV_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitSTDEV_fun(this);
-
-		}
-	}
-	public partial class NORMSDIST_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public NORMSDIST_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitNORMSDIST_fun(this);
-
-		}
-	}
-	public partial class ISNUMBER_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public ISNUMBER_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitISNUMBER_fun(this);
-
-		}
-	}
-	public partial class LASTINDEXOF_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public LASTINDEXOF_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitLASTINDEXOF_fun(this);
-
-		}
-	}
-	public partial class MOD_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public MOD_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitMOD_fun(this);
-
-		}
-	}
-	public partial class CHAR_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public CHAR_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitCHAR_fun(this);
-
-		}
-	}
-	public partial class REGEX_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public REGEX_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitREGEX_fun(this);
-
-		}
-	}
-	public partial class TEXTTOBASE64URL_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public TEXTTOBASE64URL_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitTEXTTOBASE64URL_fun(this);
-
-		}
-	}
-	public partial class MD5_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public MD5_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitMD5_fun(this);
-
-		}
-	}
-	public partial class REPLACE_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public REPLACE_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitREPLACE_fun(this);
-
-		}
-	}
-	public partial class ACOSH_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public ACOSH_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitACOSH_fun(this);
-
-		}
-	}
-	public partial class ISODD_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public ISODD_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitISODD_fun(this);
-
-		}
-	}
-	public partial class ASC_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public ASC_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitASC_fun(this);
-
-		}
-	}
-	public partial class COS_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public COS_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitCOS_fun(this);
-
-		}
-	}
-	public partial class LN_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public LN_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitLN_fun(this);
-
-		}
-	}
-	public partial class STRING_funContext : ExprContext
-	{
-		public ITerminalNode STRING() { return GetToken(26, 0); }
-		public STRING_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitSTRING_fun(this);
-
-		}
-	}
-	public partial class HMACMD5_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public HMACMD5_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitHMACMD5_fun(this);
-
-		}
-	}
-	public partial class PRODUCT_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public PRODUCT_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitPRODUCT_fun(this);
-
-		}
-	}
-	public partial class EXACT_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public EXACT_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitEXACT_fun(this);
-
-		}
-	}
-	public partial class SUMSQ_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public SUMSQ_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitSUMSQ_fun(this);
-
-		}
-	}
-	public partial class SUM_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public SUM_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitSUM_fun(this);
-
-		}
-	}
-	public partial class SECOND_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public SECOND_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitSECOND_fun(this);
-
-		}
-	}
-	public partial class GAMMADIST_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public GAMMADIST_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitGAMMADIST_fun(this);
-
-		}
-	}
-	public partial class OCT2HEX_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public OCT2HEX_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitOCT2HEX_fun(this);
-
-		}
-	}
-	public partial class TODAY_funContext : ExprContext
-	{
-		public TODAY_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitTODAY_fun(this);
-
-		}
-	}
-	public partial class ATAN_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public ATAN_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitATAN_fun(this);
-
-		}
-	}
-	public partial class E_funContext : ExprContext
-	{
-		public E_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitE_fun(this);
-
-		}
-	}
-	public partial class TRIM_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public TRIM_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitTRIM_fun(this);
-
-		}
-	}
-	public partial class RADIANS_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public RADIANS_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitRADIANS_fun(this);
-
-		}
-	}
-	public partial class GAMMALN_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public GAMMALN_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitGAMMALN_fun(this);
-
-		}
-	}
-	public partial class TEXT_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public TEXT_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitTEXT_fun(this);
-
-		}
-	}
-	public partial class FISHER_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public FISHER_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitFISHER_fun(this);
-
-		}
-	}
-	public partial class AND_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public AND_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitAND_fun(this);
-
-		}
-	}
-	public partial class BIN2HEX_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public BIN2HEX_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitBIN2HEX_fun(this);
-
-		}
-	}
-	public partial class MULTINOMIAL_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public MULTINOMIAL_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitMULTINOMIAL_fun(this);
-
-		}
-	}
-	public partial class MONTH_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public MONTH_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitMONTH_fun(this);
-
-		}
-	}
-	public partial class URLENCODE_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public URLENCODE_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitURLENCODE_fun(this);
-
-		}
-	}
-	public partial class NORMDIST_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public NORMDIST_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitNORMDIST_fun(this);
-
-		}
-	}
-	public partial class HMACSHA1_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public HMACSHA1_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitHMACSHA1_fun(this);
-
-		}
-	}
-	public partial class ENDSWITH_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public ENDSWITH_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitENDSWITH_fun(this);
-
-		}
-	}
-	public partial class Bracket_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public Bracket_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitBracket_fun(this);
-
-		}
-	}
-	public partial class BETADIST_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public BETADIST_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitBETADIST_fun(this);
-
-		}
-	}
-	public partial class ATANH_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public ATANH_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitATANH_fun(this);
-
-		}
-	}
-	public partial class NOW_funContext : ExprContext
-	{
-		public NOW_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitNOW_fun(this);
-
-		}
-	}
-	public partial class MEDIAN_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public MEDIAN_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitMEDIAN_fun(this);
-
-		}
-	}
-	public partial class POWER_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public POWER_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitPOWER_fun(this);
-
-		}
-	}
-	public partial class DEC2OCT_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public DEC2OCT_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitDEC2OCT_fun(this);
-
-		}
-	}
-	public partial class PROPER_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public PROPER_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitPROPER_fun(this);
-
-		}
-	}
-	public partial class TRUNC_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public TRUNC_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitTRUNC_fun(this);
-
-		}
-	}
-	public partial class GCD_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public GCD_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitGCD_fun(this);
-
-		}
-	}
-	public partial class TANH_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public TANH_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitTANH_fun(this);
-
-		}
-	}
-	public partial class HEX2BIN_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public HEX2BIN_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitHEX2BIN_fun(this);
-
-		}
-	}
-	public partial class SINH_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public SINH_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitSINH_fun(this);
-
-		}
-	}
-	public partial class SHA512_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public SHA512_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitSHA512_fun(this);
-
-		}
-	}
-	public partial class MIN_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public MIN_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitMIN_fun(this);
-
-		}
-	}
-	public partial class ISNONTEXT_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public ISNONTEXT_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitISNONTEXT_fun(this);
-
-		}
-	}
-	public partial class ABS_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public ABS_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitABS_fun(this);
-
-		}
-	}
-	public partial class ROUNDDOWN_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public ROUNDDOWN_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitROUNDDOWN_fun(this);
-
-		}
-	}
-	public partial class IF_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public IF_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitIF_fun(this);
-
-		}
-	}
-	public partial class JOIN_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public JOIN_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitJOIN_fun(this);
-
-		}
-	}
-	public partial class FIND_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public FIND_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitFIND_fun(this);
-
-		}
-	}
-	public partial class SUBSTITUTE_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public SUBSTITUTE_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitSUBSTITUTE_fun(this);
-
-		}
-	}
-	public partial class REPT_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public REPT_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitREPT_fun(this);
-
-		}
-	}
-	public partial class ASIN_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public ASIN_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitASIN_fun(this);
-
-		}
-	}
-	public partial class MulDiv_funContext : ExprContext
-	{
-		public IToken op;
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public MulDiv_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitMulDiv_fun(this);
-
-		}
-	}
-	public partial class REMOVESTART_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public REMOVESTART_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitREMOVESTART_fun(this);
-
-		}
-	}
-	public partial class T_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public T_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitT_fun(this);
-
-		}
-	}
-	public partial class WEEKDAY_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public WEEKDAY_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitWEEKDAY_fun(this);
-
-		}
-	}
-	public partial class BIN2OCT_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public BIN2OCT_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitBIN2OCT_fun(this);
-
-		}
-	}
-	public partial class BASE64TOTEXT_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public BASE64TOTEXT_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitBASE64TOTEXT_fun(this);
-
-		}
-	}
-	public partial class TDIST_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public TDIST_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitTDIST_fun(this);
-
-		}
-	}
-	public partial class DATEVALUE_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public DATEVALUE_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitDATEVALUE_fun(this);
-
-		}
-	}
-	public partial class STARTSWITH_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public STARTSWITH_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitSTARTSWITH_fun(this);
-
-		}
-	}
-	public partial class EVEN_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public EVEN_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitEVEN_fun(this);
-
-		}
-	}
-	public partial class LOGNORMDIST_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public LOGNORMDIST_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitLOGNORMDIST_fun(this);
-
-		}
-	}
-	public partial class ISNULLOREMPTY_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public ISNULLOREMPTY_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitISNULLOREMPTY_fun(this);
-
-		}
-	}
-	public partial class TRUE_funContext : ExprContext
-	{
-		public TRUE_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitTRUE_fun(this);
-
-		}
-	}
-	public partial class FISHERINV_funContext : ExprContext
-	{
-		public ExprContext expr()
-		{
-			return GetRuleContext<ExprContext>(0);
-		}
-		public FISHERINV_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitFISHERINV_fun(this);
-
-		}
-	}
-	public partial class SHA1_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public SHA1_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitSHA1_fun(this);
-
-		}
-	}
-	public partial class TIME_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public TIME_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitTIME_fun(this);
-
-		}
-	}
-	public partial class ATAN2_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public ATAN2_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitATAN2_fun(this);
-
-		}
-	}
-	public partial class RAND_funContext : ExprContext
-	{
-		public RAND_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitRAND_fun(this);
-
-		}
-	}
-
-	public partial class VLOOKUP_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public VLOOKUP_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitVLOOKUP_fun(this);
-		}
-	}
-
-	public partial class LOOKUP_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public LOOKUP_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitLOOKUP_fun(this);
-		}
-	}
-
-	public partial class NULL_funContext : ExprContext
-	{
- 
-		public NULL_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitNULL_fun(this);
-		}
-	}
-	public partial class ISNULL_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public ISNULL_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitISNULL_fun(this);
-		}
-	}
-
-	
-
-	public partial class ISNULLORERROR_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public ISNULLORERROR_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitISNULLORERROR_fun(this);
-		}
-	}
-
-	public partial class DiyFunction_funContext : ExprContext
-	{
-		public ExprContext[] expr()
-		{
-			return GetRuleContexts<ExprContext>();
-		}
-		public ITerminalNode PARAMETER() { return GetToken(233, 0); }
-		public DiyFunction_funContext(ExprContext context) { CopyFrom(context); }
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-		{
-			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			return typedVisitor.VisitDiyFunction_fun(this);
-		}
-	}
-
+    public partial class ProgContext : ParserRuleContext
+    {
+        public ProgContext(ParserRuleContext parent, int invokingState)
+            : base(parent, invokingState)
+        {
+        }
+        //public override int RuleIndex { get { return 0; } }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitProg(this);
+
+        }
+    }
+
+    public partial class ParameterContext : ParserRuleContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public Parameter2Context parameter2()
+        {
+            return GetRuleContext<Parameter2Context>(0);
+        }
+        public ParameterContext(ParserRuleContext parent, int invokingState)
+            : base(parent, invokingState)
+        {
+        }
+        //public override int RuleIndex { get { return 2; } }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitParameter(this);
+
+        }
+    }
+
+    public partial class Parameter2Context : ParserRuleContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public Parameter2Context(ParserRuleContext parent, int invokingState)
+            : base(parent, invokingState)
+        {
+        }
+        //public override int RuleIndex { get { return 4; } }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitParameter2(this);
+        }
+    }
+
+
+    public partial class ExprContext : ParserRuleContext
+    {
+        private int _RuleIndex = 1;
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext(ParserRuleContext parent, int invokingState)
+            : base(parent, invokingState)
+        {
+        }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext(ParserRuleContext parent, int invokingState, int ruleIndex)
+            : base(parent, invokingState)
+        {
+            _RuleIndex = ruleIndex;
+        }
+        //public override int RuleIndex { get { return _RuleIndex; } }
+
+        [System.Diagnostics.DebuggerNonUserCode] public ExprContext() { }
+        public virtual void CopyFrom(ExprContext context)
+        {
+            base.CopyFrom(context);
+        }
+    }
+    public partial class Expr2_funContext : ExprContext
+    {
+        public Expr2_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitExpr2_fun(this);
+        }
+    }
+
+    public partial class CEILING_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public CEILING_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitCEILING_fun(this);
+
+        }
+    }
+    public partial class FACT_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public FACT_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitFACT_fun(this);
+
+        }
+    }
+    public partial class REGEXREPALCE_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public REGEXREPALCE_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitREGEXREPALCE_fun(this);
+
+        }
+    }
+    public partial class AddSub_funContext : ExprContext
+    {
+        public IToken op;
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public AddSub_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitAddSub_fun(this);
+
+        }
+    }
+    public partial class AVERAGEIF_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public AVERAGEIF_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitAVERAGEIF_fun(this);
+
+        }
+    }
+    public partial class RIGHT_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public RIGHT_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitRIGHT_fun(this);
+
+        }
+    }
+    public partial class OCT2BIN_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public OCT2BIN_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitOCT2BIN_fun(this);
+
+        }
+    }
+    public partial class QUARTILE_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public QUARTILE_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitQUARTILE_fun(this);
+
+        }
+    }
+    public partial class FINV_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public FINV_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitFINV_fun(this);
+
+        }
+    }
+    public partial class NOT_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public NOT_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitNOT_fun(this);
+
+        }
+    }
+    public partial class DAYS360_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public DAYS360_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitDAYS360_fun(this);
+
+        }
+    }
+    public partial class WEEKNUM_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public WEEKNUM_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitWEEKNUM_fun(this);
+
+        }
+    }
+    public partial class POISSON_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public POISSON_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitPOISSON_fun(this);
+
+        }
+    }
+    public partial class ISREGEX_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public ISREGEX_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitISREGEX_fun(this);
+
+        }
+    }
+    public partial class PERCENTILE_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public PERCENTILE_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitPERCENTILE_fun(this);
+
+        }
+    }
+    public partial class SHA256_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public SHA256_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitSHA256_fun(this);
+
+        }
+    }
+    public partial class HYPGEOMDIST_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public HYPGEOMDIST_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitHYPGEOMDIST_fun(this);
+
+        }
+    }
+    public partial class PERMUT_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public PERMUT_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitPERMUT_fun(this);
+
+        }
+    }
+    public partial class TRIMSTART_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public TRIMSTART_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitTRIMSTART_fun(this);
+
+        }
+    }
+    public partial class RMB_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public RMB_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitRMB_fun(this);
+
+        }
+    }
+    public partial class DEC2HEX_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public DEC2HEX_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitDEC2HEX_fun(this);
+
+        }
+    }
+    public partial class CLEAN_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public CLEAN_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitCLEAN_fun(this);
+
+        }
+    }
+    public partial class LOWER_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public LOWER_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitLOWER_fun(this);
+
+        }
+    }
+    public partial class OR_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public OR_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitOR_fun(this);
+
+        }
+    }
+    public partial class NORMSINV_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public NORMSINV_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitNORMSINV_fun(this);
+
+        }
+    }
+    public partial class LEFT_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public LEFT_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitLEFT_fun(this);
+
+        }
+    }
+    public partial class ISEVEN_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public ISEVEN_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitISEVEN_fun(this);
+
+        }
+    }
+    public partial class LOGINV_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public LOGINV_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitLOGINV_fun(this);
+
+        }
+    }
+    public partial class WORKDAY_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public WORKDAY_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitWORKDAY_fun(this);
+
+        }
+    }
+    public partial class ISERROR_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public ISERROR_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitISERROR_fun(this);
+
+        }
+    }
+    public partial class BIN2DEC_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public BIN2DEC_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitBIN2DEC_fun(this);
+
+        }
+    }
+    public partial class JIS_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public JIS_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitJIS_fun(this);
+
+        }
+    }
+    public partial class CRC32_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public CRC32_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitCRC32_fun(this);
+
+        }
+    }
+    public partial class LCM_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public LCM_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitLCM_fun(this);
+
+        }
+    }
+    public partial class HARMEAN_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public HARMEAN_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitHARMEAN_fun(this);
+
+        }
+    }
+    public partial class NORMINV_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public NORMINV_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitNORMINV_fun(this);
+
+        }
+    }
+    public partial class GAMMAINV_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public GAMMAINV_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitGAMMAINV_fun(this);
+
+        }
+    }
+    public partial class SQRT_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public SQRT_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitSQRT_fun(this);
+
+        }
+    }
+    public partial class DEGREES_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public DEGREES_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitDEGREES_fun(this);
+
+        }
+    }
+    public partial class MROUND_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public MROUND_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitMROUND_fun(this);
+
+        }
+    }
+    public partial class DATEDIF_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public DATEDIF_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitDATEDIF_fun(this);
+
+        }
+    }
+    public partial class TRIMEND_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public TRIMEND_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitTRIMEND_fun(this);
+
+        }
+    }
+    public partial class ISLOGICAL_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public ISLOGICAL_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitISLOGICAL_fun(this);
+
+        }
+    }
+    public partial class INT_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public INT_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitINT_fun(this);
+
+        }
+    }
+    public partial class SUMIF_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public SUMIF_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitSUMIF_fun(this);
+
+        }
+    }
+    public partial class HEX2OCT_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public HEX2OCT_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitHEX2OCT_fun(this);
+
+        }
+    }
+    public partial class PI_funContext : ExprContext
+    {
+        public PI_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitPI_fun(this);
+
+        }
+    }
+    public partial class YEAR_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public YEAR_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitYEAR_fun(this);
+
+        }
+    }
+    public partial class SQRTPI_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public SQRTPI_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitSQRTPI_fun(this);
+
+        }
+    }
+    public partial class CONCATENATE_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public CONCATENATE_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitCONCATENATE_fun(this);
+
+        }
+    }
+    public partial class COUNT_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public COUNT_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitCOUNT_fun(this);
+
+        }
+    }
+    public partial class FALSE_funContext : ExprContext
+    {
+        public FALSE_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitFALSE_fun(this);
+
+        }
+    }
+    public partial class HTMLENCODE_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public HTMLENCODE_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitHTMLENCODE_fun(this);
+
+        }
+    }
+    public partial class BASE64URLTOTEXT_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public BASE64URLTOTEXT_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitBASE64URLTOTEXT_fun(this);
+
+        }
+    }
+    public partial class LOG10_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public LOG10_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitLOG10_fun(this);
+
+        }
+    }
+    public partial class ISTEXT_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public ISTEXT_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitISTEXT_fun(this);
+
+        }
+    }
+    public partial class NEGBINOMDIST_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public NEGBINOMDIST_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitNEGBINOMDIST_fun(this);
+
+        }
+    }
+    public partial class NETWORKDAYS_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public NETWORKDAYS_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitNETWORKDAYS_fun(this);
+
+        }
+    }
+    public partial class FACTDOUBLE_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public FACTDOUBLE_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitFACTDOUBLE_fun(this);
+
+        }
+    }
+    public partial class TIMEVALUE_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public TIMEVALUE_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitTIMEVALUE_fun(this);
+
+        }
+    }
+    public partial class AVEDEV_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public AVEDEV_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitAVEDEV_fun(this);
+
+        }
+    }
+    public partial class GUID_funContext : ExprContext
+    {
+        public GUID_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitGUID_fun(this);
+
+        }
+    }
+    public partial class JSON_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public JSON_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitJSON_fun(this);
+
+        }
+    }
+    public partial class FIXED_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public FIXED_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitFIXED_fun(this);
+
+        }
+    }
+    public partial class GetJsonValue_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr(int i)
+        {
+            return GetRuleContext<ExprContext>(i);
+        }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public Parameter2Context parameter2()
+        {
+            return GetRuleContext<Parameter2Context>(0);
+        }
+        public GetJsonValue_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitGetJsonValue_fun(this);
+        }
+    }
+    public partial class TINV_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public TINV_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitTINV_fun(this);
+
+        }
+    }
+    public partial class EDATE_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public EDATE_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitEDATE_fun(this);
+
+        }
+    }
+    public partial class GEOMEAN_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public GEOMEAN_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitGEOMEAN_fun(this);
+
+        }
+    }
+    public partial class VAR_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public VAR_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitVAR_fun(this);
+
+        }
+    }
+    public partial class SIGN_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public SIGN_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitSIGN_fun(this);
+
+        }
+    }
+    public partial class EOMONTH_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public EOMONTH_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitEOMONTH_fun(this);
+
+        }
+    }
+    public partial class FLOOR_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public FLOOR_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitFLOOR_fun(this);
+
+        }
+    }
+    public partial class HOUR_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public HOUR_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitHOUR_fun(this);
+
+        }
+    }
+    public partial class LEN_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public LEN_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitLEN_fun(this);
+
+        }
+    }
+    public partial class ACOS_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public ACOS_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitACOS_fun(this);
+
+        }
+    }
+    public partial class ISNULLORWHITESPACE_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public ISNULLORWHITESPACE_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitISNULLORWHITESPACE_fun(this);
+
+        }
+    }
+
+    public partial class COSH_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public COSH_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitCOSH_fun(this);
+
+        }
+    }
+    public partial class QUOTIENT_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public QUOTIENT_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitQUOTIENT_fun(this);
+
+        }
+    }
+    public partial class OCT2DEC_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public OCT2DEC_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitOCT2DEC_fun(this);
+
+        }
+    }
+    public partial class SEARCH_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public SEARCH_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitSEARCH_fun(this);
+
+        }
+    }
+    public partial class ROUNDUP_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public ROUNDUP_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitROUNDUP_fun(this);
+
+        }
+    }
+    public partial class COMBIN_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public COMBIN_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitCOMBIN_fun(this);
+
+        }
+    }
+    public partial class CODE_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public CODE_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitCODE_fun(this);
+
+        }
+    }
+    public partial class ASINH_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public ASINH_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitASINH_fun(this);
+
+        }
+    }
+    public partial class SIN_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public SIN_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitSIN_fun(this);
+
+        }
+    }
+    public partial class SUBSTRING_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public SUBSTRING_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitSUBSTRING_fun(this);
+
+        }
+    }
+    public partial class RANDBETWEEN_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public RANDBETWEEN_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitRANDBETWEEN_fun(this);
+
+        }
+    }
+    public partial class AVERAGE_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public AVERAGE_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitAVERAGE_fun(this);
+
+        }
+    }
+    public partial class LOG_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public LOG_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitLOG_fun(this);
+
+        }
+    }
+    public partial class HMACSHA512_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public HMACSHA512_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitHMACSHA512_fun(this);
+
+        }
+    }
+    public partial class AndOr_funContext : ExprContext
+    {
+        public IToken op;
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public AndOr_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitAndOr_fun(this);
+
+        }
+    }
+    public partial class STDEVP_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public STDEVP_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitSTDEVP_fun(this);
+
+        }
+    }
+    public partial class Array_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public Array_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitArray_fun(this);
+
+        }
+    }
+    public partial class ROUND_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public ROUND_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitROUND_fun(this);
+
+        }
+    }
+    public partial class EXP_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public EXP_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitEXP_fun(this);
+
+        }
+    }
+    public partial class COUNTIF_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public COUNTIF_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitCOUNTIF_fun(this);
+
+        }
+    }
+    public partial class VARP_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public VARP_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitVARP_fun(this);
+
+        }
+    }
+    public partial class REMOVEEND_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public REMOVEEND_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitREMOVEEND_fun(this);
+
+        }
+    }
+    public partial class DATE_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public DATE_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitDATE_fun(this);
+
+        }
+    }
+
+    public partial class SPLIT_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public SPLIT_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitSPLIT_fun(this);
+
+        }
+    }
+    public partial class URLDECODE_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public URLDECODE_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitURLDECODE_fun(this);
+
+        }
+    }
+    public partial class LARGE_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public LARGE_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitLARGE_fun(this);
+
+        }
+    }
+    public partial class VALUE_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public VALUE_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitVALUE_fun(this);
+
+        }
+    }
+    public partial class DAY_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public DAY_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitDAY_fun(this);
+
+        }
+    }
+    public partial class WEIBULL_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public WEIBULL_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitWEIBULL_fun(this);
+
+        }
+    }
+    public partial class HMACSHA256_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public HMACSHA256_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitHMACSHA256_fun(this);
+
+        }
+    }
+    public partial class BINOMDIST_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public BINOMDIST_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitBINOMDIST_fun(this);
+
+        }
+    }
+    public partial class Judge_funContext : ExprContext
+    {
+        public IToken op;
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public Judge_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitJudge_fun(this);
+
+        }
+    }
+    public partial class DEVSQ_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public DEVSQ_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitDEVSQ_fun(this);
+
+        }
+    }
+    public partial class MODE_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public MODE_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitMODE_fun(this);
+
+        }
+    }
+    public partial class BETAINV_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public BETAINV_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitBETAINV_fun(this);
+
+        }
+    }
+    public partial class MAX_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public MAX_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitMAX_fun(this);
+
+        }
+    }
+    public partial class MINUTE_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public MINUTE_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitMINUTE_fun(this);
+
+        }
+    }
+    public partial class TAN_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public TAN_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitTAN_fun(this);
+
+        }
+    }
+    public partial class IFERROR_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public IFERROR_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitIFERROR_fun(this);
+
+        }
+    }
+    public partial class FDIST_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public FDIST_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitFDIST_fun(this);
+
+        }
+    }
+    public partial class INDEXOF_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public INDEXOF_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitINDEXOF_fun(this);
+
+        }
+    }
+    public partial class UPPER_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public UPPER_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitUPPER_fun(this);
+
+        }
+    }
+    public partial class HTMLDECODE_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public HTMLDECODE_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitHTMLDECODE_fun(this);
+
+        }
+    }
+    public partial class EXPONDIST_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public EXPONDIST_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitEXPONDIST_fun(this);
+
+        }
+    }
+    public partial class DEC2BIN_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public DEC2BIN_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitDEC2BIN_fun(this);
+
+        }
+    }
+    public partial class HEX2DEC_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public HEX2DEC_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitHEX2DEC_fun(this);
+
+        }
+    }
+    public partial class SMALL_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public SMALL_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitSMALL_fun(this);
+
+        }
+    }
+    public partial class ODD_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public ODD_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitODD_fun(this);
+
+        }
+    }
+    public partial class TEXTTOBASE64_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public TEXTTOBASE64_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitTEXTTOBASE64_fun(this);
+
+        }
+    }
+    public partial class MID_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public MID_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitMID_fun(this);
+
+        }
+    }
+    public partial class PERCENTRANK_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public PERCENTRANK_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitPERCENTRANK_fun(this);
+
+        }
+    }
+    public partial class STDEV_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public STDEV_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitSTDEV_fun(this);
+
+        }
+    }
+    public partial class NORMSDIST_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public NORMSDIST_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitNORMSDIST_fun(this);
+
+        }
+    }
+    public partial class ISNUMBER_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public ISNUMBER_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitISNUMBER_fun(this);
+
+        }
+    }
+    public partial class LASTINDEXOF_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public LASTINDEXOF_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitLASTINDEXOF_fun(this);
+
+        }
+    }
+    public partial class MOD_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public MOD_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitMOD_fun(this);
+
+        }
+    }
+    public partial class CHAR_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public CHAR_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitCHAR_fun(this);
+
+        }
+    }
+    public partial class REGEX_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public REGEX_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitREGEX_fun(this);
+
+        }
+    }
+    public partial class TEXTTOBASE64URL_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public TEXTTOBASE64URL_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitTEXTTOBASE64URL_fun(this);
+
+        }
+    }
+    public partial class MD5_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public MD5_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitMD5_fun(this);
+
+        }
+    }
+    public partial class REPLACE_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public REPLACE_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitREPLACE_fun(this);
+
+        }
+    }
+    public partial class ACOSH_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public ACOSH_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitACOSH_fun(this);
+
+        }
+    }
+    public partial class ISODD_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public ISODD_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitISODD_fun(this);
+
+        }
+    }
+    public partial class ASC_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public ASC_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitASC_fun(this);
+
+        }
+    }
+    public partial class COS_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public COS_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitCOS_fun(this);
+
+        }
+    }
+    public partial class LN_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public LN_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitLN_fun(this);
+
+        }
+    }
+
+    public partial class HMACMD5_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public HMACMD5_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitHMACMD5_fun(this);
+
+        }
+    }
+    public partial class PRODUCT_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public PRODUCT_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitPRODUCT_fun(this);
+
+        }
+    }
+    public partial class EXACT_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public EXACT_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitEXACT_fun(this);
+
+        }
+    }
+    public partial class SUMSQ_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public SUMSQ_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitSUMSQ_fun(this);
+
+        }
+    }
+    public partial class SUM_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public SUM_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitSUM_fun(this);
+
+        }
+    }
+    public partial class SECOND_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public SECOND_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitSECOND_fun(this);
+
+        }
+    }
+    public partial class GAMMADIST_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public GAMMADIST_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitGAMMADIST_fun(this);
+
+        }
+    }
+    public partial class OCT2HEX_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public OCT2HEX_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitOCT2HEX_fun(this);
+
+        }
+    }
+    public partial class TODAY_funContext : ExprContext
+    {
+        public TODAY_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitTODAY_fun(this);
+
+        }
+    }
+    public partial class ATAN_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public ATAN_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitATAN_fun(this);
+
+        }
+    }
+    public partial class E_funContext : ExprContext
+    {
+        public E_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitE_fun(this);
+
+        }
+    }
+    public partial class TRIM_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public TRIM_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitTRIM_fun(this);
+
+        }
+    }
+    public partial class RADIANS_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public RADIANS_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitRADIANS_fun(this);
+
+        }
+    }
+    public partial class GAMMALN_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public GAMMALN_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitGAMMALN_fun(this);
+
+        }
+    }
+    public partial class TEXT_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public TEXT_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitTEXT_fun(this);
+
+        }
+    }
+    public partial class FISHER_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public FISHER_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitFISHER_fun(this);
+
+        }
+    }
+    public partial class AND_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public AND_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitAND_fun(this);
+
+        }
+    }
+    public partial class BIN2HEX_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public BIN2HEX_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitBIN2HEX_fun(this);
+
+        }
+    }
+    public partial class MULTINOMIAL_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public MULTINOMIAL_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitMULTINOMIAL_fun(this);
+
+        }
+    }
+    public partial class MONTH_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public MONTH_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitMONTH_fun(this);
+
+        }
+    }
+    public partial class URLENCODE_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public URLENCODE_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitURLENCODE_fun(this);
+
+        }
+    }
+    public partial class NORMDIST_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public NORMDIST_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitNORMDIST_fun(this);
+
+        }
+    }
+    public partial class HMACSHA1_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public HMACSHA1_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitHMACSHA1_fun(this);
+
+        }
+    }
+    public partial class ENDSWITH_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public ENDSWITH_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitENDSWITH_fun(this);
+
+        }
+    }
+    public partial class Bracket_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public Bracket_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitBracket_fun(this);
+
+        }
+    }
+    public partial class BETADIST_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public BETADIST_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitBETADIST_fun(this);
+
+        }
+    }
+    public partial class ATANH_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public ATANH_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitATANH_fun(this);
+
+        }
+    }
+    public partial class NOW_funContext : ExprContext
+    {
+        public NOW_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitNOW_fun(this);
+
+        }
+    }
+    public partial class MEDIAN_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public MEDIAN_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitMEDIAN_fun(this);
+
+        }
+    }
+    public partial class POWER_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public POWER_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitPOWER_fun(this);
+
+        }
+    }
+    public partial class DEC2OCT_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public DEC2OCT_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitDEC2OCT_fun(this);
+
+        }
+    }
+    public partial class PROPER_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public PROPER_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitPROPER_fun(this);
+
+        }
+    }
+    public partial class TRUNC_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public TRUNC_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitTRUNC_fun(this);
+
+        }
+    }
+    public partial class GCD_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public GCD_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitGCD_fun(this);
+
+        }
+    }
+    public partial class TANH_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public TANH_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitTANH_fun(this);
+
+        }
+    }
+    public partial class HEX2BIN_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public HEX2BIN_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitHEX2BIN_fun(this);
+
+        }
+    }
+    public partial class SINH_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public SINH_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitSINH_fun(this);
+
+        }
+    }
+    public partial class SHA512_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public SHA512_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitSHA512_fun(this);
+
+        }
+    }
+    public partial class MIN_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public MIN_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitMIN_fun(this);
+
+        }
+    }
+    public partial class ISNONTEXT_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public ISNONTEXT_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitISNONTEXT_fun(this);
+
+        }
+    }
+    public partial class ABS_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public ABS_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitABS_fun(this);
+
+        }
+    }
+    public partial class ROUNDDOWN_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public ROUNDDOWN_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitROUNDDOWN_fun(this);
+
+        }
+    }
+    public partial class IF_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public IF_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitIF_fun(this);
+
+        }
+    }
+    public partial class JOIN_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public JOIN_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitJOIN_fun(this);
+
+        }
+    }
+    public partial class FIND_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public FIND_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitFIND_fun(this);
+
+        }
+    }
+    public partial class SUBSTITUTE_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public SUBSTITUTE_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitSUBSTITUTE_fun(this);
+
+        }
+    }
+    public partial class REPT_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public REPT_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitREPT_fun(this);
+
+        }
+    }
+    public partial class ASIN_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public ASIN_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitASIN_fun(this);
+
+        }
+    }
+    public partial class MulDiv_funContext : ExprContext
+    {
+        public IToken op;
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public MulDiv_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitMulDiv_fun(this);
+
+        }
+    }
+    public partial class REMOVESTART_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public REMOVESTART_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitREMOVESTART_fun(this);
+
+        }
+    }
+    public partial class T_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public T_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitT_fun(this);
+
+        }
+    }
+    public partial class WEEKDAY_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public WEEKDAY_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitWEEKDAY_fun(this);
+
+        }
+    }
+    public partial class BIN2OCT_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public BIN2OCT_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitBIN2OCT_fun(this);
+
+        }
+    }
+    public partial class BASE64TOTEXT_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public BASE64TOTEXT_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitBASE64TOTEXT_fun(this);
+
+        }
+    }
+    public partial class TDIST_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public TDIST_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitTDIST_fun(this);
+
+        }
+    }
+    public partial class DATEVALUE_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public DATEVALUE_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitDATEVALUE_fun(this);
+
+        }
+    }
+    public partial class STARTSWITH_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public STARTSWITH_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitSTARTSWITH_fun(this);
+
+        }
+    }
+    public partial class EVEN_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public EVEN_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitEVEN_fun(this);
+
+        }
+    }
+    public partial class LOGNORMDIST_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public LOGNORMDIST_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitLOGNORMDIST_fun(this);
+
+        }
+    }
+    public partial class ISNULLOREMPTY_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public ISNULLOREMPTY_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitISNULLOREMPTY_fun(this);
+
+        }
+    }
+    public partial class TRUE_funContext : ExprContext
+    {
+        public TRUE_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitTRUE_fun(this);
+
+        }
+    }
+    public partial class FISHERINV_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public FISHERINV_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitFISHERINV_fun(this);
+
+        }
+    }
+    public partial class SHA1_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public SHA1_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitSHA1_fun(this);
+
+        }
+    }
+    public partial class TIME_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public TIME_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitTIME_fun(this);
+
+        }
+    }
+    public partial class ATAN2_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public ATAN2_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitATAN2_fun(this);
+
+        }
+    }
+    public partial class RAND_funContext : ExprContext
+    {
+        public RAND_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitRAND_fun(this);
+
+        }
+    }
+
+    public partial class VLOOKUP_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public VLOOKUP_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitVLOOKUP_fun(this);
+        }
+    }
+
+    public partial class LOOKUP_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public LOOKUP_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitLOOKUP_fun(this);
+        }
+    }
+
+    public partial class NULL_funContext : ExprContext
+    {
+        public NULL_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitNULL_fun(this);
+        }
+    }
+    public partial class ISNULL_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public ISNULL_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitISNULL_fun(this);
+        }
+    }
+
+
+
+    public partial class ISNULLORERROR_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        public ISNULLORERROR_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitISNULLORERROR_fun(this);
+        }
+    }
+
+
+
+    public partial class Percentage_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public Percentage_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitPercentage_fun(this);
+        }
+    }
+    public partial class Not_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        public Not_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitNot_fun(this);
+        }
+    }
+    public partial class STRING_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRING() { return GetToken(32, 0); }
+        public STRING_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitSTRING_fun(this);
+
+        }
+    }
+    public partial class NUM_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NUM() { return GetToken(31, 0); }
+        [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUB() { return GetToken(27, 0); }
+        public NUM_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitNUM_fun(this);
+
+        }
+    }
+    public partial class PARAMETER_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAMETER() { return GetToken(240, 0); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
+        [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAMETER2() { return GetToken(241, 0); }
+        public PARAMETER_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitPARAMETER_fun(this);
+        }
+    }
+    public partial class DiyFunction_funContext : ExprContext
+    {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext[] expr()
+        {
+            return GetRuleContexts<ExprContext>();
+        }
+        [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAMETER() { return GetToken(240, 0); }
+        public DiyFunction_funContext(ExprContext context) { CopyFrom(context); }
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+        {
+            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
+            return typedVisitor.VisitDiyFunction_fun(this);
+        }
+    }
 }

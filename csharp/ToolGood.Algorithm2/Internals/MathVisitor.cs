@@ -333,6 +333,18 @@ namespace ToolGood.Algorithm
             }
             return Operand.False;
         }
+
+        public Operand VisitNot_fun(mathParser.Not_funContext context)
+        {
+            var firstValue = this.Visit(context.expr()).ToBoolean("Function NOT first parameter is error!");
+            if (firstValue.IsError) { return firstValue; }
+
+            if (firstValue.BooleanValue) {
+                return Operand.False;
+            }
+            return Operand.True;
+        }
+
         public Operand VisitIFERROR_fun(mathParser.IFERROR_funContext context)
         {
             var args = new List<Operand>();
@@ -640,6 +652,14 @@ namespace ToolGood.Algorithm
                 sum *= (total - i);
             }
             return Operand.Create(sum);
+        }
+
+        public Operand VisitPercentage_fun(mathParser.Percentage_funContext context)
+        {
+            var firstValue = this.Visit(context.expr()).ToNumber("Function Percentage parameter is error!");
+            if (firstValue.IsError) { return firstValue; }
+
+            return Operand.Create(firstValue.NumberValue / 100.0);
         }
 
         private int F_base_gcd(List<double> list)
@@ -1950,8 +1970,8 @@ namespace ToolGood.Algorithm
                 var mo = endMyDate.Day - startMyDate.Day;
                 if (mo < 0) {
                     int days;
-                    if (startMyDate.Month==12) {
-                        days = new DateTime(startMyDate.Year+1, 1, 1).AddDays(-1).Day;
+                    if (startMyDate.Month == 12) {
+                        days = new DateTime(startMyDate.Year + 1, 1, 1).AddDays(-1).Day;
                     } else {
                         days = new DateTime(startMyDate.Year, startMyDate.Month + 1, 1).AddDays(-1).Day;
 
@@ -2009,7 +2029,7 @@ namespace ToolGood.Algorithm
                     }
                 }
                 if (endMyDate.Month == 12) {
-                    if (endMyDate.Day == new DateTime(endMyDate.Year+1, 1, 1).AddDays(-1).Day) {
+                    if (endMyDate.Day == new DateTime(endMyDate.Year + 1, 1, 1).AddDays(-1).Day) {
                         if (startMyDate.Day < 30) {
                             days += 31;
                         } else {
@@ -3813,11 +3833,26 @@ namespace ToolGood.Algorithm
         }
         public Operand VisitPARAMETER_fun(mathParser.PARAMETER_funContext context)
         {
-            var p = this.Visit(context.parameter()).ToText("Function PARAMETER first parameter is error!");
-            if (p.IsError) return p;
+            ITerminalNode node = context.PARAMETER();
+            if (node != null) {
+                return GetParameter(node.GetText());
+            }
+            node = context.PARAMETER2();
+            if (node != null) {
+                string str = node.GetText();
+                if (str.StartsWith("@")) {
+                    return GetParameter(str.Substring(1));
+                }
+                return GetParameter(str.Substring(1, str.Length - 2));
+            }
+            //防止 多重引用 
+            if (context.expr()!=null) {
+                var p = this.Visit(context.expr()).ToText("Function PARAMETER first parameter is error!");
+                if (p.IsError) return p;
 
-            if (GetParameter != null) {
-                return GetParameter(p.TextValue);
+                if (GetParameter != null) {
+                    return GetParameter(p.TextValue);
+                }
             }
             return Operand.Error("Function PARAMETER first parameter is error!");
         }
@@ -3838,16 +3873,18 @@ namespace ToolGood.Algorithm
 
         public Operand VisitGetJsonValue_fun(mathParser.GetJsonValue_funContext context)
         {
-            var firstValue = this.Visit(context.expr());
+            var firstValue = this.Visit(context.expr(0));
             if (firstValue.IsError) { return firstValue; }
 
             var obj = firstValue;
             Operand op;
-            var p1 = context.parameter();
-            if (p1 != null) {
-                op = this.Visit(p1);
-            } else {
+            if (context.parameter2()!=null) {
                 op = this.Visit(context.parameter2());
+            } else {
+                op = this.Visit(context.expr(1));
+                if (op.IsError) {
+                    op = Operand.Create(context.expr(1).GetText());
+                }
             }
 
             if (obj.Type == OperandType.ARRARY) {
@@ -3908,6 +3945,9 @@ namespace ToolGood.Algorithm
             }
             return Operand.Error("DiyFunction is error!");
         }
+
+
+
 
 
 
