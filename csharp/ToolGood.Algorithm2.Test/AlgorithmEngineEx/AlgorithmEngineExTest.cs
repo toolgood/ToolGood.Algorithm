@@ -82,7 +82,7 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineEx
                 Heigth = 1
             };
             PriceAlgorithm priceAlgorithm = new PriceAlgorithm(multiConditionCache, desk);
-            var p1 = priceAlgorithm.QueryRemark("类型");
+            var p1 = priceAlgorithm.SearchRemark("类型");
             Assert.AreEqual("3", p1);
         }
 

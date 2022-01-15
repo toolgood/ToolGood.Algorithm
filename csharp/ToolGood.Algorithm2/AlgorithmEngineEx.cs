@@ -128,7 +128,7 @@ namespace ToolGood.Algorithm
         /// <param name="categoryName"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public string QueryRemark(string categoryName)
+        public string SearchRemark(string categoryName)
         {
             var conditionCaches = MultiConditionCache.GetConditionCaches(categoryName);
             foreach (var conditionCache in conditionCaches) {
