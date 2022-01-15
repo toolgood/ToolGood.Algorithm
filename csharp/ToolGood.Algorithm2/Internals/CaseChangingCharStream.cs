@@ -69,17 +69,7 @@ namespace ToolGood.Algorithm
             }
 
             char o = (char)c;
-            if (o == '（') {
-                o = '(';
-            } else if (o == '）') {
-                o = ')';
-            } else if (o == '，') {
-                o = ',';
-            } else if (o == '【') {
-                o = '[';
-            } else if (o == '】') {
-                o = ']';
-            } else if (o == '‘') {
+            if (o == '‘') {
                 o = '\'';
             } else if (o == '’') {
                 o = '\'';
@@ -87,10 +77,19 @@ namespace ToolGood.Algorithm
                 o = '"';
             } else if (o == '”') {
                 o = '"';
+            } else if (o == '〔') {
+                o = '(';
+            } else if (o == '〕') {
+                o = ')';
+            }
+
+            if (c == 12288) {
+                o = (char)32;
+            } else if (c > 65280 && c < 65375) {
+                o = (char)(c - 65248);
             }
 
             return (int)char.ToUpperInvariant(o);
-
         }
 
         public int Mark()

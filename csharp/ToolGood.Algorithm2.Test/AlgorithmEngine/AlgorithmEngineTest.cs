@@ -105,9 +105,21 @@ namespace ToolGood.Algorithm
             var value3 = engine.TryEvaluate("-7 < -2", false);
             Assert.AreEqual(value3, true);
 
-
-            var t1 = engine.TryEvaluate("-7 < -2？1：2", 1);
+            var t1 = engine.TryEvaluate("-7 < -2 ?1 : 2", 0);
             Assert.AreEqual(t1, 1);
+            t1 = engine.TryEvaluate("-7 < -2 ?1 ： 2", 0);
+            t1 = engine.TryEvaluate("-7 < -2 ?1 ：2", 0);
+            Assert.AreEqual(t1, 1);
+            t1 = engine.TryEvaluate("-7 < -2 ？ 1 : 2", 0);
+            Assert.AreEqual(t1, 1);
+            t1 = engine.TryEvaluate("-7 < -2 ？1 : 2", 0);
+            Assert.AreEqual(t1, 1);
+
+            t1 = engine.TryEvaluate("-7 < -2 ？1 ： 2", 0);
+            Assert.AreEqual(t1, 1);
+
+            t1 = engine.TryEvaluate("(!(-7 < -2))？1：2", 0);
+            Assert.AreEqual(t1, 2);
         }
 
         [Test]

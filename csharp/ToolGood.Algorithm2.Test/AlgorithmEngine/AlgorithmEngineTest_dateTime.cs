@@ -15,6 +15,10 @@ namespace ToolGood.Algorithm
             AlgorithmEngine engine = new AlgorithmEngine();
             var dt = engine.TryEvaluate("DATEVALUE('2016-01-01')", DateTime.MinValue);
             Assert.AreEqual(dt, new DateTime(2016, 1, 1));
+            dt = engine.TryEvaluate("DATEVALUE（'2016-01-01'）", DateTime.MinValue);
+            Assert.AreEqual(dt, new DateTime(2016, 1, 1));
+
+
         }
         [Test]
         public void TIMEVALUE_test()
