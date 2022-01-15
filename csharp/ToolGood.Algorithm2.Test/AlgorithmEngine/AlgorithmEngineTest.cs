@@ -108,6 +108,8 @@ namespace ToolGood.Algorithm
             var t1 = engine.TryEvaluate("-7 < -2 ?1 : 2", 0);
             Assert.AreEqual(t1, 1);
             t1 = engine.TryEvaluate("-7 < -2 ?1 ： 2", 0);
+            Assert.AreEqual(t1, 1);
+
             t1 = engine.TryEvaluate("-7 < -2 ?1 ：2", 0);
             Assert.AreEqual(t1, 1);
             t1 = engine.TryEvaluate("-7 < -2 ？ 1 : 2", 0);
@@ -175,7 +177,6 @@ namespace ToolGood.Algorithm
             Cylinder c = new Cylinder(3, 10);
             var t = c.TryEvaluate("[半径]*[半径]*pi()", 0.0);      //圆底面积
             var t2 = c.TryEvaluate("半径*半径*pi()", 0.0);      //圆底面积
-
             var t3 = c.TryEvaluate("{半径}*{半径}*pi()", 0.0);      //圆底面积
             var t4 = c.TryEvaluate("@半径*@半径*pi()", 0.0);      //圆底面积
             var t5 = c.TryEvaluate("#半径#*#半径#*pi()", 0.0);      //圆底面积

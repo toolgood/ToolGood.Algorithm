@@ -26,6 +26,9 @@ namespace ToolGood.Algorithm
         /// 自定义 函数
         /// </summary>
         public event Func<string, List<Operand>, Operand> DiyFunction;
+        /// <summary>
+        /// 多条件缓存
+        /// </summary>
         public MultiConditionCache MultiConditionCache { get; private set; }
 
         public AlgorithmEngineEx(MultiConditionCache multiConditionCache)
@@ -51,13 +54,13 @@ namespace ToolGood.Algorithm
                 if (conditionCache.Condition != null) {
                     var b = Evaluate(conditionCache.Condition);
                     if (b.IsError) {
-                        return Operand.Error($"Parameter [{parameter}] is error.\r\n Condition `{conditionCache.ConditionString}` is error:{b.ErrorMsg}");
+                        return Operand.Error($"Parameter [{parameter}] condition `{conditionCache.ConditionString}` is error.\r\n{b.ErrorMsg}");
                     }
                     if (b.BooleanValue == false) continue;
                 }
                 operand = Evaluate(conditionCache.Formula);
                 if (operand.IsError) {
-                    operand = Operand.Error($"Parameter [{parameter}] is error.\r\n Formula `{conditionCache.FormulaString}` is error:{operand.ErrorMsg}");
+                    operand = Operand.Error($"Parameter [{parameter}] formula `{conditionCache.FormulaString}` is error.\r\n{operand.ErrorMsg}");
                 }
                 _dict[parameter] = operand;
                 return operand;
@@ -91,6 +94,11 @@ namespace ToolGood.Algorithm
 
         #endregion
 
+        /// <summary>
+        /// 执行
+        /// </summary>
+        /// <param name="categoryName"></param>
+        /// <returns></returns>
         public Operand Evaluate(string categoryName)
         {
             Operand operand;
@@ -100,13 +108,13 @@ namespace ToolGood.Algorithm
                 if (conditionCache.Condition != null) {
                     var b = Evaluate(conditionCache.Condition);
                     if (b.IsError) {
-                        return Operand.Error($"CategoryName [{categoryName}] is error.\r\nCondition `{conditionCache.ConditionString}` is error:{b.ErrorMsg}");
+                        return Operand.Error($"CategoryName [{categoryName}] condition `{conditionCache.ConditionString}` is error.\r\n{b.ErrorMsg}");
                     }
                     if (b.BooleanValue == false) continue;
                 }
                 operand = Evaluate(conditionCache.Formula);
                 if (operand.IsError) {
-                    operand = Operand.Error($"CategoryName [{categoryName}] is error.\r\nFormula `{conditionCache.FormulaString}` is error:{operand.ErrorMsg}");
+                    operand = Operand.Error($"CategoryName [{categoryName}] formula `{conditionCache.FormulaString}` is error.\r\n{operand.ErrorMsg}");
                 }
                 return operand;
             }

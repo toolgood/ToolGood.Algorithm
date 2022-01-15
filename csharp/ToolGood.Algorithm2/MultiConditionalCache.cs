@@ -25,7 +25,7 @@ namespace ToolGood.Algorithm
         /// <param name="condition">条件</param>
         /// <param name="remark">备注</param>
         /// <returns></returns>
-        public bool AddFormulaCache(string categoryName, string formula, string condition = null, string remark = null)
+        public bool AddFormula(string categoryName, string condition, string formula, string remark = null)
         {
             ConditionCache conditionCache = new ConditionCache() {
                 CategoryName = categoryName,
@@ -64,7 +64,7 @@ namespace ToolGood.Algorithm
         /// <param name="condition"></param>
         /// <param name="remark"></param>
         /// <returns></returns>
-        public bool AddConditionCache(string categoryName, string condition, string remark)
+        public bool AddCondition(string categoryName, string condition, string remark)
         {
             ConditionCache conditionCache = new ConditionCache() {
                 CategoryName = categoryName,
