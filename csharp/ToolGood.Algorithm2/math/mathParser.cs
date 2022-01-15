@@ -28,47 +28,6 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 partial class mathParser : Parser {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
-	public const int
-		T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, T__7 = 8, T__8 = 9,
-		T__9 = 10, T__10 = 11, T__11 = 12, T__12 = 13, T__13 = 14, T__14 = 15, T__15 = 16, T__16 = 17,
-		T__17 = 18, T__18 = 19, T__19 = 20, T__20 = 21, T__21 = 22, T__22 = 23, T__23 = 24,
-		T__24 = 25, SUB = 26, NUM = 27, STRING = 28, NULL = 29, IF = 30, IFERROR = 31, ISNUMBER = 32,
-		ISTEXT = 33, ISERROR = 34, ISNONTEXT = 35, ISLOGICAL = 36, ISEVEN = 37, ISODD = 38,
-		ISNULL = 39, ISNULLORERROR = 40, AND = 41, OR = 42, NOT = 43, TRUE = 44, FALSE = 45,
-		E = 46, PI = 47, DEC2BIN = 48, DEC2HEX = 49, DEC2OCT = 50, HEX2BIN = 51, HEX2DEC = 52,
-		HEX2OCT = 53, OCT2BIN = 54, OCT2DEC = 55, OCT2HEX = 56, BIN2OCT = 57, BIN2DEC = 58,
-		BIN2HEX = 59, ABS = 60, QUOTIENT = 61, MOD = 62, SIGN = 63, SQRT = 64, TRUNC = 65, INT = 66,
-		GCD = 67, LCM = 68, COMBIN = 69, PERMUT = 70, DEGREES = 71, RADIANS = 72, COS = 73,
-		COSH = 74, SIN = 75, SINH = 76, TAN = 77, TANH = 78, ACOS = 79, ACOSH = 80, ASIN = 81,
-		ASINH = 82, ATAN = 83, ATANH = 84, ATAN2 = 85, ROUND = 86, ROUNDDOWN = 87, ROUNDUP = 88,
-		CEILING = 89, FLOOR = 90, EVEN = 91, ODD = 92, MROUND = 93, RAND = 94, RANDBETWEEN = 95,
-		FACT = 96, FACTDOUBLE = 97, POWER = 98, EXP = 99, LN = 100, LOG = 101, LOG10 = 102,
-		MULTINOMIAL = 103, PRODUCT = 104, SQRTPI = 105, SUMSQ = 106, ASC = 107, JIS = 108,
-		CHAR = 109, CLEAN = 110, CODE = 111, CONCATENATE = 112, EXACT = 113, FIND = 114, FIXED = 115,
-		LEFT = 116, LEN = 117, LOWER = 118, MID = 119, PROPER = 120, REPLACE = 121, REPT = 122,
-		RIGHT = 123, RMB = 124, SEARCH = 125, SUBSTITUTE = 126, T = 127, TEXT = 128, TRIM = 129,
-		UPPER = 130, VALUE = 131, DATEVALUE = 132, TIMEVALUE = 133, DATE = 134, TIME = 135,
-		NOW = 136, TODAY = 137, YEAR = 138, MONTH = 139, DAY = 140, HOUR = 141, MINUTE = 142,
-		SECOND = 143, WEEKDAY = 144, DATEDIF = 145, DAYS360 = 146, EDATE = 147, EOMONTH = 148,
-		NETWORKDAYS = 149, WORKDAY = 150, WEEKNUM = 151, MAX = 152, MEDIAN = 153, MIN = 154,
-		QUARTILE = 155, MODE = 156, LARGE = 157, SMALL = 158, PERCENTILE = 159, PERCENTRANK = 160,
-		AVERAGE = 161, AVERAGEIF = 162, GEOMEAN = 163, HARMEAN = 164, COUNT = 165, COUNTIF = 166,
-		SUM = 167, SUMIF = 168, AVEDEV = 169, STDEV = 170, STDEVP = 171, DEVSQ = 172, VAR = 173,
-		VARP = 174, NORMDIST = 175, NORMINV = 176, NORMSDIST = 177, NORMSINV = 178, BETADIST = 179,
-		BETAINV = 180, BINOMDIST = 181, EXPONDIST = 182, FDIST = 183, FINV = 184, FISHER = 185,
-		FISHERINV = 186, GAMMADIST = 187, GAMMAINV = 188, GAMMALN = 189, HYPGEOMDIST = 190,
-		LOGINV = 191, LOGNORMDIST = 192, NEGBINOMDIST = 193, POISSON = 194, TDIST = 195,
-		TINV = 196, WEIBULL = 197, URLENCODE = 198, URLDECODE = 199, HTMLENCODE = 200, HTMLDECODE = 201,
-		BASE64TOTEXT = 202, BASE64URLTOTEXT = 203, TEXTTOBASE64 = 204, TEXTTOBASE64URL = 205,
-		REGEX = 206, REGEXREPALCE = 207, ISREGEX = 208, GUID = 209, MD5 = 210, SHA1 = 211,
-		SHA256 = 212, SHA512 = 213, CRC32 = 214, HMACMD5 = 215, HMACSHA1 = 216, HMACSHA256 = 217,
-		HMACSHA512 = 218, TRIMSTART = 219, TRIMEND = 220, INDEXOF = 221, LASTINDEXOF = 222,
-		SPLIT = 223, JOIN = 224, SUBSTRING = 225, STARTSWITH = 226, ENDSWITH = 227, ISNULLOREMPTY = 228,
-		ISNULLORWHITESPACE = 229, REMOVESTART = 230, REMOVEEND = 231, JSON = 232, VLOOKUP = 233,
-		LOOKUP = 234, ARRAY = 235, PARAMETER = 236, PARAMETER2 = 237, WS = 238;
-	public const int
-		RULE_prog = 0, RULE_expr = 1, RULE_expr2 = 2, RULE_parameter2 = 3;
-
 	public override IVocabulary Vocabulary { get { return null; } }
 	public override string GrammarFileName { get { return null; } }
 
@@ -94,7 +53,7 @@ partial class mathParser : Parser {
 	public ProgContext prog()
 	{
 		ProgContext _localctx = new ProgContext(Context, State);
-		EnterRule(_localctx, 0, RULE_prog);
+		EnterRule(_localctx, 0, 0);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
@@ -118,7 +77,7 @@ partial class mathParser : Parser {
 		ExprContext _localctx = new ExprContext(Context, _parentState);
 		ExprContext _prevctx = _localctx;
 		int _startState = 2;
-		EnterRecursionRule(_localctx, 2, RULE_expr, _p);
+		EnterRecursionRule(_localctx, 2, 1, _p);
 		int _la;
 		try {
 			int _alt;
@@ -127,231 +86,231 @@ partial class mathParser : Parser {
 				State = 14;
 				ErrorHandler.Sync(this);
 				switch (TokenStream.LA(1)) {
-					case T__24: {
+					case 25: {
 							_localctx = new Not_funContext(_localctx);
 							Context = _localctx;
 							_prevctx = _localctx;
 
 							State = 11;
-							Match(T__24);
+							Match(25);
 							State = 12;
 							expr(2);
 						}
 						break;
-					case T__19:
-					case T__22:
-					case SUB:
-					case NUM:
-					case STRING:
-					case NULL:
-					case IF:
-					case IFERROR:
-					case ISNUMBER:
-					case ISTEXT:
-					case ISERROR:
-					case ISNONTEXT:
-					case ISLOGICAL:
-					case ISEVEN:
-					case ISODD:
-					case ISNULL:
-					case ISNULLORERROR:
-					case AND:
-					case OR:
-					case NOT:
-					case TRUE:
-					case FALSE:
-					case E:
-					case PI:
-					case DEC2BIN:
-					case DEC2HEX:
-					case DEC2OCT:
-					case HEX2BIN:
-					case HEX2DEC:
-					case HEX2OCT:
-					case OCT2BIN:
-					case OCT2DEC:
-					case OCT2HEX:
-					case BIN2OCT:
-					case BIN2DEC:
-					case BIN2HEX:
-					case ABS:
-					case QUOTIENT:
-					case MOD:
-					case SIGN:
-					case SQRT:
-					case TRUNC:
-					case INT:
-					case GCD:
-					case LCM:
-					case COMBIN:
-					case PERMUT:
-					case DEGREES:
-					case RADIANS:
-					case COS:
-					case COSH:
-					case SIN:
-					case SINH:
-					case TAN:
-					case TANH:
-					case ACOS:
-					case ACOSH:
-					case ASIN:
-					case ASINH:
-					case ATAN:
-					case ATANH:
-					case ATAN2:
-					case ROUND:
-					case ROUNDDOWN:
-					case ROUNDUP:
-					case CEILING:
-					case FLOOR:
-					case EVEN:
-					case ODD:
-					case MROUND:
-					case RAND:
-					case RANDBETWEEN:
-					case FACT:
-					case FACTDOUBLE:
-					case POWER:
-					case EXP:
-					case LN:
-					case LOG:
-					case LOG10:
-					case MULTINOMIAL:
-					case PRODUCT:
-					case SQRTPI:
-					case SUMSQ:
-					case ASC:
-					case JIS:
-					case CHAR:
-					case CLEAN:
-					case CODE:
-					case CONCATENATE:
-					case EXACT:
-					case FIND:
-					case FIXED:
-					case LEFT:
-					case LEN:
-					case LOWER:
-					case MID:
-					case PROPER:
-					case REPLACE:
-					case REPT:
-					case RIGHT:
-					case RMB:
-					case SEARCH:
-					case SUBSTITUTE:
-					case T:
-					case TEXT:
-					case TRIM:
-					case UPPER:
-					case VALUE:
-					case DATEVALUE:
-					case TIMEVALUE:
-					case DATE:
-					case TIME:
-					case NOW:
-					case TODAY:
-					case YEAR:
-					case MONTH:
-					case DAY:
-					case HOUR:
-					case MINUTE:
-					case SECOND:
-					case WEEKDAY:
-					case DATEDIF:
-					case DAYS360:
-					case EDATE:
-					case EOMONTH:
-					case NETWORKDAYS:
-					case WORKDAY:
-					case WEEKNUM:
-					case MAX:
-					case MEDIAN:
-					case MIN:
-					case QUARTILE:
-					case MODE:
-					case LARGE:
-					case SMALL:
-					case PERCENTILE:
-					case PERCENTRANK:
-					case AVERAGE:
-					case AVERAGEIF:
-					case GEOMEAN:
-					case HARMEAN:
-					case COUNT:
-					case COUNTIF:
-					case SUM:
-					case SUMIF:
-					case AVEDEV:
-					case STDEV:
-					case STDEVP:
-					case DEVSQ:
-					case VAR:
-					case VARP:
-					case NORMDIST:
-					case NORMINV:
-					case NORMSDIST:
-					case NORMSINV:
-					case BETADIST:
-					case BETAINV:
-					case BINOMDIST:
-					case EXPONDIST:
-					case FDIST:
-					case FINV:
-					case FISHER:
-					case FISHERINV:
-					case GAMMADIST:
-					case GAMMAINV:
-					case GAMMALN:
-					case HYPGEOMDIST:
-					case LOGINV:
-					case LOGNORMDIST:
-					case NEGBINOMDIST:
-					case POISSON:
-					case TDIST:
-					case TINV:
-					case WEIBULL:
-					case URLENCODE:
-					case URLDECODE:
-					case HTMLENCODE:
-					case HTMLDECODE:
-					case BASE64TOTEXT:
-					case BASE64URLTOTEXT:
-					case TEXTTOBASE64:
-					case TEXTTOBASE64URL:
-					case REGEX:
-					case REGEXREPALCE:
-					case ISREGEX:
-					case GUID:
-					case MD5:
-					case SHA1:
-					case SHA256:
-					case SHA512:
-					case CRC32:
-					case HMACMD5:
-					case HMACSHA1:
-					case HMACSHA256:
-					case HMACSHA512:
-					case TRIMSTART:
-					case TRIMEND:
-					case INDEXOF:
-					case LASTINDEXOF:
-					case SPLIT:
-					case JOIN:
-					case SUBSTRING:
-					case STARTSWITH:
-					case ENDSWITH:
-					case ISNULLOREMPTY:
-					case ISNULLORWHITESPACE:
-					case REMOVESTART:
-					case REMOVEEND:
-					case JSON:
-					case VLOOKUP:
-					case LOOKUP:
-					case ARRAY:
-					case PARAMETER:
-					case PARAMETER2: {
+					case 20:
+					case 23:
+					case 26:
+					case 27:
+					case 28:
+					case 29:
+					case 30:
+					case 31:
+					case 32:
+					case 33:
+					case 34:
+					case 35:
+					case 36:
+					case 37:
+					case 38:
+					case 39:
+					case 40:
+					case 41:
+					case 42:
+					case 43:
+					case 44:
+					case 45:
+					case 46:
+					case 47:
+					case 48:
+					case 49:
+					case 50:
+					case 51:
+					case 52:
+					case 53:
+					case 54:
+					case 55:
+					case 56:
+					case 57:
+					case 58:
+					case 59:
+					case 60:
+					case 61:
+					case 62:
+					case 63:
+					case 64:
+					case 65:
+					case 66:
+					case 67:
+					case 68:
+					case 69:
+					case 70:
+					case 71:
+					case 72:
+					case 73:
+					case 74:
+					case 75:
+					case 76:
+					case 77:
+					case 78:
+					case 79:
+					case 80:
+					case 81:
+					case 82:
+					case 83:
+					case 84:
+					case 85:
+					case 86:
+					case 87:
+					case 88:
+					case 89:
+					case 90:
+					case 91:
+					case 92:
+					case 93:
+					case 94:
+					case 95:
+					case 96:
+					case 97:
+					case 98:
+					case 99:
+					case 100:
+					case 101:
+					case 102:
+					case 103:
+					case 104:
+					case 105:
+					case 106:
+					case 107:
+					case 108:
+					case 109:
+					case 110:
+					case 111:
+					case 112:
+					case 113:
+					case 114:
+					case 115:
+					case 116:
+					case 117:
+					case 118:
+					case 119:
+					case 120:
+					case 121:
+					case 122:
+					case 123:
+					case 124:
+					case 125:
+					case 126:
+					case 127:
+					case 128:
+					case 129:
+					case 130:
+					case 131:
+					case 132:
+					case 133:
+					case 134:
+					case 135:
+					case 136:
+					case 137:
+					case 138:
+					case 139:
+					case 140:
+					case 141:
+					case 142:
+					case 143:
+					case 144:
+					case 145:
+					case 146:
+					case 147:
+					case 148:
+					case 149:
+					case 150:
+					case 151:
+					case 152:
+					case 153:
+					case 154:
+					case 155:
+					case 156:
+					case 157:
+					case 158:
+					case 159:
+					case 160:
+					case 161:
+					case 162:
+					case 163:
+					case 164:
+					case 165:
+					case 166:
+					case 167:
+					case 168:
+					case 169:
+					case 170:
+					case 171:
+					case 172:
+					case 173:
+					case 174:
+					case 175:
+					case 176:
+					case 177:
+					case 178:
+					case 179:
+					case 180:
+					case 181:
+					case 182:
+					case 183:
+					case 184:
+					case 185:
+					case 186:
+					case 187:
+					case 188:
+					case 189:
+					case 190:
+					case 191:
+					case 192:
+					case 193:
+					case 194:
+					case 195:
+					case 196:
+					case 197:
+					case 198:
+					case 199:
+					case 200:
+					case 201:
+					case 202:
+					case 203:
+					case 204:
+					case 205:
+					case 206:
+					case 207:
+					case 208:
+					case 209:
+					case 210:
+					case 211:
+					case 212:
+					case 213:
+					case 214:
+					case 215:
+					case 216:
+					case 217:
+					case 218:
+					case 219:
+					case 220:
+					case 221:
+					case 222:
+					case 223:
+					case 224:
+					case 225:
+					case 226:
+					case 227:
+					case 228:
+					case 229:
+					case 230:
+					case 231:
+					case 232:
+					case 233:
+					case 234:
+					case 235:
+					case 236:
+					case 237: {
 							_localctx = new Expr2_funContext(_localctx);
 							Context = _localctx;
 							_prevctx = _localctx;
@@ -377,28 +336,28 @@ partial class mathParser : Parser {
 							switch (Interpreter.AdaptivePredict(TokenStream, 55, Context)) {
 								case 1: {
 										_localctx = new IF_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 16;
-										if (!(Precpred(Context, 102))) throw new FailedPredicateException(this, "Precpred(Context, 102)");
+										//if (!(Precpred(Context, 102))) throw new FailedPredicateException(this, "Precpred(Context, 102)");
 										State = 17;
-										Match(T__0);
+										Match(1);
 										State = 18;
 										expr(0);
 										State = 19;
-										Match(T__1);
+										Match(2);
 										State = 20;
 										expr(103);
 									}
 									break;
 								case 2: {
 										_localctx = new MulDiv_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 22;
-										if (!(Precpred(Context, 101))) throw new FailedPredicateException(this, "Precpred(Context, 101)");
+										//if (!(Precpred(Context, 101))) throw new FailedPredicateException(this, "Precpred(Context, 101)");
 										State = 23;
 										((MulDiv_funContext)_localctx).op = TokenStream.LT(1);
 										_la = TokenStream.LA(1);
-										if (!((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__2) | (1L << T__3) | (1L << T__4))) != 0))) {
+										if (!((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 3) | (1L << 4) | (1L << 5))) != 0))) {
 											((MulDiv_funContext)_localctx).op = ErrorHandler.RecoverInline(this);
 										} else {
 											ErrorHandler.ReportMatch(this);
@@ -410,13 +369,13 @@ partial class mathParser : Parser {
 									break;
 								case 3: {
 										_localctx = new AddSub_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 25;
-										if (!(Precpred(Context, 100))) throw new FailedPredicateException(this, "Precpred(Context, 100)");
+										//if (!(Precpred(Context, 100))) throw new FailedPredicateException(this, "Precpred(Context, 100)");
 										State = 26;
 										((AddSub_funContext)_localctx).op = TokenStream.LT(1);
 										_la = TokenStream.LA(1);
-										if (!((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__5) | (1L << T__6) | (1L << SUB))) != 0))) {
+										if (!((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 6) | (1L << 7) | (1L << 26))) != 0))) {
 											((AddSub_funContext)_localctx).op = ErrorHandler.RecoverInline(this);
 										} else {
 											ErrorHandler.ReportMatch(this);
@@ -428,13 +387,13 @@ partial class mathParser : Parser {
 									break;
 								case 4: {
 										_localctx = new Judge_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 28;
-										if (!(Precpred(Context, 99))) throw new FailedPredicateException(this, "Precpred(Context, 99)");
+										//if (!(Precpred(Context, 99))) throw new FailedPredicateException(this, "Precpred(Context, 99)");
 										State = 29;
 										((Judge_funContext)_localctx).op = TokenStream.LT(1);
 										_la = TokenStream.LA(1);
-										if (!((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__7) | (1L << T__8) | (1L << T__9) | (1L << T__10) | (1L << T__11) | (1L << T__12) | (1L << T__13) | (1L << T__14) | (1L << T__15))) != 0))) {
+										if (!((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 8) | (1L << 9) | (1L << 10) | (1L << 11) | (1L << 12) | (1L << 13) | (1L << 14) | (1L << 15) | (1L << 16))) != 0))) {
 											((Judge_funContext)_localctx).op = ErrorHandler.RecoverInline(this);
 										} else {
 											ErrorHandler.ReportMatch(this);
@@ -446,13 +405,13 @@ partial class mathParser : Parser {
 									break;
 								case 5: {
 										_localctx = new AndOr_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 31;
-										if (!(Precpred(Context, 98))) throw new FailedPredicateException(this, "Precpred(Context, 98)");
+										//if (!(Precpred(Context, 98))) throw new FailedPredicateException(this, "Precpred(Context, 98)");
 										State = 32;
 										((AndOr_funContext)_localctx).op = TokenStream.LT(1);
 										_la = TokenStream.LA(1);
-										if (!((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__16) | (1L << T__17) | (1L << AND) | (1L << OR))) != 0))) {
+										if (!((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 17) | (1L << 18) | (1L << 41) | (1L << 42))) != 0))) {
 											((AndOr_funContext)_localctx).op = ErrorHandler.RecoverInline(this);
 										} else {
 											ErrorHandler.ReportMatch(this);
@@ -464,109 +423,109 @@ partial class mathParser : Parser {
 									break;
 								case 6: {
 										_localctx = new ISNUMBER_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 34;
-										if (!(Precpred(Context, 97))) throw new FailedPredicateException(this, "Precpred(Context, 97)");
+										//if (!(Precpred(Context, 97))) throw new FailedPredicateException(this, "Precpred(Context, 97)");
 										State = 35;
-										Match(T__18);
+										Match(19);
 										State = 36;
-										Match(ISNUMBER);
+										Match(32);
 										State = 37;
-										Match(T__19);
+										Match(20);
 										State = 38;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 7: {
 										_localctx = new ISTEXT_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 39;
-										if (!(Precpred(Context, 96))) throw new FailedPredicateException(this, "Precpred(Context, 96)");
+										//if (!(Precpred(Context, 96))) throw new FailedPredicateException(this, "Precpred(Context, 96)");
 										State = 40;
-										Match(T__18);
+										Match(19);
 										State = 41;
-										Match(ISTEXT);
+										Match(33);
 										State = 42;
-										Match(T__19);
+										Match(20);
 										State = 43;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 8: {
 										_localctx = new ISNONTEXT_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 44;
-										if (!(Precpred(Context, 95))) throw new FailedPredicateException(this, "Precpred(Context, 95)");
+										//if (!(Precpred(Context, 95))) throw new FailedPredicateException(this, "Precpred(Context, 95)");
 										State = 45;
-										Match(T__18);
+										Match(19);
 										State = 46;
-										Match(ISNONTEXT);
+										Match(35);
 										State = 47;
-										Match(T__19);
+										Match(20);
 										State = 48;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 9: {
 										_localctx = new ISLOGICAL_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 49;
-										if (!(Precpred(Context, 94))) throw new FailedPredicateException(this, "Precpred(Context, 94)");
+										//if (!(Precpred(Context, 94))) throw new FailedPredicateException(this, "Precpred(Context, 94)");
 										State = 50;
-										Match(T__18);
+										Match(19);
 										State = 51;
-										Match(ISLOGICAL);
+										Match(36);
 										State = 52;
-										Match(T__19);
+										Match(20);
 										State = 53;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 10: {
 										_localctx = new ISEVEN_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 54;
-										if (!(Precpred(Context, 93))) throw new FailedPredicateException(this, "Precpred(Context, 93)");
+										//if (!(Precpred(Context, 93))) throw new FailedPredicateException(this, "Precpred(Context, 93)");
 										State = 55;
-										Match(T__18);
+										Match(19);
 										State = 56;
-										Match(ISEVEN);
+										Match(37);
 										State = 57;
-										Match(T__19);
+										Match(20);
 										State = 58;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 11: {
 										_localctx = new ISODD_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 59;
-										if (!(Precpred(Context, 92))) throw new FailedPredicateException(this, "Precpred(Context, 92)");
+										//if (!(Precpred(Context, 92))) throw new FailedPredicateException(this, "Precpred(Context, 92)");
 										State = 60;
-										Match(T__18);
+										Match(19);
 										State = 61;
-										Match(ISODD);
+										Match(38);
 										State = 62;
-										Match(T__19);
+										Match(20);
 										State = 63;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 12: {
 										_localctx = new ISERROR_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 64;
-										if (!(Precpred(Context, 91))) throw new FailedPredicateException(this, "Precpred(Context, 91)");
+										//if (!(Precpred(Context, 91))) throw new FailedPredicateException(this, "Precpred(Context, 91)");
 										State = 65;
-										Match(T__18);
+										Match(19);
 										State = 66;
-										Match(ISERROR);
+										Match(34);
 										State = 67;
-										Match(T__19);
+										Match(20);
 										State = 69;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__19) | (1L << T__22) | (1L << T__24) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SQRT - 64)) | (1L << (TRUNC - 64)) | (1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (TEXT - 128)) | (1L << (TRIM - 128)) | (1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (LOGNORMDIST - 192)) | (1L << (NEGBINOMDIST - 192)) | (1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (ARRAY - 192)) | (1L << (PARAMETER - 192)) | (1L << (PARAMETER2 - 192)))) != 0)) {
+										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 20) | (1L << 23) | (1L << 25) | (1L << 26) | (1L << 27) | (1L << 28) | (1L << 29) | (1L << 30) | (1L << 31) | (1L << 32) | (1L << 33) | (1L << 34) | (1L << 35) | (1L << 36) | (1L << 37) | (1L << 38) | (1L << 39) | (1L << 40) | (1L << 41) | (1L << 42) | (1L << 43) | (1L << 44) | (1L << 45) | (1L << 46) | (1L << 47) | (1L << 48) | (1L << 49) | (1L << 50) | (1L << 51) | (1L << 52) | (1L << 53) | (1L << 54) | (1L << 55) | (1L << 56) | (1L << 57) | (1L << 58) | (1L << 59) | (1L << 60) | (1L << 61) | (1L << 62) | (1L << 63))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (64 - 64)) | (1L << (65 - 64)) | (1L << (66 - 64)) | (1L << (67 - 64)) | (1L << (68 - 64)) | (1L << (69 - 64)) | (1L << (70 - 64)) | (1L << (71 - 64)) | (1L << (72 - 64)) | (1L << (73 - 64)) | (1L << (74 - 64)) | (1L << (75 - 64)) | (1L << (76 - 64)) | (1L << (77 - 64)) | (1L << (78 - 64)) | (1L << (79 - 64)) | (1L << (80 - 64)) | (1L << (81 - 64)) | (1L << (82 - 64)) | (1L << (83 - 64)) | (1L << (84 - 64)) | (1L << (85 - 64)) | (1L << (86 - 64)) | (1L << (87 - 64)) | (1L << (88 - 64)) | (1L << (89 - 64)) | (1L << (90 - 64)) | (1L << (91 - 64)) | (1L << (92 - 64)) | (1L << (93 - 64)) | (1L << (94 - 64)) | (1L << (95 - 64)) | (1L << (96 - 64)) | (1L << (97 - 64)) | (1L << (98 - 64)) | (1L << (99 - 64)) | (1L << (100 - 64)) | (1L << (101 - 64)) | (1L << (102 - 64)) | (1L << (103 - 64)) | (1L << (104 - 64)) | (1L << (105 - 64)) | (1L << (106 - 64)) | (1L << (107 - 64)) | (1L << (108 - 64)) | (1L << (109 - 64)) | (1L << (110 - 64)) | (1L << (111 - 64)) | (1L << (112 - 64)) | (1L << (113 - 64)) | (1L << (114 - 64)) | (1L << (115 - 64)) | (1L << (116 - 64)) | (1L << (117 - 64)) | (1L << (118 - 64)) | (1L << (119 - 64)) | (1L << (120 - 64)) | (1L << (121 - 64)) | (1L << (122 - 64)) | (1L << (123 - 64)) | (1L << (124 - 64)) | (1L << (125 - 64)) | (1L << (126 - 64)) | (1L << (127 - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (128 - 128)) | (1L << (129 - 128)) | (1L << (130 - 128)) | (1L << (131 - 128)) | (1L << (132 - 128)) | (1L << (133 - 128)) | (1L << (134 - 128)) | (1L << (135 - 128)) | (1L << (136 - 128)) | (1L << (137 - 128)) | (1L << (138 - 128)) | (1L << (139 - 128)) | (1L << (140 - 128)) | (1L << (141 - 128)) | (1L << (142 - 128)) | (1L << (143 - 128)) | (1L << (144 - 128)) | (1L << (145 - 128)) | (1L << (146 - 128)) | (1L << (147 - 128)) | (1L << (148 - 128)) | (1L << (149 - 128)) | (1L << (150 - 128)) | (1L << (151 - 128)) | (1L << (152 - 128)) | (1L << (153 - 128)) | (1L << (154 - 128)) | (1L << (155 - 128)) | (1L << (156 - 128)) | (1L << (157 - 128)) | (1L << (158 - 128)) | (1L << (159 - 128)) | (1L << (160 - 128)) | (1L << (161 - 128)) | (1L << (162 - 128)) | (1L << (163 - 128)) | (1L << (164 - 128)) | (1L << (165 - 128)) | (1L << (166 - 128)) | (1L << (167 - 128)) | (1L << (168 - 128)) | (1L << (169 - 128)) | (1L << (170 - 128)) | (1L << (171 - 128)) | (1L << (172 - 128)) | (1L << (173 - 128)) | (1L << (174 - 128)) | (1L << (175 - 128)) | (1L << (176 - 128)) | (1L << (177 - 128)) | (1L << (178 - 128)) | (1L << (179 - 128)) | (1L << (180 - 128)) | (1L << (181 - 128)) | (1L << (182 - 128)) | (1L << (183 - 128)) | (1L << (184 - 128)) | (1L << (185 - 128)) | (1L << (186 - 128)) | (1L << (187 - 128)) | (1L << (188 - 128)) | (1L << (189 - 128)) | (1L << (190 - 128)) | (1L << (191 - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (192 - 192)) | (1L << (193 - 192)) | (1L << (194 - 192)) | (1L << (195 - 192)) | (1L << (196 - 192)) | (1L << (197 - 192)) | (1L << (198 - 192)) | (1L << (199 - 192)) | (1L << (200 - 192)) | (1L << (201 - 192)) | (1L << (202 - 192)) | (1L << (203 - 192)) | (1L << (204 - 192)) | (1L << (205 - 192)) | (1L << (206 - 192)) | (1L << (207 - 192)) | (1L << (208 - 192)) | (1L << (209 - 192)) | (1L << (210 - 192)) | (1L << (211 - 192)) | (1L << (212 - 192)) | (1L << (213 - 192)) | (1L << (214 - 192)) | (1L << (215 - 192)) | (1L << (216 - 192)) | (1L << (217 - 192)) | (1L << (218 - 192)) | (1L << (219 - 192)) | (1L << (220 - 192)) | (1L << (221 - 192)) | (1L << (222 - 192)) | (1L << (223 - 192)) | (1L << (224 - 192)) | (1L << (225 - 192)) | (1L << (226 - 192)) | (1L << (227 - 192)) | (1L << (228 - 192)) | (1L << (229 - 192)) | (1L << (230 - 192)) | (1L << (231 - 192)) | (1L << (232 - 192)) | (1L << (233 - 192)) | (1L << (234 - 192)) | (1L << (235 - 192)) | (1L << (236 - 192)) | (1L << (237 - 192)))) != 0)) {
 											{
 												State = 68;
 												expr(0);
@@ -574,24 +533,24 @@ partial class mathParser : Parser {
 										}
 
 										State = 71;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 13: {
 										_localctx = new ISNULL_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 72;
-										if (!(Precpred(Context, 90))) throw new FailedPredicateException(this, "Precpred(Context, 90)");
+										//if (!(Precpred(Context, 90))) throw new FailedPredicateException(this, "Precpred(Context, 90)");
 										State = 73;
-										Match(T__18);
+										Match(19);
 										State = 74;
-										Match(ISNULL);
+										Match(39);
 										State = 75;
-										Match(T__19);
+										Match(20);
 										State = 77;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__19) | (1L << T__22) | (1L << T__24) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SQRT - 64)) | (1L << (TRUNC - 64)) | (1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (TEXT - 128)) | (1L << (TRIM - 128)) | (1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (LOGNORMDIST - 192)) | (1L << (NEGBINOMDIST - 192)) | (1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (ARRAY - 192)) | (1L << (PARAMETER - 192)) | (1L << (PARAMETER2 - 192)))) != 0)) {
+										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 20) | (1L << 23) | (1L << 25) | (1L << 26) | (1L << 27) | (1L << 28) | (1L << 29) | (1L << 30) | (1L << 31) | (1L << 32) | (1L << 33) | (1L << 34) | (1L << 35) | (1L << 36) | (1L << 37) | (1L << 38) | (1L << 39) | (1L << 40) | (1L << 41) | (1L << 42) | (1L << 43) | (1L << 44) | (1L << 45) | (1L << 46) | (1L << 47) | (1L << 48) | (1L << 49) | (1L << 50) | (1L << 51) | (1L << 52) | (1L << 53) | (1L << 54) | (1L << 55) | (1L << 56) | (1L << 57) | (1L << 58) | (1L << 59) | (1L << 60) | (1L << 61) | (1L << 62) | (1L << 63))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (64 - 64)) | (1L << (65 - 64)) | (1L << (66 - 64)) | (1L << (67 - 64)) | (1L << (68 - 64)) | (1L << (69 - 64)) | (1L << (70 - 64)) | (1L << (71 - 64)) | (1L << (72 - 64)) | (1L << (73 - 64)) | (1L << (74 - 64)) | (1L << (75 - 64)) | (1L << (76 - 64)) | (1L << (77 - 64)) | (1L << (78 - 64)) | (1L << (79 - 64)) | (1L << (80 - 64)) | (1L << (81 - 64)) | (1L << (82 - 64)) | (1L << (83 - 64)) | (1L << (84 - 64)) | (1L << (85 - 64)) | (1L << (86 - 64)) | (1L << (87 - 64)) | (1L << (88 - 64)) | (1L << (89 - 64)) | (1L << (90 - 64)) | (1L << (91 - 64)) | (1L << (92 - 64)) | (1L << (93 - 64)) | (1L << (94 - 64)) | (1L << (95 - 64)) | (1L << (96 - 64)) | (1L << (97 - 64)) | (1L << (98 - 64)) | (1L << (99 - 64)) | (1L << (100 - 64)) | (1L << (101 - 64)) | (1L << (102 - 64)) | (1L << (103 - 64)) | (1L << (104 - 64)) | (1L << (105 - 64)) | (1L << (106 - 64)) | (1L << (107 - 64)) | (1L << (108 - 64)) | (1L << (109 - 64)) | (1L << (110 - 64)) | (1L << (111 - 64)) | (1L << (112 - 64)) | (1L << (113 - 64)) | (1L << (114 - 64)) | (1L << (115 - 64)) | (1L << (116 - 64)) | (1L << (117 - 64)) | (1L << (118 - 64)) | (1L << (119 - 64)) | (1L << (120 - 64)) | (1L << (121 - 64)) | (1L << (122 - 64)) | (1L << (123 - 64)) | (1L << (124 - 64)) | (1L << (125 - 64)) | (1L << (126 - 64)) | (1L << (127 - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (128 - 128)) | (1L << (129 - 128)) | (1L << (130 - 128)) | (1L << (131 - 128)) | (1L << (132 - 128)) | (1L << (133 - 128)) | (1L << (134 - 128)) | (1L << (135 - 128)) | (1L << (136 - 128)) | (1L << (137 - 128)) | (1L << (138 - 128)) | (1L << (139 - 128)) | (1L << (140 - 128)) | (1L << (141 - 128)) | (1L << (142 - 128)) | (1L << (143 - 128)) | (1L << (144 - 128)) | (1L << (145 - 128)) | (1L << (146 - 128)) | (1L << (147 - 128)) | (1L << (148 - 128)) | (1L << (149 - 128)) | (1L << (150 - 128)) | (1L << (151 - 128)) | (1L << (152 - 128)) | (1L << (153 - 128)) | (1L << (154 - 128)) | (1L << (155 - 128)) | (1L << (156 - 128)) | (1L << (157 - 128)) | (1L << (158 - 128)) | (1L << (159 - 128)) | (1L << (160 - 128)) | (1L << (161 - 128)) | (1L << (162 - 128)) | (1L << (163 - 128)) | (1L << (164 - 128)) | (1L << (165 - 128)) | (1L << (166 - 128)) | (1L << (167 - 128)) | (1L << (168 - 128)) | (1L << (169 - 128)) | (1L << (170 - 128)) | (1L << (171 - 128)) | (1L << (172 - 128)) | (1L << (173 - 128)) | (1L << (174 - 128)) | (1L << (175 - 128)) | (1L << (176 - 128)) | (1L << (177 - 128)) | (1L << (178 - 128)) | (1L << (179 - 128)) | (1L << (180 - 128)) | (1L << (181 - 128)) | (1L << (182 - 128)) | (1L << (183 - 128)) | (1L << (184 - 128)) | (1L << (185 - 128)) | (1L << (186 - 128)) | (1L << (187 - 128)) | (1L << (188 - 128)) | (1L << (189 - 128)) | (1L << (190 - 128)) | (1L << (191 - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (192 - 192)) | (1L << (193 - 192)) | (1L << (194 - 192)) | (1L << (195 - 192)) | (1L << (196 - 192)) | (1L << (197 - 192)) | (1L << (198 - 192)) | (1L << (199 - 192)) | (1L << (200 - 192)) | (1L << (201 - 192)) | (1L << (202 - 192)) | (1L << (203 - 192)) | (1L << (204 - 192)) | (1L << (205 - 192)) | (1L << (206 - 192)) | (1L << (207 - 192)) | (1L << (208 - 192)) | (1L << (209 - 192)) | (1L << (210 - 192)) | (1L << (211 - 192)) | (1L << (212 - 192)) | (1L << (213 - 192)) | (1L << (214 - 192)) | (1L << (215 - 192)) | (1L << (216 - 192)) | (1L << (217 - 192)) | (1L << (218 - 192)) | (1L << (219 - 192)) | (1L << (220 - 192)) | (1L << (221 - 192)) | (1L << (222 - 192)) | (1L << (223 - 192)) | (1L << (224 - 192)) | (1L << (225 - 192)) | (1L << (226 - 192)) | (1L << (227 - 192)) | (1L << (228 - 192)) | (1L << (229 - 192)) | (1L << (230 - 192)) | (1L << (231 - 192)) | (1L << (232 - 192)) | (1L << (233 - 192)) | (1L << (234 - 192)) | (1L << (235 - 192)) | (1L << (236 - 192)) | (1L << (237 - 192)))) != 0)) {
 											{
 												State = 76;
 												expr(0);
@@ -599,24 +558,24 @@ partial class mathParser : Parser {
 										}
 
 										State = 79;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 14: {
 										_localctx = new ISNULLORERROR_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 80;
-										if (!(Precpred(Context, 89))) throw new FailedPredicateException(this, "Precpred(Context, 89)");
+										//if (!(Precpred(Context, 89))) throw new FailedPredicateException(this, "Precpred(Context, 89)");
 										State = 81;
-										Match(T__18);
+										Match(19);
 										State = 82;
-										Match(ISNULLORERROR);
+										Match(40);
 										State = 83;
-										Match(T__19);
+										Match(20);
 										State = 85;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__19) | (1L << T__22) | (1L << T__24) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SQRT - 64)) | (1L << (TRUNC - 64)) | (1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (TEXT - 128)) | (1L << (TRIM - 128)) | (1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (LOGNORMDIST - 192)) | (1L << (NEGBINOMDIST - 192)) | (1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (ARRAY - 192)) | (1L << (PARAMETER - 192)) | (1L << (PARAMETER2 - 192)))) != 0)) {
+										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 20) | (1L << 23) | (1L << 25) | (1L << 26) | (1L << 27) | (1L << 28) | (1L << 29) | (1L << 30) | (1L << 31) | (1L << 32) | (1L << 33) | (1L << 34) | (1L << 35) | (1L << 36) | (1L << 37) | (1L << 38) | (1L << 39) | (1L << 40) | (1L << 41) | (1L << 42) | (1L << 43) | (1L << 44) | (1L << 45) | (1L << 46) | (1L << 47) | (1L << 48) | (1L << 49) | (1L << 50) | (1L << 51) | (1L << 52) | (1L << 53) | (1L << 54) | (1L << 55) | (1L << 56) | (1L << 57) | (1L << 58) | (1L << 59) | (1L << 60) | (1L << 61) | (1L << 62) | (1L << 63))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (64 - 64)) | (1L << (65 - 64)) | (1L << (66 - 64)) | (1L << (67 - 64)) | (1L << (68 - 64)) | (1L << (69 - 64)) | (1L << (70 - 64)) | (1L << (71 - 64)) | (1L << (72 - 64)) | (1L << (73 - 64)) | (1L << (74 - 64)) | (1L << (75 - 64)) | (1L << (76 - 64)) | (1L << (77 - 64)) | (1L << (78 - 64)) | (1L << (79 - 64)) | (1L << (80 - 64)) | (1L << (81 - 64)) | (1L << (82 - 64)) | (1L << (83 - 64)) | (1L << (84 - 64)) | (1L << (85 - 64)) | (1L << (86 - 64)) | (1L << (87 - 64)) | (1L << (88 - 64)) | (1L << (89 - 64)) | (1L << (90 - 64)) | (1L << (91 - 64)) | (1L << (92 - 64)) | (1L << (93 - 64)) | (1L << (94 - 64)) | (1L << (95 - 64)) | (1L << (96 - 64)) | (1L << (97 - 64)) | (1L << (98 - 64)) | (1L << (99 - 64)) | (1L << (100 - 64)) | (1L << (101 - 64)) | (1L << (102 - 64)) | (1L << (103 - 64)) | (1L << (104 - 64)) | (1L << (105 - 64)) | (1L << (106 - 64)) | (1L << (107 - 64)) | (1L << (108 - 64)) | (1L << (109 - 64)) | (1L << (110 - 64)) | (1L << (111 - 64)) | (1L << (112 - 64)) | (1L << (113 - 64)) | (1L << (114 - 64)) | (1L << (115 - 64)) | (1L << (116 - 64)) | (1L << (117 - 64)) | (1L << (118 - 64)) | (1L << (119 - 64)) | (1L << (120 - 64)) | (1L << (121 - 64)) | (1L << (122 - 64)) | (1L << (123 - 64)) | (1L << (124 - 64)) | (1L << (125 - 64)) | (1L << (126 - 64)) | (1L << (127 - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (128 - 128)) | (1L << (129 - 128)) | (1L << (130 - 128)) | (1L << (131 - 128)) | (1L << (132 - 128)) | (1L << (133 - 128)) | (1L << (134 - 128)) | (1L << (135 - 128)) | (1L << (136 - 128)) | (1L << (137 - 128)) | (1L << (138 - 128)) | (1L << (139 - 128)) | (1L << (140 - 128)) | (1L << (141 - 128)) | (1L << (142 - 128)) | (1L << (143 - 128)) | (1L << (144 - 128)) | (1L << (145 - 128)) | (1L << (146 - 128)) | (1L << (147 - 128)) | (1L << (148 - 128)) | (1L << (149 - 128)) | (1L << (150 - 128)) | (1L << (151 - 128)) | (1L << (152 - 128)) | (1L << (153 - 128)) | (1L << (154 - 128)) | (1L << (155 - 128)) | (1L << (156 - 128)) | (1L << (157 - 128)) | (1L << (158 - 128)) | (1L << (159 - 128)) | (1L << (160 - 128)) | (1L << (161 - 128)) | (1L << (162 - 128)) | (1L << (163 - 128)) | (1L << (164 - 128)) | (1L << (165 - 128)) | (1L << (166 - 128)) | (1L << (167 - 128)) | (1L << (168 - 128)) | (1L << (169 - 128)) | (1L << (170 - 128)) | (1L << (171 - 128)) | (1L << (172 - 128)) | (1L << (173 - 128)) | (1L << (174 - 128)) | (1L << (175 - 128)) | (1L << (176 - 128)) | (1L << (177 - 128)) | (1L << (178 - 128)) | (1L << (179 - 128)) | (1L << (180 - 128)) | (1L << (181 - 128)) | (1L << (182 - 128)) | (1L << (183 - 128)) | (1L << (184 - 128)) | (1L << (185 - 128)) | (1L << (186 - 128)) | (1L << (187 - 128)) | (1L << (188 - 128)) | (1L << (189 - 128)) | (1L << (190 - 128)) | (1L << (191 - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (192 - 192)) | (1L << (193 - 192)) | (1L << (194 - 192)) | (1L << (195 - 192)) | (1L << (196 - 192)) | (1L << (197 - 192)) | (1L << (198 - 192)) | (1L << (199 - 192)) | (1L << (200 - 192)) | (1L << (201 - 192)) | (1L << (202 - 192)) | (1L << (203 - 192)) | (1L << (204 - 192)) | (1L << (205 - 192)) | (1L << (206 - 192)) | (1L << (207 - 192)) | (1L << (208 - 192)) | (1L << (209 - 192)) | (1L << (210 - 192)) | (1L << (211 - 192)) | (1L << (212 - 192)) | (1L << (213 - 192)) | (1L << (214 - 192)) | (1L << (215 - 192)) | (1L << (216 - 192)) | (1L << (217 - 192)) | (1L << (218 - 192)) | (1L << (219 - 192)) | (1L << (220 - 192)) | (1L << (221 - 192)) | (1L << (222 - 192)) | (1L << (223 - 192)) | (1L << (224 - 192)) | (1L << (225 - 192)) | (1L << (226 - 192)) | (1L << (227 - 192)) | (1L << (228 - 192)) | (1L << (229 - 192)) | (1L << (230 - 192)) | (1L << (231 - 192)) | (1L << (232 - 192)) | (1L << (233 - 192)) | (1L << (234 - 192)) | (1L << (235 - 192)) | (1L << (236 - 192)) | (1L << (237 - 192)))) != 0)) {
 											{
 												State = 84;
 												expr(0);
@@ -624,25 +583,25 @@ partial class mathParser : Parser {
 										}
 
 										State = 87;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 15: {
 										_localctx = new DEC2BIN_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 88;
-										if (!(Precpred(Context, 88))) throw new FailedPredicateException(this, "Precpred(Context, 88)");
+										//if (!(Precpred(Context, 88))) throw new FailedPredicateException(this, "Precpred(Context, 88)");
 										State = 89;
-										Match(T__18);
+										Match(19);
 										State = 90;
-										Match(DEC2BIN);
+										Match(48);
 										{
 											State = 91;
-											Match(T__19);
+											Match(20);
 											State = 93;
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
-											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__19) | (1L << T__22) | (1L << T__24) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SQRT - 64)) | (1L << (TRUNC - 64)) | (1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (TEXT - 128)) | (1L << (TRIM - 128)) | (1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (LOGNORMDIST - 192)) | (1L << (NEGBINOMDIST - 192)) | (1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (ARRAY - 192)) | (1L << (PARAMETER - 192)) | (1L << (PARAMETER2 - 192)))) != 0)) {
+											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 20) | (1L << 23) | (1L << 25) | (1L << 26) | (1L << 27) | (1L << 28) | (1L << 29) | (1L << 30) | (1L << 31) | (1L << 32) | (1L << 33) | (1L << 34) | (1L << 35) | (1L << 36) | (1L << 37) | (1L << 38) | (1L << 39) | (1L << 40) | (1L << 41) | (1L << 42) | (1L << 43) | (1L << 44) | (1L << 45) | (1L << 46) | (1L << 47) | (1L << 48) | (1L << 49) | (1L << 50) | (1L << 51) | (1L << 52) | (1L << 53) | (1L << 54) | (1L << 55) | (1L << 56) | (1L << 57) | (1L << 58) | (1L << 59) | (1L << 60) | (1L << 61) | (1L << 62) | (1L << 63))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (64 - 64)) | (1L << (65 - 64)) | (1L << (66 - 64)) | (1L << (67 - 64)) | (1L << (68 - 64)) | (1L << (69 - 64)) | (1L << (70 - 64)) | (1L << (71 - 64)) | (1L << (72 - 64)) | (1L << (73 - 64)) | (1L << (74 - 64)) | (1L << (75 - 64)) | (1L << (76 - 64)) | (1L << (77 - 64)) | (1L << (78 - 64)) | (1L << (79 - 64)) | (1L << (80 - 64)) | (1L << (81 - 64)) | (1L << (82 - 64)) | (1L << (83 - 64)) | (1L << (84 - 64)) | (1L << (85 - 64)) | (1L << (86 - 64)) | (1L << (87 - 64)) | (1L << (88 - 64)) | (1L << (89 - 64)) | (1L << (90 - 64)) | (1L << (91 - 64)) | (1L << (92 - 64)) | (1L << (93 - 64)) | (1L << (94 - 64)) | (1L << (95 - 64)) | (1L << (96 - 64)) | (1L << (97 - 64)) | (1L << (98 - 64)) | (1L << (99 - 64)) | (1L << (100 - 64)) | (1L << (101 - 64)) | (1L << (102 - 64)) | (1L << (103 - 64)) | (1L << (104 - 64)) | (1L << (105 - 64)) | (1L << (106 - 64)) | (1L << (107 - 64)) | (1L << (108 - 64)) | (1L << (109 - 64)) | (1L << (110 - 64)) | (1L << (111 - 64)) | (1L << (112 - 64)) | (1L << (113 - 64)) | (1L << (114 - 64)) | (1L << (115 - 64)) | (1L << (116 - 64)) | (1L << (117 - 64)) | (1L << (118 - 64)) | (1L << (119 - 64)) | (1L << (120 - 64)) | (1L << (121 - 64)) | (1L << (122 - 64)) | (1L << (123 - 64)) | (1L << (124 - 64)) | (1L << (125 - 64)) | (1L << (126 - 64)) | (1L << (127 - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (128 - 128)) | (1L << (129 - 128)) | (1L << (130 - 128)) | (1L << (131 - 128)) | (1L << (132 - 128)) | (1L << (133 - 128)) | (1L << (134 - 128)) | (1L << (135 - 128)) | (1L << (136 - 128)) | (1L << (137 - 128)) | (1L << (138 - 128)) | (1L << (139 - 128)) | (1L << (140 - 128)) | (1L << (141 - 128)) | (1L << (142 - 128)) | (1L << (143 - 128)) | (1L << (144 - 128)) | (1L << (145 - 128)) | (1L << (146 - 128)) | (1L << (147 - 128)) | (1L << (148 - 128)) | (1L << (149 - 128)) | (1L << (150 - 128)) | (1L << (151 - 128)) | (1L << (152 - 128)) | (1L << (153 - 128)) | (1L << (154 - 128)) | (1L << (155 - 128)) | (1L << (156 - 128)) | (1L << (157 - 128)) | (1L << (158 - 128)) | (1L << (159 - 128)) | (1L << (160 - 128)) | (1L << (161 - 128)) | (1L << (162 - 128)) | (1L << (163 - 128)) | (1L << (164 - 128)) | (1L << (165 - 128)) | (1L << (166 - 128)) | (1L << (167 - 128)) | (1L << (168 - 128)) | (1L << (169 - 128)) | (1L << (170 - 128)) | (1L << (171 - 128)) | (1L << (172 - 128)) | (1L << (173 - 128)) | (1L << (174 - 128)) | (1L << (175 - 128)) | (1L << (176 - 128)) | (1L << (177 - 128)) | (1L << (178 - 128)) | (1L << (179 - 128)) | (1L << (180 - 128)) | (1L << (181 - 128)) | (1L << (182 - 128)) | (1L << (183 - 128)) | (1L << (184 - 128)) | (1L << (185 - 128)) | (1L << (186 - 128)) | (1L << (187 - 128)) | (1L << (188 - 128)) | (1L << (189 - 128)) | (1L << (190 - 128)) | (1L << (191 - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (192 - 192)) | (1L << (193 - 192)) | (1L << (194 - 192)) | (1L << (195 - 192)) | (1L << (196 - 192)) | (1L << (197 - 192)) | (1L << (198 - 192)) | (1L << (199 - 192)) | (1L << (200 - 192)) | (1L << (201 - 192)) | (1L << (202 - 192)) | (1L << (203 - 192)) | (1L << (204 - 192)) | (1L << (205 - 192)) | (1L << (206 - 192)) | (1L << (207 - 192)) | (1L << (208 - 192)) | (1L << (209 - 192)) | (1L << (210 - 192)) | (1L << (211 - 192)) | (1L << (212 - 192)) | (1L << (213 - 192)) | (1L << (214 - 192)) | (1L << (215 - 192)) | (1L << (216 - 192)) | (1L << (217 - 192)) | (1L << (218 - 192)) | (1L << (219 - 192)) | (1L << (220 - 192)) | (1L << (221 - 192)) | (1L << (222 - 192)) | (1L << (223 - 192)) | (1L << (224 - 192)) | (1L << (225 - 192)) | (1L << (226 - 192)) | (1L << (227 - 192)) | (1L << (228 - 192)) | (1L << (229 - 192)) | (1L << (230 - 192)) | (1L << (231 - 192)) | (1L << (232 - 192)) | (1L << (233 - 192)) | (1L << (234 - 192)) | (1L << (235 - 192)) | (1L << (236 - 192)) | (1L << (237 - 192)))) != 0)) {
 												{
 													State = 92;
 													expr(0);
@@ -650,26 +609,26 @@ partial class mathParser : Parser {
 											}
 
 											State = 95;
-											Match(T__20);
+											Match(21);
 										}
 									}
 									break;
 								case 16: {
 										_localctx = new DEC2HEX_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 96;
-										if (!(Precpred(Context, 87))) throw new FailedPredicateException(this, "Precpred(Context, 87)");
+										//if (!(Precpred(Context, 87))) throw new FailedPredicateException(this, "Precpred(Context, 87)");
 										State = 97;
-										Match(T__18);
+										Match(19);
 										State = 98;
-										Match(DEC2HEX);
+										Match(49);
 										{
 											State = 99;
-											Match(T__19);
+											Match(20);
 											State = 101;
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
-											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__19) | (1L << T__22) | (1L << T__24) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SQRT - 64)) | (1L << (TRUNC - 64)) | (1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (TEXT - 128)) | (1L << (TRIM - 128)) | (1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (LOGNORMDIST - 192)) | (1L << (NEGBINOMDIST - 192)) | (1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (ARRAY - 192)) | (1L << (PARAMETER - 192)) | (1L << (PARAMETER2 - 192)))) != 0)) {
+											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 20) | (1L << 23) | (1L << 25) | (1L << 26) | (1L << 27) | (1L << 28) | (1L << 29) | (1L << 30) | (1L << 31) | (1L << 32) | (1L << 33) | (1L << 34) | (1L << 35) | (1L << 36) | (1L << 37) | (1L << 38) | (1L << 39) | (1L << 40) | (1L << 41) | (1L << 42) | (1L << 43) | (1L << 44) | (1L << 45) | (1L << 46) | (1L << 47) | (1L << 48) | (1L << 49) | (1L << 50) | (1L << 51) | (1L << 52) | (1L << 53) | (1L << 54) | (1L << 55) | (1L << 56) | (1L << 57) | (1L << 58) | (1L << 59) | (1L << 60) | (1L << 61) | (1L << 62) | (1L << 63))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (64 - 64)) | (1L << (65 - 64)) | (1L << (66 - 64)) | (1L << (67 - 64)) | (1L << (68 - 64)) | (1L << (69 - 64)) | (1L << (70 - 64)) | (1L << (71 - 64)) | (1L << (72 - 64)) | (1L << (73 - 64)) | (1L << (74 - 64)) | (1L << (75 - 64)) | (1L << (76 - 64)) | (1L << (77 - 64)) | (1L << (78 - 64)) | (1L << (79 - 64)) | (1L << (80 - 64)) | (1L << (81 - 64)) | (1L << (82 - 64)) | (1L << (83 - 64)) | (1L << (84 - 64)) | (1L << (85 - 64)) | (1L << (86 - 64)) | (1L << (87 - 64)) | (1L << (88 - 64)) | (1L << (89 - 64)) | (1L << (90 - 64)) | (1L << (91 - 64)) | (1L << (92 - 64)) | (1L << (93 - 64)) | (1L << (94 - 64)) | (1L << (95 - 64)) | (1L << (96 - 64)) | (1L << (97 - 64)) | (1L << (98 - 64)) | (1L << (99 - 64)) | (1L << (100 - 64)) | (1L << (101 - 64)) | (1L << (102 - 64)) | (1L << (103 - 64)) | (1L << (104 - 64)) | (1L << (105 - 64)) | (1L << (106 - 64)) | (1L << (107 - 64)) | (1L << (108 - 64)) | (1L << (109 - 64)) | (1L << (110 - 64)) | (1L << (111 - 64)) | (1L << (112 - 64)) | (1L << (113 - 64)) | (1L << (114 - 64)) | (1L << (115 - 64)) | (1L << (116 - 64)) | (1L << (117 - 64)) | (1L << (118 - 64)) | (1L << (119 - 64)) | (1L << (120 - 64)) | (1L << (121 - 64)) | (1L << (122 - 64)) | (1L << (123 - 64)) | (1L << (124 - 64)) | (1L << (125 - 64)) | (1L << (126 - 64)) | (1L << (127 - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (128 - 128)) | (1L << (129 - 128)) | (1L << (130 - 128)) | (1L << (131 - 128)) | (1L << (132 - 128)) | (1L << (133 - 128)) | (1L << (134 - 128)) | (1L << (135 - 128)) | (1L << (136 - 128)) | (1L << (137 - 128)) | (1L << (138 - 128)) | (1L << (139 - 128)) | (1L << (140 - 128)) | (1L << (141 - 128)) | (1L << (142 - 128)) | (1L << (143 - 128)) | (1L << (144 - 128)) | (1L << (145 - 128)) | (1L << (146 - 128)) | (1L << (147 - 128)) | (1L << (148 - 128)) | (1L << (149 - 128)) | (1L << (150 - 128)) | (1L << (151 - 128)) | (1L << (152 - 128)) | (1L << (153 - 128)) | (1L << (154 - 128)) | (1L << (155 - 128)) | (1L << (156 - 128)) | (1L << (157 - 128)) | (1L << (158 - 128)) | (1L << (159 - 128)) | (1L << (160 - 128)) | (1L << (161 - 128)) | (1L << (162 - 128)) | (1L << (163 - 128)) | (1L << (164 - 128)) | (1L << (165 - 128)) | (1L << (166 - 128)) | (1L << (167 - 128)) | (1L << (168 - 128)) | (1L << (169 - 128)) | (1L << (170 - 128)) | (1L << (171 - 128)) | (1L << (172 - 128)) | (1L << (173 - 128)) | (1L << (174 - 128)) | (1L << (175 - 128)) | (1L << (176 - 128)) | (1L << (177 - 128)) | (1L << (178 - 128)) | (1L << (179 - 128)) | (1L << (180 - 128)) | (1L << (181 - 128)) | (1L << (182 - 128)) | (1L << (183 - 128)) | (1L << (184 - 128)) | (1L << (185 - 128)) | (1L << (186 - 128)) | (1L << (187 - 128)) | (1L << (188 - 128)) | (1L << (189 - 128)) | (1L << (190 - 128)) | (1L << (191 - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (192 - 192)) | (1L << (193 - 192)) | (1L << (194 - 192)) | (1L << (195 - 192)) | (1L << (196 - 192)) | (1L << (197 - 192)) | (1L << (198 - 192)) | (1L << (199 - 192)) | (1L << (200 - 192)) | (1L << (201 - 192)) | (1L << (202 - 192)) | (1L << (203 - 192)) | (1L << (204 - 192)) | (1L << (205 - 192)) | (1L << (206 - 192)) | (1L << (207 - 192)) | (1L << (208 - 192)) | (1L << (209 - 192)) | (1L << (210 - 192)) | (1L << (211 - 192)) | (1L << (212 - 192)) | (1L << (213 - 192)) | (1L << (214 - 192)) | (1L << (215 - 192)) | (1L << (216 - 192)) | (1L << (217 - 192)) | (1L << (218 - 192)) | (1L << (219 - 192)) | (1L << (220 - 192)) | (1L << (221 - 192)) | (1L << (222 - 192)) | (1L << (223 - 192)) | (1L << (224 - 192)) | (1L << (225 - 192)) | (1L << (226 - 192)) | (1L << (227 - 192)) | (1L << (228 - 192)) | (1L << (229 - 192)) | (1L << (230 - 192)) | (1L << (231 - 192)) | (1L << (232 - 192)) | (1L << (233 - 192)) | (1L << (234 - 192)) | (1L << (235 - 192)) | (1L << (236 - 192)) | (1L << (237 - 192)))) != 0)) {
 												{
 													State = 100;
 													expr(0);
@@ -677,26 +636,26 @@ partial class mathParser : Parser {
 											}
 
 											State = 103;
-											Match(T__20);
+											Match(21);
 										}
 									}
 									break;
 								case 17: {
 										_localctx = new DEC2OCT_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 104;
-										if (!(Precpred(Context, 86))) throw new FailedPredicateException(this, "Precpred(Context, 86)");
+										//if (!(Precpred(Context, 86))) throw new FailedPredicateException(this, "Precpred(Context, 86)");
 										State = 105;
-										Match(T__18);
+										Match(19);
 										State = 106;
-										Match(DEC2OCT);
+										Match(50);
 										{
 											State = 107;
-											Match(T__19);
+											Match(20);
 											State = 109;
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
-											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__19) | (1L << T__22) | (1L << T__24) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SQRT - 64)) | (1L << (TRUNC - 64)) | (1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (TEXT - 128)) | (1L << (TRIM - 128)) | (1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (LOGNORMDIST - 192)) | (1L << (NEGBINOMDIST - 192)) | (1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (ARRAY - 192)) | (1L << (PARAMETER - 192)) | (1L << (PARAMETER2 - 192)))) != 0)) {
+											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 20) | (1L << 23) | (1L << 25) | (1L << 26) | (1L << 27) | (1L << 28) | (1L << 29) | (1L << 30) | (1L << 31) | (1L << 32) | (1L << 33) | (1L << 34) | (1L << 35) | (1L << 36) | (1L << 37) | (1L << 38) | (1L << 39) | (1L << 40) | (1L << 41) | (1L << 42) | (1L << 43) | (1L << 44) | (1L << 45) | (1L << 46) | (1L << 47) | (1L << 48) | (1L << 49) | (1L << 50) | (1L << 51) | (1L << 52) | (1L << 53) | (1L << 54) | (1L << 55) | (1L << 56) | (1L << 57) | (1L << 58) | (1L << 59) | (1L << 60) | (1L << 61) | (1L << 62) | (1L << 63))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (64 - 64)) | (1L << (65 - 64)) | (1L << (66 - 64)) | (1L << (67 - 64)) | (1L << (68 - 64)) | (1L << (69 - 64)) | (1L << (70 - 64)) | (1L << (71 - 64)) | (1L << (72 - 64)) | (1L << (73 - 64)) | (1L << (74 - 64)) | (1L << (75 - 64)) | (1L << (76 - 64)) | (1L << (77 - 64)) | (1L << (78 - 64)) | (1L << (79 - 64)) | (1L << (80 - 64)) | (1L << (81 - 64)) | (1L << (82 - 64)) | (1L << (83 - 64)) | (1L << (84 - 64)) | (1L << (85 - 64)) | (1L << (86 - 64)) | (1L << (87 - 64)) | (1L << (88 - 64)) | (1L << (89 - 64)) | (1L << (90 - 64)) | (1L << (91 - 64)) | (1L << (92 - 64)) | (1L << (93 - 64)) | (1L << (94 - 64)) | (1L << (95 - 64)) | (1L << (96 - 64)) | (1L << (97 - 64)) | (1L << (98 - 64)) | (1L << (99 - 64)) | (1L << (100 - 64)) | (1L << (101 - 64)) | (1L << (102 - 64)) | (1L << (103 - 64)) | (1L << (104 - 64)) | (1L << (105 - 64)) | (1L << (106 - 64)) | (1L << (107 - 64)) | (1L << (108 - 64)) | (1L << (109 - 64)) | (1L << (110 - 64)) | (1L << (111 - 64)) | (1L << (112 - 64)) | (1L << (113 - 64)) | (1L << (114 - 64)) | (1L << (115 - 64)) | (1L << (116 - 64)) | (1L << (117 - 64)) | (1L << (118 - 64)) | (1L << (119 - 64)) | (1L << (120 - 64)) | (1L << (121 - 64)) | (1L << (122 - 64)) | (1L << (123 - 64)) | (1L << (124 - 64)) | (1L << (125 - 64)) | (1L << (126 - 64)) | (1L << (127 - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (128 - 128)) | (1L << (129 - 128)) | (1L << (130 - 128)) | (1L << (131 - 128)) | (1L << (132 - 128)) | (1L << (133 - 128)) | (1L << (134 - 128)) | (1L << (135 - 128)) | (1L << (136 - 128)) | (1L << (137 - 128)) | (1L << (138 - 128)) | (1L << (139 - 128)) | (1L << (140 - 128)) | (1L << (141 - 128)) | (1L << (142 - 128)) | (1L << (143 - 128)) | (1L << (144 - 128)) | (1L << (145 - 128)) | (1L << (146 - 128)) | (1L << (147 - 128)) | (1L << (148 - 128)) | (1L << (149 - 128)) | (1L << (150 - 128)) | (1L << (151 - 128)) | (1L << (152 - 128)) | (1L << (153 - 128)) | (1L << (154 - 128)) | (1L << (155 - 128)) | (1L << (156 - 128)) | (1L << (157 - 128)) | (1L << (158 - 128)) | (1L << (159 - 128)) | (1L << (160 - 128)) | (1L << (161 - 128)) | (1L << (162 - 128)) | (1L << (163 - 128)) | (1L << (164 - 128)) | (1L << (165 - 128)) | (1L << (166 - 128)) | (1L << (167 - 128)) | (1L << (168 - 128)) | (1L << (169 - 128)) | (1L << (170 - 128)) | (1L << (171 - 128)) | (1L << (172 - 128)) | (1L << (173 - 128)) | (1L << (174 - 128)) | (1L << (175 - 128)) | (1L << (176 - 128)) | (1L << (177 - 128)) | (1L << (178 - 128)) | (1L << (179 - 128)) | (1L << (180 - 128)) | (1L << (181 - 128)) | (1L << (182 - 128)) | (1L << (183 - 128)) | (1L << (184 - 128)) | (1L << (185 - 128)) | (1L << (186 - 128)) | (1L << (187 - 128)) | (1L << (188 - 128)) | (1L << (189 - 128)) | (1L << (190 - 128)) | (1L << (191 - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (192 - 192)) | (1L << (193 - 192)) | (1L << (194 - 192)) | (1L << (195 - 192)) | (1L << (196 - 192)) | (1L << (197 - 192)) | (1L << (198 - 192)) | (1L << (199 - 192)) | (1L << (200 - 192)) | (1L << (201 - 192)) | (1L << (202 - 192)) | (1L << (203 - 192)) | (1L << (204 - 192)) | (1L << (205 - 192)) | (1L << (206 - 192)) | (1L << (207 - 192)) | (1L << (208 - 192)) | (1L << (209 - 192)) | (1L << (210 - 192)) | (1L << (211 - 192)) | (1L << (212 - 192)) | (1L << (213 - 192)) | (1L << (214 - 192)) | (1L << (215 - 192)) | (1L << (216 - 192)) | (1L << (217 - 192)) | (1L << (218 - 192)) | (1L << (219 - 192)) | (1L << (220 - 192)) | (1L << (221 - 192)) | (1L << (222 - 192)) | (1L << (223 - 192)) | (1L << (224 - 192)) | (1L << (225 - 192)) | (1L << (226 - 192)) | (1L << (227 - 192)) | (1L << (228 - 192)) | (1L << (229 - 192)) | (1L << (230 - 192)) | (1L << (231 - 192)) | (1L << (232 - 192)) | (1L << (233 - 192)) | (1L << (234 - 192)) | (1L << (235 - 192)) | (1L << (236 - 192)) | (1L << (237 - 192)))) != 0)) {
 												{
 													State = 108;
 													expr(0);
@@ -704,26 +663,26 @@ partial class mathParser : Parser {
 											}
 
 											State = 111;
-											Match(T__20);
+											Match(21);
 										}
 									}
 									break;
 								case 18: {
 										_localctx = new HEX2BIN_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 112;
-										if (!(Precpred(Context, 85))) throw new FailedPredicateException(this, "Precpred(Context, 85)");
+										//if (!(Precpred(Context, 85))) throw new FailedPredicateException(this, "Precpred(Context, 85)");
 										State = 113;
-										Match(T__18);
+										Match(19);
 										State = 114;
-										Match(HEX2BIN);
+										Match(51);
 										{
 											State = 115;
-											Match(T__19);
+											Match(20);
 											State = 117;
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
-											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__19) | (1L << T__22) | (1L << T__24) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SQRT - 64)) | (1L << (TRUNC - 64)) | (1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (TEXT - 128)) | (1L << (TRIM - 128)) | (1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (LOGNORMDIST - 192)) | (1L << (NEGBINOMDIST - 192)) | (1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (ARRAY - 192)) | (1L << (PARAMETER - 192)) | (1L << (PARAMETER2 - 192)))) != 0)) {
+											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 20) | (1L << 23) | (1L << 25) | (1L << 26) | (1L << 27) | (1L << 28) | (1L << 29) | (1L << 30) | (1L << 31) | (1L << 32) | (1L << 33) | (1L << 34) | (1L << 35) | (1L << 36) | (1L << 37) | (1L << 38) | (1L << 39) | (1L << 40) | (1L << 41) | (1L << 42) | (1L << 43) | (1L << 44) | (1L << 45) | (1L << 46) | (1L << 47) | (1L << 48) | (1L << 49) | (1L << 50) | (1L << 51) | (1L << 52) | (1L << 53) | (1L << 54) | (1L << 55) | (1L << 56) | (1L << 57) | (1L << 58) | (1L << 59) | (1L << 60) | (1L << 61) | (1L << 62) | (1L << 63))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (64 - 64)) | (1L << (65 - 64)) | (1L << (66 - 64)) | (1L << (67 - 64)) | (1L << (68 - 64)) | (1L << (69 - 64)) | (1L << (70 - 64)) | (1L << (71 - 64)) | (1L << (72 - 64)) | (1L << (73 - 64)) | (1L << (74 - 64)) | (1L << (75 - 64)) | (1L << (76 - 64)) | (1L << (77 - 64)) | (1L << (78 - 64)) | (1L << (79 - 64)) | (1L << (80 - 64)) | (1L << (81 - 64)) | (1L << (82 - 64)) | (1L << (83 - 64)) | (1L << (84 - 64)) | (1L << (85 - 64)) | (1L << (86 - 64)) | (1L << (87 - 64)) | (1L << (88 - 64)) | (1L << (89 - 64)) | (1L << (90 - 64)) | (1L << (91 - 64)) | (1L << (92 - 64)) | (1L << (93 - 64)) | (1L << (94 - 64)) | (1L << (95 - 64)) | (1L << (96 - 64)) | (1L << (97 - 64)) | (1L << (98 - 64)) | (1L << (99 - 64)) | (1L << (100 - 64)) | (1L << (101 - 64)) | (1L << (102 - 64)) | (1L << (103 - 64)) | (1L << (104 - 64)) | (1L << (105 - 64)) | (1L << (106 - 64)) | (1L << (107 - 64)) | (1L << (108 - 64)) | (1L << (109 - 64)) | (1L << (110 - 64)) | (1L << (111 - 64)) | (1L << (112 - 64)) | (1L << (113 - 64)) | (1L << (114 - 64)) | (1L << (115 - 64)) | (1L << (116 - 64)) | (1L << (117 - 64)) | (1L << (118 - 64)) | (1L << (119 - 64)) | (1L << (120 - 64)) | (1L << (121 - 64)) | (1L << (122 - 64)) | (1L << (123 - 64)) | (1L << (124 - 64)) | (1L << (125 - 64)) | (1L << (126 - 64)) | (1L << (127 - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (128 - 128)) | (1L << (129 - 128)) | (1L << (130 - 128)) | (1L << (131 - 128)) | (1L << (132 - 128)) | (1L << (133 - 128)) | (1L << (134 - 128)) | (1L << (135 - 128)) | (1L << (136 - 128)) | (1L << (137 - 128)) | (1L << (138 - 128)) | (1L << (139 - 128)) | (1L << (140 - 128)) | (1L << (141 - 128)) | (1L << (142 - 128)) | (1L << (143 - 128)) | (1L << (144 - 128)) | (1L << (145 - 128)) | (1L << (146 - 128)) | (1L << (147 - 128)) | (1L << (148 - 128)) | (1L << (149 - 128)) | (1L << (150 - 128)) | (1L << (151 - 128)) | (1L << (152 - 128)) | (1L << (153 - 128)) | (1L << (154 - 128)) | (1L << (155 - 128)) | (1L << (156 - 128)) | (1L << (157 - 128)) | (1L << (158 - 128)) | (1L << (159 - 128)) | (1L << (160 - 128)) | (1L << (161 - 128)) | (1L << (162 - 128)) | (1L << (163 - 128)) | (1L << (164 - 128)) | (1L << (165 - 128)) | (1L << (166 - 128)) | (1L << (167 - 128)) | (1L << (168 - 128)) | (1L << (169 - 128)) | (1L << (170 - 128)) | (1L << (171 - 128)) | (1L << (172 - 128)) | (1L << (173 - 128)) | (1L << (174 - 128)) | (1L << (175 - 128)) | (1L << (176 - 128)) | (1L << (177 - 128)) | (1L << (178 - 128)) | (1L << (179 - 128)) | (1L << (180 - 128)) | (1L << (181 - 128)) | (1L << (182 - 128)) | (1L << (183 - 128)) | (1L << (184 - 128)) | (1L << (185 - 128)) | (1L << (186 - 128)) | (1L << (187 - 128)) | (1L << (188 - 128)) | (1L << (189 - 128)) | (1L << (190 - 128)) | (1L << (191 - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (192 - 192)) | (1L << (193 - 192)) | (1L << (194 - 192)) | (1L << (195 - 192)) | (1L << (196 - 192)) | (1L << (197 - 192)) | (1L << (198 - 192)) | (1L << (199 - 192)) | (1L << (200 - 192)) | (1L << (201 - 192)) | (1L << (202 - 192)) | (1L << (203 - 192)) | (1L << (204 - 192)) | (1L << (205 - 192)) | (1L << (206 - 192)) | (1L << (207 - 192)) | (1L << (208 - 192)) | (1L << (209 - 192)) | (1L << (210 - 192)) | (1L << (211 - 192)) | (1L << (212 - 192)) | (1L << (213 - 192)) | (1L << (214 - 192)) | (1L << (215 - 192)) | (1L << (216 - 192)) | (1L << (217 - 192)) | (1L << (218 - 192)) | (1L << (219 - 192)) | (1L << (220 - 192)) | (1L << (221 - 192)) | (1L << (222 - 192)) | (1L << (223 - 192)) | (1L << (224 - 192)) | (1L << (225 - 192)) | (1L << (226 - 192)) | (1L << (227 - 192)) | (1L << (228 - 192)) | (1L << (229 - 192)) | (1L << (230 - 192)) | (1L << (231 - 192)) | (1L << (232 - 192)) | (1L << (233 - 192)) | (1L << (234 - 192)) | (1L << (235 - 192)) | (1L << (236 - 192)) | (1L << (237 - 192)))) != 0)) {
 												{
 													State = 116;
 													expr(0);
@@ -731,43 +690,43 @@ partial class mathParser : Parser {
 											}
 
 											State = 119;
-											Match(T__20);
+											Match(21);
 										}
 									}
 									break;
 								case 19: {
 										_localctx = new HEX2DEC_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 120;
-										if (!(Precpred(Context, 84))) throw new FailedPredicateException(this, "Precpred(Context, 84)");
+										//if (!(Precpred(Context, 84))) throw new FailedPredicateException(this, "Precpred(Context, 84)");
 										State = 121;
-										Match(T__18);
+										Match(19);
 										State = 122;
-										Match(HEX2DEC);
+										Match(52);
 										{
 											State = 123;
-											Match(T__19);
+											Match(20);
 											State = 124;
-											Match(T__20);
+											Match(21);
 										}
 									}
 									break;
 								case 20: {
 										_localctx = new HEX2OCT_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 125;
-										if (!(Precpred(Context, 83))) throw new FailedPredicateException(this, "Precpred(Context, 83)");
+										//if (!(Precpred(Context, 83))) throw new FailedPredicateException(this, "Precpred(Context, 83)");
 										State = 126;
-										Match(T__18);
+										Match(19);
 										State = 127;
-										Match(HEX2OCT);
+										Match(53);
 										{
 											State = 128;
-											Match(T__19);
+											Match(20);
 											State = 130;
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
-											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__19) | (1L << T__22) | (1L << T__24) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SQRT - 64)) | (1L << (TRUNC - 64)) | (1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (TEXT - 128)) | (1L << (TRIM - 128)) | (1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (LOGNORMDIST - 192)) | (1L << (NEGBINOMDIST - 192)) | (1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (ARRAY - 192)) | (1L << (PARAMETER - 192)) | (1L << (PARAMETER2 - 192)))) != 0)) {
+											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 20) | (1L << 23) | (1L << 25) | (1L << 26) | (1L << 27) | (1L << 28) | (1L << 29) | (1L << 30) | (1L << 31) | (1L << 32) | (1L << 33) | (1L << 34) | (1L << 35) | (1L << 36) | (1L << 37) | (1L << 38) | (1L << 39) | (1L << 40) | (1L << 41) | (1L << 42) | (1L << 43) | (1L << 44) | (1L << 45) | (1L << 46) | (1L << 47) | (1L << 48) | (1L << 49) | (1L << 50) | (1L << 51) | (1L << 52) | (1L << 53) | (1L << 54) | (1L << 55) | (1L << 56) | (1L << 57) | (1L << 58) | (1L << 59) | (1L << 60) | (1L << 61) | (1L << 62) | (1L << 63))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (64 - 64)) | (1L << (65 - 64)) | (1L << (66 - 64)) | (1L << (67 - 64)) | (1L << (68 - 64)) | (1L << (69 - 64)) | (1L << (70 - 64)) | (1L << (71 - 64)) | (1L << (72 - 64)) | (1L << (73 - 64)) | (1L << (74 - 64)) | (1L << (75 - 64)) | (1L << (76 - 64)) | (1L << (77 - 64)) | (1L << (78 - 64)) | (1L << (79 - 64)) | (1L << (80 - 64)) | (1L << (81 - 64)) | (1L << (82 - 64)) | (1L << (83 - 64)) | (1L << (84 - 64)) | (1L << (85 - 64)) | (1L << (86 - 64)) | (1L << (87 - 64)) | (1L << (88 - 64)) | (1L << (89 - 64)) | (1L << (90 - 64)) | (1L << (91 - 64)) | (1L << (92 - 64)) | (1L << (93 - 64)) | (1L << (94 - 64)) | (1L << (95 - 64)) | (1L << (96 - 64)) | (1L << (97 - 64)) | (1L << (98 - 64)) | (1L << (99 - 64)) | (1L << (100 - 64)) | (1L << (101 - 64)) | (1L << (102 - 64)) | (1L << (103 - 64)) | (1L << (104 - 64)) | (1L << (105 - 64)) | (1L << (106 - 64)) | (1L << (107 - 64)) | (1L << (108 - 64)) | (1L << (109 - 64)) | (1L << (110 - 64)) | (1L << (111 - 64)) | (1L << (112 - 64)) | (1L << (113 - 64)) | (1L << (114 - 64)) | (1L << (115 - 64)) | (1L << (116 - 64)) | (1L << (117 - 64)) | (1L << (118 - 64)) | (1L << (119 - 64)) | (1L << (120 - 64)) | (1L << (121 - 64)) | (1L << (122 - 64)) | (1L << (123 - 64)) | (1L << (124 - 64)) | (1L << (125 - 64)) | (1L << (126 - 64)) | (1L << (127 - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (128 - 128)) | (1L << (129 - 128)) | (1L << (130 - 128)) | (1L << (131 - 128)) | (1L << (132 - 128)) | (1L << (133 - 128)) | (1L << (134 - 128)) | (1L << (135 - 128)) | (1L << (136 - 128)) | (1L << (137 - 128)) | (1L << (138 - 128)) | (1L << (139 - 128)) | (1L << (140 - 128)) | (1L << (141 - 128)) | (1L << (142 - 128)) | (1L << (143 - 128)) | (1L << (144 - 128)) | (1L << (145 - 128)) | (1L << (146 - 128)) | (1L << (147 - 128)) | (1L << (148 - 128)) | (1L << (149 - 128)) | (1L << (150 - 128)) | (1L << (151 - 128)) | (1L << (152 - 128)) | (1L << (153 - 128)) | (1L << (154 - 128)) | (1L << (155 - 128)) | (1L << (156 - 128)) | (1L << (157 - 128)) | (1L << (158 - 128)) | (1L << (159 - 128)) | (1L << (160 - 128)) | (1L << (161 - 128)) | (1L << (162 - 128)) | (1L << (163 - 128)) | (1L << (164 - 128)) | (1L << (165 - 128)) | (1L << (166 - 128)) | (1L << (167 - 128)) | (1L << (168 - 128)) | (1L << (169 - 128)) | (1L << (170 - 128)) | (1L << (171 - 128)) | (1L << (172 - 128)) | (1L << (173 - 128)) | (1L << (174 - 128)) | (1L << (175 - 128)) | (1L << (176 - 128)) | (1L << (177 - 128)) | (1L << (178 - 128)) | (1L << (179 - 128)) | (1L << (180 - 128)) | (1L << (181 - 128)) | (1L << (182 - 128)) | (1L << (183 - 128)) | (1L << (184 - 128)) | (1L << (185 - 128)) | (1L << (186 - 128)) | (1L << (187 - 128)) | (1L << (188 - 128)) | (1L << (189 - 128)) | (1L << (190 - 128)) | (1L << (191 - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (192 - 192)) | (1L << (193 - 192)) | (1L << (194 - 192)) | (1L << (195 - 192)) | (1L << (196 - 192)) | (1L << (197 - 192)) | (1L << (198 - 192)) | (1L << (199 - 192)) | (1L << (200 - 192)) | (1L << (201 - 192)) | (1L << (202 - 192)) | (1L << (203 - 192)) | (1L << (204 - 192)) | (1L << (205 - 192)) | (1L << (206 - 192)) | (1L << (207 - 192)) | (1L << (208 - 192)) | (1L << (209 - 192)) | (1L << (210 - 192)) | (1L << (211 - 192)) | (1L << (212 - 192)) | (1L << (213 - 192)) | (1L << (214 - 192)) | (1L << (215 - 192)) | (1L << (216 - 192)) | (1L << (217 - 192)) | (1L << (218 - 192)) | (1L << (219 - 192)) | (1L << (220 - 192)) | (1L << (221 - 192)) | (1L << (222 - 192)) | (1L << (223 - 192)) | (1L << (224 - 192)) | (1L << (225 - 192)) | (1L << (226 - 192)) | (1L << (227 - 192)) | (1L << (228 - 192)) | (1L << (229 - 192)) | (1L << (230 - 192)) | (1L << (231 - 192)) | (1L << (232 - 192)) | (1L << (233 - 192)) | (1L << (234 - 192)) | (1L << (235 - 192)) | (1L << (236 - 192)) | (1L << (237 - 192)))) != 0)) {
 												{
 													State = 129;
 													expr(0);
@@ -775,26 +734,26 @@ partial class mathParser : Parser {
 											}
 
 											State = 132;
-											Match(T__20);
+											Match(21);
 										}
 									}
 									break;
 								case 21: {
 										_localctx = new OCT2BIN_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 133;
-										if (!(Precpred(Context, 82))) throw new FailedPredicateException(this, "Precpred(Context, 82)");
+										//if (!(Precpred(Context, 82))) throw new FailedPredicateException(this, "Precpred(Context, 82)");
 										State = 134;
-										Match(T__18);
+										Match(19);
 										State = 135;
-										Match(OCT2BIN);
+										Match(54);
 										{
 											State = 136;
-											Match(T__19);
+											Match(20);
 											State = 138;
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
-											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__19) | (1L << T__22) | (1L << T__24) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SQRT - 64)) | (1L << (TRUNC - 64)) | (1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (TEXT - 128)) | (1L << (TRIM - 128)) | (1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (LOGNORMDIST - 192)) | (1L << (NEGBINOMDIST - 192)) | (1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (ARRAY - 192)) | (1L << (PARAMETER - 192)) | (1L << (PARAMETER2 - 192)))) != 0)) {
+											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 20) | (1L << 23) | (1L << 25) | (1L << 26) | (1L << 27) | (1L << 28) | (1L << 29) | (1L << 30) | (1L << 31) | (1L << 32) | (1L << 33) | (1L << 34) | (1L << 35) | (1L << 36) | (1L << 37) | (1L << 38) | (1L << 39) | (1L << 40) | (1L << 41) | (1L << 42) | (1L << 43) | (1L << 44) | (1L << 45) | (1L << 46) | (1L << 47) | (1L << 48) | (1L << 49) | (1L << 50) | (1L << 51) | (1L << 52) | (1L << 53) | (1L << 54) | (1L << 55) | (1L << 56) | (1L << 57) | (1L << 58) | (1L << 59) | (1L << 60) | (1L << 61) | (1L << 62) | (1L << 63))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (64 - 64)) | (1L << (65 - 64)) | (1L << (66 - 64)) | (1L << (67 - 64)) | (1L << (68 - 64)) | (1L << (69 - 64)) | (1L << (70 - 64)) | (1L << (71 - 64)) | (1L << (72 - 64)) | (1L << (73 - 64)) | (1L << (74 - 64)) | (1L << (75 - 64)) | (1L << (76 - 64)) | (1L << (77 - 64)) | (1L << (78 - 64)) | (1L << (79 - 64)) | (1L << (80 - 64)) | (1L << (81 - 64)) | (1L << (82 - 64)) | (1L << (83 - 64)) | (1L << (84 - 64)) | (1L << (85 - 64)) | (1L << (86 - 64)) | (1L << (87 - 64)) | (1L << (88 - 64)) | (1L << (89 - 64)) | (1L << (90 - 64)) | (1L << (91 - 64)) | (1L << (92 - 64)) | (1L << (93 - 64)) | (1L << (94 - 64)) | (1L << (95 - 64)) | (1L << (96 - 64)) | (1L << (97 - 64)) | (1L << (98 - 64)) | (1L << (99 - 64)) | (1L << (100 - 64)) | (1L << (101 - 64)) | (1L << (102 - 64)) | (1L << (103 - 64)) | (1L << (104 - 64)) | (1L << (105 - 64)) | (1L << (106 - 64)) | (1L << (107 - 64)) | (1L << (108 - 64)) | (1L << (109 - 64)) | (1L << (110 - 64)) | (1L << (111 - 64)) | (1L << (112 - 64)) | (1L << (113 - 64)) | (1L << (114 - 64)) | (1L << (115 - 64)) | (1L << (116 - 64)) | (1L << (117 - 64)) | (1L << (118 - 64)) | (1L << (119 - 64)) | (1L << (120 - 64)) | (1L << (121 - 64)) | (1L << (122 - 64)) | (1L << (123 - 64)) | (1L << (124 - 64)) | (1L << (125 - 64)) | (1L << (126 - 64)) | (1L << (127 - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (128 - 128)) | (1L << (129 - 128)) | (1L << (130 - 128)) | (1L << (131 - 128)) | (1L << (132 - 128)) | (1L << (133 - 128)) | (1L << (134 - 128)) | (1L << (135 - 128)) | (1L << (136 - 128)) | (1L << (137 - 128)) | (1L << (138 - 128)) | (1L << (139 - 128)) | (1L << (140 - 128)) | (1L << (141 - 128)) | (1L << (142 - 128)) | (1L << (143 - 128)) | (1L << (144 - 128)) | (1L << (145 - 128)) | (1L << (146 - 128)) | (1L << (147 - 128)) | (1L << (148 - 128)) | (1L << (149 - 128)) | (1L << (150 - 128)) | (1L << (151 - 128)) | (1L << (152 - 128)) | (1L << (153 - 128)) | (1L << (154 - 128)) | (1L << (155 - 128)) | (1L << (156 - 128)) | (1L << (157 - 128)) | (1L << (158 - 128)) | (1L << (159 - 128)) | (1L << (160 - 128)) | (1L << (161 - 128)) | (1L << (162 - 128)) | (1L << (163 - 128)) | (1L << (164 - 128)) | (1L << (165 - 128)) | (1L << (166 - 128)) | (1L << (167 - 128)) | (1L << (168 - 128)) | (1L << (169 - 128)) | (1L << (170 - 128)) | (1L << (171 - 128)) | (1L << (172 - 128)) | (1L << (173 - 128)) | (1L << (174 - 128)) | (1L << (175 - 128)) | (1L << (176 - 128)) | (1L << (177 - 128)) | (1L << (178 - 128)) | (1L << (179 - 128)) | (1L << (180 - 128)) | (1L << (181 - 128)) | (1L << (182 - 128)) | (1L << (183 - 128)) | (1L << (184 - 128)) | (1L << (185 - 128)) | (1L << (186 - 128)) | (1L << (187 - 128)) | (1L << (188 - 128)) | (1L << (189 - 128)) | (1L << (190 - 128)) | (1L << (191 - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (192 - 192)) | (1L << (193 - 192)) | (1L << (194 - 192)) | (1L << (195 - 192)) | (1L << (196 - 192)) | (1L << (197 - 192)) | (1L << (198 - 192)) | (1L << (199 - 192)) | (1L << (200 - 192)) | (1L << (201 - 192)) | (1L << (202 - 192)) | (1L << (203 - 192)) | (1L << (204 - 192)) | (1L << (205 - 192)) | (1L << (206 - 192)) | (1L << (207 - 192)) | (1L << (208 - 192)) | (1L << (209 - 192)) | (1L << (210 - 192)) | (1L << (211 - 192)) | (1L << (212 - 192)) | (1L << (213 - 192)) | (1L << (214 - 192)) | (1L << (215 - 192)) | (1L << (216 - 192)) | (1L << (217 - 192)) | (1L << (218 - 192)) | (1L << (219 - 192)) | (1L << (220 - 192)) | (1L << (221 - 192)) | (1L << (222 - 192)) | (1L << (223 - 192)) | (1L << (224 - 192)) | (1L << (225 - 192)) | (1L << (226 - 192)) | (1L << (227 - 192)) | (1L << (228 - 192)) | (1L << (229 - 192)) | (1L << (230 - 192)) | (1L << (231 - 192)) | (1L << (232 - 192)) | (1L << (233 - 192)) | (1L << (234 - 192)) | (1L << (235 - 192)) | (1L << (236 - 192)) | (1L << (237 - 192)))) != 0)) {
 												{
 													State = 137;
 													expr(0);
@@ -802,43 +761,43 @@ partial class mathParser : Parser {
 											}
 
 											State = 140;
-											Match(T__20);
+											Match(21);
 										}
 									}
 									break;
 								case 22: {
 										_localctx = new OCT2DEC_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 141;
-										if (!(Precpred(Context, 81))) throw new FailedPredicateException(this, "Precpred(Context, 81)");
+										//if (!(Precpred(Context, 81))) throw new FailedPredicateException(this, "Precpred(Context, 81)");
 										State = 142;
-										Match(T__18);
+										Match(19);
 										State = 143;
-										Match(OCT2DEC);
+										Match(55);
 										{
 											State = 144;
-											Match(T__19);
+											Match(20);
 											State = 145;
-											Match(T__20);
+											Match(21);
 										}
 									}
 									break;
 								case 23: {
 										_localctx = new OCT2HEX_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 146;
-										if (!(Precpred(Context, 80))) throw new FailedPredicateException(this, "Precpred(Context, 80)");
+										//if (!(Precpred(Context, 80))) throw new FailedPredicateException(this, "Precpred(Context, 80)");
 										State = 147;
-										Match(T__18);
+										Match(19);
 										State = 148;
-										Match(OCT2HEX);
+										Match(56);
 										{
 											State = 149;
-											Match(T__19);
+											Match(20);
 											State = 151;
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
-											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__19) | (1L << T__22) | (1L << T__24) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SQRT - 64)) | (1L << (TRUNC - 64)) | (1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (TEXT - 128)) | (1L << (TRIM - 128)) | (1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (LOGNORMDIST - 192)) | (1L << (NEGBINOMDIST - 192)) | (1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (ARRAY - 192)) | (1L << (PARAMETER - 192)) | (1L << (PARAMETER2 - 192)))) != 0)) {
+											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 20) | (1L << 23) | (1L << 25) | (1L << 26) | (1L << 27) | (1L << 28) | (1L << 29) | (1L << 30) | (1L << 31) | (1L << 32) | (1L << 33) | (1L << 34) | (1L << 35) | (1L << 36) | (1L << 37) | (1L << 38) | (1L << 39) | (1L << 40) | (1L << 41) | (1L << 42) | (1L << 43) | (1L << 44) | (1L << 45) | (1L << 46) | (1L << 47) | (1L << 48) | (1L << 49) | (1L << 50) | (1L << 51) | (1L << 52) | (1L << 53) | (1L << 54) | (1L << 55) | (1L << 56) | (1L << 57) | (1L << 58) | (1L << 59) | (1L << 60) | (1L << 61) | (1L << 62) | (1L << 63))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (64 - 64)) | (1L << (65 - 64)) | (1L << (66 - 64)) | (1L << (67 - 64)) | (1L << (68 - 64)) | (1L << (69 - 64)) | (1L << (70 - 64)) | (1L << (71 - 64)) | (1L << (72 - 64)) | (1L << (73 - 64)) | (1L << (74 - 64)) | (1L << (75 - 64)) | (1L << (76 - 64)) | (1L << (77 - 64)) | (1L << (78 - 64)) | (1L << (79 - 64)) | (1L << (80 - 64)) | (1L << (81 - 64)) | (1L << (82 - 64)) | (1L << (83 - 64)) | (1L << (84 - 64)) | (1L << (85 - 64)) | (1L << (86 - 64)) | (1L << (87 - 64)) | (1L << (88 - 64)) | (1L << (89 - 64)) | (1L << (90 - 64)) | (1L << (91 - 64)) | (1L << (92 - 64)) | (1L << (93 - 64)) | (1L << (94 - 64)) | (1L << (95 - 64)) | (1L << (96 - 64)) | (1L << (97 - 64)) | (1L << (98 - 64)) | (1L << (99 - 64)) | (1L << (100 - 64)) | (1L << (101 - 64)) | (1L << (102 - 64)) | (1L << (103 - 64)) | (1L << (104 - 64)) | (1L << (105 - 64)) | (1L << (106 - 64)) | (1L << (107 - 64)) | (1L << (108 - 64)) | (1L << (109 - 64)) | (1L << (110 - 64)) | (1L << (111 - 64)) | (1L << (112 - 64)) | (1L << (113 - 64)) | (1L << (114 - 64)) | (1L << (115 - 64)) | (1L << (116 - 64)) | (1L << (117 - 64)) | (1L << (118 - 64)) | (1L << (119 - 64)) | (1L << (120 - 64)) | (1L << (121 - 64)) | (1L << (122 - 64)) | (1L << (123 - 64)) | (1L << (124 - 64)) | (1L << (125 - 64)) | (1L << (126 - 64)) | (1L << (127 - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (128 - 128)) | (1L << (129 - 128)) | (1L << (130 - 128)) | (1L << (131 - 128)) | (1L << (132 - 128)) | (1L << (133 - 128)) | (1L << (134 - 128)) | (1L << (135 - 128)) | (1L << (136 - 128)) | (1L << (137 - 128)) | (1L << (138 - 128)) | (1L << (139 - 128)) | (1L << (140 - 128)) | (1L << (141 - 128)) | (1L << (142 - 128)) | (1L << (143 - 128)) | (1L << (144 - 128)) | (1L << (145 - 128)) | (1L << (146 - 128)) | (1L << (147 - 128)) | (1L << (148 - 128)) | (1L << (149 - 128)) | (1L << (150 - 128)) | (1L << (151 - 128)) | (1L << (152 - 128)) | (1L << (153 - 128)) | (1L << (154 - 128)) | (1L << (155 - 128)) | (1L << (156 - 128)) | (1L << (157 - 128)) | (1L << (158 - 128)) | (1L << (159 - 128)) | (1L << (160 - 128)) | (1L << (161 - 128)) | (1L << (162 - 128)) | (1L << (163 - 128)) | (1L << (164 - 128)) | (1L << (165 - 128)) | (1L << (166 - 128)) | (1L << (167 - 128)) | (1L << (168 - 128)) | (1L << (169 - 128)) | (1L << (170 - 128)) | (1L << (171 - 128)) | (1L << (172 - 128)) | (1L << (173 - 128)) | (1L << (174 - 128)) | (1L << (175 - 128)) | (1L << (176 - 128)) | (1L << (177 - 128)) | (1L << (178 - 128)) | (1L << (179 - 128)) | (1L << (180 - 128)) | (1L << (181 - 128)) | (1L << (182 - 128)) | (1L << (183 - 128)) | (1L << (184 - 128)) | (1L << (185 - 128)) | (1L << (186 - 128)) | (1L << (187 - 128)) | (1L << (188 - 128)) | (1L << (189 - 128)) | (1L << (190 - 128)) | (1L << (191 - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (192 - 192)) | (1L << (193 - 192)) | (1L << (194 - 192)) | (1L << (195 - 192)) | (1L << (196 - 192)) | (1L << (197 - 192)) | (1L << (198 - 192)) | (1L << (199 - 192)) | (1L << (200 - 192)) | (1L << (201 - 192)) | (1L << (202 - 192)) | (1L << (203 - 192)) | (1L << (204 - 192)) | (1L << (205 - 192)) | (1L << (206 - 192)) | (1L << (207 - 192)) | (1L << (208 - 192)) | (1L << (209 - 192)) | (1L << (210 - 192)) | (1L << (211 - 192)) | (1L << (212 - 192)) | (1L << (213 - 192)) | (1L << (214 - 192)) | (1L << (215 - 192)) | (1L << (216 - 192)) | (1L << (217 - 192)) | (1L << (218 - 192)) | (1L << (219 - 192)) | (1L << (220 - 192)) | (1L << (221 - 192)) | (1L << (222 - 192)) | (1L << (223 - 192)) | (1L << (224 - 192)) | (1L << (225 - 192)) | (1L << (226 - 192)) | (1L << (227 - 192)) | (1L << (228 - 192)) | (1L << (229 - 192)) | (1L << (230 - 192)) | (1L << (231 - 192)) | (1L << (232 - 192)) | (1L << (233 - 192)) | (1L << (234 - 192)) | (1L << (235 - 192)) | (1L << (236 - 192)) | (1L << (237 - 192)))) != 0)) {
 												{
 													State = 150;
 													expr(0);
@@ -846,26 +805,26 @@ partial class mathParser : Parser {
 											}
 
 											State = 153;
-											Match(T__20);
+											Match(21);
 										}
 									}
 									break;
 								case 24: {
 										_localctx = new BIN2OCT_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 154;
-										if (!(Precpred(Context, 79))) throw new FailedPredicateException(this, "Precpred(Context, 79)");
+										//if (!(Precpred(Context, 79))) throw new FailedPredicateException(this, "Precpred(Context, 79)");
 										State = 155;
-										Match(T__18);
+										Match(19);
 										State = 156;
-										Match(BIN2OCT);
+										Match(57);
 										{
 											State = 157;
-											Match(T__19);
+											Match(20);
 											State = 159;
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
-											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__19) | (1L << T__22) | (1L << T__24) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SQRT - 64)) | (1L << (TRUNC - 64)) | (1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (TEXT - 128)) | (1L << (TRIM - 128)) | (1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (LOGNORMDIST - 192)) | (1L << (NEGBINOMDIST - 192)) | (1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (ARRAY - 192)) | (1L << (PARAMETER - 192)) | (1L << (PARAMETER2 - 192)))) != 0)) {
+											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 20) | (1L << 23) | (1L << 25) | (1L << 26) | (1L << 27) | (1L << 28) | (1L << 29) | (1L << 30) | (1L << 31) | (1L << 32) | (1L << 33) | (1L << 34) | (1L << 35) | (1L << 36) | (1L << 37) | (1L << 38) | (1L << 39) | (1L << 40) | (1L << 41) | (1L << 42) | (1L << 43) | (1L << 44) | (1L << 45) | (1L << 46) | (1L << 47) | (1L << 48) | (1L << 49) | (1L << 50) | (1L << 51) | (1L << 52) | (1L << 53) | (1L << 54) | (1L << 55) | (1L << 56) | (1L << 57) | (1L << 58) | (1L << 59) | (1L << 60) | (1L << 61) | (1L << 62) | (1L << 63))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (64 - 64)) | (1L << (65 - 64)) | (1L << (66 - 64)) | (1L << (67 - 64)) | (1L << (68 - 64)) | (1L << (69 - 64)) | (1L << (70 - 64)) | (1L << (71 - 64)) | (1L << (72 - 64)) | (1L << (73 - 64)) | (1L << (74 - 64)) | (1L << (75 - 64)) | (1L << (76 - 64)) | (1L << (77 - 64)) | (1L << (78 - 64)) | (1L << (79 - 64)) | (1L << (80 - 64)) | (1L << (81 - 64)) | (1L << (82 - 64)) | (1L << (83 - 64)) | (1L << (84 - 64)) | (1L << (85 - 64)) | (1L << (86 - 64)) | (1L << (87 - 64)) | (1L << (88 - 64)) | (1L << (89 - 64)) | (1L << (90 - 64)) | (1L << (91 - 64)) | (1L << (92 - 64)) | (1L << (93 - 64)) | (1L << (94 - 64)) | (1L << (95 - 64)) | (1L << (96 - 64)) | (1L << (97 - 64)) | (1L << (98 - 64)) | (1L << (99 - 64)) | (1L << (100 - 64)) | (1L << (101 - 64)) | (1L << (102 - 64)) | (1L << (103 - 64)) | (1L << (104 - 64)) | (1L << (105 - 64)) | (1L << (106 - 64)) | (1L << (107 - 64)) | (1L << (108 - 64)) | (1L << (109 - 64)) | (1L << (110 - 64)) | (1L << (111 - 64)) | (1L << (112 - 64)) | (1L << (113 - 64)) | (1L << (114 - 64)) | (1L << (115 - 64)) | (1L << (116 - 64)) | (1L << (117 - 64)) | (1L << (118 - 64)) | (1L << (119 - 64)) | (1L << (120 - 64)) | (1L << (121 - 64)) | (1L << (122 - 64)) | (1L << (123 - 64)) | (1L << (124 - 64)) | (1L << (125 - 64)) | (1L << (126 - 64)) | (1L << (127 - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (128 - 128)) | (1L << (129 - 128)) | (1L << (130 - 128)) | (1L << (131 - 128)) | (1L << (132 - 128)) | (1L << (133 - 128)) | (1L << (134 - 128)) | (1L << (135 - 128)) | (1L << (136 - 128)) | (1L << (137 - 128)) | (1L << (138 - 128)) | (1L << (139 - 128)) | (1L << (140 - 128)) | (1L << (141 - 128)) | (1L << (142 - 128)) | (1L << (143 - 128)) | (1L << (144 - 128)) | (1L << (145 - 128)) | (1L << (146 - 128)) | (1L << (147 - 128)) | (1L << (148 - 128)) | (1L << (149 - 128)) | (1L << (150 - 128)) | (1L << (151 - 128)) | (1L << (152 - 128)) | (1L << (153 - 128)) | (1L << (154 - 128)) | (1L << (155 - 128)) | (1L << (156 - 128)) | (1L << (157 - 128)) | (1L << (158 - 128)) | (1L << (159 - 128)) | (1L << (160 - 128)) | (1L << (161 - 128)) | (1L << (162 - 128)) | (1L << (163 - 128)) | (1L << (164 - 128)) | (1L << (165 - 128)) | (1L << (166 - 128)) | (1L << (167 - 128)) | (1L << (168 - 128)) | (1L << (169 - 128)) | (1L << (170 - 128)) | (1L << (171 - 128)) | (1L << (172 - 128)) | (1L << (173 - 128)) | (1L << (174 - 128)) | (1L << (175 - 128)) | (1L << (176 - 128)) | (1L << (177 - 128)) | (1L << (178 - 128)) | (1L << (179 - 128)) | (1L << (180 - 128)) | (1L << (181 - 128)) | (1L << (182 - 128)) | (1L << (183 - 128)) | (1L << (184 - 128)) | (1L << (185 - 128)) | (1L << (186 - 128)) | (1L << (187 - 128)) | (1L << (188 - 128)) | (1L << (189 - 128)) | (1L << (190 - 128)) | (1L << (191 - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (192 - 192)) | (1L << (193 - 192)) | (1L << (194 - 192)) | (1L << (195 - 192)) | (1L << (196 - 192)) | (1L << (197 - 192)) | (1L << (198 - 192)) | (1L << (199 - 192)) | (1L << (200 - 192)) | (1L << (201 - 192)) | (1L << (202 - 192)) | (1L << (203 - 192)) | (1L << (204 - 192)) | (1L << (205 - 192)) | (1L << (206 - 192)) | (1L << (207 - 192)) | (1L << (208 - 192)) | (1L << (209 - 192)) | (1L << (210 - 192)) | (1L << (211 - 192)) | (1L << (212 - 192)) | (1L << (213 - 192)) | (1L << (214 - 192)) | (1L << (215 - 192)) | (1L << (216 - 192)) | (1L << (217 - 192)) | (1L << (218 - 192)) | (1L << (219 - 192)) | (1L << (220 - 192)) | (1L << (221 - 192)) | (1L << (222 - 192)) | (1L << (223 - 192)) | (1L << (224 - 192)) | (1L << (225 - 192)) | (1L << (226 - 192)) | (1L << (227 - 192)) | (1L << (228 - 192)) | (1L << (229 - 192)) | (1L << (230 - 192)) | (1L << (231 - 192)) | (1L << (232 - 192)) | (1L << (233 - 192)) | (1L << (234 - 192)) | (1L << (235 - 192)) | (1L << (236 - 192)) | (1L << (237 - 192)))) != 0)) {
 												{
 													State = 158;
 													expr(0);
@@ -873,43 +832,43 @@ partial class mathParser : Parser {
 											}
 
 											State = 161;
-											Match(T__20);
+											Match(21);
 										}
 									}
 									break;
 								case 25: {
 										_localctx = new BIN2DEC_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 162;
-										if (!(Precpred(Context, 78))) throw new FailedPredicateException(this, "Precpred(Context, 78)");
+										//if (!(Precpred(Context, 78))) throw new FailedPredicateException(this, "Precpred(Context, 78)");
 										State = 163;
-										Match(T__18);
+										Match(19);
 										State = 164;
-										Match(BIN2DEC);
+										Match(58);
 										{
 											State = 165;
-											Match(T__19);
+											Match(20);
 											State = 166;
-											Match(T__20);
+											Match(21);
 										}
 									}
 									break;
 								case 26: {
 										_localctx = new BIN2HEX_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 167;
-										if (!(Precpred(Context, 77))) throw new FailedPredicateException(this, "Precpred(Context, 77)");
+										//if (!(Precpred(Context, 77))) throw new FailedPredicateException(this, "Precpred(Context, 77)");
 										State = 168;
-										Match(T__18);
+										Match(19);
 										State = 169;
-										Match(BIN2HEX);
+										Match(59);
 										{
 											State = 170;
-											Match(T__19);
+											Match(20);
 											State = 172;
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
-											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__19) | (1L << T__22) | (1L << T__24) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SQRT - 64)) | (1L << (TRUNC - 64)) | (1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (TEXT - 128)) | (1L << (TRIM - 128)) | (1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (LOGNORMDIST - 192)) | (1L << (NEGBINOMDIST - 192)) | (1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (ARRAY - 192)) | (1L << (PARAMETER - 192)) | (1L << (PARAMETER2 - 192)))) != 0)) {
+											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 20) | (1L << 23) | (1L << 25) | (1L << 26) | (1L << 27) | (1L << 28) | (1L << 29) | (1L << 30) | (1L << 31) | (1L << 32) | (1L << 33) | (1L << 34) | (1L << 35) | (1L << 36) | (1L << 37) | (1L << 38) | (1L << 39) | (1L << 40) | (1L << 41) | (1L << 42) | (1L << 43) | (1L << 44) | (1L << 45) | (1L << 46) | (1L << 47) | (1L << 48) | (1L << 49) | (1L << 50) | (1L << 51) | (1L << 52) | (1L << 53) | (1L << 54) | (1L << 55) | (1L << 56) | (1L << 57) | (1L << 58) | (1L << 59) | (1L << 60) | (1L << 61) | (1L << 62) | (1L << 63))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (64 - 64)) | (1L << (65 - 64)) | (1L << (66 - 64)) | (1L << (67 - 64)) | (1L << (68 - 64)) | (1L << (69 - 64)) | (1L << (70 - 64)) | (1L << (71 - 64)) | (1L << (72 - 64)) | (1L << (73 - 64)) | (1L << (74 - 64)) | (1L << (75 - 64)) | (1L << (76 - 64)) | (1L << (77 - 64)) | (1L << (78 - 64)) | (1L << (79 - 64)) | (1L << (80 - 64)) | (1L << (81 - 64)) | (1L << (82 - 64)) | (1L << (83 - 64)) | (1L << (84 - 64)) | (1L << (85 - 64)) | (1L << (86 - 64)) | (1L << (87 - 64)) | (1L << (88 - 64)) | (1L << (89 - 64)) | (1L << (90 - 64)) | (1L << (91 - 64)) | (1L << (92 - 64)) | (1L << (93 - 64)) | (1L << (94 - 64)) | (1L << (95 - 64)) | (1L << (96 - 64)) | (1L << (97 - 64)) | (1L << (98 - 64)) | (1L << (99 - 64)) | (1L << (100 - 64)) | (1L << (101 - 64)) | (1L << (102 - 64)) | (1L << (103 - 64)) | (1L << (104 - 64)) | (1L << (105 - 64)) | (1L << (106 - 64)) | (1L << (107 - 64)) | (1L << (108 - 64)) | (1L << (109 - 64)) | (1L << (110 - 64)) | (1L << (111 - 64)) | (1L << (112 - 64)) | (1L << (113 - 64)) | (1L << (114 - 64)) | (1L << (115 - 64)) | (1L << (116 - 64)) | (1L << (117 - 64)) | (1L << (118 - 64)) | (1L << (119 - 64)) | (1L << (120 - 64)) | (1L << (121 - 64)) | (1L << (122 - 64)) | (1L << (123 - 64)) | (1L << (124 - 64)) | (1L << (125 - 64)) | (1L << (126 - 64)) | (1L << (127 - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (128 - 128)) | (1L << (129 - 128)) | (1L << (130 - 128)) | (1L << (131 - 128)) | (1L << (132 - 128)) | (1L << (133 - 128)) | (1L << (134 - 128)) | (1L << (135 - 128)) | (1L << (136 - 128)) | (1L << (137 - 128)) | (1L << (138 - 128)) | (1L << (139 - 128)) | (1L << (140 - 128)) | (1L << (141 - 128)) | (1L << (142 - 128)) | (1L << (143 - 128)) | (1L << (144 - 128)) | (1L << (145 - 128)) | (1L << (146 - 128)) | (1L << (147 - 128)) | (1L << (148 - 128)) | (1L << (149 - 128)) | (1L << (150 - 128)) | (1L << (151 - 128)) | (1L << (152 - 128)) | (1L << (153 - 128)) | (1L << (154 - 128)) | (1L << (155 - 128)) | (1L << (156 - 128)) | (1L << (157 - 128)) | (1L << (158 - 128)) | (1L << (159 - 128)) | (1L << (160 - 128)) | (1L << (161 - 128)) | (1L << (162 - 128)) | (1L << (163 - 128)) | (1L << (164 - 128)) | (1L << (165 - 128)) | (1L << (166 - 128)) | (1L << (167 - 128)) | (1L << (168 - 128)) | (1L << (169 - 128)) | (1L << (170 - 128)) | (1L << (171 - 128)) | (1L << (172 - 128)) | (1L << (173 - 128)) | (1L << (174 - 128)) | (1L << (175 - 128)) | (1L << (176 - 128)) | (1L << (177 - 128)) | (1L << (178 - 128)) | (1L << (179 - 128)) | (1L << (180 - 128)) | (1L << (181 - 128)) | (1L << (182 - 128)) | (1L << (183 - 128)) | (1L << (184 - 128)) | (1L << (185 - 128)) | (1L << (186 - 128)) | (1L << (187 - 128)) | (1L << (188 - 128)) | (1L << (189 - 128)) | (1L << (190 - 128)) | (1L << (191 - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (192 - 192)) | (1L << (193 - 192)) | (1L << (194 - 192)) | (1L << (195 - 192)) | (1L << (196 - 192)) | (1L << (197 - 192)) | (1L << (198 - 192)) | (1L << (199 - 192)) | (1L << (200 - 192)) | (1L << (201 - 192)) | (1L << (202 - 192)) | (1L << (203 - 192)) | (1L << (204 - 192)) | (1L << (205 - 192)) | (1L << (206 - 192)) | (1L << (207 - 192)) | (1L << (208 - 192)) | (1L << (209 - 192)) | (1L << (210 - 192)) | (1L << (211 - 192)) | (1L << (212 - 192)) | (1L << (213 - 192)) | (1L << (214 - 192)) | (1L << (215 - 192)) | (1L << (216 - 192)) | (1L << (217 - 192)) | (1L << (218 - 192)) | (1L << (219 - 192)) | (1L << (220 - 192)) | (1L << (221 - 192)) | (1L << (222 - 192)) | (1L << (223 - 192)) | (1L << (224 - 192)) | (1L << (225 - 192)) | (1L << (226 - 192)) | (1L << (227 - 192)) | (1L << (228 - 192)) | (1L << (229 - 192)) | (1L << (230 - 192)) | (1L << (231 - 192)) | (1L << (232 - 192)) | (1L << (233 - 192)) | (1L << (234 - 192)) | (1L << (235 - 192)) | (1L << (236 - 192)) | (1L << (237 - 192)))) != 0)) {
 												{
 													State = 171;
 													expr(0);
@@ -917,126 +876,126 @@ partial class mathParser : Parser {
 											}
 
 											State = 174;
-											Match(T__20);
+											Match(21);
 										}
 									}
 									break;
 								case 27: {
 										_localctx = new INT_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 175;
-										if (!(Precpred(Context, 76))) throw new FailedPredicateException(this, "Precpred(Context, 76)");
+										//if (!(Precpred(Context, 76))) throw new FailedPredicateException(this, "Precpred(Context, 76)");
 										State = 176;
-										Match(T__18);
+										Match(19);
 										State = 177;
-										Match(INT);
+										Match(66);
 										State = 178;
-										Match(T__19);
+										Match(20);
 										State = 179;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 28: {
 										_localctx = new ASC_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 180;
-										if (!(Precpred(Context, 75))) throw new FailedPredicateException(this, "Precpred(Context, 75)");
+										//if (!(Precpred(Context, 75))) throw new FailedPredicateException(this, "Precpred(Context, 75)");
 										State = 181;
-										Match(T__18);
+										Match(19);
 										State = 182;
-										Match(ASC);
+										Match(107);
 										State = 183;
-										Match(T__19);
+										Match(20);
 										State = 184;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 29: {
 										_localctx = new JIS_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 185;
-										if (!(Precpred(Context, 74))) throw new FailedPredicateException(this, "Precpred(Context, 74)");
+										//if (!(Precpred(Context, 74))) throw new FailedPredicateException(this, "Precpred(Context, 74)");
 										State = 186;
-										Match(T__18);
+										Match(19);
 										State = 187;
-										Match(JIS);
+										Match(108);
 										State = 188;
-										Match(T__19);
+										Match(20);
 										State = 189;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 30: {
 										_localctx = new CHAR_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 190;
-										if (!(Precpred(Context, 73))) throw new FailedPredicateException(this, "Precpred(Context, 73)");
+										//if (!(Precpred(Context, 73))) throw new FailedPredicateException(this, "Precpred(Context, 73)");
 										State = 191;
-										Match(T__18);
+										Match(19);
 										State = 192;
-										Match(CHAR);
+										Match(109);
 										State = 193;
-										Match(T__19);
+										Match(20);
 										State = 194;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 31: {
 										_localctx = new CLEAN_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 195;
-										if (!(Precpred(Context, 72))) throw new FailedPredicateException(this, "Precpred(Context, 72)");
+										//if (!(Precpred(Context, 72))) throw new FailedPredicateException(this, "Precpred(Context, 72)");
 										State = 196;
-										Match(T__18);
+										Match(19);
 										State = 197;
-										Match(CLEAN);
+										Match(110);
 										State = 198;
-										Match(T__19);
+										Match(20);
 										State = 199;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 32: {
 										_localctx = new CODE_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 200;
-										if (!(Precpred(Context, 71))) throw new FailedPredicateException(this, "Precpred(Context, 71)");
+										//if (!(Precpred(Context, 71))) throw new FailedPredicateException(this, "Precpred(Context, 71)");
 										State = 201;
-										Match(T__18);
+										Match(19);
 										State = 202;
-										Match(CODE);
+										Match(111);
 										State = 203;
-										Match(T__19);
+										Match(20);
 										State = 204;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 33: {
 										_localctx = new CONCATENATE_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 205;
-										if (!(Precpred(Context, 70))) throw new FailedPredicateException(this, "Precpred(Context, 70)");
+										//if (!(Precpred(Context, 70))) throw new FailedPredicateException(this, "Precpred(Context, 70)");
 										State = 206;
-										Match(T__18);
+										Match(19);
 										State = 207;
-										Match(CONCATENATE);
+										Match(112);
 										State = 208;
-										Match(T__19);
+										Match(20);
 										State = 217;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__19) | (1L << T__22) | (1L << T__24) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SQRT - 64)) | (1L << (TRUNC - 64)) | (1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (TEXT - 128)) | (1L << (TRIM - 128)) | (1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (LOGNORMDIST - 192)) | (1L << (NEGBINOMDIST - 192)) | (1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (ARRAY - 192)) | (1L << (PARAMETER - 192)) | (1L << (PARAMETER2 - 192)))) != 0)) {
+										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 20) | (1L << 23) | (1L << 25) | (1L << 26) | (1L << 27) | (1L << 28) | (1L << 29) | (1L << 30) | (1L << 31) | (1L << 32) | (1L << 33) | (1L << 34) | (1L << 35) | (1L << 36) | (1L << 37) | (1L << 38) | (1L << 39) | (1L << 40) | (1L << 41) | (1L << 42) | (1L << 43) | (1L << 44) | (1L << 45) | (1L << 46) | (1L << 47) | (1L << 48) | (1L << 49) | (1L << 50) | (1L << 51) | (1L << 52) | (1L << 53) | (1L << 54) | (1L << 55) | (1L << 56) | (1L << 57) | (1L << 58) | (1L << 59) | (1L << 60) | (1L << 61) | (1L << 62) | (1L << 63))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (64 - 64)) | (1L << (65 - 64)) | (1L << (66 - 64)) | (1L << (67 - 64)) | (1L << (68 - 64)) | (1L << (69 - 64)) | (1L << (70 - 64)) | (1L << (71 - 64)) | (1L << (72 - 64)) | (1L << (73 - 64)) | (1L << (74 - 64)) | (1L << (75 - 64)) | (1L << (76 - 64)) | (1L << (77 - 64)) | (1L << (78 - 64)) | (1L << (79 - 64)) | (1L << (80 - 64)) | (1L << (81 - 64)) | (1L << (82 - 64)) | (1L << (83 - 64)) | (1L << (84 - 64)) | (1L << (85 - 64)) | (1L << (86 - 64)) | (1L << (87 - 64)) | (1L << (88 - 64)) | (1L << (89 - 64)) | (1L << (90 - 64)) | (1L << (91 - 64)) | (1L << (92 - 64)) | (1L << (93 - 64)) | (1L << (94 - 64)) | (1L << (95 - 64)) | (1L << (96 - 64)) | (1L << (97 - 64)) | (1L << (98 - 64)) | (1L << (99 - 64)) | (1L << (100 - 64)) | (1L << (101 - 64)) | (1L << (102 - 64)) | (1L << (103 - 64)) | (1L << (104 - 64)) | (1L << (105 - 64)) | (1L << (106 - 64)) | (1L << (107 - 64)) | (1L << (108 - 64)) | (1L << (109 - 64)) | (1L << (110 - 64)) | (1L << (111 - 64)) | (1L << (112 - 64)) | (1L << (113 - 64)) | (1L << (114 - 64)) | (1L << (115 - 64)) | (1L << (116 - 64)) | (1L << (117 - 64)) | (1L << (118 - 64)) | (1L << (119 - 64)) | (1L << (120 - 64)) | (1L << (121 - 64)) | (1L << (122 - 64)) | (1L << (123 - 64)) | (1L << (124 - 64)) | (1L << (125 - 64)) | (1L << (126 - 64)) | (1L << (127 - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (128 - 128)) | (1L << (129 - 128)) | (1L << (130 - 128)) | (1L << (131 - 128)) | (1L << (132 - 128)) | (1L << (133 - 128)) | (1L << (134 - 128)) | (1L << (135 - 128)) | (1L << (136 - 128)) | (1L << (137 - 128)) | (1L << (138 - 128)) | (1L << (139 - 128)) | (1L << (140 - 128)) | (1L << (141 - 128)) | (1L << (142 - 128)) | (1L << (143 - 128)) | (1L << (144 - 128)) | (1L << (145 - 128)) | (1L << (146 - 128)) | (1L << (147 - 128)) | (1L << (148 - 128)) | (1L << (149 - 128)) | (1L << (150 - 128)) | (1L << (151 - 128)) | (1L << (152 - 128)) | (1L << (153 - 128)) | (1L << (154 - 128)) | (1L << (155 - 128)) | (1L << (156 - 128)) | (1L << (157 - 128)) | (1L << (158 - 128)) | (1L << (159 - 128)) | (1L << (160 - 128)) | (1L << (161 - 128)) | (1L << (162 - 128)) | (1L << (163 - 128)) | (1L << (164 - 128)) | (1L << (165 - 128)) | (1L << (166 - 128)) | (1L << (167 - 128)) | (1L << (168 - 128)) | (1L << (169 - 128)) | (1L << (170 - 128)) | (1L << (171 - 128)) | (1L << (172 - 128)) | (1L << (173 - 128)) | (1L << (174 - 128)) | (1L << (175 - 128)) | (1L << (176 - 128)) | (1L << (177 - 128)) | (1L << (178 - 128)) | (1L << (179 - 128)) | (1L << (180 - 128)) | (1L << (181 - 128)) | (1L << (182 - 128)) | (1L << (183 - 128)) | (1L << (184 - 128)) | (1L << (185 - 128)) | (1L << (186 - 128)) | (1L << (187 - 128)) | (1L << (188 - 128)) | (1L << (189 - 128)) | (1L << (190 - 128)) | (1L << (191 - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (192 - 192)) | (1L << (193 - 192)) | (1L << (194 - 192)) | (1L << (195 - 192)) | (1L << (196 - 192)) | (1L << (197 - 192)) | (1L << (198 - 192)) | (1L << (199 - 192)) | (1L << (200 - 192)) | (1L << (201 - 192)) | (1L << (202 - 192)) | (1L << (203 - 192)) | (1L << (204 - 192)) | (1L << (205 - 192)) | (1L << (206 - 192)) | (1L << (207 - 192)) | (1L << (208 - 192)) | (1L << (209 - 192)) | (1L << (210 - 192)) | (1L << (211 - 192)) | (1L << (212 - 192)) | (1L << (213 - 192)) | (1L << (214 - 192)) | (1L << (215 - 192)) | (1L << (216 - 192)) | (1L << (217 - 192)) | (1L << (218 - 192)) | (1L << (219 - 192)) | (1L << (220 - 192)) | (1L << (221 - 192)) | (1L << (222 - 192)) | (1L << (223 - 192)) | (1L << (224 - 192)) | (1L << (225 - 192)) | (1L << (226 - 192)) | (1L << (227 - 192)) | (1L << (228 - 192)) | (1L << (229 - 192)) | (1L << (230 - 192)) | (1L << (231 - 192)) | (1L << (232 - 192)) | (1L << (233 - 192)) | (1L << (234 - 192)) | (1L << (235 - 192)) | (1L << (236 - 192)) | (1L << (237 - 192)))) != 0)) {
 											{
 												State = 209;
 												expr(0);
 												State = 214;
 												ErrorHandler.Sync(this);
 												_la = TokenStream.LA(1);
-												while (_la == T__21) {
+												while (_la == 22) {
 													{
 														{
 															State = 210;
-															Match(T__21);
+															Match(22);
 															State = 211;
 															expr(0);
 														}
@@ -1049,70 +1008,70 @@ partial class mathParser : Parser {
 										}
 
 										State = 219;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 34: {
 										_localctx = new EXACT_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 220;
-										if (!(Precpred(Context, 69))) throw new FailedPredicateException(this, "Precpred(Context, 69)");
+										//if (!(Precpred(Context, 69))) throw new FailedPredicateException(this, "Precpred(Context, 69)");
 										State = 221;
-										Match(T__18);
+										Match(19);
 										State = 222;
-										Match(EXACT);
+										Match(113);
 										State = 223;
-										Match(T__19);
+										Match(20);
 										State = 224;
 										expr(0);
 										State = 225;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 35: {
 										_localctx = new FIND_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 227;
-										if (!(Precpred(Context, 68))) throw new FailedPredicateException(this, "Precpred(Context, 68)");
+										//if (!(Precpred(Context, 68))) throw new FailedPredicateException(this, "Precpred(Context, 68)");
 										State = 228;
-										Match(T__18);
+										Match(19);
 										State = 229;
-										Match(FIND);
+										Match(114);
 										State = 230;
-										Match(T__19);
+										Match(20);
 										State = 231;
 										expr(0);
 										State = 234;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if (_la == T__21) {
+										if (_la == 22) {
 											{
 												State = 232;
-												Match(T__21);
+												Match(22);
 												State = 233;
 												expr(0);
 											}
 										}
 
 										State = 236;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 36: {
 										_localctx = new LEFT_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 238;
-										if (!(Precpred(Context, 67))) throw new FailedPredicateException(this, "Precpred(Context, 67)");
+										//if (!(Precpred(Context, 67))) throw new FailedPredicateException(this, "Precpred(Context, 67)");
 										State = 239;
-										Match(T__18);
+										Match(19);
 										State = 240;
-										Match(LEFT);
+										Match(116);
 										State = 241;
-										Match(T__19);
+										Match(20);
 										State = 243;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__19) | (1L << T__22) | (1L << T__24) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SQRT - 64)) | (1L << (TRUNC - 64)) | (1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (TEXT - 128)) | (1L << (TRIM - 128)) | (1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (LOGNORMDIST - 192)) | (1L << (NEGBINOMDIST - 192)) | (1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (ARRAY - 192)) | (1L << (PARAMETER - 192)) | (1L << (PARAMETER2 - 192)))) != 0)) {
+										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 20) | (1L << 23) | (1L << 25) | (1L << 26) | (1L << 27) | (1L << 28) | (1L << 29) | (1L << 30) | (1L << 31) | (1L << 32) | (1L << 33) | (1L << 34) | (1L << 35) | (1L << 36) | (1L << 37) | (1L << 38) | (1L << 39) | (1L << 40) | (1L << 41) | (1L << 42) | (1L << 43) | (1L << 44) | (1L << 45) | (1L << 46) | (1L << 47) | (1L << 48) | (1L << 49) | (1L << 50) | (1L << 51) | (1L << 52) | (1L << 53) | (1L << 54) | (1L << 55) | (1L << 56) | (1L << 57) | (1L << 58) | (1L << 59) | (1L << 60) | (1L << 61) | (1L << 62) | (1L << 63))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (64 - 64)) | (1L << (65 - 64)) | (1L << (66 - 64)) | (1L << (67 - 64)) | (1L << (68 - 64)) | (1L << (69 - 64)) | (1L << (70 - 64)) | (1L << (71 - 64)) | (1L << (72 - 64)) | (1L << (73 - 64)) | (1L << (74 - 64)) | (1L << (75 - 64)) | (1L << (76 - 64)) | (1L << (77 - 64)) | (1L << (78 - 64)) | (1L << (79 - 64)) | (1L << (80 - 64)) | (1L << (81 - 64)) | (1L << (82 - 64)) | (1L << (83 - 64)) | (1L << (84 - 64)) | (1L << (85 - 64)) | (1L << (86 - 64)) | (1L << (87 - 64)) | (1L << (88 - 64)) | (1L << (89 - 64)) | (1L << (90 - 64)) | (1L << (91 - 64)) | (1L << (92 - 64)) | (1L << (93 - 64)) | (1L << (94 - 64)) | (1L << (95 - 64)) | (1L << (96 - 64)) | (1L << (97 - 64)) | (1L << (98 - 64)) | (1L << (99 - 64)) | (1L << (100 - 64)) | (1L << (101 - 64)) | (1L << (102 - 64)) | (1L << (103 - 64)) | (1L << (104 - 64)) | (1L << (105 - 64)) | (1L << (106 - 64)) | (1L << (107 - 64)) | (1L << (108 - 64)) | (1L << (109 - 64)) | (1L << (110 - 64)) | (1L << (111 - 64)) | (1L << (112 - 64)) | (1L << (113 - 64)) | (1L << (114 - 64)) | (1L << (115 - 64)) | (1L << (116 - 64)) | (1L << (117 - 64)) | (1L << (118 - 64)) | (1L << (119 - 64)) | (1L << (120 - 64)) | (1L << (121 - 64)) | (1L << (122 - 64)) | (1L << (123 - 64)) | (1L << (124 - 64)) | (1L << (125 - 64)) | (1L << (126 - 64)) | (1L << (127 - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (128 - 128)) | (1L << (129 - 128)) | (1L << (130 - 128)) | (1L << (131 - 128)) | (1L << (132 - 128)) | (1L << (133 - 128)) | (1L << (134 - 128)) | (1L << (135 - 128)) | (1L << (136 - 128)) | (1L << (137 - 128)) | (1L << (138 - 128)) | (1L << (139 - 128)) | (1L << (140 - 128)) | (1L << (141 - 128)) | (1L << (142 - 128)) | (1L << (143 - 128)) | (1L << (144 - 128)) | (1L << (145 - 128)) | (1L << (146 - 128)) | (1L << (147 - 128)) | (1L << (148 - 128)) | (1L << (149 - 128)) | (1L << (150 - 128)) | (1L << (151 - 128)) | (1L << (152 - 128)) | (1L << (153 - 128)) | (1L << (154 - 128)) | (1L << (155 - 128)) | (1L << (156 - 128)) | (1L << (157 - 128)) | (1L << (158 - 128)) | (1L << (159 - 128)) | (1L << (160 - 128)) | (1L << (161 - 128)) | (1L << (162 - 128)) | (1L << (163 - 128)) | (1L << (164 - 128)) | (1L << (165 - 128)) | (1L << (166 - 128)) | (1L << (167 - 128)) | (1L << (168 - 128)) | (1L << (169 - 128)) | (1L << (170 - 128)) | (1L << (171 - 128)) | (1L << (172 - 128)) | (1L << (173 - 128)) | (1L << (174 - 128)) | (1L << (175 - 128)) | (1L << (176 - 128)) | (1L << (177 - 128)) | (1L << (178 - 128)) | (1L << (179 - 128)) | (1L << (180 - 128)) | (1L << (181 - 128)) | (1L << (182 - 128)) | (1L << (183 - 128)) | (1L << (184 - 128)) | (1L << (185 - 128)) | (1L << (186 - 128)) | (1L << (187 - 128)) | (1L << (188 - 128)) | (1L << (189 - 128)) | (1L << (190 - 128)) | (1L << (191 - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (192 - 192)) | (1L << (193 - 192)) | (1L << (194 - 192)) | (1L << (195 - 192)) | (1L << (196 - 192)) | (1L << (197 - 192)) | (1L << (198 - 192)) | (1L << (199 - 192)) | (1L << (200 - 192)) | (1L << (201 - 192)) | (1L << (202 - 192)) | (1L << (203 - 192)) | (1L << (204 - 192)) | (1L << (205 - 192)) | (1L << (206 - 192)) | (1L << (207 - 192)) | (1L << (208 - 192)) | (1L << (209 - 192)) | (1L << (210 - 192)) | (1L << (211 - 192)) | (1L << (212 - 192)) | (1L << (213 - 192)) | (1L << (214 - 192)) | (1L << (215 - 192)) | (1L << (216 - 192)) | (1L << (217 - 192)) | (1L << (218 - 192)) | (1L << (219 - 192)) | (1L << (220 - 192)) | (1L << (221 - 192)) | (1L << (222 - 192)) | (1L << (223 - 192)) | (1L << (224 - 192)) | (1L << (225 - 192)) | (1L << (226 - 192)) | (1L << (227 - 192)) | (1L << (228 - 192)) | (1L << (229 - 192)) | (1L << (230 - 192)) | (1L << (231 - 192)) | (1L << (232 - 192)) | (1L << (233 - 192)) | (1L << (234 - 192)) | (1L << (235 - 192)) | (1L << (236 - 192)) | (1L << (237 - 192)))) != 0)) {
 											{
 												State = 242;
 												expr(0);
@@ -1120,140 +1079,140 @@ partial class mathParser : Parser {
 										}
 
 										State = 245;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 37: {
 										_localctx = new LEN_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 246;
-										if (!(Precpred(Context, 66))) throw new FailedPredicateException(this, "Precpred(Context, 66)");
+										//if (!(Precpred(Context, 66))) throw new FailedPredicateException(this, "Precpred(Context, 66)");
 										State = 247;
-										Match(T__18);
+										Match(19);
 										State = 248;
-										Match(LEN);
+										Match(117);
 										State = 249;
-										Match(T__19);
+										Match(20);
 										State = 250;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 38: {
 										_localctx = new LOWER_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 251;
-										if (!(Precpred(Context, 65))) throw new FailedPredicateException(this, "Precpred(Context, 65)");
+										//if (!(Precpred(Context, 65))) throw new FailedPredicateException(this, "Precpred(Context, 65)");
 										State = 252;
-										Match(T__18);
+										Match(19);
 										State = 253;
-										Match(LOWER);
+										Match(118);
 										State = 254;
-										Match(T__19);
+										Match(20);
 										State = 255;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 39: {
 										_localctx = new MID_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 256;
-										if (!(Precpred(Context, 64))) throw new FailedPredicateException(this, "Precpred(Context, 64)");
+										//if (!(Precpred(Context, 64))) throw new FailedPredicateException(this, "Precpred(Context, 64)");
 										State = 257;
-										Match(T__18);
+										Match(19);
 										State = 258;
-										Match(MID);
+										Match(119);
 										State = 259;
-										Match(T__19);
+										Match(20);
 										State = 260;
 										expr(0);
 										State = 261;
-										Match(T__21);
+										Match(22);
 										State = 262;
 										expr(0);
 										State = 263;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 40: {
 										_localctx = new PROPER_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 265;
-										if (!(Precpred(Context, 63))) throw new FailedPredicateException(this, "Precpred(Context, 63)");
+										//if (!(Precpred(Context, 63))) throw new FailedPredicateException(this, "Precpred(Context, 63)");
 										State = 266;
-										Match(T__18);
+										Match(19);
 										State = 267;
-										Match(PROPER);
+										Match(120);
 										State = 268;
-										Match(T__19);
+										Match(20);
 										State = 269;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 41: {
 										_localctx = new REPLACE_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 270;
-										if (!(Precpred(Context, 62))) throw new FailedPredicateException(this, "Precpred(Context, 62)");
+										//if (!(Precpred(Context, 62))) throw new FailedPredicateException(this, "Precpred(Context, 62)");
 										State = 271;
-										Match(T__18);
+										Match(19);
 										State = 272;
-										Match(REPLACE);
+										Match(121);
 										State = 273;
-										Match(T__19);
+										Match(20);
 										State = 274;
 										expr(0);
 										State = 275;
-										Match(T__21);
+										Match(22);
 										State = 276;
 										expr(0);
 										State = 279;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if (_la == T__21) {
+										if (_la == 22) {
 											{
 												State = 277;
-												Match(T__21);
+												Match(22);
 												State = 278;
 												expr(0);
 											}
 										}
 
 										State = 281;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 42: {
 										_localctx = new REPT_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 283;
-										if (!(Precpred(Context, 61))) throw new FailedPredicateException(this, "Precpred(Context, 61)");
+										//if (!(Precpred(Context, 61))) throw new FailedPredicateException(this, "Precpred(Context, 61)");
 										State = 284;
-										Match(T__18);
+										Match(19);
 										State = 285;
-										Match(REPT);
+										Match(122);
 										State = 286;
-										Match(T__19);
+										Match(20);
 										State = 287;
 										expr(0);
 										State = 288;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 43: {
 										_localctx = new RIGHT_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 290;
-										if (!(Precpred(Context, 60))) throw new FailedPredicateException(this, "Precpred(Context, 60)");
+										//if (!(Precpred(Context, 60))) throw new FailedPredicateException(this, "Precpred(Context, 60)");
 										State = 291;
-										Match(T__18);
+										Match(19);
 										State = 292;
-										Match(RIGHT);
+										Match(123);
 										State = 293;
-										Match(T__19);
+										Match(20);
 										State = 295;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__19) | (1L << T__22) | (1L << T__24) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SQRT - 64)) | (1L << (TRUNC - 64)) | (1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (TEXT - 128)) | (1L << (TRIM - 128)) | (1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (LOGNORMDIST - 192)) | (1L << (NEGBINOMDIST - 192)) | (1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (ARRAY - 192)) | (1L << (PARAMETER - 192)) | (1L << (PARAMETER2 - 192)))) != 0)) {
+										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 20) | (1L << 23) | (1L << 25) | (1L << 26) | (1L << 27) | (1L << 28) | (1L << 29) | (1L << 30) | (1L << 31) | (1L << 32) | (1L << 33) | (1L << 34) | (1L << 35) | (1L << 36) | (1L << 37) | (1L << 38) | (1L << 39) | (1L << 40) | (1L << 41) | (1L << 42) | (1L << 43) | (1L << 44) | (1L << 45) | (1L << 46) | (1L << 47) | (1L << 48) | (1L << 49) | (1L << 50) | (1L << 51) | (1L << 52) | (1L << 53) | (1L << 54) | (1L << 55) | (1L << 56) | (1L << 57) | (1L << 58) | (1L << 59) | (1L << 60) | (1L << 61) | (1L << 62) | (1L << 63))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (64 - 64)) | (1L << (65 - 64)) | (1L << (66 - 64)) | (1L << (67 - 64)) | (1L << (68 - 64)) | (1L << (69 - 64)) | (1L << (70 - 64)) | (1L << (71 - 64)) | (1L << (72 - 64)) | (1L << (73 - 64)) | (1L << (74 - 64)) | (1L << (75 - 64)) | (1L << (76 - 64)) | (1L << (77 - 64)) | (1L << (78 - 64)) | (1L << (79 - 64)) | (1L << (80 - 64)) | (1L << (81 - 64)) | (1L << (82 - 64)) | (1L << (83 - 64)) | (1L << (84 - 64)) | (1L << (85 - 64)) | (1L << (86 - 64)) | (1L << (87 - 64)) | (1L << (88 - 64)) | (1L << (89 - 64)) | (1L << (90 - 64)) | (1L << (91 - 64)) | (1L << (92 - 64)) | (1L << (93 - 64)) | (1L << (94 - 64)) | (1L << (95 - 64)) | (1L << (96 - 64)) | (1L << (97 - 64)) | (1L << (98 - 64)) | (1L << (99 - 64)) | (1L << (100 - 64)) | (1L << (101 - 64)) | (1L << (102 - 64)) | (1L << (103 - 64)) | (1L << (104 - 64)) | (1L << (105 - 64)) | (1L << (106 - 64)) | (1L << (107 - 64)) | (1L << (108 - 64)) | (1L << (109 - 64)) | (1L << (110 - 64)) | (1L << (111 - 64)) | (1L << (112 - 64)) | (1L << (113 - 64)) | (1L << (114 - 64)) | (1L << (115 - 64)) | (1L << (116 - 64)) | (1L << (117 - 64)) | (1L << (118 - 64)) | (1L << (119 - 64)) | (1L << (120 - 64)) | (1L << (121 - 64)) | (1L << (122 - 64)) | (1L << (123 - 64)) | (1L << (124 - 64)) | (1L << (125 - 64)) | (1L << (126 - 64)) | (1L << (127 - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (128 - 128)) | (1L << (129 - 128)) | (1L << (130 - 128)) | (1L << (131 - 128)) | (1L << (132 - 128)) | (1L << (133 - 128)) | (1L << (134 - 128)) | (1L << (135 - 128)) | (1L << (136 - 128)) | (1L << (137 - 128)) | (1L << (138 - 128)) | (1L << (139 - 128)) | (1L << (140 - 128)) | (1L << (141 - 128)) | (1L << (142 - 128)) | (1L << (143 - 128)) | (1L << (144 - 128)) | (1L << (145 - 128)) | (1L << (146 - 128)) | (1L << (147 - 128)) | (1L << (148 - 128)) | (1L << (149 - 128)) | (1L << (150 - 128)) | (1L << (151 - 128)) | (1L << (152 - 128)) | (1L << (153 - 128)) | (1L << (154 - 128)) | (1L << (155 - 128)) | (1L << (156 - 128)) | (1L << (157 - 128)) | (1L << (158 - 128)) | (1L << (159 - 128)) | (1L << (160 - 128)) | (1L << (161 - 128)) | (1L << (162 - 128)) | (1L << (163 - 128)) | (1L << (164 - 128)) | (1L << (165 - 128)) | (1L << (166 - 128)) | (1L << (167 - 128)) | (1L << (168 - 128)) | (1L << (169 - 128)) | (1L << (170 - 128)) | (1L << (171 - 128)) | (1L << (172 - 128)) | (1L << (173 - 128)) | (1L << (174 - 128)) | (1L << (175 - 128)) | (1L << (176 - 128)) | (1L << (177 - 128)) | (1L << (178 - 128)) | (1L << (179 - 128)) | (1L << (180 - 128)) | (1L << (181 - 128)) | (1L << (182 - 128)) | (1L << (183 - 128)) | (1L << (184 - 128)) | (1L << (185 - 128)) | (1L << (186 - 128)) | (1L << (187 - 128)) | (1L << (188 - 128)) | (1L << (189 - 128)) | (1L << (190 - 128)) | (1L << (191 - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (192 - 192)) | (1L << (193 - 192)) | (1L << (194 - 192)) | (1L << (195 - 192)) | (1L << (196 - 192)) | (1L << (197 - 192)) | (1L << (198 - 192)) | (1L << (199 - 192)) | (1L << (200 - 192)) | (1L << (201 - 192)) | (1L << (202 - 192)) | (1L << (203 - 192)) | (1L << (204 - 192)) | (1L << (205 - 192)) | (1L << (206 - 192)) | (1L << (207 - 192)) | (1L << (208 - 192)) | (1L << (209 - 192)) | (1L << (210 - 192)) | (1L << (211 - 192)) | (1L << (212 - 192)) | (1L << (213 - 192)) | (1L << (214 - 192)) | (1L << (215 - 192)) | (1L << (216 - 192)) | (1L << (217 - 192)) | (1L << (218 - 192)) | (1L << (219 - 192)) | (1L << (220 - 192)) | (1L << (221 - 192)) | (1L << (222 - 192)) | (1L << (223 - 192)) | (1L << (224 - 192)) | (1L << (225 - 192)) | (1L << (226 - 192)) | (1L << (227 - 192)) | (1L << (228 - 192)) | (1L << (229 - 192)) | (1L << (230 - 192)) | (1L << (231 - 192)) | (1L << (232 - 192)) | (1L << (233 - 192)) | (1L << (234 - 192)) | (1L << (235 - 192)) | (1L << (236 - 192)) | (1L << (237 - 192)))) != 0)) {
 											{
 												State = 294;
 												expr(0);
@@ -1261,210 +1220,210 @@ partial class mathParser : Parser {
 										}
 
 										State = 297;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 44: {
 										_localctx = new RMB_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 298;
-										if (!(Precpred(Context, 59))) throw new FailedPredicateException(this, "Precpred(Context, 59)");
+										//if (!(Precpred(Context, 59))) throw new FailedPredicateException(this, "Precpred(Context, 59)");
 										State = 299;
-										Match(T__18);
+										Match(19);
 										State = 300;
-										Match(RMB);
+										Match(124);
 										State = 301;
-										Match(T__19);
+										Match(20);
 										State = 302;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 45: {
 										_localctx = new SEARCH_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 303;
-										if (!(Precpred(Context, 58))) throw new FailedPredicateException(this, "Precpred(Context, 58)");
+										//if (!(Precpred(Context, 58))) throw new FailedPredicateException(this, "Precpred(Context, 58)");
 										State = 304;
-										Match(T__18);
+										Match(19);
 										State = 305;
-										Match(SEARCH);
+										Match(125);
 										State = 306;
-										Match(T__19);
+										Match(20);
 										State = 307;
 										expr(0);
 										State = 310;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if (_la == T__21) {
+										if (_la == 22) {
 											{
 												State = 308;
-												Match(T__21);
+												Match(22);
 												State = 309;
 												expr(0);
 											}
 										}
 
 										State = 312;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 46: {
 										_localctx = new SUBSTITUTE_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 314;
-										if (!(Precpred(Context, 57))) throw new FailedPredicateException(this, "Precpred(Context, 57)");
+										//if (!(Precpred(Context, 57))) throw new FailedPredicateException(this, "Precpred(Context, 57)");
 										State = 315;
-										Match(T__18);
+										Match(19);
 										State = 316;
-										Match(SUBSTITUTE);
+										Match(126);
 										State = 317;
-										Match(T__19);
+										Match(20);
 										State = 318;
 										expr(0);
 										State = 319;
-										Match(T__21);
+										Match(22);
 										State = 320;
 										expr(0);
 										State = 323;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if (_la == T__21) {
+										if (_la == 22) {
 											{
 												State = 321;
-												Match(T__21);
+												Match(22);
 												State = 322;
 												expr(0);
 											}
 										}
 
 										State = 325;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 47: {
 										_localctx = new T_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 327;
-										if (!(Precpred(Context, 56))) throw new FailedPredicateException(this, "Precpred(Context, 56)");
+										//if (!(Precpred(Context, 56))) throw new FailedPredicateException(this, "Precpred(Context, 56)");
 										State = 328;
-										Match(T__18);
+										Match(19);
 										State = 329;
-										Match(T);
+										Match(127);
 										State = 330;
-										Match(T__19);
+										Match(20);
 										State = 331;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 48: {
 										_localctx = new TEXT_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 332;
-										if (!(Precpred(Context, 55))) throw new FailedPredicateException(this, "Precpred(Context, 55)");
+										//if (!(Precpred(Context, 55))) throw new FailedPredicateException(this, "Precpred(Context, 55)");
 										State = 333;
-										Match(T__18);
+										Match(19);
 										State = 334;
-										Match(TEXT);
+										Match(128);
 										State = 335;
-										Match(T__19);
+										Match(20);
 										State = 336;
 										expr(0);
 										State = 337;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 49: {
 										_localctx = new TRIM_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 339;
-										if (!(Precpred(Context, 54))) throw new FailedPredicateException(this, "Precpred(Context, 54)");
+										//if (!(Precpred(Context, 54))) throw new FailedPredicateException(this, "Precpred(Context, 54)");
 										State = 340;
-										Match(T__18);
+										Match(19);
 										State = 341;
-										Match(TRIM);
+										Match(129);
 										State = 342;
-										Match(T__19);
+										Match(20);
 										State = 343;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 50: {
 										_localctx = new UPPER_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 344;
-										if (!(Precpred(Context, 53))) throw new FailedPredicateException(this, "Precpred(Context, 53)");
+										//if (!(Precpred(Context, 53))) throw new FailedPredicateException(this, "Precpred(Context, 53)");
 										State = 345;
-										Match(T__18);
+										Match(19);
 										State = 346;
-										Match(UPPER);
+										Match(130);
 										State = 347;
-										Match(T__19);
+										Match(20);
 										State = 348;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 51: {
 										_localctx = new VALUE_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 349;
-										if (!(Precpred(Context, 52))) throw new FailedPredicateException(this, "Precpred(Context, 52)");
+										//if (!(Precpred(Context, 52))) throw new FailedPredicateException(this, "Precpred(Context, 52)");
 										State = 350;
-										Match(T__18);
+										Match(19);
 										State = 351;
-										Match(VALUE);
+										Match(131);
 										State = 352;
-										Match(T__19);
+										Match(20);
 										State = 353;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 52: {
 										_localctx = new DATEVALUE_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 354;
-										if (!(Precpred(Context, 51))) throw new FailedPredicateException(this, "Precpred(Context, 51)");
+										//if (!(Precpred(Context, 51))) throw new FailedPredicateException(this, "Precpred(Context, 51)");
 										State = 355;
-										Match(T__18);
+										Match(19);
 										State = 356;
-										Match(DATEVALUE);
+										Match(132);
 										State = 357;
-										Match(T__19);
+										Match(20);
 										State = 358;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 53: {
 										_localctx = new TIMEVALUE_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 359;
-										if (!(Precpred(Context, 50))) throw new FailedPredicateException(this, "Precpred(Context, 50)");
+										//if (!(Precpred(Context, 50))) throw new FailedPredicateException(this, "Precpred(Context, 50)");
 										State = 360;
-										Match(T__18);
+										Match(19);
 										State = 361;
-										Match(TIMEVALUE);
+										Match(133);
 										State = 362;
-										Match(T__19);
+										Match(20);
 										State = 363;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 54: {
 										_localctx = new YEAR_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 364;
-										if (!(Precpred(Context, 49))) throw new FailedPredicateException(this, "Precpred(Context, 49)");
+										//if (!(Precpred(Context, 49))) throw new FailedPredicateException(this, "Precpred(Context, 49)");
 										State = 365;
-										Match(T__18);
+										Match(19);
 										State = 366;
-										Match(YEAR);
+										Match(138);
 										State = 369;
 										ErrorHandler.Sync(this);
 										switch (Interpreter.AdaptivePredict(TokenStream, 21, Context)) {
 											case 1: {
 													State = 367;
-													Match(T__19);
+													Match(20);
 													State = 368;
-													Match(T__20);
+													Match(21);
 												}
 												break;
 										}
@@ -1472,21 +1431,21 @@ partial class mathParser : Parser {
 									break;
 								case 55: {
 										_localctx = new MONTH_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 371;
-										if (!(Precpred(Context, 48))) throw new FailedPredicateException(this, "Precpred(Context, 48)");
+										//if (!(Precpred(Context, 48))) throw new FailedPredicateException(this, "Precpred(Context, 48)");
 										State = 372;
-										Match(T__18);
+										Match(19);
 										State = 373;
-										Match(MONTH);
+										Match(139);
 										State = 376;
 										ErrorHandler.Sync(this);
 										switch (Interpreter.AdaptivePredict(TokenStream, 22, Context)) {
 											case 1: {
 													State = 374;
-													Match(T__19);
+													Match(20);
 													State = 375;
-													Match(T__20);
+													Match(21);
 												}
 												break;
 										}
@@ -1494,21 +1453,21 @@ partial class mathParser : Parser {
 									break;
 								case 56: {
 										_localctx = new DAY_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 378;
-										if (!(Precpred(Context, 47))) throw new FailedPredicateException(this, "Precpred(Context, 47)");
+										//if (!(Precpred(Context, 47))) throw new FailedPredicateException(this, "Precpred(Context, 47)");
 										State = 379;
-										Match(T__18);
+										Match(19);
 										State = 380;
-										Match(DAY);
+										Match(140);
 										State = 383;
 										ErrorHandler.Sync(this);
 										switch (Interpreter.AdaptivePredict(TokenStream, 23, Context)) {
 											case 1: {
 													State = 381;
-													Match(T__19);
+													Match(20);
 													State = 382;
-													Match(T__20);
+													Match(21);
 												}
 												break;
 										}
@@ -1516,21 +1475,21 @@ partial class mathParser : Parser {
 									break;
 								case 57: {
 										_localctx = new HOUR_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 385;
-										if (!(Precpred(Context, 46))) throw new FailedPredicateException(this, "Precpred(Context, 46)");
+										//if (!(Precpred(Context, 46))) throw new FailedPredicateException(this, "Precpred(Context, 46)");
 										State = 386;
-										Match(T__18);
+										Match(19);
 										State = 387;
-										Match(HOUR);
+										Match(141);
 										State = 390;
 										ErrorHandler.Sync(this);
 										switch (Interpreter.AdaptivePredict(TokenStream, 24, Context)) {
 											case 1: {
 													State = 388;
-													Match(T__19);
+													Match(20);
 													State = 389;
-													Match(T__20);
+													Match(21);
 												}
 												break;
 										}
@@ -1538,21 +1497,21 @@ partial class mathParser : Parser {
 									break;
 								case 58: {
 										_localctx = new MINUTE_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 392;
-										if (!(Precpred(Context, 45))) throw new FailedPredicateException(this, "Precpred(Context, 45)");
+										//if (!(Precpred(Context, 45))) throw new FailedPredicateException(this, "Precpred(Context, 45)");
 										State = 393;
-										Match(T__18);
+										Match(19);
 										State = 394;
-										Match(MINUTE);
+										Match(142);
 										State = 397;
 										ErrorHandler.Sync(this);
 										switch (Interpreter.AdaptivePredict(TokenStream, 25, Context)) {
 											case 1: {
 													State = 395;
-													Match(T__19);
+													Match(20);
 													State = 396;
-													Match(T__20);
+													Match(21);
 												}
 												break;
 										}
@@ -1560,21 +1519,21 @@ partial class mathParser : Parser {
 									break;
 								case 59: {
 										_localctx = new SECOND_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 399;
-										if (!(Precpred(Context, 44))) throw new FailedPredicateException(this, "Precpred(Context, 44)");
+										//if (!(Precpred(Context, 44))) throw new FailedPredicateException(this, "Precpred(Context, 44)");
 										State = 400;
-										Match(T__18);
+										Match(19);
 										State = 401;
-										Match(SECOND);
+										Match(143);
 										State = 404;
 										ErrorHandler.Sync(this);
 										switch (Interpreter.AdaptivePredict(TokenStream, 26, Context)) {
 											case 1: {
 													State = 402;
-													Match(T__19);
+													Match(20);
 													State = 403;
-													Match(T__20);
+													Match(21);
 												}
 												break;
 										}
@@ -1582,79 +1541,79 @@ partial class mathParser : Parser {
 									break;
 								case 60: {
 										_localctx = new URLENCODE_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 406;
-										if (!(Precpred(Context, 43))) throw new FailedPredicateException(this, "Precpred(Context, 43)");
+										//if (!(Precpred(Context, 43))) throw new FailedPredicateException(this, "Precpred(Context, 43)");
 										State = 407;
-										Match(T__18);
+										Match(19);
 										State = 408;
-										Match(URLENCODE);
+										Match(198);
 										State = 409;
-										Match(T__19);
+										Match(20);
 										State = 410;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 61: {
 										_localctx = new URLDECODE_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 411;
-										if (!(Precpred(Context, 42))) throw new FailedPredicateException(this, "Precpred(Context, 42)");
+										//if (!(Precpred(Context, 42))) throw new FailedPredicateException(this, "Precpred(Context, 42)");
 										State = 412;
-										Match(T__18);
+										Match(19);
 										State = 413;
-										Match(URLDECODE);
+										Match(199);
 										State = 414;
-										Match(T__19);
+										Match(20);
 										State = 415;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 62: {
 										_localctx = new HTMLENCODE_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 416;
-										if (!(Precpred(Context, 41))) throw new FailedPredicateException(this, "Precpred(Context, 41)");
+										//if (!(Precpred(Context, 41))) throw new FailedPredicateException(this, "Precpred(Context, 41)");
 										State = 417;
-										Match(T__18);
+										Match(19);
 										State = 418;
-										Match(HTMLENCODE);
+										Match(200);
 										State = 419;
-										Match(T__19);
+										Match(20);
 										State = 420;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 63: {
 										_localctx = new HTMLDECODE_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 421;
-										if (!(Precpred(Context, 40))) throw new FailedPredicateException(this, "Precpred(Context, 40)");
+										//if (!(Precpred(Context, 40))) throw new FailedPredicateException(this, "Precpred(Context, 40)");
 										State = 422;
-										Match(T__18);
+										Match(19);
 										State = 423;
-										Match(HTMLDECODE);
+										Match(201);
 										State = 424;
-										Match(T__19);
+										Match(20);
 										State = 425;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 64: {
 										_localctx = new BASE64TOTEXT_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 426;
-										if (!(Precpred(Context, 39))) throw new FailedPredicateException(this, "Precpred(Context, 39)");
+										//if (!(Precpred(Context, 39))) throw new FailedPredicateException(this, "Precpred(Context, 39)");
 										State = 427;
-										Match(T__18);
+										Match(19);
 										State = 428;
-										Match(BASE64TOTEXT);
+										Match(202);
 										State = 429;
-										Match(T__19);
+										Match(20);
 										State = 431;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__19) | (1L << T__22) | (1L << T__24) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SQRT - 64)) | (1L << (TRUNC - 64)) | (1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (TEXT - 128)) | (1L << (TRIM - 128)) | (1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (LOGNORMDIST - 192)) | (1L << (NEGBINOMDIST - 192)) | (1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (ARRAY - 192)) | (1L << (PARAMETER - 192)) | (1L << (PARAMETER2 - 192)))) != 0)) {
+										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 20) | (1L << 23) | (1L << 25) | (1L << 26) | (1L << 27) | (1L << 28) | (1L << 29) | (1L << 30) | (1L << 31) | (1L << 32) | (1L << 33) | (1L << 34) | (1L << 35) | (1L << 36) | (1L << 37) | (1L << 38) | (1L << 39) | (1L << 40) | (1L << 41) | (1L << 42) | (1L << 43) | (1L << 44) | (1L << 45) | (1L << 46) | (1L << 47) | (1L << 48) | (1L << 49) | (1L << 50) | (1L << 51) | (1L << 52) | (1L << 53) | (1L << 54) | (1L << 55) | (1L << 56) | (1L << 57) | (1L << 58) | (1L << 59) | (1L << 60) | (1L << 61) | (1L << 62) | (1L << 63))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (64 - 64)) | (1L << (65 - 64)) | (1L << (66 - 64)) | (1L << (67 - 64)) | (1L << (68 - 64)) | (1L << (69 - 64)) | (1L << (70 - 64)) | (1L << (71 - 64)) | (1L << (72 - 64)) | (1L << (73 - 64)) | (1L << (74 - 64)) | (1L << (75 - 64)) | (1L << (76 - 64)) | (1L << (77 - 64)) | (1L << (78 - 64)) | (1L << (79 - 64)) | (1L << (80 - 64)) | (1L << (81 - 64)) | (1L << (82 - 64)) | (1L << (83 - 64)) | (1L << (84 - 64)) | (1L << (85 - 64)) | (1L << (86 - 64)) | (1L << (87 - 64)) | (1L << (88 - 64)) | (1L << (89 - 64)) | (1L << (90 - 64)) | (1L << (91 - 64)) | (1L << (92 - 64)) | (1L << (93 - 64)) | (1L << (94 - 64)) | (1L << (95 - 64)) | (1L << (96 - 64)) | (1L << (97 - 64)) | (1L << (98 - 64)) | (1L << (99 - 64)) | (1L << (100 - 64)) | (1L << (101 - 64)) | (1L << (102 - 64)) | (1L << (103 - 64)) | (1L << (104 - 64)) | (1L << (105 - 64)) | (1L << (106 - 64)) | (1L << (107 - 64)) | (1L << (108 - 64)) | (1L << (109 - 64)) | (1L << (110 - 64)) | (1L << (111 - 64)) | (1L << (112 - 64)) | (1L << (113 - 64)) | (1L << (114 - 64)) | (1L << (115 - 64)) | (1L << (116 - 64)) | (1L << (117 - 64)) | (1L << (118 - 64)) | (1L << (119 - 64)) | (1L << (120 - 64)) | (1L << (121 - 64)) | (1L << (122 - 64)) | (1L << (123 - 64)) | (1L << (124 - 64)) | (1L << (125 - 64)) | (1L << (126 - 64)) | (1L << (127 - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (128 - 128)) | (1L << (129 - 128)) | (1L << (130 - 128)) | (1L << (131 - 128)) | (1L << (132 - 128)) | (1L << (133 - 128)) | (1L << (134 - 128)) | (1L << (135 - 128)) | (1L << (136 - 128)) | (1L << (137 - 128)) | (1L << (138 - 128)) | (1L << (139 - 128)) | (1L << (140 - 128)) | (1L << (141 - 128)) | (1L << (142 - 128)) | (1L << (143 - 128)) | (1L << (144 - 128)) | (1L << (145 - 128)) | (1L << (146 - 128)) | (1L << (147 - 128)) | (1L << (148 - 128)) | (1L << (149 - 128)) | (1L << (150 - 128)) | (1L << (151 - 128)) | (1L << (152 - 128)) | (1L << (153 - 128)) | (1L << (154 - 128)) | (1L << (155 - 128)) | (1L << (156 - 128)) | (1L << (157 - 128)) | (1L << (158 - 128)) | (1L << (159 - 128)) | (1L << (160 - 128)) | (1L << (161 - 128)) | (1L << (162 - 128)) | (1L << (163 - 128)) | (1L << (164 - 128)) | (1L << (165 - 128)) | (1L << (166 - 128)) | (1L << (167 - 128)) | (1L << (168 - 128)) | (1L << (169 - 128)) | (1L << (170 - 128)) | (1L << (171 - 128)) | (1L << (172 - 128)) | (1L << (173 - 128)) | (1L << (174 - 128)) | (1L << (175 - 128)) | (1L << (176 - 128)) | (1L << (177 - 128)) | (1L << (178 - 128)) | (1L << (179 - 128)) | (1L << (180 - 128)) | (1L << (181 - 128)) | (1L << (182 - 128)) | (1L << (183 - 128)) | (1L << (184 - 128)) | (1L << (185 - 128)) | (1L << (186 - 128)) | (1L << (187 - 128)) | (1L << (188 - 128)) | (1L << (189 - 128)) | (1L << (190 - 128)) | (1L << (191 - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (192 - 192)) | (1L << (193 - 192)) | (1L << (194 - 192)) | (1L << (195 - 192)) | (1L << (196 - 192)) | (1L << (197 - 192)) | (1L << (198 - 192)) | (1L << (199 - 192)) | (1L << (200 - 192)) | (1L << (201 - 192)) | (1L << (202 - 192)) | (1L << (203 - 192)) | (1L << (204 - 192)) | (1L << (205 - 192)) | (1L << (206 - 192)) | (1L << (207 - 192)) | (1L << (208 - 192)) | (1L << (209 - 192)) | (1L << (210 - 192)) | (1L << (211 - 192)) | (1L << (212 - 192)) | (1L << (213 - 192)) | (1L << (214 - 192)) | (1L << (215 - 192)) | (1L << (216 - 192)) | (1L << (217 - 192)) | (1L << (218 - 192)) | (1L << (219 - 192)) | (1L << (220 - 192)) | (1L << (221 - 192)) | (1L << (222 - 192)) | (1L << (223 - 192)) | (1L << (224 - 192)) | (1L << (225 - 192)) | (1L << (226 - 192)) | (1L << (227 - 192)) | (1L << (228 - 192)) | (1L << (229 - 192)) | (1L << (230 - 192)) | (1L << (231 - 192)) | (1L << (232 - 192)) | (1L << (233 - 192)) | (1L << (234 - 192)) | (1L << (235 - 192)) | (1L << (236 - 192)) | (1L << (237 - 192)))) != 0)) {
 											{
 												State = 430;
 												expr(0);
@@ -1662,24 +1621,24 @@ partial class mathParser : Parser {
 										}
 
 										State = 433;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 65: {
 										_localctx = new BASE64URLTOTEXT_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 434;
-										if (!(Precpred(Context, 38))) throw new FailedPredicateException(this, "Precpred(Context, 38)");
+										//if (!(Precpred(Context, 38))) throw new FailedPredicateException(this, "Precpred(Context, 38)");
 										State = 435;
-										Match(T__18);
+										Match(19);
 										State = 436;
-										Match(BASE64URLTOTEXT);
+										Match(203);
 										State = 437;
-										Match(T__19);
+										Match(20);
 										State = 439;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__19) | (1L << T__22) | (1L << T__24) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SQRT - 64)) | (1L << (TRUNC - 64)) | (1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (TEXT - 128)) | (1L << (TRIM - 128)) | (1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (LOGNORMDIST - 192)) | (1L << (NEGBINOMDIST - 192)) | (1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (ARRAY - 192)) | (1L << (PARAMETER - 192)) | (1L << (PARAMETER2 - 192)))) != 0)) {
+										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 20) | (1L << 23) | (1L << 25) | (1L << 26) | (1L << 27) | (1L << 28) | (1L << 29) | (1L << 30) | (1L << 31) | (1L << 32) | (1L << 33) | (1L << 34) | (1L << 35) | (1L << 36) | (1L << 37) | (1L << 38) | (1L << 39) | (1L << 40) | (1L << 41) | (1L << 42) | (1L << 43) | (1L << 44) | (1L << 45) | (1L << 46) | (1L << 47) | (1L << 48) | (1L << 49) | (1L << 50) | (1L << 51) | (1L << 52) | (1L << 53) | (1L << 54) | (1L << 55) | (1L << 56) | (1L << 57) | (1L << 58) | (1L << 59) | (1L << 60) | (1L << 61) | (1L << 62) | (1L << 63))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (64 - 64)) | (1L << (65 - 64)) | (1L << (66 - 64)) | (1L << (67 - 64)) | (1L << (68 - 64)) | (1L << (69 - 64)) | (1L << (70 - 64)) | (1L << (71 - 64)) | (1L << (72 - 64)) | (1L << (73 - 64)) | (1L << (74 - 64)) | (1L << (75 - 64)) | (1L << (76 - 64)) | (1L << (77 - 64)) | (1L << (78 - 64)) | (1L << (79 - 64)) | (1L << (80 - 64)) | (1L << (81 - 64)) | (1L << (82 - 64)) | (1L << (83 - 64)) | (1L << (84 - 64)) | (1L << (85 - 64)) | (1L << (86 - 64)) | (1L << (87 - 64)) | (1L << (88 - 64)) | (1L << (89 - 64)) | (1L << (90 - 64)) | (1L << (91 - 64)) | (1L << (92 - 64)) | (1L << (93 - 64)) | (1L << (94 - 64)) | (1L << (95 - 64)) | (1L << (96 - 64)) | (1L << (97 - 64)) | (1L << (98 - 64)) | (1L << (99 - 64)) | (1L << (100 - 64)) | (1L << (101 - 64)) | (1L << (102 - 64)) | (1L << (103 - 64)) | (1L << (104 - 64)) | (1L << (105 - 64)) | (1L << (106 - 64)) | (1L << (107 - 64)) | (1L << (108 - 64)) | (1L << (109 - 64)) | (1L << (110 - 64)) | (1L << (111 - 64)) | (1L << (112 - 64)) | (1L << (113 - 64)) | (1L << (114 - 64)) | (1L << (115 - 64)) | (1L << (116 - 64)) | (1L << (117 - 64)) | (1L << (118 - 64)) | (1L << (119 - 64)) | (1L << (120 - 64)) | (1L << (121 - 64)) | (1L << (122 - 64)) | (1L << (123 - 64)) | (1L << (124 - 64)) | (1L << (125 - 64)) | (1L << (126 - 64)) | (1L << (127 - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (128 - 128)) | (1L << (129 - 128)) | (1L << (130 - 128)) | (1L << (131 - 128)) | (1L << (132 - 128)) | (1L << (133 - 128)) | (1L << (134 - 128)) | (1L << (135 - 128)) | (1L << (136 - 128)) | (1L << (137 - 128)) | (1L << (138 - 128)) | (1L << (139 - 128)) | (1L << (140 - 128)) | (1L << (141 - 128)) | (1L << (142 - 128)) | (1L << (143 - 128)) | (1L << (144 - 128)) | (1L << (145 - 128)) | (1L << (146 - 128)) | (1L << (147 - 128)) | (1L << (148 - 128)) | (1L << (149 - 128)) | (1L << (150 - 128)) | (1L << (151 - 128)) | (1L << (152 - 128)) | (1L << (153 - 128)) | (1L << (154 - 128)) | (1L << (155 - 128)) | (1L << (156 - 128)) | (1L << (157 - 128)) | (1L << (158 - 128)) | (1L << (159 - 128)) | (1L << (160 - 128)) | (1L << (161 - 128)) | (1L << (162 - 128)) | (1L << (163 - 128)) | (1L << (164 - 128)) | (1L << (165 - 128)) | (1L << (166 - 128)) | (1L << (167 - 128)) | (1L << (168 - 128)) | (1L << (169 - 128)) | (1L << (170 - 128)) | (1L << (171 - 128)) | (1L << (172 - 128)) | (1L << (173 - 128)) | (1L << (174 - 128)) | (1L << (175 - 128)) | (1L << (176 - 128)) | (1L << (177 - 128)) | (1L << (178 - 128)) | (1L << (179 - 128)) | (1L << (180 - 128)) | (1L << (181 - 128)) | (1L << (182 - 128)) | (1L << (183 - 128)) | (1L << (184 - 128)) | (1L << (185 - 128)) | (1L << (186 - 128)) | (1L << (187 - 128)) | (1L << (188 - 128)) | (1L << (189 - 128)) | (1L << (190 - 128)) | (1L << (191 - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (192 - 192)) | (1L << (193 - 192)) | (1L << (194 - 192)) | (1L << (195 - 192)) | (1L << (196 - 192)) | (1L << (197 - 192)) | (1L << (198 - 192)) | (1L << (199 - 192)) | (1L << (200 - 192)) | (1L << (201 - 192)) | (1L << (202 - 192)) | (1L << (203 - 192)) | (1L << (204 - 192)) | (1L << (205 - 192)) | (1L << (206 - 192)) | (1L << (207 - 192)) | (1L << (208 - 192)) | (1L << (209 - 192)) | (1L << (210 - 192)) | (1L << (211 - 192)) | (1L << (212 - 192)) | (1L << (213 - 192)) | (1L << (214 - 192)) | (1L << (215 - 192)) | (1L << (216 - 192)) | (1L << (217 - 192)) | (1L << (218 - 192)) | (1L << (219 - 192)) | (1L << (220 - 192)) | (1L << (221 - 192)) | (1L << (222 - 192)) | (1L << (223 - 192)) | (1L << (224 - 192)) | (1L << (225 - 192)) | (1L << (226 - 192)) | (1L << (227 - 192)) | (1L << (228 - 192)) | (1L << (229 - 192)) | (1L << (230 - 192)) | (1L << (231 - 192)) | (1L << (232 - 192)) | (1L << (233 - 192)) | (1L << (234 - 192)) | (1L << (235 - 192)) | (1L << (236 - 192)) | (1L << (237 - 192)))) != 0)) {
 											{
 												State = 438;
 												expr(0);
@@ -1687,24 +1646,24 @@ partial class mathParser : Parser {
 										}
 
 										State = 441;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 66: {
 										_localctx = new TEXTTOBASE64_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 442;
-										if (!(Precpred(Context, 37))) throw new FailedPredicateException(this, "Precpred(Context, 37)");
+										//if (!(Precpred(Context, 37))) throw new FailedPredicateException(this, "Precpred(Context, 37)");
 										State = 443;
-										Match(T__18);
+										Match(19);
 										State = 444;
-										Match(TEXTTOBASE64);
+										Match(204);
 										State = 445;
-										Match(T__19);
+										Match(20);
 										State = 447;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__19) | (1L << T__22) | (1L << T__24) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SQRT - 64)) | (1L << (TRUNC - 64)) | (1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (TEXT - 128)) | (1L << (TRIM - 128)) | (1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (LOGNORMDIST - 192)) | (1L << (NEGBINOMDIST - 192)) | (1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (ARRAY - 192)) | (1L << (PARAMETER - 192)) | (1L << (PARAMETER2 - 192)))) != 0)) {
+										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 20) | (1L << 23) | (1L << 25) | (1L << 26) | (1L << 27) | (1L << 28) | (1L << 29) | (1L << 30) | (1L << 31) | (1L << 32) | (1L << 33) | (1L << 34) | (1L << 35) | (1L << 36) | (1L << 37) | (1L << 38) | (1L << 39) | (1L << 40) | (1L << 41) | (1L << 42) | (1L << 43) | (1L << 44) | (1L << 45) | (1L << 46) | (1L << 47) | (1L << 48) | (1L << 49) | (1L << 50) | (1L << 51) | (1L << 52) | (1L << 53) | (1L << 54) | (1L << 55) | (1L << 56) | (1L << 57) | (1L << 58) | (1L << 59) | (1L << 60) | (1L << 61) | (1L << 62) | (1L << 63))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (64 - 64)) | (1L << (65 - 64)) | (1L << (66 - 64)) | (1L << (67 - 64)) | (1L << (68 - 64)) | (1L << (69 - 64)) | (1L << (70 - 64)) | (1L << (71 - 64)) | (1L << (72 - 64)) | (1L << (73 - 64)) | (1L << (74 - 64)) | (1L << (75 - 64)) | (1L << (76 - 64)) | (1L << (77 - 64)) | (1L << (78 - 64)) | (1L << (79 - 64)) | (1L << (80 - 64)) | (1L << (81 - 64)) | (1L << (82 - 64)) | (1L << (83 - 64)) | (1L << (84 - 64)) | (1L << (85 - 64)) | (1L << (86 - 64)) | (1L << (87 - 64)) | (1L << (88 - 64)) | (1L << (89 - 64)) | (1L << (90 - 64)) | (1L << (91 - 64)) | (1L << (92 - 64)) | (1L << (93 - 64)) | (1L << (94 - 64)) | (1L << (95 - 64)) | (1L << (96 - 64)) | (1L << (97 - 64)) | (1L << (98 - 64)) | (1L << (99 - 64)) | (1L << (100 - 64)) | (1L << (101 - 64)) | (1L << (102 - 64)) | (1L << (103 - 64)) | (1L << (104 - 64)) | (1L << (105 - 64)) | (1L << (106 - 64)) | (1L << (107 - 64)) | (1L << (108 - 64)) | (1L << (109 - 64)) | (1L << (110 - 64)) | (1L << (111 - 64)) | (1L << (112 - 64)) | (1L << (113 - 64)) | (1L << (114 - 64)) | (1L << (115 - 64)) | (1L << (116 - 64)) | (1L << (117 - 64)) | (1L << (118 - 64)) | (1L << (119 - 64)) | (1L << (120 - 64)) | (1L << (121 - 64)) | (1L << (122 - 64)) | (1L << (123 - 64)) | (1L << (124 - 64)) | (1L << (125 - 64)) | (1L << (126 - 64)) | (1L << (127 - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (128 - 128)) | (1L << (129 - 128)) | (1L << (130 - 128)) | (1L << (131 - 128)) | (1L << (132 - 128)) | (1L << (133 - 128)) | (1L << (134 - 128)) | (1L << (135 - 128)) | (1L << (136 - 128)) | (1L << (137 - 128)) | (1L << (138 - 128)) | (1L << (139 - 128)) | (1L << (140 - 128)) | (1L << (141 - 128)) | (1L << (142 - 128)) | (1L << (143 - 128)) | (1L << (144 - 128)) | (1L << (145 - 128)) | (1L << (146 - 128)) | (1L << (147 - 128)) | (1L << (148 - 128)) | (1L << (149 - 128)) | (1L << (150 - 128)) | (1L << (151 - 128)) | (1L << (152 - 128)) | (1L << (153 - 128)) | (1L << (154 - 128)) | (1L << (155 - 128)) | (1L << (156 - 128)) | (1L << (157 - 128)) | (1L << (158 - 128)) | (1L << (159 - 128)) | (1L << (160 - 128)) | (1L << (161 - 128)) | (1L << (162 - 128)) | (1L << (163 - 128)) | (1L << (164 - 128)) | (1L << (165 - 128)) | (1L << (166 - 128)) | (1L << (167 - 128)) | (1L << (168 - 128)) | (1L << (169 - 128)) | (1L << (170 - 128)) | (1L << (171 - 128)) | (1L << (172 - 128)) | (1L << (173 - 128)) | (1L << (174 - 128)) | (1L << (175 - 128)) | (1L << (176 - 128)) | (1L << (177 - 128)) | (1L << (178 - 128)) | (1L << (179 - 128)) | (1L << (180 - 128)) | (1L << (181 - 128)) | (1L << (182 - 128)) | (1L << (183 - 128)) | (1L << (184 - 128)) | (1L << (185 - 128)) | (1L << (186 - 128)) | (1L << (187 - 128)) | (1L << (188 - 128)) | (1L << (189 - 128)) | (1L << (190 - 128)) | (1L << (191 - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (192 - 192)) | (1L << (193 - 192)) | (1L << (194 - 192)) | (1L << (195 - 192)) | (1L << (196 - 192)) | (1L << (197 - 192)) | (1L << (198 - 192)) | (1L << (199 - 192)) | (1L << (200 - 192)) | (1L << (201 - 192)) | (1L << (202 - 192)) | (1L << (203 - 192)) | (1L << (204 - 192)) | (1L << (205 - 192)) | (1L << (206 - 192)) | (1L << (207 - 192)) | (1L << (208 - 192)) | (1L << (209 - 192)) | (1L << (210 - 192)) | (1L << (211 - 192)) | (1L << (212 - 192)) | (1L << (213 - 192)) | (1L << (214 - 192)) | (1L << (215 - 192)) | (1L << (216 - 192)) | (1L << (217 - 192)) | (1L << (218 - 192)) | (1L << (219 - 192)) | (1L << (220 - 192)) | (1L << (221 - 192)) | (1L << (222 - 192)) | (1L << (223 - 192)) | (1L << (224 - 192)) | (1L << (225 - 192)) | (1L << (226 - 192)) | (1L << (227 - 192)) | (1L << (228 - 192)) | (1L << (229 - 192)) | (1L << (230 - 192)) | (1L << (231 - 192)) | (1L << (232 - 192)) | (1L << (233 - 192)) | (1L << (234 - 192)) | (1L << (235 - 192)) | (1L << (236 - 192)) | (1L << (237 - 192)))) != 0)) {
 											{
 												State = 446;
 												expr(0);
@@ -1712,24 +1671,24 @@ partial class mathParser : Parser {
 										}
 
 										State = 449;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 67: {
 										_localctx = new TEXTTOBASE64URL_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 450;
-										if (!(Precpred(Context, 36))) throw new FailedPredicateException(this, "Precpred(Context, 36)");
+										//if (!(Precpred(Context, 36))) throw new FailedPredicateException(this, "Precpred(Context, 36)");
 										State = 451;
-										Match(T__18);
+										Match(19);
 										State = 452;
-										Match(TEXTTOBASE64URL);
+										Match(205);
 										State = 453;
-										Match(T__19);
+										Match(20);
 										State = 455;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__19) | (1L << T__22) | (1L << T__24) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SQRT - 64)) | (1L << (TRUNC - 64)) | (1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (TEXT - 128)) | (1L << (TRIM - 128)) | (1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (LOGNORMDIST - 192)) | (1L << (NEGBINOMDIST - 192)) | (1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (ARRAY - 192)) | (1L << (PARAMETER - 192)) | (1L << (PARAMETER2 - 192)))) != 0)) {
+										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 20) | (1L << 23) | (1L << 25) | (1L << 26) | (1L << 27) | (1L << 28) | (1L << 29) | (1L << 30) | (1L << 31) | (1L << 32) | (1L << 33) | (1L << 34) | (1L << 35) | (1L << 36) | (1L << 37) | (1L << 38) | (1L << 39) | (1L << 40) | (1L << 41) | (1L << 42) | (1L << 43) | (1L << 44) | (1L << 45) | (1L << 46) | (1L << 47) | (1L << 48) | (1L << 49) | (1L << 50) | (1L << 51) | (1L << 52) | (1L << 53) | (1L << 54) | (1L << 55) | (1L << 56) | (1L << 57) | (1L << 58) | (1L << 59) | (1L << 60) | (1L << 61) | (1L << 62) | (1L << 63))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (64 - 64)) | (1L << (65 - 64)) | (1L << (66 - 64)) | (1L << (67 - 64)) | (1L << (68 - 64)) | (1L << (69 - 64)) | (1L << (70 - 64)) | (1L << (71 - 64)) | (1L << (72 - 64)) | (1L << (73 - 64)) | (1L << (74 - 64)) | (1L << (75 - 64)) | (1L << (76 - 64)) | (1L << (77 - 64)) | (1L << (78 - 64)) | (1L << (79 - 64)) | (1L << (80 - 64)) | (1L << (81 - 64)) | (1L << (82 - 64)) | (1L << (83 - 64)) | (1L << (84 - 64)) | (1L << (85 - 64)) | (1L << (86 - 64)) | (1L << (87 - 64)) | (1L << (88 - 64)) | (1L << (89 - 64)) | (1L << (90 - 64)) | (1L << (91 - 64)) | (1L << (92 - 64)) | (1L << (93 - 64)) | (1L << (94 - 64)) | (1L << (95 - 64)) | (1L << (96 - 64)) | (1L << (97 - 64)) | (1L << (98 - 64)) | (1L << (99 - 64)) | (1L << (100 - 64)) | (1L << (101 - 64)) | (1L << (102 - 64)) | (1L << (103 - 64)) | (1L << (104 - 64)) | (1L << (105 - 64)) | (1L << (106 - 64)) | (1L << (107 - 64)) | (1L << (108 - 64)) | (1L << (109 - 64)) | (1L << (110 - 64)) | (1L << (111 - 64)) | (1L << (112 - 64)) | (1L << (113 - 64)) | (1L << (114 - 64)) | (1L << (115 - 64)) | (1L << (116 - 64)) | (1L << (117 - 64)) | (1L << (118 - 64)) | (1L << (119 - 64)) | (1L << (120 - 64)) | (1L << (121 - 64)) | (1L << (122 - 64)) | (1L << (123 - 64)) | (1L << (124 - 64)) | (1L << (125 - 64)) | (1L << (126 - 64)) | (1L << (127 - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (128 - 128)) | (1L << (129 - 128)) | (1L << (130 - 128)) | (1L << (131 - 128)) | (1L << (132 - 128)) | (1L << (133 - 128)) | (1L << (134 - 128)) | (1L << (135 - 128)) | (1L << (136 - 128)) | (1L << (137 - 128)) | (1L << (138 - 128)) | (1L << (139 - 128)) | (1L << (140 - 128)) | (1L << (141 - 128)) | (1L << (142 - 128)) | (1L << (143 - 128)) | (1L << (144 - 128)) | (1L << (145 - 128)) | (1L << (146 - 128)) | (1L << (147 - 128)) | (1L << (148 - 128)) | (1L << (149 - 128)) | (1L << (150 - 128)) | (1L << (151 - 128)) | (1L << (152 - 128)) | (1L << (153 - 128)) | (1L << (154 - 128)) | (1L << (155 - 128)) | (1L << (156 - 128)) | (1L << (157 - 128)) | (1L << (158 - 128)) | (1L << (159 - 128)) | (1L << (160 - 128)) | (1L << (161 - 128)) | (1L << (162 - 128)) | (1L << (163 - 128)) | (1L << (164 - 128)) | (1L << (165 - 128)) | (1L << (166 - 128)) | (1L << (167 - 128)) | (1L << (168 - 128)) | (1L << (169 - 128)) | (1L << (170 - 128)) | (1L << (171 - 128)) | (1L << (172 - 128)) | (1L << (173 - 128)) | (1L << (174 - 128)) | (1L << (175 - 128)) | (1L << (176 - 128)) | (1L << (177 - 128)) | (1L << (178 - 128)) | (1L << (179 - 128)) | (1L << (180 - 128)) | (1L << (181 - 128)) | (1L << (182 - 128)) | (1L << (183 - 128)) | (1L << (184 - 128)) | (1L << (185 - 128)) | (1L << (186 - 128)) | (1L << (187 - 128)) | (1L << (188 - 128)) | (1L << (189 - 128)) | (1L << (190 - 128)) | (1L << (191 - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (192 - 192)) | (1L << (193 - 192)) | (1L << (194 - 192)) | (1L << (195 - 192)) | (1L << (196 - 192)) | (1L << (197 - 192)) | (1L << (198 - 192)) | (1L << (199 - 192)) | (1L << (200 - 192)) | (1L << (201 - 192)) | (1L << (202 - 192)) | (1L << (203 - 192)) | (1L << (204 - 192)) | (1L << (205 - 192)) | (1L << (206 - 192)) | (1L << (207 - 192)) | (1L << (208 - 192)) | (1L << (209 - 192)) | (1L << (210 - 192)) | (1L << (211 - 192)) | (1L << (212 - 192)) | (1L << (213 - 192)) | (1L << (214 - 192)) | (1L << (215 - 192)) | (1L << (216 - 192)) | (1L << (217 - 192)) | (1L << (218 - 192)) | (1L << (219 - 192)) | (1L << (220 - 192)) | (1L << (221 - 192)) | (1L << (222 - 192)) | (1L << (223 - 192)) | (1L << (224 - 192)) | (1L << (225 - 192)) | (1L << (226 - 192)) | (1L << (227 - 192)) | (1L << (228 - 192)) | (1L << (229 - 192)) | (1L << (230 - 192)) | (1L << (231 - 192)) | (1L << (232 - 192)) | (1L << (233 - 192)) | (1L << (234 - 192)) | (1L << (235 - 192)) | (1L << (236 - 192)) | (1L << (237 - 192)))) != 0)) {
 											{
 												State = 454;
 												expr(0);
@@ -1737,79 +1696,79 @@ partial class mathParser : Parser {
 										}
 
 										State = 457;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 68: {
 										_localctx = new REGEX_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 458;
-										if (!(Precpred(Context, 35))) throw new FailedPredicateException(this, "Precpred(Context, 35)");
+										//if (!(Precpred(Context, 35))) throw new FailedPredicateException(this, "Precpred(Context, 35)");
 										State = 459;
-										Match(T__18);
+										Match(19);
 										State = 460;
-										Match(REGEX);
+										Match(206);
 										State = 461;
-										Match(T__19);
+										Match(20);
 										State = 462;
 										expr(0);
 										State = 463;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 69: {
 										_localctx = new REGEXREPALCE_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 465;
-										if (!(Precpred(Context, 34))) throw new FailedPredicateException(this, "Precpred(Context, 34)");
+										//if (!(Precpred(Context, 34))) throw new FailedPredicateException(this, "Precpred(Context, 34)");
 										State = 466;
-										Match(T__18);
+										Match(19);
 										State = 467;
-										Match(REGEXREPALCE);
+										Match(207);
 										State = 468;
-										Match(T__19);
+										Match(20);
 										State = 469;
 										expr(0);
 										State = 470;
-										Match(T__21);
+										Match(22);
 										State = 471;
 										expr(0);
 										State = 472;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 70: {
 										_localctx = new ISREGEX_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 474;
-										if (!(Precpred(Context, 33))) throw new FailedPredicateException(this, "Precpred(Context, 33)");
+										//if (!(Precpred(Context, 33))) throw new FailedPredicateException(this, "Precpred(Context, 33)");
 										State = 475;
-										Match(T__18);
+										Match(19);
 										State = 476;
-										Match(ISREGEX);
+										Match(208);
 										State = 477;
-										Match(T__19);
+										Match(20);
 										State = 478;
 										expr(0);
 										State = 479;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 71: {
 										_localctx = new MD5_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 481;
-										if (!(Precpred(Context, 32))) throw new FailedPredicateException(this, "Precpred(Context, 32)");
+										//if (!(Precpred(Context, 32))) throw new FailedPredicateException(this, "Precpred(Context, 32)");
 										State = 482;
-										Match(T__18);
+										Match(19);
 										State = 483;
-										Match(MD5);
+										Match(210);
 										State = 484;
-										Match(T__19);
+										Match(20);
 										State = 486;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__19) | (1L << T__22) | (1L << T__24) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SQRT - 64)) | (1L << (TRUNC - 64)) | (1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (TEXT - 128)) | (1L << (TRIM - 128)) | (1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (LOGNORMDIST - 192)) | (1L << (NEGBINOMDIST - 192)) | (1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (ARRAY - 192)) | (1L << (PARAMETER - 192)) | (1L << (PARAMETER2 - 192)))) != 0)) {
+										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 20) | (1L << 23) | (1L << 25) | (1L << 26) | (1L << 27) | (1L << 28) | (1L << 29) | (1L << 30) | (1L << 31) | (1L << 32) | (1L << 33) | (1L << 34) | (1L << 35) | (1L << 36) | (1L << 37) | (1L << 38) | (1L << 39) | (1L << 40) | (1L << 41) | (1L << 42) | (1L << 43) | (1L << 44) | (1L << 45) | (1L << 46) | (1L << 47) | (1L << 48) | (1L << 49) | (1L << 50) | (1L << 51) | (1L << 52) | (1L << 53) | (1L << 54) | (1L << 55) | (1L << 56) | (1L << 57) | (1L << 58) | (1L << 59) | (1L << 60) | (1L << 61) | (1L << 62) | (1L << 63))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (64 - 64)) | (1L << (65 - 64)) | (1L << (66 - 64)) | (1L << (67 - 64)) | (1L << (68 - 64)) | (1L << (69 - 64)) | (1L << (70 - 64)) | (1L << (71 - 64)) | (1L << (72 - 64)) | (1L << (73 - 64)) | (1L << (74 - 64)) | (1L << (75 - 64)) | (1L << (76 - 64)) | (1L << (77 - 64)) | (1L << (78 - 64)) | (1L << (79 - 64)) | (1L << (80 - 64)) | (1L << (81 - 64)) | (1L << (82 - 64)) | (1L << (83 - 64)) | (1L << (84 - 64)) | (1L << (85 - 64)) | (1L << (86 - 64)) | (1L << (87 - 64)) | (1L << (88 - 64)) | (1L << (89 - 64)) | (1L << (90 - 64)) | (1L << (91 - 64)) | (1L << (92 - 64)) | (1L << (93 - 64)) | (1L << (94 - 64)) | (1L << (95 - 64)) | (1L << (96 - 64)) | (1L << (97 - 64)) | (1L << (98 - 64)) | (1L << (99 - 64)) | (1L << (100 - 64)) | (1L << (101 - 64)) | (1L << (102 - 64)) | (1L << (103 - 64)) | (1L << (104 - 64)) | (1L << (105 - 64)) | (1L << (106 - 64)) | (1L << (107 - 64)) | (1L << (108 - 64)) | (1L << (109 - 64)) | (1L << (110 - 64)) | (1L << (111 - 64)) | (1L << (112 - 64)) | (1L << (113 - 64)) | (1L << (114 - 64)) | (1L << (115 - 64)) | (1L << (116 - 64)) | (1L << (117 - 64)) | (1L << (118 - 64)) | (1L << (119 - 64)) | (1L << (120 - 64)) | (1L << (121 - 64)) | (1L << (122 - 64)) | (1L << (123 - 64)) | (1L << (124 - 64)) | (1L << (125 - 64)) | (1L << (126 - 64)) | (1L << (127 - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (128 - 128)) | (1L << (129 - 128)) | (1L << (130 - 128)) | (1L << (131 - 128)) | (1L << (132 - 128)) | (1L << (133 - 128)) | (1L << (134 - 128)) | (1L << (135 - 128)) | (1L << (136 - 128)) | (1L << (137 - 128)) | (1L << (138 - 128)) | (1L << (139 - 128)) | (1L << (140 - 128)) | (1L << (141 - 128)) | (1L << (142 - 128)) | (1L << (143 - 128)) | (1L << (144 - 128)) | (1L << (145 - 128)) | (1L << (146 - 128)) | (1L << (147 - 128)) | (1L << (148 - 128)) | (1L << (149 - 128)) | (1L << (150 - 128)) | (1L << (151 - 128)) | (1L << (152 - 128)) | (1L << (153 - 128)) | (1L << (154 - 128)) | (1L << (155 - 128)) | (1L << (156 - 128)) | (1L << (157 - 128)) | (1L << (158 - 128)) | (1L << (159 - 128)) | (1L << (160 - 128)) | (1L << (161 - 128)) | (1L << (162 - 128)) | (1L << (163 - 128)) | (1L << (164 - 128)) | (1L << (165 - 128)) | (1L << (166 - 128)) | (1L << (167 - 128)) | (1L << (168 - 128)) | (1L << (169 - 128)) | (1L << (170 - 128)) | (1L << (171 - 128)) | (1L << (172 - 128)) | (1L << (173 - 128)) | (1L << (174 - 128)) | (1L << (175 - 128)) | (1L << (176 - 128)) | (1L << (177 - 128)) | (1L << (178 - 128)) | (1L << (179 - 128)) | (1L << (180 - 128)) | (1L << (181 - 128)) | (1L << (182 - 128)) | (1L << (183 - 128)) | (1L << (184 - 128)) | (1L << (185 - 128)) | (1L << (186 - 128)) | (1L << (187 - 128)) | (1L << (188 - 128)) | (1L << (189 - 128)) | (1L << (190 - 128)) | (1L << (191 - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (192 - 192)) | (1L << (193 - 192)) | (1L << (194 - 192)) | (1L << (195 - 192)) | (1L << (196 - 192)) | (1L << (197 - 192)) | (1L << (198 - 192)) | (1L << (199 - 192)) | (1L << (200 - 192)) | (1L << (201 - 192)) | (1L << (202 - 192)) | (1L << (203 - 192)) | (1L << (204 - 192)) | (1L << (205 - 192)) | (1L << (206 - 192)) | (1L << (207 - 192)) | (1L << (208 - 192)) | (1L << (209 - 192)) | (1L << (210 - 192)) | (1L << (211 - 192)) | (1L << (212 - 192)) | (1L << (213 - 192)) | (1L << (214 - 192)) | (1L << (215 - 192)) | (1L << (216 - 192)) | (1L << (217 - 192)) | (1L << (218 - 192)) | (1L << (219 - 192)) | (1L << (220 - 192)) | (1L << (221 - 192)) | (1L << (222 - 192)) | (1L << (223 - 192)) | (1L << (224 - 192)) | (1L << (225 - 192)) | (1L << (226 - 192)) | (1L << (227 - 192)) | (1L << (228 - 192)) | (1L << (229 - 192)) | (1L << (230 - 192)) | (1L << (231 - 192)) | (1L << (232 - 192)) | (1L << (233 - 192)) | (1L << (234 - 192)) | (1L << (235 - 192)) | (1L << (236 - 192)) | (1L << (237 - 192)))) != 0)) {
 											{
 												State = 485;
 												expr(0);
@@ -1817,24 +1776,24 @@ partial class mathParser : Parser {
 										}
 
 										State = 488;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 72: {
 										_localctx = new SHA1_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 489;
-										if (!(Precpred(Context, 31))) throw new FailedPredicateException(this, "Precpred(Context, 31)");
+										//if (!(Precpred(Context, 31))) throw new FailedPredicateException(this, "Precpred(Context, 31)");
 										State = 490;
-										Match(T__18);
+										Match(19);
 										State = 491;
-										Match(SHA1);
+										Match(211);
 										State = 492;
-										Match(T__19);
+										Match(20);
 										State = 494;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__19) | (1L << T__22) | (1L << T__24) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SQRT - 64)) | (1L << (TRUNC - 64)) | (1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (TEXT - 128)) | (1L << (TRIM - 128)) | (1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (LOGNORMDIST - 192)) | (1L << (NEGBINOMDIST - 192)) | (1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (ARRAY - 192)) | (1L << (PARAMETER - 192)) | (1L << (PARAMETER2 - 192)))) != 0)) {
+										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 20) | (1L << 23) | (1L << 25) | (1L << 26) | (1L << 27) | (1L << 28) | (1L << 29) | (1L << 30) | (1L << 31) | (1L << 32) | (1L << 33) | (1L << 34) | (1L << 35) | (1L << 36) | (1L << 37) | (1L << 38) | (1L << 39) | (1L << 40) | (1L << 41) | (1L << 42) | (1L << 43) | (1L << 44) | (1L << 45) | (1L << 46) | (1L << 47) | (1L << 48) | (1L << 49) | (1L << 50) | (1L << 51) | (1L << 52) | (1L << 53) | (1L << 54) | (1L << 55) | (1L << 56) | (1L << 57) | (1L << 58) | (1L << 59) | (1L << 60) | (1L << 61) | (1L << 62) | (1L << 63))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (64 - 64)) | (1L << (65 - 64)) | (1L << (66 - 64)) | (1L << (67 - 64)) | (1L << (68 - 64)) | (1L << (69 - 64)) | (1L << (70 - 64)) | (1L << (71 - 64)) | (1L << (72 - 64)) | (1L << (73 - 64)) | (1L << (74 - 64)) | (1L << (75 - 64)) | (1L << (76 - 64)) | (1L << (77 - 64)) | (1L << (78 - 64)) | (1L << (79 - 64)) | (1L << (80 - 64)) | (1L << (81 - 64)) | (1L << (82 - 64)) | (1L << (83 - 64)) | (1L << (84 - 64)) | (1L << (85 - 64)) | (1L << (86 - 64)) | (1L << (87 - 64)) | (1L << (88 - 64)) | (1L << (89 - 64)) | (1L << (90 - 64)) | (1L << (91 - 64)) | (1L << (92 - 64)) | (1L << (93 - 64)) | (1L << (94 - 64)) | (1L << (95 - 64)) | (1L << (96 - 64)) | (1L << (97 - 64)) | (1L << (98 - 64)) | (1L << (99 - 64)) | (1L << (100 - 64)) | (1L << (101 - 64)) | (1L << (102 - 64)) | (1L << (103 - 64)) | (1L << (104 - 64)) | (1L << (105 - 64)) | (1L << (106 - 64)) | (1L << (107 - 64)) | (1L << (108 - 64)) | (1L << (109 - 64)) | (1L << (110 - 64)) | (1L << (111 - 64)) | (1L << (112 - 64)) | (1L << (113 - 64)) | (1L << (114 - 64)) | (1L << (115 - 64)) | (1L << (116 - 64)) | (1L << (117 - 64)) | (1L << (118 - 64)) | (1L << (119 - 64)) | (1L << (120 - 64)) | (1L << (121 - 64)) | (1L << (122 - 64)) | (1L << (123 - 64)) | (1L << (124 - 64)) | (1L << (125 - 64)) | (1L << (126 - 64)) | (1L << (127 - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (128 - 128)) | (1L << (129 - 128)) | (1L << (130 - 128)) | (1L << (131 - 128)) | (1L << (132 - 128)) | (1L << (133 - 128)) | (1L << (134 - 128)) | (1L << (135 - 128)) | (1L << (136 - 128)) | (1L << (137 - 128)) | (1L << (138 - 128)) | (1L << (139 - 128)) | (1L << (140 - 128)) | (1L << (141 - 128)) | (1L << (142 - 128)) | (1L << (143 - 128)) | (1L << (144 - 128)) | (1L << (145 - 128)) | (1L << (146 - 128)) | (1L << (147 - 128)) | (1L << (148 - 128)) | (1L << (149 - 128)) | (1L << (150 - 128)) | (1L << (151 - 128)) | (1L << (152 - 128)) | (1L << (153 - 128)) | (1L << (154 - 128)) | (1L << (155 - 128)) | (1L << (156 - 128)) | (1L << (157 - 128)) | (1L << (158 - 128)) | (1L << (159 - 128)) | (1L << (160 - 128)) | (1L << (161 - 128)) | (1L << (162 - 128)) | (1L << (163 - 128)) | (1L << (164 - 128)) | (1L << (165 - 128)) | (1L << (166 - 128)) | (1L << (167 - 128)) | (1L << (168 - 128)) | (1L << (169 - 128)) | (1L << (170 - 128)) | (1L << (171 - 128)) | (1L << (172 - 128)) | (1L << (173 - 128)) | (1L << (174 - 128)) | (1L << (175 - 128)) | (1L << (176 - 128)) | (1L << (177 - 128)) | (1L << (178 - 128)) | (1L << (179 - 128)) | (1L << (180 - 128)) | (1L << (181 - 128)) | (1L << (182 - 128)) | (1L << (183 - 128)) | (1L << (184 - 128)) | (1L << (185 - 128)) | (1L << (186 - 128)) | (1L << (187 - 128)) | (1L << (188 - 128)) | (1L << (189 - 128)) | (1L << (190 - 128)) | (1L << (191 - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (192 - 192)) | (1L << (193 - 192)) | (1L << (194 - 192)) | (1L << (195 - 192)) | (1L << (196 - 192)) | (1L << (197 - 192)) | (1L << (198 - 192)) | (1L << (199 - 192)) | (1L << (200 - 192)) | (1L << (201 - 192)) | (1L << (202 - 192)) | (1L << (203 - 192)) | (1L << (204 - 192)) | (1L << (205 - 192)) | (1L << (206 - 192)) | (1L << (207 - 192)) | (1L << (208 - 192)) | (1L << (209 - 192)) | (1L << (210 - 192)) | (1L << (211 - 192)) | (1L << (212 - 192)) | (1L << (213 - 192)) | (1L << (214 - 192)) | (1L << (215 - 192)) | (1L << (216 - 192)) | (1L << (217 - 192)) | (1L << (218 - 192)) | (1L << (219 - 192)) | (1L << (220 - 192)) | (1L << (221 - 192)) | (1L << (222 - 192)) | (1L << (223 - 192)) | (1L << (224 - 192)) | (1L << (225 - 192)) | (1L << (226 - 192)) | (1L << (227 - 192)) | (1L << (228 - 192)) | (1L << (229 - 192)) | (1L << (230 - 192)) | (1L << (231 - 192)) | (1L << (232 - 192)) | (1L << (233 - 192)) | (1L << (234 - 192)) | (1L << (235 - 192)) | (1L << (236 - 192)) | (1L << (237 - 192)))) != 0)) {
 											{
 												State = 493;
 												expr(0);
@@ -1842,24 +1801,24 @@ partial class mathParser : Parser {
 										}
 
 										State = 496;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 73: {
 										_localctx = new SHA256_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 497;
-										if (!(Precpred(Context, 30))) throw new FailedPredicateException(this, "Precpred(Context, 30)");
+										//if (!(Precpred(Context, 30))) throw new FailedPredicateException(this, "Precpred(Context, 30)");
 										State = 498;
-										Match(T__18);
+										Match(19);
 										State = 499;
-										Match(SHA256);
+										Match(212);
 										State = 500;
-										Match(T__19);
+										Match(20);
 										State = 502;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__19) | (1L << T__22) | (1L << T__24) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SQRT - 64)) | (1L << (TRUNC - 64)) | (1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (TEXT - 128)) | (1L << (TRIM - 128)) | (1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (LOGNORMDIST - 192)) | (1L << (NEGBINOMDIST - 192)) | (1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (ARRAY - 192)) | (1L << (PARAMETER - 192)) | (1L << (PARAMETER2 - 192)))) != 0)) {
+										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 20) | (1L << 23) | (1L << 25) | (1L << 26) | (1L << 27) | (1L << 28) | (1L << 29) | (1L << 30) | (1L << 31) | (1L << 32) | (1L << 33) | (1L << 34) | (1L << 35) | (1L << 36) | (1L << 37) | (1L << 38) | (1L << 39) | (1L << 40) | (1L << 41) | (1L << 42) | (1L << 43) | (1L << 44) | (1L << 45) | (1L << 46) | (1L << 47) | (1L << 48) | (1L << 49) | (1L << 50) | (1L << 51) | (1L << 52) | (1L << 53) | (1L << 54) | (1L << 55) | (1L << 56) | (1L << 57) | (1L << 58) | (1L << 59) | (1L << 60) | (1L << 61) | (1L << 62) | (1L << 63))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (64 - 64)) | (1L << (65 - 64)) | (1L << (66 - 64)) | (1L << (67 - 64)) | (1L << (68 - 64)) | (1L << (69 - 64)) | (1L << (70 - 64)) | (1L << (71 - 64)) | (1L << (72 - 64)) | (1L << (73 - 64)) | (1L << (74 - 64)) | (1L << (75 - 64)) | (1L << (76 - 64)) | (1L << (77 - 64)) | (1L << (78 - 64)) | (1L << (79 - 64)) | (1L << (80 - 64)) | (1L << (81 - 64)) | (1L << (82 - 64)) | (1L << (83 - 64)) | (1L << (84 - 64)) | (1L << (85 - 64)) | (1L << (86 - 64)) | (1L << (87 - 64)) | (1L << (88 - 64)) | (1L << (89 - 64)) | (1L << (90 - 64)) | (1L << (91 - 64)) | (1L << (92 - 64)) | (1L << (93 - 64)) | (1L << (94 - 64)) | (1L << (95 - 64)) | (1L << (96 - 64)) | (1L << (97 - 64)) | (1L << (98 - 64)) | (1L << (99 - 64)) | (1L << (100 - 64)) | (1L << (101 - 64)) | (1L << (102 - 64)) | (1L << (103 - 64)) | (1L << (104 - 64)) | (1L << (105 - 64)) | (1L << (106 - 64)) | (1L << (107 - 64)) | (1L << (108 - 64)) | (1L << (109 - 64)) | (1L << (110 - 64)) | (1L << (111 - 64)) | (1L << (112 - 64)) | (1L << (113 - 64)) | (1L << (114 - 64)) | (1L << (115 - 64)) | (1L << (116 - 64)) | (1L << (117 - 64)) | (1L << (118 - 64)) | (1L << (119 - 64)) | (1L << (120 - 64)) | (1L << (121 - 64)) | (1L << (122 - 64)) | (1L << (123 - 64)) | (1L << (124 - 64)) | (1L << (125 - 64)) | (1L << (126 - 64)) | (1L << (127 - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (128 - 128)) | (1L << (129 - 128)) | (1L << (130 - 128)) | (1L << (131 - 128)) | (1L << (132 - 128)) | (1L << (133 - 128)) | (1L << (134 - 128)) | (1L << (135 - 128)) | (1L << (136 - 128)) | (1L << (137 - 128)) | (1L << (138 - 128)) | (1L << (139 - 128)) | (1L << (140 - 128)) | (1L << (141 - 128)) | (1L << (142 - 128)) | (1L << (143 - 128)) | (1L << (144 - 128)) | (1L << (145 - 128)) | (1L << (146 - 128)) | (1L << (147 - 128)) | (1L << (148 - 128)) | (1L << (149 - 128)) | (1L << (150 - 128)) | (1L << (151 - 128)) | (1L << (152 - 128)) | (1L << (153 - 128)) | (1L << (154 - 128)) | (1L << (155 - 128)) | (1L << (156 - 128)) | (1L << (157 - 128)) | (1L << (158 - 128)) | (1L << (159 - 128)) | (1L << (160 - 128)) | (1L << (161 - 128)) | (1L << (162 - 128)) | (1L << (163 - 128)) | (1L << (164 - 128)) | (1L << (165 - 128)) | (1L << (166 - 128)) | (1L << (167 - 128)) | (1L << (168 - 128)) | (1L << (169 - 128)) | (1L << (170 - 128)) | (1L << (171 - 128)) | (1L << (172 - 128)) | (1L << (173 - 128)) | (1L << (174 - 128)) | (1L << (175 - 128)) | (1L << (176 - 128)) | (1L << (177 - 128)) | (1L << (178 - 128)) | (1L << (179 - 128)) | (1L << (180 - 128)) | (1L << (181 - 128)) | (1L << (182 - 128)) | (1L << (183 - 128)) | (1L << (184 - 128)) | (1L << (185 - 128)) | (1L << (186 - 128)) | (1L << (187 - 128)) | (1L << (188 - 128)) | (1L << (189 - 128)) | (1L << (190 - 128)) | (1L << (191 - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (192 - 192)) | (1L << (193 - 192)) | (1L << (194 - 192)) | (1L << (195 - 192)) | (1L << (196 - 192)) | (1L << (197 - 192)) | (1L << (198 - 192)) | (1L << (199 - 192)) | (1L << (200 - 192)) | (1L << (201 - 192)) | (1L << (202 - 192)) | (1L << (203 - 192)) | (1L << (204 - 192)) | (1L << (205 - 192)) | (1L << (206 - 192)) | (1L << (207 - 192)) | (1L << (208 - 192)) | (1L << (209 - 192)) | (1L << (210 - 192)) | (1L << (211 - 192)) | (1L << (212 - 192)) | (1L << (213 - 192)) | (1L << (214 - 192)) | (1L << (215 - 192)) | (1L << (216 - 192)) | (1L << (217 - 192)) | (1L << (218 - 192)) | (1L << (219 - 192)) | (1L << (220 - 192)) | (1L << (221 - 192)) | (1L << (222 - 192)) | (1L << (223 - 192)) | (1L << (224 - 192)) | (1L << (225 - 192)) | (1L << (226 - 192)) | (1L << (227 - 192)) | (1L << (228 - 192)) | (1L << (229 - 192)) | (1L << (230 - 192)) | (1L << (231 - 192)) | (1L << (232 - 192)) | (1L << (233 - 192)) | (1L << (234 - 192)) | (1L << (235 - 192)) | (1L << (236 - 192)) | (1L << (237 - 192)))) != 0)) {
 											{
 												State = 501;
 												expr(0);
@@ -1867,24 +1826,24 @@ partial class mathParser : Parser {
 										}
 
 										State = 504;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 74: {
 										_localctx = new SHA512_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 505;
-										if (!(Precpred(Context, 29))) throw new FailedPredicateException(this, "Precpred(Context, 29)");
+										//if (!(Precpred(Context, 29))) throw new FailedPredicateException(this, "Precpred(Context, 29)");
 										State = 506;
-										Match(T__18);
+										Match(19);
 										State = 507;
-										Match(SHA512);
+										Match(213);
 										State = 508;
-										Match(T__19);
+										Match(20);
 										State = 510;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__19) | (1L << T__22) | (1L << T__24) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SQRT - 64)) | (1L << (TRUNC - 64)) | (1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (TEXT - 128)) | (1L << (TRIM - 128)) | (1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (LOGNORMDIST - 192)) | (1L << (NEGBINOMDIST - 192)) | (1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (ARRAY - 192)) | (1L << (PARAMETER - 192)) | (1L << (PARAMETER2 - 192)))) != 0)) {
+										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 20) | (1L << 23) | (1L << 25) | (1L << 26) | (1L << 27) | (1L << 28) | (1L << 29) | (1L << 30) | (1L << 31) | (1L << 32) | (1L << 33) | (1L << 34) | (1L << 35) | (1L << 36) | (1L << 37) | (1L << 38) | (1L << 39) | (1L << 40) | (1L << 41) | (1L << 42) | (1L << 43) | (1L << 44) | (1L << 45) | (1L << 46) | (1L << 47) | (1L << 48) | (1L << 49) | (1L << 50) | (1L << 51) | (1L << 52) | (1L << 53) | (1L << 54) | (1L << 55) | (1L << 56) | (1L << 57) | (1L << 58) | (1L << 59) | (1L << 60) | (1L << 61) | (1L << 62) | (1L << 63))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (64 - 64)) | (1L << (65 - 64)) | (1L << (66 - 64)) | (1L << (67 - 64)) | (1L << (68 - 64)) | (1L << (69 - 64)) | (1L << (70 - 64)) | (1L << (71 - 64)) | (1L << (72 - 64)) | (1L << (73 - 64)) | (1L << (74 - 64)) | (1L << (75 - 64)) | (1L << (76 - 64)) | (1L << (77 - 64)) | (1L << (78 - 64)) | (1L << (79 - 64)) | (1L << (80 - 64)) | (1L << (81 - 64)) | (1L << (82 - 64)) | (1L << (83 - 64)) | (1L << (84 - 64)) | (1L << (85 - 64)) | (1L << (86 - 64)) | (1L << (87 - 64)) | (1L << (88 - 64)) | (1L << (89 - 64)) | (1L << (90 - 64)) | (1L << (91 - 64)) | (1L << (92 - 64)) | (1L << (93 - 64)) | (1L << (94 - 64)) | (1L << (95 - 64)) | (1L << (96 - 64)) | (1L << (97 - 64)) | (1L << (98 - 64)) | (1L << (99 - 64)) | (1L << (100 - 64)) | (1L << (101 - 64)) | (1L << (102 - 64)) | (1L << (103 - 64)) | (1L << (104 - 64)) | (1L << (105 - 64)) | (1L << (106 - 64)) | (1L << (107 - 64)) | (1L << (108 - 64)) | (1L << (109 - 64)) | (1L << (110 - 64)) | (1L << (111 - 64)) | (1L << (112 - 64)) | (1L << (113 - 64)) | (1L << (114 - 64)) | (1L << (115 - 64)) | (1L << (116 - 64)) | (1L << (117 - 64)) | (1L << (118 - 64)) | (1L << (119 - 64)) | (1L << (120 - 64)) | (1L << (121 - 64)) | (1L << (122 - 64)) | (1L << (123 - 64)) | (1L << (124 - 64)) | (1L << (125 - 64)) | (1L << (126 - 64)) | (1L << (127 - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (128 - 128)) | (1L << (129 - 128)) | (1L << (130 - 128)) | (1L << (131 - 128)) | (1L << (132 - 128)) | (1L << (133 - 128)) | (1L << (134 - 128)) | (1L << (135 - 128)) | (1L << (136 - 128)) | (1L << (137 - 128)) | (1L << (138 - 128)) | (1L << (139 - 128)) | (1L << (140 - 128)) | (1L << (141 - 128)) | (1L << (142 - 128)) | (1L << (143 - 128)) | (1L << (144 - 128)) | (1L << (145 - 128)) | (1L << (146 - 128)) | (1L << (147 - 128)) | (1L << (148 - 128)) | (1L << (149 - 128)) | (1L << (150 - 128)) | (1L << (151 - 128)) | (1L << (152 - 128)) | (1L << (153 - 128)) | (1L << (154 - 128)) | (1L << (155 - 128)) | (1L << (156 - 128)) | (1L << (157 - 128)) | (1L << (158 - 128)) | (1L << (159 - 128)) | (1L << (160 - 128)) | (1L << (161 - 128)) | (1L << (162 - 128)) | (1L << (163 - 128)) | (1L << (164 - 128)) | (1L << (165 - 128)) | (1L << (166 - 128)) | (1L << (167 - 128)) | (1L << (168 - 128)) | (1L << (169 - 128)) | (1L << (170 - 128)) | (1L << (171 - 128)) | (1L << (172 - 128)) | (1L << (173 - 128)) | (1L << (174 - 128)) | (1L << (175 - 128)) | (1L << (176 - 128)) | (1L << (177 - 128)) | (1L << (178 - 128)) | (1L << (179 - 128)) | (1L << (180 - 128)) | (1L << (181 - 128)) | (1L << (182 - 128)) | (1L << (183 - 128)) | (1L << (184 - 128)) | (1L << (185 - 128)) | (1L << (186 - 128)) | (1L << (187 - 128)) | (1L << (188 - 128)) | (1L << (189 - 128)) | (1L << (190 - 128)) | (1L << (191 - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (192 - 192)) | (1L << (193 - 192)) | (1L << (194 - 192)) | (1L << (195 - 192)) | (1L << (196 - 192)) | (1L << (197 - 192)) | (1L << (198 - 192)) | (1L << (199 - 192)) | (1L << (200 - 192)) | (1L << (201 - 192)) | (1L << (202 - 192)) | (1L << (203 - 192)) | (1L << (204 - 192)) | (1L << (205 - 192)) | (1L << (206 - 192)) | (1L << (207 - 192)) | (1L << (208 - 192)) | (1L << (209 - 192)) | (1L << (210 - 192)) | (1L << (211 - 192)) | (1L << (212 - 192)) | (1L << (213 - 192)) | (1L << (214 - 192)) | (1L << (215 - 192)) | (1L << (216 - 192)) | (1L << (217 - 192)) | (1L << (218 - 192)) | (1L << (219 - 192)) | (1L << (220 - 192)) | (1L << (221 - 192)) | (1L << (222 - 192)) | (1L << (223 - 192)) | (1L << (224 - 192)) | (1L << (225 - 192)) | (1L << (226 - 192)) | (1L << (227 - 192)) | (1L << (228 - 192)) | (1L << (229 - 192)) | (1L << (230 - 192)) | (1L << (231 - 192)) | (1L << (232 - 192)) | (1L << (233 - 192)) | (1L << (234 - 192)) | (1L << (235 - 192)) | (1L << (236 - 192)) | (1L << (237 - 192)))) != 0)) {
 											{
 												State = 509;
 												expr(0);
@@ -1892,24 +1851,24 @@ partial class mathParser : Parser {
 										}
 
 										State = 512;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 75: {
 										_localctx = new CRC32_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 513;
-										if (!(Precpred(Context, 28))) throw new FailedPredicateException(this, "Precpred(Context, 28)");
+										//if (!(Precpred(Context, 28))) throw new FailedPredicateException(this, "Precpred(Context, 28)");
 										State = 514;
-										Match(T__18);
+										Match(19);
 										State = 515;
-										Match(CRC32);
+										Match(214);
 										State = 516;
-										Match(T__19);
+										Match(20);
 										State = 518;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__19) | (1L << T__22) | (1L << T__24) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SQRT - 64)) | (1L << (TRUNC - 64)) | (1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (TEXT - 128)) | (1L << (TRIM - 128)) | (1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (LOGNORMDIST - 192)) | (1L << (NEGBINOMDIST - 192)) | (1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (ARRAY - 192)) | (1L << (PARAMETER - 192)) | (1L << (PARAMETER2 - 192)))) != 0)) {
+										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 20) | (1L << 23) | (1L << 25) | (1L << 26) | (1L << 27) | (1L << 28) | (1L << 29) | (1L << 30) | (1L << 31) | (1L << 32) | (1L << 33) | (1L << 34) | (1L << 35) | (1L << 36) | (1L << 37) | (1L << 38) | (1L << 39) | (1L << 40) | (1L << 41) | (1L << 42) | (1L << 43) | (1L << 44) | (1L << 45) | (1L << 46) | (1L << 47) | (1L << 48) | (1L << 49) | (1L << 50) | (1L << 51) | (1L << 52) | (1L << 53) | (1L << 54) | (1L << 55) | (1L << 56) | (1L << 57) | (1L << 58) | (1L << 59) | (1L << 60) | (1L << 61) | (1L << 62) | (1L << 63))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (64 - 64)) | (1L << (65 - 64)) | (1L << (66 - 64)) | (1L << (67 - 64)) | (1L << (68 - 64)) | (1L << (69 - 64)) | (1L << (70 - 64)) | (1L << (71 - 64)) | (1L << (72 - 64)) | (1L << (73 - 64)) | (1L << (74 - 64)) | (1L << (75 - 64)) | (1L << (76 - 64)) | (1L << (77 - 64)) | (1L << (78 - 64)) | (1L << (79 - 64)) | (1L << (80 - 64)) | (1L << (81 - 64)) | (1L << (82 - 64)) | (1L << (83 - 64)) | (1L << (84 - 64)) | (1L << (85 - 64)) | (1L << (86 - 64)) | (1L << (87 - 64)) | (1L << (88 - 64)) | (1L << (89 - 64)) | (1L << (90 - 64)) | (1L << (91 - 64)) | (1L << (92 - 64)) | (1L << (93 - 64)) | (1L << (94 - 64)) | (1L << (95 - 64)) | (1L << (96 - 64)) | (1L << (97 - 64)) | (1L << (98 - 64)) | (1L << (99 - 64)) | (1L << (100 - 64)) | (1L << (101 - 64)) | (1L << (102 - 64)) | (1L << (103 - 64)) | (1L << (104 - 64)) | (1L << (105 - 64)) | (1L << (106 - 64)) | (1L << (107 - 64)) | (1L << (108 - 64)) | (1L << (109 - 64)) | (1L << (110 - 64)) | (1L << (111 - 64)) | (1L << (112 - 64)) | (1L << (113 - 64)) | (1L << (114 - 64)) | (1L << (115 - 64)) | (1L << (116 - 64)) | (1L << (117 - 64)) | (1L << (118 - 64)) | (1L << (119 - 64)) | (1L << (120 - 64)) | (1L << (121 - 64)) | (1L << (122 - 64)) | (1L << (123 - 64)) | (1L << (124 - 64)) | (1L << (125 - 64)) | (1L << (126 - 64)) | (1L << (127 - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (128 - 128)) | (1L << (129 - 128)) | (1L << (130 - 128)) | (1L << (131 - 128)) | (1L << (132 - 128)) | (1L << (133 - 128)) | (1L << (134 - 128)) | (1L << (135 - 128)) | (1L << (136 - 128)) | (1L << (137 - 128)) | (1L << (138 - 128)) | (1L << (139 - 128)) | (1L << (140 - 128)) | (1L << (141 - 128)) | (1L << (142 - 128)) | (1L << (143 - 128)) | (1L << (144 - 128)) | (1L << (145 - 128)) | (1L << (146 - 128)) | (1L << (147 - 128)) | (1L << (148 - 128)) | (1L << (149 - 128)) | (1L << (150 - 128)) | (1L << (151 - 128)) | (1L << (152 - 128)) | (1L << (153 - 128)) | (1L << (154 - 128)) | (1L << (155 - 128)) | (1L << (156 - 128)) | (1L << (157 - 128)) | (1L << (158 - 128)) | (1L << (159 - 128)) | (1L << (160 - 128)) | (1L << (161 - 128)) | (1L << (162 - 128)) | (1L << (163 - 128)) | (1L << (164 - 128)) | (1L << (165 - 128)) | (1L << (166 - 128)) | (1L << (167 - 128)) | (1L << (168 - 128)) | (1L << (169 - 128)) | (1L << (170 - 128)) | (1L << (171 - 128)) | (1L << (172 - 128)) | (1L << (173 - 128)) | (1L << (174 - 128)) | (1L << (175 - 128)) | (1L << (176 - 128)) | (1L << (177 - 128)) | (1L << (178 - 128)) | (1L << (179 - 128)) | (1L << (180 - 128)) | (1L << (181 - 128)) | (1L << (182 - 128)) | (1L << (183 - 128)) | (1L << (184 - 128)) | (1L << (185 - 128)) | (1L << (186 - 128)) | (1L << (187 - 128)) | (1L << (188 - 128)) | (1L << (189 - 128)) | (1L << (190 - 128)) | (1L << (191 - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (192 - 192)) | (1L << (193 - 192)) | (1L << (194 - 192)) | (1L << (195 - 192)) | (1L << (196 - 192)) | (1L << (197 - 192)) | (1L << (198 - 192)) | (1L << (199 - 192)) | (1L << (200 - 192)) | (1L << (201 - 192)) | (1L << (202 - 192)) | (1L << (203 - 192)) | (1L << (204 - 192)) | (1L << (205 - 192)) | (1L << (206 - 192)) | (1L << (207 - 192)) | (1L << (208 - 192)) | (1L << (209 - 192)) | (1L << (210 - 192)) | (1L << (211 - 192)) | (1L << (212 - 192)) | (1L << (213 - 192)) | (1L << (214 - 192)) | (1L << (215 - 192)) | (1L << (216 - 192)) | (1L << (217 - 192)) | (1L << (218 - 192)) | (1L << (219 - 192)) | (1L << (220 - 192)) | (1L << (221 - 192)) | (1L << (222 - 192)) | (1L << (223 - 192)) | (1L << (224 - 192)) | (1L << (225 - 192)) | (1L << (226 - 192)) | (1L << (227 - 192)) | (1L << (228 - 192)) | (1L << (229 - 192)) | (1L << (230 - 192)) | (1L << (231 - 192)) | (1L << (232 - 192)) | (1L << (233 - 192)) | (1L << (234 - 192)) | (1L << (235 - 192)) | (1L << (236 - 192)) | (1L << (237 - 192)))) != 0)) {
 											{
 												State = 517;
 												expr(0);
@@ -1917,140 +1876,140 @@ partial class mathParser : Parser {
 										}
 
 										State = 520;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 76: {
 										_localctx = new HMACMD5_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 521;
-										if (!(Precpred(Context, 27))) throw new FailedPredicateException(this, "Precpred(Context, 27)");
+										//if (!(Precpred(Context, 27))) throw new FailedPredicateException(this, "Precpred(Context, 27)");
 										State = 522;
-										Match(T__18);
+										Match(19);
 										State = 523;
-										Match(HMACMD5);
+										Match(215);
 										State = 524;
-										Match(T__19);
+										Match(20);
 										State = 525;
 										expr(0);
 										State = 528;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if (_la == T__21) {
+										if (_la == 22) {
 											{
 												State = 526;
-												Match(T__21);
+												Match(22);
 												State = 527;
 												expr(0);
 											}
 										}
 
 										State = 530;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 77: {
 										_localctx = new HMACSHA1_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 532;
-										if (!(Precpred(Context, 26))) throw new FailedPredicateException(this, "Precpred(Context, 26)");
+										//if (!(Precpred(Context, 26))) throw new FailedPredicateException(this, "Precpred(Context, 26)");
 										State = 533;
-										Match(T__18);
+										Match(19);
 										State = 534;
-										Match(HMACSHA1);
+										Match(216);
 										State = 535;
-										Match(T__19);
+										Match(20);
 										State = 536;
 										expr(0);
 										State = 539;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if (_la == T__21) {
+										if (_la == 22) {
 											{
 												State = 537;
-												Match(T__21);
+												Match(22);
 												State = 538;
 												expr(0);
 											}
 										}
 
 										State = 541;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 78: {
 										_localctx = new HMACSHA256_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 543;
-										if (!(Precpred(Context, 25))) throw new FailedPredicateException(this, "Precpred(Context, 25)");
+										//if (!(Precpred(Context, 25))) throw new FailedPredicateException(this, "Precpred(Context, 25)");
 										State = 544;
-										Match(T__18);
+										Match(19);
 										State = 545;
-										Match(HMACSHA256);
+										Match(217);
 										State = 546;
-										Match(T__19);
+										Match(20);
 										State = 547;
 										expr(0);
 										State = 550;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if (_la == T__21) {
+										if (_la == 22) {
 											{
 												State = 548;
-												Match(T__21);
+												Match(22);
 												State = 549;
 												expr(0);
 											}
 										}
 
 										State = 552;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 79: {
 										_localctx = new HMACSHA512_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 554;
-										if (!(Precpred(Context, 24))) throw new FailedPredicateException(this, "Precpred(Context, 24)");
+										//if (!(Precpred(Context, 24))) throw new FailedPredicateException(this, "Precpred(Context, 24)");
 										State = 555;
-										Match(T__18);
+										Match(19);
 										State = 556;
-										Match(HMACSHA512);
+										Match(218);
 										State = 557;
-										Match(T__19);
+										Match(20);
 										State = 558;
 										expr(0);
 										State = 561;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if (_la == T__21) {
+										if (_la == 22) {
 											{
 												State = 559;
-												Match(T__21);
+												Match(22);
 												State = 560;
 												expr(0);
 											}
 										}
 
 										State = 563;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 80: {
 										_localctx = new TRIMSTART_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 565;
-										if (!(Precpred(Context, 23))) throw new FailedPredicateException(this, "Precpred(Context, 23)");
+										//if (!(Precpred(Context, 23))) throw new FailedPredicateException(this, "Precpred(Context, 23)");
 										State = 566;
-										Match(T__18);
+										Match(19);
 										State = 567;
-										Match(TRIMSTART);
+										Match(219);
 										State = 568;
-										Match(T__19);
+										Match(20);
 										State = 570;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__19) | (1L << T__22) | (1L << T__24) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SQRT - 64)) | (1L << (TRUNC - 64)) | (1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (TEXT - 128)) | (1L << (TRIM - 128)) | (1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (LOGNORMDIST - 192)) | (1L << (NEGBINOMDIST - 192)) | (1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (ARRAY - 192)) | (1L << (PARAMETER - 192)) | (1L << (PARAMETER2 - 192)))) != 0)) {
+										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 20) | (1L << 23) | (1L << 25) | (1L << 26) | (1L << 27) | (1L << 28) | (1L << 29) | (1L << 30) | (1L << 31) | (1L << 32) | (1L << 33) | (1L << 34) | (1L << 35) | (1L << 36) | (1L << 37) | (1L << 38) | (1L << 39) | (1L << 40) | (1L << 41) | (1L << 42) | (1L << 43) | (1L << 44) | (1L << 45) | (1L << 46) | (1L << 47) | (1L << 48) | (1L << 49) | (1L << 50) | (1L << 51) | (1L << 52) | (1L << 53) | (1L << 54) | (1L << 55) | (1L << 56) | (1L << 57) | (1L << 58) | (1L << 59) | (1L << 60) | (1L << 61) | (1L << 62) | (1L << 63))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (64 - 64)) | (1L << (65 - 64)) | (1L << (66 - 64)) | (1L << (67 - 64)) | (1L << (68 - 64)) | (1L << (69 - 64)) | (1L << (70 - 64)) | (1L << (71 - 64)) | (1L << (72 - 64)) | (1L << (73 - 64)) | (1L << (74 - 64)) | (1L << (75 - 64)) | (1L << (76 - 64)) | (1L << (77 - 64)) | (1L << (78 - 64)) | (1L << (79 - 64)) | (1L << (80 - 64)) | (1L << (81 - 64)) | (1L << (82 - 64)) | (1L << (83 - 64)) | (1L << (84 - 64)) | (1L << (85 - 64)) | (1L << (86 - 64)) | (1L << (87 - 64)) | (1L << (88 - 64)) | (1L << (89 - 64)) | (1L << (90 - 64)) | (1L << (91 - 64)) | (1L << (92 - 64)) | (1L << (93 - 64)) | (1L << (94 - 64)) | (1L << (95 - 64)) | (1L << (96 - 64)) | (1L << (97 - 64)) | (1L << (98 - 64)) | (1L << (99 - 64)) | (1L << (100 - 64)) | (1L << (101 - 64)) | (1L << (102 - 64)) | (1L << (103 - 64)) | (1L << (104 - 64)) | (1L << (105 - 64)) | (1L << (106 - 64)) | (1L << (107 - 64)) | (1L << (108 - 64)) | (1L << (109 - 64)) | (1L << (110 - 64)) | (1L << (111 - 64)) | (1L << (112 - 64)) | (1L << (113 - 64)) | (1L << (114 - 64)) | (1L << (115 - 64)) | (1L << (116 - 64)) | (1L << (117 - 64)) | (1L << (118 - 64)) | (1L << (119 - 64)) | (1L << (120 - 64)) | (1L << (121 - 64)) | (1L << (122 - 64)) | (1L << (123 - 64)) | (1L << (124 - 64)) | (1L << (125 - 64)) | (1L << (126 - 64)) | (1L << (127 - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (128 - 128)) | (1L << (129 - 128)) | (1L << (130 - 128)) | (1L << (131 - 128)) | (1L << (132 - 128)) | (1L << (133 - 128)) | (1L << (134 - 128)) | (1L << (135 - 128)) | (1L << (136 - 128)) | (1L << (137 - 128)) | (1L << (138 - 128)) | (1L << (139 - 128)) | (1L << (140 - 128)) | (1L << (141 - 128)) | (1L << (142 - 128)) | (1L << (143 - 128)) | (1L << (144 - 128)) | (1L << (145 - 128)) | (1L << (146 - 128)) | (1L << (147 - 128)) | (1L << (148 - 128)) | (1L << (149 - 128)) | (1L << (150 - 128)) | (1L << (151 - 128)) | (1L << (152 - 128)) | (1L << (153 - 128)) | (1L << (154 - 128)) | (1L << (155 - 128)) | (1L << (156 - 128)) | (1L << (157 - 128)) | (1L << (158 - 128)) | (1L << (159 - 128)) | (1L << (160 - 128)) | (1L << (161 - 128)) | (1L << (162 - 128)) | (1L << (163 - 128)) | (1L << (164 - 128)) | (1L << (165 - 128)) | (1L << (166 - 128)) | (1L << (167 - 128)) | (1L << (168 - 128)) | (1L << (169 - 128)) | (1L << (170 - 128)) | (1L << (171 - 128)) | (1L << (172 - 128)) | (1L << (173 - 128)) | (1L << (174 - 128)) | (1L << (175 - 128)) | (1L << (176 - 128)) | (1L << (177 - 128)) | (1L << (178 - 128)) | (1L << (179 - 128)) | (1L << (180 - 128)) | (1L << (181 - 128)) | (1L << (182 - 128)) | (1L << (183 - 128)) | (1L << (184 - 128)) | (1L << (185 - 128)) | (1L << (186 - 128)) | (1L << (187 - 128)) | (1L << (188 - 128)) | (1L << (189 - 128)) | (1L << (190 - 128)) | (1L << (191 - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (192 - 192)) | (1L << (193 - 192)) | (1L << (194 - 192)) | (1L << (195 - 192)) | (1L << (196 - 192)) | (1L << (197 - 192)) | (1L << (198 - 192)) | (1L << (199 - 192)) | (1L << (200 - 192)) | (1L << (201 - 192)) | (1L << (202 - 192)) | (1L << (203 - 192)) | (1L << (204 - 192)) | (1L << (205 - 192)) | (1L << (206 - 192)) | (1L << (207 - 192)) | (1L << (208 - 192)) | (1L << (209 - 192)) | (1L << (210 - 192)) | (1L << (211 - 192)) | (1L << (212 - 192)) | (1L << (213 - 192)) | (1L << (214 - 192)) | (1L << (215 - 192)) | (1L << (216 - 192)) | (1L << (217 - 192)) | (1L << (218 - 192)) | (1L << (219 - 192)) | (1L << (220 - 192)) | (1L << (221 - 192)) | (1L << (222 - 192)) | (1L << (223 - 192)) | (1L << (224 - 192)) | (1L << (225 - 192)) | (1L << (226 - 192)) | (1L << (227 - 192)) | (1L << (228 - 192)) | (1L << (229 - 192)) | (1L << (230 - 192)) | (1L << (231 - 192)) | (1L << (232 - 192)) | (1L << (233 - 192)) | (1L << (234 - 192)) | (1L << (235 - 192)) | (1L << (236 - 192)) | (1L << (237 - 192)))) != 0)) {
 											{
 												State = 569;
 												expr(0);
@@ -2058,24 +2017,24 @@ partial class mathParser : Parser {
 										}
 
 										State = 572;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 81: {
 										_localctx = new TRIMEND_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 573;
-										if (!(Precpred(Context, 22))) throw new FailedPredicateException(this, "Precpred(Context, 22)");
+										//if (!(Precpred(Context, 22))) throw new FailedPredicateException(this, "Precpred(Context, 22)");
 										State = 574;
-										Match(T__18);
+										Match(19);
 										State = 575;
-										Match(TRIMEND);
+										Match(220);
 										State = 576;
-										Match(T__19);
+										Match(20);
 										State = 578;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__19) | (1L << T__22) | (1L << T__24) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SQRT - 64)) | (1L << (TRUNC - 64)) | (1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (TEXT - 128)) | (1L << (TRIM - 128)) | (1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (LOGNORMDIST - 192)) | (1L << (NEGBINOMDIST - 192)) | (1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (ARRAY - 192)) | (1L << (PARAMETER - 192)) | (1L << (PARAMETER2 - 192)))) != 0)) {
+										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 20) | (1L << 23) | (1L << 25) | (1L << 26) | (1L << 27) | (1L << 28) | (1L << 29) | (1L << 30) | (1L << 31) | (1L << 32) | (1L << 33) | (1L << 34) | (1L << 35) | (1L << 36) | (1L << 37) | (1L << 38) | (1L << 39) | (1L << 40) | (1L << 41) | (1L << 42) | (1L << 43) | (1L << 44) | (1L << 45) | (1L << 46) | (1L << 47) | (1L << 48) | (1L << 49) | (1L << 50) | (1L << 51) | (1L << 52) | (1L << 53) | (1L << 54) | (1L << 55) | (1L << 56) | (1L << 57) | (1L << 58) | (1L << 59) | (1L << 60) | (1L << 61) | (1L << 62) | (1L << 63))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (64 - 64)) | (1L << (65 - 64)) | (1L << (66 - 64)) | (1L << (67 - 64)) | (1L << (68 - 64)) | (1L << (69 - 64)) | (1L << (70 - 64)) | (1L << (71 - 64)) | (1L << (72 - 64)) | (1L << (73 - 64)) | (1L << (74 - 64)) | (1L << (75 - 64)) | (1L << (76 - 64)) | (1L << (77 - 64)) | (1L << (78 - 64)) | (1L << (79 - 64)) | (1L << (80 - 64)) | (1L << (81 - 64)) | (1L << (82 - 64)) | (1L << (83 - 64)) | (1L << (84 - 64)) | (1L << (85 - 64)) | (1L << (86 - 64)) | (1L << (87 - 64)) | (1L << (88 - 64)) | (1L << (89 - 64)) | (1L << (90 - 64)) | (1L << (91 - 64)) | (1L << (92 - 64)) | (1L << (93 - 64)) | (1L << (94 - 64)) | (1L << (95 - 64)) | (1L << (96 - 64)) | (1L << (97 - 64)) | (1L << (98 - 64)) | (1L << (99 - 64)) | (1L << (100 - 64)) | (1L << (101 - 64)) | (1L << (102 - 64)) | (1L << (103 - 64)) | (1L << (104 - 64)) | (1L << (105 - 64)) | (1L << (106 - 64)) | (1L << (107 - 64)) | (1L << (108 - 64)) | (1L << (109 - 64)) | (1L << (110 - 64)) | (1L << (111 - 64)) | (1L << (112 - 64)) | (1L << (113 - 64)) | (1L << (114 - 64)) | (1L << (115 - 64)) | (1L << (116 - 64)) | (1L << (117 - 64)) | (1L << (118 - 64)) | (1L << (119 - 64)) | (1L << (120 - 64)) | (1L << (121 - 64)) | (1L << (122 - 64)) | (1L << (123 - 64)) | (1L << (124 - 64)) | (1L << (125 - 64)) | (1L << (126 - 64)) | (1L << (127 - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (128 - 128)) | (1L << (129 - 128)) | (1L << (130 - 128)) | (1L << (131 - 128)) | (1L << (132 - 128)) | (1L << (133 - 128)) | (1L << (134 - 128)) | (1L << (135 - 128)) | (1L << (136 - 128)) | (1L << (137 - 128)) | (1L << (138 - 128)) | (1L << (139 - 128)) | (1L << (140 - 128)) | (1L << (141 - 128)) | (1L << (142 - 128)) | (1L << (143 - 128)) | (1L << (144 - 128)) | (1L << (145 - 128)) | (1L << (146 - 128)) | (1L << (147 - 128)) | (1L << (148 - 128)) | (1L << (149 - 128)) | (1L << (150 - 128)) | (1L << (151 - 128)) | (1L << (152 - 128)) | (1L << (153 - 128)) | (1L << (154 - 128)) | (1L << (155 - 128)) | (1L << (156 - 128)) | (1L << (157 - 128)) | (1L << (158 - 128)) | (1L << (159 - 128)) | (1L << (160 - 128)) | (1L << (161 - 128)) | (1L << (162 - 128)) | (1L << (163 - 128)) | (1L << (164 - 128)) | (1L << (165 - 128)) | (1L << (166 - 128)) | (1L << (167 - 128)) | (1L << (168 - 128)) | (1L << (169 - 128)) | (1L << (170 - 128)) | (1L << (171 - 128)) | (1L << (172 - 128)) | (1L << (173 - 128)) | (1L << (174 - 128)) | (1L << (175 - 128)) | (1L << (176 - 128)) | (1L << (177 - 128)) | (1L << (178 - 128)) | (1L << (179 - 128)) | (1L << (180 - 128)) | (1L << (181 - 128)) | (1L << (182 - 128)) | (1L << (183 - 128)) | (1L << (184 - 128)) | (1L << (185 - 128)) | (1L << (186 - 128)) | (1L << (187 - 128)) | (1L << (188 - 128)) | (1L << (189 - 128)) | (1L << (190 - 128)) | (1L << (191 - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (192 - 192)) | (1L << (193 - 192)) | (1L << (194 - 192)) | (1L << (195 - 192)) | (1L << (196 - 192)) | (1L << (197 - 192)) | (1L << (198 - 192)) | (1L << (199 - 192)) | (1L << (200 - 192)) | (1L << (201 - 192)) | (1L << (202 - 192)) | (1L << (203 - 192)) | (1L << (204 - 192)) | (1L << (205 - 192)) | (1L << (206 - 192)) | (1L << (207 - 192)) | (1L << (208 - 192)) | (1L << (209 - 192)) | (1L << (210 - 192)) | (1L << (211 - 192)) | (1L << (212 - 192)) | (1L << (213 - 192)) | (1L << (214 - 192)) | (1L << (215 - 192)) | (1L << (216 - 192)) | (1L << (217 - 192)) | (1L << (218 - 192)) | (1L << (219 - 192)) | (1L << (220 - 192)) | (1L << (221 - 192)) | (1L << (222 - 192)) | (1L << (223 - 192)) | (1L << (224 - 192)) | (1L << (225 - 192)) | (1L << (226 - 192)) | (1L << (227 - 192)) | (1L << (228 - 192)) | (1L << (229 - 192)) | (1L << (230 - 192)) | (1L << (231 - 192)) | (1L << (232 - 192)) | (1L << (233 - 192)) | (1L << (234 - 192)) | (1L << (235 - 192)) | (1L << (236 - 192)) | (1L << (237 - 192)))) != 0)) {
 											{
 												State = 577;
 												expr(0);
@@ -2083,38 +2042,38 @@ partial class mathParser : Parser {
 										}
 
 										State = 580;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 82: {
 										_localctx = new INDEXOF_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 581;
-										if (!(Precpred(Context, 21))) throw new FailedPredicateException(this, "Precpred(Context, 21)");
+										//if (!(Precpred(Context, 21))) throw new FailedPredicateException(this, "Precpred(Context, 21)");
 										State = 582;
-										Match(T__18);
+										Match(19);
 										State = 583;
-										Match(INDEXOF);
+										Match(221);
 										State = 584;
-										Match(T__19);
+										Match(20);
 										State = 585;
 										expr(0);
 										State = 592;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if (_la == T__21) {
+										if (_la == 22) {
 											{
 												State = 586;
-												Match(T__21);
+												Match(22);
 												State = 587;
 												expr(0);
 												State = 590;
 												ErrorHandler.Sync(this);
 												_la = TokenStream.LA(1);
-												if (_la == T__21) {
+												if (_la == 22) {
 													{
 														State = 588;
-														Match(T__21);
+														Match(22);
 														State = 589;
 														expr(0);
 													}
@@ -2124,38 +2083,38 @@ partial class mathParser : Parser {
 										}
 
 										State = 594;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 83: {
 										_localctx = new LASTINDEXOF_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 596;
-										if (!(Precpred(Context, 20))) throw new FailedPredicateException(this, "Precpred(Context, 20)");
+										//if (!(Precpred(Context, 20))) throw new FailedPredicateException(this, "Precpred(Context, 20)");
 										State = 597;
-										Match(T__18);
+										Match(19);
 										State = 598;
-										Match(LASTINDEXOF);
+										Match(222);
 										State = 599;
-										Match(T__19);
+										Match(20);
 										State = 600;
 										expr(0);
 										State = 607;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if (_la == T__21) {
+										if (_la == 22) {
 											{
 												State = 601;
-												Match(T__21);
+												Match(22);
 												State = 602;
 												expr(0);
 												State = 605;
 												ErrorHandler.Sync(this);
 												_la = TokenStream.LA(1);
-												if (_la == T__21) {
+												if (_la == 22) {
 													{
 														State = 603;
-														Match(T__21);
+														Match(22);
 														State = 604;
 														expr(0);
 													}
@@ -2165,47 +2124,47 @@ partial class mathParser : Parser {
 										}
 
 										State = 609;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 84: {
 										_localctx = new SPLIT_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 611;
-										if (!(Precpred(Context, 19))) throw new FailedPredicateException(this, "Precpred(Context, 19)");
+										//if (!(Precpred(Context, 19))) throw new FailedPredicateException(this, "Precpred(Context, 19)");
 										State = 612;
-										Match(T__18);
+										Match(19);
 										State = 613;
-										Match(SPLIT);
+										Match(223);
 										State = 614;
-										Match(T__19);
+										Match(20);
 										State = 615;
 										expr(0);
 										State = 616;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 85: {
 										_localctx = new JOIN_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 618;
-										if (!(Precpred(Context, 18))) throw new FailedPredicateException(this, "Precpred(Context, 18)");
+										//if (!(Precpred(Context, 18))) throw new FailedPredicateException(this, "Precpred(Context, 18)");
 										State = 619;
-										Match(T__18);
+										Match(19);
 										State = 620;
-										Match(JOIN);
+										Match(224);
 										State = 621;
-										Match(T__19);
+										Match(20);
 										State = 622;
 										expr(0);
 										State = 627;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										while (_la == T__21) {
+										while (_la == 22) {
 											{
 												{
 													State = 623;
-													Match(T__21);
+													Match(22);
 													State = 624;
 													expr(0);
 												}
@@ -2215,279 +2174,279 @@ partial class mathParser : Parser {
 											_la = TokenStream.LA(1);
 										}
 										State = 630;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 86: {
 										_localctx = new SUBSTRING_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 632;
-										if (!(Precpred(Context, 17))) throw new FailedPredicateException(this, "Precpred(Context, 17)");
+										//if (!(Precpred(Context, 17))) throw new FailedPredicateException(this, "Precpred(Context, 17)");
 										State = 633;
-										Match(T__18);
+										Match(19);
 										State = 634;
-										Match(SUBSTRING);
+										Match(225);
 										State = 635;
-										Match(T__19);
+										Match(20);
 										State = 636;
 										expr(0);
 										State = 639;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if (_la == T__21) {
+										if (_la == 22) {
 											{
 												State = 637;
-												Match(T__21);
+												Match(22);
 												State = 638;
 												expr(0);
 											}
 										}
 
 										State = 641;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 87: {
 										_localctx = new STARTSWITH_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 643;
-										if (!(Precpred(Context, 16))) throw new FailedPredicateException(this, "Precpred(Context, 16)");
+										//if (!(Precpred(Context, 16))) throw new FailedPredicateException(this, "Precpred(Context, 16)");
 										State = 644;
-										Match(T__18);
+										Match(19);
 										State = 645;
-										Match(STARTSWITH);
+										Match(226);
 										State = 646;
-										Match(T__19);
+										Match(20);
 										State = 647;
 										expr(0);
 										State = 650;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if (_la == T__21) {
+										if (_la == 22) {
 											{
 												State = 648;
-												Match(T__21);
+												Match(22);
 												State = 649;
 												expr(0);
 											}
 										}
 
 										State = 652;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 88: {
 										_localctx = new ENDSWITH_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 654;
-										if (!(Precpred(Context, 15))) throw new FailedPredicateException(this, "Precpred(Context, 15)");
+										//if (!(Precpred(Context, 15))) throw new FailedPredicateException(this, "Precpred(Context, 15)");
 										State = 655;
-										Match(T__18);
+										Match(19);
 										State = 656;
-										Match(ENDSWITH);
+										Match(227);
 										State = 657;
-										Match(T__19);
+										Match(20);
 										State = 658;
 										expr(0);
 										State = 661;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if (_la == T__21) {
+										if (_la == 22) {
 											{
 												State = 659;
-												Match(T__21);
+												Match(22);
 												State = 660;
 												expr(0);
 											}
 										}
 
 										State = 663;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 89: {
 										_localctx = new ISNULLOREMPTY_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 665;
-										if (!(Precpred(Context, 14))) throw new FailedPredicateException(this, "Precpred(Context, 14)");
+										//if (!(Precpred(Context, 14))) throw new FailedPredicateException(this, "Precpred(Context, 14)");
 										State = 666;
-										Match(T__18);
+										Match(19);
 										State = 667;
-										Match(ISNULLOREMPTY);
+										Match(228);
 										State = 668;
-										Match(T__19);
+										Match(20);
 										State = 669;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 90: {
 										_localctx = new ISNULLORWHITESPACE_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 670;
-										if (!(Precpred(Context, 13))) throw new FailedPredicateException(this, "Precpred(Context, 13)");
+										//if (!(Precpred(Context, 13))) throw new FailedPredicateException(this, "Precpred(Context, 13)");
 										State = 671;
-										Match(T__18);
+										Match(19);
 										State = 672;
-										Match(ISNULLORWHITESPACE);
+										Match(229);
 										State = 673;
-										Match(T__19);
+										Match(20);
 										State = 674;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 91: {
 										_localctx = new REMOVESTART_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 675;
-										if (!(Precpred(Context, 12))) throw new FailedPredicateException(this, "Precpred(Context, 12)");
+										//if (!(Precpred(Context, 12))) throw new FailedPredicateException(this, "Precpred(Context, 12)");
 										State = 676;
-										Match(T__18);
+										Match(19);
 										State = 677;
-										Match(REMOVESTART);
+										Match(230);
 										State = 678;
-										Match(T__19);
+										Match(20);
 										State = 679;
 										expr(0);
 										State = 682;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if (_la == T__21) {
+										if (_la == 22) {
 											{
 												State = 680;
-												Match(T__21);
+												Match(22);
 												State = 681;
 												expr(0);
 											}
 										}
 
 										State = 684;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 92: {
 										_localctx = new REMOVEEND_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 686;
-										if (!(Precpred(Context, 11))) throw new FailedPredicateException(this, "Precpred(Context, 11)");
+										//if (!(Precpred(Context, 11))) throw new FailedPredicateException(this, "Precpred(Context, 11)");
 										State = 687;
-										Match(T__18);
+										Match(19);
 										State = 688;
-										Match(REMOVEEND);
+										Match(231);
 										State = 689;
-										Match(T__19);
+										Match(20);
 										State = 690;
 										expr(0);
 										State = 693;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if (_la == T__21) {
+										if (_la == 22) {
 											{
 												State = 691;
-												Match(T__21);
+												Match(22);
 												State = 692;
 												expr(0);
 											}
 										}
 
 										State = 695;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 93: {
 										_localctx = new JSON_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 697;
-										if (!(Precpred(Context, 10))) throw new FailedPredicateException(this, "Precpred(Context, 10)");
+										//if (!(Precpred(Context, 10))) throw new FailedPredicateException(this, "Precpred(Context, 10)");
 										State = 698;
-										Match(T__18);
+										Match(19);
 										State = 699;
-										Match(JSON);
+										Match(232);
 										State = 700;
-										Match(T__19);
+										Match(20);
 										State = 701;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 94: {
 										_localctx = new VLOOKUP_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 702;
-										if (!(Precpred(Context, 9))) throw new FailedPredicateException(this, "Precpred(Context, 9)");
+										//if (!(Precpred(Context, 9))) throw new FailedPredicateException(this, "Precpred(Context, 9)");
 										State = 703;
-										Match(T__18);
+										Match(19);
 										State = 704;
-										Match(VLOOKUP);
+										Match(233);
 										State = 705;
-										Match(T__19);
+										Match(20);
 										State = 706;
 										expr(0);
 										State = 707;
-										Match(T__21);
+										Match(22);
 										State = 708;
 										expr(0);
 										State = 711;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if (_la == T__21) {
+										if (_la == 22) {
 											{
 												State = 709;
-												Match(T__21);
+												Match(22);
 												State = 710;
 												expr(0);
 											}
 										}
 
 										State = 713;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 95: {
 										_localctx = new LOOKUP_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 715;
-										if (!(Precpred(Context, 8))) throw new FailedPredicateException(this, "Precpred(Context, 8)");
+										//if (!(Precpred(Context, 8))) throw new FailedPredicateException(this, "Precpred(Context, 8)");
 										State = 716;
-										Match(T__18);
+										Match(19);
 										State = 717;
-										Match(LOOKUP);
+										Match(234);
 										State = 718;
-										Match(T__19);
+										Match(20);
 										State = 719;
 										expr(0);
 										State = 720;
-										Match(T__21);
+										Match(22);
 										State = 721;
 										expr(0);
 										State = 722;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 96: {
 										_localctx = new DiyFunction_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 724;
-										if (!(Precpred(Context, 7))) throw new FailedPredicateException(this, "Precpred(Context, 7)");
+										//if (!(Precpred(Context, 7))) throw new FailedPredicateException(this, "Precpred(Context, 7)");
 										State = 725;
-										Match(T__18);
+										Match(19);
 										State = 726;
-										Match(PARAMETER);
+										Match(236);
 										State = 727;
-										Match(T__19);
+										Match(20);
 										State = 736;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__19) | (1L << T__22) | (1L << T__24) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SQRT - 64)) | (1L << (TRUNC - 64)) | (1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (TEXT - 128)) | (1L << (TRIM - 128)) | (1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (LOGNORMDIST - 192)) | (1L << (NEGBINOMDIST - 192)) | (1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (ARRAY - 192)) | (1L << (PARAMETER - 192)) | (1L << (PARAMETER2 - 192)))) != 0)) {
+										if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 20) | (1L << 23) | (1L << 25) | (1L << 26) | (1L << 27) | (1L << 28) | (1L << 29) | (1L << 30) | (1L << 31) | (1L << 32) | (1L << 33) | (1L << 34) | (1L << 35) | (1L << 36) | (1L << 37) | (1L << 38) | (1L << 39) | (1L << 40) | (1L << 41) | (1L << 42) | (1L << 43) | (1L << 44) | (1L << 45) | (1L << 46) | (1L << 47) | (1L << 48) | (1L << 49) | (1L << 50) | (1L << 51) | (1L << 52) | (1L << 53) | (1L << 54) | (1L << 55) | (1L << 56) | (1L << 57) | (1L << 58) | (1L << 59) | (1L << 60) | (1L << 61) | (1L << 62) | (1L << 63))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (64 - 64)) | (1L << (65 - 64)) | (1L << (66 - 64)) | (1L << (67 - 64)) | (1L << (68 - 64)) | (1L << (69 - 64)) | (1L << (70 - 64)) | (1L << (71 - 64)) | (1L << (72 - 64)) | (1L << (73 - 64)) | (1L << (74 - 64)) | (1L << (75 - 64)) | (1L << (76 - 64)) | (1L << (77 - 64)) | (1L << (78 - 64)) | (1L << (79 - 64)) | (1L << (80 - 64)) | (1L << (81 - 64)) | (1L << (82 - 64)) | (1L << (83 - 64)) | (1L << (84 - 64)) | (1L << (85 - 64)) | (1L << (86 - 64)) | (1L << (87 - 64)) | (1L << (88 - 64)) | (1L << (89 - 64)) | (1L << (90 - 64)) | (1L << (91 - 64)) | (1L << (92 - 64)) | (1L << (93 - 64)) | (1L << (94 - 64)) | (1L << (95 - 64)) | (1L << (96 - 64)) | (1L << (97 - 64)) | (1L << (98 - 64)) | (1L << (99 - 64)) | (1L << (100 - 64)) | (1L << (101 - 64)) | (1L << (102 - 64)) | (1L << (103 - 64)) | (1L << (104 - 64)) | (1L << (105 - 64)) | (1L << (106 - 64)) | (1L << (107 - 64)) | (1L << (108 - 64)) | (1L << (109 - 64)) | (1L << (110 - 64)) | (1L << (111 - 64)) | (1L << (112 - 64)) | (1L << (113 - 64)) | (1L << (114 - 64)) | (1L << (115 - 64)) | (1L << (116 - 64)) | (1L << (117 - 64)) | (1L << (118 - 64)) | (1L << (119 - 64)) | (1L << (120 - 64)) | (1L << (121 - 64)) | (1L << (122 - 64)) | (1L << (123 - 64)) | (1L << (124 - 64)) | (1L << (125 - 64)) | (1L << (126 - 64)) | (1L << (127 - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (128 - 128)) | (1L << (129 - 128)) | (1L << (130 - 128)) | (1L << (131 - 128)) | (1L << (132 - 128)) | (1L << (133 - 128)) | (1L << (134 - 128)) | (1L << (135 - 128)) | (1L << (136 - 128)) | (1L << (137 - 128)) | (1L << (138 - 128)) | (1L << (139 - 128)) | (1L << (140 - 128)) | (1L << (141 - 128)) | (1L << (142 - 128)) | (1L << (143 - 128)) | (1L << (144 - 128)) | (1L << (145 - 128)) | (1L << (146 - 128)) | (1L << (147 - 128)) | (1L << (148 - 128)) | (1L << (149 - 128)) | (1L << (150 - 128)) | (1L << (151 - 128)) | (1L << (152 - 128)) | (1L << (153 - 128)) | (1L << (154 - 128)) | (1L << (155 - 128)) | (1L << (156 - 128)) | (1L << (157 - 128)) | (1L << (158 - 128)) | (1L << (159 - 128)) | (1L << (160 - 128)) | (1L << (161 - 128)) | (1L << (162 - 128)) | (1L << (163 - 128)) | (1L << (164 - 128)) | (1L << (165 - 128)) | (1L << (166 - 128)) | (1L << (167 - 128)) | (1L << (168 - 128)) | (1L << (169 - 128)) | (1L << (170 - 128)) | (1L << (171 - 128)) | (1L << (172 - 128)) | (1L << (173 - 128)) | (1L << (174 - 128)) | (1L << (175 - 128)) | (1L << (176 - 128)) | (1L << (177 - 128)) | (1L << (178 - 128)) | (1L << (179 - 128)) | (1L << (180 - 128)) | (1L << (181 - 128)) | (1L << (182 - 128)) | (1L << (183 - 128)) | (1L << (184 - 128)) | (1L << (185 - 128)) | (1L << (186 - 128)) | (1L << (187 - 128)) | (1L << (188 - 128)) | (1L << (189 - 128)) | (1L << (190 - 128)) | (1L << (191 - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (192 - 192)) | (1L << (193 - 192)) | (1L << (194 - 192)) | (1L << (195 - 192)) | (1L << (196 - 192)) | (1L << (197 - 192)) | (1L << (198 - 192)) | (1L << (199 - 192)) | (1L << (200 - 192)) | (1L << (201 - 192)) | (1L << (202 - 192)) | (1L << (203 - 192)) | (1L << (204 - 192)) | (1L << (205 - 192)) | (1L << (206 - 192)) | (1L << (207 - 192)) | (1L << (208 - 192)) | (1L << (209 - 192)) | (1L << (210 - 192)) | (1L << (211 - 192)) | (1L << (212 - 192)) | (1L << (213 - 192)) | (1L << (214 - 192)) | (1L << (215 - 192)) | (1L << (216 - 192)) | (1L << (217 - 192)) | (1L << (218 - 192)) | (1L << (219 - 192)) | (1L << (220 - 192)) | (1L << (221 - 192)) | (1L << (222 - 192)) | (1L << (223 - 192)) | (1L << (224 - 192)) | (1L << (225 - 192)) | (1L << (226 - 192)) | (1L << (227 - 192)) | (1L << (228 - 192)) | (1L << (229 - 192)) | (1L << (230 - 192)) | (1L << (231 - 192)) | (1L << (232 - 192)) | (1L << (233 - 192)) | (1L << (234 - 192)) | (1L << (235 - 192)) | (1L << (236 - 192)) | (1L << (237 - 192)))) != 0)) {
 											{
 												State = 728;
 												expr(0);
 												State = 733;
 												ErrorHandler.Sync(this);
 												_la = TokenStream.LA(1);
-												while (_la == T__21) {
+												while (_la == 22) {
 													{
 														{
 															State = 729;
-															Match(T__21);
+															Match(22);
 															State = 730;
 															expr(0);
 														}
@@ -2500,53 +2459,53 @@ partial class mathParser : Parser {
 										}
 
 										State = 738;
-										Match(T__20);
+										Match(21);
 									}
 									break;
 								case 97: {
 										_localctx = new GetJsonValue_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 739;
-										if (!(Precpred(Context, 6))) throw new FailedPredicateException(this, "Precpred(Context, 6)");
+										//if (!(Precpred(Context, 6))) throw new FailedPredicateException(this, "Precpred(Context, 6)");
 										State = 740;
-										Match(T__22);
+										Match(23);
 										State = 741;
 										parameter2();
 										State = 742;
-										Match(T__23);
+										Match(24);
 									}
 									break;
 								case 98: {
 										_localctx = new GetJsonValue_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 744;
-										if (!(Precpred(Context, 5))) throw new FailedPredicateException(this, "Precpred(Context, 5)");
+										//if (!(Precpred(Context, 5))) throw new FailedPredicateException(this, "Precpred(Context, 5)");
 										State = 745;
-										Match(T__22);
+										Match(23);
 										State = 746;
 										expr(0);
 										State = 747;
-										Match(T__23);
+										Match(24);
 									}
 									break;
 								case 99: {
 										_localctx = new GetJsonValue_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 749;
-										if (!(Precpred(Context, 4))) throw new FailedPredicateException(this, "Precpred(Context, 4)");
+										//if (!(Precpred(Context, 4))) throw new FailedPredicateException(this, "Precpred(Context, 4)");
 										State = 750;
-										Match(T__18);
+										Match(19);
 										State = 751;
 										parameter2();
 									}
 									break;
 								case 100: {
 										_localctx = new Percentage_funContext(new ExprContext(_parentctx, _parentState));
-										PushNewRecursionContext(_localctx, _startState, RULE_expr);
+										PushNewRecursionContext(_localctx, _startState, 1);
 										State = 752;
-										if (!(Precpred(Context, 3))) throw new FailedPredicateException(this, "Precpred(Context, 3)");
+										//if (!(Precpred(Context, 3))) throw new FailedPredicateException(this, "Precpred(Context, 3)");
 										State = 753;
-										Match(T__4);
+										Match(5);
 									}
 									break;
 							}
@@ -2570,7 +2529,7 @@ partial class mathParser : Parser {
 	public ExprContext expr2()
 	{
 		ExprContext _localctx = new ExprContext(Context, State);
-		EnterRule(_localctx, 4, RULE_expr2);
+		EnterRule(_localctx, 4, 2);
 		int _la;
 		try {
 			State = 2441;
@@ -2580,30 +2539,30 @@ partial class mathParser : Parser {
 					_localctx = new Bracket_funContext(_localctx);
 					EnterOuterAlt(_localctx, 1); {
 						State = 759;
-						Match(T__19);
+						Match(20);
 						State = 760;
 						expr(0);
 						State = 761;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 2:
 					_localctx = new Array_funContext(_localctx);
 					EnterOuterAlt(_localctx, 2); {
 						State = 763;
-						Match(ARRAY);
+						Match(235);
 						State = 764;
-						Match(T__19);
+						Match(20);
 						State = 765;
 						expr(0);
 						State = 770;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						while (_la == T__21) {
+						while (_la == 22) {
 							{
 								{
 									State = 766;
-									Match(T__21);
+									Match(22);
 									State = 767;
 									expr(0);
 								}
@@ -2613,237 +2572,237 @@ partial class mathParser : Parser {
 							_la = TokenStream.LA(1);
 						}
 						State = 773;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 3:
 					_localctx = new IF_funContext(_localctx);
 					EnterOuterAlt(_localctx, 3); {
 						State = 775;
-						Match(IF);
+						Match(30);
 						State = 776;
-						Match(T__19);
+						Match(20);
 						State = 777;
 						expr(0);
 						State = 778;
-						Match(T__21);
+						Match(22);
 						State = 779;
 						expr(0);
 						State = 782;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 780;
-								Match(T__21);
+								Match(22);
 								State = 781;
 								expr(0);
 							}
 						}
 
 						State = 784;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 4:
 					_localctx = new ISNUMBER_funContext(_localctx);
 					EnterOuterAlt(_localctx, 4); {
 						State = 786;
-						Match(ISNUMBER);
+						Match(32);
 						State = 787;
-						Match(T__19);
+						Match(20);
 						State = 788;
 						expr(0);
 						State = 789;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 5:
 					_localctx = new ISTEXT_funContext(_localctx);
 					EnterOuterAlt(_localctx, 5); {
 						State = 791;
-						Match(ISTEXT);
+						Match(33);
 						State = 792;
-						Match(T__19);
+						Match(20);
 						State = 793;
 						expr(0);
 						State = 794;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 6:
 					_localctx = new ISERROR_funContext(_localctx);
 					EnterOuterAlt(_localctx, 6); {
 						State = 796;
-						Match(ISERROR);
+						Match(34);
 						State = 797;
-						Match(T__19);
+						Match(20);
 						State = 798;
 						expr(0);
 						State = 801;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 799;
-								Match(T__21);
+								Match(22);
 								State = 800;
 								expr(0);
 							}
 						}
 
 						State = 803;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 7:
 					_localctx = new ISNONTEXT_funContext(_localctx);
 					EnterOuterAlt(_localctx, 7); {
 						State = 805;
-						Match(ISNONTEXT);
+						Match(35);
 						State = 806;
-						Match(T__19);
+						Match(20);
 						State = 807;
 						expr(0);
 						State = 808;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 8:
 					_localctx = new ISLOGICAL_funContext(_localctx);
 					EnterOuterAlt(_localctx, 8); {
 						State = 810;
-						Match(ISLOGICAL);
+						Match(36);
 						State = 811;
-						Match(T__19);
+						Match(20);
 						State = 812;
 						expr(0);
 						State = 813;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 9:
 					_localctx = new ISEVEN_funContext(_localctx);
 					EnterOuterAlt(_localctx, 9); {
 						State = 815;
-						Match(ISEVEN);
+						Match(37);
 						State = 816;
-						Match(T__19);
+						Match(20);
 						State = 817;
 						expr(0);
 						State = 818;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 10:
 					_localctx = new ISODD_funContext(_localctx);
 					EnterOuterAlt(_localctx, 10); {
 						State = 820;
-						Match(ISODD);
+						Match(38);
 						State = 821;
-						Match(T__19);
+						Match(20);
 						State = 822;
 						expr(0);
 						State = 823;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 11:
 					_localctx = new IFERROR_funContext(_localctx);
 					EnterOuterAlt(_localctx, 11); {
 						State = 825;
-						Match(IFERROR);
+						Match(31);
 						State = 826;
-						Match(T__19);
+						Match(20);
 						State = 827;
 						expr(0);
 						State = 828;
-						Match(T__21);
+						Match(22);
 						State = 829;
 						expr(0);
 						State = 832;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 830;
-								Match(T__21);
+								Match(22);
 								State = 831;
 								expr(0);
 							}
 						}
 
 						State = 834;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 12:
 					_localctx = new ISNULL_funContext(_localctx);
 					EnterOuterAlt(_localctx, 12); {
 						State = 836;
-						Match(ISNULL);
+						Match(39);
 						State = 837;
-						Match(T__19);
+						Match(20);
 						State = 838;
 						expr(0);
 						State = 841;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 839;
-								Match(T__21);
+								Match(22);
 								State = 840;
 								expr(0);
 							}
 						}
 
 						State = 843;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 13:
 					_localctx = new ISNULLORERROR_funContext(_localctx);
 					EnterOuterAlt(_localctx, 13); {
 						State = 845;
-						Match(ISNULLORERROR);
+						Match(40);
 						State = 846;
-						Match(T__19);
+						Match(20);
 						State = 847;
 						expr(0);
 						State = 850;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 848;
-								Match(T__21);
+								Match(22);
 								State = 849;
 								expr(0);
 							}
 						}
 
 						State = 852;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 14:
 					_localctx = new AND_funContext(_localctx);
 					EnterOuterAlt(_localctx, 14); {
 						State = 854;
-						Match(AND);
+						Match(41);
 						State = 855;
-						Match(T__19);
+						Match(20);
 						State = 856;
 						expr(0);
 						State = 861;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						while (_la == T__21) {
+						while (_la == 22) {
 							{
 								{
 									State = 857;
-									Match(T__21);
+									Match(22);
 									State = 858;
 									expr(0);
 								}
@@ -2853,26 +2812,26 @@ partial class mathParser : Parser {
 							_la = TokenStream.LA(1);
 						}
 						State = 864;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 15:
 					_localctx = new OR_funContext(_localctx);
 					EnterOuterAlt(_localctx, 15); {
 						State = 866;
-						Match(OR);
+						Match(42);
 						State = 867;
-						Match(T__19);
+						Match(20);
 						State = 868;
 						expr(0);
 						State = 873;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						while (_la == T__21) {
+						while (_la == 22) {
 							{
 								{
 									State = 869;
-									Match(T__21);
+									Match(22);
 									State = 870;
 									expr(0);
 								}
@@ -2882,35 +2841,35 @@ partial class mathParser : Parser {
 							_la = TokenStream.LA(1);
 						}
 						State = 876;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 16:
 					_localctx = new NOT_funContext(_localctx);
 					EnterOuterAlt(_localctx, 16); {
 						State = 878;
-						Match(NOT);
+						Match(43);
 						State = 879;
-						Match(T__19);
+						Match(20);
 						State = 880;
 						expr(0);
 						State = 881;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 17:
 					_localctx = new TRUE_funContext(_localctx);
 					EnterOuterAlt(_localctx, 17); {
 						State = 883;
-						Match(TRUE);
+						Match(44);
 						State = 886;
 						ErrorHandler.Sync(this);
 						switch (Interpreter.AdaptivePredict(TokenStream, 65, Context)) {
 							case 1: {
 									State = 884;
-									Match(T__19);
+									Match(20);
 									State = 885;
-									Match(T__20);
+									Match(21);
 								}
 								break;
 						}
@@ -2920,15 +2879,15 @@ partial class mathParser : Parser {
 					_localctx = new FALSE_funContext(_localctx);
 					EnterOuterAlt(_localctx, 18); {
 						State = 888;
-						Match(FALSE);
+						Match(45);
 						State = 891;
 						ErrorHandler.Sync(this);
 						switch (Interpreter.AdaptivePredict(TokenStream, 66, Context)) {
 							case 1: {
 									State = 889;
-									Match(T__19);
+									Match(20);
 									State = 890;
-									Match(T__20);
+									Match(21);
 								}
 								break;
 						}
@@ -2938,15 +2897,15 @@ partial class mathParser : Parser {
 					_localctx = new E_funContext(_localctx);
 					EnterOuterAlt(_localctx, 19); {
 						State = 893;
-						Match(E);
+						Match(46);
 						State = 896;
 						ErrorHandler.Sync(this);
 						switch (Interpreter.AdaptivePredict(TokenStream, 67, Context)) {
 							case 1: {
 									State = 894;
-									Match(T__19);
+									Match(20);
 									State = 895;
-									Match(T__20);
+									Match(21);
 								}
 								break;
 						}
@@ -2956,15 +2915,15 @@ partial class mathParser : Parser {
 					_localctx = new PI_funContext(_localctx);
 					EnterOuterAlt(_localctx, 20); {
 						State = 898;
-						Match(PI);
+						Match(47);
 						State = 901;
 						ErrorHandler.Sync(this);
 						switch (Interpreter.AdaptivePredict(TokenStream, 68, Context)) {
 							case 1: {
 									State = 899;
-									Match(T__19);
+									Match(20);
 									State = 900;
-									Match(T__20);
+									Match(21);
 								}
 								break;
 						}
@@ -2974,26 +2933,26 @@ partial class mathParser : Parser {
 					_localctx = new DEC2BIN_funContext(_localctx);
 					EnterOuterAlt(_localctx, 21); {
 						State = 903;
-						Match(DEC2BIN);
+						Match(48);
 						{
 							State = 904;
-							Match(T__19);
+							Match(20);
 							State = 905;
 							expr(0);
 							State = 908;
 							ErrorHandler.Sync(this);
 							_la = TokenStream.LA(1);
-							if (_la == T__21) {
+							if (_la == 22) {
 								{
 									State = 906;
-									Match(T__21);
+									Match(22);
 									State = 907;
 									expr(0);
 								}
 							}
 
 							State = 910;
-							Match(T__20);
+							Match(21);
 						}
 					}
 					break;
@@ -3001,26 +2960,26 @@ partial class mathParser : Parser {
 					_localctx = new DEC2HEX_funContext(_localctx);
 					EnterOuterAlt(_localctx, 22); {
 						State = 912;
-						Match(DEC2HEX);
+						Match(49);
 						{
 							State = 913;
-							Match(T__19);
+							Match(20);
 							State = 914;
 							expr(0);
 							State = 917;
 							ErrorHandler.Sync(this);
 							_la = TokenStream.LA(1);
-							if (_la == T__21) {
+							if (_la == 22) {
 								{
 									State = 915;
-									Match(T__21);
+									Match(22);
 									State = 916;
 									expr(0);
 								}
 							}
 
 							State = 919;
-							Match(T__20);
+							Match(21);
 						}
 					}
 					break;
@@ -3028,26 +2987,26 @@ partial class mathParser : Parser {
 					_localctx = new DEC2OCT_funContext(_localctx);
 					EnterOuterAlt(_localctx, 23); {
 						State = 921;
-						Match(DEC2OCT);
+						Match(50);
 						{
 							State = 922;
-							Match(T__19);
+							Match(20);
 							State = 923;
 							expr(0);
 							State = 926;
 							ErrorHandler.Sync(this);
 							_la = TokenStream.LA(1);
-							if (_la == T__21) {
+							if (_la == 22) {
 								{
 									State = 924;
-									Match(T__21);
+									Match(22);
 									State = 925;
 									expr(0);
 								}
 							}
 
 							State = 928;
-							Match(T__20);
+							Match(21);
 						}
 					}
 					break;
@@ -3055,26 +3014,26 @@ partial class mathParser : Parser {
 					_localctx = new HEX2BIN_funContext(_localctx);
 					EnterOuterAlt(_localctx, 24); {
 						State = 930;
-						Match(HEX2BIN);
+						Match(51);
 						{
 							State = 931;
-							Match(T__19);
+							Match(20);
 							State = 932;
 							expr(0);
 							State = 935;
 							ErrorHandler.Sync(this);
 							_la = TokenStream.LA(1);
-							if (_la == T__21) {
+							if (_la == 22) {
 								{
 									State = 933;
-									Match(T__21);
+									Match(22);
 									State = 934;
 									expr(0);
 								}
 							}
 
 							State = 937;
-							Match(T__20);
+							Match(21);
 						}
 					}
 					break;
@@ -3082,14 +3041,14 @@ partial class mathParser : Parser {
 					_localctx = new HEX2DEC_funContext(_localctx);
 					EnterOuterAlt(_localctx, 25); {
 						State = 939;
-						Match(HEX2DEC);
+						Match(52);
 						{
 							State = 940;
-							Match(T__19);
+							Match(20);
 							State = 941;
 							expr(0);
 							State = 942;
-							Match(T__20);
+							Match(21);
 						}
 					}
 					break;
@@ -3097,26 +3056,26 @@ partial class mathParser : Parser {
 					_localctx = new HEX2OCT_funContext(_localctx);
 					EnterOuterAlt(_localctx, 26); {
 						State = 944;
-						Match(HEX2OCT);
+						Match(53);
 						{
 							State = 945;
-							Match(T__19);
+							Match(20);
 							State = 946;
 							expr(0);
 							State = 949;
 							ErrorHandler.Sync(this);
 							_la = TokenStream.LA(1);
-							if (_la == T__21) {
+							if (_la == 22) {
 								{
 									State = 947;
-									Match(T__21);
+									Match(22);
 									State = 948;
 									expr(0);
 								}
 							}
 
 							State = 951;
-							Match(T__20);
+							Match(21);
 						}
 					}
 					break;
@@ -3124,26 +3083,26 @@ partial class mathParser : Parser {
 					_localctx = new OCT2BIN_funContext(_localctx);
 					EnterOuterAlt(_localctx, 27); {
 						State = 953;
-						Match(OCT2BIN);
+						Match(54);
 						{
 							State = 954;
-							Match(T__19);
+							Match(20);
 							State = 955;
 							expr(0);
 							State = 958;
 							ErrorHandler.Sync(this);
 							_la = TokenStream.LA(1);
-							if (_la == T__21) {
+							if (_la == 22) {
 								{
 									State = 956;
-									Match(T__21);
+									Match(22);
 									State = 957;
 									expr(0);
 								}
 							}
 
 							State = 960;
-							Match(T__20);
+							Match(21);
 						}
 					}
 					break;
@@ -3151,14 +3110,14 @@ partial class mathParser : Parser {
 					_localctx = new OCT2DEC_funContext(_localctx);
 					EnterOuterAlt(_localctx, 28); {
 						State = 962;
-						Match(OCT2DEC);
+						Match(55);
 						{
 							State = 963;
-							Match(T__19);
+							Match(20);
 							State = 964;
 							expr(0);
 							State = 965;
-							Match(T__20);
+							Match(21);
 						}
 					}
 					break;
@@ -3166,26 +3125,26 @@ partial class mathParser : Parser {
 					_localctx = new OCT2HEX_funContext(_localctx);
 					EnterOuterAlt(_localctx, 29); {
 						State = 967;
-						Match(OCT2HEX);
+						Match(56);
 						{
 							State = 968;
-							Match(T__19);
+							Match(20);
 							State = 969;
 							expr(0);
 							State = 972;
 							ErrorHandler.Sync(this);
 							_la = TokenStream.LA(1);
-							if (_la == T__21) {
+							if (_la == 22) {
 								{
 									State = 970;
-									Match(T__21);
+									Match(22);
 									State = 971;
 									expr(0);
 								}
 							}
 
 							State = 974;
-							Match(T__20);
+							Match(21);
 						}
 					}
 					break;
@@ -3193,26 +3152,26 @@ partial class mathParser : Parser {
 					_localctx = new BIN2OCT_funContext(_localctx);
 					EnterOuterAlt(_localctx, 30); {
 						State = 976;
-						Match(BIN2OCT);
+						Match(57);
 						{
 							State = 977;
-							Match(T__19);
+							Match(20);
 							State = 978;
 							expr(0);
 							State = 981;
 							ErrorHandler.Sync(this);
 							_la = TokenStream.LA(1);
-							if (_la == T__21) {
+							if (_la == 22) {
 								{
 									State = 979;
-									Match(T__21);
+									Match(22);
 									State = 980;
 									expr(0);
 								}
 							}
 
 							State = 983;
-							Match(T__20);
+							Match(21);
 						}
 					}
 					break;
@@ -3220,14 +3179,14 @@ partial class mathParser : Parser {
 					_localctx = new BIN2DEC_funContext(_localctx);
 					EnterOuterAlt(_localctx, 31); {
 						State = 985;
-						Match(BIN2DEC);
+						Match(58);
 						{
 							State = 986;
-							Match(T__19);
+							Match(20);
 							State = 987;
 							expr(0);
 							State = 988;
-							Match(T__20);
+							Match(21);
 						}
 					}
 					break;
@@ -3235,26 +3194,26 @@ partial class mathParser : Parser {
 					_localctx = new BIN2HEX_funContext(_localctx);
 					EnterOuterAlt(_localctx, 32); {
 						State = 990;
-						Match(BIN2HEX);
+						Match(59);
 						{
 							State = 991;
-							Match(T__19);
+							Match(20);
 							State = 992;
 							expr(0);
 							State = 995;
 							ErrorHandler.Sync(this);
 							_la = TokenStream.LA(1);
-							if (_la == T__21) {
+							if (_la == 22) {
 								{
 									State = 993;
-									Match(T__21);
+									Match(22);
 									State = 994;
 									expr(0);
 								}
 							}
 
 							State = 997;
-							Match(T__20);
+							Match(21);
 						}
 					}
 					break;
@@ -3262,112 +3221,112 @@ partial class mathParser : Parser {
 					_localctx = new ABS_funContext(_localctx);
 					EnterOuterAlt(_localctx, 33); {
 						State = 999;
-						Match(ABS);
+						Match(60);
 						State = 1000;
-						Match(T__19);
+						Match(20);
 						State = 1001;
 						expr(0);
 						State = 1002;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 34:
 					_localctx = new QUOTIENT_funContext(_localctx);
 					EnterOuterAlt(_localctx, 34); {
 						State = 1004;
-						Match(QUOTIENT);
+						Match(61);
 						State = 1005;
-						Match(T__19);
+						Match(20);
 						State = 1006;
 						expr(0);
 						{
 							State = 1007;
-							Match(T__21);
+							Match(22);
 							State = 1008;
 							expr(0);
 						}
 						State = 1010;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 35:
 					_localctx = new MOD_funContext(_localctx);
 					EnterOuterAlt(_localctx, 35); {
 						State = 1012;
-						Match(MOD);
+						Match(62);
 						State = 1013;
-						Match(T__19);
+						Match(20);
 						State = 1014;
 						expr(0);
 						{
 							State = 1015;
-							Match(T__21);
+							Match(22);
 							State = 1016;
 							expr(0);
 						}
 						State = 1018;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 36:
 					_localctx = new SIGN_funContext(_localctx);
 					EnterOuterAlt(_localctx, 36); {
 						State = 1020;
-						Match(SIGN);
+						Match(63);
 						State = 1021;
-						Match(T__19);
+						Match(20);
 						State = 1022;
 						expr(0);
 						State = 1023;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 37:
 					_localctx = new SQRT_funContext(_localctx);
 					EnterOuterAlt(_localctx, 37); {
 						State = 1025;
-						Match(SQRT);
+						Match(64);
 						State = 1026;
-						Match(T__19);
+						Match(20);
 						State = 1027;
 						expr(0);
 						State = 1028;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 38:
 					_localctx = new TRUNC_funContext(_localctx);
 					EnterOuterAlt(_localctx, 38); {
 						State = 1030;
-						Match(TRUNC);
+						Match(65);
 						State = 1031;
-						Match(T__19);
+						Match(20);
 						State = 1032;
 						expr(0);
 						State = 1033;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 39:
 					_localctx = new INT_funContext(_localctx);
 					EnterOuterAlt(_localctx, 39); {
 						State = 1035;
-						Match(INT);
+						Match(66);
 						State = 1036;
-						Match(T__19);
+						Match(20);
 						State = 1037;
 						expr(0);
 						State = 1038;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 40:
 					_localctx = new GCD_funContext(_localctx);
 					EnterOuterAlt(_localctx, 40); {
 						State = 1040;
-						Match(GCD);
+						Match(67);
 						State = 1041;
-						Match(T__19);
+						Match(20);
 						State = 1042;
 						expr(0);
 						State = 1045;
@@ -3377,7 +3336,7 @@ partial class mathParser : Parser {
 							{
 								{
 									State = 1043;
-									Match(T__21);
+									Match(22);
 									State = 1044;
 									expr(0);
 								}
@@ -3385,18 +3344,18 @@ partial class mathParser : Parser {
 							State = 1047;
 							ErrorHandler.Sync(this);
 							_la = TokenStream.LA(1);
-						} while (_la == T__21);
+						} while (_la == 22);
 						State = 1049;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 41:
 					_localctx = new LCM_funContext(_localctx);
 					EnterOuterAlt(_localctx, 41); {
 						State = 1051;
-						Match(LCM);
+						Match(68);
 						State = 1052;
-						Match(T__19);
+						Match(20);
 						State = 1053;
 						expr(0);
 						State = 1056;
@@ -3406,7 +3365,7 @@ partial class mathParser : Parser {
 							{
 								{
 									State = 1054;
-									Match(T__21);
+									Match(22);
 									State = 1055;
 									expr(0);
 								}
@@ -3414,540 +3373,540 @@ partial class mathParser : Parser {
 							State = 1058;
 							ErrorHandler.Sync(this);
 							_la = TokenStream.LA(1);
-						} while (_la == T__21);
+						} while (_la == 22);
 						State = 1060;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 42:
 					_localctx = new COMBIN_funContext(_localctx);
 					EnterOuterAlt(_localctx, 42); {
 						State = 1062;
-						Match(COMBIN);
+						Match(69);
 						State = 1063;
-						Match(T__19);
+						Match(20);
 						State = 1064;
 						expr(0);
 						State = 1065;
-						Match(T__21);
+						Match(22);
 						State = 1066;
 						expr(0);
 						State = 1067;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 43:
 					_localctx = new PERMUT_funContext(_localctx);
 					EnterOuterAlt(_localctx, 43); {
 						State = 1069;
-						Match(PERMUT);
+						Match(70);
 						State = 1070;
-						Match(T__19);
+						Match(20);
 						State = 1071;
 						expr(0);
 						State = 1072;
-						Match(T__21);
+						Match(22);
 						State = 1073;
 						expr(0);
 						State = 1074;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 44:
 					_localctx = new DEGREES_funContext(_localctx);
 					EnterOuterAlt(_localctx, 44); {
 						State = 1076;
-						Match(DEGREES);
+						Match(71);
 						State = 1077;
-						Match(T__19);
+						Match(20);
 						State = 1078;
 						expr(0);
 						State = 1079;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 45:
 					_localctx = new RADIANS_funContext(_localctx);
 					EnterOuterAlt(_localctx, 45); {
 						State = 1081;
-						Match(RADIANS);
+						Match(72);
 						State = 1082;
-						Match(T__19);
+						Match(20);
 						State = 1083;
 						expr(0);
 						State = 1084;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 46:
 					_localctx = new COS_funContext(_localctx);
 					EnterOuterAlt(_localctx, 46); {
 						State = 1086;
-						Match(COS);
+						Match(73);
 						State = 1087;
-						Match(T__19);
+						Match(20);
 						State = 1088;
 						expr(0);
 						State = 1089;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 47:
 					_localctx = new COSH_funContext(_localctx);
 					EnterOuterAlt(_localctx, 47); {
 						State = 1091;
-						Match(COSH);
+						Match(74);
 						State = 1092;
-						Match(T__19);
+						Match(20);
 						State = 1093;
 						expr(0);
 						State = 1094;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 48:
 					_localctx = new SIN_funContext(_localctx);
 					EnterOuterAlt(_localctx, 48); {
 						State = 1096;
-						Match(SIN);
+						Match(75);
 						State = 1097;
-						Match(T__19);
+						Match(20);
 						State = 1098;
 						expr(0);
 						State = 1099;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 49:
 					_localctx = new SINH_funContext(_localctx);
 					EnterOuterAlt(_localctx, 49); {
 						State = 1101;
-						Match(SINH);
+						Match(76);
 						State = 1102;
-						Match(T__19);
+						Match(20);
 						State = 1103;
 						expr(0);
 						State = 1104;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 50:
 					_localctx = new TAN_funContext(_localctx);
 					EnterOuterAlt(_localctx, 50); {
 						State = 1106;
-						Match(TAN);
+						Match(77);
 						State = 1107;
-						Match(T__19);
+						Match(20);
 						State = 1108;
 						expr(0);
 						State = 1109;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 51:
 					_localctx = new TANH_funContext(_localctx);
 					EnterOuterAlt(_localctx, 51); {
 						State = 1111;
-						Match(TANH);
+						Match(78);
 						State = 1112;
-						Match(T__19);
+						Match(20);
 						State = 1113;
 						expr(0);
 						State = 1114;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 52:
 					_localctx = new ACOS_funContext(_localctx);
 					EnterOuterAlt(_localctx, 52); {
 						State = 1116;
-						Match(ACOS);
+						Match(79);
 						State = 1117;
-						Match(T__19);
+						Match(20);
 						State = 1118;
 						expr(0);
 						State = 1119;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 53:
 					_localctx = new ACOSH_funContext(_localctx);
 					EnterOuterAlt(_localctx, 53); {
 						State = 1121;
-						Match(ACOSH);
+						Match(80);
 						State = 1122;
-						Match(T__19);
+						Match(20);
 						State = 1123;
 						expr(0);
 						State = 1124;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 54:
 					_localctx = new ASIN_funContext(_localctx);
 					EnterOuterAlt(_localctx, 54); {
 						State = 1126;
-						Match(ASIN);
+						Match(81);
 						State = 1127;
-						Match(T__19);
+						Match(20);
 						State = 1128;
 						expr(0);
 						State = 1129;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 55:
 					_localctx = new ASINH_funContext(_localctx);
 					EnterOuterAlt(_localctx, 55); {
 						State = 1131;
-						Match(ASINH);
+						Match(82);
 						State = 1132;
-						Match(T__19);
+						Match(20);
 						State = 1133;
 						expr(0);
 						State = 1134;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 56:
 					_localctx = new ATAN_funContext(_localctx);
 					EnterOuterAlt(_localctx, 56); {
 						State = 1136;
-						Match(ATAN);
+						Match(83);
 						State = 1137;
-						Match(T__19);
+						Match(20);
 						State = 1138;
 						expr(0);
 						State = 1139;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 57:
 					_localctx = new ATANH_funContext(_localctx);
 					EnterOuterAlt(_localctx, 57); {
 						State = 1141;
-						Match(ATANH);
+						Match(84);
 						State = 1142;
-						Match(T__19);
+						Match(20);
 						State = 1143;
 						expr(0);
 						State = 1144;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 58:
 					_localctx = new ATAN2_funContext(_localctx);
 					EnterOuterAlt(_localctx, 58); {
 						State = 1146;
-						Match(ATAN2);
+						Match(85);
 						State = 1147;
-						Match(T__19);
+						Match(20);
 						State = 1148;
 						expr(0);
 						State = 1149;
-						Match(T__21);
+						Match(22);
 						State = 1150;
 						expr(0);
 						State = 1151;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 59:
 					_localctx = new ROUND_funContext(_localctx);
 					EnterOuterAlt(_localctx, 59); {
 						State = 1153;
-						Match(ROUND);
+						Match(86);
 						State = 1154;
-						Match(T__19);
+						Match(20);
 						State = 1155;
 						expr(0);
 						State = 1156;
-						Match(T__21);
+						Match(22);
 						State = 1157;
 						expr(0);
 						State = 1158;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 60:
 					_localctx = new ROUNDDOWN_funContext(_localctx);
 					EnterOuterAlt(_localctx, 60); {
 						State = 1160;
-						Match(ROUNDDOWN);
+						Match(87);
 						State = 1161;
-						Match(T__19);
+						Match(20);
 						State = 1162;
 						expr(0);
 						State = 1163;
-						Match(T__21);
+						Match(22);
 						State = 1164;
 						expr(0);
 						State = 1165;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 61:
 					_localctx = new ROUNDUP_funContext(_localctx);
 					EnterOuterAlt(_localctx, 61); {
 						State = 1167;
-						Match(ROUNDUP);
+						Match(88);
 						State = 1168;
-						Match(T__19);
+						Match(20);
 						State = 1169;
 						expr(0);
 						State = 1170;
-						Match(T__21);
+						Match(22);
 						State = 1171;
 						expr(0);
 						State = 1172;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 62:
 					_localctx = new CEILING_funContext(_localctx);
 					EnterOuterAlt(_localctx, 62); {
 						State = 1174;
-						Match(CEILING);
+						Match(89);
 						State = 1175;
-						Match(T__19);
+						Match(20);
 						State = 1176;
 						expr(0);
 						State = 1179;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 1177;
-								Match(T__21);
+								Match(22);
 								State = 1178;
 								expr(0);
 							}
 						}
 
 						State = 1181;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 63:
 					_localctx = new FLOOR_funContext(_localctx);
 					EnterOuterAlt(_localctx, 63); {
 						State = 1183;
-						Match(FLOOR);
+						Match(90);
 						State = 1184;
-						Match(T__19);
+						Match(20);
 						State = 1185;
 						expr(0);
 						State = 1188;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 1186;
-								Match(T__21);
+								Match(22);
 								State = 1187;
 								expr(0);
 							}
 						}
 
 						State = 1190;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 64:
 					_localctx = new EVEN_funContext(_localctx);
 					EnterOuterAlt(_localctx, 64); {
 						State = 1192;
-						Match(EVEN);
+						Match(91);
 						State = 1193;
-						Match(T__19);
+						Match(20);
 						State = 1194;
 						expr(0);
 						State = 1195;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 65:
 					_localctx = new ODD_funContext(_localctx);
 					EnterOuterAlt(_localctx, 65); {
 						State = 1197;
-						Match(ODD);
+						Match(92);
 						State = 1198;
-						Match(T__19);
+						Match(20);
 						State = 1199;
 						expr(0);
 						State = 1200;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 66:
 					_localctx = new MROUND_funContext(_localctx);
 					EnterOuterAlt(_localctx, 66); {
 						State = 1202;
-						Match(MROUND);
+						Match(93);
 						State = 1203;
-						Match(T__19);
+						Match(20);
 						State = 1204;
 						expr(0);
 						State = 1205;
-						Match(T__21);
+						Match(22);
 						State = 1206;
 						expr(0);
 						State = 1207;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 67:
 					_localctx = new RAND_funContext(_localctx);
 					EnterOuterAlt(_localctx, 67); {
 						State = 1209;
-						Match(RAND);
+						Match(94);
 						State = 1210;
-						Match(T__19);
+						Match(20);
 						State = 1211;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 68:
 					_localctx = new RANDBETWEEN_funContext(_localctx);
 					EnterOuterAlt(_localctx, 68); {
 						State = 1212;
-						Match(RANDBETWEEN);
+						Match(95);
 						State = 1213;
-						Match(T__19);
+						Match(20);
 						State = 1214;
 						expr(0);
 						State = 1215;
-						Match(T__21);
+						Match(22);
 						State = 1216;
 						expr(0);
 						State = 1217;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 69:
 					_localctx = new FACT_funContext(_localctx);
 					EnterOuterAlt(_localctx, 69); {
 						State = 1219;
-						Match(FACT);
+						Match(96);
 						State = 1220;
-						Match(T__19);
+						Match(20);
 						State = 1221;
 						expr(0);
 						State = 1222;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 70:
 					_localctx = new FACTDOUBLE_funContext(_localctx);
 					EnterOuterAlt(_localctx, 70); {
 						State = 1224;
-						Match(FACTDOUBLE);
+						Match(97);
 						State = 1225;
-						Match(T__19);
+						Match(20);
 						State = 1226;
 						expr(0);
 						State = 1227;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 71:
 					_localctx = new POWER_funContext(_localctx);
 					EnterOuterAlt(_localctx, 71); {
 						State = 1229;
-						Match(POWER);
+						Match(98);
 						State = 1230;
-						Match(T__19);
+						Match(20);
 						State = 1231;
 						expr(0);
 						State = 1232;
-						Match(T__21);
+						Match(22);
 						State = 1233;
 						expr(0);
 						State = 1234;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 72:
 					_localctx = new EXP_funContext(_localctx);
 					EnterOuterAlt(_localctx, 72); {
 						State = 1236;
-						Match(EXP);
+						Match(99);
 						State = 1237;
-						Match(T__19);
+						Match(20);
 						State = 1238;
 						expr(0);
 						State = 1239;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 73:
 					_localctx = new LN_funContext(_localctx);
 					EnterOuterAlt(_localctx, 73); {
 						State = 1241;
-						Match(LN);
+						Match(100);
 						State = 1242;
-						Match(T__19);
+						Match(20);
 						State = 1243;
 						expr(0);
 						State = 1244;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 74:
 					_localctx = new LOG_funContext(_localctx);
 					EnterOuterAlt(_localctx, 74); {
 						State = 1246;
-						Match(LOG);
+						Match(101);
 						State = 1247;
-						Match(T__19);
+						Match(20);
 						State = 1248;
 						expr(0);
 						State = 1251;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 1249;
-								Match(T__21);
+								Match(22);
 								State = 1250;
 								expr(0);
 							}
 						}
 
 						State = 1253;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 75:
 					_localctx = new LOG10_funContext(_localctx);
 					EnterOuterAlt(_localctx, 75); {
 						State = 1255;
-						Match(LOG10);
+						Match(102);
 						State = 1256;
-						Match(T__19);
+						Match(20);
 						State = 1257;
 						expr(0);
 						State = 1258;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 76:
 					_localctx = new MULTINOMIAL_funContext(_localctx);
 					EnterOuterAlt(_localctx, 76); {
 						State = 1260;
-						Match(MULTINOMIAL);
+						Match(103);
 						State = 1261;
-						Match(T__19);
+						Match(20);
 						State = 1262;
 						expr(0);
 						State = 1267;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						while (_la == T__21) {
+						while (_la == 22) {
 							{
 								{
 									State = 1263;
-									Match(T__21);
+									Match(22);
 									State = 1264;
 									expr(0);
 								}
@@ -3957,26 +3916,26 @@ partial class mathParser : Parser {
 							_la = TokenStream.LA(1);
 						}
 						State = 1270;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 77:
 					_localctx = new PRODUCT_funContext(_localctx);
 					EnterOuterAlt(_localctx, 77); {
 						State = 1272;
-						Match(PRODUCT);
+						Match(104);
 						State = 1273;
-						Match(T__19);
+						Match(20);
 						State = 1274;
 						expr(0);
 						State = 1279;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						while (_la == T__21) {
+						while (_la == 22) {
 							{
 								{
 									State = 1275;
-									Match(T__21);
+									Match(22);
 									State = 1276;
 									expr(0);
 								}
@@ -3986,39 +3945,39 @@ partial class mathParser : Parser {
 							_la = TokenStream.LA(1);
 						}
 						State = 1282;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 78:
 					_localctx = new SQRTPI_funContext(_localctx);
 					EnterOuterAlt(_localctx, 78); {
 						State = 1284;
-						Match(SQRTPI);
+						Match(105);
 						State = 1285;
-						Match(T__19);
+						Match(20);
 						State = 1286;
 						expr(0);
 						State = 1287;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 79:
 					_localctx = new SUMSQ_funContext(_localctx);
 					EnterOuterAlt(_localctx, 79); {
 						State = 1289;
-						Match(SUMSQ);
+						Match(106);
 						State = 1290;
-						Match(T__19);
+						Match(20);
 						State = 1291;
 						expr(0);
 						State = 1296;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						while (_la == T__21) {
+						while (_la == 22) {
 							{
 								{
 									State = 1292;
-									Match(T__21);
+									Match(22);
 									State = 1293;
 									expr(0);
 								}
@@ -4028,91 +3987,91 @@ partial class mathParser : Parser {
 							_la = TokenStream.LA(1);
 						}
 						State = 1299;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 80:
 					_localctx = new ASC_funContext(_localctx);
 					EnterOuterAlt(_localctx, 80); {
 						State = 1301;
-						Match(ASC);
+						Match(107);
 						State = 1302;
-						Match(T__19);
+						Match(20);
 						State = 1303;
 						expr(0);
 						State = 1304;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 81:
 					_localctx = new JIS_funContext(_localctx);
 					EnterOuterAlt(_localctx, 81); {
 						State = 1306;
-						Match(JIS);
+						Match(108);
 						State = 1307;
-						Match(T__19);
+						Match(20);
 						State = 1308;
 						expr(0);
 						State = 1309;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 82:
 					_localctx = new CHAR_funContext(_localctx);
 					EnterOuterAlt(_localctx, 82); {
 						State = 1311;
-						Match(CHAR);
+						Match(109);
 						State = 1312;
-						Match(T__19);
+						Match(20);
 						State = 1313;
 						expr(0);
 						State = 1314;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 83:
 					_localctx = new CLEAN_funContext(_localctx);
 					EnterOuterAlt(_localctx, 83); {
 						State = 1316;
-						Match(CLEAN);
+						Match(110);
 						State = 1317;
-						Match(T__19);
+						Match(20);
 						State = 1318;
 						expr(0);
 						State = 1319;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 84:
 					_localctx = new CODE_funContext(_localctx);
 					EnterOuterAlt(_localctx, 84); {
 						State = 1321;
-						Match(CODE);
+						Match(111);
 						State = 1322;
-						Match(T__19);
+						Match(20);
 						State = 1323;
 						expr(0);
 						State = 1324;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 85:
 					_localctx = new CONCATENATE_funContext(_localctx);
 					EnterOuterAlt(_localctx, 85); {
 						State = 1326;
-						Match(CONCATENATE);
+						Match(112);
 						State = 1327;
-						Match(T__19);
+						Match(20);
 						State = 1328;
 						expr(0);
 						State = 1333;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						while (_la == T__21) {
+						while (_la == 22) {
 							{
 								{
 									State = 1329;
-									Match(T__21);
+									Match(22);
 									State = 1330;
 									expr(0);
 								}
@@ -4122,80 +4081,80 @@ partial class mathParser : Parser {
 							_la = TokenStream.LA(1);
 						}
 						State = 1336;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 86:
 					_localctx = new EXACT_funContext(_localctx);
 					EnterOuterAlt(_localctx, 86); {
 						State = 1338;
-						Match(EXACT);
+						Match(113);
 						State = 1339;
-						Match(T__19);
+						Match(20);
 						State = 1340;
 						expr(0);
 						State = 1341;
-						Match(T__21);
+						Match(22);
 						State = 1342;
 						expr(0);
 						State = 1343;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 87:
 					_localctx = new FIND_funContext(_localctx);
 					EnterOuterAlt(_localctx, 87); {
 						State = 1345;
-						Match(FIND);
+						Match(114);
 						State = 1346;
-						Match(T__19);
+						Match(20);
 						State = 1347;
 						expr(0);
 						State = 1348;
-						Match(T__21);
+						Match(22);
 						State = 1349;
 						expr(0);
 						State = 1352;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 1350;
-								Match(T__21);
+								Match(22);
 								State = 1351;
 								expr(0);
 							}
 						}
 
 						State = 1354;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 88:
 					_localctx = new FIXED_funContext(_localctx);
 					EnterOuterAlt(_localctx, 88); {
 						State = 1356;
-						Match(FIXED);
+						Match(115);
 						State = 1357;
-						Match(T__19);
+						Match(20);
 						State = 1358;
 						expr(0);
 						State = 1365;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 1359;
-								Match(T__21);
+								Match(22);
 								State = 1360;
 								expr(0);
 								State = 1363;
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
-								if (_la == T__21) {
+								if (_la == 22) {
 									{
 										State = 1361;
-										Match(T__21);
+										Match(22);
 										State = 1362;
 										expr(0);
 									}
@@ -4205,381 +4164,381 @@ partial class mathParser : Parser {
 						}
 
 						State = 1367;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 89:
 					_localctx = new LEFT_funContext(_localctx);
 					EnterOuterAlt(_localctx, 89); {
 						State = 1369;
-						Match(LEFT);
+						Match(116);
 						State = 1370;
-						Match(T__19);
+						Match(20);
 						State = 1371;
 						expr(0);
 						State = 1374;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 1372;
-								Match(T__21);
+								Match(22);
 								State = 1373;
 								expr(0);
 							}
 						}
 
 						State = 1376;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 90:
 					_localctx = new LEN_funContext(_localctx);
 					EnterOuterAlt(_localctx, 90); {
 						State = 1378;
-						Match(LEN);
+						Match(117);
 						State = 1379;
-						Match(T__19);
+						Match(20);
 						State = 1380;
 						expr(0);
 						State = 1381;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 91:
 					_localctx = new LOWER_funContext(_localctx);
 					EnterOuterAlt(_localctx, 91); {
 						State = 1383;
-						Match(LOWER);
+						Match(118);
 						State = 1384;
-						Match(T__19);
+						Match(20);
 						State = 1385;
 						expr(0);
 						State = 1386;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 92:
 					_localctx = new MID_funContext(_localctx);
 					EnterOuterAlt(_localctx, 92); {
 						State = 1388;
-						Match(MID);
+						Match(119);
 						State = 1389;
-						Match(T__19);
+						Match(20);
 						State = 1390;
 						expr(0);
 						State = 1391;
-						Match(T__21);
+						Match(22);
 						State = 1392;
 						expr(0);
 						State = 1393;
-						Match(T__21);
+						Match(22);
 						State = 1394;
 						expr(0);
 						State = 1395;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 93:
 					_localctx = new PROPER_funContext(_localctx);
 					EnterOuterAlt(_localctx, 93); {
 						State = 1397;
-						Match(PROPER);
+						Match(120);
 						State = 1398;
-						Match(T__19);
+						Match(20);
 						State = 1399;
 						expr(0);
 						State = 1400;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 94:
 					_localctx = new REPLACE_funContext(_localctx);
 					EnterOuterAlt(_localctx, 94); {
 						State = 1402;
-						Match(REPLACE);
+						Match(121);
 						State = 1403;
-						Match(T__19);
+						Match(20);
 						State = 1404;
 						expr(0);
 						State = 1405;
-						Match(T__21);
+						Match(22);
 						State = 1406;
 						expr(0);
 						State = 1407;
-						Match(T__21);
+						Match(22);
 						State = 1408;
 						expr(0);
 						State = 1411;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 1409;
-								Match(T__21);
+								Match(22);
 								State = 1410;
 								expr(0);
 							}
 						}
 
 						State = 1413;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 95:
 					_localctx = new REPT_funContext(_localctx);
 					EnterOuterAlt(_localctx, 95); {
 						State = 1415;
-						Match(REPT);
+						Match(122);
 						State = 1416;
-						Match(T__19);
+						Match(20);
 						State = 1417;
 						expr(0);
 						State = 1418;
-						Match(T__21);
+						Match(22);
 						State = 1419;
 						expr(0);
 						State = 1420;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 96:
 					_localctx = new RIGHT_funContext(_localctx);
 					EnterOuterAlt(_localctx, 96); {
 						State = 1422;
-						Match(RIGHT);
+						Match(123);
 						State = 1423;
-						Match(T__19);
+						Match(20);
 						State = 1424;
 						expr(0);
 						State = 1427;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 1425;
-								Match(T__21);
+								Match(22);
 								State = 1426;
 								expr(0);
 							}
 						}
 
 						State = 1429;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 97:
 					_localctx = new RMB_funContext(_localctx);
 					EnterOuterAlt(_localctx, 97); {
 						State = 1431;
-						Match(RMB);
+						Match(124);
 						State = 1432;
-						Match(T__19);
+						Match(20);
 						State = 1433;
 						expr(0);
 						State = 1434;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 98:
 					_localctx = new SEARCH_funContext(_localctx);
 					EnterOuterAlt(_localctx, 98); {
 						State = 1436;
-						Match(SEARCH);
+						Match(125);
 						State = 1437;
-						Match(T__19);
+						Match(20);
 						State = 1438;
 						expr(0);
 						State = 1439;
-						Match(T__21);
+						Match(22);
 						State = 1440;
 						expr(0);
 						State = 1443;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 1441;
-								Match(T__21);
+								Match(22);
 								State = 1442;
 								expr(0);
 							}
 						}
 
 						State = 1445;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 99:
 					_localctx = new SUBSTITUTE_funContext(_localctx);
 					EnterOuterAlt(_localctx, 99); {
 						State = 1447;
-						Match(SUBSTITUTE);
+						Match(126);
 						State = 1448;
-						Match(T__19);
+						Match(20);
 						State = 1449;
 						expr(0);
 						State = 1450;
-						Match(T__21);
+						Match(22);
 						State = 1451;
 						expr(0);
 						State = 1452;
-						Match(T__21);
+						Match(22);
 						State = 1453;
 						expr(0);
 						State = 1456;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 1454;
-								Match(T__21);
+								Match(22);
 								State = 1455;
 								expr(0);
 							}
 						}
 
 						State = 1458;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 100:
 					_localctx = new T_funContext(_localctx);
 					EnterOuterAlt(_localctx, 100); {
 						State = 1460;
-						Match(T);
+						Match(127);
 						State = 1461;
-						Match(T__19);
+						Match(20);
 						State = 1462;
 						expr(0);
 						State = 1463;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 101:
 					_localctx = new TEXT_funContext(_localctx);
 					EnterOuterAlt(_localctx, 101); {
 						State = 1465;
-						Match(TEXT);
+						Match(128);
 						State = 1466;
-						Match(T__19);
+						Match(20);
 						State = 1467;
 						expr(0);
 						State = 1468;
-						Match(T__21);
+						Match(22);
 						State = 1469;
 						expr(0);
 						State = 1470;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 102:
 					_localctx = new TRIM_funContext(_localctx);
 					EnterOuterAlt(_localctx, 102); {
 						State = 1472;
-						Match(TRIM);
+						Match(129);
 						State = 1473;
-						Match(T__19);
+						Match(20);
 						State = 1474;
 						expr(0);
 						State = 1475;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 103:
 					_localctx = new UPPER_funContext(_localctx);
 					EnterOuterAlt(_localctx, 103); {
 						State = 1477;
-						Match(UPPER);
+						Match(130);
 						State = 1478;
-						Match(T__19);
+						Match(20);
 						State = 1479;
 						expr(0);
 						State = 1480;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 104:
 					_localctx = new VALUE_funContext(_localctx);
 					EnterOuterAlt(_localctx, 104); {
 						State = 1482;
-						Match(VALUE);
+						Match(131);
 						State = 1483;
-						Match(T__19);
+						Match(20);
 						State = 1484;
 						expr(0);
 						State = 1485;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 105:
 					_localctx = new DATEVALUE_funContext(_localctx);
 					EnterOuterAlt(_localctx, 105); {
 						State = 1487;
-						Match(DATEVALUE);
+						Match(132);
 						State = 1488;
-						Match(T__19);
+						Match(20);
 						State = 1489;
 						expr(0);
 						State = 1490;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 106:
 					_localctx = new TIMEVALUE_funContext(_localctx);
 					EnterOuterAlt(_localctx, 106); {
 						State = 1492;
-						Match(TIMEVALUE);
+						Match(133);
 						State = 1493;
-						Match(T__19);
+						Match(20);
 						State = 1494;
 						expr(0);
 						State = 1495;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 107:
 					_localctx = new DATE_funContext(_localctx);
 					EnterOuterAlt(_localctx, 107); {
 						State = 1497;
-						Match(DATE);
+						Match(134);
 						State = 1498;
-						Match(T__19);
+						Match(20);
 						State = 1499;
 						expr(0);
 						State = 1500;
-						Match(T__21);
+						Match(22);
 						State = 1501;
 						expr(0);
 						State = 1502;
-						Match(T__21);
+						Match(22);
 						State = 1503;
 						expr(0);
 						State = 1514;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 1504;
-								Match(T__21);
+								Match(22);
 								State = 1505;
 								expr(0);
 								State = 1512;
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
-								if (_la == T__21) {
+								if (_la == 22) {
 									{
 										State = 1506;
-										Match(T__21);
+										Match(22);
 										State = 1507;
 										expr(0);
 										State = 1510;
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
-										if (_la == T__21) {
+										if (_la == 22) {
 											{
 												State = 1508;
-												Match(T__21);
+												Match(22);
 												State = 1509;
 												expr(0);
 											}
@@ -4592,337 +4551,337 @@ partial class mathParser : Parser {
 						}
 
 						State = 1516;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 108:
 					_localctx = new TIME_funContext(_localctx);
 					EnterOuterAlt(_localctx, 108); {
 						State = 1518;
-						Match(TIME);
+						Match(135);
 						State = 1519;
-						Match(T__19);
+						Match(20);
 						State = 1520;
 						expr(0);
 						State = 1521;
-						Match(T__21);
+						Match(22);
 						State = 1522;
 						expr(0);
 						State = 1525;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 1523;
-								Match(T__21);
+								Match(22);
 								State = 1524;
 								expr(0);
 							}
 						}
 
 						State = 1527;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 109:
 					_localctx = new NOW_funContext(_localctx);
 					EnterOuterAlt(_localctx, 109); {
 						State = 1529;
-						Match(NOW);
+						Match(136);
 						State = 1530;
-						Match(T__19);
+						Match(20);
 						State = 1531;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 110:
 					_localctx = new TODAY_funContext(_localctx);
 					EnterOuterAlt(_localctx, 110); {
 						State = 1532;
-						Match(TODAY);
+						Match(137);
 						State = 1533;
-						Match(T__19);
+						Match(20);
 						State = 1534;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 111:
 					_localctx = new YEAR_funContext(_localctx);
 					EnterOuterAlt(_localctx, 111); {
 						State = 1535;
-						Match(YEAR);
+						Match(138);
 						State = 1536;
-						Match(T__19);
+						Match(20);
 						State = 1537;
 						expr(0);
 						State = 1538;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 112:
 					_localctx = new MONTH_funContext(_localctx);
 					EnterOuterAlt(_localctx, 112); {
 						State = 1540;
-						Match(MONTH);
+						Match(139);
 						State = 1541;
-						Match(T__19);
+						Match(20);
 						State = 1542;
 						expr(0);
 						State = 1543;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 113:
 					_localctx = new DAY_funContext(_localctx);
 					EnterOuterAlt(_localctx, 113); {
 						State = 1545;
-						Match(DAY);
+						Match(140);
 						State = 1546;
-						Match(T__19);
+						Match(20);
 						State = 1547;
 						expr(0);
 						State = 1548;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 114:
 					_localctx = new HOUR_funContext(_localctx);
 					EnterOuterAlt(_localctx, 114); {
 						State = 1550;
-						Match(HOUR);
+						Match(141);
 						State = 1551;
-						Match(T__19);
+						Match(20);
 						State = 1552;
 						expr(0);
 						State = 1553;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 115:
 					_localctx = new MINUTE_funContext(_localctx);
 					EnterOuterAlt(_localctx, 115); {
 						State = 1555;
-						Match(MINUTE);
+						Match(142);
 						State = 1556;
-						Match(T__19);
+						Match(20);
 						State = 1557;
 						expr(0);
 						State = 1558;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 116:
 					_localctx = new SECOND_funContext(_localctx);
 					EnterOuterAlt(_localctx, 116); {
 						State = 1560;
-						Match(SECOND);
+						Match(143);
 						State = 1561;
-						Match(T__19);
+						Match(20);
 						State = 1562;
 						expr(0);
 						State = 1563;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 117:
 					_localctx = new WEEKDAY_funContext(_localctx);
 					EnterOuterAlt(_localctx, 117); {
 						State = 1565;
-						Match(WEEKDAY);
+						Match(144);
 						State = 1566;
-						Match(T__19);
+						Match(20);
 						State = 1567;
 						expr(0);
 						State = 1570;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 1568;
-								Match(T__21);
+								Match(22);
 								State = 1569;
 								expr(0);
 							}
 						}
 
 						State = 1572;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 118:
 					_localctx = new DATEDIF_funContext(_localctx);
 					EnterOuterAlt(_localctx, 118); {
 						State = 1574;
-						Match(DATEDIF);
+						Match(145);
 						State = 1575;
-						Match(T__19);
+						Match(20);
 						State = 1576;
 						expr(0);
 						State = 1577;
-						Match(T__21);
+						Match(22);
 						State = 1578;
 						expr(0);
 						State = 1579;
-						Match(T__21);
+						Match(22);
 						State = 1580;
 						expr(0);
 						State = 1581;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 119:
 					_localctx = new DAYS360_funContext(_localctx);
 					EnterOuterAlt(_localctx, 119); {
 						State = 1583;
-						Match(DAYS360);
+						Match(146);
 						State = 1584;
-						Match(T__19);
+						Match(20);
 						State = 1585;
 						expr(0);
 						State = 1586;
-						Match(T__21);
+						Match(22);
 						State = 1587;
 						expr(0);
 						State = 1590;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 1588;
-								Match(T__21);
+								Match(22);
 								State = 1589;
 								expr(0);
 							}
 						}
 
 						State = 1592;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 120:
 					_localctx = new EDATE_funContext(_localctx);
 					EnterOuterAlt(_localctx, 120); {
 						State = 1594;
-						Match(EDATE);
+						Match(147);
 						State = 1595;
-						Match(T__19);
+						Match(20);
 						State = 1596;
 						expr(0);
 						State = 1597;
-						Match(T__21);
+						Match(22);
 						State = 1598;
 						expr(0);
 						State = 1599;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 121:
 					_localctx = new EOMONTH_funContext(_localctx);
 					EnterOuterAlt(_localctx, 121); {
 						State = 1601;
-						Match(EOMONTH);
+						Match(148);
 						State = 1602;
-						Match(T__19);
+						Match(20);
 						State = 1603;
 						expr(0);
 						State = 1604;
-						Match(T__21);
+						Match(22);
 						State = 1605;
 						expr(0);
 						State = 1606;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 122:
 					_localctx = new NETWORKDAYS_funContext(_localctx);
 					EnterOuterAlt(_localctx, 122); {
 						State = 1608;
-						Match(NETWORKDAYS);
+						Match(149);
 						State = 1609;
-						Match(T__19);
+						Match(20);
 						State = 1610;
 						expr(0);
 						State = 1611;
-						Match(T__21);
+						Match(22);
 						State = 1612;
 						expr(0);
 						State = 1615;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 1613;
-								Match(T__21);
+								Match(22);
 								State = 1614;
 								expr(0);
 							}
 						}
 
 						State = 1617;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 123:
 					_localctx = new WORKDAY_funContext(_localctx);
 					EnterOuterAlt(_localctx, 123); {
 						State = 1619;
-						Match(WORKDAY);
+						Match(150);
 						State = 1620;
-						Match(T__19);
+						Match(20);
 						State = 1621;
 						expr(0);
 						State = 1622;
-						Match(T__21);
+						Match(22);
 						State = 1623;
 						expr(0);
 						State = 1626;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 1624;
-								Match(T__21);
+								Match(22);
 								State = 1625;
 								expr(0);
 							}
 						}
 
 						State = 1628;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 124:
 					_localctx = new WEEKNUM_funContext(_localctx);
 					EnterOuterAlt(_localctx, 124); {
 						State = 1630;
-						Match(WEEKNUM);
+						Match(151);
 						State = 1631;
-						Match(T__19);
+						Match(20);
 						State = 1632;
 						expr(0);
 						State = 1635;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 1633;
-								Match(T__21);
+								Match(22);
 								State = 1634;
 								expr(0);
 							}
 						}
 
 						State = 1637;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 125:
 					_localctx = new MAX_funContext(_localctx);
 					EnterOuterAlt(_localctx, 125); {
 						State = 1639;
-						Match(MAX);
+						Match(152);
 						State = 1640;
-						Match(T__19);
+						Match(20);
 						State = 1641;
 						expr(0);
 						State = 1644;
@@ -4932,7 +4891,7 @@ partial class mathParser : Parser {
 							{
 								{
 									State = 1642;
-									Match(T__21);
+									Match(22);
 									State = 1643;
 									expr(0);
 								}
@@ -4940,18 +4899,18 @@ partial class mathParser : Parser {
 							State = 1646;
 							ErrorHandler.Sync(this);
 							_la = TokenStream.LA(1);
-						} while (_la == T__21);
+						} while (_la == 22);
 						State = 1648;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 126:
 					_localctx = new MEDIAN_funContext(_localctx);
 					EnterOuterAlt(_localctx, 126); {
 						State = 1650;
-						Match(MEDIAN);
+						Match(153);
 						State = 1651;
-						Match(T__19);
+						Match(20);
 						State = 1652;
 						expr(0);
 						State = 1655;
@@ -4961,7 +4920,7 @@ partial class mathParser : Parser {
 							{
 								{
 									State = 1653;
-									Match(T__21);
+									Match(22);
 									State = 1654;
 									expr(0);
 								}
@@ -4969,18 +4928,18 @@ partial class mathParser : Parser {
 							State = 1657;
 							ErrorHandler.Sync(this);
 							_la = TokenStream.LA(1);
-						} while (_la == T__21);
+						} while (_la == 22);
 						State = 1659;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 127:
 					_localctx = new MIN_funContext(_localctx);
 					EnterOuterAlt(_localctx, 127); {
 						State = 1661;
-						Match(MIN);
+						Match(154);
 						State = 1662;
-						Match(T__19);
+						Match(20);
 						State = 1663;
 						expr(0);
 						State = 1666;
@@ -4990,7 +4949,7 @@ partial class mathParser : Parser {
 							{
 								{
 									State = 1664;
-									Match(T__21);
+									Match(22);
 									State = 1665;
 									expr(0);
 								}
@@ -4998,45 +4957,45 @@ partial class mathParser : Parser {
 							State = 1668;
 							ErrorHandler.Sync(this);
 							_la = TokenStream.LA(1);
-						} while (_la == T__21);
+						} while (_la == 22);
 						State = 1670;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 128:
 					_localctx = new QUARTILE_funContext(_localctx);
 					EnterOuterAlt(_localctx, 128); {
 						State = 1672;
-						Match(QUARTILE);
+						Match(155);
 						State = 1673;
-						Match(T__19);
+						Match(20);
 						State = 1674;
 						expr(0);
 						State = 1675;
-						Match(T__21);
+						Match(22);
 						State = 1676;
 						expr(0);
 						State = 1677;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 129:
 					_localctx = new MODE_funContext(_localctx);
 					EnterOuterAlt(_localctx, 129); {
 						State = 1679;
-						Match(MODE);
+						Match(156);
 						State = 1680;
-						Match(T__19);
+						Match(20);
 						State = 1681;
 						expr(0);
 						State = 1686;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						while (_la == T__21) {
+						while (_la == 22) {
 							{
 								{
 									State = 1682;
-									Match(T__21);
+									Match(22);
 									State = 1683;
 									expr(0);
 								}
@@ -5046,94 +5005,94 @@ partial class mathParser : Parser {
 							_la = TokenStream.LA(1);
 						}
 						State = 1689;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 130:
 					_localctx = new LARGE_funContext(_localctx);
 					EnterOuterAlt(_localctx, 130); {
 						State = 1691;
-						Match(LARGE);
+						Match(157);
 						State = 1692;
-						Match(T__19);
+						Match(20);
 						State = 1693;
 						expr(0);
 						State = 1694;
-						Match(T__21);
+						Match(22);
 						State = 1695;
 						expr(0);
 						State = 1696;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 131:
 					_localctx = new SMALL_funContext(_localctx);
 					EnterOuterAlt(_localctx, 131); {
 						State = 1698;
-						Match(SMALL);
+						Match(158);
 						State = 1699;
-						Match(T__19);
+						Match(20);
 						State = 1700;
 						expr(0);
 						State = 1701;
-						Match(T__21);
+						Match(22);
 						State = 1702;
 						expr(0);
 						State = 1703;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 132:
 					_localctx = new PERCENTILE_funContext(_localctx);
 					EnterOuterAlt(_localctx, 132); {
 						State = 1705;
-						Match(PERCENTILE);
+						Match(159);
 						State = 1706;
-						Match(T__19);
+						Match(20);
 						State = 1707;
 						expr(0);
 						State = 1708;
-						Match(T__21);
+						Match(22);
 						State = 1709;
 						expr(0);
 						State = 1710;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 133:
 					_localctx = new PERCENTRANK_funContext(_localctx);
 					EnterOuterAlt(_localctx, 133); {
 						State = 1712;
-						Match(PERCENTRANK);
+						Match(160);
 						State = 1713;
-						Match(T__19);
+						Match(20);
 						State = 1714;
 						expr(0);
 						State = 1715;
-						Match(T__21);
+						Match(22);
 						State = 1716;
 						expr(0);
 						State = 1717;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 134:
 					_localctx = new AVERAGE_funContext(_localctx);
 					EnterOuterAlt(_localctx, 134); {
 						State = 1719;
-						Match(AVERAGE);
+						Match(161);
 						State = 1720;
-						Match(T__19);
+						Match(20);
 						State = 1721;
 						expr(0);
 						State = 1726;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						while (_la == T__21) {
+						while (_la == 22) {
 							{
 								{
 									State = 1722;
-									Match(T__21);
+									Match(22);
 									State = 1723;
 									expr(0);
 								}
@@ -5143,55 +5102,55 @@ partial class mathParser : Parser {
 							_la = TokenStream.LA(1);
 						}
 						State = 1729;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 135:
 					_localctx = new AVERAGEIF_funContext(_localctx);
 					EnterOuterAlt(_localctx, 135); {
 						State = 1731;
-						Match(AVERAGEIF);
+						Match(162);
 						State = 1732;
-						Match(T__19);
+						Match(20);
 						State = 1733;
 						expr(0);
 						State = 1734;
-						Match(T__21);
+						Match(22);
 						State = 1735;
 						expr(0);
 						State = 1738;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 1736;
-								Match(T__21);
+								Match(22);
 								State = 1737;
 								expr(0);
 							}
 						}
 
 						State = 1740;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 136:
 					_localctx = new GEOMEAN_funContext(_localctx);
 					EnterOuterAlt(_localctx, 136); {
 						State = 1742;
-						Match(GEOMEAN);
+						Match(163);
 						State = 1743;
-						Match(T__19);
+						Match(20);
 						State = 1744;
 						expr(0);
 						State = 1749;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						while (_la == T__21) {
+						while (_la == 22) {
 							{
 								{
 									State = 1745;
-									Match(T__21);
+									Match(22);
 									State = 1746;
 									expr(0);
 								}
@@ -5201,26 +5160,26 @@ partial class mathParser : Parser {
 							_la = TokenStream.LA(1);
 						}
 						State = 1752;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 137:
 					_localctx = new HARMEAN_funContext(_localctx);
 					EnterOuterAlt(_localctx, 137); {
 						State = 1754;
-						Match(HARMEAN);
+						Match(164);
 						State = 1755;
-						Match(T__19);
+						Match(20);
 						State = 1756;
 						expr(0);
 						State = 1761;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						while (_la == T__21) {
+						while (_la == 22) {
 							{
 								{
 									State = 1757;
-									Match(T__21);
+									Match(22);
 									State = 1758;
 									expr(0);
 								}
@@ -5230,26 +5189,26 @@ partial class mathParser : Parser {
 							_la = TokenStream.LA(1);
 						}
 						State = 1764;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 138:
 					_localctx = new COUNT_funContext(_localctx);
 					EnterOuterAlt(_localctx, 138); {
 						State = 1766;
-						Match(COUNT);
+						Match(165);
 						State = 1767;
-						Match(T__19);
+						Match(20);
 						State = 1768;
 						expr(0);
 						State = 1773;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						while (_la == T__21) {
+						while (_la == 22) {
 							{
 								{
 									State = 1769;
-									Match(T__21);
+									Match(22);
 									State = 1770;
 									expr(0);
 								}
@@ -5259,26 +5218,26 @@ partial class mathParser : Parser {
 							_la = TokenStream.LA(1);
 						}
 						State = 1776;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 139:
 					_localctx = new COUNTIF_funContext(_localctx);
 					EnterOuterAlt(_localctx, 139); {
 						State = 1778;
-						Match(COUNTIF);
+						Match(166);
 						State = 1779;
-						Match(T__19);
+						Match(20);
 						State = 1780;
 						expr(0);
 						State = 1785;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						while (_la == T__21) {
+						while (_la == 22) {
 							{
 								{
 									State = 1781;
-									Match(T__21);
+									Match(22);
 									State = 1782;
 									expr(0);
 								}
@@ -5288,26 +5247,26 @@ partial class mathParser : Parser {
 							_la = TokenStream.LA(1);
 						}
 						State = 1788;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 140:
 					_localctx = new SUM_funContext(_localctx);
 					EnterOuterAlt(_localctx, 140); {
 						State = 1790;
-						Match(SUM);
+						Match(167);
 						State = 1791;
-						Match(T__19);
+						Match(20);
 						State = 1792;
 						expr(0);
 						State = 1797;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						while (_la == T__21) {
+						while (_la == 22) {
 							{
 								{
 									State = 1793;
-									Match(T__21);
+									Match(22);
 									State = 1794;
 									expr(0);
 								}
@@ -5317,55 +5276,55 @@ partial class mathParser : Parser {
 							_la = TokenStream.LA(1);
 						}
 						State = 1800;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 141:
 					_localctx = new SUMIF_funContext(_localctx);
 					EnterOuterAlt(_localctx, 141); {
 						State = 1802;
-						Match(SUMIF);
+						Match(168);
 						State = 1803;
-						Match(T__19);
+						Match(20);
 						State = 1804;
 						expr(0);
 						State = 1805;
-						Match(T__21);
+						Match(22);
 						State = 1806;
 						expr(0);
 						State = 1809;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 1807;
-								Match(T__21);
+								Match(22);
 								State = 1808;
 								expr(0);
 							}
 						}
 
 						State = 1811;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 142:
 					_localctx = new AVEDEV_funContext(_localctx);
 					EnterOuterAlt(_localctx, 142); {
 						State = 1813;
-						Match(AVEDEV);
+						Match(169);
 						State = 1814;
-						Match(T__19);
+						Match(20);
 						State = 1815;
 						expr(0);
 						State = 1820;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						while (_la == T__21) {
+						while (_la == 22) {
 							{
 								{
 									State = 1816;
-									Match(T__21);
+									Match(22);
 									State = 1817;
 									expr(0);
 								}
@@ -5375,26 +5334,26 @@ partial class mathParser : Parser {
 							_la = TokenStream.LA(1);
 						}
 						State = 1823;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 143:
 					_localctx = new STDEV_funContext(_localctx);
 					EnterOuterAlt(_localctx, 143); {
 						State = 1825;
-						Match(STDEV);
+						Match(170);
 						State = 1826;
-						Match(T__19);
+						Match(20);
 						State = 1827;
 						expr(0);
 						State = 1832;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						while (_la == T__21) {
+						while (_la == 22) {
 							{
 								{
 									State = 1828;
-									Match(T__21);
+									Match(22);
 									State = 1829;
 									expr(0);
 								}
@@ -5404,26 +5363,26 @@ partial class mathParser : Parser {
 							_la = TokenStream.LA(1);
 						}
 						State = 1835;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 144:
 					_localctx = new STDEVP_funContext(_localctx);
 					EnterOuterAlt(_localctx, 144); {
 						State = 1837;
-						Match(STDEVP);
+						Match(171);
 						State = 1838;
-						Match(T__19);
+						Match(20);
 						State = 1839;
 						expr(0);
 						State = 1844;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						while (_la == T__21) {
+						while (_la == 22) {
 							{
 								{
 									State = 1840;
-									Match(T__21);
+									Match(22);
 									State = 1841;
 									expr(0);
 								}
@@ -5433,26 +5392,26 @@ partial class mathParser : Parser {
 							_la = TokenStream.LA(1);
 						}
 						State = 1847;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 145:
 					_localctx = new DEVSQ_funContext(_localctx);
 					EnterOuterAlt(_localctx, 145); {
 						State = 1849;
-						Match(DEVSQ);
+						Match(172);
 						State = 1850;
-						Match(T__19);
+						Match(20);
 						State = 1851;
 						expr(0);
 						State = 1856;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						while (_la == T__21) {
+						while (_la == 22) {
 							{
 								{
 									State = 1852;
-									Match(T__21);
+									Match(22);
 									State = 1853;
 									expr(0);
 								}
@@ -5462,26 +5421,26 @@ partial class mathParser : Parser {
 							_la = TokenStream.LA(1);
 						}
 						State = 1859;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 146:
 					_localctx = new VAR_funContext(_localctx);
 					EnterOuterAlt(_localctx, 146); {
 						State = 1861;
-						Match(VAR);
+						Match(173);
 						State = 1862;
-						Match(T__19);
+						Match(20);
 						State = 1863;
 						expr(0);
 						State = 1868;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						while (_la == T__21) {
+						while (_la == 22) {
 							{
 								{
 									State = 1864;
-									Match(T__21);
+									Match(22);
 									State = 1865;
 									expr(0);
 								}
@@ -5491,26 +5450,26 @@ partial class mathParser : Parser {
 							_la = TokenStream.LA(1);
 						}
 						State = 1871;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 147:
 					_localctx = new VARP_funContext(_localctx);
 					EnterOuterAlt(_localctx, 147); {
 						State = 1873;
-						Match(VARP);
+						Match(174);
 						State = 1874;
-						Match(T__19);
+						Match(20);
 						State = 1875;
 						expr(0);
 						State = 1880;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						while (_la == T__21) {
+						while (_la == 22) {
 							{
 								{
 									State = 1876;
-									Match(T__21);
+									Match(22);
 									State = 1877;
 									expr(0);
 								}
@@ -5520,1006 +5479,1006 @@ partial class mathParser : Parser {
 							_la = TokenStream.LA(1);
 						}
 						State = 1883;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 148:
 					_localctx = new NORMDIST_funContext(_localctx);
 					EnterOuterAlt(_localctx, 148); {
 						State = 1885;
-						Match(NORMDIST);
+						Match(175);
 						State = 1886;
-						Match(T__19);
+						Match(20);
 						State = 1887;
 						expr(0);
 						State = 1888;
-						Match(T__21);
+						Match(22);
 						State = 1889;
 						expr(0);
 						State = 1890;
-						Match(T__21);
+						Match(22);
 						State = 1891;
 						expr(0);
 						State = 1892;
-						Match(T__21);
+						Match(22);
 						State = 1893;
 						expr(0);
 						State = 1894;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 149:
 					_localctx = new NORMINV_funContext(_localctx);
 					EnterOuterAlt(_localctx, 149); {
 						State = 1896;
-						Match(NORMINV);
+						Match(176);
 						State = 1897;
-						Match(T__19);
+						Match(20);
 						State = 1898;
 						expr(0);
 						State = 1899;
-						Match(T__21);
+						Match(22);
 						State = 1900;
 						expr(0);
 						State = 1901;
-						Match(T__21);
+						Match(22);
 						State = 1902;
 						expr(0);
 						State = 1903;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 150:
 					_localctx = new NORMSDIST_funContext(_localctx);
 					EnterOuterAlt(_localctx, 150); {
 						State = 1905;
-						Match(NORMSDIST);
+						Match(177);
 						State = 1906;
-						Match(T__19);
+						Match(20);
 						State = 1907;
 						expr(0);
 						State = 1908;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 151:
 					_localctx = new NORMSINV_funContext(_localctx);
 					EnterOuterAlt(_localctx, 151); {
 						State = 1910;
-						Match(NORMSINV);
+						Match(178);
 						State = 1911;
-						Match(T__19);
+						Match(20);
 						State = 1912;
 						expr(0);
 						State = 1913;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 152:
 					_localctx = new BETADIST_funContext(_localctx);
 					EnterOuterAlt(_localctx, 152); {
 						State = 1915;
-						Match(BETADIST);
+						Match(179);
 						State = 1916;
-						Match(T__19);
+						Match(20);
 						State = 1917;
 						expr(0);
 						State = 1918;
-						Match(T__21);
+						Match(22);
 						State = 1919;
 						expr(0);
 						State = 1920;
-						Match(T__21);
+						Match(22);
 						State = 1921;
 						expr(0);
 						State = 1922;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 153:
 					_localctx = new BETAINV_funContext(_localctx);
 					EnterOuterAlt(_localctx, 153); {
 						State = 1924;
-						Match(BETAINV);
+						Match(180);
 						State = 1925;
-						Match(T__19);
+						Match(20);
 						State = 1926;
 						expr(0);
 						State = 1927;
-						Match(T__21);
+						Match(22);
 						State = 1928;
 						expr(0);
 						State = 1929;
-						Match(T__21);
+						Match(22);
 						State = 1930;
 						expr(0);
 						State = 1931;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 154:
 					_localctx = new BINOMDIST_funContext(_localctx);
 					EnterOuterAlt(_localctx, 154); {
 						State = 1933;
-						Match(BINOMDIST);
+						Match(181);
 						State = 1934;
-						Match(T__19);
+						Match(20);
 						State = 1935;
 						expr(0);
 						State = 1936;
-						Match(T__21);
+						Match(22);
 						State = 1937;
 						expr(0);
 						State = 1938;
-						Match(T__21);
+						Match(22);
 						State = 1939;
 						expr(0);
 						State = 1940;
-						Match(T__21);
+						Match(22);
 						State = 1941;
 						expr(0);
 						State = 1942;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 155:
 					_localctx = new EXPONDIST_funContext(_localctx);
 					EnterOuterAlt(_localctx, 155); {
 						State = 1944;
-						Match(EXPONDIST);
+						Match(182);
 						State = 1945;
-						Match(T__19);
+						Match(20);
 						State = 1946;
 						expr(0);
 						State = 1947;
-						Match(T__21);
+						Match(22);
 						State = 1948;
 						expr(0);
 						State = 1949;
-						Match(T__21);
+						Match(22);
 						State = 1950;
 						expr(0);
 						State = 1951;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 156:
 					_localctx = new FDIST_funContext(_localctx);
 					EnterOuterAlt(_localctx, 156); {
 						State = 1953;
-						Match(FDIST);
+						Match(183);
 						State = 1954;
-						Match(T__19);
+						Match(20);
 						State = 1955;
 						expr(0);
 						State = 1956;
-						Match(T__21);
+						Match(22);
 						State = 1957;
 						expr(0);
 						State = 1958;
-						Match(T__21);
+						Match(22);
 						State = 1959;
 						expr(0);
 						State = 1960;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 157:
 					_localctx = new FINV_funContext(_localctx);
 					EnterOuterAlt(_localctx, 157); {
 						State = 1962;
-						Match(FINV);
+						Match(184);
 						State = 1963;
-						Match(T__19);
+						Match(20);
 						State = 1964;
 						expr(0);
 						State = 1965;
-						Match(T__21);
+						Match(22);
 						State = 1966;
 						expr(0);
 						State = 1967;
-						Match(T__21);
+						Match(22);
 						State = 1968;
 						expr(0);
 						State = 1969;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 158:
 					_localctx = new FISHER_funContext(_localctx);
 					EnterOuterAlt(_localctx, 158); {
 						State = 1971;
-						Match(FISHER);
+						Match(185);
 						State = 1972;
-						Match(T__19);
+						Match(20);
 						State = 1973;
 						expr(0);
 						State = 1974;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 159:
 					_localctx = new FISHERINV_funContext(_localctx);
 					EnterOuterAlt(_localctx, 159); {
 						State = 1976;
-						Match(FISHERINV);
+						Match(186);
 						State = 1977;
-						Match(T__19);
+						Match(20);
 						State = 1978;
 						expr(0);
 						State = 1979;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 160:
 					_localctx = new GAMMADIST_funContext(_localctx);
 					EnterOuterAlt(_localctx, 160); {
 						State = 1981;
-						Match(GAMMADIST);
+						Match(187);
 						State = 1982;
-						Match(T__19);
+						Match(20);
 						State = 1983;
 						expr(0);
 						State = 1984;
-						Match(T__21);
+						Match(22);
 						State = 1985;
 						expr(0);
 						State = 1986;
-						Match(T__21);
+						Match(22);
 						State = 1987;
 						expr(0);
 						State = 1988;
-						Match(T__21);
+						Match(22);
 						State = 1989;
 						expr(0);
 						State = 1990;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 161:
 					_localctx = new GAMMAINV_funContext(_localctx);
 					EnterOuterAlt(_localctx, 161); {
 						State = 1992;
-						Match(GAMMAINV);
+						Match(188);
 						State = 1993;
-						Match(T__19);
+						Match(20);
 						State = 1994;
 						expr(0);
 						State = 1995;
-						Match(T__21);
+						Match(22);
 						State = 1996;
 						expr(0);
 						State = 1997;
-						Match(T__21);
+						Match(22);
 						State = 1998;
 						expr(0);
 						State = 1999;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 162:
 					_localctx = new GAMMALN_funContext(_localctx);
 					EnterOuterAlt(_localctx, 162); {
 						State = 2001;
-						Match(GAMMALN);
+						Match(189);
 						State = 2002;
-						Match(T__19);
+						Match(20);
 						State = 2003;
 						expr(0);
 						State = 2004;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 163:
 					_localctx = new HYPGEOMDIST_funContext(_localctx);
 					EnterOuterAlt(_localctx, 163); {
 						State = 2006;
-						Match(HYPGEOMDIST);
+						Match(190);
 						State = 2007;
-						Match(T__19);
+						Match(20);
 						State = 2008;
 						expr(0);
 						State = 2009;
-						Match(T__21);
+						Match(22);
 						State = 2010;
 						expr(0);
 						State = 2011;
-						Match(T__21);
+						Match(22);
 						State = 2012;
 						expr(0);
 						State = 2013;
-						Match(T__21);
+						Match(22);
 						State = 2014;
 						expr(0);
 						State = 2015;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 164:
 					_localctx = new LOGINV_funContext(_localctx);
 					EnterOuterAlt(_localctx, 164); {
 						State = 2017;
-						Match(LOGINV);
+						Match(191);
 						State = 2018;
-						Match(T__19);
+						Match(20);
 						State = 2019;
 						expr(0);
 						State = 2020;
-						Match(T__21);
+						Match(22);
 						State = 2021;
 						expr(0);
 						State = 2022;
-						Match(T__21);
+						Match(22);
 						State = 2023;
 						expr(0);
 						State = 2024;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 165:
 					_localctx = new LOGNORMDIST_funContext(_localctx);
 					EnterOuterAlt(_localctx, 165); {
 						State = 2026;
-						Match(LOGNORMDIST);
+						Match(192);
 						State = 2027;
-						Match(T__19);
+						Match(20);
 						State = 2028;
 						expr(0);
 						State = 2029;
-						Match(T__21);
+						Match(22);
 						State = 2030;
 						expr(0);
 						State = 2031;
-						Match(T__21);
+						Match(22);
 						State = 2032;
 						expr(0);
 						State = 2033;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 166:
 					_localctx = new NEGBINOMDIST_funContext(_localctx);
 					EnterOuterAlt(_localctx, 166); {
 						State = 2035;
-						Match(NEGBINOMDIST);
+						Match(193);
 						State = 2036;
-						Match(T__19);
+						Match(20);
 						State = 2037;
 						expr(0);
 						State = 2038;
-						Match(T__21);
+						Match(22);
 						State = 2039;
 						expr(0);
 						State = 2040;
-						Match(T__21);
+						Match(22);
 						State = 2041;
 						expr(0);
 						State = 2042;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 167:
 					_localctx = new POISSON_funContext(_localctx);
 					EnterOuterAlt(_localctx, 167); {
 						State = 2044;
-						Match(POISSON);
+						Match(194);
 						State = 2045;
-						Match(T__19);
+						Match(20);
 						State = 2046;
 						expr(0);
 						State = 2047;
-						Match(T__21);
+						Match(22);
 						State = 2048;
 						expr(0);
 						State = 2049;
-						Match(T__21);
+						Match(22);
 						State = 2050;
 						expr(0);
 						State = 2051;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 168:
 					_localctx = new TDIST_funContext(_localctx);
 					EnterOuterAlt(_localctx, 168); {
 						State = 2053;
-						Match(TDIST);
+						Match(195);
 						State = 2054;
-						Match(T__19);
+						Match(20);
 						State = 2055;
 						expr(0);
 						State = 2056;
-						Match(T__21);
+						Match(22);
 						State = 2057;
 						expr(0);
 						State = 2058;
-						Match(T__21);
+						Match(22);
 						State = 2059;
 						expr(0);
 						State = 2060;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 169:
 					_localctx = new TINV_funContext(_localctx);
 					EnterOuterAlt(_localctx, 169); {
 						State = 2062;
-						Match(TINV);
+						Match(196);
 						State = 2063;
-						Match(T__19);
+						Match(20);
 						State = 2064;
 						expr(0);
 						State = 2065;
-						Match(T__21);
+						Match(22);
 						State = 2066;
 						expr(0);
 						State = 2067;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 170:
 					_localctx = new WEIBULL_funContext(_localctx);
 					EnterOuterAlt(_localctx, 170); {
 						State = 2069;
-						Match(WEIBULL);
+						Match(197);
 						State = 2070;
-						Match(T__19);
+						Match(20);
 						State = 2071;
 						expr(0);
 						State = 2072;
-						Match(T__21);
+						Match(22);
 						State = 2073;
 						expr(0);
 						State = 2074;
-						Match(T__21);
+						Match(22);
 						State = 2075;
 						expr(0);
 						State = 2076;
-						Match(T__21);
+						Match(22);
 						State = 2077;
 						expr(0);
 						State = 2078;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 171:
 					_localctx = new URLENCODE_funContext(_localctx);
 					EnterOuterAlt(_localctx, 171); {
 						State = 2080;
-						Match(URLENCODE);
+						Match(198);
 						State = 2081;
-						Match(T__19);
+						Match(20);
 						State = 2082;
 						expr(0);
 						State = 2083;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 172:
 					_localctx = new URLDECODE_funContext(_localctx);
 					EnterOuterAlt(_localctx, 172); {
 						State = 2085;
-						Match(URLDECODE);
+						Match(199);
 						State = 2086;
-						Match(T__19);
+						Match(20);
 						State = 2087;
 						expr(0);
 						State = 2088;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 173:
 					_localctx = new HTMLENCODE_funContext(_localctx);
 					EnterOuterAlt(_localctx, 173); {
 						State = 2090;
-						Match(HTMLENCODE);
+						Match(200);
 						State = 2091;
-						Match(T__19);
+						Match(20);
 						State = 2092;
 						expr(0);
 						State = 2093;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 174:
 					_localctx = new HTMLDECODE_funContext(_localctx);
 					EnterOuterAlt(_localctx, 174); {
 						State = 2095;
-						Match(HTMLDECODE);
+						Match(201);
 						State = 2096;
-						Match(T__19);
+						Match(20);
 						State = 2097;
 						expr(0);
 						State = 2098;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 175:
 					_localctx = new BASE64TOTEXT_funContext(_localctx);
 					EnterOuterAlt(_localctx, 175); {
 						State = 2100;
-						Match(BASE64TOTEXT);
+						Match(202);
 						State = 2101;
-						Match(T__19);
+						Match(20);
 						State = 2102;
 						expr(0);
 						State = 2105;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 2103;
-								Match(T__21);
+								Match(22);
 								State = 2104;
 								expr(0);
 							}
 						}
 
 						State = 2107;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 176:
 					_localctx = new BASE64URLTOTEXT_funContext(_localctx);
 					EnterOuterAlt(_localctx, 176); {
 						State = 2109;
-						Match(BASE64URLTOTEXT);
+						Match(203);
 						State = 2110;
-						Match(T__19);
+						Match(20);
 						State = 2111;
 						expr(0);
 						State = 2114;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 2112;
-								Match(T__21);
+								Match(22);
 								State = 2113;
 								expr(0);
 							}
 						}
 
 						State = 2116;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 177:
 					_localctx = new TEXTTOBASE64_funContext(_localctx);
 					EnterOuterAlt(_localctx, 177); {
 						State = 2118;
-						Match(TEXTTOBASE64);
+						Match(204);
 						State = 2119;
-						Match(T__19);
+						Match(20);
 						State = 2120;
 						expr(0);
 						State = 2123;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 2121;
-								Match(T__21);
+								Match(22);
 								State = 2122;
 								expr(0);
 							}
 						}
 
 						State = 2125;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 178:
 					_localctx = new TEXTTOBASE64URL_funContext(_localctx);
 					EnterOuterAlt(_localctx, 178); {
 						State = 2127;
-						Match(TEXTTOBASE64URL);
+						Match(205);
 						State = 2128;
-						Match(T__19);
+						Match(20);
 						State = 2129;
 						expr(0);
 						State = 2132;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 2130;
-								Match(T__21);
+								Match(22);
 								State = 2131;
 								expr(0);
 							}
 						}
 
 						State = 2134;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 179:
 					_localctx = new REGEX_funContext(_localctx);
 					EnterOuterAlt(_localctx, 179); {
 						State = 2136;
-						Match(REGEX);
+						Match(206);
 						State = 2137;
-						Match(T__19);
+						Match(20);
 						State = 2138;
 						expr(0);
 						State = 2139;
-						Match(T__21);
+						Match(22);
 						State = 2140;
 						expr(0);
 						State = 2141;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 180:
 					_localctx = new REGEXREPALCE_funContext(_localctx);
 					EnterOuterAlt(_localctx, 180); {
 						State = 2143;
-						Match(REGEXREPALCE);
+						Match(207);
 						State = 2144;
-						Match(T__19);
+						Match(20);
 						State = 2145;
 						expr(0);
 						State = 2146;
-						Match(T__21);
+						Match(22);
 						State = 2147;
 						expr(0);
 						State = 2148;
-						Match(T__21);
+						Match(22);
 						State = 2149;
 						expr(0);
 						State = 2150;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 181:
 					_localctx = new ISREGEX_funContext(_localctx);
 					EnterOuterAlt(_localctx, 181); {
 						State = 2152;
-						Match(ISREGEX);
+						Match(208);
 						State = 2153;
-						Match(T__19);
+						Match(20);
 						State = 2154;
 						expr(0);
 						State = 2155;
-						Match(T__21);
+						Match(22);
 						State = 2156;
 						expr(0);
 						State = 2157;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 182:
 					_localctx = new GUID_funContext(_localctx);
 					EnterOuterAlt(_localctx, 182); {
 						State = 2159;
-						Match(GUID);
+						Match(209);
 						State = 2160;
-						Match(T__19);
+						Match(20);
 						State = 2161;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 183:
 					_localctx = new MD5_funContext(_localctx);
 					EnterOuterAlt(_localctx, 183); {
 						State = 2162;
-						Match(MD5);
+						Match(210);
 						State = 2163;
-						Match(T__19);
+						Match(20);
 						State = 2164;
 						expr(0);
 						State = 2167;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 2165;
-								Match(T__21);
+								Match(22);
 								State = 2166;
 								expr(0);
 							}
 						}
 
 						State = 2169;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 184:
 					_localctx = new SHA1_funContext(_localctx);
 					EnterOuterAlt(_localctx, 184); {
 						State = 2171;
-						Match(SHA1);
+						Match(211);
 						State = 2172;
-						Match(T__19);
+						Match(20);
 						State = 2173;
 						expr(0);
 						State = 2176;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 2174;
-								Match(T__21);
+								Match(22);
 								State = 2175;
 								expr(0);
 							}
 						}
 
 						State = 2178;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 185:
 					_localctx = new SHA256_funContext(_localctx);
 					EnterOuterAlt(_localctx, 185); {
 						State = 2180;
-						Match(SHA256);
+						Match(212);
 						State = 2181;
-						Match(T__19);
+						Match(20);
 						State = 2182;
 						expr(0);
 						State = 2185;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 2183;
-								Match(T__21);
+								Match(22);
 								State = 2184;
 								expr(0);
 							}
 						}
 
 						State = 2187;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 186:
 					_localctx = new SHA512_funContext(_localctx);
 					EnterOuterAlt(_localctx, 186); {
 						State = 2189;
-						Match(SHA512);
+						Match(213);
 						State = 2190;
-						Match(T__19);
+						Match(20);
 						State = 2191;
 						expr(0);
 						State = 2194;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 2192;
-								Match(T__21);
+								Match(22);
 								State = 2193;
 								expr(0);
 							}
 						}
 
 						State = 2196;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 187:
 					_localctx = new CRC32_funContext(_localctx);
 					EnterOuterAlt(_localctx, 187); {
 						State = 2198;
-						Match(CRC32);
+						Match(214);
 						State = 2199;
-						Match(T__19);
+						Match(20);
 						State = 2200;
 						expr(0);
 						State = 2203;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 2201;
-								Match(T__21);
+								Match(22);
 								State = 2202;
 								expr(0);
 							}
 						}
 
 						State = 2205;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 188:
 					_localctx = new HMACMD5_funContext(_localctx);
 					EnterOuterAlt(_localctx, 188); {
 						State = 2207;
-						Match(HMACMD5);
+						Match(215);
 						State = 2208;
-						Match(T__19);
+						Match(20);
 						State = 2209;
 						expr(0);
 						State = 2210;
-						Match(T__21);
+						Match(22);
 						State = 2211;
 						expr(0);
 						State = 2214;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 2212;
-								Match(T__21);
+								Match(22);
 								State = 2213;
 								expr(0);
 							}
 						}
 
 						State = 2216;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 189:
 					_localctx = new HMACSHA1_funContext(_localctx);
 					EnterOuterAlt(_localctx, 189); {
 						State = 2218;
-						Match(HMACSHA1);
+						Match(216);
 						State = 2219;
-						Match(T__19);
+						Match(20);
 						State = 2220;
 						expr(0);
 						State = 2221;
-						Match(T__21);
+						Match(22);
 						State = 2222;
 						expr(0);
 						State = 2225;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 2223;
-								Match(T__21);
+								Match(22);
 								State = 2224;
 								expr(0);
 							}
 						}
 
 						State = 2227;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 190:
 					_localctx = new HMACSHA256_funContext(_localctx);
 					EnterOuterAlt(_localctx, 190); {
 						State = 2229;
-						Match(HMACSHA256);
+						Match(217);
 						State = 2230;
-						Match(T__19);
+						Match(20);
 						State = 2231;
 						expr(0);
 						State = 2232;
-						Match(T__21);
+						Match(22);
 						State = 2233;
 						expr(0);
 						State = 2236;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 2234;
-								Match(T__21);
+								Match(22);
 								State = 2235;
 								expr(0);
 							}
 						}
 
 						State = 2238;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 191:
 					_localctx = new HMACSHA512_funContext(_localctx);
 					EnterOuterAlt(_localctx, 191); {
 						State = 2240;
-						Match(HMACSHA512);
+						Match(218);
 						State = 2241;
-						Match(T__19);
+						Match(20);
 						State = 2242;
 						expr(0);
 						State = 2243;
-						Match(T__21);
+						Match(22);
 						State = 2244;
 						expr(0);
 						State = 2247;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 2245;
-								Match(T__21);
+								Match(22);
 								State = 2246;
 								expr(0);
 							}
 						}
 
 						State = 2249;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 192:
 					_localctx = new TRIMSTART_funContext(_localctx);
 					EnterOuterAlt(_localctx, 192); {
 						State = 2251;
-						Match(TRIMSTART);
+						Match(219);
 						State = 2252;
-						Match(T__19);
+						Match(20);
 						State = 2253;
 						expr(0);
 						State = 2256;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 2254;
-								Match(T__21);
+								Match(22);
 								State = 2255;
 								expr(0);
 							}
 						}
 
 						State = 2258;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 193:
 					_localctx = new TRIMEND_funContext(_localctx);
 					EnterOuterAlt(_localctx, 193); {
 						State = 2260;
-						Match(TRIMEND);
+						Match(220);
 						State = 2261;
-						Match(T__19);
+						Match(20);
 						State = 2262;
 						expr(0);
 						State = 2265;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 2263;
-								Match(T__21);
+								Match(22);
 								State = 2264;
 								expr(0);
 							}
 						}
 
 						State = 2267;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 194:
 					_localctx = new INDEXOF_funContext(_localctx);
 					EnterOuterAlt(_localctx, 194); {
 						State = 2269;
-						Match(INDEXOF);
+						Match(221);
 						State = 2270;
-						Match(T__19);
+						Match(20);
 						State = 2271;
 						expr(0);
 						State = 2272;
-						Match(T__21);
+						Match(22);
 						State = 2273;
 						expr(0);
 						State = 2280;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 2274;
-								Match(T__21);
+								Match(22);
 								State = 2275;
 								expr(0);
 								State = 2278;
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
-								if (_la == T__21) {
+								if (_la == 22) {
 									{
 										State = 2276;
-										Match(T__21);
+										Match(22);
 										State = 2277;
 										expr(0);
 									}
@@ -6529,38 +6488,38 @@ partial class mathParser : Parser {
 						}
 
 						State = 2282;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 195:
 					_localctx = new LASTINDEXOF_funContext(_localctx);
 					EnterOuterAlt(_localctx, 195); {
 						State = 2284;
-						Match(LASTINDEXOF);
+						Match(222);
 						State = 2285;
-						Match(T__19);
+						Match(20);
 						State = 2286;
 						expr(0);
 						State = 2287;
-						Match(T__21);
+						Match(22);
 						State = 2288;
 						expr(0);
 						State = 2295;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 2289;
-								Match(T__21);
+								Match(22);
 								State = 2290;
 								expr(0);
 								State = 2293;
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
-								if (_la == T__21) {
+								if (_la == 22) {
 									{
 										State = 2291;
-										Match(T__21);
+										Match(22);
 										State = 2292;
 										expr(0);
 									}
@@ -6570,33 +6529,33 @@ partial class mathParser : Parser {
 						}
 
 						State = 2297;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 196:
 					_localctx = new SPLIT_funContext(_localctx);
 					EnterOuterAlt(_localctx, 196); {
 						State = 2299;
-						Match(SPLIT);
+						Match(223);
 						State = 2300;
-						Match(T__19);
+						Match(20);
 						State = 2301;
 						expr(0);
 						State = 2302;
-						Match(T__21);
+						Match(22);
 						State = 2303;
 						expr(0);
 						State = 2304;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 197:
 					_localctx = new JOIN_funContext(_localctx);
 					EnterOuterAlt(_localctx, 197); {
 						State = 2306;
-						Match(JOIN);
+						Match(224);
 						State = 2307;
-						Match(T__19);
+						Match(20);
 						State = 2308;
 						expr(0);
 						State = 2311;
@@ -6606,7 +6565,7 @@ partial class mathParser : Parser {
 							{
 								{
 									State = 2309;
-									Match(T__21);
+									Match(22);
 									State = 2310;
 									expr(0);
 								}
@@ -6614,149 +6573,149 @@ partial class mathParser : Parser {
 							State = 2313;
 							ErrorHandler.Sync(this);
 							_la = TokenStream.LA(1);
-						} while (_la == T__21);
+						} while (_la == 22);
 						State = 2315;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 198:
 					_localctx = new SUBSTRING_funContext(_localctx);
 					EnterOuterAlt(_localctx, 198); {
 						State = 2317;
-						Match(SUBSTRING);
+						Match(225);
 						State = 2318;
-						Match(T__19);
+						Match(20);
 						State = 2319;
 						expr(0);
 						State = 2320;
-						Match(T__21);
+						Match(22);
 						State = 2321;
 						expr(0);
 						State = 2324;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 2322;
-								Match(T__21);
+								Match(22);
 								State = 2323;
 								expr(0);
 							}
 						}
 
 						State = 2326;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 199:
 					_localctx = new STARTSWITH_funContext(_localctx);
 					EnterOuterAlt(_localctx, 199); {
 						State = 2328;
-						Match(STARTSWITH);
+						Match(226);
 						State = 2329;
-						Match(T__19);
+						Match(20);
 						State = 2330;
 						expr(0);
 						State = 2331;
-						Match(T__21);
+						Match(22);
 						State = 2332;
 						expr(0);
 						State = 2335;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 2333;
-								Match(T__21);
+								Match(22);
 								State = 2334;
 								expr(0);
 							}
 						}
 
 						State = 2337;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 200:
 					_localctx = new ENDSWITH_funContext(_localctx);
 					EnterOuterAlt(_localctx, 200); {
 						State = 2339;
-						Match(ENDSWITH);
+						Match(227);
 						State = 2340;
-						Match(T__19);
+						Match(20);
 						State = 2341;
 						expr(0);
 						State = 2342;
-						Match(T__21);
+						Match(22);
 						State = 2343;
 						expr(0);
 						State = 2346;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 2344;
-								Match(T__21);
+								Match(22);
 								State = 2345;
 								expr(0);
 							}
 						}
 
 						State = 2348;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 201:
 					_localctx = new ISNULLOREMPTY_funContext(_localctx);
 					EnterOuterAlt(_localctx, 201); {
 						State = 2350;
-						Match(ISNULLOREMPTY);
+						Match(228);
 						State = 2351;
-						Match(T__19);
+						Match(20);
 						State = 2352;
 						expr(0);
 						State = 2353;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 202:
 					_localctx = new ISNULLORWHITESPACE_funContext(_localctx);
 					EnterOuterAlt(_localctx, 202); {
 						State = 2355;
-						Match(ISNULLORWHITESPACE);
+						Match(229);
 						State = 2356;
-						Match(T__19);
+						Match(20);
 						State = 2357;
 						expr(0);
 						State = 2358;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 203:
 					_localctx = new REMOVESTART_funContext(_localctx);
 					EnterOuterAlt(_localctx, 203); {
 						State = 2360;
-						Match(REMOVESTART);
+						Match(230);
 						State = 2361;
-						Match(T__19);
+						Match(20);
 						State = 2362;
 						expr(0);
 						State = 2369;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 2363;
-								Match(T__21);
+								Match(22);
 								State = 2364;
 								expr(0);
 								State = 2367;
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
-								if (_la == T__21) {
+								if (_la == 22) {
 									{
 										State = 2365;
-										Match(T__21);
+										Match(22);
 										State = 2366;
 										expr(0);
 									}
@@ -6766,34 +6725,34 @@ partial class mathParser : Parser {
 						}
 
 						State = 2371;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 204:
 					_localctx = new REMOVEEND_funContext(_localctx);
 					EnterOuterAlt(_localctx, 204); {
 						State = 2373;
-						Match(REMOVEEND);
+						Match(231);
 						State = 2374;
-						Match(T__19);
+						Match(20);
 						State = 2375;
 						expr(0);
 						State = 2382;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 2376;
-								Match(T__21);
+								Match(22);
 								State = 2377;
 								expr(0);
 								State = 2380;
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
-								if (_la == T__21) {
+								if (_la == 22) {
 									{
 										State = 2378;
-										Match(T__21);
+										Match(22);
 										State = 2379;
 										expr(0);
 									}
@@ -6803,98 +6762,98 @@ partial class mathParser : Parser {
 						}
 
 						State = 2384;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 205:
 					_localctx = new JSON_funContext(_localctx);
 					EnterOuterAlt(_localctx, 205); {
 						State = 2386;
-						Match(JSON);
+						Match(232);
 						State = 2387;
-						Match(T__19);
+						Match(20);
 						State = 2388;
 						expr(0);
 						State = 2389;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 206:
 					_localctx = new VLOOKUP_funContext(_localctx);
 					EnterOuterAlt(_localctx, 206); {
 						State = 2391;
-						Match(VLOOKUP);
+						Match(233);
 						State = 2392;
-						Match(T__19);
+						Match(20);
 						State = 2393;
 						expr(0);
 						State = 2394;
-						Match(T__21);
+						Match(22);
 						State = 2395;
 						expr(0);
 						State = 2396;
-						Match(T__21);
+						Match(22);
 						State = 2397;
 						expr(0);
 						State = 2400;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == T__21) {
+						if (_la == 22) {
 							{
 								State = 2398;
-								Match(T__21);
+								Match(22);
 								State = 2399;
 								expr(0);
 							}
 						}
 
 						State = 2402;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 207:
 					_localctx = new LOOKUP_funContext(_localctx);
 					EnterOuterAlt(_localctx, 207); {
 						State = 2404;
-						Match(LOOKUP);
+						Match(234);
 						State = 2405;
-						Match(T__19);
+						Match(20);
 						State = 2406;
 						expr(0);
 						State = 2407;
-						Match(T__21);
+						Match(22);
 						State = 2408;
 						expr(0);
 						State = 2409;
-						Match(T__21);
+						Match(22);
 						State = 2410;
 						expr(0);
 						State = 2411;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 208:
 					_localctx = new DiyFunction_funContext(_localctx);
 					EnterOuterAlt(_localctx, 208); {
 						State = 2413;
-						Match(PARAMETER);
+						Match(236);
 						State = 2414;
-						Match(T__19);
+						Match(20);
 						State = 2423;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__19) | (1L << T__22) | (1L << T__24) | (1L << SUB) | (1L << NUM) | (1L << STRING) | (1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SQRT - 64)) | (1L << (TRUNC - 64)) | (1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (TEXT - 128)) | (1L << (TRIM - 128)) | (1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (LOGNORMDIST - 192)) | (1L << (NEGBINOMDIST - 192)) | (1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (ARRAY - 192)) | (1L << (PARAMETER - 192)) | (1L << (PARAMETER2 - 192)))) != 0)) {
+						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 20) | (1L << 23) | (1L << 25) | (1L << 26) | (1L << 27) | (1L << 28) | (1L << 29) | (1L << 30) | (1L << 31) | (1L << 32) | (1L << 33) | (1L << 34) | (1L << 35) | (1L << 36) | (1L << 37) | (1L << 38) | (1L << 39) | (1L << 40) | (1L << 41) | (1L << 42) | (1L << 43) | (1L << 44) | (1L << 45) | (1L << 46) | (1L << 47) | (1L << 48) | (1L << 49) | (1L << 50) | (1L << 51) | (1L << 52) | (1L << 53) | (1L << 54) | (1L << 55) | (1L << 56) | (1L << 57) | (1L << 58) | (1L << 59) | (1L << 60) | (1L << 61) | (1L << 62) | (1L << 63))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (64 - 64)) | (1L << (65 - 64)) | (1L << (66 - 64)) | (1L << (67 - 64)) | (1L << (68 - 64)) | (1L << (69 - 64)) | (1L << (70 - 64)) | (1L << (71 - 64)) | (1L << (72 - 64)) | (1L << (73 - 64)) | (1L << (74 - 64)) | (1L << (75 - 64)) | (1L << (76 - 64)) | (1L << (77 - 64)) | (1L << (78 - 64)) | (1L << (79 - 64)) | (1L << (80 - 64)) | (1L << (81 - 64)) | (1L << (82 - 64)) | (1L << (83 - 64)) | (1L << (84 - 64)) | (1L << (85 - 64)) | (1L << (86 - 64)) | (1L << (87 - 64)) | (1L << (88 - 64)) | (1L << (89 - 64)) | (1L << (90 - 64)) | (1L << (91 - 64)) | (1L << (92 - 64)) | (1L << (93 - 64)) | (1L << (94 - 64)) | (1L << (95 - 64)) | (1L << (96 - 64)) | (1L << (97 - 64)) | (1L << (98 - 64)) | (1L << (99 - 64)) | (1L << (100 - 64)) | (1L << (101 - 64)) | (1L << (102 - 64)) | (1L << (103 - 64)) | (1L << (104 - 64)) | (1L << (105 - 64)) | (1L << (106 - 64)) | (1L << (107 - 64)) | (1L << (108 - 64)) | (1L << (109 - 64)) | (1L << (110 - 64)) | (1L << (111 - 64)) | (1L << (112 - 64)) | (1L << (113 - 64)) | (1L << (114 - 64)) | (1L << (115 - 64)) | (1L << (116 - 64)) | (1L << (117 - 64)) | (1L << (118 - 64)) | (1L << (119 - 64)) | (1L << (120 - 64)) | (1L << (121 - 64)) | (1L << (122 - 64)) | (1L << (123 - 64)) | (1L << (124 - 64)) | (1L << (125 - 64)) | (1L << (126 - 64)) | (1L << (127 - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (128 - 128)) | (1L << (129 - 128)) | (1L << (130 - 128)) | (1L << (131 - 128)) | (1L << (132 - 128)) | (1L << (133 - 128)) | (1L << (134 - 128)) | (1L << (135 - 128)) | (1L << (136 - 128)) | (1L << (137 - 128)) | (1L << (138 - 128)) | (1L << (139 - 128)) | (1L << (140 - 128)) | (1L << (141 - 128)) | (1L << (142 - 128)) | (1L << (143 - 128)) | (1L << (144 - 128)) | (1L << (145 - 128)) | (1L << (146 - 128)) | (1L << (147 - 128)) | (1L << (148 - 128)) | (1L << (149 - 128)) | (1L << (150 - 128)) | (1L << (151 - 128)) | (1L << (152 - 128)) | (1L << (153 - 128)) | (1L << (154 - 128)) | (1L << (155 - 128)) | (1L << (156 - 128)) | (1L << (157 - 128)) | (1L << (158 - 128)) | (1L << (159 - 128)) | (1L << (160 - 128)) | (1L << (161 - 128)) | (1L << (162 - 128)) | (1L << (163 - 128)) | (1L << (164 - 128)) | (1L << (165 - 128)) | (1L << (166 - 128)) | (1L << (167 - 128)) | (1L << (168 - 128)) | (1L << (169 - 128)) | (1L << (170 - 128)) | (1L << (171 - 128)) | (1L << (172 - 128)) | (1L << (173 - 128)) | (1L << (174 - 128)) | (1L << (175 - 128)) | (1L << (176 - 128)) | (1L << (177 - 128)) | (1L << (178 - 128)) | (1L << (179 - 128)) | (1L << (180 - 128)) | (1L << (181 - 128)) | (1L << (182 - 128)) | (1L << (183 - 128)) | (1L << (184 - 128)) | (1L << (185 - 128)) | (1L << (186 - 128)) | (1L << (187 - 128)) | (1L << (188 - 128)) | (1L << (189 - 128)) | (1L << (190 - 128)) | (1L << (191 - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (192 - 192)) | (1L << (193 - 192)) | (1L << (194 - 192)) | (1L << (195 - 192)) | (1L << (196 - 192)) | (1L << (197 - 192)) | (1L << (198 - 192)) | (1L << (199 - 192)) | (1L << (200 - 192)) | (1L << (201 - 192)) | (1L << (202 - 192)) | (1L << (203 - 192)) | (1L << (204 - 192)) | (1L << (205 - 192)) | (1L << (206 - 192)) | (1L << (207 - 192)) | (1L << (208 - 192)) | (1L << (209 - 192)) | (1L << (210 - 192)) | (1L << (211 - 192)) | (1L << (212 - 192)) | (1L << (213 - 192)) | (1L << (214 - 192)) | (1L << (215 - 192)) | (1L << (216 - 192)) | (1L << (217 - 192)) | (1L << (218 - 192)) | (1L << (219 - 192)) | (1L << (220 - 192)) | (1L << (221 - 192)) | (1L << (222 - 192)) | (1L << (223 - 192)) | (1L << (224 - 192)) | (1L << (225 - 192)) | (1L << (226 - 192)) | (1L << (227 - 192)) | (1L << (228 - 192)) | (1L << (229 - 192)) | (1L << (230 - 192)) | (1L << (231 - 192)) | (1L << (232 - 192)) | (1L << (233 - 192)) | (1L << (234 - 192)) | (1L << (235 - 192)) | (1L << (236 - 192)) | (1L << (237 - 192)))) != 0)) {
 							{
 								State = 2415;
 								expr(0);
 								State = 2420;
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
-								while (_la == T__21) {
+								while (_la == 22) {
 									{
 										{
 											State = 2416;
-											Match(T__21);
+											Match(22);
 											State = 2417;
 											expr(0);
 										}
@@ -6907,43 +6866,43 @@ partial class mathParser : Parser {
 						}
 
 						State = 2425;
-						Match(T__20);
+						Match(21);
 					}
 					break;
 				case 209:
 					_localctx = new PARAMETER_funContext(_localctx);
 					EnterOuterAlt(_localctx, 209); {
 						State = 2426;
-						Match(T__22);
+						Match(23);
 						State = 2427;
-						Match(PARAMETER);
+						Match(236);
 						State = 2428;
-						Match(T__23);
+						Match(24);
 					}
 					break;
 				case 210:
 					_localctx = new PARAMETER_funContext(_localctx);
 					EnterOuterAlt(_localctx, 210); {
 						State = 2429;
-						Match(T__22);
+						Match(23);
 						State = 2430;
 						expr(0);
 						State = 2431;
-						Match(T__23);
+						Match(24);
 					}
 					break;
 				case 211:
 					_localctx = new PARAMETER_funContext(_localctx);
 					EnterOuterAlt(_localctx, 211); {
 						State = 2433;
-						Match(PARAMETER);
+						Match(236);
 					}
 					break;
 				case 212:
 					_localctx = new PARAMETER_funContext(_localctx);
 					EnterOuterAlt(_localctx, 212); {
 						State = 2434;
-						Match(PARAMETER2);
+						Match(237);
 					}
 					break;
 				case 213:
@@ -6952,29 +6911,29 @@ partial class mathParser : Parser {
 						State = 2436;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la == SUB) {
+						if (_la == 26) {
 							{
 								State = 2435;
-								Match(SUB);
+								Match(26);
 							}
 						}
 
 						State = 2438;
-						Match(NUM);
+						Match(27);
 					}
 					break;
 				case 214:
 					_localctx = new STRING_funContext(_localctx);
 					EnterOuterAlt(_localctx, 214); {
 						State = 2439;
-						Match(STRING);
+						Match(28);
 					}
 					break;
 				case 215:
 					_localctx = new NULL_funContext(_localctx);
 					EnterOuterAlt(_localctx, 215); {
 						State = 2440;
-						Match(NULL);
+						Match(29);
 					}
 					break;
 			}
@@ -6990,14 +6949,14 @@ partial class mathParser : Parser {
 	public Parameter2Context parameter2()
 	{
 		Parameter2Context _localctx = new Parameter2Context(Context, State);
-		EnterRule(_localctx, 6, RULE_parameter2);
+		EnterRule(_localctx, 6, 3);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
 				State = 2443;
 				_la = TokenStream.LA(1);
-				if (!((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << NULL) | (1L << IF) | (1L << IFERROR) | (1L << ISNUMBER) | (1L << ISTEXT) | (1L << ISERROR) | (1L << ISNONTEXT) | (1L << ISLOGICAL) | (1L << ISEVEN) | (1L << ISODD) | (1L << ISNULL) | (1L << ISNULLORERROR) | (1L << AND) | (1L << OR) | (1L << NOT) | (1L << TRUE) | (1L << FALSE) | (1L << E) | (1L << PI) | (1L << DEC2BIN) | (1L << DEC2HEX) | (1L << DEC2OCT) | (1L << HEX2BIN) | (1L << HEX2DEC) | (1L << HEX2OCT) | (1L << OCT2BIN) | (1L << OCT2DEC) | (1L << OCT2HEX) | (1L << BIN2OCT) | (1L << BIN2DEC) | (1L << BIN2HEX) | (1L << ABS) | (1L << QUOTIENT) | (1L << MOD) | (1L << SIGN))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (SQRT - 64)) | (1L << (TRUNC - 64)) | (1L << (INT - 64)) | (1L << (GCD - 64)) | (1L << (LCM - 64)) | (1L << (COMBIN - 64)) | (1L << (PERMUT - 64)) | (1L << (DEGREES - 64)) | (1L << (RADIANS - 64)) | (1L << (COS - 64)) | (1L << (COSH - 64)) | (1L << (SIN - 64)) | (1L << (SINH - 64)) | (1L << (TAN - 64)) | (1L << (TANH - 64)) | (1L << (ACOS - 64)) | (1L << (ACOSH - 64)) | (1L << (ASIN - 64)) | (1L << (ASINH - 64)) | (1L << (ATAN - 64)) | (1L << (ATANH - 64)) | (1L << (ATAN2 - 64)) | (1L << (ROUND - 64)) | (1L << (ROUNDDOWN - 64)) | (1L << (ROUNDUP - 64)) | (1L << (CEILING - 64)) | (1L << (FLOOR - 64)) | (1L << (EVEN - 64)) | (1L << (ODD - 64)) | (1L << (MROUND - 64)) | (1L << (RAND - 64)) | (1L << (RANDBETWEEN - 64)) | (1L << (FACT - 64)) | (1L << (FACTDOUBLE - 64)) | (1L << (POWER - 64)) | (1L << (EXP - 64)) | (1L << (LN - 64)) | (1L << (LOG - 64)) | (1L << (LOG10 - 64)) | (1L << (MULTINOMIAL - 64)) | (1L << (PRODUCT - 64)) | (1L << (SQRTPI - 64)) | (1L << (SUMSQ - 64)) | (1L << (ASC - 64)) | (1L << (JIS - 64)) | (1L << (CHAR - 64)) | (1L << (CLEAN - 64)) | (1L << (CODE - 64)) | (1L << (CONCATENATE - 64)) | (1L << (EXACT - 64)) | (1L << (FIND - 64)) | (1L << (FIXED - 64)) | (1L << (LEFT - 64)) | (1L << (LEN - 64)) | (1L << (LOWER - 64)) | (1L << (MID - 64)) | (1L << (PROPER - 64)) | (1L << (REPLACE - 64)) | (1L << (REPT - 64)) | (1L << (RIGHT - 64)) | (1L << (RMB - 64)) | (1L << (SEARCH - 64)) | (1L << (SUBSTITUTE - 64)) | (1L << (T - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (TEXT - 128)) | (1L << (TRIM - 128)) | (1L << (UPPER - 128)) | (1L << (VALUE - 128)) | (1L << (DATEVALUE - 128)) | (1L << (TIMEVALUE - 128)) | (1L << (DATE - 128)) | (1L << (TIME - 128)) | (1L << (NOW - 128)) | (1L << (TODAY - 128)) | (1L << (YEAR - 128)) | (1L << (MONTH - 128)) | (1L << (DAY - 128)) | (1L << (HOUR - 128)) | (1L << (MINUTE - 128)) | (1L << (SECOND - 128)) | (1L << (WEEKDAY - 128)) | (1L << (DATEDIF - 128)) | (1L << (DAYS360 - 128)) | (1L << (EDATE - 128)) | (1L << (EOMONTH - 128)) | (1L << (NETWORKDAYS - 128)) | (1L << (WORKDAY - 128)) | (1L << (WEEKNUM - 128)) | (1L << (MAX - 128)) | (1L << (MEDIAN - 128)) | (1L << (MIN - 128)) | (1L << (QUARTILE - 128)) | (1L << (MODE - 128)) | (1L << (LARGE - 128)) | (1L << (SMALL - 128)) | (1L << (PERCENTILE - 128)) | (1L << (PERCENTRANK - 128)) | (1L << (AVERAGE - 128)) | (1L << (AVERAGEIF - 128)) | (1L << (GEOMEAN - 128)) | (1L << (HARMEAN - 128)) | (1L << (COUNT - 128)) | (1L << (COUNTIF - 128)) | (1L << (SUM - 128)) | (1L << (SUMIF - 128)) | (1L << (AVEDEV - 128)) | (1L << (STDEV - 128)) | (1L << (STDEVP - 128)) | (1L << (DEVSQ - 128)) | (1L << (VAR - 128)) | (1L << (VARP - 128)) | (1L << (NORMDIST - 128)) | (1L << (NORMINV - 128)) | (1L << (NORMSDIST - 128)) | (1L << (NORMSINV - 128)) | (1L << (BETADIST - 128)) | (1L << (BETAINV - 128)) | (1L << (BINOMDIST - 128)) | (1L << (EXPONDIST - 128)) | (1L << (FDIST - 128)) | (1L << (FINV - 128)) | (1L << (FISHER - 128)) | (1L << (FISHERINV - 128)) | (1L << (GAMMADIST - 128)) | (1L << (GAMMAINV - 128)) | (1L << (GAMMALN - 128)) | (1L << (HYPGEOMDIST - 128)) | (1L << (LOGINV - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (LOGNORMDIST - 192)) | (1L << (NEGBINOMDIST - 192)) | (1L << (POISSON - 192)) | (1L << (TDIST - 192)) | (1L << (TINV - 192)) | (1L << (WEIBULL - 192)) | (1L << (URLENCODE - 192)) | (1L << (URLDECODE - 192)) | (1L << (HTMLENCODE - 192)) | (1L << (HTMLDECODE - 192)) | (1L << (BASE64TOTEXT - 192)) | (1L << (BASE64URLTOTEXT - 192)) | (1L << (TEXTTOBASE64 - 192)) | (1L << (TEXTTOBASE64URL - 192)) | (1L << (REGEX - 192)) | (1L << (REGEXREPALCE - 192)) | (1L << (ISREGEX - 192)) | (1L << (GUID - 192)) | (1L << (MD5 - 192)) | (1L << (SHA1 - 192)) | (1L << (SHA256 - 192)) | (1L << (SHA512 - 192)) | (1L << (CRC32 - 192)) | (1L << (HMACMD5 - 192)) | (1L << (HMACSHA1 - 192)) | (1L << (HMACSHA256 - 192)) | (1L << (HMACSHA512 - 192)) | (1L << (TRIMSTART - 192)) | (1L << (TRIMEND - 192)) | (1L << (INDEXOF - 192)) | (1L << (LASTINDEXOF - 192)) | (1L << (SPLIT - 192)) | (1L << (JOIN - 192)) | (1L << (SUBSTRING - 192)) | (1L << (STARTSWITH - 192)) | (1L << (ENDSWITH - 192)) | (1L << (ISNULLOREMPTY - 192)) | (1L << (ISNULLORWHITESPACE - 192)) | (1L << (REMOVESTART - 192)) | (1L << (REMOVEEND - 192)) | (1L << (JSON - 192)) | (1L << (VLOOKUP - 192)) | (1L << (LOOKUP - 192)) | (1L << (PARAMETER - 192)))) != 0))) {
+				if (!((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 29) | (1L << 30) | (1L << 31) | (1L << 32) | (1L << 33) | (1L << 34) | (1L << 35) | (1L << 36) | (1L << 37) | (1L << 38) | (1L << 39) | (1L << 40) | (1L << 41) | (1L << 42) | (1L << 43) | (1L << 44) | (1L << 45) | (1L << 46) | (1L << 47) | (1L << 48) | (1L << 49) | (1L << 50) | (1L << 51) | (1L << 52) | (1L << 53) | (1L << 54) | (1L << 55) | (1L << 56) | (1L << 57) | (1L << 58) | (1L << 59) | (1L << 60) | (1L << 61) | (1L << 62) | (1L << 63))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (64 - 64)) | (1L << (65 - 64)) | (1L << (66 - 64)) | (1L << (67 - 64)) | (1L << (68 - 64)) | (1L << (69 - 64)) | (1L << (70 - 64)) | (1L << (71 - 64)) | (1L << (72 - 64)) | (1L << (73 - 64)) | (1L << (74 - 64)) | (1L << (75 - 64)) | (1L << (76 - 64)) | (1L << (77 - 64)) | (1L << (78 - 64)) | (1L << (79 - 64)) | (1L << (80 - 64)) | (1L << (81 - 64)) | (1L << (82 - 64)) | (1L << (83 - 64)) | (1L << (84 - 64)) | (1L << (85 - 64)) | (1L << (86 - 64)) | (1L << (87 - 64)) | (1L << (88 - 64)) | (1L << (89 - 64)) | (1L << (90 - 64)) | (1L << (91 - 64)) | (1L << (92 - 64)) | (1L << (93 - 64)) | (1L << (94 - 64)) | (1L << (95 - 64)) | (1L << (96 - 64)) | (1L << (97 - 64)) | (1L << (98 - 64)) | (1L << (99 - 64)) | (1L << (100 - 64)) | (1L << (101 - 64)) | (1L << (102 - 64)) | (1L << (103 - 64)) | (1L << (104 - 64)) | (1L << (105 - 64)) | (1L << (106 - 64)) | (1L << (107 - 64)) | (1L << (108 - 64)) | (1L << (109 - 64)) | (1L << (110 - 64)) | (1L << (111 - 64)) | (1L << (112 - 64)) | (1L << (113 - 64)) | (1L << (114 - 64)) | (1L << (115 - 64)) | (1L << (116 - 64)) | (1L << (117 - 64)) | (1L << (118 - 64)) | (1L << (119 - 64)) | (1L << (120 - 64)) | (1L << (121 - 64)) | (1L << (122 - 64)) | (1L << (123 - 64)) | (1L << (124 - 64)) | (1L << (125 - 64)) | (1L << (126 - 64)) | (1L << (127 - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (128 - 128)) | (1L << (129 - 128)) | (1L << (130 - 128)) | (1L << (131 - 128)) | (1L << (132 - 128)) | (1L << (133 - 128)) | (1L << (134 - 128)) | (1L << (135 - 128)) | (1L << (136 - 128)) | (1L << (137 - 128)) | (1L << (138 - 128)) | (1L << (139 - 128)) | (1L << (140 - 128)) | (1L << (141 - 128)) | (1L << (142 - 128)) | (1L << (143 - 128)) | (1L << (144 - 128)) | (1L << (145 - 128)) | (1L << (146 - 128)) | (1L << (147 - 128)) | (1L << (148 - 128)) | (1L << (149 - 128)) | (1L << (150 - 128)) | (1L << (151 - 128)) | (1L << (152 - 128)) | (1L << (153 - 128)) | (1L << (154 - 128)) | (1L << (155 - 128)) | (1L << (156 - 128)) | (1L << (157 - 128)) | (1L << (158 - 128)) | (1L << (159 - 128)) | (1L << (160 - 128)) | (1L << (161 - 128)) | (1L << (162 - 128)) | (1L << (163 - 128)) | (1L << (164 - 128)) | (1L << (165 - 128)) | (1L << (166 - 128)) | (1L << (167 - 128)) | (1L << (168 - 128)) | (1L << (169 - 128)) | (1L << (170 - 128)) | (1L << (171 - 128)) | (1L << (172 - 128)) | (1L << (173 - 128)) | (1L << (174 - 128)) | (1L << (175 - 128)) | (1L << (176 - 128)) | (1L << (177 - 128)) | (1L << (178 - 128)) | (1L << (179 - 128)) | (1L << (180 - 128)) | (1L << (181 - 128)) | (1L << (182 - 128)) | (1L << (183 - 128)) | (1L << (184 - 128)) | (1L << (185 - 128)) | (1L << (186 - 128)) | (1L << (187 - 128)) | (1L << (188 - 128)) | (1L << (189 - 128)) | (1L << (190 - 128)) | (1L << (191 - 128)))) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & ((1L << (192 - 192)) | (1L << (193 - 192)) | (1L << (194 - 192)) | (1L << (195 - 192)) | (1L << (196 - 192)) | (1L << (197 - 192)) | (1L << (198 - 192)) | (1L << (199 - 192)) | (1L << (200 - 192)) | (1L << (201 - 192)) | (1L << (202 - 192)) | (1L << (203 - 192)) | (1L << (204 - 192)) | (1L << (205 - 192)) | (1L << (206 - 192)) | (1L << (207 - 192)) | (1L << (208 - 192)) | (1L << (209 - 192)) | (1L << (210 - 192)) | (1L << (211 - 192)) | (1L << (212 - 192)) | (1L << (213 - 192)) | (1L << (214 - 192)) | (1L << (215 - 192)) | (1L << (216 - 192)) | (1L << (217 - 192)) | (1L << (218 - 192)) | (1L << (219 - 192)) | (1L << (220 - 192)) | (1L << (221 - 192)) | (1L << (222 - 192)) | (1L << (223 - 192)) | (1L << (224 - 192)) | (1L << (225 - 192)) | (1L << (226 - 192)) | (1L << (227 - 192)) | (1L << (228 - 192)) | (1L << (229 - 192)) | (1L << (230 - 192)) | (1L << (231 - 192)) | (1L << (232 - 192)) | (1L << (233 - 192)) | (1L << (234 - 192)) | (1L << (236 - 192)))) != 0))) {
 					ErrorHandler.RecoverInline(this);
 				} else {
 					ErrorHandler.ReportMatch(this);
