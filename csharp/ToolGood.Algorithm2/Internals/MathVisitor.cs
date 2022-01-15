@@ -334,17 +334,6 @@ namespace ToolGood.Algorithm
             return Operand.False;
         }
 
-        public Operand VisitNot_fun(mathParser.Not_funContext context)
-        {
-            var firstValue = this.Visit(context.expr()).ToBoolean("Function NOT first parameter is error!");
-            if (firstValue.IsError) { return firstValue; }
-
-            if (firstValue.BooleanValue) {
-                return Operand.False;
-            }
-            return Operand.True;
-        }
-
         public Operand VisitIFERROR_fun(mathParser.IFERROR_funContext context)
         {
             var args = new List<Operand>();

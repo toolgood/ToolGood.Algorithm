@@ -3509,21 +3509,6 @@ partial class mathParser : Parser
             return typedVisitor.VisitPercentage_fun(this);
         }
     }
-    public partial class Not_funContext : ExprContext
-    {
-        [System.Diagnostics.DebuggerNonUserCode]
-        public ExprContext expr()
-        {
-            return GetRuleContext<ExprContext>(0);
-        }
-        public Not_funContext(ExprContext context) { CopyFrom(context); }
-        [System.Diagnostics.DebuggerNonUserCode]
-        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-        {
-            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-            return typedVisitor.VisitNot_fun(this);
-        }
-    }
     public partial class STRING_funContext : ExprContext
     {
         [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRING() { return GetToken(28, 0); }

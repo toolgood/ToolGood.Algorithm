@@ -231,4 +231,5 @@ public interface mathVisitor<Result> extends ParseTreeVisitor<Result> {
 	Result visitISNULL_fun( ISNULL_funContext context);
 	Result visitISNULLORERROR_fun( ISNULLORERROR_funContext context);
 	Result visitDiyFunction_fun(DiyFunction_funContext context);
+	Result visitPercentage_fun(Percentage_funContext context);
 }

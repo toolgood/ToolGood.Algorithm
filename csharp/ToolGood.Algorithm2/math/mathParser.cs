@@ -87,7 +87,7 @@ partial class mathParser : Parser {
 				ErrorHandler.Sync(this);
 				switch (TokenStream.LA(1)) {
 					case 25: {
-							_localctx = new Not_funContext(_localctx);
+							_localctx = new NOT_funContext(_localctx);
 							Context = _localctx;
 							_prevctx = _localctx;
 

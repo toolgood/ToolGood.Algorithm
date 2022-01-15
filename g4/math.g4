@@ -113,7 +113,7 @@ expr:
 	| expr '[' expr ']'											# GetJsonValue_fun
 	| expr '.' parameter2										# GetJsonValue_fun
 	| expr '%'													# Percentage_fun
-	| '!' expr													# Not_fun
+	| '!' expr													# NOT_fun
 	| expr2														# expr2_fun;
 
 expr2:

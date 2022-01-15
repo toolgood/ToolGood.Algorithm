@@ -806,6 +806,13 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(sum);
     }
 
+    public Operand visitPercentage_fun(Percentage_funContext context) {
+        Operand firstValue = this.visit(context.expr()).ToNumber("Function Percentage parameter is error!");
+        if (firstValue.IsError()) { return firstValue; }
+
+        return Operand.Create(firstValue.NumberValue() / 100.0);
+    }
+
     private int F_base_gcd(List<Double> list) {
         list = ShellSort(list);
         // list = list.OrderBy(q => q).ToList();
@@ -5325,12 +5332,27 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitPARAMETER_fun(final PARAMETER_funContext context) {
-        final Operand p = visit(context.parameter()).ToText("Function PARAMETER first parameter is error!");
-        if (p.IsError())
-            return p;
 
-        if (GetParameter != null) {
-            return GetParameter.apply(p.TextValue());
+        TerminalNode node = context.PARAMETER();
+        if (node != null) {
+            return GetParameter.apply(node.getText());
+        }
+        node = context.PARAMETER2();
+        if (node != null) {
+            String str = node.getText();
+            if (str.startsWith("@")) {
+                return GetParameter.apply(str.substring(1));
+            }
+            return GetParameter.apply(str.substring(1, str.length()- 1));
+        }
+        //防止 多重引用 
+        if (context.expr()!=null) {
+            Operand p = this.visit(context.expr()).ToText("Function PARAMETER first parameter is error!");
+            if (p.IsError()) return p;
+
+            if (GetParameter != null) {
+                return GetParameter.apply(p.TextValue());
+            }
         }
         return Operand.Error("Function PARAMETER first parameter is error!");
     }
@@ -5348,18 +5370,20 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitGetJsonValue_fun(final GetJsonValue_funContext context) {
-        final Operand firstValue = visit(context.expr());
+        final Operand firstValue = visit(context.expr(0));
         if (firstValue.IsError()) {
             return firstValue;
         }
 
         final Operand obj = firstValue;
         Operand op;
-        final ParameterContext p1 = context.parameter();
-        if (p1 != null) {
-            op = visit(p1);
+        if (context.parameter2()!=null) {
+            op = this.visit(context.parameter2());
         } else {
-            op = visit(context.parameter2());
+            op = this.visit(context.expr(1));
+            if (op.IsError()) {
+                op = Operand.Create(context.expr(1).getText());
+            }
         }
 
         if (obj.Type() == OperandType.ARRARY) {
@@ -5763,4 +5787,8 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return newSize;
         }
     }
+
+
+
+
 }

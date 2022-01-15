@@ -288,19 +288,7 @@ public class mathParser2{
             return ((mathVisitor<? extends T>) visitor).visitHEX2DEC_fun(this);
         }
     }
-    public static class DiyFunction_funContext extends ExprContext {
-        public TerminalNode PARAMETER() { return getToken(mathParser.PARAMETER, 0); }
-        public List<ExprContext> expr() {
-            return getRuleContexts(ExprContext.class);
-        }
-        public DiyFunction_funContext(final ExprContext ctx) {
-            copyFrom(ctx);
-        }
-        @Override
-        public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitDiyFunction_fun(this);
-        }
-    }
+
     public static class SHA256_funContext extends ExprContext {
         public List<ExprContext> expr() {
             return getRuleContexts(ExprContext.class);
@@ -865,24 +853,22 @@ public class mathParser2{
             return ((mathVisitor<? extends T>) visitor).visitPROPER_fun(this);
         }
     }
-    public static class GetJsonValue_funContext extends ExprContext {
-        public ExprContext expr() {
-            return getRuleContext(ExprContext.class, 0);
-        }
-        public ParameterContext parameter() {
-            return getRuleContext(ParameterContext.class, 0);
-        }
-        public Parameter2Context parameter2() {
-            return getRuleContext(Parameter2Context.class, 0);
-        }
-        public GetJsonValue_funContext(final ExprContext ctx) {
-            copyFrom(ctx);
-        }
-        @Override
-        public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitGetJsonValue_fun(this);
-        }
-    }
+	public static class GetJsonValue_funContext extends ExprContext {
+		public List<ExprContext> expr() {
+			return getRuleContexts(ExprContext.class);
+		}
+		public ExprContext expr(int i) {
+			return getRuleContext(ExprContext.class,i);
+		}
+		public Parameter2Context parameter2() {
+			return getRuleContext(Parameter2Context.class,0);
+		}
+		public GetJsonValue_funContext(ExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			return ((mathVisitor<? extends T>)visitor).visitGetJsonValue_fun(this);
+		}
+	}
     public static class HEX2BIN_funContext extends ExprContext {
         public List<ExprContext> expr() {
             return getRuleContexts(ExprContext.class);
@@ -1233,27 +1219,8 @@ public class mathParser2{
             return ((mathVisitor<? extends T>) visitor).visitSIGN_fun(this);
         }
     }
-    public static class NUM_funContext extends ExprContext {
-        public TerminalNode NUM() { return getToken(mathParser.NUM, 0); }
-		public TerminalNode SUB() { return getToken(mathParser.SUB, 0); }
-        public NUM_funContext(final ExprContext ctx) {
-            copyFrom(ctx);
-        }
-        @Override
-        public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitNUM_fun(this);
-        }
-    }
-    public static class STRING_funContext extends ExprContext {
-        public TerminalNode STRING() { return getToken(mathParser.STRING, 0); }
-        public STRING_funContext(final ExprContext ctx) {
-            copyFrom(ctx);
-        }
-        @Override
-        public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitSTRING_fun(this);
-        }
-    }
+
+
     public static class FIXED_funContext extends ExprContext {
         public List<ExprContext> expr() {
             return getRuleContexts(ExprContext.class);
@@ -1878,18 +1845,7 @@ public class mathParser2{
             return ((mathVisitor<? extends T>) visitor).visitMODE_fun(this);
         }
     }
-    public static class PARAMETER_funContext extends ExprContext {
-        public ParameterContext parameter() {
-            return getRuleContext(ParameterContext.class, 0);
-        }
-        public PARAMETER_funContext(final ExprContext ctx) {
-            copyFrom(ctx);
-        }
-        @Override
-        public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitPARAMETER_fun(this);
-        }
-    }
+
     public static class Bracket_funContext extends ExprContext {
         public ExprContext expr() {
             return getRuleContext(ExprContext.class, 0);
@@ -2022,18 +1978,7 @@ public class mathParser2{
             return ((mathVisitor<? extends T>) visitor).visitABS_fun(this);
         }
     }
-    public static class NOT_funContext extends ExprContext {
-        public ExprContext expr() {
-            return getRuleContext(ExprContext.class, 0);
-        }
-        public NOT_funContext(final ExprContext ctx) {
-            copyFrom(ctx);
-        }
-        @Override
-        public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitNOT_fun(this);
-        }
-    }
+
     public static class PI_funContext extends ExprContext {
         public PI_funContext(final ExprContext ctx) {
             copyFrom(ctx);
@@ -2660,4 +2605,77 @@ public class mathParser2{
 			return ((mathVisitor<? extends T>)visitor).visitSINH_fun(this);
 		}
 	}
+
+	public static class Percentage_funContext extends ExprContext {
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
+		}
+		public Percentage_funContext(ExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			return ((mathVisitor<? extends T>)visitor).visitPercentage_fun(this);
+		}
+	}
+    public static class NOT_funContext extends ExprContext {
+        public ExprContext expr() {
+            return getRuleContext(ExprContext.class, 0);
+        }
+        public NOT_funContext(final ExprContext ctx) {
+            copyFrom(ctx);
+        }
+        @Override
+        public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
+            return ((mathVisitor<? extends T>) visitor).visitNOT_fun(this);
+        }
+    }
+ 
+    public static class STRING_funContext extends ExprContext {
+        public TerminalNode STRING() { return getToken(mathParser.STRING, 0); }
+        public STRING_funContext(final ExprContext ctx) {
+            copyFrom(ctx);
+        }
+        @Override
+        public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
+            return ((mathVisitor<? extends T>) visitor).visitSTRING_fun(this);
+        }
+    }
+ 
+    public static class NUM_funContext extends ExprContext {
+        public TerminalNode NUM() { return getToken(mathParser.NUM, 0); }
+		public TerminalNode SUB() { return getToken(mathParser.SUB, 0); }
+        public NUM_funContext(final ExprContext ctx) {
+            copyFrom(ctx);
+        }
+        @Override
+        public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
+            return ((mathVisitor<? extends T>) visitor).visitNUM_fun(this);
+        }
+    }
+	public static class PARAMETER_funContext extends ExprContext {
+		public TerminalNode PARAMETER() { return getToken(mathParser.PARAMETER, 0); }
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
+		}
+		public TerminalNode PARAMETER2() { return getToken(mathParser.PARAMETER2, 0); }
+		public PARAMETER_funContext(ExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
+			return ((mathVisitor<? extends T>)visitor).visitPARAMETER_fun(this);
+		}
+	}
+ 
+    public static class DiyFunction_funContext extends ExprContext {
+        public TerminalNode PARAMETER() { return getToken(mathParser.PARAMETER, 0); }
+        public List<ExprContext> expr() {
+            return getRuleContexts(ExprContext.class);
+        }
+        public DiyFunction_funContext(final ExprContext ctx) {
+            copyFrom(ctx);
+        }
+        @Override
+        public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
+            return ((mathVisitor<? extends T>) visitor).visitDiyFunction_fun(this);
+        }
+    }
+     
 }

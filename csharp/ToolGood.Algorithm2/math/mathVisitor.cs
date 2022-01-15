@@ -252,6 +252,5 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result>
 
     Result VisitDiyFunction_fun(mathParser.DiyFunction_funContext context);
     Result VisitPercentage_fun(mathParser.Percentage_funContext context);
-
-    Result VisitNot_fun(mathParser.Not_funContext context);
+ 
 }
