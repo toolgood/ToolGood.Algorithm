@@ -29,9 +29,9 @@ namespace ToolGood.Algorithm
         /// <summary>
         /// 多条件缓存
         /// </summary>
-        public MultiConditionCache MultiConditionCache { get; private set; }
+        public ConditionCache MultiConditionCache { get; private set; }
 
-        public AlgorithmEngineEx(MultiConditionCache multiConditionCache)
+        public AlgorithmEngineEx(ConditionCache multiConditionCache)
         {
             MultiConditionCache = multiConditionCache;
         }
@@ -141,7 +141,7 @@ namespace ToolGood.Algorithm
                 }
                 return conditionCache.Remark;
             }
-            return null;
+            throw new Exception($"CategoryName [{categoryName}] is missing.");
         }
 
 

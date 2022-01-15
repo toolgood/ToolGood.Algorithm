@@ -14,7 +14,7 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineEx
         [Test]
         public void Test()
         {
-            MultiConditionCache multiConditionCache = new MultiConditionCache();
+            ConditionCache multiConditionCache = new ConditionCache();
             multiConditionCache.AddFormula("桌面积", "[圆桌]", "[半径]*[半径]*pi()");
             multiConditionCache.AddFormula("桌面积", "[方桌]", "[长]*[宽]");
 
@@ -64,7 +64,26 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineEx
 
             var p4 = priceAlgorithm.TryEvaluate("出错了", 0.0);
 
-            
+        }
+
+        [Test]
+        public void Test2()
+        {
+            ConditionCache multiConditionCache = new ConditionCache();
+            multiConditionCache.AddCondition("类型", "[方桌]&& [长]<1.3", "1");
+            multiConditionCache.AddCondition("类型", "[方桌]&& [长]<2", "2");
+            multiConditionCache.AddCondition("类型", "[方桌]&& [长]<5", "3");
+            multiConditionCache.AddCondition("类型", "[方桌]&& [长]<7", "4");
+
+            Desk desk = new Desk() {
+                IsRoundTable = false,
+                Length = 3,
+                Width = 1.3,
+                Heigth = 1
+            };
+            PriceAlgorithm priceAlgorithm = new PriceAlgorithm(multiConditionCache, desk);
+            var p1 = priceAlgorithm.QueryRemark("类型");
+            Assert.AreEqual("3", p1);
         }
 
 
@@ -83,7 +102,7 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineEx
     public class PriceAlgorithm : ToolGood.Algorithm.AlgorithmEngineEx
     {
         private Desk _disk;
-        public PriceAlgorithm(MultiConditionCache multiConditionCache, Desk desk) : base(multiConditionCache)
+        public PriceAlgorithm(ConditionCache multiConditionCache, Desk desk) : base(multiConditionCache)
         {
             _disk = desk;
         }
