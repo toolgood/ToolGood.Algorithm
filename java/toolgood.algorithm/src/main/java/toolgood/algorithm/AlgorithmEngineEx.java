@@ -32,7 +32,7 @@ public class AlgorithmEngineEx {
         MultiConditionCache = multiConditionCache;
     }
 
-    protected Operand GetParameter(final String parameter) throws Exception {
+    protected Operand GetParameter(final String parameter) {
         if (_dict.containsKey(parameter)) {
             return _dict.get(parameter);
         }
@@ -117,8 +117,7 @@ public class AlgorithmEngineEx {
             }
             return operand;
         }
-        return Operand.Error("CategoryName [{categoryName}] is missing.");
-
+        return Operand.Error("CategoryName [" + categoryName + "] is missing.");
     }
 
     /**
@@ -147,7 +146,19 @@ public class AlgorithmEngineEx {
             }
             return conditionCache.Remark;
         }
-        throw new Exception("CategoryName [{categoryName}] is missing.");
+        throw new Exception("CategoryName [" + categoryName + "] is missing.");
+    }
+
+    /**
+     * 查找备注,如果异常，返回默认值
+     */
+    public String TrySearchRemark(String categoryName, String def) {
+        try {
+            return SearchRemark(categoryName);
+        } catch (Exception ex) {
+            LastError = ex.getMessage();
+        }
+        return def;
     }
 
     public void AddParameter(final String key, final Operand obj) {

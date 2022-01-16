@@ -154,6 +154,22 @@ namespace ToolGood.Algorithm
             throw new Exception($"CategoryName [{categoryName}] is missing.");
         }
 
+        /// <summary>
+        /// 查找备注,如果异常，返回默认值
+        /// </summary>
+        /// <param name="categoryName"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
+        public string TrySearchRemark(string categoryName, string def)
+        {
+            try {
+                return SearchRemark(categoryName);
+            } catch (Exception ex) {
+                LastError = ex.Message;
+            }
+            return def;
+        }
+
         #region Parameter
         /// <summary>
         /// 清理参数

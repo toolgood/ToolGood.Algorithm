@@ -161,6 +161,21 @@ public class AlgorithmEngineTest {
     {
         Cylinder c = new Cylinder(3, 10);
         double t = c.TryEvaluate("[半径]*[半径]*pi()", 0.0);      //圆底面积
+
+        double t2 = c.TryEvaluate("半径*半径*pi()", 0.0);      //圆底面积
+        double t3 = c.TryEvaluate("{半径}*{半径}*pi()", 0.0);      //圆底面积
+        double t4 = c.TryEvaluate("@半径*@半径*pi()", 0.0);      //圆底面积
+        double t5 = c.TryEvaluate("#半径#*#半径#*pi()", 0.0);      //圆底面积
+        double t6 = c.TryEvaluate("【半径】*【半径】*pi()", 0.0);      //圆底面积
+        double t7 = c.TryEvaluate("【半径】*【半径】*pi（）", 0.0);      //圆底面积
+
+        assertEquals(t, t2,0.001);
+        assertEquals(t, t3,0.001);
+        assertEquals(t, t4,0.001);
+        assertEquals(t, t5,0.001);
+        assertEquals(t, t6,0.001);
+        assertEquals(t, t7,0.001);
+
         assertEquals(3 * 3 * Math.PI, t,0.001);
         t = c.TryEvaluate("[直径]*pi()", 0.0);            //圆的长
         assertEquals(2 * 3 * Math.PI, t,0.001);

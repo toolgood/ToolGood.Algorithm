@@ -17,8 +17,7 @@ public class ConditionCacheInfo {
     private ProgContext _ConditionProg;
 
     public ProgContext GetConditionProg() {
-        if (_ConditionProg == null && ConditionString != null && ConditionString.length() > 0
-                && LastError != null && LastError.length() > 0) {
+        if (_ConditionProg == null && ConditionString != null && ConditionString.length() > 0 && LastError == null) {
             _ConditionProg = Parse(ConditionString);
         }
         return _ConditionProg;
@@ -32,8 +31,7 @@ public class ConditionCacheInfo {
     private ProgContext _FormulaProg;
 
     public ProgContext GetFormulaProg() {
-        if (_FormulaProg == null && FormulaString != null && FormulaString.length() > 0
-                && LastError != null && LastError.length() > 0) {
+        if (_FormulaProg == null && FormulaString != null && FormulaString.length() > 0 && LastError == null) {
             _FormulaProg = Parse(FormulaString);
         }
         return _FormulaProg;
@@ -69,7 +67,7 @@ public class ConditionCacheInfo {
                 LastError = antlrErrorListener.ErrorMsg;
                 return null;
             }
-
+            return context;
         } catch (Exception ex) {
             LastError = ex.getMessage();
         }

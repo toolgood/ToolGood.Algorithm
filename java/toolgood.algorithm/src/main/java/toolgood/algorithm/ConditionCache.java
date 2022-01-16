@@ -33,6 +33,19 @@ public class ConditionCache {
      * @param categoryName 分类名称
      * @param condition    条件 可空
      * @param formula      公式 必埴
+     * @return
+     */
+    public Boolean AddFormula(String categoryName, String condition, String formula) {
+        return AddFormula(categoryName, condition, formula, null);
+    }
+
+    /**
+     * 添加公式缓存
+     * 有先后顺序的
+     * 
+     * @param categoryName 分类名称
+     * @param condition    条件 可空
+     * @param formula      公式 必埴
      * @param remark       备注
      * @return
      */
@@ -80,9 +93,10 @@ public class ConditionCache {
     /**
      * 添加 条件缓存，
      * 有先后顺序的
+     * 
      * @param categoryName 分类名称
-     * @param condition 条件 可空
-     * @param remark 备注 必埴
+     * @param condition    条件 可空
+     * @param remark       备注 必埴
      * @return
      */
     public Boolean AddCondition(String categoryName, String condition, String remark) {
@@ -143,7 +157,7 @@ public class ConditionCache {
                 LastError = antlrErrorListener.ErrorMsg;
                 return null;
             }
-
+            return context;
         } catch (Exception ex) {
             LastError = ex.getMessage();
         }
