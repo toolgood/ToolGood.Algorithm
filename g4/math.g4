@@ -3,8 +3,7 @@ grammar math;
 prog: expr;
 
 expr:
-	 expr '?'  expr ':' expr 								# IF_fun
-	| expr op = ('*' | '/' | '%' ) expr						# MulDiv_fun
+	expr op = ('*' | '/' | '%' ) expr						# MulDiv_fun
 	| expr op = ('+' | '-' | '&') expr						# AddSub_fun
 	| expr op = (
 		'>'
@@ -18,6 +17,7 @@ expr:
 		| '<>'
 	) expr														# Judge_fun
 	| expr op = ('&&' | '||' | AND | OR) expr					# AndOr_fun
+	| expr '?'  expr ':' expr 									# IF_fun
 	| expr '.' ISNUMBER '(' ')'									# ISNUMBER_fun
 	| expr '.' ISTEXT '(' ')'									# ISTEXT_fun
 	| expr '.' ISNONTEXT '(' ')'								# ISNONTEXT_fun
