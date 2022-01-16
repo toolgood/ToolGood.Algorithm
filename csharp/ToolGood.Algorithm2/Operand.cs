@@ -169,7 +169,7 @@ namespace ToolGood.Algorithm
             }
             return new OperandString(obj);
         }
- 
+
         /// <summary>
         /// 创建操作数
         /// </summary>
@@ -328,13 +328,13 @@ namespace ToolGood.Algorithm
         {
             if (Type == OperandType.BOOLEAN) { return this; }
             if (IsError) { return this; }
-            if (Type == OperandType.NUMBER) { return Create(NumberValue != 0); }
-            if (Type == OperandType.DATE) { return Create(((double)DateValue) != 0); }
+            if (Type == OperandType.NUMBER) { return NumberValue != 0 ? True : False; }
+            if (Type == OperandType.DATE) { return ((double)DateValue) != 0 ? True : False; }
             if (Type == OperandType.STRING) {
-                if (TextValue.Equals("true", StringComparison.OrdinalIgnoreCase)) { return Create(true); }
-                if (TextValue.Equals("false", StringComparison.OrdinalIgnoreCase)) { return Create(false); }
-                if (TextValue.Equals("1", StringComparison.OrdinalIgnoreCase)) { return Create(true); }
-                if (TextValue.Equals("0", StringComparison.OrdinalIgnoreCase)) { return Create(false); }
+                if (TextValue.Equals("true", StringComparison.OrdinalIgnoreCase)) { return True; }
+                if (TextValue.Equals("false", StringComparison.OrdinalIgnoreCase)) { return False; }
+                if (TextValue.Equals("1", StringComparison.OrdinalIgnoreCase)) { return True; }
+                if (TextValue.Equals("0", StringComparison.OrdinalIgnoreCase)) { return False; }
             }
             return Error(errorMessage);
         }
