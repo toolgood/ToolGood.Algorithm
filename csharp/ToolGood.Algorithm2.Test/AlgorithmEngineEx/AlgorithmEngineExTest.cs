@@ -21,12 +21,13 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineEx
             multiConditionCache.AddFormula("价格", "[圆桌]&& [半径]<2.5", "[桌面积]*1.3");
             multiConditionCache.AddFormula("价格", "[圆桌]&& [半径]<5", "[桌面积]*1.5");
             multiConditionCache.AddFormula("价格", "[圆桌]&& [半径]<7", "[桌面积]*2");
-            multiConditionCache.AddFormula("价格", "", "[桌面积]*2.5");
+            multiConditionCache.AddFormula("价格", "[圆桌]", "[桌面积]*2.5");
 
             multiConditionCache.AddFormula("价格", "[方桌]&& [长]<1.3", "[桌面积]*1.3+[高]*1.1");
             multiConditionCache.AddFormula("价格", "[方桌]&& [长]<2", "[桌面积]*1.5+[高]*1.1");
             multiConditionCache.AddFormula("价格", "[方桌]&& [长]<5", "[桌面积]*2+[高]*1.1");
             multiConditionCache.AddFormula("价格", "[方桌]&& [长]<7", "[桌面积]*2.5");
+
 
             multiConditionCache.AddFormula("出错了", "[方桌]&& [长]<11", "[出错]*2.5");
 

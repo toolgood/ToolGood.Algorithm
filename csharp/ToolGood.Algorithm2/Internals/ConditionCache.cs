@@ -13,27 +13,27 @@ namespace ToolGood.Algorithm.Internals
 
         public string ConditionString;
 
-        private ProgContext _Condition;
-        public ProgContext Condition {
+        private ProgContext _ConditionProg;
+        public ProgContext ConditionProg {
             get {
-                if (_Condition == null && string.IsNullOrEmpty(ConditionString) == false && string.IsNullOrEmpty(LastError)) {
-                    _Condition = Parse(ConditionString);
+                if (_ConditionProg == null && string.IsNullOrEmpty(ConditionString) == false && string.IsNullOrEmpty(LastError)) {
+                    _ConditionProg = Parse(ConditionString);
                 }
-                return _Condition;
+                return _ConditionProg;
             }
-            set { _Condition = value; }
+            set { _ConditionProg = value; }
         }
 
         public string FormulaString;
-        private ProgContext _Formula;
-        public ProgContext Formula {
+        private ProgContext _FormulaProg;
+        public ProgContext FormulaProg {
             get {
-                if (_Formula == null && string.IsNullOrEmpty(FormulaString) == false && string.IsNullOrEmpty(LastError)) {
-                    _Formula = Parse(FormulaString);
+                if (_FormulaProg == null && string.IsNullOrEmpty(FormulaString) == false && string.IsNullOrEmpty(LastError)) {
+                    _FormulaProg = Parse(FormulaString);
                 }
-                return _Formula;
+                return _FormulaProg;
             }
-            set { _Formula = value; }
+            set { _FormulaProg = value; }
         }
 
 

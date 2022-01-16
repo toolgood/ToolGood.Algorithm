@@ -50,15 +50,15 @@ namespace ToolGood.Algorithm
             }
             var conditionCaches = MultiConditionCache.GetConditionCaches(parameter);
             foreach (var conditionCache in conditionCaches) {
-                if (conditionCache.Formula == null) continue;
-                if (conditionCache.Condition != null) {
-                    var b = Evaluate(conditionCache.Condition);
+                if (conditionCache.FormulaProg == null) continue;
+                if (conditionCache.ConditionProg != null) {
+                    var b = Evaluate(conditionCache.ConditionProg);
                     if (b.IsError) {
                         return Operand.Error($"Parameter [{parameter}] condition `{conditionCache.ConditionString}` is error.\r\n{b.ErrorMsg}");
                     }
                     if (b.BooleanValue == false) continue;
                 }
-                operand = Evaluate(conditionCache.Formula);
+                operand = Evaluate(conditionCache.FormulaProg);
                 if (operand.IsError) {
                     operand = Operand.Error($"Parameter [{parameter}] formula `{conditionCache.FormulaString}` is error.\r\n{operand.ErrorMsg}");
                 }
@@ -106,19 +106,19 @@ namespace ToolGood.Algorithm
             foreach (var conditionCache in conditionCaches) {
                 if (string.IsNullOrEmpty(conditionCache.FormulaString)) continue;
                 if (string.IsNullOrEmpty(conditionCache.ConditionString) == false) {
-                    if (conditionCache.Condition == null) {
+                    if (conditionCache.ConditionProg == null) {
                         return Operand.Error($"CategoryName [{categoryName}] parse condition `{conditionCache.ConditionString}` is error.\r\n{conditionCache.LastError}");
                     }
-                    var b = Evaluate(conditionCache.Condition);
+                    var b = Evaluate(conditionCache.ConditionProg);
                     if (b.IsError) {
                         return Operand.Error($"CategoryName [{categoryName}] condition `{conditionCache.ConditionString}` is error.\r\n{b.ErrorMsg}");
                     }
                     if (b.BooleanValue == false) continue;
                 }
-                if (conditionCache.Formula == null) {
+                if (conditionCache.FormulaProg == null) {
                     return Operand.Error($"CategoryName [{categoryName}] parse formula `{ conditionCache.FormulaString}` is error.\r\n{conditionCache.LastError}");
                 }
-                operand = Evaluate(conditionCache.Formula);
+                operand = Evaluate(conditionCache.FormulaProg);
                 if (operand.IsError) {
                     operand = Operand.Error($"CategoryName [{categoryName}] formula `{conditionCache.FormulaString}` is error.\r\n{operand.ErrorMsg}");
                 }
@@ -139,10 +139,10 @@ namespace ToolGood.Algorithm
             var conditionCaches = MultiConditionCache.GetConditionCaches(categoryName);
             foreach (var conditionCache in conditionCaches) {
                 if (string.IsNullOrEmpty(conditionCache.ConditionString) == false) {
-                    if (conditionCache.Condition == null) {
+                    if (conditionCache.ConditionProg == null) {
                         throw new Exception($"CategoryName [{categoryName}] parse formula `{ conditionCache.FormulaString}` is error.\r\n{conditionCache.LastError}");
                     }
-                    var b = Evaluate(conditionCache.Condition);
+                    var b = Evaluate(conditionCache.ConditionProg);
                     if (b.IsError) {
                         throw new Exception($"CategoryName [{categoryName}] formula `{ conditionCache.FormulaString}` is error.\r\n{b.ErrorMsg}");
                     }

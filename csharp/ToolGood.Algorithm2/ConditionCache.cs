@@ -20,38 +20,47 @@ namespace ToolGood.Algorithm
         /// 是否开启延迟加载
         /// 开启后，不会立即调取Parse
         /// </summary>
-        public bool LazyLoad=false;
+        public bool LazyLoad = false;
 
 
         /// <summary>
         /// 添加公式缓存
         /// </summary>
         /// <param name="categoryName">分类名称</param>
-        /// <param name="formula">公式</param>
-        /// <param name="condition">条件</param>
+        /// <param name="formula">公式 必埴</param>
+        /// <param name="condition">条件 可空</param>
         /// <param name="remark">备注</param>
         /// <returns></returns>
         public bool AddFormula(string categoryName, string condition, string formula, string remark = null)
         {
+            if (string.IsNullOrEmpty(categoryName)) {
+                LastError = "Parameter categoryName is null or empty.";
+                return false;
+            }
+            if (string.IsNullOrEmpty(formula)) {
+                LastError = "Parameter formula is null or empty.";
+                return false;
+            }
             Internals.ConditionCache conditionCache = new Internals.ConditionCache() {
                 CategoryName = categoryName,
                 Remark = remark,
                 ConditionString = condition,
                 FormulaString = formula
             };
-            if (LazyLoad==false) {
-                if (condition != null) {
+
+            if (LazyLoad == false) {
+                if (string.IsNullOrEmpty(condition) == false) {
                     var conditionProg = Parse(condition);
                     if (conditionProg == null) {
                         return false;
                     }
-                    conditionCache.Condition = conditionProg;
+                    conditionCache.ConditionProg = conditionProg;
                 }
                 var formulaProg = Parse(formula);
                 if (formulaProg == null) {
                     return false;
                 }
-                conditionCache.Formula = formulaProg;
+                conditionCache.FormulaProg = formulaProg;
             }
 
             List<Internals.ConditionCache> list;
@@ -68,23 +77,33 @@ namespace ToolGood.Algorithm
         /// 添加 条件缓存，
         /// 有先后顺序的
         /// </summary>
-        /// <param name="categoryName"></param>
+        /// <param name="categoryName">分类名称</param>
         /// <param name="condition"></param>
-        /// <param name="remark"></param>
+        /// <param name="remark">备注 必埴</param>
         /// <returns></returns>
         public bool AddCondition(string categoryName, string condition, string remark)
         {
+            if (string.IsNullOrEmpty(categoryName)) {
+                LastError = "Parameter categoryName is null or empty.";
+                return false;
+            }
+            if (string.IsNullOrEmpty(remark)) {
+                LastError = "Parameter remark is null or empty.";
+                return false;
+            }
             Internals.ConditionCache conditionCache = new Internals.ConditionCache() {
                 CategoryName = categoryName,
                 Remark = remark,
                 ConditionString = condition,
             };
-            if (condition != null) {
-                var conditionProg = Parse(condition);
-                if (conditionProg == null) {
-                    return false;
+            if (LazyLoad == false) {
+                if (string.IsNullOrEmpty(condition) == false) {
+                    var conditionProg = Parse(condition);
+                    if (conditionProg == null) {
+                        return false;
+                    }
+                    conditionCache.ConditionProg = conditionProg;
                 }
-                conditionCache.Condition = conditionProg;
             }
             List<Internals.ConditionCache> list;
             if (conditionCaches.TryGetValue(categoryName, out list) == false) {
