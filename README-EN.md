@@ -1,5 +1,6 @@
 ToolGood.Algorithm
 ===================
+[中文文档](README.md)
 
 ToolGood.Algorithm supports `Four arithmetic`, `Excel formula`, and supports `Custom parameters`. 
 

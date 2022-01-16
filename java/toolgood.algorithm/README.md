@@ -1,5 +1,6 @@
 ToolGood.Algorithm (JAVA)
 ===================
+[English document](README-EN.md)
 
 ToolGood.Algorithm支持`四则运算`、`Excel公式`,并支持`自定义参数`。
 

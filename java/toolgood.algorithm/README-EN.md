@@ -1,5 +1,7 @@
 ToolGood.Algorithm (JAVA)
 ===================
+[中文文档](README.md)
+
 ToolGood.Algorithm supports `Four arithmetic`, `Excel formula`, and supports `Custom parameters`. 
 
 **Applicable scenarios:** Code and algorithm are separated to avoid forced project upgrade 
