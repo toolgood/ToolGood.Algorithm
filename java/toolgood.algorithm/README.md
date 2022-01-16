@@ -185,11 +185,11 @@ public class Cylinder extends AlgorithmEngine {
         <td>IsOdd('1') <br>>>true </td>
     </tr>
     <tr>
-        <td>AND</td><td>and(逻辑值1,...)<br>如果所有参数均为TRUE,则返回TRUE</td>
+        <td>AND</td><td>and(逻辑值1,...)<br>如果所有参数均为TRUE,则返回TRUE,如有错误先报错</td>
         <td>and(1,2=2) <br>>>true</td>
     </tr>
     <tr>
-        <td>OR</td><td>or(逻辑值1,...)<br>如果任一参数为TRUE,则返回TRUE</td>
+        <td>OR</td><td>or(逻辑值1,...)<br>如果任一参数为TRUE,则返回TRUE,如有错误先报错</td>
         <td>or(1,2=3) <br>>>true</td>
     </tr>
     <tr>
