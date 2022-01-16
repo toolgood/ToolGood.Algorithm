@@ -16,6 +16,12 @@ namespace ToolGood.Algorithm
         /// 最后一个错误
         /// </summary>
         public string LastError;
+        /// <summary>
+        /// 是否开启延迟加载
+        /// 开启后，不会立即调取Parse
+        /// </summary>
+        public bool LazyLoad=false;
+
 
         /// <summary>
         /// 添加公式缓存
@@ -33,18 +39,20 @@ namespace ToolGood.Algorithm
                 ConditionString = condition,
                 FormulaString = formula
             };
-            if (condition != null) {
-                var conditionProg = Parse(condition);
-                if (conditionProg == null) {
+            if (LazyLoad==false) {
+                if (condition != null) {
+                    var conditionProg = Parse(condition);
+                    if (conditionProg == null) {
+                        return false;
+                    }
+                    conditionCache.Condition = conditionProg;
+                }
+                var formulaProg = Parse(formula);
+                if (formulaProg == null) {
                     return false;
                 }
-                conditionCache.Condition = conditionProg;
+                conditionCache.Formula = formulaProg;
             }
-            var formulaProg = Parse(formula);
-            if (formulaProg == null) {
-                return false;
-            }
-            conditionCache.Formula = formulaProg;
 
             List<Internals.ConditionCache> list;
             if (conditionCaches.TryGetValue(categoryName, out list) == false) {

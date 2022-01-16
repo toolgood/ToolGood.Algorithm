@@ -104,13 +104,19 @@ namespace ToolGood.Algorithm
             Operand operand;
             var conditionCaches = MultiConditionCache.GetConditionCaches(categoryName);
             foreach (var conditionCache in conditionCaches) {
-                if (conditionCache.Formula == null) continue;
-                if (conditionCache.Condition != null) {
+                if (string.IsNullOrEmpty(conditionCache.FormulaString)) continue;
+                if (string.IsNullOrEmpty(conditionCache.ConditionString) == false) {
+                    if (conditionCache.Condition == null) {
+                        return Operand.Error($"CategoryName [{categoryName}] parse condition `{conditionCache.ConditionString}` is error.\r\n{conditionCache.LastError}");
+                    }
                     var b = Evaluate(conditionCache.Condition);
                     if (b.IsError) {
                         return Operand.Error($"CategoryName [{categoryName}] condition `{conditionCache.ConditionString}` is error.\r\n{b.ErrorMsg}");
                     }
                     if (b.BooleanValue == false) continue;
+                }
+                if (conditionCache.Formula == null) {
+                    return Operand.Error($"CategoryName [{categoryName}] parse formula `{ conditionCache.FormulaString}` is error.\r\n{conditionCache.LastError}");
                 }
                 operand = Evaluate(conditionCache.Formula);
                 if (operand.IsError) {
@@ -132,10 +138,13 @@ namespace ToolGood.Algorithm
         {
             var conditionCaches = MultiConditionCache.GetConditionCaches(categoryName);
             foreach (var conditionCache in conditionCaches) {
-                if (conditionCache.Condition != null) {
+                if (string.IsNullOrEmpty(conditionCache.ConditionString) == false) {
+                    if (conditionCache.Condition == null) {
+                        throw new Exception($"CategoryName [{categoryName}] parse formula `{ conditionCache.FormulaString}` is error.\r\n{conditionCache.LastError}");
+                    }
                     var b = Evaluate(conditionCache.Condition);
                     if (b.IsError) {
-                        throw new Exception(b.ErrorMsg);
+                        throw new Exception($"CategoryName [{categoryName}] formula `{ conditionCache.FormulaString}` is error.\r\n{b.ErrorMsg}");
                     }
                     if (b.BooleanValue == false) continue;
                 }
