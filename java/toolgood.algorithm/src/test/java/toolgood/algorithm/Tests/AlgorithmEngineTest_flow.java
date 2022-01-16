@@ -22,6 +22,9 @@ public class AlgorithmEngineTest_flow {
         assertEquals(1, t);
         t = engine.TryEvaluate("if(0,1,2)", 0);
         assertEquals(2, t);
+
+        t = engine.TryEvaluate("1>2?1:2", 0);
+        assertEquals(2, t);
     }
 
     @Test

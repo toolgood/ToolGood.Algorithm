@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
+import toolgood.algorithm.internals.AntlrErrorListener;
 import toolgood.algorithm.internals.CaseChangingCharStream;
 import toolgood.algorithm.internals.MathVisitor;
 import toolgood.algorithm.internals.MyFunction;
@@ -15,11 +16,9 @@ import toolgood.algorithm.math.mathLexer;
 import toolgood.algorithm.math.mathParser;
 import toolgood.algorithm.math.mathParser2.*;
 
-import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
-import org.antlr.v4.runtime.Recognizer;
 import org.joda.time.DateTime;
 
 
@@ -124,22 +123,6 @@ public class AlgorithmEngine {
         throw new Exception("Parameter is not json String.");
     }
 
-    class AntlrErrorListener extends BaseErrorListener {
-        public boolean IsError;
-        public String ErrorMsg;
-
-        @Override
-        public void syntaxError(Recognizer<?, ?> recognizer,
-                                Object offendingSymbol,
-                                int line,
-                                int charPositionInLine,
-                                String msg,
-                                RecognitionException e)
-        {
-            IsError = true;
-            ErrorMsg = msg;
-        }
-    }
 
     public boolean Parse(final String exp) throws RecognitionException {
         if (exp == null || exp.equals("")) {
