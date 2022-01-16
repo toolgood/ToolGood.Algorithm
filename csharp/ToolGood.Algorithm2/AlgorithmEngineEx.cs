@@ -27,10 +27,16 @@ namespace ToolGood.Algorithm
         /// 自定义 函数
         /// </summary>
         public event Func<string, List<Operand>, Operand> DiyFunction;
+        private ConditionCache MultiConditionCache;
         /// <summary>
-        /// 多条件缓存
+        /// 跳过条件错误 
         /// </summary>
-        public ConditionCache MultiConditionCache { get; private set; }
+        public bool JumpConditionError { get; set; }
+        /// <summary>
+        /// 跳过公式错误
+        /// </summary>
+        public bool JumpFormulaError { get; set; }
+
 
         public AlgorithmEngineEx(ConditionCache multiConditionCache)
         {
@@ -55,17 +61,22 @@ namespace ToolGood.Algorithm
                 if (conditionCache.ConditionProg != null) {
                     var b = Evaluate(conditionCache.ConditionProg);
                     if (b.IsError) {
-                        return Operand.Error($"Parameter [{parameter}],{conditionCache.Remark} condition `{conditionCache.ConditionString}` is error.\r\n{b.ErrorMsg}");
+                        LastError = $"Parameter [{parameter}],{conditionCache.Remark} condition `{conditionCache.ConditionString}` is error.\r\n{b.ErrorMsg}";
+                        if (JumpConditionError) continue;
+                        return Operand.Error(LastError);
                     }
                     if (b.BooleanValue == false) continue;
                 }
                 operand = Evaluate(conditionCache.FormulaProg);
                 if (operand.IsError) {
-                    operand = Operand.Error($"Parameter [{parameter}],{conditionCache.Remark} formula `{conditionCache.FormulaString}` is error.\r\n{operand.ErrorMsg}");
+                    LastError = $"Parameter [{parameter}],{conditionCache.Remark} formula `{conditionCache.FormulaString}` is error.\r\n{operand.ErrorMsg}";
+                    if (JumpFormulaError) continue;
+                    return Operand.Error(LastError);
                 }
                 _dict[parameter] = operand;
                 return operand;
             }
+            if (LastError != null) return Operand.Error(LastError);
             return Operand.Error($"Parameter [{parameter}] is missing.");
         }
         #endregion
@@ -102,6 +113,7 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public Operand Evaluate(string categoryName)
         {
+            LastError = null;
             Operand operand;
             var conditionCaches = MultiConditionCache.GetConditionCaches(categoryName);
             foreach (var conditionCache in conditionCaches) {
@@ -112,7 +124,9 @@ namespace ToolGood.Algorithm
                     }
                     var b = Evaluate(conditionCache.ConditionProg);
                     if (b.IsError) {
-                        return Operand.Error($"CategoryName [{categoryName}],{conditionCache.Remark} condition `{conditionCache.ConditionString}` is error.\r\n{b.ErrorMsg}");
+                        LastError = $"CategoryName [{categoryName}],{conditionCache.Remark} condition `{conditionCache.ConditionString}` is error.\r\n{b.ErrorMsg}";
+                        if (JumpConditionError) continue;
+                        return Operand.Error(LastError);
                     }
                     if (b.BooleanValue == false) continue;
                 }
@@ -121,10 +135,13 @@ namespace ToolGood.Algorithm
                 }
                 operand = Evaluate(conditionCache.FormulaProg);
                 if (operand.IsError) {
-                    operand = Operand.Error($"CategoryName [{categoryName}],{conditionCache.Remark} formula `{conditionCache.FormulaString}` is error.\r\n{operand.ErrorMsg}");
+                    LastError = $"CategoryName [{categoryName}],{conditionCache.Remark} formula `{conditionCache.FormulaString}` is error.\r\n{operand.ErrorMsg}";
+                    if (JumpFormulaError) continue;
+                    operand = Operand.Error(LastError);
                 }
                 return operand;
             }
+            if (LastError != null) return Operand.Error(LastError);
             return Operand.Error($"CategoryName [{categoryName}] is missing.");
 
         }
@@ -137,6 +154,7 @@ namespace ToolGood.Algorithm
         /// <exception cref="Exception"></exception>
         public string SearchRemark(string categoryName)
         {
+            LastError = null;
             var conditionCaches = MultiConditionCache.GetConditionCaches(categoryName);
             foreach (var conditionCache in conditionCaches) {
                 if (string.IsNullOrEmpty(conditionCache.ConditionString) == false) {
@@ -145,12 +163,15 @@ namespace ToolGood.Algorithm
                     }
                     var b = Evaluate(conditionCache.ConditionProg);
                     if (b.IsError) {
-                        throw new Exception($"CategoryName [{categoryName}],{conditionCache.Remark} condition `{ conditionCache.ConditionString}` is error.\r\n{b.ErrorMsg}");
+                        LastError = $"CategoryName [{categoryName}],{conditionCache.Remark} condition `{conditionCache.ConditionString}` is error.\r\n{b.ErrorMsg}";
+                        if (JumpConditionError) continue;
+                        throw new Exception(LastError);
                     }
                     if (b.BooleanValue == false) continue;
                 }
                 return conditionCache.Remark;
             }
+            if (LastError != null) new Exception(LastError);
             throw new Exception($"CategoryName [{categoryName}] is missing.");
         }
 

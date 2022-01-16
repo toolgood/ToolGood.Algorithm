@@ -1,16 +1,28 @@
-ToolGood.Algorithm (JAVA版本)
+ToolGood.Algorithm (JAVA)
 ===================
-ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数`。
+ToolGood.Algorithm supports `Four arithmetic`, `Excel formula`, and supports `Custom parameters`. 
+
+ToolGood.Algorithm支持`四则运算`、`Excel公式`,并支持`自定义参数`。
+
+**Applicable scenarios:** Code and algorithm are separated to avoid forced project upgrade 
 
 **适用场景：** 代码与算法分离，避免项目强制升级
 
+1）Uncertain algorithm at the beginning of the project; 
+
 1）项目初期，未确定的算法；
+
+2）Algorithms that are frequently changed during project maintenance; 
 
 2）项目维护时，经常改动的算法；
 
-3）财务数据、统计数据之中的算法，(注:本项目使用double类型，建议使用`分`为单位)；
+3）Algorithms in financial data and statistical data (Note: This project uses `double` type, and it is recommended to use `fen` as the unit); 
 
-4）报表导出，数据来源使用存储过程，Word文档内设置算法。(C#版本 例 https://github.com/toolgood/ToolGood.WordTemplate)
+3）财务数据、统计数据之中的算法，(注:本项目使用`double`类型，建议使用`分`为单位)；
+
+4）The report is exported, the data source uses the stored procedure, and the algorithm is set in the Word document. Example https://github.com/toolgood/ToolGood.WordTemplate 
+
+4）报表导出，数据来源使用存储过程，Word文档内设置算法。例 https://github.com/toolgood/ToolGood.WordTemplate
 
 ## 快速上手
 ``` java
@@ -22,7 +34,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
     }
     double b = engine.TryEvaluate("1=1 && 1<2 and 7-8>1", 0.0);// 支持 && || and or 
     double c = engine.TryEvaluate("2+3", 0);
-    double d = engine.TryEvaluate("count({1,2,3,4})", 0.0);//{}代表数组,返回:4
+    double d = engine.TryEvaluate("count(array(1,2,3,4))", 0.0);//{}代表数组,返回:4
     String s = engine.TryEvaluate("'aa'&'bb'", ""); //字符串连接,返回:aabb
     int r = engine.TryEvaluate("(1=1)*9+2", 0); //返回:11
     DateTime d = engine.TryEvaluate("'2016-1-1'+1", DateTime.now()); //返回日期:2016-1-2
@@ -32,23 +44,37 @@ ToolGood.Algorithm支持`四则运算`、`Excel函数`,并支持`自定义参数
     String l = engine.TryEvaluate("json('{\"Name1\":\"William Shakespeare \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')['Name'& 1].Trim().substring(2,3)", ""); ;//返回"ill"
 
 ```
+Constants`pi`,`e`,`true`,`false`are supported.
+
 支持常量`pi`,`e`,`true`,`false`。
 
-数值转bool，非零为真,零为假。
-字符串转bool,`0`、`FALSE`为假，`1`、`TRUE`为真。不区分大小写
+The value is converted to bool, non-zero is true and zero is false.
+String to bool, ` 0`and`FALSE` is false, `1`and`TRUE` is true. Case insensitive.
 
-bool转数值，假为`0`，真为`1`。
-bool转字符串，假为`FALSE`，真为`TRUE`。
+数值转bool，非零为真,零为假。字符串转bool,`0`、`FALSE`为假，`1`、`TRUE`为真。不区分大小写。
+
+
+Bool to value, false is`0`, true is`1`.
+Bool to string, false to`FALSE`, true to`TRUE`.
+
+bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真为`TRUE`。
+
+The default index is`excel index`. If you want to use c# index, please set`UseExcelIndex`to`false`.
 
 索引默认为`Excel索引`，如果想用c#索引，请设置`UseExcelIndex`为`false`。
 
-中文符号自动转成英文符号：`括号`,`方括号`,`逗号`,`引号`,`双引号`
+
+Chinese symbols are automatically converted to English symbols: `brackets`, `square brackets`,`commas`, `quotation marks`,`double quotation marks`.
+
+中文符号自动转成英文符号：`括号`,`方括号`,`逗号`,`引号`,`双引号`。
+
+Note: Use `&` for string concatenation. 
 
 注：字符串拼接使用`&`。
 
-注：`substring`为C#版本，Substring(文本,位置[,数量])
+Note: `find` is an Excel formula , find (the string to be searched, the string to be searched [,start position]) 
 
-注：`find`为Excel函数，find(要查找的字符串,被查找的字符串[,开始位置])
+注：`find`为Excel公式，find(要查找的字符串,被查找的字符串[,开始位置])
 
 ## 自定义参数
 ``` java
@@ -85,19 +111,63 @@ public class Cylinder extends AlgorithmEngine {
     c.TryEvaluate("[半径]*[半径]*pi()*[高]", 0.0); //圆的体积
     c.TryEvaluate("['半径']*[半径]*pi()*[高]", 0.0); //圆的体积
 ```
+Parameters are defined in square brackets, such as `[parameter name]`. 
+
 参数以方括号定义，如 `[参数名]`。 
+
+Note: You can also use `AddParameter`, `AddParameterFromJson` to add methods, and use `DiyFunction` to customize functions. 
 
 注：还可以使用`AddParameter`、`AddParameterFromJson`添加方法，使用`DiyFunction`来自定义函数。
 
-## Excel函数
+
+## Multi formula (多公式)
+``` java
+    ConditionCache multiConditionCache = new ConditionCache();
+    multiConditionCache.LazyLoad = true;
+    multiConditionCache.AddFormula("桌面积", "[圆桌]", "[半径]*[半径]*pi()");
+    multiConditionCache.AddFormula("桌面积", "[方桌]", "[长]*[宽]");
+    multiConditionCache.AddFormula("价格", "[圆桌]&& [半径]<2.5", "[桌面积]*1.3");
+    multiConditionCache.AddFormula("价格", "[圆桌]&& [半径]<5", "[桌面积]*1.5");
+    multiConditionCache.AddFormula("价格", "[圆桌]&& [半径]<7", "[桌面积]*2");
+    multiConditionCache.AddFormula("价格", "[圆桌]", "[桌面积]*2.5");
+    multiConditionCache.AddFormula("价格", "[方桌]&& [长]<1.3", "[桌面积]*1.3+[高]*1.1");
+    multiConditionCache.AddFormula("价格", "[方桌]&& [长]<2", "[桌面积]*1.5+[高]*1.1");
+    multiConditionCache.AddFormula("价格", "[方桌]&& [长]<5", "[桌面积]*2+[高]*1.1");
+    multiConditionCache.AddFormula("价格", "[方桌]&& [长]<7", "[桌面积]*2.5");
+
+    var algoEngine = new ToolGood.Algorithm.AlgorithmEngineEx(multiConditionCache);
+    algoEngine.JumpConditionError = true;
+    algoEngine.AddParameter("方桌", true);
+    algoEngine.AddParameter("长", 3);
+    algoEngine.AddParameter("宽", 1.3);
+    algoEngine.AddParameter("高", 1);
+
+    var p2 = algoEngine.TryEvaluate("价格", 0.0);
+    Assert.AreEqual(3 * 1.3 * 2 + 1 * 1.1, p2, 0.0001);
+```
+See unit testing for more features.
+
+更多功能请看一下单元测试。
+
+## Excel Formula (Excel公式)
+
+Functions: `logical functions`, `mathematics and trigonometric functions`, `text functions`, `statistical functions`, `date and time functions` 
+
 函数：`逻辑函数`、`数学与三角函数`、`文本函数`、`统计函数`、`日期与时间函数`
+
+Note: Function names are not case sensitive. Parameters with square brackets can be omitted. The return value of the example is approximate. 
 
 注：函数名不分大小写,带方括号的参数可省略,示例的返回值,为近似值。
 
+Note 2: The function name with ★ indicates that the first parameter can be prefixed, such as `(-1).ISTEXT()` 
+
 注2：函数名带★，表示第一个参数可以前置，如`(-1).ISTEXT()`
 
+Note 3: The function name with ▲ means that it is affected by `Excel Index`, 
+
 注3：函数名带▲，表示受`Excel索引`影响，
-#### 逻辑函数
+
+#### Logical function (逻辑函数)
 <table>
     <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
@@ -178,7 +248,7 @@ public class Cylinder extends AlgorithmEngine {
     </tr>
 </table>
 
-#### 数学与三角函数
+#### Mathematics and Trigonometric Functions(数学与三角函数)
 <table>
     <tr><td>分类</td><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
@@ -437,7 +507,7 @@ public class Cylinder extends AlgorithmEngine {
     </tr>
 </table>
 
-#### 文本函数
+#### Text function(文本函数)
 <table>
     <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
@@ -543,7 +613,7 @@ public class Cylinder extends AlgorithmEngine {
     </tr>
 </table>
 
-#### 日期与时间函数
+#### Date and time functions (日期与时间函数)
 <table>
     <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
@@ -628,7 +698,7 @@ public class Cylinder extends AlgorithmEngine {
     </tr>
 </table>
 
-#### 统计函数
+#### Statistical function (统计函数)
 <table>
     <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
@@ -817,7 +887,7 @@ public class Cylinder extends AlgorithmEngine {
     </tr>
 </table>
 
-#### 查找引用
+#### Find references (查找引用)
 <table>
     <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
@@ -828,7 +898,7 @@ public class Cylinder extends AlgorithmEngine {
     </tr>
 </table>
 
-#### 增加函数 类C#方法
+#### Add function similar to C# method (增加函数 类C#方法)
 <table>
     <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
@@ -937,13 +1007,4 @@ public class Cylinder extends AlgorithmEngine {
         <td>Json ★</td><td>json(文本)<br>动态json查询。</td> <td></td>
     </tr>
 </table>
-
-
-## 捐赠
-
-如果这个类库有帮助到您，请 Star 这个仓库。
-
-你也可以选择使用支付宝或微信给我捐赠：
-
-![Alipay, WeChat](https://toolgood.github.io/image/toolgood.png)
-
+ 

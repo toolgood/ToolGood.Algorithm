@@ -26,7 +26,15 @@ public class AlgorithmEngineEx {
     public String LastError;
     private final Map<String, Operand> _dict = new HashMap<String, Operand>();
     public Function<MyFunction, Operand> DiyFunction;
-    public ConditionCache MultiConditionCache;
+    private ConditionCache MultiConditionCache;
+    /**
+     * 跳过条件错误
+     */
+    public Boolean JumpConditionError = false;
+    /**
+     * 跳过公式错误
+     */
+    public Boolean JumpFormulaError = false;
 
     public AlgorithmEngineEx(ConditionCache multiConditionCache) {
         MultiConditionCache = multiConditionCache;
@@ -43,21 +51,28 @@ public class AlgorithmEngineEx {
             if (conditionCache.GetConditionProg() != null) {
                 Operand b = Evaluate(conditionCache.GetConditionProg());
                 if (b.IsError()) {
-                    return Operand.Error("Parameter [" + parameter + "]," + conditionCache.Remark
-                            + " condition `" + conditionCache.ConditionString + "` is error.\r\n" + b.ErrorMsg());
+                    LastError = "Parameter [" + parameter + "]," + conditionCache.Remark
+                            + " condition `" + conditionCache.ConditionString + "` is error.\r\n" + b.ErrorMsg();
+                    if (JumpConditionError)
+                        continue;
+                    return Operand.Error(LastError);
                 }
                 if (b.BooleanValue() == false)
                     continue;
             }
             Operand operand = Evaluate(conditionCache.GetFormulaProg());
             if (operand.IsError()) {
-                return Operand.Error("Parameter [" + parameter + "]," + conditionCache.Remark
-                        + " formula `" + conditionCache.FormulaString + "` is error.\r\n" + operand.ErrorMsg());
+                LastError = "Parameter [" + parameter + "]," + conditionCache.Remark
+                        + " formula `" + conditionCache.FormulaString + "` is error.\r\n" + operand.ErrorMsg();
+                if (JumpFormulaError)
+                    continue;
+                return Operand.Error(LastError);
             }
             _dict.put(parameter, operand);
             return operand;
         }
-
+        if (LastError != null)
+            return Operand.Error(LastError);
         return Operand.Error("Parameter [" + parameter + "] is missing.");
     }
 
@@ -86,6 +101,7 @@ public class AlgorithmEngineEx {
      * @return
      */
     public Operand Evaluate(String categoryName) {
+        LastError = null;
         Operand operand;
         ArrayList<ConditionCacheInfo> conditionCaches = MultiConditionCache.GetConditionCaches(categoryName);
         for (ConditionCacheInfo conditionCache : conditionCaches) {
@@ -99,8 +115,11 @@ public class AlgorithmEngineEx {
                 }
                 Operand b = Evaluate(conditionCache.GetConditionProg());
                 if (b.IsError()) {
-                    return Operand.Error("Parameter [" + categoryName + "]," + conditionCache.Remark
-                            + " condition `" + conditionCache.ConditionString + "` is error.\r\n" + b.ErrorMsg());
+                    LastError = "Parameter [" + categoryName + "]," + conditionCache.Remark
+                            + " condition `" + conditionCache.ConditionString + "` is error.\r\n" + b.ErrorMsg();
+                    if (JumpConditionError)
+                        continue;
+                    return Operand.Error(LastError);
                 }
                 if (b.BooleanValue() == false)
                     continue;
@@ -112,11 +131,16 @@ public class AlgorithmEngineEx {
             }
             operand = Evaluate(conditionCache.GetFormulaProg());
             if (operand.IsError()) {
-                return Operand.Error("Parameter [" + categoryName + "]," + conditionCache.Remark
-                        + " formula `" + conditionCache.FormulaString + "` is error.\r\n" + operand.ErrorMsg());
+                LastError = "Parameter [" + categoryName + "]," + conditionCache.Remark
+                        + " formula `" + conditionCache.FormulaString + "` is error.\r\n" + operand.ErrorMsg();
+                if (JumpFormulaError)
+                    continue;
+                operand = Operand.Error(LastError);
             }
             return operand;
         }
+        if (LastError != null)
+            return Operand.Error(LastError);
         return Operand.Error("CategoryName [" + categoryName + "] is missing.");
     }
 
@@ -128,6 +152,7 @@ public class AlgorithmEngineEx {
      * @throws Exception
      */
     public String SearchRemark(String categoryName) throws Exception {
+        LastError = null;
         ArrayList<ConditionCacheInfo> conditionCaches = MultiConditionCache.GetConditionCaches(categoryName);
         for (ConditionCacheInfo conditionCache : conditionCaches) {
             if (conditionCache.ConditionString != null && conditionCache.ConditionString.length() > 0) {
@@ -138,14 +163,19 @@ public class AlgorithmEngineEx {
                 }
                 Operand b = Evaluate(conditionCache.GetConditionProg());
                 if (b.IsError()) {
-                    throw new Exception("Parameter [" + categoryName + "]," + conditionCache.Remark
-                            + " condition `" + conditionCache.ConditionString + "` is error.\r\n" + b.ErrorMsg());
+                    LastError = "Parameter [" + categoryName + "]," + conditionCache.Remark
+                            + " condition `" + conditionCache.ConditionString + "` is error.\r\n" + b.ErrorMsg();
+                    if (JumpConditionError)
+                        continue;
+                    throw new Exception(LastError);
                 }
                 if (b.BooleanValue() == false)
                     continue;
             }
             return conditionCache.Remark;
         }
+        if (LastError != null)
+            new Exception(LastError);
         throw new Exception("CategoryName [" + categoryName + "] is missing.");
     }
 
