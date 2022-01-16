@@ -1,21 +1,20 @@
 ToolGood.Algorithm
 ===================
 
-ToolGood.Algorithm支持`四则运算`、`Excel公式`,并支持`自定义参数`。
+ToolGood.Algorithm supports `Four arithmetic`, `Excel formula`, and supports `Custom parameters`. 
+
+**Applicable scenarios:** Code and algorithm are separated to avoid forced project upgrade 
+
+1）Uncertain algorithm at the beginning of the project; 
+
+2）Algorithms that are frequently changed during project maintenance; 
+
+3）Algorithms in financial data and statistical data (Note: This project uses `double` type, and it is recommended to use `fen` as the unit); 
+
+4）The report is exported, the data source uses the stored procedure, and the algorithm is set in the Word document. Example https://github.com/toolgood/ToolGood.WordTemplate 
 
 
-**适用场景：** 代码与算法分离，避免项目强制升级
-
-1）项目初期，未确定的算法；
-
-2）项目维护时，经常改动的算法；
-
-3）财务数据、统计数据之中的算法，(注:本项目使用`double`类型，建议使用`分`为单位)；
-
-
-4）报表导出，数据来源使用存储过程，Word文档内设置算法。例 https://github.com/toolgood/ToolGood.WordTemplate
-
-## 快速上手
+## Quick start
 ``` csharp
     AlgorithmEngine engine = new AlgorithmEngine();
     double a=0.0;
@@ -32,27 +31,29 @@ ToolGood.Algorithm支持`四则运算`、`Excel公式`,并支持`自定义参数
     var t = engine.TryEvaluate("'2016-1-1'+9*'1:0'", DateTime.MinValue);//Return datetime:2016-1-1 9:0  返回日期:2016-1-1 9:0
     var j = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Age", null);//Return 51 返回51
     var k = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')[Name].Trim()", null);//Return to "William Shakespeare"  返回"William Shakespeare" (不带空格)
-    var l = engine.TryEvaluate("json('{\"Name1\":\"William Shakespeare \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')['Name'& 1].Trim().substring(2,3)", null);//Return "ill"  返回"ill"
+    var l = engine.TryEvaluate("json('{\"Name1\":\"William Shakespeare \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')['Name'& 1].Trim().substring(2,3)", null); ;//Return "ill"  返回"ill"
 
 ```
+Constants`pi`,`e`,`true`,`false`are supported.
 
-支持常量`pi`,`e`,`true`,`false`。
+The value is converted to bool, non-zero is true and zero is false.
+String to bool, ` 0`and`FALSE` is false, `1`and`TRUE` is true. Case insensitive.
 
-数值转bool，非零为真,零为假。字符串转bool,`0`、`FALSE`为假，`1`、`TRUE`为真。不区分大小写。
-
-bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真为`TRUE`。
-
-索引默认为`Excel索引`，如果想用c#索引，请设置`UseExcelIndex`为`false`。
-
-中文符号自动转成英文符号：`括号`,`方括号`,`逗号`,`引号`,`双引号`。
+Bool to value, false is`0`, true is`1`.
+Bool to string, false to`FALSE`, true to`TRUE`.
 
 
-注：字符串拼接使用`&`。
+The default index is`excel index`. If you want to use c# index, please set`UseExcelIndex`to`false`.
 
 
-注：`find`为Excel公式，find(要查找的字符串,被查找的字符串[,开始位置])
+Chinese symbols are automatically converted to English symbols: `brackets`, `square brackets`,`commas`, `quotation marks`,`double quotation marks`.
 
-## 自定义参数
+Note: Use `&` for string concatenation. 
+
+
+Note: `find` is an Excel formula , find (the string to be searched, the string to be searched [,start position]) 
+
+## Custom parameters
 ``` csharp
     //Define cylinder information  定义圆柱信息 
     public class Cylinder : AlgorithmEngine
@@ -89,12 +90,11 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
     c.TryEvaluate("[半径]*[半径]*pi()*[高]", 0.0); //Volume of circle 圆的体积
     c.TryEvaluate("['半径']*[半径]*pi()*[高]", 0.0); //Volume of circle 圆的体积
 ```
+Parameters are defined in square brackets, such as `[parameter name]`. 
 
-参数以方括号定义，如 `[参数名]`。 
+Note: You can also use `AddParameter`, `AddParameterFromJson` to add methods, and use `DiyFunction`+= to customize functions. 
 
-注：还可以使用`AddParameter`、`AddParameterFromJson`添加方法，使用`DiyFunction`+=来自定义函数。
-
-## 多公式
+## Multi formula
 ``` csharp
     ConditionCache multiConditionCache = new ConditionCache();
     multiConditionCache.LazyLoad = true;
@@ -119,20 +119,20 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
     var p2 = algoEngine.TryEvaluate("价格", 0.0);
     Assert.AreEqual(3 * 1.3 * 2 + 1 * 1.1, p2, 0.0001);
 ```
-更多功能请看一下单元测试。
+See unit testing for more features.
 
 
-## Excel公式
+## Excel Formula
 
-函数：`逻辑函数`、`数学与三角函数`、`文本函数`、`统计函数`、`日期与时间函数`
+Functions: `logical functions`, `mathematics and trigonometric functions`, `text functions`, `statistical functions`, `date and time functions` 
 
-注：函数名不分大小写,带方括号的参数可省略,示例的返回值,为近似值。
+Note: Function names are not case sensitive. Parameters with square brackets can be omitted. The return value of the example is approximate. 
 
-注2：函数名带★，表示第一个参数可以前置，如`(-1).ISTEXT()`
+Note 2: The function name with ★ indicates that the first parameter can be prefixed, such as `(-1).ISTEXT()` 
 
+Note 3: The function name with ▲ means that it is affected by `Excel Index`, 
 
-注3：函数名带▲，表示受`Excel索引`影响，
-#### 逻辑函数
+#### Logical function
 <table>
     <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
@@ -213,7 +213,7 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
     </tr>
 </table>
 
-#### 数学与三角函数
+#### Mathematics and Trigonometric Functions
 <table>
     <tr><td>分类</td><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
@@ -472,7 +472,7 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
     </tr>
 </table>
 
-#### 文本函数
+#### Text function
 <table>
     <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
@@ -578,7 +578,7 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
     </tr>
 </table>
 
-#### 日期与时间函数
+#### Date and time functions
 <table>
     <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
@@ -663,7 +663,7 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
     </tr>
 </table>
 
-#### 统计函数
+#### Statistical function
 <table>
     <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
@@ -852,7 +852,7 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
     </tr>
 </table>
 
-#### 查找引用
+#### Find references
 <table>
     <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
@@ -863,7 +863,7 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
     </tr>
 </table>
 
-#### 增加函数 类C#方法
+#### Add function similar to C# method
 <table>
     <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
     <tr>
