@@ -122,6 +122,8 @@ namespace ToolGood.Algorithm
 
             t1 = engine.TryEvaluate("(!(-7 < -2))？1：2", 0);
             Assert.AreEqual(t1, 2);
+            t1 = engine.TryEvaluate("1>2？1：2", 0);
+            Assert.AreEqual(t1, 2);
         }
 
         [Test]

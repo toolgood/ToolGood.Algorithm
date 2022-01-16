@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ToolGood.Algorithm.LitJson;
 using static mathParser;
 
 namespace ToolGood.Algorithm
@@ -54,13 +55,13 @@ namespace ToolGood.Algorithm
                 if (conditionCache.ConditionProg != null) {
                     var b = Evaluate(conditionCache.ConditionProg);
                     if (b.IsError) {
-                        return Operand.Error($"Parameter [{parameter}] condition `{conditionCache.ConditionString}` is error.\r\n{b.ErrorMsg}");
+                        return Operand.Error($"Parameter [{parameter}],{conditionCache.Remark} condition `{conditionCache.ConditionString}` is error.\r\n{b.ErrorMsg}");
                     }
                     if (b.BooleanValue == false) continue;
                 }
                 operand = Evaluate(conditionCache.FormulaProg);
                 if (operand.IsError) {
-                    operand = Operand.Error($"Parameter [{parameter}] formula `{conditionCache.FormulaString}` is error.\r\n{operand.ErrorMsg}");
+                    operand = Operand.Error($"Parameter [{parameter}],{conditionCache.Remark} formula `{conditionCache.FormulaString}` is error.\r\n{operand.ErrorMsg}");
                 }
                 _dict[parameter] = operand;
                 return operand;
@@ -107,20 +108,20 @@ namespace ToolGood.Algorithm
                 if (string.IsNullOrEmpty(conditionCache.FormulaString)) continue;
                 if (string.IsNullOrEmpty(conditionCache.ConditionString) == false) {
                     if (conditionCache.ConditionProg == null) {
-                        return Operand.Error($"CategoryName [{categoryName}] parse condition `{conditionCache.ConditionString}` is error.\r\n{conditionCache.LastError}");
+                        return Operand.Error($"CategoryName [{categoryName}],{conditionCache.Remark} parse condition `{conditionCache.ConditionString}` is error.\r\n{conditionCache.LastError}");
                     }
                     var b = Evaluate(conditionCache.ConditionProg);
                     if (b.IsError) {
-                        return Operand.Error($"CategoryName [{categoryName}] condition `{conditionCache.ConditionString}` is error.\r\n{b.ErrorMsg}");
+                        return Operand.Error($"CategoryName [{categoryName}],{conditionCache.Remark} condition `{conditionCache.ConditionString}` is error.\r\n{b.ErrorMsg}");
                     }
                     if (b.BooleanValue == false) continue;
                 }
                 if (conditionCache.FormulaProg == null) {
-                    return Operand.Error($"CategoryName [{categoryName}] parse formula `{ conditionCache.FormulaString}` is error.\r\n{conditionCache.LastError}");
+                    return Operand.Error($"CategoryName [{categoryName}],{conditionCache.Remark} parse formula `{ conditionCache.FormulaString}` is error.\r\n{conditionCache.LastError}");
                 }
                 operand = Evaluate(conditionCache.FormulaProg);
                 if (operand.IsError) {
-                    operand = Operand.Error($"CategoryName [{categoryName}] formula `{conditionCache.FormulaString}` is error.\r\n{operand.ErrorMsg}");
+                    operand = Operand.Error($"CategoryName [{categoryName}],{conditionCache.Remark} formula `{conditionCache.FormulaString}` is error.\r\n{operand.ErrorMsg}");
                 }
                 return operand;
             }
@@ -140,11 +141,11 @@ namespace ToolGood.Algorithm
             foreach (var conditionCache in conditionCaches) {
                 if (string.IsNullOrEmpty(conditionCache.ConditionString) == false) {
                     if (conditionCache.ConditionProg == null) {
-                        throw new Exception($"CategoryName [{categoryName}] parse formula `{ conditionCache.FormulaString}` is error.\r\n{conditionCache.LastError}");
+                        throw new Exception($"CategoryName [{categoryName}],{conditionCache.Remark} parse condition `{ conditionCache.ConditionString}` is error.\r\n{conditionCache.LastError}");
                     }
                     var b = Evaluate(conditionCache.ConditionProg);
                     if (b.IsError) {
-                        throw new Exception($"CategoryName [{categoryName}] formula `{ conditionCache.FormulaString}` is error.\r\n{b.ErrorMsg}");
+                        throw new Exception($"CategoryName [{categoryName}],{conditionCache.Remark} condition `{ conditionCache.ConditionString}` is error.\r\n{b.ErrorMsg}");
                     }
                     if (b.BooleanValue == false) continue;
                 }
@@ -153,6 +154,233 @@ namespace ToolGood.Algorithm
             throw new Exception($"CategoryName [{categoryName}] is missing.");
         }
 
+        #region Parameter
+        /// <summary>
+        /// 清理参数
+        /// </summary>
+        public void ClearParameters()
+        {
+            _dict.Clear();
+        }
+
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        public void AddParameter(string key, Operand obj)
+        {
+            _dict[key] = obj;
+        }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        public void AddParameter(string key, bool obj)
+        {
+            _dict[key] = Operand.Create(obj);
+        }
+        #region number
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        public void AddParameter(string key, short obj)
+        {
+            _dict[key] = Operand.Create((int)obj);
+        }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        public void AddParameter(string key, int obj)
+        {
+            _dict[key] = Operand.Create(obj);
+        }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        public void AddParameter(string key, long obj)
+        {
+            _dict[key] = Operand.Create((double)obj);
+        }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        public void AddParameter(string key, ushort obj)
+        {
+            _dict[key] = Operand.Create((int)obj);
+        }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        public void AddParameter(string key, uint obj)
+        {
+            _dict[key] = Operand.Create((double)obj);
+        }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        public void AddParameter(string key, ulong obj)
+        {
+            _dict[key] = Operand.Create((double)obj);
+        }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        public void AddParameter(string key, float obj)
+        {
+            _dict[key] = Operand.Create((double)obj);
+        }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        public void AddParameter(string key, double obj)
+        {
+            _dict[key] = Operand.Create(obj);
+        }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        public void AddParameter(string key, decimal obj)
+        {
+            _dict[key] = Operand.Create((double)obj);
+        }
+        #endregion
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        public void AddParameter(string key, string obj)
+        {
+            _dict[key] = Operand.Create(obj);
+        }
+        #region MyDate
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        public void AddParameter(string key, MyDate obj)
+        {
+            _dict[key] = Operand.Create(obj);
+        }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        public void AddParameter(string key, DateTime obj)
+        {
+            _dict[key] = Operand.Create(obj);
+        }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        public void AddParameter(string key, TimeSpan obj)
+        {
+            _dict[key] = Operand.Create(obj);
+        }
+        #endregion
+        #region array
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        public void AddParameter(string key, List<Operand> obj)
+        {
+            _dict[key] = Operand.Create(obj);
+        }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        public void AddParameter(string key, ICollection<string> obj)
+        {
+            _dict[key] = Operand.Create(obj);
+        }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        public void AddParameter(string key, ICollection<double> obj)
+        {
+            _dict[key] = Operand.Create(obj);
+
+        }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        public void AddParameter(string key, ICollection<int> obj)
+        {
+            _dict[key] = Operand.Create(obj);
+        }
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        public void AddParameter(string key, ICollection<bool> obj)
+        {
+            _dict[key] = Operand.Create(obj);
+        }
+        #endregion
+        /// <summary>
+        /// 添加自定义参数
+        /// </summary>
+        /// <param name="json"></param>
+        public void AddParameterFromJson(string json)
+        {
+            if (json.StartsWith("{") && json.EndsWith("}")) {
+                var jo = JsonMapper.ToObject(json);
+                if (jo.IsObject) {
+                    foreach (var item in jo.inst_object) {
+                        var v = item.Value;
+                        if (v.IsString)
+                            _dict[item.Key] = Operand.Create(v.StringValue);
+                        else if (v.IsBoolean)
+                            _dict[item.Key] = Operand.Create(v.BooleanValue);
+                        else if (v.IsDouble)
+                            _dict[item.Key] = Operand.Create(v.NumberValue);
+                        else if (v.IsObject)
+                            _dict[item.Key] = Operand.Create(v);
+                        else if (v.IsArray)
+                            _dict[item.Key] = Operand.Create(v);
+                        else if (v.IsNull)
+                            _dict[item.Key] = Operand.CreateNull();
+                    }
+                    return;
+                }
+            }
+            throw new Exception("Parameter is not json string.");
+        }
+
+        #endregion
 
         #region TryEvaluate
         /// <summary>

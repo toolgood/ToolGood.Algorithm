@@ -11,7 +11,7 @@ namespace ToolGood.Algorithm
     /// </summary>
     public class ConditionCache
     {
-        private Dictionary<string, List<Internals.ConditionCache>> conditionCaches = new Dictionary<string, List<Internals.ConditionCache>>();
+        private Dictionary<string, List<ConditionCacheInfo>> conditionCaches = new Dictionary<string, List<ConditionCacheInfo>>();
         /// <summary>
         /// 最后一个错误
         /// </summary>
@@ -25,6 +25,7 @@ namespace ToolGood.Algorithm
 
         /// <summary>
         /// 添加公式缓存
+        /// 有先后顺序的
         /// </summary>
         /// <param name="categoryName">分类名称</param>
         /// <param name="formula">公式 必埴</param>
@@ -41,7 +42,7 @@ namespace ToolGood.Algorithm
                 LastError = "Parameter formula is null or empty.";
                 return false;
             }
-            Internals.ConditionCache conditionCache = new Internals.ConditionCache() {
+            Internals.ConditionCacheInfo conditionCache = new Internals.ConditionCacheInfo() {
                 CategoryName = categoryName,
                 Remark = remark,
                 ConditionString = condition,
@@ -63,9 +64,9 @@ namespace ToolGood.Algorithm
                 conditionCache.FormulaProg = formulaProg;
             }
 
-            List<Internals.ConditionCache> list;
+            List<Internals.ConditionCacheInfo> list;
             if (conditionCaches.TryGetValue(categoryName, out list) == false) {
-                list = new List<Internals.ConditionCache>();
+                list = new List<Internals.ConditionCacheInfo>();
                 conditionCaches[categoryName] = list;
             }
 
@@ -91,7 +92,7 @@ namespace ToolGood.Algorithm
                 LastError = "Parameter remark is null or empty.";
                 return false;
             }
-            Internals.ConditionCache conditionCache = new Internals.ConditionCache() {
+            Internals.ConditionCacheInfo conditionCache = new Internals.ConditionCacheInfo() {
                 CategoryName = categoryName,
                 Remark = remark,
                 ConditionString = condition,
@@ -105,9 +106,9 @@ namespace ToolGood.Algorithm
                     conditionCache.ConditionProg = conditionProg;
                 }
             }
-            List<Internals.ConditionCache> list;
+            List<Internals.ConditionCacheInfo> list;
             if (conditionCaches.TryGetValue(categoryName, out list) == false) {
-                list = new List<Internals.ConditionCache>();
+                list = new List<Internals.ConditionCacheInfo>();
                 conditionCaches[categoryName] = list;
             }
 
@@ -145,11 +146,11 @@ namespace ToolGood.Algorithm
             return null;
         }
 
-        internal List<Internals.ConditionCache> GetConditionCaches(string name)
+        internal List<Internals.ConditionCacheInfo> GetConditionCaches(string name)
         {
-            List<Internals.ConditionCache> result;
+            List<Internals.ConditionCacheInfo> result;
             if (conditionCaches.TryGetValue(name, out result) == false) {
-                result = new List<Internals.ConditionCache>();
+                result = new List<Internals.ConditionCacheInfo>();
             }
             return result;
         }

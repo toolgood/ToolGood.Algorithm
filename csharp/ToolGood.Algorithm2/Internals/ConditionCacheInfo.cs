@@ -4,7 +4,7 @@ using static mathParser;
 
 namespace ToolGood.Algorithm.Internals
 {
-    internal class ConditionCache
+    internal class ConditionCacheInfo
     {
 
         public string CategoryName;
