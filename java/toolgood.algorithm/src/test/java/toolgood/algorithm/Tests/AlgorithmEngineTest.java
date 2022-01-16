@@ -3,7 +3,6 @@ package toolgood.algorithm.Tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
-import java.math.BigDecimal;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
@@ -11,7 +10,6 @@ import org.junit.Test;
 
 import toolgood.algorithm.AlgorithmEngine;
 
-@SuppressWarnings("deprecation")
 public class AlgorithmEngineTest {
     
     @Test
@@ -73,7 +71,7 @@ public class AlgorithmEngineTest {
         s = engine.TryEvaluate("'3'+2", "");
         assertEquals("5", s);
 
-        int r = engine.TryEvaluate("count({ 1,2,3,4})", 0);
+        int r = engine.TryEvaluate("count(array(1,2,3,4))", 0);
         assertEquals(4, r);
 
 
@@ -201,8 +199,4 @@ public class AlgorithmEngineTest {
     }
 
 
-    private double round(final double value, final int p) {
-        final BigDecimal bigD = new BigDecimal(value);
-        return bigD.setScale(p, BigDecimal.ROUND_HALF_UP).doubleValue();
-    }
 }

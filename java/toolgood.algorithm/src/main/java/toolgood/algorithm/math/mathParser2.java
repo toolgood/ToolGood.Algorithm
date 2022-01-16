@@ -1136,9 +1136,9 @@ public class mathParser2{
     }
     public static class AndOr_funContext extends ExprContext {
         public Token op;
-        public List<ExprContext> expr() {
-            return getRuleContexts(ExprContext.class);
-        }
+        public ExprContext expr(int i) {
+			return getRuleContext(ExprContext.class,i);
+		}
         public AndOr_funContext(final ExprContext ctx) {
             copyFrom(ctx);
         }

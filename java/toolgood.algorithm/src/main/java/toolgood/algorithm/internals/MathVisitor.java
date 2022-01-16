@@ -3,6 +3,7 @@ package toolgood.algorithm.internals;
 import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.security.cert.TrustAnchor;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -383,30 +384,22 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitAndOr_fun(final AndOr_funContext context) {
+        // 程序 && and || or 与 excel的 AND(x,y) OR(x,y) 有区别
+        // 在excel内 AND(x,y) OR(x,y) 先报错，
+        // 在程序中，&& and 有true 直接返回true 就不会检测下一个会不会报错
+        // 在程序中，|| or 有false 直接返回false 就不会检测下一个会不会报错
         final String t = context.op.getText();
-        final List<Operand> args = new ArrayList<Operand>();
-        int index = 1;
-        for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToBoolean("Function '" + t + "' parameter " + (index++) + " is error!");
-            ;
-            if (aa.IsError()) {
-                return aa;
-            }
-            args.add(aa);
-        }
-
-        final Operand firstValue = args.get(0);
-        final Operand secondValue = args.get(1);
+        final Operand first = this.visit(context.expr(0)).ToBoolean("Function '" + t + "' parameter 1 is error!");
+        if (first.IsError())
+            return first;
         if (t.equals("&&") || t.toLowerCase().equals("and")) {
-            if (firstValue.BooleanValue() && secondValue.BooleanValue()) {
+            if (first.BooleanValue() == false)
+                return Operand.False;
+        } else {
+            if (first.BooleanValue())
                 return Operand.True;
-            }
-            return Operand.False;
         }
-        if (firstValue.BooleanValue() || secondValue.BooleanValue()) {
-            return Operand.True;
-        }
-        return Operand.False;
+        return this.visit(context.expr(1)).ToBoolean("Function '" + t + "' parameter 2 is error!");
     }
 
     public Operand visitIF_fun(final IF_funContext context) {
@@ -570,45 +563,29 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitAND_fun(final AND_funContext context) {
-        final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
+        Boolean b = true;
         for (final ExprContext item : context.expr()) {
             final Operand a = visit(item).ToBoolean("Function AND parameter " + (index++) + " is error!");
-            if (a.IsError()) {
+            if (a.IsError())
                 return a;
-            }
-            args.add(a);
-        }
-
-        boolean b = true;
-        for (final Operand item : args) {
-            if (item.BooleanValue() == false) {
+            if (a.BooleanValue() == false)
                 b = false;
-                break;
-            }
         }
-        return Operand.Create(b);
+        return b ? Operand.True : Operand.False;
     }
 
     public Operand visitOR_fun(final OR_funContext context) {
-        final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
+        Boolean b = false;
         for (final ExprContext item : context.expr()) {
             final Operand a = visit(item).ToBoolean("Function OR parameter " + (index++) + " is error!");
-            if (a.IsError()) {
+            if (a.IsError())
                 return a;
-            }
-            args.add(a);
-        }
-
-        boolean b = false;
-        for (final Operand item : args) {
-            if (item.BooleanValue() == true) {
+            if (a.BooleanValue())
                 b = true;
-                break;
-            }
         }
-        return Operand.Create(b);
+        return b ? Operand.True : Operand.False;
     }
 
     public Operand visitNOT_fun(final NOT_funContext context) {
@@ -808,7 +785,9 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
 
     public Operand visitPercentage_fun(Percentage_funContext context) {
         Operand firstValue = this.visit(context.expr()).ToNumber("Function Percentage parameter is error!");
-        if (firstValue.IsError()) { return firstValue; }
+        if (firstValue.IsError()) {
+            return firstValue;
+        }
 
         return Operand.Create(firstValue.NumberValue() / 100.0);
     }
@@ -5343,12 +5322,13 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             if (str.startsWith("@")) {
                 return GetParameter.apply(str.substring(1));
             }
-            return GetParameter.apply(str.substring(1, str.length()- 1));
+            return GetParameter.apply(str.substring(1, str.length() - 1));
         }
-        //防止 多重引用 
-        if (context.expr()!=null) {
+        // 防止 多重引用
+        if (context.expr() != null) {
             Operand p = this.visit(context.expr()).ToText("Function PARAMETER first parameter is error!");
-            if (p.IsError()) return p;
+            if (p.IsError())
+                return p;
 
             if (GetParameter != null) {
                 return GetParameter.apply(p.TextValue());
@@ -5377,7 +5357,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
 
         final Operand obj = firstValue;
         Operand op;
-        if (context.parameter2()!=null) {
+        if (context.parameter2() != null) {
             op = this.visit(context.parameter2());
         } else {
             op = this.visit(context.expr(1));
@@ -5787,8 +5767,5 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return newSize;
         }
     }
-
-
-
 
 }

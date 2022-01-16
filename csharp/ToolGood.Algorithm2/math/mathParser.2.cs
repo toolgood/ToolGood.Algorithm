@@ -1551,6 +1551,11 @@ partial class mathParser : Parser
     {
         public IToken op;
         [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr(int i)
+        {
+            return GetRuleContext<ExprContext>(i);
+        }
+        [System.Diagnostics.DebuggerNonUserCode]
         public ExprContext[] expr()
         {
             return GetRuleContexts<ExprContext>();

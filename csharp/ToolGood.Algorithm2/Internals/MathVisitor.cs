@@ -291,25 +291,20 @@ namespace ToolGood.Algorithm
 
         public Operand VisitAndOr_fun(mathParser.AndOr_funContext context)
         {
+            // 程序 && and || or 与 excel的  AND(x,y) OR(x,y) 有区别
+            // 在excel内 AND(x,y) OR(x,y) 先报错，
+            // 在程序中，&& and  有true 直接返回true 就不会检测下一个会不会报错
+            // 在程序中，|| or  有false 直接返回false 就不会检测下一个会不会报错
             var t = context.op.Text;
-            var args = new List<Operand>();
-            var index = 1;
-            foreach (var item in context.expr()) { var aa = this.Visit(item).ToBoolean($"Function '{t}' parameter {index++} is error!"); ; if (aa.IsError) { return aa; } args.Add(aa); }
-
-            var firstValue = args[0];
-            var secondValue = args[1];
+            var first = this.Visit(context.expr(0)).ToBoolean($"Function '{t}' parameter 1 is error!");
+            if (first.IsError) { return first; }
             if (t == "&&" || t.Equals("and", StringComparison.OrdinalIgnoreCase)) {
-                if (firstValue.BooleanValue && secondValue.BooleanValue) {
-                    return Operand.True;
-                }
-                return Operand.False;
+                if (first.BooleanValue == false) return Operand.False;
+            } else {
+                if (first.BooleanValue) return Operand.True;
             }
-            if (firstValue.BooleanValue || secondValue.BooleanValue) {
-                return Operand.True;
-            }
-            return Operand.False;
+            return this.Visit(context.expr(1)).ToBoolean($"Function '{t}' parameter 2 is error!");
         }
-
 
         #endregion
 
@@ -460,41 +455,25 @@ namespace ToolGood.Algorithm
 
         public Operand VisitAND_fun(mathParser.AND_funContext context)
         {
-            var args = new List<Operand>();
             var index = 1;
+            bool b = true;
             foreach (var item in context.expr()) {
                 var a = this.Visit(item).ToBoolean($"Function AND parameter {index++} is error!");
                 if (a.IsError) { return a; }
-                args.Add(a);
+                if (a.BooleanValue == false) b = false;
             }
-
-            var b = true;
-            foreach (var item in args) {
-                if (item.BooleanValue == false) {
-                    b = false;
-                    break;
-                }
-            }
-            return Operand.Create(b);
+            return b ? Operand.True : Operand.False;
         }
         public Operand VisitOR_fun(mathParser.OR_funContext context)
         {
-            var args = new List<Operand>();
             var index = 1;
+            bool b = false;
             foreach (var item in context.expr()) {
                 var a = this.Visit(item).ToBoolean($"Function OR parameter {index++} is error!");
                 if (a.IsError) { return a; }
-                args.Add(a);
+                if (a.BooleanValue) b = true;
             }
-
-            var b = false;
-            foreach (var item in args) {
-                if (item.BooleanValue == true) {
-                    b = true;
-                    break;
-                }
-            }
-            return Operand.Create(b);
+            return b ? Operand.True : Operand.False;
         }
         public Operand VisitNOT_fun(mathParser.NOT_funContext context)
         {
@@ -3835,7 +3814,7 @@ namespace ToolGood.Algorithm
                 return GetParameter(str.Substring(1, str.Length - 2));
             }
             //防止 多重引用 
-            if (context.expr()!=null) {
+            if (context.expr() != null) {
                 var p = this.Visit(context.expr()).ToText("Function PARAMETER first parameter is error!");
                 if (p.IsError) return p;
 
@@ -3867,7 +3846,7 @@ namespace ToolGood.Algorithm
 
             var obj = firstValue;
             Operand op;
-            if (context.parameter2()!=null) {
+            if (context.parameter2() != null) {
                 op = this.Visit(context.parameter2());
             } else {
                 op = this.Visit(context.expr(1));
