@@ -125,7 +125,8 @@ namespace ToolGood.Algorithm
             t1 = engine.TryEvaluate("1>2？1：2", 0);
             Assert.AreEqual(t1, 2);
 
-
+            t1 = engine.TryEvaluate("1！=2？1：2", 0);
+            Assert.AreEqual(t1, 1);
 
             var t2 = engine.TryEvaluate("Ａsc('ａｂｃＡＢＣ１２３')", "");
             Assert.AreEqual(t2, "abcABC123");

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace ToolGood.Algorithm
+namespace ToolGood.Algorithm.Internals
 {
     /// <summary>
     /// Modified Base64 for URL applications ('base64url' encoding)
@@ -11,7 +11,6 @@ namespace ToolGood.Algorithm
     /// </summary>
     static class Base64
     {
-
         public static string ToBase64String(byte[] input)
         {
             return Convert.ToBase64String(input);
@@ -21,7 +20,6 @@ namespace ToolGood.Algorithm
         {
             return FromBase64ForUrlString(base64);
         }
-
 
         /// <summary>
         /// Modified Base64 for URL applications ('base64url' encoding)

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 
-namespace ToolGood.Algorithm
+namespace ToolGood.Algorithm.Internals
 {
     static class Hash
     {

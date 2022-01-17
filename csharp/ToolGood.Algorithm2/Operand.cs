@@ -11,14 +11,12 @@ namespace ToolGood.Algorithm
     public abstract class Operand : IDisposable
     {
         private static readonly CultureInfo cultureInfo = CultureInfo.GetCultureInfo("en-US");
-        /// <summary>
-        /// True 值
-        /// </summary>
-        public static readonly Operand True = Operand.Create(true);
-        /// <summary>
-        /// False 值
-        /// </summary>
-        public static readonly Operand False = Operand.Create(false);
+
+        public static readonly Operand True = new OperandBoolean(true);
+        public static readonly Operand False = new OperandBoolean(false);
+        public static readonly Operand One = Operand.Create(1);
+        public static readonly Operand Zero = Operand.Create(0);
+
         /// <summary>
         /// 是否为空
         /// </summary>
@@ -70,7 +68,7 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public static Operand Create(bool obj)
         {
-            return new OperandBoolean(obj);
+            return obj ? True : False;
         }
 
         #region number
@@ -310,7 +308,7 @@ namespace ToolGood.Algorithm
         {
             if (Type == OperandType.NUMBER) { return this; }
             if (IsError) { return this; }
-            if (Type == OperandType.BOOLEAN) { return Create(BooleanValue ? 1.0 : 0.0); }
+            if (Type == OperandType.BOOLEAN) { return BooleanValue ? One : Zero; }
             if (Type == OperandType.DATE) { return Create((double)DateValue); }
             if (Type == OperandType.STRING) {
                 if (double.TryParse(TextValue, NumberStyles.Any, cultureInfo, out double d)) {

@@ -10,7 +10,7 @@ using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.LitJson;
 using ToolGood.Algorithm.MathNet.Numerics;
 
-namespace ToolGood.Algorithm
+namespace ToolGood.Algorithm.Internals
 {
     class MathVisitor : AbstractParseTreeVisitor<Operand>, ImathVisitor<Operand>
     {
@@ -58,7 +58,7 @@ namespace ToolGood.Algorithm
                     if (a.IsError == false) secondValue = a;
                 }
             }
-            if (t == "*") {
+            if (CharUtil.Equals(t, "*")) {
                 if (secondValue.Type == OperandType.BOOLEAN) {
                     if (secondValue.BooleanValue)
                         return firstValue;
@@ -86,7 +86,7 @@ namespace ToolGood.Algorithm
                 secondValue = secondValue.ToNumber($"Function '{t}' parameter 2 is error!");
                 if (secondValue.IsError) { return secondValue; }
                 return Operand.Create(firstValue.NumberValue * secondValue.NumberValue);
-            } else if (t == "/") {
+            } else if (CharUtil.Equals(t, "/")) {
                 if (firstValue.Type == OperandType.DATE) {
                     return Operand.Create(firstValue.DateValue / secondValue.NumberValue);
                 }
@@ -99,7 +99,7 @@ namespace ToolGood.Algorithm
                     return Operand.Error($"Function '{t}' parameter 2 is error!");
                 }
                 return Operand.Create(firstValue.NumberValue / secondValue.NumberValue);
-            } else if (t == "%") {
+            } else if (CharUtil.Equals(t, "%")) {
                 firstValue = firstValue.ToNumber("% fun right value");
                 if (firstValue.IsError) { return firstValue; }
                 secondValue = secondValue.ToNumber("% fun right value");
@@ -121,7 +121,7 @@ namespace ToolGood.Algorithm
             var secondValue = args[1];
             var t = context.op.Text;
 
-            if (t == "&") {
+            if (CharUtil.Equals(t, "&")) {
                 if (firstValue.IsNull && secondValue.IsNull) {
                     return firstValue;
                 } else if (firstValue.IsNull) {
@@ -156,7 +156,7 @@ namespace ToolGood.Algorithm
                     if (a.IsError == false) secondValue = a;
                 }
             }
-            if (t == "+") {
+            if (CharUtil.Equals(t, "+")) {
                 if (firstValue.Type == OperandType.DATE && secondValue.Type == OperandType.DATE) {
                     return Operand.Create(firstValue.DateValue + secondValue.DateValue);
                 } else if (firstValue.Type == OperandType.DATE) {
@@ -173,7 +173,7 @@ namespace ToolGood.Algorithm
                 secondValue = secondValue.ToNumber($"Function '{t}' parameter 2 is error!");
                 if (secondValue.IsError) { return secondValue; }
                 return Operand.Create(firstValue.NumberValue + secondValue.NumberValue);
-            } else if (t == "-") {
+            } else if (CharUtil.Equals(t, "-")) {
                 if (firstValue.Type == OperandType.DATE && secondValue.Type == OperandType.DATE) {
                     return Operand.Create(firstValue.DateValue - secondValue.DateValue);
                 } else if (firstValue.Type == OperandType.DATE) {
@@ -204,14 +204,14 @@ namespace ToolGood.Algorithm
             string type = context.op.Text;
 
             if (firstValue.IsNull) {
-                if (secondValue.IsNull && (type == "==" || type == "=")) {
+                if (secondValue.IsNull && CharUtil.Equals(type, "=", "==", "===")) {
                     return Operand.True;
-                } else if (secondValue.IsNull == false && (type == "<>" || type == "!=")) {
+                } else if (secondValue.IsNull == false && CharUtil.Equals(type, "<>", "!=")) {
                     return Operand.True;
                 }
                 return Operand.False;
             } else if (secondValue.IsNull) {
-                if (type == "==" || type == "=") {
+                if (CharUtil.Equals(type, "=", "==", "===")) {
                     return Operand.False;
                 }
                 return Operand.True;
@@ -264,15 +264,15 @@ namespace ToolGood.Algorithm
 
                 r = Compare(firstValue.NumberValue, secondValue.NumberValue);
             }
-            if (type == "<") {
+            if (CharUtil.Equals(type, "<")) {
                 return Operand.Create(r == -1);
-            } else if (type == "<=") {
+            } else if (CharUtil.Equals(type, "<=")) {
                 return Operand.Create(r <= 0);
-            } else if (type == ">") {
+            } else if (CharUtil.Equals(type, ">")) {
                 return Operand.Create(r == 1);
-            } else if (type == ">=") {
+            } else if (CharUtil.Equals(type, ">=")) {
                 return Operand.Create(r >= 0);
-            } else if (type == "=" || type == "==") {
+            } else if (CharUtil.Equals(type, "=", "==", "===")) {
                 return Operand.Create(r == 0);
             }
             return Operand.Create(r != 0);
@@ -298,7 +298,7 @@ namespace ToolGood.Algorithm
             var t = context.op.Text;
             var first = this.Visit(context.expr(0)).ToBoolean($"Function '{t}' parameter 1 is error!");
             if (first.IsError) { return first; }
-            if (t == "&&" || t.Equals("and", StringComparison.OrdinalIgnoreCase)) {
+            if (CharUtil.Equals(t, "&&") || t.Equals("and", StringComparison.OrdinalIgnoreCase)) {
                 if (first.BooleanValue == false) return Operand.False;
             } else {
                 if (first.BooleanValue) return Operand.True;

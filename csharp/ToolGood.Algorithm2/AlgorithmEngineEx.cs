@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.LitJson;
 using static mathParser;
 
@@ -49,7 +50,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        protected virtual Operand GetParameter(string parameter)
+        public virtual Operand GetParameter(string parameter)
         {
             Operand operand;
             if (_dict.TryGetValue(parameter, out operand)) {

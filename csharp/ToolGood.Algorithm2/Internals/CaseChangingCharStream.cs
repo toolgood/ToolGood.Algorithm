@@ -5,7 +5,7 @@
 using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
 
-namespace ToolGood.Algorithm
+namespace ToolGood.Algorithm.Internals
 {
     /// <summary>
     /// This class supports case-insensitive lexing by wrapping an existing
@@ -67,29 +67,7 @@ namespace ToolGood.Algorithm
             if (c <= 0) {
                 return c;
             }
-
-            char o = (char)c;
-            if (o == '‘') {
-                o = '\'';
-            } else if (o == '’') {
-                o = '\'';
-            } else if (o == '“') {
-                o = '"';
-            } else if (o == '”') {
-                o = '"';
-            } else if (o == '〔') {
-                o = '(';
-            } else if (o == '〕') {
-                o = ')';
-            }
-
-            if (c == 12288) {
-                o = (char)32;
-            } else if (c > 65280 && c < 65375) {
-                o = (char)(c - 65248);
-            }
-
-            return (int)char.ToUpperInvariant(o);
+            return CharUtil.StandardChar((char)c);  
         }
 
         public int Mark()
