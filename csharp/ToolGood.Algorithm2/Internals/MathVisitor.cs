@@ -1898,7 +1898,7 @@ namespace ToolGood.Algorithm.Internals
             var endMyDate = (DateTime)secondValue.DateValue;
             var t = thirdValue.TextValue.ToLower();
 
-            if (t == "y") {
+            if (CharUtil.Equals(t, "y")) {
                 #region y
                 bool b = false;
                 if (startMyDate.Month < endMyDate.Month) {
@@ -1912,7 +1912,7 @@ namespace ToolGood.Algorithm.Internals
                     return Operand.Create((endMyDate.Year - startMyDate.Year - 1));
                 }
                 #endregion
-            } else if (t == "m") {
+            } else if (CharUtil.Equals(t, "m")) {
                 #region m
                 bool b = false;
                 if (startMyDate.Day <= endMyDate.Day) b = true;
@@ -1922,9 +1922,9 @@ namespace ToolGood.Algorithm.Internals
                     return Operand.Create((endMyDate.Year * 12 + endMyDate.Month - startMyDate.Year * 12 - startMyDate.Month - 1));
                 }
                 #endregion
-            } else if (t == "d") {
+            } else if (CharUtil.Equals(t, "d")) {
                 return Operand.Create((endMyDate - startMyDate).Days);
-            } else if (t == "yd") {
+            } else if (CharUtil.Equals(t, "yd")) {
                 #region yd
                 var day = endMyDate.DayOfYear - startMyDate.DayOfYear;
                 if (endMyDate.Year > startMyDate.Year && day < 0) {
@@ -1933,7 +1933,7 @@ namespace ToolGood.Algorithm.Internals
                 }
                 return Operand.Create((day));
                 #endregion
-            } else if (t == "md") {
+            } else if (CharUtil.Equals(t, "md") ) {
                 #region md
                 var mo = endMyDate.Day - startMyDate.Day;
                 if (mo < 0) {
@@ -1948,7 +1948,7 @@ namespace ToolGood.Algorithm.Internals
                 }
                 return Operand.Create((mo));
                 #endregion
-            } else if (t == "ym") {
+            } else if (CharUtil.Equals(t, "ym")) {
                 #region ym
                 var mo = endMyDate.Month - startMyDate.Month;
                 if (endMyDate.Day < startMyDate.Day) mo = mo - 1;
@@ -3713,7 +3713,7 @@ namespace ToolGood.Algorithm.Internals
                 return Operand.Error("Function LOOKUP parameter 2 is null!");
             }
 
-            var engine = new LookupAlgorithmEngine();
+            var engine = new AntlrLookupEngine();
             if (engine.Parse(secondValue.TextValue) == false) {
                 return Operand.Error("Function LOOKUP parameter 2 Parse is error!");
             }

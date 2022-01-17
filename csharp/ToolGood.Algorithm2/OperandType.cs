@@ -3,7 +3,7 @@
     /// <summary>
     /// 操作数类型
     /// </summary>
-    public enum OperandType
+    public enum OperandType : byte
     {
         /// <summary>
         /// NULL

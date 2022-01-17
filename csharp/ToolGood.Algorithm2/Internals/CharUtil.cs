@@ -32,7 +32,7 @@ namespace ToolGood.Algorithm.Internals
             return char.ToUpperInvariant(o);
         }
 
-        public static bool EqualsOnce(string left, string right)
+        private static bool EqualsOnce(string left, string right)
         {
             if (left.Length != right.Length) return false;
             for (int i = 0; i < left.Length; i++) {
