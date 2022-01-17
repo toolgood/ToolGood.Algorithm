@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals
 {
-    class LookupAlgorithmEngine : AlgorithmEngine
+    class AntlrLookupEngine : AlgorithmEngine
     {
         public Operand Json;
 

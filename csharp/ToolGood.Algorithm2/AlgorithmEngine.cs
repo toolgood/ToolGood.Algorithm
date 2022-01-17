@@ -312,7 +312,7 @@ namespace ToolGood.Algorithm
             }
             //try {
 
-            var stream = new CaseChangingCharStream(new AntlrInputStream(exp));
+            var stream = new AntlrCharStream(new AntlrInputStream(exp));
             var lexer = new mathLexer(stream);
             var tokens = new CommonTokenStream(lexer);
             var parser = new mathParser(tokens);

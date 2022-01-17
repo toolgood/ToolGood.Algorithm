@@ -32,34 +32,46 @@ namespace ToolGood.Algorithm.Internals
             return char.ToUpperInvariant(o);
         }
 
-        public static bool Equals(string left, string right)
+        public static bool EqualsOnce(string left, string right)
         {
-            if (left == null) return false;
-            if (right == null) return false;
             if (left.Length != right.Length) return false;
             for (int i = 0; i < left.Length; i++) {
-                var a = StandardChar(left[i]);
-                var b = StandardChar(right[i]);
-                if (a != b) {
-                    return false;
+                if (left[i] != right[i]) {
+                    var a = StandardChar(left[i]);
+                    var b = StandardChar(right[i]);
+                    if (a != b) return false;
                 }
             }
             return true;
         }
+
+        public static bool Equals(string left, string right)
+        {
+            if (left == null) return false;
+            if (right == null) return false;
+            return EqualsOnce(left, right);
+        }
         public static bool Equals(string left, string arg1, string arg2)
         {
-            if (Equals(left, arg1))
+            if (left == null) return false;
+            if (arg1 != null && EqualsOnce(left, arg1))
                 return true;
-            return Equals(left, arg2);
+            if (arg2 != null && EqualsOnce(left, arg2))
+                return true;
+            return false;
         }
 
-        public static bool Equals(string left, string arg1, string arg2,string arg3)
+        public static bool Equals(string left, string arg1, string arg2, string arg3)
         {
-            if (Equals(left, arg1))
+            if (left == null) return false;
+            if (left == null) return false;
+            if (arg1 != null && EqualsOnce(left, arg1))
                 return true;
-            if (Equals(left, arg2))
+            if (arg2 != null && EqualsOnce(left, arg2))
                 return true;
-            return Equals(left, arg3);
+            if (arg3 != null && EqualsOnce(left, arg3))
+                return true;
+            return false;
         }
 
     }

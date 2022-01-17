@@ -60,15 +60,6 @@ namespace ToolGood.Algorithm.Internals
             int padChars = (len % 4) == 0 ? 0 : (4 - (len % 4));
             if (padChars > 0) sb.Append(String.Empty.PadRight(padChars, '='));
             return Convert.FromBase64String(sb.ToString());
-
-            //base64ForUrlInput = Regex.Replace(base64ForUrlInput, @"[^a-zA-Z0-9+/\-_]", "");
-
-            //int padChars = (base64ForUrlInput.Length % 4) == 0 ? 0 : (4 - (base64ForUrlInput.Length % 4));
-            //StringBuilder result = new StringBuilder(base64ForUrlInput, base64ForUrlInput.Length + padChars);
-            //result.Append(String.Empty.PadRight(padChars, '='));
-            //result.Replace('-', '+');
-            //result.Replace('_', '/');
-            //return Convert.FromBase64String(result.ToString());
         }
     }
 }

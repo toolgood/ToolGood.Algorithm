@@ -16,7 +16,7 @@ namespace ToolGood.Algorithm.Internals
     /// 'BEGIN' if constructor parameter upper=true but getText() would return
     /// 'BeGiN'.
     /// </summary>
-    class CaseChangingCharStream : ICharStream
+    class AntlrCharStream : ICharStream
     {
         private ICharStream stream;
 
@@ -26,7 +26,7 @@ namespace ToolGood.Algorithm.Internals
         /// </summary>
         /// <param name="stream">The stream to wrap.</param>
         /// <param name="upper">If true force each symbol to upper case, otherwise force to lower.</param>
-        public CaseChangingCharStream(ICharStream stream)
+        public AntlrCharStream(ICharStream stream)
         {
             this.stream = stream;
         }
