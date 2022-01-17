@@ -50,7 +50,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        public virtual Operand GetParameter(string parameter)
+        protected virtual Operand GetParameter(string parameter)
         {
             Operand operand;
             if (_dict.TryGetValue(parameter, out operand)) {

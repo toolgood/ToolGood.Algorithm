@@ -40,7 +40,7 @@ public class AlgorithmEngineEx {
         MultiConditionCache = multiConditionCache;
     }
 
-    public Operand GetParameter(final String parameter) {
+    protected Operand GetParameter(final String parameter) {
         if (_dict.containsKey(parameter)) {
             return _dict.get(parameter);
         }
