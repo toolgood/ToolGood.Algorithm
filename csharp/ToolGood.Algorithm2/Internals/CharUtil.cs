@@ -64,7 +64,6 @@ namespace ToolGood.Algorithm.Internals
         public static bool Equals(string left, string arg1, string arg2, string arg3)
         {
             if (left == null) return false;
-            if (left == null) return false;
             if (arg1 != null && EqualsOnce(left, arg1))
                 return true;
             if (arg2 != null && EqualsOnce(left, arg2))

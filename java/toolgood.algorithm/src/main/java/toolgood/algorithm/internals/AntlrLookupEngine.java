@@ -4,7 +4,7 @@ import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
 import toolgood.algorithm.litJson.JsonData;
 
-public class LookupAlgorithmEngine extends AlgorithmEngine {
+public class AntlrLookupEngine extends AlgorithmEngine {
     public Operand Json;
 
     @Override

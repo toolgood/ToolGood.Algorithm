@@ -3,10 +3,10 @@ package toolgood.algorithm.internals;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.misc.Interval;
 
-public class CaseChangingCharStream implements CharStream {
+public class AntlrCharStream implements CharStream {
 	final CharStream stream;
 
-	public CaseChangingCharStream(CharStream stream) {
+	public AntlrCharStream(CharStream stream) {
 		this.stream = stream;
 	}
 
@@ -26,28 +26,7 @@ public class CaseChangingCharStream implements CharStream {
 		if (c <= 0) {
 			return c;
         }
-		char o = (char)c;
-		if (o == '‘') {
-			o = '\'';
-		} else if (o == '’') {
-			o = '\'';
-		} else if (o == '“') {
-			o = '"';
-		} else if (o == '”') {
-			o = '"';
-		} else if (o == '〔') {
-			o = '(';
-		} else if (o == '〕') {
-			o = ')';
-		}
-
-		if (c == 12288) {
-			o = (char)32;
-		} else if (c > 65280 && c < 65375) {
-			o = (char)(c - 65248);
-		}
-		 
-        return Character.toUpperCase(o);
+		return CharUtil.StandardChar((char)c);  
 	}
 
 	@Override

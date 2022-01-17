@@ -49,7 +49,7 @@ public class ConditionCacheInfo {
             return null;
         }
         try {
-            final CaseChangingCharStream stream = new CaseChangingCharStream(CharStreams.fromString(exp));
+            final AntlrCharStream stream = new AntlrCharStream(CharStreams.fromString(exp));
             final mathLexer lexer = new mathLexer(stream);
             final CommonTokenStream tokens = new CommonTokenStream(lexer);
             final mathParser parser = new mathParser(tokens);

@@ -3,7 +3,6 @@ package toolgood.algorithm.internals;
 import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.security.cert.TrustAnchor;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -81,7 +80,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                     secondValue = a;
             }
         }
-        if (t.equals("*")) {
+        if (CharUtil.Equals(t, "*")) {
             if (secondValue.Type() == OperandType.BOOLEAN) {
                 if (secondValue.BooleanValue())
                     return firstValue;
@@ -117,7 +116,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                 return secondValue;
             }
             return Operand.Create(firstValue.NumberValue() * secondValue.NumberValue());
-        } else if (t.equals("/")) {
+        } else if (CharUtil.Equals(t, "/")) {
             if (firstValue.Type() == OperandType.DATE) {
                 return Operand.Create(firstValue.DateValue().DIV(secondValue.NumberValue()));
             }
@@ -134,7 +133,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                 return Operand.Error("Function '" + t + "' parameter 2 is error!");
             }
             return Operand.Create(firstValue.NumberValue() / secondValue.NumberValue());
-        } else if (t.equals("%")) {
+        } else if (CharUtil.Equals(t, "%")) {
             firstValue = firstValue.ToNumber("% fun right value");
             if (firstValue.IsError()) {
                 return firstValue;
@@ -165,7 +164,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         Operand secondValue = args.get(1);
         final String t = context.op.getText();
 
-        if (t.equals("&")) {
+        if (CharUtil.Equals(t, "&")) {
             if (firstValue.IsNull() && secondValue.IsNull()) {
                 return firstValue;
             } else if (firstValue.IsNull()) {
@@ -208,7 +207,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                     secondValue = a;
             }
         }
-        if (t.equals("+")) {
+        if (CharUtil.Equals(t, "+")) {
             if (firstValue.Type() == OperandType.DATE && secondValue.Type() == OperandType.DATE) {
                 return Operand.Create(firstValue.DateValue().ADD(secondValue.DateValue()));
             } else if (firstValue.Type() == OperandType.DATE) {
@@ -233,7 +232,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                 return secondValue;
             }
             return Operand.Create(firstValue.NumberValue() + secondValue.NumberValue());
-        } else if (t.equals("-")) {
+        } else if (CharUtil.Equals(t, "-")) {
             if (firstValue.Type() == OperandType.DATE && secondValue.Type() == OperandType.DATE) {
                 return Operand.Create(firstValue.DateValue().SUB(secondValue.DateValue()));
             } else if (firstValue.Type() == OperandType.DATE) {
@@ -277,14 +276,14 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final String type = context.op.getText();
 
         if (firstValue.IsNull()) {
-            if (secondValue.IsNull() && (type.equals("==") || type.equals("="))) {
+            if (secondValue.IsNull() && CharUtil.Equals(type, "=", "==", "===")) {
                 return Operand.True;
-            } else if (secondValue.IsNull() == false && (type.equals("<>") || type.equals("!="))) {
+            } else if (secondValue.IsNull() == false && CharUtil.Equals(type, "<>", "!=")) {
                 return Operand.True;
             }
             return Operand.False;
         } else if (secondValue.IsNull()) {
-            if (type.equals("==") || type.equals("=")) {
+            if (CharUtil.Equals(type, "=", "==", "===")) {
                 return Operand.False;
             }
             return Operand.True;
@@ -358,15 +357,15 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
 
             r = Compare(firstValue.NumberValue(), secondValue.NumberValue());
         }
-        if (type.equals("<")) {
+        if (CharUtil.Equals(type, "<")) {
             return Operand.Create(r == -1);
-        } else if (type.equals("<=")) {
+        } else if (CharUtil.Equals(type, "<=")) {
             return Operand.Create(r <= 0);
-        } else if (type.equals(">")) {
+        } else if (CharUtil.Equals(type, ">")) {
             return Operand.Create(r == 1);
-        } else if (type.equals(">=")) {
+        } else if (CharUtil.Equals(type, ">=")) {
             return Operand.Create(r >= 0);
-        } else if (type.equals("=") || type.equals("==")) {
+        } else if (CharUtil.Equals(type, "=", "==", "===")) {
             return Operand.Create(r == 0);
         }
         return Operand.Create(r != 0);
@@ -392,7 +391,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final Operand first = this.visit(context.expr(0)).ToBoolean("Function '" + t + "' parameter 1 is error!");
         if (first.IsError())
             return first;
-        if (t.equals("&&") || t.toLowerCase().equals("and")) {
+        if (CharUtil.Equals(t, "&&", "and")) {
             if (first.BooleanValue() == false)
                 return Operand.False;
         } else {
@@ -2579,7 +2578,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final MyDate endDate = secondValue.DateValue();
         final String t = thirdValue.TextValue().toLowerCase();
 
-        if (t.equals("y")) {
+        if (CharUtil.Equals(t, "y")) {
             boolean b = false;
             if (startDate.Month < endDate.Month) {
                 b = true;
@@ -2592,7 +2591,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             } else {
                 return Operand.Create((endDate.Year - startDate.Year - 1));
             }
-        } else if (t.equals("m")) {
+        } else if (CharUtil.Equals(t, "m")) {
             boolean b = false;
             if (startDate.Day <= endDate.Day)
                 b = true;
@@ -2601,16 +2600,16 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             } else {
                 return Operand.Create((endDate.Year * 12 + endDate.Month - startDate.Year * 12 - startDate.Month - 1));
             }
-        } else if (t.equals("d")) {
+        } else if (CharUtil.Equals(t, "d")) {
             return Operand.Create((int) endDate.SUB(startDate).ToNumber());
-        } else if (t.equals("yd")) {
+        } else if (CharUtil.Equals(t, "yd")) {
             int day = endDate.DayOfYear() - startDate.DayOfYear();
             if (endDate.Year > startDate.Year && day < 0) {
                 final int days = new DateTime(startDate.Year, 12, 31, 0, 0, 0, DateTimeZone.UTC).getDayOfYear();
                 day = days + day;
             }
             return Operand.Create((day));
-        } else if (t.equals("md")) {
+        } else if (CharUtil.Equals(t, "md")) {
             int mo = endDate.Day - startDate.Day;
             if (mo < 0) {
                 if (startDate.Month == 12) {
@@ -2624,7 +2623,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                 }
             }
             return Operand.Create((mo));
-        } else if (t.equals("ym")) {
+        } else if (CharUtil.Equals(t, "ym")) {
             int mo = endDate.Month - startDate.Month;
             if (endDate.Day < startDate.Day)
                 mo = mo - 1;
@@ -4105,15 +4104,15 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     private boolean F_base_compare(final double a, final double b, final String ss) {
-        if (ss.equals("<")) {
+        if (CharUtil.Equals(ss, "<")) {
             return round(a - b, 12) < 0;
-        } else if (ss.equals("<=")) {
+        } else if (CharUtil.Equals(ss, "<=")) {
             return round(a - b, 12) <= 0;
-        } else if (ss.equals(">")) {
+        } else if (CharUtil.Equals(ss, ">")) {
             return round(a - b, 12) > 0;
-        } else if (ss.equals(">=")) {
+        } else if (CharUtil.Equals(ss, ">=")) {
             return round(a - b, 12) >= 0;
-        } else if (ss.equals("=") || ss.equals("==")) {
+        } else if (CharUtil.Equals(ss, "=", "==", "===")) {
             return round(a - b, 12) == 0;
         }
         return round(a - b, 12) != 0;
@@ -5196,7 +5195,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return Operand.Error("Function LOOKUP parameter 2 is null!");
         }
 
-        final LookupAlgorithmEngine engine = new LookupAlgorithmEngine();
+        final AntlrLookupEngine engine = new AntlrLookupEngine();
         if (engine.Parse(secondValue.TextValue()) == false) {
             return Operand.Error("Function LOOKUP parameter 2 Parse is error!");
         }

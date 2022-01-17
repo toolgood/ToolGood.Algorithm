@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 import toolgood.algorithm.internals.AntlrErrorListener;
-import toolgood.algorithm.internals.CaseChangingCharStream;
+import toolgood.algorithm.internals.AntlrCharStream;
 import toolgood.algorithm.internals.MathVisitor;
 import toolgood.algorithm.internals.MyFunction;
 import toolgood.algorithm.litJson.JsonData;
@@ -130,7 +130,7 @@ public class AlgorithmEngine {
             return false;
         }
         // try {
-        final CaseChangingCharStream stream = new CaseChangingCharStream(CharStreams.fromString(exp));
+        final AntlrCharStream stream = new AntlrCharStream(CharStreams.fromString(exp));
         final mathLexer lexer = new mathLexer(stream);
         final CommonTokenStream tokens = new CommonTokenStream(lexer);
         final mathParser parser = new mathParser(tokens);

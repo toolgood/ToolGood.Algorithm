@@ -11,7 +11,7 @@ import toolgood.algorithm.math.mathLexer;
 import toolgood.algorithm.math.mathParser;
 import toolgood.algorithm.math.mathParser2.ProgContext;
 import toolgood.algorithm.internals.AntlrErrorListener;
-import toolgood.algorithm.internals.CaseChangingCharStream;
+import toolgood.algorithm.internals.AntlrCharStream;
 import toolgood.algorithm.internals.ConditionCacheInfo;
 
 public class ConditionCache {
@@ -139,7 +139,7 @@ public class ConditionCache {
             return null;
         }
         try {
-            final CaseChangingCharStream stream = new CaseChangingCharStream(CharStreams.fromString(exp));
+            final AntlrCharStream stream = new AntlrCharStream(CharStreams.fromString(exp));
             final mathLexer lexer = new mathLexer(stream);
             final CommonTokenStream tokens = new CommonTokenStream(lexer);
             final mathParser parser = new mathParser(tokens);

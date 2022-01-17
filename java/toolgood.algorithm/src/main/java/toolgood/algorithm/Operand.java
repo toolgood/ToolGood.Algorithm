@@ -12,8 +12,10 @@ import toolgood.algorithm.litJson.JsonMapper;
 import toolgood.algorithm.litJson.JsonData;
 
 public abstract class Operand {
-    public final static Operand True = Create(true);
-    public final static Operand False = Create(false);
+    public final static Operand True = new OperandBoolean(true);
+    public final static Operand False = new OperandBoolean(false);
+    public final static Operand One = Operand.Create(1);
+    public final static Operand Zero = Operand.Create(0);
 
     public boolean IsNull() {
         return false;
@@ -147,7 +149,7 @@ public abstract class Operand {
             return this;
         }
         if (Type() == OperandType.BOOLEAN) {
-            return Create(BooleanValue() ? 1.0 : 0.0);
+            return BooleanValue() ? One : Zero;
         }
         if (Type() == OperandType.DATE) {
             return Create((double) DateValue().ToNumber());

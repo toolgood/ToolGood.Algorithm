@@ -298,7 +298,7 @@ namespace ToolGood.Algorithm.Internals
             var t = context.op.Text;
             var first = this.Visit(context.expr(0)).ToBoolean($"Function '{t}' parameter 1 is error!");
             if (first.IsError) { return first; }
-            if (CharUtil.Equals(t, "&&") || t.Equals("and", StringComparison.OrdinalIgnoreCase)) {
+            if (CharUtil.Equals(t, "&&", "and")) {
                 if (first.BooleanValue == false) return Operand.False;
             } else {
                 if (first.BooleanValue) return Operand.True;
@@ -2923,15 +2923,15 @@ namespace ToolGood.Algorithm.Internals
         }
         private bool F_base_compare(double a, double b, string ss)
         {
-            if (ss == "<") {
+            if (CharUtil.Equals(ss, "<")) {
                 return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) < 0;
-            } else if (ss == "<=") {
+            } else if (CharUtil.Equals(ss, "<=")) {
                 return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) <= 0;
-            } else if (ss == ">") {
+            } else if (CharUtil.Equals(ss, ">")) {
                 return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) > 0;
-            } else if (ss == ">=") {
+            } else if (CharUtil.Equals(ss, ">=")) {
                 return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) >= 0;
-            } else if (ss == "=" || ss == "==") {
+            } else if (CharUtil.Equals(ss, "=", "==", "===")) {
                 return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) == 0;
             }
             return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) != 0;
