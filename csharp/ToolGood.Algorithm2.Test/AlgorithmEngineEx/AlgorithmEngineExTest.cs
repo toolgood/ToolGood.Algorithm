@@ -65,6 +65,9 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineEx
 
             var p4 = priceAlgorithm.TryEvaluate("出错了", 0.0);
 
+
+            var tt = priceAlgorithm.EvaluateFormula("长-宽-高", '-');
+            Assert.AreEqual("9-1.3-1", tt);
         }
         [Test]
         public void Test2()

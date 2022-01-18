@@ -718,7 +718,7 @@ namespace ToolGood.Algorithm
         /// <param name="formula">公式</param>
         /// <param name="splitChars">分隔符</param>
         /// <returns></returns>
-        public String EvaluateFormula(String formula, List<char> splitChars)
+        public virtual String EvaluateFormula(String formula, List<char> splitChars)
         {
             if (string.IsNullOrEmpty(formula)) return "";
 
@@ -732,11 +732,11 @@ namespace ToolGood.Algorithm
                 } else {
                     // TODO 替换此处
                     String d = TryEvaluate(s, "");
-                    stringBuilder.Append(d.ToString());
+                    stringBuilder.Append(d);
                 }
             }
             return stringBuilder.ToString();
-        } 
+        }
         #endregion
 
     }

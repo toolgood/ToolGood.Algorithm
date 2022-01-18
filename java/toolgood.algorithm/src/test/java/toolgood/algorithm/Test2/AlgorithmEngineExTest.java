@@ -105,6 +105,9 @@ public class AlgorithmEngineExTest {
 
         Double p4 = priceAlgorithm.TryEvaluate("出错了", 0.0);
 
+        String tt = priceAlgorithm.EvaluateFormula("长-宽-高", '-');
+        assertEquals("9-1.3-1", tt);
+
     }
 
     @Test

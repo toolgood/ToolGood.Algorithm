@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Antlr4.Runtime;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -735,6 +736,89 @@ namespace ToolGood.Algorithm
             }
 
         }
+
+        #region EvaluateFormula
+        /// <summary>
+        /// 计算公式
+        /// </summary>
+        /// <param name="formula">公式</param>
+        /// <param name="splitChars">分隔符</param>
+        /// <returns></returns>
+        public String EvaluateFormula(String formula, params char[] splitChars)
+        {
+            if (string.IsNullOrEmpty(formula)) return "";
+            return EvaluateFormula(formula, splitChars.ToList());
+        }
+        /// <summary>
+        /// 计算公式
+        /// </summary>
+        /// <param name="formula">公式</param>
+        /// <param name="splitChars">分隔符</param>
+        /// <returns></returns>
+        public virtual String EvaluateFormula(String formula, List<char> splitChars)
+        {
+            if (string.IsNullOrEmpty(formula)) return "";
+
+            List<String> sp = CharUtil.SplitFormula(formula, splitChars);
+
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int i = 0; i < sp.Count; i++) {
+                String s = sp[i];
+                if (s.Length == 1 && splitChars.Contains(s[0])) {
+                    stringBuilder.Append(s);
+                } else {
+                    String d = "";
+                    try {
+                        Operand operand = EvaluateOnce(s);
+                        d = operand.ToText().TextValue;
+                    } catch (Exception) { }
+                    stringBuilder.Append(d);
+                }
+            }
+            return stringBuilder.ToString();
+        }
+        /// <summary>
+        /// 执行一次
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <returns></returns>
+        protected Operand EvaluateOnce(string exp)
+        {
+            ProgContext context = Parse(exp);
+            return Evaluate(context);
+        }
+
+        private ProgContext Parse(string exp)
+        {
+            if (string.IsNullOrWhiteSpace(exp)) { return null; }
+            try {
+                var stream = new AntlrCharStream(new AntlrInputStream(exp));
+                var lexer = new mathLexer(stream);
+                var tokens = new CommonTokenStream(lexer);
+                var parser = new mathParser(tokens);
+                var antlrErrorListener = new AntlrErrorListener();
+                parser.RemoveErrorListeners();
+                parser.AddErrorListener(antlrErrorListener);
+
+                var context = parser.prog();
+                var end = context.Stop.StopIndex;
+                if (end + 1 < exp.Length) {
+
+                    LastError = "Parameter exp invalid !";
+                    return null;
+                }
+                if (antlrErrorListener.IsError) {
+                    LastError = antlrErrorListener.ErrorMsg;
+                    return null;
+                }
+                return context;
+            } catch (Exception ex) {
+                LastError = ex.Message;
+            }
+            return null;
+        }
+        #endregion
+
 
     }
 }

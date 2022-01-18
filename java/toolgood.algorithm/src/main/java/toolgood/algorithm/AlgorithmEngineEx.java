@@ -7,13 +7,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
 import org.joda.time.DateTime;
 
+import toolgood.algorithm.internals.AntlrCharStream;
+import toolgood.algorithm.internals.AntlrErrorListener;
+import toolgood.algorithm.internals.CharUtil;
 import toolgood.algorithm.internals.ConditionCacheInfo;
 import toolgood.algorithm.internals.MathVisitor;
 import toolgood.algorithm.internals.MyFunction;
 import toolgood.algorithm.litJson.JsonData;
 import toolgood.algorithm.litJson.JsonMapper;
+import toolgood.algorithm.math.mathLexer;
+import toolgood.algorithm.math.mathParser;
 import toolgood.algorithm.math.mathParser2.ProgContext;
 
 /**
@@ -372,6 +379,91 @@ public class AlgorithmEngineEx {
             LastError = ex.getMessage();
             return Operand.Error(ex.getMessage());
         }
+    }
+
+    /**
+     * 计算公式
+     * 
+     * @param formula   公式
+     * @param splitChar 分隔符
+     * @return
+     */
+    public String EvaluateFormula(String formula, Character splitChar) {
+        if (formula == null || formula.equals(""))
+            return "";
+        List<Character> splitChars = new ArrayList<>();
+        splitChars.add(splitChar);
+        return EvaluateFormula(formula, splitChars);
+    }
+
+    /**
+     * 计算公式
+     * 
+     * @param formula    公式
+     * @param splitChars 分隔符
+     * @return
+     */
+    public String EvaluateFormula(String formula, List<Character> splitChars) {
+        if (formula == null || formula.equals(""))
+            return "";
+        List<String> sp = CharUtil.SplitFormula(formula, splitChars);
+
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < sp.size(); i++) {
+            String s = sp.get(i);
+            if (s.length() == 1 && splitChars.contains(s.charAt(0))) {
+                stringBuilder.append(s);
+            } else {
+                String d = "";
+                try {
+                    Operand operand = EvaluateOnce(s);
+                    d = operand.ToText("").TextValue();
+                } catch (Exception ex) { }
+                stringBuilder.append(d);
+            }
+        }
+        return stringBuilder.toString();
+    }
+
+    /// <summary>
+    /// 执行一次
+    /// </summary>
+    /// <param name="exp"></param>
+    /// <returns></returns>
+    protected Operand EvaluateOnce(String exp) {
+        ProgContext context = Parse(exp);
+        return Evaluate(context);
+    }
+
+    private ProgContext Parse(String exp) {
+        if (exp == null || exp.equals("")) {
+            LastError = "Parameter exp invalid !";
+            return null;
+        }
+        try {
+            final AntlrCharStream stream = new AntlrCharStream(CharStreams.fromString(exp));
+            final mathLexer lexer = new mathLexer(stream);
+            final CommonTokenStream tokens = new CommonTokenStream(lexer);
+            final mathParser parser = new mathParser(tokens);
+            final AntlrErrorListener antlrErrorListener = new AntlrErrorListener();
+            parser.removeErrorListeners();
+            parser.addErrorListener(antlrErrorListener);
+            final ProgContext context = parser.prog();
+
+            final int end = context.stop.getStopIndex();
+            if (end + 1 < exp.length()) {
+                LastError = "Parameter exp invalid !";
+                return null;
+            }
+            if (antlrErrorListener.IsError) {
+                LastError = antlrErrorListener.ErrorMsg;
+                return null;
+            }
+            return context;
+        } catch (Exception ex) {
+            LastError = ex.getMessage();
+        }
+        return null;
     }
 
 }

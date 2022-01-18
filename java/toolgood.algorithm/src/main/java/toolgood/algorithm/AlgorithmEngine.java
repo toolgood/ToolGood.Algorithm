@@ -306,7 +306,7 @@ public class AlgorithmEngine {
             } else {
                 // TODO 替换此处
                 String d = TryEvaluate(s, "");
-                stringBuilder.append(d.toString());
+                stringBuilder.append(d);
             }
         }
         return stringBuilder.toString();
