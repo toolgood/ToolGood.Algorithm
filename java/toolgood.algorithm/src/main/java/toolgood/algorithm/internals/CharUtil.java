@@ -1,5 +1,8 @@
 package toolgood.algorithm.internals;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CharUtil {
     public static char StandardChar(char c)
     {
@@ -67,4 +70,58 @@ public class CharUtil {
         return false;
     }
 
+    public static List<String> SplitFormula(String formula, List<Character> splitChars) {
+        List<String> result = new ArrayList<>();
+        boolean inSquareBrackets = false;
+        boolean inBraceBrackets = false;
+        int inBracketsCount = 0;
+        boolean inText = false;
+        char textChar = (char) 0;
+
+        StringBuilder str = new StringBuilder();
+        Integer i = 0;
+        while (i < formula.length()) {
+            char c = formula.charAt(i);
+            if (inSquareBrackets) {
+                str.append(c);
+                if (c == ']') inSquareBrackets = false;
+            } else if (inBraceBrackets) {
+                str.append(c);
+                if (c == '}') inBraceBrackets = false;
+            } else if (inText) {
+                str.append(c);
+                if (c == '\\') {
+                    i++;
+                    if (i < formula.length()){
+                        str.append(formula.charAt(i));
+                    }
+                } else if (c == textChar) {
+                    inText = false;
+                }
+            } else if (splitChars.contains(c) && inBracketsCount == 0) {
+                result.add(str.toString());
+                result.add(((Character) c).toString());
+                str = new StringBuilder();
+            } else {
+                str.append(c);
+                if (c == '\'' || c == '"' || c == '`') {
+                    textChar = c;
+                    inText = true;
+                } else if (c == '[') {
+                    inSquareBrackets = true;
+                } else if (c == '{') {
+                    inBraceBrackets = true;
+                } else if (c == '(') {
+                    inBracketsCount++;
+                } else if (c == ')') {
+                    inBracketsCount--;
+                }
+            }
+            i++;
+        }
+        if (str.length() > 0)
+            result.add(str.toString());
+        return result;
+
+    }
 }

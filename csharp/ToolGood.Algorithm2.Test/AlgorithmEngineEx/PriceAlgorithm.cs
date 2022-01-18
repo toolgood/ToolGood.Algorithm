@@ -10,7 +10,7 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineEx
             _disk = desk;
         }
 
-        public override Operand GetParameter(string parameter)
+        protected override Operand GetParameter(string parameter)
         {
             if (parameter == "长") {
                 return Operand.Create(_disk.Length);

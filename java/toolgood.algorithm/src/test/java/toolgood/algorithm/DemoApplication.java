@@ -1,12 +1,5 @@
 package toolgood.algorithm;
 
-import static org.junit.Assert.assertEquals;
-
-import toolgood.algorithm.Test2.Desk;
-import toolgood.algorithm.Test2.PriceAlgorithm;
-
-// import org.springframework.core.io.ClassPathResource;
-// import org.springframework.util.StopWatch;
 
 public class DemoApplication {
 	public static void main(String[] args) throws Exception {

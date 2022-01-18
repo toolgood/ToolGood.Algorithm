@@ -196,6 +196,10 @@ public class AlgorithmEngineTest {
         String tt = c.TryEvaluate("['灰色']", ""); //圆的体积
         assertEquals("L", tt);
 
+
+        String tt2 = c.EvaluateFormula("'圆'-[半径]-高", '-');
+        assertEquals("圆-3-10", tt2);
+
     }
 
 

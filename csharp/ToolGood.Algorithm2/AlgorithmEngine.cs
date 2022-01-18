@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
 using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
 using ToolGood.Algorithm.Internals;
@@ -23,7 +25,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         public string LastError { get; private set; }
         private ProgContext _context;
-        private Dictionary<string, Operand> _dict = new Dictionary<string, Operand>();
+        protected Dictionary<string, Operand> _dict = new Dictionary<string, Operand>();
         /// <summary>
         /// 自定义 函数
         /// </summary>
@@ -696,6 +698,45 @@ namespace ToolGood.Algorithm
             }
             return def;
         }
+        #endregion
+
+        #region EvaluateFormula
+        /// <summary>
+        /// 计算公式
+        /// </summary>
+        /// <param name="formula">公式</param>
+        /// <param name="splitChars">分隔符</param>
+        /// <returns></returns>
+        public String EvaluateFormula(String formula, params char[] splitChars)
+        {
+            if (string.IsNullOrEmpty(formula)) return "";
+            return EvaluateFormula(formula, splitChars.ToList());
+        }
+        /// <summary>
+        /// 计算公式
+        /// </summary>
+        /// <param name="formula">公式</param>
+        /// <param name="splitChars">分隔符</param>
+        /// <returns></returns>
+        public String EvaluateFormula(String formula, List<char> splitChars)
+        {
+            if (string.IsNullOrEmpty(formula)) return "";
+
+            List<String> sp = CharUtil.SplitFormula(formula, splitChars);
+
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int i = 0; i < sp.Count; i++) {
+                String s = sp[i];
+                if (s.Length == 1 && splitChars.Contains(s[0])) {
+                    stringBuilder.Append(s);
+                } else {
+                    // TODO 替换此处
+                    String d = TryEvaluate(s, "");
+                    stringBuilder.Append(d.ToString());
+                }
+            }
+            return stringBuilder.ToString();
+        } 
         #endregion
 
     }

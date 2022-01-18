@@ -90,6 +90,8 @@ Note: `find` is an Excel formula , find (the string to be searched, the string t
     c.TryEvaluate("[直径]*pi()", 0.0);            //The length of the circle  圆的长
     c.TryEvaluate("[半径]*[半径]*pi()*[高]", 0.0); //Volume of circle 圆的体积
     c.TryEvaluate("['半径']*[半径]*pi()*[高]", 0.0); //Volume of circle 圆的体积
+    c.EvaluateFormula("'圆'-[半径]-高", '-'); // Return: 圆-3-10
+
 ```
 Parameters are defined in square brackets, such as `[parameter name]`. 
 

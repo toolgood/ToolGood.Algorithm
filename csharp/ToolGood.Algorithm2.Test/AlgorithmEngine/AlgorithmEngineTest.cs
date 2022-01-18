@@ -221,6 +221,11 @@ namespace ToolGood.Algorithm
             var tt = c.TryEvaluate("['灰色']", ""); //圆的体积
             Assert.AreEqual("L", tt);
 
+
+            String tt2 = c.EvaluateFormula("'圆'-[半径]-高", '-');
+            Assert.AreEqual("圆-3-10", tt2);
+
+
         }
 
     }

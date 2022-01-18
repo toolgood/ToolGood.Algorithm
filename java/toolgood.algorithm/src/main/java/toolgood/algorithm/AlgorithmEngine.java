@@ -1,12 +1,14 @@
 package toolgood.algorithm;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
 import toolgood.algorithm.internals.AntlrErrorListener;
+import toolgood.algorithm.internals.CharUtil;
 import toolgood.algorithm.internals.AntlrCharStream;
 import toolgood.algorithm.internals.MathVisitor;
 import toolgood.algorithm.internals.MyFunction;
@@ -26,7 +28,7 @@ public class AlgorithmEngine {
     public boolean UseExcelIndex = true;
     public String LastError;
     private ProgContext _context;
-    private final Map<String, Operand> _dict = new HashMap<String, Operand>();
+    protected final Map<String, Operand> _dict = new HashMap<String, Operand>();
     public Function<MyFunction, Operand> DiyFunction;
 
     protected Operand GetParameter(final String parameter) throws Exception {
@@ -274,5 +276,39 @@ public class AlgorithmEngine {
         }
         return defvalue;
     }
-    
+    /**
+     * 计算公式
+     * @param formula 公式
+     * @param splitChar 分隔符
+     * @return
+     */
+    public String EvaluateFormula(String formula, Character splitChar) {
+        if (formula == null || formula.equals("")) return "";
+        List<Character> splitChars = new ArrayList<>();
+        splitChars.add(splitChar);
+        return EvaluateFormula(formula, splitChars);
+    }
+    /**
+     * 计算公式
+     * @param formula 公式
+     * @param splitChars 分隔符
+     * @return
+     */
+    public String EvaluateFormula(String formula, List<Character> splitChars) {
+        if (formula == null || formula.equals("")) return "";
+        List<String> sp = CharUtil.SplitFormula(formula,splitChars);
+
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < sp.size(); i++) {
+            String s = sp.get(i);
+            if (s.length() == 1 && splitChars.contains(s.charAt(0))) {
+                stringBuilder.append(s);
+            } else {
+                // TODO 替换此处
+                String d = TryEvaluate(s, "");
+                stringBuilder.append(d.toString());
+            }
+        }
+        return stringBuilder.toString();
+    }
 }

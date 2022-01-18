@@ -85,6 +85,7 @@ public class Cylinder extends AlgorithmEngine {
     c.TryEvaluate("[直径]*pi()", 0.0);            //圆的长
     c.TryEvaluate("[半径]*[半径]*pi()*[高]", 0.0); //圆的体积
     c.TryEvaluate("['半径']*[半径]*pi()*[高]", 0.0); //圆的体积
+    c.EvaluateFormula("'圆'-[半径]-高", '-'); // Return: 圆-3-10
 ```
 Parameters are defined in square brackets, such as `[parameter name]`. 
 

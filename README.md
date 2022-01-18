@@ -89,6 +89,8 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
     c.TryEvaluate("[直径]*pi()", 0.0);            //The length of the circle  圆的长
     c.TryEvaluate("[半径]*[半径]*pi()*[高]", 0.0); //Volume of circle 圆的体积
     c.TryEvaluate("['半径']*[半径]*pi()*[高]", 0.0); //Volume of circle 圆的体积
+    c.EvaluateFormula("'圆'-[半径]-高", '-'); // Return: 圆-3-10
+
 ```
 
 参数以方括号定义，如 `[参数名]`。 
