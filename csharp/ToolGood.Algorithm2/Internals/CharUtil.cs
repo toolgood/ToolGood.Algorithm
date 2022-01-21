@@ -32,6 +32,16 @@ namespace ToolGood.Algorithm.Internals
             return char.ToUpperInvariant(o);
         }
 
+        public static string StandardString(string s)
+        {
+            var sb = new StringBuilder();
+            for (int i = 0; i < s.Length; i++) {
+                var c = s[i];
+                sb.Append(StandardChar(c));
+            }
+            return sb.ToString();
+        }
+
         private static bool EqualsOnce(string left, string right)
         {
             if (left.Length != right.Length) return false;
@@ -172,7 +182,7 @@ namespace ToolGood.Algorithm.Internals
                         i++;
                         result.Add(str.ToString());
                         str = new StringBuilder();
-                        str.Append(string.Join(" && ", result));
+                        str.Append(string.Join("&&", result));
                         str.Append("||");
                         result.Clear();
                     } else {
