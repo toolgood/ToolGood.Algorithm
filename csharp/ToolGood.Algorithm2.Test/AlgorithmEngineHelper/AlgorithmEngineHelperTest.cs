@@ -43,7 +43,7 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineHelper
         public void Test2()
         {
             var helper = new ToolGood.Algorithm.AlgorithmEngineHelper();
-            var b = helper.IsKeywords("true");
+            var b = helper.IsKeywords("false");
             Assert.IsTrue(b);
 
 

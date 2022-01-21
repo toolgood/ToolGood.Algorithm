@@ -26,6 +26,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel公式`,并支持`自定义参数
     }
     var b = engine.TryEvaluate("1=1 && 1<2 and 7-8>1", 0);// Support(支持) && || and or 
     var c = engine.TryEvaluate("2+3", 0);
+    var q = engine.TryEvaluate("-7 < -2 ?1 : 2", 0);
     var e = engine.TryEvaluate("count(array(1,2,3,4))", 0);//{} represents array, return: 4 {}代表数组,返回:4
     var s = engine.TryEvaluate("'aa'&'bb'", ""); //String connection, return: AABB 字符串连接,返回:aabb
     var r = engine.TryEvaluate("(1=1)*9+2", 0); //Return: 11 返回:11
@@ -124,6 +125,17 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
 ```
 更多功能请看一下单元测试。
 
+## 自定义参数
+``` csharp
+    var helper = new ToolGood.Algorithm.AlgorithmEngineHelper();
+    helper.IsKeywords("false"); // return true
+    helper.IsKeywords("true"); // return true
+    helper.IsKeywords("mysql"); // return false
+
+    DiyNameInfo p5 = helper.GetDiyNames("ddd(d1,22)");
+    Assert.AreEqual("ddd", p5.Functions[0]);
+    Assert.AreEqual("d1", p5.Parameters[0]);
+```
 
 ## Excel公式
 

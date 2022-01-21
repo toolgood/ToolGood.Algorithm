@@ -24,6 +24,7 @@ ToolGood.Algorithm supports `Four arithmetic`, `Excel formula`, and supports `Cu
     }
     double b = engine.TryEvaluate("1=1 && 1<2 and 7-8>1", 0.0);// 支持 && || and or 
     double c = engine.TryEvaluate("2+3", 0);
+    double q = engine.TryEvaluate("-7 < -2 ?1 : 2", 0);
     double d = engine.TryEvaluate("count(array(1,2,3,4))", 0.0);//{}代表数组,返回:4
     String s = engine.TryEvaluate("'aa'&'bb'", ""); //字符串连接,返回:aabb
     int r = engine.TryEvaluate("(1=1)*9+2", 0); //返回:11
@@ -118,6 +119,19 @@ Note: You can also use `AddParameter`, `AddParameterFromJson` to add methods, an
     assertEquals(3 * 1.3 * 2 + 1 * 1.1, p2, 0.0001);
 ```
 See unit testing for more features.
+
+## Custom parameters
+``` csharp
+    var helper = new ToolGood.Algorithm.AlgorithmEngineHelper();
+    helper.IsKeywords("false"); // return true
+    helper.IsKeywords("true"); // return true
+    helper.IsKeywords("mysql"); // return false
+
+    DiyNameInfo p5 = helper.GetDiyNames("ddd(d1,22)");
+    Assert.AreEqual("ddd", p5.Functions[0]);
+    Assert.AreEqual("d1", p5.Parameters[0]);
+
+```
 
 ## Excel Formula
 
