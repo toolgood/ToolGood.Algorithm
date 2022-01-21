@@ -1,4 +1,4 @@
-package toolgood.algorithm.Test2;
+package toolgood.algorithm.Tests2;
 
 public class Desk {
     public boolean IsRoundTable;

@@ -1,4 +1,4 @@
-package toolgood.algorithm.Test2;
+package toolgood.algorithm.Tests2;
 
 import static org.junit.Assert.assertEquals;
 

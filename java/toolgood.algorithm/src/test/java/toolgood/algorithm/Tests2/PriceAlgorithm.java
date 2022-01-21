@@ -1,4 +1,4 @@
-package toolgood.algorithm.Test2;
+package toolgood.algorithm.Tests2;
 
 import toolgood.algorithm.AlgorithmEngineEx;
 import toolgood.algorithm.ConditionCache;

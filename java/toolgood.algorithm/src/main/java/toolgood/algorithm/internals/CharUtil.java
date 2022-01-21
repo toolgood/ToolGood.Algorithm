@@ -4,53 +4,77 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CharUtil {
-    public static char StandardChar(char c)
-    {
-        if (c <= 0) return c;
-        char o = (char)c;
-        if (o == '‘') return '\'';
-        if (o == '’') return '\'';
-        if (o == '“') return '"';
-        if (o == '”') return '"';
-        if (o == '〔') return '(';
-        if (o == '〕') return ')';
-        if (o == '＝') return '=';
-        if (o == '＋') return '+';
-        if (o == '－') return '-';
-        if (o == '×') return '*';
-        if (o == '÷') return '/';
-        if (o == '／') return '/';
+    public static char StandardChar(char c) {
+        if (c <= 0)
+            return c;
+        char o = (char) c;
+        if (o == '‘')
+            return '\'';
+        if (o == '’')
+            return '\'';
+        if (o == '“')
+            return '"';
+        if (o == '”')
+            return '"';
+        if (o == '〔')
+            return '(';
+        if (o == '〕')
+            return ')';
+        if (o == '＝')
+            return '=';
+        if (o == '＋')
+            return '+';
+        if (o == '－')
+            return '-';
+        if (o == '×')
+            return '*';
+        if (o == '÷')
+            return '/';
+        if (o == '／')
+            return '/';
 
         if (c == 12288) {
-            o = (char)32;
+            o = (char) 32;
         } else if (c > 65280 && c < 65375) {
-            o = (char)(c - 65248);
+            o = (char) (c - 65248);
         }
         return Character.toUpperCase(o);
     }
 
-    private static boolean EqualsOnce(String left, String right)
-    {
-        if (left.length() != right.length()) return false;
+    public static String StandardString(String s) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            sb.append(StandardChar(c));
+        }
+        return sb.toString();
+    }
+
+    private static boolean EqualsOnce(String left, String right) {
+        if (left.length() != right.length())
+            return false;
         for (int i = 0; i < left.length(); i++) {
-            if (left.charAt(i)  != right.charAt(i)) {
+            if (left.charAt(i) != right.charAt(i)) {
                 char a = StandardChar(left.charAt(i));
                 char b = StandardChar(right.charAt(i));
-                if (a != b) return false;
+                if (a != b)
+                    return false;
             }
         }
         return true;
     }
 
-    public static boolean Equals(String left, String right)
-    {
-        if (left == null) return false;
-        if (right == null) return false;
+    public static boolean Equals(String left, String right) {
+        if (left == null)
+            return false;
+        if (right == null)
+            return false;
         return EqualsOnce(left, right);
     }
-    public static boolean Equals(String left, String arg1, String arg2)
-    {
-        if (left == null) return false;
+
+    public static boolean Equals(String left, String arg1, String arg2) {
+        if (left == null)
+            return false;
         if (arg1 != null && EqualsOnce(left, arg1))
             return true;
         if (arg2 != null && EqualsOnce(left, arg2))
@@ -58,9 +82,9 @@ public class CharUtil {
         return false;
     }
 
-    public static boolean Equals(String left, String arg1, String arg2, String arg3)
-    {
-        if (left == null) return false;
+    public static boolean Equals(String left, String arg1, String arg2, String arg3) {
+        if (left == null)
+            return false;
         if (arg1 != null && EqualsOnce(left, arg1))
             return true;
         if (arg2 != null && EqualsOnce(left, arg2))
@@ -84,15 +108,17 @@ public class CharUtil {
             char c = formula.charAt(i);
             if (inSquareBrackets) {
                 str.append(c);
-                if (c == ']') inSquareBrackets = false;
+                if (c == ']')
+                    inSquareBrackets = false;
             } else if (inBraceBrackets) {
                 str.append(c);
-                if (c == '}') inBraceBrackets = false;
+                if (c == '}')
+                    inBraceBrackets = false;
             } else if (inText) {
                 str.append(c);
                 if (c == '\\') {
                     i++;
-                    if (i < formula.length()){
+                    if (i < formula.length()) {
                         str.append(formula.charAt(i));
                     }
                 } else if (c == textChar) {
@@ -124,8 +150,7 @@ public class CharUtil {
         return result;
     }
 
-    public static List<String> SplitFormulaForAnd(String formula)
-    {
+    public static List<String> SplitFormulaForAnd(String formula) {
         List<String> result = new ArrayList<>();
         boolean inSquareBrackets = false;
         boolean inBraceBrackets = false;
@@ -139,15 +164,17 @@ public class CharUtil {
             char c = formula.charAt(i);
             if (inSquareBrackets) {
                 str.append(c);
-                if (c == ']') inSquareBrackets = false;
+                if (c == ']')
+                    inSquareBrackets = false;
             } else if (inBraceBrackets) {
                 str.append(c);
-                if (c == '}') inBraceBrackets = false;
+                if (c == '}')
+                    inBraceBrackets = false;
             } else if (inText) {
                 str.append(c);
                 if (c == '\\') {
                     i++;
-                    if (i < formula.length()){
+                    if (i < formula.length()) {
                         str.append(formula.charAt(i));
                     }
                 } else if (c == textChar) {
