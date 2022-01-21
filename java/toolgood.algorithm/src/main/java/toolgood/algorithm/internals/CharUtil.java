@@ -122,6 +122,76 @@ public class CharUtil {
         if (str.length() > 0)
             result.add(str.toString());
         return result;
-
     }
+
+    public static List<String> SplitFormulaForAnd(String formula)
+    {
+        List<String> result = new ArrayList<>();
+        boolean inSquareBrackets = false;
+        boolean inBraceBrackets = false;
+        int inBracketsCount = 0;
+        boolean inText = false;
+        char textChar = (char) 0;
+
+        StringBuilder str = new StringBuilder();
+        Integer i = 0;
+        while (i < formula.length()) {
+            char c = formula.charAt(i);
+            if (inSquareBrackets) {
+                str.append(c);
+                if (c == ']') inSquareBrackets = false;
+            } else if (inBraceBrackets) {
+                str.append(c);
+                if (c == '}') inBraceBrackets = false;
+            } else if (inText) {
+                str.append(c);
+                if (c == '\\') {
+                    i++;
+                    if (i < formula.length()){
+                        str.append(formula.charAt(i));
+                    }
+                } else if (c == textChar) {
+                    inText = false;
+                }
+            } else if (c == '&' && inBracketsCount == 0) {
+                if (i + 1 < formula.length() && formula.charAt(i + 1) == '&') {
+                    i++;
+                    result.add(str.toString());
+                    str = new StringBuilder();
+                } else {
+                    result.add(str.toString());
+                }
+            } else if (c == '|' && inBracketsCount == 0) {
+                if (i + 1 < formula.length() && formula.charAt(i + 1) == '|') {
+                    i++;
+                    result.add(str.toString());
+                    str = new StringBuilder();
+                    str.append(String.join("&&", result));
+                    str.append("||");
+                    result.clear();
+                } else {
+                    result.add(str.toString());
+                }
+            } else {
+                str.append(c);
+                if (c == '\'' || c == '"' || c == '`') {
+                    textChar = c;
+                    inText = true;
+                } else if (c == '[') {
+                    inSquareBrackets = true;
+                } else if (c == '{') {
+                    inBraceBrackets = true;
+                } else if (c == '(') {
+                    inBracketsCount++;
+                } else if (c == ')') {
+                    inBracketsCount--;
+                }
+            }
+            i++;
+        }
+        if (str.length() > 0)
+            result.add(str.toString());
+        return result;
+    }
+
 }

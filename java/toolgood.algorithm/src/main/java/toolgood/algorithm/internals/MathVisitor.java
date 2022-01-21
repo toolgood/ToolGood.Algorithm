@@ -4294,7 +4294,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             encoding = args.get(1).TextValue();
         }
         try {
-            final String t = new String(FromBase64String(args.get(0).TextValue()), encoding);
+            final String t = new String(Base64.FromBase64String(args.get(0).TextValue()), encoding);
             return Operand.Create(t);
         } catch (final Exception e) {
         }
@@ -4319,7 +4319,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             encoding = args.get(1).TextValue();
         }
         try {
-            final String t = new String(FromBase64ForUrlString(args.get(0).TextValue()), encoding);
+            final String t = new String(Base64.FromBase64ForUrlString(args.get(0).TextValue()), encoding);
             return Operand.Create(t);
         } catch (final Exception e) {
         }
@@ -4344,7 +4344,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             encoding = args.get(1).TextValue();
         }
         try {
-            final String t = ToBase64String(args.get(0).TextValue().getBytes(encoding));
+            final String t = Base64.ToBase64String(args.get(0).TextValue().getBytes(encoding));
             return Operand.Create(t);
         } catch (final Exception e) {
         }
@@ -4369,7 +4369,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             encoding = args.get(1).TextValue();
         }
         try {
-            final String t = ToBase64ForUrlString(args.get(0).TextValue().getBytes(encoding));
+            final String t = Base64.ToBase64ForUrlString(args.get(0).TextValue().getBytes(encoding));
             return Operand.Create(t);
         } catch (final Exception e) {
         }
@@ -5525,41 +5525,6 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     // }
     // return new String(charr);
     // }
-
-    private String ToBase64String(final byte[] input) {
-        return Base64Util.encode(input);
-    }
-
-    private byte[] FromBase64String(final String base64) {
-        return Base64Util.decode(base64);
-    }
-
-    private String ToBase64ForUrlString(final byte[] input) {
-        String t = Pattern.compile("=*$").matcher(ToBase64String(input)).replaceAll("");
-        t = Pattern.compile("\\+").matcher(t).replaceAll("-");
-        t = Pattern.compile("/").matcher(t).replaceAll("_");
-        return t;
-    }
-
-    private byte[] FromBase64ForUrlString(final String base64ForUrlInput) {
-        final String base64 = "===========================================+=+=/0123456789=======ABCDEFGHIJKLMNOPQRSTUVWXYZ====/=abcdefghijklmnopqrstuvwxyz=====";
-        final StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < base64ForUrlInput.length(); i++) {
-            final char c = base64ForUrlInput.charAt(i);
-            if ((int) c >= 128)
-                continue;
-            final char k = base64.charAt(c);// [c];
-            if (k == '=')
-                continue;
-            sb.append(k);
-        }
-        final int len = sb.length();
-        final int padChars = (len % 4) == 0 ? 0 : (4 - (len % 4));
-        for (int i = 0; i < padChars; i++) {
-            sb.append('=');
-        }
-        return FromBase64String(sb.toString());
-    }
 
     private double log(final double value, final double base) {
         return Math.log(value) / Math.log(base);
