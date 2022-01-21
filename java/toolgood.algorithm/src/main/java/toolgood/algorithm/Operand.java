@@ -288,4 +288,156 @@ public abstract class Operand {
         }
         return Error(errorMessage);
     }
+
+    static abstract class OperandT<T> extends Operand {
+        public T Value;
+
+        public OperandT(final T obj) {
+            Value = obj;
+        }
+    }
+
+    static class OperandArray extends OperandT<java.util.List<Operand>> {
+        public OperandArray(final List<Operand> obj) {
+            super(obj);
+        }
+
+        @Override
+        public OperandType Type() {
+            return OperandType.ARRARY;
+        }
+
+        @Override
+        public List<Operand> ArrayValue() {
+            return Value;
+        }
+    }
+
+    static class OperandBoolean extends OperandT<Boolean> {
+        public OperandBoolean(final Boolean obj) {
+            super(obj);
+        }
+
+        @Override
+        public OperandType Type() {
+            return OperandType.BOOLEAN;
+        }
+
+        @Override
+        public boolean BooleanValue() {
+            return Value;
+        }
+    }
+
+    static class OperandDate extends OperandT<MyDate> {
+        public OperandDate(final MyDate obj) {
+            super(obj);
+        }
+
+        @Override
+        public OperandType Type() {
+            return OperandType.DATE;
+        }
+
+        @Override
+        public MyDate DateValue() {
+            return Value;
+        }
+    }
+
+    static class OperandError extends Operand {
+        private final String _errorMsg;
+
+        public OperandError(final String msg) {
+            _errorMsg = msg;
+        }
+
+        @Override
+        public OperandType Type() {
+            return OperandType.ERROR;
+        }
+
+        @Override
+        public boolean IsError() {
+            return true;
+        }
+
+        public String ErrorMsg() {
+            return _errorMsg;
+        }
+    }
+
+    static class OperandJson extends OperandT<JsonData> {
+        public OperandJson(final JsonData obj) {
+            super(obj);
+        }
+
+        @Override
+        public OperandType Type() {
+            return OperandType.JSON;
+        }
+
+        @Override
+        public JsonData JsonValue() {
+            return Value;
+        }
+    }
+
+    static class OperandNull extends Operand {
+        // public override OperandType Type => OperandType.NULL;
+        // public override bool IsNull => true;
+
+        @Override
+        public OperandType Type() {
+            return OperandType.NULL;
+        }
+
+        @Override
+        public boolean IsNull() {
+            return true;
+        }
+
+    }
+
+    static class OperandNumber extends OperandT<Double> {
+
+        public OperandNumber(Double obj) {
+            super(obj);
+        }
+
+        @Override
+        public OperandType Type() {
+            return OperandType.NUMBER;
+        }
+
+        @Override
+        public int IntValue() {
+            return (int) (double) Value;
+        }
+
+        @Override
+        public double NumberValue() {
+            return Value;
+        }
+
+    }
+
+    static class OperandString extends OperandT<String> {
+
+        public OperandString(String obj) {
+            super(obj);
+        }
+
+        @Override
+        public OperandType Type() {
+            return OperandType.STRING;
+        }
+
+        @Override
+        public String TextValue() {
+            return Value;
+        }
+
+    }
+
 }
