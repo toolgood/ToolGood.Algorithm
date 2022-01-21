@@ -119,14 +119,14 @@ public class Cylinder extends AlgorithmEngine {
 
 ## 自定义参数
 ``` csharp
-    var helper = new ToolGood.Algorithm.AlgorithmEngineHelper();
+    AlgorithmEngineHelper helper = new AlgorithmEngineHelper();
     helper.IsKeywords("false"); // return true
     helper.IsKeywords("true"); // return true
     helper.IsKeywords("mysql"); // return false
 
     DiyNameInfo p5 = helper.GetDiyNames("ddd(d1,22)");
-    Assert.AreEqual("ddd", p5.Functions[0]);
-    Assert.AreEqual("d1", p5.Parameters[0]);
+    assertEquals("ddd", p5.Functions.get(0));
+    assertEquals("d1", p5.Parameters.get(0));
 ```
 
 ## Excel公式
