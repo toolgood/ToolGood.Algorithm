@@ -26,6 +26,11 @@ partial class mathParser : Parser
 {
     public partial class ProgContext : ParserRuleContext
     {
+        [System.Diagnostics.DebuggerNonUserCode]
+        public ExprContext expr()
+        {
+            return GetRuleContext<ExprContext>(0);
+        }
         public ProgContext(ParserRuleContext parent, int invokingState)
             : base(parent, invokingState)
         {
@@ -36,32 +41,6 @@ partial class mathParser : Parser
         {
             ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
             return typedVisitor.VisitProg(this);
-
-        }
-    }
-
-    public partial class ParameterContext : ParserRuleContext
-    {
-        [System.Diagnostics.DebuggerNonUserCode]
-        public ExprContext expr()
-        {
-            return GetRuleContext<ExprContext>(0);
-        }
-        [System.Diagnostics.DebuggerNonUserCode]
-        public Parameter2Context parameter2()
-        {
-            return GetRuleContext<Parameter2Context>(0);
-        }
-        public ParameterContext(ParserRuleContext parent, int invokingState)
-            : base(parent, invokingState)
-        {
-        }
-        //public override int RuleIndex { get { return 2; } }
-        [System.Diagnostics.DebuggerNonUserCode]
-        public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
-        {
-            ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-            return typedVisitor.VisitParameter(this);
 
         }
     }
@@ -3516,7 +3495,7 @@ partial class mathParser : Parser
     }
     public partial class STRING_funContext : ExprContext
     {
-        [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRING() { return GetToken(28, 0); }
+        [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRING() { return GetToken(29, 0); }
         public STRING_funContext(ExprContext context) { CopyFrom(context); }
         [System.Diagnostics.DebuggerNonUserCode]
         public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
@@ -3528,8 +3507,8 @@ partial class mathParser : Parser
     }
     public partial class NUM_funContext : ExprContext
     {
-        [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NUM() { return GetToken(27, 0); }
-        [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUB() { return GetToken(26, 0); }
+        [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NUM() { return GetToken(28, 0); }
+        [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUB() { return GetToken(27, 0); }
         public NUM_funContext(ExprContext context) { CopyFrom(context); }
         [System.Diagnostics.DebuggerNonUserCode]
         public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
@@ -3541,13 +3520,13 @@ partial class mathParser : Parser
     }
     public partial class PARAMETER_funContext : ExprContext
     {
-        [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAMETER() { return GetToken(236, 0); }
+        [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAMETER() { return GetToken(237, 0); }
         [System.Diagnostics.DebuggerNonUserCode]
         public ExprContext expr()
         {
             return GetRuleContext<ExprContext>(0);
         }
-        [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAMETER2() { return GetToken(237, 0); }
+        [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAMETER2() { return GetToken(238, 0); }
         public PARAMETER_funContext(ExprContext context) { CopyFrom(context); }
         [System.Diagnostics.DebuggerNonUserCode]
         public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
@@ -3563,7 +3542,7 @@ partial class mathParser : Parser
         {
             return GetRuleContexts<ExprContext>();
         }
-        [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAMETER() { return GetToken(236, 0); }
+        [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAMETER() { return GetToken(237, 0); }
         public DiyFunction_funContext(ExprContext context) { CopyFrom(context); }
         [System.Diagnostics.DebuggerNonUserCode]
         public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)

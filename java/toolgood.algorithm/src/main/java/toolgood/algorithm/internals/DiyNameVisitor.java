@@ -34,13 +34,6 @@ public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements 
         return visitChildren(context);
     }
 
-
-    @Override
-    public Object visitParameter(ParameterContext context) {
-
-        return visitChildren(context);
-    }
-
     @Override
     public Object visitParameter2(Parameter2Context context) {
 

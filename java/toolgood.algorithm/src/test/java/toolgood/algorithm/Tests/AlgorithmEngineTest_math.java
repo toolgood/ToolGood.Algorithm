@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import toolgood.algorithm.AlgorithmEngine;
 
-@SuppressWarnings("deprecation")
+//@SuppressWarnings("deprecation")
 public class AlgorithmEngineTest_math {
     @Test
     public void Pi_test()

@@ -236,7 +236,6 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result>
     Result VisitTIME_fun(mathParser.TIME_funContext context);
     Result VisitATAN2_fun(mathParser.ATAN2_funContext context);
     Result VisitRAND_fun(mathParser.RAND_funContext context);
-    Result VisitParameter(mathParser.ParameterContext context);
     Result VisitParameter2(mathParser.Parameter2Context context);
 
 

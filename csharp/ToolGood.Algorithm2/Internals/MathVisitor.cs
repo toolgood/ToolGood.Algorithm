@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Antlr4.Runtime.Tree;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
-using Antlr4.Runtime.Tree;
-using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.LitJson;
 using ToolGood.Algorithm.MathNet.Numerics;
 
@@ -14,7 +13,7 @@ namespace ToolGood.Algorithm.Internals
 {
     class MathVisitor : AbstractParseTreeVisitor<Operand>, ImathVisitor<Operand>
     {
-        private static readonly Regex sumifRegex = new Regex(@"(<|<=|>|>=|=|==|!=|<>) *([-+]?\d+(\.(\d+)?)?)", RegexOptions.Compiled);
+        private static readonly Regex sumifRegex = new Regex(@"(<|<=|>|>=|=|==|===|!=|!==|<>) *([-+]?\d+(\.(\d+)?)?)", RegexOptions.Compiled);
         private static readonly Regex bit_2 = new Regex("^[01]+$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
         private static readonly Regex bit_8 = new Regex("^[0-8]+$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
         private static readonly Regex bit_16 = new Regex("^[0-9a-f]+$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
@@ -29,7 +28,7 @@ namespace ToolGood.Algorithm.Internals
 
         public Operand VisitProg(mathParser.ProgContext context)
         {
-            return VisitChildren(context);
+            return Visit(context.expr());
         }
 
         public Operand VisitMulDiv_fun(mathParser.MulDiv_funContext context)
@@ -206,7 +205,7 @@ namespace ToolGood.Algorithm.Internals
             if (firstValue.IsNull) {
                 if (secondValue.IsNull && CharUtil.Equals(type, "=", "==", "===")) {
                     return Operand.True;
-                } else if (secondValue.IsNull == false && CharUtil.Equals(type, "<>", "!=")) {
+                } else if (secondValue.IsNull == false && CharUtil.Equals(type, "<>", "!=","!==")) {
                     return Operand.True;
                 }
                 return Operand.False;
@@ -3825,14 +3824,6 @@ namespace ToolGood.Algorithm.Internals
             return Operand.Error("Function PARAMETER first parameter is error!");
         }
 
-        public Operand VisitParameter(mathParser.ParameterContext context)
-        {
-            var expr = context.expr();
-            if (expr != null) {
-                return this.Visit(expr);
-            }
-            return this.Visit(context.parameter2());
-        }
 
         public Operand VisitParameter2(mathParser.Parameter2Context context)
         {

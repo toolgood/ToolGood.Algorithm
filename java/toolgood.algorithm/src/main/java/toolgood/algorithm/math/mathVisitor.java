@@ -222,7 +222,6 @@ public interface mathVisitor<Result> extends ParseTreeVisitor<Result> {
 	Result visitTIME_fun( TIME_funContext context);
 	Result visitATAN2_fun( ATAN2_funContext context);
 	Result visitRAND_fun( RAND_funContext context);
-	Result visitParameter( ParameterContext context);
 	Result visitParameter2( Parameter2Context context);
 	Result visitExpr2_fun( Expr2_funContext context);
 	Result visitVLOOKUP_fun( VLOOKUP_funContext context);

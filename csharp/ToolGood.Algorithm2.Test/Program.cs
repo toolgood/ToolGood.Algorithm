@@ -11,11 +11,16 @@ namespace ToolGood.Algorithm2.Test
         static void Main(string[] args)
         {
             AlgorithmEngine engine = new AlgorithmEngine();
+
+   
+
+
             double a = 0.0;
             if (engine.Parse("1+2")) {
                 var o = engine.Evaluate();
                 a = o.NumberValue;
             }
+
             var b = engine.TryEvaluate("1=1 && 1<2 and 7-8>1", 0);// Support(支持) && || and or 
             var c = engine.TryEvaluate("2+3", 0);
             var d = engine.TryEvaluate("count(array(1,2,3,4))", 0);//{} represents array, return: 4 {}代表数组,返回:4
@@ -27,7 +32,7 @@ namespace ToolGood.Algorithm2.Test
             var k = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')[Name].Trim()", null);//Return to "William Shakespeare"  返回"William Shakespeare" (不带空格)
             var l = engine.TryEvaluate("json('{\"Name1\":\"William Shakespeare \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')['Name'& 1].Trim().substring(2,3)", null); ;//Return "ill"  返回"ill"
 
-   
+
 
             Thread.CurrentThread.CurrentCulture = new CultureInfo("fr-FR");
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("fr-FR");

@@ -7,27 +7,8 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class mathParser2{
-    public static final int RULE_prog = 0, RULE_expr = 1, RULE_expr2 = 2, RULE_parameter = 3, RULE_parameter2 = 4;
+	public static final int RULE_prog = 0, RULE_expr = 1, RULE_parameter2 = 2;
 
-	public static class ParameterContext extends ParserRuleContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public Parameter2Context parameter2() {
-			return getRuleContext(Parameter2Context.class,0);
-		}
-		public ParameterContext(final ParserRuleContext parent, final int invokingState) {
-            super(parent, invokingState);
-        }
-        @Override
-        public int getRuleIndex() {
-            return RULE_parameter;
-        }
-        @Override
-        public <T> T accept(final ParseTreeVisitor<? extends T> visitor) {
-            return ((mathVisitor<? extends T>) visitor).visitParameter(this);
-        }
-    }
     public static class ProgContext extends ParserRuleContext {
         public ExprContext expr() {
             return getRuleContext(ExprContext.class, 0);

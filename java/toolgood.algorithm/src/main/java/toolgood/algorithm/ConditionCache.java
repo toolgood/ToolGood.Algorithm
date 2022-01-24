@@ -148,11 +148,6 @@ public class ConditionCache {
             parser.addErrorListener(antlrErrorListener);
             final ProgContext context = parser.prog();
 
-            final int end = context.stop.getStopIndex();
-            if (end + 1 < exp.length()) {
-                LastError = "Parameter exp invalid !";
-                return null;
-            }
             if (antlrErrorListener.IsError) {
                 LastError = antlrErrorListener.ErrorMsg;
                 return null;

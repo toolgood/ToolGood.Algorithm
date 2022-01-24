@@ -180,6 +180,42 @@ namespace ToolGood.Algorithm
         }
 
         [Test]
+        public void base_test3()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+
+            var c = engine.TryEvaluate("(2)+/*123456*/3", 0);
+            Assert.AreEqual(5, c);
+
+            c = engine.TryEvaluate("2+3//eee", 0);
+            Assert.AreEqual(5, c);
+
+            c = engine.TryEvaluate("(2)+/*123456*/3 ee22+22", 0);
+            Assert.AreEqual(0, c);
+        }
+
+        [Test]
+        public void base_test4()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+
+            String c = engine.TryEvaluate("'4dd'&'55' rr", "");
+            Assert.AreEqual("", c);
+
+        }
+
+        [Test]
+        public void base_test5()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+
+            String c = engine.TryEvaluate("'4dd'&'55'.left(1)", "");
+            Assert.AreEqual("4dd5", c);
+
+        }
+
+
+        [Test]
         public void Cylinder_Test()
         {
             Cylinder c = new Cylinder(3, 10);

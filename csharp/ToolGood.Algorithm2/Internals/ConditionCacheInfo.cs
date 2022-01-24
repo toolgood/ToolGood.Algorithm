@@ -1,5 +1,6 @@
 ﻿using Antlr4.Runtime;
 using System;
+using System.Linq;
 using static mathParser;
 
 namespace ToolGood.Algorithm.Internals
@@ -51,12 +52,6 @@ namespace ToolGood.Algorithm.Internals
                 parser.AddErrorListener(antlrErrorListener);
 
                 var context = parser.prog();
-                var end = context.Stop.StopIndex;
-                if (end + 1 < exp.Length) {
-
-                    LastError = "Parameter exp invalid !";
-                    return null;
-                }
                 if (antlrErrorListener.IsError) {
                     LastError = antlrErrorListener.ErrorMsg;
                     return null;

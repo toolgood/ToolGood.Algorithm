@@ -418,7 +418,8 @@ public class AlgorithmEngineEx {
                 try {
                     Operand operand = EvaluateOnce(s);
                     d = operand.ToText("").TextValue();
-                } catch (Exception ex) { }
+                } catch (Exception ex) {
+                }
                 stringBuilder.append(d);
             }
         }
@@ -450,11 +451,6 @@ public class AlgorithmEngineEx {
             parser.addErrorListener(antlrErrorListener);
             final ProgContext context = parser.prog();
 
-            final int end = context.stop.getStopIndex();
-            if (end + 1 < exp.length()) {
-                LastError = "Parameter exp invalid !";
-                return null;
-            }
             if (antlrErrorListener.IsError) {
                 LastError = antlrErrorListener.ErrorMsg;
                 return null;

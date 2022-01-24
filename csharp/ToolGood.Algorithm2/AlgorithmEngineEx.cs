@@ -801,12 +801,6 @@ namespace ToolGood.Algorithm
                 parser.AddErrorListener(antlrErrorListener);
 
                 var context = parser.prog();
-                var end = context.Stop.StopIndex;
-                if (end + 1 < exp.Length) {
-
-                    LastError = "Parameter exp invalid !";
-                    return null;
-                }
                 if (antlrErrorListener.IsError) {
                     LastError = antlrErrorListener.ErrorMsg;
                     return null;

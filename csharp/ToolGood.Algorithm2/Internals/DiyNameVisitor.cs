@@ -1,8 +1,5 @@
 ﻿using Antlr4.Runtime.Tree;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ToolGood.Algorithm.Internals
 {
@@ -752,10 +749,6 @@ namespace ToolGood.Algorithm.Internals
             return VisitChildren(context);
         }
 
-        public object VisitParameter(mathParser.ParameterContext context)
-        {
-            return VisitChildren(context);
-        }
 
         public object VisitParameter2(mathParser.Parameter2Context context)
         {

@@ -265,10 +265,6 @@ public class AlgorithmEngineHelper {
         parser.addErrorListener(antlrErrorListener);
         final ProgContext context = parser.prog();
 
-        final int end = context.stop.getStopIndex();
-        if (end + 1 < exp.length()) {
-            throw new Exception("Parameter exp invalid !");
-        }
         if (antlrErrorListener.IsError) {
             throw new Exception(antlrErrorListener.ErrorMsg);
         }

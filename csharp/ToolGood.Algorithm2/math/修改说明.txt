@@ -23,6 +23,9 @@
 \bState = \d+;(?! expr| parameter)
 
 删除 if (!(Precpred(Context,
+State = \d+;\r\n[ \t]+State =    ->   State =
+
+
 删除 expr_sempred
 删除 [NotNull]
 
@@ -36,3 +39,5 @@ Vocabulary 返回null
 
 	public override string GrammarFileName { get { return null; } }
 	public override string[] RuleNames { get { return null; } }
+
+

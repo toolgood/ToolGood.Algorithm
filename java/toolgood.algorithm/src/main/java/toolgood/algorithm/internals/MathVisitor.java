@@ -31,7 +31,7 @@ import toolgood.algorithm.math.mathParser2.*;
 import toolgood.algorithm.mathNet.ExcelFunctions;
 
 public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements mathVisitor<Operand> {
-    private static Pattern sumifRegex = Pattern.compile("(<|<=|>|>=|=|==|!=|<>) *([-+]?\\d+(\\.(\\d+)?)?)");
+    private static Pattern sumifRegex = Pattern.compile("(<|<=|>|>=|=|==|===|!=|!==|<>) *([-+]?\\d+(\\.(\\d+)?)?)");
     private static Pattern bit_2 = Pattern.compile("^[01]+");
     private static Pattern bit_8 = Pattern.compile("^[0-8]+");
     private static Pattern bit_16 = Pattern.compile("^[0-9a-fA-F]+");
@@ -42,7 +42,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public int excelIndex;
 
     public Operand visitProg(final ProgContext context) {
-        return visitChildren(context);
+        return visit(context.expr());
     }
 
     public Operand visitMulDiv_fun(final MulDiv_funContext context) {
@@ -278,7 +278,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (firstValue.IsNull()) {
             if (secondValue.IsNull() && CharUtil.Equals(type, "=", "==", "===")) {
                 return Operand.True;
-            } else if (secondValue.IsNull() == false && CharUtil.Equals(type, "<>", "!=")) {
+            } else if (secondValue.IsNull() == false && CharUtil.Equals(type, "<>", "!=", "!==")) {
                 return Operand.True;
             }
             return Operand.False;
@@ -2301,7 +2301,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     static final int MONEY_PRECISION = 2;
     static final String CN_ZEOR_FULL = "零元" + CN_FULL;
 
-    @SuppressWarnings("deprecation")
+    //@SuppressWarnings("deprecation")
     private String F_base_ToChineseRMB(final BigDecimal numberOfMoney) {
         StringBuffer sb = new StringBuffer();
         int signum = numberOfMoney.signum();
@@ -5336,14 +5336,6 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Error("Function PARAMETER first parameter is error!");
     }
 
-    public Operand visitParameter(final ParameterContext context) {
-        final ExprContext expr = context.expr();
-        if (expr != null) {
-            return visit(expr);
-        }
-        return visit(context.parameter2());
-    }
-
     public Operand visitParameter2(final Parameter2Context context) {
         return Operand.Create(context.children.get(0).getText());
     }
@@ -5446,7 +5438,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Error("DiyFunction is error!");
     }
 
-    @SuppressWarnings("deprecation")
+    //@SuppressWarnings("deprecation")
     private double round(final double value, final int p) {
         final BigDecimal bigD = BigDecimal.valueOf(value);
         return bigD.setScale(p, BigDecimal.ROUND_HALF_UP).doubleValue();
