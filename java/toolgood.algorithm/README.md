@@ -14,6 +14,16 @@ ToolGood.Algorithm支持`四则运算`、`Excel公式`,并支持`自定义参数
 
 4）报表导出，数据来源使用存储过程，Word文档内设置算法。例 https://github.com/toolgood/ToolGood.WordTemplate
 
+
+### pom.xml
+``` 
+    <dependency>
+        <groupId>io.github.toolgood</groupId>
+        <artifactId>toolgood-algorithm</artifactId>
+        <version>3.0.3.0</version>
+    </dependency>
+```
+
 ## 快速上手
 ``` java
     AlgorithmEngine engine = new AlgorithmEngine();

@@ -14,6 +14,16 @@ ToolGood.Algorithm supports `Four arithmetic`, `Excel formula`, and supports `Cu
 
 4）The report is exported, the data source uses the stored procedure, and the algorithm is set in the Word document. Example https://github.com/toolgood/ToolGood.WordTemplate 
 
+
+### pom.xml
+``` 
+    <dependency>
+        <groupId>io.github.toolgood</groupId>
+        <artifactId>toolgood-algorithm</artifactId>
+        <version>3.0.3.0</version>
+    </dependency>
+```
+
 ## Quick start
 ``` java
     AlgorithmEngine engine = new AlgorithmEngine();
