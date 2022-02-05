@@ -2,16 +2,14 @@ package toolgood.algorithm;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
+import java.util.TreeMap;
 
 import toolgood.algorithm.internals.AntlrErrorListener;
 import toolgood.algorithm.internals.CharUtil;
 import toolgood.algorithm.internals.AntlrCharStream;
 import toolgood.algorithm.internals.MathVisitor;
-import toolgood.algorithm.internals.MyFunction;
 import toolgood.algorithm.litJson.JsonData;
 import toolgood.algorithm.litJson.JsonMapper;
 import toolgood.algorithm.math.mathLexer;
@@ -23,83 +21,150 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
 import org.joda.time.DateTime;
 
-
 public class AlgorithmEngine {
+    /**
+     * 使用EXCEL索引
+     */
     public boolean UseExcelIndex = true;
+    /**
+     * 最后一个错误
+     */
     public String LastError;
+    /**
+     * 保存到临时文档
+     */
+    public boolean UseTempDict = false;
+    /**
+     * 是否忽略大小写
+     */
+    public final boolean IgnoreCase;
     private ProgContext _context;
-    protected final Map<String, Operand> _dict = new HashMap<String, Operand>();
-    public Function<MyFunction, Operand> DiyFunction;
+    private final Map<String, Operand> _tempdict;
 
-    protected Operand GetParameter(final String parameter) throws Exception {
-        if (_dict.containsKey(parameter)) {
-            return _dict.get(parameter);
+    /// <summary>
+    /// 默认不带缓存
+    /// </summary>
+    public AlgorithmEngine() {
+        IgnoreCase = false;
+        _tempdict = new TreeMap<String, Operand>();
+    }
+
+    /// <summary>
+    /// 带缓存关键字大小写参数
+    /// </summary>
+    /// <param name="ignoreCase"></param>
+    public AlgorithmEngine(boolean ignoreCase) {
+        IgnoreCase = ignoreCase;
+        if (ignoreCase) {
+            _tempdict = new TreeMap<String, Operand>(String.CASE_INSENSITIVE_ORDER);
+        } else {
+            _tempdict = new TreeMap<String, Operand>();
         }
+    }
+
+    private Operand GetDiyParameterInside(String parameter) {
+        if (_tempdict.containsKey(parameter)) {
+            return _tempdict.get(parameter);
+        }
+        Operand result = GetParameter(parameter);
+        if (UseTempDict) {
+            _tempdict.put(parameter, result);
+        }
+        return result;
+    }
+
+    protected Operand GetParameter(final String parameter) {
         return Operand.Error("Parameter [" + parameter + "] is missing.");
     }
 
     protected Operand ExecuteDiyFunction(final String funcName, final List<Operand> operands) {
-        if (DiyFunction != null) {
-            MyFunction f=new MyFunction();
-            f.Name=funcName;
-            f.OperandList=operands;
-            return DiyFunction.apply(f);
-        }
         return Operand.Error("DiyFunction [" + funcName + "] is missing.");
     }
 
-    public void ClearDiyFunctions() {
-        DiyFunction = null;
-    }
-
     public void ClearParameters() {
-        _dict.clear();
+        _tempdict.clear();
     }
 
+    /**
+     * 添加自定义参数
+     */
     public void AddParameter(final String key, final Operand obj) {
-        _dict.put(key, obj);
+        _tempdict.put(key, obj);
     }
 
+    /**
+     * 添加自定义参数
+     */
     public void AddParameter(final String key, final boolean obj) {
-        _dict.put(key, Operand.Create(obj));
+        _tempdict.put(key, Operand.Create(obj));
     }
 
+    /**
+     * 添加自定义参数
+     */
     public void AddParameter(final String key, final short obj) {
-        _dict.put(key, Operand.Create(obj));
+        _tempdict.put(key, Operand.Create(obj));
     }
 
+    /**
+     * 添加自定义参数
+     */
     public void AddParameter(final String key, final int obj) {
-        _dict.put(key, Operand.Create(obj));
+        _tempdict.put(key, Operand.Create(obj));
     }
 
+    /**
+     * 添加自定义参数
+     */
     public void AddParameter(final String key, final long obj) {
-        _dict.put(key, Operand.Create(obj));
+        _tempdict.put(key, Operand.Create(obj));
     }
 
+    /**
+     * 添加自定义参数
+     */
     public void AddParameter(final String key, final float obj) {
-        _dict.put(key, Operand.Create(obj));
+        _tempdict.put(key, Operand.Create(obj));
     }
 
+    /**
+     * 添加自定义参数
+     */
     public void AddParameter(final String key, final double obj) {
-        _dict.put(key, Operand.Create(obj));
+        _tempdict.put(key, Operand.Create(obj));
     }
 
+    /**
+     * 添加自定义参数
+     */
     public void AddParameter(final String key, final BigDecimal obj) {
-        _dict.put(key, Operand.Create(obj));
+        _tempdict.put(key, Operand.Create(obj));
     }
 
+    /**
+     * 添加自定义参数
+     */
     public void AddParameter(final String key, final String obj) {
-        _dict.put(key, Operand.Create(obj));
+        _tempdict.put(key, Operand.Create(obj));
     }
 
+    /**
+     * 添加自定义参数
+     */
     public void AddParameter(final String key, final MyDate obj) {
-        _dict.put(key, Operand.Create(obj));
+        _tempdict.put(key, Operand.Create(obj));
     }
 
+    /**
+     * 添加自定义参数
+     */
     public void AddParameter(final String key, final List<Operand> obj) {
-        _dict.put(key, Operand.Create(obj));
+        _tempdict.put(key, Operand.Create(obj));
     }
 
+    /**
+     * 添加自定义参数
+     */
     public void AddParameterFromJson(final String json) throws Exception {
         if (json.startsWith("{") && json.endsWith("}")) {
             final JsonData jo = (JsonData) JsonMapper.ToObject(json);
@@ -107,17 +172,17 @@ public class AlgorithmEngine {
                 for (String item : jo.inst_object.keySet()) {
                     final JsonData v = jo.inst_object.get(item);
                     if (v.IsString())
-                        _dict.put(item, Operand.Create(v.StringValue()));
+                        _tempdict.put(item, Operand.Create(v.StringValue()));
                     else if (v.IsBoolean())
-                        _dict.put(item, Operand.Create(v.BooleanValue()));
+                        _tempdict.put(item, Operand.Create(v.BooleanValue()));
                     else if (v.IsDouble())
-                        _dict.put(item, Operand.Create(v.NumberValue()));
+                        _tempdict.put(item, Operand.Create(v.NumberValue()));
                     else if (v.IsObject())
-                        _dict.put(item, Operand.Create(v));
+                        _tempdict.put(item, Operand.Create(v));
                     else if (v.IsArray())
-                        _dict.put(item, Operand.Create(v));
+                        _tempdict.put(item, Operand.Create(v));
                     else if (v.IsNull())
-                        _dict.put(item, Operand.CreateNull());
+                        _tempdict.put(item, Operand.CreateNull());
                 }
                 return;
             }
@@ -125,13 +190,11 @@ public class AlgorithmEngine {
         throw new Exception("Parameter is not json String.");
     }
 
-
     public boolean Parse(final String exp) throws RecognitionException {
         if (exp == null || exp.equals("")) {
             LastError = "Parameter exp invalid !";
             return false;
         }
-        // try {
         final AntlrCharStream stream = new AntlrCharStream(CharStreams.fromString(exp));
         final mathLexer lexer = new mathLexer(stream);
         final CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -148,10 +211,6 @@ public class AlgorithmEngine {
         }
         _context = context;
         return true;
-        // } catch (Exception ex) {
-        // LastError = ex.Message;
-        // return false;
-        // }
     }
 
     public Operand Evaluate() throws Exception {
@@ -162,15 +221,18 @@ public class AlgorithmEngine {
         final MathVisitor visitor = new MathVisitor();
         visitor.GetParameter = f -> {
             try {
-                return GetParameter(f);
+                return GetDiyParameterInside(f);
             } catch (Exception e) {
             }
             return null;
         };
         visitor.excelIndex = UseExcelIndex ? 1 : 0;
-        visitor.DiyFunction = f->{ return ExecuteDiyFunction(f.Name,f.OperandList); };
+        visitor.DiyFunction = f -> {
+            return ExecuteDiyFunction(f.Name, f.OperandList);
+        };
         return visitor.visit(_context);
     }
+
     public int TryEvaluate(final String exp, final int defvalue) {
         try {
             if (Parse(exp)) {
@@ -187,6 +249,7 @@ public class AlgorithmEngine {
         }
         return defvalue;
     }
+
     public double TryEvaluate(final String exp, final double defvalue) {
         try {
             if (Parse(exp)) {
@@ -203,6 +266,7 @@ public class AlgorithmEngine {
         }
         return defvalue;
     }
+
     public String TryEvaluate(final String exp, final String defvalue) {
         try {
             if (Parse(exp)) {
@@ -222,6 +286,7 @@ public class AlgorithmEngine {
         }
         return defvalue;
     }
+
     public boolean TryEvaluate(final String exp, final boolean defvalue) {
         try {
             if (Parse(exp)) {
@@ -238,6 +303,7 @@ public class AlgorithmEngine {
         }
         return defvalue;
     }
+
     public DateTime TryEvaluate(final String exp, final DateTime defvalue) {
         try {
             if (Parse(exp)) {
@@ -254,6 +320,7 @@ public class AlgorithmEngine {
         }
         return defvalue;
     }
+
     public MyDate TryEvaluate(final String exp, final MyDate defvalue) {
         try {
             if (Parse(exp)) {
@@ -270,27 +337,33 @@ public class AlgorithmEngine {
         }
         return defvalue;
     }
+
     /**
      * 计算公式
-     * @param formula 公式
+     * 
+     * @param formula   公式
      * @param splitChar 分隔符
      * @return
      */
     public String EvaluateFormula(String formula, Character splitChar) {
-        if (formula == null || formula.equals("")) return "";
+        if (formula == null || formula.equals(""))
+            return "";
         List<Character> splitChars = new ArrayList<>();
         splitChars.add(splitChar);
         return EvaluateFormula(formula, splitChars);
     }
+
     /**
      * 计算公式
-     * @param formula 公式
+     * 
+     * @param formula    公式
      * @param splitChars 分隔符
      * @return
      */
     public String EvaluateFormula(String formula, List<Character> splitChars) {
-        if (formula == null || formula.equals("")) return "";
-        List<String> sp = CharUtil.SplitFormula(formula,splitChars);
+        if (formula == null || formula.equals(""))
+            return "";
+        List<String> sp = CharUtil.SplitFormula(formula, splitChars);
 
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < sp.size(); i++) {

@@ -8,7 +8,7 @@ public class AntlrLookupEngine extends AlgorithmEngine {
     public Operand Json;
 
     @Override
-    protected Operand GetParameter(String parameter) throws Exception
+    protected Operand GetParameter(String parameter)
     {
         JsonData v = Json.JsonValue().GetChild(parameter);
         if (v!=null)

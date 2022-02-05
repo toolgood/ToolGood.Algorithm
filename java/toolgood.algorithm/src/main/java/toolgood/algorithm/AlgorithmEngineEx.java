@@ -2,10 +2,9 @@ package toolgood.algorithm;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
+import java.util.TreeMap;
 
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -16,7 +15,6 @@ import toolgood.algorithm.internals.AntlrErrorListener;
 import toolgood.algorithm.internals.CharUtil;
 import toolgood.algorithm.internals.ConditionCacheInfo;
 import toolgood.algorithm.internals.MathVisitor;
-import toolgood.algorithm.internals.MyFunction;
 import toolgood.algorithm.litJson.JsonData;
 import toolgood.algorithm.litJson.JsonMapper;
 import toolgood.algorithm.math.mathLexer;
@@ -29,11 +27,22 @@ import toolgood.algorithm.math.mathParser2.ProgContext;
  * 支持多条件过滤
  */
 public class AlgorithmEngineEx {
+    /**
+     * 使用EXCEL索引
+     */
     public boolean UseExcelIndex = true;
+    /**
+     * 最后一个错误
+     */
     public String LastError;
-    private final Map<String, Operand> _dict = new HashMap<String, Operand>();
-    public Function<MyFunction, Operand> DiyFunction;
-    private ConditionCache MultiConditionCache;
+    /**
+     * 保存到临时文档
+     */
+    public boolean UseTempDict = true;
+    /**
+     * 是否忽略大小写
+     */
+    public final boolean IgnoreCase;
     /**
      * 跳过条件错误
      */
@@ -42,15 +51,38 @@ public class AlgorithmEngineEx {
      * 跳过公式错误
      */
     public Boolean JumpFormulaError = false;
+    private final Map<String, Operand> _tempdict;
+    private ConditionCache MultiConditionCache;
 
     public AlgorithmEngineEx(ConditionCache multiConditionCache) {
         MultiConditionCache = multiConditionCache;
+        IgnoreCase = false;
+        _tempdict = new TreeMap<String, Operand>();
+
+    }
+
+    public AlgorithmEngineEx(ConditionCache multiConditionCache, boolean ignoreCase) {
+        MultiConditionCache = multiConditionCache;
+        IgnoreCase = ignoreCase;
+        if (ignoreCase) {
+            _tempdict = new TreeMap<String, Operand>(String.CASE_INSENSITIVE_ORDER);
+        } else {
+            _tempdict = new TreeMap<String, Operand>();
+        }
+    }
+
+    private Operand GetDiyParameterInside(String parameter) {
+        if (_tempdict.containsKey(parameter)) {
+            return _tempdict.get(parameter);
+        }
+        Operand result = GetParameter(parameter);
+        if (UseTempDict) {
+            _tempdict.put(parameter, result);
+        }
+        return result;
     }
 
     protected Operand GetParameter(final String parameter) {
-        if (_dict.containsKey(parameter)) {
-            return _dict.get(parameter);
-        }
         ArrayList<ConditionCacheInfo> conditionCaches = MultiConditionCache.GetConditionCaches(parameter);
         for (ConditionCacheInfo conditionCache : conditionCaches) {
             if (conditionCache.GetFormulaProg() == null)
@@ -75,7 +107,6 @@ public class AlgorithmEngineEx {
                     continue;
                 return Operand.Error(LastError);
             }
-            _dict.put(parameter, operand);
             return operand;
         }
         if (LastError != null)
@@ -84,21 +115,11 @@ public class AlgorithmEngineEx {
     }
 
     protected Operand ExecuteDiyFunction(final String funcName, final List<Operand> operands) {
-        if (DiyFunction != null) {
-            MyFunction f = new MyFunction();
-            f.Name = funcName;
-            f.OperandList = operands;
-            return DiyFunction.apply(f);
-        }
         return Operand.Error("DiyFunction [" + funcName + "] is missing.");
     }
 
-    public void ClearDiyFunctions() {
-        DiyFunction = null;
-    }
-
     public void ClearParameters() {
-        _dict.clear();
+        _tempdict.clear();
     }
 
     /**
@@ -198,50 +219,86 @@ public class AlgorithmEngineEx {
         return def;
     }
 
+    /**
+     * 添加自定义参数
+     */
     public void AddParameter(final String key, final Operand obj) {
-        _dict.put(key, obj);
+        _tempdict.put(key, obj);
     }
 
+    /**
+     * 添加自定义参数
+     */
     public void AddParameter(final String key, final boolean obj) {
-        _dict.put(key, Operand.Create(obj));
+        _tempdict.put(key, Operand.Create(obj));
     }
 
+    /**
+     * 添加自定义参数
+     */
     public void AddParameter(final String key, final short obj) {
-        _dict.put(key, Operand.Create(obj));
+        _tempdict.put(key, Operand.Create(obj));
     }
 
+    /**
+     * 添加自定义参数
+     */
     public void AddParameter(final String key, final int obj) {
-        _dict.put(key, Operand.Create(obj));
+        _tempdict.put(key, Operand.Create(obj));
     }
 
+    /**
+     * 添加自定义参数
+     */
     public void AddParameter(final String key, final long obj) {
-        _dict.put(key, Operand.Create(obj));
+        _tempdict.put(key, Operand.Create(obj));
     }
 
+    /**
+     * 添加自定义参数
+     */
     public void AddParameter(final String key, final float obj) {
-        _dict.put(key, Operand.Create(obj));
+        _tempdict.put(key, Operand.Create(obj));
     }
 
+    /**
+     * 添加自定义参数
+     */
     public void AddParameter(final String key, final double obj) {
-        _dict.put(key, Operand.Create(obj));
+        _tempdict.put(key, Operand.Create(obj));
     }
 
+    /**
+     * 添加自定义参数
+     */
     public void AddParameter(final String key, final BigDecimal obj) {
-        _dict.put(key, Operand.Create(obj));
+        _tempdict.put(key, Operand.Create(obj));
     }
 
+    /**
+     * 添加自定义参数
+     */
     public void AddParameter(final String key, final String obj) {
-        _dict.put(key, Operand.Create(obj));
+        _tempdict.put(key, Operand.Create(obj));
     }
 
+    /**
+     * 添加自定义参数
+     */
     public void AddParameter(final String key, final MyDate obj) {
-        _dict.put(key, Operand.Create(obj));
+        _tempdict.put(key, Operand.Create(obj));
     }
 
+    /**
+     * 添加自定义参数
+     */
     public void AddParameter(final String key, final List<Operand> obj) {
-        _dict.put(key, Operand.Create(obj));
+        _tempdict.put(key, Operand.Create(obj));
     }
 
+    /**
+     * 添加自定义参数
+     */
     public void AddParameterFromJson(final String json) throws Exception {
         if (json.startsWith("{") && json.endsWith("}")) {
             final JsonData jo = (JsonData) JsonMapper.ToObject(json);
@@ -249,17 +306,17 @@ public class AlgorithmEngineEx {
                 for (String item : jo.inst_object.keySet()) {
                     final JsonData v = jo.inst_object.get(item);
                     if (v.IsString())
-                        _dict.put(item, Operand.Create(v.StringValue()));
+                        _tempdict.put(item, Operand.Create(v.StringValue()));
                     else if (v.IsBoolean())
-                        _dict.put(item, Operand.Create(v.BooleanValue()));
+                        _tempdict.put(item, Operand.Create(v.BooleanValue()));
                     else if (v.IsDouble())
-                        _dict.put(item, Operand.Create(v.NumberValue()));
+                        _tempdict.put(item, Operand.Create(v.NumberValue()));
                     else if (v.IsObject())
-                        _dict.put(item, Operand.Create(v));
+                        _tempdict.put(item, Operand.Create(v));
                     else if (v.IsArray())
-                        _dict.put(item, Operand.Create(v));
+                        _tempdict.put(item, Operand.Create(v));
                     else if (v.IsNull())
-                        _dict.put(item, Operand.CreateNull());
+                        _tempdict.put(item, Operand.CreateNull());
                 }
                 return;
             }
@@ -365,7 +422,7 @@ public class AlgorithmEngineEx {
             final MathVisitor visitor = new MathVisitor();
             visitor.GetParameter = f -> {
                 try {
-                    return GetParameter(f);
+                    return GetDiyParameterInside(f);
                 } catch (Exception e) {
                 }
                 return null;

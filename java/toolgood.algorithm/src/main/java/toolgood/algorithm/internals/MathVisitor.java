@@ -58,7 +58,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         Operand firstValue = args.get(0);
         Operand secondValue = args.get(1);
         final String t = context.op.getText();
-        if (firstValue.Type() == OperandType.STRING) {
+        if (firstValue.Type() == OperandType.TEXT) {
             if (numberRegex.matcher(firstValue.TextValue()).find()) {
                 final Operand a = firstValue.ToNumber(null);
                 if (a.IsError() == false)
@@ -69,7 +69,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                     firstValue = a;
             }
         }
-        if (secondValue.Type() == OperandType.STRING) {
+        if (secondValue.Type() == OperandType.TEXT) {
             if (numberRegex.matcher(secondValue.TextValue()).find()) {
                 final Operand a = secondValue.ToNumber(null);
                 if (a.IsError() == false)
@@ -185,7 +185,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             }
             return Operand.Create(firstValue.TextValue() + secondValue.TextValue());
         }
-        if (firstValue.Type() == OperandType.STRING) {
+        if (firstValue.Type() == OperandType.TEXT) {
             if (numberRegex.matcher(firstValue.TextValue()).find()) {
                 final Operand a = firstValue.ToNumber(null);
                 if (a.IsError() == false)
@@ -196,7 +196,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                     firstValue = a;
             }
         }
-        if (secondValue.Type() == OperandType.STRING) {
+        if (secondValue.Type() == OperandType.TEXT) {
             if (numberRegex.matcher(secondValue.TextValue()).find()) {
                 final Operand a = secondValue.ToNumber(null);
                 if (a.IsError() == false)
@@ -291,7 +291,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
 
         int r;
         if (firstValue.Type() == secondValue.Type()) {
-            if (firstValue.Type() == OperandType.STRING || firstValue.Type() == OperandType.JSON) {
+            if (firstValue.Type() == OperandType.TEXT || firstValue.Type() == OperandType.JSON) {
                 firstValue = firstValue.ToText("Function '" + type + "' parameter 1 is error!");
                 if (firstValue.IsError()) {
                     return firstValue;
@@ -315,10 +315,10 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                 }
                 r = Compare(firstValue.NumberValue(), secondValue.NumberValue());
             }
-        } else if ((firstValue.Type() == OperandType.DATE && secondValue.Type() == OperandType.STRING)
-                || (secondValue.Type() == OperandType.DATE && firstValue.Type() == OperandType.STRING)
-                || (firstValue.Type() == OperandType.NUMBER && secondValue.Type() == OperandType.STRING)
-                || (secondValue.Type() == OperandType.NUMBER && firstValue.Type() == OperandType.STRING)) {
+        } else if ((firstValue.Type() == OperandType.DATE && secondValue.Type() == OperandType.TEXT)
+                || (secondValue.Type() == OperandType.DATE && firstValue.Type() == OperandType.TEXT)
+                || (firstValue.Type() == OperandType.NUMBER && secondValue.Type() == OperandType.TEXT)
+                || (secondValue.Type() == OperandType.NUMBER && firstValue.Type() == OperandType.TEXT)) {
             firstValue = firstValue.ToText("Function '" + type + "' parameter 1 is error!");
             if (firstValue.IsError()) {
                 return firstValue;
@@ -329,8 +329,8 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             }
 
             r = firstValue.TextValue().compareTo(secondValue.TextValue());
-        } else if ((firstValue.Type() == OperandType.BOOLEAN && secondValue.Type() == OperandType.STRING)
-                || (secondValue.Type() == OperandType.BOOLEAN && firstValue.Type() == OperandType.STRING)) {
+        } else if ((firstValue.Type() == OperandType.BOOLEAN && secondValue.Type() == OperandType.TEXT)
+                || (secondValue.Type() == OperandType.BOOLEAN && firstValue.Type() == OperandType.TEXT)) {
             firstValue = firstValue.ToText("Function '" + type + "' parameter 1 is error!");
             if (firstValue.IsError()) {
                 return firstValue;
@@ -341,7 +341,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             }
             r = firstValue.TextValue().compareToIgnoreCase(secondValue.TextValue());
             // r = String.Compare(firstValue.TextValue(), secondValue.TextValue(), true);
-        } else if (firstValue.Type() == OperandType.STRING || secondValue.Type() == OperandType.STRING
+        } else if (firstValue.Type() == OperandType.TEXT || secondValue.Type() == OperandType.TEXT
                 || firstValue.Type() == OperandType.JSON || secondValue.Type() == OperandType.JSON
                 || firstValue.Type() == OperandType.ARRARY || secondValue.Type() == OperandType.ARRARY) {
             return Operand.Error("两个类型无法比较");
@@ -462,7 +462,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return firstValue;
         }
 
-        if (firstValue.Type() == OperandType.STRING) {
+        if (firstValue.Type() == OperandType.TEXT) {
             return Operand.True;
         }
         return Operand.False;
@@ -555,7 +555,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
 
     public Operand visitISNONTEXT_fun(final ISNONTEXT_funContext context) {
         final Operand firstValue = visit(context.expr());
-        if (firstValue.Type() != OperandType.STRING) {
+        if (firstValue.Type() != OperandType.TEXT) {
             return Operand.True;
         }
         return Operand.False;
@@ -2189,7 +2189,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
 
     public Operand visitT_fun(final T_funContext context) {
         final Operand firstValue = visit(context.expr());
-        if (firstValue.Type() == OperandType.STRING) {
+        if (firstValue.Type() == OperandType.TEXT) {
             return firstValue;
         }
         return Operand.Create("");
@@ -2214,7 +2214,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             return secondValue;
         }
 
-        if (firstValue.Type() == OperandType.STRING) {
+        if (firstValue.Type() == OperandType.TEXT) {
             return firstValue;
         } else if (firstValue.Type() == OperandType.BOOLEAN) {
             return Operand.Create(firstValue.BooleanValue() ? "TRUE" : "FALSE");
@@ -5199,12 +5199,6 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (engine.Parse(secondValue.TextValue()) == false) {
             return Operand.Error("Function LOOKUP parameter 2 Parse is error!");
         }
-        // Function<MyFunction, Operand> f=s->{
-        // return DoDiyFunction(s);
-        // }
-        engine.DiyFunction = s -> {
-            return DoDiyFunction(s);
-        };
 
         for (final Operand item : firstValue.ArrayValue()) {
             final Operand json = item.ToJson(null);
@@ -5237,13 +5231,6 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             }
         }
         return Operand.Error("Function LOOKUP not find!");
-    }
-
-    private Operand DoDiyFunction(final MyFunction fun) {
-        if (DiyFunction != null) {
-            return DiyFunction.apply(fun);
-        }
-        return Operand.Error("Function name [" + fun.Name + "] is missing.");
     }
 
     public Operand visitArray_fun(final Array_funContext context) {

@@ -15,7 +15,7 @@ public class Cylinder extends AlgorithmEngine {
     }
 
     @Override
-    protected Operand GetParameter(String parameter) throws Exception {
+    protected Operand GetParameter(String parameter) {
         if (parameter.equals("半径")) {
             return Operand.Create(_radius);
         }

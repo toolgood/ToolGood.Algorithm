@@ -62,7 +62,7 @@ public abstract class Operand {
     }
 
     public static Operand Create(final boolean obj) {
-        return new OperandBoolean(obj);
+        return obj ? True : False;
     }
 
     public static Operand Create(final short obj) {
@@ -119,12 +119,6 @@ public abstract class Operand {
         return new OperandDate(new MyDate(obj));
     }
 
-    // public static Operand Create(final DateTime obj) {
-    // return new OperandDate(new Date(obj));
-    // }
-    // public static Operand Create(final TimeSpan obj) {
-    // return new OperandDate(new Date(obj));
-    // }
     public static Operand Create(final JsonData obj) {
         return new OperandJson(obj);
     }
@@ -154,7 +148,7 @@ public abstract class Operand {
         if (Type() == OperandType.DATE) {
             return Create((double) DateValue().ToNumber());
         }
-        if (Type() == OperandType.STRING) {
+        if (Type() == OperandType.TEXT) {
             try {
                 Double d = Double.parseDouble(TextValue());
                 return Create(d);
@@ -177,7 +171,7 @@ public abstract class Operand {
         if (Type() == OperandType.DATE) {
             return (((double) DateValue().ToNumber()) != 0) ? True : False;
         }
-        if (Type() == OperandType.STRING) {
+        if (Type() == OperandType.TEXT) {
             if (TextValue().toLowerCase().equals("true")) {
                 return True;
             }
@@ -195,7 +189,7 @@ public abstract class Operand {
     }
 
     public Operand ToText(final String errorMessage) {
-        if (Type() == OperandType.STRING) {
+        if (Type() == OperandType.TEXT) {
             return this;
         }
         if (IsError()) {
@@ -228,7 +222,7 @@ public abstract class Operand {
         if (Type() == OperandType.NUMBER) {
             return Create(new MyDate(NumberValue()));
         }
-        if (Type() == OperandType.STRING) {
+        if (Type() == OperandType.TEXT) {
             MyDate date = MyDate.parse(TextValue());
             if (date != null) {
                 return Create(date);
@@ -248,7 +242,7 @@ public abstract class Operand {
         if (IsError()) {
             return this;
         }
-        if (Type() == OperandType.STRING) {
+        if (Type() == OperandType.TEXT) {
             final String txt = TextValue();
             if ((txt.startsWith("{") && txt.endsWith("}")) || (txt.startsWith("[") && txt.endsWith("]"))) {
                 try {
@@ -430,7 +424,7 @@ public abstract class Operand {
 
         @Override
         public OperandType Type() {
-            return OperandType.STRING;
+            return OperandType.TEXT;
         }
 
         @Override

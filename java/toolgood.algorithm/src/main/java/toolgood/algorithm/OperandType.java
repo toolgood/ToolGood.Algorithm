@@ -7,6 +7,6 @@ public enum OperandType {
         ARRARY,
         NUMBER,
         BOOLEAN,
-        STRING,
+        TEXT,
         JSON
 }
