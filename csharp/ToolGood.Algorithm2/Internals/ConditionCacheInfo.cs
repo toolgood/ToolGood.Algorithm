@@ -1,6 +1,5 @@
 ﻿using Antlr4.Runtime;
 using System;
-using System.Linq;
 using static mathParser;
 
 namespace ToolGood.Algorithm.Internals

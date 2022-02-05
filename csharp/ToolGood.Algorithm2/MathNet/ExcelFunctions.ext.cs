@@ -1,6 +1,4 @@
-﻿using System;
-using ToolGood.Algorithm.MathNet.Numerics.Distributions;
-using ToolGood.Algorithm.MathNet.Numerics.Statistics;
+﻿using ToolGood.Algorithm.MathNet.Numerics.Distributions;
 
 
 

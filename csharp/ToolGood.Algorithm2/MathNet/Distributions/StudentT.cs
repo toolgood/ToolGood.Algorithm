@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ToolGood.Algorithm.MathNet.Numerics.RootFinding;
+﻿using ToolGood.Algorithm.MathNet.Numerics.RootFinding;
 
 namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
 {

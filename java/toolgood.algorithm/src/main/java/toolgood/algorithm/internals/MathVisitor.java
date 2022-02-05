@@ -2301,7 +2301,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     static final int MONEY_PRECISION = 2;
     static final String CN_ZEOR_FULL = "零元" + CN_FULL;
 
-    //@SuppressWarnings("deprecation")
+    @SuppressWarnings("deprecation")
     private String F_base_ToChineseRMB(final BigDecimal numberOfMoney) {
         StringBuffer sb = new StringBuffer();
         int signum = numberOfMoney.signum();
@@ -5425,7 +5425,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Error("DiyFunction is error!");
     }
 
-    //@SuppressWarnings("deprecation")
+    @SuppressWarnings("deprecation")
     private double round(final double value, final int p) {
         final BigDecimal bigD = BigDecimal.valueOf(value);
         return bigD.setScale(p, BigDecimal.ROUND_HALF_UP).doubleValue();

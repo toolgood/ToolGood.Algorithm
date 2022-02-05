@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-
-namespace ToolGood.Algorithm.Internals
+﻿namespace ToolGood.Algorithm.Internals
 {
     class AntlrLookupEngine : AlgorithmEngine
     {

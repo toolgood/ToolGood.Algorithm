@@ -28,7 +28,6 @@
 // </copyright>
 
 using System;
-using System.Collections.Generic;
 
 namespace ToolGood.Algorithm.MathNet.Numerics
 {
