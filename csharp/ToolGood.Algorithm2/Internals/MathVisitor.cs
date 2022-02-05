@@ -39,7 +39,7 @@ namespace ToolGood.Algorithm.Internals
             var firstValue = args[0];
             var secondValue = args[1];
             var t = context.op.Text;
-            if (firstValue.Type == OperandType.STRING) {
+            if (firstValue.Type == OperandType.TEXT) {
                 if (numberRegex.IsMatch(firstValue.TextValue)) {
                     var a = firstValue.ToNumber(null);
                     if (a.IsError == false) firstValue = a;
@@ -48,7 +48,7 @@ namespace ToolGood.Algorithm.Internals
                     if (a.IsError == false) firstValue = a;
                 }
             }
-            if (secondValue.Type == OperandType.STRING) {
+            if (secondValue.Type == OperandType.TEXT) {
                 if (numberRegex.IsMatch(secondValue.TextValue)) {
                     var a = secondValue.ToNumber(null);
                     if (a.IsError == false) secondValue = a;
@@ -137,7 +137,7 @@ namespace ToolGood.Algorithm.Internals
                 if (secondValue.IsError) { return secondValue; }
                 return Operand.Create(firstValue.TextValue + secondValue.TextValue);
             }
-            if (firstValue.Type == OperandType.STRING) {
+            if (firstValue.Type == OperandType.TEXT) {
                 if (numberRegex.IsMatch(firstValue.TextValue)) {
                     var a = firstValue.ToNumber(null);
                     if (a.IsError == false) firstValue = a;
@@ -146,7 +146,7 @@ namespace ToolGood.Algorithm.Internals
                     if (a.IsError == false) firstValue = a;
                 }
             }
-            if (secondValue.Type == OperandType.STRING) {
+            if (secondValue.Type == OperandType.TEXT) {
                 if (numberRegex.IsMatch(secondValue.TextValue)) {
                     var a = secondValue.ToNumber(null);
                     if (a.IsError == false) secondValue = a;
@@ -218,7 +218,7 @@ namespace ToolGood.Algorithm.Internals
 
             int r;
             if (firstValue.Type == secondValue.Type) {
-                if (firstValue.Type == OperandType.STRING || firstValue.Type == OperandType.JSON) {
+                if (firstValue.Type == OperandType.TEXT || firstValue.Type == OperandType.JSON) {
                     firstValue = firstValue.ToText($"Function '{type}' parameter 1 is error!");
                     if (firstValue.IsError) { return firstValue; }
                     secondValue = secondValue.ToText($"Function '{type}' parameter 2 is error!");
@@ -234,8 +234,8 @@ namespace ToolGood.Algorithm.Internals
                     if (secondValue.IsError) { return secondValue; }
                     r = Compare(firstValue.NumberValue, secondValue.NumberValue);
                 }
-            } else if ((firstValue.Type == OperandType.DATE && secondValue.Type == OperandType.STRING) || (secondValue.Type == OperandType.DATE && firstValue.Type == OperandType.STRING)
-                 || (firstValue.Type == OperandType.NUMBER && secondValue.Type == OperandType.STRING) || (secondValue.Type == OperandType.NUMBER && firstValue.Type == OperandType.STRING)
+            } else if ((firstValue.Type == OperandType.DATE && secondValue.Type == OperandType.TEXT) || (secondValue.Type == OperandType.DATE && firstValue.Type == OperandType.TEXT)
+                 || (firstValue.Type == OperandType.NUMBER && secondValue.Type == OperandType.TEXT) || (secondValue.Type == OperandType.NUMBER && firstValue.Type == OperandType.TEXT)
                   ) {
                 firstValue = firstValue.ToText($"Function '{type}' parameter 1 is error!");
                 if (firstValue.IsError) { return firstValue; }
@@ -243,14 +243,14 @@ namespace ToolGood.Algorithm.Internals
                 if (secondValue.IsError) { return secondValue; }
 
                 r = string.CompareOrdinal(firstValue.TextValue, secondValue.TextValue);
-            } else if ((firstValue.Type == OperandType.BOOLEAN && secondValue.Type == OperandType.STRING) || (secondValue.Type == OperandType.BOOLEAN && firstValue.Type == OperandType.STRING)) {
+            } else if ((firstValue.Type == OperandType.BOOLEAN && secondValue.Type == OperandType.TEXT) || (secondValue.Type == OperandType.BOOLEAN && firstValue.Type == OperandType.TEXT)) {
                 firstValue = firstValue.ToText($"Function '{type}' parameter 1 is error!");
                 if (firstValue.IsError) { return firstValue; }
                 secondValue = secondValue.ToText($"Function '{type}' parameter 2 is error!");
                 if (secondValue.IsError) { return secondValue; }
 
                 r = string.Compare(firstValue.TextValue, secondValue.TextValue, true);
-            } else if (firstValue.Type == OperandType.STRING || secondValue.Type == OperandType.STRING
+            } else if (firstValue.Type == OperandType.TEXT || secondValue.Type == OperandType.TEXT
                   || firstValue.Type == OperandType.JSON || secondValue.Type == OperandType.JSON
                   || firstValue.Type == OperandType.ARRARY || secondValue.Type == OperandType.ARRARY
                   ) {
@@ -356,7 +356,7 @@ namespace ToolGood.Algorithm.Internals
             var firstValue = this.Visit(context.expr());
             if (firstValue.IsError) { return firstValue; }
 
-            if (firstValue.Type == OperandType.STRING) {
+            if (firstValue.Type == OperandType.TEXT) {
                 return Operand.True;
             }
             return Operand.False;
@@ -446,7 +446,7 @@ namespace ToolGood.Algorithm.Internals
         public Operand VisitISNONTEXT_fun(mathParser.ISNONTEXT_funContext context)
         {
             var firstValue = this.Visit(context.expr());
-            if (firstValue.Type != OperandType.STRING) {
+            if (firstValue.Type != OperandType.TEXT) {
                 return Operand.True;
             }
             return Operand.False;
@@ -1656,7 +1656,7 @@ namespace ToolGood.Algorithm.Internals
         public Operand VisitT_fun(mathParser.T_funContext context)
         {
             var firstValue = this.Visit(context.expr());
-            if (firstValue.Type == OperandType.STRING) {
+            if (firstValue.Type == OperandType.TEXT) {
                 return firstValue;
             }
             return Operand.Create("");
@@ -1671,7 +1671,7 @@ namespace ToolGood.Algorithm.Internals
             var secondValue = args[1].ToText("Function TEXT parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
 
-            if (firstValue.Type == OperandType.STRING) {
+            if (firstValue.Type == OperandType.TEXT) {
                 return firstValue;
             } else if (firstValue.Type == OperandType.BOOLEAN) {
                 return Operand.Create(firstValue.BooleanValue ? "TRUE" : "FALSE");
@@ -3716,12 +3716,6 @@ namespace ToolGood.Algorithm.Internals
             if (engine.Parse(secondValue.TextValue) == false) {
                 return Operand.Error("Function LOOKUP parameter 2 Parse is error!");
             }
-            engine.DiyFunction += (funcName, list) => {
-                if (DiyFunction != null) {
-                    return DiyFunction(funcName, list);
-                }
-                return Operand.Error($"Function name [{funcName}] is missing.");
-            };
 
             foreach (var item in firstValue.ArrayValue) {
                 var json = item.ToJson(null);

@@ -37,7 +37,7 @@
         /// <summary>
         /// 字符串
         /// </summary>
-        STRING,
+        TEXT,
 
         /// <summary>
         /// JSON格式

@@ -22,14 +22,56 @@ namespace ToolGood.Algorithm
         /// 最后一个错误
         /// </summary>
         public string LastError { get; private set; }
-        private ProgContext _context;
-        protected Dictionary<string, Operand> _dict = new Dictionary<string, Operand>();
         /// <summary>
-        /// 自定义 函数
+        /// 保存到临时文档
         /// </summary>
-        public event Func<string, List<Operand>, Operand> DiyFunction;
+        public bool UseTempDict { get; set; } = false;
+        /// <summary>
+        /// 是否忽略大小写
+        /// </summary>
+        public bool IgnoreCase { get; private set; }
 
-        #region GetParameter
+        private ProgContext _context;
+        private readonly Dictionary<string, Operand> _tempdict;
+
+
+        #region 构造函数
+        /// <summary>
+        /// 默认不带缓存
+        /// </summary>
+        public AlgorithmEngine()
+        {
+            _tempdict = new Dictionary<string, Operand>();
+        }
+        /// <summary>
+        /// 带缓存关键字大小写参数
+        /// </summary>
+        /// <param name="ignoreCase"></param>
+        public AlgorithmEngine(bool ignoreCase)
+        {
+            IgnoreCase = ignoreCase;
+            if (ignoreCase) {
+                _tempdict = new Dictionary<string, Operand>(StringComparer.OrdinalIgnoreCase);
+            } else {
+                _tempdict = new Dictionary<string, Operand>();
+            }
+        } 
+        #endregion
+
+
+        #region GetParameter GetDiyParameterInside  ExecuteDiyFunction
+        private Operand GetDiyParameterInside(string parameter)
+        {
+            if (_tempdict.TryGetValue(parameter, out Operand operand)) {
+                return operand;
+            }
+            var result = GetParameter(parameter);
+            if (UseTempDict) {
+                _tempdict[parameter] = result;
+            }
+            return result;
+        }
+
         /// <summary>
         /// 自定义参数
         /// </summary>
@@ -37,14 +79,8 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         protected virtual Operand GetParameter(string parameter)
         {
-            if (_dict.TryGetValue(parameter, out Operand operand)) {
-                return operand;
-            }
             return Operand.Error($"Parameter [{parameter}] is missing.");
         }
-        #endregion
-
-        #region ExecuteDiyFunction
         /// <summary>
         /// 自定义 函数
         /// </summary>
@@ -53,17 +89,7 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         protected virtual Operand ExecuteDiyFunction(string funcName, List<Operand> operands)
         {
-            if (DiyFunction != null) {
-                return DiyFunction.Invoke(funcName, operands);
-            }
             return Operand.Error($"DiyFunction [{funcName}] is missing.");
-        }
-        /// <summary>
-        /// 清理 自定义函数
-        /// </summary>
-        public void ClearDiyFunctions()
-        {
-            DiyFunction = null;
         }
 
         #endregion
@@ -75,7 +101,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         public void ClearParameters()
         {
-            _dict.Clear();
+            _tempdict.Clear();
         }
 
         /// <summary>
@@ -85,7 +111,7 @@ namespace ToolGood.Algorithm
         /// <param name="obj"></param>
         public void AddParameter(string key, Operand obj)
         {
-            _dict[key] = obj;
+            _tempdict[key] = obj;
         }
         /// <summary>
         /// 添加自定义参数
@@ -94,7 +120,7 @@ namespace ToolGood.Algorithm
         /// <param name="obj"></param>
         public void AddParameter(string key, bool obj)
         {
-            _dict[key] = Operand.Create(obj);
+            _tempdict[key] = Operand.Create(obj);
         }
         #region number
         /// <summary>
@@ -104,7 +130,7 @@ namespace ToolGood.Algorithm
         /// <param name="obj"></param>
         public void AddParameter(string key, short obj)
         {
-            _dict[key] = Operand.Create((int)obj);
+            _tempdict[key] = Operand.Create((int)obj);
         }
         /// <summary>
         /// 添加自定义参数
@@ -113,7 +139,7 @@ namespace ToolGood.Algorithm
         /// <param name="obj"></param>
         public void AddParameter(string key, int obj)
         {
-            _dict[key] = Operand.Create(obj);
+            _tempdict[key] = Operand.Create(obj);
         }
         /// <summary>
         /// 添加自定义参数
@@ -122,7 +148,7 @@ namespace ToolGood.Algorithm
         /// <param name="obj"></param>
         public void AddParameter(string key, long obj)
         {
-            _dict[key] = Operand.Create((double)obj);
+            _tempdict[key] = Operand.Create((double)obj);
         }
         /// <summary>
         /// 添加自定义参数
@@ -131,7 +157,7 @@ namespace ToolGood.Algorithm
         /// <param name="obj"></param>
         public void AddParameter(string key, ushort obj)
         {
-            _dict[key] = Operand.Create((int)obj);
+            _tempdict[key] = Operand.Create((int)obj);
         }
         /// <summary>
         /// 添加自定义参数
@@ -140,7 +166,7 @@ namespace ToolGood.Algorithm
         /// <param name="obj"></param>
         public void AddParameter(string key, uint obj)
         {
-            _dict[key] = Operand.Create((double)obj);
+            _tempdict[key] = Operand.Create((double)obj);
         }
         /// <summary>
         /// 添加自定义参数
@@ -149,7 +175,7 @@ namespace ToolGood.Algorithm
         /// <param name="obj"></param>
         public void AddParameter(string key, ulong obj)
         {
-            _dict[key] = Operand.Create((double)obj);
+            _tempdict[key] = Operand.Create((double)obj);
         }
         /// <summary>
         /// 添加自定义参数
@@ -158,7 +184,7 @@ namespace ToolGood.Algorithm
         /// <param name="obj"></param>
         public void AddParameter(string key, float obj)
         {
-            _dict[key] = Operand.Create((double)obj);
+            _tempdict[key] = Operand.Create((double)obj);
         }
         /// <summary>
         /// 添加自定义参数
@@ -167,7 +193,7 @@ namespace ToolGood.Algorithm
         /// <param name="obj"></param>
         public void AddParameter(string key, double obj)
         {
-            _dict[key] = Operand.Create(obj);
+            _tempdict[key] = Operand.Create(obj);
         }
         /// <summary>
         /// 添加自定义参数
@@ -176,7 +202,7 @@ namespace ToolGood.Algorithm
         /// <param name="obj"></param>
         public void AddParameter(string key, decimal obj)
         {
-            _dict[key] = Operand.Create((double)obj);
+            _tempdict[key] = Operand.Create((double)obj);
         }
         #endregion
         /// <summary>
@@ -186,7 +212,7 @@ namespace ToolGood.Algorithm
         /// <param name="obj"></param>
         public void AddParameter(string key, string obj)
         {
-            _dict[key] = Operand.Create(obj);
+            _tempdict[key] = Operand.Create(obj);
         }
         #region MyDate
         /// <summary>
@@ -196,7 +222,7 @@ namespace ToolGood.Algorithm
         /// <param name="obj"></param>
         public void AddParameter(string key, MyDate obj)
         {
-            _dict[key] = Operand.Create(obj);
+            _tempdict[key] = Operand.Create(obj);
         }
         /// <summary>
         /// 添加自定义参数
@@ -205,7 +231,7 @@ namespace ToolGood.Algorithm
         /// <param name="obj"></param>
         public void AddParameter(string key, DateTime obj)
         {
-            _dict[key] = Operand.Create(obj);
+            _tempdict[key] = Operand.Create(obj);
         }
         /// <summary>
         /// 添加自定义参数
@@ -214,7 +240,7 @@ namespace ToolGood.Algorithm
         /// <param name="obj"></param>
         public void AddParameter(string key, TimeSpan obj)
         {
-            _dict[key] = Operand.Create(obj);
+            _tempdict[key] = Operand.Create(obj);
         }
         #endregion
         #region array
@@ -225,7 +251,7 @@ namespace ToolGood.Algorithm
         /// <param name="obj"></param>
         public void AddParameter(string key, List<Operand> obj)
         {
-            _dict[key] = Operand.Create(obj);
+            _tempdict[key] = Operand.Create(obj);
         }
         /// <summary>
         /// 添加自定义参数
@@ -234,7 +260,7 @@ namespace ToolGood.Algorithm
         /// <param name="obj"></param>
         public void AddParameter(string key, ICollection<string> obj)
         {
-            _dict[key] = Operand.Create(obj);
+            _tempdict[key] = Operand.Create(obj);
         }
         /// <summary>
         /// 添加自定义参数
@@ -243,7 +269,7 @@ namespace ToolGood.Algorithm
         /// <param name="obj"></param>
         public void AddParameter(string key, ICollection<double> obj)
         {
-            _dict[key] = Operand.Create(obj);
+            _tempdict[key] = Operand.Create(obj);
 
         }
         /// <summary>
@@ -253,7 +279,7 @@ namespace ToolGood.Algorithm
         /// <param name="obj"></param>
         public void AddParameter(string key, ICollection<int> obj)
         {
-            _dict[key] = Operand.Create(obj);
+            _tempdict[key] = Operand.Create(obj);
         }
         /// <summary>
         /// 添加自定义参数
@@ -262,7 +288,7 @@ namespace ToolGood.Algorithm
         /// <param name="obj"></param>
         public void AddParameter(string key, ICollection<bool> obj)
         {
-            _dict[key] = Operand.Create(obj);
+            _tempdict[key] = Operand.Create(obj);
         }
         #endregion
         /// <summary>
@@ -277,17 +303,17 @@ namespace ToolGood.Algorithm
                     foreach (var item in jo.inst_object) {
                         var v = item.Value;
                         if (v.IsString)
-                            _dict[item.Key] = Operand.Create(v.StringValue);
+                            _tempdict[item.Key] = Operand.Create(v.StringValue);
                         else if (v.IsBoolean)
-                            _dict[item.Key] = Operand.Create(v.BooleanValue);
+                            _tempdict[item.Key] = Operand.Create(v.BooleanValue);
                         else if (v.IsDouble)
-                            _dict[item.Key] = Operand.Create(v.NumberValue);
+                            _tempdict[item.Key] = Operand.Create(v.NumberValue);
                         else if (v.IsObject)
-                            _dict[item.Key] = Operand.Create(v);
+                            _tempdict[item.Key] = Operand.Create(v);
                         else if (v.IsArray)
-                            _dict[item.Key] = Operand.Create(v);
+                            _tempdict[item.Key] = Operand.Create(v);
                         else if (v.IsNull)
-                            _dict[item.Key] = Operand.CreateNull();
+                            _tempdict[item.Key] = Operand.CreateNull();
                     }
                     return;
                 }
@@ -297,7 +323,7 @@ namespace ToolGood.Algorithm
 
         #endregion
 
-        #region Parse
+        #region Parse Evaluate
 
         /// <summary>
         /// 编译公式，默认
@@ -310,8 +336,6 @@ namespace ToolGood.Algorithm
                 LastError = "Parameter exp invalid !";
                 return false;
             }
-            //try {
-
             var stream = new AntlrCharStream(new AntlrInputStream(exp));
             var lexer = new mathLexer(stream);
             var tokens = new CommonTokenStream(lexer);
@@ -328,14 +352,8 @@ namespace ToolGood.Algorithm
             }
             _context = context;
             return true;
-            //} catch (Exception ex) {
-            //    LastError = ex.Message;
-            //    return false;
-            //}
         }
-        #endregion
-
-        #region Evaluate
+ 
         /// <summary>
         /// 执行函数
         /// </summary>
@@ -347,7 +365,7 @@ namespace ToolGood.Algorithm
                 throw new Exception("Please use Parse to compile formula !");
             }
             var visitor = new MathVisitor();
-            visitor.GetParameter += GetParameter;
+            visitor.GetParameter += GetDiyParameterInside;
             visitor.excelIndex = UseExcelIndex ? 1 : 0;
             visitor.DiyFunction += ExecuteDiyFunction;
             return visitor.Visit(_context);

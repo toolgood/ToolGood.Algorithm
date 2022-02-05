@@ -310,7 +310,7 @@ namespace ToolGood.Algorithm
             if (IsError) { return this; }
             if (Type == OperandType.BOOLEAN) { return BooleanValue ? One : Zero; }
             if (Type == OperandType.DATE) { return Create((double)DateValue); }
-            if (Type == OperandType.STRING) {
+            if (Type == OperandType.TEXT) {
                 if (double.TryParse(TextValue, NumberStyles.Any, cultureInfo, out double d)) {
                     return Create(d);
                 }
@@ -328,7 +328,7 @@ namespace ToolGood.Algorithm
             if (IsError) { return this; }
             if (Type == OperandType.NUMBER) { return NumberValue != 0 ? True : False; }
             if (Type == OperandType.DATE) { return ((double)DateValue) != 0 ? True : False; }
-            if (Type == OperandType.STRING) {
+            if (Type == OperandType.TEXT) {
                 if (TextValue.Equals("true", StringComparison.OrdinalIgnoreCase)) { return True; }
                 if (TextValue.Equals("false", StringComparison.OrdinalIgnoreCase)) { return False; }
                 if (TextValue.Equals("1", StringComparison.OrdinalIgnoreCase)) { return True; }
@@ -343,7 +343,7 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public Operand ToText(string errorMessage = null)
         {
-            if (Type == OperandType.STRING) { return this; }
+            if (Type == OperandType.TEXT) { return this; }
             if (IsError) { return this; }
             if (Type == OperandType.NUMBER) { return Create(NumberValue.ToString(cultureInfo)); }
             if (Type == OperandType.BOOLEAN) { return Create(BooleanValue ? "TRUE" : "FALSE"); }
@@ -361,7 +361,7 @@ namespace ToolGood.Algorithm
             if (Type == OperandType.DATE) { return this; }
             if (IsError) { return this; }
             if (Type == OperandType.NUMBER) { return Create((MyDate)NumberValue); }
-            if (Type == OperandType.STRING) {
+            if (Type == OperandType.TEXT) {
                 if (TimeSpan.TryParse(TextValue, cultureInfo, out TimeSpan t)) { return Create(new MyDate(t)); }
                 if (DateTime.TryParse(TextValue, cultureInfo, DateTimeStyles.None, out DateTime d)) { return Create(new MyDate(d)); }
             }
@@ -376,7 +376,7 @@ namespace ToolGood.Algorithm
         {
             if (Type == OperandType.JSON) { return this; }
             if (IsError) { return this; }
-            if (Type == OperandType.STRING) {
+            if (Type == OperandType.TEXT) {
                 var txt = TextValue;
                 if ((txt.StartsWith("{") && txt.EndsWith("}")) || (txt.StartsWith("[") && txt.EndsWith("]"))) {
                     try {
@@ -520,7 +520,7 @@ namespace ToolGood.Algorithm
     class OperandString : Operand<string>
     {
         public OperandString(string obj) : base(obj) { }
-        public override OperandType Type => OperandType.STRING;
+        public override OperandType Type => OperandType.TEXT;
         public override string TextValue => Value;
     }
     class OperandMyDate : Operand<MyDate>
