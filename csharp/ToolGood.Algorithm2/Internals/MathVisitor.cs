@@ -310,20 +310,19 @@ namespace ToolGood.Algorithm.Internals
         #region flow
         public Operand VisitIF_fun(mathParser.IF_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
+            var exprs = context.expr();
 
-            var b = args[0].ToBoolean("Function IF first parameter is error!");
+            var b = Visit(exprs[0]).ToBoolean("Function IF first parameter is error!");
             if (b.IsError) { return b; }
 
             if (b.BooleanValue) {
-                if (args.Count > 1) {
-                    return args[1];
+                if (exprs.Length > 1) {
+                    return Visit(exprs[1]);
                 }
                 return Operand.True;
             }
-            if (args.Count == 3) {
-                return args[2];
+            if (exprs.Length == 3) {
+                return Visit(exprs[2]);
             }
             return Operand.False;
         }

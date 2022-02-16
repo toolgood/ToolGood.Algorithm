@@ -402,28 +402,19 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitIF_fun(final IF_funContext context) {
-        final List<Operand> args = new ArrayList<Operand>();
-        for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
-            if (aa.IsError()) {
-                return aa;
-            }
-            args.add(aa);
-        }
+        List<ExprContext> exprs = context.expr();
 
-        final Operand b = args.get(0).ToBoolean("Function IF first parameter is error!");
-        if (b.IsError()) {
-            return b;
-        }
+        Operand b = visit(exprs.get(0)).ToBoolean("Function IF first parameter is error!");
+        if (b.IsError()) { return b; }
 
         if (b.BooleanValue()) {
-            if (args.size() > 1) {
-                return args.get(1);
+            if (exprs.size() > 1) {
+                return visit(exprs.get(1));
             }
             return Operand.True;
         }
-        if (args.size() == 3) {
-            return args.get(2);
+        if (exprs.size() == 3) {
+            return visit(exprs.get(2));
         }
         return Operand.False;
     }
