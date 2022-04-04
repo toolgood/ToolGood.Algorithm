@@ -1,12 +1,5 @@
 ﻿using PetaTest;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ToolGood.Algorithm;
 using ToolGood.Algorithm.Internals;
-using static ToolGood.Algorithm.Internals.ConditionTree;
 
 namespace ToolGood.Algorithm2.Test.ConditionTrees
 {
@@ -18,12 +11,12 @@ namespace ToolGood.Algorithm2.Test.ConditionTrees
         {
             string txt = "AA.IsText()=bb";
             var t1 = ConditionTree.Parse(txt);
-            Assert.AreEqual(t1.Type, ConditionType.String);
+            Assert.AreEqual(t1.Type, ConditionTreeType.String);
             Assert.AreEqual("AA.IsText()=bb", txt.Substring(t1.Start, t1.End - t1.Start + 1));
 
             txt = "[bbb]=bb";
             t1 = ConditionTree.Parse(txt);
-            Assert.AreEqual(t1.Type, ConditionType.String);
+            Assert.AreEqual(t1.Type, ConditionTreeType.String);
             Assert.AreEqual(txt, txt.Substring(t1.Start, t1.End - t1.Start + 1));
         }
 
@@ -33,7 +26,7 @@ namespace ToolGood.Algorithm2.Test.ConditionTrees
             string txt = "AA.IsText()=bb && dd=ss";
             var tree = ConditionTree.Parse(txt);
 
-            Assert.AreEqual(tree.Type, ConditionType.And);
+            Assert.AreEqual(tree.Type, ConditionTreeType.And);
             var t1 = tree.Nodes[0];
             var t2 = tree.Nodes[1];
             Assert.AreEqual("AA.IsText()=bb", txt.Substring(t1.Start, t1.End - t1.Start + 1));
@@ -46,7 +39,7 @@ namespace ToolGood.Algorithm2.Test.ConditionTrees
             string txt = "AA.IsText()=bb || dd=ss";
             var tree = ConditionTree.Parse(txt);
 
-            Assert.AreEqual(tree.Type, ConditionType.Or);
+            Assert.AreEqual(tree.Type, ConditionTreeType.Or);
             var t1 = tree.Nodes[0];
             var t2 = tree.Nodes[1];
             Assert.AreEqual("AA.IsText()=bb", txt.Substring(t1.Start, t1.End - t1.Start + 1));
@@ -60,7 +53,7 @@ namespace ToolGood.Algorithm2.Test.ConditionTrees
             string txt = "AA.IsText()=bb || (dd=ss && tt=22)";
             var tree = ConditionTree.Parse(txt);
 
-            Assert.AreEqual(tree.Type, ConditionType.Or);
+            Assert.AreEqual(tree.Type, ConditionTreeType.Or);
             var t1 = tree.Nodes[0];
             var t2 = tree.Nodes[1];
             var t3 = t2.Nodes[0];
@@ -76,7 +69,7 @@ namespace ToolGood.Algorithm2.Test.ConditionTrees
             string txt = "AA.IsText()=bb || AND(dd=ss , tt=22)";
             var tree = ConditionTree.Parse(txt);
 
-            Assert.AreEqual(tree.Type, ConditionType.Or);
+            Assert.AreEqual(tree.Type, ConditionTreeType.Or);
             var t1 = tree.Nodes[0];
             var t2 = tree.Nodes[1];
             Assert.AreEqual("AA.IsText()=bb", txt.Substring(t1.Start, t1.End - t1.Start + 1));
@@ -89,10 +82,10 @@ namespace ToolGood.Algorithm2.Test.ConditionTrees
             string txt = "AA.IsText()==bb && (dd=ss || tt=22)";
             var tree = ConditionTree.Parse(txt);
 
-            Assert.AreEqual(tree.Type, ConditionType.And);
+            Assert.AreEqual(tree.Type, ConditionTreeType.And);
             var t1 = tree.Nodes[0];
             var t2 = tree.Nodes[1];
-            Assert.AreEqual(t2.Type, ConditionType.Or);
+            Assert.AreEqual(t2.Type, ConditionTreeType.Or);
             var t3 = t2.Nodes[0];
             var t4 = t2.Nodes[1];
 
@@ -106,7 +99,7 @@ namespace ToolGood.Algorithm2.Test.ConditionTrees
         {
             string txt = "AA.IsText()==bb ? 1:2";
             var t1 = ConditionTree.Parse(txt);
-            Assert.AreEqual(t1.Type, ConditionType.String);
+            Assert.AreEqual(t1.Type, ConditionTreeType.String);
             Assert.AreEqual(txt, txt.Substring(t1.Start, t1.End - t1.Start + 1));
         }
 
@@ -116,10 +109,10 @@ namespace ToolGood.Algorithm2.Test.ConditionTrees
             string txt = "AA.IsText()==bb && (dd=ss || {tt}=22)";
             var tree = ConditionTree.Parse(txt);
 
-            Assert.AreEqual(tree.Type, ConditionType.And);
+            Assert.AreEqual(tree.Type, ConditionTreeType.And);
             var t1 = tree.Nodes[0];
             var t2 = tree.Nodes[1];
-            Assert.AreEqual(t2.Type, ConditionType.Or);
+            Assert.AreEqual(t2.Type, ConditionTreeType.Or);
             var t3 = t2.Nodes[0];
             var t4 = t2.Nodes[1];
 
@@ -134,10 +127,10 @@ namespace ToolGood.Algorithm2.Test.ConditionTrees
             string txt = "AA.IsText()==bb && (dd=ss || [tt]==22)";
             var tree = ConditionTree.Parse(txt);
 
-            Assert.AreEqual(tree.Type, ConditionType.And);
+            Assert.AreEqual(tree.Type, ConditionTreeType.And);
             var t1 = tree.Nodes[0];
             var t2 = tree.Nodes[1];
-            Assert.AreEqual(t2.Type, ConditionType.Or);
+            Assert.AreEqual(t2.Type, ConditionTreeType.Or);
             var t3 = t2.Nodes[0];
             var t4 = t2.Nodes[1];
 

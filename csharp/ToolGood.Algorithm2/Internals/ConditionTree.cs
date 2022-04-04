@@ -11,7 +11,7 @@ namespace ToolGood.Algorithm.Internals
         public int Start { get; internal set; }
         public int End { get; internal set; }
 
-        public ConditionType Type { get; internal set; }
+        public ConditionTreeType Type { get; internal set; }
 
         public String ErrorMessage { get; internal set; }
 
@@ -20,19 +20,12 @@ namespace ToolGood.Algorithm.Internals
             Nodes = new List<ConditionTree>();
         }
 
-        public enum ConditionType
-        {
-            String,
-            And,
-            Or,
-            Error
-        }
 
         public static ConditionTree Parse(string condition)
         {
             ConditionTree tree = new ConditionTree();
             if (string.IsNullOrWhiteSpace(condition)) {
-                tree.Type = ConditionType.Error;
+                tree.Type = ConditionTreeType.Error;
                 tree.ErrorMessage = "condition 为空";
                 return tree;
             }
@@ -47,7 +40,7 @@ namespace ToolGood.Algorithm.Internals
 
                 var context = parser.prog();
                 if (antlrErrorListener.IsError) {
-                    tree.Type = ConditionType.Error;
+                    tree.Type = ConditionTreeType.Error;
                     tree.ErrorMessage = antlrErrorListener.ErrorMsg;
                     return tree;
                 }
@@ -55,7 +48,7 @@ namespace ToolGood.Algorithm.Internals
                 return visitor.Visit(context);
 
             } catch (Exception ex) {
-                tree.Type = ConditionType.Error;
+                tree.Type = ConditionTreeType.Error;
                 tree.ErrorMessage = ex.Message + "\r\n" + ex.StackTrace;
             }
             return tree;

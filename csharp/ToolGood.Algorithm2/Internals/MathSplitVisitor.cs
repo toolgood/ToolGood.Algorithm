@@ -9,8 +9,6 @@ namespace ToolGood.Algorithm.Internals
 {
     class MathSplitVisitor : AbstractParseTreeVisitor<ConditionTree>, ImathVisitor<ConditionTree>
     {
-        internal string Text;
-
         public ConditionTree VisitProg(mathParser.ProgContext context)
         {
             return Visit(context.expr());
@@ -20,9 +18,9 @@ namespace ToolGood.Algorithm.Internals
             ConditionTree tree = new ConditionTree();
             var t = context.op.Text;
             if (CharUtil.Equals(t, "&&", "and")) {
-                tree.Type = ConditionTree.ConditionType.And;
+                tree.Type = ConditionTreeType.And;
             } else {
-                tree.Type = ConditionTree.ConditionType.Or;
+                tree.Type = ConditionTreeType.Or;
             }
             tree.Nodes.Add(this.Visit(context.expr(0)));
             tree.Nodes.Add(this.Visit(context.expr(1)));
