@@ -182,7 +182,7 @@ namespace ToolGood.Algorithm
                 visitor.DiyFunction += ExecuteDiyFunction;
                 return visitor.Visit(context);
             } catch (Exception ex) {
-                LastError = ex.Message;
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
                 return Operand.Error(ex.Message);
             }
 
@@ -228,7 +228,7 @@ namespace ToolGood.Algorithm
             try {
                 return SearchRemark(categoryName);
             } catch (Exception ex) {
-                LastError = ex.Message;
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
             }
             return def;
         }
@@ -480,7 +480,7 @@ namespace ToolGood.Algorithm
                 }
                 return (ushort)obj.IntValue;
             } catch (Exception ex) {
-                LastError = ex.Message;
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
             }
             return def;
         }
@@ -501,7 +501,7 @@ namespace ToolGood.Algorithm
                 }
                 return (uint)obj.IntValue;
             } catch (Exception ex) {
-                LastError = ex.Message;
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
             }
             return def;
         }
@@ -522,7 +522,7 @@ namespace ToolGood.Algorithm
                 }
                 return (ulong)obj.IntValue;
             } catch (Exception ex) {
-                LastError = ex.Message;
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
             }
             return def;
         }
@@ -543,7 +543,7 @@ namespace ToolGood.Algorithm
                 }
                 return (short)obj.IntValue;
             } catch (Exception ex) {
-                LastError = ex.Message;
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
             }
             return def;
         }
@@ -564,7 +564,7 @@ namespace ToolGood.Algorithm
                 }
                 return obj.IntValue;
             } catch (Exception ex) {
-                LastError = ex.Message;
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
             }
             return def;
         }
@@ -585,7 +585,7 @@ namespace ToolGood.Algorithm
                 }
                 return obj.IntValue;
             } catch (Exception ex) {
-                LastError = ex.Message;
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
             }
             return def;
         }
@@ -606,7 +606,7 @@ namespace ToolGood.Algorithm
                 }
                 return (float)obj.NumberValue;
             } catch (Exception ex) {
-                LastError = ex.Message;
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
             }
             return def;
         }
@@ -627,7 +627,7 @@ namespace ToolGood.Algorithm
                 }
                 return obj.NumberValue;
             } catch (Exception ex) {
-                LastError = ex.Message;
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
             }
             return def;
         }
@@ -648,7 +648,7 @@ namespace ToolGood.Algorithm
                 }
                 return (decimal)obj.NumberValue;
             } catch (Exception ex) {
-                LastError = ex.Message;
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
             }
             return def;
         }
@@ -672,7 +672,7 @@ namespace ToolGood.Algorithm
                 }
                 return obj.TextValue;
             } catch (Exception ex) {
-                LastError = ex.Message;
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
             }
             return def;
         }
@@ -693,7 +693,7 @@ namespace ToolGood.Algorithm
                 }
                 return obj.BooleanValue;
             } catch (Exception ex) {
-                LastError = ex.Message;
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
             }
             return def;
         }
@@ -714,7 +714,7 @@ namespace ToolGood.Algorithm
                 }
                 return (DateTime)obj.DateValue;
             } catch (Exception ex) {
-                LastError = ex.Message;
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
             }
             return def;
         }
@@ -735,7 +735,7 @@ namespace ToolGood.Algorithm
                 }
                 return (TimeSpan)obj.DateValue;
             } catch (Exception ex) {
-                LastError = ex.Message;
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
             }
             return def;
         }
@@ -757,7 +757,7 @@ namespace ToolGood.Algorithm
                 }
                 return obj.DateValue;
             } catch (Exception ex) {
-                LastError = ex.Message;
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
             }
             return def;
         }
@@ -833,7 +833,7 @@ namespace ToolGood.Algorithm
                 }
                 return context;
             } catch (Exception ex) {
-                LastError = ex.Message;
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
             }
             return null;
         }

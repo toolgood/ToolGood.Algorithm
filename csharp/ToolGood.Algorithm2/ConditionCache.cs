@@ -136,7 +136,7 @@ namespace ToolGood.Algorithm
                 }
                 return context;
             } catch (Exception ex) {
-                LastError = ex.Message;
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
             }
             return null;
         }
