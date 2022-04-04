@@ -6,18 +6,33 @@ namespace ToolGood.Algorithm.Internals
 {
     public class ConditionTree
     {
-        public List<ConditionTree> Nodes { get; internal set; }
-
+        /// <summary>
+        /// 子节点
+        /// </summary>
+        public IList<ConditionTree> Nodes { get; internal set; }
+        /// <summary>
+        /// 开始位置
+        /// </summary>
         public int Start { get; internal set; }
+        /// <summary>
+        /// 结束位置
+        /// </summary>
         public int End { get; internal set; }
-
+        /// <summary>
+        /// 类型
+        /// </summary>
         public ConditionTreeType Type { get; internal set; }
-
+        /// <summary>
+        /// 条件
+        /// </summary>
+        public string ConditionString { get; internal set; }
+        /// <summary>
+        /// 出错信息
+        /// </summary>
         public String ErrorMessage { get; internal set; }
 
         internal ConditionTree()
         {
-            Nodes = new List<ConditionTree>();
         }
 
 

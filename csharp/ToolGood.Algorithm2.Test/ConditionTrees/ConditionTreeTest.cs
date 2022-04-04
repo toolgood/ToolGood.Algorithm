@@ -9,10 +9,11 @@ namespace ToolGood.Algorithm2.Test.ConditionTrees
         [Test]
         public void Test1()
         {
-            string txt = "AA.IsText()=bb";
+            string txt = "AA.IsText() = bb";
             var t1 = ConditionTree.Parse(txt);
             Assert.AreEqual(t1.Type, ConditionTreeType.String);
-            Assert.AreEqual("AA.IsText()=bb", txt.Substring(t1.Start, t1.End - t1.Start + 1));
+            Assert.AreEqual("AA.IsText() = bb", txt.Substring(t1.Start, t1.End - t1.Start + 1));
+            Assert.AreEqual("AA.IsText()=bb", t1.ConditionString);
 
             txt = "[bbb]=bb";
             t1 = ConditionTree.Parse(txt);

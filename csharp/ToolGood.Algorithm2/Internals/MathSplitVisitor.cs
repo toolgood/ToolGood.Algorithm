@@ -1,8 +1,6 @@
 ﻿using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace ToolGood.Algorithm.Internals
@@ -16,6 +14,7 @@ namespace ToolGood.Algorithm.Internals
         public ConditionTree VisitAndOr_fun(mathParser.AndOr_funContext context)
         {
             ConditionTree tree = new ConditionTree();
+            tree.Nodes = new List<ConditionTree>();
             var t = context.op.Text;
             if (CharUtil.Equals(t, "&&", "and")) {
                 tree.Type = ConditionTreeType.And;
@@ -35,15 +34,17 @@ namespace ToolGood.Algorithm.Internals
             ConditionTree tree = new ConditionTree();
             tree.Start = context.Start.StartIndex;
             tree.End = context.Stop.StopIndex;
+            tree.ConditionString = context.GetText();
             return tree;
         }
+
 
         public ConditionTree VisitIF_fun(mathParser.IF_funContext context)
         {
             return Visit_fun(context);
         }
 
-     
+
         public ConditionTree VisitAND_fun(mathParser.AND_funContext context)
         {
             return Visit_fun(context);
@@ -75,9 +76,6 @@ namespace ToolGood.Algorithm.Internals
         {
             return Visit_fun(context);
         }
-
-
-
         public ConditionTree VisitArray_fun(mathParser.Array_funContext context)
         {
             return Visit_fun(context);

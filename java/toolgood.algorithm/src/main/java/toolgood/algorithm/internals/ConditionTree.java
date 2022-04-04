@@ -10,17 +10,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConditionTree {
+    /**
+     * 子节点
+     */
     public List<ConditionTree> Nodes;
-
+    /**
+     * 开始位置
+     */
     public int Start;
+    /**
+     * 结束位置
+     */
     public int End;
-
+    /**
+     * 类型
+     */
     public ConditionTreeType Type;
-
+    /**
+     * 条件
+     */
+    public String ConditionString;
+    /**
+     * 出错信息
+     */
     public String ErrorMessage;
 
     public ConditionTree() {
-        Nodes = new ArrayList<>();
+
     }
 
 

@@ -5,6 +5,8 @@ import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 import toolgood.algorithm.math.mathParser2;
 import toolgood.algorithm.math.mathVisitor;
 
+import java.util.ArrayList;
+
 public class MathSplitVisitor extends AbstractParseTreeVisitor<ConditionTree> implements mathVisitor<ConditionTree> {
     @Override
     public ConditionTree visitProg(mathParser2.ProgContext context) {
@@ -14,6 +16,7 @@ public class MathSplitVisitor extends AbstractParseTreeVisitor<ConditionTree> im
     @Override
     public ConditionTree visitAndOr_fun(mathParser2.AndOr_funContext context) {
         ConditionTree tree = new ConditionTree();
+        tree.Nodes = new ArrayList<>();
         String t = context.op.getText();
         if (CharUtil.Equals(t, "&&", "and")) {
             tree.Type = ConditionTreeType.And;
@@ -35,6 +38,7 @@ public class MathSplitVisitor extends AbstractParseTreeVisitor<ConditionTree> im
         tree.Type = ConditionTreeType.String;
         tree.Start = context.start.getStartIndex();
         tree.End = context.stop.getStopIndex();
+        tree.ConditionString = context.getText();
         return tree;
     }
 

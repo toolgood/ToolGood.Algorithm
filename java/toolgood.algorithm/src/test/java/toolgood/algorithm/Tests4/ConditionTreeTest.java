@@ -10,11 +10,12 @@ public class ConditionTreeTest {
 
     @Test
     public void Test1() {
-        String txt = "AA.IsText()=bb";
+        String txt = "AA.IsText() = bb";
         ConditionTree t1 = ConditionTree.Parse(txt);
 
         assertEquals(t1.Type, ConditionTreeType.String);
-        assertEquals("AA.IsText()=bb", txt.substring(t1.Start, t1.End + 1));
+        assertEquals("AA.IsText() = bb", txt.substring(t1.Start, t1.End + 1));
+        assertEquals("AA.IsText()=bb",t1.ConditionString);
 
         txt = "[bbb]=bb";
         t1 = ConditionTree.Parse(txt);
