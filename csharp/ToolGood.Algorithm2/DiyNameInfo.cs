@@ -11,11 +11,11 @@ namespace ToolGood.Algorithm
         /// <summary>
         /// 自定义 参数
         /// </summary>
-        public List<String> Parameters { get; set; }
+        public List<String> Parameters { get; private set; }
         /// <summary>
         /// 自定义方法
         /// </summary>
-        public List<String> Functions { get; set; }
+        public List<String> Functions { get; private set; }
 
         /// <summary>
         /// 自定义类型

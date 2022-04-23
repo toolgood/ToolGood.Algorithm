@@ -6,7 +6,6 @@ import toolgood.algorithm.math.mathLexer;
 import toolgood.algorithm.math.mathParser;
 import toolgood.algorithm.math.mathParser2;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ConditionTree {
