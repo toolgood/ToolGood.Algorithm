@@ -100,7 +100,7 @@ namespace ToolGood.Algorithm
             foreach (var conditionCache in conditionCaches) {
                 if (conditionCache.FormulaProg == null) continue;
                 if (conditionCache.ConditionProg != null) {
-                    var b = Evaluate(conditionCache.ConditionProg);
+                    var b = EvaluateCategory(conditionCache.ConditionProg);
                     if (b.IsError) {
                         LastError = $"Parameter [{parameter}],{conditionCache.Remark} condition `{conditionCache.ConditionString}` is error.\r\n{b.ErrorMsg}";
                         if (JumpConditionError) continue;
@@ -108,7 +108,7 @@ namespace ToolGood.Algorithm
                     }
                     if (b.BooleanValue == false) continue;
                 }
-                operand = Evaluate(conditionCache.FormulaProg);
+                operand = EvaluateCategory(conditionCache.FormulaProg);
                 if (operand.IsError) {
                     LastError = $"Parameter [{parameter}],{conditionCache.Remark} formula `{conditionCache.FormulaString}` is error.\r\n{operand.ErrorMsg}";
                     if (JumpFormulaError) continue;
@@ -133,13 +133,13 @@ namespace ToolGood.Algorithm
 
         #endregion
 
-        #region Evaluate SearchRemark TrySearchRemark
+        #region EvaluateCategory SearchRemark TrySearchRemark
         /// <summary>
         /// 执行
         /// </summary>
         /// <param name="categoryName"></param>
         /// <returns></returns>
-        public Operand Evaluate(string categoryName)
+        public Operand EvaluateCategory(string categoryName)
         {
             LastError = null;
             Operand operand;
@@ -150,7 +150,7 @@ namespace ToolGood.Algorithm
                     if (conditionCache.ConditionProg == null) {
                         return Operand.Error($"CategoryName [{categoryName}],{conditionCache.Remark} parse condition `{conditionCache.ConditionString}` is error.\r\n{conditionCache.LastError}");
                     }
-                    var b = Evaluate(conditionCache.ConditionProg);
+                    var b = EvaluateCategory(conditionCache.ConditionProg);
                     if (b.IsError) {
                         LastError = $"CategoryName [{categoryName}],{conditionCache.Remark} condition `{conditionCache.ConditionString}` is error.\r\n{b.ErrorMsg}";
                         if (JumpConditionError) continue;
@@ -161,7 +161,7 @@ namespace ToolGood.Algorithm
                 if (conditionCache.FormulaProg == null) {
                     return Operand.Error($"CategoryName [{categoryName}],{conditionCache.Remark} parse formula `{ conditionCache.FormulaString}` is error.\r\n{conditionCache.LastError}");
                 }
-                operand = Evaluate(conditionCache.FormulaProg);
+                operand = EvaluateCategory(conditionCache.FormulaProg);
                 if (operand.IsError) {
                     LastError = $"CategoryName [{categoryName}],{conditionCache.Remark} formula `{conditionCache.FormulaString}` is error.\r\n{operand.ErrorMsg}";
                     if (JumpFormulaError) continue;
@@ -174,7 +174,7 @@ namespace ToolGood.Algorithm
 
         }
 
-        private Operand Evaluate(ProgContext context)
+        private Operand EvaluateCategory(ProgContext context)
         {
             try {
                 var visitor = new MathVisitor();
@@ -204,7 +204,7 @@ namespace ToolGood.Algorithm
                     if (conditionCache.ConditionProg == null) {
                         throw new Exception($"CategoryName [{categoryName}],{conditionCache.Remark} parse condition `{ conditionCache.ConditionString}` is error.\r\n{conditionCache.LastError}");
                     }
-                    var b = Evaluate(conditionCache.ConditionProg);
+                    var b = EvaluateCategory(conditionCache.ConditionProg);
                     if (b.IsError) {
                         LastError = $"CategoryName [{categoryName}],{conditionCache.Remark} condition `{conditionCache.ConditionString}` is error.\r\n{b.ErrorMsg}";
                         if (JumpConditionError) continue;
@@ -463,17 +463,17 @@ namespace ToolGood.Algorithm
 
         #endregion
 
-        #region TryEvaluate
+        #region TryEvaluateCategory
         /// <summary>
         /// 执行函数,如果异常，返回默认值
         /// </summary>
         /// <param name="categoryName"></param>
         /// <param name="def"></param>
         /// <returns></returns>
-        public ushort TryEvaluate(string categoryName, ushort def)
+        public ushort TryEvaluateCategory(string categoryName, ushort def)
         {
             try {
-                var obj = Evaluate(categoryName);
+                var obj = EvaluateCategory(categoryName);
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -491,10 +491,10 @@ namespace ToolGood.Algorithm
         /// <param name="categoryName"></param>
         /// <param name="def"></param>
         /// <returns></returns>
-        public uint TryEvaluate(string categoryName, uint def)
+        public uint TryEvaluateCategory(string categoryName, uint def)
         {
             try {
-                var obj = Evaluate(categoryName);
+                var obj = EvaluateCategory(categoryName);
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -512,10 +512,10 @@ namespace ToolGood.Algorithm
         /// <param name="categoryName"></param>
         /// <param name="def"></param>
         /// <returns></returns>
-        public ulong TryEvaluate(string categoryName, ulong def)
+        public ulong TryEvaluateCategory(string categoryName, ulong def)
         {
             try {
-                var obj = Evaluate(categoryName);
+                var obj = EvaluateCategory(categoryName);
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -533,10 +533,10 @@ namespace ToolGood.Algorithm
         /// <param name="categoryName"></param>
         /// <param name="def"></param>
         /// <returns></returns>
-        public short TryEvaluate(string categoryName, short def)
+        public short TryEvaluateCategory(string categoryName, short def)
         {
             try {
-                var obj = Evaluate(categoryName);
+                var obj = EvaluateCategory(categoryName);
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -554,10 +554,10 @@ namespace ToolGood.Algorithm
         /// <param name="categoryName"></param>
         /// <param name="def"></param>
         /// <returns></returns>
-        public int TryEvaluate(string categoryName, int def)
+        public int TryEvaluateCategory(string categoryName, int def)
         {
             try {
-                var obj = Evaluate(categoryName);
+                var obj = EvaluateCategory(categoryName);
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -575,10 +575,10 @@ namespace ToolGood.Algorithm
         /// <param name="categoryName"></param>
         /// <param name="def"></param>
         /// <returns></returns>
-        public long TryEvaluate(string categoryName, long def)
+        public long TryEvaluateCategory(string categoryName, long def)
         {
             try {
-                var obj = Evaluate(categoryName);
+                var obj = EvaluateCategory(categoryName);
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -596,10 +596,10 @@ namespace ToolGood.Algorithm
         /// <param name="categoryName"></param>
         /// <param name="def"></param>
         /// <returns></returns>
-        public float TryEvaluate(string categoryName, float def)
+        public float TryEvaluateCategory(string categoryName, float def)
         {
             try {
-                var obj = Evaluate(categoryName);
+                var obj = EvaluateCategory(categoryName);
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -617,10 +617,10 @@ namespace ToolGood.Algorithm
         /// <param name="categoryName"></param>
         /// <param name="def"></param>
         /// <returns></returns>
-        public double TryEvaluate(string categoryName, double def)
+        public double TryEvaluateCategory(string categoryName, double def)
         {
             try {
-                var obj = Evaluate(categoryName);
+                var obj = EvaluateCategory(categoryName);
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -638,10 +638,10 @@ namespace ToolGood.Algorithm
         /// <param name="categoryName"></param>
         /// <param name="def"></param>
         /// <returns></returns>
-        public decimal TryEvaluate(string categoryName, decimal def)
+        public decimal TryEvaluateCategory(string categoryName, decimal def)
         {
             try {
-                var obj = Evaluate(categoryName);
+                var obj = EvaluateCategory(categoryName);
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -659,10 +659,10 @@ namespace ToolGood.Algorithm
         /// <param name="categoryName"></param>
         /// <param name="def"></param>
         /// <returns></returns>
-        public string TryEvaluate(string categoryName, string def)
+        public string TryEvaluateCategory(string categoryName, string def)
         {
             try {
-                var obj = Evaluate(categoryName);
+                var obj = EvaluateCategory(categoryName);
                 if (obj.IsNull) {
                     return null;
                 }
@@ -683,10 +683,10 @@ namespace ToolGood.Algorithm
         /// <param name="categoryName"></param>
         /// <param name="def"></param>
         /// <returns></returns>
-        public bool TryEvaluate(string categoryName, bool def)
+        public bool TryEvaluateCategory(string categoryName, bool def)
         {
             try {
-                var obj = Evaluate(categoryName);
+                var obj = EvaluateCategory(categoryName);
                 obj = obj.ToBoolean("It can't be converted to bool!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -704,10 +704,10 @@ namespace ToolGood.Algorithm
         /// <param name="categoryName"></param>
         /// <param name="def"></param>
         /// <returns></returns>
-        public DateTime TryEvaluate(string categoryName, DateTime def)
+        public DateTime TryEvaluateCategory(string categoryName, DateTime def)
         {
             try {
-                var obj = Evaluate(categoryName);
+                var obj = EvaluateCategory(categoryName);
                 obj = obj.ToMyDate("It can't be converted to MyDate!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -725,10 +725,10 @@ namespace ToolGood.Algorithm
         /// <param name="categoryName"></param>
         /// <param name="def"></param>
         /// <returns></returns>
-        public TimeSpan TryEvaluate(string categoryName, TimeSpan def)
+        public TimeSpan TryEvaluateCategory(string categoryName, TimeSpan def)
         {
             try {
-                var obj = Evaluate(categoryName);
+                var obj = EvaluateCategory(categoryName);
                 obj = obj.ToMyDate("It can't be converted to MyDate!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -747,10 +747,10 @@ namespace ToolGood.Algorithm
         /// <param name="categoryName"></param>
         /// <param name="def"></param>
         /// <returns></returns>
-        public MyDate TryEvaluate_MyDate(string categoryName, MyDate def)
+        public MyDate TryEvaluateCategory_MyDate(string categoryName, MyDate def)
         {
             try {
-                var obj = Evaluate(categoryName);
+                var obj = EvaluateCategory(categoryName);
                 obj = obj.ToMyDate("It can't be converted to MyDate!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -764,17 +764,17 @@ namespace ToolGood.Algorithm
         }
         #endregion
 
-        #region TryEvaluateExp
+        #region TryEvaluate
         /// <summary>
         /// 执行函数,如果异常，返回默认值
         /// </summary>
         /// <param name="exp"></param>
         /// <param name="def"></param>
         /// <returns></returns>
-        public ushort TryEvaluateExp(string exp, ushort def)
+        public ushort TryEvaluate(string exp, ushort def)
         {
             try {
-                var obj = EvaluateExp(exp);
+                var obj = Evaluate(exp);
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -792,10 +792,10 @@ namespace ToolGood.Algorithm
         /// <param name="exp"></param>
         /// <param name="def"></param>
         /// <returns></returns>
-        public uint TryEvaluateExp(string exp, uint def)
+        public uint TryEvaluate(string exp, uint def)
         {
             try {
-                var obj = EvaluateExp(exp);
+                var obj = Evaluate(exp);
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -813,10 +813,10 @@ namespace ToolGood.Algorithm
         /// <param name="exp"></param>
         /// <param name="def"></param>
         /// <returns></returns>
-        public ulong TryEvaluateExp(string exp, ulong def)
+        public ulong TryEvaluate(string exp, ulong def)
         {
             try {
-                var obj = EvaluateExp(exp);
+                var obj = Evaluate(exp);
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -834,10 +834,10 @@ namespace ToolGood.Algorithm
         /// <param name="exp"></param>
         /// <param name="def"></param>
         /// <returns></returns>
-        public short TryEvaluateExp(string exp, short def)
+        public short TryEvaluate(string exp, short def)
         {
             try {
-                var obj = EvaluateExp(exp);
+                var obj = Evaluate(exp);
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -855,10 +855,10 @@ namespace ToolGood.Algorithm
         /// <param name="exp"></param>
         /// <param name="def"></param>
         /// <returns></returns>
-        public int TryEvaluateExp(string exp, int def)
+        public int TryEvaluate(string exp, int def)
         {
             try {
-                var obj = EvaluateExp(exp);
+                var obj = Evaluate(exp);
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -876,10 +876,10 @@ namespace ToolGood.Algorithm
         /// <param name="exp"></param>
         /// <param name="def"></param>
         /// <returns></returns>
-        public long TryEvaluateExp(string exp, long def)
+        public long TryEvaluate(string exp, long def)
         {
             try {
-                var obj = EvaluateExp(exp);
+                var obj = Evaluate(exp);
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -897,10 +897,10 @@ namespace ToolGood.Algorithm
         /// <param name="exp"></param>
         /// <param name="def"></param>
         /// <returns></returns>
-        public float TryEvaluateExp(string exp, float def)
+        public float TryEvaluate(string exp, float def)
         {
             try {
-                var obj = EvaluateExp(exp);
+                var obj = Evaluate(exp);
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -918,10 +918,10 @@ namespace ToolGood.Algorithm
         /// <param name="exp"></param>
         /// <param name="def"></param>
         /// <returns></returns>
-        public double TryEvaluateExp(string exp, double def)
+        public double TryEvaluate(string exp, double def)
         {
             try {
-                var obj = EvaluateExp(exp);
+                var obj = Evaluate(exp);
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -939,10 +939,10 @@ namespace ToolGood.Algorithm
         /// <param name="exp"></param>
         /// <param name="def"></param>
         /// <returns></returns>
-        public decimal TryEvaluateExp(string exp, decimal def)
+        public decimal TryEvaluate(string exp, decimal def)
         {
             try {
-                var obj = EvaluateExp(exp);
+                var obj = Evaluate(exp);
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -960,10 +960,10 @@ namespace ToolGood.Algorithm
         /// <param name="exp"></param>
         /// <param name="def"></param>
         /// <returns></returns>
-        public string TryEvaluateExp(string exp, string def)
+        public string TryEvaluate(string exp, string def)
         {
             try {
-                var obj = EvaluateExp(exp);
+                var obj = Evaluate(exp);
                 if (obj.IsNull) {
                     return null;
                 }
@@ -984,10 +984,10 @@ namespace ToolGood.Algorithm
         /// <param name="exp"></param>
         /// <param name="def"></param>
         /// <returns></returns>
-        public bool TryEvaluateExp(string exp, bool def)
+        public bool TryEvaluate(string exp, bool def)
         {
             try {
-                var obj = EvaluateExp(exp);
+                var obj = Evaluate(exp);
                 obj = obj.ToBoolean("It can't be converted to bool!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -1005,10 +1005,10 @@ namespace ToolGood.Algorithm
         /// <param name="exp"></param>
         /// <param name="def"></param>
         /// <returns></returns>
-        public DateTime TryEvaluateExp(string exp, DateTime def)
+        public DateTime TryEvaluate(string exp, DateTime def)
         {
             try {
-                var obj = EvaluateExp(exp);
+                var obj = Evaluate(exp);
                 obj = obj.ToMyDate("It can't be converted to MyDate!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -1026,10 +1026,10 @@ namespace ToolGood.Algorithm
         /// <param name="exp"></param>
         /// <param name="def"></param>
         /// <returns></returns>
-        public TimeSpan TryEvaluateExp(string exp, TimeSpan def)
+        public TimeSpan TryEvaluate(string exp, TimeSpan def)
         {
             try {
-                var obj = EvaluateExp(exp);
+                var obj = Evaluate(exp);
                 obj = obj.ToMyDate("It can't be converted to MyDate!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -1048,10 +1048,10 @@ namespace ToolGood.Algorithm
         /// <param name="exp"></param>
         /// <param name="def"></param>
         /// <returns></returns>
-        public MyDate TryEvaluateExp_MyDate(string exp, MyDate def)
+        public MyDate TryEvaluate_MyDate(string exp, MyDate def)
         {
             try {
-                var obj = EvaluateExp(exp);
+                var obj = Evaluate(exp);
                 obj = obj.ToMyDate("It can't be converted to MyDate!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -1100,7 +1100,7 @@ namespace ToolGood.Algorithm
                 } else {
                     String d = "";
                     try {
-                        Operand operand = EvaluateExp(s);
+                        Operand operand = Evaluate(s);
                         d = operand.ToText().TextValue;
                     } catch (Exception) { }
                     stringBuilder.Append(d);
@@ -1113,13 +1113,13 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="exp"></param>
         /// <returns></returns>
-        public Operand EvaluateExp(string exp)
+        public Operand Evaluate(string exp)
         {
             ProgContext context = Parse(exp);
             if (context == null) {
                 return Operand.Create(LastError);
             }
-            return Evaluate(context);
+            return EvaluateCategory(context);
         }
 
         private ProgContext Parse(string exp)

@@ -37,7 +37,7 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineEx
                 Radius = 3
             };
             PriceAlgorithm priceAlgorithm = new PriceAlgorithm(multiConditionCache, desk);
-            var p1 = priceAlgorithm.TryEvaluate("价格", 0.0);
+            var p1 = priceAlgorithm.TryEvaluateCategory("价格", 0.0);
             Assert.AreEqual(3 * 3 * Math.PI * 1.5, p1, 0.0001);
 
             Desk desk2 = new Desk() {
@@ -47,7 +47,7 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineEx
                 Heigth = 1
             };
             priceAlgorithm = new PriceAlgorithm(multiConditionCache, desk2);
-            var p2 = priceAlgorithm.TryEvaluate("价格", 0.0);
+            var p2 = priceAlgorithm.TryEvaluateCategory("价格", 0.0);
             Assert.AreEqual(3 * 1.3 * 2 + 1 * 1.1, p2, 0.0001);
 
 
@@ -58,12 +58,12 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineEx
                 Heigth = 1
             };
             priceAlgorithm = new PriceAlgorithm(multiConditionCache, desk3);
-            var p3 = priceAlgorithm.TryEvaluate("价格", 0.0);
+            var p3 = priceAlgorithm.TryEvaluateCategory("价格", 0.0);
             Assert.AreEqual(0, p3, 0.001);
             Assert.AreEqual("CategoryName [价格] is missing.", priceAlgorithm.LastError);
 
 
-            var p4 = priceAlgorithm.TryEvaluate("出错了", 0.0);
+            var p4 = priceAlgorithm.TryEvaluateCategory("出错了", 0.0);
 
 
             var tt = priceAlgorithm.EvaluateFormula("长-宽-高", '-');
@@ -96,7 +96,7 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineEx
                 Radius = 3
             };
             PriceAlgorithm priceAlgorithm = new PriceAlgorithm(multiConditionCache, desk);
-            var p1 = priceAlgorithm.TryEvaluate("价格", 0.0);
+            var p1 = priceAlgorithm.TryEvaluateCategory("价格", 0.0);
             Assert.AreEqual(3 * 3 * Math.PI * 1.5, p1, 0.0001);
 
             Desk desk2 = new Desk() {
@@ -106,7 +106,7 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineEx
                 Heigth = 1
             };
             priceAlgorithm = new PriceAlgorithm(multiConditionCache, desk2);
-            var p2 = priceAlgorithm.TryEvaluate("价格", 0.0);
+            var p2 = priceAlgorithm.TryEvaluateCategory("价格", 0.0);
             Assert.AreEqual(3 * 1.3 * 2 + 1 * 1.1, p2, 0.0001);
 
 
@@ -117,12 +117,12 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineEx
                 Heigth = 1
             };
             priceAlgorithm = new PriceAlgorithm(multiConditionCache, desk3);
-            var p3 = priceAlgorithm.TryEvaluate("价格", 0.0);
+            var p3 = priceAlgorithm.TryEvaluateCategory("价格", 0.0);
             Assert.AreEqual(0, p3, 0.001);
             Assert.AreEqual("CategoryName [价格] is missing.", priceAlgorithm.LastError);
 
 
-            var p4 = priceAlgorithm.TryEvaluate("出错了", 0.0);
+            var p4 = priceAlgorithm.TryEvaluateCategory("出错了", 0.0);
 
         }
         [Test]
@@ -168,7 +168,7 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineEx
             algoEngine.AddParameter("宽", 1.3);
             algoEngine.AddParameter("高", 1);
 
-            var p2 = algoEngine.TryEvaluate("价格", 0.0);
+            var p2 = algoEngine.TryEvaluateCategory("价格", 0.0);
             Assert.AreEqual(3 * 1.3 * 2 + 1 * 1.1, p2, 0.0001);
 
         }
