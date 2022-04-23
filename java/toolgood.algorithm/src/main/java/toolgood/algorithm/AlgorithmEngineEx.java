@@ -46,7 +46,7 @@ public class AlgorithmEngineEx {
     /**
      * 跳过条件错误
      */
-    public Boolean JumpConditionError = false;
+    public Boolean JumpConditionError = true;
     /**
      * 跳过公式错误
      */
@@ -88,7 +88,7 @@ public class AlgorithmEngineEx {
             if (conditionCache.GetFormulaProg() == null)
                 continue;
             if (conditionCache.GetConditionProg() != null) {
-                Operand b = Evaluate(conditionCache.GetConditionProg());
+                Operand b = EvaluateCategory(conditionCache.GetConditionProg());
                 if (b.IsError()) {
                     LastError = "Parameter [" + parameter + "]," + conditionCache.Remark
                             + " condition `" + conditionCache.ConditionString + "` is error.\r\n" + b.ErrorMsg();
@@ -99,7 +99,7 @@ public class AlgorithmEngineEx {
                 if (b.BooleanValue() == false)
                     continue;
             }
-            Operand operand = Evaluate(conditionCache.GetFormulaProg());
+            Operand operand = EvaluateCategory(conditionCache.GetFormulaProg());
             if (operand.IsError()) {
                 LastError = "Parameter [" + parameter + "]," + conditionCache.Remark
                         + " formula `" + conditionCache.FormulaString + "` is error.\r\n" + operand.ErrorMsg();
@@ -128,7 +128,7 @@ public class AlgorithmEngineEx {
      * @param categoryName
      * @return
      */
-    public Operand Evaluate(String categoryName) {
+    public Operand EvaluateCategory(String categoryName) {
         LastError = null;
         Operand operand;
         ArrayList<ConditionCacheInfo> conditionCaches = MultiConditionCache.GetConditionCaches(categoryName);
@@ -141,7 +141,7 @@ public class AlgorithmEngineEx {
                             + "  parse condition  `" + conditionCache.ConditionString + "` is error.\r\n"
                             + conditionCache.LastError);
                 }
-                Operand b = Evaluate(conditionCache.GetConditionProg());
+                Operand b = EvaluateCategory(conditionCache.GetConditionProg());
                 if (b.IsError()) {
                     LastError = "Parameter [" + categoryName + "]," + conditionCache.Remark
                             + " condition `" + conditionCache.ConditionString + "` is error.\r\n" + b.ErrorMsg();
@@ -157,7 +157,7 @@ public class AlgorithmEngineEx {
                         + "  parse formula  `" + conditionCache.FormulaString + "` is error.\r\n"
                         + conditionCache.LastError);
             }
-            operand = Evaluate(conditionCache.GetFormulaProg());
+            operand = EvaluateCategory(conditionCache.GetFormulaProg());
             if (operand.IsError()) {
                 LastError = "Parameter [" + categoryName + "]," + conditionCache.Remark
                         + " formula `" + conditionCache.FormulaString + "` is error.\r\n" + operand.ErrorMsg();
@@ -189,7 +189,7 @@ public class AlgorithmEngineEx {
                             + "  parse condition  `" + conditionCache.ConditionString + "` is error.\r\n"
                             + conditionCache.LastError);
                 }
-                Operand b = Evaluate(conditionCache.GetConditionProg());
+                Operand b = EvaluateCategory(conditionCache.GetConditionProg());
                 if (b.IsError()) {
                     LastError = "Parameter [" + categoryName + "]," + conditionCache.Remark
                             + " condition `" + conditionCache.ConditionString + "` is error.\r\n" + b.ErrorMsg();
@@ -324,9 +324,9 @@ public class AlgorithmEngineEx {
         throw new Exception("Parameter is not json String.");
     }
 
-    public int TryEvaluate(final String categoryName, final int defvalue) {
+    public int TryEvaluateCategory(final String categoryName, final int defvalue) {
         try {
-            Operand obj = Evaluate(categoryName);
+            Operand obj = EvaluateCategory(categoryName);
             obj = obj.ToNumber("It can't be converted to number!");
             if (obj.IsError()) {
                 LastError = obj.ErrorMsg();
@@ -339,9 +339,9 @@ public class AlgorithmEngineEx {
         return defvalue;
     }
 
-    public double TryEvaluate(final String categoryName, final double defvalue) {
+    public double TryEvaluateCategory(final String categoryName, final double defvalue) {
         try {
-            Operand obj = Evaluate(categoryName);
+            Operand obj = EvaluateCategory(categoryName);
             obj = obj.ToNumber("It can't be converted to number!");
             if (obj.IsError()) {
                 LastError = obj.ErrorMsg();
@@ -354,9 +354,9 @@ public class AlgorithmEngineEx {
         return defvalue;
     }
 
-    public String TryEvaluate(final String categoryName, final String defvalue) {
+    public String TryEvaluateCategory(final String categoryName, final String defvalue) {
         try {
-            Operand obj = Evaluate(categoryName);
+            Operand obj = EvaluateCategory(categoryName);
             if (obj.IsNull()) {
                 return null;
             }
@@ -372,9 +372,9 @@ public class AlgorithmEngineEx {
         return defvalue;
     }
 
-    public boolean TryEvaluate(final String categoryName, final boolean defvalue) {
+    public boolean TryEvaluateCategory(final String categoryName, final boolean defvalue) {
         try {
-            Operand obj = Evaluate(categoryName);
+            Operand obj = EvaluateCategory(categoryName);
             obj = obj.ToBoolean("It can't be converted to bool!");
             if (obj.IsError()) {
                 LastError = obj.ErrorMsg();
@@ -387,9 +387,9 @@ public class AlgorithmEngineEx {
         return defvalue;
     }
 
-    public DateTime TryEvaluate(final String categoryName, final DateTime defvalue) {
+    public DateTime TryEvaluateCategory(final String categoryName, final DateTime defvalue) {
         try {
-            Operand obj = Evaluate(categoryName);
+            Operand obj = EvaluateCategory(categoryName);
             obj = obj.ToDate("It can't be converted to bool!");
             if (obj.IsError()) {
                 LastError = obj.ErrorMsg();
@@ -402,9 +402,102 @@ public class AlgorithmEngineEx {
         return defvalue;
     }
 
-    public MyDate TryEvaluate(final String categoryName, final MyDate defvalue) {
+    public MyDate TryEvaluateCategory(final String categoryName, final MyDate defvalue) {
         try {
-            Operand obj = Evaluate(categoryName);
+            Operand obj = EvaluateCategory(categoryName);
+            obj = obj.ToDate("It can't be converted to bool!");
+            if (obj.IsError()) {
+                LastError = obj.ErrorMsg();
+                return defvalue;
+            }
+            return obj.DateValue();
+        } catch (final Exception ex) {
+            LastError = ex.getMessage();
+        }
+        return defvalue;
+    }
+    
+    public int TryEvaluate(final String exp, final int defvalue) {
+        try {
+            Operand obj = Evaluate(exp);
+            obj = obj.ToNumber("It can't be converted to number!");
+            if (obj.IsError()) {
+                LastError = obj.ErrorMsg();
+                return defvalue;
+            }
+            return obj.IntValue();
+        } catch (final Exception ex) {
+            LastError = ex.getMessage();
+        }
+        return defvalue;
+    }
+
+    public double TryEvaluate(final String exp, final double defvalue) {
+        try {
+            Operand obj = Evaluate(exp);
+            obj = obj.ToNumber("It can't be converted to number!");
+            if (obj.IsError()) {
+                LastError = obj.ErrorMsg();
+                return defvalue;
+            }
+            return obj.NumberValue();
+        } catch (final Exception ex) {
+            LastError = ex.getMessage();
+        }
+        return defvalue;
+    }
+
+    public String TryEvaluate(final String exp, final String defvalue) {
+        try {
+            Operand obj = Evaluate(exp);
+            if (obj.IsNull()) {
+                return null;
+            }
+            obj = obj.ToText("It can't be converted to String!");
+            if (obj.IsError()) {
+                LastError = obj.ErrorMsg();
+                return defvalue;
+            }
+            return obj.TextValue();
+        } catch (final Exception ex) {
+            LastError = ex.getMessage();
+        }
+        return defvalue;
+    }
+
+    public boolean TryEvaluate(final String exp, final boolean defvalue) {
+        try {
+            Operand obj = Evaluate(exp);
+            obj = obj.ToBoolean("It can't be converted to bool!");
+            if (obj.IsError()) {
+                LastError = obj.ErrorMsg();
+                return defvalue;
+            }
+            return obj.BooleanValue();
+        } catch (final Exception ex) {
+            LastError = ex.getMessage();
+        }
+        return defvalue;
+    }
+
+    public DateTime TryEvaluate(final String exp, final DateTime defvalue) {
+        try {
+            Operand obj = Evaluate(exp);
+            obj = obj.ToDate("It can't be converted to bool!");
+            if (obj.IsError()) {
+                LastError = obj.ErrorMsg();
+                return defvalue;
+            }
+            return obj.DateValue().ToDateTime();
+        } catch (final Exception ex) {
+            LastError = ex.getMessage();
+        }
+        return defvalue;
+    }
+
+    public MyDate TryEvaluate(final String exp, final MyDate defvalue) {
+        try {
+            Operand obj = Evaluate(exp);
             obj = obj.ToDate("It can't be converted to bool!");
             if (obj.IsError()) {
                 LastError = obj.ErrorMsg();
@@ -417,7 +510,9 @@ public class AlgorithmEngineEx {
         return defvalue;
     }
 
-    private Operand Evaluate(ProgContext context) {
+
+
+    private Operand EvaluateCategory(ProgContext context) {
         try {
             final MathVisitor visitor = new MathVisitor();
             visitor.GetParameter = f -> {
@@ -473,7 +568,7 @@ public class AlgorithmEngineEx {
             } else {
                 String d = "";
                 try {
-                    Operand operand = EvaluateOnce(s);
+                    Operand operand = Evaluate(s);
                     d = operand.ToText("").TextValue();
                 } catch (Exception ex) {
                 }
@@ -488,9 +583,12 @@ public class AlgorithmEngineEx {
     /// </summary>
     /// <param name="exp"></param>
     /// <returns></returns>
-    protected Operand EvaluateOnce(String exp) {
+    public Operand Evaluate(String exp) {
         ProgContext context = Parse(exp);
-        return Evaluate(context);
+        if (context == null) {
+            return Operand.Create(LastError);
+        }
+        return EvaluateCategory(context);
     }
 
     private ProgContext Parse(String exp) {

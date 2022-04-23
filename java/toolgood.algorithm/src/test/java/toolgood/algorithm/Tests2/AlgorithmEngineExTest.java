@@ -30,7 +30,7 @@ public class AlgorithmEngineExTest {
         desk.Radius = 3;
 
         PriceAlgorithm priceAlgorithm = new PriceAlgorithm(multiConditionCache, desk);
-        Double p1 = priceAlgorithm.TryEvaluate("价格", 0.0);
+        Double p1 = priceAlgorithm.TryEvaluateCategory("价格", 0.0);
         assertEquals(3 * 3 * Math.PI * 1.5, p1, 0.0001);
 
         Desk desk2 = new Desk();
@@ -39,7 +39,7 @@ public class AlgorithmEngineExTest {
         desk2.Width = 1.3;
         desk2.Heigth = 1;
         priceAlgorithm = new PriceAlgorithm(multiConditionCache, desk2);
-        Double p2 = priceAlgorithm.TryEvaluate("价格", 0.0);
+        Double p2 = priceAlgorithm.TryEvaluateCategory("价格", 0.0);
         assertEquals(3 * 1.3 * 2 + 1 * 1.1, p2, 0.0001);
 
         Desk desk3 = new Desk();
@@ -49,11 +49,11 @@ public class AlgorithmEngineExTest {
         desk3.Heigth = 1;
 
         priceAlgorithm = new PriceAlgorithm(multiConditionCache, desk3);
-        Double p3 = priceAlgorithm.TryEvaluate("价格", 0.0);
+        Double p3 = priceAlgorithm.TryEvaluateCategory("价格", 0.0);
         assertEquals(0, p3, 0.001);
         assertEquals("CategoryName [价格] is missing.", priceAlgorithm.LastError);
 
-        Double p4 = priceAlgorithm.TryEvaluate("出错了", 0.0);
+        Double p4 = priceAlgorithm.TryEvaluateCategory("出错了", 0.0);
     }
 
     @Test
@@ -80,7 +80,7 @@ public class AlgorithmEngineExTest {
         desk.Radius = 3;
 
         PriceAlgorithm priceAlgorithm = new PriceAlgorithm(multiConditionCache, desk);
-        Double p1 = priceAlgorithm.TryEvaluate("价格", 0.0);
+        Double p1 = priceAlgorithm.TryEvaluateCategory("价格", 0.0);
         assertEquals(3 * 3 * Math.PI * 1.5, p1, 0.0001);
 
         Desk desk2 = new Desk();
@@ -89,7 +89,7 @@ public class AlgorithmEngineExTest {
         desk2.Width = 1.3;
         desk2.Heigth = 1;
         priceAlgorithm = new PriceAlgorithm(multiConditionCache, desk2);
-        Double p2 = priceAlgorithm.TryEvaluate("价格", 0.0);
+        Double p2 = priceAlgorithm.TryEvaluateCategory("价格", 0.0);
         assertEquals(3 * 1.3 * 2 + 1 * 1.1, p2, 0.0001);
 
         Desk desk3 = new Desk();
@@ -99,11 +99,11 @@ public class AlgorithmEngineExTest {
         desk3.Heigth = 1;
 
         priceAlgorithm = new PriceAlgorithm(multiConditionCache, desk3);
-        Double p3 = priceAlgorithm.TryEvaluate("价格", 0.0);
+        Double p3 = priceAlgorithm.TryEvaluateCategory("价格", 0.0);
         assertEquals(0, p3, 0.001);
         assertEquals("CategoryName [价格] is missing.", priceAlgorithm.LastError);
 
-        Double p4 = priceAlgorithm.TryEvaluate("出错了", 0.0);
+        Double p4 = priceAlgorithm.TryEvaluateCategory("出错了", 0.0);
 
         String tt = priceAlgorithm.EvaluateFormula("长-宽-高", '-');
         assertEquals("9-1.3-1", tt);
@@ -154,7 +154,7 @@ public class AlgorithmEngineExTest {
         algoEngine.AddParameter("宽", 1.3);
         algoEngine.AddParameter("高", 1);
 
-        Double p2 = algoEngine.TryEvaluate("价格", 0.0);
+        Double p2 = algoEngine.TryEvaluateCategory("价格", 0.0);
         assertEquals(3 * 1.3 * 2 + 1 * 1.1, p2, 0.0001);
 
     }
