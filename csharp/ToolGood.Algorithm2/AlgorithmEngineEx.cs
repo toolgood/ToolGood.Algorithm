@@ -764,6 +764,310 @@ namespace ToolGood.Algorithm
         }
         #endregion
 
+        #region TryEvaluateExp
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
+        public ushort TryEvaluateExp(string exp, ushort def)
+        {
+            try {
+                var obj = EvaluateExp(exp);
+                obj = obj.ToNumber("It can't be converted to number!");
+                if (obj.IsError) {
+                    LastError = obj.ErrorMsg;
+                    return def;
+                }
+                return (ushort)obj.IntValue;
+            } catch (Exception ex) {
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
+            }
+            return def;
+        }
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
+        public uint TryEvaluateExp(string exp, uint def)
+        {
+            try {
+                var obj = EvaluateExp(exp);
+                obj = obj.ToNumber("It can't be converted to number!");
+                if (obj.IsError) {
+                    LastError = obj.ErrorMsg;
+                    return def;
+                }
+                return (uint)obj.IntValue;
+            } catch (Exception ex) {
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
+            }
+            return def;
+        }
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
+        public ulong TryEvaluateExp(string exp, ulong def)
+        {
+            try {
+                var obj = EvaluateExp(exp);
+                obj = obj.ToNumber("It can't be converted to number!");
+                if (obj.IsError) {
+                    LastError = obj.ErrorMsg;
+                    return def;
+                }
+                return (ulong)obj.IntValue;
+            } catch (Exception ex) {
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
+            }
+            return def;
+        }
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
+        public short TryEvaluateExp(string exp, short def)
+        {
+            try {
+                var obj = EvaluateExp(exp);
+                obj = obj.ToNumber("It can't be converted to number!");
+                if (obj.IsError) {
+                    LastError = obj.ErrorMsg;
+                    return def;
+                }
+                return (short)obj.IntValue;
+            } catch (Exception ex) {
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
+            }
+            return def;
+        }
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
+        public int TryEvaluateExp(string exp, int def)
+        {
+            try {
+                var obj = EvaluateExp(exp);
+                obj = obj.ToNumber("It can't be converted to number!");
+                if (obj.IsError) {
+                    LastError = obj.ErrorMsg;
+                    return def;
+                }
+                return obj.IntValue;
+            } catch (Exception ex) {
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
+            }
+            return def;
+        }
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
+        public long TryEvaluateExp(string exp, long def)
+        {
+            try {
+                var obj = EvaluateExp(exp);
+                obj = obj.ToNumber("It can't be converted to number!");
+                if (obj.IsError) {
+                    LastError = obj.ErrorMsg;
+                    return def;
+                }
+                return obj.IntValue;
+            } catch (Exception ex) {
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
+            }
+            return def;
+        }
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
+        public float TryEvaluateExp(string exp, float def)
+        {
+            try {
+                var obj = EvaluateExp(exp);
+                obj = obj.ToNumber("It can't be converted to number!");
+                if (obj.IsError) {
+                    LastError = obj.ErrorMsg;
+                    return def;
+                }
+                return (float)obj.NumberValue;
+            } catch (Exception ex) {
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
+            }
+            return def;
+        }
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
+        public double TryEvaluateExp(string exp, double def)
+        {
+            try {
+                var obj = EvaluateExp(exp);
+                obj = obj.ToNumber("It can't be converted to number!");
+                if (obj.IsError) {
+                    LastError = obj.ErrorMsg;
+                    return def;
+                }
+                return obj.NumberValue;
+            } catch (Exception ex) {
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
+            }
+            return def;
+        }
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
+        public decimal TryEvaluateExp(string exp, decimal def)
+        {
+            try {
+                var obj = EvaluateExp(exp);
+                obj = obj.ToNumber("It can't be converted to number!");
+                if (obj.IsError) {
+                    LastError = obj.ErrorMsg;
+                    return def;
+                }
+                return (decimal)obj.NumberValue;
+            } catch (Exception ex) {
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
+            }
+            return def;
+        }
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
+        public string TryEvaluateExp(string exp, string def)
+        {
+            try {
+                var obj = EvaluateExp(exp);
+                if (obj.IsNull) {
+                    return null;
+                }
+                obj = obj.ToText("It can't be converted to string!");
+                if (obj.IsError) {
+                    LastError = obj.ErrorMsg;
+                    return def;
+                }
+                return obj.TextValue;
+            } catch (Exception ex) {
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
+            }
+            return def;
+        }
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
+        public bool TryEvaluateExp(string exp, bool def)
+        {
+            try {
+                var obj = EvaluateExp(exp);
+                obj = obj.ToBoolean("It can't be converted to bool!");
+                if (obj.IsError) {
+                    LastError = obj.ErrorMsg;
+                    return def;
+                }
+                return obj.BooleanValue;
+            } catch (Exception ex) {
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
+            }
+            return def;
+        }
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
+        public DateTime TryEvaluateExp(string exp, DateTime def)
+        {
+            try {
+                var obj = EvaluateExp(exp);
+                obj = obj.ToMyDate("It can't be converted to MyDate!");
+                if (obj.IsError) {
+                    LastError = obj.ErrorMsg;
+                    return def;
+                }
+                return (DateTime)obj.DateValue;
+            } catch (Exception ex) {
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
+            }
+            return def;
+        }
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
+        public TimeSpan TryEvaluateExp(string exp, TimeSpan def)
+        {
+            try {
+                var obj = EvaluateExp(exp);
+                obj = obj.ToMyDate("It can't be converted to MyDate!");
+                if (obj.IsError) {
+                    LastError = obj.ErrorMsg;
+                    return def;
+                }
+                return (TimeSpan)obj.DateValue;
+            } catch (Exception ex) {
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
+            }
+            return def;
+        }
+        /// <summary>
+        /// 执行函数,如果异常，返回默认值。
+        /// 解决 def 为 null 二义性问题
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
+        public MyDate TryEvaluateExp_MyDate(string exp, MyDate def)
+        {
+            try {
+                var obj = EvaluateExp(exp);
+                obj = obj.ToMyDate("It can't be converted to MyDate!");
+                if (obj.IsError) {
+                    LastError = obj.ErrorMsg;
+                    return def;
+                }
+                return obj.DateValue;
+            } catch (Exception ex) {
+                LastError = ex.Message + "\r\n" + ex.StackTrace;
+            }
+            return def;
+        }
+
+
+
+        #endregion
+
         #region EvaluateFormula
         /// <summary>
         /// 计算公式
@@ -796,7 +1100,7 @@ namespace ToolGood.Algorithm
                 } else {
                     String d = "";
                     try {
-                        Operand operand = EvaluateOnce(s);
+                        Operand operand = EvaluateExp(s);
                         d = operand.ToText().TextValue;
                     } catch (Exception) { }
                     stringBuilder.Append(d);
@@ -809,7 +1113,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="exp"></param>
         /// <returns></returns>
-        public Operand EvaluateOnce(string exp)
+        public Operand EvaluateExp(string exp)
         {
             ProgContext context = Parse(exp);
             if (context == null) {
