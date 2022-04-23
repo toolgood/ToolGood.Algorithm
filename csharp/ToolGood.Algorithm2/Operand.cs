@@ -11,10 +11,21 @@ namespace ToolGood.Algorithm
     public abstract class Operand : IDisposable
     {
         private static readonly CultureInfo cultureInfo = CultureInfo.GetCultureInfo("en-US");
-
+        /// <summary>
+        /// True
+        /// </summary>
         public static readonly Operand True = new OperandBoolean(true);
+        /// <summary>
+        /// False
+        /// </summary>
         public static readonly Operand False = new OperandBoolean(false);
+        /// <summary>
+        /// One
+        /// </summary>
         public static readonly Operand One = Operand.Create(1);
+        /// <summary>
+        /// Zero
+        /// </summary>
         public static readonly Operand Zero = Operand.Create(0);
 
         /// <summary>
@@ -422,73 +433,139 @@ namespace ToolGood.Algorithm
 
         #region Operand
         #region number
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
         public static implicit operator Operand(Int16 obj)
         {
             return Operand.Create((int)obj);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
         public static implicit operator Operand(Int32 obj)
         {
             return Operand.Create(obj);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
         public static implicit operator Operand(Int64 obj)
         {
             return Operand.Create((double)obj);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
         public static implicit operator Operand(UInt16 obj)
         {
             return Operand.Create((double)obj);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
         public static implicit operator Operand(UInt32 obj)
         {
             return Operand.Create((double)obj);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
         public static implicit operator Operand(UInt64 obj)
         {
             return Operand.Create((double)obj);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
         public static implicit operator Operand(float obj)
         {
             return Operand.Create((double)obj);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
         public static implicit operator Operand(double obj)
         {
             return Operand.Create(obj);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
         public static implicit operator Operand(decimal obj)
         {
             return Operand.Create((double)obj);
         }
         #endregion
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
         public static implicit operator Operand(bool obj)
         {
             return Operand.Create(obj);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
         public static implicit operator Operand(string obj)
         {
             return Operand.Create(obj);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
         public static implicit operator Operand(DateTime obj)
         {
             return Operand.Create(obj);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
         public static implicit operator Operand(TimeSpan obj)
         {
             return Operand.Create(obj);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
         public static implicit operator Operand(List<string> obj)
         {
             return Operand.Create(obj);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
         public static implicit operator Operand(List<bool> obj)
         {
             return Operand.Create(obj);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
         public static implicit operator Operand(List<int> obj)
         {
             return Operand.Create(obj);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
         public static implicit operator Operand(List<double> obj)
         {
             return Operand.Create(obj);

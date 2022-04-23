@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace ToolGood.Algorithm.Internals
 {
+    /// <summary>
+    /// 条件树
+    /// </summary>
     public class ConditionTree
     {
         /// <summary>
@@ -31,11 +34,16 @@ namespace ToolGood.Algorithm.Internals
         /// </summary>
         public String ErrorMessage { get; internal set; }
 
+
         internal ConditionTree()
         {
         }
 
-
+        /// <summary>
+        /// 解析
+        /// </summary>
+        /// <param name="condition"></param>
+        /// <returns></returns>
         public static ConditionTree Parse(string condition)
         {
             ConditionTree tree = new ConditionTree();

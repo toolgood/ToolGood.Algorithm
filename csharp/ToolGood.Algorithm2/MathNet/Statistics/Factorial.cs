@@ -2,7 +2,7 @@
 
 namespace ToolGood.Algorithm.MathNet.Numerics
 {
-    public partial class SpecialFunctions
+    partial class SpecialFunctions
     {
         static double[] _factorialCache;
 

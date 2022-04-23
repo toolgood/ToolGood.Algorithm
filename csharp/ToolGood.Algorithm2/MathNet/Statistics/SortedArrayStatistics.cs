@@ -3,7 +3,7 @@
 
 namespace ToolGood.Algorithm.MathNet.Numerics.Statistics
 {
-    public static partial class SortedArrayStatistics
+    static partial class SortedArrayStatistics
     {
         public static double QuantileRank(double[] data, double x)
         {
@@ -27,17 +27,17 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Statistics
                     right++;
                 }
 
-                
+
                 return left / (double)(data.Length - 1);
 
             } else {
                 right = ~right;
                 int left = right - 1;
 
-           
-                            var a = left / (double)(data.Length - 1);
-                            var b = right / (double)(data.Length - 1);
-                            return ((data[right] - x) * a + (x - data[left]) * b) / (data[right] - data[left]);
+
+                var a = left / (double)(data.Length - 1);
+                var b = right / (double)(data.Length - 1);
+                return ((data[right] - x) * a + (x - data[left]) * b) / (data[right] - data[left]);
             }
         }
 

@@ -4,7 +4,7 @@
 
 namespace ToolGood.Algorithm.MathNet.Numerics
 {
-    public static partial class ExcelFunctions
+    static partial class ExcelFunctions
     {
         public static double GAMMALN(double z)
         {
@@ -62,7 +62,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
             }
             return Poisson.CDF(lambda, k);
         }
-        public static double WEIBULL(double x, double shape, double scale,  bool state)
+        public static double WEIBULL(double x, double shape, double scale, bool state)
         {
             if (state == false) {
                 return Weibull.PDF(shape, scale, x);
@@ -70,6 +70,6 @@ namespace ToolGood.Algorithm.MathNet.Numerics
             return Weibull.CDF(shape, scale, x);
         }
 
-       
+
     }
 }

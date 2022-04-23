@@ -2,7 +2,7 @@
 
 namespace ToolGood.Algorithm.MathNet.Numerics
 {
-    public static class Evaluate
+    static class Evaluate
     {
         public static double Polynomial(double z, params double[] coefficients)
         {

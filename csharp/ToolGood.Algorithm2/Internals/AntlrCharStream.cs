@@ -25,7 +25,6 @@ namespace ToolGood.Algorithm.Internals
         /// all characters to upper case or lower case.
         /// </summary>
         /// <param name="stream">The stream to wrap.</param>
-        /// <param name="upper">If true force each symbol to upper case, otherwise force to lower.</param>
         public AntlrCharStream(ICharStream stream)
         {
             this.stream = stream;

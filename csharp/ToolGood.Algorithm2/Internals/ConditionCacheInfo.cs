@@ -4,17 +4,26 @@ using static mathParser;
 
 namespace ToolGood.Algorithm.Internals
 {
-    internal class ConditionCacheInfo
+    /// <summary>
+    /// 条件缓存
+    /// </summary>
+    public class ConditionCacheInfo
     {
-
+        /// <summary>
+        /// 类型名
+        /// </summary>
         public string CategoryName;
-
+        /// <summary>
+        /// 备注
+        /// </summary>
         public string Remark;
-
+        /// <summary>
+        /// 条件字符串
+        /// </summary>
         public string ConditionString;
 
         private ProgContext _ConditionProg;
-        public ProgContext ConditionProg {
+        internal ProgContext ConditionProg {
             get {
                 if (_ConditionProg == null && string.IsNullOrEmpty(ConditionString) == false && string.IsNullOrEmpty(LastError)) {
                     _ConditionProg = Parse(ConditionString);
@@ -23,10 +32,12 @@ namespace ToolGood.Algorithm.Internals
             }
             set { _ConditionProg = value; }
         }
-
+        /// <summary>
+        /// 工式字符串
+        /// </summary>
         public string FormulaString;
         private ProgContext _FormulaProg;
-        public ProgContext FormulaProg {
+        internal ProgContext FormulaProg {
             get {
                 if (_FormulaProg == null && string.IsNullOrEmpty(FormulaString) == false && string.IsNullOrEmpty(LastError)) {
                     _FormulaProg = Parse(FormulaString);
@@ -36,7 +47,9 @@ namespace ToolGood.Algorithm.Internals
             set { _FormulaProg = value; }
         }
 
-
+        /// <summary>
+        /// 最后错误信息
+        /// </summary>
         public string LastError;
         private ProgContext Parse(string exp)
         {

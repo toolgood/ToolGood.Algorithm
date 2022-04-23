@@ -6,7 +6,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.RootFinding
     /// Algorithm by by Brent, Van Wijngaarden, Dekker et al.
     /// Implementation inspired by Press, Teukolsky, Vetterling, and Flannery, "Numerical Recipes in C", 2nd edition, Cambridge University Press
     /// </summary>
-    public static class Brent
+    static class Brent
     {
         public static double FindRoot(Func<double, double> f, double lowerBound, double upperBound, double accuracy = 1e-8, int maxIterations = 100)
         {

@@ -2,7 +2,10 @@
 
 namespace ToolGood.Algorithm.MathNet.Numerics
 {
-    public static partial class Precision
+    /// <summary>
+    /// Precision
+    /// </summary>
+    static partial class Precision
     {
         /// <summary>
         /// Standard epsilon, the maximum relative precision of IEEE 754 double-precision floating numbers (64 bit).
@@ -21,7 +24,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
         /// </summary>
         static readonly double DefaultDoubleAccuracy = DoublePrecision * 10;
 
- 
+
         /// <summary>
         /// Increments a floating point number to the next bigger number representable by the data type.
         /// </summary>
@@ -37,7 +40,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
             if (double.IsInfinity(value) || double.IsNaN(value) || count == 0) {
                 return value;
             }
-  
+
             // Translate the bit pattern of the double to an integer.
             // Note that this leads to:
             // double > 0 --> long > 0, growing as the double value grows
@@ -60,7 +63,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
             // which return weird values like infinity and NaN
             return BitConverter.Int64BitsToDouble(intValue);
         }
- 
+
         /// <summary>
         /// Evaluates the minimum distance to the next distinguishable number near the argument value.
         /// </summary>
@@ -86,7 +89,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
             }
             return value - BitConverter.Int64BitsToDouble(signed64);
         }
-         
+
         /// <summary>
         /// Evaluates the minimum distance to the next distinguishable number near the argument value.
         /// </summary>
@@ -98,6 +101,6 @@ namespace ToolGood.Algorithm.MathNet.Numerics
         {
             return 2 * EpsilonOf(value);
         }
- 
+
     }
 }

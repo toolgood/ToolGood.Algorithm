@@ -2,7 +2,7 @@
 
 namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
 {
-    public class Beta
+    class Beta
     {
 
         public static double CDF(double a, double b, double x)

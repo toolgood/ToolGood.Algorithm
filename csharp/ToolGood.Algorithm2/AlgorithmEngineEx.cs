@@ -60,6 +60,7 @@ namespace ToolGood.Algorithm
         /// <summary>
         /// 带缓存关键字大小写参数
         /// </summary>
+        /// <param name="multiConditionCache"></param>
         /// <param name="ignoreCase"></param>
         public AlgorithmEngineEx(ConditionCache multiConditionCache, bool ignoreCase)
         {

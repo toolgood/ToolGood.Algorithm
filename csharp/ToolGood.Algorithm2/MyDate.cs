@@ -166,7 +166,10 @@ namespace ToolGood.Algorithm
         }
 
 
-
+        /// <summary>
+        /// ToString
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             StringBuilder stringBuffer = new StringBuilder();
@@ -203,7 +206,8 @@ namespace ToolGood.Algorithm
             return stringBuffer.ToString();
         }
 
-        public string ToString(string f)
+
+        internal string ToString(string f)
         {
             if (Year == null) {
                 return ((DateTime)this).ToString(f);
@@ -296,24 +300,42 @@ namespace ToolGood.Algorithm
         }
 
         #region operator
+        /// <summary>
+        /// DateTime=>MyDate
+        /// </summary>
+        /// <param name="myDate"></param>
         public static implicit operator MyDate(DateTime myDate)
         {
             return new MyDate(myDate);
         }
+        /// <summary>
+        /// MyDate=>DateTime 
+        /// </summary>
+        /// <param name="myDate"></param>
         public static implicit operator DateTime(MyDate myDate)
         {
             return myDate.ToDateTime();
         }
+        /// <summary>
+        /// MyDate=>TimeSpan
+        /// </summary>
+        /// <param name="myDate"></param>
         public static implicit operator TimeSpan(MyDate myDate)
         {
             return myDate.ToTimeSpan();
         }
-
+        /// <summary>
+        /// double=>MyDate
+        /// </summary>
+        /// <param name="days"></param>
         public static implicit operator MyDate(double days)
         {
             return new MyDate(days);
         }
-
+        /// <summary>
+        /// MyDate=>double
+        /// </summary>
+        /// <param name="MyDate"></param>
         public static implicit operator double(MyDate MyDate)
         {
             if (MyDate.Year != null && MyDate.Year > 1900) {
@@ -326,7 +348,12 @@ namespace ToolGood.Algorithm
             return (MyDate.Day ?? 0) + (MyDate.Hour + (MyDate.Minute + MyDate.Second / 60.0) / 60) / 24;
         }
 
-
+        /// <summary>
+        /// 加
+        /// </summary>
+        /// <param name="myDate"></param>
+        /// <param name="num"></param>
+        /// <returns></returns>
         public static MyDate operator +(MyDate myDate, MyDate num)
         {
             if (myDate.Year != null && num.Year == null) {
@@ -336,6 +363,12 @@ namespace ToolGood.Algorithm
             }
             return (MyDate)((double)myDate + (double)num);
         }
+        /// <summary>
+        /// 减
+        /// </summary>
+        /// <param name="myDate"></param>
+        /// <param name="num"></param>
+        /// <returns></returns>
         public static MyDate operator -(MyDate myDate, MyDate num)
         {
             if (myDate.Year != null && num.Year == null) {
@@ -345,14 +378,32 @@ namespace ToolGood.Algorithm
             }
             return (MyDate)((double)myDate - (double)num);
         }
+        /// <summary>加
+        /// 
+        /// </summary>
+        /// <param name="myDate"></param>
+        /// <param name="num"></param>
+        /// <returns></returns>
         public static MyDate operator +(MyDate myDate, double num)
         {
             return (MyDate)((double)myDate + (double)num);
         }
+        /// <summary>
+        /// 减
+        /// </summary>
+        /// <param name="myDate"></param>
+        /// <param name="num"></param>
+        /// <returns></returns>
         public static MyDate operator -(MyDate myDate, double num)
         {
             return (MyDate)((double)myDate - (double)num);
         }
+        /// <summary>
+        /// 乘
+        /// </summary>
+        /// <param name="myDate"></param>
+        /// <param name="num"></param>
+        /// <returns></returns>
         public static MyDate operator *(MyDate myDate, double num)
         {
 #if NETSTANDARD2_1
@@ -362,6 +413,12 @@ namespace ToolGood.Algorithm
 #endif
             return (MyDate)((double)myDate * (double)num);
         }
+        /// <summary>
+        /// 除
+        /// </summary>
+        /// <param name="myDate"></param>
+        /// <param name="num"></param>
+        /// <returns></returns>
         public static MyDate operator /(MyDate myDate, double num)
         {
 #if NETSTANDARD2_1

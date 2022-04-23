@@ -31,7 +31,7 @@ using System;
 
 namespace ToolGood.Algorithm.MathNet.Numerics
 {
-    public static partial class Precision
+    static partial class Precision
     {
         public static bool AlmostEqualNormRelative(this double a, double b, double diff, double maximumError)
         {

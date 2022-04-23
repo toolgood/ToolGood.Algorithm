@@ -2,7 +2,7 @@
 
 namespace ToolGood.Algorithm.MathNet.Numerics
 {
-    public static partial class SpecialFunctions
+    static partial class SpecialFunctions
     {
 
         public static double GammaLn(double z)

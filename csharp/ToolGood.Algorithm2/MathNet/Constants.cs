@@ -1,5 +1,8 @@
 ﻿namespace ToolGood.Algorithm.MathNet.Numerics
 {
+    /// <summary>
+    /// 常量
+    /// </summary>
     public static class Constants
     {
         #region Mathematical Constants

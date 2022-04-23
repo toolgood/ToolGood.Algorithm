@@ -4,7 +4,10 @@ using System.Linq;
 
 namespace ToolGood.Algorithm.MathNet.Numerics.Statistics
 {
-    public static class Statistics
+    /// <summary>
+    /// 条件
+    /// </summary>
+    static class Statistics
     {
         public static double QuantileCustom(this IEnumerable<double> data, double tau, QuantileDefinition definition)
         {

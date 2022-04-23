@@ -1,5 +1,8 @@
 ﻿namespace ToolGood.Algorithm.Internals
 {
+    /// <summary>
+    /// 条件树类型
+    /// </summary>
     public enum ConditionTreeType
     {
         /// <summary>

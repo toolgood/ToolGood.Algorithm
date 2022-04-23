@@ -2,7 +2,7 @@
 
 namespace ToolGood.Algorithm.MathNet.Numerics.Statistics
 {
-    public static partial class ArrayStatistics
+    static partial class ArrayStatistics
     {
         public static double Minimum(double[] data)
         {
