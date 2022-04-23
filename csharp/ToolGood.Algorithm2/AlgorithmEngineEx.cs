@@ -39,11 +39,11 @@ namespace ToolGood.Algorithm
         /// <summary>
         /// 跳过条件错误 
         /// </summary>
-        public bool JumpConditionError { get; set; }
+        public bool JumpConditionError { get; set; } = true;
         /// <summary>
         /// 跳过公式错误
         /// </summary>
-        public bool JumpFormulaError { get; set; }
+        public bool JumpFormulaError { get; set; } = false;
         private readonly Dictionary<string, Operand> _tempdict;
 
 
@@ -809,9 +809,12 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="exp"></param>
         /// <returns></returns>
-        protected Operand EvaluateOnce(string exp)
+        public Operand EvaluateOnce(string exp)
         {
             ProgContext context = Parse(exp);
+            if (context == null) {
+                return Operand.Create(LastError);
+            }
             return Evaluate(context);
         }
 

@@ -3,7 +3,7 @@
     /// <summary>
     /// 常量
     /// </summary>
-    public static class Constants
+    static class Constants
     {
         #region Mathematical Constants
 
@@ -15,14 +15,14 @@
 
         /// <summary>The number sqrt(2pi)</summary>
         public const double Sqrt2Pi = 2.5066282746310005024157652848110452530069867406099d;
- 
+
         /// <summary>The number log(2 * sqrt(e / pi))</summary>
         public const double LogTwoSqrtEOverPi = 0.6207822376352452223455184457816472122518527279025978;
 
         /// <summary>The number 2 * sqrt(e / pi)</summary>
         public const double TwoSqrtEOverPi = 1.8603827342052657173362492472666631120594218414085755;
 
-  
+
 
 
         #endregion
