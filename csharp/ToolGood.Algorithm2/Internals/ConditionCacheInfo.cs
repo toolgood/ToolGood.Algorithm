@@ -12,15 +12,15 @@ namespace ToolGood.Algorithm.Internals
         /// <summary>
         /// 类型名
         /// </summary>
-        public string CategoryName;
+        public string CategoryName { get; internal set; }
         /// <summary>
         /// 备注
         /// </summary>
-        public string Remark;
+        public string Remark { get; internal set; }
         /// <summary>
         /// 条件字符串
         /// </summary>
-        public string ConditionString;
+        public string ConditionString { get; internal set; }
 
         private ProgContext _ConditionProg;
         internal ProgContext ConditionProg {

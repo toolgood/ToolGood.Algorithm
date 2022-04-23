@@ -20,7 +20,7 @@ namespace ToolGood.Algorithm
         /// 是否开启延迟加载
         /// 开启后，不会立即调取Parse
         /// </summary>
-        public bool LazyLoad = false;
+        public bool LazyLoad { get; set; } = false;
 
 
         /// <summary>
