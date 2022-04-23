@@ -15,7 +15,7 @@ namespace ToolGood.Algorithm
         /// <summary>
         /// 最后一个错误
         /// </summary>
-        public string LastError;
+        public string LastError { get; private set; }
         /// <summary>
         /// 是否开启延迟加载
         /// 开启后，不会立即调取Parse
