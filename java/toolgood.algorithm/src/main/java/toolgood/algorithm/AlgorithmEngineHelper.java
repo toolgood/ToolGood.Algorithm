@@ -12,7 +12,7 @@ import toolgood.algorithm.internals.CharUtil;
 import toolgood.algorithm.internals.DiyNameVisitor;
 import toolgood.algorithm.math.mathLexer;
 import toolgood.algorithm.math.mathParser;
-import toolgood.algorithm.math.mathParser2.ProgContext;
+import toolgood.algorithm.math.mathParser.ProgContext;
 
 /**
  * 算法引擎助手

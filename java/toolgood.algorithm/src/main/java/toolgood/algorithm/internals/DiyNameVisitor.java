@@ -3,7 +3,7 @@ package toolgood.algorithm.internals;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-import toolgood.algorithm.math.mathParser2.*;
+import toolgood.algorithm.math.mathParser.*;
 import toolgood.algorithm.DiyNameInfo;
 import toolgood.algorithm.math.mathVisitor;
 
@@ -1303,12 +1303,6 @@ public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements 
 
     @Override
     public Object visitRAND_fun(RAND_funContext context) {
-
-        return visitChildren(context);
-    }
-
-    @Override
-    public Object visitExpr2_fun(Expr2_funContext context) {
 
         return visitChildren(context);
     }

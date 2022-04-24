@@ -294,11 +294,6 @@ namespace ToolGood.Algorithm.Internals
             return VisitChildren(context);
         }
 
-        public object VisitExpr2_fun(mathParser.Expr2_funContext context)
-        {
-            return VisitChildren(context);
-        }
-
         public object VisitEXP_fun(mathParser.EXP_funContext context)
         {
             return VisitChildren(context);

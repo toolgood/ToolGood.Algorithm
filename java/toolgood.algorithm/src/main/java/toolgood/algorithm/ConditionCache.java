@@ -9,7 +9,7 @@ import org.antlr.v4.runtime.CommonTokenStream;
 
 import toolgood.algorithm.math.mathLexer;
 import toolgood.algorithm.math.mathParser;
-import toolgood.algorithm.math.mathParser2.ProgContext;
+import toolgood.algorithm.math.mathParser.ProgContext;
 import toolgood.algorithm.internals.AntlrErrorListener;
 import toolgood.algorithm.internals.AntlrCharStream;
 import toolgood.algorithm.internals.ConditionCacheInfo;
@@ -29,7 +29,7 @@ public class ConditionCache {
     /**
      * 添加公式缓存
      * 有先后顺序的
-     * 
+     *
      * @param categoryName 分类名称
      * @param condition    条件 可空
      * @param formula      公式 必埴
@@ -42,7 +42,7 @@ public class ConditionCache {
     /**
      * 添加公式缓存
      * 有先后顺序的
-     * 
+     *
      * @param categoryName 分类名称
      * @param condition    条件 可空
      * @param formula      公式 必埴
@@ -93,7 +93,7 @@ public class ConditionCache {
     /**
      * 添加 条件缓存，
      * 有先后顺序的
-     * 
+     *
      * @param categoryName 分类名称
      * @param condition    条件 可空
      * @param remark       备注 必埴
@@ -143,15 +143,15 @@ public class ConditionCache {
             final mathLexer lexer = new mathLexer(stream);
             final CommonTokenStream tokens = new CommonTokenStream(lexer);
             final mathParser parser = new mathParser(tokens);
-            final AntlrErrorListener antlrErrorListener = new AntlrErrorListener();
-            parser.removeErrorListeners();
-            parser.addErrorListener(antlrErrorListener);
+//            final AntlrErrorListener antlrErrorListener = new AntlrErrorListener();
+//           parser.removeErrorListeners();
+//            parser.addErrorListener(antlrErrorListener);
             final ProgContext context = parser.prog();
 
-            if (antlrErrorListener.IsError) {
-                LastError = antlrErrorListener.ErrorMsg;
-                return null;
-            }
+//            if (antlrErrorListener.IsError) {
+//                LastError = antlrErrorListener.ErrorMsg;
+//                return null;
+//            }
             return context;
         } catch (Exception ex) {
             LastError = ex.getMessage();

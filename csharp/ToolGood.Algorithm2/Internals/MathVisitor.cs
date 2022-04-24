@@ -1035,8 +1035,10 @@ namespace ToolGood.Algorithm.Internals
             foreach (var item in context.expr()) { var aa = this.Visit(item).ToNumber($"Function ROUND parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
 
             var firstValue = args[0];
+            if (args.Count==1) {
+                return Operand.Create((double)Math.Round((decimal)firstValue.NumberValue,0, MidpointRounding.AwayFromZero));
+            }
             var secondValue = args[1];
-
             return Operand.Create((double)Math.Round((decimal)firstValue.NumberValue, secondValue.IntValue, MidpointRounding.AwayFromZero));
         }
         public Operand VisitROUNDDOWN_fun(mathParser.ROUNDDOWN_funContext context)
@@ -3882,10 +3884,6 @@ namespace ToolGood.Algorithm.Internals
             return Operand.Error(" Operator is error!");
         }
 
-        public Operand VisitExpr2_fun(mathParser.Expr2_funContext context)
-        {
-            return VisitChildren(context);
-        }
 
         public Operand VisitDiyFunction_fun(mathParser.DiyFunction_funContext context)
         {

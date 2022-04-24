@@ -19,7 +19,7 @@ import toolgood.algorithm.litJson.JsonData;
 import toolgood.algorithm.litJson.JsonMapper;
 import toolgood.algorithm.math.mathLexer;
 import toolgood.algorithm.math.mathParser;
-import toolgood.algorithm.math.mathParser2.ProgContext;
+import toolgood.algorithm.math.mathParser.ProgContext;
 
 /**
  * 算法引擎 扩展版

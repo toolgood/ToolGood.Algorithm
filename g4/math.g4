@@ -180,7 +180,7 @@ expr:
 	| ATAN '(' expr ')'										# ATAN_fun
 	| ATANH '(' expr ')'									# ATANH_fun
 	| ATAN2 '(' expr ',' expr ')'							# ATAN2_fun
-	| ROUND '(' expr ',' expr ')'							# ROUND_fun
+	| ROUND '(' expr (',' expr)? ')'							# ROUND_fun
 	| ROUNDDOWN '(' expr ',' expr ')'						# ROUNDDOWN_fun
 	| ROUNDUP '(' expr ',' expr ')'							# ROUNDUP_fun
 	| CEILING '(' expr (',' expr)? ')'						# CEILING_fun

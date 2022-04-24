@@ -308,11 +308,6 @@ namespace ToolGood.Algorithm.Internals
             return Visit_fun(context);
         }
 
-        public ConditionTree VisitExpr2_fun(mathParser.Expr2_funContext context)
-        {
-            return Visit_fun(context);
-        }
-
         public ConditionTree VisitEXP_fun(mathParser.EXP_funContext context)
         {
             return Visit_fun(context);

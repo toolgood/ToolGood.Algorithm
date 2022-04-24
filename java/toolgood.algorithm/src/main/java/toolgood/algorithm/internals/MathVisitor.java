@@ -27,7 +27,7 @@ import toolgood.algorithm.OperandType;
 import toolgood.algorithm.litJson.JsonData;
 import toolgood.algorithm.litJson.JsonMapper;
 import toolgood.algorithm.math.mathVisitor;
-import toolgood.algorithm.math.mathParser2.*;
+import toolgood.algorithm.math.mathParser.*;
 import toolgood.algorithm.mathNet.ExcelFunctions;
 
 public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements mathVisitor<Operand> {
@@ -405,7 +405,9 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         List<ExprContext> exprs = context.expr();
 
         Operand b = visit(exprs.get(0)).ToBoolean("Function IF first parameter is error!");
-        if (b.IsError()) { return b; }
+        if (b.IsError()) {
+            return b;
+        }
 
         if (b.BooleanValue()) {
             if (exprs.size() > 1) {
@@ -1382,8 +1384,10 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
 
         final Operand firstValue = args.get(0);
+        if (args.size() == 1) {
+            return Operand.Create(Math.round(firstValue.NumberValue()));
+        }
         final Operand secondValue = args.get(1);
-
         return Operand.Create((double) round((double) firstValue.NumberValue(), secondValue.IntValue()));
     }
 
@@ -2284,9 +2288,9 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return sb.toString();
     }
 
-    static final String[] CN_UPPER_NUMBER = { "零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖" };
-    static final String[] CN_UPPER_MONETRAY_UNIT = { "分", "角", "元", "拾", "佰", "仟", "万", "拾", "佰", "仟", "亿", "拾", "佰",
-            "仟", "兆", "拾", "佰", "仟" };
+    static final String[] CN_UPPER_NUMBER = {"零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"};
+    static final String[] CN_UPPER_MONETRAY_UNIT = {"分", "角", "元", "拾", "佰", "仟", "万", "拾", "佰", "仟", "亿", "拾", "佰",
+            "仟", "兆", "拾", "佰", "仟"};
     static final String CN_FULL = "整";
     static final String CN_NEGATIVE = "负";
     static final int MONEY_PRECISION = 2;
@@ -4404,8 +4408,8 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
 
         final Matcher b = Pattern.compile(args.get(0).TextValue()).matcher(args.get(1).TextValue());// .Replace(args.get(0).TextValue(),
-                                                                                                    // args.get(1).TextValue(),
-                                                                                                    // args.get(2).TextValue());
+        // args.get(1).TextValue(),
+        // args.get(2).TextValue());
         final String t = b.replaceAll(args.get(2).TextValue());
         return Operand.Create(t);
     }
@@ -4671,7 +4675,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         String text = args.get(0).TextValue();
         if (args.size() == 2) {
             text = Pattern.compile(
-                    "^[" + args.get(1).TextValue().replace("[", "\\[").replace("]", "\\]").replace("\\", "\\\\") + "]*")
+                            "^[" + args.get(1).TextValue().replace("[", "\\[").replace("]", "\\]").replace("\\", "\\\\") + "]*")
                     .matcher(text).replaceAll("");
             return Operand.Create(text);
         }
@@ -4693,7 +4697,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         String text = args.get(0).TextValue();
         if (args.size() == 2) {
             text = Pattern.compile(
-                    "[" + args.get(1).TextValue().replace("[", "\\[").replace("]", "\\]").replace("\\", "\\\\") + "]*$")
+                            "[" + args.get(1).TextValue().replace("[", "\\[").replace("]", "\\]").replace("\\", "\\\\") + "]*$")
                     .matcher(text).replaceAll("");
             return Operand.Create(text);
         }
@@ -5268,8 +5272,8 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                     sb.append('\t');
                 else if (c2 == '0')
                     sb.append('\0');
-                // else if (c2 == 'v') sb.append('\v');
-                // else if (c2 == 'a') sb.append('\a');
+                    // else if (c2 == 'v') sb.append('\v');
+                    // else if (c2 == 'a') sb.append('\a');
                 else if (c2 == 'b')
                     sb.append('\b');
                 else if (c2 == 'f')
@@ -5394,10 +5398,6 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             }
         }
         return Operand.Error(" Operator is error!");
-    }
-
-    public Operand visitExpr2_fun(final Expr2_funContext context) {
-        return visitChildren(context);
     }
 
     public Operand visitDiyFunction_fun(final DiyFunction_funContext context) {

@@ -59,15 +59,15 @@ namespace ToolGood.Algorithm.Internals
                 var lexer = new mathLexer(stream);
                 var tokens = new CommonTokenStream(lexer);
                 var parser = new mathParser(tokens);
-                var antlrErrorListener = new AntlrErrorListener();
-                parser.RemoveErrorListeners();
-                parser.AddErrorListener(antlrErrorListener);
+                //var antlrErrorListener = new AntlrErrorListener();
+                //parser.RemoveErrorListeners();
+                //parser.AddErrorListener(antlrErrorListener);
 
                 var context = parser.prog();
-                if (antlrErrorListener.IsError) {
-                    LastError = antlrErrorListener.ErrorMsg;
-                    return null;
-                }
+                //if (antlrErrorListener.IsError) {
+                //    LastError = antlrErrorListener.ErrorMsg;
+                //    return null;
+                //}
                 return context;
             } catch (Exception ex) {
                 LastError = ex.Message + "\r\n" + ex.StackTrace;

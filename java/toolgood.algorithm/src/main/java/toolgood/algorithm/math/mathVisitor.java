@@ -1,7 +1,6 @@
-package toolgood.algorithm.math;
-
+package toolgood.algorithm.math;// Generated from math.g4 by ANTLR 4.9.3
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
-import toolgood.algorithm.math.mathParser2.*;
+
 /**
  * This interface defines a complete generic visitor for a parse tree produced
  * by {@link mathParser}.
@@ -9,226 +8,1543 @@ import toolgood.algorithm.math.mathParser2.*;
  * @param <T> The return type of the visit operation. Use {@link Void} for
  * operations with no return type.
  */
-public interface mathVisitor<Result> extends ParseTreeVisitor<Result> {
-	Result visitProg( ProgContext context);
-	Result visitCEILING_fun( CEILING_funContext context);
-	Result visitFACT_fun( FACT_funContext context);
-	Result visitREGEXREPALCE_fun( REGEXREPALCE_funContext context);
-	Result visitAddSub_fun( AddSub_funContext context);
-	Result visitAVERAGEIF_fun( AVERAGEIF_funContext context);
-	Result visitRIGHT_fun( RIGHT_funContext context);
-	Result visitOCT2BIN_fun( OCT2BIN_funContext context);
-	Result visitQUARTILE_fun( QUARTILE_funContext context);
-	Result visitFINV_fun( FINV_funContext context);
-	Result visitNOT_fun( NOT_funContext context);
-	Result visitDAYS360_fun( DAYS360_funContext context);
-	Result visitWEEKNUM_fun( WEEKNUM_funContext context);
-	Result visitPOISSON_fun( POISSON_funContext context);
-	Result visitISREGEX_fun( ISREGEX_funContext context);
-	Result visitPERCENTILE_fun( PERCENTILE_funContext context);
-	Result visitSHA256_fun( SHA256_funContext context);
-	Result visitHYPGEOMDIST_fun( HYPGEOMDIST_funContext context);
-	Result visitPERMUT_fun( PERMUT_funContext context);
-	Result visitTRIMSTART_fun( TRIMSTART_funContext context);
-	Result visitRMB_fun( RMB_funContext context);
-	Result visitDEC2HEX_fun( DEC2HEX_funContext context);
-	Result visitCLEAN_fun( CLEAN_funContext context);
-	Result visitLOWER_fun( LOWER_funContext context);
-	Result visitOR_fun( OR_funContext context);
-	Result visitNORMSINV_fun( NORMSINV_funContext context);
-	Result visitLEFT_fun( LEFT_funContext context);
-	Result visitISEVEN_fun( ISEVEN_funContext context);
-	Result visitLOGINV_fun( LOGINV_funContext context);
-	Result visitWORKDAY_fun( WORKDAY_funContext context);
-	Result visitISERROR_fun( ISERROR_funContext context);
-	Result visitBIN2DEC_fun( BIN2DEC_funContext context);
-	Result visitJIS_fun( JIS_funContext context);
-	Result visitCRC32_fun( CRC32_funContext context);
-	Result visitLCM_fun( LCM_funContext context);
-	Result visitHARMEAN_fun( HARMEAN_funContext context);
-	Result visitNORMINV_fun( NORMINV_funContext context);
-	Result visitGAMMAINV_fun( GAMMAINV_funContext context);
-	Result visitSQRT_fun( SQRT_funContext context);
-	Result visitDEGREES_fun( DEGREES_funContext context);
-	Result visitMROUND_fun( MROUND_funContext context);
-	Result visitDATEDIF_fun( DATEDIF_funContext context);
-	Result visitTRIMEND_fun( TRIMEND_funContext context);
-	Result visitISLOGICAL_fun( ISLOGICAL_funContext context);
-	Result visitINT_fun( INT_funContext context);
-	Result visitSUMIF_fun( SUMIF_funContext context);
-	Result visitHEX2OCT_fun( HEX2OCT_funContext context);
-	Result visitPI_fun( PI_funContext context);
-	Result visitYEAR_fun( YEAR_funContext context);
-	Result visitSQRTPI_fun( SQRTPI_funContext context);
-	Result visitCONCATENATE_fun( CONCATENATE_funContext context);
-	Result visitCOUNT_fun( COUNT_funContext context);
-	Result visitFALSE_fun( FALSE_funContext context);
-	Result visitHTMLENCODE_fun( HTMLENCODE_funContext context);
-	Result visitBASE64URLTOTEXT_fun( BASE64URLTOTEXT_funContext context);
-	Result visitLOG10_fun( LOG10_funContext context);
-	Result visitISTEXT_fun( ISTEXT_funContext context);
-	Result visitNEGBINOMDIST_fun( NEGBINOMDIST_funContext context);
-	Result visitNETWORKDAYS_fun( NETWORKDAYS_funContext context);
-	Result visitFACTDOUBLE_fun( FACTDOUBLE_funContext context);
-	Result visitTIMEVALUE_fun( TIMEVALUE_funContext context);
-	Result visitAVEDEV_fun( AVEDEV_funContext context);
-	Result visitGUID_fun( GUID_funContext context);
-	Result visitJSON_fun( JSON_funContext context);
-	Result visitFIXED_fun( FIXED_funContext context);
-	Result visitGetJsonValue_fun( GetJsonValue_funContext context);
-	Result visitTINV_fun( TINV_funContext context);
-	Result visitEDATE_fun( EDATE_funContext context);
-	Result visitGEOMEAN_fun( GEOMEAN_funContext context);
-	Result visitVAR_fun( VAR_funContext context);
-	Result visitSIGN_fun( SIGN_funContext context);
-	Result visitEOMONTH_fun( EOMONTH_funContext context);
-	Result visitFLOOR_fun( FLOOR_funContext context);
-	Result visitHOUR_fun( HOUR_funContext context);
-	Result visitLEN_fun( LEN_funContext context);
-	Result visitACOS_fun( ACOS_funContext context);
-	Result visitISNULLORWHITESPACE_fun( ISNULLORWHITESPACE_funContext context);
-	Result visitNUM_fun( NUM_funContext context);
-	Result visitCOSH_fun( COSH_funContext context);
-	Result visitQUOTIENT_fun( QUOTIENT_funContext context);
-	Result visitOCT2DEC_fun( OCT2DEC_funContext context);
-	Result visitSEARCH_fun( SEARCH_funContext context);
-	Result visitROUNDUP_fun( ROUNDUP_funContext context);
-	Result visitCOMBIN_fun( COMBIN_funContext context);
-	Result visitCODE_fun( CODE_funContext context);
-	Result visitASINH_fun( ASINH_funContext context);
-	Result visitSIN_fun( SIN_funContext context);
-	Result visitSUBSTRING_fun( SUBSTRING_funContext context);
-	Result visitRANDBETWEEN_fun( RANDBETWEEN_funContext context);
-	Result visitAVERAGE_fun( AVERAGE_funContext context);
-	Result visitLOG_fun( LOG_funContext context);
-	Result visitHMACSHA512_fun( HMACSHA512_funContext context);
-	Result visitAndOr_fun( AndOr_funContext context);
-	Result visitSTDEVP_fun( STDEVP_funContext context);
-	Result visitArray_fun( Array_funContext context);
-	Result visitROUND_fun( ROUND_funContext context);
-	Result visitEXP_fun( EXP_funContext context);
-	Result visitCOUNTIF_fun( COUNTIF_funContext context);
-	Result visitVARP_fun( VARP_funContext context);
-	Result visitREMOVEEND_fun( REMOVEEND_funContext context);
-	Result visitDATE_fun( DATE_funContext context);
-	Result visitPARAMETER_fun( PARAMETER_funContext context);
-	Result visitSPLIT_fun( SPLIT_funContext context);
-	Result visitURLDECODE_fun( URLDECODE_funContext context);
-	Result visitLARGE_fun( LARGE_funContext context);
-	Result visitVALUE_fun( VALUE_funContext context);
-	Result visitDAY_fun( DAY_funContext context);
-	Result visitWEIBULL_fun( WEIBULL_funContext context);
-	Result visitHMACSHA256_fun( HMACSHA256_funContext context);
-	Result visitBINOMDIST_fun( BINOMDIST_funContext context);
-	Result visitJudge_fun( Judge_funContext context);
-	Result visitDEVSQ_fun( DEVSQ_funContext context);
-	Result visitMODE_fun( MODE_funContext context);
-	Result visitBETAINV_fun( BETAINV_funContext context);
-	Result visitMAX_fun( MAX_funContext context);
-	Result visitMINUTE_fun( MINUTE_funContext context);
-	Result visitTAN_fun( TAN_funContext context);
-	Result visitIFERROR_fun( IFERROR_funContext context);
-	Result visitFDIST_fun( FDIST_funContext context);
-	Result visitINDEXOF_fun( INDEXOF_funContext context);
-	Result visitUPPER_fun( UPPER_funContext context);
-	Result visitHTMLDECODE_fun( HTMLDECODE_funContext context);
-	Result visitEXPONDIST_fun( EXPONDIST_funContext context);
-	Result visitDEC2BIN_fun( DEC2BIN_funContext context);
-	Result visitHEX2DEC_fun( HEX2DEC_funContext context);
-	Result visitSMALL_fun( SMALL_funContext context);
-	Result visitODD_fun( ODD_funContext context);
-	Result visitTEXTTOBASE64_fun( TEXTTOBASE64_funContext context);
-	Result visitMID_fun( MID_funContext context);
-	Result visitPERCENTRANK_fun( PERCENTRANK_funContext context);
-	Result visitSTDEV_fun( STDEV_funContext context);
-	Result visitNORMSDIST_fun( NORMSDIST_funContext context);
-	Result visitISNUMBER_fun( ISNUMBER_funContext context);
-	Result visitLASTINDEXOF_fun( LASTINDEXOF_funContext context);
-	Result visitMOD_fun( MOD_funContext context);
-	Result visitCHAR_fun( CHAR_funContext context);
-	Result visitREGEX_fun( REGEX_funContext context);
-	Result visitTEXTTOBASE64URL_fun( TEXTTOBASE64URL_funContext context);
-	Result visitMD5_fun( MD5_funContext context);
-	Result visitREPLACE_fun( REPLACE_funContext context);
-	Result visitACOSH_fun( ACOSH_funContext context);
-	Result visitISODD_fun( ISODD_funContext context);
-	Result visitASC_fun( ASC_funContext context);
-	Result visitCOS_fun( COS_funContext context);
-	Result visitLN_fun( LN_funContext context);
-	Result visitSTRING_fun( STRING_funContext context);
-	Result visitHMACMD5_fun( HMACMD5_funContext context);
-	Result visitPRODUCT_fun( PRODUCT_funContext context);
-	Result visitEXACT_fun( EXACT_funContext context);
-	Result visitSUMSQ_fun( SUMSQ_funContext context);
-	Result visitSUM_fun( SUM_funContext context);
-	Result visitSECOND_fun( SECOND_funContext context);
-	Result visitGAMMADIST_fun( GAMMADIST_funContext context);
-	Result visitOCT2HEX_fun( OCT2HEX_funContext context);
-	Result visitTODAY_fun( TODAY_funContext context);
-	Result visitATAN_fun( ATAN_funContext context);
-	Result visitE_fun( E_funContext context);
-	Result visitTRIM_fun( TRIM_funContext context);
-	Result visitRADIANS_fun( RADIANS_funContext context);
-	Result visitGAMMALN_fun( GAMMALN_funContext context);
-	Result visitTEXT_fun( TEXT_funContext context);
-	Result visitFISHER_fun( FISHER_funContext context);
-	Result visitAND_fun( AND_funContext context);
-	Result visitBIN2HEX_fun( BIN2HEX_funContext context);
-	Result visitMULTINOMIAL_fun( MULTINOMIAL_funContext context);
-	Result visitMONTH_fun( MONTH_funContext context);
-	Result visitURLENCODE_fun( URLENCODE_funContext context);
-	Result visitNORMDIST_fun( NORMDIST_funContext context);
-	Result visitHMACSHA1_fun( HMACSHA1_funContext context);
-	Result visitENDSWITH_fun( ENDSWITH_funContext context);
-	Result visitBracket_fun( Bracket_funContext context);
-	Result visitBETADIST_fun( BETADIST_funContext context);
-	Result visitATANH_fun( ATANH_funContext context);
-	Result visitNOW_fun( NOW_funContext context);
-	Result visitMEDIAN_fun( MEDIAN_funContext context);
-	Result visitPOWER_fun( POWER_funContext context);
-	Result visitDEC2OCT_fun( DEC2OCT_funContext context);
-	Result visitPROPER_fun( PROPER_funContext context);
-	Result visitTRUNC_fun( TRUNC_funContext context);
-	Result visitGCD_fun( GCD_funContext context);
-	Result visitTANH_fun( TANH_funContext context);
-	Result visitHEX2BIN_fun( HEX2BIN_funContext context);
-	Result visitSINH_fun( SINH_funContext context);
-	Result visitSHA512_fun( SHA512_funContext context);
-	Result visitMIN_fun( MIN_funContext context);
-	Result visitISNONTEXT_fun( ISNONTEXT_funContext context);
-	Result visitABS_fun( ABS_funContext context);
-	Result visitROUNDDOWN_fun( ROUNDDOWN_funContext context);
-	Result visitIF_fun( IF_funContext context);
-	Result visitJOIN_fun( JOIN_funContext context);
-	Result visitFIND_fun( FIND_funContext context);
-	Result visitSUBSTITUTE_fun( SUBSTITUTE_funContext context);
-	Result visitREPT_fun( REPT_funContext context);
-	Result visitASIN_fun( ASIN_funContext context);
-	Result visitMulDiv_fun( MulDiv_funContext context);
-	Result visitREMOVESTART_fun( REMOVESTART_funContext context);
-	Result visitT_fun( T_funContext context);
-	Result visitWEEKDAY_fun( WEEKDAY_funContext context);
-	Result visitBIN2OCT_fun( BIN2OCT_funContext context);
-	Result visitBASE64TOTEXT_fun( BASE64TOTEXT_funContext context);
-	Result visitTDIST_fun( TDIST_funContext context);
-	Result visitDATEVALUE_fun( DATEVALUE_funContext context);
-	Result visitSTARTSWITH_fun( STARTSWITH_funContext context);
-	Result visitEVEN_fun( EVEN_funContext context);
-	Result visitLOGNORMDIST_fun( LOGNORMDIST_funContext context);
-	Result visitISNULLOREMPTY_fun( ISNULLOREMPTY_funContext context);
-	Result visitTRUE_fun( TRUE_funContext context);
-	Result visitFISHERINV_fun( FISHERINV_funContext context);
-	Result visitSHA1_fun( SHA1_funContext context);
-	Result visitTIME_fun( TIME_funContext context);
-	Result visitATAN2_fun( ATAN2_funContext context);
-	Result visitRAND_fun( RAND_funContext context);
-	Result visitParameter2( Parameter2Context context);
-	Result visitExpr2_fun( Expr2_funContext context);
-	Result visitVLOOKUP_fun( VLOOKUP_funContext context);
-	Result visitLOOKUP_fun( LOOKUP_funContext context);
-	Result visitNULL_fun( NULL_funContext context);
-	Result visitISNULL_fun( ISNULL_funContext context);
-	Result visitISNULLORERROR_fun( ISNULLORERROR_funContext context);
-	Result visitDiyFunction_fun(DiyFunction_funContext context);
-	Result visitPercentage_fun(Percentage_funContext context);
+public interface mathVisitor<T> extends ParseTreeVisitor<T> {
+	/**
+	 * Visit a parse tree produced by {@link mathParser#prog}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitProg(mathParser.ProgContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code CEILING_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCEILING_fun(mathParser.CEILING_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code FACT_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFACT_fun(mathParser.FACT_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code REGEXREPALCE_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitREGEXREPALCE_fun(mathParser.REGEXREPALCE_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code AddSub_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAddSub_fun(mathParser.AddSub_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code AVERAGEIF_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAVERAGEIF_fun(mathParser.AVERAGEIF_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ISNULLORERROR_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitISNULLORERROR_fun(mathParser.ISNULLORERROR_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code RIGHT_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRIGHT_fun(mathParser.RIGHT_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code OCT2BIN_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOCT2BIN_fun(mathParser.OCT2BIN_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code QUARTILE_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitQUARTILE_fun(mathParser.QUARTILE_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code FINV_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFINV_fun(mathParser.FINV_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code NOT_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNOT_fun(mathParser.NOT_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DAYS360_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDAYS360_fun(mathParser.DAYS360_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code WEEKNUM_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWEEKNUM_fun(mathParser.WEEKNUM_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code POISSON_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPOISSON_fun(mathParser.POISSON_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ISREGEX_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitISREGEX_fun(mathParser.ISREGEX_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code PERCENTILE_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPERCENTILE_fun(mathParser.PERCENTILE_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DiyFunction_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDiyFunction_fun(mathParser.DiyFunction_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SHA256_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSHA256_fun(mathParser.SHA256_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code HYPGEOMDIST_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHYPGEOMDIST_fun(mathParser.HYPGEOMDIST_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code PERMUT_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPERMUT_fun(mathParser.PERMUT_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TRIMSTART_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTRIMSTART_fun(mathParser.TRIMSTART_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code RMB_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRMB_fun(mathParser.RMB_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DEC2HEX_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDEC2HEX_fun(mathParser.DEC2HEX_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code CLEAN_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCLEAN_fun(mathParser.CLEAN_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code LOWER_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLOWER_fun(mathParser.LOWER_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code OR_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOR_fun(mathParser.OR_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code NORMSINV_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNORMSINV_fun(mathParser.NORMSINV_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code LEFT_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLEFT_fun(mathParser.LEFT_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ISEVEN_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitISEVEN_fun(mathParser.ISEVEN_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code LOGINV_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLOGINV_fun(mathParser.LOGINV_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code WORKDAY_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWORKDAY_fun(mathParser.WORKDAY_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ISERROR_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitISERROR_fun(mathParser.ISERROR_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code BIN2DEC_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBIN2DEC_fun(mathParser.BIN2DEC_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code JIS_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJIS_fun(mathParser.JIS_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code CRC32_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCRC32_fun(mathParser.CRC32_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code LCM_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLCM_fun(mathParser.LCM_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code HARMEAN_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHARMEAN_fun(mathParser.HARMEAN_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code NORMINV_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNORMINV_fun(mathParser.NORMINV_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code GAMMAINV_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGAMMAINV_fun(mathParser.GAMMAINV_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SQRT_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSQRT_fun(mathParser.SQRT_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DEGREES_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDEGREES_fun(mathParser.DEGREES_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code MROUND_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMROUND_fun(mathParser.MROUND_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DATEDIF_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDATEDIF_fun(mathParser.DATEDIF_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TRIMEND_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTRIMEND_fun(mathParser.TRIMEND_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ISLOGICAL_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitISLOGICAL_fun(mathParser.ISLOGICAL_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code INT_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitINT_fun(mathParser.INT_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SUMIF_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSUMIF_fun(mathParser.SUMIF_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code HEX2OCT_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHEX2OCT_fun(mathParser.HEX2OCT_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code PI_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPI_fun(mathParser.PI_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code YEAR_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitYEAR_fun(mathParser.YEAR_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SQRTPI_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSQRTPI_fun(mathParser.SQRTPI_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code CONCATENATE_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCONCATENATE_fun(mathParser.CONCATENATE_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code COUNT_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCOUNT_fun(mathParser.COUNT_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code FALSE_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFALSE_fun(mathParser.FALSE_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code HTMLENCODE_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHTMLENCODE_fun(mathParser.HTMLENCODE_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code BASE64URLTOTEXT_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBASE64URLTOTEXT_fun(mathParser.BASE64URLTOTEXT_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code LOG10_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLOG10_fun(mathParser.LOG10_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ISTEXT_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitISTEXT_fun(mathParser.ISTEXT_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code NEGBINOMDIST_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNEGBINOMDIST_fun(mathParser.NEGBINOMDIST_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code NETWORKDAYS_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNETWORKDAYS_fun(mathParser.NETWORKDAYS_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code FACTDOUBLE_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFACTDOUBLE_fun(mathParser.FACTDOUBLE_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TIMEVALUE_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTIMEVALUE_fun(mathParser.TIMEVALUE_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code AVEDEV_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAVEDEV_fun(mathParser.AVEDEV_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code GUID_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGUID_fun(mathParser.GUID_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code JSON_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJSON_fun(mathParser.JSON_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code FIXED_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFIXED_fun(mathParser.FIXED_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code GetJsonValue_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGetJsonValue_fun(mathParser.GetJsonValue_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TINV_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTINV_fun(mathParser.TINV_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code EDATE_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEDATE_fun(mathParser.EDATE_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code GEOMEAN_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGEOMEAN_fun(mathParser.GEOMEAN_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code VAR_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVAR_fun(mathParser.VAR_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SIGN_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSIGN_fun(mathParser.SIGN_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code EOMONTH_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEOMONTH_fun(mathParser.EOMONTH_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code FLOOR_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFLOOR_fun(mathParser.FLOOR_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code HOUR_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHOUR_fun(mathParser.HOUR_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code LEN_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLEN_fun(mathParser.LEN_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ACOS_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitACOS_fun(mathParser.ACOS_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ISNULLORWHITESPACE_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitISNULLORWHITESPACE_fun(mathParser.ISNULLORWHITESPACE_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code NUM_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNUM_fun(mathParser.NUM_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code COSH_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCOSH_fun(mathParser.COSH_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code QUOTIENT_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitQUOTIENT_fun(mathParser.QUOTIENT_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code OCT2DEC_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOCT2DEC_fun(mathParser.OCT2DEC_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SEARCH_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSEARCH_fun(mathParser.SEARCH_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ROUNDUP_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitROUNDUP_fun(mathParser.ROUNDUP_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code COMBIN_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCOMBIN_fun(mathParser.COMBIN_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code CODE_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCODE_fun(mathParser.CODE_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ASINH_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitASINH_fun(mathParser.ASINH_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SIN_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSIN_fun(mathParser.SIN_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SUBSTRING_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSUBSTRING_fun(mathParser.SUBSTRING_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code RANDBETWEEN_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRANDBETWEEN_fun(mathParser.RANDBETWEEN_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code AVERAGE_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAVERAGE_fun(mathParser.AVERAGE_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code LOG_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLOG_fun(mathParser.LOG_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code HMACSHA512_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHMACSHA512_fun(mathParser.HMACSHA512_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code AndOr_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAndOr_fun(mathParser.AndOr_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code STDEVP_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSTDEVP_fun(mathParser.STDEVP_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Array_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArray_fun(mathParser.Array_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ROUND_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitROUND_fun(mathParser.ROUND_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code EXP_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEXP_fun(mathParser.EXP_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code COUNTIF_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCOUNTIF_fun(mathParser.COUNTIF_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code VARP_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVARP_fun(mathParser.VARP_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code REMOVEEND_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitREMOVEEND_fun(mathParser.REMOVEEND_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DATE_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDATE_fun(mathParser.DATE_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code PARAMETER_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPARAMETER_fun(mathParser.PARAMETER_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SPLIT_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSPLIT_fun(mathParser.SPLIT_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code URLDECODE_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitURLDECODE_fun(mathParser.URLDECODE_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code LARGE_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLARGE_fun(mathParser.LARGE_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code VALUE_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVALUE_fun(mathParser.VALUE_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DAY_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDAY_fun(mathParser.DAY_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code WEIBULL_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWEIBULL_fun(mathParser.WEIBULL_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code HMACSHA256_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHMACSHA256_fun(mathParser.HMACSHA256_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code BINOMDIST_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBINOMDIST_fun(mathParser.BINOMDIST_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Judge_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJudge_fun(mathParser.Judge_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DEVSQ_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDEVSQ_fun(mathParser.DEVSQ_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code MODE_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMODE_fun(mathParser.MODE_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code BETAINV_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBETAINV_fun(mathParser.BETAINV_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code MAX_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMAX_fun(mathParser.MAX_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code MINUTE_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMINUTE_fun(mathParser.MINUTE_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TAN_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTAN_fun(mathParser.TAN_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code IFERROR_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIFERROR_fun(mathParser.IFERROR_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code FDIST_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFDIST_fun(mathParser.FDIST_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code INDEXOF_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitINDEXOF_fun(mathParser.INDEXOF_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code UPPER_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUPPER_fun(mathParser.UPPER_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code HTMLDECODE_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHTMLDECODE_fun(mathParser.HTMLDECODE_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code EXPONDIST_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEXPONDIST_fun(mathParser.EXPONDIST_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code VLOOKUP_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVLOOKUP_fun(mathParser.VLOOKUP_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DEC2BIN_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDEC2BIN_fun(mathParser.DEC2BIN_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code LOOKUP_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLOOKUP_fun(mathParser.LOOKUP_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code HEX2DEC_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHEX2DEC_fun(mathParser.HEX2DEC_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SMALL_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSMALL_fun(mathParser.SMALL_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ODD_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitODD_fun(mathParser.ODD_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TEXTTOBASE64_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTEXTTOBASE64_fun(mathParser.TEXTTOBASE64_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code MID_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMID_fun(mathParser.MID_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code PERCENTRANK_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPERCENTRANK_fun(mathParser.PERCENTRANK_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code STDEV_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSTDEV_fun(mathParser.STDEV_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code NORMSDIST_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNORMSDIST_fun(mathParser.NORMSDIST_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ISNUMBER_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitISNUMBER_fun(mathParser.ISNUMBER_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code LASTINDEXOF_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLASTINDEXOF_fun(mathParser.LASTINDEXOF_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code MOD_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMOD_fun(mathParser.MOD_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code CHAR_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCHAR_fun(mathParser.CHAR_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code REGEX_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitREGEX_fun(mathParser.REGEX_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TEXTTOBASE64URL_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTEXTTOBASE64URL_fun(mathParser.TEXTTOBASE64URL_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code MD5_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMD5_fun(mathParser.MD5_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code REPLACE_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitREPLACE_fun(mathParser.REPLACE_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ACOSH_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitACOSH_fun(mathParser.ACOSH_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ISODD_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitISODD_fun(mathParser.ISODD_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ASC_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitASC_fun(mathParser.ASC_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code COS_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCOS_fun(mathParser.COS_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code LN_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLN_fun(mathParser.LN_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code STRING_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSTRING_fun(mathParser.STRING_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code HMACMD5_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHMACMD5_fun(mathParser.HMACMD5_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code PRODUCT_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPRODUCT_fun(mathParser.PRODUCT_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code EXACT_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEXACT_fun(mathParser.EXACT_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SUMSQ_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSUMSQ_fun(mathParser.SUMSQ_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SUM_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSUM_fun(mathParser.SUM_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SECOND_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSECOND_fun(mathParser.SECOND_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code GAMMADIST_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGAMMADIST_fun(mathParser.GAMMADIST_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code OCT2HEX_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOCT2HEX_fun(mathParser.OCT2HEX_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TODAY_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTODAY_fun(mathParser.TODAY_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ATAN_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitATAN_fun(mathParser.ATAN_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code E_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitE_fun(mathParser.E_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TRIM_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTRIM_fun(mathParser.TRIM_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code RADIANS_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRADIANS_fun(mathParser.RADIANS_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code GAMMALN_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGAMMALN_fun(mathParser.GAMMALN_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TEXT_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTEXT_fun(mathParser.TEXT_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code FISHER_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFISHER_fun(mathParser.FISHER_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code AND_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAND_fun(mathParser.AND_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code BIN2HEX_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBIN2HEX_fun(mathParser.BIN2HEX_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code MULTINOMIAL_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMULTINOMIAL_fun(mathParser.MULTINOMIAL_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code MONTH_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMONTH_fun(mathParser.MONTH_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code URLENCODE_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitURLENCODE_fun(mathParser.URLENCODE_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code NORMDIST_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNORMDIST_fun(mathParser.NORMDIST_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code HMACSHA1_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHMACSHA1_fun(mathParser.HMACSHA1_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ENDSWITH_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitENDSWITH_fun(mathParser.ENDSWITH_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Bracket_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBracket_fun(mathParser.Bracket_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code BETADIST_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBETADIST_fun(mathParser.BETADIST_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ATANH_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitATANH_fun(mathParser.ATANH_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code NOW_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNOW_fun(mathParser.NOW_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code MEDIAN_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMEDIAN_fun(mathParser.MEDIAN_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code POWER_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPOWER_fun(mathParser.POWER_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DEC2OCT_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDEC2OCT_fun(mathParser.DEC2OCT_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code PROPER_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPROPER_fun(mathParser.PROPER_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TRUNC_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTRUNC_fun(mathParser.TRUNC_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code GCD_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGCD_fun(mathParser.GCD_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TANH_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTANH_fun(mathParser.TANH_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code HEX2BIN_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHEX2BIN_fun(mathParser.HEX2BIN_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SINH_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSINH_fun(mathParser.SINH_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SHA512_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSHA512_fun(mathParser.SHA512_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code MIN_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMIN_fun(mathParser.MIN_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ISNONTEXT_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitISNONTEXT_fun(mathParser.ISNONTEXT_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ABS_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitABS_fun(mathParser.ABS_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ROUNDDOWN_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitROUNDDOWN_fun(mathParser.ROUNDDOWN_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code IF_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIF_fun(mathParser.IF_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code JOIN_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJOIN_fun(mathParser.JOIN_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code FIND_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFIND_fun(mathParser.FIND_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SUBSTITUTE_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSUBSTITUTE_fun(mathParser.SUBSTITUTE_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Percentage_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPercentage_fun(mathParser.Percentage_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code REPT_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitREPT_fun(mathParser.REPT_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ISNULL_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitISNULL_fun(mathParser.ISNULL_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ASIN_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitASIN_fun(mathParser.ASIN_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code MulDiv_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMulDiv_fun(mathParser.MulDiv_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code REMOVESTART_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitREMOVESTART_fun(mathParser.REMOVESTART_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code T_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitT_fun(mathParser.T_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code WEEKDAY_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWEEKDAY_fun(mathParser.WEEKDAY_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code BIN2OCT_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBIN2OCT_fun(mathParser.BIN2OCT_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code NULL_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNULL_fun(mathParser.NULL_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code BASE64TOTEXT_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBASE64TOTEXT_fun(mathParser.BASE64TOTEXT_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TDIST_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTDIST_fun(mathParser.TDIST_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DATEVALUE_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDATEVALUE_fun(mathParser.DATEVALUE_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code STARTSWITH_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSTARTSWITH_fun(mathParser.STARTSWITH_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code EVEN_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEVEN_fun(mathParser.EVEN_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code LOGNORMDIST_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLOGNORMDIST_fun(mathParser.LOGNORMDIST_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ISNULLOREMPTY_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitISNULLOREMPTY_fun(mathParser.ISNULLOREMPTY_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TRUE_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTRUE_fun(mathParser.TRUE_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code FISHERINV_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFISHERINV_fun(mathParser.FISHERINV_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SHA1_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSHA1_fun(mathParser.SHA1_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TIME_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTIME_fun(mathParser.TIME_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ATAN2_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitATAN2_fun(mathParser.ATAN2_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code RAND_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRAND_fun(mathParser.RAND_funContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link mathParser#parameter2}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParameter2(mathParser.Parameter2Context ctx);
 }

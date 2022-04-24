@@ -4,7 +4,6 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import toolgood.algorithm.math.mathLexer;
 import toolgood.algorithm.math.mathParser;
-import toolgood.algorithm.math.mathParser2;
 
 import java.util.List;
 
@@ -54,7 +53,7 @@ public class ConditionTree {
             final AntlrErrorListener antlrErrorListener = new AntlrErrorListener();
             parser.removeErrorListeners();
             parser.addErrorListener(antlrErrorListener);
-            final mathParser2.ProgContext context = parser.prog();
+            final mathParser.ProgContext context = parser.prog();
 
             if (antlrErrorListener.IsError) {
                 tree.ErrorMessage = antlrErrorListener.ErrorMsg;
