@@ -714,8 +714,7 @@ namespace ToolGood.Algorithm
         /// <summary>
         /// 获取简化公式
         /// </summary>
-        /// <param name="String"></param>
-        /// <param name=""></param>
+        /// <param name="formula"></param>
         /// <returns></returns>
         public String GetSimplifiedFormula(String formula)
         {
