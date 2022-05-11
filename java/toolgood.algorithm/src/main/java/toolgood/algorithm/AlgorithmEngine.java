@@ -8,6 +8,7 @@ import java.util.TreeMap;
 
 import toolgood.algorithm.internals.AntlrErrorListener;
 import toolgood.algorithm.internals.CharUtil;
+import toolgood.algorithm.internals.MathSimplifiedFormulaVisitor;
 import toolgood.algorithm.internals.AntlrCharStream;
 import toolgood.algorithm.internals.MathVisitor;
 import toolgood.algorithm.litJson.JsonData;
@@ -291,7 +292,7 @@ public class AlgorithmEngine {
         try {
             if (Parse(exp)) {
                 Operand obj = Evaluate();
-                obj = obj.ToBoolean("It can't be converted to bool!");
+                obj = obj.ToBoolean("It can't be converted to boolean!");
                 if (obj.IsError()) {
                     LastError = obj.ErrorMsg();
                     return defvalue;
@@ -308,7 +309,7 @@ public class AlgorithmEngine {
         try {
             if (Parse(exp)) {
                 Operand obj = Evaluate();
-                obj = obj.ToDate("It can't be converted to bool!");
+                obj = obj.ToDate("It can't be converted to DateTime!");
                 if (obj.IsError()) {
                     LastError = obj.ErrorMsg();
                     return defvalue;
@@ -325,7 +326,7 @@ public class AlgorithmEngine {
         try {
             if (Parse(exp)) {
                 Operand obj = Evaluate();
-                obj = obj.ToDate("It can't be converted to bool!");
+                obj = obj.ToDate("It can't be converted to MyDate!");
                 if (obj.IsError()) {
                     LastError = obj.ErrorMsg();
                     return defvalue;
@@ -336,6 +337,41 @@ public class AlgorithmEngine {
             LastError = ex.getMessage();
         }
         return defvalue;
+    }
+
+    /**
+     * 获取简化公式
+     * 
+     * @param formula 公式
+     * 
+     */
+    public String GetSimplifiedFormula(final String formula) {
+        try {
+            if (Parse(formula)) {
+                final MathSimplifiedFormulaVisitor visitor = new MathSimplifiedFormulaVisitor();
+                visitor.GetParameter = f -> {
+                    try {
+                        return GetDiyParameterInside(f);
+                    } catch (Exception e) {
+                    }
+                    return null;
+                };
+                visitor.excelIndex = UseExcelIndex ? 1 : 0;
+                visitor.DiyFunction = f -> {
+                    return ExecuteDiyFunction(f.Name, f.OperandList);
+                };
+                Operand obj = visitor.visit(_context);
+                obj = obj.ToText("It can't be converted to String!");
+                if (obj.IsError()) {
+                    LastError = obj.ErrorMsg();
+                    return null;
+                }
+                return obj.TextValue();
+            }
+        } catch (final Exception ex) {
+            LastError = ex.getMessage();
+        }
+        return null;
     }
 
     /**

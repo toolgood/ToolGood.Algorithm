@@ -10,7 +10,6 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import toolgood.algorithm.math.mathLexer;
 import toolgood.algorithm.math.mathParser;
 import toolgood.algorithm.math.mathParser.ProgContext;
-import toolgood.algorithm.internals.AntlrErrorListener;
 import toolgood.algorithm.internals.AntlrCharStream;
 import toolgood.algorithm.internals.ConditionCacheInfo;
 

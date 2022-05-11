@@ -260,9 +260,23 @@ namespace ToolGood.Algorithm
 
             String tt2 = c.EvaluateFormula("'圆'-[半径]-高", '-');
             Assert.AreEqual("圆-3-10", tt2);
+        }
 
+        [Test]
+        public void Test5555()
+        {
+            Cylinder c = new Cylinder(3, 10);
+            String t = c.GetSimplifiedFormula("[半径]*[半径]*pi()"); // 圆底面积
+            Assert.AreEqual("3 * 3 * 3.141592653589793", t);
+
+            String t2 = c.GetSimplifiedFormula("半径*if(半径>2,1,3)");
+            Assert.AreEqual("3 * 1", t2);
+
+            String t24 = c.GetSimplifiedFormula("半径*if(半径>2,1+4,3)");
+            Assert.AreEqual("3 * 5", t24);
 
         }
+
 
     }
 }

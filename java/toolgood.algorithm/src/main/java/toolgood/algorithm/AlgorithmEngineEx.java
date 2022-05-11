@@ -14,6 +14,7 @@ import toolgood.algorithm.internals.AntlrCharStream;
 import toolgood.algorithm.internals.AntlrErrorListener;
 import toolgood.algorithm.internals.CharUtil;
 import toolgood.algorithm.internals.ConditionCacheInfo;
+import toolgood.algorithm.internals.MathSimplifiedFormulaVisitor;
 import toolgood.algorithm.internals.MathVisitor;
 import toolgood.algorithm.litJson.JsonData;
 import toolgood.algorithm.litJson.JsonMapper;
@@ -416,7 +417,7 @@ public class AlgorithmEngineEx {
         }
         return defvalue;
     }
-    
+
     public int TryEvaluate(final String exp, final int defvalue) {
         try {
             Operand obj = Evaluate(exp);
@@ -510,8 +511,6 @@ public class AlgorithmEngineEx {
         return defvalue;
     }
 
-
-
     private Operand EvaluateCategory(ProgContext context) {
         try {
             final MathVisitor visitor = new MathVisitor();
@@ -531,6 +530,41 @@ public class AlgorithmEngineEx {
             LastError = ex.getMessage();
             return Operand.Error(ex.getMessage());
         }
+    }
+
+    /**
+     * 获取简化公式
+     * 
+     * @param formula 公式
+     * 
+     */
+    public String GetSimplifiedFormula(final String formula) {
+        try {
+            ProgContext _context = Parse(formula);
+            final MathSimplifiedFormulaVisitor visitor = new MathSimplifiedFormulaVisitor();
+            visitor.GetParameter = f -> {
+                try {
+                    return GetDiyParameterInside(f);
+                } catch (Exception e) {
+                }
+                return null;
+            };
+            visitor.excelIndex = UseExcelIndex ? 1 : 0;
+            visitor.DiyFunction = f -> {
+                return ExecuteDiyFunction(f.Name, f.OperandList);
+            };
+            Operand obj = visitor.visit(_context);
+            obj = obj.ToText("It can't be converted to String!");
+            if (obj.IsError()) {
+                LastError = obj.ErrorMsg();
+                return null;
+            }
+            return obj.TextValue();
+
+        } catch (final Exception ex) {
+            LastError = ex.getMessage();
+        }
+        return null;
     }
 
     /**

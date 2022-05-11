@@ -1068,6 +1068,36 @@ namespace ToolGood.Algorithm
 
         #endregion
 
+        #region GetSimplifiedFormula
+        /// <summary>
+        /// 获取简化公式
+        /// </summary>
+        /// <param name="formula">公式</param>
+        /// <returns></returns>
+        public String GetSimplifiedFormula(String formula)
+        {
+            try {
+                ProgContext _context = Parse(formula);
+                MathSimplifiedFormulaVisitor visitor = new MathSimplifiedFormulaVisitor();
+                visitor.GetParameter += GetDiyParameterInside;
+                visitor.excelIndex = UseExcelIndex ? 1 : 0;
+                visitor.DiyFunction += ExecuteDiyFunction;
+
+                Operand obj = visitor.Visit(_context);
+                obj = obj.ToText("It can't be converted to String!");
+                if (obj.IsError) {
+                    LastError = obj.ErrorMsg;
+                    return null;
+                }
+                return obj.TextValue;
+
+            } catch (Exception ex) {
+                LastError = ex.Message;
+            }
+            return null;
+        }
+        #endregion
+
         #region EvaluateFormula
         /// <summary>
         /// 计算公式

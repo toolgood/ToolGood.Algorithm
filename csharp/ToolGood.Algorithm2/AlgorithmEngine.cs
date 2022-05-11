@@ -55,7 +55,7 @@ namespace ToolGood.Algorithm
             } else {
                 _tempdict = new Dictionary<string, Operand>();
             }
-        } 
+        }
         #endregion
 
 
@@ -353,7 +353,7 @@ namespace ToolGood.Algorithm
             _context = context;
             return true;
         }
- 
+
         /// <summary>
         /// 执行函数
         /// </summary>
@@ -707,6 +707,37 @@ namespace ToolGood.Algorithm
                 LastError = ex.Message + "\r\n" + ex.StackTrace;
             }
             return def;
+        }
+        #endregion
+
+        #region GetSimplifiedFormula
+        /// <summary>
+        /// 获取简化公式
+        /// </summary>
+        /// <param name="String"></param>
+        /// <param name=""></param>
+        /// <returns></returns>
+        public String GetSimplifiedFormula(String formula)
+        {
+            try {
+                if (Parse(formula)) {
+                    MathSimplifiedFormulaVisitor visitor = new MathSimplifiedFormulaVisitor();
+                    visitor.GetParameter += GetDiyParameterInside;
+                    visitor.excelIndex = UseExcelIndex ? 1 : 0;
+                    visitor.DiyFunction += ExecuteDiyFunction;
+
+                    Operand obj = visitor.Visit(_context);
+                    obj = obj.ToText("It can't be converted to String!");
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
+                        return null;
+                    }
+                    return obj.TextValue;
+                }
+            } catch (Exception ex) {
+                LastError = ex.Message;
+            }
+            return null;
         }
         #endregion
 
