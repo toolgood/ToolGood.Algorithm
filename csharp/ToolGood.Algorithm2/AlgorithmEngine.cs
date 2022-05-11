@@ -649,7 +649,7 @@ namespace ToolGood.Algorithm
             try {
                 if (Parse(exp)) {
                     var obj = Evaluate();
-                    obj = obj.ToMyDate("It can't be converted to MyDate!");
+                    obj = obj.ToMyDate("It can't be converted to DateTime!");
                     if (obj.IsError) {
                         LastError = obj.ErrorMsg;
                         return def;
@@ -672,7 +672,7 @@ namespace ToolGood.Algorithm
             try {
                 if (Parse(exp)) {
                     var obj = Evaluate();
-                    obj = obj.ToMyDate("It can't be converted to MyDate!");
+                    obj = obj.ToMyDate("It can't be converted to TimeSpan!");
                     if (obj.IsError) {
                         LastError = obj.ErrorMsg;
                         return def;

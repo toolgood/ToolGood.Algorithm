@@ -247,12 +247,12 @@ public class AlgorithmEngineHelper {
     /// </summary>
     /// <param name="parameter"></param>
     /// <returns></returns>
-    public boolean IsKeywords(String parameter) {
+    public static boolean IsKeywords(String parameter) {
         Set<String> lexerSet = GetLexerSet();
         return lexerSet.contains(CharUtil.StandardString(parameter));
     }
 
-    public DiyNameInfo GetDiyNames(String exp) throws Exception {
+    public static DiyNameInfo GetDiyNames(String exp) throws Exception {
         if (exp == null || exp.equals("")) {
             throw new Exception("Parameter exp invalid !");
         }

@@ -97,11 +97,13 @@ public class Cylinder extends AlgorithmEngine {
     c.TryEvaluate("[半径]*[半径]*pi()*[高]", 0.0); //圆的体积
     c.TryEvaluate("['半径']*[半径]*pi()*[高]", 0.0); //圆的体积
     c.EvaluateFormula("'圆'-[半径]-高", '-'); // Return: 圆-3-10
+    c.GetSimplifiedFormula("半径*if(半径>2,1+4,3)"); // Return: 3 * 5
 ```
 Parameters are defined in square brackets, such as `[parameter name]`. 
 
 Note: You can also use `AddParameter`, `AddParameterFromJson` to add methods, and use `DiyFunction` to customize functions. 
 
+Note 2: use `AlgorithmEngineHelper.GetDiyNames` get `parameter name` and `custom function name`.
 
 ## Multi formula
 ``` java

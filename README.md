@@ -91,12 +91,15 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
     c.TryEvaluate("[半径]*[半径]*pi()*[高]", 0.0); //Volume of circle 圆的体积
     c.TryEvaluate("['半径']*[半径]*pi()*[高]", 0.0); //Volume of circle 圆的体积
     c.EvaluateFormula("'圆'-[半径]-高", '-'); // Return: 圆-3-10
+    c.GetSimplifiedFormula("半径*if(半径>2,1+4,3)"); // Return: 3 * 5
 
 ```
 
 参数以方括号定义，如 `[参数名]`。 
 
 注：还可以使用`AddParameter`、`AddParameterFromJson`添加方法，使用`DiyFunction`+=来自定义函数。
+
+注2：使用 `AlgorithmEngineHelper.GetDiyNames` 获取`参数名`、`自定义方法名`。
 
 ## 多公式
 ``` csharp

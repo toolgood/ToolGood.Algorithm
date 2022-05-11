@@ -239,7 +239,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        public bool IsKeywords(string parameter)
+        public static bool IsKeywords(string parameter)
         {
             var lexerSet = GetLexerSet();
             return lexerSet.Contains(CharUtil.StandardString(parameter));
@@ -251,7 +251,7 @@ namespace ToolGood.Algorithm
         /// <param name="exp"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public DiyNameInfo GetDiyNames(String exp)
+        public static DiyNameInfo GetDiyNames(String exp)
         {
             if (string.IsNullOrWhiteSpace(exp)) {
                 throw new Exception("Parameter exp invalid !");
