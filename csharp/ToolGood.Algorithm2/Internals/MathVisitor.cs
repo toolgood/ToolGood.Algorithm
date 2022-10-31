@@ -57,7 +57,7 @@ namespace ToolGood.Algorithm.Internals
                     if (a.IsError == false) secondValue = a;
                 }
             }
-            if (CharUtil.Equals(t, "*")) {
+            if (CharUtil.Equals(t, '*')) {
                 if (secondValue.Type == OperandType.BOOLEAN) {
                     if (secondValue.BooleanValue)
                         return firstValue;
@@ -85,7 +85,7 @@ namespace ToolGood.Algorithm.Internals
                 secondValue = secondValue.ToNumber($"Function '{t}' parameter 2 is error!");
                 if (secondValue.IsError) { return secondValue; }
                 return Operand.Create(firstValue.NumberValue * secondValue.NumberValue);
-            } else if (CharUtil.Equals(t, "/")) {
+            } else if (CharUtil.Equals(t, '/')) {
                 if (firstValue.Type == OperandType.DATE) {
                     return Operand.Create(firstValue.DateValue / secondValue.NumberValue);
                 }
@@ -98,7 +98,7 @@ namespace ToolGood.Algorithm.Internals
                     return Operand.Error($"Function '{t}' parameter 2 is error!");
                 }
                 return Operand.Create(firstValue.NumberValue / secondValue.NumberValue);
-            } else if (CharUtil.Equals(t, "%")) {
+            } else if (CharUtil.Equals(t, '%')) {
                 firstValue = firstValue.ToNumber("% fun right value");
                 if (firstValue.IsError) { return firstValue; }
                 secondValue = secondValue.ToNumber("% fun right value");
@@ -120,7 +120,7 @@ namespace ToolGood.Algorithm.Internals
             var secondValue = args[1];
             var t = context.op.Text;
 
-            if (CharUtil.Equals(t, "&")) {
+            if (CharUtil.Equals(t, '&')) {
                 if (firstValue.IsNull && secondValue.IsNull) {
                     return firstValue;
                 } else if (firstValue.IsNull) {
@@ -155,7 +155,7 @@ namespace ToolGood.Algorithm.Internals
                     if (a.IsError == false) secondValue = a;
                 }
             }
-            if (CharUtil.Equals(t, "+")) {
+            if (CharUtil.Equals(t, '+')) {
                 if (firstValue.Type == OperandType.DATE && secondValue.Type == OperandType.DATE) {
                     return Operand.Create(firstValue.DateValue + secondValue.DateValue);
                 } else if (firstValue.Type == OperandType.DATE) {
@@ -172,7 +172,7 @@ namespace ToolGood.Algorithm.Internals
                 secondValue = secondValue.ToNumber($"Function '{t}' parameter 2 is error!");
                 if (secondValue.IsError) { return secondValue; }
                 return Operand.Create(firstValue.NumberValue + secondValue.NumberValue);
-            } else if (CharUtil.Equals(t, "-")) {
+            } else if (CharUtil.Equals(t, '-')) {
                 if (firstValue.Type == OperandType.DATE && secondValue.Type == OperandType.DATE) {
                     return Operand.Create(firstValue.DateValue - secondValue.DateValue);
                 } else if (firstValue.Type == OperandType.DATE) {
@@ -182,7 +182,7 @@ namespace ToolGood.Algorithm.Internals
                 } else if (secondValue.Type == OperandType.DATE) {
                     firstValue = firstValue.ToNumber($"Function '{t}' parameter 1 is error!");
                     if (firstValue.IsError) { return firstValue; }
-                    return Operand.Create(secondValue.DateValue - firstValue.NumberValue);
+                    return Operand.Create(firstValue.NumberValue - secondValue.DateValue);
                 }
                 firstValue = firstValue.ToNumber(null);
                 if (firstValue.IsError) { return firstValue; }
@@ -263,11 +263,11 @@ namespace ToolGood.Algorithm.Internals
 
                 r = Compare(firstValue.NumberValue, secondValue.NumberValue);
             }
-            if (CharUtil.Equals(type, "<")) {
+            if (CharUtil.Equals(type, '<')) {
                 return Operand.Create(r == -1);
             } else if (CharUtil.Equals(type, "<=")) {
                 return Operand.Create(r <= 0);
-            } else if (CharUtil.Equals(type, ">")) {
+            } else if (CharUtil.Equals(type, '>')) {
                 return Operand.Create(r == 1);
             } else if (CharUtil.Equals(type, ">=")) {
                 return Operand.Create(r >= 0);
@@ -815,7 +815,7 @@ namespace ToolGood.Algorithm.Internals
                 no = thirdValue.BooleanValue;
             }
             if (no == false) {
-                return Operand.Create(s.ToString("N" + num, cultureInfo));
+                return Operand.Create(s.ToString('N' + num.ToString(), cultureInfo));
             }
             return Operand.Create(s.ToString(cultureInfo));
         }
@@ -1898,7 +1898,7 @@ namespace ToolGood.Algorithm.Internals
             var endMyDate = (DateTime)secondValue.DateValue;
             var t = thirdValue.TextValue.ToLower();
 
-            if (CharUtil.Equals(t, "y")) {
+            if (CharUtil.Equals(t, 'Y')) {
                 #region y
                 bool b = false;
                 if (startMyDate.Month < endMyDate.Month) {
@@ -1912,7 +1912,7 @@ namespace ToolGood.Algorithm.Internals
                     return Operand.Create((endMyDate.Year - startMyDate.Year - 1));
                 }
                 #endregion
-            } else if (CharUtil.Equals(t, "m")) {
+            } else if (CharUtil.Equals(t, 'M')) {
                 #region m
                 bool b = false;
                 if (startMyDate.Day <= endMyDate.Day) b = true;
@@ -1922,9 +1922,9 @@ namespace ToolGood.Algorithm.Internals
                     return Operand.Create((endMyDate.Year * 12 + endMyDate.Month - startMyDate.Year * 12 - startMyDate.Month - 1));
                 }
                 #endregion
-            } else if (CharUtil.Equals(t, "d")) {
+            } else if (CharUtil.Equals(t, 'D')) {
                 return Operand.Create((endMyDate - startMyDate).Days);
-            } else if (CharUtil.Equals(t, "yd")) {
+            } else if (CharUtil.Equals(t, "YD")) {
                 #region yd
                 var day = endMyDate.DayOfYear - startMyDate.DayOfYear;
                 if (endMyDate.Year > startMyDate.Year && day < 0) {
@@ -1933,7 +1933,7 @@ namespace ToolGood.Algorithm.Internals
                 }
                 return Operand.Create((day));
                 #endregion
-            } else if (CharUtil.Equals(t, "md")) {
+            } else if (CharUtil.Equals(t, "MD")) {
                 #region md
                 var mo = endMyDate.Day - startMyDate.Day;
                 if (mo < 0) {
@@ -1948,7 +1948,7 @@ namespace ToolGood.Algorithm.Internals
                 }
                 return Operand.Create((mo));
                 #endregion
-            } else if (CharUtil.Equals(t, "ym")) {
+            } else if (CharUtil.Equals(t, "YM")) {
                 #region ym
                 var mo = endMyDate.Month - startMyDate.Month;
                 if (endMyDate.Day < startMyDate.Day) mo = mo - 1;
@@ -2317,7 +2317,7 @@ namespace ToolGood.Algorithm.Internals
             } else {
                 if (double.TryParse(args[1].TextValue.Trim(), NumberStyles.Any, cultureInfo, out double d)) {
                     count = F_base_countif(list, d);
-                    sum = F_base_sumif(list, "=" + args[1].TextValue.Trim(), sumdbs);
+                    sum = F_base_sumif(list, '=' + args[1].TextValue.Trim(), sumdbs);
                 } else {
                     var sunif = args[1].TextValue.Trim();
                     if (sumifRegex.IsMatch(sunif)) {
@@ -2441,7 +2441,7 @@ namespace ToolGood.Algorithm.Internals
                 sum = F_base_countif(list, args[1].NumberValue) * args[1].NumberValue;
             } else {
                 if (double.TryParse(args[1].TextValue.Trim(), NumberStyles.Any, cultureInfo, out _)) {
-                    sum = F_base_sumif(list, "=" + args[1].TextValue.Trim(), sumdbs);
+                    sum = F_base_sumif(list, '=' + args[1].TextValue.Trim(), sumdbs);
                 } else {
                     var sunif = args[1].TextValue.Trim();
                     if (sumifRegex.IsMatch(sunif)) {
@@ -2923,11 +2923,11 @@ namespace ToolGood.Algorithm.Internals
         }
         private bool F_base_compare(double a, double b, string ss)
         {
-            if (CharUtil.Equals(ss, "<")) {
+            if (CharUtil.Equals(ss, '<')) {
                 return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) < 0;
             } else if (CharUtil.Equals(ss, "<=")) {
                 return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) <= 0;
-            } else if (CharUtil.Equals(ss, ">")) {
+            } else if (CharUtil.Equals(ss, '>')) {
                 return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) > 0;
             } else if (CharUtil.Equals(ss, ">=")) {
                 return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) >= 0;
@@ -3603,7 +3603,7 @@ namespace ToolGood.Algorithm.Internals
             var firstValue = this.Visit(context.expr()).ToText("Function JSON parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             var txt = firstValue.TextValue;
-            if ((txt.StartsWith("{") && txt.EndsWith("}")) || (txt.StartsWith("[") && txt.EndsWith("]"))) {
+            if ((txt.StartsWith('{') && txt.EndsWith('}')) || (txt.StartsWith('[') && txt.EndsWith(']'))) {
                 try {
                     var json = JsonMapper.ToObject(txt);
                     return Operand.Create(json);
@@ -3802,7 +3802,7 @@ namespace ToolGood.Algorithm.Internals
             node = context.PARAMETER2();
             if (node != null) {
                 string str = node.GetText();
-                if (str.StartsWith("@")) {
+                if (str.StartsWith('@')) {
                     return GetParameter(str.Substring(1));
                 }
                 return GetParameter(str.Substring(1, str.Length - 2));

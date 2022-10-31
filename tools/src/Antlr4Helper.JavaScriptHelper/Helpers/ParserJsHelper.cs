@@ -36,6 +36,7 @@ namespace Antlr4Helper.JavaScriptHelper.Helpers
                 lines = lines.Replace(item + ")", dict[item].ToString() + ")");
                 lines = lines.Replace(" " + item, " " + dict[item].ToString());
                 lines = lines.Replace("(" + item, "(" + dict[item].ToString());
+                lines = lines.Replace("=" + item, "=" + dict[item].ToString());
             }
 
             var ms = ifReg.Matches(lines);

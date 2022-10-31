@@ -9,13 +9,14 @@ namespace Antlr4Helper.JavaScriptHelper
     {
         static void Main(string[] args)
         {
-            var text = File.ReadAllText("mathParser.js");
+            var filePath = Path.GetFullPath(@"..\..\..\..\..\..\g4\bin\mathParser.js");
+            var text = File.ReadAllText(filePath);
             text = ParserJsHelper.ReplaceNumber(text);
             text = ParserJsHelper.ReplaceKey(text);
 
             var lines = text.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).ToList();
             ParserJsHelper.RemoveState(lines);
-            ParserJsHelper.RemoveState2(lines);
+            //ParserJsHelper.RemoveState2(lines);
             ParserJsHelper.MiniAccept(lines);
             ParserJsHelper.MiniExpr(lines);
             ParserJsHelper.MiniToken(lines);
@@ -27,21 +28,28 @@ namespace Antlr4Helper.JavaScriptHelper
             text = string.Join("\r\n", lines);
             text = MiniSerializedATN.MiniAtn(text);
             text = ParserJsHelper.RemoveOthers(text);
-            File.WriteAllText("mathParser.bak.js", text);
+
+            text = text.Replace("export default", "");
+            text = text.Replace("import antlr4 from 'antlr4';", "antlr4=require('./index')");
+            text += "\r\nexports.mathParser = mathParser;";
+            File.WriteAllText("mathParser.js", text);
 
 
-
-
-            text = File.ReadAllText("mathLexer.js");
+            filePath = Path.GetFullPath(@"..\..\..\..\..\..\g4\bin\mathLexer.js");
+            text = File.ReadAllText(filePath);
             lines = text.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).ToList();
             LexerJsHelper.MiniToken(lines);
 
             text = string.Join("\r\n", lines);
             text = LexerJsHelper.RemoveOthers(text);
             text = MiniSerializedATN.MiniAtn(text);
-            File.WriteAllText("mathLexer.bak.js", text);
 
-            Console.WriteLine("Hello World!");
+            text = text.Replace("export default", "");
+            text = text.Replace("import antlr4 from 'antlr4';", "antlr4=require('./index')");
+            text += "\r\nexports.mathLexer = mathLexer;";
+
+            File.WriteAllText("mathLexer.js", text);
+
         }
     }
 }
