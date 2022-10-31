@@ -8,7 +8,7 @@
     <Authors>ToolGood</Authors>
     <TargetFrameworks>netstandard2.1;</TargetFrameworks>
     <AssemblyName>ToolGood.Algorithm</AssemblyName>
-    <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
+    <PublicSign >true</PublicSign>
     <PackageId>ToolGood.Algorithm</PackageId>
     <PackageTags>algorithm;excel;excel-expressions;script;formula-grammar;formula;expression</PackageTags>
     <PackageProjectUrl>https://github.com/toolgood/ToolGood.Algorithm</PackageProjectUrl>
