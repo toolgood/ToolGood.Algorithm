@@ -8,7 +8,7 @@ namespace ToolGood.Algorithm
     /// <summary>
     /// 算法引擎助手
     /// </summary>
-    public class AlgorithmEngineHelper
+    public static class AlgorithmEngineHelper
     {
         private static HashSet<string> _lexerSet;
 

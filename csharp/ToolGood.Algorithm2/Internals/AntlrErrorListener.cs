@@ -3,7 +3,7 @@ using System.IO;
 
 namespace ToolGood.Algorithm.Internals
 {
-    class AntlrErrorListener : IAntlrErrorListener<IToken>
+   sealed class AntlrErrorListener : IAntlrErrorListener<IToken>
     {
         public bool IsError { get; private set; }
         public string ErrorMsg { get; private set; }

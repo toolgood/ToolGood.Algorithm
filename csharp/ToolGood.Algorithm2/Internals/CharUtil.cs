@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals
 {
-    class CharUtil
+   static class CharUtil
     {
         public static char StandardChar(char o)
         {

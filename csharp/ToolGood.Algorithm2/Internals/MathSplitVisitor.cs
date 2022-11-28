@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals
 {
-    class MathSplitVisitor : AbstractParseTreeVisitor<ConditionTree>, ImathVisitor<ConditionTree>
+   sealed class MathSplitVisitor : AbstractParseTreeVisitor<ConditionTree>, ImathVisitor<ConditionTree>
     {
         public ConditionTree VisitProg(mathParser.ProgContext context)
         {

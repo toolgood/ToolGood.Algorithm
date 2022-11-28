@@ -16,7 +16,7 @@ namespace ToolGood.Algorithm.Internals
     /// 'BEGIN' if constructor parameter upper=true but getText() would return
     /// 'BeGiN'.
     /// </summary>
-    class AntlrCharStream : ICharStream
+   sealed class AntlrCharStream : ICharStream
     {
         private ICharStream stream;
 

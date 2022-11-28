@@ -2,7 +2,7 @@
 
 namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
 {
-    class StudentT
+   sealed class StudentT
     {
         public static double CDF(double location, double scale, double freedom, double x)
         {

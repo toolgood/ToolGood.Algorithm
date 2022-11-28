@@ -2,7 +2,7 @@
 
 namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
 {
-    class FisherSnedecor
+    sealed class FisherSnedecor
     {
         public static double CDF(double d1, double d2, double x)
         {

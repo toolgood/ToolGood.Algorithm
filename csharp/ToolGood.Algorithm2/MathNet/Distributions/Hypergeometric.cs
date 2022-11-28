@@ -7,7 +7,7 @@
     /// describes the number of successes for draws with replacement
     /// <a href="http://en.wikipedia.org/wiki/Hypergeometric_distribution">Wikipedia - Hypergeometric distribution</a>.
     /// </summary>
-    public class Hypergeometric
+    public sealed class Hypergeometric
     {
         /// <summary>
         /// Computes the probability mass (PMF) at k, i.e. P(X = k).

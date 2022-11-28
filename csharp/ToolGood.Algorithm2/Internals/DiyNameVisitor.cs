@@ -3,7 +3,7 @@ using System;
 
 namespace ToolGood.Algorithm.Internals
 {
-    class DiyNameVisitor : AbstractParseTreeVisitor<Object>, ImathVisitor<Object>
+  sealed  class DiyNameVisitor : AbstractParseTreeVisitor<Object>, ImathVisitor<Object>
     {
         internal DiyNameInfo diy = new DiyNameInfo();
 

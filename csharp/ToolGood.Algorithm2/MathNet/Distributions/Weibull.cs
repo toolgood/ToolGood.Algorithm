@@ -10,7 +10,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
     /// <remarks>
     /// The Weibull distribution is parametrized by a shape and scale parameter.
     /// </remarks>
-    public class Weibull
+    public sealed class Weibull
     {
         /// <summary>
         /// Computes the probability density of the distribution (PDF) at x, i.e. ∂P(X ≤ x)/∂x.

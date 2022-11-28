@@ -2,7 +2,7 @@
 
 namespace ToolGood.Algorithm.MathNet.Numerics
 {
-    class Normal
+    sealed class Normal
     {
         public static double CDF(double mean, double stddev, double x)
         {

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace ToolGood.Algorithm.LitJson
 {
-    class JsonData : IJsonWrapper, IEnumerable
+  sealed  class JsonData : IJsonWrapper, IEnumerable
     {
         #region Fields
         private IList<JsonData> inst_array;

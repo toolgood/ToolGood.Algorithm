@@ -7,7 +7,7 @@ namespace ToolGood.Algorithm.Internals
     /// <summary>
     /// 条件缓存
     /// </summary>
-    public class ConditionCacheInfo
+    public sealed class ConditionCacheInfo
     {
         /// <summary>
         /// 类型名

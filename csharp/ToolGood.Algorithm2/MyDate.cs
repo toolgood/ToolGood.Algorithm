@@ -7,7 +7,7 @@ namespace ToolGood.Algorithm
     /// <summary>
     /// MyDate
     /// </summary>
-    public class MyDate
+    public sealed class MyDate
     {
         /// <summary>
         /// 年

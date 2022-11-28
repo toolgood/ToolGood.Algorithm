@@ -7,7 +7,7 @@ namespace ToolGood.Algorithm.Internals
     /// <summary>
     /// 条件树
     /// </summary>
-    public class ConditionTree
+    public sealed class ConditionTree
     {
         /// <summary>
         /// 子节点

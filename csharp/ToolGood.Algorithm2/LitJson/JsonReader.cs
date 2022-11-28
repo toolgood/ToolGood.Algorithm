@@ -25,7 +25,7 @@ namespace ToolGood.Algorithm.LitJson
     }
 
 
-    class JsonReader
+   sealed  class JsonReader
     {
         #region Fields
         private static readonly IDictionary<int, IDictionary<int, int[]>> parse_table;

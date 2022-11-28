@@ -3,7 +3,7 @@ using System;
 
 namespace ToolGood.Algorithm.LitJson
 {
-    class JsonException : ApplicationException
+  sealed  class JsonException : ApplicationException
     {
 
         internal JsonException(ParserToken token, Exception inner_exception) :

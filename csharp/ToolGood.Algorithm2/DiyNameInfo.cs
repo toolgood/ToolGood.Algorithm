@@ -6,7 +6,7 @@ namespace ToolGood.Algorithm
     /// <summary>
     /// 自定义类型
     /// </summary>
-    public class DiyNameInfo
+    public sealed class DiyNameInfo
     {
         /// <summary>
         /// 自定义 参数

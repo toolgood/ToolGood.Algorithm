@@ -9,7 +9,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
     /// when the probability of head is p.
     /// <a href="http://en.wikipedia.org/wiki/Negative_binomial_distribution">Wikipedia - NegativeBinomial distribution</a>.
     /// </summary>
-    public class NegativeBinomial
+    public sealed class NegativeBinomial
     {
 
         /// <summary>

@@ -7,7 +7,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
     /// The exponential distribution is a distribution over the real numbers parameterized by one non-negative parameter.
     /// <a href="http://en.wikipedia.org/wiki/Exponential_distribution">Wikipedia - exponential distribution</a>.
     /// </summary>
-    public class Exponential
+    public sealed class Exponential
     {
         /// <summary>
         /// Computes the probability density of the distribution (PDF) at x, i.e. ∂P(X ≤ x)/∂x.

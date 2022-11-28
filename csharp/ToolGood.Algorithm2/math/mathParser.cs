@@ -65,7 +65,7 @@ partial class mathParser : Parser {
 		Interpreter = new ParserATNSimulator(this, _ATN, decisionToDFA, sharedContextCache);
 	}
 
-	public partial class ProgContext : ParserRuleContext {
+	public sealed class ProgContext : ParserRuleContext {
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -106,7 +106,7 @@ partial class mathParser : Parser {
 		return _localctx;
 	}
 
-	public partial class ExprContext : ParserRuleContext {
+	public class ExprContext : ParserRuleContext {
 		public ExprContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -118,7 +118,7 @@ partial class mathParser : Parser {
 			base.CopyFrom(context);
 		}
 	}
-	public partial class CEILING_funContext : ExprContext {
+	public sealed class CEILING_funContext : ExprContext {
 		//public ITerminalNode CEILING() { return GetToken(90, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -132,7 +132,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class FACT_funContext : ExprContext {
+	public sealed class FACT_funContext : ExprContext {
 		//public ITerminalNode FACT() { return GetToken(97, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -145,7 +145,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class REGEXREPALCE_funContext : ExprContext {
+	public sealed class REGEXREPALCE_funContext : ExprContext {
 		//public ITerminalNode REGEXREPALCE() { return GetToken(208, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -159,7 +159,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class AddSub_funContext : ExprContext {
+	public sealed class AddSub_funContext : ExprContext {
 		public IToken op;
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -174,7 +174,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class AVERAGEIF_funContext : ExprContext {
+	public sealed class AVERAGEIF_funContext : ExprContext {
 		//public ITerminalNode AVERAGEIF() { return GetToken(163, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -188,7 +188,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class ISNULLORERROR_funContext : ExprContext {
+	public sealed class ISNULLORERROR_funContext : ExprContext {
 		//public ITerminalNode ISNULLORERROR() { return GetToken(41, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -202,7 +202,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class RIGHT_funContext : ExprContext {
+	public sealed class RIGHT_funContext : ExprContext {
 		//public ITerminalNode RIGHT() { return GetToken(124, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -216,7 +216,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class OCT2BIN_funContext : ExprContext {
+	public sealed class OCT2BIN_funContext : ExprContext {
 		//public ITerminalNode OCT2BIN() { return GetToken(55, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -230,7 +230,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class QUARTILE_funContext : ExprContext {
+	public sealed class QUARTILE_funContext : ExprContext {
 		//public ITerminalNode QUARTILE() { return GetToken(156, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -244,7 +244,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class FINV_funContext : ExprContext {
+	public sealed class FINV_funContext : ExprContext {
 		//public ITerminalNode FINV() { return GetToken(185, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -258,7 +258,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class NOT_funContext : ExprContext {
+	public sealed class NOT_funContext : ExprContext {
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -271,7 +271,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class DAYS360_funContext : ExprContext {
+	public sealed class DAYS360_funContext : ExprContext {
 		//public ITerminalNode DAYS360() { return GetToken(147, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -285,7 +285,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class WEEKNUM_funContext : ExprContext {
+	public sealed class WEEKNUM_funContext : ExprContext {
 		//public ITerminalNode WEEKNUM() { return GetToken(152, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -299,7 +299,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class POISSON_funContext : ExprContext {
+	public sealed class POISSON_funContext : ExprContext {
 		//public ITerminalNode POISSON() { return GetToken(195, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -313,7 +313,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class ISREGEX_funContext : ExprContext {
+	public sealed class ISREGEX_funContext : ExprContext {
 		//public ITerminalNode ISREGEX() { return GetToken(209, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -327,7 +327,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class PERCENTILE_funContext : ExprContext {
+	public sealed class PERCENTILE_funContext : ExprContext {
 		//public ITerminalNode PERCENTILE() { return GetToken(160, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -341,7 +341,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class DiyFunction_funContext : ExprContext {
+	public sealed class DiyFunction_funContext : ExprContext {
 		public ITerminalNode PARAMETER() { return GetToken(237, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -355,7 +355,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class SHA256_funContext : ExprContext {
+	public sealed class SHA256_funContext : ExprContext {
 		//public ITerminalNode SHA256() { return GetToken(213, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -369,7 +369,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class HYPGEOMDIST_funContext : ExprContext {
+	public sealed class HYPGEOMDIST_funContext : ExprContext {
 		//public ITerminalNode HYPGEOMDIST() { return GetToken(191, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -383,7 +383,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class PERMUT_funContext : ExprContext {
+	public sealed class PERMUT_funContext : ExprContext {
 		//public ITerminalNode PERMUT() { return GetToken(71, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -397,7 +397,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class TRIMSTART_funContext : ExprContext {
+	public sealed class TRIMSTART_funContext : ExprContext {
 		//public ITerminalNode TRIMSTART() { return GetToken(220, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -411,7 +411,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class RMB_funContext : ExprContext {
+	public sealed class RMB_funContext : ExprContext {
 		//public ITerminalNode RMB() { return GetToken(125, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -424,7 +424,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class DEC2HEX_funContext : ExprContext {
+	public sealed class DEC2HEX_funContext : ExprContext {
 		//public ITerminalNode DEC2HEX() { return GetToken(50, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -438,7 +438,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class CLEAN_funContext : ExprContext {
+	public sealed class CLEAN_funContext : ExprContext {
 		//public ITerminalNode CLEAN() { return GetToken(111, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -451,7 +451,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class LOWER_funContext : ExprContext {
+	public sealed class LOWER_funContext : ExprContext {
 		//public ITerminalNode LOWER() { return GetToken(119, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -464,7 +464,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class OR_funContext : ExprContext {
+	public sealed class OR_funContext : ExprContext {
 		//public ITerminalNode OR() { return GetToken(43, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -478,7 +478,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class NORMSINV_funContext : ExprContext {
+	public sealed class NORMSINV_funContext : ExprContext {
 		//public ITerminalNode NORMSINV() { return GetToken(179, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -491,7 +491,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class LEFT_funContext : ExprContext {
+	public sealed class LEFT_funContext : ExprContext {
 		//public ITerminalNode LEFT() { return GetToken(117, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -505,7 +505,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class ISEVEN_funContext : ExprContext {
+	public sealed class ISEVEN_funContext : ExprContext {
 		//public ITerminalNode ISEVEN() { return GetToken(38, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -518,7 +518,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class LOGINV_funContext : ExprContext {
+	public sealed class LOGINV_funContext : ExprContext {
 		//public ITerminalNode LOGINV() { return GetToken(192, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -532,7 +532,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class WORKDAY_funContext : ExprContext {
+	public sealed class WORKDAY_funContext : ExprContext {
 		//public ITerminalNode WORKDAY() { return GetToken(151, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -546,7 +546,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class ISERROR_funContext : ExprContext {
+	public sealed class ISERROR_funContext : ExprContext {
 		//public ITerminalNode ISERROR() { return GetToken(35, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -560,7 +560,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class BIN2DEC_funContext : ExprContext {
+	public sealed class BIN2DEC_funContext : ExprContext {
 		//public ITerminalNode BIN2DEC() { return GetToken(59, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -573,7 +573,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class JIS_funContext : ExprContext {
+	public sealed class JIS_funContext : ExprContext {
 		//public ITerminalNode JIS() { return GetToken(109, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -586,7 +586,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class CRC32_funContext : ExprContext {
+	public sealed class CRC32_funContext : ExprContext {
 		//public ITerminalNode CRC32() { return GetToken(215, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -600,7 +600,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class LCM_funContext : ExprContext {
+	public sealed class LCM_funContext : ExprContext {
 		//public ITerminalNode LCM() { return GetToken(69, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -614,7 +614,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class HARMEAN_funContext : ExprContext {
+	public sealed class HARMEAN_funContext : ExprContext {
 		//public ITerminalNode HARMEAN() { return GetToken(165, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -628,7 +628,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class NORMINV_funContext : ExprContext {
+	public sealed class NORMINV_funContext : ExprContext {
 		//public ITerminalNode NORMINV() { return GetToken(177, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -642,7 +642,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class GAMMAINV_funContext : ExprContext {
+	public sealed class GAMMAINV_funContext : ExprContext {
 		//public ITerminalNode GAMMAINV() { return GetToken(189, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -656,7 +656,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class SQRT_funContext : ExprContext {
+	public sealed class SQRT_funContext : ExprContext {
 		//public ITerminalNode SQRT() { return GetToken(65, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -669,7 +669,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class DEGREES_funContext : ExprContext {
+	public sealed class DEGREES_funContext : ExprContext {
 		//public ITerminalNode DEGREES() { return GetToken(72, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -682,7 +682,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class MROUND_funContext : ExprContext {
+	public sealed class MROUND_funContext : ExprContext {
 		//public ITerminalNode MROUND() { return GetToken(94, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -696,7 +696,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class DATEDIF_funContext : ExprContext {
+	public sealed class DATEDIF_funContext : ExprContext {
 		//public ITerminalNode DATEDIF() { return GetToken(146, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -710,7 +710,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class TRIMEND_funContext : ExprContext {
+	public sealed class TRIMEND_funContext : ExprContext {
 		//public ITerminalNode TRIMEND() { return GetToken(221, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -724,7 +724,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class ISLOGICAL_funContext : ExprContext {
+	public sealed class ISLOGICAL_funContext : ExprContext {
 		//public ITerminalNode ISLOGICAL() { return GetToken(37, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -737,7 +737,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class INT_funContext : ExprContext {
+	public sealed class INT_funContext : ExprContext {
 		//public ITerminalNode INT() { return GetToken(67, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -750,7 +750,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class SUMIF_funContext : ExprContext {
+	public sealed class SUMIF_funContext : ExprContext {
 		//public ITerminalNode SUMIF() { return GetToken(169, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -764,7 +764,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class HEX2OCT_funContext : ExprContext {
+	public sealed class HEX2OCT_funContext : ExprContext {
 		//public ITerminalNode HEX2OCT() { return GetToken(54, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -778,7 +778,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class PI_funContext : ExprContext {
+	public sealed class PI_funContext : ExprContext {
 		//public ITerminalNode PI() { return GetToken(48, 0); }
 		public PI_funContext(ExprContext context) { CopyFrom(context); }
 		
@@ -788,7 +788,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class YEAR_funContext : ExprContext {
+	public sealed class YEAR_funContext : ExprContext {
 		//public ITerminalNode YEAR() { return GetToken(139, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -801,7 +801,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class SQRTPI_funContext : ExprContext {
+	public sealed class SQRTPI_funContext : ExprContext {
 		//public ITerminalNode SQRTPI() { return GetToken(106, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -814,7 +814,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class CONCATENATE_funContext : ExprContext {
+	public sealed class CONCATENATE_funContext : ExprContext {
 		//public ITerminalNode CONCATENATE() { return GetToken(113, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -828,7 +828,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class COUNT_funContext : ExprContext {
+	public sealed class COUNT_funContext : ExprContext {
 		//public ITerminalNode COUNT() { return GetToken(166, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -842,7 +842,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class FALSE_funContext : ExprContext {
+	public sealed class FALSE_funContext : ExprContext {
 		//public ITerminalNode FALSE() { return GetToken(46, 0); }
 		public FALSE_funContext(ExprContext context) { CopyFrom(context); }
 		
@@ -852,7 +852,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class HTMLENCODE_funContext : ExprContext {
+	public sealed class HTMLENCODE_funContext : ExprContext {
 		//public ITerminalNode HTMLENCODE() { return GetToken(201, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -865,7 +865,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class BASE64URLTOTEXT_funContext : ExprContext {
+	public sealed class BASE64URLTOTEXT_funContext : ExprContext {
 		//public ITerminalNode BASE64URLTOTEXT() { return GetToken(204, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -879,7 +879,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class LOG10_funContext : ExprContext {
+	public sealed class LOG10_funContext : ExprContext {
 		//public ITerminalNode LOG10() { return GetToken(103, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -892,7 +892,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class ISTEXT_funContext : ExprContext {
+	public sealed class ISTEXT_funContext : ExprContext {
 		//public ITerminalNode ISTEXT() { return GetToken(34, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -905,7 +905,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class NEGBINOMDIST_funContext : ExprContext {
+	public sealed class NEGBINOMDIST_funContext : ExprContext {
 		//public ITerminalNode NEGBINOMDIST() { return GetToken(194, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -919,7 +919,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class NETWORKDAYS_funContext : ExprContext {
+	public sealed class NETWORKDAYS_funContext : ExprContext {
 		//public ITerminalNode NETWORKDAYS() { return GetToken(150, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -933,7 +933,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class FACTDOUBLE_funContext : ExprContext {
+	public sealed class FACTDOUBLE_funContext : ExprContext {
 		//public ITerminalNode FACTDOUBLE() { return GetToken(98, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -946,7 +946,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class TIMEVALUE_funContext : ExprContext {
+	public sealed class TIMEVALUE_funContext : ExprContext {
 		//public ITerminalNode TIMEVALUE() { return GetToken(134, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -959,7 +959,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class AVEDEV_funContext : ExprContext {
+	public sealed class AVEDEV_funContext : ExprContext {
 		//public ITerminalNode AVEDEV() { return GetToken(170, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -973,7 +973,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class GUID_funContext : ExprContext {
+	public sealed class GUID_funContext : ExprContext {
 		//public ITerminalNode GUID() { return GetToken(210, 0); }
 		public GUID_funContext(ExprContext context) { CopyFrom(context); }
 		
@@ -983,7 +983,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class JSON_funContext : ExprContext {
+	public sealed class JSON_funContext : ExprContext {
 		//public ITerminalNode JSON() { return GetToken(233, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -996,7 +996,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class FIXED_funContext : ExprContext {
+	public sealed class FIXED_funContext : ExprContext {
 		//public ITerminalNode FIXED() { return GetToken(116, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1010,7 +1010,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class GetJsonValue_funContext : ExprContext {
+	public sealed class GetJsonValue_funContext : ExprContext {
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
@@ -1026,7 +1026,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class TINV_funContext : ExprContext {
+	public sealed class TINV_funContext : ExprContext {
 		//public ITerminalNode TINV() { return GetToken(197, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1040,7 +1040,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class EDATE_funContext : ExprContext {
+	public sealed class EDATE_funContext : ExprContext {
 		//public ITerminalNode EDATE() { return GetToken(148, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1054,7 +1054,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class GEOMEAN_funContext : ExprContext {
+	public sealed class GEOMEAN_funContext : ExprContext {
 		//public ITerminalNode GEOMEAN() { return GetToken(164, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1068,7 +1068,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class VAR_funContext : ExprContext {
+	public sealed class VAR_funContext : ExprContext {
 		//public ITerminalNode VAR() { return GetToken(174, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1082,7 +1082,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class SIGN_funContext : ExprContext {
+	public sealed class SIGN_funContext : ExprContext {
 		//public ITerminalNode SIGN() { return GetToken(64, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -1095,7 +1095,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class EOMONTH_funContext : ExprContext {
+	public sealed class EOMONTH_funContext : ExprContext {
 		//public ITerminalNode EOMONTH() { return GetToken(149, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1109,7 +1109,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class FLOOR_funContext : ExprContext {
+	public sealed class FLOOR_funContext : ExprContext {
 		//public ITerminalNode FLOOR() { return GetToken(91, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1123,7 +1123,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class HOUR_funContext : ExprContext {
+	public sealed class HOUR_funContext : ExprContext {
 		//public ITerminalNode HOUR() { return GetToken(142, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -1136,7 +1136,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class LEN_funContext : ExprContext {
+	public sealed class LEN_funContext : ExprContext {
 		//public ITerminalNode LEN() { return GetToken(118, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -1149,7 +1149,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class ACOS_funContext : ExprContext {
+	public sealed class ACOS_funContext : ExprContext {
 		//public ITerminalNode ACOS() { return GetToken(80, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -1162,7 +1162,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class ISNULLORWHITESPACE_funContext : ExprContext {
+	public sealed class ISNULLORWHITESPACE_funContext : ExprContext {
 		//public ITerminalNode ISNULLORWHITESPACE() { return GetToken(230, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -1175,7 +1175,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class NUM_funContext : ExprContext {
+	public sealed class NUM_funContext : ExprContext {
 		public ITerminalNode NUM() { return GetToken(28, 0); }
 		public ITerminalNode SUB() { return GetToken(27, 0); }
 		public NUM_funContext(ExprContext context) { CopyFrom(context); }
@@ -1186,7 +1186,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class COSH_funContext : ExprContext {
+	public sealed class COSH_funContext : ExprContext {
 		//public ITerminalNode COSH() { return GetToken(75, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -1199,7 +1199,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class QUOTIENT_funContext : ExprContext {
+	public sealed class QUOTIENT_funContext : ExprContext {
 		//public ITerminalNode QUOTIENT() { return GetToken(62, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1213,7 +1213,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class OCT2DEC_funContext : ExprContext {
+	public sealed class OCT2DEC_funContext : ExprContext {
 		//public ITerminalNode OCT2DEC() { return GetToken(56, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -1226,7 +1226,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class SEARCH_funContext : ExprContext {
+	public sealed class SEARCH_funContext : ExprContext {
 		//public ITerminalNode SEARCH() { return GetToken(126, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1240,7 +1240,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class ROUNDUP_funContext : ExprContext {
+	public sealed class ROUNDUP_funContext : ExprContext {
 		//public ITerminalNode ROUNDUP() { return GetToken(89, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1254,7 +1254,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class COMBIN_funContext : ExprContext {
+	public sealed class COMBIN_funContext : ExprContext {
 		//public ITerminalNode COMBIN() { return GetToken(70, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1268,7 +1268,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class CODE_funContext : ExprContext {
+	public sealed class CODE_funContext : ExprContext {
 		//public ITerminalNode CODE() { return GetToken(112, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -1281,7 +1281,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class ASINH_funContext : ExprContext {
+	public sealed class ASINH_funContext : ExprContext {
 		//public ITerminalNode ASINH() { return GetToken(83, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -1294,7 +1294,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class SIN_funContext : ExprContext {
+	public sealed class SIN_funContext : ExprContext {
 		//public ITerminalNode SIN() { return GetToken(76, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -1307,7 +1307,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class SUBSTRING_funContext : ExprContext {
+	public sealed class SUBSTRING_funContext : ExprContext {
 		//public ITerminalNode SUBSTRING() { return GetToken(226, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1321,7 +1321,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class RANDBETWEEN_funContext : ExprContext {
+	public sealed class RANDBETWEEN_funContext : ExprContext {
 		//public ITerminalNode RANDBETWEEN() { return GetToken(96, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1335,7 +1335,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class AVERAGE_funContext : ExprContext {
+	public sealed class AVERAGE_funContext : ExprContext {
 		//public ITerminalNode AVERAGE() { return GetToken(162, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1349,7 +1349,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class LOG_funContext : ExprContext {
+	public sealed class LOG_funContext : ExprContext {
 		//public ITerminalNode LOG() { return GetToken(102, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1363,7 +1363,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class HMACSHA512_funContext : ExprContext {
+	public sealed class HMACSHA512_funContext : ExprContext {
 		//public ITerminalNode HMACSHA512() { return GetToken(219, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1377,7 +1377,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class AndOr_funContext : ExprContext {
+	public sealed class AndOr_funContext : ExprContext {
 		public IToken op;
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1393,7 +1393,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class STDEVP_funContext : ExprContext {
+	public sealed class STDEVP_funContext : ExprContext {
 		//public ITerminalNode STDEVP() { return GetToken(172, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1407,7 +1407,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class Array_funContext : ExprContext {
+	public sealed class Array_funContext : ExprContext {
 		//public ITerminalNode ARRAY() { return GetToken(236, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1421,7 +1421,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class ROUND_funContext : ExprContext {
+	public sealed class ROUND_funContext : ExprContext {
 		//public ITerminalNode ROUND() { return GetToken(87, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1435,7 +1435,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class EXP_funContext : ExprContext {
+	public sealed class EXP_funContext : ExprContext {
 		//public ITerminalNode EXP() { return GetToken(100, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -1448,7 +1448,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class COUNTIF_funContext : ExprContext {
+	public sealed class COUNTIF_funContext : ExprContext {
 		//public ITerminalNode COUNTIF() { return GetToken(167, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1462,7 +1462,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class VARP_funContext : ExprContext {
+	public sealed class VARP_funContext : ExprContext {
 		//public ITerminalNode VARP() { return GetToken(175, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1476,7 +1476,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class REMOVEEND_funContext : ExprContext {
+	public sealed class REMOVEEND_funContext : ExprContext {
 		//public ITerminalNode REMOVEEND() { return GetToken(232, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1490,7 +1490,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class DATE_funContext : ExprContext {
+	public sealed class DATE_funContext : ExprContext {
 		//public ITerminalNode DATE() { return GetToken(135, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1504,7 +1504,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class PARAMETER_funContext : ExprContext {
+	public sealed class PARAMETER_funContext : ExprContext {
 		public ITerminalNode PARAMETER() { return GetToken(237, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -1518,7 +1518,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class SPLIT_funContext : ExprContext {
+	public sealed class SPLIT_funContext : ExprContext {
 		//public ITerminalNode SPLIT() { return GetToken(224, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1532,7 +1532,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class URLDECODE_funContext : ExprContext {
+	public sealed class URLDECODE_funContext : ExprContext {
 		//public ITerminalNode URLDECODE() { return GetToken(200, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -1545,7 +1545,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class LARGE_funContext : ExprContext {
+	public sealed class LARGE_funContext : ExprContext {
 		//public ITerminalNode LARGE() { return GetToken(158, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1559,7 +1559,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class VALUE_funContext : ExprContext {
+	public sealed class VALUE_funContext : ExprContext {
 		//public ITerminalNode VALUE() { return GetToken(132, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -1572,7 +1572,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class DAY_funContext : ExprContext {
+	public sealed class DAY_funContext : ExprContext {
 		//public ITerminalNode DAY() { return GetToken(141, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -1585,7 +1585,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class WEIBULL_funContext : ExprContext {
+	public sealed class WEIBULL_funContext : ExprContext {
 		//public ITerminalNode WEIBULL() { return GetToken(198, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1599,7 +1599,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class HMACSHA256_funContext : ExprContext {
+	public sealed class HMACSHA256_funContext : ExprContext {
 		//public ITerminalNode HMACSHA256() { return GetToken(218, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1613,7 +1613,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class BINOMDIST_funContext : ExprContext {
+	public sealed class BINOMDIST_funContext : ExprContext {
 		//public ITerminalNode BINOMDIST() { return GetToken(182, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1627,7 +1627,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class Judge_funContext : ExprContext {
+	public sealed class Judge_funContext : ExprContext {
 		public IToken op;
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1641,7 +1641,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class DEVSQ_funContext : ExprContext {
+	public sealed class DEVSQ_funContext : ExprContext {
 		//public ITerminalNode DEVSQ() { return GetToken(173, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1655,7 +1655,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class MODE_funContext : ExprContext {
+	public sealed class MODE_funContext : ExprContext {
 		//public ITerminalNode MODE() { return GetToken(157, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1669,7 +1669,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class BETAINV_funContext : ExprContext {
+	public sealed class BETAINV_funContext : ExprContext {
 		//public ITerminalNode BETAINV() { return GetToken(181, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1683,7 +1683,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class MAX_funContext : ExprContext {
+	public sealed class MAX_funContext : ExprContext {
 		//public ITerminalNode MAX() { return GetToken(153, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1697,7 +1697,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class MINUTE_funContext : ExprContext {
+	public sealed class MINUTE_funContext : ExprContext {
 		//public ITerminalNode MINUTE() { return GetToken(143, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -1710,7 +1710,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class TAN_funContext : ExprContext {
+	public sealed class TAN_funContext : ExprContext {
 		//public ITerminalNode TAN() { return GetToken(78, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -1723,7 +1723,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class IFERROR_funContext : ExprContext {
+	public sealed class IFERROR_funContext : ExprContext {
 		//public ITerminalNode IFERROR() { return GetToken(32, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1737,7 +1737,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class FDIST_funContext : ExprContext {
+	public sealed class FDIST_funContext : ExprContext {
 		//public ITerminalNode FDIST() { return GetToken(184, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1751,7 +1751,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class INDEXOF_funContext : ExprContext {
+	public sealed class INDEXOF_funContext : ExprContext {
 		//public ITerminalNode INDEXOF() { return GetToken(222, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1765,7 +1765,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class UPPER_funContext : ExprContext {
+	public sealed class UPPER_funContext : ExprContext {
 		//public ITerminalNode UPPER() { return GetToken(131, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -1778,7 +1778,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class HTMLDECODE_funContext : ExprContext {
+	public sealed class HTMLDECODE_funContext : ExprContext {
 		//public ITerminalNode HTMLDECODE() { return GetToken(202, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -1791,7 +1791,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class EXPONDIST_funContext : ExprContext {
+	public sealed class EXPONDIST_funContext : ExprContext {
 		//public ITerminalNode EXPONDIST() { return GetToken(183, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1805,7 +1805,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class VLOOKUP_funContext : ExprContext {
+	public sealed class VLOOKUP_funContext : ExprContext {
 		//public ITerminalNode VLOOKUP() { return GetToken(234, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1819,7 +1819,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class DEC2BIN_funContext : ExprContext {
+	public sealed class DEC2BIN_funContext : ExprContext {
 		//public ITerminalNode DEC2BIN() { return GetToken(49, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1833,7 +1833,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class LOOKUP_funContext : ExprContext {
+	public sealed class LOOKUP_funContext : ExprContext {
 		//public ITerminalNode LOOKUP() { return GetToken(235, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1847,7 +1847,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class HEX2DEC_funContext : ExprContext {
+	public sealed class HEX2DEC_funContext : ExprContext {
 		//public ITerminalNode HEX2DEC() { return GetToken(53, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -1860,7 +1860,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class SMALL_funContext : ExprContext {
+	public sealed class SMALL_funContext : ExprContext {
 		//public ITerminalNode SMALL() { return GetToken(159, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1874,7 +1874,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class ODD_funContext : ExprContext {
+	public sealed class ODD_funContext : ExprContext {
 		//public ITerminalNode ODD() { return GetToken(93, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -1887,7 +1887,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class TEXTTOBASE64_funContext : ExprContext {
+	public sealed class TEXTTOBASE64_funContext : ExprContext {
 		//public ITerminalNode TEXTTOBASE64() { return GetToken(205, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1901,7 +1901,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class MID_funContext : ExprContext {
+	public sealed class MID_funContext : ExprContext {
 		//public ITerminalNode MID() { return GetToken(120, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1915,7 +1915,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class PERCENTRANK_funContext : ExprContext {
+	public sealed class PERCENTRANK_funContext : ExprContext {
 		//public ITerminalNode PERCENTRANK() { return GetToken(161, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1929,7 +1929,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class STDEV_funContext : ExprContext {
+	public sealed class STDEV_funContext : ExprContext {
 		//public ITerminalNode STDEV() { return GetToken(171, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1943,7 +1943,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class NORMSDIST_funContext : ExprContext {
+	public sealed class NORMSDIST_funContext : ExprContext {
 		//public ITerminalNode NORMSDIST() { return GetToken(178, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -1956,7 +1956,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class ISNUMBER_funContext : ExprContext {
+	public sealed class ISNUMBER_funContext : ExprContext {
 		//public ITerminalNode ISNUMBER() { return GetToken(33, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -1969,7 +1969,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class LASTINDEXOF_funContext : ExprContext {
+	public sealed class LASTINDEXOF_funContext : ExprContext {
 		//public ITerminalNode LASTINDEXOF() { return GetToken(223, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1983,7 +1983,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class MOD_funContext : ExprContext {
+	public sealed class MOD_funContext : ExprContext {
 		//public ITerminalNode MOD() { return GetToken(63, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -1997,7 +1997,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class CHAR_funContext : ExprContext {
+	public sealed class CHAR_funContext : ExprContext {
 		//public ITerminalNode CHAR() { return GetToken(110, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -2010,7 +2010,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class REGEX_funContext : ExprContext {
+	public sealed class REGEX_funContext : ExprContext {
 		//public ITerminalNode REGEX() { return GetToken(207, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2024,7 +2024,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class TEXTTOBASE64URL_funContext : ExprContext {
+	public sealed class TEXTTOBASE64URL_funContext : ExprContext {
 		//public ITerminalNode TEXTTOBASE64URL() { return GetToken(206, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2038,7 +2038,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class MD5_funContext : ExprContext {
+	public sealed class MD5_funContext : ExprContext {
 		//public ITerminalNode MD5() { return GetToken(211, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2052,7 +2052,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class REPLACE_funContext : ExprContext {
+	public sealed class REPLACE_funContext : ExprContext {
 		//public ITerminalNode REPLACE() { return GetToken(122, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2066,7 +2066,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class ACOSH_funContext : ExprContext {
+	public sealed class ACOSH_funContext : ExprContext {
 		//public ITerminalNode ACOSH() { return GetToken(81, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -2079,7 +2079,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class ISODD_funContext : ExprContext {
+	public sealed class ISODD_funContext : ExprContext {
 		//public ITerminalNode ISODD() { return GetToken(39, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -2092,7 +2092,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class ASC_funContext : ExprContext {
+	public sealed class ASC_funContext : ExprContext {
 		//public ITerminalNode ASC() { return GetToken(108, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -2105,7 +2105,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class COS_funContext : ExprContext {
+	public sealed class COS_funContext : ExprContext {
 		//public ITerminalNode COS() { return GetToken(74, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -2118,7 +2118,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class LN_funContext : ExprContext {
+	public sealed class LN_funContext : ExprContext {
 		//public ITerminalNode LN() { return GetToken(101, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -2131,7 +2131,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class STRING_funContext : ExprContext {
+	public sealed class STRING_funContext : ExprContext {
 		public ITerminalNode STRING() { return GetToken(29, 0); }
 		public STRING_funContext(ExprContext context) { CopyFrom(context); }
 		
@@ -2141,7 +2141,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class HMACMD5_funContext : ExprContext {
+	public sealed class HMACMD5_funContext : ExprContext {
 		//public ITerminalNode HMACMD5() { return GetToken(216, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2155,7 +2155,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class PRODUCT_funContext : ExprContext {
+	public sealed class PRODUCT_funContext : ExprContext {
 		//public ITerminalNode PRODUCT() { return GetToken(105, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2169,7 +2169,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class EXACT_funContext : ExprContext {
+	public sealed class EXACT_funContext : ExprContext {
 		//public ITerminalNode EXACT() { return GetToken(114, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2183,7 +2183,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class SUMSQ_funContext : ExprContext {
+	public sealed class SUMSQ_funContext : ExprContext {
 		//public ITerminalNode SUMSQ() { return GetToken(107, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2197,7 +2197,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class SUM_funContext : ExprContext {
+	public sealed class SUM_funContext : ExprContext {
 		//public ITerminalNode SUM() { return GetToken(168, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2211,7 +2211,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class SECOND_funContext : ExprContext {
+	public sealed class SECOND_funContext : ExprContext {
 		//public ITerminalNode SECOND() { return GetToken(144, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -2224,7 +2224,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class GAMMADIST_funContext : ExprContext {
+	public sealed class GAMMADIST_funContext : ExprContext {
 		//public ITerminalNode GAMMADIST() { return GetToken(188, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2238,7 +2238,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class OCT2HEX_funContext : ExprContext {
+	public sealed class OCT2HEX_funContext : ExprContext {
 		//public ITerminalNode OCT2HEX() { return GetToken(57, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2252,7 +2252,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class TODAY_funContext : ExprContext {
+	public sealed class TODAY_funContext : ExprContext {
 		//public ITerminalNode TODAY() { return GetToken(138, 0); }
 		public TODAY_funContext(ExprContext context) { CopyFrom(context); }
 		
@@ -2262,7 +2262,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class ATAN_funContext : ExprContext {
+	public sealed class ATAN_funContext : ExprContext {
 		//public ITerminalNode ATAN() { return GetToken(84, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -2275,7 +2275,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class E_funContext : ExprContext {
+	public sealed class E_funContext : ExprContext {
 		//public ITerminalNode E() { return GetToken(47, 0); }
 		public E_funContext(ExprContext context) { CopyFrom(context); }
 		
@@ -2285,7 +2285,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class TRIM_funContext : ExprContext {
+	public sealed class TRIM_funContext : ExprContext {
 		//public ITerminalNode TRIM() { return GetToken(130, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -2298,7 +2298,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class RADIANS_funContext : ExprContext {
+	public sealed class RADIANS_funContext : ExprContext {
 		//public ITerminalNode RADIANS() { return GetToken(73, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -2311,7 +2311,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class GAMMALN_funContext : ExprContext {
+	public sealed class GAMMALN_funContext : ExprContext {
 		//public ITerminalNode GAMMALN() { return GetToken(190, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -2324,7 +2324,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class TEXT_funContext : ExprContext {
+	public sealed class TEXT_funContext : ExprContext {
 		//public ITerminalNode TEXT() { return GetToken(129, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2338,7 +2338,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class FISHER_funContext : ExprContext {
+	public sealed class FISHER_funContext : ExprContext {
 		//public ITerminalNode FISHER() { return GetToken(186, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -2351,7 +2351,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class AND_funContext : ExprContext {
+	public sealed class AND_funContext : ExprContext {
 		//public ITerminalNode AND() { return GetToken(42, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2365,7 +2365,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class BIN2HEX_funContext : ExprContext {
+	public sealed class BIN2HEX_funContext : ExprContext {
 		//public ITerminalNode BIN2HEX() { return GetToken(60, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2379,7 +2379,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class MULTINOMIAL_funContext : ExprContext {
+	public sealed class MULTINOMIAL_funContext : ExprContext {
 		//public ITerminalNode MULTINOMIAL() { return GetToken(104, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2393,7 +2393,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class MONTH_funContext : ExprContext {
+	public sealed class MONTH_funContext : ExprContext {
 		//public ITerminalNode MONTH() { return GetToken(140, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -2406,7 +2406,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class URLENCODE_funContext : ExprContext {
+	public sealed class URLENCODE_funContext : ExprContext {
 		//public ITerminalNode URLENCODE() { return GetToken(199, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -2419,7 +2419,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class NORMDIST_funContext : ExprContext {
+	public sealed class NORMDIST_funContext : ExprContext {
 		//public ITerminalNode NORMDIST() { return GetToken(176, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2433,7 +2433,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class HMACSHA1_funContext : ExprContext {
+	public sealed class HMACSHA1_funContext : ExprContext {
 		//public ITerminalNode HMACSHA1() { return GetToken(217, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2447,7 +2447,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class ENDSWITH_funContext : ExprContext {
+	public sealed class ENDSWITH_funContext : ExprContext {
 		//public ITerminalNode ENDSWITH() { return GetToken(228, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2461,7 +2461,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class Bracket_funContext : ExprContext {
+	public sealed class Bracket_funContext : ExprContext {
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2473,7 +2473,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class BETADIST_funContext : ExprContext {
+	public sealed class BETADIST_funContext : ExprContext {
 		//public ITerminalNode BETADIST() { return GetToken(180, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2487,7 +2487,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class ATANH_funContext : ExprContext {
+	public sealed class ATANH_funContext : ExprContext {
 		//public ITerminalNode ATANH() { return GetToken(85, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -2500,7 +2500,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class NOW_funContext : ExprContext {
+	public sealed class NOW_funContext : ExprContext {
 		//public ITerminalNode NOW() { return GetToken(137, 0); }
 		public NOW_funContext(ExprContext context) { CopyFrom(context); }
 		
@@ -2510,7 +2510,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class MEDIAN_funContext : ExprContext {
+	public sealed class MEDIAN_funContext : ExprContext {
 		//public ITerminalNode MEDIAN() { return GetToken(154, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2524,7 +2524,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class POWER_funContext : ExprContext {
+	public sealed class POWER_funContext : ExprContext {
 		//public ITerminalNode POWER() { return GetToken(99, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2538,7 +2538,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class DEC2OCT_funContext : ExprContext {
+	public sealed class DEC2OCT_funContext : ExprContext {
 		//public ITerminalNode DEC2OCT() { return GetToken(51, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2552,7 +2552,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class PROPER_funContext : ExprContext {
+	public sealed class PROPER_funContext : ExprContext {
 		//public ITerminalNode PROPER() { return GetToken(121, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -2565,7 +2565,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class TRUNC_funContext : ExprContext {
+	public sealed class TRUNC_funContext : ExprContext {
 		//public ITerminalNode TRUNC() { return GetToken(66, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -2578,7 +2578,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class GCD_funContext : ExprContext {
+	public sealed class GCD_funContext : ExprContext {
 		//public ITerminalNode GCD() { return GetToken(68, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2592,7 +2592,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class TANH_funContext : ExprContext {
+	public sealed class TANH_funContext : ExprContext {
 		//public ITerminalNode TANH() { return GetToken(79, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -2605,7 +2605,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class HEX2BIN_funContext : ExprContext {
+	public sealed class HEX2BIN_funContext : ExprContext {
 		//public ITerminalNode HEX2BIN() { return GetToken(52, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2619,7 +2619,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class SINH_funContext : ExprContext {
+	public sealed class SINH_funContext : ExprContext {
 		//public ITerminalNode SINH() { return GetToken(77, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -2632,7 +2632,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class SHA512_funContext : ExprContext {
+	public sealed class SHA512_funContext : ExprContext {
 		//public ITerminalNode SHA512() { return GetToken(214, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2646,7 +2646,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class MIN_funContext : ExprContext {
+	public sealed class MIN_funContext : ExprContext {
 		//public ITerminalNode MIN() { return GetToken(155, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2660,7 +2660,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class ISNONTEXT_funContext : ExprContext {
+	public sealed class ISNONTEXT_funContext : ExprContext {
 		//public ITerminalNode ISNONTEXT() { return GetToken(36, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -2673,7 +2673,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class ABS_funContext : ExprContext {
+	public sealed class ABS_funContext : ExprContext {
 		//public ITerminalNode ABS() { return GetToken(61, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -2686,7 +2686,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class ROUNDDOWN_funContext : ExprContext {
+	public sealed class ROUNDDOWN_funContext : ExprContext {
 		//public ITerminalNode ROUNDDOWN() { return GetToken(88, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2700,7 +2700,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class IF_funContext : ExprContext {
+	public sealed class IF_funContext : ExprContext {
 		//public ITerminalNode IF() { return GetToken(31, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2714,7 +2714,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class JOIN_funContext : ExprContext {
+	public sealed class JOIN_funContext : ExprContext {
 		//public ITerminalNode JOIN() { return GetToken(225, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2728,7 +2728,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class FIND_funContext : ExprContext {
+	public sealed class FIND_funContext : ExprContext {
 		//public ITerminalNode FIND() { return GetToken(115, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2742,7 +2742,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class SUBSTITUTE_funContext : ExprContext {
+	public sealed class SUBSTITUTE_funContext : ExprContext {
 		//public ITerminalNode SUBSTITUTE() { return GetToken(127, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2756,7 +2756,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class Percentage_funContext : ExprContext {
+	public sealed class Percentage_funContext : ExprContext {
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
@@ -2768,7 +2768,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class REPT_funContext : ExprContext {
+	public sealed class REPT_funContext : ExprContext {
 		//public ITerminalNode REPT() { return GetToken(123, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2782,7 +2782,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class ISNULL_funContext : ExprContext {
+	public sealed class ISNULL_funContext : ExprContext {
 		//public ITerminalNode ISNULL() { return GetToken(40, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2796,7 +2796,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class ASIN_funContext : ExprContext {
+	public sealed class ASIN_funContext : ExprContext {
 		//public ITerminalNode ASIN() { return GetToken(82, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -2809,7 +2809,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class MulDiv_funContext : ExprContext {
+	public sealed class MulDiv_funContext : ExprContext {
 		public IToken op;
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2823,7 +2823,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class REMOVESTART_funContext : ExprContext {
+	public sealed class REMOVESTART_funContext : ExprContext {
 		//public ITerminalNode REMOVESTART() { return GetToken(231, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2837,7 +2837,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class T_funContext : ExprContext {
+	public sealed class T_funContext : ExprContext {
 		//public ITerminalNode T() { return GetToken(128, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -2850,7 +2850,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class WEEKDAY_funContext : ExprContext {
+	public sealed class WEEKDAY_funContext : ExprContext {
 		//public ITerminalNode WEEKDAY() { return GetToken(145, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2864,7 +2864,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class BIN2OCT_funContext : ExprContext {
+	public sealed class BIN2OCT_funContext : ExprContext {
 		//public ITerminalNode BIN2OCT() { return GetToken(58, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2878,7 +2878,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class NULL_funContext : ExprContext {
+	public sealed class NULL_funContext : ExprContext {
 		//public ITerminalNode NULL() { return GetToken(30, 0); }
 		public NULL_funContext(ExprContext context) { CopyFrom(context); }
 		
@@ -2888,7 +2888,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class BASE64TOTEXT_funContext : ExprContext {
+	public sealed class BASE64TOTEXT_funContext : ExprContext {
 		//public ITerminalNode BASE64TOTEXT() { return GetToken(203, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2902,7 +2902,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class TDIST_funContext : ExprContext {
+	public sealed class TDIST_funContext : ExprContext {
 		//public ITerminalNode TDIST() { return GetToken(196, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2916,7 +2916,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class DATEVALUE_funContext : ExprContext {
+	public sealed class DATEVALUE_funContext : ExprContext {
 		//public ITerminalNode DATEVALUE() { return GetToken(133, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -2929,7 +2929,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class STARTSWITH_funContext : ExprContext {
+	public sealed class STARTSWITH_funContext : ExprContext {
 		//public ITerminalNode STARTSWITH() { return GetToken(227, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2943,7 +2943,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class EVEN_funContext : ExprContext {
+	public sealed class EVEN_funContext : ExprContext {
 		//public ITerminalNode EVEN() { return GetToken(92, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -2956,7 +2956,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class LOGNORMDIST_funContext : ExprContext {
+	public sealed class LOGNORMDIST_funContext : ExprContext {
 		//public ITerminalNode LOGNORMDIST() { return GetToken(193, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -2970,7 +2970,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class ISNULLOREMPTY_funContext : ExprContext {
+	public sealed class ISNULLOREMPTY_funContext : ExprContext {
 		//public ITerminalNode ISNULLOREMPTY() { return GetToken(229, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -2983,7 +2983,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class TRUE_funContext : ExprContext {
+	public sealed class TRUE_funContext : ExprContext {
 		//public ITerminalNode TRUE() { return GetToken(45, 0); }
 		public TRUE_funContext(ExprContext context) { CopyFrom(context); }
 		
@@ -2993,7 +2993,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class FISHERINV_funContext : ExprContext {
+	public sealed class FISHERINV_funContext : ExprContext {
 		//public ITerminalNode FISHERINV() { return GetToken(187, 0); }
 		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
@@ -3006,7 +3006,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class SHA1_funContext : ExprContext {
+	public sealed class SHA1_funContext : ExprContext {
 		//public ITerminalNode SHA1() { return GetToken(212, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -3020,7 +3020,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class TIME_funContext : ExprContext {
+	public sealed class TIME_funContext : ExprContext {
 		//public ITerminalNode TIME() { return GetToken(136, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -3034,7 +3034,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class ATAN2_funContext : ExprContext {
+	public sealed class ATAN2_funContext : ExprContext {
 		//public ITerminalNode ATAN2() { return GetToken(86, 0); }
 		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
@@ -3048,7 +3048,7 @@ partial class mathParser : Parser {
 			
 		}
 	}
-	public partial class RAND_funContext : ExprContext {
+	public sealed class RAND_funContext : ExprContext {
 		//public ITerminalNode RAND() { return GetToken(95, 0); }
 		public RAND_funContext(ExprContext context) { CopyFrom(context); }
 		
@@ -8680,7 +8680,7 @@ partial class mathParser : Parser {
 		return _localctx;
 	}
 
-	public partial class Parameter2Context : ParserRuleContext {
+	public sealed class Parameter2Context : ParserRuleContext {
 		//public ITerminalNode E() { return GetToken(47, 0); }
 		//public ITerminalNode IF() { return GetToken(31, 0); }
 		//public ITerminalNode IFERROR() { return GetToken(32, 0); }

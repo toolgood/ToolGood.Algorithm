@@ -7,7 +7,7 @@ namespace ToolGood.Algorithm.LitJson
 {
 
 
-    internal class Lexer
+    internal sealed class Lexer
     {
         #region Fields
         private delegate bool StateHandler(FsmContext ctx);

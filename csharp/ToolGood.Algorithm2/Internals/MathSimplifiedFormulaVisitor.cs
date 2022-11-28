@@ -6,7 +6,7 @@ using static mathParser;
 
 namespace ToolGood.Algorithm.Internals
 {
-    class MathSimplifiedFormulaVisitor : MathVisitor
+   sealed class MathSimplifiedFormulaVisitor : MathVisitor
     {
         private int inFunctionCount = 0;
 

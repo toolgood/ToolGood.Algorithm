@@ -1,6 +1,6 @@
 namespace ToolGood.Algorithm.LitJson
 {
-    class JsonMapper
+   sealed class JsonMapper
     {
 
         #region Private Methods

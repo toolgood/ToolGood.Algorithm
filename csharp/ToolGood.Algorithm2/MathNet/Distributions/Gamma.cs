@@ -2,7 +2,7 @@
 
 namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
 {
-    class Gamma
+    sealed class Gamma
     {
         public static double CDF(double shape, double rate, double x)
         {

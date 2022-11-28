@@ -10,7 +10,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
     /// <para>Knuth's method is used to generate Poisson distributed random variables.</para>
     /// <para>f(x) = exp(-λ)*λ^x/x!;</para>
     /// </remarks>
-    public class Poisson
+    public sealed class Poisson
     {
         /// <summary>
         /// Computes the probability mass (PMF) at k, i.e. P(X = k).

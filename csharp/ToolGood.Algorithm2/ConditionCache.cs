@@ -9,7 +9,7 @@ namespace ToolGood.Algorithm
     /// <summary>
     /// 条件缓存
     /// </summary>
-    public class ConditionCache
+    public sealed class ConditionCache
     {
         private Dictionary<string, List<ConditionCacheInfo>> conditionCaches = new Dictionary<string, List<ConditionCacheInfo>>();
         /// <summary>

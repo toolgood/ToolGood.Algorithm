@@ -1,6 +1,6 @@
 ﻿namespace ToolGood.Algorithm.LitJson
 {
-    internal class FsmContext
+    internal sealed class FsmContext
     {
         public bool Return;
         public int NextState;
