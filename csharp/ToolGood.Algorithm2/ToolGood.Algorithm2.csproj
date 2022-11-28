@@ -8,7 +8,7 @@
     <Authors>ToolGood</Authors>
     <TargetFrameworks>netstandard2.1;</TargetFrameworks>
     <AssemblyName>ToolGood.Algorithm</AssemblyName>
-    <PublicSign >true</PublicSign>
+    <PublicSign>true</PublicSign>
     <PackageId>ToolGood.Algorithm</PackageId>
     <PackageTags>algorithm;excel;excel-expressions;script;formula-grammar;formula;expression</PackageTags>
     <PackageProjectUrl>https://github.com/toolgood/ToolGood.Algorithm</PackageProjectUrl>
@@ -21,7 +21,7 @@
     <Product>ToolGood.Algorithm</Product>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <SignAssembly>true</SignAssembly>
-    <Version>3.2.0.1</Version>
+    <Version>3.2.0.2</Version>
     <AssemblyOriginatorKeyFile>ToolGood.Algorithm.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\ToolGood.Algorithm.xml</DocumentationFile>
