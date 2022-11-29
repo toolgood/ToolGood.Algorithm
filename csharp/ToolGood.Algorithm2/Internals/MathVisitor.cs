@@ -733,12 +733,7 @@ namespace ToolGood.Algorithm.Internals
             if (z < 1) {
                 return Operand.Error("Function ACOSH parameter is error!");
             }
-#if NETSTANDARD2_1
             return Operand.Create(Math.Acosh(z));
-#else
-            var r = Math.Log(z + Math.Pow(z * z - 1, 0.5));
-            return Operand.Create(r);
-#endif
         }
         public virtual Operand VisitASIN_fun(mathParser.ASIN_funContext context)
         {
@@ -754,13 +749,7 @@ namespace ToolGood.Algorithm.Internals
         {
             var firstValue = this.Visit(context.expr()).ToNumber("Function ASINH parameter is error!");
             if (firstValue.IsError) { return firstValue; }
-#if NETSTANDARD2_1
             return Operand.Create(Math.Asinh(firstValue.NumberValue));
-#else
-            var x = firstValue.NumberValue;
-            var d = Math.Log(x + Math.Sqrt(x * x + 1));
-            return Operand.Create(d);
-#endif        
         }
         public virtual Operand VisitATAN_fun(mathParser.ATAN_funContext context)
         {
@@ -777,12 +766,7 @@ namespace ToolGood.Algorithm.Internals
             if (x >= 1 || x <= -1) {
                 return Operand.Error("Function ATANH parameter is error!");
             }
-#if NETSTANDARD2_1
             return Operand.Create(Math.Atanh(x));
-#else
-            var d = Math.Log((1 + x) / (1 - x)) / 2;
-            return Operand.Create(d);
-#endif        
         }
         public virtual Operand VisitATAN2_fun(mathParser.ATAN2_funContext context)
         {
@@ -3284,17 +3268,9 @@ namespace ToolGood.Algorithm.Internals
 
             var text = args[0].TextValue;
             if (args.Count == 2) {
-#if NETSTANDARD2_1
                 return Operand.Create(text.AsSpan().TrimStart(args[1].TextValue.AsSpan()).ToString());
-#else
-                return Operand.Create(text.TrimStart(args[1].TextValue.ToArray()));
-#endif
             }
-#if NETSTANDARD2_1
             return Operand.Create(text.AsSpan().TrimStart().ToString());
-#else
-            return Operand.Create(text.TrimStart());
-#endif
         }
 
         public virtual Operand VisitTRIMEND_fun(mathParser.TRIMEND_funContext context)
@@ -3304,17 +3280,9 @@ namespace ToolGood.Algorithm.Internals
 
             var text = args[0].TextValue;
             if (args.Count == 2) {
-#if NETSTANDARD2_1
                 return Operand.Create(text.AsSpan().TrimEnd(args[1].TextValue.AsSpan()).ToString());
-#else
-                return Operand.Create(text.TrimEnd(args[1].TextValue.ToArray()));
-#endif
             }
-#if NETSTANDARD2_1
             return Operand.Create(text.AsSpan().TrimEnd().ToString());
-#else
-            return Operand.Create(text.TrimEnd());
-#endif
         }
 
         public virtual Operand VisitINDEXOF_fun(mathParser.INDEXOF_funContext context)
@@ -3329,20 +3297,12 @@ namespace ToolGood.Algorithm.Internals
 
             var text = firstValue.TextValue;
             if (args.Count == 2) {
-#if NETSTANDARD2_1
                 return Operand.Create(text.AsSpan().IndexOf(secondValue.TextValue) + excelIndex);
-#else
-                return Operand.Create(text.IndexOf(secondValue.TextValue) + excelIndex);
-#endif
             }
             var thirdValue = args[2].ToText("Function INDEXOF parameter 3 is error!");
             if (thirdValue.IsError) { return thirdValue; }
             if (args.Count == 3) {
-#if NETSTANDARD2_1
                 return Operand.Create(text.AsSpan(thirdValue.IntValue).IndexOf(secondValue.TextValue) + thirdValue.IntValue + excelIndex);
-#else
-                return Operand.Create(text.IndexOf(secondValue.TextValue, thirdValue.IntValue) + excelIndex);
-#endif
             }
             var fourthValue = args[3].ToText("Function INDEXOF parameter 4 is error!");
             if (fourthValue.IsError) { return fourthValue; }
@@ -3360,20 +3320,12 @@ namespace ToolGood.Algorithm.Internals
 
             var text = firstValue.TextValue;
             if (args.Count == 2) {
-#if NETSTANDARD2_1
                 return Operand.Create(text.AsSpan().LastIndexOf(secondValue.TextValue) + excelIndex);
-#else
-                return Operand.Create(text.LastIndexOf(secondValue.TextValue) + excelIndex);
-#endif
             }
             var thirdValue = args[2].ToText("Function LASTINDEXOF parameter 3 is error!");
             if (thirdValue.IsError) { return thirdValue; }
             if (args.Count == 3) {
-#if NETSTANDARD2_1
                 return Operand.Create(text.AsSpan(thirdValue.IntValue).LastIndexOf(secondValue.TextValue) + thirdValue.IntValue + excelIndex);
-#else
-                return Operand.Create(text.LastIndexOf(secondValue.TextValue, thirdValue.IntValue) + excelIndex);
-#endif
             }
             var fourthValue = args[3].ToText("Function LASTINDEXOF parameter 4 is error!");
             if (fourthValue.IsError) { return fourthValue; }
@@ -3794,7 +3746,7 @@ namespace ToolGood.Algorithm.Internals
                     if (op.IsError) { return op; }
                     var index = op.IntValue - excelIndex;
                     if (index < json.Count) {
-                        var v = json[op.IntValue - excelIndex];
+                        var v = json[index];
                         if (v.IsString) return Operand.Create(v.StringValue);
                         if (v.IsBoolean) return Operand.Create(v.BooleanValue);
                         if (v.IsDouble) return Operand.Create(v.NumberValue);

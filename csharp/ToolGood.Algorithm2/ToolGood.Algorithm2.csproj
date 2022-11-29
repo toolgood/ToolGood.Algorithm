@@ -6,7 +6,7 @@
     <Copyright>Copyright 2017-2022 ToolGood</Copyright>
     <AssemblyTitle>ToolGood.Algorithm</AssemblyTitle>
     <Authors>ToolGood</Authors>
-    <TargetFrameworks>netstandard2.1;</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1;net7.0</TargetFrameworks>
     <AssemblyName>ToolGood.Algorithm</AssemblyName>
     <PublicSign>true</PublicSign>
     <PackageId>ToolGood.Algorithm</PackageId>
@@ -29,7 +29,7 @@
   </PropertyGroup>
 
 
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.1' ">
+	<ItemGroup>
 		<PackageReference Include="Antlr4.Runtime.Standard" Version="4.11.1" />
 	</ItemGroup>
 
