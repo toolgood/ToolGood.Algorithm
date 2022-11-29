@@ -33,251 +33,269 @@ namespace ToolGood.Algorithm.Internals
 
         public virtual Operand VisitMulDiv_fun(mathParser.MulDiv_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
+			var exprs = context.expr();
+			var args1 = this.Visit(exprs[0]); if (args1.IsError) { return args1; }
+			var args2 = this.Visit(exprs[1]); if (args2.IsError) { return args2; }
 
-            var firstValue = args[0];
-            var secondValue = args[1];
-            var t = context.op.Text;
-            if (firstValue.Type == OperandType.TEXT) {
-                if (numberRegex.IsMatch(firstValue.TextValue)) {
-                    var a = firstValue.ToNumber(null);
-                    if (a.IsError == false) firstValue = a;
-                } else {
-                    var a = firstValue.ToMyDate(null);
-                    if (a.IsError == false) firstValue = a;
-                }
-            }
-            if (secondValue.Type == OperandType.TEXT) {
-                if (numberRegex.IsMatch(secondValue.TextValue)) {
-                    var a = secondValue.ToNumber(null);
-                    if (a.IsError == false) secondValue = a;
-                } else {
-                    var a = secondValue.ToMyDate(null);
-                    if (a.IsError == false) secondValue = a;
-                }
-            }
-            if (CharUtil.Equals(t, '*')) {
-                if (secondValue.Type == OperandType.BOOLEAN) {
-                    if (secondValue.BooleanValue)
-                        return firstValue;
-                    else
-                        return Operand.Create(0);
-                } else if (firstValue.Type == OperandType.BOOLEAN) {
-                    if (firstValue.BooleanValue)
-                        return secondValue;
-                    else
-                        return Operand.Create(0);
-                }
-                if (firstValue.Type == OperandType.DATE) {
-                    secondValue = secondValue.ToNumber($"Function '{t}' parameter 2 is error!");
-                    if (secondValue.IsError) { return secondValue; }
-                    return Operand.Create((MyDate)(firstValue.DateValue * secondValue.NumberValue));
-                }
-                if (secondValue.Type == OperandType.DATE) {
-                    firstValue = firstValue.ToNumber($"Function '{t}' parameter 1 is error!");
-                    if (firstValue.IsError) { return firstValue; }
-                    return Operand.Create((MyDate)(secondValue.DateValue * firstValue.NumberValue));
-                }
+			if (args1.Type == OperandType.TEXT) {
+				if (double.TryParse(args1.TextValue, NumberStyles.Any, cultureInfo, out double d)) {
+					args1 = Operand.Create(d);
+				} else if (bool.TryParse(args1.TextValue, out bool b)) {
+					args1 = b ? Operand.One : Operand.Zero;
+				} else if (TimeSpan.TryParse(args1.TextValue, cultureInfo, out TimeSpan ts)) {
+					args1 = Operand.Create(ts);
+				} else if (DateTime.TryParse(args1.TextValue, cultureInfo, DateTimeStyles.None, out DateTime dt)) {
+					args1 = Operand.Create(new MyDate(dt));
+				} else {
+					return Operand.Error("两个类型无法乘除");
+				}
+			}
+			if (args2.Type == OperandType.TEXT) {
+				if (double.TryParse(args2.TextValue, NumberStyles.Any, cultureInfo, out double d)) {
+					args2 = Operand.Create(d);
+				} else if (bool.TryParse(args2.TextValue, out bool b)) {
+					args2 = b ? Operand.One : Operand.Zero;
+				} else if (TimeSpan.TryParse(args2.TextValue, cultureInfo, out TimeSpan ts)) {
+					args2 = Operand.Create(ts);
+				} else if (DateTime.TryParse(args2.TextValue, cultureInfo, DateTimeStyles.None, out DateTime dt)) {
+					args2 = Operand.Create(new MyDate(dt));
+				} else {
+					return Operand.Error("两个类型无法乘除");
+				}
+			}
+			var t = context.op.Text;
+			if (CharUtil.Equals(t, '*')) {
+				if (args1.Type == OperandType.DATE) {
+					if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '*' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+					if (args2.NumberValue == 1) { return args1; }
+					return Operand.Create((MyDate)(args1.DateValue * args2.NumberValue));
+				} else if (args2.Type == OperandType.DATE) {
+					if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '*' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+					if (args1.NumberValue == 1) { return args2; }
+					return Operand.Create((MyDate)(args2.DateValue * args1.NumberValue));
+				}
 
-                firstValue = firstValue.ToNumber($"Function '{t}' parameter 1 is error!");
-                if (firstValue.IsError) { return firstValue; }
-                secondValue = secondValue.ToNumber($"Function '{t}' parameter 2 is error!");
-                if (secondValue.IsError) { return secondValue; }
-                return Operand.Create(firstValue.NumberValue * secondValue.NumberValue);
-            } else if (CharUtil.Equals(t, '/')) {
-                if (firstValue.Type == OperandType.DATE) {
-                    return Operand.Create(firstValue.DateValue / secondValue.NumberValue);
-                }
+				if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '*' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+				if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '*' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+				if (args1.NumberValue == 1) { return args2; }
+				if (args2.NumberValue == 1) { return args1; }
 
-                firstValue = firstValue.ToNumber($"Function '{t}' parameter 1 is error!");
-                if (firstValue.IsError) { return firstValue; }
-                secondValue = secondValue.ToNumber("Div fun right value");
-                if (secondValue.IsError) { return secondValue; }
-                if (secondValue.NumberValue == 0) {
-                    return Operand.Error($"Function '{t}' parameter 2 is error!");
-                }
-                return Operand.Create(firstValue.NumberValue / secondValue.NumberValue);
-            } else if (CharUtil.Equals(t, '%')) {
-                firstValue = firstValue.ToNumber("% fun right value");
-                if (firstValue.IsError) { return firstValue; }
-                secondValue = secondValue.ToNumber("% fun right value");
-                if (secondValue.IsError) { return secondValue; }
-                if (secondValue.NumberValue == 0) {
-                    return Operand.Error($"Div 0 is error!");
-                }
-                return Operand.Create(firstValue.NumberValue % secondValue.NumberValue);
-            }
-            return Operand.Error($"Function '{t}' parameter is error!");
-        }
+				return Operand.Create(args1.NumberValue * args2.NumberValue);
+			} else if (CharUtil.Equals(t, '/')) {
+				if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '/' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+				if (args2.NumberValue == 0) { return Operand.Error("Div 0 is error!"); }
+				if (args2.NumberValue == 1) { return args1; }
+
+				if (args1.Type == OperandType.DATE) { return Operand.Create(args1.DateValue / args2.NumberValue); }
+				if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '/' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+
+				return Operand.Create(args1.NumberValue / args2.NumberValue);
+				//} else if (CharUtil.Equals(t, "%")) {
+			} else {
+				if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("% fun right value"); if (args1.IsError) { return args1; } }
+				if (args1.Type != OperandType.NUMBER) { args2 = args2.ToNumber("% fun right value"); if (args2.IsError) { return args2; } }
+				if (args2.NumberValue == 0) { return Operand.Error("Div 0 is error!"); }
+
+				return Operand.Create(args1.NumberValue % args2.NumberValue);
+			}
+		}
 
         public virtual Operand VisitAddSub_fun(mathParser.AddSub_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
+			var exprs = context.expr();
 
-            var firstValue = args[0];
-            var secondValue = args[1];
-            var t = context.op.Text;
+			var args1 = this.Visit(exprs[0]); if (args1.IsError) { return args1; }
+			var args2 = this.Visit(exprs[1]); if (args2.IsError) { return args2; }
+			var t = context.op.Text;
+			if (CharUtil.Equals(t, '&')) {
+				if (args1.IsNull) {
+					if (args2.IsNull) return args1;
+					return args2.ToText("Function '&' parameter 2 is error!");
+				} else if (args2.IsNull) {
+					return args1.ToText("Function '&' parameter 1 is error!");
+				}
+				if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '&' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+				if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function '&' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+				return Operand.Create(args1.TextValue + args2.TextValue);
+			}
+			if (args1.Type == OperandType.TEXT) {
+				if (double.TryParse(args1.TextValue, NumberStyles.Any, cultureInfo, out double d)) {
+					args1 = Operand.Create(d);
+				} else if (bool.TryParse(args1.TextValue, out bool b)) {
+					args1 = b ? Operand.One : Operand.Zero;
+				} else if (TimeSpan.TryParse(args1.TextValue, cultureInfo, out TimeSpan ts)) {
+					args1 = Operand.Create(ts);
+				} else if (DateTime.TryParse(args1.TextValue, cultureInfo, DateTimeStyles.None, out DateTime dt)) {
+					args1 = Operand.Create(new MyDate(dt));
+				} else {
+					return Operand.Error("Function '+' or '-' is error");
+				}
+			}
+			if (args2.Type == OperandType.TEXT) {
+				if (double.TryParse(args2.TextValue, NumberStyles.Any, cultureInfo, out double d)) {
+					args2 = Operand.Create(d);
+				} else if (bool.TryParse(args2.TextValue, out bool b)) {
+					args2 = b ? Operand.One : Operand.Zero;
+				} else if (TimeSpan.TryParse(args2.TextValue, cultureInfo, out TimeSpan ts)) {
+					args2 = Operand.Create(ts);
+				} else if (DateTime.TryParse(args2.TextValue, cultureInfo, DateTimeStyles.None, out DateTime dt)) {
+					args2 = Operand.Create(new MyDate(dt));
+				} else {
+					return Operand.Error("Function '+' or '-' is error");
+				}
+			}
+			if (CharUtil.Equals(t, '+')) {
+				if (args1.Type == OperandType.DATE) {
+					if (args2.Type == OperandType.DATE) return Operand.Create(args1.DateValue + args2.DateValue);
+					if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '+' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+					if (args2.NumberValue == 0) { return args1; }
+					return Operand.Create(args1.DateValue + args2.NumberValue);
+				} else if (args2.Type == OperandType.DATE) {
+					if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '+' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+					if (args1.NumberValue == 0) { return args2; }
+					return Operand.Create(args2.DateValue + args1.NumberValue);
+				}
+				if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '+' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+				if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '+' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+				if (args1.NumberValue == 0) { return args2; }
+				if (args2.NumberValue == 0) { return args1; }
 
-            if (CharUtil.Equals(t, '&')) {
-                if (firstValue.IsNull && secondValue.IsNull) {
-                    return firstValue;
-                } else if (firstValue.IsNull) {
-                    secondValue = secondValue.ToText($"Function '{t}' parameter 2 is error!");
-                    return secondValue;
-                } else if (secondValue.IsNull) {
-                    firstValue = firstValue.ToText($"Function '{t}' parameter 1 is error!");
-                    return firstValue;
-                }
+				return Operand.Create(args1.NumberValue + args2.NumberValue);
+				//} else if (CharUtil.Equals(t, "-")) {
+			} else {
+				if (args1.Type == OperandType.DATE) {
+					if (args2.Type == OperandType.DATE) return Operand.Create(args1.DateValue - args2.DateValue);
+					if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '-' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+					if (args2.NumberValue == 0) { return args1; }
+					return Operand.Create(args1.DateValue - args2.NumberValue);
+				} else if (args2.Type == OperandType.DATE) {
+					if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '-' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+					return Operand.Create(args1.NumberValue - args2.DateValue);
+				}
+				if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '-' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+				if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '-' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+				if (args2.NumberValue == 0) { return args1; }
 
-                firstValue = firstValue.ToText($"Function '{t}' parameter 1 is error!");
-                if (firstValue.IsError) { return firstValue; }
-                secondValue = secondValue.ToText($"Function '{t}' parameter 2 is error!");
-                if (secondValue.IsError) { return secondValue; }
-                return Operand.Create(firstValue.TextValue + secondValue.TextValue);
-            }
-            if (firstValue.Type == OperandType.TEXT) {
-                if (numberRegex.IsMatch(firstValue.TextValue)) {
-                    var a = firstValue.ToNumber(null);
-                    if (a.IsError == false) firstValue = a;
-                } else {
-                    var a = firstValue.ToMyDate(null);
-                    if (a.IsError == false) firstValue = a;
-                }
-            }
-            if (secondValue.Type == OperandType.TEXT) {
-                if (numberRegex.IsMatch(secondValue.TextValue)) {
-                    var a = secondValue.ToNumber(null);
-                    if (a.IsError == false) secondValue = a;
-                } else {
-                    var a = secondValue.ToMyDate(null);
-                    if (a.IsError == false) secondValue = a;
-                }
-            }
-            if (CharUtil.Equals(t, '+')) {
-                if (firstValue.Type == OperandType.DATE && secondValue.Type == OperandType.DATE) {
-                    return Operand.Create(firstValue.DateValue + secondValue.DateValue);
-                } else if (firstValue.Type == OperandType.DATE) {
-                    secondValue = secondValue.ToNumber($"Function '{t}' parameter 2 is error!");
-                    if (secondValue.IsError) { return secondValue; }
-                    return Operand.Create(firstValue.DateValue + secondValue.NumberValue);
-                } else if (secondValue.Type == OperandType.DATE) {
-                    firstValue = firstValue.ToNumber($"Function '{t}' parameter 1 is error!");
-                    if (firstValue.IsError) { return firstValue; }
-                    return Operand.Create(secondValue.DateValue + firstValue.NumberValue);
-                }
-                firstValue = firstValue.ToNumber($"Function '{t}' parameter 1 is error!");
-                if (firstValue.IsError) { return firstValue; }
-                secondValue = secondValue.ToNumber($"Function '{t}' parameter 2 is error!");
-                if (secondValue.IsError) { return secondValue; }
-                return Operand.Create(firstValue.NumberValue + secondValue.NumberValue);
-            } else if (CharUtil.Equals(t, '-')) {
-                if (firstValue.Type == OperandType.DATE && secondValue.Type == OperandType.DATE) {
-                    return Operand.Create(firstValue.DateValue - secondValue.DateValue);
-                } else if (firstValue.Type == OperandType.DATE) {
-                    secondValue = secondValue.ToNumber($"Function '{t}' parameter 2 is error!");
-                    if (secondValue.IsError) { return secondValue; }
-                    return Operand.Create(firstValue.DateValue - secondValue.NumberValue);
-                } else if (secondValue.Type == OperandType.DATE) {
-                    firstValue = firstValue.ToNumber($"Function '{t}' parameter 1 is error!");
-                    if (firstValue.IsError) { return firstValue; }
-                    return Operand.Create(firstValue.NumberValue - secondValue.DateValue);
-                }
-                firstValue = firstValue.ToNumber(null);
-                if (firstValue.IsError) { return firstValue; }
-                secondValue = secondValue.ToNumber($"Function '{t}' parameter 2 is error!");
-                if (secondValue.IsError) { return secondValue; }
-                return Operand.Create(firstValue.NumberValue - secondValue.NumberValue);
-            }
-            return Operand.Error($"Function '{t}' parameter is error!");
-        }
+				return Operand.Create(args1.NumberValue - args2.NumberValue);
+			}
+		}
 
         public virtual Operand VisitJudge_fun(mathParser.Judge_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = this.Visit(item); if (aa.IsError) { return aa; } args.Add(aa); }
+			var exprs = context.expr();
+			var args1 = this.Visit(exprs[0]); if (args1.IsError) { return args1; }
+			var args2 = this.Visit(exprs[1]); if (args2.IsError) { return args2; }
 
-            var firstValue = args[0];
-            var secondValue = args[1];
-            string type = context.op.Text;
+			string type = context.op.Text;
+			int r;
+			if (args1.Type == args2.Type) {
+				if (args1.Type == OperandType.NUMBER) {
+					return Compare(args1, args2, type);
+				} else if (args1.Type == OperandType.TEXT) {
+					r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
+				} else if (args1.Type == OperandType.DATE || args1.Type == OperandType.BOOLEAN) {
+					args1 = args1.ToNumber();
+					args2 = args2.ToNumber();
+					return Compare(args1, args2, type);
+				} else if (args1.Type == OperandType.JSON) {
+					args1 = args1.ToText();
+					args2 = args2.ToText();
+					r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
+				} else if (args1.Type == OperandType.NULL) {
+					return CharUtil.Equals(type, "=", "==", "===") ? Operand.True : Operand.False;
+				} else {
+					return Operand.Error("Function compare is error.");
+				}
+			} else if (args1.Type == OperandType.NULL || args2.Type == OperandType.NULL) {
+				return CharUtil.Equals(type, "<>", "!=", "!==") ? Operand.True : Operand.False;
+			} else if (args1.Type == OperandType.TEXT) {
+				if (args2.Type == OperandType.BOOLEAN) {
+					var a = args1.ToBoolean();
+					if (a.IsError == false) {
+						if (CharUtil.Equals(type, "=", "==", "===")) {
+							return a.BooleanValue == args2.BooleanValue ? Operand.True : Operand.False;
+						} else if (CharUtil.Equals(type, "<>", "!=", "!===")) {
+							return a.BooleanValue != args2.BooleanValue ? Operand.True : Operand.False;
+						}
+					}
+					args2 = args2.ToText();
+					r = string.Compare(args1.TextValue, args2.TextValue, true);
+				} else if (args2.Type == OperandType.DATE || args2.Type == OperandType.NUMBER || args2.Type == OperandType.JSON) {
+					args2 = args2.ToText();
+					r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
+				} else {
+					return Operand.Error("Function compare is error.");
+				}
+			} else if (args2.Type == OperandType.TEXT) {
+				if (args1.Type == OperandType.BOOLEAN) {
+					var a = args2.ToBoolean();
+					if (a.IsError == false) {
+						if (CharUtil.Equals(type, "=", "==", "===")) {
+							return a.BooleanValue == args1.BooleanValue ? Operand.True : Operand.False;
+						} else if (CharUtil.Equals(type, "<>", "!=", "!===")) {
+							return a.BooleanValue != args1.BooleanValue ? Operand.True : Operand.False;
+						}
+					}
+					args1 = args1.ToText();
+					r = string.Compare(args1.TextValue, args2.TextValue, true);
+				} else if (args1.Type == OperandType.DATE || args1.Type == OperandType.NUMBER || args1.Type == OperandType.JSON) {
+					args1 = args1.ToText();
+					r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
+				} else {
+					return Operand.Error("Function compare is error.");
+				}
+			} else if (args1.Type == OperandType.JSON || args2.Type == OperandType.JSON
+				  || args1.Type == OperandType.ARRARY || args2.Type == OperandType.ARRARY
+				  ) {
+				return Operand.Error("Function compare is error.");
+			} else {
+				if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber($"Function '{type}' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+				if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber($"Function '{type}' parameter 2 is error!"); if (args2.IsError) { return args2; } }
 
-            if (firstValue.IsNull) {
-                if (secondValue.IsNull && CharUtil.Equals(type, "=", "==", "===")) {
-                    return Operand.True;
-                } else if (secondValue.IsNull == false && CharUtil.Equals(type, "<>", "!=", "!==")) {
-                    return Operand.True;
-                }
-                return Operand.False;
-            } else if (secondValue.IsNull) {
-                if (CharUtil.Equals(type, "=", "==", "===")) {
-                    return Operand.False;
-                }
-                return Operand.True;
-            }
+				return Compare(args1, args2, type);
+			}
+			if (type.Length == 1) {
+				if (CharUtil.Equals(type, '<')) {
+					return Operand.Create(r < 0);
+				} else if (CharUtil.Equals(type, '>')) {
+					return Operand.Create(r > 0);
+				} else /*if (CharUtil.Equals(type, '=')*/{
+					return Operand.Create(r == 0);
+				}
+			} else if (CharUtil.Equals(type, "<=")) {
+				return Operand.Create(r <= 0);
+			} else if (CharUtil.Equals(type, ">=")) {
+				return Operand.Create(r >= 0);
+			} else if (CharUtil.Equals(type, "==", "===")) {
+				return Operand.Create(r == 0);
+			}
+			return Operand.Create(r != 0);
+		}
+		private Operand Compare(Operand op1, Operand op2, string type)
+		{
+			double t1 = op1.NumberValue;
+			double t2 = op2.NumberValue;
 
-            int r;
-            if (firstValue.Type == secondValue.Type) {
-                if (firstValue.Type == OperandType.TEXT || firstValue.Type == OperandType.JSON) {
-                    firstValue = firstValue.ToText($"Function '{type}' parameter 1 is error!");
-                    if (firstValue.IsError) { return firstValue; }
-                    secondValue = secondValue.ToText($"Function '{type}' parameter 2 is error!");
-                    if (secondValue.IsError) { return secondValue; }
+			var r = Math.Round(t1 - t2, 10, MidpointRounding.AwayFromZero);
+			if (type.Length == 1) {
+				if (CharUtil.Equals(type, '<')) {
+					return Operand.Create(r < 0);
+				} else if (CharUtil.Equals(type, '>')) {
+					return Operand.Create(r > 0);
+				} else /*if (CharUtil.Equals(type, '=')*/{
+					return Operand.Create(r == 0);
+				}
+			} else if (CharUtil.Equals(type, "<=")) {
+				return Operand.Create(r <= 0);
+			} else if (CharUtil.Equals(type, ">=")) {
+				return Operand.Create(r >= 0);
+			} else if (CharUtil.Equals(type, "==", "===")) {
+				return Operand.Create(r == 0);
+			}
+			return Operand.Create(r != 0);
+		}
 
-                    r = string.CompareOrdinal(firstValue.TextValue, secondValue.TextValue);
-                } else if (firstValue.Type == OperandType.ARRARY) {
-                    return Operand.Error("两个类型无法比较");
-                } else {
-                    firstValue = firstValue.ToNumber($"Function '{type}' parameter 1 is error!");
-                    if (firstValue.IsError) { return firstValue; }
-                    secondValue = secondValue.ToNumber($"Function '{type}' parameter 2 is error!");
-                    if (secondValue.IsError) { return secondValue; }
-                    r = Compare(firstValue.NumberValue, secondValue.NumberValue);
-                }
-            } else if ((firstValue.Type == OperandType.DATE && secondValue.Type == OperandType.TEXT) || (secondValue.Type == OperandType.DATE && firstValue.Type == OperandType.TEXT)
-                 || (firstValue.Type == OperandType.NUMBER && secondValue.Type == OperandType.TEXT) || (secondValue.Type == OperandType.NUMBER && firstValue.Type == OperandType.TEXT)
-                  ) {
-                firstValue = firstValue.ToText($"Function '{type}' parameter 1 is error!");
-                if (firstValue.IsError) { return firstValue; }
-                secondValue = secondValue.ToText($"Function '{type}' parameter 2 is error!");
-                if (secondValue.IsError) { return secondValue; }
-
-                r = string.CompareOrdinal(firstValue.TextValue, secondValue.TextValue);
-            } else if ((firstValue.Type == OperandType.BOOLEAN && secondValue.Type == OperandType.TEXT) || (secondValue.Type == OperandType.BOOLEAN && firstValue.Type == OperandType.TEXT)) {
-                firstValue = firstValue.ToText($"Function '{type}' parameter 1 is error!");
-                if (firstValue.IsError) { return firstValue; }
-                secondValue = secondValue.ToText($"Function '{type}' parameter 2 is error!");
-                if (secondValue.IsError) { return secondValue; }
-
-                r = string.Compare(firstValue.TextValue, secondValue.TextValue, true);
-            } else if (firstValue.Type == OperandType.TEXT || secondValue.Type == OperandType.TEXT
-                  || firstValue.Type == OperandType.JSON || secondValue.Type == OperandType.JSON
-                  || firstValue.Type == OperandType.ARRARY || secondValue.Type == OperandType.ARRARY
-                  ) {
-                return Operand.Error("两个类型无法比较");
-            } else {
-                firstValue = firstValue.ToNumber($"Function '{type}' parameter 1 is error!");
-                if (firstValue.IsError) { return firstValue; }
-                secondValue = secondValue.ToNumber($"Function '{type}' parameter 2 is error!");
-                if (secondValue.IsError) { return secondValue; }
-
-                r = Compare(firstValue.NumberValue, secondValue.NumberValue);
-            }
-            if (CharUtil.Equals(type, '<')) {
-                return Operand.Create(r == -1);
-            } else if (CharUtil.Equals(type, "<=")) {
-                return Operand.Create(r <= 0);
-            } else if (CharUtil.Equals(type, '>')) {
-                return Operand.Create(r == 1);
-            } else if (CharUtil.Equals(type, ">=")) {
-                return Operand.Create(r >= 0);
-            } else if (CharUtil.Equals(type, "=", "==", "===")) {
-                return Operand.Create(r == 0);
-            }
-            return Operand.Create(r != 0);
-        }
-
-        private int Compare(double t1, double t2)
+		private int Compare(double t1, double t2)
         {
             var b = Math.Round(t1 - t2, 12, MidpointRounding.AwayFromZero);
             if (b == 0) {
@@ -290,20 +308,19 @@ namespace ToolGood.Algorithm.Internals
 
         public virtual Operand VisitAndOr_fun(mathParser.AndOr_funContext context)
         {
-            // 程序 && and || or 与 excel的  AND(x,y) OR(x,y) 有区别
-            // 在excel内 AND(x,y) OR(x,y) 先报错，
-            // 在程序中，&& and  有true 直接返回true 就不会检测下一个会不会报错
-            // 在程序中，|| or  有false 直接返回false 就不会检测下一个会不会报错
-            var exprs = context.expr();
+			// 程序 && and || or 与 excel的  AND(x,y) OR(x,y) 有区别
+			// 在excel内 AND(x,y) OR(x,y) 先报错，
+			// 在程序中，&& and  有true 直接返回true 就不会检测下一个会不会报错
+			// 在程序中，|| or  有false 直接返回false 就不会检测下一个会不会报错
+			var exprs = context.expr();
+			var args1 = this.Visit(exprs[0]); if (args1.Type != OperandType.BOOLEAN) { args1 = args1.ToBoolean(); if (args1.IsError) { return args1; } }
 			var t = context.op.Text;
-            var first = this.Visit(exprs[0]).ToBoolean($"Function '{t}' parameter 1 is error!");
-            if (first.IsError) { return first; }
-            if (CharUtil.Equals(t, "&&", "and")) {
-                if (first.BooleanValue == false) return Operand.False;
-            } else {
-                if (first.BooleanValue) return Operand.True;
-            }
-            return this.Visit(exprs[1]).ToBoolean($"Function '{t}' parameter 2 is error!");
+			if (CharUtil.Equals(t, "&&", "AND")) {
+				if (args1.BooleanValue == false) return Operand.False;
+			} else {
+				if (args1.BooleanValue) return Operand.True;
+			}
+			return this.Visit(exprs[1]).ToBoolean();
         }
 
         #endregion
