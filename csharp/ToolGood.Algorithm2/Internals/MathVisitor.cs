@@ -294,15 +294,16 @@ namespace ToolGood.Algorithm.Internals
             // 在excel内 AND(x,y) OR(x,y) 先报错，
             // 在程序中，&& and  有true 直接返回true 就不会检测下一个会不会报错
             // 在程序中，|| or  有false 直接返回false 就不会检测下一个会不会报错
-            var t = context.op.Text;
-            var first = this.Visit(context.expr(0)).ToBoolean($"Function '{t}' parameter 1 is error!");
+            var exprs = context.expr();
+			var t = context.op.Text;
+            var first = this.Visit(exprs[0]).ToBoolean($"Function '{t}' parameter 1 is error!");
             if (first.IsError) { return first; }
             if (CharUtil.Equals(t, "&&", "and")) {
                 if (first.BooleanValue == false) return Operand.False;
             } else {
                 if (first.BooleanValue) return Operand.True;
             }
-            return this.Visit(context.expr(1)).ToBoolean($"Function '{t}' parameter 2 is error!");
+            return this.Visit(exprs[1]).ToBoolean($"Function '{t}' parameter 2 is error!");
         }
 
         #endregion
@@ -1413,20 +1414,12 @@ namespace ToolGood.Algorithm.Internals
             if (secondValue.IsError) { return secondValue; }
 
             if (args.Count == 2) {
-#if NETSTANDARD2_1
                 var p = secondValue.TextValue.AsSpan().IndexOf(firstValue.TextValue) + excelIndex;
-#else
-                var p = secondValue.TextValue.IndexOf(firstValue.TextValue) + excelIndex;
-#endif
                 return Operand.Create(p);
             }
             var count = args[2].ToNumber("Function FIND parameter 3 is error!");
             if (count.IsError) { return count; }
-#if NETSTANDARD2_1
             var p2 = secondValue.TextValue.AsSpan(count.IntValue).IndexOf(firstValue.TextValue) + count.IntValue + excelIndex;
-#else
-            var p2 = secondValue.TextValue.IndexOf(firstValue.TextValue, count.IntValue) + excelIndex;
-#endif
             return Operand.Create(p2);
         }
         public virtual Operand VisitLEFT_fun(mathParser.LEFT_funContext context)
@@ -1442,11 +1435,7 @@ namespace ToolGood.Algorithm.Internals
             }
             var secondValue = args[1].ToNumber("Function LEFT parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
-#if NETSTANDARD2_1
             return Operand.Create(firstValue.TextValue.AsSpan(0, secondValue.IntValue).ToString());
-#else
-            return Operand.Create(firstValue.TextValue.Substring(0, secondValue.IntValue));
-#endif
         }
         public virtual Operand VisitLEN_fun(mathParser.LEN_funContext context)
         {
@@ -1473,11 +1462,7 @@ namespace ToolGood.Algorithm.Internals
             if (secondValue.IsError) { return secondValue; }
             var thirdValue = args[2].ToNumber("Function MID parameter 3 is error!");
             if (thirdValue.IsError) { return thirdValue; }
-#if NETSTANDARD2_1
             return Operand.Create(firstValue.TextValue.AsSpan(secondValue.IntValue - excelIndex, thirdValue.IntValue).ToString());
-#else
-            return Operand.Create(firstValue.TextValue.Substring(secondValue.IntValue - excelIndex, thirdValue.IntValue));
-#endif
         }
         public virtual Operand VisitPROPER_fun(mathParser.PROPER_funContext context)
         {
@@ -1569,11 +1554,7 @@ namespace ToolGood.Algorithm.Internals
             }
             var secondValue = args[1].ToNumber("Function RIGHT parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
-#if NETSTANDARD2_1
             return Operand.Create(firstValue.TextValue.AsSpan(firstValue.TextValue.Length - secondValue.IntValue, secondValue.IntValue).ToString());
-#else
-            return Operand.Create(firstValue.TextValue.Substring(firstValue.TextValue.Length - secondValue.IntValue, secondValue.IntValue));
-#endif
 
         }
         public virtual Operand VisitRMB_fun(mathParser.RMB_funContext context)
@@ -1593,20 +1574,12 @@ namespace ToolGood.Algorithm.Internals
             var secondValue = args[1].ToText("Function SEARCH parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
             if (args.Count == 2) {
-#if NETSTANDARD2_1
                 var p = secondValue.TextValue.AsSpan().IndexOf(firstValue.TextValue, StringComparison.OrdinalIgnoreCase) + excelIndex;
-#else
-                var p = secondValue.TextValue.IndexOf(firstValue.TextValue, StringComparison.OrdinalIgnoreCase) + excelIndex;
-#endif
                 return Operand.Create(p);
             }
             var thirdValue = args[2].ToNumber("Function SEARCH parameter 3 is error!");
             if (thirdValue.IsError) { return thirdValue; }
-#if NETSTANDARD2_1
             var p2 = secondValue.TextValue.AsSpan(thirdValue.IntValue).IndexOf(firstValue.TextValue, StringComparison.OrdinalIgnoreCase) + thirdValue.IntValue + excelIndex;
-#else
-            var p2 = secondValue.TextValue.IndexOf(firstValue.TextValue, thirdValue.IntValue, StringComparison.OrdinalIgnoreCase) + excelIndex;
-#endif
             return Operand.Create(p2);
         }
         public virtual Operand VisitSUBSTITUTE_fun(mathParser.SUBSTITUTE_funContext context)
@@ -1689,11 +1662,7 @@ namespace ToolGood.Algorithm.Internals
         {
             var firstValue = this.Visit(context.expr()).ToText("Function TRIM parameter is error!");
             if (firstValue.IsError) { return firstValue; }
-#if NETSTANDARD2_1
             return Operand.Create(firstValue.TextValue.AsSpan().Trim().ToString());
-#else
-            return Operand.Create(firstValue.TextValue.Trim());
-#endif
         }
         public virtual Operand VisitUPPER_fun(mathParser.UPPER_funContext context)
         {
@@ -3462,19 +3431,11 @@ namespace ToolGood.Algorithm.Internals
 
             var text = firstValue.TextValue;
             if (args.Count == 2) {
-#if NETSTANDARD2_1
                 return Operand.Create(text.AsSpan(secondValue.IntValue - excelIndex).ToString());
-#else
-                return Operand.Create(text.Substring(secondValue.IntValue - excelIndex));
-#endif
             }
             var thirdValue = args[2].ToNumber("Function SUBSTRING parameter 3 is error!");
             if (thirdValue.IsError) { return thirdValue; }
-#if NETSTANDARD2_1
             return Operand.Create(text.AsSpan(secondValue.IntValue - excelIndex, thirdValue.IntValue).ToString());
-#else
-            return Operand.Create(text.Substring(secondValue.IntValue - excelIndex, thirdValue.IntValue));
-#endif
         }
         public virtual Operand VisitSTARTSWITH_fun(mathParser.STARTSWITH_funContext context)
         {
@@ -3488,19 +3449,11 @@ namespace ToolGood.Algorithm.Internals
 
             var text = firstValue.TextValue;
             if (args.Count == 2) {
-#if NETSTANDARD2_1
                 return Operand.Create(text.AsSpan().StartsWith(secondValue.TextValue.AsSpan()));
-#else
-                return Operand.Create(text.StartsWith(secondValue.TextValue));
-#endif
             }
             var thirdValue = args[2].ToBoolean("Function STARTSWITH parameter 3 is error!");
             if (thirdValue.IsError) { return thirdValue; }
-#if NETSTANDARD2_1
             return Operand.Create(text.AsSpan().StartsWith(secondValue.TextValue.AsSpan(), thirdValue.BooleanValue ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
-#else
-            return Operand.Create(text.StartsWith(secondValue.TextValue, thirdValue.BooleanValue ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
-#endif
         }
         public virtual Operand VisitENDSWITH_fun(mathParser.ENDSWITH_funContext context)
         {
@@ -3514,19 +3467,11 @@ namespace ToolGood.Algorithm.Internals
 
             var text = firstValue.TextValue;
             if (args.Count == 2) {
-#if NETSTANDARD2_1
                 return Operand.Create(text.AsSpan().EndsWith(secondValue.TextValue.AsSpan()));
-#else
-                return Operand.Create(text.EndsWith(secondValue.TextValue));
-#endif
             }
             var thirdValue = args[2].ToBoolean("Function ENDSWITH parameter 3 is error!"); ;
             if (thirdValue.IsError) { return thirdValue; }
-#if NETSTANDARD2_1
             return Operand.Create(text.AsSpan().EndsWith(secondValue.TextValue.AsSpan(), thirdValue.BooleanValue ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
-#else
-            return Operand.Create(text.EndsWith(secondValue.TextValue, thirdValue.BooleanValue ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
-#endif
         }
         public virtual Operand VisitISNULLOREMPTY_fun(mathParser.ISNULLOREMPTY_funContext context)
         {
@@ -3562,11 +3507,7 @@ namespace ToolGood.Algorithm.Internals
             }
             var text = firstValue.TextValue;
             if (text.StartsWith(secondValue.TextValue, comparison)) {
-#if NETSTANDARD2_1
                 return Operand.Create(text.AsSpan(secondValue.TextValue.Length).ToString());
-#else
-                return Operand.Create(text.Substring(secondValue.TextValue.Length));
-#endif
             }
             return firstValue;
         }
@@ -3590,11 +3531,7 @@ namespace ToolGood.Algorithm.Internals
             }
             var text = firstValue.TextValue;
             if (text.EndsWith(secondValue.TextValue, comparison)) {
-#if NETSTANDARD2_1
                 return Operand.Create(text.AsSpan(0, text.Length - secondValue.TextValue.Length).ToString());
-#else
-                return Operand.Create(text.Substring(0, text.Length - secondValue.TextValue.Length));
-#endif
             }
             return firstValue;
         }
@@ -3803,9 +3740,9 @@ namespace ToolGood.Algorithm.Internals
             if (node != null) {
                 string str = node.GetText();
                 if (str.StartsWith('@')) {
-                    return GetParameter(str.Substring(1));
+                    return GetParameter(str.AsSpan(1).ToString());
                 }
-                return GetParameter(str.Substring(1, str.Length - 2));
+                return GetParameter(str.AsSpan(1, str.Length - 2).ToString());
             }
             //防止 多重引用 
             if (context.expr() != null) {
@@ -3827,7 +3764,8 @@ namespace ToolGood.Algorithm.Internals
 
         public virtual Operand VisitGetJsonValue_fun(mathParser.GetJsonValue_funContext context)
         {
-            var firstValue = this.Visit(context.expr(0));
+			var exprs = context.expr();
+			var firstValue = this.Visit(exprs[0]);
             if (firstValue.IsError) { return firstValue; }
 
             var obj = firstValue;
@@ -3835,9 +3773,9 @@ namespace ToolGood.Algorithm.Internals
             if (context.parameter2() != null) {
                 op = this.Visit(context.parameter2());
             } else {
-                op = this.Visit(context.expr(1));
+                op = this.Visit(exprs[1]);
                 if (op.IsError) {
-                    op = Operand.Create(context.expr(1).GetText());
+                    op = Operand.Create(exprs[1].GetText());
                 }
             }
 

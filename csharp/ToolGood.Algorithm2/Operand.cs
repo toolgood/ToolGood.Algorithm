@@ -10,7 +10,7 @@ namespace ToolGood.Algorithm
 	/// </summary>
 	public abstract class Operand : IDisposable
 	{
-		private static readonly CultureInfo cultureInfo = CultureInfo.GetCultureInfo("en-US");
+		internal static readonly CultureInfo cultureInfo = CultureInfo.GetCultureInfo("en-US");
 		/// <summary>
 		/// True
 		/// </summary>
@@ -315,119 +315,37 @@ namespace ToolGood.Algorithm
 		/// </summary>
 		/// <param name="errorMessage"></param>
 		/// <returns></returns>
-		public Operand ToNumber(string errorMessage = null)
-		{
-			if (Type == OperandType.NUMBER) { return this; }
-			if (IsError) { return this; }
-			if (Type == OperandType.BOOLEAN) { return BooleanValue ? One : Zero; }
-			if (Type == OperandType.DATE) { return Create((double)DateValue); }
-			if (Type == OperandType.TEXT) {
-				if (double.TryParse(TextValue, NumberStyles.Any, cultureInfo, out double d)) {
-					return Create(d);
-				}
-			}
-			return Error(errorMessage);
-		}
+		public virtual Operand ToNumber(string errorMessage = null) { return Error(errorMessage); }
 		/// <summary>
 		/// 转bool类型
 		/// </summary>
 		/// <param name="errorMessage"></param>
 		/// <returns></returns>
-		public Operand ToBoolean(string errorMessage = null)
-		{
-			if (Type == OperandType.BOOLEAN) { return this; }
-			if (IsError) { return this; }
-			if (Type == OperandType.NUMBER) { return NumberValue != 0 ? True : False; }
-			if (Type == OperandType.DATE) { return ((double)DateValue) != 0 ? True : False; }
-			if (Type == OperandType.TEXT) {
-				if (TextValue.Equals("true", StringComparison.OrdinalIgnoreCase)) { return True; }
-				if (TextValue.Equals("false", StringComparison.OrdinalIgnoreCase)) { return False; }
-				if (TextValue.Equals("1", StringComparison.OrdinalIgnoreCase)) { return True; }
-				if (TextValue.Equals("0", StringComparison.OrdinalIgnoreCase)) { return False; }
-			}
-			return Error(errorMessage);
-		}
+		public virtual Operand ToBoolean(string errorMessage = null) { return Error(errorMessage); }
 		/// <summary>
 		/// 转String类型
 		/// </summary>
 		/// <param name="errorMessage"></param>
 		/// <returns></returns>
-		public Operand ToText(string errorMessage = null)
-		{
-			if (Type == OperandType.TEXT) { return this; }
-			if (IsError) { return this; }
-			if (Type == OperandType.NUMBER) { return Create(NumberValue.ToString(cultureInfo)); }
-			if (Type == OperandType.BOOLEAN) { return Create(BooleanValue ? "TRUE" : "FALSE"); }
-			if (Type == OperandType.DATE) { return Create(DateValue.ToString()); }
-
-			return Error(errorMessage);
-		}
+		public virtual Operand ToText(string errorMessage = null) { return Error(errorMessage); }
 		/// <summary>
 		/// 转MyDate类型
 		/// </summary>
 		/// <param name="errorMessage"></param>
 		/// <returns></returns>
-		public Operand ToMyDate(string errorMessage = null)
-		{
-			if (Type == OperandType.DATE) { return this; }
-			if (IsError) { return this; }
-			if (Type == OperandType.NUMBER) { return Create((MyDate)NumberValue); }
-			if (Type == OperandType.TEXT) {
-				if (TimeSpan.TryParse(TextValue, cultureInfo, out TimeSpan t)) { return Create(new MyDate(t)); }
-				if (DateTime.TryParse(TextValue, cultureInfo, DateTimeStyles.None, out DateTime d)) { return Create(new MyDate(d)); }
-			}
-			return Error(errorMessage);
-		}
+		public virtual Operand ToMyDate(string errorMessage = null) { return Error(errorMessage); }
 		/// <summary>
 		/// 转Json类型
 		/// </summary>
 		/// <param name="errorMessage"></param>
 		/// <returns></returns>
-		public Operand ToJson(string errorMessage = null)
-		{
-			if (Type == OperandType.JSON) { return this; }
-			if (IsError) { return this; }
-			if (Type == OperandType.TEXT) {
-				var txt = TextValue;
-				if ((txt.StartsWith("{") && txt.EndsWith("}")) || (txt.StartsWith("[") && txt.EndsWith("]"))) {
-					try {
-						var json = JsonMapper.ToObject(txt);
-						return Operand.Create(json);
-					} catch (Exception) { }
-				}
-			}
-			return Error(errorMessage);
-		}
+		public virtual Operand ToJson(string errorMessage = null) { return Error(errorMessage); }
 		/// <summary>
 		/// 转Array类型
 		/// </summary>
 		/// <param name="errorMessage"></param>
 		/// <returns></returns>
-		public Operand ToArray(string errorMessage = null)
-		{
-			if (Type == OperandType.ARRARY) { return this; }
-			if (IsError) { return this; }
-			if (Type == OperandType.JSON) {
-				if (JsonValue.IsArray) {
-					List<Operand> list = new List<Operand>();
-					foreach (JsonData v in JsonValue) {
-						if (v.IsString)
-							list.Add(Operand.Create(v.StringValue));
-						else if (v.IsBoolean)
-							list.Add(Operand.Create(v.BooleanValue));
-						else if (v.IsDouble)
-							list.Add(Operand.Create(v.NumberValue));
-						else if (v.IsNull)
-							list.Add(Operand.CreateNull());
-						else
-							list.Add(Operand.Create(v));
-					}
-					return Create(list);
-				}
-			}
-			return Error(errorMessage);
-		}
-
+		public virtual Operand ToArray(string errorMessage = null) { return Error(errorMessage); }
 		void IDisposable.Dispose() { }
 
 
@@ -587,36 +505,184 @@ namespace ToolGood.Algorithm
 		public override OperandType Type => OperandType.NUMBER;
 		public override int IntValue => (int)Value;
 		public override double NumberValue => Value;
+
+		public override Operand ToNumber(string errorMessage = null) { return this; }
+		public override Operand ToBoolean(string errorMessage = null) { return NumberValue != 0 ? True : False; }
+		public override Operand ToText(string errorMessage = null) { return Create(NumberValue.ToString(cultureInfo)); }
+		public override Operand ToMyDate(string errorMessage = null) { return Create((MyDate)NumberValue); }
+
+		public override Operand ToArray(string errorMessage = null)
+		{
+			return Error(errorMessage ?? "Convert number to array error!");
+		}
+		public override Operand ToJson(string errorMessage = null)
+		{
+			return Error(errorMessage ?? "Convert number to json error!");
+		}
 	}
 	sealed class OperandBoolean : Operand<bool>
 	{
 		public OperandBoolean(bool obj) : base(obj) { }
 		public override OperandType Type => OperandType.BOOLEAN;
 		public override bool BooleanValue => Value;
+		public override Operand ToNumber(string errorMessage = null) { return BooleanValue ? One : Zero; }
+		public override Operand ToBoolean(string errorMessage = null) { return this; }
+		public override Operand ToText(string errorMessage = null) { return Create(BooleanValue ? "TRUE" : "FALSE"); }
+
+		public override Operand ToArray(string errorMessage = null)
+		{
+			return Error(errorMessage ?? "Convert bool to array error!");
+		}
+		public override Operand ToJson(string errorMessage = null)
+		{
+			return Error(errorMessage ?? "Convert bool to json error!");
+		}
+		public override Operand ToMyDate(string errorMessage = null)
+		{
+			return Error(errorMessage ?? "Convert bool to date error!");
+		}
 	}
 	sealed class OperandString : Operand<string>
 	{
 		public OperandString(string obj) : base(obj) { }
 		public override OperandType Type => OperandType.TEXT;
 		public override string TextValue => Value;
+
+		public override Operand ToNumber(string errorMessage = null)
+		{
+			if (double.TryParse(TextValue, out double d)) {
+				return Operand.Create(d);
+			}
+			if (errorMessage == null) {
+				return Error("Convert string to number error!");
+			}
+			return Error(errorMessage);
+		}
+		public override Operand ToText(string errorMessage = null)
+		{
+			return this;
+		}
+		public override Operand ToBoolean(string errorMessage = null)
+		{
+			if (TextValue.Equals("true", StringComparison.OrdinalIgnoreCase)) { return True; }
+			if (TextValue.Equals("yes", StringComparison.OrdinalIgnoreCase)) { return True; }
+			if (TextValue.Equals("false", StringComparison.OrdinalIgnoreCase)) { return False; }
+			if (TextValue.Equals("no", StringComparison.OrdinalIgnoreCase)) { return False; }
+			if (TextValue.Equals("1") || TextValue.Equals("是") || TextValue.Equals("有")) { return True; }
+			if (TextValue.Equals("0") || TextValue.Equals("否") || TextValue.Equals("不是") || TextValue.Equals("无") || TextValue.Equals("没有")) { return False; }
+			if (errorMessage == null) {
+				return Error("Convert string to bool error!");
+			}
+			return Error(errorMessage);
+		}
+		public override Operand ToMyDate(string errorMessage = null)
+		{
+			if (TimeSpan.TryParse(TextValue, cultureInfo, out TimeSpan t)) { return Create(new MyDate(t)); }
+			if (DateTime.TryParse(TextValue, cultureInfo, DateTimeStyles.None, out DateTime d)) { return Create(new MyDate(d)); }
+			if (errorMessage == null) {
+				return Error("Convert string to date error!");
+			}
+			return Error(errorMessage);
+		}
+		public override Operand ToJson(string errorMessage = null)
+		{
+			var txt = TextValue.Trim();
+			if ((txt.StartsWith('{') && txt.EndsWith('}')) || (txt.StartsWith('[') && txt.EndsWith(']'))) {
+				try {
+					var json = JsonMapper.ToObject(txt);
+					return Operand.Create(json);
+				} catch (Exception) { }
+			}
+			if (errorMessage == null) {
+				return Error("Convert string to json error!");
+			}
+			return Error(errorMessage);
+		}
+
+		public override Operand ToArray(string errorMessage = null)
+		{
+			return Error(errorMessage ?? "Convert string to array error!");
+		}
 	}
 	sealed class OperandMyDate : Operand<MyDate>
 	{
 		public OperandMyDate(MyDate obj) : base(obj) { }
 		public override OperandType Type => OperandType.DATE;
 		public override MyDate DateValue => Value;
+		public override Operand ToNumber(string errorMessage = null)
+		{
+			return Create((double)DateValue);
+		}
+		public override Operand ToBoolean(string errorMessage = null)
+		{
+			return ((double)DateValue) != 0 ? True : False;
+		}
+		public override Operand ToText(string errorMessage = null)
+		{
+			return Create(DateValue.ToString());
+		}
+		public override Operand ToMyDate(string errorMessage = null) { return this; }
+
+		public override Operand ToArray(string errorMessage = null)
+		{
+			return Error(errorMessage ?? "Convert date to array error!");
+		}
+		public override Operand ToJson(string errorMessage = null)
+		{
+			return Error(errorMessage ?? "Convert date to json error!");
+		}
 	}
 	sealed class OperandJson : Operand<JsonData>
 	{
 		public OperandJson(JsonData obj) : base(obj) { }
 		public override OperandType Type => OperandType.JSON;
 		internal override JsonData JsonValue => Value;
+
+		public override Operand ToJson(string errorMessage = null) { return this; }
+		public override Operand ToArray(string errorMessage = null)
+		{
+			if (JsonValue.IsArray) {
+				List<Operand> list = new List<Operand>();
+				foreach (JsonData v in JsonValue) {
+					if (v.IsString)
+						list.Add(Operand.Create(v.StringValue));
+					else if (v.IsBoolean)
+						list.Add(Operand.Create(v.BooleanValue));
+					else if (v.IsDouble)
+						list.Add(Operand.Create(v.NumberValue));
+					else if (v.IsNull)
+						list.Add(Operand.CreateNull());
+					else
+						list.Add(Operand.Create(v));
+				}
+				return Create(list);
+			}
+			return Error(errorMessage ?? "Convert json to array error!");
+		}
+		public override Operand ToBoolean(string errorMessage = null)
+		{
+			return Error(errorMessage ?? "Convert json to bool error!");
+		}
+		public override Operand ToMyDate(string errorMessage = null)
+		{
+			return Error(errorMessage ?? "Convert json to date error!");
+		}
+		public override Operand ToNumber(string errorMessage = null)
+		{
+			return Error(errorMessage ?? "Convert json to number error!");
+		}
+		public override Operand ToText(string errorMessage = null)
+		{
+			return Error(errorMessage ?? "Convert json to string error!");
+		}
 	}
 	sealed class OperandArray : Operand<List<Operand>>
 	{
 		public OperandArray(List<Operand> obj) : base(obj) { }
 		public override OperandType Type => OperandType.ARRARY;
 		public override List<Operand> ArrayValue => Value;
+		public override Operand ToArray(string errorMessage = null) { return this; }
+
 	}
 	sealed class OperandError : Operand
 	{
@@ -628,12 +694,42 @@ namespace ToolGood.Algorithm
 		{
 			_errorMsg = msg;
 		}
+		public override Operand ToNumber(string errorMessage = null) { return this; }
+		public override Operand ToBoolean(string errorMessage = null) { return this; }
+		public override Operand ToText(string errorMessage = null) { return this; }
+		public override Operand ToArray(string errorMessage = null) { return this; }
+		public override Operand ToJson(string errorMessage = null) { return this; }
+		public override Operand ToMyDate(string errorMessage = null) { return this; }
 	}
 
 	sealed class OperandNull : Operand
 	{
 		public override OperandType Type => OperandType.NULL;
 		public override bool IsNull => true;
+		public override Operand ToArray(string errorMessage = null)
+		{
+			return Error(errorMessage ?? "Convert null to array error!");
+		}
+		public override Operand ToBoolean(string errorMessage = null)
+		{
+			return Error(errorMessage ?? "Convert null to bool error!");
+		}
+		public override Operand ToText(string errorMessage = null)
+		{
+			return Error(errorMessage ?? "Convert null to string error!");
+		}
+		public override Operand ToNumber(string errorMessage = null)
+		{
+			return Error(errorMessage ?? "Convert null to number error!");
+		}
+		public override Operand ToJson(string errorMessage = null)
+		{
+			return Error(errorMessage ?? "Convert null to json error!");
+		}
+		public override Operand ToMyDate(string errorMessage = null)
+		{
+			return Error(errorMessage ?? "Convert null to date error!");
+		}
 
 	}
 
