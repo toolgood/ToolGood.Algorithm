@@ -6,7 +6,7 @@
     <Copyright>Copyright 2017-2022 ToolGood</Copyright>
     <AssemblyTitle>ToolGood.Algorithm</AssemblyTitle>
     <Authors>ToolGood</Authors>
-    <TargetFrameworks>netstandard2.1;net7.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1;net6.0;net7.0</TargetFrameworks>
     <AssemblyName>ToolGood.Algorithm</AssemblyName>
     <PublicSign>true</PublicSign>
     <PackageId>ToolGood.Algorithm</PackageId>

@@ -1171,9 +1171,13 @@ namespace ToolGood.Algorithm.Internals
         #region RAND
         public virtual Operand VisitRAND_fun(mathParser.RAND_funContext context)
         {
-            var tick = DateTime.Now.Ticks;
-            Random rand = new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32));
-            return Operand.Create(rand.NextDouble());
+#if NETSTANDARD2_1
+			var tick = DateTime.Now.Ticks;
+			Random rand = new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32));
+#else
+			Random rand=Random.Shared;
+#endif
+			return Operand.Create(rand.NextDouble());
         }
         public virtual Operand VisitRANDBETWEEN_fun(mathParser.RANDBETWEEN_funContext context)
         {
@@ -1183,9 +1187,13 @@ namespace ToolGood.Algorithm.Internals
             var firstValue = args[0];
             var secondValue = args[1];
 
-            var tick = DateTime.Now.Ticks;
-            Random rand = new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32));
-            return Operand.Create(rand.NextDouble() * (secondValue.NumberValue - firstValue.NumberValue) + firstValue.NumberValue);
+#if NETSTANDARD2_1
+			var tick = DateTime.Now.Ticks;
+			Random rand = new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32));
+#else
+			Random rand=Random.Shared;
+#endif
+			return Operand.Create(rand.NextDouble() * (secondValue.NumberValue - firstValue.NumberValue) + firstValue.NumberValue);
         }
         #endregion
 
