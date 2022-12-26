@@ -9,7 +9,7 @@ namespace ToolGood.Algorithm.Internals
     {
         public ConditionTree VisitProg(mathParser.ProgContext context)
         {
-            return Visit(context.expr());
+            return context.expr().Accept(this);
         }
         public ConditionTree VisitAndOr_fun(mathParser.AndOr_funContext context)
         {
@@ -21,13 +21,15 @@ namespace ToolGood.Algorithm.Internals
             } else {
                 tree.Type = ConditionTreeType.Or;
             }
-            tree.Nodes.Add(this.Visit(context.expr(0)));
-            tree.Nodes.Add(this.Visit(context.expr(1)));
+            var exprs= context.expr();
+
+            tree.Nodes.Add(exprs[0].Accept(this));
+            tree.Nodes.Add(exprs[1].Accept(this));
             return tree;
         }
         public ConditionTree VisitBracket_fun(mathParser.Bracket_funContext context)
         {
-            return Visit(context.expr());
+            return context.expr().Accept(this);
         }
         public ConditionTree Visit_fun(ParserRuleContext context)
         {
