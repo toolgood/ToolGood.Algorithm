@@ -14,6 +14,8 @@ ToolGood.Algorithm supports `Four arithmetic`, `Excel formula`, and supports `Cu
 
 4）The report is exported, the data source uses the stored procedure, and the algorithm is set in the Word document. Example https://github.com/toolgood/ToolGood.WordTemplate 
 
+5） Rule engines, such as: https://github.com/toolgood/ToolGood.FlowVision
+
 
 ## Quick start
 ``` csharp
