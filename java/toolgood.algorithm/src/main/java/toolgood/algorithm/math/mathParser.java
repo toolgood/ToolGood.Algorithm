@@ -204,8 +204,8 @@ public class mathParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_prog; }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitProg(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitProg(this);
+			
 		}
 	}
 
@@ -256,8 +256,8 @@ public class mathParser extends Parser {
 		public CEILING_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitCEILING_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitCEILING_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -269,8 +269,8 @@ public class mathParser extends Parser {
 		public FACT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitFACT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitFACT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -285,8 +285,8 @@ public class mathParser extends Parser {
 		public REGEXREPALCE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitREGEXREPALCE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitREGEXREPALCE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -302,8 +302,8 @@ public class mathParser extends Parser {
 		public AddSub_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitAddSub_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitAddSub_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -318,8 +318,8 @@ public class mathParser extends Parser {
 		public AVERAGEIF_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitAVERAGEIF_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitAVERAGEIF_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -334,8 +334,8 @@ public class mathParser extends Parser {
 		public ISNULLORERROR_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitISNULLORERROR_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitISNULLORERROR_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -350,8 +350,8 @@ public class mathParser extends Parser {
 		public RIGHT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitRIGHT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitRIGHT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -366,8 +366,8 @@ public class mathParser extends Parser {
 		public OCT2BIN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitOCT2BIN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitOCT2BIN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -382,8 +382,8 @@ public class mathParser extends Parser {
 		public QUARTILE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitQUARTILE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitQUARTILE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -398,8 +398,8 @@ public class mathParser extends Parser {
 		public FINV_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitFINV_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitFINV_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -411,8 +411,8 @@ public class mathParser extends Parser {
 		public NOT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitNOT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitNOT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -427,8 +427,8 @@ public class mathParser extends Parser {
 		public DAYS360_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitDAYS360_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitDAYS360_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -443,8 +443,8 @@ public class mathParser extends Parser {
 		public WEEKNUM_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitWEEKNUM_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitWEEKNUM_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -459,8 +459,8 @@ public class mathParser extends Parser {
 		public POISSON_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitPOISSON_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitPOISSON_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -475,8 +475,8 @@ public class mathParser extends Parser {
 		public ISREGEX_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitISREGEX_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitISREGEX_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -491,8 +491,8 @@ public class mathParser extends Parser {
 		public PERCENTILE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitPERCENTILE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitPERCENTILE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -507,8 +507,8 @@ public class mathParser extends Parser {
 		public DiyFunction_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitDiyFunction_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitDiyFunction_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -523,8 +523,8 @@ public class mathParser extends Parser {
 		public SHA256_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSHA256_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSHA256_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -539,8 +539,8 @@ public class mathParser extends Parser {
 		public HYPGEOMDIST_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitHYPGEOMDIST_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitHYPGEOMDIST_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -555,8 +555,8 @@ public class mathParser extends Parser {
 		public PERMUT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitPERMUT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitPERMUT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -571,8 +571,8 @@ public class mathParser extends Parser {
 		public TRIMSTART_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTRIMSTART_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTRIMSTART_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -584,8 +584,8 @@ public class mathParser extends Parser {
 		public RMB_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitRMB_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitRMB_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -600,8 +600,8 @@ public class mathParser extends Parser {
 		public DEC2HEX_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitDEC2HEX_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitDEC2HEX_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -613,8 +613,8 @@ public class mathParser extends Parser {
 		public CLEAN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitCLEAN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitCLEAN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -626,8 +626,8 @@ public class mathParser extends Parser {
 		public LOWER_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitLOWER_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitLOWER_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -642,8 +642,8 @@ public class mathParser extends Parser {
 		public OR_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitOR_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitOR_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -655,8 +655,8 @@ public class mathParser extends Parser {
 		public NORMSINV_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitNORMSINV_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitNORMSINV_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -671,8 +671,8 @@ public class mathParser extends Parser {
 		public LEFT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitLEFT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitLEFT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -684,8 +684,8 @@ public class mathParser extends Parser {
 		public ISEVEN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitISEVEN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitISEVEN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -700,8 +700,8 @@ public class mathParser extends Parser {
 		public LOGINV_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitLOGINV_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitLOGINV_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -716,8 +716,8 @@ public class mathParser extends Parser {
 		public WORKDAY_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitWORKDAY_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitWORKDAY_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -732,8 +732,8 @@ public class mathParser extends Parser {
 		public ISERROR_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitISERROR_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitISERROR_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -745,8 +745,8 @@ public class mathParser extends Parser {
 		public BIN2DEC_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitBIN2DEC_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitBIN2DEC_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -758,8 +758,8 @@ public class mathParser extends Parser {
 		public JIS_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitJIS_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitJIS_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -774,8 +774,8 @@ public class mathParser extends Parser {
 		public CRC32_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitCRC32_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitCRC32_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -790,8 +790,8 @@ public class mathParser extends Parser {
 		public LCM_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitLCM_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitLCM_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -806,8 +806,8 @@ public class mathParser extends Parser {
 		public HARMEAN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitHARMEAN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitHARMEAN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -822,8 +822,8 @@ public class mathParser extends Parser {
 		public NORMINV_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitNORMINV_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitNORMINV_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -838,8 +838,8 @@ public class mathParser extends Parser {
 		public GAMMAINV_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitGAMMAINV_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitGAMMAINV_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -851,8 +851,8 @@ public class mathParser extends Parser {
 		public SQRT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSQRT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSQRT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -864,8 +864,8 @@ public class mathParser extends Parser {
 		public DEGREES_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitDEGREES_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitDEGREES_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -880,8 +880,8 @@ public class mathParser extends Parser {
 		public MROUND_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitMROUND_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitMROUND_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -896,8 +896,8 @@ public class mathParser extends Parser {
 		public DATEDIF_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitDATEDIF_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitDATEDIF_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -912,8 +912,8 @@ public class mathParser extends Parser {
 		public TRIMEND_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTRIMEND_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTRIMEND_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -925,8 +925,8 @@ public class mathParser extends Parser {
 		public ISLOGICAL_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitISLOGICAL_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitISLOGICAL_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -938,8 +938,8 @@ public class mathParser extends Parser {
 		public INT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitINT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitINT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -954,8 +954,8 @@ public class mathParser extends Parser {
 		public SUMIF_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSUMIF_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSUMIF_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -970,8 +970,8 @@ public class mathParser extends Parser {
 		public HEX2OCT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitHEX2OCT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitHEX2OCT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -980,8 +980,8 @@ public class mathParser extends Parser {
 		public PI_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitPI_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitPI_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -993,8 +993,8 @@ public class mathParser extends Parser {
 		public YEAR_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitYEAR_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitYEAR_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1006,8 +1006,8 @@ public class mathParser extends Parser {
 		public SQRTPI_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSQRTPI_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSQRTPI_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1022,8 +1022,8 @@ public class mathParser extends Parser {
 		public CONCATENATE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitCONCATENATE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitCONCATENATE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1038,8 +1038,8 @@ public class mathParser extends Parser {
 		public COUNT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitCOUNT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitCOUNT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1048,8 +1048,8 @@ public class mathParser extends Parser {
 		public FALSE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitFALSE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitFALSE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1061,8 +1061,8 @@ public class mathParser extends Parser {
 		public HTMLENCODE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitHTMLENCODE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitHTMLENCODE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1077,8 +1077,8 @@ public class mathParser extends Parser {
 		public BASE64URLTOTEXT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitBASE64URLTOTEXT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitBASE64URLTOTEXT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1090,8 +1090,8 @@ public class mathParser extends Parser {
 		public LOG10_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitLOG10_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitLOG10_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1103,8 +1103,8 @@ public class mathParser extends Parser {
 		public ISTEXT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitISTEXT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitISTEXT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1119,8 +1119,8 @@ public class mathParser extends Parser {
 		public NEGBINOMDIST_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitNEGBINOMDIST_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitNEGBINOMDIST_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1135,8 +1135,8 @@ public class mathParser extends Parser {
 		public NETWORKDAYS_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitNETWORKDAYS_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitNETWORKDAYS_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1148,8 +1148,8 @@ public class mathParser extends Parser {
 		public FACTDOUBLE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitFACTDOUBLE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitFACTDOUBLE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1161,8 +1161,8 @@ public class mathParser extends Parser {
 		public TIMEVALUE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTIMEVALUE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTIMEVALUE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1177,8 +1177,8 @@ public class mathParser extends Parser {
 		public AVEDEV_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitAVEDEV_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitAVEDEV_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1187,8 +1187,8 @@ public class mathParser extends Parser {
 		public GUID_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitGUID_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitGUID_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1200,8 +1200,8 @@ public class mathParser extends Parser {
 		public JSON_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitJSON_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitJSON_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1216,8 +1216,8 @@ public class mathParser extends Parser {
 		public FIXED_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitFIXED_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitFIXED_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1234,8 +1234,8 @@ public class mathParser extends Parser {
 		public GetJsonValue_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitGetJsonValue_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitGetJsonValue_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1250,8 +1250,8 @@ public class mathParser extends Parser {
 		public TINV_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTINV_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTINV_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1266,8 +1266,8 @@ public class mathParser extends Parser {
 		public EDATE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitEDATE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitEDATE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1282,8 +1282,8 @@ public class mathParser extends Parser {
 		public GEOMEAN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitGEOMEAN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitGEOMEAN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1298,8 +1298,8 @@ public class mathParser extends Parser {
 		public VAR_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitVAR_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitVAR_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1311,8 +1311,8 @@ public class mathParser extends Parser {
 		public SIGN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSIGN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSIGN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1327,8 +1327,8 @@ public class mathParser extends Parser {
 		public EOMONTH_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitEOMONTH_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitEOMONTH_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1343,8 +1343,8 @@ public class mathParser extends Parser {
 		public FLOOR_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitFLOOR_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitFLOOR_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1356,8 +1356,8 @@ public class mathParser extends Parser {
 		public HOUR_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitHOUR_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitHOUR_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1369,8 +1369,8 @@ public class mathParser extends Parser {
 		public LEN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitLEN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitLEN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1382,8 +1382,8 @@ public class mathParser extends Parser {
 		public ACOS_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitACOS_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitACOS_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1395,8 +1395,8 @@ public class mathParser extends Parser {
 		public ISNULLORWHITESPACE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitISNULLORWHITESPACE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitISNULLORWHITESPACE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1406,8 +1406,8 @@ public class mathParser extends Parser {
 		public NUM_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitNUM_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitNUM_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1419,8 +1419,8 @@ public class mathParser extends Parser {
 		public COSH_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitCOSH_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitCOSH_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1435,8 +1435,8 @@ public class mathParser extends Parser {
 		public QUOTIENT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitQUOTIENT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitQUOTIENT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1448,8 +1448,8 @@ public class mathParser extends Parser {
 		public OCT2DEC_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitOCT2DEC_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitOCT2DEC_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1464,8 +1464,8 @@ public class mathParser extends Parser {
 		public SEARCH_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSEARCH_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSEARCH_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1480,8 +1480,8 @@ public class mathParser extends Parser {
 		public ROUNDUP_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitROUNDUP_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitROUNDUP_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1496,8 +1496,8 @@ public class mathParser extends Parser {
 		public COMBIN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitCOMBIN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitCOMBIN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1509,8 +1509,8 @@ public class mathParser extends Parser {
 		public CODE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitCODE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitCODE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1522,8 +1522,8 @@ public class mathParser extends Parser {
 		public ASINH_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitASINH_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitASINH_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1535,8 +1535,8 @@ public class mathParser extends Parser {
 		public SIN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSIN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSIN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1551,8 +1551,8 @@ public class mathParser extends Parser {
 		public SUBSTRING_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSUBSTRING_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSUBSTRING_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1567,8 +1567,8 @@ public class mathParser extends Parser {
 		public RANDBETWEEN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitRANDBETWEEN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitRANDBETWEEN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1583,8 +1583,8 @@ public class mathParser extends Parser {
 		public AVERAGE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitAVERAGE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitAVERAGE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1599,8 +1599,8 @@ public class mathParser extends Parser {
 		public LOG_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitLOG_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitLOG_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1615,8 +1615,8 @@ public class mathParser extends Parser {
 		public HMACSHA512_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitHMACSHA512_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitHMACSHA512_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1633,8 +1633,8 @@ public class mathParser extends Parser {
 		public AndOr_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitAndOr_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitAndOr_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1649,8 +1649,8 @@ public class mathParser extends Parser {
 		public STDEVP_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSTDEVP_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSTDEVP_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1665,8 +1665,8 @@ public class mathParser extends Parser {
 		public Array_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitArray_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitArray_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1681,8 +1681,8 @@ public class mathParser extends Parser {
 		public ROUND_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitROUND_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitROUND_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1694,8 +1694,8 @@ public class mathParser extends Parser {
 		public EXP_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitEXP_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitEXP_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1710,8 +1710,8 @@ public class mathParser extends Parser {
 		public COUNTIF_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitCOUNTIF_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitCOUNTIF_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1726,8 +1726,8 @@ public class mathParser extends Parser {
 		public VARP_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitVARP_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitVARP_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1742,8 +1742,8 @@ public class mathParser extends Parser {
 		public REMOVEEND_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitREMOVEEND_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitREMOVEEND_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1758,8 +1758,8 @@ public class mathParser extends Parser {
 		public DATE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitDATE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitDATE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1772,8 +1772,8 @@ public class mathParser extends Parser {
 		public PARAMETER_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitPARAMETER_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitPARAMETER_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1788,8 +1788,8 @@ public class mathParser extends Parser {
 		public SPLIT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSPLIT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSPLIT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1801,8 +1801,8 @@ public class mathParser extends Parser {
 		public URLDECODE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitURLDECODE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitURLDECODE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1817,8 +1817,8 @@ public class mathParser extends Parser {
 		public LARGE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitLARGE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitLARGE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1830,8 +1830,8 @@ public class mathParser extends Parser {
 		public VALUE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitVALUE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitVALUE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1843,8 +1843,8 @@ public class mathParser extends Parser {
 		public DAY_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitDAY_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitDAY_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1859,8 +1859,8 @@ public class mathParser extends Parser {
 		public WEIBULL_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitWEIBULL_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitWEIBULL_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1875,8 +1875,8 @@ public class mathParser extends Parser {
 		public HMACSHA256_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitHMACSHA256_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitHMACSHA256_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1891,8 +1891,8 @@ public class mathParser extends Parser {
 		public BINOMDIST_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitBINOMDIST_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitBINOMDIST_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1907,8 +1907,8 @@ public class mathParser extends Parser {
 		public Judge_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitJudge_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitJudge_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1923,8 +1923,8 @@ public class mathParser extends Parser {
 		public DEVSQ_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitDEVSQ_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitDEVSQ_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1939,8 +1939,8 @@ public class mathParser extends Parser {
 		public MODE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitMODE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitMODE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1955,8 +1955,8 @@ public class mathParser extends Parser {
 		public BETAINV_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitBETAINV_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitBETAINV_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1971,8 +1971,8 @@ public class mathParser extends Parser {
 		public MAX_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitMAX_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitMAX_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1984,8 +1984,8 @@ public class mathParser extends Parser {
 		public MINUTE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitMINUTE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitMINUTE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1997,8 +1997,8 @@ public class mathParser extends Parser {
 		public TAN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTAN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTAN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2013,8 +2013,8 @@ public class mathParser extends Parser {
 		public IFERROR_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitIFERROR_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitIFERROR_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2029,8 +2029,8 @@ public class mathParser extends Parser {
 		public FDIST_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitFDIST_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitFDIST_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2045,8 +2045,8 @@ public class mathParser extends Parser {
 		public INDEXOF_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitINDEXOF_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitINDEXOF_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2058,8 +2058,8 @@ public class mathParser extends Parser {
 		public UPPER_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitUPPER_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitUPPER_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2071,8 +2071,8 @@ public class mathParser extends Parser {
 		public HTMLDECODE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitHTMLDECODE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitHTMLDECODE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2087,8 +2087,8 @@ public class mathParser extends Parser {
 		public EXPONDIST_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitEXPONDIST_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitEXPONDIST_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2103,8 +2103,8 @@ public class mathParser extends Parser {
 		public VLOOKUP_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitVLOOKUP_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitVLOOKUP_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2119,8 +2119,8 @@ public class mathParser extends Parser {
 		public DEC2BIN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitDEC2BIN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitDEC2BIN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2135,8 +2135,8 @@ public class mathParser extends Parser {
 		public LOOKUP_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitLOOKUP_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitLOOKUP_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2148,8 +2148,8 @@ public class mathParser extends Parser {
 		public HEX2DEC_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitHEX2DEC_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitHEX2DEC_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2164,8 +2164,8 @@ public class mathParser extends Parser {
 		public SMALL_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSMALL_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSMALL_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2177,8 +2177,8 @@ public class mathParser extends Parser {
 		public ODD_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitODD_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitODD_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2193,8 +2193,8 @@ public class mathParser extends Parser {
 		public TEXTTOBASE64_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTEXTTOBASE64_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTEXTTOBASE64_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2209,8 +2209,8 @@ public class mathParser extends Parser {
 		public MID_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitMID_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitMID_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2225,8 +2225,8 @@ public class mathParser extends Parser {
 		public PERCENTRANK_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitPERCENTRANK_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitPERCENTRANK_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2241,8 +2241,8 @@ public class mathParser extends Parser {
 		public STDEV_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSTDEV_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSTDEV_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2254,8 +2254,8 @@ public class mathParser extends Parser {
 		public NORMSDIST_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitNORMSDIST_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitNORMSDIST_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2267,8 +2267,8 @@ public class mathParser extends Parser {
 		public ISNUMBER_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitISNUMBER_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitISNUMBER_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2283,8 +2283,8 @@ public class mathParser extends Parser {
 		public LASTINDEXOF_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitLASTINDEXOF_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitLASTINDEXOF_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2299,8 +2299,8 @@ public class mathParser extends Parser {
 		public MOD_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitMOD_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitMOD_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2312,8 +2312,8 @@ public class mathParser extends Parser {
 		public CHAR_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitCHAR_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitCHAR_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2328,8 +2328,8 @@ public class mathParser extends Parser {
 		public REGEX_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitREGEX_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitREGEX_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2344,8 +2344,8 @@ public class mathParser extends Parser {
 		public TEXTTOBASE64URL_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTEXTTOBASE64URL_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTEXTTOBASE64URL_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2360,8 +2360,8 @@ public class mathParser extends Parser {
 		public MD5_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitMD5_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitMD5_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2376,8 +2376,8 @@ public class mathParser extends Parser {
 		public REPLACE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitREPLACE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitREPLACE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2389,8 +2389,8 @@ public class mathParser extends Parser {
 		public ACOSH_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitACOSH_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitACOSH_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2402,8 +2402,8 @@ public class mathParser extends Parser {
 		public ISODD_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitISODD_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitISODD_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2415,8 +2415,8 @@ public class mathParser extends Parser {
 		public ASC_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitASC_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitASC_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2428,8 +2428,8 @@ public class mathParser extends Parser {
 		public COS_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitCOS_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitCOS_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2441,8 +2441,8 @@ public class mathParser extends Parser {
 		public LN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitLN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitLN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2451,8 +2451,8 @@ public class mathParser extends Parser {
 		public STRING_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSTRING_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSTRING_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2467,8 +2467,8 @@ public class mathParser extends Parser {
 		public HMACMD5_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitHMACMD5_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitHMACMD5_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2483,8 +2483,8 @@ public class mathParser extends Parser {
 		public PRODUCT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitPRODUCT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitPRODUCT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2499,8 +2499,8 @@ public class mathParser extends Parser {
 		public EXACT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitEXACT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitEXACT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2515,8 +2515,8 @@ public class mathParser extends Parser {
 		public SUMSQ_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSUMSQ_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSUMSQ_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2531,8 +2531,8 @@ public class mathParser extends Parser {
 		public SUM_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSUM_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSUM_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2544,8 +2544,8 @@ public class mathParser extends Parser {
 		public SECOND_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSECOND_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSECOND_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2560,8 +2560,8 @@ public class mathParser extends Parser {
 		public GAMMADIST_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitGAMMADIST_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitGAMMADIST_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2576,8 +2576,8 @@ public class mathParser extends Parser {
 		public OCT2HEX_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitOCT2HEX_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitOCT2HEX_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2586,8 +2586,8 @@ public class mathParser extends Parser {
 		public TODAY_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTODAY_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTODAY_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2599,8 +2599,8 @@ public class mathParser extends Parser {
 		public ATAN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitATAN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitATAN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2609,8 +2609,8 @@ public class mathParser extends Parser {
 		public E_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2622,8 +2622,8 @@ public class mathParser extends Parser {
 		public TRIM_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTRIM_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTRIM_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2635,8 +2635,8 @@ public class mathParser extends Parser {
 		public RADIANS_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitRADIANS_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitRADIANS_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2648,8 +2648,8 @@ public class mathParser extends Parser {
 		public GAMMALN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitGAMMALN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitGAMMALN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2664,8 +2664,8 @@ public class mathParser extends Parser {
 		public TEXT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTEXT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTEXT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2677,8 +2677,8 @@ public class mathParser extends Parser {
 		public FISHER_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitFISHER_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitFISHER_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2693,8 +2693,8 @@ public class mathParser extends Parser {
 		public AND_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitAND_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitAND_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2709,8 +2709,8 @@ public class mathParser extends Parser {
 		public BIN2HEX_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitBIN2HEX_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitBIN2HEX_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2725,8 +2725,8 @@ public class mathParser extends Parser {
 		public MULTINOMIAL_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitMULTINOMIAL_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitMULTINOMIAL_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2738,8 +2738,8 @@ public class mathParser extends Parser {
 		public MONTH_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitMONTH_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitMONTH_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2751,8 +2751,8 @@ public class mathParser extends Parser {
 		public URLENCODE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitURLENCODE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitURLENCODE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2767,8 +2767,8 @@ public class mathParser extends Parser {
 		public NORMDIST_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitNORMDIST_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitNORMDIST_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2783,8 +2783,8 @@ public class mathParser extends Parser {
 		public HMACSHA1_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitHMACSHA1_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitHMACSHA1_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2799,8 +2799,8 @@ public class mathParser extends Parser {
 		public ENDSWITH_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitENDSWITH_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitENDSWITH_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2811,8 +2811,8 @@ public class mathParser extends Parser {
 		public Bracket_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitBracket_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitBracket_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2827,8 +2827,8 @@ public class mathParser extends Parser {
 		public BETADIST_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitBETADIST_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitBETADIST_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2840,8 +2840,8 @@ public class mathParser extends Parser {
 		public ATANH_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitATANH_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitATANH_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2850,8 +2850,8 @@ public class mathParser extends Parser {
 		public NOW_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitNOW_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitNOW_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2866,8 +2866,8 @@ public class mathParser extends Parser {
 		public MEDIAN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitMEDIAN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitMEDIAN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2882,8 +2882,8 @@ public class mathParser extends Parser {
 		public POWER_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitPOWER_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitPOWER_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2898,8 +2898,8 @@ public class mathParser extends Parser {
 		public DEC2OCT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitDEC2OCT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitDEC2OCT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2911,8 +2911,8 @@ public class mathParser extends Parser {
 		public PROPER_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitPROPER_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitPROPER_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2924,8 +2924,8 @@ public class mathParser extends Parser {
 		public TRUNC_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTRUNC_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTRUNC_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2940,8 +2940,8 @@ public class mathParser extends Parser {
 		public GCD_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitGCD_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitGCD_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2953,8 +2953,8 @@ public class mathParser extends Parser {
 		public TANH_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTANH_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTANH_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2969,8 +2969,8 @@ public class mathParser extends Parser {
 		public HEX2BIN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitHEX2BIN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitHEX2BIN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2982,8 +2982,8 @@ public class mathParser extends Parser {
 		public SINH_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSINH_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSINH_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2998,8 +2998,8 @@ public class mathParser extends Parser {
 		public SHA512_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSHA512_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSHA512_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3014,8 +3014,8 @@ public class mathParser extends Parser {
 		public MIN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitMIN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitMIN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3027,8 +3027,8 @@ public class mathParser extends Parser {
 		public ISNONTEXT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitISNONTEXT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitISNONTEXT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3040,8 +3040,8 @@ public class mathParser extends Parser {
 		public ABS_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitABS_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitABS_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3056,8 +3056,8 @@ public class mathParser extends Parser {
 		public ROUNDDOWN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitROUNDDOWN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitROUNDDOWN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3072,8 +3072,8 @@ public class mathParser extends Parser {
 		public IF_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitIF_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitIF_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3088,8 +3088,8 @@ public class mathParser extends Parser {
 		public JOIN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitJOIN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitJOIN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3104,8 +3104,8 @@ public class mathParser extends Parser {
 		public FIND_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitFIND_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitFIND_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3120,8 +3120,8 @@ public class mathParser extends Parser {
 		public SUBSTITUTE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSUBSTITUTE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSUBSTITUTE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3132,8 +3132,8 @@ public class mathParser extends Parser {
 		public Percentage_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitPercentage_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitPercentage_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3148,8 +3148,8 @@ public class mathParser extends Parser {
 		public REPT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitREPT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitREPT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3164,8 +3164,8 @@ public class mathParser extends Parser {
 		public ISNULL_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitISNULL_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitISNULL_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3177,8 +3177,8 @@ public class mathParser extends Parser {
 		public ASIN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitASIN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitASIN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3193,8 +3193,8 @@ public class mathParser extends Parser {
 		public MulDiv_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitMulDiv_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitMulDiv_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3209,8 +3209,8 @@ public class mathParser extends Parser {
 		public REMOVESTART_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitREMOVESTART_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitREMOVESTART_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3222,8 +3222,8 @@ public class mathParser extends Parser {
 		public T_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3238,8 +3238,8 @@ public class mathParser extends Parser {
 		public WEEKDAY_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitWEEKDAY_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitWEEKDAY_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3254,8 +3254,8 @@ public class mathParser extends Parser {
 		public BIN2OCT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitBIN2OCT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitBIN2OCT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3264,8 +3264,8 @@ public class mathParser extends Parser {
 		public NULL_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitNULL_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitNULL_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3280,8 +3280,8 @@ public class mathParser extends Parser {
 		public BASE64TOTEXT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitBASE64TOTEXT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitBASE64TOTEXT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3296,8 +3296,8 @@ public class mathParser extends Parser {
 		public TDIST_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTDIST_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTDIST_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3309,8 +3309,8 @@ public class mathParser extends Parser {
 		public DATEVALUE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitDATEVALUE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitDATEVALUE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3325,8 +3325,8 @@ public class mathParser extends Parser {
 		public STARTSWITH_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSTARTSWITH_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSTARTSWITH_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3338,8 +3338,8 @@ public class mathParser extends Parser {
 		public EVEN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitEVEN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitEVEN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3354,8 +3354,8 @@ public class mathParser extends Parser {
 		public LOGNORMDIST_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitLOGNORMDIST_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitLOGNORMDIST_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3367,8 +3367,8 @@ public class mathParser extends Parser {
 		public ISNULLOREMPTY_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitISNULLOREMPTY_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitISNULLOREMPTY_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3377,8 +3377,8 @@ public class mathParser extends Parser {
 		public TRUE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTRUE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTRUE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3390,8 +3390,8 @@ public class mathParser extends Parser {
 		public FISHERINV_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitFISHERINV_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitFISHERINV_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3406,8 +3406,8 @@ public class mathParser extends Parser {
 		public SHA1_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSHA1_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSHA1_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3422,8 +3422,8 @@ public class mathParser extends Parser {
 		public TIME_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTIME_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTIME_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3438,8 +3438,8 @@ public class mathParser extends Parser {
 		public ATAN2_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitATAN2_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitATAN2_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3448,8 +3448,8 @@ public class mathParser extends Parser {
 		public RAND_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitRAND_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitRAND_fun(this);
+			
 		}
 	}
 
@@ -10905,8 +10905,8 @@ public class mathParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_parameter2; }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitParameter2(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitParameter2(this);
+			
 		}
 	}
 
