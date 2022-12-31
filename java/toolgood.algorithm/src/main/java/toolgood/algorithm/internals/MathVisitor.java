@@ -42,13 +42,13 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public int excelIndex;
 
     public Operand visitProg(final ProgContext context) {
-        return visit(context.expr());
+        return context.expr().accept(this);
     }
 
     public Operand visitMulDiv_fun(final MulDiv_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -153,7 +153,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitAddSub_fun(final AddSub_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -264,7 +264,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitJudge_fun(final Judge_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -388,7 +388,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         // 在程序中，&& and 有true 直接返回true 就不会检测下一个会不会报错
         // 在程序中，|| or 有false 直接返回false 就不会检测下一个会不会报错
         final String t = context.op.getText();
-        final Operand first = this.visit(context.expr(0)).ToBoolean("Function '" + t + "' parameter 1 is error!");
+        final Operand first = context.expr(0).accept(this).ToBoolean("Function '" + t + "' parameter 1 is error!");
         if (first.IsError())
             return first;
         if (CharUtil.Equals(t, "&&", "and")) {
@@ -398,25 +398,25 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             if (first.BooleanValue())
                 return Operand.True;
         }
-        return this.visit(context.expr(1)).ToBoolean("Function '" + t + "' parameter 2 is error!");
+        return context.expr(1).accept(this).ToBoolean("Function '" + t + "' parameter 2 is error!");
     }
 
     public Operand visitIF_fun(final IF_funContext context) {
         List<ExprContext> exprs = context.expr();
 
-        Operand b = visit(exprs.get(0)).ToBoolean("Function IF first parameter is error!");
+        Operand b = exprs.get(0).accept(this).ToBoolean("Function IF first parameter is error!");
         if (b.IsError()) {
             return b;
         }
 
         if (b.BooleanValue()) {
             if (exprs.size() > 1) {
-                return visit(exprs.get(1));
+                return exprs.get(1).accept(this);
             }
             return Operand.True;
         }
         if (exprs.size() == 3) {
-            return visit(exprs.get(2));
+            return exprs.get(2).accept(this);
         }
         return Operand.False;
     }
@@ -424,7 +424,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitIFERROR_fun(final IFERROR_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand a = visit(item);
+            final Operand a = item.accept(this);
             args.add(a);
         }
 
@@ -438,7 +438,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitISNUMBER_fun(final ISNUMBER_funContext context) {
-        final Operand firstValue = visit(context.expr());
+        final Operand firstValue = context.expr().accept(this);
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -450,7 +450,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitISTEXT_fun(final ISTEXT_funContext context) {
-        final Operand firstValue = visit(context.expr());
+        final Operand firstValue = context.expr().accept(this);
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -464,7 +464,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitISERROR_fun(final ISERROR_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             args.add(aa);
         }
         if (args.size() == 2) {
@@ -483,7 +483,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitISNULL_fun(final ISNULL_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             args.add(aa);
         }
 
@@ -502,7 +502,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitISNULLORERROR_fun(final ISNULLORERROR_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             args.add(aa);
         }
 
@@ -519,7 +519,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitISEVEN_fun(final ISEVEN_funContext context) {
-        final Operand firstValue = visit(context.expr());
+        final Operand firstValue = context.expr().accept(this);
         if (firstValue.Type() == OperandType.NUMBER) {
             if (firstValue.IntValue() % 2 == 0) {
                 return Operand.True;
@@ -529,7 +529,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitISLOGICAL_fun(final ISLOGICAL_funContext context) {
-        final Operand firstValue = visit(context.expr());
+        final Operand firstValue = context.expr().accept(this);
         if (firstValue.Type() == OperandType.BOOLEAN) {
             return Operand.True;
         }
@@ -537,7 +537,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitISODD_fun(final ISODD_funContext context) {
-        final Operand firstValue = visit(context.expr());
+        final Operand firstValue = context.expr().accept(this);
         if (firstValue.Type() == OperandType.NUMBER) {
             if (firstValue.IntValue() % 2 == 1) {
                 return Operand.True;
@@ -547,7 +547,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitISNONTEXT_fun(final ISNONTEXT_funContext context) {
-        final Operand firstValue = visit(context.expr());
+        final Operand firstValue = context.expr().accept(this);
         if (firstValue.Type() != OperandType.TEXT) {
             return Operand.True;
         }
@@ -558,7 +558,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         int index = 1;
         Boolean b = true;
         for (final ExprContext item : context.expr()) {
-            final Operand a = visit(item).ToBoolean("Function AND parameter " + (index++) + " is error!");
+            final Operand a = item.accept(this).ToBoolean("Function AND parameter " + (index++) + " is error!");
             if (a.IsError())
                 return a;
             if (a.BooleanValue() == false)
@@ -571,7 +571,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         int index = 1;
         Boolean b = false;
         for (final ExprContext item : context.expr()) {
-            final Operand a = visit(item).ToBoolean("Function OR parameter " + (index++) + " is error!");
+            final Operand a = item.accept(this).ToBoolean("Function OR parameter " + (index++) + " is error!");
             if (a.IsError())
                 return a;
             if (a.BooleanValue())
@@ -581,7 +581,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitNOT_fun(final NOT_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToBoolean("Function NOT parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToBoolean("Function NOT parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -605,7 +605,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitABS_fun(final ABS_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function ABS parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function ABS parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -617,7 +617,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function QUOTIENT parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function QUOTIENT parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -637,7 +637,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function MOD parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function MOD parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -655,7 +655,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitSIGN_fun(final SIGN_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function SIGN parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function SIGN parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -664,7 +664,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitSQRT_fun(final SQRT_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function SQRT parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function SQRT parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -673,7 +673,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitTRUNC_fun(final TRUNC_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function TRUNC parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function TRUNC parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -681,7 +681,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitINT_fun(final INT_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function INT parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function INT parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -691,7 +691,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitGCD_fun(final GCD_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -710,7 +710,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitLCM_fun(final LCM_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -730,7 +730,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function COMBIN parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function COMBIN parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -755,7 +755,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function PERMUT parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function PERMUT parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -776,7 +776,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitPercentage_fun(Percentage_funContext context) {
-        Operand firstValue = this.visit(context.expr()).ToNumber("Function Percentage parameter is error!");
+        Operand firstValue = context.expr().accept(this).ToNumber("Function Percentage parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -844,7 +844,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitDEGREES_fun(final DEGREES_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function DEGREES parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function DEGREES parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -855,7 +855,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitRADIANS_fun(final RADIANS_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function RADIANS parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function RADIANS parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -865,7 +865,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitCOS_fun(final COS_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function COS parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function COS parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -873,7 +873,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitCOSH_fun(final COSH_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function COSH parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function COSH parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -882,7 +882,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitSIN_fun(final SIN_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function SIN parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function SIN parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -890,7 +890,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitSINH_fun(final SINH_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function SINH parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function SINH parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -898,7 +898,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitTAN_fun(final TAN_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function TAN parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function TAN parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -906,7 +906,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitTANH_fun(final TANH_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function TANH parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function TANH parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -914,7 +914,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitACOS_fun(final ACOS_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function ACOS parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function ACOS parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -926,7 +926,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitACOSH_fun(final ACOSH_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function ACOSH parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function ACOSH parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -940,7 +940,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitASIN_fun(final ASIN_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function ASIN parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function ASIN parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -952,7 +952,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitASINH_fun(final ASINH_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function ASINH parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function ASINH parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -962,7 +962,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitATAN_fun(final ATAN_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function ATAN parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function ATAN parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -971,7 +971,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitATANH_fun(final ATANH_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function ATANH parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function ATANH parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -987,7 +987,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function ATAN2 parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function ATAN2 parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -1003,7 +1003,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitFIXED_fun(final FIXED_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1050,7 +1050,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitBIN2OCT_fun(final BIN2OCT_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1081,7 +1081,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitBIN2DEC_fun(final BIN2DEC_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToText("Function BIN2DEC parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToText("Function BIN2DEC parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1097,7 +1097,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitBIN2HEX_fun(final BIN2HEX_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1131,7 +1131,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitOCT2BIN_fun(final OCT2BIN_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1162,7 +1162,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitOCT2DEC_fun(final OCT2DEC_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToText("Function OCT2DEC parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToText("Function OCT2DEC parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1178,7 +1178,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitOCT2HEX_fun(final OCT2HEX_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1209,7 +1209,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitDEC2BIN_fun(final DEC2BIN_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1238,7 +1238,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitDEC2OCT_fun(final DEC2OCT_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1266,7 +1266,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitDEC2HEX_fun(final DEC2HEX_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1295,7 +1295,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitHEX2BIN_fun(final HEX2BIN_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1328,7 +1328,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitHEX2OCT_fun(final HEX2OCT_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1359,7 +1359,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitHEX2DEC_fun(final HEX2DEC_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToText("Function HEX2DEC parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToText("Function HEX2DEC parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1376,7 +1376,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function ROUND parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function ROUND parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -1395,7 +1395,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function ROUNDDOWN parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function ROUNDDOWN parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -1418,7 +1418,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function ROUNDUP parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function ROUNDUP parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -1443,7 +1443,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function CEILING parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function CEILING parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -1471,7 +1471,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function FLOOR parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function FLOOR parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -1496,7 +1496,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitEVEN_fun(final EVEN_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function EVEN parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function EVEN parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1515,7 +1515,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
 
     public Operand visitODD_fun(final ODD_funContext context) {
 
-        final Operand firstValue = visit(context.expr()).ToNumber("Function ODD parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function ODD parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1535,7 +1535,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function MROUND parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function MROUND parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -1564,7 +1564,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function RANDBETWEEN parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function RANDBETWEEN parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -1581,7 +1581,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitFACT_fun(final FACT_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function FACT parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function FACT parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1598,7 +1598,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitFACTDOUBLE_fun(final FACTDOUBLE_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function FACTDOUBLE parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function FACTDOUBLE parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1618,7 +1618,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function POWER parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function POWER parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -1632,7 +1632,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitEXP_fun(final EXP_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function EXP parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function EXP parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1641,7 +1641,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitLN_fun(final LN_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function LN parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function LN parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1652,7 +1652,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand a = visit(item).ToNumber("Function LOG parameter " + (index++) + " is error!");
+            final Operand a = item.accept(this).ToNumber("Function LOG parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -1666,7 +1666,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitLOG10_fun(final LOG10_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function LOG10 parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function LOG10 parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1676,7 +1676,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitMULTINOMIAL_fun(final MULTINOMIAL_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1702,7 +1702,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitPRODUCT_fun(final PRODUCT_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1724,7 +1724,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitSQRTPI_fun(final SQRTPI_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function SQRTPI parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function SQRTPI parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1734,7 +1734,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitSUMSQ_fun(final SUMSQ_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1767,7 +1767,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitASC_fun(final ASC_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToText("Function ASC parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToText("Function ASC parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1776,7 +1776,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitJIS_fun(final JIS_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToText("Function JIS parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToText("Function JIS parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1785,7 +1785,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitCHAR_fun(final CHAR_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function CHAR parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function CHAR parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1795,7 +1795,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitCLEAN_fun(final CLEAN_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToText("Function CLEAN parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToText("Function CLEAN parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1806,7 +1806,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitCODE_fun(final CODE_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToText("Function CODE parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToText("Function CODE parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1822,7 +1822,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand a = visit(item).ToText("Function CONCATENATE parameter " + (index++) + " is error!");
+            final Operand a = item.accept(this).ToText("Function CONCATENATE parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -1840,7 +1840,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function EXACT parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function EXACT parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -1856,7 +1856,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitFIND_fun(final FIND_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1887,7 +1887,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitLEFT_fun(final LEFT_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1910,7 +1910,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitLEN_fun(final LEN_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToText("Function LEN parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToText("Function LEN parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1919,7 +1919,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitLOWER_fun(final LOWER_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToText("Function LOWER/TOLOWER parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToText("Function LOWER/TOLOWER parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1930,7 +1930,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitMID_fun(final MID_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -1954,7 +1954,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitPROPER_fun(final PROPER_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToText("Function PROPER parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToText("Function PROPER parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -1977,7 +1977,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitREPLACE_fun(final REPLACE_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -2030,7 +2030,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitREPT_fun(final REPT_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -2058,7 +2058,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitRIGHT_fun(final RIGHT_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -2083,7 +2083,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitRMB_fun(final RMB_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function RMB parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function RMB parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -2094,7 +2094,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitSEARCH_fun(final SEARCH_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -2126,7 +2126,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitSUBSTITUTE_fun(final SUBSTITUTE_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -2183,7 +2183,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitT_fun(final T_funContext context) {
-        final Operand firstValue = visit(context.expr());
+        final Operand firstValue = context.expr().accept(this);
         if (firstValue.Type() == OperandType.TEXT) {
             return firstValue;
         }
@@ -2193,7 +2193,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitTEXT_fun(final TEXT_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -2227,7 +2227,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitTRIM_fun(final TRIM_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToText("Function TRIM parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToText("Function TRIM parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -2235,7 +2235,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitUPPER_fun(final UPPER_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToText("Function UPPER/TOUPPER parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToText("Function UPPER/TOUPPER parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -2243,7 +2243,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitVALUE_fun(final VALUE_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToText("Function VALUE parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToText("Function VALUE parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -2366,7 +2366,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitDATEVALUE_fun(final DATEVALUE_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToText("Function DATEVALUE parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToText("Function DATEVALUE parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -2378,7 +2378,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitTIMEVALUE_fun(final TIMEVALUE_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToText("Function TIMEVALUE parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToText("Function TIMEVALUE parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -2393,7 +2393,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function DATE parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function DATE parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -2420,7 +2420,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function TIME parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function TIME parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -2446,7 +2446,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitYEAR_fun(final YEAR_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToDate("Function YEAR parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToDate("Function YEAR parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -2457,7 +2457,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitMONTH_fun(final MONTH_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToDate("Function MONTH parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToDate("Function MONTH parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -2468,7 +2468,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitDAY_fun(final DAY_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToDate("Function DAY parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToDate("Function DAY parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -2479,7 +2479,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitHOUR_fun(final HOUR_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToDate("Function HOUR parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToDate("Function HOUR parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -2488,7 +2488,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitMINUTE_fun(final MINUTE_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToDate("Function MINUTE parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToDate("Function MINUTE parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -2497,7 +2497,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitSECOND_fun(final SECOND_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToDate("Function SECOND parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToDate("Function SECOND parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -2508,7 +2508,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitWEEKDAY_fun(final WEEKDAY_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -2549,7 +2549,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitDATEDIF_fun(final DATEDIF_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -2632,7 +2632,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitDAYS360_fun(final DAYS360_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -2711,7 +2711,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitEDATE_fun(final EDATE_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -2733,7 +2733,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitEOMONTH_fun(final EOMONTH_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -2758,7 +2758,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand a = visit(item).ToDate("Function NETWORKDAYS parameter " + (index++) + " is error!");
+            final Operand a = item.accept(this).ToDate("Function NETWORKDAYS parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -2789,7 +2789,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitWORKDAY_fun(final WORKDAY_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -2831,7 +2831,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitWEEKNUM_fun(final WEEKNUM_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -2865,7 +2865,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function MAX parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function MAX parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -2884,7 +2884,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function MEDIAN parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function MEDIAN parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -2906,7 +2906,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function MIN parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function MIN parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -2925,7 +2925,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitQUARTILE_fun(final QUARTILE_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -2962,7 +2962,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function MODE parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function MODE parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -2999,7 +2999,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitLARGE_fun(final LARGE_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3030,7 +3030,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitSMALL_fun(final SMALL_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3062,7 +3062,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitPERCENTILE_fun(final PERCENTILE_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3095,7 +3095,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitPERCENTRANK_fun(final PERCENTRANK_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3133,7 +3133,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitAVERAGE_fun(final AVERAGE_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3152,7 +3152,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitAVERAGEIF_fun(final AVERAGEIF_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3215,7 +3215,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitGEOMEAN_fun(final GEOMEAN_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3241,7 +3241,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitHARMEAN_fun(final HARMEAN_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3270,7 +3270,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitCOUNT_fun(final COUNT_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3289,7 +3289,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitCOUNTIF_fun(final COUNTIF_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3335,7 +3335,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitSUM_fun(final SUM_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3358,7 +3358,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitSUMIF_fun(final SUMIF_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3414,7 +3414,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitAVEDEV_fun(final AVEDEV_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3438,7 +3438,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitSTDEV_fun(final STDEV_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3465,7 +3465,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitSTDEVP_fun(final STDEVP_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3490,7 +3490,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitDEVSQ_fun(final DEVSQ_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3514,7 +3514,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitVAR_fun(final VAR_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3542,7 +3542,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitVARP_fun(final VARP_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3566,7 +3566,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitNORMDIST_fun(final NORMDIST_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3598,7 +3598,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function NORMINV parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function NORMINV parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -3612,7 +3612,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitNORMSDIST_fun(final NORMSDIST_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function NORMSDIST parameter 1 error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function NORMSDIST parameter 1 error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -3622,7 +3622,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitNORMSINV_fun(final NORMSINV_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function NORMSINV parameter 1 error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function NORMSINV parameter 1 error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -3635,7 +3635,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function BETADIST parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function BETADIST parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -3657,7 +3657,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function BETAINV parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function BETAINV parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -3680,7 +3680,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitBINOMDIST_fun(final BINOMDIST_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3711,7 +3711,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitEXPONDIST_fun(final EXPONDIST_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3740,7 +3740,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function FDIST parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function FDIST parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -3760,7 +3760,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function FINV parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function FINV parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -3781,7 +3781,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitFISHER_fun(final FISHER_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function FISHER parameter error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function FISHER parameter error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -3795,7 +3795,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitFISHERINV_fun(final FISHERINV_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function FISHERINV parameter error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function FISHERINV parameter error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -3808,7 +3808,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitGAMMADIST_fun(final GAMMADIST_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3843,7 +3843,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function GAMMAINV parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function GAMMAINV parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -3860,7 +3860,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitGAMMALN_fun(final GAMMALN_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToNumber("Function GAMMALN parameter error!");
+        final Operand firstValue = context.expr().accept(this).ToNumber("Function GAMMALN parameter error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -3872,7 +3872,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function HYPGEOMDIST parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function HYPGEOMDIST parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -3893,7 +3893,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function LOGINV parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function LOGINV parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -3911,7 +3911,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function LOGNORMDIST parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function LOGNORMDIST parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -3929,7 +3929,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function NEGBINOMDIST parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function NEGBINOMDIST parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -3949,7 +3949,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitPOISSON_fun(final POISSON_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -3979,7 +3979,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function TDIST parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function TDIST parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -4003,7 +4003,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item).ToNumber("Function TINV parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToNumber("Function TINV parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -4025,7 +4025,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitWEIBULL_fun(final WEIBULL_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -4229,7 +4229,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
 
     @SuppressWarnings("deprecation")
     public Operand visitURLENCODE_fun(final URLENCODE_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToText("Function URLENCODE parameter 1 is error!");
+        final Operand firstValue = context.expr().accept(this).ToText("Function URLENCODE parameter 1 is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -4242,7 +4242,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
 
     @SuppressWarnings("deprecation")
     public Operand visitURLDECODE_fun(final URLDECODE_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToText("Function URLDECODE parameter 1 is error!");
+        final Operand firstValue = context.expr().accept(this).ToText("Function URLDECODE parameter 1 is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -4254,7 +4254,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitHTMLENCODE_fun(final HTMLENCODE_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToText("Function HTMLENCODE parameter 1 is error!");
+        final Operand firstValue = context.expr().accept(this).ToText("Function HTMLENCODE parameter 1 is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -4263,7 +4263,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitHTMLDECODE_fun(final HTMLDECODE_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToText("Function HTMLDECODE parameter 1 is error!");
+        final Operand firstValue = context.expr().accept(this).ToText("Function HTMLDECODE parameter 1 is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -4275,7 +4275,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand a = visit(item).ToText("Function BASE64TOTEXT parameter " + (index++) + " is error!");
+            final Operand a = item.accept(this).ToText("Function BASE64TOTEXT parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4300,7 +4300,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand a = visit(item).ToText("Function BASE64URLTOTEXT parameter " + (index++) + " is error!");
+            final Operand a = item.accept(this).ToText("Function BASE64URLTOTEXT parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4325,7 +4325,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand a = visit(item).ToText("Function TEXTTOBASE64 parameter " + (index++) + " is error!");
+            final Operand a = item.accept(this).ToText("Function TEXTTOBASE64 parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4350,7 +4350,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand a = visit(item).ToText("Function TEXTTOBASE64URL parameter " + (index++) + " is error!");
+            final Operand a = item.accept(this).ToText("Function TEXTTOBASE64URL parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4374,7 +4374,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitREGEX_fun(final REGEX_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -4400,7 +4400,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand a = visit(item).ToText("Function REGEXREPALCE parameter " + (index++) + " is error!");
+            final Operand a = item.accept(this).ToText("Function REGEXREPALCE parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4418,7 +4418,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand a = visit(item).ToText("Function ISREGEX parameter " + (index++) + " is error!");
+            final Operand a = item.accept(this).ToText("Function ISREGEX parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4437,7 +4437,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand a = visit(item).ToText("Function MD5 parameter " + (index++) + " is error!");
+            final Operand a = item.accept(this).ToText("Function MD5 parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4462,7 +4462,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand a = visit(item).ToText("Function SHA1 parameter " + (index++) + " is error!");
+            final Operand a = item.accept(this).ToText("Function SHA1 parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4487,7 +4487,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand a = visit(item).ToText("Function SHA256 parameter " + (index++) + " is error!");
+            final Operand a = item.accept(this).ToText("Function SHA256 parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4512,7 +4512,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand a = visit(item).ToText("Function SHA512 parameter " + (index++) + " is error!");
+            final Operand a = item.accept(this).ToText("Function SHA512 parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4537,7 +4537,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand a = visit(item).ToText("Function CRC32 parameter " + (index++) + " is error!");
+            final Operand a = item.accept(this).ToText("Function CRC32 parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4562,7 +4562,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand a = visit(item).ToText("Function HMACMD5 parameter " + (index++) + " is error!");
+            final Operand a = item.accept(this).ToText("Function HMACMD5 parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4587,7 +4587,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand a = visit(item).ToText("Function HMACSHA1 parameter " + (index++) + " is error!");
+            final Operand a = item.accept(this).ToText("Function HMACSHA1 parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4613,7 +4613,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand a = visit(item).ToText("Function HMACSHA256 parameter " + (index++) + " is error!");
+            final Operand a = item.accept(this).ToText("Function HMACSHA256 parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4639,7 +4639,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand a = visit(item).ToText("Function HMACSHA512 parameter " + (index++) + " is error!");
+            final Operand a = item.accept(this).ToText("Function HMACSHA512 parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4665,7 +4665,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand a = visit(item).ToText("Function TRIMSTART parameter " + (index++) + " is error!");
+            final Operand a = item.accept(this).ToText("Function TRIMSTART parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4687,7 +4687,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand a = visit(item).ToText("Function TRIMEND parameter " + (index++) + " is error!");
+            final Operand a = item.accept(this).ToText("Function TRIMEND parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4708,7 +4708,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitINDEXOF_fun(final INDEXOF_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -4747,7 +4747,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitLASTINDEXOF_fun(final LASTINDEXOF_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -4788,7 +4788,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand a = visit(item).ToText("Function SPLIT parameter " + (index++) + " is error!");
+            final Operand a = item.accept(this).ToText("Function SPLIT parameter " + (index++) + " is error!");
             if (a.IsError()) {
                 return a;
             }
@@ -4805,7 +4805,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitJOIN_fun(final JOIN_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -4851,7 +4851,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitSUBSTRING_fun(final SUBSTRING_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -4882,7 +4882,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitSTARTSWITH_fun(final STARTSWITH_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -4915,7 +4915,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitENDSWITH_fun(final ENDSWITH_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -4947,7 +4947,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitISNULLOREMPTY_fun(final ISNULLOREMPTY_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToText("Function ISNULLOREMPTY parameter 1 is error!");
+        final Operand firstValue = context.expr().accept(this).ToText("Function ISNULLOREMPTY parameter 1 is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -4960,7 +4960,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitISNULLORWHITESPACE_fun(final ISNULLORWHITESPACE_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToText("Function ISNULLORWHITESPACE parameter 1 is error!");
+        final Operand firstValue = context.expr().accept(this).ToText("Function ISNULLORWHITESPACE parameter 1 is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -4974,7 +4974,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitREMOVESTART_fun(final REMOVESTART_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -5011,7 +5011,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitREMOVEEND_fun(final REMOVEEND_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -5048,7 +5048,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitJSON_fun(final JSON_funContext context) {
-        final Operand firstValue = visit(context.expr()).ToText("Function JSON parameter is error!");
+        final Operand firstValue = context.expr().accept(this).ToText("Function JSON parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -5066,7 +5066,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitVLOOKUP_fun(final VLOOKUP_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -5166,7 +5166,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitLOOKUP_fun(final LOOKUP_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -5231,7 +5231,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Operand visitArray_fun(final Array_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         for (final ExprContext item : context.expr()) {
-            final Operand aa = visit(item);
+            final Operand aa = item.accept(this);
             if (aa.IsError()) {
                 return aa;
             }
@@ -5241,7 +5241,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitBracket_fun(final Bracket_funContext context) {
-        return visit(context.expr());
+        return context.expr().accept(this);
     }
 
     public Operand visitNUM_fun(final NUM_funContext context) {
@@ -5307,7 +5307,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
         // 防止 多重引用
         if (context.expr() != null) {
-            Operand p = this.visit(context.expr()).ToText("Function PARAMETER first parameter is error!");
+            Operand p = context.expr().accept(this).ToText("Function PARAMETER first parameter is error!");
             if (p.IsError())
                 return p;
 
@@ -5323,7 +5323,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitGetJsonValue_fun(final GetJsonValue_funContext context) {
-        final Operand firstValue = visit(context.expr(0));
+        final Operand firstValue = context.expr(0).accept(this);
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -5331,9 +5331,9 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final Operand obj = firstValue;
         Operand op;
         if (context.parameter2() != null) {
-            op = this.visit(context.parameter2());
+            op = context.parameter2().accept(this);
         } else {
-            op = this.visit(context.expr(1));
+            op = context.expr(1).accept(this);
             if (op.IsError()) {
                 op = Operand.Create(context.expr(1).getText());
             }
@@ -5405,7 +5405,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             final String funName = context.PARAMETER().getText();
             final List<Operand> args = new ArrayList<Operand>();
             for (final ExprContext item : context.expr()) {
-                final Operand aa = visit(item);
+                final Operand aa = item.accept(this);
                 args.add(aa);
             }
             final MyFunction myFunction = new MyFunction();

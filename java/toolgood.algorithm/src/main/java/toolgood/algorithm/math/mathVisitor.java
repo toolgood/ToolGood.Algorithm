@@ -1,4 +1,4 @@
-package toolgood.algorithm.math;// Generated from math.g4 by ANTLR 4.9.3
+package toolgood.algorithm.math;// Generated from java-escape by ANTLR 4.11.1
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
