@@ -354,6 +354,20 @@ public class AlgorithmEngineEx {
         }
         return defvalue;
     }
+    public long TryEvaluateCategory(final String categoryName, final long defvalue) {
+        try {
+            Operand obj = EvaluateCategory(categoryName);
+            obj = obj.ToNumber("It can't be converted to number!");
+            if (obj.IsError()) {
+                LastError = obj.ErrorMsg();
+                return defvalue;
+            }
+            return obj.LongValue();
+        } catch (final Exception ex) {
+            LastError = ex.getMessage();
+        }
+        return defvalue;
+    }
 
     public String TryEvaluateCategory(final String categoryName, final String defvalue) {
         try {
@@ -442,6 +456,20 @@ public class AlgorithmEngineEx {
                 return defvalue;
             }
             return obj.NumberValue();
+        } catch (final Exception ex) {
+            LastError = ex.getMessage();
+        }
+        return defvalue;
+    }
+    public long TryEvaluate(final String exp, final long defvalue) {
+        try {
+            Operand obj = Evaluate(exp);
+            obj = obj.ToNumber("It can't be converted to number!");
+            if (obj.IsError()) {
+                LastError = obj.ErrorMsg();
+                return defvalue;
+            }
+            return obj.LongValue();
         } catch (final Exception ex) {
             LastError = ex.getMessage();
         }

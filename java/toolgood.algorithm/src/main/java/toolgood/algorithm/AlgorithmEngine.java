@@ -268,6 +268,23 @@ public class AlgorithmEngine {
         return defvalue;
     }
 
+    public long TryEvaluate(final String exp, final long defvalue) {
+        try {
+            if (Parse(exp)) {
+                Operand obj = Evaluate();
+                obj = obj.ToNumber("It can't be converted to number!");
+                if (obj.IsError()) {
+                    LastError = obj.ErrorMsg();
+                    return defvalue;
+                }
+                return obj.LongValue();
+            }
+        } catch (final Exception ex) {
+            LastError = ex.getMessage();
+        }
+        return defvalue;
+    }
+
     public String TryEvaluate(final String exp, final String defvalue) {
         try {
             if (Parse(exp)) {
