@@ -41,6 +41,14 @@ public abstract class Operand {
         return 0;
     }
 
+    public long LongValue() {
+        return 0;
+    }
+
+    public Object Value() {
+        return null;
+    }
+
     public String TextValue() {
         return null;
     }
@@ -66,27 +74,27 @@ public abstract class Operand {
     }
 
     public static Operand Create(final short obj) {
-        return new OperandNumber((double) obj);
+        return new OperandLongNumber((long) obj);
     }
 
     public static Operand Create(final int obj) {
-        return new OperandNumber((double) obj);
+        return new OperandLongNumber((long) obj);
     }
 
     public static Operand Create(final long obj) {
-        return new OperandNumber((double) obj);
+        return new OperandLongNumber(obj);
     }
 
     public static Operand Create(final float obj) {
-        return new OperandNumber((double) obj);
+        return new OperandDoubleNumber((double) obj);
     }
 
     public static Operand Create(final double obj) {
-        return new OperandNumber(obj);
+        return new OperandDoubleNumber(obj);
     }
 
     public static Operand Create(final BigDecimal obj) {
-        return new OperandNumber(obj.doubleValue());
+        return new OperandDoubleNumber(obj.doubleValue());
     }
 
     public static Operand Create(final String obj) {
@@ -136,7 +144,7 @@ public abstract class Operand {
     }
 
     public Operand ToNumber(final String errorMessage) {
-        if (Type() == OperandType.NUMBER) {
+        if (Type().isNumber()) {
             return this;
         }
         if (IsError()) {
@@ -165,7 +173,7 @@ public abstract class Operand {
         if (IsError()) {
             return this;
         }
-        if (Type() == OperandType.NUMBER) {
+        if (Type().isNumber()) {
             return (NumberValue() != 0) ? True : False;
         }
         if (Type() == OperandType.DATE) {
@@ -195,7 +203,7 @@ public abstract class Operand {
         if (IsError()) {
             return this;
         }
-        if (Type() == OperandType.NUMBER) {
+        if (Type().isNumber()) {
             String str = ((Double) NumberValue()).toString();
             if (str.contains(".")) {
                 str = Pattern.compile("(\\.)?0+$").matcher(str).replaceAll("");
@@ -219,7 +227,7 @@ public abstract class Operand {
         if (IsError()) {
             return this;
         }
-        if (Type() == OperandType.NUMBER) {
+        if (Type().isNumber()) {
             return Create(new MyDate(NumberValue()));
         }
         if (Type() == OperandType.TEXT) {
@@ -288,6 +296,11 @@ public abstract class Operand {
 
         public OperandT(final T obj) {
             Value = obj;
+        }
+
+        @Override
+        public Object Value() {
+            return Value;
         }
     }
 
@@ -393,20 +406,15 @@ public abstract class Operand {
 
     }
 
-    static class OperandNumber extends OperandT<Double> {
+    static class OperandDoubleNumber extends OperandT<Double> {
 
-        public OperandNumber(Double obj) {
+        public OperandDoubleNumber(Double obj) {
             super(obj);
         }
 
         @Override
         public OperandType Type() {
-            return OperandType.NUMBER;
-        }
-
-        @Override
-        public int IntValue() {
-            return (int) (double) Value;
+            return OperandType.DOUBLE_NUMBER;
         }
 
         @Override
@@ -414,6 +422,52 @@ public abstract class Operand {
             return Value;
         }
 
+        @Override
+        public Object Value() {
+            return Value;
+        }
+
+        @Override
+        public int IntValue() {
+            return Value.intValue();
+        }
+
+        @Override
+        public long LongValue() {
+            return Value.longValue();
+        }
+    }
+
+    static class OperandLongNumber extends OperandT<Long> {
+
+        public OperandLongNumber(Long obj) {
+            super(obj);
+        }
+
+        @Override
+        public OperandType Type() {
+            return OperandType.LONG_NUMBER;
+        }
+
+        @Override
+        public Object Value() {
+            return Value.longValue();
+        }
+
+        @Override
+        public double NumberValue() {
+            return Value;
+        }
+
+        @Override
+        public int IntValue() {
+            return Value.intValue();
+        }
+
+        @Override
+        public long LongValue() {
+            return Value;
+        }
     }
 
     static class OperandString extends OperandT<String> {
