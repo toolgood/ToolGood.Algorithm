@@ -41,6 +41,10 @@ public abstract class Operand {
         return 0;
     }
 
+    public long LongValue() {
+        return 0;
+    }
+
     public Object Value() {
         return null;
     }
@@ -427,6 +431,11 @@ public abstract class Operand {
         public int IntValue() {
             return Value.intValue();
         }
+
+        @Override
+        public long LongValue() {
+            return Value.longValue();
+        }
     }
 
     static class OperandLongNumber extends OperandT<Long> {
@@ -453,6 +462,11 @@ public abstract class Operand {
         @Override
         public int IntValue() {
             return Value.intValue();
+        }
+
+        @Override
+        public long LongValue() {
+            return Value;
         }
     }
 
