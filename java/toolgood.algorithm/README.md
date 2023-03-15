@@ -20,7 +20,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel公式`,并支持`自定义参数
     <dependency>
         <groupId>io.github.toolgood</groupId>
         <artifactId>toolgood-algorithm</artifactId>
-        <version>3.0.3.0</version>
+        <version>3.1.0.0</version>
     </dependency>
 ```
 
