@@ -293,6 +293,11 @@ public abstract class Operand {
         public OperandT(final T obj) {
             Value = obj;
         }
+
+        @Override
+        public Object Value() {
+            return Value;
+        }
     }
 
     static class OperandArray extends OperandT<java.util.List<Operand>> {
@@ -410,6 +415,11 @@ public abstract class Operand {
 
         @Override
         public double NumberValue() {
+            return Value;
+        }
+
+        @Override
+        public Object Value() {
             return Value;
         }
 
