@@ -18,7 +18,6 @@ namespace ToolGood.Algorithm.Internals
         private static readonly Regex bit_8 = new Regex("^[0-8]+$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
         private static readonly Regex bit_16 = new Regex("^[0-9a-f]+$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
         private static readonly Regex clearRegex = new Regex(@"[\f\n\r\t\v]", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-        private static readonly Regex numberRegex = new Regex(@"^-?(0|[1-9])\d*(\.\d+)?$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
         private static readonly CultureInfo cultureInfo = CultureInfo.GetCultureInfo("en-US");
         public event Func<string, Operand> GetParameter;
         public event Func<string, List<Operand>, Operand> DiyFunction;
@@ -190,13 +189,13 @@ namespace ToolGood.Algorithm.Internals
 			int r;
 			if (args1.Type == args2.Type) {
 				if (args1.Type == OperandType.NUMBER) {
-					return Compare(args1, args2, type);
+					return MathVisitor.Compare(args1, args2, type);
 				} else if (args1.Type == OperandType.TEXT) {
 					r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
 				} else if (args1.Type == OperandType.DATE || args1.Type == OperandType.BOOLEAN) {
 					args1 = args1.ToNumber();
 					args2 = args2.ToNumber();
-					return Compare(args1, args2, type);
+					return MathVisitor.Compare(args1, args2, type);
 				} else if (args1.Type == OperandType.JSON) {
 					args1 = args1.ToText();
 					args2 = args2.ToText();
@@ -252,7 +251,7 @@ namespace ToolGood.Algorithm.Internals
 				if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber($"Function '{type}' parameter 1 is error!"); if (args1.IsError) { return args1; } }
 				if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber($"Function '{type}' parameter 2 is error!"); if (args2.IsError) { return args2; } }
 
-				return Compare(args1, args2, type);
+				return MathVisitor.Compare(args1, args2, type);
 			}
 			if (type.Length == 1) {
 				if (CharUtil.Equals(type, '<')) {
@@ -271,7 +270,7 @@ namespace ToolGood.Algorithm.Internals
 			}
 			return Operand.Create(r != 0);
 		}
-		private Operand Compare(Operand op1, Operand op2, string type)
+		private static Operand Compare(Operand op1, Operand op2, string type)
 		{
 			double t1 = op1.NumberValue;
 			double t2 = op2.NumberValue;
@@ -295,7 +294,7 @@ namespace ToolGood.Algorithm.Internals
 			return Operand.Create(r != 0);
 		}
 
-		private int Compare(double t1, double t2)
+		private static int Compare(double t1, double t2)
         {
             var b = Math.Round(t1 - t2, 12, MidpointRounding.AwayFromZero);
             if (b == 0) {
@@ -1131,7 +1130,7 @@ namespace ToolGood.Algorithm.Internals
             if (z % 2 == 0) {
                 return Operand.Create(z);
             }
-            z = z + 1;
+            z++;
             return Operand.Create(z);
         }
         public virtual Operand VisitODD_fun(mathParser.ODD_funContext context)
@@ -1147,7 +1146,7 @@ namespace ToolGood.Algorithm.Internals
             if (z % 2 == 1) {
                 return Operand.Create(z);
             }
-            z = z + 1;
+            z++;
             return Operand.Create(z);
         }
         public virtual Operand VisitMROUND_fun(mathParser.MROUND_funContext context)
@@ -1283,11 +1282,11 @@ namespace ToolGood.Algorithm.Internals
             int sum = 0;
             int n = 1;
             foreach (var a in list) {
-                n *= F_base_Factorial((int)a);
+                n *= MathVisitor.F_base_Factorial((int)a);
                 sum += (int)a;
             }
 
-            var r = F_base_Factorial(sum) / n;
+            var r = MathVisitor.F_base_Factorial(sum) / n;
             return Operand.Create(r);
         }
         public virtual Operand VisitPRODUCT_fun(mathParser.PRODUCT_funContext context)
@@ -1328,7 +1327,7 @@ namespace ToolGood.Algorithm.Internals
 
             return Operand.Create(d);
         }
-        private int F_base_Factorial(int a)
+        private static int F_base_Factorial(int a)
         {
             if (a == 0) {
                 return 1;
@@ -1351,14 +1350,14 @@ namespace ToolGood.Algorithm.Internals
             var firstValue = context.expr().Accept(this).ToText("Function ASC parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            return Operand.Create(F_base_ToDBC(firstValue.TextValue));
+            return Operand.Create(MathVisitor.F_base_ToDBC(firstValue.TextValue));
         }
         public virtual Operand VisitJIS_fun(mathParser.JIS_funContext context)
         {
             var firstValue = context.expr().Accept(this).ToText("Function JIS parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            return Operand.Create(F_base_ToSBC(firstValue.TextValue));
+            return Operand.Create(MathVisitor.F_base_ToSBC(firstValue.TextValue));
         }
         public virtual Operand VisitCHAR_fun(mathParser.CHAR_funContext context)
         {
@@ -1572,7 +1571,7 @@ namespace ToolGood.Algorithm.Internals
             var firstValue = context.expr().Accept(this).ToNumber("Function RMB parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            return Operand.Create(F_base_ToChineseRMB(firstValue.NumberValue));
+            return Operand.Create(MathVisitor.F_base_ToChineseRMB(firstValue.NumberValue));
         }
         public virtual Operand VisitSEARCH_fun(mathParser.SEARCH_funContext context)
         {
@@ -1691,7 +1690,7 @@ namespace ToolGood.Algorithm.Internals
             return Operand.Error("Function VALUE parameter is error!");
         }
 
-        private String F_base_ToSBC(String input)
+        private static String F_base_ToSBC(String input)
         {
             StringBuilder sb = new StringBuilder(input);
             for (int i = 0; i < input.Length; i++) {
@@ -1704,7 +1703,7 @@ namespace ToolGood.Algorithm.Internals
             }
             return sb.ToString();
         }
-        private String F_base_ToDBC(String input)
+        private static String F_base_ToDBC(String input)
         {
             StringBuilder sb = new StringBuilder(input);
             for (int i = 0; i < input.Length; i++) {
@@ -1718,7 +1717,7 @@ namespace ToolGood.Algorithm.Internals
             }
             return sb.ToString();
         }
-        private string F_base_ToChineseRMB(double x)
+        private static string F_base_ToChineseRMB(double x)
         {
             string s = x.ToString("#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A", cultureInfo);
             string d = Regex.Replace(s, @"((?<=-|^)[^1-9]*)|((?'z'0)[0A-E]*((?=[1-9])|(?'-z'(?=[F-L\.]|$))))|((?'b'[F-L])(?'z'0)[0A-L]*((?=[1-9])|(?'-z'(?=[\.]|$))))", "${b}${z}", RegexOptions.Compiled);
@@ -1930,7 +1929,7 @@ namespace ToolGood.Algorithm.Internals
             } else if (CharUtil.Equals(t, "YM")) {
                 #region ym
                 var mo = endMyDate.Month - startMyDate.Month;
-                if (endMyDate.Day < startMyDate.Day) mo = mo - 1;
+                if (endMyDate.Day < startMyDate.Day) mo--;
                 if (mo < 0) mo += 12;
                 return Operand.Create((mo));
                 #endregion
@@ -2291,17 +2290,17 @@ namespace ToolGood.Algorithm.Internals
             double sum;
             int count;
             if (args[1].Type == OperandType.NUMBER) {
-                count = F_base_countif(list, args[1].NumberValue);
+                count = MathVisitor.F_base_countif(list, args[1].NumberValue);
                 sum = count * args[1].NumberValue;
             } else {
                 if (double.TryParse(args[1].TextValue.Trim(), NumberStyles.Any, cultureInfo, out double d)) {
-                    count = F_base_countif(list, d);
-                    sum = F_base_sumif(list, '=' + args[1].TextValue.Trim(), sumdbs);
+                    count = MathVisitor.F_base_countif(list, d);
+                    sum = MathVisitor.F_base_sumif(list, '=' + args[1].TextValue.Trim(), sumdbs);
                 } else {
                     var sunif = args[1].TextValue.Trim();
                     if (sumifRegex.IsMatch(sunif)) {
-                        count = F_base_countif(list, sunif);
-                        sum = F_base_sumif(list, sunif, sumdbs);
+                        count = MathVisitor.F_base_countif(list, sunif);
+                        sum = MathVisitor.F_base_sumif(list, sunif, sumdbs);
                     } else {
                         return Operand.Error("Function AVERAGE parameter 2 error!");
                     }
@@ -2368,14 +2367,14 @@ namespace ToolGood.Algorithm.Internals
 
             int count;
             if (args[1].Type == OperandType.NUMBER) {
-                count = F_base_countif(list, args[1].NumberValue);
+                count = MathVisitor.F_base_countif(list, args[1].NumberValue);
             } else {
                 if (double.TryParse(args[1].TextValue.Trim(), NumberStyles.Any, cultureInfo, out double d)) {
-                    count = F_base_countif(list, d);
+                    count = MathVisitor.F_base_countif(list, d);
                 } else {
                     var sunif = args[1].TextValue.Trim();
                     if (sumifRegex.IsMatch(sunif)) {
-                        count = F_base_countif(list, sunif);
+                        count = MathVisitor.F_base_countif(list, sunif);
                     } else {
                         return Operand.Error("Function COUNTIF parameter 2 error!");
                     }
@@ -2417,14 +2416,14 @@ namespace ToolGood.Algorithm.Internals
 
             double sum;
             if (args[1].Type == OperandType.NUMBER) {
-                sum = F_base_countif(list, args[1].NumberValue) * args[1].NumberValue;
+                sum = MathVisitor.F_base_countif(list, args[1].NumberValue) * args[1].NumberValue;
             } else {
                 if (double.TryParse(args[1].TextValue.Trim(), NumberStyles.Any, cultureInfo, out _)) {
-                    sum = F_base_sumif(list, '=' + args[1].TextValue.Trim(), sumdbs);
+                    sum = MathVisitor.F_base_sumif(list, '=' + args[1].TextValue.Trim(), sumdbs);
                 } else {
                     var sunif = args[1].TextValue.Trim();
                     if (sumifRegex.IsMatch(sunif)) {
-                        sum = F_base_sumif(list, sunif, sumdbs);
+                        sum = MathVisitor.F_base_sumif(list, sunif, sumdbs);
                     } else {
                         return Operand.Error("Function SUMIF parameter 2 error!");
                     }
@@ -2861,7 +2860,7 @@ namespace ToolGood.Algorithm.Internals
             return Operand.Create(ExcelFunctions.WEIBULL(x, shape, scale, state));
         }
 
-        private int F_base_countif(List<double> dbs, double d)
+        private static int F_base_countif(List<double> dbs, double d)
         {
             int count = 0;
             d = Math.Round(d, 12, MidpointRounding.AwayFromZero);
@@ -2872,21 +2871,21 @@ namespace ToolGood.Algorithm.Internals
             }
             return count;
         }
-        private int F_base_countif(List<double> dbs, string s)
+        private static int F_base_countif(List<double> dbs, string s)
         {
             var m = sumifRegex.Match(s);
             var d = double.Parse(m.Groups[2].Value, NumberStyles.Any, cultureInfo);
             int count = 0;
 
             foreach (var item in dbs) {
-                if (F_base_compare(item, d, s)) {
+                if (MathVisitor.F_base_compare(item, d, s)) {
                     count++;
                 }
             }
             return count;
         }
 
-        private double F_base_sumif(List<double> dbs, string s, List<double> sumdbs)
+        private static double F_base_sumif(List<double> dbs, string s, List<double> sumdbs)
         {
             var m = sumifRegex.Match(s);
             var d = double.Parse(m.Groups[2].Value, NumberStyles.Any, cultureInfo);
@@ -2894,13 +2893,13 @@ namespace ToolGood.Algorithm.Internals
             double sum = 0;
 
             for (int i = 0; i < dbs.Count; i++) {
-                if (F_base_compare(dbs[i], d, s)) {
+                if (MathVisitor.F_base_compare(dbs[i], d, s)) {
                     sum += sumdbs[i];
                 }
             }
             return sum;
         }
-        private bool F_base_compare(double a, double b, string ss)
+        private static bool F_base_compare(double a, double b, string ss)
         {
             if (CharUtil.Equals(ss, '<')) {
                 return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) < 0;
@@ -3563,7 +3562,7 @@ namespace ToolGood.Algorithm.Internals
                     if (secondValue.Type == OperandType.NUMBER) {
                         var o2 = o1.ToNumber(null);
                         if (o2.IsError == false) {
-                            b = Compare(o2.NumberValue, secondValue.NumberValue);
+                            b = MathVisitor.Compare(o2.NumberValue, secondValue.NumberValue);
                         }
                     } else {
                         var o2 = o1.ToText(null);
@@ -3593,7 +3592,7 @@ namespace ToolGood.Algorithm.Internals
                         if (secondValue.Type == OperandType.NUMBER) {
                             var o2 = o1.ToNumber(null);
                             if (o2.IsError == false) {
-                                b = Compare(o2.NumberValue, secondValue.NumberValue);
+                                b = MathVisitor.Compare(o2.NumberValue, secondValue.NumberValue);
                             }
                         } else {
                             var o2 = o1.ToText(null);

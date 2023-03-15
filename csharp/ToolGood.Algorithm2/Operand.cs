@@ -44,6 +44,11 @@ namespace ToolGood.Algorithm
 		/// 操作数类型
 		/// </summary>
 		public abstract OperandType Type { get; }
+
+		/// <summary>
+		/// 值
+		/// </summary>
+		public virtual object Value => throw new NotImplementedException();
 		/// <summary>
 		/// 数字值
 		/// </summary>
@@ -52,6 +57,11 @@ namespace ToolGood.Algorithm
 		/// int值
 		/// </summary>
 		public virtual int IntValue => throw new NotImplementedException();
+		/// <summary>
+		/// long值
+		/// </summary>
+		public virtual long LongValue => throw new NotImplementedException();
+
 		/// <summary>
 		/// 字符串值
 		/// </summary>
@@ -492,10 +502,12 @@ namespace ToolGood.Algorithm
 	}
 	abstract class Operand<T> : Operand
 	{
-		public T Value { get; private set; }
+		protected T _value { get; private set; }
+
+		public override object Value => _value;
 		public Operand(T obj)
 		{
-			Value = obj;
+			_value = obj;
 		}
 	}
 
@@ -503,8 +515,9 @@ namespace ToolGood.Algorithm
 	{
 		public OperandNumber(double obj) : base(obj) { }
 		public override OperandType Type => OperandType.NUMBER;
-		public override int IntValue => (int)Value;
-		public override double NumberValue => Value;
+		public override int IntValue => (int)_value;
+		public override double NumberValue => _value;
+		public override long LongValue => (long)_value;
 
 		public override Operand ToNumber(string errorMessage = null) { return this; }
 		public override Operand ToBoolean(string errorMessage = null) { return NumberValue != 0 ? True : False; }
@@ -524,7 +537,7 @@ namespace ToolGood.Algorithm
 	{
 		public OperandBoolean(bool obj) : base(obj) { }
 		public override OperandType Type => OperandType.BOOLEAN;
-		public override bool BooleanValue => Value;
+		public override bool BooleanValue => _value;
 		public override Operand ToNumber(string errorMessage = null) { return BooleanValue ? One : Zero; }
 		public override Operand ToBoolean(string errorMessage = null) { return this; }
 		public override Operand ToText(string errorMessage = null) { return Create(BooleanValue ? "TRUE" : "FALSE"); }
@@ -546,7 +559,7 @@ namespace ToolGood.Algorithm
 	{
 		public OperandString(string obj) : base(obj) { }
 		public override OperandType Type => OperandType.TEXT;
-		public override string TextValue => Value;
+		public override string TextValue => _value;
 
 		public override Operand ToNumber(string errorMessage = null)
 		{
@@ -608,7 +621,7 @@ namespace ToolGood.Algorithm
 	{
 		public OperandMyDate(MyDate obj) : base(obj) { }
 		public override OperandType Type => OperandType.DATE;
-		public override MyDate DateValue => Value;
+		public override MyDate DateValue => _value;
 		public override Operand ToNumber(string errorMessage = null)
 		{
 			return Create((double)DateValue);
@@ -636,7 +649,7 @@ namespace ToolGood.Algorithm
 	{
 		public OperandJson(JsonData obj) : base(obj) { }
 		public override OperandType Type => OperandType.JSON;
-		internal override JsonData JsonValue => Value;
+		internal override JsonData JsonValue => _value;
 
 		public override Operand ToJson(string errorMessage = null) { return this; }
 		public override Operand ToArray(string errorMessage = null)
@@ -680,7 +693,7 @@ namespace ToolGood.Algorithm
 	{
 		public OperandArray(List<Operand> obj) : base(obj) { }
 		public override OperandType Type => OperandType.ARRARY;
-		public override List<Operand> ArrayValue => Value;
+		public override List<Operand> ArrayValue => _value;
 		public override Operand ToArray(string errorMessage = null) { return this; }
 
 	}
