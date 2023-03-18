@@ -1,26 +1,21 @@
 package toolgood.algorithm;
 
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.RecognitionException;
+import org.joda.time.DateTime;
+import toolgood.algorithm.internals.*;
+import toolgood.algorithm.litJson.JsonData;
+import toolgood.algorithm.litJson.JsonMapper;
+import toolgood.algorithm.math.mathLexer;
+import toolgood.algorithm.math.mathParser;
+import toolgood.algorithm.math.mathParser.ProgContext;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
-import toolgood.algorithm.internals.AntlrErrorListener;
-import toolgood.algorithm.internals.CharUtil;
-import toolgood.algorithm.internals.MathSimplifiedFormulaVisitor;
-import toolgood.algorithm.internals.AntlrCharStream;
-import toolgood.algorithm.internals.MathVisitor;
-import toolgood.algorithm.litJson.JsonData;
-import toolgood.algorithm.litJson.JsonMapper;
-import toolgood.algorithm.math.mathLexer;
-import toolgood.algorithm.math.mathParser;
-import toolgood.algorithm.math.mathParser.*;
-
-import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.RecognitionException;
-import org.joda.time.DateTime;
 
 public class AlgorithmEngine {
     /**
@@ -234,6 +229,23 @@ public class AlgorithmEngine {
         return visitor.visit(_context);
     }
 
+    public BigDecimal TryEvaluate(final String exp, final BigDecimal defvalue) {
+        try {
+            if (Parse(exp)) {
+                Operand obj = Evaluate();
+                obj = obj.ToNumber("It can't be converted to number!");
+                if (obj.IsError()) {
+                    LastError = obj.ErrorMsg();
+                    return defvalue;
+                }
+                return obj.NumberValue();
+            }
+        } catch (final Exception ex) {
+            LastError = ex.getMessage();
+        }
+        return defvalue;
+    }
+
     public int TryEvaluate(final String exp, final int defvalue) {
         try {
             if (Parse(exp)) {
@@ -260,13 +272,14 @@ public class AlgorithmEngine {
                     LastError = obj.ErrorMsg();
                     return defvalue;
                 }
-                return obj.NumberValue().doubleValue();
+                return obj.DoubleValue();
             }
         } catch (final Exception ex) {
             LastError = ex.getMessage();
         }
         return defvalue;
     }
+
     public long TryEvaluate(final String exp, final long defvalue) {
         try {
             if (Parse(exp)) {
@@ -357,9 +370,8 @@ public class AlgorithmEngine {
 
     /**
      * 获取简化公式
-     * 
+     *
      * @param formula 公式
-     * 
      */
     public String GetSimplifiedFormula(final String formula) {
         try {
@@ -392,7 +404,7 @@ public class AlgorithmEngine {
 
     /**
      * 计算公式
-     * 
+     *
      * @param formula   公式
      * @param splitChar 分隔符
      * @return
@@ -407,7 +419,7 @@ public class AlgorithmEngine {
 
     /**
      * 计算公式
-     * 
+     *
      * @param formula    公式
      * @param splitChars 分隔符
      * @return

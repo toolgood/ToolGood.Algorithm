@@ -325,6 +325,21 @@ public class AlgorithmEngineEx {
         throw new Exception("Parameter is not json String.");
     }
 
+    public BigDecimal TryEvaluateCategory(final String categoryName, final BigDecimal defvalue) {
+        try {
+            Operand obj = EvaluateCategory(categoryName);
+            obj = obj.ToNumber("It can't be converted to number!");
+            if (obj.IsError()) {
+                LastError = obj.ErrorMsg();
+                return defvalue;
+            }
+            return obj.NumberValue();
+        } catch (final Exception ex) {
+            LastError = ex.getMessage();
+        }
+        return defvalue;
+    }
+
     public int TryEvaluateCategory(final String categoryName, final int defvalue) {
         try {
             Operand obj = EvaluateCategory(categoryName);
@@ -348,7 +363,7 @@ public class AlgorithmEngineEx {
                 LastError = obj.ErrorMsg();
                 return defvalue;
             }
-            return obj.NumberValue().doubleValue();
+            return obj.DoubleValue();
         } catch (final Exception ex) {
             LastError = ex.getMessage();
         }
@@ -362,7 +377,7 @@ public class AlgorithmEngineEx {
                 LastError = obj.ErrorMsg();
                 return defvalue;
             }
-            return obj.NumberValue().longValue();
+            return obj.LongValue();
         } catch (final Exception ex) {
             LastError = ex.getMessage();
         }
@@ -431,6 +446,20 @@ public class AlgorithmEngineEx {
         }
         return defvalue;
     }
+    public BigDecimal TryEvaluate(final String exp, final BigDecimal defvalue) {
+        try {
+            Operand obj = Evaluate(exp);
+            obj = obj.ToNumber("It can't be converted to number!");
+            if (obj.IsError()) {
+                LastError = obj.ErrorMsg();
+                return defvalue;
+            }
+            return obj.NumberValue();
+        } catch (final Exception ex) {
+            LastError = ex.getMessage();
+        }
+        return defvalue;
+    }
 
     public int TryEvaluate(final String exp, final int defvalue) {
         try {
@@ -455,7 +484,7 @@ public class AlgorithmEngineEx {
                 LastError = obj.ErrorMsg();
                 return defvalue;
             }
-            return obj.NumberValue().doubleValue();
+            return obj.DoubleValue();
         } catch (final Exception ex) {
             LastError = ex.getMessage();
         }
@@ -469,7 +498,7 @@ public class AlgorithmEngineEx {
                 LastError = obj.ErrorMsg();
                 return defvalue;
             }
-            return obj.NumberValue().longValue();
+            return obj.LongValue();
         } catch (final Exception ex) {
             LastError = ex.getMessage();
         }
