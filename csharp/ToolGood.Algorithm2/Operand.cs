@@ -54,9 +54,13 @@ namespace ToolGood.Algorithm
 		/// </summary>
 		public virtual decimal NumberValue => throw new NotImplementedException();
 		/// <summary>
-		/// int值
+		/// double值
 		/// </summary>
-		public virtual int IntValue => throw new NotImplementedException();
+		public virtual double DoubleValue => throw new NotImplementedException();
+        /// <summary>
+        /// int值
+        /// </summary>
+        public virtual int IntValue => throw new NotImplementedException();
 		/// <summary>
 		/// long值
 		/// </summary>
@@ -518,8 +522,9 @@ namespace ToolGood.Algorithm
 		public override int IntValue => (int)_value;
 		public override decimal NumberValue => _value;
 		public override long LongValue => (long)_value;
+        public override double DoubleValue => (double)_value;
 
-		public override Operand ToNumber(string errorMessage = null) { return this; }
+        public override Operand ToNumber(string errorMessage = null) { return this; }
 		public override Operand ToBoolean(string errorMessage = null) { return NumberValue != 0 ? True : False; }
 		public override Operand ToText(string errorMessage = null) { return Create(NumberValue.ToString(cultureInfo)); }
 		public override Operand ToMyDate(string errorMessage = null) { return Create((MyDate)NumberValue); }
