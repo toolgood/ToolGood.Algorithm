@@ -275,7 +275,8 @@ namespace ToolGood.Algorithm.Internals
             var t1 = op1.NumberValue;
             var t2 = op2.NumberValue;
 
-            var r = Math.Round(t1 - t2, 10, MidpointRounding.AwayFromZero);
+            var r = t1 - t2;
+            //var r = Math.Round(t1 - t2, 10, MidpointRounding.AwayFromZero);
             if (type.Length == 1) {
                 if (CharUtil.Equals(type, '<')) {
                     return Operand.Create(r < 0);
@@ -296,7 +297,8 @@ namespace ToolGood.Algorithm.Internals
 
         private static int Compare(decimal t1, decimal t2)
         {
-            var b = Math.Round(t1 - t2, 12, MidpointRounding.AwayFromZero);
+            var b = t1 - t2;
+            //var b = Math.Round(t1 - t2, 12, MidpointRounding.AwayFromZero);
             if (b == 0) {
                 return 0;
             } else if (b > 0) {
@@ -2863,11 +2865,14 @@ namespace ToolGood.Algorithm.Internals
         private static int F_base_countif(List<decimal> dbs, decimal d)
         {
             int count = 0;
-            d = Math.Round(d, 12, MidpointRounding.AwayFromZero);
+            //d = Math.Round(d, 12, MidpointRounding.AwayFromZero);
             foreach (var item in dbs) {
-                if (Math.Round(item, 12, MidpointRounding.AwayFromZero) == d) {
+                if (item==d) {
                     count++;
                 }
+                //if (Math.Round(item, 12, MidpointRounding.AwayFromZero) == d) {
+                //    count++;
+                //}
             }
             return count;
         }
@@ -2902,17 +2907,23 @@ namespace ToolGood.Algorithm.Internals
         private static bool F_base_compare(decimal a, decimal b, string ss)
         {
             if (CharUtil.Equals(ss, '<')) {
-                return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) < 0;
+                return a < b;
+                //return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) < 0;
             } else if (CharUtil.Equals(ss, "<=")) {
-                return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) <= 0;
+                return a <= b;
+                //return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) <= 0;
             } else if (CharUtil.Equals(ss, '>')) {
-                return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) > 0;
+                return a > b;
+                //return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) > 0;
             } else if (CharUtil.Equals(ss, ">=")) {
-                return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) >= 0;
+                return (a >= b);
+                //return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) >= 0;
             } else if (CharUtil.Equals(ss, "=", "==", "===")) {
-                return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) == 0;
+                return a==b;
+                //return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) == 0;
             }
-            return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) != 0;
+            return a != b;
+            //return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) != 0;
         }
 
         private bool F_base_GetList(List<Operand> args, List<decimal> list)
