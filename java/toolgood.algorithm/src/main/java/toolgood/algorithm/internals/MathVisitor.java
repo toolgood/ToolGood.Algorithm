@@ -365,17 +365,6 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(r != 0);
     }
 
-    private int Compare(final double t1, final double t2) {
-
-        final double b = round(t1 - t2, 12);
-        if (b == 0) {
-            return 0;
-        } else if (b > 0) {
-            return 1;
-        }
-        return -1;
-    }
-
     public Operand visitAndOr_fun(final AndOr_funContext context) {
         // 程序 && and || or 与 excel的 AND(x,y) OR(x,y) 有区别
         // 在excel内 AND(x,y) OR(x,y) 先报错，
