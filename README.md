@@ -11,7 +11,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel公式`,并支持`自定义参数
 
 2）项目维护时，经常改动的算法；
 
-3）财务数据、统计数据之中的算法，(注:本项目使用`double`类型，建议使用`分`为单位)；
+3）财务数据、统计数据之中的算法，(注:部分公式会使用`double`类型，建议使用`分`为单位)；
 
 4）报表导出，数据来源使用存储过程，Word文档内设置算法。例 https://github.com/toolgood/ToolGood.WordTemplate
 

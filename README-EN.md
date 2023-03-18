@@ -10,7 +10,7 @@ ToolGood.Algorithm supports `Four arithmetic`, `Excel formula`, and supports `Cu
 
 2）Algorithms that are frequently changed during project maintenance; 
 
-3）Algorithms in financial data and statistical data (Note: This project uses `double` type, and it is recommended to use `fen` as the unit); 
+3）Algorithms in financial data and statistical data (Note: Some formulas use the `double` type, and it is recommended to use `fen` as the unit); 
 
 4）The report is exported, the data source uses the stored procedure, and the algorithm is set in the Word document. Example https://github.com/toolgood/ToolGood.WordTemplate 
 
