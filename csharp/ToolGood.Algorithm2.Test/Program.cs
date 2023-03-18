@@ -15,7 +15,7 @@ namespace ToolGood.Algorithm2.Test
    
 
 
-            double a = 0.0;
+            decimal a = 0.0m;
             if (engine.Parse("1+2")) {
                 var o = engine.Evaluate();
                 a = o.NumberValue;

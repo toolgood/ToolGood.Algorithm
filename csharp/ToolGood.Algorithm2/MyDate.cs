@@ -83,7 +83,7 @@ namespace ToolGood.Algorithm
         /// 构造函数
         /// </summary>
         /// <param name="num"></param>
-        public MyDate(double num)
+        public MyDate(decimal num)
         {
             int days = (int)num;
             if (days > 365) {
@@ -96,10 +96,10 @@ namespace ToolGood.Algorithm
                 Month = null;
                 Day = days;
             }
-            double d = num - days;
+            decimal d = num - days;
             Hour = (int)(d * 24);
-            Minute = (int)((d * 24 - Hour) * 60.0);
-            Second = (int)(((d * 24 - Hour) * 60.0 - Minute) * 60.0);
+            Minute = (int)((d * 24 - Hour) * 60.0m);
+            Second = (int)(((d * 24 - Hour) * 60.0m - Minute) * 60.0m);
         }
         /// <summary>
         /// 字符串转MyDate
@@ -325,27 +325,27 @@ namespace ToolGood.Algorithm
             return myDate.ToTimeSpan();
         }
         /// <summary>
-        /// double=>MyDate
+        /// decimal=>MyDate
         /// </summary>
         /// <param name="days"></param>
-        public static implicit operator MyDate(double days)
+        public static implicit operator MyDate(decimal days)
         {
             return new MyDate(days);
         }
         /// <summary>
-        /// MyDate=>double
+        /// MyDate=>decimal
         /// </summary>
         /// <param name="MyDate"></param>
-        public static implicit operator double(MyDate MyDate)
+        public static implicit operator decimal(MyDate MyDate)
         {
             if (MyDate.Year != null && MyDate.Year > 1900) {
                 var dt = new DateTime((MyDate.Year ?? 0), (MyDate.Month ?? 0), (MyDate.Day ?? 0), MyDate.Hour, MyDate.Minute, MyDate.Second);
-                //double days = (double)(dt -  DateTime.MinValue).TotalDays;
-                double days = (double)(dt - new DateTime(1900, 1, 1)).TotalDays + 2;
-                days += (MyDate.Hour + (MyDate.Minute + MyDate.Second / 60.0) / 60) / 24;
+                //decimal days = (decimal)(dt -  DateTime.MinValue).TotalDays;
+                decimal days = (decimal)(dt - new DateTime(1900, 1, 1)).TotalDays + 2;
+                days += (MyDate.Hour + (MyDate.Minute + MyDate.Second / 60.0m) / 60) / 24;
                 return days;
             }
-            return (MyDate.Day ?? 0) + (MyDate.Hour + (MyDate.Minute + MyDate.Second / 60.0) / 60) / 24;
+            return (MyDate.Day ?? 0) + (MyDate.Hour + (MyDate.Minute + MyDate.Second / 60.0m) / 60) / 24;
         }
 
         /// <summary>
@@ -361,7 +361,7 @@ namespace ToolGood.Algorithm
             } else if (myDate.Year != null && num.Year == null) {
                 return new MyDate(num.ToDateTime().Add(myDate.ToTimeSpan()));
             }
-            return (MyDate)((double)myDate + (double)num);
+            return (MyDate)((decimal)myDate + (decimal)num);
         }
         /// <summary>
         /// 减
@@ -376,7 +376,7 @@ namespace ToolGood.Algorithm
             } else if (myDate.Year != null && num.Year == null) {
                 return new MyDate(num.ToDateTime().Add(myDate.ToTimeSpan().Negate()));
             }
-            return (MyDate)((double)myDate - (double)num);
+            return (MyDate)((decimal)myDate - (decimal)num);
         }
         /// <summary>加
         /// 
@@ -384,9 +384,9 @@ namespace ToolGood.Algorithm
         /// <param name="myDate"></param>
         /// <param name="num"></param>
         /// <returns></returns>
-        public static MyDate operator +(MyDate myDate, double num)
+        public static MyDate operator +(MyDate myDate, decimal num)
         {
-            return (MyDate)((double)myDate + (double)num);
+            return (MyDate)((decimal)myDate + (decimal)num);
         }
         /// <summary>
         /// 减
@@ -394,9 +394,9 @@ namespace ToolGood.Algorithm
         /// <param name="myDate"></param>
         /// <param name="num"></param>
         /// <returns></returns>
-        public static MyDate operator -(MyDate myDate, double num)
+        public static MyDate operator -(MyDate myDate, decimal num)
         {
-            return (MyDate)((double)myDate - (double)num);
+            return (MyDate)((decimal)myDate - (decimal)num);
         }
         /// <summary>
         /// 乘
@@ -404,14 +404,14 @@ namespace ToolGood.Algorithm
         /// <param name="myDate"></param>
         /// <param name="num"></param>
         /// <returns></returns>
-        public static MyDate operator *(MyDate myDate, double num)
+        public static MyDate operator *(MyDate myDate, decimal num)
         {
 #if NETSTANDARD2_1
             if (myDate.Year != null) {
-                return new MyDate(myDate.ToTimeSpan().Multiply(num));
+                return new MyDate(myDate.ToTimeSpan().Multiply((double)num));
             }
 #endif
-            return (MyDate)((double)myDate * (double)num);
+            return (MyDate)((decimal)myDate * (decimal)num);
         }
         /// <summary>
         /// 除
@@ -419,14 +419,14 @@ namespace ToolGood.Algorithm
         /// <param name="myDate"></param>
         /// <param name="num"></param>
         /// <returns></returns>
-        public static MyDate operator /(MyDate myDate, double num)
+        public static MyDate operator /(MyDate myDate, decimal num)
         {
 #if NETSTANDARD2_1
             if (myDate.Year != null) {
-                return new MyDate(myDate.ToTimeSpan().Divide(num));
+                return new MyDate(myDate.ToTimeSpan().Divide((double)num));
             }
 #endif
-            return (MyDate)((double)myDate / (double)num);
+            return (MyDate)((decimal)myDate / (decimal)num);
         }
         #endregion
     }

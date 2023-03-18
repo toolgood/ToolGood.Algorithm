@@ -150,21 +150,21 @@ namespace ToolGood.Algorithm.LitJson
         private void ProcessNumber(string number)
         {
             if (number.IndexOf('.') != -1 || number.IndexOf('e') != -1 || number.IndexOf('E') != -1) {
-                if (double.TryParse(number, NumberStyles.Any, CultureInfo.InvariantCulture, out double n_double)) {
+                if (decimal.TryParse(number, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal n_double)) {
                     token_value = n_double;
                     return;
                 }
             }
             if (int.TryParse(number, NumberStyles.Integer, CultureInfo.InvariantCulture, out int n_int32)) {
-                token_value = (double)n_int32;
+                token_value = (decimal)n_int32;
                 return;
             }
             if (long.TryParse(number, NumberStyles.Integer, CultureInfo.InvariantCulture, out long n_int64)) {
-                token_value = (double)n_int64;
+                token_value = (decimal)n_int64;
                 return;
             }
             if (ulong.TryParse(number, NumberStyles.Integer, CultureInfo.InvariantCulture, out ulong n_uint64)) {
-                token_value = (double)n_uint64;
+                token_value = (decimal)n_uint64;
                 return;
             }
             // Shouldn't happen, but just in case, return something

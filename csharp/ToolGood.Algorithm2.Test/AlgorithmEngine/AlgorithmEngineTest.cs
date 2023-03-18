@@ -44,9 +44,9 @@ namespace ToolGood.Algorithm
 
 
             var e = engine.TryEvaluate("e", 0.0);
-            Assert.AreEqual(Math.E, e);
+            Assert.AreEqual(Math.E, e,10);
             e = engine.TryEvaluate("pi", 0.0);
-            Assert.AreEqual(Math.PI, e);
+            Assert.AreEqual(Math.PI, e,10);
 
             var b = engine.TryEvaluate("true", true);
             Assert.AreEqual(true, b);
@@ -60,9 +60,9 @@ namespace ToolGood.Algorithm
             Assert.AreEqual(2, b1);
 
             var b2 = engine.TryEvaluate("pi*4", 0.0);
-            Assert.AreEqual(Math.PI * 4, b2);
+            Assert.AreEqual(Math.PI * 4, b2,10);
             b2 = engine.TryEvaluate("e*4", 0.0);
-            Assert.AreEqual(Math.E * 4, b2);
+            Assert.AreEqual(Math.E * 4, b2,10);
 
             var s = engine.TryEvaluate("'aa'&'bb'", "");
             Assert.AreEqual("aabb", s);
@@ -246,7 +246,7 @@ namespace ToolGood.Algorithm
             t = c.TryEvaluate("['半径']*[半径]*pi()*[高]", 0.0); //圆的体积
 
             t = c.TryEvaluate("求面积（10）", 0.0); //圆的体积
-            Assert.AreEqual(10 * 10 * Math.PI, t);
+            Assert.AreEqual(10 * 10 * Math.PI, t,10);
 
 
 
@@ -267,7 +267,7 @@ namespace ToolGood.Algorithm
         {
             Cylinder c = new Cylinder(3, 10);
             String t = c.GetSimplifiedFormula("[半径]*[半径]*pi()"); // 圆底面积
-            Assert.AreEqual("3 * 3 * 3.141592653589793", t);
+            Assert.AreEqual("3 * 3 * 3.14159265358979", t);
 
             String t2 = c.GetSimplifiedFormula("半径*if(半径>2,1,3)");
             Assert.AreEqual("3 * 1", t2);

@@ -32,269 +32,269 @@ namespace ToolGood.Algorithm.Internals
 
         public virtual Operand VisitMulDiv_fun(mathParser.MulDiv_funContext context)
         {
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this); if (args1.IsError) { return args1; }
-			var args2 = exprs[1].Accept(this); if (args2.IsError) { return args2; }
+            var exprs = context.expr();
+            var args1 = exprs[0].Accept(this); if (args1.IsError) { return args1; }
+            var args2 = exprs[1].Accept(this); if (args2.IsError) { return args2; }
 
-			if (args1.Type == OperandType.TEXT) {
-				if (double.TryParse(args1.TextValue, NumberStyles.Any, cultureInfo, out double d)) {
-					args1 = Operand.Create(d);
-				} else if (bool.TryParse(args1.TextValue, out bool b)) {
-					args1 = b ? Operand.One : Operand.Zero;
-				} else if (TimeSpan.TryParse(args1.TextValue, cultureInfo, out TimeSpan ts)) {
-					args1 = Operand.Create(ts);
-				} else if (DateTime.TryParse(args1.TextValue, cultureInfo, DateTimeStyles.None, out DateTime dt)) {
-					args1 = Operand.Create(new MyDate(dt));
-				} else {
-					return Operand.Error("两个类型无法乘除");
-				}
-			}
-			if (args2.Type == OperandType.TEXT) {
-				if (double.TryParse(args2.TextValue, NumberStyles.Any, cultureInfo, out double d)) {
-					args2 = Operand.Create(d);
-				} else if (bool.TryParse(args2.TextValue, out bool b)) {
-					args2 = b ? Operand.One : Operand.Zero;
-				} else if (TimeSpan.TryParse(args2.TextValue, cultureInfo, out TimeSpan ts)) {
-					args2 = Operand.Create(ts);
-				} else if (DateTime.TryParse(args2.TextValue, cultureInfo, DateTimeStyles.None, out DateTime dt)) {
-					args2 = Operand.Create(new MyDate(dt));
-				} else {
-					return Operand.Error("两个类型无法乘除");
-				}
-			}
-			var t = context.op.Text;
-			if (CharUtil.Equals(t, '*')) {
-				if (args1.Type == OperandType.DATE) {
-					if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '*' parameter 2 is error!"); if (args2.IsError) { return args2; } }
-					if (args2.NumberValue == 1) { return args1; }
-					return Operand.Create((MyDate)(args1.DateValue * args2.NumberValue));
-				} else if (args2.Type == OperandType.DATE) {
-					if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '*' parameter 1 is error!"); if (args1.IsError) { return args1; } }
-					if (args1.NumberValue == 1) { return args2; }
-					return Operand.Create((MyDate)(args2.DateValue * args1.NumberValue));
-				}
+            if (args1.Type == OperandType.TEXT) {
+                if (decimal.TryParse(args1.TextValue, NumberStyles.Any, cultureInfo, out decimal d)) {
+                    args1 = Operand.Create(d);
+                } else if (bool.TryParse(args1.TextValue, out bool b)) {
+                    args1 = b ? Operand.One : Operand.Zero;
+                } else if (TimeSpan.TryParse(args1.TextValue, cultureInfo, out TimeSpan ts)) {
+                    args1 = Operand.Create(ts);
+                } else if (DateTime.TryParse(args1.TextValue, cultureInfo, DateTimeStyles.None, out DateTime dt)) {
+                    args1 = Operand.Create(new MyDate(dt));
+                } else {
+                    return Operand.Error("两个类型无法乘除");
+                }
+            }
+            if (args2.Type == OperandType.TEXT) {
+                if (decimal.TryParse(args2.TextValue, NumberStyles.Any, cultureInfo, out decimal d)) {
+                    args2 = Operand.Create(d);
+                } else if (bool.TryParse(args2.TextValue, out bool b)) {
+                    args2 = b ? Operand.One : Operand.Zero;
+                } else if (TimeSpan.TryParse(args2.TextValue, cultureInfo, out TimeSpan ts)) {
+                    args2 = Operand.Create(ts);
+                } else if (DateTime.TryParse(args2.TextValue, cultureInfo, DateTimeStyles.None, out DateTime dt)) {
+                    args2 = Operand.Create(new MyDate(dt));
+                } else {
+                    return Operand.Error("两个类型无法乘除");
+                }
+            }
+            var t = context.op.Text;
+            if (CharUtil.Equals(t, '*')) {
+                if (args1.Type == OperandType.DATE) {
+                    if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '*' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+                    if (args2.NumberValue == 1) { return args1; }
+                    return Operand.Create((MyDate)(args1.DateValue * args2.NumberValue));
+                } else if (args2.Type == OperandType.DATE) {
+                    if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '*' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+                    if (args1.NumberValue == 1) { return args2; }
+                    return Operand.Create((MyDate)(args2.DateValue * args1.NumberValue));
+                }
 
-				if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '*' parameter 1 is error!"); if (args1.IsError) { return args1; } }
-				if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '*' parameter 2 is error!"); if (args2.IsError) { return args2; } }
-				if (args1.NumberValue == 1) { return args2; }
-				if (args2.NumberValue == 1) { return args1; }
+                if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '*' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+                if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '*' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+                if (args1.NumberValue == 1) { return args2; }
+                if (args2.NumberValue == 1) { return args1; }
 
-				return Operand.Create(args1.NumberValue * args2.NumberValue);
-			} else if (CharUtil.Equals(t, '/')) {
-				if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '/' parameter 2 is error!"); if (args2.IsError) { return args2; } }
-				if (args2.NumberValue == 0) { return Operand.Error("Div 0 is error!"); }
-				if (args2.NumberValue == 1) { return args1; }
+                return Operand.Create(args1.NumberValue * args2.NumberValue);
+            } else if (CharUtil.Equals(t, '/')) {
+                if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '/' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+                if (args2.NumberValue == 0) { return Operand.Error("Div 0 is error!"); }
+                if (args2.NumberValue == 1) { return args1; }
 
-				if (args1.Type == OperandType.DATE) { return Operand.Create(args1.DateValue / args2.NumberValue); }
-				if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '/' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+                if (args1.Type == OperandType.DATE) { return Operand.Create(args1.DateValue / args2.NumberValue); }
+                if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '/' parameter 1 is error!"); if (args1.IsError) { return args1; } }
 
-				return Operand.Create(args1.NumberValue / args2.NumberValue);
-				//} else if (CharUtil.Equals(t, "%")) {
-			} else {
-				if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("% fun right value"); if (args1.IsError) { return args1; } }
-				if (args1.Type != OperandType.NUMBER) { args2 = args2.ToNumber("% fun right value"); if (args2.IsError) { return args2; } }
-				if (args2.NumberValue == 0) { return Operand.Error("Div 0 is error!"); }
+                return Operand.Create(args1.NumberValue / args2.NumberValue);
+                //} else if (CharUtil.Equals(t, "%")) {
+            } else {
+                if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("% fun right value"); if (args1.IsError) { return args1; } }
+                if (args1.Type != OperandType.NUMBER) { args2 = args2.ToNumber("% fun right value"); if (args2.IsError) { return args2; } }
+                if (args2.NumberValue == 0) { return Operand.Error("Div 0 is error!"); }
 
-				return Operand.Create(args1.NumberValue % args2.NumberValue);
-			}
-		}
+                return Operand.Create(args1.NumberValue % args2.NumberValue);
+            }
+        }
 
         public virtual Operand VisitAddSub_fun(mathParser.AddSub_funContext context)
         {
-			var exprs = context.expr();
+            var exprs = context.expr();
 
-			var args1 = exprs[0].Accept(this); if (args1.IsError) { return args1; }
-			var args2 = exprs[1].Accept(this); if (args2.IsError) { return args2; }
-			var t = context.op.Text;
-			if (CharUtil.Equals(t, '&')) {
-				if (args1.IsNull) {
-					if (args2.IsNull) return args1;
-					return args2.ToText("Function '&' parameter 2 is error!");
-				} else if (args2.IsNull) {
-					return args1.ToText("Function '&' parameter 1 is error!");
-				}
-				if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '&' parameter 1 is error!"); if (args1.IsError) { return args1; } }
-				if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function '&' parameter 2 is error!"); if (args2.IsError) { return args2; } }
-				return Operand.Create(args1.TextValue + args2.TextValue);
-			}
-			if (args1.Type == OperandType.TEXT) {
-				if (double.TryParse(args1.TextValue, NumberStyles.Any, cultureInfo, out double d)) {
-					args1 = Operand.Create(d);
-				} else if (bool.TryParse(args1.TextValue, out bool b)) {
-					args1 = b ? Operand.One : Operand.Zero;
-				} else if (TimeSpan.TryParse(args1.TextValue, cultureInfo, out TimeSpan ts)) {
-					args1 = Operand.Create(ts);
-				} else if (DateTime.TryParse(args1.TextValue, cultureInfo, DateTimeStyles.None, out DateTime dt)) {
-					args1 = Operand.Create(new MyDate(dt));
-				} else {
-					return Operand.Error("Function '+' or '-' is error");
-				}
-			}
-			if (args2.Type == OperandType.TEXT) {
-				if (double.TryParse(args2.TextValue, NumberStyles.Any, cultureInfo, out double d)) {
-					args2 = Operand.Create(d);
-				} else if (bool.TryParse(args2.TextValue, out bool b)) {
-					args2 = b ? Operand.One : Operand.Zero;
-				} else if (TimeSpan.TryParse(args2.TextValue, cultureInfo, out TimeSpan ts)) {
-					args2 = Operand.Create(ts);
-				} else if (DateTime.TryParse(args2.TextValue, cultureInfo, DateTimeStyles.None, out DateTime dt)) {
-					args2 = Operand.Create(new MyDate(dt));
-				} else {
-					return Operand.Error("Function '+' or '-' is error");
-				}
-			}
-			if (CharUtil.Equals(t, '+')) {
-				if (args1.Type == OperandType.DATE) {
-					if (args2.Type == OperandType.DATE) return Operand.Create(args1.DateValue + args2.DateValue);
-					if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '+' parameter 2 is error!"); if (args2.IsError) { return args2; } }
-					if (args2.NumberValue == 0) { return args1; }
-					return Operand.Create(args1.DateValue + args2.NumberValue);
-				} else if (args2.Type == OperandType.DATE) {
-					if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '+' parameter 1 is error!"); if (args1.IsError) { return args1; } }
-					if (args1.NumberValue == 0) { return args2; }
-					return Operand.Create(args2.DateValue + args1.NumberValue);
-				}
-				if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '+' parameter 1 is error!"); if (args1.IsError) { return args1; } }
-				if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '+' parameter 2 is error!"); if (args2.IsError) { return args2; } }
-				if (args1.NumberValue == 0) { return args2; }
-				if (args2.NumberValue == 0) { return args1; }
+            var args1 = exprs[0].Accept(this); if (args1.IsError) { return args1; }
+            var args2 = exprs[1].Accept(this); if (args2.IsError) { return args2; }
+            var t = context.op.Text;
+            if (CharUtil.Equals(t, '&')) {
+                if (args1.IsNull) {
+                    if (args2.IsNull) return args1;
+                    return args2.ToText("Function '&' parameter 2 is error!");
+                } else if (args2.IsNull) {
+                    return args1.ToText("Function '&' parameter 1 is error!");
+                }
+                if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '&' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+                if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function '&' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+                return Operand.Create(args1.TextValue + args2.TextValue);
+            }
+            if (args1.Type == OperandType.TEXT) {
+                if (decimal.TryParse(args1.TextValue, NumberStyles.Any, cultureInfo, out decimal d)) {
+                    args1 = Operand.Create(d);
+                } else if (bool.TryParse(args1.TextValue, out bool b)) {
+                    args1 = b ? Operand.One : Operand.Zero;
+                } else if (TimeSpan.TryParse(args1.TextValue, cultureInfo, out TimeSpan ts)) {
+                    args1 = Operand.Create(ts);
+                } else if (DateTime.TryParse(args1.TextValue, cultureInfo, DateTimeStyles.None, out DateTime dt)) {
+                    args1 = Operand.Create(new MyDate(dt));
+                } else {
+                    return Operand.Error("Function '+' or '-' is error");
+                }
+            }
+            if (args2.Type == OperandType.TEXT) {
+                if (decimal.TryParse(args2.TextValue, NumberStyles.Any, cultureInfo, out decimal d)) {
+                    args2 = Operand.Create(d);
+                } else if (bool.TryParse(args2.TextValue, out bool b)) {
+                    args2 = b ? Operand.One : Operand.Zero;
+                } else if (TimeSpan.TryParse(args2.TextValue, cultureInfo, out TimeSpan ts)) {
+                    args2 = Operand.Create(ts);
+                } else if (DateTime.TryParse(args2.TextValue, cultureInfo, DateTimeStyles.None, out DateTime dt)) {
+                    args2 = Operand.Create(new MyDate(dt));
+                } else {
+                    return Operand.Error("Function '+' or '-' is error");
+                }
+            }
+            if (CharUtil.Equals(t, '+')) {
+                if (args1.Type == OperandType.DATE) {
+                    if (args2.Type == OperandType.DATE) return Operand.Create(args1.DateValue + args2.DateValue);
+                    if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '+' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+                    if (args2.NumberValue == 0) { return args1; }
+                    return Operand.Create(args1.DateValue + args2.NumberValue);
+                } else if (args2.Type == OperandType.DATE) {
+                    if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '+' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+                    if (args1.NumberValue == 0) { return args2; }
+                    return Operand.Create(args2.DateValue + args1.NumberValue);
+                }
+                if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '+' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+                if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '+' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+                if (args1.NumberValue == 0) { return args2; }
+                if (args2.NumberValue == 0) { return args1; }
 
-				return Operand.Create(args1.NumberValue + args2.NumberValue);
-				//} else if (CharUtil.Equals(t, "-")) {
-			} else {
-				if (args1.Type == OperandType.DATE) {
-					if (args2.Type == OperandType.DATE) return Operand.Create(args1.DateValue - args2.DateValue);
-					if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '-' parameter 2 is error!"); if (args2.IsError) { return args2; } }
-					if (args2.NumberValue == 0) { return args1; }
-					return Operand.Create(args1.DateValue - args2.NumberValue);
-				} else if (args2.Type == OperandType.DATE) {
-					if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '-' parameter 1 is error!"); if (args1.IsError) { return args1; } }
-					return Operand.Create(args1.NumberValue - args2.DateValue);
-				}
-				if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '-' parameter 1 is error!"); if (args1.IsError) { return args1; } }
-				if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '-' parameter 2 is error!"); if (args2.IsError) { return args2; } }
-				if (args2.NumberValue == 0) { return args1; }
+                return Operand.Create(args1.NumberValue + args2.NumberValue);
+                //} else if (CharUtil.Equals(t, "-")) {
+            } else {
+                if (args1.Type == OperandType.DATE) {
+                    if (args2.Type == OperandType.DATE) return Operand.Create(args1.DateValue - args2.DateValue);
+                    if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '-' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+                    if (args2.NumberValue == 0) { return args1; }
+                    return Operand.Create(args1.DateValue - args2.NumberValue);
+                } else if (args2.Type == OperandType.DATE) {
+                    if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '-' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+                    return Operand.Create(args1.NumberValue - args2.DateValue);
+                }
+                if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '-' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+                if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '-' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+                if (args2.NumberValue == 0) { return args1; }
 
-				return Operand.Create(args1.NumberValue - args2.NumberValue);
-			}
-		}
+                return Operand.Create(args1.NumberValue - args2.NumberValue);
+            }
+        }
 
         public virtual Operand VisitJudge_fun(mathParser.Judge_funContext context)
         {
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this); if (args1.IsError) { return args1; }
-			var args2 = exprs[1].Accept(this); if (args2.IsError) { return args2; }
+            var exprs = context.expr();
+            var args1 = exprs[0].Accept(this); if (args1.IsError) { return args1; }
+            var args2 = exprs[1].Accept(this); if (args2.IsError) { return args2; }
 
-			string type = context.op.Text;
-			int r;
-			if (args1.Type == args2.Type) {
-				if (args1.Type == OperandType.NUMBER) {
-					return MathVisitor.Compare(args1, args2, type);
-				} else if (args1.Type == OperandType.TEXT) {
-					r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
-				} else if (args1.Type == OperandType.DATE || args1.Type == OperandType.BOOLEAN) {
-					args1 = args1.ToNumber();
-					args2 = args2.ToNumber();
-					return MathVisitor.Compare(args1, args2, type);
-				} else if (args1.Type == OperandType.JSON) {
-					args1 = args1.ToText();
-					args2 = args2.ToText();
-					r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
-				} else if (args1.Type == OperandType.NULL) {
-					return CharUtil.Equals(type, "=", "==", "===") ? Operand.True : Operand.False;
-				} else {
-					return Operand.Error("Function compare is error.");
-				}
-			} else if (args1.Type == OperandType.NULL || args2.Type == OperandType.NULL) {
-				return CharUtil.Equals(type, "<>", "!=", "!==") ? Operand.True : Operand.False;
-			} else if (args1.Type == OperandType.TEXT) {
-				if (args2.Type == OperandType.BOOLEAN) {
-					var a = args1.ToBoolean();
-					if (a.IsError == false) {
-						if (CharUtil.Equals(type, "=", "==", "===")) {
-							return a.BooleanValue == args2.BooleanValue ? Operand.True : Operand.False;
-						} else if (CharUtil.Equals(type, "<>", "!=", "!===")) {
-							return a.BooleanValue != args2.BooleanValue ? Operand.True : Operand.False;
-						}
-					}
-					args2 = args2.ToText();
-					r = string.Compare(args1.TextValue, args2.TextValue, true);
-				} else if (args2.Type == OperandType.DATE || args2.Type == OperandType.NUMBER || args2.Type == OperandType.JSON) {
-					args2 = args2.ToText();
-					r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
-				} else {
-					return Operand.Error("Function compare is error.");
-				}
-			} else if (args2.Type == OperandType.TEXT) {
-				if (args1.Type == OperandType.BOOLEAN) {
-					var a = args2.ToBoolean();
-					if (a.IsError == false) {
-						if (CharUtil.Equals(type, "=", "==", "===")) {
-							return a.BooleanValue == args1.BooleanValue ? Operand.True : Operand.False;
-						} else if (CharUtil.Equals(type, "<>", "!=", "!===")) {
-							return a.BooleanValue != args1.BooleanValue ? Operand.True : Operand.False;
-						}
-					}
-					args1 = args1.ToText();
-					r = string.Compare(args1.TextValue, args2.TextValue, true);
-				} else if (args1.Type == OperandType.DATE || args1.Type == OperandType.NUMBER || args1.Type == OperandType.JSON) {
-					args1 = args1.ToText();
-					r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
-				} else {
-					return Operand.Error("Function compare is error.");
-				}
-			} else if (args1.Type == OperandType.JSON || args2.Type == OperandType.JSON
-				  || args1.Type == OperandType.ARRARY || args2.Type == OperandType.ARRARY
-				  ) {
-				return Operand.Error("Function compare is error.");
-			} else {
-				if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber($"Function '{type}' parameter 1 is error!"); if (args1.IsError) { return args1; } }
-				if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber($"Function '{type}' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            string type = context.op.Text;
+            int r;
+            if (args1.Type == args2.Type) {
+                if (args1.Type == OperandType.NUMBER) {
+                    return MathVisitor.Compare(args1, args2, type);
+                } else if (args1.Type == OperandType.TEXT) {
+                    r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
+                } else if (args1.Type == OperandType.DATE || args1.Type == OperandType.BOOLEAN) {
+                    args1 = args1.ToNumber();
+                    args2 = args2.ToNumber();
+                    return MathVisitor.Compare(args1, args2, type);
+                } else if (args1.Type == OperandType.JSON) {
+                    args1 = args1.ToText();
+                    args2 = args2.ToText();
+                    r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
+                } else if (args1.Type == OperandType.NULL) {
+                    return CharUtil.Equals(type, "=", "==", "===") ? Operand.True : Operand.False;
+                } else {
+                    return Operand.Error("Function compare is error.");
+                }
+            } else if (args1.Type == OperandType.NULL || args2.Type == OperandType.NULL) {
+                return CharUtil.Equals(type, "<>", "!=", "!==") ? Operand.True : Operand.False;
+            } else if (args1.Type == OperandType.TEXT) {
+                if (args2.Type == OperandType.BOOLEAN) {
+                    var a = args1.ToBoolean();
+                    if (a.IsError == false) {
+                        if (CharUtil.Equals(type, "=", "==", "===")) {
+                            return a.BooleanValue == args2.BooleanValue ? Operand.True : Operand.False;
+                        } else if (CharUtil.Equals(type, "<>", "!=", "!===")) {
+                            return a.BooleanValue != args2.BooleanValue ? Operand.True : Operand.False;
+                        }
+                    }
+                    args2 = args2.ToText();
+                    r = string.Compare(args1.TextValue, args2.TextValue, true);
+                } else if (args2.Type == OperandType.DATE || args2.Type == OperandType.NUMBER || args2.Type == OperandType.JSON) {
+                    args2 = args2.ToText();
+                    r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
+                } else {
+                    return Operand.Error("Function compare is error.");
+                }
+            } else if (args2.Type == OperandType.TEXT) {
+                if (args1.Type == OperandType.BOOLEAN) {
+                    var a = args2.ToBoolean();
+                    if (a.IsError == false) {
+                        if (CharUtil.Equals(type, "=", "==", "===")) {
+                            return a.BooleanValue == args1.BooleanValue ? Operand.True : Operand.False;
+                        } else if (CharUtil.Equals(type, "<>", "!=", "!===")) {
+                            return a.BooleanValue != args1.BooleanValue ? Operand.True : Operand.False;
+                        }
+                    }
+                    args1 = args1.ToText();
+                    r = string.Compare(args1.TextValue, args2.TextValue, true);
+                } else if (args1.Type == OperandType.DATE || args1.Type == OperandType.NUMBER || args1.Type == OperandType.JSON) {
+                    args1 = args1.ToText();
+                    r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
+                } else {
+                    return Operand.Error("Function compare is error.");
+                }
+            } else if (args1.Type == OperandType.JSON || args2.Type == OperandType.JSON
+                  || args1.Type == OperandType.ARRARY || args2.Type == OperandType.ARRARY
+                  ) {
+                return Operand.Error("Function compare is error.");
+            } else {
+                if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber($"Function '{type}' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+                if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber($"Function '{type}' parameter 2 is error!"); if (args2.IsError) { return args2; } }
 
-				return MathVisitor.Compare(args1, args2, type);
-			}
-			if (type.Length == 1) {
-				if (CharUtil.Equals(type, '<')) {
-					return Operand.Create(r < 0);
-				} else if (CharUtil.Equals(type, '>')) {
-					return Operand.Create(r > 0);
-				} else /*if (CharUtil.Equals(type, '=')*/{
-					return Operand.Create(r == 0);
-				}
-			} else if (CharUtil.Equals(type, "<=")) {
-				return Operand.Create(r <= 0);
-			} else if (CharUtil.Equals(type, ">=")) {
-				return Operand.Create(r >= 0);
-			} else if (CharUtil.Equals(type, "==", "===")) {
-				return Operand.Create(r == 0);
-			}
-			return Operand.Create(r != 0);
-		}
-		private static Operand Compare(Operand op1, Operand op2, string type)
-		{
-			double t1 = op1.NumberValue;
-			double t2 = op2.NumberValue;
+                return MathVisitor.Compare(args1, args2, type);
+            }
+            if (type.Length == 1) {
+                if (CharUtil.Equals(type, '<')) {
+                    return Operand.Create(r < 0);
+                } else if (CharUtil.Equals(type, '>')) {
+                    return Operand.Create(r > 0);
+                } else /*if (CharUtil.Equals(type, '=')*/{
+                    return Operand.Create(r == 0);
+                }
+            } else if (CharUtil.Equals(type, "<=")) {
+                return Operand.Create(r <= 0);
+            } else if (CharUtil.Equals(type, ">=")) {
+                return Operand.Create(r >= 0);
+            } else if (CharUtil.Equals(type, "==", "===")) {
+                return Operand.Create(r == 0);
+            }
+            return Operand.Create(r != 0);
+        }
+        private static Operand Compare(Operand op1, Operand op2, string type)
+        {
+            var t1 = op1.NumberValue;
+            var t2 = op2.NumberValue;
 
-			var r = Math.Round(t1 - t2, 10, MidpointRounding.AwayFromZero);
-			if (type.Length == 1) {
-				if (CharUtil.Equals(type, '<')) {
-					return Operand.Create(r < 0);
-				} else if (CharUtil.Equals(type, '>')) {
-					return Operand.Create(r > 0);
-				} else /*if (CharUtil.Equals(type, '=')*/{
-					return Operand.Create(r == 0);
-				}
-			} else if (CharUtil.Equals(type, "<=")) {
-				return Operand.Create(r <= 0);
-			} else if (CharUtil.Equals(type, ">=")) {
-				return Operand.Create(r >= 0);
-			} else if (CharUtil.Equals(type, "==", "===")) {
-				return Operand.Create(r == 0);
-			}
-			return Operand.Create(r != 0);
-		}
+            var r = Math.Round(t1 - t2, 10, MidpointRounding.AwayFromZero);
+            if (type.Length == 1) {
+                if (CharUtil.Equals(type, '<')) {
+                    return Operand.Create(r < 0);
+                } else if (CharUtil.Equals(type, '>')) {
+                    return Operand.Create(r > 0);
+                } else /*if (CharUtil.Equals(type, '=')*/{
+                    return Operand.Create(r == 0);
+                }
+            } else if (CharUtil.Equals(type, "<=")) {
+                return Operand.Create(r <= 0);
+            } else if (CharUtil.Equals(type, ">=")) {
+                return Operand.Create(r >= 0);
+            } else if (CharUtil.Equals(type, "==", "===")) {
+                return Operand.Create(r == 0);
+            }
+            return Operand.Create(r != 0);
+        }
 
-		private static int Compare(double t1, double t2)
+        private static int Compare(decimal t1, decimal t2)
         {
             var b = Math.Round(t1 - t2, 12, MidpointRounding.AwayFromZero);
             if (b == 0) {
@@ -307,19 +307,19 @@ namespace ToolGood.Algorithm.Internals
 
         public virtual Operand VisitAndOr_fun(mathParser.AndOr_funContext context)
         {
-			// 程序 && and || or 与 excel的  AND(x,y) OR(x,y) 有区别
-			// 在excel内 AND(x,y) OR(x,y) 先报错，
-			// 在程序中，&& and  有true 直接返回true 就不会检测下一个会不会报错
-			// 在程序中，|| or  有false 直接返回false 就不会检测下一个会不会报错
-			var exprs = context.expr();
-			var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.BOOLEAN) { args1 = args1.ToBoolean(); if (args1.IsError) { return args1; } }
-			var t = context.op.Text;
-			if (CharUtil.Equals(t, "&&", "AND")) {
-				if (args1.BooleanValue == false) return Operand.False;
-			} else {
-				if (args1.BooleanValue) return Operand.True;
-			}
-			return exprs[1].Accept(this).ToBoolean();
+            // 程序 && and || or 与 excel的  AND(x,y) OR(x,y) 有区别
+            // 在excel内 AND(x,y) OR(x,y) 先报错，
+            // 在程序中，&& and  有true 直接返回true 就不会检测下一个会不会报错
+            // 在程序中，|| or  有false 直接返回false 就不会检测下一个会不会报错
+            var exprs = context.expr();
+            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.BOOLEAN) { args1 = args1.ToBoolean(); if (args1.IsError) { return args1; } }
+            var t = context.op.Text;
+            if (CharUtil.Equals(t, "&&", "AND")) {
+                if (args1.BooleanValue == false) return Operand.False;
+            } else {
+                if (args1.BooleanValue) return Operand.True;
+            }
+            return exprs[1].Accept(this).ToBoolean();
         }
 
         #endregion
@@ -565,7 +565,7 @@ namespace ToolGood.Algorithm.Internals
             var firstValue = context.expr().Accept(this).ToNumber("Function SQRT parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            return Operand.Create(Math.Sqrt(firstValue.NumberValue));
+            return Operand.Create(Math.Sqrt((double)firstValue.NumberValue));
         }
         public virtual Operand VisitTRUNC_fun(mathParser.TRUNC_funContext context)
         {
@@ -584,7 +584,7 @@ namespace ToolGood.Algorithm.Internals
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            List<double> list = new List<double>();
+            List<decimal> list = new List<decimal>();
             var o = F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function GCD parameter is error!"); }
 
@@ -595,7 +595,7 @@ namespace ToolGood.Algorithm.Internals
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            List<double> list = new List<double>();
+            List<decimal> list = new List<decimal>();
             var o = F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function GCD parameter is error!"); }
 
@@ -642,10 +642,10 @@ namespace ToolGood.Algorithm.Internals
             var firstValue = context.expr().Accept(this).ToNumber("Function Percentage parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            return Operand.Create(firstValue.NumberValue / 100.0);
+            return Operand.Create(firstValue.NumberValue / 100.0m);
         }
 
-        private int F_base_gcd(List<double> list)
+        private int F_base_gcd(List<decimal> list)
         {
             list = list.OrderBy(q => q).ToList();
             var g = F_base_gcd((int)list[1], (int)list[0]);
@@ -660,7 +660,7 @@ namespace ToolGood.Algorithm.Internals
             if (b == 0) { return a; }
             return F_base_gcd(b, a % b);
         }
-        private int F_base_lgm(List<double> list)
+        private int F_base_lgm(List<decimal> list)
         {
             list = list.OrderBy(q => q).ToList();
             list.RemoveAll(q => q <= 1);
@@ -682,7 +682,7 @@ namespace ToolGood.Algorithm.Internals
             if (firstValue.IsError) { return firstValue; }
 
             var z = firstValue.NumberValue;
-            var r = (z / Math.PI * 180);
+            var r = (z / (decimal)Math.PI * 180);
             return Operand.Create(r);
         }
         public virtual Operand VisitRADIANS_fun(mathParser.RADIANS_funContext context)
@@ -690,45 +690,45 @@ namespace ToolGood.Algorithm.Internals
             var firstValue = context.expr().Accept(this).ToNumber("Function RADIANS parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            var r = firstValue.NumberValue / 180 * Math.PI;
+            var r = firstValue.NumberValue / 180 * (decimal)Math.PI;
             return Operand.Create(r);
         }
         public virtual Operand VisitCOS_fun(mathParser.COS_funContext context)
         {
             var firstValue = context.expr().Accept(this).ToNumber("Function COS parameter is error!");
             if (firstValue.IsError) { return firstValue; }
-            return Operand.Create(Math.Cos(firstValue.NumberValue));
+            return Operand.Create(Math.Cos((double)firstValue.NumberValue));
         }
         public virtual Operand VisitCOSH_fun(mathParser.COSH_funContext context)
         {
             var firstValue = context.expr().Accept(this).ToNumber("Function COSH parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            return Operand.Create(Math.Cosh(firstValue.NumberValue));
+            return Operand.Create(Math.Cosh((double)firstValue.NumberValue));
         }
         public virtual Operand VisitSIN_fun(mathParser.SIN_funContext context)
         {
             var firstValue = context.expr().Accept(this).ToNumber("Function SIN parameter is error!");
             if (firstValue.IsError) { return firstValue; }
-            return Operand.Create(Math.Sin(firstValue.NumberValue));
+            return Operand.Create(Math.Sin((double)firstValue.NumberValue));
         }
         public virtual Operand VisitSINH_fun(mathParser.SINH_funContext context)
         {
             var firstValue = context.expr().Accept(this).ToNumber("Function SINH parameter is error!");
             if (firstValue.IsError) { return firstValue; }
-            return Operand.Create(Math.Sinh(firstValue.NumberValue));
+            return Operand.Create(Math.Sinh((double)firstValue.NumberValue));
         }
         public virtual Operand VisitTAN_fun(mathParser.TAN_funContext context)
         {
             var firstValue = context.expr().Accept(this).ToNumber("Function TAN parameter is error!");
             if (firstValue.IsError) { return firstValue; }
-            return Operand.Create(Math.Tan(firstValue.NumberValue));
+            return Operand.Create(Math.Tan((double)firstValue.NumberValue));
         }
         public virtual Operand VisitTANH_fun(mathParser.TANH_funContext context)
         {
             var firstValue = context.expr().Accept(this).ToNumber("Function TANH parameter is error!");
             if (firstValue.IsError) { return firstValue; }
-            return Operand.Create(Math.Tanh(firstValue.NumberValue));
+            return Operand.Create(Math.Tanh((double)firstValue.NumberValue));
         }
         public virtual Operand VisitACOS_fun(mathParser.ACOS_funContext context)
         {
@@ -738,7 +738,7 @@ namespace ToolGood.Algorithm.Internals
             if (x < -1 && x > 1) {
                 return Operand.Error("Function ACOS parameter is error!");
             }
-            return Operand.Create(Math.Acos(x));
+            return Operand.Create(Math.Acos((double)x));
         }
         public virtual Operand VisitACOSH_fun(mathParser.ACOSH_funContext context)
         {
@@ -749,7 +749,7 @@ namespace ToolGood.Algorithm.Internals
             if (z < 1) {
                 return Operand.Error("Function ACOSH parameter is error!");
             }
-            return Operand.Create(Math.Acosh(z));
+            return Operand.Create(Math.Acosh((double)z));
         }
         public virtual Operand VisitASIN_fun(mathParser.ASIN_funContext context)
         {
@@ -759,20 +759,20 @@ namespace ToolGood.Algorithm.Internals
             if (x < -1 && x > 1) {
                 return Operand.Error("Function ASIN parameter is error!");
             }
-            return Operand.Create(Math.Asin(x));
+            return Operand.Create(Math.Asin((double)x));
         }
         public virtual Operand VisitASINH_fun(mathParser.ASINH_funContext context)
         {
             var firstValue = context.expr().Accept(this).ToNumber("Function ASINH parameter is error!");
             if (firstValue.IsError) { return firstValue; }
-            return Operand.Create(Math.Asinh(firstValue.NumberValue));
+            return Operand.Create(Math.Asinh((double)firstValue.NumberValue));
         }
         public virtual Operand VisitATAN_fun(mathParser.ATAN_funContext context)
         {
             var firstValue = context.expr().Accept(this).ToNumber("Function ATAN parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            return Operand.Create(Math.Atan(firstValue.NumberValue));
+            return Operand.Create(Math.Atan((double)firstValue.NumberValue));
         }
         public virtual Operand VisitATANH_fun(mathParser.ATANH_funContext context)
         {
@@ -782,7 +782,7 @@ namespace ToolGood.Algorithm.Internals
             if (x >= 1 || x <= -1) {
                 return Operand.Error("Function ATANH parameter is error!");
             }
-            return Operand.Create(Math.Atanh(x));
+            return Operand.Create(Math.Atanh((double)x));
         }
         public virtual Operand VisitATAN2_fun(mathParser.ATAN2_funContext context)
         {
@@ -792,7 +792,7 @@ namespace ToolGood.Algorithm.Internals
             var firstValue = args[0];
             var secondValue = args[1];
 
-            return Operand.Create(Math.Atan2(secondValue.NumberValue, firstValue.NumberValue));
+            return Operand.Create(Math.Atan2((double)secondValue.NumberValue, (double)firstValue.NumberValue));
         }
         public virtual Operand VisitFIXED_fun(mathParser.FIXED_funContext context)
         {
@@ -1049,13 +1049,13 @@ namespace ToolGood.Algorithm.Internals
 
             var firstValue = args[0];
             var secondValue = args[1];
-            if (firstValue.NumberValue == 0.0) {
+            if (firstValue.NumberValue == 0.0m) {
                 return firstValue;
             }
-            var a = Math.Pow(10, secondValue.IntValue);
+            var a = (decimal)Math.Pow(10, secondValue.IntValue);
             var b = firstValue.NumberValue;
 
-            b = ((double)(int)(b * a)) / a;
+            b = ((int)(b * a)) / a;
             return Operand.Create(b);
         }
         public virtual Operand VisitROUNDUP_fun(mathParser.ROUNDUP_funContext context)
@@ -1065,10 +1065,10 @@ namespace ToolGood.Algorithm.Internals
 
             var firstValue = args[0];
             var secondValue = args[1];
-            if (firstValue.NumberValue == 0.0) {
+            if (firstValue.NumberValue == 0.0m) {
                 return firstValue;
             }
-            var a = Math.Pow(10, secondValue.IntValue);
+            var a = (decimal)Math.Pow(10, secondValue.IntValue);
             var b = firstValue.NumberValue;
 
             var t = (Math.Ceiling(Math.Abs(b) * a)) / a;
@@ -1174,9 +1174,9 @@ namespace ToolGood.Algorithm.Internals
 			var tick = DateTime.Now.Ticks;
 			Random rand = new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32));
 #else
-			Random rand=Random.Shared;
+            Random rand = Random.Shared;
 #endif
-			return Operand.Create(rand.NextDouble());
+            return Operand.Create(rand.NextDouble());
         }
         public virtual Operand VisitRANDBETWEEN_fun(mathParser.RANDBETWEEN_funContext context)
         {
@@ -1190,9 +1190,9 @@ namespace ToolGood.Algorithm.Internals
 			var tick = DateTime.Now.Ticks;
 			Random rand = new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32));
 #else
-			Random rand=Random.Shared;
+            Random rand = Random.Shared;
 #endif
-			return Operand.Create(rand.NextDouble() * (secondValue.NumberValue - firstValue.NumberValue) + firstValue.NumberValue);
+            return Operand.Create((decimal)rand.NextDouble() * (secondValue.NumberValue - firstValue.NumberValue) + firstValue.NumberValue);
         }
         #endregion
 
@@ -1235,20 +1235,20 @@ namespace ToolGood.Algorithm.Internals
             var firstValue = args[0];
             var secondValue = args[1];
 
-            return Operand.Create(Math.Pow(firstValue.NumberValue, secondValue.NumberValue));
+            return Operand.Create(Math.Pow((double)firstValue.NumberValue, (double)secondValue.NumberValue));
         }
         public virtual Operand VisitEXP_fun(mathParser.EXP_funContext context)
         {
             var firstValue = context.expr().Accept(this).ToNumber("Function EXP parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            return Operand.Create(Math.Exp(firstValue.NumberValue));
+            return Operand.Create(Math.Exp((double)firstValue.NumberValue));
         }
         public virtual Operand VisitLN_fun(mathParser.LN_funContext context)
         {
             var firstValue = context.expr().Accept(this).ToNumber("Function LN parameter is error!");
             if (firstValue.IsError) { return firstValue; }
-            return Operand.Create(Math.Log(firstValue.NumberValue));
+            return Operand.Create(Math.Log((double)firstValue.NumberValue));
         }
         public virtual Operand VisitLOG_fun(mathParser.LOG_funContext context)
         {
@@ -1260,22 +1260,22 @@ namespace ToolGood.Algorithm.Internals
             }
 
             if (args.Count > 1) {
-                return Operand.Create(Math.Log(args[0].NumberValue, args[1].NumberValue));
+                return Operand.Create(Math.Log((double)args[0].NumberValue, (double)args[1].NumberValue));
             }
-            return Operand.Create(Math.Log(args[0].NumberValue, 10));
+            return Operand.Create(Math.Log((double)args[0].NumberValue, 10));
         }
         public virtual Operand VisitLOG10_fun(mathParser.LOG10_funContext context)
         {
             var firstValue = context.expr().Accept(this).ToNumber("Function LOG10 parameter is error!");
             if (firstValue.IsError) { return firstValue; }
-            return Operand.Create(Math.Log(firstValue.NumberValue, 10));
+            return Operand.Create(Math.Log((double)firstValue.NumberValue, 10));
         }
         public virtual Operand VisitMULTINOMIAL_fun(mathParser.MULTINOMIAL_funContext context)
         {
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            List<double> list = new List<double>();
+            List<decimal> list = new List<decimal>();
             var o = F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function MULTINOMIAL parameter is error!"); }
 
@@ -1294,11 +1294,11 @@ namespace ToolGood.Algorithm.Internals
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            List<double> list = new List<double>();
+            List<decimal> list = new List<decimal>();
             var o = F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function PRODUCT parameter is error!"); }
 
-            double d = 1;
+            decimal d = 1;
             foreach (var a in list) {
                 d *= a;
             }
@@ -1309,18 +1309,18 @@ namespace ToolGood.Algorithm.Internals
         {
             var firstValue = context.expr().Accept(this).ToNumber("Function SQRTPI parameter is error!");
             if (firstValue.IsError) { return firstValue; }
-            return Operand.Create(Math.Sqrt(firstValue.NumberValue * Math.PI));
+            return Operand.Create(Math.Sqrt((double)firstValue.NumberValue * Math.PI));
         }
         public virtual Operand VisitSUMSQ_fun(mathParser.SUMSQ_funContext context)
         {
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            List<double> list = new List<double>();
+            List<decimal> list = new List<decimal>();
             var o = F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function SUMSQ parameter is error!"); }
 
-            double d = 0;
+            decimal d = 0;
             foreach (var a in list) {
                 d += a * a;
             }
@@ -1346,7 +1346,7 @@ namespace ToolGood.Algorithm.Internals
 
         public virtual Operand VisitASC_fun(mathParser.ASC_funContext context)
         {
-            
+
             var firstValue = context.expr().Accept(this).ToText("Function ASC parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
@@ -1684,7 +1684,7 @@ namespace ToolGood.Algorithm.Internals
             var firstValue = context.expr().Accept(this).ToText("Function VALUE parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            if (double.TryParse(firstValue.TextValue, NumberStyles.Any, cultureInfo, out double d)) {
+            if (decimal.TryParse(firstValue.TextValue, NumberStyles.Any, cultureInfo, out decimal d)) {
                 return Operand.Create(d);
             }
             return Operand.Error("Function VALUE parameter is error!");
@@ -1717,7 +1717,7 @@ namespace ToolGood.Algorithm.Internals
             }
             return sb.ToString();
         }
-        private static string F_base_ToChineseRMB(double x)
+        private static string F_base_ToChineseRMB(decimal x)
         {
             string s = x.ToString("#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A", cultureInfo);
             string d = Regex.Replace(s, @"((?<=-|^)[^1-9]*)|((?'z'0)[0A-E]*((?=[1-9])|(?'-z'(?=[F-L\.]|$))))|((?'b'[F-L])(?'z'0)[0A-L]*((?=[1-9])|(?'-z'(?=[\.]|$))))", "${b}${z}", RegexOptions.Compiled);
@@ -2108,7 +2108,7 @@ namespace ToolGood.Algorithm.Internals
             var args = new List<Operand>(); int index = 1;
             foreach (var item in context.expr()) { var aa = item.Accept(this).ToNumber($"Function MAX parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            List<double> list = new List<double>();
+            List<decimal> list = new List<decimal>();
             var o = F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function MAX parameter error!"); }
 
@@ -2119,7 +2119,7 @@ namespace ToolGood.Algorithm.Internals
             var args = new List<Operand>(); int index = 1;
             foreach (var item in context.expr()) { var aa = item.Accept(this).ToNumber($"Function MEDIAN parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            List<double> list = new List<double>();
+            List<decimal> list = new List<decimal>();
             var o = F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function MEDIAN parameter error!"); }
 
@@ -2131,7 +2131,7 @@ namespace ToolGood.Algorithm.Internals
             var args = new List<Operand>(); int index = 1;
             foreach (var item in context.expr()) { var aa = item.Accept(this).ToNumber($"Function MIN parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            List<double> list = new List<double>();
+            List<decimal> list = new List<decimal>();
             var o = F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function MIN parameter error!"); }
 
@@ -2147,7 +2147,7 @@ namespace ToolGood.Algorithm.Internals
             var secondValue = args[1].ToNumber("Function QUARTILE parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
 
-            List<double> list = new List<double>();
+            List<decimal> list = new List<decimal>();
             var o = F_base_GetList(firstValue, list);
             if (o == false) { return Operand.Error("Function QUARTILE parameter 1 error!"); }
 
@@ -2155,19 +2155,19 @@ namespace ToolGood.Algorithm.Internals
             if (quant < 0 || quant > 4) {
                 return Operand.Error("Function QUARTILE parameter 2 is error!");
             }
-            return Operand.Create(ExcelFunctions.Quartile(list.ToArray(), quant));
+            return Operand.Create(ExcelFunctions.Quartile(list.Select(q => (double)q).ToArray(), quant));
         }
         public virtual Operand VisitMODE_fun(mathParser.MODE_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in context.expr()) { var aa = item.Accept(this).ToNumber($"Function MODE parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            List<double> list = new List<double>();
+            List<decimal> list = new List<decimal>();
             var o = F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function MODE parameter error!"); }
 
 
-            Dictionary<double, int> dict = new Dictionary<double, int>();
+            Dictionary<decimal, int> dict = new Dictionary<decimal, int>();
             foreach (var item in list) {
                 if (dict.ContainsKey(item)) {
                     dict[item] += 1;
@@ -2188,7 +2188,7 @@ namespace ToolGood.Algorithm.Internals
             if (secondValue.IsError) { return secondValue; }
 
 
-            List<double> list = new List<double>();
+            List<decimal> list = new List<decimal>();
             var o = F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function LARGE parameter error!"); }
 
@@ -2207,7 +2207,7 @@ namespace ToolGood.Algorithm.Internals
             var secondValue = args[1].ToNumber("Function SMALL parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
 
-            List<double> list = new List<double>();
+            List<decimal> list = new List<decimal>();
             var o = F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function SMALL parameter error!"); }
 
@@ -2225,12 +2225,12 @@ namespace ToolGood.Algorithm.Internals
             var secondValue = args[1].ToNumber("Function PERCENTILE parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
 
-            List<double> list = new List<double>();
+            List<decimal> list = new List<decimal>();
             var o = F_base_GetList(firstValue, list);
             if (o == false) { return Operand.Error("Function PERCENTILE parameter error!"); }
 
             var k = secondValue.NumberValue;
-            return Operand.Create(ExcelFunctions.Percentile(list.ToArray(), k));
+            return Operand.Create(ExcelFunctions.Percentile(list.Select(q => (double)q).ToArray(), (double)k));
         }
         public virtual Operand VisitPERCENTRANK_fun(mathParser.PERCENTRANK_funContext context)
         {
@@ -2242,12 +2242,12 @@ namespace ToolGood.Algorithm.Internals
             var secondValue = args[1].ToNumber("Function PERCENTRANK parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
 
-            List<double> list = new List<double>();
+            List<decimal> list = new List<decimal>();
             var o = F_base_GetList(firstValue, list);
             if (o == false) { return Operand.Error("Function PERCENTRANK parameter error!"); }
 
             var k = secondValue.NumberValue;
-            var v = ExcelFunctions.PercentRank(list.ToArray(), k);
+            var v = ExcelFunctions.PercentRank(list.Select(q => (double)q).ToArray(), (double)k);
             var d = 3;
             if (args.Count == 3) {
                 var thirdValue = args[2].ToNumber("Function PERCENTRANK parameter 3 is error!");
@@ -2261,7 +2261,7 @@ namespace ToolGood.Algorithm.Internals
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            List<double> list = new List<double>();
+            List<decimal> list = new List<decimal>();
             var o = F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function AVERAGE parameter error!"); }
 
@@ -2274,26 +2274,26 @@ namespace ToolGood.Algorithm.Internals
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            List<double> list = new List<double>();
+            List<decimal> list = new List<decimal>();
             var o = F_base_GetList(args[0], list);
             if (o == false) { return Operand.Error("Function AVERAGE parameter 1 error!"); }
 
-            List<double> sumdbs;
+            List<decimal> sumdbs;
             if (args.Count == 3) {
-                sumdbs = new List<double>();
+                sumdbs = new List<decimal>();
                 var o2 = F_base_GetList(args[2], sumdbs);
                 if (o2 == false) { return Operand.Error("Function AVERAGE parameter 3 error!"); }
             } else {
                 sumdbs = list;
             }
 
-            double sum;
+            decimal sum;
             int count;
             if (args[1].Type == OperandType.NUMBER) {
                 count = MathVisitor.F_base_countif(list, args[1].NumberValue);
                 sum = count * args[1].NumberValue;
             } else {
-                if (double.TryParse(args[1].TextValue.Trim(), NumberStyles.Any, cultureInfo, out double d)) {
+                if (decimal.TryParse(args[1].TextValue.Trim(), NumberStyles.Any, cultureInfo, out decimal d)) {
                     count = MathVisitor.F_base_countif(list, d);
                     sum = MathVisitor.F_base_sumif(list, '=' + args[1].TextValue.Trim(), sumdbs);
                 } else {
@@ -2315,15 +2315,15 @@ namespace ToolGood.Algorithm.Internals
 
             if (args.Count == 1) return args[0];
 
-            List<double> list = new List<double>();
+            List<decimal> list = new List<decimal>();
             var o = F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function GEOMEAN parameter error!"); }
 
-            double sum = 1;
+            decimal sum = 1;
             foreach (var db in list) {
                 sum *= db;
             }
-            return Operand.Create(Math.Pow(sum, 1.0 / list.Count));
+            return Operand.Create(Math.Pow((double)sum, 1.0 / list.Count));
         }
         public virtual Operand VisitHARMEAN_fun(mathParser.HARMEAN_funContext context)
         {
@@ -2332,11 +2332,11 @@ namespace ToolGood.Algorithm.Internals
 
             if (args.Count == 1) return args[0];
 
-            List<double> list = new List<double>();
+            List<decimal> list = new List<decimal>();
             var o = F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function HARMEAN parameter error!"); }
 
-            double sum = 0;
+            decimal sum = 0;
             foreach (var db in list) {
                 if (db == 0) {
                     return Operand.Error("Function HARMEAN parameter error!");
@@ -2350,7 +2350,7 @@ namespace ToolGood.Algorithm.Internals
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            List<double> list = new List<double>();
+            List<decimal> list = new List<decimal>();
             var o = F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function COUNT parameter error!"); }
 
@@ -2361,7 +2361,7 @@ namespace ToolGood.Algorithm.Internals
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            List<double> list = new List<double>();
+            List<decimal> list = new List<decimal>();
             var o = F_base_GetList(args[0], list);
             if (o == false) { return Operand.Error("Function COUNTIF parameter error!"); }
 
@@ -2369,7 +2369,7 @@ namespace ToolGood.Algorithm.Internals
             if (args[1].Type == OperandType.NUMBER) {
                 count = MathVisitor.F_base_countif(list, args[1].NumberValue);
             } else {
-                if (double.TryParse(args[1].TextValue.Trim(), NumberStyles.Any, cultureInfo, out double d)) {
+                if (decimal.TryParse(args[1].TextValue.Trim(), NumberStyles.Any, cultureInfo, out decimal d)) {
                     count = MathVisitor.F_base_countif(list, d);
                 } else {
                     var sunif = args[1].TextValue.Trim();
@@ -2389,11 +2389,11 @@ namespace ToolGood.Algorithm.Internals
 
             if (args.Count == 1) return args[0];
 
-            List<double> list = new List<double>();
+            List<decimal> list = new List<decimal>();
             var o = F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function SUM parameter error!"); }
 
-            double sum = list.Sum();
+            decimal sum = list.Sum();
             return Operand.Create(sum);
         }
         public virtual Operand VisitSUMIF_fun(mathParser.SUMIF_funContext context)
@@ -2401,24 +2401,24 @@ namespace ToolGood.Algorithm.Internals
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            List<double> list = new List<double>();
+            List<decimal> list = new List<decimal>();
             var o = F_base_GetList(args[0], list);
             if (o == false) { return Operand.Error("Function SUMIF parameter 1 error!"); }
 
-            List<double> sumdbs;
+            List<decimal> sumdbs;
             if (args.Count == 3) {
-                sumdbs = new List<double>();
+                sumdbs = new List<decimal>();
                 var o2 = F_base_GetList(args[2], sumdbs);
                 if (o2 == false) { return Operand.Error("Function SUMIF parameter 3 error!"); }
             } else {
                 sumdbs = list;
             }
 
-            double sum;
+            decimal sum;
             if (args[1].Type == OperandType.NUMBER) {
                 sum = MathVisitor.F_base_countif(list, args[1].NumberValue) * args[1].NumberValue;
             } else {
-                if (double.TryParse(args[1].TextValue.Trim(), NumberStyles.Any, cultureInfo, out _)) {
+                if (decimal.TryParse(args[1].TextValue.Trim(), NumberStyles.Any, cultureInfo, out _)) {
                     sum = MathVisitor.F_base_sumif(list, '=' + args[1].TextValue.Trim(), sumdbs);
                 } else {
                     var sunif = args[1].TextValue.Trim();
@@ -2436,12 +2436,12 @@ namespace ToolGood.Algorithm.Internals
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            List<double> list = new List<double>();
+            List<decimal> list = new List<decimal>();
             var o = F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function AVEDEV parameter error!"); }
 
-            double avg = list.Average();
-            double sum = 0;
+            decimal avg = list.Average();
+            decimal sum = 0;
             for (int i = 0; i < list.Count; i++) {
                 sum += Math.Abs(list[i] - avg);
             }
@@ -2456,45 +2456,45 @@ namespace ToolGood.Algorithm.Internals
             if (args.Count == 1) {
                 return Operand.Error("Function STDEV parameter only one error!");
             }
-            List<double> list = new List<double>();
+            List<decimal> list = new List<decimal>();
             var o = F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function STDEV parameter error!"); }
 
-            double avg = list.Average();
-            double sum = 0;
+            var avg = list.Average();
+            decimal sum = 0;
             for (int i = 0; i < list.Count; i++) {
                 sum += (list[i] - avg) * (list[i] - avg);
             }
-            return Operand.Create(Math.Sqrt(sum / (list.Count - 1)));
+            return Operand.Create(Math.Sqrt((double)sum / (list.Count - 1)));
         }
         public virtual Operand VisitSTDEVP_fun(mathParser.STDEVP_funContext context)
         {
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            List<double> list = new List<double>();
+            List<decimal> list = new List<decimal>();
             var o = F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function STDEVP parameter error!"); }
 
-            double sum = 0;
-            double avg = list.Average();
+            decimal sum = 0;
+            decimal avg = list.Average();
 
             for (int i = 0; i < list.Count; i++) {
                 sum += (list[i] - avg) * (list[i] - avg);
             }
-            return Operand.Create(Math.Sqrt(sum / (list.Count)));
+            return Operand.Create(Math.Sqrt((double)sum / (list.Count)));
         }
         public virtual Operand VisitDEVSQ_fun(mathParser.DEVSQ_funContext context)
         {
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            List<double> list = new List<double>();
+            List<decimal> list = new List<decimal>();
             var o = F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function DEVSQ parameter error!"); }
 
-            double avg = list.Average();
-            double sum = 0;
+            decimal avg = list.Average();
+            decimal sum = 0;
             for (int i = 0; i < list.Count; i++) {
                 sum += (list[i] - avg) * (list[i] - avg);
             }
@@ -2508,12 +2508,12 @@ namespace ToolGood.Algorithm.Internals
             if (args.Count == 1) {
                 return Operand.Error("Function VAR parameter only one error!");
             }
-            List<double> list = new List<double>();
+            List<decimal> list = new List<decimal>();
             var o = F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function VAR parameter error!"); }
 
-            double sum = 0;
-            double sum2 = 0;
+            decimal sum = 0;
+            decimal sum2 = 0;
             for (int i = 0; i < list.Count; i++) {
                 sum += list[i] * list[i];
                 sum2 += list[i];
@@ -2525,12 +2525,12 @@ namespace ToolGood.Algorithm.Internals
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            List<double> list = new List<double>();
+            List<decimal> list = new List<decimal>();
             var o = F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function VARP parameter error!"); }
 
-            double sum = 0;
-            double avg = list.Average();
+            decimal sum = 0;
+            decimal avg = list.Average();
             for (int i = 0; i < list.Count; i++) {
                 sum += (avg - list[i]) * (avg - list[i]);
             }
@@ -2555,7 +2555,7 @@ namespace ToolGood.Algorithm.Internals
             var avg = secondValue.NumberValue;
             var STDEV = thirdValue.NumberValue;
             var b = fourthValue.BooleanValue;
-            return Operand.Create(ExcelFunctions.NormDist(num, avg, STDEV, b));
+            return Operand.Create(ExcelFunctions.NormDist((double)num, (double)avg, (double)STDEV, b));
         }
         public virtual Operand VisitNORMINV_fun(mathParser.NORMINV_funContext context)
         {
@@ -2565,7 +2565,7 @@ namespace ToolGood.Algorithm.Internals
             var num = args[0].NumberValue;
             var avg = args[1].NumberValue;
             var STDEV = args[2].NumberValue;
-            return Operand.Create(ExcelFunctions.NormInv(num, avg, STDEV));
+            return Operand.Create(ExcelFunctions.NormInv((double)num, (double)avg, (double)STDEV));
         }
         public virtual Operand VisitNORMSDIST_fun(mathParser.NORMSDIST_funContext context)
         {
@@ -2573,7 +2573,7 @@ namespace ToolGood.Algorithm.Internals
             if (firstValue.IsError) { return firstValue; }
 
             var k = firstValue.NumberValue;
-            return Operand.Create(ExcelFunctions.NormSDist(k));
+            return Operand.Create(ExcelFunctions.NormSDist((double)k));
         }
         public virtual Operand VisitNORMSINV_fun(mathParser.NORMSINV_funContext context)
         {
@@ -2581,7 +2581,7 @@ namespace ToolGood.Algorithm.Internals
             if (firstValue.IsError) { return firstValue; }
 
             var k = firstValue.NumberValue;
-            return Operand.Create(ExcelFunctions.NormSInv(k));
+            return Operand.Create(ExcelFunctions.NormSInv((double)k));
         }
         public virtual Operand VisitBETADIST_fun(mathParser.BETADIST_funContext context)
         {
@@ -2592,11 +2592,11 @@ namespace ToolGood.Algorithm.Internals
             var alpha = args[1].NumberValue;
             var beta = args[2].NumberValue;
 
-            if (alpha < 0.0 || beta < 0.0) {
+            if (alpha < 0.0m || beta < 0.0m) {
                 return Operand.Error("Function BETADIST parameter error!");
             }
 
-            return Operand.Create(ExcelFunctions.BetaDist(x, alpha, beta));
+            return Operand.Create(ExcelFunctions.BetaDist((double)x, (double)alpha, (double)beta));
         }
         public virtual Operand VisitBETAINV_fun(mathParser.BETAINV_funContext context)
         {
@@ -2606,10 +2606,10 @@ namespace ToolGood.Algorithm.Internals
             var probability = args[0].NumberValue;
             var alpha = args[1].NumberValue;
             var beta = args[2].NumberValue;
-            if (alpha < 0.0 || beta < 0.0 || probability < 0.0 || probability > 1.0) {
+            if (alpha < 0.0m || beta < 0.0m || probability < 0.0m || probability > 1.0m) {
                 return Operand.Error("Function BETAINV parameter error!");
             }
-            return Operand.Create(ExcelFunctions.BetaInv(probability, alpha, beta));
+            return Operand.Create(ExcelFunctions.BetaInv((double)probability, (double)alpha, (double)beta));
         }
         public virtual Operand VisitBINOMDIST_fun(mathParser.BINOMDIST_funContext context)
         {
@@ -2626,10 +2626,10 @@ namespace ToolGood.Algorithm.Internals
             var fourthValue = args[3].ToBoolean("Function BINOMDIST parameter 4 error!");
             if (fourthValue.IsError) return fourthValue;
 
-            if (!(thirdValue.NumberValue >= 0.0 && thirdValue.NumberValue <= 1.0 && secondValue.NumberValue >= 0)) {
+            if (!(thirdValue.NumberValue >= 0.0m && thirdValue.NumberValue <= 1.0m && secondValue.NumberValue >= 0)) {
                 return Operand.Error("Function BINOMDIST parameter error!");
             }
-            return Operand.Create(ExcelFunctions.BinomDist(firstValue.IntValue, secondValue.IntValue, thirdValue.NumberValue, fourthValue.BooleanValue));
+            return Operand.Create(ExcelFunctions.BinomDist(firstValue.IntValue, secondValue.IntValue, (double)thirdValue.NumberValue, fourthValue.BooleanValue));
         }
         public virtual Operand VisitEXPONDIST_fun(mathParser.EXPONDIST_funContext context)
         {
@@ -2643,11 +2643,11 @@ namespace ToolGood.Algorithm.Internals
             var thirdValue = args[2].ToBoolean("Function EXPONDIST parameter 3 error!");
             if (thirdValue.IsError) return thirdValue;
 
-            if (firstValue.NumberValue < 0.0) {
+            if (firstValue.NumberValue < 0.0m) {
                 return Operand.Error("Function EXPONDIST parameter error!");
             }
 
-            return Operand.Create(ExcelFunctions.ExponDist(firstValue.NumberValue, secondValue.NumberValue, thirdValue.BooleanValue));
+            return Operand.Create(ExcelFunctions.ExponDist((double)firstValue.NumberValue, (double)secondValue.NumberValue, thirdValue.BooleanValue));
         }
         public virtual Operand VisitFDIST_fun(mathParser.FDIST_funContext context)
         {
@@ -2657,10 +2657,10 @@ namespace ToolGood.Algorithm.Internals
             var x = args[0].NumberValue;
             var degreesFreedom = args[1].IntValue;
             var degreesFreedom2 = args[2].IntValue;
-            if (degreesFreedom <= 0.0 || degreesFreedom2 <= 0.0) {
+            if (degreesFreedom <= 0.0m || degreesFreedom2 <= 0.0m) {
                 return Operand.Error("Function FDIST parameter error!");
             }
-            return Operand.Create(ExcelFunctions.FDist(x, degreesFreedom, degreesFreedom2));
+            return Operand.Create(ExcelFunctions.FDist((double)x, degreesFreedom, degreesFreedom2));
         }
         public virtual Operand VisitFINV_fun(mathParser.FINV_funContext context)
         {
@@ -2670,10 +2670,10 @@ namespace ToolGood.Algorithm.Internals
             var probability = args[0].NumberValue;
             var degreesFreedom = args[1].IntValue;
             var degreesFreedom2 = args[2].IntValue;
-            if (degreesFreedom <= 0.0 || degreesFreedom2 <= 0.0) {
+            if (degreesFreedom <= 0.0m || degreesFreedom2 <= 0.0m) {
                 return Operand.Error("Function FINV parameter error!");
             }
-            return Operand.Create(ExcelFunctions.FInv(probability, degreesFreedom, degreesFreedom2));
+            return Operand.Create(ExcelFunctions.FInv((double)probability, degreesFreedom, degreesFreedom2));
         }
         public virtual Operand VisitFISHER_fun(mathParser.FISHER_funContext context)
         {
@@ -2684,7 +2684,7 @@ namespace ToolGood.Algorithm.Internals
             if (x >= 1 || x <= -1) {
                 return Operand.Error("Function FISHER parameter error!");
             }
-            var n = 0.5 * Math.Log((1 + x) / (1 - x));
+            var n = 0.5 * Math.Log((double)(1 + x) / (double)(1 - x));
             return Operand.Create(n);
         }
         public virtual Operand VisitFISHERINV_fun(mathParser.FISHERINV_funContext context)
@@ -2693,7 +2693,7 @@ namespace ToolGood.Algorithm.Internals
             if (firstValue.IsError) { return firstValue; }
 
             var x = firstValue.NumberValue;
-            var n = (Math.Exp(2 * x) - 1) / (Math.Exp(2 * x) + 1);
+            var n = (Math.Exp((double)(2 * x)) - 1) / (Math.Exp((double)(2 * x)) + 1);
             return Operand.Create(n);
         }
         public virtual Operand VisitGAMMADIST_fun(mathParser.GAMMADIST_funContext context)
@@ -2716,10 +2716,10 @@ namespace ToolGood.Algorithm.Internals
             var alpha = secondValue.NumberValue;
             var beta = thirdValue.NumberValue;
             var cumulative = fourthValue.BooleanValue;
-            if (alpha < 0.0 || beta < 0.0) {
+            if (alpha < 0.0m || beta < 0.0m) {
                 return Operand.Error("Function GAMMADIST parameter error!");
             }
-            return Operand.Create(ExcelFunctions.GammaDist(x, alpha, beta, cumulative));
+            return Operand.Create(ExcelFunctions.GammaDist((double)x, (double)alpha, (double)beta, cumulative));
         }
         public virtual Operand VisitGAMMAINV_fun(mathParser.GAMMAINV_funContext context)
         {
@@ -2729,17 +2729,17 @@ namespace ToolGood.Algorithm.Internals
             var probability = args[0].NumberValue;
             var alpha = args[1].NumberValue;
             var beta = args[2].NumberValue;
-            if (alpha < 0.0 || beta < 0.0 || probability < 0 || probability > 1.0) {
+            if (alpha < 0.0m || beta < 0.0m || probability < 0 || probability > 1.0m) {
                 return Operand.Error("Function GAMMAINV parameter error!");
             }
-            return Operand.Create(ExcelFunctions.GammaInv(probability, alpha, beta));
+            return Operand.Create(ExcelFunctions.GammaInv((double)probability, (double)alpha, (double)beta));
         }
         public virtual Operand VisitGAMMALN_fun(mathParser.GAMMALN_funContext context)
         {
             var firstValue = context.expr().Accept(this).ToNumber("Function GAMMALN parameter error!");
             if (firstValue.IsError) { return firstValue; }
 
-            return Operand.Create(ExcelFunctions.GAMMALN(firstValue.NumberValue));
+            return Operand.Create(ExcelFunctions.GAMMALN((double)firstValue.NumberValue));
         }
         public virtual Operand VisitHYPGEOMDIST_fun(mathParser.HYPGEOMDIST_funContext context)
         {
@@ -2760,20 +2760,20 @@ namespace ToolGood.Algorithm.Internals
             var args = new List<Operand>(); int index = 1;
             foreach (var item in context.expr()) { var aa = item.Accept(this).ToNumber($"Function LOGINV parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            if (args[2].NumberValue < 0.0) {
+            if (args[2].NumberValue < 0.0m) {
                 return Operand.Error("Function LOGINV parameter error!");
             }
-            return Operand.Create(ExcelFunctions.LogInv(args[0].NumberValue, args[1].NumberValue, args[2].NumberValue));
+            return Operand.Create(ExcelFunctions.LogInv((double)args[0].NumberValue, (double)args[1].NumberValue, (double)args[2].NumberValue));
         }
         public virtual Operand VisitLOGNORMDIST_fun(mathParser.LOGNORMDIST_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in context.expr()) { var aa = item.Accept(this).ToNumber($"Function LOGNORMDIST parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            if (args[2].NumberValue < 0.0) {
+            if (args[2].NumberValue < 0.0m) {
                 return Operand.Error("Function LOGNORMDIST parameter error!");
             }
-            return Operand.Create(ExcelFunctions.LognormDist(args[0].NumberValue, args[1].NumberValue, args[2].NumberValue));
+            return Operand.Create(ExcelFunctions.LognormDist((double)args[0].NumberValue, (double)args[1].NumberValue, (double)args[2].NumberValue));
         }
         public virtual Operand VisitNEGBINOMDIST_fun(mathParser.NEGBINOMDIST_funContext context)
         {
@@ -2781,13 +2781,13 @@ namespace ToolGood.Algorithm.Internals
             foreach (var item in context.expr()) { var aa = item.Accept(this).ToNumber($"Function NEGBINOMDIST parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
 
             int k = args[0].IntValue;
-            double r = args[1].NumberValue;
-            double p = args[2].NumberValue;
+            var r = args[1].NumberValue;
+            var p = args[2].NumberValue;
 
-            if (!(r >= 0.0 && p >= 0.0 && p <= 1.0)) {
+            if (!(r >= 0.0m && p >= 0.0m && p <= 1.0m)) {
                 return Operand.Error("Function NEGBINOMDIST parameter error!");
             }
-            return Operand.Create(ExcelFunctions.NegbinomDist(k, r, p));
+            return Operand.Create(ExcelFunctions.NegbinomDist(k, (double)r, (double)p));
         }
         public virtual Operand VisitPOISSON_fun(mathParser.POISSON_funContext context)
         {
@@ -2802,12 +2802,12 @@ namespace ToolGood.Algorithm.Internals
             if (thirdValue.IsError) return thirdValue;
 
             int k = firstValue.IntValue;
-            double lambda = secondValue.NumberValue;
+            var lambda = secondValue.NumberValue;
             bool state = thirdValue.BooleanValue;
-            if (!(lambda > 0.0)) {
+            if (!(lambda > 0.0m)) {
                 return Operand.Error("Function POISSON parameter error!");
             }
-            return Operand.Create(ExcelFunctions.POISSON(k, lambda, state));
+            return Operand.Create(ExcelFunctions.POISSON(k, (double)lambda, state));
         }
         public virtual Operand VisitTDIST_fun(mathParser.TDIST_funContext context)
         {
@@ -2817,10 +2817,10 @@ namespace ToolGood.Algorithm.Internals
             var x = args[0].NumberValue;
             var degreesFreedom = args[1].IntValue;
             var tails = args[2].IntValue;
-            if (degreesFreedom <= 0.0 || tails < 1 || tails > 2) {
+            if (degreesFreedom <= 0.0m || tails < 1 || tails > 2) {
                 return Operand.Error("Function TDIST parameter error!");
             }
-            return Operand.Create(ExcelFunctions.TDist(x, degreesFreedom, tails));
+            return Operand.Create(ExcelFunctions.TDist((double)x, degreesFreedom, tails));
         }
         public virtual Operand VisitTINV_fun(mathParser.TINV_funContext context)
         {
@@ -2829,10 +2829,10 @@ namespace ToolGood.Algorithm.Internals
 
             var probability = args[0].NumberValue;
             var degreesFreedom = args[1].IntValue;
-            if (degreesFreedom <= 0.0) {
+            if (degreesFreedom <= 0.0m) {
                 return Operand.Error("Function TINV parameter error!");
             }
-            return Operand.Create(ExcelFunctions.TInv(probability, degreesFreedom));
+            return Operand.Create(ExcelFunctions.TInv((double)probability, degreesFreedom));
         }
         public virtual Operand VisitWEIBULL_fun(mathParser.WEIBULL_funContext context)
         {
@@ -2853,14 +2853,14 @@ namespace ToolGood.Algorithm.Internals
             var shape = secondValue.NumberValue;
             var scale = thirdValue.NumberValue;
             var state = fourthValue.BooleanValue;
-            if (shape <= 0.0 || scale <= 0.0) {
+            if (shape <= 0.0m || scale <= 0.0m) {
                 return Operand.Error("Function WEIBULL parameter error!");
             }
 
-            return Operand.Create(ExcelFunctions.WEIBULL(x, shape, scale, state));
+            return Operand.Create(ExcelFunctions.WEIBULL((double)x, (double)shape, (double)scale, state));
         }
 
-        private static int F_base_countif(List<double> dbs, double d)
+        private static int F_base_countif(List<decimal> dbs, decimal d)
         {
             int count = 0;
             d = Math.Round(d, 12, MidpointRounding.AwayFromZero);
@@ -2871,10 +2871,10 @@ namespace ToolGood.Algorithm.Internals
             }
             return count;
         }
-        private static int F_base_countif(List<double> dbs, string s)
+        private static int F_base_countif(List<decimal> dbs, string s)
         {
             var m = sumifRegex.Match(s);
-            var d = double.Parse(m.Groups[2].Value, NumberStyles.Any, cultureInfo);
+            var d = decimal.Parse(m.Groups[2].Value, NumberStyles.Any, cultureInfo);
             int count = 0;
 
             foreach (var item in dbs) {
@@ -2885,12 +2885,12 @@ namespace ToolGood.Algorithm.Internals
             return count;
         }
 
-        private static double F_base_sumif(List<double> dbs, string s, List<double> sumdbs)
+        private static decimal F_base_sumif(List<decimal> dbs, string s, List<decimal> sumdbs)
         {
             var m = sumifRegex.Match(s);
-            var d = double.Parse(m.Groups[2].Value, NumberStyles.Any, cultureInfo);
+            var d = decimal.Parse(m.Groups[2].Value, NumberStyles.Any, cultureInfo);
             //var ss = m.Groups[1].Value;
-            double sum = 0;
+            decimal sum = 0;
 
             for (int i = 0; i < dbs.Count; i++) {
                 if (MathVisitor.F_base_compare(dbs[i], d, s)) {
@@ -2899,7 +2899,7 @@ namespace ToolGood.Algorithm.Internals
             }
             return sum;
         }
-        private static bool F_base_compare(double a, double b, string ss)
+        private static bool F_base_compare(decimal a, decimal b, string ss)
         {
             if (CharUtil.Equals(ss, '<')) {
                 return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) < 0;
@@ -2915,7 +2915,7 @@ namespace ToolGood.Algorithm.Internals
             return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) != 0;
         }
 
-        private bool F_base_GetList(List<Operand> args, List<double> list)
+        private bool F_base_GetList(List<Operand> args, List<decimal> list)
         {
             foreach (var item in args) {
                 if (item.Type == OperandType.NUMBER) {
@@ -2936,7 +2936,7 @@ namespace ToolGood.Algorithm.Internals
             }
             return true;
         }
-        private bool F_base_GetList(Operand args, List<double> list)
+        private bool F_base_GetList(Operand args, List<decimal> list)
         {
             if (args.IsError) { return false; }
             if (args.Type == OperandType.NUMBER) {
@@ -3676,7 +3676,7 @@ namespace ToolGood.Algorithm.Internals
         {
             var sub = context.SUB()?.GetText() ?? "";
             var t = context.NUM().GetText();
-            var d = double.Parse(sub + t, NumberStyles.Any, cultureInfo);
+            var d = decimal.Parse(sub + t, NumberStyles.Any, cultureInfo);
             return Operand.Create(d);
         }
         public virtual Operand VisitSTRING_fun(mathParser.STRING_funContext context)
@@ -3741,8 +3741,8 @@ namespace ToolGood.Algorithm.Internals
 
         public virtual Operand VisitGetJsonValue_fun(mathParser.GetJsonValue_funContext context)
         {
-			var exprs = context.expr();
-			var firstValue = exprs[0].Accept(this);
+            var exprs = context.expr();
+            var firstValue = exprs[0].Accept(this);
             if (firstValue.IsError) { return firstValue; }
 
             var obj = firstValue;

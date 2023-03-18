@@ -11,7 +11,7 @@ namespace ToolGood.Algorithm.LitJson
         bool IsNull { get; }
 
         void SetBoolean(bool val);
-        void SetDouble(double val);
+        void SetDouble(decimal val);
         void SetJsonType(JsonType type);
         void SetString(string val);
         void SetNull();

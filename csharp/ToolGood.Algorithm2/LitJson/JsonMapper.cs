@@ -19,7 +19,7 @@ namespace ToolGood.Algorithm.LitJson
             }
 
             if (reader.Token == JsonToken.Double) {
-                instance.SetDouble((double)reader.Value);
+                instance.SetDouble((decimal)reader.Value);
                 return instance;
             }
 

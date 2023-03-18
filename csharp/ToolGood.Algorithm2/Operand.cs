@@ -52,7 +52,7 @@ namespace ToolGood.Algorithm
 		/// <summary>
 		/// 数字值
 		/// </summary>
-		public virtual double NumberValue => throw new NotImplementedException();
+		public virtual decimal NumberValue => throw new NotImplementedException();
 		/// <summary>
 		/// int值
 		/// </summary>
@@ -118,7 +118,7 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(long obj)
 		{
-			return new OperandNumber((double)obj);
+			return new OperandNumber((decimal)obj);
 		}
 		/// <summary>
 		/// 创建操作数
@@ -127,7 +127,7 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(ushort obj)
 		{
-			return new OperandNumber((double)obj);
+			return new OperandNumber((decimal)obj);
 		}
 		/// <summary>
 		/// 创建操作数
@@ -136,7 +136,7 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(uint obj)
 		{
-			return new OperandNumber((double)obj);
+			return new OperandNumber((decimal)obj);
 		}
 		/// <summary>
 		/// 创建操作数
@@ -145,7 +145,7 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(ulong obj)
 		{
-			return new OperandNumber((double)obj);
+			return new OperandNumber((decimal)obj);
 		}
 		/// <summary>
 		/// 创建操作数
@@ -154,7 +154,7 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(float obj)
 		{
-			return new OperandNumber((double)obj);
+			return new OperandNumber((decimal)obj);
 		}
 		/// <summary>
 		/// 创建操作数
@@ -163,7 +163,7 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(double obj)
 		{
-			return new OperandNumber(obj);
+			return new OperandNumber((decimal)obj);
 		}
 		/// <summary>
 		/// 创建操作数
@@ -172,7 +172,7 @@ namespace ToolGood.Algorithm
 		/// <returns></returns>
 		public static Operand Create(decimal obj)
 		{
-			return new OperandNumber((double)obj);
+			return new OperandNumber((decimal)obj);
 		}
 		#endregion
 
@@ -511,12 +511,12 @@ namespace ToolGood.Algorithm
 		}
 	}
 
-	sealed class OperandNumber : Operand<double>
+	sealed class OperandNumber : Operand<decimal>
 	{
-		public OperandNumber(double obj) : base(obj) { }
+		public OperandNumber(decimal obj) : base(obj) { }
 		public override OperandType Type => OperandType.NUMBER;
 		public override int IntValue => (int)_value;
-		public override double NumberValue => _value;
+		public override decimal NumberValue => _value;
 		public override long LongValue => (long)_value;
 
 		public override Operand ToNumber(string errorMessage = null) { return this; }
@@ -563,7 +563,7 @@ namespace ToolGood.Algorithm
 
 		public override Operand ToNumber(string errorMessage = null)
 		{
-			if (double.TryParse(TextValue, out double d)) {
+			if (decimal.TryParse(TextValue, out decimal d)) {
 				return Operand.Create(d);
 			}
 			if (errorMessage == null) {
@@ -624,11 +624,11 @@ namespace ToolGood.Algorithm
 		public override MyDate DateValue => _value;
 		public override Operand ToNumber(string errorMessage = null)
 		{
-			return Create((double)DateValue);
+			return Create((decimal)DateValue);
 		}
 		public override Operand ToBoolean(string errorMessage = null)
 		{
-			return ((double)DateValue) != 0 ? True : False;
+			return ((decimal)DateValue) != 0 ? True : False;
 		}
 		public override Operand ToText(string errorMessage = null)
 		{

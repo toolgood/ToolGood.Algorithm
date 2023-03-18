@@ -558,7 +558,7 @@ namespace ToolGood.Algorithm
                         LastError = obj.ErrorMsg;
                         return def;
                     }
-                    return obj.NumberValue;
+                    return (double)obj.NumberValue;
                 }
             } catch (Exception ex) {
                 LastError = ex.Message + "\r\n" + ex.StackTrace;

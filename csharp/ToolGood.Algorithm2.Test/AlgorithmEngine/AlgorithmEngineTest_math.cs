@@ -129,7 +129,7 @@ namespace ToolGood.Algorithm
         {
             AlgorithmEngine engine = new AlgorithmEngine();
             var t = engine.TryEvaluate("RADIANS(180)", 0.0);
-            Assert.AreEqual(Math.PI, t);
+            Assert.AreEqual(Math.PI, t,10);
         }
         [Test]
         public void cos_test()

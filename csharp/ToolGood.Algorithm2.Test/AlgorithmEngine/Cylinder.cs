@@ -39,7 +39,7 @@ namespace ToolGood.Algorithm
             {
                 if (operands.Count == 1)
                 {
-                    var r = operands[0].ToNumber().NumberValue;
+                    var r = (double)operands[0].ToNumber().NumberValue;
                     return r * r * Math.PI;
                 }
             }
