@@ -1,6 +1,7 @@
 package toolgood.algorithm.litJson;
 
 import java.io.StringReader;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
@@ -130,11 +131,18 @@ public class JsonReader {
 
     private void ProcessNumber(String number)
     {
-        Double n_double=Double.valueOf(number);
-        if (n_double.isNaN()==false) {
-            token_value = n_double.doubleValue();
+        try {
+            BigDecimal n_double=new BigDecimal(number);
+            token_value = n_double;
             return;
+        }catch (Exception e){
+
         }
+//        Double n_double=Double.valueOf(number);
+//        if (n_double.isNaN()==false) {
+//            token_value = n_double.doubleValue();
+//            return;
+//        }
         // if (number.indexOf('.') != -1 || number.indexOf('e') != -1 || number.indexOf('E') != -1) {
         //     Double n_double=Double.valueOf(number);
         //     if (n_double.isNaN()==false) {
@@ -152,7 +160,7 @@ public class JsonReader {
         // }
 
         // Shouldn't happen, but just in case, return something
-        token_value = 0;
+        token_value =new BigDecimal(0);
     }
 
     private void ProcessSymbol() {

@@ -1,15 +1,14 @@
 package toolgood.algorithm;
 
+import org.joda.time.DateTime;
+import toolgood.algorithm.litJson.JsonData;
+import toolgood.algorithm.litJson.JsonMapper;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
-
-import org.joda.time.DateTime;
-
-import toolgood.algorithm.litJson.JsonMapper;
-import toolgood.algorithm.litJson.JsonData;
 
 public abstract class Operand {
     public final static Operand True = new OperandBoolean(true);
@@ -33,8 +32,12 @@ public abstract class Operand {
         return OperandType.ERROR;
     }
 
-    public double NumberValue() {
-        return 0.0;
+    public BigDecimal NumberValue() {
+        return null;
+    }
+
+    public double DoubleValue() {
+        return 0;
     }
 
     public int IntValue() {
@@ -45,9 +48,6 @@ public abstract class Operand {
         return 0;
     }
 
-    public Object Value() {
-        return null;
-    }
 
     public String TextValue() {
         return null;
@@ -74,27 +74,27 @@ public abstract class Operand {
     }
 
     public static Operand Create(final short obj) {
-        return new OperandLongNumber((long) obj);
+        return new OperandNumber(new BigDecimal(obj) );
     }
 
     public static Operand Create(final int obj) {
-        return new OperandLongNumber((long) obj);
+        return new OperandNumber(new BigDecimal(obj) );
     }
 
     public static Operand Create(final long obj) {
-        return new OperandLongNumber(obj);
+        return new OperandNumber(new BigDecimal(obj) );
     }
 
     public static Operand Create(final float obj) {
-        return new OperandDoubleNumber((double) obj);
+        return new OperandNumber(new BigDecimal(obj) );
     }
 
     public static Operand Create(final double obj) {
-        return new OperandDoubleNumber(obj);
+        return new OperandNumber(new BigDecimal(obj) );
     }
 
     public static Operand Create(final BigDecimal obj) {
-        return new OperandDoubleNumber(obj.doubleValue());
+        return new OperandNumber(obj);
     }
 
     public static Operand Create(final String obj) {
@@ -144,7 +144,7 @@ public abstract class Operand {
     }
 
     public Operand ToNumber(final String errorMessage) {
-        if (Type().isNumber()) {
+        if (Type() == OperandType.NUMBER) {
             return this;
         }
         if (IsError()) {
@@ -158,7 +158,7 @@ public abstract class Operand {
         }
         if (Type() == OperandType.TEXT) {
             try {
-                Double d = Double.parseDouble(TextValue());
+                BigDecimal d = new BigDecimal(TextValue());
                 return Create(d);
             } catch (Exception e) {
             }
@@ -173,8 +173,8 @@ public abstract class Operand {
         if (IsError()) {
             return this;
         }
-        if (Type().isNumber()) {
-            return (NumberValue() != 0) ? True : False;
+        if (Type() == OperandType.NUMBER) {
+            return (NumberValue().compareTo(new BigDecimal(0)) != 0) ? True : False;
         }
         if (Type() == OperandType.DATE) {
             return (((double) DateValue().ToNumber()) != 0) ? True : False;
@@ -203,8 +203,8 @@ public abstract class Operand {
         if (IsError()) {
             return this;
         }
-        if (Type().isNumber()) {
-            String str = ((Double) NumberValue()).toString();
+        if (Type() == OperandType.NUMBER) {
+            String str = ((Double)NumberValue().doubleValue()).toString();
             if (str.contains(".")) {
                 str = Pattern.compile("(\\.)?0+$").matcher(str).replaceAll("");
             }
@@ -227,7 +227,7 @@ public abstract class Operand {
         if (IsError()) {
             return this;
         }
-        if (Type().isNumber()) {
+        if (Type() == OperandType.NUMBER) {
             return Create(new MyDate(NumberValue()));
         }
         if (Type() == OperandType.TEXT) {
@@ -296,11 +296,6 @@ public abstract class Operand {
 
         public OperandT(final T obj) {
             Value = obj;
-        }
-
-        @Override
-        public Object Value() {
-            return Value;
         }
     }
 
@@ -406,25 +401,15 @@ public abstract class Operand {
 
     }
 
-    static class OperandDoubleNumber extends OperandT<Double> {
+    static class OperandNumber extends OperandT<BigDecimal> {
 
-        public OperandDoubleNumber(Double obj) {
+        public OperandNumber(BigDecimal obj) {
             super(obj);
         }
 
         @Override
         public OperandType Type() {
-            return OperandType.DOUBLE_NUMBER;
-        }
-
-        @Override
-        public double NumberValue() {
-            return Value;
-        }
-
-        @Override
-        public Object Value() {
-            return Value;
+            return OperandType.NUMBER;
         }
 
         @Override
@@ -433,40 +418,18 @@ public abstract class Operand {
         }
 
         @Override
-        public long LongValue() {
-            return Value.longValue();
-        }
-    }
-
-    static class OperandLongNumber extends OperandT<Long> {
-
-        public OperandLongNumber(Long obj) {
-            super(obj);
-        }
-
-        @Override
-        public OperandType Type() {
-            return OperandType.LONG_NUMBER;
-        }
-
-        @Override
-        public Object Value() {
-            return Value.longValue();
-        }
-
-        @Override
-        public double NumberValue() {
+        public BigDecimal NumberValue() {
             return Value;
         }
 
         @Override
-        public int IntValue() {
-            return Value.intValue();
+        public double DoubleValue() {
+            return Value.doubleValue();
         }
 
         @Override
-        public long LongValue() {
-            return Value;
+        public long LongValue(){
+            return Value.longValue();
         }
     }
 

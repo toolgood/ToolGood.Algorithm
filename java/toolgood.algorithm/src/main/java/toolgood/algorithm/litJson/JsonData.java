@@ -1,5 +1,6 @@
 package toolgood.algorithm.litJson;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -10,7 +11,7 @@ public class JsonData implements IJsonWrapper {
 
     public ArrayList<JsonData> inst_array;
     private boolean inst_boolean;
-    private double inst_double;
+    private BigDecimal inst_double;
     public Map<String, JsonData> inst_object;
     private String inst_string;
     private JsonType type;
@@ -67,7 +68,7 @@ public class JsonData implements IJsonWrapper {
         inst_boolean = val;
     }
 
-    public void SetDouble(final double val) {
+    public void SetDouble(final BigDecimal val) {
         type = JsonType.Double;
         inst_double = val;
     }
@@ -138,7 +139,7 @@ public class JsonData implements IJsonWrapper {
                 break;
 
             case Double:
-                inst_double = 0;
+                inst_double = new BigDecimal(0);
                 break;
 
             case Boolean:
@@ -155,7 +156,7 @@ public class JsonData implements IJsonWrapper {
         return inst_boolean;
     }
 
-    public double NumberValue() {
+    public BigDecimal NumberValue() {
         return inst_double;
     }
 

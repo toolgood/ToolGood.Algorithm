@@ -6,7 +6,7 @@
 
   <groupId>io.github.toolgood</groupId>
   <artifactId>toolgood-algorithm</artifactId>
-  <version>3.1.0.0</version>
+  <version>3.3.0.0</version>
   <packaging>jar</packaging>
 
   <name>toolgood.algorithm</name>

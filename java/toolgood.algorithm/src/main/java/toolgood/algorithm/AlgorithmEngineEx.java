@@ -348,7 +348,7 @@ public class AlgorithmEngineEx {
                 LastError = obj.ErrorMsg();
                 return defvalue;
             }
-            return obj.NumberValue();
+            return obj.NumberValue().doubleValue();
         } catch (final Exception ex) {
             LastError = ex.getMessage();
         }
@@ -362,7 +362,7 @@ public class AlgorithmEngineEx {
                 LastError = obj.ErrorMsg();
                 return defvalue;
             }
-            return obj.LongValue();
+            return obj.NumberValue().longValue();
         } catch (final Exception ex) {
             LastError = ex.getMessage();
         }
@@ -455,7 +455,7 @@ public class AlgorithmEngineEx {
                 LastError = obj.ErrorMsg();
                 return defvalue;
             }
-            return obj.NumberValue();
+            return obj.NumberValue().doubleValue();
         } catch (final Exception ex) {
             LastError = ex.getMessage();
         }
@@ -469,7 +469,7 @@ public class AlgorithmEngineEx {
                 LastError = obj.ErrorMsg();
                 return defvalue;
             }
-            return obj.LongValue();
+            return obj.NumberValue().longValue();
         } catch (final Exception ex) {
             LastError = ex.getMessage();
         }

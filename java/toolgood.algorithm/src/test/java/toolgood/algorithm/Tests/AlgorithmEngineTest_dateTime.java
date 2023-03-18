@@ -8,9 +8,6 @@ import org.junit.Test;
 
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.MyDate;
-import toolgood.algorithm.Operand;
-import toolgood.algorithm.OperandType;
-
 
 public class AlgorithmEngineTest_dateTime {
  
@@ -212,15 +209,6 @@ public class AlgorithmEngineTest_dateTime {
         assertEquals(dt, 1);
         dt = engine.TryEvaluate("WEEKNUM(\"2016-1-2\",2)", 0);
         assertEquals(dt, 1);
-    }
-
-    @Test
-    public void Year_test_withType() throws Exception {
-        AlgorithmEngine engine = new AlgorithmEngine();
-        engine.Parse("year(now())");
-        Operand operand = engine.Evaluate();
-        assertEquals(OperandType.LONG_NUMBER, operand.Type());
-        assertEquals(Long.valueOf(DateTime.now().getYear()), operand.Value());
     }
 
 }

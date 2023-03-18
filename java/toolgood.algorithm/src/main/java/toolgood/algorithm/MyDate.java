@@ -1,5 +1,6 @@
 package toolgood.algorithm;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
@@ -10,6 +11,20 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 
 public class MyDate {
+    public Integer Year;
+    public Integer Month;
+    public Integer Day;
+    public int Hour;
+    public int Minute;
+    public int Second;
+
+    // public MyDate(TimeSpan dt) {
+    // Day = dt.Days;
+    // Hour = dt.Hours;
+    // Minute = dt.Minutes;
+    // Second = dt.Seconds;
+    // }
+
     private MyDate() {
     }
 
@@ -39,6 +54,40 @@ public class MyDate {
         Hour = dTime.getHourOfDay();
         Minute = dTime.getMinuteOfHour();
         Second = dTime.getSecondOfMinute();
+    }
+
+    public MyDate(BigDecimal num) {
+        int days = num.intValue();
+        if (days > 365) {
+            LocalDate start = LocalDate.of(1900, 1, 1);
+            start = start.plusDays(days - 2);
+            Year = start.getYear();
+            Month = start.getMonthValue();
+            Day = start.getDayOfMonth();
+        } else {
+            Day = days;
+        }
+        BigDecimal d = num.subtract(new BigDecimal(days));
+        Hour = d.multiply(new BigDecimal(24)).intValue();
+        Minute = d.multiply(new BigDecimal(24)).subtract(new BigDecimal(Hour)).multiply(new BigDecimal(60)).intValue();
+        Second= d.multiply(new BigDecimal(24)).subtract(new BigDecimal(Hour)).multiply(new BigDecimal(60)).subtract(new BigDecimal(Minute)).multiply(new BigDecimal(60)).intValue();
+    }
+
+    public MyDate(double num) {
+        int days = (int) num;
+        if (days > 365) {
+            LocalDate start = LocalDate.of(1900, 1, 1);
+            start = start.plusDays(days - 2);
+            Year = start.getYear();
+            Month = start.getMonthValue();
+            Day = start.getDayOfMonth();
+        } else {
+            Day = days;
+        }
+        double d = num - days;
+        Hour = (int) (d * 24);
+        Minute = (int) ((d * 24 - Hour) * 60.0);
+        Second = (int) (((d * 24 - Hour) * 60.0 - Minute) * 60.0);
     }
 
     public static MyDate parse(String txt) {
@@ -104,37 +153,6 @@ public class MyDate {
     public static MyDate now() {
         return new MyDate(DateTime.now());
     }
-
-    // public MyDate(TimeSpan dt) {
-    // Day = dt.Days;
-    // Hour = dt.Hours;
-    // Minute = dt.Minutes;
-    // Second = dt.Seconds;
-    // }
-
-    public MyDate(double num) {
-        int days = (int) num;
-        if (days > 365) {
-            LocalDate start = LocalDate.of(1900, 1, 1);
-            start = start.plusDays(days - 2);
-            Year = start.getYear();
-            Month = start.getMonthValue();
-            Day = start.getDayOfMonth();
-        } else {
-            Day = days;
-        }
-        double d = num - days;
-        Hour = (int) (d * 24);
-        Minute = (int) ((d * 24 - Hour) * 60.0);
-        Second = (int) (((d * 24 - Hour) * 60.0 - Minute) * 60.0);
-    }
-
-    public Integer Year;
-    public Integer Month;
-    public Integer Day;
-    public int Hour;
-    public int Minute;
-    public int Second;
 
     @Override
     public String toString() {
@@ -328,5 +346,24 @@ public class MyDate {
     public MyDate DIV(Double num) {
         return new MyDate(this.ToNumber() / num);
     }
+
+
+    public MyDate ADD(BigDecimal num) {
+        return new MyDate(this.ToNumber() + num.doubleValue());
+    }
+
+
+    public MyDate SUB(BigDecimal num) {
+        return new MyDate(this.ToNumber() - num.doubleValue());
+    }
+
+    public MyDate MUL(BigDecimal num) {
+        return new MyDate(this.ToNumber() * num.doubleValue());
+    }
+
+    public MyDate DIV(BigDecimal num) {
+        return new MyDate(this.ToNumber() / num.doubleValue());
+    }
+
 
 }

@@ -260,14 +260,13 @@ public class AlgorithmEngine {
                     LastError = obj.ErrorMsg();
                     return defvalue;
                 }
-                return obj.NumberValue();
+                return obj.NumberValue().doubleValue();
             }
         } catch (final Exception ex) {
             LastError = ex.getMessage();
         }
         return defvalue;
     }
-
     public long TryEvaluate(final String exp, final long defvalue) {
         try {
             if (Parse(exp)) {

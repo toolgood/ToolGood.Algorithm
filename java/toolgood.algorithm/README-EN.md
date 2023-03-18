@@ -20,7 +20,7 @@ ToolGood.Algorithm supports `Four arithmetic`, `Excel formula`, and supports `Cu
     <dependency>
         <groupId>io.github.toolgood</groupId>
         <artifactId>toolgood-algorithm</artifactId>
-        <version>3.1.0.0</version>
+        <version>3.0.3.0</version>
     </dependency>
 ```
 

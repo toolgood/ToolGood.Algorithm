@@ -1,5 +1,7 @@
 package toolgood.algorithm.litJson;
 
+import java.math.BigDecimal;
+
 public interface IJsonWrapper {
     
     boolean IsArray();
@@ -10,7 +12,7 @@ public interface IJsonWrapper {
     boolean IsNull();
 
     void SetBoolean(boolean val);
-    void SetDouble(double val);
+    void SetDouble(BigDecimal val);
     void SetJsonType(JsonType type);
     void SetString(String val);
     void SetNull();
