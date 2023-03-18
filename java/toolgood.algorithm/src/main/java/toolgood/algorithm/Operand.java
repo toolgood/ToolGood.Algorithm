@@ -47,7 +47,7 @@ public abstract class Operand {
     public long LongValue() {
         return 0;
     }
-
+    public Object Value(){return  null;}
 
     public String TextValue() {
         return null;
@@ -292,10 +292,15 @@ public abstract class Operand {
     }
 
     static abstract class OperandT<T> extends Operand {
-        public T Value;
+        protected T _value;
+
+        @Override
+        public Object Value() {
+            return _value;
+        }
 
         public OperandT(final T obj) {
-            Value = obj;
+            _value = obj;
         }
     }
 
@@ -311,7 +316,7 @@ public abstract class Operand {
 
         @Override
         public List<Operand> ArrayValue() {
-            return Value;
+            return _value;
         }
     }
 
@@ -327,7 +332,7 @@ public abstract class Operand {
 
         @Override
         public boolean BooleanValue() {
-            return Value;
+            return _value;
         }
     }
 
@@ -343,7 +348,7 @@ public abstract class Operand {
 
         @Override
         public MyDate DateValue() {
-            return Value;
+            return _value;
         }
     }
 
@@ -381,7 +386,7 @@ public abstract class Operand {
 
         @Override
         public JsonData JsonValue() {
-            return Value;
+            return _value;
         }
     }
 
@@ -414,22 +419,22 @@ public abstract class Operand {
 
         @Override
         public int IntValue() {
-            return Value.intValue();
+            return _value.intValue();
         }
 
         @Override
         public BigDecimal NumberValue() {
-            return Value;
+            return _value;
         }
 
         @Override
         public double DoubleValue() {
-            return Value.doubleValue();
+            return _value.doubleValue();
         }
 
         @Override
         public long LongValue(){
-            return Value.longValue();
+            return _value.longValue();
         }
     }
 
@@ -446,7 +451,7 @@ public abstract class Operand {
 
         @Override
         public String TextValue() {
-            return Value;
+            return _value;
         }
 
     }

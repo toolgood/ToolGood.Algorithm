@@ -8,6 +8,8 @@ import org.joda.time.DateTimeZone;
 import org.junit.Test;
 
 import toolgood.algorithm.AlgorithmEngine;
+import toolgood.algorithm.Operand;
+import toolgood.algorithm.OperandType;
 
 public class AlgorithmEngineTest {
 
@@ -241,6 +243,15 @@ public class AlgorithmEngineTest {
         assertEquals("3 * 5", t24);
 
 
+    }
+
+    @Test
+    public void Year_test_withType() throws Exception {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        engine.Parse("year(now())");
+        Operand operand = engine.Evaluate();
+        assertEquals(OperandType.NUMBER, operand.Type());
+        assertEquals(Long.valueOf(DateTime.now().getYear()).longValue(), operand.LongValue());
     }
 
 }
