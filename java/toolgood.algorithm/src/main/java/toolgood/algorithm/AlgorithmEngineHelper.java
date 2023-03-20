@@ -237,6 +237,12 @@ public class AlgorithmEngineHelper {
             lexerSet.add("VLOOKUP");
             lexerSet.add("LOOKUP");
             lexerSet.add("ARRAY");
+            lexerSet.add("ADDYEARS");
+            lexerSet.add("ADDMONTHS");
+            lexerSet.add("ADDDAYS");
+            lexerSet.add("ADDHOURS");
+            lexerSet.add("ADDMINUTES");
+            lexerSet.add("ADDSECONDS");
             _lexerSet = lexerSet;
         }
         return _lexerSet;

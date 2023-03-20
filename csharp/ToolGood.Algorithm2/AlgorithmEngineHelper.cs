@@ -229,7 +229,14 @@ namespace ToolGood.Algorithm
                 lexerSet.Add("VLOOKUP");
                 lexerSet.Add("LOOKUP");
                 lexerSet.Add("ARRAY");
-                _lexerSet = lexerSet;
+
+				lexerSet.Add("ADDYEARS");
+				lexerSet.Add("ADDMONTHS");
+				lexerSet.Add("ADDDAYS");
+				lexerSet.Add("ADDHOURS");
+				lexerSet.Add("ADDMINUTES");
+				lexerSet.Add("ADDSECONDS");
+				_lexerSet = lexerSet;
             }
             return _lexerSet;
         }
