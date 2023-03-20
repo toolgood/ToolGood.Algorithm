@@ -94,6 +94,13 @@ expr:
 	| expr '.' VLOOKUP '(' expr ',' expr (',' expr)? ')'		# VLOOKUP_fun
 	| expr '.' LOOKUP '(' expr ',' expr ')'						# LOOKUP_fun
 	| expr '.' PARAMETER '(' (expr (',' expr)*)? ')'			# DiyFunction_fun
+	| expr '.' ADDYEARS '(' expr ')'							# ADDYEARS_fun
+	| expr '.' ADDMONTHS '(' expr ')'							# ADDMONTHS_fun
+	| expr '.' ADDDAYS '(' expr ')'								# ADDDAYS_fun
+	| expr '.' ADDHOURS '(' expr ')'							# ADDHOURS_fun
+	| expr '.' ADDMINUTES '(' expr ')'							# ADDMINUTES_fun
+	| expr '.' ADDSECONDS '(' expr ')'							# ADDSECONDS_fun
+
 	| expr '[' parameter2 ']'									# GetJsonValue_fun
 	| expr '[' expr ']'											# GetJsonValue_fun
 	| expr '.' parameter2										# GetJsonValue_fun
@@ -332,7 +339,13 @@ expr:
 	| VLOOKUP '(' expr ',' expr ',' expr (',' expr)? ')'		# VLOOKUP_fun
 	| LOOKUP '(' expr ',' expr ',' expr ')'						# LOOKUP_fun
 	| PARAMETER '(' (expr (',' expr)*)? ')'						# DiyFunction_fun
-	
+	| ADDYEARS '(' expr ',' expr ')'							# ADDYEARS_fun
+	| ADDMONTHS '(' expr ',' expr ')'							# ADDMONTHS_fun
+	| ADDDAYS '(' expr ',' expr ')'								# ADDDAYS_fun
+	| ADDHOURS '(' expr ',' expr ')'							# ADDHOURS_fun
+	| ADDMINUTES '(' expr ',' expr ')'							# ADDMINUTES_fun
+	| ADDSECONDS '(' expr ',' expr ')'							# ADDSECONDS_fun
+ 	
 	| '[' PARAMETER ']'											# PARAMETER_fun
 	| '[' expr ']'												# PARAMETER_fun
 	| PARAMETER													# PARAMETER_fun
@@ -548,6 +561,12 @@ parameter2:
 	| JSON
 	| VLOOKUP
 	| LOOKUP
+	| ADDYEARS
+	| ADDMONTHS
+	| ADDDAYS
+	| ADDHOURS
+	| ADDMINUTES
+	| ADDSECONDS
 	| NULL
 	| PARAMETER;
 
@@ -774,6 +793,13 @@ JSON: 'JSON';
 VLOOKUP: 'VLOOKUP';
 LOOKUP: 'LOOKUP';
 ARRAY:'ARRAY';
+
+ADDYEARS:'ADDYEARS';
+ADDMONTHS:'ADDMONTHS';
+ADDDAYS:'ADDDAYS';
+ADDHOURS:'ADDHOURS';
+ADDMINUTES:'ADDMINUTES';
+ADDSECONDS:'ADDSECONDS';
 
 PARAMETER: ([A-Z_]| FullWidthLetter)([A-Z0-9_] | FullWidthLetter)*;
 PARAMETER2: '{' (~('{'|'}'))+ '}'
