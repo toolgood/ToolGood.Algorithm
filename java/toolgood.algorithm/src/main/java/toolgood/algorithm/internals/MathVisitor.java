@@ -298,7 +298,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
 
                 r = firstValue.TextValue().compareTo(secondValue.TextValue());
             } else if (firstValue.Type() == OperandType.ARRARY) {
-                return Operand.Error("两个类型无法比较");
+                return Operand.Error("The two types cannot be compared.");
             } else {
                 firstValue = firstValue.ToNumber("Function '" + type + "' parameter 1 is error!");
                 if (firstValue.IsError()) {
@@ -339,7 +339,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         } else if (firstValue.Type() == OperandType.TEXT || secondValue.Type() == OperandType.TEXT
                 || firstValue.Type() == OperandType.JSON || secondValue.Type() == OperandType.JSON
                 || firstValue.Type() == OperandType.ARRARY || secondValue.Type() == OperandType.ARRARY) {
-            return Operand.Error("两个类型无法比较");
+            return Operand.Error("The two types cannot be compared.");
         } else {
             firstValue = firstValue.ToNumber("Function '" + type + "' parameter 1 is error!");
             if (firstValue.IsError()) {

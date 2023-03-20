@@ -169,6 +169,14 @@ namespace ToolGood.Algorithm
             b = engine.TryEvaluate("1>=2", false);
             Assert.AreEqual(false, b);
 
+            b = engine.TryEvaluate("'1'='1'", false);
+            Assert.AreEqual(true, b);
+            b = engine.TryEvaluate("'e'='e'", false);
+            Assert.AreEqual(true, b);
+            b = engine.TryEvaluate("'1'='2'", false);
+            Assert.AreEqual(false, b);
+            b = engine.TryEvaluate("'1'!='2'", false);
+            Assert.AreEqual(true, b);
         }
 
         [Test]

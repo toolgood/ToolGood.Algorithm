@@ -140,6 +140,18 @@ public class AlgorithmEngineTest {
         b = engine.TryEvaluate("1>=2", false);
         assertEquals(false, b);
 
+        b = engine.TryEvaluate("'1'='1'", false);
+        assertEquals(true, b);
+
+        b = engine.TryEvaluate("'e'='e'", false);
+        assertEquals(true, b);
+
+        b = engine.TryEvaluate("'1'='2'", false);
+        assertEquals(false, b);
+
+        b = engine.TryEvaluate("'1'!='2'", false);
+        assertEquals(true, b);
+
     }
 
     @Test
