@@ -353,9 +353,13 @@ namespace ToolGood.Algorithm
             AlgorithmEngine engine = new AlgorithmEngine();
             var t = engine.TryEvaluate("COUNTIF(array(1,2,3,4,2,2,1,4),'>1')", 0.0);
             Assert.AreEqual(t, 6.0);
+            t = engine.TryEvaluate("COUNTIF(array(1,2,3,4,2,2,1,4),'>=1')", 0.0);
+            Assert.AreEqual(t, 8.0);
+            t = engine.TryEvaluate("COUNTIF(array(1,2,3,4,2,2,1,4),'!=1')", 0.0);
+            Assert.AreEqual(t, 6.0);
         }
-        
-       [Test]
+
+        [Test]
         public void SUMIF_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
@@ -363,13 +367,20 @@ namespace ToolGood.Algorithm
             Assert.AreEqual(t, 17);
             t = engine.TryEvaluate("SUMIF(array(1,2,3,4,2,2,1,4),'>1',array(1,1,1,1,1,1,1,1))", 0.0);
             Assert.AreEqual(t, 6);
+            t = engine.TryEvaluate("SUMIF(array(1,2,3,4,2,2,1,4),'>=2',array(1,1,1,1,1,1,1,1))", 0.0);
+            Assert.AreEqual(t, 6);
+            t = engine.TryEvaluate("SUMIF(array(1,2,3,4,2,2,1,4),'<1',array(1,1,1,1,1,1,1,1))", 0.0);
+            Assert.AreEqual(t, 0);
+            t = engine.TryEvaluate("SUMIF(array(1,2,3,4,2,2,1,4),'==1',array(1,1,1,1,1,1,1,1))", 0.0);
+            Assert.AreEqual(t, 2);
         }
         [Test]
         public void AVERAGEIF_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
             var t = engine.TryEvaluate("AVERAGEIF(array(1,2,3,4,2,2,1,4),'>1')", 0.0);
-            Assert.AreEqual(Math.Round(t, 6), Math.Round(2.833333333, 6));
+            Assert.AreEqual(t, 2.833333333, 6);
+
             t = engine.TryEvaluate("AVERAGEIF(array(1,2,3,4,2,2,1,4),'>1',array(1,1,1,1,1,1,1,1))", 0.0);
             Assert.AreEqual(t, 1);
         }

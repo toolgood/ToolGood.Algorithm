@@ -46,7 +46,7 @@ namespace ToolGood.Algorithm.Internals
                 } else if (DateTime.TryParse(args1.TextValue, cultureInfo, DateTimeStyles.None, out DateTime dt)) {
                     args1 = Operand.Create(new MyDate(dt));
                 } else {
-                    return Operand.Error("两个类型无法乘除");
+                    return Operand.Error("Two types cannot be multiplied or divided.");
                 }
             }
             if (args2.Type == OperandType.TEXT) {
@@ -59,7 +59,7 @@ namespace ToolGood.Algorithm.Internals
                 } else if (DateTime.TryParse(args2.TextValue, cultureInfo, DateTimeStyles.None, out DateTime dt)) {
                     args2 = Operand.Create(new MyDate(dt));
                 } else {
-                    return Operand.Error("两个类型无法乘除");
+                    return Operand.Error("Two types cannot be multiplied or divided.");
                 }
             }
             var t = context.op.Text;
@@ -539,7 +539,7 @@ namespace ToolGood.Algorithm.Internals
             if (secondValue.NumberValue == 0) {
                 return Operand.Error("Function QUOTIENT div 0 error!");
             }
-            return Operand.Create((double)(int)(firstValue.NumberValue / secondValue.NumberValue));
+            return Operand.Create((int)(firstValue.NumberValue / secondValue.NumberValue));
         }
         public virtual Operand VisitMOD_fun(mathParser.MOD_funContext context)
         {
@@ -1039,10 +1039,10 @@ namespace ToolGood.Algorithm.Internals
 
             var firstValue = args[0];
             if (args.Count == 1) {
-                return Operand.Create((double)Math.Round((decimal)firstValue.NumberValue, 0, MidpointRounding.AwayFromZero));
+                return Operand.Create(Math.Round((decimal)firstValue.NumberValue, 0, MidpointRounding.AwayFromZero));
             }
             var secondValue = args[1];
-            return Operand.Create((double)Math.Round((decimal)firstValue.NumberValue, secondValue.IntValue, MidpointRounding.AwayFromZero));
+            return Operand.Create(Math.Round((decimal)firstValue.NumberValue, secondValue.IntValue, MidpointRounding.AwayFromZero));
         }
         public virtual Operand VisitROUNDDOWN_fun(mathParser.ROUNDDOWN_funContext context)
         {
@@ -1137,7 +1137,6 @@ namespace ToolGood.Algorithm.Internals
         }
         public virtual Operand VisitODD_fun(mathParser.ODD_funContext context)
         {
-
             var firstValue = context.expr().Accept(this).ToNumber("Function ODD parameter is error!");
             if (firstValue.IsError) { return firstValue; }
             var z = firstValue.NumberValue;
@@ -1331,9 +1330,7 @@ namespace ToolGood.Algorithm.Internals
         }
         private static int F_base_Factorial(int a)
         {
-            if (a == 0) {
-                return 1;
-            }
+            if (a == 0) { return 1; }
             int r = 1;
             for (int i = a; i > 0; i--) {
                 r *= i;
@@ -1387,7 +1384,7 @@ namespace ToolGood.Algorithm.Internals
             if (t.Length == 0) {
                 return Operand.Error("Function CODE parameter is error!");
             }
-            return Operand.Create((double)(int)(char)t[0]);
+            return Operand.Create((int)t[0]);
         }
         public virtual Operand VisitCONCATENATE_fun(mathParser.CONCATENATE_funContext context)
         {
@@ -2168,7 +2165,6 @@ namespace ToolGood.Algorithm.Internals
             var o = F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function MODE parameter error!"); }
 
-
             Dictionary<decimal, int> dict = new Dictionary<decimal, int>();
             foreach (var item in list) {
                 if (dict.ContainsKey(item)) {
@@ -2686,7 +2682,7 @@ namespace ToolGood.Algorithm.Internals
             if (x >= 1 || x <= -1) {
                 return Operand.Error("Function FISHER parameter error!");
             }
-            var n = 0.5 * Math.Log((double)(1 + x) / (double)(1 - x));
+            var n = 0.5 * Math.Log((double)((1 + x) / (1 - x)));
             return Operand.Create(n);
         }
         public virtual Operand VisitFISHERINV_fun(mathParser.FISHERINV_funContext context)
@@ -2694,8 +2690,8 @@ namespace ToolGood.Algorithm.Internals
             var firstValue = context.expr().Accept(this).ToNumber("Function FISHERINV parameter error!");
             if (firstValue.IsError) { return firstValue; }
 
-            var x = firstValue.NumberValue;
-            var n = (Math.Exp((double)(2 * x)) - 1) / (Math.Exp((double)(2 * x)) + 1);
+            var x = (double)firstValue.NumberValue;
+            var n = (Math.Exp((2 * x)) - 1) / (Math.Exp((2 * x)) + 1);
             return Operand.Create(n);
         }
         public virtual Operand VisitGAMMADIST_fun(mathParser.GAMMADIST_funContext context)
@@ -2867,7 +2863,7 @@ namespace ToolGood.Algorithm.Internals
             int count = 0;
             //d = Math.Round(d, 12, MidpointRounding.AwayFromZero);
             foreach (var item in dbs) {
-                if (item==d) {
+                if (item == d) {
                     count++;
                 }
                 //if (Math.Round(item, 12, MidpointRounding.AwayFromZero) == d) {
@@ -2880,10 +2876,11 @@ namespace ToolGood.Algorithm.Internals
         {
             var m = sumifRegex.Match(s);
             var d = decimal.Parse(m.Groups[2].Value, NumberStyles.Any, cultureInfo);
+            var ss = m.Groups[1].Value;
             int count = 0;
 
             foreach (var item in dbs) {
-                if (MathVisitor.F_base_compare(item, d, s)) {
+                if (MathVisitor.F_base_compare(item, d, ss)) {
                     count++;
                 }
             }
@@ -2894,11 +2891,11 @@ namespace ToolGood.Algorithm.Internals
         {
             var m = sumifRegex.Match(s);
             var d = decimal.Parse(m.Groups[2].Value, NumberStyles.Any, cultureInfo);
-            //var ss = m.Groups[1].Value;
+            var ss = m.Groups[1].Value;
             decimal sum = 0;
 
             for (int i = 0; i < dbs.Count; i++) {
-                if (MathVisitor.F_base_compare(dbs[i], d, s)) {
+                if (MathVisitor.F_base_compare(dbs[i], d, ss)) {
                     sum += sumdbs[i];
                 }
             }
@@ -2919,7 +2916,7 @@ namespace ToolGood.Algorithm.Internals
                 return (a >= b);
                 //return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) >= 0;
             } else if (CharUtil.Equals(ss, "=", "==", "===")) {
-                return a==b;
+                return a == b;
                 //return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) == 0;
             }
             return a != b;
@@ -3821,13 +3818,6 @@ namespace ToolGood.Algorithm.Internals
             }
             return Operand.Error("DiyFunction is error!");
         }
-
-
-
-
-
-
-
 
         #endregion
     }
