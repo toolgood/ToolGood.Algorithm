@@ -1,9 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>ToolGood.Algorithm支持四则运算、Excel函数，并支持自定义参数。使用Antlr4解析，函数更容易扩展。
-不兼容2.x版本的大括号集合。</Description>
-    <Copyright>Copyright 2017-2022 ToolGood</Copyright>
+    <Description>ToolGood.Algorithm支持四则运算、Excel函数，并支持自定义参数。使用Antlr4解析，函数更容易扩展。</Description>
+    <Copyright>Copyright 2017-2023 ToolGood</Copyright>
     <AssemblyTitle>ToolGood.Algorithm</AssemblyTitle>
     <Authors>ToolGood</Authors>
     <TargetFrameworks>netstandard2.1;net6.0;net7.0</TargetFrameworks>
