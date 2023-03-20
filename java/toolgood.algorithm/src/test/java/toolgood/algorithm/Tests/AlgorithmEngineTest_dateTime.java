@@ -210,5 +210,26 @@ public class AlgorithmEngineTest_dateTime {
         dt = engine.TryEvaluate("WEEKNUM(\"2016-1-2\",2)", 0);
         assertEquals(dt, 1);
     }
+    @Test
+    public void ADD_test()
+    {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        int   dt = engine.TryEvaluate("'2000-02-01'.addYears(1).year()", 0);
+        assertEquals(dt, 2001);
 
+        dt = engine.TryEvaluate("'2000-02-01'.AddMonths(1).Month()", 0);
+        assertEquals(dt, 3);
+
+        dt = engine.TryEvaluate("'2000-02-01'.AddDays(1).Day()", 0);
+        assertEquals(dt, 2);
+
+        dt = engine.TryEvaluate("'2000-02-01 12:05:06'.AddHours(1).Hour()", 0);
+        assertEquals(dt, 13);
+
+        dt = engine.TryEvaluate("'2000-02-01 12:05:06'.AddMinutes(1).Minute()", 0);
+        assertEquals(dt, 6);
+
+        dt = engine.TryEvaluate("'2000-02-01 12:05:06'.AddSeconds(1).Second()", 0);
+        assertEquals(dt, 7);
+    }
 }

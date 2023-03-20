@@ -2015,6 +2015,49 @@ namespace ToolGood.Algorithm.Internals
 			return r;
 		}
 
+		public override Operand VisitADDYEARS_fun(ADDYEARS_funContext context)
+		{
+			inFunctionCount++;
+			Operand r = base.VisitADDYEARS_fun(context);
+			inFunctionCount--;
+			return r;
+		}
+		public override Operand VisitADDMONTHS_fun(ADDMONTHS_funContext context)
+		{
+			inFunctionCount++;
+			Operand r = base.VisitADDMONTHS_fun(context);
+			inFunctionCount--;
+			return r;
+		}
+		public override Operand VisitADDDAYS_fun(ADDDAYS_funContext context)
+		{
+			inFunctionCount++;
+			Operand r = base.VisitADDDAYS_fun(context);
+			inFunctionCount--;
+			return r;
+		}
+		public override Operand VisitADDHOURS_fun(ADDHOURS_funContext context)
+		{
+			inFunctionCount++;
+			Operand r = base.VisitADDHOURS_fun(context);
+			inFunctionCount--;
+			return r;
+		}
+		public override Operand VisitADDMINUTES_fun(ADDMINUTES_funContext context)
+		{
+			inFunctionCount++;
+			Operand r = base.VisitADDMINUTES_fun(context);
+			inFunctionCount--;
+			return r;
+		}
+		public override Operand VisitADDSECONDS_fun(ADDSECONDS_funContext context)
+		{
+			inFunctionCount++;
+			Operand r = base.VisitADDSECONDS_fun(context);
+			inFunctionCount--;
+			return r;
+		}
+
 
 	}
 }

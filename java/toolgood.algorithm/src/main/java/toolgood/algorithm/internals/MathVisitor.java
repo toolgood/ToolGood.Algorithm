@@ -2842,6 +2842,125 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return Operand.Create(week);
     }
 
+    @Override
+    public Operand visitADDYEARS_fun(ADDYEARS_funContext context) {
+        final List<Operand> args = new ArrayList<Operand>();
+        for (final ExprContext item : context.expr()) {
+            final Operand aa = item.accept(this);
+            if (aa.IsError()) {
+                return aa;
+            }
+            args.add(aa);
+        }
+
+        Operand firstValue = args.get(0).ToDate("Function AddYears parameter 1 is error!");
+        if (firstValue.IsError()) { return firstValue; };
+        Operand secondValue = args.get(1).ToNumber("Function AddYears parameter 2 is error!");
+        if (secondValue.IsError()) { return secondValue; };
+
+        MyDate date= firstValue.DateValue().AddYears(secondValue.IntValue());
+        return Operand.Create(date);
+    }
+
+    @Override
+    public Operand visitADDMONTHS_fun(ADDMONTHS_funContext context) {
+        final List<Operand> args = new ArrayList<Operand>();
+        for (final ExprContext item : context.expr()) {
+            final Operand aa = item.accept(this);
+            if (aa.IsError()) {
+                return aa;
+            }
+            args.add(aa);
+        }
+
+        Operand firstValue = args.get(0).ToDate("Function AddMonths parameter 1 is error!");
+        if (firstValue.IsError()) { return firstValue; };
+        Operand secondValue = args.get(1).ToNumber("Function AddMonths parameter 2 is error!");
+        if (secondValue.IsError()) { return secondValue; };
+
+        MyDate date= firstValue.DateValue().AddMonths(secondValue.IntValue());
+        return Operand.Create(date);
+    }
+    @Override
+    public Operand visitADDDAYS_fun(ADDDAYS_funContext context) {
+        final List<Operand> args = new ArrayList<Operand>();
+        for (final ExprContext item : context.expr()) {
+            final Operand aa = item.accept(this);
+            if (aa.IsError()) {
+                return aa;
+            }
+            args.add(aa);
+        }
+
+        Operand firstValue = args.get(0).ToDate("Function AddDays parameter 1 is error!");
+        if (firstValue.IsError()) { return firstValue; };
+        Operand secondValue = args.get(1).ToNumber("Function AddDays parameter 2 is error!");
+        if (secondValue.IsError()) { return secondValue; };
+
+        MyDate date= firstValue.DateValue().AddDays(secondValue.IntValue());
+        return Operand.Create(date);
+    }
+
+    @Override
+    public Operand visitADDHOURS_fun(ADDHOURS_funContext context) {
+        final List<Operand> args = new ArrayList<Operand>();
+        for (final ExprContext item : context.expr()) {
+            final Operand aa = item.accept(this);
+            if (aa.IsError()) {
+                return aa;
+            }
+            args.add(aa);
+        }
+
+        Operand firstValue = args.get(0).ToDate("Function AddHours parameter 1 is error!");
+        if (firstValue.IsError()) { return firstValue; };
+        Operand secondValue = args.get(1).ToNumber("Function AddHours parameter 2 is error!");
+        if (secondValue.IsError()) { return secondValue; };
+
+        MyDate date= firstValue.DateValue().AddHours(secondValue.IntValue());
+        return Operand.Create(date);
+    }
+
+    @Override
+    public Operand visitADDMINUTES_fun(ADDMINUTES_funContext context) {
+        final List<Operand> args = new ArrayList<Operand>();
+        for (final ExprContext item : context.expr()) {
+            final Operand aa = item.accept(this);
+            if (aa.IsError()) {
+                return aa;
+            }
+            args.add(aa);
+        }
+
+        Operand firstValue = args.get(0).ToDate("Function AddMinutes parameter 1 is error!");
+        if (firstValue.IsError()) { return firstValue; };
+        Operand secondValue = args.get(1).ToNumber("Function AddMinutes parameter 2 is error!");
+        if (secondValue.IsError()) { return secondValue; };
+
+        MyDate date= firstValue.DateValue().AddMinutes(secondValue.IntValue());
+        return Operand.Create(date);
+    }
+
+    @Override
+    public Operand visitADDSECONDS_fun(ADDSECONDS_funContext context) {
+        final List<Operand> args = new ArrayList<Operand>();
+        for (final ExprContext item : context.expr()) {
+            final Operand aa = item.accept(this);
+            if (aa.IsError()) {
+                return aa;
+            }
+            args.add(aa);
+        }
+
+        Operand firstValue = args.get(0).ToDate("Function AddSeconds parameter 1 is error!");
+        if (firstValue.IsError()) { return firstValue; };
+        Operand secondValue = args.get(1).ToNumber("Function AddSeconds parameter 2 is error!");
+        if (secondValue.IsError()) { return secondValue; };
+
+        MyDate date= firstValue.DateValue().AddSeconds(secondValue.IntValue());
+        return Operand.Create(date);
+    }
+
     public Operand visitMAX_fun(final MAX_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;

@@ -163,6 +163,11 @@ public class MathSplitVisitor extends AbstractParseTreeVisitor<ConditionTree> im
     }
 
     @Override
+    public ConditionTree visitADDMONTHS_fun(mathParser.ADDMONTHS_funContext context) {
+        return visit_fun(context);
+    }
+
+    @Override
     public ConditionTree visitNORMSINV_fun(mathParser.NORMSINV_funContext context) {
         return visit_fun(context);
     }
@@ -504,6 +509,16 @@ public class MathSplitVisitor extends AbstractParseTreeVisitor<ConditionTree> im
     }
 
     @Override
+    public ConditionTree visitADDYEARS_fun(mathParser.ADDYEARS_funContext context) {
+        return visit_fun(context);
+    }
+
+    @Override
+    public ConditionTree visitADDSECONDS_fun(mathParser.ADDSECONDS_funContext ctx) {
+        return null;
+    }
+
+    @Override
     public ConditionTree visitArray_fun(mathParser.Array_funContext context) {
         return visit_fun(context);
     }
@@ -779,6 +794,11 @@ public class MathSplitVisitor extends AbstractParseTreeVisitor<ConditionTree> im
     }
 
     @Override
+    public ConditionTree visitADDMINUTES_fun(mathParser.ADDMINUTES_funContext context) {
+        return visit_fun(context);
+    }
+
+    @Override
     public ConditionTree visitSUMSQ_fun(mathParser.SUMSQ_funContext context) {
         return visit_fun(context);
     }
@@ -955,6 +975,11 @@ public class MathSplitVisitor extends AbstractParseTreeVisitor<ConditionTree> im
     }
 
     @Override
+    public ConditionTree visitADDDAYS_fun(mathParser.ADDDAYS_funContext context) {
+        return visit_fun(context);
+    }
+
+    @Override
     public ConditionTree visitISNONTEXT_fun(mathParser.ISNONTEXT_funContext context) {
         return visit_fun(context);
     }
@@ -1081,6 +1106,11 @@ public class MathSplitVisitor extends AbstractParseTreeVisitor<ConditionTree> im
 
     @Override
     public ConditionTree visitATAN2_fun(mathParser.ATAN2_funContext context) {
+        return visit_fun(context);
+    }
+
+    @Override
+    public ConditionTree visitADDHOURS_fun(mathParser.ADDHOURS_funContext context) {
         return visit_fun(context);
     }
 

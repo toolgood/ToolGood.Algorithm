@@ -1800,4 +1800,51 @@ public class MathSimplifiedFormulaVisitor extends MathVisitor {
         return r;
     }
 
+    @Override
+    public Operand visitADDYEARS_fun(ADDYEARS_funContext context) {
+        inFunctionCount++;
+        Operand r = super.visitADDYEARS_fun(context);
+        inFunctionCount--;
+        return r;
+    }
+
+    @Override
+    public Operand visitADDMONTHS_fun(ADDMONTHS_funContext context) {
+        inFunctionCount++;
+        Operand r = super.visitADDMONTHS_fun(context);
+        inFunctionCount--;
+        return r;
+    }
+
+    @Override
+    public Operand visitADDDAYS_fun(ADDDAYS_funContext context) {
+        inFunctionCount++;
+        Operand r = super.visitADDDAYS_fun(context);
+        inFunctionCount--;
+        return r;
+    }
+
+    @Override
+    public Operand visitADDHOURS_fun(ADDHOURS_funContext context) {
+        inFunctionCount++;
+        Operand r = super.visitADDHOURS_fun(context);
+        inFunctionCount--;
+        return r;
+    }
+
+    @Override
+    public Operand visitADDMINUTES_fun(ADDMINUTES_funContext context) {
+        inFunctionCount++;
+        Operand r = super.visitADDMINUTES_fun(context);
+        inFunctionCount--;
+        return r;
+    }
+
+    @Override
+    public Operand visitADDSECONDS_fun(ADDSECONDS_funContext context) {
+        inFunctionCount++;
+        Operand r = super.visitADDSECONDS_fun(context);
+        inFunctionCount--;
+        return r;
+    }
 }

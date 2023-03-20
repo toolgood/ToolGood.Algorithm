@@ -1,4 +1,4 @@
-package toolgood.algorithm.math;// Generated from java-escape by ANTLR 4.11.1
+package toolgood.algorithm.math;// Generated from math.g4 by ANTLR 4.12.0
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -197,6 +197,13 @@ public interface mathVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitOR_fun(mathParser.OR_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ADDMONTHS_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitADDMONTHS_fun(mathParser.ADDMONTHS_funContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code NORMSINV_fun}
 	 * labeled alternative in {@link mathParser#expr}.
@@ -681,6 +688,20 @@ public interface mathVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSTDEVP_fun(mathParser.STDEVP_funContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code ADDYEARS_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitADDYEARS_fun(mathParser.ADDYEARS_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ADDSECONDS_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitADDSECONDS_fun(mathParser.ADDSECONDS_funContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code Array_fun}
 	 * labeled alternative in {@link mathParser#expr}.
 	 * @param ctx the parse tree
@@ -1080,6 +1101,13 @@ public interface mathVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitEXACT_fun(mathParser.EXACT_funContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code ADDMINUTES_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitADDMINUTES_fun(mathParser.ADDMINUTES_funContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code SUMSQ_fun}
 	 * labeled alternative in {@link mathParser#expr}.
 	 * @param ctx the parse tree
@@ -1332,6 +1360,13 @@ public interface mathVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitMIN_fun(mathParser.MIN_funContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code ADDDAYS_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitADDDAYS_fun(mathParser.ADDDAYS_funContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code ISNONTEXT_fun}
 	 * labeled alternative in {@link mathParser#expr}.
 	 * @param ctx the parse tree
@@ -1534,6 +1569,13 @@ public interface mathVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitATAN2_fun(mathParser.ATAN2_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ADDHOURS_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitADDHOURS_fun(mathParser.ADDHOURS_funContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code RAND_fun}
 	 * labeled alternative in {@link mathParser#expr}.

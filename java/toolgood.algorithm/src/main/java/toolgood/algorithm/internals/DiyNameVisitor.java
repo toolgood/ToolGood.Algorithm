@@ -192,6 +192,11 @@ public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements 
     }
 
     @Override
+    public Object visitADDMONTHS_fun(ADDMONTHS_funContext context) {
+        return visitChildren(context);
+    }
+
+    @Override
     public Object visitNORMSINV_fun(NORMSINV_funContext context) {
 
         return visitChildren(context);
@@ -606,6 +611,16 @@ public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements 
     }
 
     @Override
+    public Object visitADDYEARS_fun(ADDYEARS_funContext context) {
+        return visitChildren(context);
+    }
+
+    @Override
+    public Object visitADDSECONDS_fun(ADDSECONDS_funContext context) {
+        return visitChildren(context);
+    }
+
+    @Override
     public Object visitArray_fun(Array_funContext context) {
 
         return visitChildren(context);
@@ -930,6 +945,11 @@ public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements 
     }
 
     @Override
+    public Object visitADDMINUTES_fun(ADDMINUTES_funContext context) {
+        return visitChildren(context);
+    }
+
+    @Override
     public Object visitSUMSQ_fun(SUMSQ_funContext context) {
 
         return visitChildren(context);
@@ -1146,6 +1166,11 @@ public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements 
     }
 
     @Override
+    public Object visitADDDAYS_fun(ADDDAYS_funContext context) {
+        return visitChildren(context);
+    }
+
+    @Override
     public Object visitISNONTEXT_fun(ISNONTEXT_funContext context) {
 
         return visitChildren(context);
@@ -1298,6 +1323,11 @@ public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements 
     @Override
     public Object visitATAN2_fun(ATAN2_funContext context) {
 
+        return visitChildren(context);
+    }
+
+    @Override
+    public Object visitADDHOURS_fun(ADDHOURS_funContext context) {
         return visitChildren(context);
     }
 
