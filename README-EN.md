@@ -685,6 +685,29 @@ Note 3: The function name with ▲ means that it is affected by `Excel Index`,
     </tr>
 </table>
 
+##### Extension function
+<table>
+    <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
+    <tr>
+        <td>AddYears ★</td><td>AddYears(时间, 数值)<br>增加年。</td> <td></td>
+    </tr>
+	<tr>
+        <td>AddMonths ★</td><td>AddMonths(时间, 数值)<br>增加月。</td> <td></td>
+    </tr>
+	<tr>
+        <td>AddDays ★</td><td>AddDays(时间, 数值)<br>增加日。</td> <td></td>
+    </tr>
+    <tr>
+        <td>AddHours ★</td><td>AddHours(时间, 数值)<br>增加小时。</td> <td></td>
+    </tr>
+    <tr>
+        <td>AddMinutes ★</td><td>AddMinutes(时间, 数值)<br>增加分钟。</td> <td></td>
+    </tr>
+    <tr>
+        <td>AddSeconds ★</td><td>AddSeconds(时间, 数值)<br>增加秒。</td> <td></td>
+    </tr>
+</table>
+
 #### Statistical function
 <table>
     <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
@@ -913,7 +936,7 @@ Note 3: The function name with ▲ means that it is affected by `Excel Index`,
         <td>TextToBase64Url ★</td><td>TextToBase64Url(文本[,编码类型])<br>   将字符串 转换为Url类型的Base64 字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Regex ★ ▲</td><td>Regex(文本,匹配文本])<br>   并返回匹配的字符串。</td> <td></td>
+        <td>Regex ★ ▲</td><td>Regex(文本,匹配文本)<br>   并返回匹配的字符串。</td> <td></td>
     </tr>
 	<tr>
         <td>RegexRepalce ★</td><td>RegexRepalce(文本,匹配文本,替换文本)<br>  匹配替换字符串。</td> <td></td>
