@@ -2098,6 +2098,90 @@ namespace ToolGood.Algorithm.Internals
             return Operand.Create(week);
         }
 
+        public virtual Operand VisitADDMONTHS_fun(mathParser.ADDMONTHS_funContext context)
+        {
+            var args = new List<Operand>();
+            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            var firstValue = args[0].ToMyDate("Function AddMonths parameter 1 is error!");
+            if (firstValue.IsError) { return firstValue; };
+            var secondValue = args[1].ToNumber("Function AddMonths parameter 2 is error!");
+            if (secondValue.IsError) { return secondValue; };
+
+            var date = firstValue.DateValue.AddMonths(secondValue.IntValue);
+            return Operand.Create(date);
+        }
+
+        public virtual Operand VisitADDYEARS_fun(mathParser.ADDYEARS_funContext context)
+        {
+            var args = new List<Operand>();
+            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            var firstValue = args[0].ToMyDate("Function AddYears parameter 1 is error!");
+            if (firstValue.IsError) { return firstValue; };
+            var secondValue = args[1].ToNumber("Function AddYears parameter 2 is error!");
+            if (secondValue.IsError) { return secondValue; };
+
+            var date = firstValue.DateValue.AddYears(secondValue.IntValue);
+            return Operand.Create(date);
+        }
+
+        public virtual Operand VisitADDSECONDS_fun(mathParser.ADDSECONDS_funContext context)
+        {
+            var args = new List<Operand>();
+            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            var firstValue = args[0].ToMyDate("Function AddSeconds parameter 1 is error!");
+            if (firstValue.IsError) { return firstValue; };
+            var secondValue = args[1].ToNumber("Function AddSeconds parameter 2 is error!");
+            if (secondValue.IsError) { return secondValue; };
+
+            var date = firstValue.DateValue.AddSeconds(secondValue.IntValue);
+            return Operand.Create(date);
+        }
+
+        public virtual Operand VisitADDMINUTES_fun(mathParser.ADDMINUTES_funContext context)
+        {
+            var args = new List<Operand>();
+            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            var firstValue = args[0].ToMyDate("Function AddMinutes parameter 1 is error!");
+            if (firstValue.IsError) { return firstValue; };
+            var secondValue = args[1].ToNumber("Function AddMinutes parameter 2 is error!");
+            if (secondValue.IsError) { return secondValue; };
+
+            var date = firstValue.DateValue.AddMinutes(secondValue.IntValue);
+            return Operand.Create(date);
+        }
+
+        public virtual Operand VisitADDDAYS_fun(mathParser.ADDDAYS_funContext context)
+        {
+            var args = new List<Operand>();
+            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            var firstValue = args[0].ToMyDate("Function AddDays parameter 1 is error!");
+            if (firstValue.IsError) { return firstValue; };
+            var secondValue = args[1].ToNumber("Function AddDays parameter 2 is error!");
+            if (secondValue.IsError) { return secondValue; };
+
+            var date = firstValue.DateValue.AddDays(secondValue.IntValue);
+            return Operand.Create(date);
+        }
+
+        public virtual Operand VisitADDHOURS_fun(mathParser.ADDHOURS_funContext context)
+        {
+            var args = new List<Operand>();
+            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            var firstValue = args[0].ToMyDate("Function AddHours parameter 1 is error!");
+            if (firstValue.IsError) { return firstValue; };
+            var secondValue = args[1].ToNumber("Function AddHours parameter 2 is error!");
+            if (secondValue.IsError) { return secondValue; };
+
+            var date = firstValue.DateValue.AddHours(secondValue.IntValue);
+            return Operand.Create(date);
+        }
+
         #endregion
 
         #region sum
@@ -3818,6 +3902,8 @@ namespace ToolGood.Algorithm.Internals
             }
             return Operand.Error("DiyFunction is error!");
         }
+
+
 
         #endregion
     }

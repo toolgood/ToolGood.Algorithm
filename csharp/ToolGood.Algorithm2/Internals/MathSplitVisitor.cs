@@ -1,4 +1,5 @@
 ﻿using Antlr4.Runtime;
+using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
 using System.Collections.Generic;
 using System.Text;
@@ -1131,6 +1132,34 @@ namespace ToolGood.Algorithm.Internals
             return Visit_fun(context);
         }
 
+        public ConditionTree VisitADDMONTHS_fun([NotNull] mathParser.ADDMONTHS_funContext context)
+        {
+            return Visit_fun(context);
+        }
 
+        public ConditionTree VisitADDYEARS_fun([NotNull] mathParser.ADDYEARS_funContext context)
+        {
+            return Visit_fun(context);
+        }
+
+        public ConditionTree VisitADDSECONDS_fun([NotNull] mathParser.ADDSECONDS_funContext context)
+        {
+            return Visit_fun(context);
+        }
+
+        public ConditionTree VisitADDMINUTES_fun([NotNull] mathParser.ADDMINUTES_funContext context)
+        {
+            return Visit_fun(context);
+        }
+
+        public ConditionTree VisitADDDAYS_fun([NotNull] mathParser.ADDDAYS_funContext context)
+        {
+            return Visit_fun(context);
+        }
+
+        public ConditionTree VisitADDHOURS_fun([NotNull] mathParser.ADDHOURS_funContext context)
+        {
+            return Visit_fun(context);
+        }
     }
 }

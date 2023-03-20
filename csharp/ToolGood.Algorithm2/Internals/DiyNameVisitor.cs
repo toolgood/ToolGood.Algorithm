@@ -1,4 +1,5 @@
-﻿using Antlr4.Runtime.Tree;
+﻿using Antlr4.Runtime.Misc;
+using Antlr4.Runtime.Tree;
 using System;
 
 namespace ToolGood.Algorithm.Internals
@@ -1126,5 +1127,35 @@ namespace ToolGood.Algorithm.Internals
 		{
 			return VisitChildren(context);
 		}
-	}
+
+        public object VisitADDMONTHS_fun([NotNull] mathParser.ADDMONTHS_funContext context)
+        {
+            return VisitChildren(context);
+        }
+
+        public object VisitADDYEARS_fun([NotNull] mathParser.ADDYEARS_funContext context)
+        {
+            return VisitChildren(context);
+        }
+
+        public object VisitADDSECONDS_fun([NotNull] mathParser.ADDSECONDS_funContext context)
+        {
+            return VisitChildren(context);
+        }
+
+        public object VisitADDMINUTES_fun([NotNull] mathParser.ADDMINUTES_funContext context)
+        {
+            return VisitChildren(context);
+        }
+
+        public object VisitADDDAYS_fun([NotNull] mathParser.ADDDAYS_funContext context)
+        {
+            return VisitChildren(context);
+        }
+
+        public object VisitADDHOURS_fun([NotNull] mathParser.ADDHOURS_funContext context)
+        {
+            return VisitChildren(context);
+        }
+    }
 }
