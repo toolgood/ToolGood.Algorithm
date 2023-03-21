@@ -99,7 +99,15 @@ namespace ToolGood.Algorithm
             decimal d = num - days;
             Hour = (int)(d * 24);
             Minute = (int)((d * 24 - Hour) * 60.0m);
-            Second = (int)(((d * 24 - Hour) * 60.0m - Minute) * 60.0m);
+            Second = (int)Math.Round(((d * 24 - Hour) * 60.0m - Minute) * 60.0m);
+            if (Second == 60) {
+                Second = 0;
+                Minute++;
+                if (Minute == 60) {
+                    Minute = 0;
+                    Hour++;
+                }
+            }
         }
         /// <summary>
         /// 字符串转MyDate
