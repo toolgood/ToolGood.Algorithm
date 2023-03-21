@@ -282,7 +282,7 @@ public abstract class Operand {
 
         @Override
         public Operand ToBoolean(String errorMessage) {
-            return (((double) DateValue().ToNumber()) != 0) ? True : False;
+            return ((DateValue().ToNumber().compareTo(new BigDecimal(0))) != 0) ? True : False;
         }
 
         @Override
