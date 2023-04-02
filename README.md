@@ -2,7 +2,7 @@ ToolGood.Algorithm
 ===================
 [English document](README-EN.md)
 
-ToolGood.Algorithm支持`四则运算`、`Excel公式`,并支持`自定义参数`。
+ToolGood.Algorithm是一个功能强大、轻量级、兼容`Excel公式`的算法类库，旨在提高开发人员在不同业务场景中的生产力。 
 
 
 **适用场景：** 代码与算法分离，避免项目强制升级
@@ -15,7 +15,7 @@ ToolGood.Algorithm支持`四则运算`、`Excel公式`,并支持`自定义参数
 
 4）报表导出，数据来源使用存储过程，Word文档内设置算法。例 https://github.com/toolgood/ToolGood.WordTemplate
 
-5）规则引擎，如：https://github.com/toolgood/ToolGood.FlowVision
+5）`可视化`规则引擎，如：https://github.com/toolgood/ToolGood.FlowVision
 
 ## 快速上手
 ``` csharp
