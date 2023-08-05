@@ -167,6 +167,17 @@ public class MyDate {
             date.Minute = Integer.parseInt(m.group(2));
             return date;
         }
+        // timestamp
+        m = Pattern.compile("^\\d{13}$").matcher(t);
+        if (m.find()) {
+            return new MyDate(new Date(Long.parseLong(t)));
+        }
+
+        // timestamp in ms
+        m = Pattern.compile("^\\d{10}$").matcher(t);
+        if (m.find()) {
+            return new MyDate(new Date(Long.parseLong(t) * 1000));
+        }
         return null;
     }
 
