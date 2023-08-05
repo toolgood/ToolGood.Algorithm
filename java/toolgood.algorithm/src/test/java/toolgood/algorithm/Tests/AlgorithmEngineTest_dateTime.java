@@ -16,13 +16,13 @@ public class AlgorithmEngineTest_dateTime {
     {
         AlgorithmEngine engine = new AlgorithmEngine();
         DateTime dt = engine.TryEvaluate("DATEVALUE('2016-01-01')", DateTime.now());
-        assertEquals(dt, new DateTime(2016, 1, 1,0,0,0,DateTimeZone.UTC));
+        assertEquals(dt, new DateTime(2016, 1, 1, 0, 0, 0, DateTimeZone.UTC));
 
         dt = engine.TryEvaluate("DATEVALUE('1691234899000')", DateTime.now());
-        assertEquals(dt, new DateTime(2023, 8, 5,19,28,19,DateTimeZone.UTC));
+        assertEquals(dt, new DateTime(2023, 8, 5, 19, 28, 19, DateTimeZone.UTC));
 
         dt = engine.TryEvaluate("DATEVALUE('1691234899')", DateTime.now());
-        assertEquals(dt, new DateTime(2023, 8, 5,19,28,19,DateTimeZone.UTC));
+        assertEquals(dt, new DateTime(2023, 8, 5, 19, 28, 19, DateTimeZone.UTC));
     }
     @Test
     public void TIMEVALUE_test()
