@@ -49,7 +49,7 @@ expr:
 	| expr '.' TRIM '(' ')'										# TRIM_fun
 	| expr '.' UPPER '(' ')'									# UPPER_fun
 	| expr '.' VALUE '(' ')'									# VALUE_fun
-	| expr '.' DATEVALUE '(' ')'								# DATEVALUE_fun
+	| expr '.' DATEVALUE '(' expr? ')'							# DATEVALUE_fun
 	| expr '.' TIMEVALUE '(' ')'								# TIMEVALUE_fun
 	| expr '.' YEAR ('(' ')')?									# YEAR_fun
 	| expr '.' MONTH ('(' ')')?									# MONTH_fun
@@ -100,12 +100,13 @@ expr:
 	| expr '.' ADDHOURS '(' expr ')'							# ADDHOURS_fun
 	| expr '.' ADDMINUTES '(' expr ')'							# ADDMINUTES_fun
 	| expr '.' ADDSECONDS '(' expr ')'							# ADDSECONDS_fun
+	| expr '.' TIMESTAMP '(' expr? ')'							# TIMESTAMP_fun
 
 	| expr '[' parameter2 ']'									# GetJsonValue_fun
 	| expr '[' expr ']'											# GetJsonValue_fun
 	| expr '.' parameter2										# GetJsonValue_fun
  
-// ÔËËã·ûÓÅÏÈ¼¶ ¿ªÊ¼
+// è¿ç®—ç¬¦ä¼˜å…ˆçº§ å¼€å§‹
 	| '(' expr ')'											# Bracket_fun
 	| '!' expr												# NOT_fun
 	| expr '%'												# Percentage_fun
@@ -128,7 +129,7 @@ expr:
 	| expr op = ('&&' | AND) expr								# AndOr_fun
 	| expr op = ('||' | OR) expr								# AndOr_fun
 	| expr '?'  expr ':' expr 									# IF_fun
-// ÔËËã·ûÓÅÏÈ¼¶ ½áÊø
+// è¿ç®—ç¬¦ä¼˜å…ˆçº§ ç»“æŸ
 
 	| ARRAY '(' expr (',' expr)* ')'							# Array_fun
 	| IF '(' expr ',' expr (',' expr)? ')'					# IF_fun
@@ -233,7 +234,7 @@ expr:
 	| TRIM '(' expr ')'										# TRIM_fun
 	| UPPER '(' expr ')'									# UPPER_fun
 	| VALUE '(' expr ')'									# VALUE_fun
-	| DATEVALUE '(' expr ')'								# DATEVALUE_fun
+	| DATEVALUE '(' expr (',' expr)? ')'					# DATEVALUE_fun
 	| TIMEVALUE '(' expr ')'								# TIMEVALUE_fun
 	| DATE '(' expr ',' expr ',' expr (
 		',' expr (',' expr (',' expr)?)?
@@ -345,6 +346,7 @@ expr:
 	| ADDHOURS '(' expr ',' expr ')'							# ADDHOURS_fun
 	| ADDMINUTES '(' expr ',' expr ')'							# ADDMINUTES_fun
 	| ADDSECONDS '(' expr ',' expr ')'							# ADDSECONDS_fun
+	| TIMESTAMP '(' expr (',' expr)? ')'						# TIMESTAMP_fun
  	
 	| '[' PARAMETER ']'											# PARAMETER_fun
 	| '[' expr ']'												# PARAMETER_fun
@@ -567,6 +569,7 @@ parameter2:
 	| ADDHOURS
 	| ADDMINUTES
 	| ADDSECONDS
+	| TIMESTAMP
 	| NULL
 	| PARAMETER;
 
@@ -581,7 +584,7 @@ STRING: '\'' ( ~'\'' | '\\\'')* '\''
 	;
 NULL: 'NULL';
 
-// Âß¼­º¯Êý
+// é€»è¾‘å‡½æ•°
 IF: 'IF';
 IFERROR: 'IFERROR';
 ISNUMBER: 'ISNUMBER';
@@ -598,18 +601,18 @@ OR: 'OR';
 NOT: 'NOT';
 TRUE: 'TRUE';
 FALSE: 'FALSE';
-// ÊýÑ§ÓëÈý½Çº¯Êý
+// æ•°å­¦ä¸Žä¸‰è§’å‡½æ•°
 E: 'E';
 PI: 'PI';
 DEC2BIN: 'DEC2BIN';
 DEC2HEX: 'DEC2HEX';
 DEC2OCT: 'DEC2OCT';
-HEX2BIN: 'HEX2BIN'; //  ½«Ê®Áù½øÖÆÊý×ª»»Îª¶þ½øÖÆÊý
-HEX2DEC: 'HEX2DEC'; // ½«Ê®Áù½øÖÆÊý×ª»»ÎªÊ®½øÖÆÊý
-HEX2OCT: 'HEX2OCT'; //  ½«Ê®Áù½øÖÆÊý×ª»»Îª°Ë½øÖÆÊý
-OCT2BIN: 'OCT2BIN'; //   ½«°Ë½øÖÆÊý×ª»»Îª¶þ½øÖÆÊý
-OCT2DEC: 'OCT2DEC'; //   ½«°Ë½øÖÆÊý×ª»»ÎªÊ®½øÖÆÊý
-OCT2HEX: 'OCT2HEX'; //  ½«°Ë½øÖÆÊý×ª»»ÎªÊ®Áù½øÖÆÊý
+HEX2BIN: 'HEX2BIN'; //  å°†åå…­è¿›åˆ¶æ•°è½¬æ¢ä¸ºäºŒè¿›åˆ¶æ•°
+HEX2DEC: 'HEX2DEC'; // å°†åå…­è¿›åˆ¶æ•°è½¬æ¢ä¸ºåè¿›åˆ¶æ•°
+HEX2OCT: 'HEX2OCT'; //  å°†åå…­è¿›åˆ¶æ•°è½¬æ¢ä¸ºå…«è¿›åˆ¶æ•°
+OCT2BIN: 'OCT2BIN'; //   å°†å…«è¿›åˆ¶æ•°è½¬æ¢ä¸ºäºŒè¿›åˆ¶æ•°
+OCT2DEC: 'OCT2DEC'; //   å°†å…«è¿›åˆ¶æ•°è½¬æ¢ä¸ºåè¿›åˆ¶æ•°
+OCT2HEX: 'OCT2HEX'; //  å°†å…«è¿›åˆ¶æ•°è½¬æ¢ä¸ºåå…­è¿›åˆ¶æ•°
 BIN2OCT: 'BIN2OCT';
 BIN2DEC: 'BIN2DEC';
 BIN2HEX: 'BIN2HEX';
@@ -660,7 +663,7 @@ MULTINOMIAL: 'MULTINOMIAL';
 PRODUCT: 'PRODUCT';
 SQRTPI: 'SQRTPI';
 SUMSQ: 'SUMSQ';
-// ÎÄ±¾º¯Êý
+// æ–‡æœ¬å‡½æ•°
 ASC: 'ASC';
 JIS: 'JIS' | 'WIDECHAR';
 CHAR: 'CHAR';
@@ -686,7 +689,7 @@ TEXT: 'TEXT';
 TRIM: 'TRIM';
 UPPER: 'UPPER' | 'TOUPPER';
 VALUE: 'VALUE';
-// ÈÕÆÚÓëÊ±¼äº¯Êý
+// æ—¥æœŸä¸Žæ—¶é—´å‡½æ•°
 DATEVALUE: 'DATEVALUE';
 TIMEVALUE: 'TIMEVALUE';
 DATE: 'DATE';
@@ -707,7 +710,7 @@ EOMONTH: 'EOMONTH';
 NETWORKDAYS: 'NETWORKDAYS';
 WORKDAY: 'WORKDAY';
 WEEKNUM: 'WEEKNUM';
-// Í³¼Æº¯Êý
+// ç»Ÿè®¡å‡½æ•°
 MAX: 'MAX';
 MEDIAN: 'MEDIAN';
 MIN: 'MIN';
@@ -754,7 +757,7 @@ POISSON: 'POISSON';
 TDIST: 'TDIST';
 TINV: 'TINV';
 WEIBULL: 'WEIBULL';
-// Ôö¼Óº¯Êý ÀàC# ·½·¨
+// å¢žåŠ å‡½æ•° ç±»C# æ–¹æ³•
 URLENCODE: 'URLENCODE';
 URLDECODE: 'URLDECODE';
 HTMLENCODE: 'HTMLENCODE';
@@ -800,10 +803,11 @@ ADDDAYS:'ADDDAYS';
 ADDHOURS:'ADDHOURS';
 ADDMINUTES:'ADDMINUTES';
 ADDSECONDS:'ADDSECONDS';
+TIMESTAMP:'TIMESTAMP';
 
 PARAMETER: ([A-Z_]| FullWidthLetter)([A-Z0-9_] | FullWidthLetter)*;
 PARAMETER2: '{' (~('{'|'}'))+ '}'
-			| '¡¾' (~('¡¾'|'¡¿'))+ '¡¿'
+			| 'ã€' (~('ã€'|'ã€‘'))+ 'ã€‘'
 			| '#' (~('#'))+ '#'
 			| '@' ([A-Z_]| FullWidthLetter)([A-Z0-9_] | FullWidthLetter)*
 			;
