@@ -200,15 +200,15 @@ public class mathParser extends Parser {
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
-		public TerminalNode EOF() { return getToken(mathParser.EOF, 0); }
+		//public TerminalNode EOF() { return getToken(mathParser.EOF, 0); }
 		public ProgContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_prog; }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitProg(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitProg(this);
+			
 		}
 	}
 
@@ -249,47 +249,47 @@ public class mathParser extends Parser {
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class CEILING_funContext extends ExprContext {
-		public TerminalNode CEILING() { return getToken(mathParser.CEILING, 0); }
+		//public TerminalNode CEILING() { return getToken(mathParser.CEILING, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public CEILING_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitCEILING_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitCEILING_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class FACT_funContext extends ExprContext {
-		public TerminalNode FACT() { return getToken(mathParser.FACT, 0); }
+		//public TerminalNode FACT() { return getToken(mathParser.FACT, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public FACT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitFACT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitFACT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class REGEXREPALCE_funContext extends ExprContext {
-		public TerminalNode REGEXREPALCE() { return getToken(mathParser.REGEXREPALCE, 0); }
+		//public TerminalNode REGEXREPALCE() { return getToken(mathParser.REGEXREPALCE, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public REGEXREPALCE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitREGEXREPALCE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitREGEXREPALCE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -298,111 +298,111 @@ public class mathParser extends Parser {
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode SUB() { return getToken(mathParser.SUB, 0); }
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
+		//public TerminalNode SUB() { return getToken(mathParser.SUB, 0); }
 		public AddSub_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitAddSub_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitAddSub_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class AVERAGEIF_funContext extends ExprContext {
-		public TerminalNode AVERAGEIF() { return getToken(mathParser.AVERAGEIF, 0); }
+		//public TerminalNode AVERAGEIF() { return getToken(mathParser.AVERAGEIF, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public AVERAGEIF_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitAVERAGEIF_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitAVERAGEIF_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ISNULLORERROR_funContext extends ExprContext {
-		public TerminalNode ISNULLORERROR() { return getToken(mathParser.ISNULLORERROR, 0); }
+		//public TerminalNode ISNULLORERROR() { return getToken(mathParser.ISNULLORERROR, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public ISNULLORERROR_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitISNULLORERROR_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitISNULLORERROR_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class RIGHT_funContext extends ExprContext {
-		public TerminalNode RIGHT() { return getToken(mathParser.RIGHT, 0); }
+		//public TerminalNode RIGHT() { return getToken(mathParser.RIGHT, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public RIGHT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitRIGHT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitRIGHT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class OCT2BIN_funContext extends ExprContext {
-		public TerminalNode OCT2BIN() { return getToken(mathParser.OCT2BIN, 0); }
+		//public TerminalNode OCT2BIN() { return getToken(mathParser.OCT2BIN, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public OCT2BIN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitOCT2BIN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitOCT2BIN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class QUARTILE_funContext extends ExprContext {
-		public TerminalNode QUARTILE() { return getToken(mathParser.QUARTILE, 0); }
+		//public TerminalNode QUARTILE() { return getToken(mathParser.QUARTILE, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public QUARTILE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitQUARTILE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitQUARTILE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class FINV_funContext extends ExprContext {
-		public TerminalNode FINV() { return getToken(mathParser.FINV, 0); }
+		//public TerminalNode FINV() { return getToken(mathParser.FINV, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public FINV_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitFINV_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitFINV_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -410,92 +410,92 @@ public class mathParser extends Parser {
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
-		public TerminalNode NOT() { return getToken(mathParser.NOT, 0); }
+		//public TerminalNode NOT() { return getToken(mathParser.NOT, 0); }
 		public NOT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitNOT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitNOT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class DAYS360_funContext extends ExprContext {
-		public TerminalNode DAYS360() { return getToken(mathParser.DAYS360, 0); }
+		//public TerminalNode DAYS360() { return getToken(mathParser.DAYS360, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public DAYS360_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitDAYS360_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitDAYS360_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class WEEKNUM_funContext extends ExprContext {
-		public TerminalNode WEEKNUM() { return getToken(mathParser.WEEKNUM, 0); }
+		//public TerminalNode WEEKNUM() { return getToken(mathParser.WEEKNUM, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public WEEKNUM_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitWEEKNUM_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitWEEKNUM_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class POISSON_funContext extends ExprContext {
-		public TerminalNode POISSON() { return getToken(mathParser.POISSON, 0); }
+		//public TerminalNode POISSON() { return getToken(mathParser.POISSON, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public POISSON_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitPOISSON_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitPOISSON_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ISREGEX_funContext extends ExprContext {
-		public TerminalNode ISREGEX() { return getToken(mathParser.ISREGEX, 0); }
+		//public TerminalNode ISREGEX() { return getToken(mathParser.ISREGEX, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public ISREGEX_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitISREGEX_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitISREGEX_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class PERCENTILE_funContext extends ExprContext {
-		public TerminalNode PERCENTILE() { return getToken(mathParser.PERCENTILE, 0); }
+		//public TerminalNode PERCENTILE() { return getToken(mathParser.PERCENTILE, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public PERCENTILE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitPERCENTILE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitPERCENTILE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -504,739 +504,739 @@ public class mathParser extends Parser {
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public DiyFunction_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitDiyFunction_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitDiyFunction_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class SHA256_funContext extends ExprContext {
-		public TerminalNode SHA256() { return getToken(mathParser.SHA256, 0); }
+		//public TerminalNode SHA256() { return getToken(mathParser.SHA256, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public SHA256_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSHA256_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSHA256_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class HYPGEOMDIST_funContext extends ExprContext {
-		public TerminalNode HYPGEOMDIST() { return getToken(mathParser.HYPGEOMDIST, 0); }
+		//public TerminalNode HYPGEOMDIST() { return getToken(mathParser.HYPGEOMDIST, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public HYPGEOMDIST_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitHYPGEOMDIST_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitHYPGEOMDIST_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class PERMUT_funContext extends ExprContext {
-		public TerminalNode PERMUT() { return getToken(mathParser.PERMUT, 0); }
+		//public TerminalNode PERMUT() { return getToken(mathParser.PERMUT, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public PERMUT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitPERMUT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitPERMUT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class TRIMSTART_funContext extends ExprContext {
-		public TerminalNode TRIMSTART() { return getToken(mathParser.TRIMSTART, 0); }
+		//public TerminalNode TRIMSTART() { return getToken(mathParser.TRIMSTART, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public TRIMSTART_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTRIMSTART_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTRIMSTART_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class RMB_funContext extends ExprContext {
-		public TerminalNode RMB() { return getToken(mathParser.RMB, 0); }
+		//public TerminalNode RMB() { return getToken(mathParser.RMB, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public RMB_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitRMB_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitRMB_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class DEC2HEX_funContext extends ExprContext {
-		public TerminalNode DEC2HEX() { return getToken(mathParser.DEC2HEX, 0); }
+		//public TerminalNode DEC2HEX() { return getToken(mathParser.DEC2HEX, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public DEC2HEX_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitDEC2HEX_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitDEC2HEX_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class CLEAN_funContext extends ExprContext {
-		public TerminalNode CLEAN() { return getToken(mathParser.CLEAN, 0); }
+		//public TerminalNode CLEAN() { return getToken(mathParser.CLEAN, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public CLEAN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitCLEAN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitCLEAN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class LOWER_funContext extends ExprContext {
-		public TerminalNode LOWER() { return getToken(mathParser.LOWER, 0); }
+		//public TerminalNode LOWER() { return getToken(mathParser.LOWER, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public LOWER_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitLOWER_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitLOWER_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class OR_funContext extends ExprContext {
-		public TerminalNode OR() { return getToken(mathParser.OR, 0); }
+		//public TerminalNode OR() { return getToken(mathParser.OR, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public OR_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitOR_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitOR_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ADDMONTHS_funContext extends ExprContext {
-		public TerminalNode ADDMONTHS() { return getToken(mathParser.ADDMONTHS, 0); }
+		//public TerminalNode ADDMONTHS() { return getToken(mathParser.ADDMONTHS, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public ADDMONTHS_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitADDMONTHS_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitADDMONTHS_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class NORMSINV_funContext extends ExprContext {
-		public TerminalNode NORMSINV() { return getToken(mathParser.NORMSINV, 0); }
+		//public TerminalNode NORMSINV() { return getToken(mathParser.NORMSINV, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public NORMSINV_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitNORMSINV_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitNORMSINV_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class LEFT_funContext extends ExprContext {
-		public TerminalNode LEFT() { return getToken(mathParser.LEFT, 0); }
+		//public TerminalNode LEFT() { return getToken(mathParser.LEFT, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public LEFT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitLEFT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitLEFT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ISEVEN_funContext extends ExprContext {
-		public TerminalNode ISEVEN() { return getToken(mathParser.ISEVEN, 0); }
+		//public TerminalNode ISEVEN() { return getToken(mathParser.ISEVEN, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public ISEVEN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitISEVEN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitISEVEN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class LOGINV_funContext extends ExprContext {
-		public TerminalNode LOGINV() { return getToken(mathParser.LOGINV, 0); }
+		//public TerminalNode LOGINV() { return getToken(mathParser.LOGINV, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public LOGINV_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitLOGINV_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitLOGINV_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class WORKDAY_funContext extends ExprContext {
-		public TerminalNode WORKDAY() { return getToken(mathParser.WORKDAY, 0); }
+		//public TerminalNode WORKDAY() { return getToken(mathParser.WORKDAY, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public WORKDAY_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitWORKDAY_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitWORKDAY_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ISERROR_funContext extends ExprContext {
-		public TerminalNode ISERROR() { return getToken(mathParser.ISERROR, 0); }
+		//public TerminalNode ISERROR() { return getToken(mathParser.ISERROR, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public ISERROR_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitISERROR_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitISERROR_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class BIN2DEC_funContext extends ExprContext {
-		public TerminalNode BIN2DEC() { return getToken(mathParser.BIN2DEC, 0); }
+		//public TerminalNode BIN2DEC() { return getToken(mathParser.BIN2DEC, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public BIN2DEC_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitBIN2DEC_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitBIN2DEC_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class JIS_funContext extends ExprContext {
-		public TerminalNode JIS() { return getToken(mathParser.JIS, 0); }
+		//public TerminalNode JIS() { return getToken(mathParser.JIS, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public JIS_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitJIS_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitJIS_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class CRC32_funContext extends ExprContext {
-		public TerminalNode CRC32() { return getToken(mathParser.CRC32, 0); }
+		//public TerminalNode CRC32() { return getToken(mathParser.CRC32, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public CRC32_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitCRC32_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitCRC32_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class LCM_funContext extends ExprContext {
-		public TerminalNode LCM() { return getToken(mathParser.LCM, 0); }
+		//public TerminalNode LCM() { return getToken(mathParser.LCM, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public LCM_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitLCM_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitLCM_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class HARMEAN_funContext extends ExprContext {
-		public TerminalNode HARMEAN() { return getToken(mathParser.HARMEAN, 0); }
+		//public TerminalNode HARMEAN() { return getToken(mathParser.HARMEAN, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public HARMEAN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitHARMEAN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitHARMEAN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class NORMINV_funContext extends ExprContext {
-		public TerminalNode NORMINV() { return getToken(mathParser.NORMINV, 0); }
+		//public TerminalNode NORMINV() { return getToken(mathParser.NORMINV, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public NORMINV_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitNORMINV_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitNORMINV_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class GAMMAINV_funContext extends ExprContext {
-		public TerminalNode GAMMAINV() { return getToken(mathParser.GAMMAINV, 0); }
+		//public TerminalNode GAMMAINV() { return getToken(mathParser.GAMMAINV, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public GAMMAINV_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitGAMMAINV_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitGAMMAINV_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class SQRT_funContext extends ExprContext {
-		public TerminalNode SQRT() { return getToken(mathParser.SQRT, 0); }
+		//public TerminalNode SQRT() { return getToken(mathParser.SQRT, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public SQRT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSQRT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSQRT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class DEGREES_funContext extends ExprContext {
-		public TerminalNode DEGREES() { return getToken(mathParser.DEGREES, 0); }
+		//public TerminalNode DEGREES() { return getToken(mathParser.DEGREES, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public DEGREES_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitDEGREES_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitDEGREES_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class MROUND_funContext extends ExprContext {
-		public TerminalNode MROUND() { return getToken(mathParser.MROUND, 0); }
+		//public TerminalNode MROUND() { return getToken(mathParser.MROUND, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public MROUND_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitMROUND_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitMROUND_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class DATEDIF_funContext extends ExprContext {
-		public TerminalNode DATEDIF() { return getToken(mathParser.DATEDIF, 0); }
+		//public TerminalNode DATEDIF() { return getToken(mathParser.DATEDIF, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public DATEDIF_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitDATEDIF_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitDATEDIF_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class TRIMEND_funContext extends ExprContext {
-		public TerminalNode TRIMEND() { return getToken(mathParser.TRIMEND, 0); }
+		//public TerminalNode TRIMEND() { return getToken(mathParser.TRIMEND, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public TRIMEND_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTRIMEND_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTRIMEND_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ISLOGICAL_funContext extends ExprContext {
-		public TerminalNode ISLOGICAL() { return getToken(mathParser.ISLOGICAL, 0); }
+		//public TerminalNode ISLOGICAL() { return getToken(mathParser.ISLOGICAL, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public ISLOGICAL_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitISLOGICAL_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitISLOGICAL_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class INT_funContext extends ExprContext {
-		public TerminalNode INT() { return getToken(mathParser.INT, 0); }
+		//public TerminalNode INT() { return getToken(mathParser.INT, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public INT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitINT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitINT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class SUMIF_funContext extends ExprContext {
-		public TerminalNode SUMIF() { return getToken(mathParser.SUMIF, 0); }
+		//public TerminalNode SUMIF() { return getToken(mathParser.SUMIF, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public SUMIF_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSUMIF_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSUMIF_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class HEX2OCT_funContext extends ExprContext {
-		public TerminalNode HEX2OCT() { return getToken(mathParser.HEX2OCT, 0); }
+		//public TerminalNode HEX2OCT() { return getToken(mathParser.HEX2OCT, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public HEX2OCT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitHEX2OCT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitHEX2OCT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class PI_funContext extends ExprContext {
-		public TerminalNode PI() { return getToken(mathParser.PI, 0); }
+		//public TerminalNode PI() { return getToken(mathParser.PI, 0); }
 		public PI_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitPI_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitPI_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class YEAR_funContext extends ExprContext {
-		public TerminalNode YEAR() { return getToken(mathParser.YEAR, 0); }
+		//public TerminalNode YEAR() { return getToken(mathParser.YEAR, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public YEAR_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitYEAR_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitYEAR_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class SQRTPI_funContext extends ExprContext {
-		public TerminalNode SQRTPI() { return getToken(mathParser.SQRTPI, 0); }
+		//public TerminalNode SQRTPI() { return getToken(mathParser.SQRTPI, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public SQRTPI_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSQRTPI_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSQRTPI_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class CONCATENATE_funContext extends ExprContext {
-		public TerminalNode CONCATENATE() { return getToken(mathParser.CONCATENATE, 0); }
+		//public TerminalNode CONCATENATE() { return getToken(mathParser.CONCATENATE, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public CONCATENATE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitCONCATENATE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitCONCATENATE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class COUNT_funContext extends ExprContext {
-		public TerminalNode COUNT() { return getToken(mathParser.COUNT, 0); }
+		//public TerminalNode COUNT() { return getToken(mathParser.COUNT, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public COUNT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitCOUNT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitCOUNT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class FALSE_funContext extends ExprContext {
-		public TerminalNode FALSE() { return getToken(mathParser.FALSE, 0); }
+		//public TerminalNode FALSE() { return getToken(mathParser.FALSE, 0); }
 		public FALSE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitFALSE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitFALSE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class HTMLENCODE_funContext extends ExprContext {
-		public TerminalNode HTMLENCODE() { return getToken(mathParser.HTMLENCODE, 0); }
+		//public TerminalNode HTMLENCODE() { return getToken(mathParser.HTMLENCODE, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public HTMLENCODE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitHTMLENCODE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitHTMLENCODE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class BASE64URLTOTEXT_funContext extends ExprContext {
-		public TerminalNode BASE64URLTOTEXT() { return getToken(mathParser.BASE64URLTOTEXT, 0); }
+		//public TerminalNode BASE64URLTOTEXT() { return getToken(mathParser.BASE64URLTOTEXT, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public BASE64URLTOTEXT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitBASE64URLTOTEXT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitBASE64URLTOTEXT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class LOG10_funContext extends ExprContext {
-		public TerminalNode LOG10() { return getToken(mathParser.LOG10, 0); }
+		//public TerminalNode LOG10() { return getToken(mathParser.LOG10, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public LOG10_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitLOG10_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitLOG10_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ISTEXT_funContext extends ExprContext {
-		public TerminalNode ISTEXT() { return getToken(mathParser.ISTEXT, 0); }
+		//public TerminalNode ISTEXT() { return getToken(mathParser.ISTEXT, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public ISTEXT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitISTEXT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitISTEXT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class NEGBINOMDIST_funContext extends ExprContext {
-		public TerminalNode NEGBINOMDIST() { return getToken(mathParser.NEGBINOMDIST, 0); }
+		//public TerminalNode NEGBINOMDIST() { return getToken(mathParser.NEGBINOMDIST, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public NEGBINOMDIST_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitNEGBINOMDIST_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitNEGBINOMDIST_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class NETWORKDAYS_funContext extends ExprContext {
-		public TerminalNode NETWORKDAYS() { return getToken(mathParser.NETWORKDAYS, 0); }
+		//public TerminalNode NETWORKDAYS() { return getToken(mathParser.NETWORKDAYS, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public NETWORKDAYS_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitNETWORKDAYS_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitNETWORKDAYS_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class FACTDOUBLE_funContext extends ExprContext {
-		public TerminalNode FACTDOUBLE() { return getToken(mathParser.FACTDOUBLE, 0); }
+		//public TerminalNode FACTDOUBLE() { return getToken(mathParser.FACTDOUBLE, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public FACTDOUBLE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitFACTDOUBLE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitFACTDOUBLE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class TIMEVALUE_funContext extends ExprContext {
-		public TerminalNode TIMEVALUE() { return getToken(mathParser.TIMEVALUE, 0); }
+		//public TerminalNode TIMEVALUE() { return getToken(mathParser.TIMEVALUE, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public TIMEVALUE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTIMEVALUE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTIMEVALUE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class AVEDEV_funContext extends ExprContext {
-		public TerminalNode AVEDEV() { return getToken(mathParser.AVEDEV, 0); }
+		//public TerminalNode AVEDEV() { return getToken(mathParser.AVEDEV, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public AVEDEV_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitAVEDEV_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitAVEDEV_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class GUID_funContext extends ExprContext {
-		public TerminalNode GUID() { return getToken(mathParser.GUID, 0); }
+		//public TerminalNode GUID() { return getToken(mathParser.GUID, 0); }
 		public GUID_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitGUID_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitGUID_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class JSON_funContext extends ExprContext {
-		public TerminalNode JSON() { return getToken(mathParser.JSON, 0); }
+		//public TerminalNode JSON() { return getToken(mathParser.JSON, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public JSON_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitJSON_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitJSON_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class FIXED_funContext extends ExprContext {
-		public TerminalNode FIXED() { return getToken(mathParser.FIXED, 0); }
+		//public TerminalNode FIXED() { return getToken(mathParser.FIXED, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public FIXED_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitFIXED_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitFIXED_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1253,169 +1253,169 @@ public class mathParser extends Parser {
 		public GetJsonValue_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitGetJsonValue_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitGetJsonValue_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class TINV_funContext extends ExprContext {
-		public TerminalNode TINV() { return getToken(mathParser.TINV, 0); }
+		//public TerminalNode TINV() { return getToken(mathParser.TINV, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public TINV_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTINV_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTINV_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class EDATE_funContext extends ExprContext {
-		public TerminalNode EDATE() { return getToken(mathParser.EDATE, 0); }
+		//public TerminalNode EDATE() { return getToken(mathParser.EDATE, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public EDATE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitEDATE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitEDATE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class GEOMEAN_funContext extends ExprContext {
-		public TerminalNode GEOMEAN() { return getToken(mathParser.GEOMEAN, 0); }
+		//public TerminalNode GEOMEAN() { return getToken(mathParser.GEOMEAN, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public GEOMEAN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitGEOMEAN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitGEOMEAN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class VAR_funContext extends ExprContext {
-		public TerminalNode VAR() { return getToken(mathParser.VAR, 0); }
+		//public TerminalNode VAR() { return getToken(mathParser.VAR, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public VAR_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitVAR_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitVAR_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class SIGN_funContext extends ExprContext {
-		public TerminalNode SIGN() { return getToken(mathParser.SIGN, 0); }
+		//public TerminalNode SIGN() { return getToken(mathParser.SIGN, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public SIGN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSIGN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSIGN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class EOMONTH_funContext extends ExprContext {
-		public TerminalNode EOMONTH() { return getToken(mathParser.EOMONTH, 0); }
+		//public TerminalNode EOMONTH() { return getToken(mathParser.EOMONTH, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public EOMONTH_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitEOMONTH_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitEOMONTH_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class FLOOR_funContext extends ExprContext {
-		public TerminalNode FLOOR() { return getToken(mathParser.FLOOR, 0); }
+		//public TerminalNode FLOOR() { return getToken(mathParser.FLOOR, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public FLOOR_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitFLOOR_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitFLOOR_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class HOUR_funContext extends ExprContext {
-		public TerminalNode HOUR() { return getToken(mathParser.HOUR, 0); }
+		//public TerminalNode HOUR() { return getToken(mathParser.HOUR, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public HOUR_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitHOUR_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitHOUR_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class LEN_funContext extends ExprContext {
-		public TerminalNode LEN() { return getToken(mathParser.LEN, 0); }
+		//public TerminalNode LEN() { return getToken(mathParser.LEN, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public LEN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitLEN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitLEN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ACOS_funContext extends ExprContext {
-		public TerminalNode ACOS() { return getToken(mathParser.ACOS, 0); }
+		//public TerminalNode ACOS() { return getToken(mathParser.ACOS, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public ACOS_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitACOS_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitACOS_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ISNULLORWHITESPACE_funContext extends ExprContext {
-		public TerminalNode ISNULLORWHITESPACE() { return getToken(mathParser.ISNULLORWHITESPACE, 0); }
+		//public TerminalNode ISNULLORWHITESPACE() { return getToken(mathParser.ISNULLORWHITESPACE, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public ISNULLORWHITESPACE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitISNULLORWHITESPACE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitISNULLORWHITESPACE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1425,217 +1425,217 @@ public class mathParser extends Parser {
 		public NUM_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitNUM_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitNUM_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class COSH_funContext extends ExprContext {
-		public TerminalNode COSH() { return getToken(mathParser.COSH, 0); }
+		//public TerminalNode COSH() { return getToken(mathParser.COSH, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public COSH_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitCOSH_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitCOSH_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class QUOTIENT_funContext extends ExprContext {
-		public TerminalNode QUOTIENT() { return getToken(mathParser.QUOTIENT, 0); }
+		//public TerminalNode QUOTIENT() { return getToken(mathParser.QUOTIENT, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public QUOTIENT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitQUOTIENT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitQUOTIENT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class OCT2DEC_funContext extends ExprContext {
-		public TerminalNode OCT2DEC() { return getToken(mathParser.OCT2DEC, 0); }
+		//public TerminalNode OCT2DEC() { return getToken(mathParser.OCT2DEC, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public OCT2DEC_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitOCT2DEC_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitOCT2DEC_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class SEARCH_funContext extends ExprContext {
-		public TerminalNode SEARCH() { return getToken(mathParser.SEARCH, 0); }
+		//public TerminalNode SEARCH() { return getToken(mathParser.SEARCH, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public SEARCH_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSEARCH_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSEARCH_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ROUNDUP_funContext extends ExprContext {
-		public TerminalNode ROUNDUP() { return getToken(mathParser.ROUNDUP, 0); }
+		//public TerminalNode ROUNDUP() { return getToken(mathParser.ROUNDUP, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public ROUNDUP_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitROUNDUP_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitROUNDUP_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class COMBIN_funContext extends ExprContext {
-		public TerminalNode COMBIN() { return getToken(mathParser.COMBIN, 0); }
+		//public TerminalNode COMBIN() { return getToken(mathParser.COMBIN, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public COMBIN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitCOMBIN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitCOMBIN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class CODE_funContext extends ExprContext {
-		public TerminalNode CODE() { return getToken(mathParser.CODE, 0); }
+		//public TerminalNode CODE() { return getToken(mathParser.CODE, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public CODE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitCODE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitCODE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ASINH_funContext extends ExprContext {
-		public TerminalNode ASINH() { return getToken(mathParser.ASINH, 0); }
+		//public TerminalNode ASINH() { return getToken(mathParser.ASINH, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public ASINH_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitASINH_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitASINH_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class SIN_funContext extends ExprContext {
-		public TerminalNode SIN() { return getToken(mathParser.SIN, 0); }
+		//public TerminalNode SIN() { return getToken(mathParser.SIN, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public SIN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSIN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSIN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class SUBSTRING_funContext extends ExprContext {
-		public TerminalNode SUBSTRING() { return getToken(mathParser.SUBSTRING, 0); }
+		//public TerminalNode SUBSTRING() { return getToken(mathParser.SUBSTRING, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public SUBSTRING_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSUBSTRING_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSUBSTRING_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class RANDBETWEEN_funContext extends ExprContext {
-		public TerminalNode RANDBETWEEN() { return getToken(mathParser.RANDBETWEEN, 0); }
+		//public TerminalNode RANDBETWEEN() { return getToken(mathParser.RANDBETWEEN, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public RANDBETWEEN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitRANDBETWEEN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitRANDBETWEEN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class AVERAGE_funContext extends ExprContext {
-		public TerminalNode AVERAGE() { return getToken(mathParser.AVERAGE, 0); }
+		//public TerminalNode AVERAGE() { return getToken(mathParser.AVERAGE, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public AVERAGE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitAVERAGE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitAVERAGE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class LOG_funContext extends ExprContext {
-		public TerminalNode LOG() { return getToken(mathParser.LOG, 0); }
+		//public TerminalNode LOG() { return getToken(mathParser.LOG, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public LOG_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitLOG_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitLOG_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class HMACSHA512_funContext extends ExprContext {
-		public TerminalNode HMACSHA512() { return getToken(mathParser.HMACSHA512, 0); }
+		//public TerminalNode HMACSHA512() { return getToken(mathParser.HMACSHA512, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public HMACSHA512_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitHMACSHA512_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitHMACSHA512_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1647,170 +1647,170 @@ public class mathParser extends Parser {
 		public ExprContext expr(int i) {
 			return getRuleContext(ExprContext.class,i);
 		}
-		public TerminalNode AND() { return getToken(mathParser.AND, 0); }
-		public TerminalNode OR() { return getToken(mathParser.OR, 0); }
+		//public TerminalNode AND() { return getToken(mathParser.AND, 0); }
+		//public TerminalNode OR() { return getToken(mathParser.OR, 0); }
 		public AndOr_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitAndOr_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitAndOr_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class STDEVP_funContext extends ExprContext {
-		public TerminalNode STDEVP() { return getToken(mathParser.STDEVP, 0); }
+		//public TerminalNode STDEVP() { return getToken(mathParser.STDEVP, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public STDEVP_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSTDEVP_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSTDEVP_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ADDYEARS_funContext extends ExprContext {
-		public TerminalNode ADDYEARS() { return getToken(mathParser.ADDYEARS, 0); }
+		//public TerminalNode ADDYEARS() { return getToken(mathParser.ADDYEARS, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public ADDYEARS_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitADDYEARS_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitADDYEARS_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ADDSECONDS_funContext extends ExprContext {
-		public TerminalNode ADDSECONDS() { return getToken(mathParser.ADDSECONDS, 0); }
+		//public TerminalNode ADDSECONDS() { return getToken(mathParser.ADDSECONDS, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public ADDSECONDS_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitADDSECONDS_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitADDSECONDS_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class Array_funContext extends ExprContext {
-		public TerminalNode ARRAY() { return getToken(mathParser.ARRAY, 0); }
+		//public TerminalNode ARRAY() { return getToken(mathParser.ARRAY, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public Array_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitArray_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitArray_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ROUND_funContext extends ExprContext {
-		public TerminalNode ROUND() { return getToken(mathParser.ROUND, 0); }
+		//public TerminalNode ROUND() { return getToken(mathParser.ROUND, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public ROUND_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitROUND_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitROUND_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class EXP_funContext extends ExprContext {
-		public TerminalNode EXP() { return getToken(mathParser.EXP, 0); }
+		//public TerminalNode EXP() { return getToken(mathParser.EXP, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public EXP_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitEXP_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitEXP_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class COUNTIF_funContext extends ExprContext {
-		public TerminalNode COUNTIF() { return getToken(mathParser.COUNTIF, 0); }
+		//public TerminalNode COUNTIF() { return getToken(mathParser.COUNTIF, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public COUNTIF_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitCOUNTIF_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitCOUNTIF_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class VARP_funContext extends ExprContext {
-		public TerminalNode VARP() { return getToken(mathParser.VARP, 0); }
+		//public TerminalNode VARP() { return getToken(mathParser.VARP, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public VARP_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitVARP_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitVARP_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class REMOVEEND_funContext extends ExprContext {
-		public TerminalNode REMOVEEND() { return getToken(mathParser.REMOVEEND, 0); }
+		//public TerminalNode REMOVEEND() { return getToken(mathParser.REMOVEEND, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public REMOVEEND_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitREMOVEEND_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitREMOVEEND_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class DATE_funContext extends ExprContext {
-		public TerminalNode DATE() { return getToken(mathParser.DATE, 0); }
+		//public TerminalNode DATE() { return getToken(mathParser.DATE, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public DATE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitDATE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitDATE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1823,143 +1823,143 @@ public class mathParser extends Parser {
 		public PARAMETER_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitPARAMETER_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitPARAMETER_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class SPLIT_funContext extends ExprContext {
-		public TerminalNode SPLIT() { return getToken(mathParser.SPLIT, 0); }
+		//public TerminalNode SPLIT() { return getToken(mathParser.SPLIT, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public SPLIT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSPLIT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSPLIT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class URLDECODE_funContext extends ExprContext {
-		public TerminalNode URLDECODE() { return getToken(mathParser.URLDECODE, 0); }
+		//public TerminalNode URLDECODE() { return getToken(mathParser.URLDECODE, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public URLDECODE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitURLDECODE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitURLDECODE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class LARGE_funContext extends ExprContext {
-		public TerminalNode LARGE() { return getToken(mathParser.LARGE, 0); }
+		//public TerminalNode LARGE() { return getToken(mathParser.LARGE, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public LARGE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitLARGE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitLARGE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class TIMESTAMP_funContext extends ExprContext {
-		public TerminalNode TIMESTAMP() { return getToken(mathParser.TIMESTAMP, 0); }
+		//public TerminalNode TIMESTAMP() { return getToken(mathParser.TIMESTAMP, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public TIMESTAMP_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTIMESTAMP_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTIMESTAMP_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class VALUE_funContext extends ExprContext {
-		public TerminalNode VALUE() { return getToken(mathParser.VALUE, 0); }
+		//public TerminalNode VALUE() { return getToken(mathParser.VALUE, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public VALUE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitVALUE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitVALUE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class DAY_funContext extends ExprContext {
-		public TerminalNode DAY() { return getToken(mathParser.DAY, 0); }
+		//public TerminalNode DAY() { return getToken(mathParser.DAY, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public DAY_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitDAY_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitDAY_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class WEIBULL_funContext extends ExprContext {
-		public TerminalNode WEIBULL() { return getToken(mathParser.WEIBULL, 0); }
+		//public TerminalNode WEIBULL() { return getToken(mathParser.WEIBULL, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public WEIBULL_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitWEIBULL_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitWEIBULL_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class HMACSHA256_funContext extends ExprContext {
-		public TerminalNode HMACSHA256() { return getToken(mathParser.HMACSHA256, 0); }
+		//public TerminalNode HMACSHA256() { return getToken(mathParser.HMACSHA256, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public HMACSHA256_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitHMACSHA256_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitHMACSHA256_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class BINOMDIST_funContext extends ExprContext {
-		public TerminalNode BINOMDIST() { return getToken(mathParser.BINOMDIST, 0); }
+		//public TerminalNode BINOMDIST() { return getToken(mathParser.BINOMDIST, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public BINOMDIST_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitBINOMDIST_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitBINOMDIST_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -1968,548 +1968,548 @@ public class mathParser extends Parser {
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public Judge_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitJudge_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitJudge_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class DEVSQ_funContext extends ExprContext {
-		public TerminalNode DEVSQ() { return getToken(mathParser.DEVSQ, 0); }
+		//public TerminalNode DEVSQ() { return getToken(mathParser.DEVSQ, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public DEVSQ_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitDEVSQ_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitDEVSQ_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class MODE_funContext extends ExprContext {
-		public TerminalNode MODE() { return getToken(mathParser.MODE, 0); }
+		//public TerminalNode MODE() { return getToken(mathParser.MODE, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public MODE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitMODE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitMODE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class BETAINV_funContext extends ExprContext {
-		public TerminalNode BETAINV() { return getToken(mathParser.BETAINV, 0); }
+		//public TerminalNode BETAINV() { return getToken(mathParser.BETAINV, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public BETAINV_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitBETAINV_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitBETAINV_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class MAX_funContext extends ExprContext {
-		public TerminalNode MAX() { return getToken(mathParser.MAX, 0); }
+		//public TerminalNode MAX() { return getToken(mathParser.MAX, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public MAX_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitMAX_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitMAX_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class MINUTE_funContext extends ExprContext {
-		public TerminalNode MINUTE() { return getToken(mathParser.MINUTE, 0); }
+		//public TerminalNode MINUTE() { return getToken(mathParser.MINUTE, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public MINUTE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitMINUTE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitMINUTE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class TAN_funContext extends ExprContext {
-		public TerminalNode TAN() { return getToken(mathParser.TAN, 0); }
+		//public TerminalNode TAN() { return getToken(mathParser.TAN, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public TAN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTAN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTAN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class IFERROR_funContext extends ExprContext {
-		public TerminalNode IFERROR() { return getToken(mathParser.IFERROR, 0); }
+		//public TerminalNode IFERROR() { return getToken(mathParser.IFERROR, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public IFERROR_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitIFERROR_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitIFERROR_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class FDIST_funContext extends ExprContext {
-		public TerminalNode FDIST() { return getToken(mathParser.FDIST, 0); }
+		//public TerminalNode FDIST() { return getToken(mathParser.FDIST, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public FDIST_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitFDIST_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitFDIST_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class INDEXOF_funContext extends ExprContext {
-		public TerminalNode INDEXOF() { return getToken(mathParser.INDEXOF, 0); }
+		//public TerminalNode INDEXOF() { return getToken(mathParser.INDEXOF, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public INDEXOF_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitINDEXOF_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitINDEXOF_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class UPPER_funContext extends ExprContext {
-		public TerminalNode UPPER() { return getToken(mathParser.UPPER, 0); }
+		//public TerminalNode UPPER() { return getToken(mathParser.UPPER, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public UPPER_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitUPPER_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitUPPER_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class HTMLDECODE_funContext extends ExprContext {
-		public TerminalNode HTMLDECODE() { return getToken(mathParser.HTMLDECODE, 0); }
+		//public TerminalNode HTMLDECODE() { return getToken(mathParser.HTMLDECODE, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public HTMLDECODE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitHTMLDECODE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitHTMLDECODE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class EXPONDIST_funContext extends ExprContext {
-		public TerminalNode EXPONDIST() { return getToken(mathParser.EXPONDIST, 0); }
+		//public TerminalNode EXPONDIST() { return getToken(mathParser.EXPONDIST, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public EXPONDIST_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitEXPONDIST_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitEXPONDIST_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class VLOOKUP_funContext extends ExprContext {
-		public TerminalNode VLOOKUP() { return getToken(mathParser.VLOOKUP, 0); }
+		//public TerminalNode VLOOKUP() { return getToken(mathParser.VLOOKUP, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public VLOOKUP_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitVLOOKUP_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitVLOOKUP_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class DEC2BIN_funContext extends ExprContext {
-		public TerminalNode DEC2BIN() { return getToken(mathParser.DEC2BIN, 0); }
+		//public TerminalNode DEC2BIN() { return getToken(mathParser.DEC2BIN, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public DEC2BIN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitDEC2BIN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitDEC2BIN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class LOOKUP_funContext extends ExprContext {
-		public TerminalNode LOOKUP() { return getToken(mathParser.LOOKUP, 0); }
+		//public TerminalNode LOOKUP() { return getToken(mathParser.LOOKUP, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public LOOKUP_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitLOOKUP_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitLOOKUP_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class HEX2DEC_funContext extends ExprContext {
-		public TerminalNode HEX2DEC() { return getToken(mathParser.HEX2DEC, 0); }
+		//public TerminalNode HEX2DEC() { return getToken(mathParser.HEX2DEC, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public HEX2DEC_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitHEX2DEC_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitHEX2DEC_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class SMALL_funContext extends ExprContext {
-		public TerminalNode SMALL() { return getToken(mathParser.SMALL, 0); }
+		//public TerminalNode SMALL() { return getToken(mathParser.SMALL, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public SMALL_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSMALL_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSMALL_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ODD_funContext extends ExprContext {
-		public TerminalNode ODD() { return getToken(mathParser.ODD, 0); }
+		//public TerminalNode ODD() { return getToken(mathParser.ODD, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public ODD_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitODD_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitODD_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class TEXTTOBASE64_funContext extends ExprContext {
-		public TerminalNode TEXTTOBASE64() { return getToken(mathParser.TEXTTOBASE64, 0); }
+		//public TerminalNode TEXTTOBASE64() { return getToken(mathParser.TEXTTOBASE64, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public TEXTTOBASE64_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTEXTTOBASE64_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTEXTTOBASE64_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class MID_funContext extends ExprContext {
-		public TerminalNode MID() { return getToken(mathParser.MID, 0); }
+		//public TerminalNode MID() { return getToken(mathParser.MID, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public MID_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitMID_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitMID_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class PERCENTRANK_funContext extends ExprContext {
-		public TerminalNode PERCENTRANK() { return getToken(mathParser.PERCENTRANK, 0); }
+		//public TerminalNode PERCENTRANK() { return getToken(mathParser.PERCENTRANK, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public PERCENTRANK_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitPERCENTRANK_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitPERCENTRANK_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class STDEV_funContext extends ExprContext {
-		public TerminalNode STDEV() { return getToken(mathParser.STDEV, 0); }
+		//public TerminalNode STDEV() { return getToken(mathParser.STDEV, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public STDEV_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSTDEV_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSTDEV_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class NORMSDIST_funContext extends ExprContext {
-		public TerminalNode NORMSDIST() { return getToken(mathParser.NORMSDIST, 0); }
+		//public TerminalNode NORMSDIST() { return getToken(mathParser.NORMSDIST, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public NORMSDIST_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitNORMSDIST_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitNORMSDIST_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ISNUMBER_funContext extends ExprContext {
-		public TerminalNode ISNUMBER() { return getToken(mathParser.ISNUMBER, 0); }
+		//public TerminalNode ISNUMBER() { return getToken(mathParser.ISNUMBER, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public ISNUMBER_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitISNUMBER_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitISNUMBER_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class LASTINDEXOF_funContext extends ExprContext {
-		public TerminalNode LASTINDEXOF() { return getToken(mathParser.LASTINDEXOF, 0); }
+		//public TerminalNode LASTINDEXOF() { return getToken(mathParser.LASTINDEXOF, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public LASTINDEXOF_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitLASTINDEXOF_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitLASTINDEXOF_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class MOD_funContext extends ExprContext {
-		public TerminalNode MOD() { return getToken(mathParser.MOD, 0); }
+		//public TerminalNode MOD() { return getToken(mathParser.MOD, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public MOD_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitMOD_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitMOD_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class CHAR_funContext extends ExprContext {
-		public TerminalNode CHAR() { return getToken(mathParser.CHAR, 0); }
+		//public TerminalNode CHAR() { return getToken(mathParser.CHAR, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public CHAR_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitCHAR_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitCHAR_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class REGEX_funContext extends ExprContext {
-		public TerminalNode REGEX() { return getToken(mathParser.REGEX, 0); }
+		//public TerminalNode REGEX() { return getToken(mathParser.REGEX, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public REGEX_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitREGEX_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitREGEX_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class TEXTTOBASE64URL_funContext extends ExprContext {
-		public TerminalNode TEXTTOBASE64URL() { return getToken(mathParser.TEXTTOBASE64URL, 0); }
+		//public TerminalNode TEXTTOBASE64URL() { return getToken(mathParser.TEXTTOBASE64URL, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public TEXTTOBASE64URL_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTEXTTOBASE64URL_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTEXTTOBASE64URL_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class MD5_funContext extends ExprContext {
-		public TerminalNode MD5() { return getToken(mathParser.MD5, 0); }
+		//public TerminalNode MD5() { return getToken(mathParser.MD5, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public MD5_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitMD5_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitMD5_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class REPLACE_funContext extends ExprContext {
-		public TerminalNode REPLACE() { return getToken(mathParser.REPLACE, 0); }
+		//public TerminalNode REPLACE() { return getToken(mathParser.REPLACE, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public REPLACE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitREPLACE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitREPLACE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ACOSH_funContext extends ExprContext {
-		public TerminalNode ACOSH() { return getToken(mathParser.ACOSH, 0); }
+		//public TerminalNode ACOSH() { return getToken(mathParser.ACOSH, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public ACOSH_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitACOSH_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitACOSH_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ISODD_funContext extends ExprContext {
-		public TerminalNode ISODD() { return getToken(mathParser.ISODD, 0); }
+		//public TerminalNode ISODD() { return getToken(mathParser.ISODD, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public ISODD_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitISODD_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitISODD_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ASC_funContext extends ExprContext {
-		public TerminalNode ASC() { return getToken(mathParser.ASC, 0); }
+		//public TerminalNode ASC() { return getToken(mathParser.ASC, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public ASC_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitASC_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitASC_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class COS_funContext extends ExprContext {
-		public TerminalNode COS() { return getToken(mathParser.COS, 0); }
+		//public TerminalNode COS() { return getToken(mathParser.COS, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public COS_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitCOS_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitCOS_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class LN_funContext extends ExprContext {
-		public TerminalNode LN() { return getToken(mathParser.LN, 0); }
+		//public TerminalNode LN() { return getToken(mathParser.LN, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public LN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitLN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitLN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2518,372 +2518,372 @@ public class mathParser extends Parser {
 		public STRING_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSTRING_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSTRING_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class HMACMD5_funContext extends ExprContext {
-		public TerminalNode HMACMD5() { return getToken(mathParser.HMACMD5, 0); }
+		//public TerminalNode HMACMD5() { return getToken(mathParser.HMACMD5, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public HMACMD5_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitHMACMD5_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitHMACMD5_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class PRODUCT_funContext extends ExprContext {
-		public TerminalNode PRODUCT() { return getToken(mathParser.PRODUCT, 0); }
+		//public TerminalNode PRODUCT() { return getToken(mathParser.PRODUCT, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public PRODUCT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitPRODUCT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitPRODUCT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class EXACT_funContext extends ExprContext {
-		public TerminalNode EXACT() { return getToken(mathParser.EXACT, 0); }
+		//public TerminalNode EXACT() { return getToken(mathParser.EXACT, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public EXACT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitEXACT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitEXACT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ADDMINUTES_funContext extends ExprContext {
-		public TerminalNode ADDMINUTES() { return getToken(mathParser.ADDMINUTES, 0); }
+		//public TerminalNode ADDMINUTES() { return getToken(mathParser.ADDMINUTES, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public ADDMINUTES_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitADDMINUTES_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitADDMINUTES_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class SUMSQ_funContext extends ExprContext {
-		public TerminalNode SUMSQ() { return getToken(mathParser.SUMSQ, 0); }
+		//public TerminalNode SUMSQ() { return getToken(mathParser.SUMSQ, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public SUMSQ_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSUMSQ_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSUMSQ_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class SUM_funContext extends ExprContext {
-		public TerminalNode SUM() { return getToken(mathParser.SUM, 0); }
+		//public TerminalNode SUM() { return getToken(mathParser.SUM, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public SUM_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSUM_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSUM_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class SECOND_funContext extends ExprContext {
-		public TerminalNode SECOND() { return getToken(mathParser.SECOND, 0); }
+		//public TerminalNode SECOND() { return getToken(mathParser.SECOND, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public SECOND_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSECOND_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSECOND_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class GAMMADIST_funContext extends ExprContext {
-		public TerminalNode GAMMADIST() { return getToken(mathParser.GAMMADIST, 0); }
+		//public TerminalNode GAMMADIST() { return getToken(mathParser.GAMMADIST, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public GAMMADIST_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitGAMMADIST_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitGAMMADIST_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class OCT2HEX_funContext extends ExprContext {
-		public TerminalNode OCT2HEX() { return getToken(mathParser.OCT2HEX, 0); }
+		//public TerminalNode OCT2HEX() { return getToken(mathParser.OCT2HEX, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public OCT2HEX_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitOCT2HEX_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitOCT2HEX_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class TODAY_funContext extends ExprContext {
-		public TerminalNode TODAY() { return getToken(mathParser.TODAY, 0); }
+		//public TerminalNode TODAY() { return getToken(mathParser.TODAY, 0); }
 		public TODAY_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTODAY_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTODAY_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ATAN_funContext extends ExprContext {
-		public TerminalNode ATAN() { return getToken(mathParser.ATAN, 0); }
+		//public TerminalNode ATAN() { return getToken(mathParser.ATAN, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public ATAN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitATAN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitATAN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class E_funContext extends ExprContext {
-		public TerminalNode E() { return getToken(mathParser.E, 0); }
+		//public TerminalNode E() { return getToken(mathParser.E, 0); }
 		public E_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class TRIM_funContext extends ExprContext {
-		public TerminalNode TRIM() { return getToken(mathParser.TRIM, 0); }
+		//public TerminalNode TRIM() { return getToken(mathParser.TRIM, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public TRIM_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTRIM_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTRIM_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class RADIANS_funContext extends ExprContext {
-		public TerminalNode RADIANS() { return getToken(mathParser.RADIANS, 0); }
+		//public TerminalNode RADIANS() { return getToken(mathParser.RADIANS, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public RADIANS_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitRADIANS_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitRADIANS_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class GAMMALN_funContext extends ExprContext {
-		public TerminalNode GAMMALN() { return getToken(mathParser.GAMMALN, 0); }
+		//public TerminalNode GAMMALN() { return getToken(mathParser.GAMMALN, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public GAMMALN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitGAMMALN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitGAMMALN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class TEXT_funContext extends ExprContext {
-		public TerminalNode TEXT() { return getToken(mathParser.TEXT, 0); }
+		//public TerminalNode TEXT() { return getToken(mathParser.TEXT, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public TEXT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTEXT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTEXT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class FISHER_funContext extends ExprContext {
-		public TerminalNode FISHER() { return getToken(mathParser.FISHER, 0); }
+		//public TerminalNode FISHER() { return getToken(mathParser.FISHER, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public FISHER_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitFISHER_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitFISHER_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class AND_funContext extends ExprContext {
-		public TerminalNode AND() { return getToken(mathParser.AND, 0); }
+		//public TerminalNode AND() { return getToken(mathParser.AND, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public AND_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitAND_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitAND_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class BIN2HEX_funContext extends ExprContext {
-		public TerminalNode BIN2HEX() { return getToken(mathParser.BIN2HEX, 0); }
+		//public TerminalNode BIN2HEX() { return getToken(mathParser.BIN2HEX, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public BIN2HEX_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitBIN2HEX_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitBIN2HEX_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class MULTINOMIAL_funContext extends ExprContext {
-		public TerminalNode MULTINOMIAL() { return getToken(mathParser.MULTINOMIAL, 0); }
+		//public TerminalNode MULTINOMIAL() { return getToken(mathParser.MULTINOMIAL, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public MULTINOMIAL_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitMULTINOMIAL_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitMULTINOMIAL_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class MONTH_funContext extends ExprContext {
-		public TerminalNode MONTH() { return getToken(mathParser.MONTH, 0); }
+		//public TerminalNode MONTH() { return getToken(mathParser.MONTH, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public MONTH_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitMONTH_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitMONTH_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class URLENCODE_funContext extends ExprContext {
-		public TerminalNode URLENCODE() { return getToken(mathParser.URLENCODE, 0); }
+		//public TerminalNode URLENCODE() { return getToken(mathParser.URLENCODE, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public URLENCODE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitURLENCODE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitURLENCODE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class NORMDIST_funContext extends ExprContext {
-		public TerminalNode NORMDIST() { return getToken(mathParser.NORMDIST, 0); }
+		//public TerminalNode NORMDIST() { return getToken(mathParser.NORMDIST, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public NORMDIST_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitNORMDIST_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitNORMDIST_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class HMACSHA1_funContext extends ExprContext {
-		public TerminalNode HMACSHA1() { return getToken(mathParser.HMACSHA1, 0); }
+		//public TerminalNode HMACSHA1() { return getToken(mathParser.HMACSHA1, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public HMACSHA1_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitHMACSHA1_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitHMACSHA1_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ENDSWITH_funContext extends ExprContext {
-		public TerminalNode ENDSWITH() { return getToken(mathParser.ENDSWITH, 0); }
+		//public TerminalNode ENDSWITH() { return getToken(mathParser.ENDSWITH, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public ENDSWITH_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitENDSWITH_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitENDSWITH_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -2894,333 +2894,333 @@ public class mathParser extends Parser {
 		public Bracket_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitBracket_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitBracket_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class BETADIST_funContext extends ExprContext {
-		public TerminalNode BETADIST() { return getToken(mathParser.BETADIST, 0); }
+		//public TerminalNode BETADIST() { return getToken(mathParser.BETADIST, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public BETADIST_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitBETADIST_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitBETADIST_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ATANH_funContext extends ExprContext {
-		public TerminalNode ATANH() { return getToken(mathParser.ATANH, 0); }
+		//public TerminalNode ATANH() { return getToken(mathParser.ATANH, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public ATANH_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitATANH_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitATANH_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class NOW_funContext extends ExprContext {
-		public TerminalNode NOW() { return getToken(mathParser.NOW, 0); }
+		//public TerminalNode NOW() { return getToken(mathParser.NOW, 0); }
 		public NOW_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitNOW_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitNOW_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class MEDIAN_funContext extends ExprContext {
-		public TerminalNode MEDIAN() { return getToken(mathParser.MEDIAN, 0); }
+		//public TerminalNode MEDIAN() { return getToken(mathParser.MEDIAN, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public MEDIAN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitMEDIAN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitMEDIAN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class POWER_funContext extends ExprContext {
-		public TerminalNode POWER() { return getToken(mathParser.POWER, 0); }
+		//public TerminalNode POWER() { return getToken(mathParser.POWER, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public POWER_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitPOWER_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitPOWER_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class DEC2OCT_funContext extends ExprContext {
-		public TerminalNode DEC2OCT() { return getToken(mathParser.DEC2OCT, 0); }
+		//public TerminalNode DEC2OCT() { return getToken(mathParser.DEC2OCT, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public DEC2OCT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitDEC2OCT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitDEC2OCT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class PROPER_funContext extends ExprContext {
-		public TerminalNode PROPER() { return getToken(mathParser.PROPER, 0); }
+		//public TerminalNode PROPER() { return getToken(mathParser.PROPER, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public PROPER_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitPROPER_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitPROPER_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class TRUNC_funContext extends ExprContext {
-		public TerminalNode TRUNC() { return getToken(mathParser.TRUNC, 0); }
+		//public TerminalNode TRUNC() { return getToken(mathParser.TRUNC, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public TRUNC_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTRUNC_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTRUNC_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class GCD_funContext extends ExprContext {
-		public TerminalNode GCD() { return getToken(mathParser.GCD, 0); }
+		//public TerminalNode GCD() { return getToken(mathParser.GCD, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public GCD_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitGCD_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitGCD_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class TANH_funContext extends ExprContext {
-		public TerminalNode TANH() { return getToken(mathParser.TANH, 0); }
+		//public TerminalNode TANH() { return getToken(mathParser.TANH, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public TANH_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTANH_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTANH_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class HEX2BIN_funContext extends ExprContext {
-		public TerminalNode HEX2BIN() { return getToken(mathParser.HEX2BIN, 0); }
+		//public TerminalNode HEX2BIN() { return getToken(mathParser.HEX2BIN, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public HEX2BIN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitHEX2BIN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitHEX2BIN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class SINH_funContext extends ExprContext {
-		public TerminalNode SINH() { return getToken(mathParser.SINH, 0); }
+		//public TerminalNode SINH() { return getToken(mathParser.SINH, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public SINH_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSINH_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSINH_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class SHA512_funContext extends ExprContext {
-		public TerminalNode SHA512() { return getToken(mathParser.SHA512, 0); }
+		//public TerminalNode SHA512() { return getToken(mathParser.SHA512, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public SHA512_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSHA512_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSHA512_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class MIN_funContext extends ExprContext {
-		public TerminalNode MIN() { return getToken(mathParser.MIN, 0); }
+		//public TerminalNode MIN() { return getToken(mathParser.MIN, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public MIN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitMIN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitMIN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ADDDAYS_funContext extends ExprContext {
-		public TerminalNode ADDDAYS() { return getToken(mathParser.ADDDAYS, 0); }
+		//public TerminalNode ADDDAYS() { return getToken(mathParser.ADDDAYS, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public ADDDAYS_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitADDDAYS_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitADDDAYS_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ISNONTEXT_funContext extends ExprContext {
-		public TerminalNode ISNONTEXT() { return getToken(mathParser.ISNONTEXT, 0); }
+		//public TerminalNode ISNONTEXT() { return getToken(mathParser.ISNONTEXT, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public ISNONTEXT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitISNONTEXT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitISNONTEXT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ABS_funContext extends ExprContext {
-		public TerminalNode ABS() { return getToken(mathParser.ABS, 0); }
+		//public TerminalNode ABS() { return getToken(mathParser.ABS, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public ABS_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitABS_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitABS_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ROUNDDOWN_funContext extends ExprContext {
-		public TerminalNode ROUNDDOWN() { return getToken(mathParser.ROUNDDOWN, 0); }
+		//public TerminalNode ROUNDDOWN() { return getToken(mathParser.ROUNDDOWN, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public ROUNDDOWN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitROUNDDOWN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitROUNDDOWN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class IF_funContext extends ExprContext {
-		public TerminalNode IF() { return getToken(mathParser.IF, 0); }
+		//public TerminalNode IF() { return getToken(mathParser.IF, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public IF_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitIF_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitIF_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class JOIN_funContext extends ExprContext {
-		public TerminalNode JOIN() { return getToken(mathParser.JOIN, 0); }
+		//public TerminalNode JOIN() { return getToken(mathParser.JOIN, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public JOIN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitJOIN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitJOIN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class FIND_funContext extends ExprContext {
-		public TerminalNode FIND() { return getToken(mathParser.FIND, 0); }
+		//public TerminalNode FIND() { return getToken(mathParser.FIND, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public FIND_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitFIND_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitFIND_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class SUBSTITUTE_funContext extends ExprContext {
-		public TerminalNode SUBSTITUTE() { return getToken(mathParser.SUBSTITUTE, 0); }
+		//public TerminalNode SUBSTITUTE() { return getToken(mathParser.SUBSTITUTE, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public SUBSTITUTE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSUBSTITUTE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSUBSTITUTE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3231,53 +3231,53 @@ public class mathParser extends Parser {
 		public Percentage_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitPercentage_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitPercentage_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class REPT_funContext extends ExprContext {
-		public TerminalNode REPT() { return getToken(mathParser.REPT, 0); }
+		//public TerminalNode REPT() { return getToken(mathParser.REPT, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public REPT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitREPT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitREPT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ISNULL_funContext extends ExprContext {
-		public TerminalNode ISNULL() { return getToken(mathParser.ISNULL, 0); }
+		//public TerminalNode ISNULL() { return getToken(mathParser.ISNULL, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public ISNULL_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitISNULL_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitISNULL_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ASIN_funContext extends ExprContext {
-		public TerminalNode ASIN() { return getToken(mathParser.ASIN, 0); }
+		//public TerminalNode ASIN() { return getToken(mathParser.ASIN, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public ASIN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitASIN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitASIN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
@@ -3286,288 +3286,288 @@ public class mathParser extends Parser {
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public MulDiv_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitMulDiv_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitMulDiv_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class REMOVESTART_funContext extends ExprContext {
-		public TerminalNode REMOVESTART() { return getToken(mathParser.REMOVESTART, 0); }
+		//public TerminalNode REMOVESTART() { return getToken(mathParser.REMOVESTART, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public REMOVESTART_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitREMOVESTART_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitREMOVESTART_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class T_funContext extends ExprContext {
-		public TerminalNode T() { return getToken(mathParser.T, 0); }
+		//public TerminalNode T() { return getToken(mathParser.T, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public T_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class WEEKDAY_funContext extends ExprContext {
-		public TerminalNode WEEKDAY() { return getToken(mathParser.WEEKDAY, 0); }
+		//public TerminalNode WEEKDAY() { return getToken(mathParser.WEEKDAY, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public WEEKDAY_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitWEEKDAY_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitWEEKDAY_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class BIN2OCT_funContext extends ExprContext {
-		public TerminalNode BIN2OCT() { return getToken(mathParser.BIN2OCT, 0); }
+		//public TerminalNode BIN2OCT() { return getToken(mathParser.BIN2OCT, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public BIN2OCT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitBIN2OCT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitBIN2OCT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class NULL_funContext extends ExprContext {
-		public TerminalNode NULL() { return getToken(mathParser.NULL, 0); }
+		//public TerminalNode NULL() { return getToken(mathParser.NULL, 0); }
 		public NULL_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitNULL_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitNULL_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class BASE64TOTEXT_funContext extends ExprContext {
-		public TerminalNode BASE64TOTEXT() { return getToken(mathParser.BASE64TOTEXT, 0); }
+		//public TerminalNode BASE64TOTEXT() { return getToken(mathParser.BASE64TOTEXT, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public BASE64TOTEXT_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitBASE64TOTEXT_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitBASE64TOTEXT_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class TDIST_funContext extends ExprContext {
-		public TerminalNode TDIST() { return getToken(mathParser.TDIST, 0); }
+		//public TerminalNode TDIST() { return getToken(mathParser.TDIST, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public TDIST_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTDIST_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTDIST_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class DATEVALUE_funContext extends ExprContext {
-		public TerminalNode DATEVALUE() { return getToken(mathParser.DATEVALUE, 0); }
+		//public TerminalNode DATEVALUE() { return getToken(mathParser.DATEVALUE, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public DATEVALUE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitDATEVALUE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitDATEVALUE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class STARTSWITH_funContext extends ExprContext {
-		public TerminalNode STARTSWITH() { return getToken(mathParser.STARTSWITH, 0); }
+		//public TerminalNode STARTSWITH() { return getToken(mathParser.STARTSWITH, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public STARTSWITH_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSTARTSWITH_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSTARTSWITH_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class EVEN_funContext extends ExprContext {
-		public TerminalNode EVEN() { return getToken(mathParser.EVEN, 0); }
+		//public TerminalNode EVEN() { return getToken(mathParser.EVEN, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public EVEN_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitEVEN_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitEVEN_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class LOGNORMDIST_funContext extends ExprContext {
-		public TerminalNode LOGNORMDIST() { return getToken(mathParser.LOGNORMDIST, 0); }
+		//public TerminalNode LOGNORMDIST() { return getToken(mathParser.LOGNORMDIST, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public LOGNORMDIST_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitLOGNORMDIST_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitLOGNORMDIST_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ISNULLOREMPTY_funContext extends ExprContext {
-		public TerminalNode ISNULLOREMPTY() { return getToken(mathParser.ISNULLOREMPTY, 0); }
+		//public TerminalNode ISNULLOREMPTY() { return getToken(mathParser.ISNULLOREMPTY, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public ISNULLOREMPTY_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitISNULLOREMPTY_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitISNULLOREMPTY_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class TRUE_funContext extends ExprContext {
-		public TerminalNode TRUE() { return getToken(mathParser.TRUE, 0); }
+		//public TerminalNode TRUE() { return getToken(mathParser.TRUE, 0); }
 		public TRUE_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTRUE_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTRUE_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class FISHERINV_funContext extends ExprContext {
-		public TerminalNode FISHERINV() { return getToken(mathParser.FISHERINV, 0); }
+		//public TerminalNode FISHERINV() { return getToken(mathParser.FISHERINV, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public FISHERINV_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitFISHERINV_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitFISHERINV_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class SHA1_funContext extends ExprContext {
-		public TerminalNode SHA1() { return getToken(mathParser.SHA1, 0); }
+		//public TerminalNode SHA1() { return getToken(mathParser.SHA1, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public SHA1_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitSHA1_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitSHA1_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class TIME_funContext extends ExprContext {
-		public TerminalNode TIME() { return getToken(mathParser.TIME, 0); }
+		//public TerminalNode TIME() { return getToken(mathParser.TIME, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public TIME_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitTIME_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitTIME_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ATAN2_funContext extends ExprContext {
-		public TerminalNode ATAN2() { return getToken(mathParser.ATAN2, 0); }
+		//public TerminalNode ATAN2() { return getToken(mathParser.ATAN2, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public ATAN2_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitATAN2_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitATAN2_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ADDHOURS_funContext extends ExprContext {
-		public TerminalNode ADDHOURS() { return getToken(mathParser.ADDHOURS, 0); }
+		//public TerminalNode ADDHOURS() { return getToken(mathParser.ADDHOURS, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
+		//public ExprContext expr(int i) {
+		//	return getRuleContext(ExprContext.class,i);
+		//}
 		public ADDHOURS_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitADDHOURS_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitADDHOURS_fun(this);
+			
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class RAND_funContext extends ExprContext {
-		public TerminalNode RAND() { return getToken(mathParser.RAND, 0); }
+		//public TerminalNode RAND() { return getToken(mathParser.RAND, 0); }
 		public RAND_funContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitRAND_fun(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitRAND_fun(this);
+			
 		}
 	}
 
@@ -11107,228 +11107,228 @@ public class mathParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class Parameter2Context extends ParserRuleContext {
-		public TerminalNode E() { return getToken(mathParser.E, 0); }
-		public TerminalNode IF() { return getToken(mathParser.IF, 0); }
-		public TerminalNode IFERROR() { return getToken(mathParser.IFERROR, 0); }
-		public TerminalNode ISNUMBER() { return getToken(mathParser.ISNUMBER, 0); }
-		public TerminalNode ISTEXT() { return getToken(mathParser.ISTEXT, 0); }
-		public TerminalNode ISERROR() { return getToken(mathParser.ISERROR, 0); }
-		public TerminalNode ISNONTEXT() { return getToken(mathParser.ISNONTEXT, 0); }
-		public TerminalNode ISLOGICAL() { return getToken(mathParser.ISLOGICAL, 0); }
-		public TerminalNode ISEVEN() { return getToken(mathParser.ISEVEN, 0); }
-		public TerminalNode ISODD() { return getToken(mathParser.ISODD, 0); }
-		public TerminalNode ISNULL() { return getToken(mathParser.ISNULL, 0); }
-		public TerminalNode ISNULLORERROR() { return getToken(mathParser.ISNULLORERROR, 0); }
-		public TerminalNode AND() { return getToken(mathParser.AND, 0); }
-		public TerminalNode OR() { return getToken(mathParser.OR, 0); }
-		public TerminalNode NOT() { return getToken(mathParser.NOT, 0); }
-		public TerminalNode TRUE() { return getToken(mathParser.TRUE, 0); }
-		public TerminalNode FALSE() { return getToken(mathParser.FALSE, 0); }
-		public TerminalNode PI() { return getToken(mathParser.PI, 0); }
-		public TerminalNode DEC2BIN() { return getToken(mathParser.DEC2BIN, 0); }
-		public TerminalNode DEC2HEX() { return getToken(mathParser.DEC2HEX, 0); }
-		public TerminalNode DEC2OCT() { return getToken(mathParser.DEC2OCT, 0); }
-		public TerminalNode HEX2BIN() { return getToken(mathParser.HEX2BIN, 0); }
-		public TerminalNode HEX2DEC() { return getToken(mathParser.HEX2DEC, 0); }
-		public TerminalNode HEX2OCT() { return getToken(mathParser.HEX2OCT, 0); }
-		public TerminalNode OCT2BIN() { return getToken(mathParser.OCT2BIN, 0); }
-		public TerminalNode OCT2DEC() { return getToken(mathParser.OCT2DEC, 0); }
-		public TerminalNode OCT2HEX() { return getToken(mathParser.OCT2HEX, 0); }
-		public TerminalNode BIN2OCT() { return getToken(mathParser.BIN2OCT, 0); }
-		public TerminalNode BIN2DEC() { return getToken(mathParser.BIN2DEC, 0); }
-		public TerminalNode BIN2HEX() { return getToken(mathParser.BIN2HEX, 0); }
-		public TerminalNode ABS() { return getToken(mathParser.ABS, 0); }
-		public TerminalNode QUOTIENT() { return getToken(mathParser.QUOTIENT, 0); }
-		public TerminalNode MOD() { return getToken(mathParser.MOD, 0); }
-		public TerminalNode SIGN() { return getToken(mathParser.SIGN, 0); }
-		public TerminalNode SQRT() { return getToken(mathParser.SQRT, 0); }
-		public TerminalNode TRUNC() { return getToken(mathParser.TRUNC, 0); }
-		public TerminalNode INT() { return getToken(mathParser.INT, 0); }
-		public TerminalNode GCD() { return getToken(mathParser.GCD, 0); }
-		public TerminalNode LCM() { return getToken(mathParser.LCM, 0); }
-		public TerminalNode COMBIN() { return getToken(mathParser.COMBIN, 0); }
-		public TerminalNode PERMUT() { return getToken(mathParser.PERMUT, 0); }
-		public TerminalNode DEGREES() { return getToken(mathParser.DEGREES, 0); }
-		public TerminalNode RADIANS() { return getToken(mathParser.RADIANS, 0); }
-		public TerminalNode COS() { return getToken(mathParser.COS, 0); }
-		public TerminalNode COSH() { return getToken(mathParser.COSH, 0); }
-		public TerminalNode SIN() { return getToken(mathParser.SIN, 0); }
-		public TerminalNode SINH() { return getToken(mathParser.SINH, 0); }
-		public TerminalNode TAN() { return getToken(mathParser.TAN, 0); }
-		public TerminalNode TANH() { return getToken(mathParser.TANH, 0); }
-		public TerminalNode ACOS() { return getToken(mathParser.ACOS, 0); }
-		public TerminalNode ACOSH() { return getToken(mathParser.ACOSH, 0); }
-		public TerminalNode ASIN() { return getToken(mathParser.ASIN, 0); }
-		public TerminalNode ASINH() { return getToken(mathParser.ASINH, 0); }
-		public TerminalNode ATAN() { return getToken(mathParser.ATAN, 0); }
-		public TerminalNode ATANH() { return getToken(mathParser.ATANH, 0); }
-		public TerminalNode ATAN2() { return getToken(mathParser.ATAN2, 0); }
-		public TerminalNode ROUND() { return getToken(mathParser.ROUND, 0); }
-		public TerminalNode ROUNDDOWN() { return getToken(mathParser.ROUNDDOWN, 0); }
-		public TerminalNode ROUNDUP() { return getToken(mathParser.ROUNDUP, 0); }
-		public TerminalNode CEILING() { return getToken(mathParser.CEILING, 0); }
-		public TerminalNode FLOOR() { return getToken(mathParser.FLOOR, 0); }
-		public TerminalNode EVEN() { return getToken(mathParser.EVEN, 0); }
-		public TerminalNode ODD() { return getToken(mathParser.ODD, 0); }
-		public TerminalNode MROUND() { return getToken(mathParser.MROUND, 0); }
-		public TerminalNode RAND() { return getToken(mathParser.RAND, 0); }
-		public TerminalNode RANDBETWEEN() { return getToken(mathParser.RANDBETWEEN, 0); }
-		public TerminalNode FACT() { return getToken(mathParser.FACT, 0); }
-		public TerminalNode FACTDOUBLE() { return getToken(mathParser.FACTDOUBLE, 0); }
-		public TerminalNode POWER() { return getToken(mathParser.POWER, 0); }
-		public TerminalNode EXP() { return getToken(mathParser.EXP, 0); }
-		public TerminalNode LN() { return getToken(mathParser.LN, 0); }
-		public TerminalNode LOG() { return getToken(mathParser.LOG, 0); }
-		public TerminalNode LOG10() { return getToken(mathParser.LOG10, 0); }
-		public TerminalNode MULTINOMIAL() { return getToken(mathParser.MULTINOMIAL, 0); }
-		public TerminalNode PRODUCT() { return getToken(mathParser.PRODUCT, 0); }
-		public TerminalNode SQRTPI() { return getToken(mathParser.SQRTPI, 0); }
-		public TerminalNode SUMSQ() { return getToken(mathParser.SUMSQ, 0); }
-		public TerminalNode ASC() { return getToken(mathParser.ASC, 0); }
-		public TerminalNode JIS() { return getToken(mathParser.JIS, 0); }
-		public TerminalNode CHAR() { return getToken(mathParser.CHAR, 0); }
-		public TerminalNode CLEAN() { return getToken(mathParser.CLEAN, 0); }
-		public TerminalNode CODE() { return getToken(mathParser.CODE, 0); }
-		public TerminalNode CONCATENATE() { return getToken(mathParser.CONCATENATE, 0); }
-		public TerminalNode EXACT() { return getToken(mathParser.EXACT, 0); }
-		public TerminalNode FIND() { return getToken(mathParser.FIND, 0); }
-		public TerminalNode FIXED() { return getToken(mathParser.FIXED, 0); }
-		public TerminalNode LEFT() { return getToken(mathParser.LEFT, 0); }
-		public TerminalNode LEN() { return getToken(mathParser.LEN, 0); }
-		public TerminalNode LOWER() { return getToken(mathParser.LOWER, 0); }
-		public TerminalNode MID() { return getToken(mathParser.MID, 0); }
-		public TerminalNode PROPER() { return getToken(mathParser.PROPER, 0); }
-		public TerminalNode REPLACE() { return getToken(mathParser.REPLACE, 0); }
-		public TerminalNode REPT() { return getToken(mathParser.REPT, 0); }
-		public TerminalNode RIGHT() { return getToken(mathParser.RIGHT, 0); }
-		public TerminalNode RMB() { return getToken(mathParser.RMB, 0); }
-		public TerminalNode SEARCH() { return getToken(mathParser.SEARCH, 0); }
-		public TerminalNode SUBSTITUTE() { return getToken(mathParser.SUBSTITUTE, 0); }
-		public TerminalNode T() { return getToken(mathParser.T, 0); }
-		public TerminalNode TEXT() { return getToken(mathParser.TEXT, 0); }
-		public TerminalNode TRIM() { return getToken(mathParser.TRIM, 0); }
-		public TerminalNode UPPER() { return getToken(mathParser.UPPER, 0); }
-		public TerminalNode VALUE() { return getToken(mathParser.VALUE, 0); }
-		public TerminalNode DATEVALUE() { return getToken(mathParser.DATEVALUE, 0); }
-		public TerminalNode TIMEVALUE() { return getToken(mathParser.TIMEVALUE, 0); }
-		public TerminalNode DATE() { return getToken(mathParser.DATE, 0); }
-		public TerminalNode TIME() { return getToken(mathParser.TIME, 0); }
-		public TerminalNode NOW() { return getToken(mathParser.NOW, 0); }
-		public TerminalNode TODAY() { return getToken(mathParser.TODAY, 0); }
-		public TerminalNode YEAR() { return getToken(mathParser.YEAR, 0); }
-		public TerminalNode MONTH() { return getToken(mathParser.MONTH, 0); }
-		public TerminalNode DAY() { return getToken(mathParser.DAY, 0); }
-		public TerminalNode HOUR() { return getToken(mathParser.HOUR, 0); }
-		public TerminalNode MINUTE() { return getToken(mathParser.MINUTE, 0); }
-		public TerminalNode SECOND() { return getToken(mathParser.SECOND, 0); }
-		public TerminalNode WEEKDAY() { return getToken(mathParser.WEEKDAY, 0); }
-		public TerminalNode DATEDIF() { return getToken(mathParser.DATEDIF, 0); }
-		public TerminalNode DAYS360() { return getToken(mathParser.DAYS360, 0); }
-		public TerminalNode EDATE() { return getToken(mathParser.EDATE, 0); }
-		public TerminalNode EOMONTH() { return getToken(mathParser.EOMONTH, 0); }
-		public TerminalNode NETWORKDAYS() { return getToken(mathParser.NETWORKDAYS, 0); }
-		public TerminalNode WORKDAY() { return getToken(mathParser.WORKDAY, 0); }
-		public TerminalNode WEEKNUM() { return getToken(mathParser.WEEKNUM, 0); }
-		public TerminalNode MAX() { return getToken(mathParser.MAX, 0); }
-		public TerminalNode MEDIAN() { return getToken(mathParser.MEDIAN, 0); }
-		public TerminalNode MIN() { return getToken(mathParser.MIN, 0); }
-		public TerminalNode QUARTILE() { return getToken(mathParser.QUARTILE, 0); }
-		public TerminalNode MODE() { return getToken(mathParser.MODE, 0); }
-		public TerminalNode LARGE() { return getToken(mathParser.LARGE, 0); }
-		public TerminalNode SMALL() { return getToken(mathParser.SMALL, 0); }
-		public TerminalNode PERCENTILE() { return getToken(mathParser.PERCENTILE, 0); }
-		public TerminalNode PERCENTRANK() { return getToken(mathParser.PERCENTRANK, 0); }
-		public TerminalNode AVERAGE() { return getToken(mathParser.AVERAGE, 0); }
-		public TerminalNode AVERAGEIF() { return getToken(mathParser.AVERAGEIF, 0); }
-		public TerminalNode GEOMEAN() { return getToken(mathParser.GEOMEAN, 0); }
-		public TerminalNode HARMEAN() { return getToken(mathParser.HARMEAN, 0); }
-		public TerminalNode COUNT() { return getToken(mathParser.COUNT, 0); }
-		public TerminalNode COUNTIF() { return getToken(mathParser.COUNTIF, 0); }
-		public TerminalNode SUM() { return getToken(mathParser.SUM, 0); }
-		public TerminalNode SUMIF() { return getToken(mathParser.SUMIF, 0); }
-		public TerminalNode AVEDEV() { return getToken(mathParser.AVEDEV, 0); }
-		public TerminalNode STDEV() { return getToken(mathParser.STDEV, 0); }
-		public TerminalNode STDEVP() { return getToken(mathParser.STDEVP, 0); }
-		public TerminalNode DEVSQ() { return getToken(mathParser.DEVSQ, 0); }
-		public TerminalNode VAR() { return getToken(mathParser.VAR, 0); }
-		public TerminalNode VARP() { return getToken(mathParser.VARP, 0); }
-		public TerminalNode NORMDIST() { return getToken(mathParser.NORMDIST, 0); }
-		public TerminalNode NORMINV() { return getToken(mathParser.NORMINV, 0); }
-		public TerminalNode NORMSDIST() { return getToken(mathParser.NORMSDIST, 0); }
-		public TerminalNode NORMSINV() { return getToken(mathParser.NORMSINV, 0); }
-		public TerminalNode BETADIST() { return getToken(mathParser.BETADIST, 0); }
-		public TerminalNode BETAINV() { return getToken(mathParser.BETAINV, 0); }
-		public TerminalNode BINOMDIST() { return getToken(mathParser.BINOMDIST, 0); }
-		public TerminalNode EXPONDIST() { return getToken(mathParser.EXPONDIST, 0); }
-		public TerminalNode FDIST() { return getToken(mathParser.FDIST, 0); }
-		public TerminalNode FINV() { return getToken(mathParser.FINV, 0); }
-		public TerminalNode FISHER() { return getToken(mathParser.FISHER, 0); }
-		public TerminalNode FISHERINV() { return getToken(mathParser.FISHERINV, 0); }
-		public TerminalNode GAMMADIST() { return getToken(mathParser.GAMMADIST, 0); }
-		public TerminalNode GAMMAINV() { return getToken(mathParser.GAMMAINV, 0); }
-		public TerminalNode GAMMALN() { return getToken(mathParser.GAMMALN, 0); }
-		public TerminalNode HYPGEOMDIST() { return getToken(mathParser.HYPGEOMDIST, 0); }
-		public TerminalNode LOGINV() { return getToken(mathParser.LOGINV, 0); }
-		public TerminalNode LOGNORMDIST() { return getToken(mathParser.LOGNORMDIST, 0); }
-		public TerminalNode NEGBINOMDIST() { return getToken(mathParser.NEGBINOMDIST, 0); }
-		public TerminalNode POISSON() { return getToken(mathParser.POISSON, 0); }
-		public TerminalNode TDIST() { return getToken(mathParser.TDIST, 0); }
-		public TerminalNode TINV() { return getToken(mathParser.TINV, 0); }
-		public TerminalNode WEIBULL() { return getToken(mathParser.WEIBULL, 0); }
-		public TerminalNode URLENCODE() { return getToken(mathParser.URLENCODE, 0); }
-		public TerminalNode URLDECODE() { return getToken(mathParser.URLDECODE, 0); }
-		public TerminalNode HTMLENCODE() { return getToken(mathParser.HTMLENCODE, 0); }
-		public TerminalNode HTMLDECODE() { return getToken(mathParser.HTMLDECODE, 0); }
-		public TerminalNode BASE64TOTEXT() { return getToken(mathParser.BASE64TOTEXT, 0); }
-		public TerminalNode BASE64URLTOTEXT() { return getToken(mathParser.BASE64URLTOTEXT, 0); }
-		public TerminalNode TEXTTOBASE64() { return getToken(mathParser.TEXTTOBASE64, 0); }
-		public TerminalNode TEXTTOBASE64URL() { return getToken(mathParser.TEXTTOBASE64URL, 0); }
-		public TerminalNode REGEX() { return getToken(mathParser.REGEX, 0); }
-		public TerminalNode REGEXREPALCE() { return getToken(mathParser.REGEXREPALCE, 0); }
-		public TerminalNode ISREGEX() { return getToken(mathParser.ISREGEX, 0); }
-		public TerminalNode GUID() { return getToken(mathParser.GUID, 0); }
-		public TerminalNode MD5() { return getToken(mathParser.MD5, 0); }
-		public TerminalNode SHA1() { return getToken(mathParser.SHA1, 0); }
-		public TerminalNode SHA256() { return getToken(mathParser.SHA256, 0); }
-		public TerminalNode SHA512() { return getToken(mathParser.SHA512, 0); }
-		public TerminalNode CRC32() { return getToken(mathParser.CRC32, 0); }
-		public TerminalNode HMACMD5() { return getToken(mathParser.HMACMD5, 0); }
-		public TerminalNode HMACSHA1() { return getToken(mathParser.HMACSHA1, 0); }
-		public TerminalNode HMACSHA256() { return getToken(mathParser.HMACSHA256, 0); }
-		public TerminalNode HMACSHA512() { return getToken(mathParser.HMACSHA512, 0); }
-		public TerminalNode TRIMSTART() { return getToken(mathParser.TRIMSTART, 0); }
-		public TerminalNode TRIMEND() { return getToken(mathParser.TRIMEND, 0); }
-		public TerminalNode INDEXOF() { return getToken(mathParser.INDEXOF, 0); }
-		public TerminalNode LASTINDEXOF() { return getToken(mathParser.LASTINDEXOF, 0); }
-		public TerminalNode SPLIT() { return getToken(mathParser.SPLIT, 0); }
-		public TerminalNode JOIN() { return getToken(mathParser.JOIN, 0); }
-		public TerminalNode SUBSTRING() { return getToken(mathParser.SUBSTRING, 0); }
-		public TerminalNode STARTSWITH() { return getToken(mathParser.STARTSWITH, 0); }
-		public TerminalNode ENDSWITH() { return getToken(mathParser.ENDSWITH, 0); }
-		public TerminalNode ISNULLOREMPTY() { return getToken(mathParser.ISNULLOREMPTY, 0); }
-		public TerminalNode ISNULLORWHITESPACE() { return getToken(mathParser.ISNULLORWHITESPACE, 0); }
-		public TerminalNode REMOVESTART() { return getToken(mathParser.REMOVESTART, 0); }
-		public TerminalNode REMOVEEND() { return getToken(mathParser.REMOVEEND, 0); }
-		public TerminalNode JSON() { return getToken(mathParser.JSON, 0); }
-		public TerminalNode VLOOKUP() { return getToken(mathParser.VLOOKUP, 0); }
-		public TerminalNode LOOKUP() { return getToken(mathParser.LOOKUP, 0); }
-		public TerminalNode ADDYEARS() { return getToken(mathParser.ADDYEARS, 0); }
-		public TerminalNode ADDMONTHS() { return getToken(mathParser.ADDMONTHS, 0); }
-		public TerminalNode ADDDAYS() { return getToken(mathParser.ADDDAYS, 0); }
-		public TerminalNode ADDHOURS() { return getToken(mathParser.ADDHOURS, 0); }
-		public TerminalNode ADDMINUTES() { return getToken(mathParser.ADDMINUTES, 0); }
-		public TerminalNode ADDSECONDS() { return getToken(mathParser.ADDSECONDS, 0); }
-		public TerminalNode TIMESTAMP() { return getToken(mathParser.TIMESTAMP, 0); }
-		public TerminalNode NULL() { return getToken(mathParser.NULL, 0); }
-		public TerminalNode PARAMETER() { return getToken(mathParser.PARAMETER, 0); }
+		//public TerminalNode E() { return getToken(mathParser.E, 0); }
+		//public TerminalNode IF() { return getToken(mathParser.IF, 0); }
+		//public TerminalNode IFERROR() { return getToken(mathParser.IFERROR, 0); }
+		//public TerminalNode ISNUMBER() { return getToken(mathParser.ISNUMBER, 0); }
+		//public TerminalNode ISTEXT() { return getToken(mathParser.ISTEXT, 0); }
+		//public TerminalNode ISERROR() { return getToken(mathParser.ISERROR, 0); }
+		//public TerminalNode ISNONTEXT() { return getToken(mathParser.ISNONTEXT, 0); }
+		//public TerminalNode ISLOGICAL() { return getToken(mathParser.ISLOGICAL, 0); }
+		//public TerminalNode ISEVEN() { return getToken(mathParser.ISEVEN, 0); }
+		//public TerminalNode ISODD() { return getToken(mathParser.ISODD, 0); }
+		//public TerminalNode ISNULL() { return getToken(mathParser.ISNULL, 0); }
+		//public TerminalNode ISNULLORERROR() { return getToken(mathParser.ISNULLORERROR, 0); }
+		//public TerminalNode AND() { return getToken(mathParser.AND, 0); }
+		//public TerminalNode OR() { return getToken(mathParser.OR, 0); }
+		//public TerminalNode NOT() { return getToken(mathParser.NOT, 0); }
+		//public TerminalNode TRUE() { return getToken(mathParser.TRUE, 0); }
+		//public TerminalNode FALSE() { return getToken(mathParser.FALSE, 0); }
+		//public TerminalNode PI() { return getToken(mathParser.PI, 0); }
+		//public TerminalNode DEC2BIN() { return getToken(mathParser.DEC2BIN, 0); }
+		//public TerminalNode DEC2HEX() { return getToken(mathParser.DEC2HEX, 0); }
+		//public TerminalNode DEC2OCT() { return getToken(mathParser.DEC2OCT, 0); }
+		//public TerminalNode HEX2BIN() { return getToken(mathParser.HEX2BIN, 0); }
+		//public TerminalNode HEX2DEC() { return getToken(mathParser.HEX2DEC, 0); }
+		//public TerminalNode HEX2OCT() { return getToken(mathParser.HEX2OCT, 0); }
+		//public TerminalNode OCT2BIN() { return getToken(mathParser.OCT2BIN, 0); }
+		//public TerminalNode OCT2DEC() { return getToken(mathParser.OCT2DEC, 0); }
+		//public TerminalNode OCT2HEX() { return getToken(mathParser.OCT2HEX, 0); }
+		//public TerminalNode BIN2OCT() { return getToken(mathParser.BIN2OCT, 0); }
+		//public TerminalNode BIN2DEC() { return getToken(mathParser.BIN2DEC, 0); }
+		//public TerminalNode BIN2HEX() { return getToken(mathParser.BIN2HEX, 0); }
+		//public TerminalNode ABS() { return getToken(mathParser.ABS, 0); }
+		//public TerminalNode QUOTIENT() { return getToken(mathParser.QUOTIENT, 0); }
+		//public TerminalNode MOD() { return getToken(mathParser.MOD, 0); }
+		//public TerminalNode SIGN() { return getToken(mathParser.SIGN, 0); }
+		//public TerminalNode SQRT() { return getToken(mathParser.SQRT, 0); }
+		//public TerminalNode TRUNC() { return getToken(mathParser.TRUNC, 0); }
+		//public TerminalNode INT() { return getToken(mathParser.INT, 0); }
+		//public TerminalNode GCD() { return getToken(mathParser.GCD, 0); }
+		//public TerminalNode LCM() { return getToken(mathParser.LCM, 0); }
+		//public TerminalNode COMBIN() { return getToken(mathParser.COMBIN, 0); }
+		//public TerminalNode PERMUT() { return getToken(mathParser.PERMUT, 0); }
+		//public TerminalNode DEGREES() { return getToken(mathParser.DEGREES, 0); }
+		//public TerminalNode RADIANS() { return getToken(mathParser.RADIANS, 0); }
+		//public TerminalNode COS() { return getToken(mathParser.COS, 0); }
+		//public TerminalNode COSH() { return getToken(mathParser.COSH, 0); }
+		//public TerminalNode SIN() { return getToken(mathParser.SIN, 0); }
+		//public TerminalNode SINH() { return getToken(mathParser.SINH, 0); }
+		//public TerminalNode TAN() { return getToken(mathParser.TAN, 0); }
+		//public TerminalNode TANH() { return getToken(mathParser.TANH, 0); }
+		//public TerminalNode ACOS() { return getToken(mathParser.ACOS, 0); }
+		//public TerminalNode ACOSH() { return getToken(mathParser.ACOSH, 0); }
+		//public TerminalNode ASIN() { return getToken(mathParser.ASIN, 0); }
+		//public TerminalNode ASINH() { return getToken(mathParser.ASINH, 0); }
+		//public TerminalNode ATAN() { return getToken(mathParser.ATAN, 0); }
+		//public TerminalNode ATANH() { return getToken(mathParser.ATANH, 0); }
+		//public TerminalNode ATAN2() { return getToken(mathParser.ATAN2, 0); }
+		//public TerminalNode ROUND() { return getToken(mathParser.ROUND, 0); }
+		//public TerminalNode ROUNDDOWN() { return getToken(mathParser.ROUNDDOWN, 0); }
+		//public TerminalNode ROUNDUP() { return getToken(mathParser.ROUNDUP, 0); }
+		//public TerminalNode CEILING() { return getToken(mathParser.CEILING, 0); }
+		//public TerminalNode FLOOR() { return getToken(mathParser.FLOOR, 0); }
+		//public TerminalNode EVEN() { return getToken(mathParser.EVEN, 0); }
+		//public TerminalNode ODD() { return getToken(mathParser.ODD, 0); }
+		//public TerminalNode MROUND() { return getToken(mathParser.MROUND, 0); }
+		//public TerminalNode RAND() { return getToken(mathParser.RAND, 0); }
+		//public TerminalNode RANDBETWEEN() { return getToken(mathParser.RANDBETWEEN, 0); }
+		//public TerminalNode FACT() { return getToken(mathParser.FACT, 0); }
+		//public TerminalNode FACTDOUBLE() { return getToken(mathParser.FACTDOUBLE, 0); }
+		//public TerminalNode POWER() { return getToken(mathParser.POWER, 0); }
+		//public TerminalNode EXP() { return getToken(mathParser.EXP, 0); }
+		//public TerminalNode LN() { return getToken(mathParser.LN, 0); }
+		//public TerminalNode LOG() { return getToken(mathParser.LOG, 0); }
+		//public TerminalNode LOG10() { return getToken(mathParser.LOG10, 0); }
+		//public TerminalNode MULTINOMIAL() { return getToken(mathParser.MULTINOMIAL, 0); }
+		//public TerminalNode PRODUCT() { return getToken(mathParser.PRODUCT, 0); }
+		//public TerminalNode SQRTPI() { return getToken(mathParser.SQRTPI, 0); }
+		//public TerminalNode SUMSQ() { return getToken(mathParser.SUMSQ, 0); }
+		//public TerminalNode ASC() { return getToken(mathParser.ASC, 0); }
+		//public TerminalNode JIS() { return getToken(mathParser.JIS, 0); }
+		//public TerminalNode CHAR() { return getToken(mathParser.CHAR, 0); }
+		//public TerminalNode CLEAN() { return getToken(mathParser.CLEAN, 0); }
+		//public TerminalNode CODE() { return getToken(mathParser.CODE, 0); }
+		//public TerminalNode CONCATENATE() { return getToken(mathParser.CONCATENATE, 0); }
+		//public TerminalNode EXACT() { return getToken(mathParser.EXACT, 0); }
+		//public TerminalNode FIND() { return getToken(mathParser.FIND, 0); }
+		//public TerminalNode FIXED() { return getToken(mathParser.FIXED, 0); }
+		//public TerminalNode LEFT() { return getToken(mathParser.LEFT, 0); }
+		//public TerminalNode LEN() { return getToken(mathParser.LEN, 0); }
+		//public TerminalNode LOWER() { return getToken(mathParser.LOWER, 0); }
+		//public TerminalNode MID() { return getToken(mathParser.MID, 0); }
+		//public TerminalNode PROPER() { return getToken(mathParser.PROPER, 0); }
+		//public TerminalNode REPLACE() { return getToken(mathParser.REPLACE, 0); }
+		//public TerminalNode REPT() { return getToken(mathParser.REPT, 0); }
+		//public TerminalNode RIGHT() { return getToken(mathParser.RIGHT, 0); }
+		//public TerminalNode RMB() { return getToken(mathParser.RMB, 0); }
+		//public TerminalNode SEARCH() { return getToken(mathParser.SEARCH, 0); }
+		//public TerminalNode SUBSTITUTE() { return getToken(mathParser.SUBSTITUTE, 0); }
+		//public TerminalNode T() { return getToken(mathParser.T, 0); }
+		//public TerminalNode TEXT() { return getToken(mathParser.TEXT, 0); }
+		//public TerminalNode TRIM() { return getToken(mathParser.TRIM, 0); }
+		//public TerminalNode UPPER() { return getToken(mathParser.UPPER, 0); }
+		//public TerminalNode VALUE() { return getToken(mathParser.VALUE, 0); }
+		//public TerminalNode DATEVALUE() { return getToken(mathParser.DATEVALUE, 0); }
+		//public TerminalNode TIMEVALUE() { return getToken(mathParser.TIMEVALUE, 0); }
+		//public TerminalNode DATE() { return getToken(mathParser.DATE, 0); }
+		//public TerminalNode TIME() { return getToken(mathParser.TIME, 0); }
+		//public TerminalNode NOW() { return getToken(mathParser.NOW, 0); }
+		//public TerminalNode TODAY() { return getToken(mathParser.TODAY, 0); }
+		//public TerminalNode YEAR() { return getToken(mathParser.YEAR, 0); }
+		//public TerminalNode MONTH() { return getToken(mathParser.MONTH, 0); }
+		//public TerminalNode DAY() { return getToken(mathParser.DAY, 0); }
+		//public TerminalNode HOUR() { return getToken(mathParser.HOUR, 0); }
+		//public TerminalNode MINUTE() { return getToken(mathParser.MINUTE, 0); }
+		//public TerminalNode SECOND() { return getToken(mathParser.SECOND, 0); }
+		//public TerminalNode WEEKDAY() { return getToken(mathParser.WEEKDAY, 0); }
+		//public TerminalNode DATEDIF() { return getToken(mathParser.DATEDIF, 0); }
+		//public TerminalNode DAYS360() { return getToken(mathParser.DAYS360, 0); }
+		//public TerminalNode EDATE() { return getToken(mathParser.EDATE, 0); }
+		//public TerminalNode EOMONTH() { return getToken(mathParser.EOMONTH, 0); }
+		//public TerminalNode NETWORKDAYS() { return getToken(mathParser.NETWORKDAYS, 0); }
+		//public TerminalNode WORKDAY() { return getToken(mathParser.WORKDAY, 0); }
+		//public TerminalNode WEEKNUM() { return getToken(mathParser.WEEKNUM, 0); }
+		//public TerminalNode MAX() { return getToken(mathParser.MAX, 0); }
+		//public TerminalNode MEDIAN() { return getToken(mathParser.MEDIAN, 0); }
+		//public TerminalNode MIN() { return getToken(mathParser.MIN, 0); }
+		//public TerminalNode QUARTILE() { return getToken(mathParser.QUARTILE, 0); }
+		//public TerminalNode MODE() { return getToken(mathParser.MODE, 0); }
+		//public TerminalNode LARGE() { return getToken(mathParser.LARGE, 0); }
+		//public TerminalNode SMALL() { return getToken(mathParser.SMALL, 0); }
+		//public TerminalNode PERCENTILE() { return getToken(mathParser.PERCENTILE, 0); }
+		//public TerminalNode PERCENTRANK() { return getToken(mathParser.PERCENTRANK, 0); }
+		//public TerminalNode AVERAGE() { return getToken(mathParser.AVERAGE, 0); }
+		//public TerminalNode AVERAGEIF() { return getToken(mathParser.AVERAGEIF, 0); }
+		//public TerminalNode GEOMEAN() { return getToken(mathParser.GEOMEAN, 0); }
+		//public TerminalNode HARMEAN() { return getToken(mathParser.HARMEAN, 0); }
+		//public TerminalNode COUNT() { return getToken(mathParser.COUNT, 0); }
+		//public TerminalNode COUNTIF() { return getToken(mathParser.COUNTIF, 0); }
+		//public TerminalNode SUM() { return getToken(mathParser.SUM, 0); }
+		//public TerminalNode SUMIF() { return getToken(mathParser.SUMIF, 0); }
+		//public TerminalNode AVEDEV() { return getToken(mathParser.AVEDEV, 0); }
+		//public TerminalNode STDEV() { return getToken(mathParser.STDEV, 0); }
+		//public TerminalNode STDEVP() { return getToken(mathParser.STDEVP, 0); }
+		//public TerminalNode DEVSQ() { return getToken(mathParser.DEVSQ, 0); }
+		//public TerminalNode VAR() { return getToken(mathParser.VAR, 0); }
+		//public TerminalNode VARP() { return getToken(mathParser.VARP, 0); }
+		//public TerminalNode NORMDIST() { return getToken(mathParser.NORMDIST, 0); }
+		//public TerminalNode NORMINV() { return getToken(mathParser.NORMINV, 0); }
+		//public TerminalNode NORMSDIST() { return getToken(mathParser.NORMSDIST, 0); }
+		//public TerminalNode NORMSINV() { return getToken(mathParser.NORMSINV, 0); }
+		//public TerminalNode BETADIST() { return getToken(mathParser.BETADIST, 0); }
+		//public TerminalNode BETAINV() { return getToken(mathParser.BETAINV, 0); }
+		//public TerminalNode BINOMDIST() { return getToken(mathParser.BINOMDIST, 0); }
+		//public TerminalNode EXPONDIST() { return getToken(mathParser.EXPONDIST, 0); }
+		//public TerminalNode FDIST() { return getToken(mathParser.FDIST, 0); }
+		//public TerminalNode FINV() { return getToken(mathParser.FINV, 0); }
+		//public TerminalNode FISHER() { return getToken(mathParser.FISHER, 0); }
+		//public TerminalNode FISHERINV() { return getToken(mathParser.FISHERINV, 0); }
+		//public TerminalNode GAMMADIST() { return getToken(mathParser.GAMMADIST, 0); }
+		//public TerminalNode GAMMAINV() { return getToken(mathParser.GAMMAINV, 0); }
+		//public TerminalNode GAMMALN() { return getToken(mathParser.GAMMALN, 0); }
+		//public TerminalNode HYPGEOMDIST() { return getToken(mathParser.HYPGEOMDIST, 0); }
+		//public TerminalNode LOGINV() { return getToken(mathParser.LOGINV, 0); }
+		//public TerminalNode LOGNORMDIST() { return getToken(mathParser.LOGNORMDIST, 0); }
+		//public TerminalNode NEGBINOMDIST() { return getToken(mathParser.NEGBINOMDIST, 0); }
+		//public TerminalNode POISSON() { return getToken(mathParser.POISSON, 0); }
+		//public TerminalNode TDIST() { return getToken(mathParser.TDIST, 0); }
+		//public TerminalNode TINV() { return getToken(mathParser.TINV, 0); }
+		//public TerminalNode WEIBULL() { return getToken(mathParser.WEIBULL, 0); }
+		//public TerminalNode URLENCODE() { return getToken(mathParser.URLENCODE, 0); }
+		//public TerminalNode URLDECODE() { return getToken(mathParser.URLDECODE, 0); }
+		//public TerminalNode HTMLENCODE() { return getToken(mathParser.HTMLENCODE, 0); }
+		//public TerminalNode HTMLDECODE() { return getToken(mathParser.HTMLDECODE, 0); }
+		//public TerminalNode BASE64TOTEXT() { return getToken(mathParser.BASE64TOTEXT, 0); }
+		//public TerminalNode BASE64URLTOTEXT() { return getToken(mathParser.BASE64URLTOTEXT, 0); }
+		//public TerminalNode TEXTTOBASE64() { return getToken(mathParser.TEXTTOBASE64, 0); }
+		//public TerminalNode TEXTTOBASE64URL() { return getToken(mathParser.TEXTTOBASE64URL, 0); }
+		//public TerminalNode REGEX() { return getToken(mathParser.REGEX, 0); }
+		//public TerminalNode REGEXREPALCE() { return getToken(mathParser.REGEXREPALCE, 0); }
+		//public TerminalNode ISREGEX() { return getToken(mathParser.ISREGEX, 0); }
+		//public TerminalNode GUID() { return getToken(mathParser.GUID, 0); }
+		//public TerminalNode MD5() { return getToken(mathParser.MD5, 0); }
+		//public TerminalNode SHA1() { return getToken(mathParser.SHA1, 0); }
+		//public TerminalNode SHA256() { return getToken(mathParser.SHA256, 0); }
+		//public TerminalNode SHA512() { return getToken(mathParser.SHA512, 0); }
+		//public TerminalNode CRC32() { return getToken(mathParser.CRC32, 0); }
+		//public TerminalNode HMACMD5() { return getToken(mathParser.HMACMD5, 0); }
+		//public TerminalNode HMACSHA1() { return getToken(mathParser.HMACSHA1, 0); }
+		//public TerminalNode HMACSHA256() { return getToken(mathParser.HMACSHA256, 0); }
+		//public TerminalNode HMACSHA512() { return getToken(mathParser.HMACSHA512, 0); }
+		//public TerminalNode TRIMSTART() { return getToken(mathParser.TRIMSTART, 0); }
+		//public TerminalNode TRIMEND() { return getToken(mathParser.TRIMEND, 0); }
+		//public TerminalNode INDEXOF() { return getToken(mathParser.INDEXOF, 0); }
+		//public TerminalNode LASTINDEXOF() { return getToken(mathParser.LASTINDEXOF, 0); }
+		//public TerminalNode SPLIT() { return getToken(mathParser.SPLIT, 0); }
+		//public TerminalNode JOIN() { return getToken(mathParser.JOIN, 0); }
+		//public TerminalNode SUBSTRING() { return getToken(mathParser.SUBSTRING, 0); }
+		//public TerminalNode STARTSWITH() { return getToken(mathParser.STARTSWITH, 0); }
+		//public TerminalNode ENDSWITH() { return getToken(mathParser.ENDSWITH, 0); }
+		//public TerminalNode ISNULLOREMPTY() { return getToken(mathParser.ISNULLOREMPTY, 0); }
+		//public TerminalNode ISNULLORWHITESPACE() { return getToken(mathParser.ISNULLORWHITESPACE, 0); }
+		//public TerminalNode REMOVESTART() { return getToken(mathParser.REMOVESTART, 0); }
+		//public TerminalNode REMOVEEND() { return getToken(mathParser.REMOVEEND, 0); }
+		//public TerminalNode JSON() { return getToken(mathParser.JSON, 0); }
+		//public TerminalNode VLOOKUP() { return getToken(mathParser.VLOOKUP, 0); }
+		//public TerminalNode LOOKUP() { return getToken(mathParser.LOOKUP, 0); }
+		//public TerminalNode ADDYEARS() { return getToken(mathParser.ADDYEARS, 0); }
+		//public TerminalNode ADDMONTHS() { return getToken(mathParser.ADDMONTHS, 0); }
+		//public TerminalNode ADDDAYS() { return getToken(mathParser.ADDDAYS, 0); }
+		//public TerminalNode ADDHOURS() { return getToken(mathParser.ADDHOURS, 0); }
+		//public TerminalNode ADDMINUTES() { return getToken(mathParser.ADDMINUTES, 0); }
+		//public TerminalNode ADDSECONDS() { return getToken(mathParser.ADDSECONDS, 0); }
+		//public TerminalNode TIMESTAMP() { return getToken(mathParser.TIMESTAMP, 0); }
+		//public TerminalNode NULL() { return getToken(mathParser.NULL, 0); }
+		//public TerminalNode PARAMETER() { return getToken(mathParser.PARAMETER, 0); }
 		public Parameter2Context(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_parameter2; }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mathVisitor) return ((mathVisitor<? extends T>)visitor).visitParameter2(this);
-			else return visitor.visitChildren(this);
+			return ((mathVisitor<? extends T>)visitor).visitParameter2(this);
+			
 		}
 	}
 
