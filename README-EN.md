@@ -723,6 +723,7 @@ Note 3: The function name with ▲ means that it is affected by `Excel Index`,
         </td> <td></td>
     </tr>
 </table>
+
 Note: The `UseLocalTime` attribute affects the conversion of `DateValue`/`Timestamp`. Set `true` to directly convert to local time.
 
 #### Statistical function

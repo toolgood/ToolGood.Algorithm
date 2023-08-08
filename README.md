@@ -719,6 +719,7 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
         </td> <td></td>
     </tr>
 </table>
+
 注：`UseLocalTime`属性影响 `DateValue`/`Timestamp` 转换，设置`true`，直接转成本地时间。
 
 #### 统计函数

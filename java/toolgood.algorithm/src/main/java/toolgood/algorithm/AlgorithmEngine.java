@@ -35,6 +35,9 @@ public class AlgorithmEngine {
      * 是否忽略大小写
      */
     public final boolean IgnoreCase;
+    /**
+     * 使用本地时区
+     */
     public boolean UseLocalTime = false;
     private ProgContext _context;
     private final Map<String, Operand> _tempdict;

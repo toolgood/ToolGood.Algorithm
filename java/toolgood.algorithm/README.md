@@ -705,7 +705,24 @@ public class Cylinder extends AlgorithmEngine {
     <tr>
         <td>AddSeconds ★</td><td>AddSeconds(时间, 数值)<br>增加秒。</td> <td></td>
     </tr>
+    <tr>
+        <td>DateValue ★</td><td>DateValue(值, 数值)<br>转成时间<br>
+        DateValue(文本/数值, 0) <br>解析，自动匹配到当前日期相近的日期<br>
+        DateValue(文本, 1) <br>解析年月日文本<br>
+        DateValue(数值, 2) <br>转成日期，Excel数值<br>
+        DateValue(数值, 3) <br>转成日期，时间戳（毫秒）<br>
+        DateValue(值数值, 4) <br>转成日期，时间戳（秒）<br>
+        </td> <td></td>
+    </tr>
+    <tr>
+        <td>Timestamp ★</td><td>DateValue(值[, 数值=0])<br>转成时间戳，默认为毫秒<br>
+        Timestamp(时间, 0) <br>转成时间戳（毫秒）<br>
+        Timestamp(时间, 1) <br>转成时间戳（秒）<br>
+        </td> <td></td>
+    </tr>
 </table>
+
+注：`UseLocalTime`属性影响 `DateValue`/`Timestamp` 转换，设置`true`，直接转成本地时间。
 
 #### 统计函数
 <table>
