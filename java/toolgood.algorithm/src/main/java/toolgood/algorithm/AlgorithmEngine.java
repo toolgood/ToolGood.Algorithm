@@ -35,7 +35,7 @@ public class AlgorithmEngine {
      * 是否忽略大小写
      */
     public final boolean IgnoreCase;
-    public boolean UseLocalTime=false;
+    public boolean UseLocalTime = false;
     private ProgContext _context;
     private final Map<String, Operand> _tempdict;
 
@@ -229,7 +229,7 @@ public class AlgorithmEngine {
         visitor.DiyFunction = f -> {
             return ExecuteDiyFunction(f.Name, f.OperandList);
         };
-        visitor.useLocalTime=UseLocalTime;
+        visitor.useLocalTime = UseLocalTime;
         return visitor.visit(_context);
     }
 
@@ -395,6 +395,7 @@ public class AlgorithmEngine {
                 visitor.DiyFunction = f -> {
                     return ExecuteDiyFunction(f.Name, f.OperandList);
                 };
+                visitor.useLocalTime = UseLocalTime;
                 Operand obj = visitor.visit(_context);
                 obj = obj.ToText("It can't be converted to String!");
                 if (obj.IsError()) {

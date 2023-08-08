@@ -243,6 +243,7 @@ public class AlgorithmEngineHelper {
             lexerSet.add("ADDHOURS");
             lexerSet.add("ADDMINUTES");
             lexerSet.add("ADDSECONDS");
+            lexerSet.add("TIMESTAMP");
             _lexerSet = lexerSet;
         }
         return _lexerSet;

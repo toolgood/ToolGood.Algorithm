@@ -1,26 +1,21 @@
 package toolgood.algorithm;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.joda.time.DateTime;
-
-import toolgood.algorithm.internals.AntlrCharStream;
-import toolgood.algorithm.internals.AntlrErrorListener;
-import toolgood.algorithm.internals.CharUtil;
-import toolgood.algorithm.internals.ConditionCacheInfo;
-import toolgood.algorithm.internals.MathSimplifiedFormulaVisitor;
-import toolgood.algorithm.internals.MathVisitor;
+import org.joda.time.DateTimeZone;
+import toolgood.algorithm.internals.*;
 import toolgood.algorithm.litJson.JsonData;
 import toolgood.algorithm.litJson.JsonMapper;
 import toolgood.algorithm.math.mathLexer;
 import toolgood.algorithm.math.mathParser;
 import toolgood.algorithm.math.mathParser.ProgContext;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * 算法引擎 扩展版
@@ -52,6 +47,10 @@ public class AlgorithmEngineEx {
      * 跳过公式错误
      */
     public Boolean JumpFormulaError = false;
+    /**
+     * 使用本地时区
+     */
+    public Boolean UseLocalTime = false;
     private final Map<String, Operand> _tempdict;
     private ConditionCache MultiConditionCache;
 
@@ -125,7 +124,7 @@ public class AlgorithmEngineEx {
 
     /**
      * 执行
-     * 
+     *
      * @param categoryName
      * @return
      */
@@ -175,7 +174,7 @@ public class AlgorithmEngineEx {
 
     /**
      * 查找备注
-     * 
+     *
      * @param categoryName
      * @return
      * @throws Exception
@@ -369,6 +368,7 @@ public class AlgorithmEngineEx {
         }
         return defvalue;
     }
+
     public long TryEvaluateCategory(final String categoryName, final long defvalue) {
         try {
             Operand obj = EvaluateCategory(categoryName);
@@ -425,7 +425,10 @@ public class AlgorithmEngineEx {
                 LastError = obj.ErrorMsg();
                 return defvalue;
             }
-            return obj.DateValue().ToDateTime();
+            if (UseLocalTime) {
+                return obj.DateValue().ToDateTime(DateTimeZone.getDefault());
+            }
+            return obj.DateValue().ToDateTime(DateTimeZone.UTC);
         } catch (final Exception ex) {
             LastError = ex.getMessage();
         }
@@ -446,6 +449,7 @@ public class AlgorithmEngineEx {
         }
         return defvalue;
     }
+
     public BigDecimal TryEvaluate(final String exp, final BigDecimal defvalue) {
         try {
             Operand obj = Evaluate(exp);
@@ -490,6 +494,7 @@ public class AlgorithmEngineEx {
         }
         return defvalue;
     }
+
     public long TryEvaluate(final String exp, final long defvalue) {
         try {
             Operand obj = Evaluate(exp);
@@ -546,7 +551,10 @@ public class AlgorithmEngineEx {
                 LastError = obj.ErrorMsg();
                 return defvalue;
             }
-            return obj.DateValue().ToDateTime();
+            if (UseLocalTime) {
+                return obj.DateValue().ToDateTime(DateTimeZone.getDefault());
+            }
+            return obj.DateValue().ToDateTime(DateTimeZone.UTC);
         } catch (final Exception ex) {
             LastError = ex.getMessage();
         }
@@ -582,6 +590,7 @@ public class AlgorithmEngineEx {
             visitor.DiyFunction = f -> {
                 return ExecuteDiyFunction(f.Name, f.OperandList);
             };
+            visitor.useLocalTime = UseLocalTime;
             return visitor.visit(context);
         } catch (Exception ex) {
             LastError = ex.getMessage();
@@ -591,9 +600,8 @@ public class AlgorithmEngineEx {
 
     /**
      * 获取简化公式
-     * 
+     *
      * @param formula 公式
-     * 
      */
     public String GetSimplifiedFormula(final String formula) {
         try {
@@ -610,6 +618,7 @@ public class AlgorithmEngineEx {
             visitor.DiyFunction = f -> {
                 return ExecuteDiyFunction(f.Name, f.OperandList);
             };
+            visitor.useLocalTime = UseLocalTime;
             Operand obj = visitor.visit(_context);
             obj = obj.ToText("It can't be converted to String!");
             if (obj.IsError()) {
@@ -626,7 +635,7 @@ public class AlgorithmEngineEx {
 
     /**
      * 计算公式
-     * 
+     *
      * @param formula   公式
      * @param splitChar 分隔符
      * @return
@@ -641,7 +650,7 @@ public class AlgorithmEngineEx {
 
     /**
      * 计算公式
-     * 
+     *
      * @param formula    公式
      * @param splitChars 分隔符
      * @return

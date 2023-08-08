@@ -44,6 +44,10 @@ namespace ToolGood.Algorithm
         /// 跳过公式错误
         /// </summary>
         public bool JumpFormulaError { get; set; } = false;
+        /// <summary>
+        /// 使用 本地时间， 影响 时间截转化
+        /// </summary>
+        public bool UseLocalTime { get; set; } = false;
         private readonly Dictionary<string, Operand> _tempdict;
 
 
@@ -181,6 +185,7 @@ namespace ToolGood.Algorithm
                 visitor.GetParameter += GetDiyParameterInside;
                 visitor.excelIndex = UseExcelIndex ? 1 : 0;
                 visitor.DiyFunction += ExecuteDiyFunction;
+                visitor.useLocalTime = UseLocalTime;
                 return visitor.Visit(context);
             } catch (Exception ex) {
                 LastError = ex.Message + "\r\n" + ex.StackTrace;
@@ -713,7 +718,10 @@ namespace ToolGood.Algorithm
                     LastError = obj.ErrorMsg;
                     return def;
                 }
-                return (DateTime)obj.DateValue;
+                if (UseLocalTime) {
+                    return obj.DateValue.ToDateTime(DateTimeKind.Local);
+                }
+                return obj.DateValue.ToDateTime(DateTimeKind.Utc);
             } catch (Exception ex) {
                 LastError = ex.Message + "\r\n" + ex.StackTrace;
             }
@@ -1014,7 +1022,10 @@ namespace ToolGood.Algorithm
                     LastError = obj.ErrorMsg;
                     return def;
                 }
-                return (DateTime)obj.DateValue;
+                if (UseLocalTime) {
+                    return obj.DateValue.ToDateTime(DateTimeKind.Local);
+                }
+                return obj.DateValue.ToDateTime(DateTimeKind.Utc);
             } catch (Exception ex) {
                 LastError = ex.Message + "\r\n" + ex.StackTrace;
             }
@@ -1082,7 +1093,7 @@ namespace ToolGood.Algorithm
                 visitor.GetParameter += GetDiyParameterInside;
                 visitor.excelIndex = UseExcelIndex ? 1 : 0;
                 visitor.DiyFunction += ExecuteDiyFunction;
-
+                visitor.useLocalTime=UseLocalTime;
                 Operand obj = visitor.Visit(_context);
                 obj = obj.ToText("It can't be converted to String!");
                 if (obj.IsError) {

@@ -732,6 +732,7 @@ namespace ToolGood.Algorithm
                     visitor.GetParameter += GetDiyParameterInside;
                     visitor.excelIndex = UseExcelIndex ? 1 : 0;
                     visitor.DiyFunction += ExecuteDiyFunction;
+                    visitor.useLocalTime = UseLocalTime;
 
                     Operand obj = visitor.Visit(_context);
                     obj = obj.ToText("It can't be converted to String!");

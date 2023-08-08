@@ -236,6 +236,7 @@ namespace ToolGood.Algorithm
 				lexerSet.Add("ADDHOURS");
 				lexerSet.Add("ADDMINUTES");
 				lexerSet.Add("ADDSECONDS");
+				lexerSet.Add("TIMESTAMP");
 				_lexerSet = lexerSet;
             }
             return _lexerSet;
