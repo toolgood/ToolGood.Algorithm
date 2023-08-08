@@ -249,6 +249,9 @@ public class MyDate {
     public DateTime ToDateTime() {
         return new DateTime(Year, Month, Day, Hour, Minute, Second, DateTimeZone.UTC);
     }
+    public DateTime ToDateTime(DateTimeZone zoo) {
+        return new DateTime(Year, Month, Day, Hour, Minute, Second, zoo);
+    }
 
     public int DayOfWeek() {
         return new DateTime(Year, Month, Day, 0, 0, 0, DateTimeZone.UTC).dayOfWeek().get();

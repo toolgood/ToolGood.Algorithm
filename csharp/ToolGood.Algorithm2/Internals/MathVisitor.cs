@@ -1731,7 +1731,7 @@ namespace ToolGood.Algorithm.Internals
         {
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-            int type = 1; // 文本转时间
+            int type = 0; 
             if (args.Count == 2) {
                 var secondValue = args[1].ToNumber("Function DATEVALUE parameter 2 is error!");
                 if (secondValue.IsError) { return secondValue; }

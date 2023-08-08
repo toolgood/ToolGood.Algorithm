@@ -35,6 +35,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     public Function<String, Operand> GetParameter;
     public Function<MyFunction, Operand> DiyFunction;
     public int excelIndex;
+    public boolean useLocalTime;
 
     public Operand visitProg(final ProgContext context) {
         return context.expr().accept(this);
@@ -2347,15 +2348,106 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitDATEVALUE_fun(final DATEVALUE_funContext context) {
-        final Operand firstValue = context.expr().accept(this).ToText("Function DATEVALUE parameter is error!");
-        if (firstValue.IsError()) {
-            return firstValue;
+        final List<Operand> args = new ArrayList<Operand>();
+        for (final ExprContext item : context.expr()) {
+            final Operand aa = item.accept(this);
+            if (aa.IsError()) {
+                return aa;
+            }
+            args.add(aa);
         }
-        MyDate date = MyDate.parse(firstValue.TextValue());
-        if (date != null) {
-            return Operand.Create(date);
+        int type = 0; 
+        if (args.size() == 2) {
+            Operand secondValue = args.get(1).ToNumber("Function DATEVALUE parameter 2 is error!");
+            if (secondValue.IsError()) {
+                return secondValue;
+            }
+            type = secondValue.IntValue();
+        }
+        if (type == 0) {
+            if (args.get(0).Type() == OperandType.TEXT) {
+                MyDate date = MyDate.parse(args.get(0).TextValue());
+                if (date != null) {
+                    return Operand.Create(date);
+                }
+            }
+            Operand firstValue = args.get(0).ToNumber("Function DATEVALUE parameter 1 is error!");
+            if (firstValue.LongValue() <= 2958465L) { // 9999-12-31 日时间在excel的数字为 2958465
+                return firstValue.ToDate("Function DATEVALUE parameter 1 is error!");
+            }
+            if (firstValue.LongValue() <= 253402232399L) { // 9999-12-31 12:59:59 日时间 转 时间截 为 253402232399L，
+                DateTime time = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeZone.UTC).plus (firstValue.LongValue()*1000);
+                if (useLocalTime) {
+                    return Operand.Create(time.toDateTime(DateTimeZone.getDefault()));
+                }
+                return Operand.Create(time);
+            }
+            // 注：时间截 253402232399 ms 转时间 为 1978-01-12 05:30:32
+            DateTime time2 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeZone.UTC).plus(firstValue.LongValue());
+            if (useLocalTime) {
+                return Operand.Create(time2.toDateTime(DateTimeZone.getDefault()));
+            }
+            return Operand.Create(time2);
+        } else if (type == 1) {
+            Operand firstValue = args.get(0).ToText("Function DATEVALUE parameter 1 is error!");
+            if (firstValue.IsError()) {
+                return firstValue;
+            }
+            MyDate date = MyDate.parse(firstValue.TextValue());
+            if (date != null) {
+                return Operand.Create(date);
+            }
+        } else if (type == 2) {
+            return args.get(0).ToNumber("Function DATEVALUE parameter is error!").ToDate("");
+        } else if (type == 3) {
+            Operand firstValue = args.get(0).ToNumber("Function DATEVALUE parameter 1 is error!");
+            DateTime time = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeZone.UTC).plus(firstValue.LongValue());
+            if (useLocalTime) {
+                return Operand.Create(time.toDateTime(DateTimeZone.getDefault()));
+            }
+            return Operand.Create(time);
+        } else if (type == 4) {
+            Operand firstValue = args.get(0).ToNumber("Function DATEVALUE parameter 1 is error!");
+            DateTime time = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeZone.UTC).plus(firstValue.LongValue()*1000);
+            if (useLocalTime) {
+                return Operand.Create(time.toDateTime(DateTimeZone.getDefault()));
+            }
+            return Operand.Create(time);
         }
         return Operand.Error("Function DATEVALUE parameter is error!");
+    }
+
+    @Override
+    public Operand visitTIMESTAMP_fun(TIMESTAMP_funContext context) {
+        final List<Operand> args = new ArrayList<Operand>();
+        for (final ExprContext item : context.expr()) {
+            final Operand aa = item.accept(this);
+            if (aa.IsError()) {
+                return aa;
+            }
+            args.add(aa);
+        }
+        int type = 0; // 毫秒
+        if (args.size() == 2) {
+            Operand secondValue = args.get(1).ToNumber("Function TIMESTAMP parameter 2 is error!");
+            if (secondValue.IsError()) {
+                return secondValue;
+            }
+            type = secondValue.IntValue();
+        }
+        DateTime firstValue;
+        if (useLocalTime) {
+            firstValue = args.get(0).ToDate("Function TIMESTAMP parameter 1 is error!").DateValue().ToDateTime(DateTimeZone.getDefault());
+        } else {
+            firstValue = args.get(0).ToDate("Function TIMESTAMP parameter 1 is error!").DateValue().ToDateTime(DateTimeZone.UTC);
+        }
+        if (type == 0) {
+            firstValue.getMillis();
+            return Operand.Create(firstValue.getMillis());
+        } else if (type == 1) {
+            return Operand.Create(firstValue.getMillis() / 1000);
+        }
+        return Operand.Error("Function TIMESTAMP parameter is error!");
     }
 
     public Operand visitTIMEVALUE_fun(final TIMEVALUE_funContext context) {
@@ -2854,11 +2946,17 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
 
         Operand firstValue = args.get(0).ToDate("Function AddYears parameter 1 is error!");
-        if (firstValue.IsError()) { return firstValue; };
+        if (firstValue.IsError()) {
+            return firstValue;
+        }
+        ;
         Operand secondValue = args.get(1).ToNumber("Function AddYears parameter 2 is error!");
-        if (secondValue.IsError()) { return secondValue; };
+        if (secondValue.IsError()) {
+            return secondValue;
+        }
+        ;
 
-        MyDate date= firstValue.DateValue().AddYears(secondValue.IntValue());
+        MyDate date = firstValue.DateValue().AddYears(secondValue.IntValue());
         return Operand.Create(date);
     }
 
@@ -2874,13 +2972,20 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
 
         Operand firstValue = args.get(0).ToDate("Function AddMonths parameter 1 is error!");
-        if (firstValue.IsError()) { return firstValue; };
+        if (firstValue.IsError()) {
+            return firstValue;
+        }
+        ;
         Operand secondValue = args.get(1).ToNumber("Function AddMonths parameter 2 is error!");
-        if (secondValue.IsError()) { return secondValue; };
+        if (secondValue.IsError()) {
+            return secondValue;
+        }
+        ;
 
-        MyDate date= firstValue.DateValue().AddMonths(secondValue.IntValue());
+        MyDate date = firstValue.DateValue().AddMonths(secondValue.IntValue());
         return Operand.Create(date);
     }
+
     @Override
     public Operand visitADDDAYS_fun(ADDDAYS_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();
@@ -2893,11 +2998,17 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
 
         Operand firstValue = args.get(0).ToDate("Function AddDays parameter 1 is error!");
-        if (firstValue.IsError()) { return firstValue; };
+        if (firstValue.IsError()) {
+            return firstValue;
+        }
+        ;
         Operand secondValue = args.get(1).ToNumber("Function AddDays parameter 2 is error!");
-        if (secondValue.IsError()) { return secondValue; };
+        if (secondValue.IsError()) {
+            return secondValue;
+        }
+        ;
 
-        MyDate date= firstValue.DateValue().AddDays(secondValue.IntValue());
+        MyDate date = firstValue.DateValue().AddDays(secondValue.IntValue());
         return Operand.Create(date);
     }
 
@@ -2913,11 +3024,17 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
 
         Operand firstValue = args.get(0).ToDate("Function AddHours parameter 1 is error!");
-        if (firstValue.IsError()) { return firstValue; };
+        if (firstValue.IsError()) {
+            return firstValue;
+        }
+        ;
         Operand secondValue = args.get(1).ToNumber("Function AddHours parameter 2 is error!");
-        if (secondValue.IsError()) { return secondValue; };
+        if (secondValue.IsError()) {
+            return secondValue;
+        }
+        ;
 
-        MyDate date= firstValue.DateValue().AddHours(secondValue.IntValue());
+        MyDate date = firstValue.DateValue().AddHours(secondValue.IntValue());
         return Operand.Create(date);
     }
 
@@ -2933,11 +3050,17 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
 
         Operand firstValue = args.get(0).ToDate("Function AddMinutes parameter 1 is error!");
-        if (firstValue.IsError()) { return firstValue; };
+        if (firstValue.IsError()) {
+            return firstValue;
+        }
+        ;
         Operand secondValue = args.get(1).ToNumber("Function AddMinutes parameter 2 is error!");
-        if (secondValue.IsError()) { return secondValue; };
+        if (secondValue.IsError()) {
+            return secondValue;
+        }
+        ;
 
-        MyDate date= firstValue.DateValue().AddMinutes(secondValue.IntValue());
+        MyDate date = firstValue.DateValue().AddMinutes(secondValue.IntValue());
         return Operand.Create(date);
     }
 
@@ -2953,11 +3076,17 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         }
 
         Operand firstValue = args.get(0).ToDate("Function AddSeconds parameter 1 is error!");
-        if (firstValue.IsError()) { return firstValue; };
+        if (firstValue.IsError()) {
+            return firstValue;
+        }
+        ;
         Operand secondValue = args.get(1).ToNumber("Function AddSeconds parameter 2 is error!");
-        if (secondValue.IsError()) { return secondValue; };
+        if (secondValue.IsError()) {
+            return secondValue;
+        }
+        ;
 
-        MyDate date= firstValue.DateValue().AddSeconds(secondValue.IntValue());
+        MyDate date = firstValue.DateValue().AddSeconds(secondValue.IntValue());
         return Operand.Create(date);
     }
 
@@ -3130,6 +3259,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         // int quant = secondValue.IntValue();
         return Operand.Create(list.get(list.size() - 1 - (secondValue.IntValue() - excelIndex)));
     }
+
 
     public Operand visitSMALL_fun(final SMALL_funContext context) {
         final List<Operand> args = new ArrayList<Operand>();

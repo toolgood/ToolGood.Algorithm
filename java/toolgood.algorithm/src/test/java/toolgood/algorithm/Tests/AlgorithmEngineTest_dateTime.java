@@ -17,7 +17,44 @@ public class AlgorithmEngineTest_dateTime {
         AlgorithmEngine engine = new AlgorithmEngine();
         DateTime dt = engine.TryEvaluate("DATEVALUE('2016-01-01')", DateTime.now());
         assertEquals(dt, new DateTime(2016, 1, 1,0,0,0,DateTimeZone.UTC));
+
+        // chinese time
+        dt = engine.TryEvaluate("DATEVALUE('1691234899000',0)", DateTime.now());
+        assertEquals(dt, new DateTime(2023, 8, 5, 11, 28, 19,DateTimeZone.UTC));
+        assertEquals(dt.toDateTime(DateTimeZone.getDefault()), new DateTime(2023, 8, 5, 19, 28, 19,DateTimeZone.getDefault()));
+
+        // chinese time
+        dt = engine.TryEvaluate("DATEVALUE('1691234899',0)", DateTime.now());
+        assertEquals(dt, new DateTime(2023, 8, 5, 11, 28, 19,DateTimeZone.UTC));
+        assertEquals(dt.toDateTime(DateTimeZone.getDefault()), new DateTime(2023, 8, 5, 19, 28, 19,DateTimeZone.getDefault()));
+
+        engine.UseLocalTime=true;
+        // chinese time
+        dt = engine.TryEvaluate("DATEVALUE('1691234899000',0)", DateTime.now());
+        assertEquals(dt, new DateTime(2023, 8, 5, 19, 28, 19,DateTimeZone.getDefault()));
+
+        // chinese time
+        dt = engine.TryEvaluate("DATEVALUE('1691234899',0)", DateTime.now());
+        assertEquals(dt, new DateTime(2023, 8, 5, 19, 28, 19,DateTimeZone.getDefault()));
     }
+
+    @Test
+    public void TIMESTAMP_Test()
+    {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        engine.UseLocalTime = true;
+
+        // chinese time
+        long dt = engine.TryEvaluate("TIMESTAMP('2016-01-01')", 0L);
+        assertEquals(dt, 1451577600000L);
+
+        dt = engine.TryEvaluate("TIMESTAMP('2016-01-01',0)", 0L);
+        assertEquals(dt, 1451577600000L);
+
+        dt = engine.TryEvaluate("TIMESTAMP('2016-01-01',1)", 0L);
+        assertEquals(dt, 1451577600L);
+    }
+
     @Test
     public void TIMEVALUE_test()
     {

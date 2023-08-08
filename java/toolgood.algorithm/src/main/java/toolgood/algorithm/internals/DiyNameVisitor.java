@@ -681,6 +681,11 @@ public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements 
     }
 
     @Override
+    public Object visitTIMESTAMP_fun(TIMESTAMP_funContext context) {
+        return visitChildren(context);
+    }
+
+    @Override
     public Object visitVALUE_fun(VALUE_funContext context) {
 
         return visitChildren(context);

@@ -659,7 +659,10 @@ namespace ToolGood.Algorithm
                         LastError = obj.ErrorMsg;
                         return def;
                     }
-                    return (DateTime)obj.DateValue;
+                    if (UseLocalTime) {
+                        return obj.DateValue.ToDateTime(DateTimeKind.Local);
+                    }
+                    return obj.DateValue.ToDateTime(DateTimeKind.Utc);
                 }
             } catch (Exception ex) {
                 LastError = ex.Message + "\r\n" + ex.StackTrace;

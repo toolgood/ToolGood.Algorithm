@@ -231,7 +231,7 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public DateTime ToDateTime()
         {
-            return new DateTime(Year ?? 0, Month ?? 0, Day ?? 0, Hour, Minute, Second);
+            return new DateTime(Year ?? 0, Month ?? 0, Day ?? 0, Hour, Minute, Second, DateTimeKind.Utc);
         }
         /// <summary>
         /// 转DateTime

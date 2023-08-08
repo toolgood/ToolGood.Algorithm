@@ -1,4 +1,4 @@
-package toolgood.algorithm.math;// Generated from math.g4 by ANTLR 4.12.0
+package toolgood.algorithm.math;// Generated from math.g4 by ANTLR 4.13.0
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -778,6 +778,13 @@ public interface mathVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitLARGE_fun(mathParser.LARGE_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TIMESTAMP_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTIMESTAMP_fun(mathParser.TIMESTAMP_funContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code VALUE_fun}
 	 * labeled alternative in {@link mathParser#expr}.

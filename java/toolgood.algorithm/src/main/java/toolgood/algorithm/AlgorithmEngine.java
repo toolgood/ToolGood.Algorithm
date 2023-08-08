@@ -4,6 +4,7 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import toolgood.algorithm.internals.*;
 import toolgood.algorithm.litJson.JsonData;
 import toolgood.algorithm.litJson.JsonMapper;
@@ -34,6 +35,7 @@ public class AlgorithmEngine {
      * 是否忽略大小写
      */
     public final boolean IgnoreCase;
+    public boolean UseLocalTime=false;
     private ProgContext _context;
     private final Map<String, Operand> _tempdict;
 
@@ -223,9 +225,11 @@ public class AlgorithmEngine {
             return null;
         };
         visitor.excelIndex = UseExcelIndex ? 1 : 0;
+
         visitor.DiyFunction = f -> {
             return ExecuteDiyFunction(f.Name, f.OperandList);
         };
+        visitor.useLocalTime=UseLocalTime;
         return visitor.visit(_context);
     }
 
@@ -343,7 +347,10 @@ public class AlgorithmEngine {
                     LastError = obj.ErrorMsg();
                     return defvalue;
                 }
-                return obj.DateValue().ToDateTime();
+                if (UseLocalTime) {
+                    return obj.DateValue().ToDateTime(DateTimeZone.getDefault());
+                }
+                return obj.DateValue().ToDateTime(DateTimeZone.UTC);
             }
         } catch (final Exception ex) {
             LastError = ex.getMessage();

@@ -574,6 +574,11 @@ public class MathSplitVisitor extends AbstractParseTreeVisitor<ConditionTree> im
     }
 
     @Override
+    public ConditionTree visitTIMESTAMP_fun(mathParser.TIMESTAMP_funContext context) {
+        return visit_fun(context);
+    }
+
+    @Override
     public ConditionTree visitVALUE_fun(mathParser.VALUE_funContext context) {
         return visit_fun(context);
     }
