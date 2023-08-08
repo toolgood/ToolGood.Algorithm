@@ -36,6 +36,14 @@ public class AlgorithmEngineTest_dateTime {
         // chinese time
         dt = engine.TryEvaluate("DATEVALUE('1691234899',0)", DateTime.now());
         assertEquals(dt, new DateTime(2023, 8, 5, 19, 28, 19,DateTimeZone.getDefault()));
+
+        // chinese time
+        dt = engine.TryEvaluate("DATEVALUE('1691234899000')", DateTime.now());
+        assertEquals(dt, new DateTime(2023, 8, 5, 19, 28, 19,DateTimeZone.getDefault()));
+
+        // chinese time
+        dt = engine.TryEvaluate("DATEVALUE('1691234899')", DateTime.now());
+        assertEquals(dt, new DateTime(2023, 8, 5, 19, 28, 19,DateTimeZone.getDefault()));
     }
 
     @Test

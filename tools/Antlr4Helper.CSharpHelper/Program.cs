@@ -48,7 +48,7 @@ namespace Antlr4Helper.CSharpHelper
 		ENDSWITH=228, ISNULLOREMPTY=229, ISNULLORWHITESPACE=230, REMOVESTART=231, 
 		REMOVEEND=232, JSON=233, VLOOKUP=234, LOOKUP=235, ARRAY=236, ADDYEARS=237, 
 		ADDMONTHS=238, ADDDAYS=239, ADDHOURS=240, ADDMINUTES=241, ADDSECONDS=242, 
-		PARAMETER=243, PARAMETER2=244, WS=245, COMMENT=246, LINE_COMMENT=247;
+		TIMESTAMP=243, PARAMETER=244, PARAMETER2=245, WS=246, COMMENT=247, LINE_COMMENT=248;
 
 RULE_prog=0, RULE_expr=1, RULE_parameter2=2;
 ";
@@ -59,7 +59,7 @@ RULE_prog=0, RULE_expr=1, RULE_parameter2=2;
                 dict[sp[0].Trim()] = sp[1].Trim();
             }
 
-            var filePath = Path.GetFullPath(@"..\..\..\..\..\..\g4\bin\mathParser.cs");
+            var filePath = Path.GetFullPath(@"..\..\..\..\..\g4\bin\mathParser.cs");
             //var filePath = Path.GetFullPath(@"..\..\..\..\..\..\csharp\ToolGood.Algorithm2\math\mathParser.cs");
             var csText = File.ReadAllText(filePath);
 

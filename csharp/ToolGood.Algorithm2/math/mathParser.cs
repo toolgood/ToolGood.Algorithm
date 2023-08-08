@@ -31,7 +31,6 @@ using Antlr4.Runtime.Tree;
 using DFA = Antlr4.Runtime.Dfa.DFA;
 
 [System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.13.0")]
-[System.CLSCompliant(false)]
 partial class mathParser : Parser {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
@@ -157,7 +156,7 @@ partial class mathParser : Parser {
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
-	[NotNull]
+	
 	public override IVocabulary Vocabulary
 	{
 		get
@@ -188,33 +187,32 @@ partial class mathParser : Parser {
 	}
 
 	public partial class ProgContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode Eof() { return GetToken(mathParser.Eof, 0); }
+		//public ITerminalNode Eof() { return GetToken(47of, 0); }
 		public ProgContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_prog; } }
-		[System.Diagnostics.DebuggerNonUserCode]
+		public override int RuleIndex { get { return 0; } }
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitProg(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitProg(this);
+			
 		}
 	}
 
-	[RuleVersion(0)]
+	
 	public ProgContext prog() {
 		ProgContext _localctx = new ProgContext(Context, State);
-		EnterRule(_localctx, 0, RULE_prog);
+		EnterRule(_localctx, 0, 0);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
 			State = 6;
 			expr(0);
-			State = 7;
 			Match(Eof);
 			}
 		}
@@ -234,7 +232,7 @@ partial class mathParser : Parser {
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_expr; } }
+		public override int RuleIndex { get { return 1; } }
 	 
 		public ExprContext() { }
 		public virtual void CopyFrom(ExprContext context) {
@@ -242,3330 +240,3046 @@ partial class mathParser : Parser {
 		}
 	}
 	public partial class CEILING_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CEILING() { return GetToken(mathParser.CEILING, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode CEILING() { return GetToken(90, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public CEILING_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCEILING_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitCEILING_fun(this);
+			
 		}
 	}
 	public partial class FACT_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FACT() { return GetToken(mathParser.FACT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode FACT() { return GetToken(97, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public FACT_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFACT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitFACT_fun(this);
+			
 		}
 	}
 	public partial class REGEXREPALCE_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REGEXREPALCE() { return GetToken(mathParser.REGEXREPALCE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode REGEXREPALCE() { return GetToken(208, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public REGEXREPALCE_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitREGEXREPALCE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitREGEXREPALCE_fun(this);
+			
 		}
 	}
 	public partial class AddSub_funContext : ExprContext {
 		public IToken op;
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUB() { return GetToken(mathParser.SUB, 0); }
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
+		//public ITerminalNode SUB() { return GetToken(27, 0); }
 		public AddSub_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitAddSub_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitAddSub_fun(this);
+			
 		}
 	}
 	public partial class AVERAGEIF_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AVERAGEIF() { return GetToken(mathParser.AVERAGEIF, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode AVERAGEIF() { return GetToken(163, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public AVERAGEIF_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitAVERAGEIF_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitAVERAGEIF_fun(this);
+			
 		}
 	}
 	public partial class ISNULLORERROR_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNULLORERROR() { return GetToken(mathParser.ISNULLORERROR, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode ISNULLORERROR() { return GetToken(41, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public ISNULLORERROR_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISNULLORERROR_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitISNULLORERROR_fun(this);
+			
 		}
 	}
 	public partial class RIGHT_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RIGHT() { return GetToken(mathParser.RIGHT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode RIGHT() { return GetToken(124, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public RIGHT_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitRIGHT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitRIGHT_fun(this);
+			
 		}
 	}
 	public partial class OCT2BIN_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OCT2BIN() { return GetToken(mathParser.OCT2BIN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode OCT2BIN() { return GetToken(55, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public OCT2BIN_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitOCT2BIN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitOCT2BIN_fun(this);
+			
 		}
 	}
 	public partial class QUARTILE_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode QUARTILE() { return GetToken(mathParser.QUARTILE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode QUARTILE() { return GetToken(156, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public QUARTILE_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitQUARTILE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitQUARTILE_fun(this);
+			
 		}
 	}
 	public partial class FINV_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FINV() { return GetToken(mathParser.FINV, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode FINV() { return GetToken(185, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public FINV_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFINV_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitFINV_fun(this);
+			
 		}
 	}
 	public partial class NOT_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NOT() { return GetToken(mathParser.NOT, 0); }
+		//public ITerminalNode NOT() { return GetToken(44, 0); }
 		public NOT_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNOT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitNOT_fun(this);
+			
 		}
 	}
 	public partial class DAYS360_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DAYS360() { return GetToken(mathParser.DAYS360, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode DAYS360() { return GetToken(147, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public DAYS360_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDAYS360_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitDAYS360_fun(this);
+			
 		}
 	}
 	public partial class WEEKNUM_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WEEKNUM() { return GetToken(mathParser.WEEKNUM, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode WEEKNUM() { return GetToken(152, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public WEEKNUM_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitWEEKNUM_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitWEEKNUM_fun(this);
+			
 		}
 	}
 	public partial class POISSON_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode POISSON() { return GetToken(mathParser.POISSON, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode POISSON() { return GetToken(195, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public POISSON_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPOISSON_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitPOISSON_fun(this);
+			
 		}
 	}
 	public partial class ISREGEX_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISREGEX() { return GetToken(mathParser.ISREGEX, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode ISREGEX() { return GetToken(209, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public ISREGEX_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISREGEX_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitISREGEX_fun(this);
+			
 		}
 	}
 	public partial class PERCENTILE_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PERCENTILE() { return GetToken(mathParser.PERCENTILE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode PERCENTILE() { return GetToken(160, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public PERCENTILE_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPERCENTILE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitPERCENTILE_fun(this);
+			
 		}
 	}
 	public partial class DiyFunction_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAMETER() { return GetToken(mathParser.PARAMETER, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		public ITerminalNode PARAMETER() { return GetToken(244, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public DiyFunction_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDiyFunction_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitDiyFunction_fun(this);
+			
 		}
 	}
 	public partial class SHA256_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SHA256() { return GetToken(mathParser.SHA256, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode SHA256() { return GetToken(213, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SHA256_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSHA256_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSHA256_fun(this);
+			
 		}
 	}
 	public partial class HYPGEOMDIST_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HYPGEOMDIST() { return GetToken(mathParser.HYPGEOMDIST, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode HYPGEOMDIST() { return GetToken(191, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public HYPGEOMDIST_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHYPGEOMDIST_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitHYPGEOMDIST_fun(this);
+			
 		}
 	}
 	public partial class PERMUT_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PERMUT() { return GetToken(mathParser.PERMUT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode PERMUT() { return GetToken(71, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public PERMUT_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPERMUT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitPERMUT_fun(this);
+			
 		}
 	}
 	public partial class TRIMSTART_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRIMSTART() { return GetToken(mathParser.TRIMSTART, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode TRIMSTART() { return GetToken(220, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public TRIMSTART_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTRIMSTART_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTRIMSTART_fun(this);
+			
 		}
 	}
 	public partial class RMB_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RMB() { return GetToken(mathParser.RMB, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode RMB() { return GetToken(125, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public RMB_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitRMB_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitRMB_fun(this);
+			
 		}
 	}
 	public partial class DEC2HEX_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEC2HEX() { return GetToken(mathParser.DEC2HEX, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode DEC2HEX() { return GetToken(50, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public DEC2HEX_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDEC2HEX_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitDEC2HEX_fun(this);
+			
 		}
 	}
 	public partial class CLEAN_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CLEAN() { return GetToken(mathParser.CLEAN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode CLEAN() { return GetToken(111, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public CLEAN_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCLEAN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitCLEAN_fun(this);
+			
 		}
 	}
 	public partial class LOWER_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOWER() { return GetToken(mathParser.LOWER, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode LOWER() { return GetToken(119, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public LOWER_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLOWER_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitLOWER_fun(this);
+			
 		}
 	}
 	public partial class OR_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OR() { return GetToken(mathParser.OR, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode OR() { return GetToken(43, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public OR_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitOR_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitOR_fun(this);
+			
 		}
 	}
 	public partial class ADDMONTHS_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDMONTHS() { return GetToken(mathParser.ADDMONTHS, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode ADDMONTHS() { return GetToken(238, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public ADDMONTHS_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitADDMONTHS_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitADDMONTHS_fun(this);
+			
 		}
 	}
 	public partial class NORMSINV_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NORMSINV() { return GetToken(mathParser.NORMSINV, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode NORMSINV() { return GetToken(179, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public NORMSINV_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNORMSINV_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitNORMSINV_fun(this);
+			
 		}
 	}
 	public partial class LEFT_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LEFT() { return GetToken(mathParser.LEFT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode LEFT() { return GetToken(117, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public LEFT_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLEFT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitLEFT_fun(this);
+			
 		}
 	}
 	public partial class ISEVEN_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISEVEN() { return GetToken(mathParser.ISEVEN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode ISEVEN() { return GetToken(38, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ISEVEN_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISEVEN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitISEVEN_fun(this);
+			
 		}
 	}
 	public partial class LOGINV_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOGINV() { return GetToken(mathParser.LOGINV, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode LOGINV() { return GetToken(192, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public LOGINV_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLOGINV_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitLOGINV_fun(this);
+			
 		}
 	}
 	public partial class WORKDAY_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WORKDAY() { return GetToken(mathParser.WORKDAY, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode WORKDAY() { return GetToken(151, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public WORKDAY_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitWORKDAY_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitWORKDAY_fun(this);
+			
 		}
 	}
 	public partial class ISERROR_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISERROR() { return GetToken(mathParser.ISERROR, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode ISERROR() { return GetToken(35, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public ISERROR_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISERROR_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitISERROR_fun(this);
+			
 		}
 	}
 	public partial class BIN2DEC_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BIN2DEC() { return GetToken(mathParser.BIN2DEC, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode BIN2DEC() { return GetToken(59, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public BIN2DEC_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitBIN2DEC_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitBIN2DEC_fun(this);
+			
 		}
 	}
 	public partial class JIS_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode JIS() { return GetToken(mathParser.JIS, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode JIS() { return GetToken(109, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public JIS_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitJIS_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitJIS_fun(this);
+			
 		}
 	}
 	public partial class CRC32_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CRC32() { return GetToken(mathParser.CRC32, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode CRC32() { return GetToken(215, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public CRC32_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCRC32_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitCRC32_fun(this);
+			
 		}
 	}
 	public partial class LCM_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LCM() { return GetToken(mathParser.LCM, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode LCM() { return GetToken(69, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public LCM_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLCM_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitLCM_fun(this);
+			
 		}
 	}
 	public partial class HARMEAN_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HARMEAN() { return GetToken(mathParser.HARMEAN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode HARMEAN() { return GetToken(165, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public HARMEAN_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHARMEAN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitHARMEAN_fun(this);
+			
 		}
 	}
 	public partial class NORMINV_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NORMINV() { return GetToken(mathParser.NORMINV, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode NORMINV() { return GetToken(177, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public NORMINV_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNORMINV_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitNORMINV_fun(this);
+			
 		}
 	}
 	public partial class GAMMAINV_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GAMMAINV() { return GetToken(mathParser.GAMMAINV, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode GAMMAINV() { return GetToken(189, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public GAMMAINV_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitGAMMAINV_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitGAMMAINV_fun(this);
+			
 		}
 	}
 	public partial class SQRT_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SQRT() { return GetToken(mathParser.SQRT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode SQRT() { return GetToken(65, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public SQRT_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSQRT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSQRT_fun(this);
+			
 		}
 	}
 	public partial class DEGREES_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEGREES() { return GetToken(mathParser.DEGREES, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode DEGREES() { return GetToken(72, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public DEGREES_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDEGREES_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitDEGREES_fun(this);
+			
 		}
 	}
 	public partial class MROUND_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MROUND() { return GetToken(mathParser.MROUND, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode MROUND() { return GetToken(94, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public MROUND_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMROUND_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitMROUND_fun(this);
+			
 		}
 	}
 	public partial class DATEDIF_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DATEDIF() { return GetToken(mathParser.DATEDIF, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode DATEDIF() { return GetToken(146, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public DATEDIF_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDATEDIF_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitDATEDIF_fun(this);
+			
 		}
 	}
 	public partial class TRIMEND_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRIMEND() { return GetToken(mathParser.TRIMEND, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode TRIMEND() { return GetToken(221, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public TRIMEND_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTRIMEND_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTRIMEND_fun(this);
+			
 		}
 	}
 	public partial class ISLOGICAL_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISLOGICAL() { return GetToken(mathParser.ISLOGICAL, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode ISLOGICAL() { return GetToken(37, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ISLOGICAL_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISLOGICAL_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitISLOGICAL_fun(this);
+			
 		}
 	}
 	public partial class INT_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INT() { return GetToken(mathParser.INT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode INT() { return GetToken(67, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public INT_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitINT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitINT_fun(this);
+			
 		}
 	}
 	public partial class SUMIF_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUMIF() { return GetToken(mathParser.SUMIF, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode SUMIF() { return GetToken(169, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SUMIF_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSUMIF_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSUMIF_fun(this);
+			
 		}
 	}
 	public partial class HEX2OCT_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HEX2OCT() { return GetToken(mathParser.HEX2OCT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode HEX2OCT() { return GetToken(54, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public HEX2OCT_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHEX2OCT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitHEX2OCT_fun(this);
+			
 		}
 	}
 	public partial class PI_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PI() { return GetToken(mathParser.PI, 0); }
+		//public ITerminalNode PI() { return GetToken(48, 0); }
 		public PI_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPI_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitPI_fun(this);
+			
 		}
 	}
 	public partial class YEAR_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode YEAR() { return GetToken(mathParser.YEAR, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode YEAR() { return GetToken(139, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public YEAR_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitYEAR_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitYEAR_fun(this);
+			
 		}
 	}
 	public partial class SQRTPI_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SQRTPI() { return GetToken(mathParser.SQRTPI, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode SQRTPI() { return GetToken(106, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public SQRTPI_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSQRTPI_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSQRTPI_fun(this);
+			
 		}
 	}
 	public partial class CONCATENATE_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CONCATENATE() { return GetToken(mathParser.CONCATENATE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode CONCATENATE() { return GetToken(113, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public CONCATENATE_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCONCATENATE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitCONCATENATE_fun(this);
+			
 		}
 	}
 	public partial class COUNT_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COUNT() { return GetToken(mathParser.COUNT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode COUNT() { return GetToken(166, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public COUNT_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCOUNT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitCOUNT_fun(this);
+			
 		}
 	}
 	public partial class FALSE_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FALSE() { return GetToken(mathParser.FALSE, 0); }
+		//public ITerminalNode FALSE() { return GetToken(46, 0); }
 		public FALSE_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFALSE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitFALSE_fun(this);
+			
 		}
 	}
 	public partial class HTMLENCODE_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HTMLENCODE() { return GetToken(mathParser.HTMLENCODE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode HTMLENCODE() { return GetToken(201, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public HTMLENCODE_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHTMLENCODE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitHTMLENCODE_fun(this);
+			
 		}
 	}
 	public partial class BASE64URLTOTEXT_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BASE64URLTOTEXT() { return GetToken(mathParser.BASE64URLTOTEXT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode BASE64URLTOTEXT() { return GetToken(204, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public BASE64URLTOTEXT_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitBASE64URLTOTEXT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitBASE64URLTOTEXT_fun(this);
+			
 		}
 	}
 	public partial class LOG10_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOG10() { return GetToken(mathParser.LOG10, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode LOG10() { return GetToken(103, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public LOG10_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLOG10_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitLOG10_fun(this);
+			
 		}
 	}
 	public partial class ISTEXT_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISTEXT() { return GetToken(mathParser.ISTEXT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode ISTEXT() { return GetToken(34, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ISTEXT_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISTEXT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitISTEXT_fun(this);
+			
 		}
 	}
 	public partial class NEGBINOMDIST_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NEGBINOMDIST() { return GetToken(mathParser.NEGBINOMDIST, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode NEGBINOMDIST() { return GetToken(194, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public NEGBINOMDIST_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNEGBINOMDIST_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitNEGBINOMDIST_fun(this);
+			
 		}
 	}
 	public partial class NETWORKDAYS_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NETWORKDAYS() { return GetToken(mathParser.NETWORKDAYS, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode NETWORKDAYS() { return GetToken(150, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public NETWORKDAYS_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNETWORKDAYS_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitNETWORKDAYS_fun(this);
+			
 		}
 	}
 	public partial class FACTDOUBLE_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FACTDOUBLE() { return GetToken(mathParser.FACTDOUBLE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode FACTDOUBLE() { return GetToken(98, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public FACTDOUBLE_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFACTDOUBLE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitFACTDOUBLE_fun(this);
+			
 		}
 	}
 	public partial class TIMEVALUE_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TIMEVALUE() { return GetToken(mathParser.TIMEVALUE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode TIMEVALUE() { return GetToken(134, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public TIMEVALUE_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTIMEVALUE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTIMEVALUE_fun(this);
+			
 		}
 	}
 	public partial class AVEDEV_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AVEDEV() { return GetToken(mathParser.AVEDEV, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode AVEDEV() { return GetToken(170, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public AVEDEV_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitAVEDEV_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitAVEDEV_fun(this);
+			
 		}
 	}
 	public partial class GUID_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GUID() { return GetToken(mathParser.GUID, 0); }
+		//public ITerminalNode GUID() { return GetToken(210, 0); }
 		public GUID_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitGUID_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitGUID_fun(this);
+			
 		}
 	}
 	public partial class JSON_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode JSON() { return GetToken(mathParser.JSON, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode JSON() { return GetToken(233, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public JSON_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitJSON_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitJSON_fun(this);
+			
 		}
 	}
 	public partial class FIXED_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FIXED() { return GetToken(mathParser.FIXED, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode FIXED() { return GetToken(116, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public FIXED_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFIXED_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitFIXED_fun(this);
+			
 		}
 	}
 	public partial class GetJsonValue_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public Parameter2Context parameter2() {
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
+		 public Parameter2Context parameter2() {
 			return GetRuleContext<Parameter2Context>(0);
 		}
 		public GetJsonValue_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitGetJsonValue_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitGetJsonValue_fun(this);
+			
 		}
 	}
 	public partial class TINV_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TINV() { return GetToken(mathParser.TINV, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode TINV() { return GetToken(197, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public TINV_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTINV_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTINV_fun(this);
+			
 		}
 	}
 	public partial class EDATE_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EDATE() { return GetToken(mathParser.EDATE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode EDATE() { return GetToken(148, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public EDATE_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitEDATE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitEDATE_fun(this);
+			
 		}
 	}
 	public partial class GEOMEAN_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GEOMEAN() { return GetToken(mathParser.GEOMEAN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode GEOMEAN() { return GetToken(164, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public GEOMEAN_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitGEOMEAN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitGEOMEAN_fun(this);
+			
 		}
 	}
 	public partial class VAR_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VAR() { return GetToken(mathParser.VAR, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode VAR() { return GetToken(174, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public VAR_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitVAR_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitVAR_fun(this);
+			
 		}
 	}
 	public partial class SIGN_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SIGN() { return GetToken(mathParser.SIGN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode SIGN() { return GetToken(64, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public SIGN_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSIGN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSIGN_fun(this);
+			
 		}
 	}
 	public partial class EOMONTH_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EOMONTH() { return GetToken(mathParser.EOMONTH, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode EOMONTH() { return GetToken(149, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public EOMONTH_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitEOMONTH_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitEOMONTH_fun(this);
+			
 		}
 	}
 	public partial class FLOOR_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FLOOR() { return GetToken(mathParser.FLOOR, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode FLOOR() { return GetToken(91, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public FLOOR_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFLOOR_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitFLOOR_fun(this);
+			
 		}
 	}
 	public partial class HOUR_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HOUR() { return GetToken(mathParser.HOUR, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode HOUR() { return GetToken(142, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public HOUR_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHOUR_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitHOUR_fun(this);
+			
 		}
 	}
 	public partial class LEN_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LEN() { return GetToken(mathParser.LEN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode LEN() { return GetToken(118, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public LEN_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLEN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitLEN_fun(this);
+			
 		}
 	}
 	public partial class ACOS_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ACOS() { return GetToken(mathParser.ACOS, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode ACOS() { return GetToken(80, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ACOS_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitACOS_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitACOS_fun(this);
+			
 		}
 	}
 	public partial class ISNULLORWHITESPACE_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNULLORWHITESPACE() { return GetToken(mathParser.ISNULLORWHITESPACE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode ISNULLORWHITESPACE() { return GetToken(230, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ISNULLORWHITESPACE_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISNULLORWHITESPACE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitISNULLORWHITESPACE_fun(this);
+			
 		}
 	}
 	public partial class NUM_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NUM() { return GetToken(mathParser.NUM, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUB() { return GetToken(mathParser.SUB, 0); }
+		public ITerminalNode NUM() { return GetToken(28, 0); }
+		public ITerminalNode SUB() { return GetToken(27, 0); }
 		public NUM_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNUM_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitNUM_fun(this);
+			
 		}
 	}
 	public partial class COSH_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COSH() { return GetToken(mathParser.COSH, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode COSH() { return GetToken(75, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public COSH_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCOSH_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitCOSH_fun(this);
+			
 		}
 	}
 	public partial class QUOTIENT_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode QUOTIENT() { return GetToken(mathParser.QUOTIENT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode QUOTIENT() { return GetToken(62, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public QUOTIENT_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitQUOTIENT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitQUOTIENT_fun(this);
+			
 		}
 	}
 	public partial class OCT2DEC_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OCT2DEC() { return GetToken(mathParser.OCT2DEC, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode OCT2DEC() { return GetToken(56, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public OCT2DEC_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitOCT2DEC_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitOCT2DEC_fun(this);
+			
 		}
 	}
 	public partial class SEARCH_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SEARCH() { return GetToken(mathParser.SEARCH, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode SEARCH() { return GetToken(126, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SEARCH_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSEARCH_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSEARCH_fun(this);
+			
 		}
 	}
 	public partial class ROUNDUP_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ROUNDUP() { return GetToken(mathParser.ROUNDUP, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode ROUNDUP() { return GetToken(89, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public ROUNDUP_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitROUNDUP_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitROUNDUP_fun(this);
+			
 		}
 	}
 	public partial class COMBIN_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COMBIN() { return GetToken(mathParser.COMBIN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode COMBIN() { return GetToken(70, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public COMBIN_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCOMBIN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitCOMBIN_fun(this);
+			
 		}
 	}
 	public partial class CODE_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CODE() { return GetToken(mathParser.CODE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode CODE() { return GetToken(112, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public CODE_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCODE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitCODE_fun(this);
+			
 		}
 	}
 	public partial class ASINH_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ASINH() { return GetToken(mathParser.ASINH, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode ASINH() { return GetToken(83, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ASINH_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitASINH_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitASINH_fun(this);
+			
 		}
 	}
 	public partial class SIN_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SIN() { return GetToken(mathParser.SIN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode SIN() { return GetToken(76, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public SIN_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSIN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSIN_fun(this);
+			
 		}
 	}
 	public partial class SUBSTRING_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUBSTRING() { return GetToken(mathParser.SUBSTRING, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode SUBSTRING() { return GetToken(226, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SUBSTRING_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSUBSTRING_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSUBSTRING_fun(this);
+			
 		}
 	}
 	public partial class RANDBETWEEN_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RANDBETWEEN() { return GetToken(mathParser.RANDBETWEEN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode RANDBETWEEN() { return GetToken(96, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public RANDBETWEEN_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitRANDBETWEEN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitRANDBETWEEN_fun(this);
+			
 		}
 	}
 	public partial class AVERAGE_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AVERAGE() { return GetToken(mathParser.AVERAGE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode AVERAGE() { return GetToken(162, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public AVERAGE_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitAVERAGE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitAVERAGE_fun(this);
+			
 		}
 	}
 	public partial class LOG_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOG() { return GetToken(mathParser.LOG, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode LOG() { return GetToken(102, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public LOG_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLOG_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitLOG_fun(this);
+			
 		}
 	}
 	public partial class HMACSHA512_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HMACSHA512() { return GetToken(mathParser.HMACSHA512, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode HMACSHA512() { return GetToken(219, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public HMACSHA512_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHMACSHA512_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitHMACSHA512_fun(this);
+			
 		}
 	}
 	public partial class AndOr_funContext : ExprContext {
 		public IToken op;
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AND() { return GetToken(mathParser.AND, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OR() { return GetToken(mathParser.OR, 0); }
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
+		//public ITerminalNode AND() { return GetToken(42, 0); }
+		//public ITerminalNode OR() { return GetToken(43, 0); }
 		public AndOr_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitAndOr_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitAndOr_fun(this);
+			
 		}
 	}
 	public partial class STDEVP_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STDEVP() { return GetToken(mathParser.STDEVP, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode STDEVP() { return GetToken(172, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public STDEVP_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSTDEVP_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSTDEVP_fun(this);
+			
 		}
 	}
 	public partial class ADDYEARS_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDYEARS() { return GetToken(mathParser.ADDYEARS, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode ADDYEARS() { return GetToken(237, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public ADDYEARS_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitADDYEARS_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitADDYEARS_fun(this);
+			
 		}
 	}
 	public partial class ADDSECONDS_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDSECONDS() { return GetToken(mathParser.ADDSECONDS, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode ADDSECONDS() { return GetToken(242, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public ADDSECONDS_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitADDSECONDS_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitADDSECONDS_fun(this);
+			
 		}
 	}
 	public partial class Array_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ARRAY() { return GetToken(mathParser.ARRAY, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode ARRAY() { return GetToken(236, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public Array_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitArray_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitArray_fun(this);
+			
 		}
 	}
 	public partial class ROUND_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ROUND() { return GetToken(mathParser.ROUND, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode ROUND() { return GetToken(87, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public ROUND_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitROUND_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitROUND_fun(this);
+			
 		}
 	}
 	public partial class EXP_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EXP() { return GetToken(mathParser.EXP, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode EXP() { return GetToken(100, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public EXP_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitEXP_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitEXP_fun(this);
+			
 		}
 	}
 	public partial class COUNTIF_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COUNTIF() { return GetToken(mathParser.COUNTIF, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode COUNTIF() { return GetToken(167, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public COUNTIF_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCOUNTIF_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitCOUNTIF_fun(this);
+			
 		}
 	}
 	public partial class VARP_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VARP() { return GetToken(mathParser.VARP, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode VARP() { return GetToken(175, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public VARP_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitVARP_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitVARP_fun(this);
+			
 		}
 	}
 	public partial class REMOVEEND_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REMOVEEND() { return GetToken(mathParser.REMOVEEND, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode REMOVEEND() { return GetToken(232, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public REMOVEEND_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitREMOVEEND_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitREMOVEEND_fun(this);
+			
 		}
 	}
 	public partial class DATE_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DATE() { return GetToken(mathParser.DATE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode DATE() { return GetToken(135, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public DATE_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDATE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitDATE_fun(this);
+			
 		}
 	}
 	public partial class PARAMETER_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAMETER() { return GetToken(mathParser.PARAMETER, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		public ITerminalNode PARAMETER() { return GetToken(244, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAMETER2() { return GetToken(mathParser.PARAMETER2, 0); }
+		public ITerminalNode PARAMETER2() { return GetToken(245, 0); }
 		public PARAMETER_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPARAMETER_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitPARAMETER_fun(this);
+			
 		}
 	}
 	public partial class SPLIT_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SPLIT() { return GetToken(mathParser.SPLIT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode SPLIT() { return GetToken(224, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SPLIT_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSPLIT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSPLIT_fun(this);
+			
 		}
 	}
 	public partial class URLDECODE_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode URLDECODE() { return GetToken(mathParser.URLDECODE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode URLDECODE() { return GetToken(200, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public URLDECODE_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitURLDECODE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitURLDECODE_fun(this);
+			
 		}
 	}
 	public partial class LARGE_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LARGE() { return GetToken(mathParser.LARGE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode LARGE() { return GetToken(158, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public LARGE_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLARGE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitLARGE_fun(this);
+			
 		}
 	}
 	public partial class TIMESTAMP_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TIMESTAMP() { return GetToken(mathParser.TIMESTAMP, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode TIMESTAMP() { return GetToken(243, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public TIMESTAMP_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTIMESTAMP_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTIMESTAMP_fun(this);
+			
 		}
 	}
 	public partial class VALUE_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VALUE() { return GetToken(mathParser.VALUE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode VALUE() { return GetToken(132, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public VALUE_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitVALUE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitVALUE_fun(this);
+			
 		}
 	}
 	public partial class DAY_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DAY() { return GetToken(mathParser.DAY, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode DAY() { return GetToken(141, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public DAY_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDAY_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitDAY_fun(this);
+			
 		}
 	}
 	public partial class WEIBULL_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WEIBULL() { return GetToken(mathParser.WEIBULL, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode WEIBULL() { return GetToken(198, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public WEIBULL_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitWEIBULL_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitWEIBULL_fun(this);
+			
 		}
 	}
 	public partial class HMACSHA256_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HMACSHA256() { return GetToken(mathParser.HMACSHA256, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode HMACSHA256() { return GetToken(218, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public HMACSHA256_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHMACSHA256_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitHMACSHA256_fun(this);
+			
 		}
 	}
 	public partial class BINOMDIST_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BINOMDIST() { return GetToken(mathParser.BINOMDIST, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode BINOMDIST() { return GetToken(182, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public BINOMDIST_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitBINOMDIST_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitBINOMDIST_fun(this);
+			
 		}
 	}
 	public partial class Judge_funContext : ExprContext {
 		public IToken op;
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public Judge_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitJudge_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitJudge_fun(this);
+			
 		}
 	}
 	public partial class DEVSQ_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEVSQ() { return GetToken(mathParser.DEVSQ, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode DEVSQ() { return GetToken(173, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public DEVSQ_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDEVSQ_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitDEVSQ_fun(this);
+			
 		}
 	}
 	public partial class MODE_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MODE() { return GetToken(mathParser.MODE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode MODE() { return GetToken(157, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public MODE_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMODE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitMODE_fun(this);
+			
 		}
 	}
 	public partial class BETAINV_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BETAINV() { return GetToken(mathParser.BETAINV, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode BETAINV() { return GetToken(181, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public BETAINV_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitBETAINV_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitBETAINV_fun(this);
+			
 		}
 	}
 	public partial class MAX_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MAX() { return GetToken(mathParser.MAX, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode MAX() { return GetToken(153, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public MAX_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMAX_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitMAX_fun(this);
+			
 		}
 	}
 	public partial class MINUTE_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MINUTE() { return GetToken(mathParser.MINUTE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode MINUTE() { return GetToken(143, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public MINUTE_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMINUTE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitMINUTE_fun(this);
+			
 		}
 	}
 	public partial class TAN_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TAN() { return GetToken(mathParser.TAN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode TAN() { return GetToken(78, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public TAN_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTAN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTAN_fun(this);
+			
 		}
 	}
 	public partial class IFERROR_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IFERROR() { return GetToken(mathParser.IFERROR, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode IFERROR() { return GetToken(32, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public IFERROR_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitIFERROR_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitIFERROR_fun(this);
+			
 		}
 	}
 	public partial class FDIST_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FDIST() { return GetToken(mathParser.FDIST, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode FDIST() { return GetToken(184, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public FDIST_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFDIST_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitFDIST_fun(this);
+			
 		}
 	}
 	public partial class INDEXOF_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INDEXOF() { return GetToken(mathParser.INDEXOF, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode INDEXOF() { return GetToken(222, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public INDEXOF_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitINDEXOF_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitINDEXOF_fun(this);
+			
 		}
 	}
 	public partial class UPPER_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode UPPER() { return GetToken(mathParser.UPPER, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode UPPER() { return GetToken(131, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public UPPER_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitUPPER_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitUPPER_fun(this);
+			
 		}
 	}
 	public partial class HTMLDECODE_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HTMLDECODE() { return GetToken(mathParser.HTMLDECODE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode HTMLDECODE() { return GetToken(202, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public HTMLDECODE_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHTMLDECODE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitHTMLDECODE_fun(this);
+			
 		}
 	}
 	public partial class EXPONDIST_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EXPONDIST() { return GetToken(mathParser.EXPONDIST, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode EXPONDIST() { return GetToken(183, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public EXPONDIST_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitEXPONDIST_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitEXPONDIST_fun(this);
+			
 		}
 	}
 	public partial class VLOOKUP_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VLOOKUP() { return GetToken(mathParser.VLOOKUP, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode VLOOKUP() { return GetToken(234, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public VLOOKUP_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitVLOOKUP_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitVLOOKUP_fun(this);
+			
 		}
 	}
 	public partial class DEC2BIN_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEC2BIN() { return GetToken(mathParser.DEC2BIN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode DEC2BIN() { return GetToken(49, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public DEC2BIN_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDEC2BIN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitDEC2BIN_fun(this);
+			
 		}
 	}
 	public partial class LOOKUP_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOOKUP() { return GetToken(mathParser.LOOKUP, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode LOOKUP() { return GetToken(235, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public LOOKUP_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLOOKUP_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitLOOKUP_fun(this);
+			
 		}
 	}
 	public partial class HEX2DEC_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HEX2DEC() { return GetToken(mathParser.HEX2DEC, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode HEX2DEC() { return GetToken(53, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public HEX2DEC_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHEX2DEC_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitHEX2DEC_fun(this);
+			
 		}
 	}
 	public partial class SMALL_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SMALL() { return GetToken(mathParser.SMALL, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode SMALL() { return GetToken(159, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SMALL_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSMALL_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSMALL_fun(this);
+			
 		}
 	}
 	public partial class ODD_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ODD() { return GetToken(mathParser.ODD, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode ODD() { return GetToken(93, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ODD_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitODD_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitODD_fun(this);
+			
 		}
 	}
 	public partial class TEXTTOBASE64_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TEXTTOBASE64() { return GetToken(mathParser.TEXTTOBASE64, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode TEXTTOBASE64() { return GetToken(205, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public TEXTTOBASE64_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTEXTTOBASE64_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTEXTTOBASE64_fun(this);
+			
 		}
 	}
 	public partial class MID_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MID() { return GetToken(mathParser.MID, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode MID() { return GetToken(120, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public MID_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMID_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitMID_fun(this);
+			
 		}
 	}
 	public partial class PERCENTRANK_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PERCENTRANK() { return GetToken(mathParser.PERCENTRANK, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode PERCENTRANK() { return GetToken(161, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public PERCENTRANK_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPERCENTRANK_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitPERCENTRANK_fun(this);
+			
 		}
 	}
 	public partial class STDEV_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STDEV() { return GetToken(mathParser.STDEV, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode STDEV() { return GetToken(171, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public STDEV_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSTDEV_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSTDEV_fun(this);
+			
 		}
 	}
 	public partial class NORMSDIST_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NORMSDIST() { return GetToken(mathParser.NORMSDIST, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode NORMSDIST() { return GetToken(178, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public NORMSDIST_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNORMSDIST_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitNORMSDIST_fun(this);
+			
 		}
 	}
 	public partial class ISNUMBER_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNUMBER() { return GetToken(mathParser.ISNUMBER, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode ISNUMBER() { return GetToken(33, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ISNUMBER_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISNUMBER_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitISNUMBER_fun(this);
+			
 		}
 	}
 	public partial class LASTINDEXOF_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LASTINDEXOF() { return GetToken(mathParser.LASTINDEXOF, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode LASTINDEXOF() { return GetToken(223, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public LASTINDEXOF_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLASTINDEXOF_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitLASTINDEXOF_fun(this);
+			
 		}
 	}
 	public partial class MOD_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MOD() { return GetToken(mathParser.MOD, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode MOD() { return GetToken(63, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public MOD_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMOD_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitMOD_fun(this);
+			
 		}
 	}
 	public partial class CHAR_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CHAR() { return GetToken(mathParser.CHAR, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode CHAR() { return GetToken(110, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public CHAR_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCHAR_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitCHAR_fun(this);
+			
 		}
 	}
 	public partial class REGEX_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REGEX() { return GetToken(mathParser.REGEX, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode REGEX() { return GetToken(207, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public REGEX_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitREGEX_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitREGEX_fun(this);
+			
 		}
 	}
 	public partial class TEXTTOBASE64URL_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TEXTTOBASE64URL() { return GetToken(mathParser.TEXTTOBASE64URL, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode TEXTTOBASE64URL() { return GetToken(206, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public TEXTTOBASE64URL_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTEXTTOBASE64URL_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTEXTTOBASE64URL_fun(this);
+			
 		}
 	}
 	public partial class MD5_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MD5() { return GetToken(mathParser.MD5, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode MD5() { return GetToken(211, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public MD5_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMD5_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitMD5_fun(this);
+			
 		}
 	}
 	public partial class REPLACE_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REPLACE() { return GetToken(mathParser.REPLACE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode REPLACE() { return GetToken(122, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public REPLACE_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitREPLACE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitREPLACE_fun(this);
+			
 		}
 	}
 	public partial class ACOSH_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ACOSH() { return GetToken(mathParser.ACOSH, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode ACOSH() { return GetToken(81, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ACOSH_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitACOSH_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitACOSH_fun(this);
+			
 		}
 	}
 	public partial class ISODD_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISODD() { return GetToken(mathParser.ISODD, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode ISODD() { return GetToken(39, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ISODD_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISODD_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitISODD_fun(this);
+			
 		}
 	}
 	public partial class ASC_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ASC() { return GetToken(mathParser.ASC, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode ASC() { return GetToken(108, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ASC_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitASC_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitASC_fun(this);
+			
 		}
 	}
 	public partial class COS_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COS() { return GetToken(mathParser.COS, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode COS() { return GetToken(74, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public COS_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCOS_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitCOS_fun(this);
+			
 		}
 	}
 	public partial class LN_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LN() { return GetToken(mathParser.LN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode LN() { return GetToken(101, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public LN_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitLN_fun(this);
+			
 		}
 	}
 	public partial class STRING_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRING() { return GetToken(mathParser.STRING, 0); }
+		public ITerminalNode STRING() { return GetToken(29, 0); }
 		public STRING_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSTRING_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSTRING_fun(this);
+			
 		}
 	}
 	public partial class HMACMD5_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HMACMD5() { return GetToken(mathParser.HMACMD5, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode HMACMD5() { return GetToken(216, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public HMACMD5_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHMACMD5_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitHMACMD5_fun(this);
+			
 		}
 	}
 	public partial class PRODUCT_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PRODUCT() { return GetToken(mathParser.PRODUCT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode PRODUCT() { return GetToken(105, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public PRODUCT_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPRODUCT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitPRODUCT_fun(this);
+			
 		}
 	}
 	public partial class EXACT_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EXACT() { return GetToken(mathParser.EXACT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode EXACT() { return GetToken(114, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public EXACT_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitEXACT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitEXACT_fun(this);
+			
 		}
 	}
 	public partial class ADDMINUTES_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDMINUTES() { return GetToken(mathParser.ADDMINUTES, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode ADDMINUTES() { return GetToken(241, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public ADDMINUTES_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitADDMINUTES_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitADDMINUTES_fun(this);
+			
 		}
 	}
 	public partial class SUMSQ_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUMSQ() { return GetToken(mathParser.SUMSQ, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode SUMSQ() { return GetToken(107, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SUMSQ_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSUMSQ_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSUMSQ_fun(this);
+			
 		}
 	}
 	public partial class SUM_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUM() { return GetToken(mathParser.SUM, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode SUM() { return GetToken(168, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SUM_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSUM_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSUM_fun(this);
+			
 		}
 	}
 	public partial class SECOND_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SECOND() { return GetToken(mathParser.SECOND, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode SECOND() { return GetToken(144, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public SECOND_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSECOND_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSECOND_fun(this);
+			
 		}
 	}
 	public partial class GAMMADIST_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GAMMADIST() { return GetToken(mathParser.GAMMADIST, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode GAMMADIST() { return GetToken(188, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public GAMMADIST_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitGAMMADIST_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitGAMMADIST_fun(this);
+			
 		}
 	}
 	public partial class OCT2HEX_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OCT2HEX() { return GetToken(mathParser.OCT2HEX, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode OCT2HEX() { return GetToken(57, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public OCT2HEX_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitOCT2HEX_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitOCT2HEX_fun(this);
+			
 		}
 	}
 	public partial class TODAY_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TODAY() { return GetToken(mathParser.TODAY, 0); }
+		//public ITerminalNode TODAY() { return GetToken(138, 0); }
 		public TODAY_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTODAY_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTODAY_fun(this);
+			
 		}
 	}
 	public partial class ATAN_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ATAN() { return GetToken(mathParser.ATAN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode ATAN() { return GetToken(84, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ATAN_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitATAN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitATAN_fun(this);
+			
 		}
 	}
 	public partial class E_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode E() { return GetToken(mathParser.E, 0); }
+		//public ITerminalNode E() { return GetToken(47, 0); }
 		public E_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitE_fun(this);
+			
 		}
 	}
 	public partial class TRIM_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRIM() { return GetToken(mathParser.TRIM, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode TRIM() { return GetToken(130, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public TRIM_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTRIM_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTRIM_fun(this);
+			
 		}
 	}
 	public partial class RADIANS_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RADIANS() { return GetToken(mathParser.RADIANS, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode RADIANS() { return GetToken(73, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public RADIANS_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitRADIANS_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitRADIANS_fun(this);
+			
 		}
 	}
 	public partial class GAMMALN_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GAMMALN() { return GetToken(mathParser.GAMMALN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode GAMMALN() { return GetToken(190, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public GAMMALN_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitGAMMALN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitGAMMALN_fun(this);
+			
 		}
 	}
 	public partial class TEXT_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TEXT() { return GetToken(mathParser.TEXT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode TEXT() { return GetToken(129, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public TEXT_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTEXT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTEXT_fun(this);
+			
 		}
 	}
 	public partial class FISHER_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FISHER() { return GetToken(mathParser.FISHER, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode FISHER() { return GetToken(186, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public FISHER_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFISHER_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitFISHER_fun(this);
+			
 		}
 	}
 	public partial class AND_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AND() { return GetToken(mathParser.AND, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode AND() { return GetToken(42, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public AND_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitAND_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitAND_fun(this);
+			
 		}
 	}
 	public partial class BIN2HEX_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BIN2HEX() { return GetToken(mathParser.BIN2HEX, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode BIN2HEX() { return GetToken(60, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public BIN2HEX_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitBIN2HEX_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitBIN2HEX_fun(this);
+			
 		}
 	}
 	public partial class MULTINOMIAL_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MULTINOMIAL() { return GetToken(mathParser.MULTINOMIAL, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode MULTINOMIAL() { return GetToken(104, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public MULTINOMIAL_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMULTINOMIAL_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitMULTINOMIAL_fun(this);
+			
 		}
 	}
 	public partial class MONTH_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MONTH() { return GetToken(mathParser.MONTH, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode MONTH() { return GetToken(140, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public MONTH_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMONTH_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitMONTH_fun(this);
+			
 		}
 	}
 	public partial class URLENCODE_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode URLENCODE() { return GetToken(mathParser.URLENCODE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode URLENCODE() { return GetToken(199, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public URLENCODE_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitURLENCODE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitURLENCODE_fun(this);
+			
 		}
 	}
 	public partial class NORMDIST_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NORMDIST() { return GetToken(mathParser.NORMDIST, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode NORMDIST() { return GetToken(176, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public NORMDIST_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNORMDIST_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitNORMDIST_fun(this);
+			
 		}
 	}
 	public partial class HMACSHA1_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HMACSHA1() { return GetToken(mathParser.HMACSHA1, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode HMACSHA1() { return GetToken(217, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public HMACSHA1_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHMACSHA1_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitHMACSHA1_fun(this);
+			
 		}
 	}
 	public partial class ENDSWITH_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ENDSWITH() { return GetToken(mathParser.ENDSWITH, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode ENDSWITH() { return GetToken(228, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public ENDSWITH_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitENDSWITH_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitENDSWITH_fun(this);
+			
 		}
 	}
 	public partial class Bracket_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public Bracket_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitBracket_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitBracket_fun(this);
+			
 		}
 	}
 	public partial class BETADIST_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BETADIST() { return GetToken(mathParser.BETADIST, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode BETADIST() { return GetToken(180, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public BETADIST_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitBETADIST_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitBETADIST_fun(this);
+			
 		}
 	}
 	public partial class ATANH_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ATANH() { return GetToken(mathParser.ATANH, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode ATANH() { return GetToken(85, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ATANH_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitATANH_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitATANH_fun(this);
+			
 		}
 	}
 	public partial class NOW_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NOW() { return GetToken(mathParser.NOW, 0); }
+		//public ITerminalNode NOW() { return GetToken(137, 0); }
 		public NOW_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNOW_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitNOW_fun(this);
+			
 		}
 	}
 	public partial class MEDIAN_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MEDIAN() { return GetToken(mathParser.MEDIAN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode MEDIAN() { return GetToken(154, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public MEDIAN_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMEDIAN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitMEDIAN_fun(this);
+			
 		}
 	}
 	public partial class POWER_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode POWER() { return GetToken(mathParser.POWER, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode POWER() { return GetToken(99, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public POWER_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPOWER_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitPOWER_fun(this);
+			
 		}
 	}
 	public partial class DEC2OCT_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEC2OCT() { return GetToken(mathParser.DEC2OCT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode DEC2OCT() { return GetToken(51, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public DEC2OCT_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDEC2OCT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitDEC2OCT_fun(this);
+			
 		}
 	}
 	public partial class PROPER_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PROPER() { return GetToken(mathParser.PROPER, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode PROPER() { return GetToken(121, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public PROPER_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPROPER_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitPROPER_fun(this);
+			
 		}
 	}
 	public partial class TRUNC_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRUNC() { return GetToken(mathParser.TRUNC, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode TRUNC() { return GetToken(66, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public TRUNC_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTRUNC_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTRUNC_fun(this);
+			
 		}
 	}
 	public partial class GCD_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GCD() { return GetToken(mathParser.GCD, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode GCD() { return GetToken(68, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public GCD_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitGCD_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitGCD_fun(this);
+			
 		}
 	}
 	public partial class TANH_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TANH() { return GetToken(mathParser.TANH, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode TANH() { return GetToken(79, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public TANH_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTANH_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTANH_fun(this);
+			
 		}
 	}
 	public partial class HEX2BIN_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HEX2BIN() { return GetToken(mathParser.HEX2BIN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode HEX2BIN() { return GetToken(52, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public HEX2BIN_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHEX2BIN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitHEX2BIN_fun(this);
+			
 		}
 	}
 	public partial class SINH_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SINH() { return GetToken(mathParser.SINH, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode SINH() { return GetToken(77, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public SINH_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSINH_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSINH_fun(this);
+			
 		}
 	}
 	public partial class SHA512_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SHA512() { return GetToken(mathParser.SHA512, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode SHA512() { return GetToken(214, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SHA512_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSHA512_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSHA512_fun(this);
+			
 		}
 	}
 	public partial class MIN_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MIN() { return GetToken(mathParser.MIN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode MIN() { return GetToken(155, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public MIN_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMIN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitMIN_fun(this);
+			
 		}
 	}
 	public partial class ADDDAYS_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDDAYS() { return GetToken(mathParser.ADDDAYS, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode ADDDAYS() { return GetToken(239, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public ADDDAYS_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitADDDAYS_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitADDDAYS_fun(this);
+			
 		}
 	}
 	public partial class ISNONTEXT_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNONTEXT() { return GetToken(mathParser.ISNONTEXT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode ISNONTEXT() { return GetToken(36, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ISNONTEXT_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISNONTEXT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitISNONTEXT_fun(this);
+			
 		}
 	}
 	public partial class ABS_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ABS() { return GetToken(mathParser.ABS, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode ABS() { return GetToken(61, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ABS_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitABS_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitABS_fun(this);
+			
 		}
 	}
 	public partial class ROUNDDOWN_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ROUNDDOWN() { return GetToken(mathParser.ROUNDDOWN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode ROUNDDOWN() { return GetToken(88, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public ROUNDDOWN_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitROUNDDOWN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitROUNDDOWN_fun(this);
+			
 		}
 	}
 	public partial class IF_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IF() { return GetToken(mathParser.IF, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode IF() { return GetToken(31, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public IF_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitIF_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitIF_fun(this);
+			
 		}
 	}
 	public partial class JOIN_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode JOIN() { return GetToken(mathParser.JOIN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode JOIN() { return GetToken(225, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public JOIN_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitJOIN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitJOIN_fun(this);
+			
 		}
 	}
 	public partial class FIND_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FIND() { return GetToken(mathParser.FIND, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode FIND() { return GetToken(115, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public FIND_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFIND_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitFIND_fun(this);
+			
 		}
 	}
 	public partial class SUBSTITUTE_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUBSTITUTE() { return GetToken(mathParser.SUBSTITUTE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode SUBSTITUTE() { return GetToken(127, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SUBSTITUTE_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSUBSTITUTE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSUBSTITUTE_fun(this);
+			
 		}
 	}
 	public partial class Percentage_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public Percentage_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPercentage_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitPercentage_fun(this);
+			
 		}
 	}
 	public partial class REPT_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REPT() { return GetToken(mathParser.REPT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode REPT() { return GetToken(123, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public REPT_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitREPT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitREPT_fun(this);
+			
 		}
 	}
 	public partial class ISNULL_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNULL() { return GetToken(mathParser.ISNULL, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode ISNULL() { return GetToken(40, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public ISNULL_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISNULL_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitISNULL_fun(this);
+			
 		}
 	}
 	public partial class ASIN_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ASIN() { return GetToken(mathParser.ASIN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode ASIN() { return GetToken(82, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ASIN_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitASIN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitASIN_fun(this);
+			
 		}
 	}
 	public partial class MulDiv_funContext : ExprContext {
 		public IToken op;
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public MulDiv_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMulDiv_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitMulDiv_fun(this);
+			
 		}
 	}
 	public partial class REMOVESTART_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REMOVESTART() { return GetToken(mathParser.REMOVESTART, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode REMOVESTART() { return GetToken(231, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public REMOVESTART_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitREMOVESTART_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitREMOVESTART_fun(this);
+			
 		}
 	}
 	public partial class T_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode T() { return GetToken(mathParser.T, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode T() { return GetToken(128, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public T_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitT_fun(this);
+			
 		}
 	}
 	public partial class WEEKDAY_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WEEKDAY() { return GetToken(mathParser.WEEKDAY, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode WEEKDAY() { return GetToken(145, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public WEEKDAY_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitWEEKDAY_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitWEEKDAY_fun(this);
+			
 		}
 	}
 	public partial class BIN2OCT_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BIN2OCT() { return GetToken(mathParser.BIN2OCT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode BIN2OCT() { return GetToken(58, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public BIN2OCT_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitBIN2OCT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitBIN2OCT_fun(this);
+			
 		}
 	}
 	public partial class NULL_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NULL() { return GetToken(mathParser.NULL, 0); }
+		//public ITerminalNode NULL() { return GetToken(30, 0); }
 		public NULL_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNULL_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitNULL_fun(this);
+			
 		}
 	}
 	public partial class BASE64TOTEXT_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BASE64TOTEXT() { return GetToken(mathParser.BASE64TOTEXT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode BASE64TOTEXT() { return GetToken(203, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public BASE64TOTEXT_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitBASE64TOTEXT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitBASE64TOTEXT_fun(this);
+			
 		}
 	}
 	public partial class TDIST_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TDIST() { return GetToken(mathParser.TDIST, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode TDIST() { return GetToken(196, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public TDIST_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTDIST_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTDIST_fun(this);
+			
 		}
 	}
 	public partial class DATEVALUE_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DATEVALUE() { return GetToken(mathParser.DATEVALUE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode DATEVALUE() { return GetToken(133, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public DATEVALUE_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDATEVALUE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitDATEVALUE_fun(this);
+			
 		}
 	}
 	public partial class STARTSWITH_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STARTSWITH() { return GetToken(mathParser.STARTSWITH, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode STARTSWITH() { return GetToken(227, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public STARTSWITH_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSTARTSWITH_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSTARTSWITH_fun(this);
+			
 		}
 	}
 	public partial class EVEN_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EVEN() { return GetToken(mathParser.EVEN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode EVEN() { return GetToken(92, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public EVEN_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitEVEN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitEVEN_fun(this);
+			
 		}
 	}
 	public partial class LOGNORMDIST_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOGNORMDIST() { return GetToken(mathParser.LOGNORMDIST, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode LOGNORMDIST() { return GetToken(193, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public LOGNORMDIST_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLOGNORMDIST_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitLOGNORMDIST_fun(this);
+			
 		}
 	}
 	public partial class ISNULLOREMPTY_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNULLOREMPTY() { return GetToken(mathParser.ISNULLOREMPTY, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode ISNULLOREMPTY() { return GetToken(229, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public ISNULLOREMPTY_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISNULLOREMPTY_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitISNULLOREMPTY_fun(this);
+			
 		}
 	}
 	public partial class TRUE_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRUE() { return GetToken(mathParser.TRUE, 0); }
+		//public ITerminalNode TRUE() { return GetToken(45, 0); }
 		public TRUE_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTRUE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTRUE_fun(this);
+			
 		}
 	}
 	public partial class FISHERINV_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FISHERINV() { return GetToken(mathParser.FISHERINV, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr() {
+		//public ITerminalNode FISHERINV() { return GetToken(187, 0); }
+		 public ExprContext expr() {
 			return GetRuleContext<ExprContext>(0);
 		}
 		public FISHERINV_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFISHERINV_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitFISHERINV_fun(this);
+			
 		}
 	}
 	public partial class SHA1_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SHA1() { return GetToken(mathParser.SHA1, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode SHA1() { return GetToken(212, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public SHA1_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSHA1_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSHA1_fun(this);
+			
 		}
 	}
 	public partial class TIME_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TIME() { return GetToken(mathParser.TIME, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode TIME() { return GetToken(136, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public TIME_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTIME_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTIME_fun(this);
+			
 		}
 	}
 	public partial class ATAN2_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ATAN2() { return GetToken(mathParser.ATAN2, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode ATAN2() { return GetToken(86, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public ATAN2_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitATAN2_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitATAN2_fun(this);
+			
 		}
 	}
 	public partial class ADDHOURS_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDHOURS() { return GetToken(mathParser.ADDHOURS, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext[] expr() {
+		//public ITerminalNode ADDHOURS() { return GetToken(240, 0); }
+		 public ExprContext[] expr() {
 			return GetRuleContexts<ExprContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExprContext expr(int i) {
-			return GetRuleContext<ExprContext>(i);
-		}
+		 //public ExprContext expr(int i) {			return GetRuleContext<ExprContext>(i);		}
 		public ADDHOURS_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitADDHOURS_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitADDHOURS_fun(this);
+			
 		}
 	}
 	public partial class RAND_funContext : ExprContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RAND() { return GetToken(mathParser.RAND, 0); }
+		//public ITerminalNode RAND() { return GetToken(95, 0); }
 		public RAND_funContext(ExprContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitRAND_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitRAND_fun(this);
+			
 		}
 	}
 
-	[RuleVersion(0)]
+	
 	public ExprContext expr() {
 		return expr(0);
 	}
@@ -3576,13 +3290,12 @@ partial class mathParser : Parser {
 		ExprContext _localctx = new ExprContext(Context, _parentState);
 		ExprContext _prevctx = _localctx;
 		int _startState = 2;
-		EnterRecursionRule(_localctx, 2, RULE_expr, _p);
+		EnterRecursionRule(_localctx, 2, 1, _p);
 		int _la;
 		try {
 			int _alt;
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 1751;
 			ErrorHandler.Sync(this);
 			switch ( Interpreter.AdaptivePredict(TokenStream,99,Context) ) {
 			case 1:
@@ -3591,12 +3304,10 @@ partial class mathParser : Parser {
 				Context = _localctx;
 				_prevctx = _localctx;
 
-				State = 10;
-				Match(T__1);
+				Match(2);
 				State = 11;
 				expr(0);
-				State = 12;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 2:
@@ -3604,8 +3315,7 @@ partial class mathParser : Parser {
 				_localctx = new NOT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 14;
-				Match(T__6);
+				Match(7);
 				State = 15;
 				expr(230);
 				}
@@ -3615,30 +3325,24 @@ partial class mathParser : Parser {
 				_localctx = new Array_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 16;
-				Match(ARRAY);
-				State = 17;
-				Match(T__1);
+				Match(236);
+				Match(2);
 				State = 18;
 				expr(0);
-				State = 23;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==T__3) {
+				while (_la==4) {
 					{
 					{
-					State = 19;
-					Match(T__3);
+					Match(4);
 					State = 20;
 					expr(0);
 					}
 					}
-					State = 25;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 26;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 4:
@@ -3646,30 +3350,24 @@ partial class mathParser : Parser {
 				_localctx = new IF_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 28;
-				Match(IF);
-				State = 29;
-				Match(T__1);
+				Match(31);
+				Match(2);
 				State = 30;
 				expr(0);
-				State = 31;
-				Match(T__3);
+				Match(4);
 				State = 32;
 				expr(0);
-				State = 35;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 33;
-					Match(T__3);
+					Match(4);
 					State = 34;
 					expr(0);
 					}
 				}
 
-				State = 37;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 5:
@@ -3677,14 +3375,11 @@ partial class mathParser : Parser {
 				_localctx = new ISNUMBER_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 39;
-				Match(ISNUMBER);
-				State = 40;
-				Match(T__1);
+				Match(33);
+				Match(2);
 				State = 41;
 				expr(0);
-				State = 42;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 6:
@@ -3692,14 +3387,11 @@ partial class mathParser : Parser {
 				_localctx = new ISTEXT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 44;
-				Match(ISTEXT);
-				State = 45;
-				Match(T__1);
+				Match(34);
+				Match(2);
 				State = 46;
 				expr(0);
-				State = 47;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 7:
@@ -3707,26 +3399,21 @@ partial class mathParser : Parser {
 				_localctx = new ISERROR_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 49;
-				Match(ISERROR);
-				State = 50;
-				Match(T__1);
+				Match(35);
+				Match(2);
 				State = 51;
 				expr(0);
-				State = 54;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 52;
-					Match(T__3);
+					Match(4);
 					State = 53;
 					expr(0);
 					}
 				}
 
-				State = 56;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 8:
@@ -3734,14 +3421,11 @@ partial class mathParser : Parser {
 				_localctx = new ISNONTEXT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 58;
-				Match(ISNONTEXT);
-				State = 59;
-				Match(T__1);
+				Match(36);
+				Match(2);
 				State = 60;
 				expr(0);
-				State = 61;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 9:
@@ -3749,14 +3433,11 @@ partial class mathParser : Parser {
 				_localctx = new ISLOGICAL_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 63;
-				Match(ISLOGICAL);
-				State = 64;
-				Match(T__1);
+				Match(37);
+				Match(2);
 				State = 65;
 				expr(0);
-				State = 66;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 10:
@@ -3764,14 +3445,11 @@ partial class mathParser : Parser {
 				_localctx = new ISEVEN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 68;
-				Match(ISEVEN);
-				State = 69;
-				Match(T__1);
+				Match(38);
+				Match(2);
 				State = 70;
 				expr(0);
-				State = 71;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 11:
@@ -3779,14 +3457,11 @@ partial class mathParser : Parser {
 				_localctx = new ISODD_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 73;
-				Match(ISODD);
-				State = 74;
-				Match(T__1);
+				Match(39);
+				Match(2);
 				State = 75;
 				expr(0);
-				State = 76;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 12:
@@ -3794,30 +3469,24 @@ partial class mathParser : Parser {
 				_localctx = new IFERROR_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 78;
-				Match(IFERROR);
-				State = 79;
-				Match(T__1);
+				Match(32);
+				Match(2);
 				State = 80;
 				expr(0);
-				State = 81;
-				Match(T__3);
+				Match(4);
 				State = 82;
 				expr(0);
-				State = 85;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 83;
-					Match(T__3);
+					Match(4);
 					State = 84;
 					expr(0);
 					}
 				}
 
-				State = 87;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 13:
@@ -3825,26 +3494,21 @@ partial class mathParser : Parser {
 				_localctx = new ISNULL_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 89;
-				Match(ISNULL);
-				State = 90;
-				Match(T__1);
+				Match(40);
+				Match(2);
 				State = 91;
 				expr(0);
-				State = 94;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 92;
-					Match(T__3);
+					Match(4);
 					State = 93;
 					expr(0);
 					}
 				}
 
-				State = 96;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 14:
@@ -3852,26 +3516,21 @@ partial class mathParser : Parser {
 				_localctx = new ISNULLORERROR_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 98;
-				Match(ISNULLORERROR);
-				State = 99;
-				Match(T__1);
+				Match(41);
+				Match(2);
 				State = 100;
 				expr(0);
-				State = 103;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 101;
-					Match(T__3);
+					Match(4);
 					State = 102;
 					expr(0);
 					}
 				}
 
-				State = 105;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 15:
@@ -3879,30 +3538,24 @@ partial class mathParser : Parser {
 				_localctx = new AND_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 107;
-				Match(AND);
-				State = 108;
-				Match(T__1);
+				Match(42);
+				Match(2);
 				State = 109;
 				expr(0);
-				State = 114;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==T__3) {
+				while (_la==4) {
 					{
 					{
-					State = 110;
-					Match(T__3);
+					Match(4);
 					State = 111;
 					expr(0);
 					}
 					}
-					State = 116;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 117;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 16:
@@ -3910,30 +3563,24 @@ partial class mathParser : Parser {
 				_localctx = new OR_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 119;
-				Match(OR);
-				State = 120;
-				Match(T__1);
+				Match(43);
+				Match(2);
 				State = 121;
 				expr(0);
-				State = 126;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==T__3) {
+				while (_la==4) {
 					{
 					{
-					State = 122;
-					Match(T__3);
+					Match(4);
 					State = 123;
 					expr(0);
 					}
 					}
-					State = 128;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 129;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 17:
@@ -3941,14 +3588,11 @@ partial class mathParser : Parser {
 				_localctx = new NOT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 131;
-				Match(NOT);
-				State = 132;
-				Match(T__1);
+				Match(44);
+				Match(2);
 				State = 133;
 				expr(0);
-				State = 134;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 18:
@@ -3956,17 +3600,13 @@ partial class mathParser : Parser {
 				_localctx = new TRUE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 136;
-				Match(TRUE);
-				State = 139;
+				Match(45);
 				ErrorHandler.Sync(this);
 				switch ( Interpreter.AdaptivePredict(TokenStream,8,Context) ) {
 				case 1:
 					{
-					State = 137;
-					Match(T__1);
-					State = 138;
-					Match(T__2);
+					Match(2);
+					Match(3);
 					}
 					break;
 				}
@@ -3977,17 +3617,13 @@ partial class mathParser : Parser {
 				_localctx = new FALSE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 141;
-				Match(FALSE);
-				State = 144;
+				Match(46);
 				ErrorHandler.Sync(this);
 				switch ( Interpreter.AdaptivePredict(TokenStream,9,Context) ) {
 				case 1:
 					{
-					State = 142;
-					Match(T__1);
-					State = 143;
-					Match(T__2);
+					Match(2);
+					Match(3);
 					}
 					break;
 				}
@@ -3998,17 +3634,13 @@ partial class mathParser : Parser {
 				_localctx = new E_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 146;
-				Match(E);
-				State = 149;
+				Match(47);
 				ErrorHandler.Sync(this);
 				switch ( Interpreter.AdaptivePredict(TokenStream,10,Context) ) {
 				case 1:
 					{
-					State = 147;
-					Match(T__1);
-					State = 148;
-					Match(T__2);
+					Match(2);
+					Match(3);
 					}
 					break;
 				}
@@ -4019,17 +3651,13 @@ partial class mathParser : Parser {
 				_localctx = new PI_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 151;
-				Match(PI);
-				State = 154;
+				Match(48);
 				ErrorHandler.Sync(this);
 				switch ( Interpreter.AdaptivePredict(TokenStream,11,Context) ) {
 				case 1:
 					{
-					State = 152;
-					Match(T__1);
-					State = 153;
-					Match(T__2);
+					Match(2);
+					Match(3);
 					}
 					break;
 				}
@@ -4040,27 +3668,22 @@ partial class mathParser : Parser {
 				_localctx = new DEC2BIN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 156;
-				Match(DEC2BIN);
+				Match(49);
 				{
-				State = 157;
-				Match(T__1);
+				Match(2);
 				State = 158;
 				expr(0);
-				State = 161;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 159;
-					Match(T__3);
+					Match(4);
 					State = 160;
 					expr(0);
 					}
 				}
 
-				State = 163;
-				Match(T__2);
+				Match(3);
 				}
 				}
 				break;
@@ -4069,27 +3692,22 @@ partial class mathParser : Parser {
 				_localctx = new DEC2HEX_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 165;
-				Match(DEC2HEX);
+				Match(50);
 				{
-				State = 166;
-				Match(T__1);
+				Match(2);
 				State = 167;
 				expr(0);
-				State = 170;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 168;
-					Match(T__3);
+					Match(4);
 					State = 169;
 					expr(0);
 					}
 				}
 
-				State = 172;
-				Match(T__2);
+				Match(3);
 				}
 				}
 				break;
@@ -4098,27 +3716,22 @@ partial class mathParser : Parser {
 				_localctx = new DEC2OCT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 174;
-				Match(DEC2OCT);
+				Match(51);
 				{
-				State = 175;
-				Match(T__1);
+				Match(2);
 				State = 176;
 				expr(0);
-				State = 179;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 177;
-					Match(T__3);
+					Match(4);
 					State = 178;
 					expr(0);
 					}
 				}
 
-				State = 181;
-				Match(T__2);
+				Match(3);
 				}
 				}
 				break;
@@ -4127,27 +3740,22 @@ partial class mathParser : Parser {
 				_localctx = new HEX2BIN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 183;
-				Match(HEX2BIN);
+				Match(52);
 				{
-				State = 184;
-				Match(T__1);
+				Match(2);
 				State = 185;
 				expr(0);
-				State = 188;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 186;
-					Match(T__3);
+					Match(4);
 					State = 187;
 					expr(0);
 					}
 				}
 
-				State = 190;
-				Match(T__2);
+				Match(3);
 				}
 				}
 				break;
@@ -4156,15 +3764,12 @@ partial class mathParser : Parser {
 				_localctx = new HEX2DEC_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 192;
-				Match(HEX2DEC);
+				Match(53);
 				{
-				State = 193;
-				Match(T__1);
+				Match(2);
 				State = 194;
 				expr(0);
-				State = 195;
-				Match(T__2);
+				Match(3);
 				}
 				}
 				break;
@@ -4173,27 +3778,22 @@ partial class mathParser : Parser {
 				_localctx = new HEX2OCT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 197;
-				Match(HEX2OCT);
+				Match(54);
 				{
-				State = 198;
-				Match(T__1);
+				Match(2);
 				State = 199;
 				expr(0);
-				State = 202;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 200;
-					Match(T__3);
+					Match(4);
 					State = 201;
 					expr(0);
 					}
 				}
 
-				State = 204;
-				Match(T__2);
+				Match(3);
 				}
 				}
 				break;
@@ -4202,27 +3802,22 @@ partial class mathParser : Parser {
 				_localctx = new OCT2BIN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 206;
-				Match(OCT2BIN);
+				Match(55);
 				{
-				State = 207;
-				Match(T__1);
+				Match(2);
 				State = 208;
 				expr(0);
-				State = 211;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 209;
-					Match(T__3);
+					Match(4);
 					State = 210;
 					expr(0);
 					}
 				}
 
-				State = 213;
-				Match(T__2);
+				Match(3);
 				}
 				}
 				break;
@@ -4231,15 +3826,12 @@ partial class mathParser : Parser {
 				_localctx = new OCT2DEC_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 215;
-				Match(OCT2DEC);
+				Match(56);
 				{
-				State = 216;
-				Match(T__1);
+				Match(2);
 				State = 217;
 				expr(0);
-				State = 218;
-				Match(T__2);
+				Match(3);
 				}
 				}
 				break;
@@ -4248,27 +3840,22 @@ partial class mathParser : Parser {
 				_localctx = new OCT2HEX_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 220;
-				Match(OCT2HEX);
+				Match(57);
 				{
-				State = 221;
-				Match(T__1);
+				Match(2);
 				State = 222;
 				expr(0);
-				State = 225;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 223;
-					Match(T__3);
+					Match(4);
 					State = 224;
 					expr(0);
 					}
 				}
 
-				State = 227;
-				Match(T__2);
+				Match(3);
 				}
 				}
 				break;
@@ -4277,27 +3864,22 @@ partial class mathParser : Parser {
 				_localctx = new BIN2OCT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 229;
-				Match(BIN2OCT);
+				Match(58);
 				{
-				State = 230;
-				Match(T__1);
+				Match(2);
 				State = 231;
 				expr(0);
-				State = 234;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 232;
-					Match(T__3);
+					Match(4);
 					State = 233;
 					expr(0);
 					}
 				}
 
-				State = 236;
-				Match(T__2);
+				Match(3);
 				}
 				}
 				break;
@@ -4306,15 +3888,12 @@ partial class mathParser : Parser {
 				_localctx = new BIN2DEC_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 238;
-				Match(BIN2DEC);
+				Match(59);
 				{
-				State = 239;
-				Match(T__1);
+				Match(2);
 				State = 240;
 				expr(0);
-				State = 241;
-				Match(T__2);
+				Match(3);
 				}
 				}
 				break;
@@ -4323,27 +3902,22 @@ partial class mathParser : Parser {
 				_localctx = new BIN2HEX_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 243;
-				Match(BIN2HEX);
+				Match(60);
 				{
-				State = 244;
-				Match(T__1);
+				Match(2);
 				State = 245;
 				expr(0);
-				State = 248;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 246;
-					Match(T__3);
+					Match(4);
 					State = 247;
 					expr(0);
 					}
 				}
 
-				State = 250;
-				Match(T__2);
+				Match(3);
 				}
 				}
 				break;
@@ -4352,14 +3926,11 @@ partial class mathParser : Parser {
 				_localctx = new ABS_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 252;
-				Match(ABS);
-				State = 253;
-				Match(T__1);
+				Match(61);
+				Match(2);
 				State = 254;
 				expr(0);
-				State = 255;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 35:
@@ -4367,20 +3938,16 @@ partial class mathParser : Parser {
 				_localctx = new QUOTIENT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 257;
-				Match(QUOTIENT);
-				State = 258;
-				Match(T__1);
+				Match(62);
+				Match(2);
 				State = 259;
 				expr(0);
 				{
-				State = 260;
-				Match(T__3);
+				Match(4);
 				State = 261;
 				expr(0);
 				}
-				State = 263;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 36:
@@ -4388,20 +3955,16 @@ partial class mathParser : Parser {
 				_localctx = new MOD_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 265;
-				Match(MOD);
-				State = 266;
-				Match(T__1);
+				Match(63);
+				Match(2);
 				State = 267;
 				expr(0);
 				{
-				State = 268;
-				Match(T__3);
+				Match(4);
 				State = 269;
 				expr(0);
 				}
-				State = 271;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 37:
@@ -4409,14 +3972,11 @@ partial class mathParser : Parser {
 				_localctx = new SIGN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 273;
-				Match(SIGN);
-				State = 274;
-				Match(T__1);
+				Match(64);
+				Match(2);
 				State = 275;
 				expr(0);
-				State = 276;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 38:
@@ -4424,14 +3984,11 @@ partial class mathParser : Parser {
 				_localctx = new SQRT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 278;
-				Match(SQRT);
-				State = 279;
-				Match(T__1);
+				Match(65);
+				Match(2);
 				State = 280;
 				expr(0);
-				State = 281;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 39:
@@ -4439,14 +3996,11 @@ partial class mathParser : Parser {
 				_localctx = new TRUNC_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 283;
-				Match(TRUNC);
-				State = 284;
-				Match(T__1);
+				Match(66);
+				Match(2);
 				State = 285;
 				expr(0);
-				State = 286;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 40:
@@ -4454,14 +4008,11 @@ partial class mathParser : Parser {
 				_localctx = new INT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 288;
-				Match(INT);
-				State = 289;
-				Match(T__1);
+				Match(67);
+				Match(2);
 				State = 290;
 				expr(0);
-				State = 291;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 41:
@@ -4469,30 +4020,24 @@ partial class mathParser : Parser {
 				_localctx = new GCD_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 293;
-				Match(GCD);
-				State = 294;
-				Match(T__1);
+				Match(68);
+				Match(2);
 				State = 295;
 				expr(0);
-				State = 298;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				do {
 					{
 					{
-					State = 296;
-					Match(T__3);
+					Match(4);
 					State = 297;
 					expr(0);
 					}
 					}
-					State = 300;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
-				} while ( _la==T__3 );
-				State = 302;
-				Match(T__2);
+				} while ( _la==4 );
+				Match(3);
 				}
 				break;
 			case 42:
@@ -4500,30 +4045,24 @@ partial class mathParser : Parser {
 				_localctx = new LCM_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 304;
-				Match(LCM);
-				State = 305;
-				Match(T__1);
+				Match(69);
+				Match(2);
 				State = 306;
 				expr(0);
-				State = 309;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				do {
 					{
 					{
-					State = 307;
-					Match(T__3);
+					Match(4);
 					State = 308;
 					expr(0);
 					}
 					}
-					State = 311;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
-				} while ( _la==T__3 );
-				State = 313;
-				Match(T__2);
+				} while ( _la==4 );
+				Match(3);
 				}
 				break;
 			case 43:
@@ -4531,18 +4070,14 @@ partial class mathParser : Parser {
 				_localctx = new COMBIN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 315;
-				Match(COMBIN);
-				State = 316;
-				Match(T__1);
+				Match(70);
+				Match(2);
 				State = 317;
 				expr(0);
-				State = 318;
-				Match(T__3);
+				Match(4);
 				State = 319;
 				expr(0);
-				State = 320;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 44:
@@ -4550,18 +4085,14 @@ partial class mathParser : Parser {
 				_localctx = new PERMUT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 322;
-				Match(PERMUT);
-				State = 323;
-				Match(T__1);
+				Match(71);
+				Match(2);
 				State = 324;
 				expr(0);
-				State = 325;
-				Match(T__3);
+				Match(4);
 				State = 326;
 				expr(0);
-				State = 327;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 45:
@@ -4569,14 +4100,11 @@ partial class mathParser : Parser {
 				_localctx = new DEGREES_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 329;
-				Match(DEGREES);
-				State = 330;
-				Match(T__1);
+				Match(72);
+				Match(2);
 				State = 331;
 				expr(0);
-				State = 332;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 46:
@@ -4584,14 +4112,11 @@ partial class mathParser : Parser {
 				_localctx = new RADIANS_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 334;
-				Match(RADIANS);
-				State = 335;
-				Match(T__1);
+				Match(73);
+				Match(2);
 				State = 336;
 				expr(0);
-				State = 337;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 47:
@@ -4599,14 +4124,11 @@ partial class mathParser : Parser {
 				_localctx = new COS_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 339;
-				Match(COS);
-				State = 340;
-				Match(T__1);
+				Match(74);
+				Match(2);
 				State = 341;
 				expr(0);
-				State = 342;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 48:
@@ -4614,14 +4136,11 @@ partial class mathParser : Parser {
 				_localctx = new COSH_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 344;
-				Match(COSH);
-				State = 345;
-				Match(T__1);
+				Match(75);
+				Match(2);
 				State = 346;
 				expr(0);
-				State = 347;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 49:
@@ -4629,14 +4148,11 @@ partial class mathParser : Parser {
 				_localctx = new SIN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 349;
-				Match(SIN);
-				State = 350;
-				Match(T__1);
+				Match(76);
+				Match(2);
 				State = 351;
 				expr(0);
-				State = 352;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 50:
@@ -4644,14 +4160,11 @@ partial class mathParser : Parser {
 				_localctx = new SINH_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 354;
-				Match(SINH);
-				State = 355;
-				Match(T__1);
+				Match(77);
+				Match(2);
 				State = 356;
 				expr(0);
-				State = 357;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 51:
@@ -4659,14 +4172,11 @@ partial class mathParser : Parser {
 				_localctx = new TAN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 359;
-				Match(TAN);
-				State = 360;
-				Match(T__1);
+				Match(78);
+				Match(2);
 				State = 361;
 				expr(0);
-				State = 362;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 52:
@@ -4674,14 +4184,11 @@ partial class mathParser : Parser {
 				_localctx = new TANH_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 364;
-				Match(TANH);
-				State = 365;
-				Match(T__1);
+				Match(79);
+				Match(2);
 				State = 366;
 				expr(0);
-				State = 367;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 53:
@@ -4689,14 +4196,11 @@ partial class mathParser : Parser {
 				_localctx = new ACOS_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 369;
-				Match(ACOS);
-				State = 370;
-				Match(T__1);
+				Match(80);
+				Match(2);
 				State = 371;
 				expr(0);
-				State = 372;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 54:
@@ -4704,14 +4208,11 @@ partial class mathParser : Parser {
 				_localctx = new ACOSH_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 374;
-				Match(ACOSH);
-				State = 375;
-				Match(T__1);
+				Match(81);
+				Match(2);
 				State = 376;
 				expr(0);
-				State = 377;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 55:
@@ -4719,14 +4220,11 @@ partial class mathParser : Parser {
 				_localctx = new ASIN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 379;
-				Match(ASIN);
-				State = 380;
-				Match(T__1);
+				Match(82);
+				Match(2);
 				State = 381;
 				expr(0);
-				State = 382;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 56:
@@ -4734,14 +4232,11 @@ partial class mathParser : Parser {
 				_localctx = new ASINH_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 384;
-				Match(ASINH);
-				State = 385;
-				Match(T__1);
+				Match(83);
+				Match(2);
 				State = 386;
 				expr(0);
-				State = 387;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 57:
@@ -4749,14 +4244,11 @@ partial class mathParser : Parser {
 				_localctx = new ATAN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 389;
-				Match(ATAN);
-				State = 390;
-				Match(T__1);
+				Match(84);
+				Match(2);
 				State = 391;
 				expr(0);
-				State = 392;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 58:
@@ -4764,14 +4256,11 @@ partial class mathParser : Parser {
 				_localctx = new ATANH_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 394;
-				Match(ATANH);
-				State = 395;
-				Match(T__1);
+				Match(85);
+				Match(2);
 				State = 396;
 				expr(0);
-				State = 397;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 59:
@@ -4779,18 +4268,14 @@ partial class mathParser : Parser {
 				_localctx = new ATAN2_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 399;
-				Match(ATAN2);
-				State = 400;
-				Match(T__1);
+				Match(86);
+				Match(2);
 				State = 401;
 				expr(0);
-				State = 402;
-				Match(T__3);
+				Match(4);
 				State = 403;
 				expr(0);
-				State = 404;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 60:
@@ -4798,26 +4283,21 @@ partial class mathParser : Parser {
 				_localctx = new ROUND_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 406;
-				Match(ROUND);
-				State = 407;
-				Match(T__1);
+				Match(87);
+				Match(2);
 				State = 408;
 				expr(0);
-				State = 411;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 409;
-					Match(T__3);
+					Match(4);
 					State = 410;
 					expr(0);
 					}
 				}
 
-				State = 413;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 61:
@@ -4825,18 +4305,14 @@ partial class mathParser : Parser {
 				_localctx = new ROUNDDOWN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 415;
-				Match(ROUNDDOWN);
-				State = 416;
-				Match(T__1);
+				Match(88);
+				Match(2);
 				State = 417;
 				expr(0);
-				State = 418;
-				Match(T__3);
+				Match(4);
 				State = 419;
 				expr(0);
-				State = 420;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 62:
@@ -4844,18 +4320,14 @@ partial class mathParser : Parser {
 				_localctx = new ROUNDUP_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 422;
-				Match(ROUNDUP);
-				State = 423;
-				Match(T__1);
+				Match(89);
+				Match(2);
 				State = 424;
 				expr(0);
-				State = 425;
-				Match(T__3);
+				Match(4);
 				State = 426;
 				expr(0);
-				State = 427;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 63:
@@ -4863,26 +4335,21 @@ partial class mathParser : Parser {
 				_localctx = new CEILING_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 429;
-				Match(CEILING);
-				State = 430;
-				Match(T__1);
+				Match(90);
+				Match(2);
 				State = 431;
 				expr(0);
-				State = 434;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 432;
-					Match(T__3);
+					Match(4);
 					State = 433;
 					expr(0);
 					}
 				}
 
-				State = 436;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 64:
@@ -4890,26 +4357,21 @@ partial class mathParser : Parser {
 				_localctx = new FLOOR_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 438;
-				Match(FLOOR);
-				State = 439;
-				Match(T__1);
+				Match(91);
+				Match(2);
 				State = 440;
 				expr(0);
-				State = 443;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 441;
-					Match(T__3);
+					Match(4);
 					State = 442;
 					expr(0);
 					}
 				}
 
-				State = 445;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 65:
@@ -4917,14 +4379,11 @@ partial class mathParser : Parser {
 				_localctx = new EVEN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 447;
-				Match(EVEN);
-				State = 448;
-				Match(T__1);
+				Match(92);
+				Match(2);
 				State = 449;
 				expr(0);
-				State = 450;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 66:
@@ -4932,14 +4391,11 @@ partial class mathParser : Parser {
 				_localctx = new ODD_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 452;
-				Match(ODD);
-				State = 453;
-				Match(T__1);
+				Match(93);
+				Match(2);
 				State = 454;
 				expr(0);
-				State = 455;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 67:
@@ -4947,18 +4403,14 @@ partial class mathParser : Parser {
 				_localctx = new MROUND_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 457;
-				Match(MROUND);
-				State = 458;
-				Match(T__1);
+				Match(94);
+				Match(2);
 				State = 459;
 				expr(0);
-				State = 460;
-				Match(T__3);
+				Match(4);
 				State = 461;
 				expr(0);
-				State = 462;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 68:
@@ -4966,12 +4418,9 @@ partial class mathParser : Parser {
 				_localctx = new RAND_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 464;
-				Match(RAND);
-				State = 465;
-				Match(T__1);
-				State = 466;
-				Match(T__2);
+				Match(95);
+				Match(2);
+				Match(3);
 				}
 				break;
 			case 69:
@@ -4979,18 +4428,14 @@ partial class mathParser : Parser {
 				_localctx = new RANDBETWEEN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 467;
-				Match(RANDBETWEEN);
-				State = 468;
-				Match(T__1);
+				Match(96);
+				Match(2);
 				State = 469;
 				expr(0);
-				State = 470;
-				Match(T__3);
+				Match(4);
 				State = 471;
 				expr(0);
-				State = 472;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 70:
@@ -4998,14 +4443,11 @@ partial class mathParser : Parser {
 				_localctx = new FACT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 474;
-				Match(FACT);
-				State = 475;
-				Match(T__1);
+				Match(97);
+				Match(2);
 				State = 476;
 				expr(0);
-				State = 477;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 71:
@@ -5013,14 +4455,11 @@ partial class mathParser : Parser {
 				_localctx = new FACTDOUBLE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 479;
-				Match(FACTDOUBLE);
-				State = 480;
-				Match(T__1);
+				Match(98);
+				Match(2);
 				State = 481;
 				expr(0);
-				State = 482;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 72:
@@ -5028,18 +4467,14 @@ partial class mathParser : Parser {
 				_localctx = new POWER_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 484;
-				Match(POWER);
-				State = 485;
-				Match(T__1);
+				Match(99);
+				Match(2);
 				State = 486;
 				expr(0);
-				State = 487;
-				Match(T__3);
+				Match(4);
 				State = 488;
 				expr(0);
-				State = 489;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 73:
@@ -5047,14 +4482,11 @@ partial class mathParser : Parser {
 				_localctx = new EXP_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 491;
-				Match(EXP);
-				State = 492;
-				Match(T__1);
+				Match(100);
+				Match(2);
 				State = 493;
 				expr(0);
-				State = 494;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 74:
@@ -5062,14 +4494,11 @@ partial class mathParser : Parser {
 				_localctx = new LN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 496;
-				Match(LN);
-				State = 497;
-				Match(T__1);
+				Match(101);
+				Match(2);
 				State = 498;
 				expr(0);
-				State = 499;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 75:
@@ -5077,26 +4506,21 @@ partial class mathParser : Parser {
 				_localctx = new LOG_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 501;
-				Match(LOG);
-				State = 502;
-				Match(T__1);
+				Match(102);
+				Match(2);
 				State = 503;
 				expr(0);
-				State = 506;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 504;
-					Match(T__3);
+					Match(4);
 					State = 505;
 					expr(0);
 					}
 				}
 
-				State = 508;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 76:
@@ -5104,14 +4528,11 @@ partial class mathParser : Parser {
 				_localctx = new LOG10_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 510;
-				Match(LOG10);
-				State = 511;
-				Match(T__1);
+				Match(103);
+				Match(2);
 				State = 512;
 				expr(0);
-				State = 513;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 77:
@@ -5119,30 +4540,24 @@ partial class mathParser : Parser {
 				_localctx = new MULTINOMIAL_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 515;
-				Match(MULTINOMIAL);
-				State = 516;
-				Match(T__1);
+				Match(104);
+				Match(2);
 				State = 517;
 				expr(0);
-				State = 522;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==T__3) {
+				while (_la==4) {
 					{
 					{
-					State = 518;
-					Match(T__3);
+					Match(4);
 					State = 519;
 					expr(0);
 					}
 					}
-					State = 524;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 525;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 78:
@@ -5150,30 +4565,24 @@ partial class mathParser : Parser {
 				_localctx = new PRODUCT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 527;
-				Match(PRODUCT);
-				State = 528;
-				Match(T__1);
+				Match(105);
+				Match(2);
 				State = 529;
 				expr(0);
-				State = 534;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==T__3) {
+				while (_la==4) {
 					{
 					{
-					State = 530;
-					Match(T__3);
+					Match(4);
 					State = 531;
 					expr(0);
 					}
 					}
-					State = 536;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 537;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 79:
@@ -5181,14 +4590,11 @@ partial class mathParser : Parser {
 				_localctx = new SQRTPI_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 539;
-				Match(SQRTPI);
-				State = 540;
-				Match(T__1);
+				Match(106);
+				Match(2);
 				State = 541;
 				expr(0);
-				State = 542;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 80:
@@ -5196,30 +4602,24 @@ partial class mathParser : Parser {
 				_localctx = new SUMSQ_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 544;
-				Match(SUMSQ);
-				State = 545;
-				Match(T__1);
+				Match(107);
+				Match(2);
 				State = 546;
 				expr(0);
-				State = 551;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==T__3) {
+				while (_la==4) {
 					{
 					{
-					State = 547;
-					Match(T__3);
+					Match(4);
 					State = 548;
 					expr(0);
 					}
 					}
-					State = 553;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 554;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 81:
@@ -5227,14 +4627,11 @@ partial class mathParser : Parser {
 				_localctx = new ASC_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 556;
-				Match(ASC);
-				State = 557;
-				Match(T__1);
+				Match(108);
+				Match(2);
 				State = 558;
 				expr(0);
-				State = 559;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 82:
@@ -5242,14 +4639,11 @@ partial class mathParser : Parser {
 				_localctx = new JIS_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 561;
-				Match(JIS);
-				State = 562;
-				Match(T__1);
+				Match(109);
+				Match(2);
 				State = 563;
 				expr(0);
-				State = 564;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 83:
@@ -5257,14 +4651,11 @@ partial class mathParser : Parser {
 				_localctx = new CHAR_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 566;
-				Match(CHAR);
-				State = 567;
-				Match(T__1);
+				Match(110);
+				Match(2);
 				State = 568;
 				expr(0);
-				State = 569;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 84:
@@ -5272,14 +4663,11 @@ partial class mathParser : Parser {
 				_localctx = new CLEAN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 571;
-				Match(CLEAN);
-				State = 572;
-				Match(T__1);
+				Match(111);
+				Match(2);
 				State = 573;
 				expr(0);
-				State = 574;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 85:
@@ -5287,14 +4675,11 @@ partial class mathParser : Parser {
 				_localctx = new CODE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 576;
-				Match(CODE);
-				State = 577;
-				Match(T__1);
+				Match(112);
+				Match(2);
 				State = 578;
 				expr(0);
-				State = 579;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 86:
@@ -5302,30 +4687,24 @@ partial class mathParser : Parser {
 				_localctx = new CONCATENATE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 581;
-				Match(CONCATENATE);
-				State = 582;
-				Match(T__1);
+				Match(113);
+				Match(2);
 				State = 583;
 				expr(0);
-				State = 588;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==T__3) {
+				while (_la==4) {
 					{
 					{
-					State = 584;
-					Match(T__3);
+					Match(4);
 					State = 585;
 					expr(0);
 					}
 					}
-					State = 590;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 591;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 87:
@@ -5333,18 +4712,14 @@ partial class mathParser : Parser {
 				_localctx = new EXACT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 593;
-				Match(EXACT);
-				State = 594;
-				Match(T__1);
+				Match(114);
+				Match(2);
 				State = 595;
 				expr(0);
-				State = 596;
-				Match(T__3);
+				Match(4);
 				State = 597;
 				expr(0);
-				State = 598;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 88:
@@ -5352,30 +4727,24 @@ partial class mathParser : Parser {
 				_localctx = new FIND_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 600;
-				Match(FIND);
-				State = 601;
-				Match(T__1);
+				Match(115);
+				Match(2);
 				State = 602;
 				expr(0);
-				State = 603;
-				Match(T__3);
+				Match(4);
 				State = 604;
 				expr(0);
-				State = 607;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 605;
-					Match(T__3);
+					Match(4);
 					State = 606;
 					expr(0);
 					}
 				}
 
-				State = 609;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 89:
@@ -5383,28 +4752,22 @@ partial class mathParser : Parser {
 				_localctx = new FIXED_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 611;
-				Match(FIXED);
-				State = 612;
-				Match(T__1);
+				Match(116);
+				Match(2);
 				State = 613;
 				expr(0);
-				State = 620;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 614;
-					Match(T__3);
+					Match(4);
 					State = 615;
 					expr(0);
-					State = 618;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
-					if (_la==T__3) {
+					if (_la==4) {
 						{
-						State = 616;
-						Match(T__3);
+						Match(4);
 						State = 617;
 						expr(0);
 						}
@@ -5413,8 +4776,7 @@ partial class mathParser : Parser {
 					}
 				}
 
-				State = 622;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 90:
@@ -5422,26 +4784,21 @@ partial class mathParser : Parser {
 				_localctx = new LEFT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 624;
-				Match(LEFT);
-				State = 625;
-				Match(T__1);
+				Match(117);
+				Match(2);
 				State = 626;
 				expr(0);
-				State = 629;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 627;
-					Match(T__3);
+					Match(4);
 					State = 628;
 					expr(0);
 					}
 				}
 
-				State = 631;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 91:
@@ -5449,14 +4806,11 @@ partial class mathParser : Parser {
 				_localctx = new LEN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 633;
-				Match(LEN);
-				State = 634;
-				Match(T__1);
+				Match(118);
+				Match(2);
 				State = 635;
 				expr(0);
-				State = 636;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 92:
@@ -5464,14 +4818,11 @@ partial class mathParser : Parser {
 				_localctx = new LOWER_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 638;
-				Match(LOWER);
-				State = 639;
-				Match(T__1);
+				Match(119);
+				Match(2);
 				State = 640;
 				expr(0);
-				State = 641;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 93:
@@ -5479,22 +4830,17 @@ partial class mathParser : Parser {
 				_localctx = new MID_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 643;
-				Match(MID);
-				State = 644;
-				Match(T__1);
+				Match(120);
+				Match(2);
 				State = 645;
 				expr(0);
-				State = 646;
-				Match(T__3);
+				Match(4);
 				State = 647;
 				expr(0);
-				State = 648;
-				Match(T__3);
+				Match(4);
 				State = 649;
 				expr(0);
-				State = 650;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 94:
@@ -5502,14 +4848,11 @@ partial class mathParser : Parser {
 				_localctx = new PROPER_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 652;
-				Match(PROPER);
-				State = 653;
-				Match(T__1);
+				Match(121);
+				Match(2);
 				State = 654;
 				expr(0);
-				State = 655;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 95:
@@ -5517,34 +4860,27 @@ partial class mathParser : Parser {
 				_localctx = new REPLACE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 657;
-				Match(REPLACE);
-				State = 658;
-				Match(T__1);
+				Match(122);
+				Match(2);
 				State = 659;
 				expr(0);
-				State = 660;
-				Match(T__3);
+				Match(4);
 				State = 661;
 				expr(0);
-				State = 662;
-				Match(T__3);
+				Match(4);
 				State = 663;
 				expr(0);
-				State = 666;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 664;
-					Match(T__3);
+					Match(4);
 					State = 665;
 					expr(0);
 					}
 				}
 
-				State = 668;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 96:
@@ -5552,18 +4888,14 @@ partial class mathParser : Parser {
 				_localctx = new REPT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 670;
-				Match(REPT);
-				State = 671;
-				Match(T__1);
+				Match(123);
+				Match(2);
 				State = 672;
 				expr(0);
-				State = 673;
-				Match(T__3);
+				Match(4);
 				State = 674;
 				expr(0);
-				State = 675;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 97:
@@ -5571,26 +4903,21 @@ partial class mathParser : Parser {
 				_localctx = new RIGHT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 677;
-				Match(RIGHT);
-				State = 678;
-				Match(T__1);
+				Match(124);
+				Match(2);
 				State = 679;
 				expr(0);
-				State = 682;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 680;
-					Match(T__3);
+					Match(4);
 					State = 681;
 					expr(0);
 					}
 				}
 
-				State = 684;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 98:
@@ -5598,14 +4925,11 @@ partial class mathParser : Parser {
 				_localctx = new RMB_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 686;
-				Match(RMB);
-				State = 687;
-				Match(T__1);
+				Match(125);
+				Match(2);
 				State = 688;
 				expr(0);
-				State = 689;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 99:
@@ -5613,30 +4937,24 @@ partial class mathParser : Parser {
 				_localctx = new SEARCH_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 691;
-				Match(SEARCH);
-				State = 692;
-				Match(T__1);
+				Match(126);
+				Match(2);
 				State = 693;
 				expr(0);
-				State = 694;
-				Match(T__3);
+				Match(4);
 				State = 695;
 				expr(0);
-				State = 698;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 696;
-					Match(T__3);
+					Match(4);
 					State = 697;
 					expr(0);
 					}
 				}
 
-				State = 700;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 100:
@@ -5644,34 +4962,27 @@ partial class mathParser : Parser {
 				_localctx = new SUBSTITUTE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 702;
-				Match(SUBSTITUTE);
-				State = 703;
-				Match(T__1);
+				Match(127);
+				Match(2);
 				State = 704;
 				expr(0);
-				State = 705;
-				Match(T__3);
+				Match(4);
 				State = 706;
 				expr(0);
-				State = 707;
-				Match(T__3);
+				Match(4);
 				State = 708;
 				expr(0);
-				State = 711;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 709;
-					Match(T__3);
+					Match(4);
 					State = 710;
 					expr(0);
 					}
 				}
 
-				State = 713;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 101:
@@ -5679,14 +4990,11 @@ partial class mathParser : Parser {
 				_localctx = new T_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 715;
-				Match(T);
-				State = 716;
-				Match(T__1);
+				Match(128);
+				Match(2);
 				State = 717;
 				expr(0);
-				State = 718;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 102:
@@ -5694,18 +5002,14 @@ partial class mathParser : Parser {
 				_localctx = new TEXT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 720;
-				Match(TEXT);
-				State = 721;
-				Match(T__1);
+				Match(129);
+				Match(2);
 				State = 722;
 				expr(0);
-				State = 723;
-				Match(T__3);
+				Match(4);
 				State = 724;
 				expr(0);
-				State = 725;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 103:
@@ -5713,14 +5017,11 @@ partial class mathParser : Parser {
 				_localctx = new TRIM_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 727;
-				Match(TRIM);
-				State = 728;
-				Match(T__1);
+				Match(130);
+				Match(2);
 				State = 729;
 				expr(0);
-				State = 730;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 104:
@@ -5728,14 +5029,11 @@ partial class mathParser : Parser {
 				_localctx = new UPPER_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 732;
-				Match(UPPER);
-				State = 733;
-				Match(T__1);
+				Match(131);
+				Match(2);
 				State = 734;
 				expr(0);
-				State = 735;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 105:
@@ -5743,14 +5041,11 @@ partial class mathParser : Parser {
 				_localctx = new VALUE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 737;
-				Match(VALUE);
-				State = 738;
-				Match(T__1);
+				Match(132);
+				Match(2);
 				State = 739;
 				expr(0);
-				State = 740;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 106:
@@ -5758,26 +5053,21 @@ partial class mathParser : Parser {
 				_localctx = new DATEVALUE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 742;
-				Match(DATEVALUE);
-				State = 743;
-				Match(T__1);
+				Match(133);
+				Match(2);
 				State = 744;
 				expr(0);
-				State = 747;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 745;
-					Match(T__3);
+					Match(4);
 					State = 746;
 					expr(0);
 					}
 				}
 
-				State = 749;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 107:
@@ -5785,14 +5075,11 @@ partial class mathParser : Parser {
 				_localctx = new TIMEVALUE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 751;
-				Match(TIMEVALUE);
-				State = 752;
-				Match(T__1);
+				Match(134);
+				Match(2);
 				State = 753;
 				expr(0);
-				State = 754;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 108:
@@ -5800,45 +5087,35 @@ partial class mathParser : Parser {
 				_localctx = new DATE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 756;
-				Match(DATE);
-				State = 757;
-				Match(T__1);
+				Match(135);
+				Match(2);
 				State = 758;
 				expr(0);
-				State = 759;
-				Match(T__3);
+				Match(4);
 				State = 760;
 				expr(0);
-				State = 761;
-				Match(T__3);
+				Match(4);
 				State = 762;
 				expr(0);
-				State = 773;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 763;
-					Match(T__3);
+					Match(4);
 					State = 764;
 					expr(0);
-					State = 771;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
-					if (_la==T__3) {
+					if (_la==4) {
 						{
-						State = 765;
-						Match(T__3);
+						Match(4);
 						State = 766;
 						expr(0);
-						State = 769;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la==T__3) {
+						if (_la==4) {
 							{
-							State = 767;
-							Match(T__3);
+							Match(4);
 							State = 768;
 							expr(0);
 							}
@@ -5850,8 +5127,7 @@ partial class mathParser : Parser {
 					}
 				}
 
-				State = 775;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 109:
@@ -5859,30 +5135,24 @@ partial class mathParser : Parser {
 				_localctx = new TIME_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 777;
-				Match(TIME);
-				State = 778;
-				Match(T__1);
+				Match(136);
+				Match(2);
 				State = 779;
 				expr(0);
-				State = 780;
-				Match(T__3);
+				Match(4);
 				State = 781;
 				expr(0);
-				State = 784;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 782;
-					Match(T__3);
+					Match(4);
 					State = 783;
 					expr(0);
 					}
 				}
 
-				State = 786;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 110:
@@ -5890,12 +5160,9 @@ partial class mathParser : Parser {
 				_localctx = new NOW_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 788;
-				Match(NOW);
-				State = 789;
-				Match(T__1);
-				State = 790;
-				Match(T__2);
+				Match(137);
+				Match(2);
+				Match(3);
 				}
 				break;
 			case 111:
@@ -5903,12 +5170,9 @@ partial class mathParser : Parser {
 				_localctx = new TODAY_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 791;
-				Match(TODAY);
-				State = 792;
-				Match(T__1);
-				State = 793;
-				Match(T__2);
+				Match(138);
+				Match(2);
+				Match(3);
 				}
 				break;
 			case 112:
@@ -5916,14 +5180,11 @@ partial class mathParser : Parser {
 				_localctx = new YEAR_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 794;
-				Match(YEAR);
-				State = 795;
-				Match(T__1);
+				Match(139);
+				Match(2);
 				State = 796;
 				expr(0);
-				State = 797;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 113:
@@ -5931,14 +5192,11 @@ partial class mathParser : Parser {
 				_localctx = new MONTH_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 799;
-				Match(MONTH);
-				State = 800;
-				Match(T__1);
+				Match(140);
+				Match(2);
 				State = 801;
 				expr(0);
-				State = 802;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 114:
@@ -5946,14 +5204,11 @@ partial class mathParser : Parser {
 				_localctx = new DAY_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 804;
-				Match(DAY);
-				State = 805;
-				Match(T__1);
+				Match(141);
+				Match(2);
 				State = 806;
 				expr(0);
-				State = 807;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 115:
@@ -5961,14 +5216,11 @@ partial class mathParser : Parser {
 				_localctx = new HOUR_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 809;
-				Match(HOUR);
-				State = 810;
-				Match(T__1);
+				Match(142);
+				Match(2);
 				State = 811;
 				expr(0);
-				State = 812;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 116:
@@ -5976,14 +5228,11 @@ partial class mathParser : Parser {
 				_localctx = new MINUTE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 814;
-				Match(MINUTE);
-				State = 815;
-				Match(T__1);
+				Match(143);
+				Match(2);
 				State = 816;
 				expr(0);
-				State = 817;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 117:
@@ -5991,14 +5240,11 @@ partial class mathParser : Parser {
 				_localctx = new SECOND_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 819;
-				Match(SECOND);
-				State = 820;
-				Match(T__1);
+				Match(144);
+				Match(2);
 				State = 821;
 				expr(0);
-				State = 822;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 118:
@@ -6006,26 +5252,21 @@ partial class mathParser : Parser {
 				_localctx = new WEEKDAY_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 824;
-				Match(WEEKDAY);
-				State = 825;
-				Match(T__1);
+				Match(145);
+				Match(2);
 				State = 826;
 				expr(0);
-				State = 829;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 827;
-					Match(T__3);
+					Match(4);
 					State = 828;
 					expr(0);
 					}
 				}
 
-				State = 831;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 119:
@@ -6033,22 +5274,17 @@ partial class mathParser : Parser {
 				_localctx = new DATEDIF_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 833;
-				Match(DATEDIF);
-				State = 834;
-				Match(T__1);
+				Match(146);
+				Match(2);
 				State = 835;
 				expr(0);
-				State = 836;
-				Match(T__3);
+				Match(4);
 				State = 837;
 				expr(0);
-				State = 838;
-				Match(T__3);
+				Match(4);
 				State = 839;
 				expr(0);
-				State = 840;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 120:
@@ -6056,30 +5292,24 @@ partial class mathParser : Parser {
 				_localctx = new DAYS360_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 842;
-				Match(DAYS360);
-				State = 843;
-				Match(T__1);
+				Match(147);
+				Match(2);
 				State = 844;
 				expr(0);
-				State = 845;
-				Match(T__3);
+				Match(4);
 				State = 846;
 				expr(0);
-				State = 849;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 847;
-					Match(T__3);
+					Match(4);
 					State = 848;
 					expr(0);
 					}
 				}
 
-				State = 851;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 121:
@@ -6087,18 +5317,14 @@ partial class mathParser : Parser {
 				_localctx = new EDATE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 853;
-				Match(EDATE);
-				State = 854;
-				Match(T__1);
+				Match(148);
+				Match(2);
 				State = 855;
 				expr(0);
-				State = 856;
-				Match(T__3);
+				Match(4);
 				State = 857;
 				expr(0);
-				State = 858;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 122:
@@ -6106,18 +5332,14 @@ partial class mathParser : Parser {
 				_localctx = new EOMONTH_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 860;
-				Match(EOMONTH);
-				State = 861;
-				Match(T__1);
+				Match(149);
+				Match(2);
 				State = 862;
 				expr(0);
-				State = 863;
-				Match(T__3);
+				Match(4);
 				State = 864;
 				expr(0);
-				State = 865;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 123:
@@ -6125,30 +5347,24 @@ partial class mathParser : Parser {
 				_localctx = new NETWORKDAYS_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 867;
-				Match(NETWORKDAYS);
-				State = 868;
-				Match(T__1);
+				Match(150);
+				Match(2);
 				State = 869;
 				expr(0);
-				State = 870;
-				Match(T__3);
+				Match(4);
 				State = 871;
 				expr(0);
-				State = 874;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 872;
-					Match(T__3);
+					Match(4);
 					State = 873;
 					expr(0);
 					}
 				}
 
-				State = 876;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 124:
@@ -6156,30 +5372,24 @@ partial class mathParser : Parser {
 				_localctx = new WORKDAY_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 878;
-				Match(WORKDAY);
-				State = 879;
-				Match(T__1);
+				Match(151);
+				Match(2);
 				State = 880;
 				expr(0);
-				State = 881;
-				Match(T__3);
+				Match(4);
 				State = 882;
 				expr(0);
-				State = 885;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 883;
-					Match(T__3);
+					Match(4);
 					State = 884;
 					expr(0);
 					}
 				}
 
-				State = 887;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 125:
@@ -6187,26 +5397,21 @@ partial class mathParser : Parser {
 				_localctx = new WEEKNUM_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 889;
-				Match(WEEKNUM);
-				State = 890;
-				Match(T__1);
+				Match(152);
+				Match(2);
 				State = 891;
 				expr(0);
-				State = 894;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 892;
-					Match(T__3);
+					Match(4);
 					State = 893;
 					expr(0);
 					}
 				}
 
-				State = 896;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 126:
@@ -6214,30 +5419,24 @@ partial class mathParser : Parser {
 				_localctx = new MAX_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 898;
-				Match(MAX);
-				State = 899;
-				Match(T__1);
+				Match(153);
+				Match(2);
 				State = 900;
 				expr(0);
-				State = 903;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				do {
 					{
 					{
-					State = 901;
-					Match(T__3);
+					Match(4);
 					State = 902;
 					expr(0);
 					}
 					}
-					State = 905;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
-				} while ( _la==T__3 );
-				State = 907;
-				Match(T__2);
+				} while ( _la==4 );
+				Match(3);
 				}
 				break;
 			case 127:
@@ -6245,30 +5444,24 @@ partial class mathParser : Parser {
 				_localctx = new MEDIAN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 909;
-				Match(MEDIAN);
-				State = 910;
-				Match(T__1);
+				Match(154);
+				Match(2);
 				State = 911;
 				expr(0);
-				State = 914;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				do {
 					{
 					{
-					State = 912;
-					Match(T__3);
+					Match(4);
 					State = 913;
 					expr(0);
 					}
 					}
-					State = 916;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
-				} while ( _la==T__3 );
-				State = 918;
-				Match(T__2);
+				} while ( _la==4 );
+				Match(3);
 				}
 				break;
 			case 128:
@@ -6276,30 +5469,24 @@ partial class mathParser : Parser {
 				_localctx = new MIN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 920;
-				Match(MIN);
-				State = 921;
-				Match(T__1);
+				Match(155);
+				Match(2);
 				State = 922;
 				expr(0);
-				State = 925;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				do {
 					{
 					{
-					State = 923;
-					Match(T__3);
+					Match(4);
 					State = 924;
 					expr(0);
 					}
 					}
-					State = 927;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
-				} while ( _la==T__3 );
-				State = 929;
-				Match(T__2);
+				} while ( _la==4 );
+				Match(3);
 				}
 				break;
 			case 129:
@@ -6307,18 +5494,14 @@ partial class mathParser : Parser {
 				_localctx = new QUARTILE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 931;
-				Match(QUARTILE);
-				State = 932;
-				Match(T__1);
+				Match(156);
+				Match(2);
 				State = 933;
 				expr(0);
-				State = 934;
-				Match(T__3);
+				Match(4);
 				State = 935;
 				expr(0);
-				State = 936;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 130:
@@ -6326,30 +5509,24 @@ partial class mathParser : Parser {
 				_localctx = new MODE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 938;
-				Match(MODE);
-				State = 939;
-				Match(T__1);
+				Match(157);
+				Match(2);
 				State = 940;
 				expr(0);
-				State = 945;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==T__3) {
+				while (_la==4) {
 					{
 					{
-					State = 941;
-					Match(T__3);
+					Match(4);
 					State = 942;
 					expr(0);
 					}
 					}
-					State = 947;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 948;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 131:
@@ -6357,18 +5534,14 @@ partial class mathParser : Parser {
 				_localctx = new LARGE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 950;
-				Match(LARGE);
-				State = 951;
-				Match(T__1);
+				Match(158);
+				Match(2);
 				State = 952;
 				expr(0);
-				State = 953;
-				Match(T__3);
+				Match(4);
 				State = 954;
 				expr(0);
-				State = 955;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 132:
@@ -6376,18 +5549,14 @@ partial class mathParser : Parser {
 				_localctx = new SMALL_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 957;
-				Match(SMALL);
-				State = 958;
-				Match(T__1);
+				Match(159);
+				Match(2);
 				State = 959;
 				expr(0);
-				State = 960;
-				Match(T__3);
+				Match(4);
 				State = 961;
 				expr(0);
-				State = 962;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 133:
@@ -6395,18 +5564,14 @@ partial class mathParser : Parser {
 				_localctx = new PERCENTILE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 964;
-				Match(PERCENTILE);
-				State = 965;
-				Match(T__1);
+				Match(160);
+				Match(2);
 				State = 966;
 				expr(0);
-				State = 967;
-				Match(T__3);
+				Match(4);
 				State = 968;
 				expr(0);
-				State = 969;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 134:
@@ -6414,18 +5579,14 @@ partial class mathParser : Parser {
 				_localctx = new PERCENTRANK_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 971;
-				Match(PERCENTRANK);
-				State = 972;
-				Match(T__1);
+				Match(161);
+				Match(2);
 				State = 973;
 				expr(0);
-				State = 974;
-				Match(T__3);
+				Match(4);
 				State = 975;
 				expr(0);
-				State = 976;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 135:
@@ -6433,30 +5594,24 @@ partial class mathParser : Parser {
 				_localctx = new AVERAGE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 978;
-				Match(AVERAGE);
-				State = 979;
-				Match(T__1);
+				Match(162);
+				Match(2);
 				State = 980;
 				expr(0);
-				State = 985;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==T__3) {
+				while (_la==4) {
 					{
 					{
-					State = 981;
-					Match(T__3);
+					Match(4);
 					State = 982;
 					expr(0);
 					}
 					}
-					State = 987;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 988;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 136:
@@ -6464,30 +5619,24 @@ partial class mathParser : Parser {
 				_localctx = new AVERAGEIF_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 990;
-				Match(AVERAGEIF);
-				State = 991;
-				Match(T__1);
+				Match(163);
+				Match(2);
 				State = 992;
 				expr(0);
-				State = 993;
-				Match(T__3);
+				Match(4);
 				State = 994;
 				expr(0);
-				State = 997;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 995;
-					Match(T__3);
+					Match(4);
 					State = 996;
 					expr(0);
 					}
 				}
 
-				State = 999;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 137:
@@ -6495,30 +5644,24 @@ partial class mathParser : Parser {
 				_localctx = new GEOMEAN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1001;
-				Match(GEOMEAN);
-				State = 1002;
-				Match(T__1);
+				Match(164);
+				Match(2);
 				State = 1003;
 				expr(0);
-				State = 1008;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==T__3) {
+				while (_la==4) {
 					{
 					{
-					State = 1004;
-					Match(T__3);
+					Match(4);
 					State = 1005;
 					expr(0);
 					}
 					}
-					State = 1010;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 1011;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 138:
@@ -6526,30 +5669,24 @@ partial class mathParser : Parser {
 				_localctx = new HARMEAN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1013;
-				Match(HARMEAN);
-				State = 1014;
-				Match(T__1);
+				Match(165);
+				Match(2);
 				State = 1015;
 				expr(0);
-				State = 1020;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==T__3) {
+				while (_la==4) {
 					{
 					{
-					State = 1016;
-					Match(T__3);
+					Match(4);
 					State = 1017;
 					expr(0);
 					}
 					}
-					State = 1022;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 1023;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 139:
@@ -6557,30 +5694,24 @@ partial class mathParser : Parser {
 				_localctx = new COUNT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1025;
-				Match(COUNT);
-				State = 1026;
-				Match(T__1);
+				Match(166);
+				Match(2);
 				State = 1027;
 				expr(0);
-				State = 1032;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==T__3) {
+				while (_la==4) {
 					{
 					{
-					State = 1028;
-					Match(T__3);
+					Match(4);
 					State = 1029;
 					expr(0);
 					}
 					}
-					State = 1034;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 1035;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 140:
@@ -6588,30 +5719,24 @@ partial class mathParser : Parser {
 				_localctx = new COUNTIF_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1037;
-				Match(COUNTIF);
-				State = 1038;
-				Match(T__1);
+				Match(167);
+				Match(2);
 				State = 1039;
 				expr(0);
-				State = 1044;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==T__3) {
+				while (_la==4) {
 					{
 					{
-					State = 1040;
-					Match(T__3);
+					Match(4);
 					State = 1041;
 					expr(0);
 					}
 					}
-					State = 1046;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 1047;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 141:
@@ -6619,30 +5744,24 @@ partial class mathParser : Parser {
 				_localctx = new SUM_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1049;
-				Match(SUM);
-				State = 1050;
-				Match(T__1);
+				Match(168);
+				Match(2);
 				State = 1051;
 				expr(0);
-				State = 1056;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==T__3) {
+				while (_la==4) {
 					{
 					{
-					State = 1052;
-					Match(T__3);
+					Match(4);
 					State = 1053;
 					expr(0);
 					}
 					}
-					State = 1058;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 1059;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 142:
@@ -6650,30 +5769,24 @@ partial class mathParser : Parser {
 				_localctx = new SUMIF_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1061;
-				Match(SUMIF);
-				State = 1062;
-				Match(T__1);
+				Match(169);
+				Match(2);
 				State = 1063;
 				expr(0);
-				State = 1064;
-				Match(T__3);
+				Match(4);
 				State = 1065;
 				expr(0);
-				State = 1068;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 1066;
-					Match(T__3);
+					Match(4);
 					State = 1067;
 					expr(0);
 					}
 				}
 
-				State = 1070;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 143:
@@ -6681,30 +5794,24 @@ partial class mathParser : Parser {
 				_localctx = new AVEDEV_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1072;
-				Match(AVEDEV);
-				State = 1073;
-				Match(T__1);
+				Match(170);
+				Match(2);
 				State = 1074;
 				expr(0);
-				State = 1079;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==T__3) {
+				while (_la==4) {
 					{
 					{
-					State = 1075;
-					Match(T__3);
+					Match(4);
 					State = 1076;
 					expr(0);
 					}
 					}
-					State = 1081;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 1082;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 144:
@@ -6712,30 +5819,24 @@ partial class mathParser : Parser {
 				_localctx = new STDEV_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1084;
-				Match(STDEV);
-				State = 1085;
-				Match(T__1);
+				Match(171);
+				Match(2);
 				State = 1086;
 				expr(0);
-				State = 1091;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==T__3) {
+				while (_la==4) {
 					{
 					{
-					State = 1087;
-					Match(T__3);
+					Match(4);
 					State = 1088;
 					expr(0);
 					}
 					}
-					State = 1093;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 1094;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 145:
@@ -6743,30 +5844,24 @@ partial class mathParser : Parser {
 				_localctx = new STDEVP_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1096;
-				Match(STDEVP);
-				State = 1097;
-				Match(T__1);
+				Match(172);
+				Match(2);
 				State = 1098;
 				expr(0);
-				State = 1103;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==T__3) {
+				while (_la==4) {
 					{
 					{
-					State = 1099;
-					Match(T__3);
+					Match(4);
 					State = 1100;
 					expr(0);
 					}
 					}
-					State = 1105;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 1106;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 146:
@@ -6774,30 +5869,24 @@ partial class mathParser : Parser {
 				_localctx = new DEVSQ_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1108;
-				Match(DEVSQ);
-				State = 1109;
-				Match(T__1);
+				Match(173);
+				Match(2);
 				State = 1110;
 				expr(0);
-				State = 1115;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==T__3) {
+				while (_la==4) {
 					{
 					{
-					State = 1111;
-					Match(T__3);
+					Match(4);
 					State = 1112;
 					expr(0);
 					}
 					}
-					State = 1117;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 1118;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 147:
@@ -6805,30 +5894,24 @@ partial class mathParser : Parser {
 				_localctx = new VAR_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1120;
-				Match(VAR);
-				State = 1121;
-				Match(T__1);
+				Match(174);
+				Match(2);
 				State = 1122;
 				expr(0);
-				State = 1127;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==T__3) {
+				while (_la==4) {
 					{
 					{
-					State = 1123;
-					Match(T__3);
+					Match(4);
 					State = 1124;
 					expr(0);
 					}
 					}
-					State = 1129;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 1130;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 148:
@@ -6836,30 +5919,24 @@ partial class mathParser : Parser {
 				_localctx = new VARP_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1132;
-				Match(VARP);
-				State = 1133;
-				Match(T__1);
+				Match(175);
+				Match(2);
 				State = 1134;
 				expr(0);
-				State = 1139;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				while (_la==T__3) {
+				while (_la==4) {
 					{
 					{
-					State = 1135;
-					Match(T__3);
+					Match(4);
 					State = 1136;
 					expr(0);
 					}
 					}
-					State = 1141;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 1142;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 149:
@@ -6867,26 +5944,20 @@ partial class mathParser : Parser {
 				_localctx = new NORMDIST_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1144;
-				Match(NORMDIST);
-				State = 1145;
-				Match(T__1);
+				Match(176);
+				Match(2);
 				State = 1146;
 				expr(0);
-				State = 1147;
-				Match(T__3);
+				Match(4);
 				State = 1148;
 				expr(0);
-				State = 1149;
-				Match(T__3);
+				Match(4);
 				State = 1150;
 				expr(0);
-				State = 1151;
-				Match(T__3);
+				Match(4);
 				State = 1152;
 				expr(0);
-				State = 1153;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 150:
@@ -6894,22 +5965,17 @@ partial class mathParser : Parser {
 				_localctx = new NORMINV_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1155;
-				Match(NORMINV);
-				State = 1156;
-				Match(T__1);
+				Match(177);
+				Match(2);
 				State = 1157;
 				expr(0);
-				State = 1158;
-				Match(T__3);
+				Match(4);
 				State = 1159;
 				expr(0);
-				State = 1160;
-				Match(T__3);
+				Match(4);
 				State = 1161;
 				expr(0);
-				State = 1162;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 151:
@@ -6917,14 +5983,11 @@ partial class mathParser : Parser {
 				_localctx = new NORMSDIST_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1164;
-				Match(NORMSDIST);
-				State = 1165;
-				Match(T__1);
+				Match(178);
+				Match(2);
 				State = 1166;
 				expr(0);
-				State = 1167;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 152:
@@ -6932,14 +5995,11 @@ partial class mathParser : Parser {
 				_localctx = new NORMSINV_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1169;
-				Match(NORMSINV);
-				State = 1170;
-				Match(T__1);
+				Match(179);
+				Match(2);
 				State = 1171;
 				expr(0);
-				State = 1172;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 153:
@@ -6947,22 +6007,17 @@ partial class mathParser : Parser {
 				_localctx = new BETADIST_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1174;
-				Match(BETADIST);
-				State = 1175;
-				Match(T__1);
+				Match(180);
+				Match(2);
 				State = 1176;
 				expr(0);
-				State = 1177;
-				Match(T__3);
+				Match(4);
 				State = 1178;
 				expr(0);
-				State = 1179;
-				Match(T__3);
+				Match(4);
 				State = 1180;
 				expr(0);
-				State = 1181;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 154:
@@ -6970,22 +6025,17 @@ partial class mathParser : Parser {
 				_localctx = new BETAINV_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1183;
-				Match(BETAINV);
-				State = 1184;
-				Match(T__1);
+				Match(181);
+				Match(2);
 				State = 1185;
 				expr(0);
-				State = 1186;
-				Match(T__3);
+				Match(4);
 				State = 1187;
 				expr(0);
-				State = 1188;
-				Match(T__3);
+				Match(4);
 				State = 1189;
 				expr(0);
-				State = 1190;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 155:
@@ -6993,26 +6043,20 @@ partial class mathParser : Parser {
 				_localctx = new BINOMDIST_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1192;
-				Match(BINOMDIST);
-				State = 1193;
-				Match(T__1);
+				Match(182);
+				Match(2);
 				State = 1194;
 				expr(0);
-				State = 1195;
-				Match(T__3);
+				Match(4);
 				State = 1196;
 				expr(0);
-				State = 1197;
-				Match(T__3);
+				Match(4);
 				State = 1198;
 				expr(0);
-				State = 1199;
-				Match(T__3);
+				Match(4);
 				State = 1200;
 				expr(0);
-				State = 1201;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 156:
@@ -7020,22 +6064,17 @@ partial class mathParser : Parser {
 				_localctx = new EXPONDIST_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1203;
-				Match(EXPONDIST);
-				State = 1204;
-				Match(T__1);
+				Match(183);
+				Match(2);
 				State = 1205;
 				expr(0);
-				State = 1206;
-				Match(T__3);
+				Match(4);
 				State = 1207;
 				expr(0);
-				State = 1208;
-				Match(T__3);
+				Match(4);
 				State = 1209;
 				expr(0);
-				State = 1210;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 157:
@@ -7043,22 +6082,17 @@ partial class mathParser : Parser {
 				_localctx = new FDIST_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1212;
-				Match(FDIST);
-				State = 1213;
-				Match(T__1);
+				Match(184);
+				Match(2);
 				State = 1214;
 				expr(0);
-				State = 1215;
-				Match(T__3);
+				Match(4);
 				State = 1216;
 				expr(0);
-				State = 1217;
-				Match(T__3);
+				Match(4);
 				State = 1218;
 				expr(0);
-				State = 1219;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 158:
@@ -7066,22 +6100,17 @@ partial class mathParser : Parser {
 				_localctx = new FINV_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1221;
-				Match(FINV);
-				State = 1222;
-				Match(T__1);
+				Match(185);
+				Match(2);
 				State = 1223;
 				expr(0);
-				State = 1224;
-				Match(T__3);
+				Match(4);
 				State = 1225;
 				expr(0);
-				State = 1226;
-				Match(T__3);
+				Match(4);
 				State = 1227;
 				expr(0);
-				State = 1228;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 159:
@@ -7089,14 +6118,11 @@ partial class mathParser : Parser {
 				_localctx = new FISHER_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1230;
-				Match(FISHER);
-				State = 1231;
-				Match(T__1);
+				Match(186);
+				Match(2);
 				State = 1232;
 				expr(0);
-				State = 1233;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 160:
@@ -7104,14 +6130,11 @@ partial class mathParser : Parser {
 				_localctx = new FISHERINV_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1235;
-				Match(FISHERINV);
-				State = 1236;
-				Match(T__1);
+				Match(187);
+				Match(2);
 				State = 1237;
 				expr(0);
-				State = 1238;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 161:
@@ -7119,26 +6142,20 @@ partial class mathParser : Parser {
 				_localctx = new GAMMADIST_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1240;
-				Match(GAMMADIST);
-				State = 1241;
-				Match(T__1);
+				Match(188);
+				Match(2);
 				State = 1242;
 				expr(0);
-				State = 1243;
-				Match(T__3);
+				Match(4);
 				State = 1244;
 				expr(0);
-				State = 1245;
-				Match(T__3);
+				Match(4);
 				State = 1246;
 				expr(0);
-				State = 1247;
-				Match(T__3);
+				Match(4);
 				State = 1248;
 				expr(0);
-				State = 1249;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 162:
@@ -7146,22 +6163,17 @@ partial class mathParser : Parser {
 				_localctx = new GAMMAINV_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1251;
-				Match(GAMMAINV);
-				State = 1252;
-				Match(T__1);
+				Match(189);
+				Match(2);
 				State = 1253;
 				expr(0);
-				State = 1254;
-				Match(T__3);
+				Match(4);
 				State = 1255;
 				expr(0);
-				State = 1256;
-				Match(T__3);
+				Match(4);
 				State = 1257;
 				expr(0);
-				State = 1258;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 163:
@@ -7169,14 +6181,11 @@ partial class mathParser : Parser {
 				_localctx = new GAMMALN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1260;
-				Match(GAMMALN);
-				State = 1261;
-				Match(T__1);
+				Match(190);
+				Match(2);
 				State = 1262;
 				expr(0);
-				State = 1263;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 164:
@@ -7184,26 +6193,20 @@ partial class mathParser : Parser {
 				_localctx = new HYPGEOMDIST_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1265;
-				Match(HYPGEOMDIST);
-				State = 1266;
-				Match(T__1);
+				Match(191);
+				Match(2);
 				State = 1267;
 				expr(0);
-				State = 1268;
-				Match(T__3);
+				Match(4);
 				State = 1269;
 				expr(0);
-				State = 1270;
-				Match(T__3);
+				Match(4);
 				State = 1271;
 				expr(0);
-				State = 1272;
-				Match(T__3);
+				Match(4);
 				State = 1273;
 				expr(0);
-				State = 1274;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 165:
@@ -7211,22 +6214,17 @@ partial class mathParser : Parser {
 				_localctx = new LOGINV_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1276;
-				Match(LOGINV);
-				State = 1277;
-				Match(T__1);
+				Match(192);
+				Match(2);
 				State = 1278;
 				expr(0);
-				State = 1279;
-				Match(T__3);
+				Match(4);
 				State = 1280;
 				expr(0);
-				State = 1281;
-				Match(T__3);
+				Match(4);
 				State = 1282;
 				expr(0);
-				State = 1283;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 166:
@@ -7234,22 +6232,17 @@ partial class mathParser : Parser {
 				_localctx = new LOGNORMDIST_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1285;
-				Match(LOGNORMDIST);
-				State = 1286;
-				Match(T__1);
+				Match(193);
+				Match(2);
 				State = 1287;
 				expr(0);
-				State = 1288;
-				Match(T__3);
+				Match(4);
 				State = 1289;
 				expr(0);
-				State = 1290;
-				Match(T__3);
+				Match(4);
 				State = 1291;
 				expr(0);
-				State = 1292;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 167:
@@ -7257,22 +6250,17 @@ partial class mathParser : Parser {
 				_localctx = new NEGBINOMDIST_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1294;
-				Match(NEGBINOMDIST);
-				State = 1295;
-				Match(T__1);
+				Match(194);
+				Match(2);
 				State = 1296;
 				expr(0);
-				State = 1297;
-				Match(T__3);
+				Match(4);
 				State = 1298;
 				expr(0);
-				State = 1299;
-				Match(T__3);
+				Match(4);
 				State = 1300;
 				expr(0);
-				State = 1301;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 168:
@@ -7280,22 +6268,17 @@ partial class mathParser : Parser {
 				_localctx = new POISSON_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1303;
-				Match(POISSON);
-				State = 1304;
-				Match(T__1);
+				Match(195);
+				Match(2);
 				State = 1305;
 				expr(0);
-				State = 1306;
-				Match(T__3);
+				Match(4);
 				State = 1307;
 				expr(0);
-				State = 1308;
-				Match(T__3);
+				Match(4);
 				State = 1309;
 				expr(0);
-				State = 1310;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 169:
@@ -7303,22 +6286,17 @@ partial class mathParser : Parser {
 				_localctx = new TDIST_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1312;
-				Match(TDIST);
-				State = 1313;
-				Match(T__1);
+				Match(196);
+				Match(2);
 				State = 1314;
 				expr(0);
-				State = 1315;
-				Match(T__3);
+				Match(4);
 				State = 1316;
 				expr(0);
-				State = 1317;
-				Match(T__3);
+				Match(4);
 				State = 1318;
 				expr(0);
-				State = 1319;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 170:
@@ -7326,18 +6304,14 @@ partial class mathParser : Parser {
 				_localctx = new TINV_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1321;
-				Match(TINV);
-				State = 1322;
-				Match(T__1);
+				Match(197);
+				Match(2);
 				State = 1323;
 				expr(0);
-				State = 1324;
-				Match(T__3);
+				Match(4);
 				State = 1325;
 				expr(0);
-				State = 1326;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 171:
@@ -7345,26 +6319,20 @@ partial class mathParser : Parser {
 				_localctx = new WEIBULL_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1328;
-				Match(WEIBULL);
-				State = 1329;
-				Match(T__1);
+				Match(198);
+				Match(2);
 				State = 1330;
 				expr(0);
-				State = 1331;
-				Match(T__3);
+				Match(4);
 				State = 1332;
 				expr(0);
-				State = 1333;
-				Match(T__3);
+				Match(4);
 				State = 1334;
 				expr(0);
-				State = 1335;
-				Match(T__3);
+				Match(4);
 				State = 1336;
 				expr(0);
-				State = 1337;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 172:
@@ -7372,14 +6340,11 @@ partial class mathParser : Parser {
 				_localctx = new URLENCODE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1339;
-				Match(URLENCODE);
-				State = 1340;
-				Match(T__1);
+				Match(199);
+				Match(2);
 				State = 1341;
 				expr(0);
-				State = 1342;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 173:
@@ -7387,14 +6352,11 @@ partial class mathParser : Parser {
 				_localctx = new URLDECODE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1344;
-				Match(URLDECODE);
-				State = 1345;
-				Match(T__1);
+				Match(200);
+				Match(2);
 				State = 1346;
 				expr(0);
-				State = 1347;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 174:
@@ -7402,14 +6364,11 @@ partial class mathParser : Parser {
 				_localctx = new HTMLENCODE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1349;
-				Match(HTMLENCODE);
-				State = 1350;
-				Match(T__1);
+				Match(201);
+				Match(2);
 				State = 1351;
 				expr(0);
-				State = 1352;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 175:
@@ -7417,14 +6376,11 @@ partial class mathParser : Parser {
 				_localctx = new HTMLDECODE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1354;
-				Match(HTMLDECODE);
-				State = 1355;
-				Match(T__1);
+				Match(202);
+				Match(2);
 				State = 1356;
 				expr(0);
-				State = 1357;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 176:
@@ -7432,26 +6388,21 @@ partial class mathParser : Parser {
 				_localctx = new BASE64TOTEXT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1359;
-				Match(BASE64TOTEXT);
-				State = 1360;
-				Match(T__1);
+				Match(203);
+				Match(2);
 				State = 1361;
 				expr(0);
-				State = 1364;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 1362;
-					Match(T__3);
+					Match(4);
 					State = 1363;
 					expr(0);
 					}
 				}
 
-				State = 1366;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 177:
@@ -7459,26 +6410,21 @@ partial class mathParser : Parser {
 				_localctx = new BASE64URLTOTEXT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1368;
-				Match(BASE64URLTOTEXT);
-				State = 1369;
-				Match(T__1);
+				Match(204);
+				Match(2);
 				State = 1370;
 				expr(0);
-				State = 1373;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 1371;
-					Match(T__3);
+					Match(4);
 					State = 1372;
 					expr(0);
 					}
 				}
 
-				State = 1375;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 178:
@@ -7486,26 +6432,21 @@ partial class mathParser : Parser {
 				_localctx = new TEXTTOBASE64_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1377;
-				Match(TEXTTOBASE64);
-				State = 1378;
-				Match(T__1);
+				Match(205);
+				Match(2);
 				State = 1379;
 				expr(0);
-				State = 1382;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 1380;
-					Match(T__3);
+					Match(4);
 					State = 1381;
 					expr(0);
 					}
 				}
 
-				State = 1384;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 179:
@@ -7513,26 +6454,21 @@ partial class mathParser : Parser {
 				_localctx = new TEXTTOBASE64URL_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1386;
-				Match(TEXTTOBASE64URL);
-				State = 1387;
-				Match(T__1);
+				Match(206);
+				Match(2);
 				State = 1388;
 				expr(0);
-				State = 1391;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 1389;
-					Match(T__3);
+					Match(4);
 					State = 1390;
 					expr(0);
 					}
 				}
 
-				State = 1393;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 180:
@@ -7540,18 +6476,14 @@ partial class mathParser : Parser {
 				_localctx = new REGEX_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1395;
-				Match(REGEX);
-				State = 1396;
-				Match(T__1);
+				Match(207);
+				Match(2);
 				State = 1397;
 				expr(0);
-				State = 1398;
-				Match(T__3);
+				Match(4);
 				State = 1399;
 				expr(0);
-				State = 1400;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 181:
@@ -7559,22 +6491,17 @@ partial class mathParser : Parser {
 				_localctx = new REGEXREPALCE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1402;
-				Match(REGEXREPALCE);
-				State = 1403;
-				Match(T__1);
+				Match(208);
+				Match(2);
 				State = 1404;
 				expr(0);
-				State = 1405;
-				Match(T__3);
+				Match(4);
 				State = 1406;
 				expr(0);
-				State = 1407;
-				Match(T__3);
+				Match(4);
 				State = 1408;
 				expr(0);
-				State = 1409;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 182:
@@ -7582,18 +6509,14 @@ partial class mathParser : Parser {
 				_localctx = new ISREGEX_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1411;
-				Match(ISREGEX);
-				State = 1412;
-				Match(T__1);
+				Match(209);
+				Match(2);
 				State = 1413;
 				expr(0);
-				State = 1414;
-				Match(T__3);
+				Match(4);
 				State = 1415;
 				expr(0);
-				State = 1416;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 183:
@@ -7601,12 +6524,9 @@ partial class mathParser : Parser {
 				_localctx = new GUID_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1418;
-				Match(GUID);
-				State = 1419;
-				Match(T__1);
-				State = 1420;
-				Match(T__2);
+				Match(210);
+				Match(2);
+				Match(3);
 				}
 				break;
 			case 184:
@@ -7614,26 +6534,21 @@ partial class mathParser : Parser {
 				_localctx = new MD5_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1421;
-				Match(MD5);
-				State = 1422;
-				Match(T__1);
+				Match(211);
+				Match(2);
 				State = 1423;
 				expr(0);
-				State = 1426;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 1424;
-					Match(T__3);
+					Match(4);
 					State = 1425;
 					expr(0);
 					}
 				}
 
-				State = 1428;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 185:
@@ -7641,26 +6556,21 @@ partial class mathParser : Parser {
 				_localctx = new SHA1_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1430;
-				Match(SHA1);
-				State = 1431;
-				Match(T__1);
+				Match(212);
+				Match(2);
 				State = 1432;
 				expr(0);
-				State = 1435;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 1433;
-					Match(T__3);
+					Match(4);
 					State = 1434;
 					expr(0);
 					}
 				}
 
-				State = 1437;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 186:
@@ -7668,26 +6578,21 @@ partial class mathParser : Parser {
 				_localctx = new SHA256_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1439;
-				Match(SHA256);
-				State = 1440;
-				Match(T__1);
+				Match(213);
+				Match(2);
 				State = 1441;
 				expr(0);
-				State = 1444;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 1442;
-					Match(T__3);
+					Match(4);
 					State = 1443;
 					expr(0);
 					}
 				}
 
-				State = 1446;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 187:
@@ -7695,26 +6600,21 @@ partial class mathParser : Parser {
 				_localctx = new SHA512_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1448;
-				Match(SHA512);
-				State = 1449;
-				Match(T__1);
+				Match(214);
+				Match(2);
 				State = 1450;
 				expr(0);
-				State = 1453;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 1451;
-					Match(T__3);
+					Match(4);
 					State = 1452;
 					expr(0);
 					}
 				}
 
-				State = 1455;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 188:
@@ -7722,26 +6622,21 @@ partial class mathParser : Parser {
 				_localctx = new CRC32_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1457;
-				Match(CRC32);
-				State = 1458;
-				Match(T__1);
+				Match(215);
+				Match(2);
 				State = 1459;
 				expr(0);
-				State = 1462;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 1460;
-					Match(T__3);
+					Match(4);
 					State = 1461;
 					expr(0);
 					}
 				}
 
-				State = 1464;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 189:
@@ -7749,30 +6644,24 @@ partial class mathParser : Parser {
 				_localctx = new HMACMD5_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1466;
-				Match(HMACMD5);
-				State = 1467;
-				Match(T__1);
+				Match(216);
+				Match(2);
 				State = 1468;
 				expr(0);
-				State = 1469;
-				Match(T__3);
+				Match(4);
 				State = 1470;
 				expr(0);
-				State = 1473;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 1471;
-					Match(T__3);
+					Match(4);
 					State = 1472;
 					expr(0);
 					}
 				}
 
-				State = 1475;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 190:
@@ -7780,30 +6669,24 @@ partial class mathParser : Parser {
 				_localctx = new HMACSHA1_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1477;
-				Match(HMACSHA1);
-				State = 1478;
-				Match(T__1);
+				Match(217);
+				Match(2);
 				State = 1479;
 				expr(0);
-				State = 1480;
-				Match(T__3);
+				Match(4);
 				State = 1481;
 				expr(0);
-				State = 1484;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 1482;
-					Match(T__3);
+					Match(4);
 					State = 1483;
 					expr(0);
 					}
 				}
 
-				State = 1486;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 191:
@@ -7811,30 +6694,24 @@ partial class mathParser : Parser {
 				_localctx = new HMACSHA256_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1488;
-				Match(HMACSHA256);
-				State = 1489;
-				Match(T__1);
+				Match(218);
+				Match(2);
 				State = 1490;
 				expr(0);
-				State = 1491;
-				Match(T__3);
+				Match(4);
 				State = 1492;
 				expr(0);
-				State = 1495;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 1493;
-					Match(T__3);
+					Match(4);
 					State = 1494;
 					expr(0);
 					}
 				}
 
-				State = 1497;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 192:
@@ -7842,30 +6719,24 @@ partial class mathParser : Parser {
 				_localctx = new HMACSHA512_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1499;
-				Match(HMACSHA512);
-				State = 1500;
-				Match(T__1);
+				Match(219);
+				Match(2);
 				State = 1501;
 				expr(0);
-				State = 1502;
-				Match(T__3);
+				Match(4);
 				State = 1503;
 				expr(0);
-				State = 1506;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 1504;
-					Match(T__3);
+					Match(4);
 					State = 1505;
 					expr(0);
 					}
 				}
 
-				State = 1508;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 193:
@@ -7873,26 +6744,21 @@ partial class mathParser : Parser {
 				_localctx = new TRIMSTART_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1510;
-				Match(TRIMSTART);
-				State = 1511;
-				Match(T__1);
+				Match(220);
+				Match(2);
 				State = 1512;
 				expr(0);
-				State = 1515;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 1513;
-					Match(T__3);
+					Match(4);
 					State = 1514;
 					expr(0);
 					}
 				}
 
-				State = 1517;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 194:
@@ -7900,26 +6766,21 @@ partial class mathParser : Parser {
 				_localctx = new TRIMEND_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1519;
-				Match(TRIMEND);
-				State = 1520;
-				Match(T__1);
+				Match(221);
+				Match(2);
 				State = 1521;
 				expr(0);
-				State = 1524;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 1522;
-					Match(T__3);
+					Match(4);
 					State = 1523;
 					expr(0);
 					}
 				}
 
-				State = 1526;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 195:
@@ -7927,32 +6788,25 @@ partial class mathParser : Parser {
 				_localctx = new INDEXOF_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1528;
-				Match(INDEXOF);
-				State = 1529;
-				Match(T__1);
+				Match(222);
+				Match(2);
 				State = 1530;
 				expr(0);
-				State = 1531;
-				Match(T__3);
+				Match(4);
 				State = 1532;
 				expr(0);
-				State = 1539;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 1533;
-					Match(T__3);
+					Match(4);
 					State = 1534;
 					expr(0);
-					State = 1537;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
-					if (_la==T__3) {
+					if (_la==4) {
 						{
-						State = 1535;
-						Match(T__3);
+						Match(4);
 						State = 1536;
 						expr(0);
 						}
@@ -7961,8 +6815,7 @@ partial class mathParser : Parser {
 					}
 				}
 
-				State = 1541;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 196:
@@ -7970,32 +6823,25 @@ partial class mathParser : Parser {
 				_localctx = new LASTINDEXOF_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1543;
-				Match(LASTINDEXOF);
-				State = 1544;
-				Match(T__1);
+				Match(223);
+				Match(2);
 				State = 1545;
 				expr(0);
-				State = 1546;
-				Match(T__3);
+				Match(4);
 				State = 1547;
 				expr(0);
-				State = 1554;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 1548;
-					Match(T__3);
+					Match(4);
 					State = 1549;
 					expr(0);
-					State = 1552;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
-					if (_la==T__3) {
+					if (_la==4) {
 						{
-						State = 1550;
-						Match(T__3);
+						Match(4);
 						State = 1551;
 						expr(0);
 						}
@@ -8004,8 +6850,7 @@ partial class mathParser : Parser {
 					}
 				}
 
-				State = 1556;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 197:
@@ -8013,18 +6858,14 @@ partial class mathParser : Parser {
 				_localctx = new SPLIT_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1558;
-				Match(SPLIT);
-				State = 1559;
-				Match(T__1);
+				Match(224);
+				Match(2);
 				State = 1560;
 				expr(0);
-				State = 1561;
-				Match(T__3);
+				Match(4);
 				State = 1562;
 				expr(0);
-				State = 1563;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 198:
@@ -8032,30 +6873,24 @@ partial class mathParser : Parser {
 				_localctx = new JOIN_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1565;
-				Match(JOIN);
-				State = 1566;
-				Match(T__1);
+				Match(225);
+				Match(2);
 				State = 1567;
 				expr(0);
-				State = 1570;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				do {
 					{
 					{
-					State = 1568;
-					Match(T__3);
+					Match(4);
 					State = 1569;
 					expr(0);
 					}
 					}
-					State = 1572;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
-				} while ( _la==T__3 );
-				State = 1574;
-				Match(T__2);
+				} while ( _la==4 );
+				Match(3);
 				}
 				break;
 			case 199:
@@ -8063,30 +6898,24 @@ partial class mathParser : Parser {
 				_localctx = new SUBSTRING_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1576;
-				Match(SUBSTRING);
-				State = 1577;
-				Match(T__1);
+				Match(226);
+				Match(2);
 				State = 1578;
 				expr(0);
-				State = 1579;
-				Match(T__3);
+				Match(4);
 				State = 1580;
 				expr(0);
-				State = 1583;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 1581;
-					Match(T__3);
+					Match(4);
 					State = 1582;
 					expr(0);
 					}
 				}
 
-				State = 1585;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 200:
@@ -8094,30 +6923,24 @@ partial class mathParser : Parser {
 				_localctx = new STARTSWITH_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1587;
-				Match(STARTSWITH);
-				State = 1588;
-				Match(T__1);
+				Match(227);
+				Match(2);
 				State = 1589;
 				expr(0);
-				State = 1590;
-				Match(T__3);
+				Match(4);
 				State = 1591;
 				expr(0);
-				State = 1594;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 1592;
-					Match(T__3);
+					Match(4);
 					State = 1593;
 					expr(0);
 					}
 				}
 
-				State = 1596;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 201:
@@ -8125,30 +6948,24 @@ partial class mathParser : Parser {
 				_localctx = new ENDSWITH_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1598;
-				Match(ENDSWITH);
-				State = 1599;
-				Match(T__1);
+				Match(228);
+				Match(2);
 				State = 1600;
 				expr(0);
-				State = 1601;
-				Match(T__3);
+				Match(4);
 				State = 1602;
 				expr(0);
-				State = 1605;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 1603;
-					Match(T__3);
+					Match(4);
 					State = 1604;
 					expr(0);
 					}
 				}
 
-				State = 1607;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 202:
@@ -8156,14 +6973,11 @@ partial class mathParser : Parser {
 				_localctx = new ISNULLOREMPTY_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1609;
-				Match(ISNULLOREMPTY);
-				State = 1610;
-				Match(T__1);
+				Match(229);
+				Match(2);
 				State = 1611;
 				expr(0);
-				State = 1612;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 203:
@@ -8171,14 +6985,11 @@ partial class mathParser : Parser {
 				_localctx = new ISNULLORWHITESPACE_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1614;
-				Match(ISNULLORWHITESPACE);
-				State = 1615;
-				Match(T__1);
+				Match(230);
+				Match(2);
 				State = 1616;
 				expr(0);
-				State = 1617;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 204:
@@ -8186,28 +6997,22 @@ partial class mathParser : Parser {
 				_localctx = new REMOVESTART_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1619;
-				Match(REMOVESTART);
-				State = 1620;
-				Match(T__1);
+				Match(231);
+				Match(2);
 				State = 1621;
 				expr(0);
-				State = 1628;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 1622;
-					Match(T__3);
+					Match(4);
 					State = 1623;
 					expr(0);
-					State = 1626;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
-					if (_la==T__3) {
+					if (_la==4) {
 						{
-						State = 1624;
-						Match(T__3);
+						Match(4);
 						State = 1625;
 						expr(0);
 						}
@@ -8216,8 +7021,7 @@ partial class mathParser : Parser {
 					}
 				}
 
-				State = 1630;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 205:
@@ -8225,28 +7029,22 @@ partial class mathParser : Parser {
 				_localctx = new REMOVEEND_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1632;
-				Match(REMOVEEND);
-				State = 1633;
-				Match(T__1);
+				Match(232);
+				Match(2);
 				State = 1634;
 				expr(0);
-				State = 1641;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 1635;
-					Match(T__3);
+					Match(4);
 					State = 1636;
 					expr(0);
-					State = 1639;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
-					if (_la==T__3) {
+					if (_la==4) {
 						{
-						State = 1637;
-						Match(T__3);
+						Match(4);
 						State = 1638;
 						expr(0);
 						}
@@ -8255,8 +7053,7 @@ partial class mathParser : Parser {
 					}
 				}
 
-				State = 1643;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 206:
@@ -8264,14 +7061,11 @@ partial class mathParser : Parser {
 				_localctx = new JSON_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1645;
-				Match(JSON);
-				State = 1646;
-				Match(T__1);
+				Match(233);
+				Match(2);
 				State = 1647;
 				expr(0);
-				State = 1648;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 207:
@@ -8279,34 +7073,27 @@ partial class mathParser : Parser {
 				_localctx = new VLOOKUP_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1650;
-				Match(VLOOKUP);
-				State = 1651;
-				Match(T__1);
+				Match(234);
+				Match(2);
 				State = 1652;
 				expr(0);
-				State = 1653;
-				Match(T__3);
+				Match(4);
 				State = 1654;
 				expr(0);
-				State = 1655;
-				Match(T__3);
+				Match(4);
 				State = 1656;
 				expr(0);
-				State = 1659;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 1657;
-					Match(T__3);
+					Match(4);
 					State = 1658;
 					expr(0);
 					}
 				}
 
-				State = 1661;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 208:
@@ -8314,22 +7101,17 @@ partial class mathParser : Parser {
 				_localctx = new LOOKUP_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1663;
-				Match(LOOKUP);
-				State = 1664;
-				Match(T__1);
+				Match(235);
+				Match(2);
 				State = 1665;
 				expr(0);
-				State = 1666;
-				Match(T__3);
+				Match(4);
 				State = 1667;
 				expr(0);
-				State = 1668;
-				Match(T__3);
+				Match(4);
 				State = 1669;
 				expr(0);
-				State = 1670;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 209:
@@ -8337,38 +7119,31 @@ partial class mathParser : Parser {
 				_localctx = new DiyFunction_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1672;
-				Match(PARAMETER);
-				State = 1673;
-				Match(T__1);
-				State = 1682;
+				Match(244);
+				Match(2);
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -134217564L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 18014398509481983L) != 0)) {
 					{
 					State = 1674;
 					expr(0);
-					State = 1679;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
-					while (_la==T__3) {
+					while (_la==4) {
 						{
 						{
-						State = 1675;
-						Match(T__3);
+						Match(4);
 						State = 1676;
 						expr(0);
 						}
 						}
-						State = 1681;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 					}
 					}
 				}
 
-				State = 1684;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 210:
@@ -8376,18 +7151,14 @@ partial class mathParser : Parser {
 				_localctx = new ADDYEARS_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1685;
-				Match(ADDYEARS);
-				State = 1686;
-				Match(T__1);
+				Match(237);
+				Match(2);
 				State = 1687;
 				expr(0);
-				State = 1688;
-				Match(T__3);
+				Match(4);
 				State = 1689;
 				expr(0);
-				State = 1690;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 211:
@@ -8395,18 +7166,14 @@ partial class mathParser : Parser {
 				_localctx = new ADDMONTHS_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1692;
-				Match(ADDMONTHS);
-				State = 1693;
-				Match(T__1);
+				Match(238);
+				Match(2);
 				State = 1694;
 				expr(0);
-				State = 1695;
-				Match(T__3);
+				Match(4);
 				State = 1696;
 				expr(0);
-				State = 1697;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 212:
@@ -8414,18 +7181,14 @@ partial class mathParser : Parser {
 				_localctx = new ADDDAYS_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1699;
-				Match(ADDDAYS);
-				State = 1700;
-				Match(T__1);
+				Match(239);
+				Match(2);
 				State = 1701;
 				expr(0);
-				State = 1702;
-				Match(T__3);
+				Match(4);
 				State = 1703;
 				expr(0);
-				State = 1704;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 213:
@@ -8433,18 +7196,14 @@ partial class mathParser : Parser {
 				_localctx = new ADDHOURS_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1706;
-				Match(ADDHOURS);
-				State = 1707;
-				Match(T__1);
+				Match(240);
+				Match(2);
 				State = 1708;
 				expr(0);
-				State = 1709;
-				Match(T__3);
+				Match(4);
 				State = 1710;
 				expr(0);
-				State = 1711;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 214:
@@ -8452,18 +7211,14 @@ partial class mathParser : Parser {
 				_localctx = new ADDMINUTES_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1713;
-				Match(ADDMINUTES);
-				State = 1714;
-				Match(T__1);
+				Match(241);
+				Match(2);
 				State = 1715;
 				expr(0);
-				State = 1716;
-				Match(T__3);
+				Match(4);
 				State = 1717;
 				expr(0);
-				State = 1718;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 215:
@@ -8471,18 +7226,14 @@ partial class mathParser : Parser {
 				_localctx = new ADDSECONDS_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1720;
-				Match(ADDSECONDS);
-				State = 1721;
-				Match(T__1);
+				Match(242);
+				Match(2);
 				State = 1722;
 				expr(0);
-				State = 1723;
-				Match(T__3);
+				Match(4);
 				State = 1724;
 				expr(0);
-				State = 1725;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 216:
@@ -8490,26 +7241,21 @@ partial class mathParser : Parser {
 				_localctx = new TIMESTAMP_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1727;
-				Match(TIMESTAMP);
-				State = 1728;
-				Match(T__1);
+				Match(243);
+				Match(2);
 				State = 1729;
 				expr(0);
-				State = 1732;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==T__3) {
+				if (_la==4) {
 					{
-					State = 1730;
-					Match(T__3);
+					Match(4);
 					State = 1731;
 					expr(0);
 					}
 				}
 
-				State = 1734;
-				Match(T__2);
+				Match(3);
 				}
 				break;
 			case 217:
@@ -8517,12 +7263,9 @@ partial class mathParser : Parser {
 				_localctx = new PARAMETER_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1736;
-				Match(T__4);
-				State = 1737;
-				Match(PARAMETER);
-				State = 1738;
-				Match(T__5);
+				Match(5);
+				Match(244);
+				Match(6);
 				}
 				break;
 			case 218:
@@ -8530,12 +7273,10 @@ partial class mathParser : Parser {
 				_localctx = new PARAMETER_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1739;
-				Match(T__4);
+				Match(5);
 				State = 1740;
 				expr(0);
-				State = 1741;
-				Match(T__5);
+				Match(6);
 				}
 				break;
 			case 219:
@@ -8543,8 +7284,7 @@ partial class mathParser : Parser {
 				_localctx = new PARAMETER_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1743;
-				Match(PARAMETER);
+				Match(244);
 				}
 				break;
 			case 220:
@@ -8552,8 +7292,7 @@ partial class mathParser : Parser {
 				_localctx = new PARAMETER_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1744;
-				Match(PARAMETER2);
+				Match(245);
 				}
 				break;
 			case 221:
@@ -8561,18 +7300,15 @@ partial class mathParser : Parser {
 				_localctx = new NUM_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1746;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==SUB) {
+				if (_la==27) {
 					{
-					State = 1745;
-					Match(SUB);
+					Match(27);
 					}
 				}
 
-				State = 1748;
-				Match(NUM);
+				Match(28);
 				}
 				break;
 			case 222:
@@ -8580,8 +7316,7 @@ partial class mathParser : Parser {
 				_localctx = new STRING_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1749;
-				Match(STRING);
+				Match(29);
 				}
 				break;
 			case 223:
@@ -8589,13 +7324,11 @@ partial class mathParser : Parser {
 				_localctx = new NULL_funContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
-				State = 1750;
-				Match(NULL);
+				Match(30);
 				}
 				break;
 			}
 			Context.Stop = TokenStream.LT(-1);
-			State = 2552;
 			ErrorHandler.Sync(this);
 			_alt = Interpreter.AdaptivePredict(TokenStream,157,Context);
 			while ( _alt!=2 && _alt!=global::Antlr4.Runtime.Atn.ATN.INVALID_ALT_NUMBER ) {
@@ -8604,15 +7337,12 @@ partial class mathParser : Parser {
 						TriggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					State = 2550;
 					ErrorHandler.Sync(this);
 					switch ( Interpreter.AdaptivePredict(TokenStream,156,Context) ) {
 					case 1:
 						{
 						_localctx = new MulDiv_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1753;
-						if (!(Precpred(Context, 228))) throw new FailedPredicateException(this, "Precpred(Context, 228)");
+						PushNewRecursionContext(_localctx, _startState, 1);
 						State = 1754;
 						((MulDiv_funContext)_localctx).op = TokenStream.LT(1);
 						_la = TokenStream.LA(1);
@@ -8630,9 +7360,7 @@ partial class mathParser : Parser {
 					case 2:
 						{
 						_localctx = new AddSub_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1756;
-						if (!(Precpred(Context, 227))) throw new FailedPredicateException(this, "Precpred(Context, 227)");
+						PushNewRecursionContext(_localctx, _startState, 1);
 						State = 1757;
 						((AddSub_funContext)_localctx).op = TokenStream.LT(1);
 						_la = TokenStream.LA(1);
@@ -8650,9 +7378,7 @@ partial class mathParser : Parser {
 					case 3:
 						{
 						_localctx = new Judge_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1759;
-						if (!(Precpred(Context, 226))) throw new FailedPredicateException(this, "Precpred(Context, 226)");
+						PushNewRecursionContext(_localctx, _startState, 1);
 						State = 1760;
 						((Judge_funContext)_localctx).op = TokenStream.LT(1);
 						_la = TokenStream.LA(1);
@@ -8670,9 +7396,7 @@ partial class mathParser : Parser {
 					case 4:
 						{
 						_localctx = new Judge_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1762;
-						if (!(Precpred(Context, 225))) throw new FailedPredicateException(this, "Precpred(Context, 225)");
+						PushNewRecursionContext(_localctx, _startState, 1);
 						State = 1763;
 						((Judge_funContext)_localctx).op = TokenStream.LT(1);
 						_la = TokenStream.LA(1);
@@ -8690,13 +7414,11 @@ partial class mathParser : Parser {
 					case 5:
 						{
 						_localctx = new AndOr_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1765;
-						if (!(Precpred(Context, 224))) throw new FailedPredicateException(this, "Precpred(Context, 224)");
+						PushNewRecursionContext(_localctx, _startState, 1);
 						State = 1766;
 						((AndOr_funContext)_localctx).op = TokenStream.LT(1);
 						_la = TokenStream.LA(1);
-						if ( !(_la==T__22 || _la==AND) ) {
+						if ( !(_la==23 || _la==42) ) {
 							((AndOr_funContext)_localctx).op = ErrorHandler.RecoverInline(this);
 						}
 						else {
@@ -8710,13 +7432,11 @@ partial class mathParser : Parser {
 					case 6:
 						{
 						_localctx = new AndOr_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1768;
-						if (!(Precpred(Context, 223))) throw new FailedPredicateException(this, "Precpred(Context, 223)");
+						PushNewRecursionContext(_localctx, _startState, 1);
 						State = 1769;
 						((AndOr_funContext)_localctx).op = TokenStream.LT(1);
 						_la = TokenStream.LA(1);
-						if ( !(_la==T__23 || _la==OR) ) {
+						if ( !(_la==24 || _la==43) ) {
 							((AndOr_funContext)_localctx).op = ErrorHandler.RecoverInline(this);
 						}
 						else {
@@ -8730,15 +7450,11 @@ partial class mathParser : Parser {
 					case 7:
 						{
 						_localctx = new IF_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1771;
-						if (!(Precpred(Context, 222))) throw new FailedPredicateException(this, "Precpred(Context, 222)");
-						State = 1772;
-						Match(T__24);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(25);
 						State = 1773;
 						expr(0);
-						State = 1774;
-						Match(T__25);
+						Match(26);
 						State = 1775;
 						expr(223);
 						}
@@ -8746,112 +7462,70 @@ partial class mathParser : Parser {
 					case 8:
 						{
 						_localctx = new ISNUMBER_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1777;
-						if (!(Precpred(Context, 332))) throw new FailedPredicateException(this, "Precpred(Context, 332)");
-						State = 1778;
-						Match(T__0);
-						State = 1779;
-						Match(ISNUMBER);
-						State = 1780;
-						Match(T__1);
-						State = 1781;
-						Match(T__2);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(33);
+						Match(2);
+						Match(3);
 						}
 						break;
 					case 9:
 						{
 						_localctx = new ISTEXT_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1782;
-						if (!(Precpred(Context, 331))) throw new FailedPredicateException(this, "Precpred(Context, 331)");
-						State = 1783;
-						Match(T__0);
-						State = 1784;
-						Match(ISTEXT);
-						State = 1785;
-						Match(T__1);
-						State = 1786;
-						Match(T__2);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(34);
+						Match(2);
+						Match(3);
 						}
 						break;
 					case 10:
 						{
 						_localctx = new ISNONTEXT_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1787;
-						if (!(Precpred(Context, 330))) throw new FailedPredicateException(this, "Precpred(Context, 330)");
-						State = 1788;
-						Match(T__0);
-						State = 1789;
-						Match(ISNONTEXT);
-						State = 1790;
-						Match(T__1);
-						State = 1791;
-						Match(T__2);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(36);
+						Match(2);
+						Match(3);
 						}
 						break;
 					case 11:
 						{
 						_localctx = new ISLOGICAL_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1792;
-						if (!(Precpred(Context, 329))) throw new FailedPredicateException(this, "Precpred(Context, 329)");
-						State = 1793;
-						Match(T__0);
-						State = 1794;
-						Match(ISLOGICAL);
-						State = 1795;
-						Match(T__1);
-						State = 1796;
-						Match(T__2);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(37);
+						Match(2);
+						Match(3);
 						}
 						break;
 					case 12:
 						{
 						_localctx = new ISEVEN_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1797;
-						if (!(Precpred(Context, 328))) throw new FailedPredicateException(this, "Precpred(Context, 328)");
-						State = 1798;
-						Match(T__0);
-						State = 1799;
-						Match(ISEVEN);
-						State = 1800;
-						Match(T__1);
-						State = 1801;
-						Match(T__2);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(38);
+						Match(2);
+						Match(3);
 						}
 						break;
 					case 13:
 						{
 						_localctx = new ISODD_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1802;
-						if (!(Precpred(Context, 327))) throw new FailedPredicateException(this, "Precpred(Context, 327)");
-						State = 1803;
-						Match(T__0);
-						State = 1804;
-						Match(ISODD);
-						State = 1805;
-						Match(T__1);
-						State = 1806;
-						Match(T__2);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(39);
+						Match(2);
+						Match(3);
 						}
 						break;
 					case 14:
 						{
 						_localctx = new ISERROR_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1807;
-						if (!(Precpred(Context, 326))) throw new FailedPredicateException(this, "Precpred(Context, 326)");
-						State = 1808;
-						Match(T__0);
-						State = 1809;
-						Match(ISERROR);
-						State = 1810;
-						Match(T__1);
-						State = 1812;
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(35);
+						Match(2);
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -134217564L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 18014398509481983L) != 0)) {
@@ -8861,23 +7535,16 @@ partial class mathParser : Parser {
 							}
 						}
 
-						State = 1814;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 15:
 						{
 						_localctx = new ISNULL_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1815;
-						if (!(Precpred(Context, 325))) throw new FailedPredicateException(this, "Precpred(Context, 325)");
-						State = 1816;
-						Match(T__0);
-						State = 1817;
-						Match(ISNULL);
-						State = 1818;
-						Match(T__1);
-						State = 1820;
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(40);
+						Match(2);
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -134217564L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 18014398509481983L) != 0)) {
@@ -8887,23 +7554,16 @@ partial class mathParser : Parser {
 							}
 						}
 
-						State = 1822;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 16:
 						{
 						_localctx = new ISNULLORERROR_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1823;
-						if (!(Precpred(Context, 324))) throw new FailedPredicateException(this, "Precpred(Context, 324)");
-						State = 1824;
-						Match(T__0);
-						State = 1825;
-						Match(ISNULLORERROR);
-						State = 1826;
-						Match(T__1);
-						State = 1828;
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(41);
+						Match(2);
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -134217564L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 18014398509481983L) != 0)) {
@@ -8913,24 +7573,17 @@ partial class mathParser : Parser {
 							}
 						}
 
-						State = 1830;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 17:
 						{
 						_localctx = new DEC2BIN_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1831;
-						if (!(Precpred(Context, 323))) throw new FailedPredicateException(this, "Precpred(Context, 323)");
-						State = 1832;
-						Match(T__0);
-						State = 1833;
-						Match(DEC2BIN);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(49);
 						{
-						State = 1834;
-						Match(T__1);
-						State = 1836;
+						Match(2);
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -134217564L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 18014398509481983L) != 0)) {
@@ -8940,25 +7593,18 @@ partial class mathParser : Parser {
 							}
 						}
 
-						State = 1838;
-						Match(T__2);
+						Match(3);
 						}
 						}
 						break;
 					case 18:
 						{
 						_localctx = new DEC2HEX_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1839;
-						if (!(Precpred(Context, 322))) throw new FailedPredicateException(this, "Precpred(Context, 322)");
-						State = 1840;
-						Match(T__0);
-						State = 1841;
-						Match(DEC2HEX);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(50);
 						{
-						State = 1842;
-						Match(T__1);
-						State = 1844;
+						Match(2);
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -134217564L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 18014398509481983L) != 0)) {
@@ -8968,25 +7614,18 @@ partial class mathParser : Parser {
 							}
 						}
 
-						State = 1846;
-						Match(T__2);
+						Match(3);
 						}
 						}
 						break;
 					case 19:
 						{
 						_localctx = new DEC2OCT_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1847;
-						if (!(Precpred(Context, 321))) throw new FailedPredicateException(this, "Precpred(Context, 321)");
-						State = 1848;
-						Match(T__0);
-						State = 1849;
-						Match(DEC2OCT);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(51);
 						{
-						State = 1850;
-						Match(T__1);
-						State = 1852;
+						Match(2);
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -134217564L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 18014398509481983L) != 0)) {
@@ -8996,25 +7635,18 @@ partial class mathParser : Parser {
 							}
 						}
 
-						State = 1854;
-						Match(T__2);
+						Match(3);
 						}
 						}
 						break;
 					case 20:
 						{
 						_localctx = new HEX2BIN_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1855;
-						if (!(Precpred(Context, 320))) throw new FailedPredicateException(this, "Precpred(Context, 320)");
-						State = 1856;
-						Match(T__0);
-						State = 1857;
-						Match(HEX2BIN);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(52);
 						{
-						State = 1858;
-						Match(T__1);
-						State = 1860;
+						Match(2);
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -134217564L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 18014398509481983L) != 0)) {
@@ -9024,43 +7656,30 @@ partial class mathParser : Parser {
 							}
 						}
 
-						State = 1862;
-						Match(T__2);
+						Match(3);
 						}
 						}
 						break;
 					case 21:
 						{
 						_localctx = new HEX2DEC_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1863;
-						if (!(Precpred(Context, 319))) throw new FailedPredicateException(this, "Precpred(Context, 319)");
-						State = 1864;
-						Match(T__0);
-						State = 1865;
-						Match(HEX2DEC);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(53);
 						{
-						State = 1866;
-						Match(T__1);
-						State = 1867;
-						Match(T__2);
+						Match(2);
+						Match(3);
 						}
 						}
 						break;
 					case 22:
 						{
 						_localctx = new HEX2OCT_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1868;
-						if (!(Precpred(Context, 318))) throw new FailedPredicateException(this, "Precpred(Context, 318)");
-						State = 1869;
-						Match(T__0);
-						State = 1870;
-						Match(HEX2OCT);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(54);
 						{
-						State = 1871;
-						Match(T__1);
-						State = 1873;
+						Match(2);
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -134217564L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 18014398509481983L) != 0)) {
@@ -9070,25 +7689,18 @@ partial class mathParser : Parser {
 							}
 						}
 
-						State = 1875;
-						Match(T__2);
+						Match(3);
 						}
 						}
 						break;
 					case 23:
 						{
 						_localctx = new OCT2BIN_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1876;
-						if (!(Precpred(Context, 317))) throw new FailedPredicateException(this, "Precpred(Context, 317)");
-						State = 1877;
-						Match(T__0);
-						State = 1878;
-						Match(OCT2BIN);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(55);
 						{
-						State = 1879;
-						Match(T__1);
-						State = 1881;
+						Match(2);
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -134217564L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 18014398509481983L) != 0)) {
@@ -9098,43 +7710,30 @@ partial class mathParser : Parser {
 							}
 						}
 
-						State = 1883;
-						Match(T__2);
+						Match(3);
 						}
 						}
 						break;
 					case 24:
 						{
 						_localctx = new OCT2DEC_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1884;
-						if (!(Precpred(Context, 316))) throw new FailedPredicateException(this, "Precpred(Context, 316)");
-						State = 1885;
-						Match(T__0);
-						State = 1886;
-						Match(OCT2DEC);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(56);
 						{
-						State = 1887;
-						Match(T__1);
-						State = 1888;
-						Match(T__2);
+						Match(2);
+						Match(3);
 						}
 						}
 						break;
 					case 25:
 						{
 						_localctx = new OCT2HEX_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1889;
-						if (!(Precpred(Context, 315))) throw new FailedPredicateException(this, "Precpred(Context, 315)");
-						State = 1890;
-						Match(T__0);
-						State = 1891;
-						Match(OCT2HEX);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(57);
 						{
-						State = 1892;
-						Match(T__1);
-						State = 1894;
+						Match(2);
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -134217564L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 18014398509481983L) != 0)) {
@@ -9144,25 +7743,18 @@ partial class mathParser : Parser {
 							}
 						}
 
-						State = 1896;
-						Match(T__2);
+						Match(3);
 						}
 						}
 						break;
 					case 26:
 						{
 						_localctx = new BIN2OCT_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1897;
-						if (!(Precpred(Context, 314))) throw new FailedPredicateException(this, "Precpred(Context, 314)");
-						State = 1898;
-						Match(T__0);
-						State = 1899;
-						Match(BIN2OCT);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(58);
 						{
-						State = 1900;
-						Match(T__1);
-						State = 1902;
+						Match(2);
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -134217564L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 18014398509481983L) != 0)) {
@@ -9172,43 +7764,30 @@ partial class mathParser : Parser {
 							}
 						}
 
-						State = 1904;
-						Match(T__2);
+						Match(3);
 						}
 						}
 						break;
 					case 27:
 						{
 						_localctx = new BIN2DEC_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1905;
-						if (!(Precpred(Context, 313))) throw new FailedPredicateException(this, "Precpred(Context, 313)");
-						State = 1906;
-						Match(T__0);
-						State = 1907;
-						Match(BIN2DEC);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(59);
 						{
-						State = 1908;
-						Match(T__1);
-						State = 1909;
-						Match(T__2);
+						Match(2);
+						Match(3);
 						}
 						}
 						break;
 					case 28:
 						{
 						_localctx = new BIN2HEX_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1910;
-						if (!(Precpred(Context, 312))) throw new FailedPredicateException(this, "Precpred(Context, 312)");
-						State = 1911;
-						Match(T__0);
-						State = 1912;
-						Match(BIN2HEX);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(60);
 						{
-						State = 1913;
-						Match(T__1);
-						State = 1915;
+						Match(2);
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -134217564L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 18014398509481983L) != 0)) {
@@ -9218,210 +7797,143 @@ partial class mathParser : Parser {
 							}
 						}
 
-						State = 1917;
-						Match(T__2);
+						Match(3);
 						}
 						}
 						break;
 					case 29:
 						{
 						_localctx = new INT_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1918;
-						if (!(Precpred(Context, 311))) throw new FailedPredicateException(this, "Precpred(Context, 311)");
-						State = 1919;
-						Match(T__0);
-						State = 1920;
-						Match(INT);
-						State = 1921;
-						Match(T__1);
-						State = 1922;
-						Match(T__2);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(67);
+						Match(2);
+						Match(3);
 						}
 						break;
 					case 30:
 						{
 						_localctx = new ASC_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1923;
-						if (!(Precpred(Context, 310))) throw new FailedPredicateException(this, "Precpred(Context, 310)");
-						State = 1924;
-						Match(T__0);
-						State = 1925;
-						Match(ASC);
-						State = 1926;
-						Match(T__1);
-						State = 1927;
-						Match(T__2);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(108);
+						Match(2);
+						Match(3);
 						}
 						break;
 					case 31:
 						{
 						_localctx = new JIS_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1928;
-						if (!(Precpred(Context, 309))) throw new FailedPredicateException(this, "Precpred(Context, 309)");
-						State = 1929;
-						Match(T__0);
-						State = 1930;
-						Match(JIS);
-						State = 1931;
-						Match(T__1);
-						State = 1932;
-						Match(T__2);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(109);
+						Match(2);
+						Match(3);
 						}
 						break;
 					case 32:
 						{
 						_localctx = new CHAR_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1933;
-						if (!(Precpred(Context, 308))) throw new FailedPredicateException(this, "Precpred(Context, 308)");
-						State = 1934;
-						Match(T__0);
-						State = 1935;
-						Match(CHAR);
-						State = 1936;
-						Match(T__1);
-						State = 1937;
-						Match(T__2);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(110);
+						Match(2);
+						Match(3);
 						}
 						break;
 					case 33:
 						{
 						_localctx = new CLEAN_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1938;
-						if (!(Precpred(Context, 307))) throw new FailedPredicateException(this, "Precpred(Context, 307)");
-						State = 1939;
-						Match(T__0);
-						State = 1940;
-						Match(CLEAN);
-						State = 1941;
-						Match(T__1);
-						State = 1942;
-						Match(T__2);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(111);
+						Match(2);
+						Match(3);
 						}
 						break;
 					case 34:
 						{
 						_localctx = new CODE_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1943;
-						if (!(Precpred(Context, 306))) throw new FailedPredicateException(this, "Precpred(Context, 306)");
-						State = 1944;
-						Match(T__0);
-						State = 1945;
-						Match(CODE);
-						State = 1946;
-						Match(T__1);
-						State = 1947;
-						Match(T__2);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(112);
+						Match(2);
+						Match(3);
 						}
 						break;
 					case 35:
 						{
 						_localctx = new CONCATENATE_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1948;
-						if (!(Precpred(Context, 305))) throw new FailedPredicateException(this, "Precpred(Context, 305)");
-						State = 1949;
-						Match(T__0);
-						State = 1950;
-						Match(CONCATENATE);
-						State = 1951;
-						Match(T__1);
-						State = 1960;
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(113);
+						Match(2);
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -134217564L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 18014398509481983L) != 0)) {
 							{
 							State = 1952;
 							expr(0);
-							State = 1957;
 							ErrorHandler.Sync(this);
 							_la = TokenStream.LA(1);
-							while (_la==T__3) {
+							while (_la==4) {
 								{
 								{
-								State = 1953;
-								Match(T__3);
+								Match(4);
 								State = 1954;
 								expr(0);
 								}
 								}
-								State = 1959;
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 							}
 							}
 						}
 
-						State = 1962;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 36:
 						{
 						_localctx = new EXACT_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1963;
-						if (!(Precpred(Context, 304))) throw new FailedPredicateException(this, "Precpred(Context, 304)");
-						State = 1964;
-						Match(T__0);
-						State = 1965;
-						Match(EXACT);
-						State = 1966;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(114);
+						Match(2);
 						State = 1967;
 						expr(0);
-						State = 1968;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 37:
 						{
 						_localctx = new FIND_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1970;
-						if (!(Precpred(Context, 303))) throw new FailedPredicateException(this, "Precpred(Context, 303)");
-						State = 1971;
-						Match(T__0);
-						State = 1972;
-						Match(FIND);
-						State = 1973;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(115);
+						Match(2);
 						State = 1974;
 						expr(0);
-						State = 1977;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la==T__3) {
+						if (_la==4) {
 							{
-							State = 1975;
-							Match(T__3);
+							Match(4);
 							State = 1976;
 							expr(0);
 							}
 						}
 
-						State = 1979;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 38:
 						{
 						_localctx = new LEFT_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1981;
-						if (!(Precpred(Context, 302))) throw new FailedPredicateException(this, "Precpred(Context, 302)");
-						State = 1982;
-						Match(T__0);
-						State = 1983;
-						Match(LEFT);
-						State = 1984;
-						Match(T__1);
-						State = 1986;
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(117);
+						Match(2);
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -134217564L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 18014398509481983L) != 0)) {
@@ -9431,145 +7943,98 @@ partial class mathParser : Parser {
 							}
 						}
 
-						State = 1988;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 39:
 						{
 						_localctx = new LEN_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1989;
-						if (!(Precpred(Context, 301))) throw new FailedPredicateException(this, "Precpred(Context, 301)");
-						State = 1990;
-						Match(T__0);
-						State = 1991;
-						Match(LEN);
-						State = 1992;
-						Match(T__1);
-						State = 1993;
-						Match(T__2);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(118);
+						Match(2);
+						Match(3);
 						}
 						break;
 					case 40:
 						{
 						_localctx = new LOWER_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1994;
-						if (!(Precpred(Context, 300))) throw new FailedPredicateException(this, "Precpred(Context, 300)");
-						State = 1995;
-						Match(T__0);
-						State = 1996;
-						Match(LOWER);
-						State = 1997;
-						Match(T__1);
-						State = 1998;
-						Match(T__2);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(119);
+						Match(2);
+						Match(3);
 						}
 						break;
 					case 41:
 						{
 						_localctx = new MID_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 1999;
-						if (!(Precpred(Context, 299))) throw new FailedPredicateException(this, "Precpred(Context, 299)");
-						State = 2000;
-						Match(T__0);
-						State = 2001;
-						Match(MID);
-						State = 2002;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(120);
+						Match(2);
 						State = 2003;
 						expr(0);
-						State = 2004;
-						Match(T__3);
+						Match(4);
 						State = 2005;
 						expr(0);
-						State = 2006;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 42:
 						{
 						_localctx = new PROPER_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2008;
-						if (!(Precpred(Context, 298))) throw new FailedPredicateException(this, "Precpred(Context, 298)");
-						State = 2009;
-						Match(T__0);
-						State = 2010;
-						Match(PROPER);
-						State = 2011;
-						Match(T__1);
-						State = 2012;
-						Match(T__2);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(121);
+						Match(2);
+						Match(3);
 						}
 						break;
 					case 43:
 						{
 						_localctx = new REPLACE_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2013;
-						if (!(Precpred(Context, 297))) throw new FailedPredicateException(this, "Precpred(Context, 297)");
-						State = 2014;
-						Match(T__0);
-						State = 2015;
-						Match(REPLACE);
-						State = 2016;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(122);
+						Match(2);
 						State = 2017;
 						expr(0);
-						State = 2018;
-						Match(T__3);
+						Match(4);
 						State = 2019;
 						expr(0);
-						State = 2022;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la==T__3) {
+						if (_la==4) {
 							{
-							State = 2020;
-							Match(T__3);
+							Match(4);
 							State = 2021;
 							expr(0);
 							}
 						}
 
-						State = 2024;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 44:
 						{
 						_localctx = new REPT_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2026;
-						if (!(Precpred(Context, 296))) throw new FailedPredicateException(this, "Precpred(Context, 296)");
-						State = 2027;
-						Match(T__0);
-						State = 2028;
-						Match(REPT);
-						State = 2029;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(123);
+						Match(2);
 						State = 2030;
 						expr(0);
-						State = 2031;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 45:
 						{
 						_localctx = new RIGHT_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2033;
-						if (!(Precpred(Context, 295))) throw new FailedPredicateException(this, "Precpred(Context, 295)");
-						State = 2034;
-						Match(T__0);
-						State = 2035;
-						Match(RIGHT);
-						State = 2036;
-						Match(T__1);
-						State = 2038;
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(124);
+						Match(2);
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -134217564L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 18014398509481983L) != 0)) {
@@ -9579,185 +8044,125 @@ partial class mathParser : Parser {
 							}
 						}
 
-						State = 2040;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 46:
 						{
 						_localctx = new RMB_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2041;
-						if (!(Precpred(Context, 294))) throw new FailedPredicateException(this, "Precpred(Context, 294)");
-						State = 2042;
-						Match(T__0);
-						State = 2043;
-						Match(RMB);
-						State = 2044;
-						Match(T__1);
-						State = 2045;
-						Match(T__2);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(125);
+						Match(2);
+						Match(3);
 						}
 						break;
 					case 47:
 						{
 						_localctx = new SEARCH_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2046;
-						if (!(Precpred(Context, 293))) throw new FailedPredicateException(this, "Precpred(Context, 293)");
-						State = 2047;
-						Match(T__0);
-						State = 2048;
-						Match(SEARCH);
-						State = 2049;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(126);
+						Match(2);
 						State = 2050;
 						expr(0);
-						State = 2053;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la==T__3) {
+						if (_la==4) {
 							{
-							State = 2051;
-							Match(T__3);
+							Match(4);
 							State = 2052;
 							expr(0);
 							}
 						}
 
-						State = 2055;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 48:
 						{
 						_localctx = new SUBSTITUTE_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2057;
-						if (!(Precpred(Context, 292))) throw new FailedPredicateException(this, "Precpred(Context, 292)");
-						State = 2058;
-						Match(T__0);
-						State = 2059;
-						Match(SUBSTITUTE);
-						State = 2060;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(127);
+						Match(2);
 						State = 2061;
 						expr(0);
-						State = 2062;
-						Match(T__3);
+						Match(4);
 						State = 2063;
 						expr(0);
-						State = 2066;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la==T__3) {
+						if (_la==4) {
 							{
-							State = 2064;
-							Match(T__3);
+							Match(4);
 							State = 2065;
 							expr(0);
 							}
 						}
 
-						State = 2068;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 49:
 						{
 						_localctx = new T_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2070;
-						if (!(Precpred(Context, 291))) throw new FailedPredicateException(this, "Precpred(Context, 291)");
-						State = 2071;
-						Match(T__0);
-						State = 2072;
-						Match(T);
-						State = 2073;
-						Match(T__1);
-						State = 2074;
-						Match(T__2);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(128);
+						Match(2);
+						Match(3);
 						}
 						break;
 					case 50:
 						{
 						_localctx = new TEXT_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2075;
-						if (!(Precpred(Context, 290))) throw new FailedPredicateException(this, "Precpred(Context, 290)");
-						State = 2076;
-						Match(T__0);
-						State = 2077;
-						Match(TEXT);
-						State = 2078;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(129);
+						Match(2);
 						State = 2079;
 						expr(0);
-						State = 2080;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 51:
 						{
 						_localctx = new TRIM_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2082;
-						if (!(Precpred(Context, 289))) throw new FailedPredicateException(this, "Precpred(Context, 289)");
-						State = 2083;
-						Match(T__0);
-						State = 2084;
-						Match(TRIM);
-						State = 2085;
-						Match(T__1);
-						State = 2086;
-						Match(T__2);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(130);
+						Match(2);
+						Match(3);
 						}
 						break;
 					case 52:
 						{
 						_localctx = new UPPER_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2087;
-						if (!(Precpred(Context, 288))) throw new FailedPredicateException(this, "Precpred(Context, 288)");
-						State = 2088;
-						Match(T__0);
-						State = 2089;
-						Match(UPPER);
-						State = 2090;
-						Match(T__1);
-						State = 2091;
-						Match(T__2);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(131);
+						Match(2);
+						Match(3);
 						}
 						break;
 					case 53:
 						{
 						_localctx = new VALUE_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2092;
-						if (!(Precpred(Context, 287))) throw new FailedPredicateException(this, "Precpred(Context, 287)");
-						State = 2093;
-						Match(T__0);
-						State = 2094;
-						Match(VALUE);
-						State = 2095;
-						Match(T__1);
-						State = 2096;
-						Match(T__2);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(132);
+						Match(2);
+						Match(3);
 						}
 						break;
 					case 54:
 						{
 						_localctx = new DATEVALUE_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2097;
-						if (!(Precpred(Context, 286))) throw new FailedPredicateException(this, "Precpred(Context, 286)");
-						State = 2098;
-						Match(T__0);
-						State = 2099;
-						Match(DATEVALUE);
-						State = 2100;
-						Match(T__1);
-						State = 2102;
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(133);
+						Match(2);
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -134217564L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 18014398509481983L) != 0)) {
@@ -9767,45 +8172,31 @@ partial class mathParser : Parser {
 							}
 						}
 
-						State = 2104;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 55:
 						{
 						_localctx = new TIMEVALUE_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2105;
-						if (!(Precpred(Context, 285))) throw new FailedPredicateException(this, "Precpred(Context, 285)");
-						State = 2106;
-						Match(T__0);
-						State = 2107;
-						Match(TIMEVALUE);
-						State = 2108;
-						Match(T__1);
-						State = 2109;
-						Match(T__2);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(134);
+						Match(2);
+						Match(3);
 						}
 						break;
 					case 56:
 						{
 						_localctx = new YEAR_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2110;
-						if (!(Precpred(Context, 284))) throw new FailedPredicateException(this, "Precpred(Context, 284)");
-						State = 2111;
-						Match(T__0);
-						State = 2112;
-						Match(YEAR);
-						State = 2115;
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(139);
 						ErrorHandler.Sync(this);
 						switch ( Interpreter.AdaptivePredict(TokenStream,121,Context) ) {
 						case 1:
 							{
-							State = 2113;
-							Match(T__1);
-							State = 2114;
-							Match(T__2);
+							Match(2);
+							Match(3);
 							}
 							break;
 						}
@@ -9814,22 +8205,15 @@ partial class mathParser : Parser {
 					case 57:
 						{
 						_localctx = new MONTH_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2117;
-						if (!(Precpred(Context, 283))) throw new FailedPredicateException(this, "Precpred(Context, 283)");
-						State = 2118;
-						Match(T__0);
-						State = 2119;
-						Match(MONTH);
-						State = 2122;
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(140);
 						ErrorHandler.Sync(this);
 						switch ( Interpreter.AdaptivePredict(TokenStream,122,Context) ) {
 						case 1:
 							{
-							State = 2120;
-							Match(T__1);
-							State = 2121;
-							Match(T__2);
+							Match(2);
+							Match(3);
 							}
 							break;
 						}
@@ -9838,22 +8222,15 @@ partial class mathParser : Parser {
 					case 58:
 						{
 						_localctx = new DAY_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2124;
-						if (!(Precpred(Context, 282))) throw new FailedPredicateException(this, "Precpred(Context, 282)");
-						State = 2125;
-						Match(T__0);
-						State = 2126;
-						Match(DAY);
-						State = 2129;
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(141);
 						ErrorHandler.Sync(this);
 						switch ( Interpreter.AdaptivePredict(TokenStream,123,Context) ) {
 						case 1:
 							{
-							State = 2127;
-							Match(T__1);
-							State = 2128;
-							Match(T__2);
+							Match(2);
+							Match(3);
 							}
 							break;
 						}
@@ -9862,22 +8239,15 @@ partial class mathParser : Parser {
 					case 59:
 						{
 						_localctx = new HOUR_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2131;
-						if (!(Precpred(Context, 281))) throw new FailedPredicateException(this, "Precpred(Context, 281)");
-						State = 2132;
-						Match(T__0);
-						State = 2133;
-						Match(HOUR);
-						State = 2136;
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(142);
 						ErrorHandler.Sync(this);
 						switch ( Interpreter.AdaptivePredict(TokenStream,124,Context) ) {
 						case 1:
 							{
-							State = 2134;
-							Match(T__1);
-							State = 2135;
-							Match(T__2);
+							Match(2);
+							Match(3);
 							}
 							break;
 						}
@@ -9886,22 +8256,15 @@ partial class mathParser : Parser {
 					case 60:
 						{
 						_localctx = new MINUTE_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2138;
-						if (!(Precpred(Context, 280))) throw new FailedPredicateException(this, "Precpred(Context, 280)");
-						State = 2139;
-						Match(T__0);
-						State = 2140;
-						Match(MINUTE);
-						State = 2143;
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(143);
 						ErrorHandler.Sync(this);
 						switch ( Interpreter.AdaptivePredict(TokenStream,125,Context) ) {
 						case 1:
 							{
-							State = 2141;
-							Match(T__1);
-							State = 2142;
-							Match(T__2);
+							Match(2);
+							Match(3);
 							}
 							break;
 						}
@@ -9910,22 +8273,15 @@ partial class mathParser : Parser {
 					case 61:
 						{
 						_localctx = new SECOND_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2145;
-						if (!(Precpred(Context, 279))) throw new FailedPredicateException(this, "Precpred(Context, 279)");
-						State = 2146;
-						Match(T__0);
-						State = 2147;
-						Match(SECOND);
-						State = 2150;
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(144);
 						ErrorHandler.Sync(this);
 						switch ( Interpreter.AdaptivePredict(TokenStream,126,Context) ) {
 						case 1:
 							{
-							State = 2148;
-							Match(T__1);
-							State = 2149;
-							Match(T__2);
+							Match(2);
+							Match(3);
 							}
 							break;
 						}
@@ -9934,80 +8290,50 @@ partial class mathParser : Parser {
 					case 62:
 						{
 						_localctx = new URLENCODE_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2152;
-						if (!(Precpred(Context, 278))) throw new FailedPredicateException(this, "Precpred(Context, 278)");
-						State = 2153;
-						Match(T__0);
-						State = 2154;
-						Match(URLENCODE);
-						State = 2155;
-						Match(T__1);
-						State = 2156;
-						Match(T__2);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(199);
+						Match(2);
+						Match(3);
 						}
 						break;
 					case 63:
 						{
 						_localctx = new URLDECODE_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2157;
-						if (!(Precpred(Context, 277))) throw new FailedPredicateException(this, "Precpred(Context, 277)");
-						State = 2158;
-						Match(T__0);
-						State = 2159;
-						Match(URLDECODE);
-						State = 2160;
-						Match(T__1);
-						State = 2161;
-						Match(T__2);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(200);
+						Match(2);
+						Match(3);
 						}
 						break;
 					case 64:
 						{
 						_localctx = new HTMLENCODE_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2162;
-						if (!(Precpred(Context, 276))) throw new FailedPredicateException(this, "Precpred(Context, 276)");
-						State = 2163;
-						Match(T__0);
-						State = 2164;
-						Match(HTMLENCODE);
-						State = 2165;
-						Match(T__1);
-						State = 2166;
-						Match(T__2);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(201);
+						Match(2);
+						Match(3);
 						}
 						break;
 					case 65:
 						{
 						_localctx = new HTMLDECODE_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2167;
-						if (!(Precpred(Context, 275))) throw new FailedPredicateException(this, "Precpred(Context, 275)");
-						State = 2168;
-						Match(T__0);
-						State = 2169;
-						Match(HTMLDECODE);
-						State = 2170;
-						Match(T__1);
-						State = 2171;
-						Match(T__2);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(202);
+						Match(2);
+						Match(3);
 						}
 						break;
 					case 66:
 						{
 						_localctx = new BASE64TOTEXT_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2172;
-						if (!(Precpred(Context, 274))) throw new FailedPredicateException(this, "Precpred(Context, 274)");
-						State = 2173;
-						Match(T__0);
-						State = 2174;
-						Match(BASE64TOTEXT);
-						State = 2175;
-						Match(T__1);
-						State = 2177;
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(203);
+						Match(2);
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -134217564L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 18014398509481983L) != 0)) {
@@ -10017,23 +8343,16 @@ partial class mathParser : Parser {
 							}
 						}
 
-						State = 2179;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 67:
 						{
 						_localctx = new BASE64URLTOTEXT_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2180;
-						if (!(Precpred(Context, 273))) throw new FailedPredicateException(this, "Precpred(Context, 273)");
-						State = 2181;
-						Match(T__0);
-						State = 2182;
-						Match(BASE64URLTOTEXT);
-						State = 2183;
-						Match(T__1);
-						State = 2185;
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(204);
+						Match(2);
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -134217564L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 18014398509481983L) != 0)) {
@@ -10043,23 +8362,16 @@ partial class mathParser : Parser {
 							}
 						}
 
-						State = 2187;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 68:
 						{
 						_localctx = new TEXTTOBASE64_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2188;
-						if (!(Precpred(Context, 272))) throw new FailedPredicateException(this, "Precpred(Context, 272)");
-						State = 2189;
-						Match(T__0);
-						State = 2190;
-						Match(TEXTTOBASE64);
-						State = 2191;
-						Match(T__1);
-						State = 2193;
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(205);
+						Match(2);
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -134217564L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 18014398509481983L) != 0)) {
@@ -10069,23 +8381,16 @@ partial class mathParser : Parser {
 							}
 						}
 
-						State = 2195;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 69:
 						{
 						_localctx = new TEXTTOBASE64URL_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2196;
-						if (!(Precpred(Context, 271))) throw new FailedPredicateException(this, "Precpred(Context, 271)");
-						State = 2197;
-						Match(T__0);
-						State = 2198;
-						Match(TEXTTOBASE64URL);
-						State = 2199;
-						Match(T__1);
-						State = 2201;
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(206);
+						Match(2);
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -134217564L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 18014398509481983L) != 0)) {
@@ -10095,81 +8400,55 @@ partial class mathParser : Parser {
 							}
 						}
 
-						State = 2203;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 70:
 						{
 						_localctx = new REGEX_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2204;
-						if (!(Precpred(Context, 270))) throw new FailedPredicateException(this, "Precpred(Context, 270)");
-						State = 2205;
-						Match(T__0);
-						State = 2206;
-						Match(REGEX);
-						State = 2207;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(207);
+						Match(2);
 						State = 2208;
 						expr(0);
-						State = 2209;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 71:
 						{
 						_localctx = new REGEXREPALCE_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2211;
-						if (!(Precpred(Context, 269))) throw new FailedPredicateException(this, "Precpred(Context, 269)");
-						State = 2212;
-						Match(T__0);
-						State = 2213;
-						Match(REGEXREPALCE);
-						State = 2214;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(208);
+						Match(2);
 						State = 2215;
 						expr(0);
-						State = 2216;
-						Match(T__3);
+						Match(4);
 						State = 2217;
 						expr(0);
-						State = 2218;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 72:
 						{
 						_localctx = new ISREGEX_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2220;
-						if (!(Precpred(Context, 268))) throw new FailedPredicateException(this, "Precpred(Context, 268)");
-						State = 2221;
-						Match(T__0);
-						State = 2222;
-						Match(ISREGEX);
-						State = 2223;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(209);
+						Match(2);
 						State = 2224;
 						expr(0);
-						State = 2225;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 73:
 						{
 						_localctx = new MD5_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2227;
-						if (!(Precpred(Context, 267))) throw new FailedPredicateException(this, "Precpred(Context, 267)");
-						State = 2228;
-						Match(T__0);
-						State = 2229;
-						Match(MD5);
-						State = 2230;
-						Match(T__1);
-						State = 2232;
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(211);
+						Match(2);
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -134217564L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 18014398509481983L) != 0)) {
@@ -10179,23 +8458,16 @@ partial class mathParser : Parser {
 							}
 						}
 
-						State = 2234;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 74:
 						{
 						_localctx = new SHA1_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2235;
-						if (!(Precpred(Context, 266))) throw new FailedPredicateException(this, "Precpred(Context, 266)");
-						State = 2236;
-						Match(T__0);
-						State = 2237;
-						Match(SHA1);
-						State = 2238;
-						Match(T__1);
-						State = 2240;
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(212);
+						Match(2);
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -134217564L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 18014398509481983L) != 0)) {
@@ -10205,23 +8477,16 @@ partial class mathParser : Parser {
 							}
 						}
 
-						State = 2242;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 75:
 						{
 						_localctx = new SHA256_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2243;
-						if (!(Precpred(Context, 265))) throw new FailedPredicateException(this, "Precpred(Context, 265)");
-						State = 2244;
-						Match(T__0);
-						State = 2245;
-						Match(SHA256);
-						State = 2246;
-						Match(T__1);
-						State = 2248;
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(213);
+						Match(2);
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -134217564L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 18014398509481983L) != 0)) {
@@ -10231,23 +8496,16 @@ partial class mathParser : Parser {
 							}
 						}
 
-						State = 2250;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 76:
 						{
 						_localctx = new SHA512_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2251;
-						if (!(Precpred(Context, 264))) throw new FailedPredicateException(this, "Precpred(Context, 264)");
-						State = 2252;
-						Match(T__0);
-						State = 2253;
-						Match(SHA512);
-						State = 2254;
-						Match(T__1);
-						State = 2256;
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(214);
+						Match(2);
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -134217564L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 18014398509481983L) != 0)) {
@@ -10257,23 +8515,16 @@ partial class mathParser : Parser {
 							}
 						}
 
-						State = 2258;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 77:
 						{
 						_localctx = new CRC32_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2259;
-						if (!(Precpred(Context, 263))) throw new FailedPredicateException(this, "Precpred(Context, 263)");
-						State = 2260;
-						Match(T__0);
-						State = 2261;
-						Match(CRC32);
-						State = 2262;
-						Match(T__1);
-						State = 2264;
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(215);
+						Match(2);
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -134217564L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 18014398509481983L) != 0)) {
@@ -10283,143 +8534,104 @@ partial class mathParser : Parser {
 							}
 						}
 
-						State = 2266;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 78:
 						{
 						_localctx = new HMACMD5_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2267;
-						if (!(Precpred(Context, 262))) throw new FailedPredicateException(this, "Precpred(Context, 262)");
-						State = 2268;
-						Match(T__0);
-						State = 2269;
-						Match(HMACMD5);
-						State = 2270;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(216);
+						Match(2);
 						State = 2271;
 						expr(0);
-						State = 2274;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la==T__3) {
+						if (_la==4) {
 							{
-							State = 2272;
-							Match(T__3);
+							Match(4);
 							State = 2273;
 							expr(0);
 							}
 						}
 
-						State = 2276;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 79:
 						{
 						_localctx = new HMACSHA1_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2278;
-						if (!(Precpred(Context, 261))) throw new FailedPredicateException(this, "Precpred(Context, 261)");
-						State = 2279;
-						Match(T__0);
-						State = 2280;
-						Match(HMACSHA1);
-						State = 2281;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(217);
+						Match(2);
 						State = 2282;
 						expr(0);
-						State = 2285;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la==T__3) {
+						if (_la==4) {
 							{
-							State = 2283;
-							Match(T__3);
+							Match(4);
 							State = 2284;
 							expr(0);
 							}
 						}
 
-						State = 2287;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 80:
 						{
 						_localctx = new HMACSHA256_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2289;
-						if (!(Precpred(Context, 260))) throw new FailedPredicateException(this, "Precpred(Context, 260)");
-						State = 2290;
-						Match(T__0);
-						State = 2291;
-						Match(HMACSHA256);
-						State = 2292;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(218);
+						Match(2);
 						State = 2293;
 						expr(0);
-						State = 2296;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la==T__3) {
+						if (_la==4) {
 							{
-							State = 2294;
-							Match(T__3);
+							Match(4);
 							State = 2295;
 							expr(0);
 							}
 						}
 
-						State = 2298;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 81:
 						{
 						_localctx = new HMACSHA512_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2300;
-						if (!(Precpred(Context, 259))) throw new FailedPredicateException(this, "Precpred(Context, 259)");
-						State = 2301;
-						Match(T__0);
-						State = 2302;
-						Match(HMACSHA512);
-						State = 2303;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(219);
+						Match(2);
 						State = 2304;
 						expr(0);
-						State = 2307;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la==T__3) {
+						if (_la==4) {
 							{
-							State = 2305;
-							Match(T__3);
+							Match(4);
 							State = 2306;
 							expr(0);
 							}
 						}
 
-						State = 2309;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 82:
 						{
 						_localctx = new TRIMSTART_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2311;
-						if (!(Precpred(Context, 258))) throw new FailedPredicateException(this, "Precpred(Context, 258)");
-						State = 2312;
-						Match(T__0);
-						State = 2313;
-						Match(TRIMSTART);
-						State = 2314;
-						Match(T__1);
-						State = 2316;
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(220);
+						Match(2);
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -134217564L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 18014398509481983L) != 0)) {
@@ -10429,23 +8641,16 @@ partial class mathParser : Parser {
 							}
 						}
 
-						State = 2318;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 83:
 						{
 						_localctx = new TRIMEND_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2319;
-						if (!(Precpred(Context, 257))) throw new FailedPredicateException(this, "Precpred(Context, 257)");
-						State = 2320;
-						Match(T__0);
-						State = 2321;
-						Match(TRIMEND);
-						State = 2322;
-						Match(T__1);
-						State = 2324;
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(221);
+						Match(2);
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -134217564L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 18014398509481983L) != 0)) {
@@ -10455,40 +8660,30 @@ partial class mathParser : Parser {
 							}
 						}
 
-						State = 2326;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 84:
 						{
 						_localctx = new INDEXOF_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2327;
-						if (!(Precpred(Context, 256))) throw new FailedPredicateException(this, "Precpred(Context, 256)");
-						State = 2328;
-						Match(T__0);
-						State = 2329;
-						Match(INDEXOF);
-						State = 2330;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(222);
+						Match(2);
 						State = 2331;
 						expr(0);
-						State = 2338;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la==T__3) {
+						if (_la==4) {
 							{
-							State = 2332;
-							Match(T__3);
+							Match(4);
 							State = 2333;
 							expr(0);
-							State = 2336;
 							ErrorHandler.Sync(this);
 							_la = TokenStream.LA(1);
-							if (_la==T__3) {
+							if (_la==4) {
 								{
-								State = 2334;
-								Match(T__3);
+								Match(4);
 								State = 2335;
 								expr(0);
 								}
@@ -10497,40 +8692,30 @@ partial class mathParser : Parser {
 							}
 						}
 
-						State = 2340;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 85:
 						{
 						_localctx = new LASTINDEXOF_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2342;
-						if (!(Precpred(Context, 255))) throw new FailedPredicateException(this, "Precpred(Context, 255)");
-						State = 2343;
-						Match(T__0);
-						State = 2344;
-						Match(LASTINDEXOF);
-						State = 2345;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(223);
+						Match(2);
 						State = 2346;
 						expr(0);
-						State = 2353;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la==T__3) {
+						if (_la==4) {
 							{
-							State = 2347;
-							Match(T__3);
+							Match(4);
 							State = 2348;
 							expr(0);
-							State = 2351;
 							ErrorHandler.Sync(this);
 							_la = TokenStream.LA(1);
-							if (_la==T__3) {
+							if (_la==4) {
 								{
-								State = 2349;
-								Match(T__3);
+								Match(4);
 								State = 2350;
 								expr(0);
 								}
@@ -10539,479 +8724,337 @@ partial class mathParser : Parser {
 							}
 						}
 
-						State = 2355;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 86:
 						{
 						_localctx = new SPLIT_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2357;
-						if (!(Precpred(Context, 254))) throw new FailedPredicateException(this, "Precpred(Context, 254)");
-						State = 2358;
-						Match(T__0);
-						State = 2359;
-						Match(SPLIT);
-						State = 2360;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(224);
+						Match(2);
 						State = 2361;
 						expr(0);
-						State = 2362;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 87:
 						{
 						_localctx = new JOIN_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2364;
-						if (!(Precpred(Context, 253))) throw new FailedPredicateException(this, "Precpred(Context, 253)");
-						State = 2365;
-						Match(T__0);
-						State = 2366;
-						Match(JOIN);
-						State = 2367;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(225);
+						Match(2);
 						State = 2368;
 						expr(0);
-						State = 2373;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						while (_la==T__3) {
+						while (_la==4) {
 							{
 							{
-							State = 2369;
-							Match(T__3);
+							Match(4);
 							State = 2370;
 							expr(0);
 							}
 							}
-							State = 2375;
 							ErrorHandler.Sync(this);
 							_la = TokenStream.LA(1);
 						}
-						State = 2376;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 88:
 						{
 						_localctx = new SUBSTRING_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2378;
-						if (!(Precpred(Context, 252))) throw new FailedPredicateException(this, "Precpred(Context, 252)");
-						State = 2379;
-						Match(T__0);
-						State = 2380;
-						Match(SUBSTRING);
-						State = 2381;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(226);
+						Match(2);
 						State = 2382;
 						expr(0);
-						State = 2385;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la==T__3) {
+						if (_la==4) {
 							{
-							State = 2383;
-							Match(T__3);
+							Match(4);
 							State = 2384;
 							expr(0);
 							}
 						}
 
-						State = 2387;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 89:
 						{
 						_localctx = new STARTSWITH_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2389;
-						if (!(Precpred(Context, 251))) throw new FailedPredicateException(this, "Precpred(Context, 251)");
-						State = 2390;
-						Match(T__0);
-						State = 2391;
-						Match(STARTSWITH);
-						State = 2392;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(227);
+						Match(2);
 						State = 2393;
 						expr(0);
-						State = 2396;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la==T__3) {
+						if (_la==4) {
 							{
-							State = 2394;
-							Match(T__3);
+							Match(4);
 							State = 2395;
 							expr(0);
 							}
 						}
 
-						State = 2398;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 90:
 						{
 						_localctx = new ENDSWITH_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2400;
-						if (!(Precpred(Context, 250))) throw new FailedPredicateException(this, "Precpred(Context, 250)");
-						State = 2401;
-						Match(T__0);
-						State = 2402;
-						Match(ENDSWITH);
-						State = 2403;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(228);
+						Match(2);
 						State = 2404;
 						expr(0);
-						State = 2407;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la==T__3) {
+						if (_la==4) {
 							{
-							State = 2405;
-							Match(T__3);
+							Match(4);
 							State = 2406;
 							expr(0);
 							}
 						}
 
-						State = 2409;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 91:
 						{
 						_localctx = new ISNULLOREMPTY_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2411;
-						if (!(Precpred(Context, 249))) throw new FailedPredicateException(this, "Precpred(Context, 249)");
-						State = 2412;
-						Match(T__0);
-						State = 2413;
-						Match(ISNULLOREMPTY);
-						State = 2414;
-						Match(T__1);
-						State = 2415;
-						Match(T__2);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(229);
+						Match(2);
+						Match(3);
 						}
 						break;
 					case 92:
 						{
 						_localctx = new ISNULLORWHITESPACE_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2416;
-						if (!(Precpred(Context, 248))) throw new FailedPredicateException(this, "Precpred(Context, 248)");
-						State = 2417;
-						Match(T__0);
-						State = 2418;
-						Match(ISNULLORWHITESPACE);
-						State = 2419;
-						Match(T__1);
-						State = 2420;
-						Match(T__2);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(230);
+						Match(2);
+						Match(3);
 						}
 						break;
 					case 93:
 						{
 						_localctx = new REMOVESTART_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2421;
-						if (!(Precpred(Context, 247))) throw new FailedPredicateException(this, "Precpred(Context, 247)");
-						State = 2422;
-						Match(T__0);
-						State = 2423;
-						Match(REMOVESTART);
-						State = 2424;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(231);
+						Match(2);
 						State = 2425;
 						expr(0);
-						State = 2428;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la==T__3) {
+						if (_la==4) {
 							{
-							State = 2426;
-							Match(T__3);
+							Match(4);
 							State = 2427;
 							expr(0);
 							}
 						}
 
-						State = 2430;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 94:
 						{
 						_localctx = new REMOVEEND_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2432;
-						if (!(Precpred(Context, 246))) throw new FailedPredicateException(this, "Precpred(Context, 246)");
-						State = 2433;
-						Match(T__0);
-						State = 2434;
-						Match(REMOVEEND);
-						State = 2435;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(232);
+						Match(2);
 						State = 2436;
 						expr(0);
-						State = 2439;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la==T__3) {
+						if (_la==4) {
 							{
-							State = 2437;
-							Match(T__3);
+							Match(4);
 							State = 2438;
 							expr(0);
 							}
 						}
 
-						State = 2441;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 95:
 						{
 						_localctx = new JSON_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2443;
-						if (!(Precpred(Context, 245))) throw new FailedPredicateException(this, "Precpred(Context, 245)");
-						State = 2444;
-						Match(T__0);
-						State = 2445;
-						Match(JSON);
-						State = 2446;
-						Match(T__1);
-						State = 2447;
-						Match(T__2);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(233);
+						Match(2);
+						Match(3);
 						}
 						break;
 					case 96:
 						{
 						_localctx = new VLOOKUP_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2448;
-						if (!(Precpred(Context, 244))) throw new FailedPredicateException(this, "Precpred(Context, 244)");
-						State = 2449;
-						Match(T__0);
-						State = 2450;
-						Match(VLOOKUP);
-						State = 2451;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(234);
+						Match(2);
 						State = 2452;
 						expr(0);
-						State = 2453;
-						Match(T__3);
+						Match(4);
 						State = 2454;
 						expr(0);
-						State = 2457;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if (_la==T__3) {
+						if (_la==4) {
 							{
-							State = 2455;
-							Match(T__3);
+							Match(4);
 							State = 2456;
 							expr(0);
 							}
 						}
 
-						State = 2459;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 97:
 						{
 						_localctx = new LOOKUP_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2461;
-						if (!(Precpred(Context, 243))) throw new FailedPredicateException(this, "Precpred(Context, 243)");
-						State = 2462;
-						Match(T__0);
-						State = 2463;
-						Match(LOOKUP);
-						State = 2464;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(235);
+						Match(2);
 						State = 2465;
 						expr(0);
-						State = 2466;
-						Match(T__3);
+						Match(4);
 						State = 2467;
 						expr(0);
-						State = 2468;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 98:
 						{
 						_localctx = new DiyFunction_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2470;
-						if (!(Precpred(Context, 242))) throw new FailedPredicateException(this, "Precpred(Context, 242)");
-						State = 2471;
-						Match(T__0);
-						State = 2472;
-						Match(PARAMETER);
-						State = 2473;
-						Match(T__1);
-						State = 2482;
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(244);
+						Match(2);
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -134217564L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 18014398509481983L) != 0)) {
 							{
 							State = 2474;
 							expr(0);
-							State = 2479;
 							ErrorHandler.Sync(this);
 							_la = TokenStream.LA(1);
-							while (_la==T__3) {
+							while (_la==4) {
 								{
 								{
-								State = 2475;
-								Match(T__3);
+								Match(4);
 								State = 2476;
 								expr(0);
 								}
 								}
-								State = 2481;
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 							}
 							}
 						}
 
-						State = 2484;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 99:
 						{
 						_localctx = new ADDYEARS_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2485;
-						if (!(Precpred(Context, 241))) throw new FailedPredicateException(this, "Precpred(Context, 241)");
-						State = 2486;
-						Match(T__0);
-						State = 2487;
-						Match(ADDYEARS);
-						State = 2488;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(237);
+						Match(2);
 						State = 2489;
 						expr(0);
-						State = 2490;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 100:
 						{
 						_localctx = new ADDMONTHS_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2492;
-						if (!(Precpred(Context, 240))) throw new FailedPredicateException(this, "Precpred(Context, 240)");
-						State = 2493;
-						Match(T__0);
-						State = 2494;
-						Match(ADDMONTHS);
-						State = 2495;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(238);
+						Match(2);
 						State = 2496;
 						expr(0);
-						State = 2497;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 101:
 						{
 						_localctx = new ADDDAYS_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2499;
-						if (!(Precpred(Context, 239))) throw new FailedPredicateException(this, "Precpred(Context, 239)");
-						State = 2500;
-						Match(T__0);
-						State = 2501;
-						Match(ADDDAYS);
-						State = 2502;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(239);
+						Match(2);
 						State = 2503;
 						expr(0);
-						State = 2504;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 102:
 						{
 						_localctx = new ADDHOURS_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2506;
-						if (!(Precpred(Context, 238))) throw new FailedPredicateException(this, "Precpred(Context, 238)");
-						State = 2507;
-						Match(T__0);
-						State = 2508;
-						Match(ADDHOURS);
-						State = 2509;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(240);
+						Match(2);
 						State = 2510;
 						expr(0);
-						State = 2511;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 103:
 						{
 						_localctx = new ADDMINUTES_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2513;
-						if (!(Precpred(Context, 237))) throw new FailedPredicateException(this, "Precpred(Context, 237)");
-						State = 2514;
-						Match(T__0);
-						State = 2515;
-						Match(ADDMINUTES);
-						State = 2516;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(241);
+						Match(2);
 						State = 2517;
 						expr(0);
-						State = 2518;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 104:
 						{
 						_localctx = new ADDSECONDS_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2520;
-						if (!(Precpred(Context, 236))) throw new FailedPredicateException(this, "Precpred(Context, 236)");
-						State = 2521;
-						Match(T__0);
-						State = 2522;
-						Match(ADDSECONDS);
-						State = 2523;
-						Match(T__1);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(242);
+						Match(2);
 						State = 2524;
 						expr(0);
-						State = 2525;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 105:
 						{
 						_localctx = new TIMESTAMP_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2527;
-						if (!(Precpred(Context, 235))) throw new FailedPredicateException(this, "Precpred(Context, 235)");
-						State = 2528;
-						Match(T__0);
-						State = 2529;
-						Match(TIMESTAMP);
-						State = 2530;
-						Match(T__1);
-						State = 2532;
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
+						Match(243);
+						Match(2);
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
 						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -134217564L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 18014398509481983L) != 0)) {
@@ -11021,46 +9064,34 @@ partial class mathParser : Parser {
 							}
 						}
 
-						State = 2534;
-						Match(T__2);
+						Match(3);
 						}
 						break;
 					case 106:
 						{
 						_localctx = new GetJsonValue_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2535;
-						if (!(Precpred(Context, 234))) throw new FailedPredicateException(this, "Precpred(Context, 234)");
-						State = 2536;
-						Match(T__4);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(5);
 						State = 2537;
 						parameter2();
-						State = 2538;
-						Match(T__5);
+						Match(6);
 						}
 						break;
 					case 107:
 						{
 						_localctx = new GetJsonValue_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2540;
-						if (!(Precpred(Context, 233))) throw new FailedPredicateException(this, "Precpred(Context, 233)");
-						State = 2541;
-						Match(T__4);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(5);
 						State = 2542;
 						expr(0);
-						State = 2543;
-						Match(T__5);
+						Match(6);
 						}
 						break;
 					case 108:
 						{
 						_localctx = new GetJsonValue_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2545;
-						if (!(Precpred(Context, 232))) throw new FailedPredicateException(this, "Precpred(Context, 232)");
-						State = 2546;
-						Match(T__0);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(1);
 						State = 2547;
 						parameter2();
 						}
@@ -11068,17 +9099,13 @@ partial class mathParser : Parser {
 					case 109:
 						{
 						_localctx = new Percentage_funContext(new ExprContext(_parentctx, _parentState));
-						PushNewRecursionContext(_localctx, _startState, RULE_expr);
-						State = 2548;
-						if (!(Precpred(Context, 229))) throw new FailedPredicateException(this, "Precpred(Context, 229)");
-						State = 2549;
-						Match(T__7);
+						PushNewRecursionContext(_localctx, _startState, 1);
+						Match(8);
 						}
 						break;
 					}
 					} 
 				}
-				State = 2554;
 				ErrorHandler.Sync(this);
 				_alt = Interpreter.AdaptivePredict(TokenStream,157,Context);
 			}
@@ -11096,237 +9123,237 @@ partial class mathParser : Parser {
 	}
 
 	public partial class Parameter2Context : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode E() { return GetToken(mathParser.E, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IF() { return GetToken(mathParser.IF, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IFERROR() { return GetToken(mathParser.IFERROR, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNUMBER() { return GetToken(mathParser.ISNUMBER, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISTEXT() { return GetToken(mathParser.ISTEXT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISERROR() { return GetToken(mathParser.ISERROR, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNONTEXT() { return GetToken(mathParser.ISNONTEXT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISLOGICAL() { return GetToken(mathParser.ISLOGICAL, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISEVEN() { return GetToken(mathParser.ISEVEN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISODD() { return GetToken(mathParser.ISODD, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNULL() { return GetToken(mathParser.ISNULL, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNULLORERROR() { return GetToken(mathParser.ISNULLORERROR, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AND() { return GetToken(mathParser.AND, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OR() { return GetToken(mathParser.OR, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NOT() { return GetToken(mathParser.NOT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRUE() { return GetToken(mathParser.TRUE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FALSE() { return GetToken(mathParser.FALSE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PI() { return GetToken(mathParser.PI, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEC2BIN() { return GetToken(mathParser.DEC2BIN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEC2HEX() { return GetToken(mathParser.DEC2HEX, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEC2OCT() { return GetToken(mathParser.DEC2OCT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HEX2BIN() { return GetToken(mathParser.HEX2BIN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HEX2DEC() { return GetToken(mathParser.HEX2DEC, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HEX2OCT() { return GetToken(mathParser.HEX2OCT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OCT2BIN() { return GetToken(mathParser.OCT2BIN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OCT2DEC() { return GetToken(mathParser.OCT2DEC, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OCT2HEX() { return GetToken(mathParser.OCT2HEX, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BIN2OCT() { return GetToken(mathParser.BIN2OCT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BIN2DEC() { return GetToken(mathParser.BIN2DEC, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BIN2HEX() { return GetToken(mathParser.BIN2HEX, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ABS() { return GetToken(mathParser.ABS, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode QUOTIENT() { return GetToken(mathParser.QUOTIENT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MOD() { return GetToken(mathParser.MOD, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SIGN() { return GetToken(mathParser.SIGN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SQRT() { return GetToken(mathParser.SQRT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRUNC() { return GetToken(mathParser.TRUNC, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INT() { return GetToken(mathParser.INT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GCD() { return GetToken(mathParser.GCD, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LCM() { return GetToken(mathParser.LCM, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COMBIN() { return GetToken(mathParser.COMBIN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PERMUT() { return GetToken(mathParser.PERMUT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEGREES() { return GetToken(mathParser.DEGREES, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RADIANS() { return GetToken(mathParser.RADIANS, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COS() { return GetToken(mathParser.COS, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COSH() { return GetToken(mathParser.COSH, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SIN() { return GetToken(mathParser.SIN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SINH() { return GetToken(mathParser.SINH, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TAN() { return GetToken(mathParser.TAN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TANH() { return GetToken(mathParser.TANH, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ACOS() { return GetToken(mathParser.ACOS, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ACOSH() { return GetToken(mathParser.ACOSH, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ASIN() { return GetToken(mathParser.ASIN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ASINH() { return GetToken(mathParser.ASINH, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ATAN() { return GetToken(mathParser.ATAN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ATANH() { return GetToken(mathParser.ATANH, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ATAN2() { return GetToken(mathParser.ATAN2, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ROUND() { return GetToken(mathParser.ROUND, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ROUNDDOWN() { return GetToken(mathParser.ROUNDDOWN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ROUNDUP() { return GetToken(mathParser.ROUNDUP, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CEILING() { return GetToken(mathParser.CEILING, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FLOOR() { return GetToken(mathParser.FLOOR, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EVEN() { return GetToken(mathParser.EVEN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ODD() { return GetToken(mathParser.ODD, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MROUND() { return GetToken(mathParser.MROUND, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RAND() { return GetToken(mathParser.RAND, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RANDBETWEEN() { return GetToken(mathParser.RANDBETWEEN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FACT() { return GetToken(mathParser.FACT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FACTDOUBLE() { return GetToken(mathParser.FACTDOUBLE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode POWER() { return GetToken(mathParser.POWER, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EXP() { return GetToken(mathParser.EXP, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LN() { return GetToken(mathParser.LN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOG() { return GetToken(mathParser.LOG, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOG10() { return GetToken(mathParser.LOG10, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MULTINOMIAL() { return GetToken(mathParser.MULTINOMIAL, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PRODUCT() { return GetToken(mathParser.PRODUCT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SQRTPI() { return GetToken(mathParser.SQRTPI, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUMSQ() { return GetToken(mathParser.SUMSQ, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ASC() { return GetToken(mathParser.ASC, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode JIS() { return GetToken(mathParser.JIS, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CHAR() { return GetToken(mathParser.CHAR, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CLEAN() { return GetToken(mathParser.CLEAN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CODE() { return GetToken(mathParser.CODE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CONCATENATE() { return GetToken(mathParser.CONCATENATE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EXACT() { return GetToken(mathParser.EXACT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FIND() { return GetToken(mathParser.FIND, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FIXED() { return GetToken(mathParser.FIXED, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LEFT() { return GetToken(mathParser.LEFT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LEN() { return GetToken(mathParser.LEN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOWER() { return GetToken(mathParser.LOWER, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MID() { return GetToken(mathParser.MID, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PROPER() { return GetToken(mathParser.PROPER, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REPLACE() { return GetToken(mathParser.REPLACE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REPT() { return GetToken(mathParser.REPT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RIGHT() { return GetToken(mathParser.RIGHT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RMB() { return GetToken(mathParser.RMB, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SEARCH() { return GetToken(mathParser.SEARCH, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUBSTITUTE() { return GetToken(mathParser.SUBSTITUTE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode T() { return GetToken(mathParser.T, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TEXT() { return GetToken(mathParser.TEXT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRIM() { return GetToken(mathParser.TRIM, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode UPPER() { return GetToken(mathParser.UPPER, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VALUE() { return GetToken(mathParser.VALUE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DATEVALUE() { return GetToken(mathParser.DATEVALUE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TIMEVALUE() { return GetToken(mathParser.TIMEVALUE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DATE() { return GetToken(mathParser.DATE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TIME() { return GetToken(mathParser.TIME, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NOW() { return GetToken(mathParser.NOW, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TODAY() { return GetToken(mathParser.TODAY, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode YEAR() { return GetToken(mathParser.YEAR, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MONTH() { return GetToken(mathParser.MONTH, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DAY() { return GetToken(mathParser.DAY, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HOUR() { return GetToken(mathParser.HOUR, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MINUTE() { return GetToken(mathParser.MINUTE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SECOND() { return GetToken(mathParser.SECOND, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WEEKDAY() { return GetToken(mathParser.WEEKDAY, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DATEDIF() { return GetToken(mathParser.DATEDIF, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DAYS360() { return GetToken(mathParser.DAYS360, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EDATE() { return GetToken(mathParser.EDATE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EOMONTH() { return GetToken(mathParser.EOMONTH, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NETWORKDAYS() { return GetToken(mathParser.NETWORKDAYS, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WORKDAY() { return GetToken(mathParser.WORKDAY, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WEEKNUM() { return GetToken(mathParser.WEEKNUM, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MAX() { return GetToken(mathParser.MAX, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MEDIAN() { return GetToken(mathParser.MEDIAN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MIN() { return GetToken(mathParser.MIN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode QUARTILE() { return GetToken(mathParser.QUARTILE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MODE() { return GetToken(mathParser.MODE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LARGE() { return GetToken(mathParser.LARGE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SMALL() { return GetToken(mathParser.SMALL, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PERCENTILE() { return GetToken(mathParser.PERCENTILE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PERCENTRANK() { return GetToken(mathParser.PERCENTRANK, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AVERAGE() { return GetToken(mathParser.AVERAGE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AVERAGEIF() { return GetToken(mathParser.AVERAGEIF, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GEOMEAN() { return GetToken(mathParser.GEOMEAN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HARMEAN() { return GetToken(mathParser.HARMEAN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COUNT() { return GetToken(mathParser.COUNT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COUNTIF() { return GetToken(mathParser.COUNTIF, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUM() { return GetToken(mathParser.SUM, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUMIF() { return GetToken(mathParser.SUMIF, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AVEDEV() { return GetToken(mathParser.AVEDEV, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STDEV() { return GetToken(mathParser.STDEV, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STDEVP() { return GetToken(mathParser.STDEVP, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEVSQ() { return GetToken(mathParser.DEVSQ, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VAR() { return GetToken(mathParser.VAR, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VARP() { return GetToken(mathParser.VARP, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NORMDIST() { return GetToken(mathParser.NORMDIST, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NORMINV() { return GetToken(mathParser.NORMINV, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NORMSDIST() { return GetToken(mathParser.NORMSDIST, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NORMSINV() { return GetToken(mathParser.NORMSINV, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BETADIST() { return GetToken(mathParser.BETADIST, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BETAINV() { return GetToken(mathParser.BETAINV, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BINOMDIST() { return GetToken(mathParser.BINOMDIST, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EXPONDIST() { return GetToken(mathParser.EXPONDIST, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FDIST() { return GetToken(mathParser.FDIST, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FINV() { return GetToken(mathParser.FINV, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FISHER() { return GetToken(mathParser.FISHER, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FISHERINV() { return GetToken(mathParser.FISHERINV, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GAMMADIST() { return GetToken(mathParser.GAMMADIST, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GAMMAINV() { return GetToken(mathParser.GAMMAINV, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GAMMALN() { return GetToken(mathParser.GAMMALN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HYPGEOMDIST() { return GetToken(mathParser.HYPGEOMDIST, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOGINV() { return GetToken(mathParser.LOGINV, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOGNORMDIST() { return GetToken(mathParser.LOGNORMDIST, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NEGBINOMDIST() { return GetToken(mathParser.NEGBINOMDIST, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode POISSON() { return GetToken(mathParser.POISSON, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TDIST() { return GetToken(mathParser.TDIST, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TINV() { return GetToken(mathParser.TINV, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WEIBULL() { return GetToken(mathParser.WEIBULL, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode URLENCODE() { return GetToken(mathParser.URLENCODE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode URLDECODE() { return GetToken(mathParser.URLDECODE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HTMLENCODE() { return GetToken(mathParser.HTMLENCODE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HTMLDECODE() { return GetToken(mathParser.HTMLDECODE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BASE64TOTEXT() { return GetToken(mathParser.BASE64TOTEXT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BASE64URLTOTEXT() { return GetToken(mathParser.BASE64URLTOTEXT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TEXTTOBASE64() { return GetToken(mathParser.TEXTTOBASE64, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TEXTTOBASE64URL() { return GetToken(mathParser.TEXTTOBASE64URL, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REGEX() { return GetToken(mathParser.REGEX, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REGEXREPALCE() { return GetToken(mathParser.REGEXREPALCE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISREGEX() { return GetToken(mathParser.ISREGEX, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GUID() { return GetToken(mathParser.GUID, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MD5() { return GetToken(mathParser.MD5, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SHA1() { return GetToken(mathParser.SHA1, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SHA256() { return GetToken(mathParser.SHA256, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SHA512() { return GetToken(mathParser.SHA512, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CRC32() { return GetToken(mathParser.CRC32, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HMACMD5() { return GetToken(mathParser.HMACMD5, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HMACSHA1() { return GetToken(mathParser.HMACSHA1, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HMACSHA256() { return GetToken(mathParser.HMACSHA256, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HMACSHA512() { return GetToken(mathParser.HMACSHA512, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRIMSTART() { return GetToken(mathParser.TRIMSTART, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRIMEND() { return GetToken(mathParser.TRIMEND, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INDEXOF() { return GetToken(mathParser.INDEXOF, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LASTINDEXOF() { return GetToken(mathParser.LASTINDEXOF, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SPLIT() { return GetToken(mathParser.SPLIT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode JOIN() { return GetToken(mathParser.JOIN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUBSTRING() { return GetToken(mathParser.SUBSTRING, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STARTSWITH() { return GetToken(mathParser.STARTSWITH, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ENDSWITH() { return GetToken(mathParser.ENDSWITH, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNULLOREMPTY() { return GetToken(mathParser.ISNULLOREMPTY, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNULLORWHITESPACE() { return GetToken(mathParser.ISNULLORWHITESPACE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REMOVESTART() { return GetToken(mathParser.REMOVESTART, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REMOVEEND() { return GetToken(mathParser.REMOVEEND, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode JSON() { return GetToken(mathParser.JSON, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VLOOKUP() { return GetToken(mathParser.VLOOKUP, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOOKUP() { return GetToken(mathParser.LOOKUP, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDYEARS() { return GetToken(mathParser.ADDYEARS, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDMONTHS() { return GetToken(mathParser.ADDMONTHS, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDDAYS() { return GetToken(mathParser.ADDDAYS, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDHOURS() { return GetToken(mathParser.ADDHOURS, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDMINUTES() { return GetToken(mathParser.ADDMINUTES, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDSECONDS() { return GetToken(mathParser.ADDSECONDS, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TIMESTAMP() { return GetToken(mathParser.TIMESTAMP, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NULL() { return GetToken(mathParser.NULL, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAMETER() { return GetToken(mathParser.PARAMETER, 0); }
+		//public ITerminalNode E() { return GetToken(47, 0); }
+		//public ITerminalNode IF() { return GetToken(31, 0); }
+		//public ITerminalNode IFERROR() { return GetToken(32, 0); }
+		//public ITerminalNode ISNUMBER() { return GetToken(33, 0); }
+		//public ITerminalNode ISTEXT() { return GetToken(34, 0); }
+		//public ITerminalNode ISERROR() { return GetToken(35, 0); }
+		//public ITerminalNode ISNONTEXT() { return GetToken(36, 0); }
+		//public ITerminalNode ISLOGICAL() { return GetToken(37, 0); }
+		//public ITerminalNode ISEVEN() { return GetToken(38, 0); }
+		//public ITerminalNode ISODD() { return GetToken(39, 0); }
+		//public ITerminalNode ISNULL() { return GetToken(40, 0); }
+		//public ITerminalNode ISNULLORERROR() { return GetToken(41, 0); }
+		//public ITerminalNode AND() { return GetToken(42, 0); }
+		//public ITerminalNode OR() { return GetToken(43, 0); }
+		//public ITerminalNode NOT() { return GetToken(44, 0); }
+		//public ITerminalNode TRUE() { return GetToken(45, 0); }
+		//public ITerminalNode FALSE() { return GetToken(46, 0); }
+		//public ITerminalNode PI() { return GetToken(48, 0); }
+		//public ITerminalNode DEC2BIN() { return GetToken(49, 0); }
+		//public ITerminalNode DEC2HEX() { return GetToken(50, 0); }
+		//public ITerminalNode DEC2OCT() { return GetToken(51, 0); }
+		//public ITerminalNode HEX2BIN() { return GetToken(52, 0); }
+		//public ITerminalNode HEX2DEC() { return GetToken(53, 0); }
+		//public ITerminalNode HEX2OCT() { return GetToken(54, 0); }
+		//public ITerminalNode OCT2BIN() { return GetToken(55, 0); }
+		//public ITerminalNode OCT2DEC() { return GetToken(56, 0); }
+		//public ITerminalNode OCT2HEX() { return GetToken(57, 0); }
+		//public ITerminalNode BIN2OCT() { return GetToken(58, 0); }
+		//public ITerminalNode BIN2DEC() { return GetToken(59, 0); }
+		//public ITerminalNode BIN2HEX() { return GetToken(60, 0); }
+		//public ITerminalNode ABS() { return GetToken(61, 0); }
+		//public ITerminalNode QUOTIENT() { return GetToken(62, 0); }
+		//public ITerminalNode MOD() { return GetToken(63, 0); }
+		//public ITerminalNode SIGN() { return GetToken(64, 0); }
+		//public ITerminalNode SQRT() { return GetToken(65, 0); }
+		//public ITerminalNode TRUNC() { return GetToken(66, 0); }
+		//public ITerminalNode INT() { return GetToken(67, 0); }
+		//public ITerminalNode GCD() { return GetToken(68, 0); }
+		//public ITerminalNode LCM() { return GetToken(69, 0); }
+		//public ITerminalNode COMBIN() { return GetToken(70, 0); }
+		//public ITerminalNode PERMUT() { return GetToken(71, 0); }
+		//public ITerminalNode DEGREES() { return GetToken(72, 0); }
+		//public ITerminalNode RADIANS() { return GetToken(73, 0); }
+		//public ITerminalNode COS() { return GetToken(74, 0); }
+		//public ITerminalNode COSH() { return GetToken(75, 0); }
+		//public ITerminalNode SIN() { return GetToken(76, 0); }
+		//public ITerminalNode SINH() { return GetToken(77, 0); }
+		//public ITerminalNode TAN() { return GetToken(78, 0); }
+		//public ITerminalNode TANH() { return GetToken(79, 0); }
+		//public ITerminalNode ACOS() { return GetToken(80, 0); }
+		//public ITerminalNode ACOSH() { return GetToken(81, 0); }
+		//public ITerminalNode ASIN() { return GetToken(82, 0); }
+		//public ITerminalNode ASINH() { return GetToken(83, 0); }
+		//public ITerminalNode ATAN() { return GetToken(84, 0); }
+		//public ITerminalNode ATANH() { return GetToken(85, 0); }
+		//public ITerminalNode ATAN2() { return GetToken(86, 0); }
+		//public ITerminalNode ROUND() { return GetToken(87, 0); }
+		//public ITerminalNode ROUNDDOWN() { return GetToken(88, 0); }
+		//public ITerminalNode ROUNDUP() { return GetToken(89, 0); }
+		//public ITerminalNode CEILING() { return GetToken(90, 0); }
+		//public ITerminalNode FLOOR() { return GetToken(91, 0); }
+		//public ITerminalNode EVEN() { return GetToken(92, 0); }
+		//public ITerminalNode ODD() { return GetToken(93, 0); }
+		//public ITerminalNode MROUND() { return GetToken(94, 0); }
+		//public ITerminalNode RAND() { return GetToken(95, 0); }
+		//public ITerminalNode RANDBETWEEN() { return GetToken(96, 0); }
+		//public ITerminalNode FACT() { return GetToken(97, 0); }
+		//public ITerminalNode FACTDOUBLE() { return GetToken(98, 0); }
+		//public ITerminalNode POWER() { return GetToken(99, 0); }
+		//public ITerminalNode EXP() { return GetToken(100, 0); }
+		//public ITerminalNode LN() { return GetToken(101, 0); }
+		//public ITerminalNode LOG() { return GetToken(102, 0); }
+		//public ITerminalNode LOG10() { return GetToken(103, 0); }
+		//public ITerminalNode MULTINOMIAL() { return GetToken(104, 0); }
+		//public ITerminalNode PRODUCT() { return GetToken(105, 0); }
+		//public ITerminalNode SQRTPI() { return GetToken(106, 0); }
+		//public ITerminalNode SUMSQ() { return GetToken(107, 0); }
+		//public ITerminalNode ASC() { return GetToken(108, 0); }
+		//public ITerminalNode JIS() { return GetToken(109, 0); }
+		//public ITerminalNode CHAR() { return GetToken(110, 0); }
+		//public ITerminalNode CLEAN() { return GetToken(111, 0); }
+		//public ITerminalNode CODE() { return GetToken(112, 0); }
+		//public ITerminalNode CONCATENATE() { return GetToken(113, 0); }
+		//public ITerminalNode EXACT() { return GetToken(114, 0); }
+		//public ITerminalNode FIND() { return GetToken(115, 0); }
+		//public ITerminalNode FIXED() { return GetToken(116, 0); }
+		//public ITerminalNode LEFT() { return GetToken(117, 0); }
+		//public ITerminalNode LEN() { return GetToken(118, 0); }
+		//public ITerminalNode LOWER() { return GetToken(119, 0); }
+		//public ITerminalNode MID() { return GetToken(120, 0); }
+		//public ITerminalNode PROPER() { return GetToken(121, 0); }
+		//public ITerminalNode REPLACE() { return GetToken(122, 0); }
+		//public ITerminalNode REPT() { return GetToken(123, 0); }
+		//public ITerminalNode RIGHT() { return GetToken(124, 0); }
+		//public ITerminalNode RMB() { return GetToken(125, 0); }
+		//public ITerminalNode SEARCH() { return GetToken(126, 0); }
+		//public ITerminalNode SUBSTITUTE() { return GetToken(127, 0); }
+		//public ITerminalNode T() { return GetToken(128, 0); }
+		//public ITerminalNode TEXT() { return GetToken(129, 0); }
+		//public ITerminalNode TRIM() { return GetToken(130, 0); }
+		//public ITerminalNode UPPER() { return GetToken(131, 0); }
+		//public ITerminalNode VALUE() { return GetToken(132, 0); }
+		//public ITerminalNode DATEVALUE() { return GetToken(133, 0); }
+		//public ITerminalNode TIMEVALUE() { return GetToken(134, 0); }
+		//public ITerminalNode DATE() { return GetToken(135, 0); }
+		//public ITerminalNode TIME() { return GetToken(136, 0); }
+		//public ITerminalNode NOW() { return GetToken(137, 0); }
+		//public ITerminalNode TODAY() { return GetToken(138, 0); }
+		//public ITerminalNode YEAR() { return GetToken(139, 0); }
+		//public ITerminalNode MONTH() { return GetToken(140, 0); }
+		//public ITerminalNode DAY() { return GetToken(141, 0); }
+		//public ITerminalNode HOUR() { return GetToken(142, 0); }
+		//public ITerminalNode MINUTE() { return GetToken(143, 0); }
+		//public ITerminalNode SECOND() { return GetToken(144, 0); }
+		//public ITerminalNode WEEKDAY() { return GetToken(145, 0); }
+		//public ITerminalNode DATEDIF() { return GetToken(146, 0); }
+		//public ITerminalNode DAYS360() { return GetToken(147, 0); }
+		//public ITerminalNode EDATE() { return GetToken(148, 0); }
+		//public ITerminalNode EOMONTH() { return GetToken(149, 0); }
+		//public ITerminalNode NETWORKDAYS() { return GetToken(150, 0); }
+		//public ITerminalNode WORKDAY() { return GetToken(151, 0); }
+		//public ITerminalNode WEEKNUM() { return GetToken(152, 0); }
+		//public ITerminalNode MAX() { return GetToken(153, 0); }
+		//public ITerminalNode MEDIAN() { return GetToken(154, 0); }
+		//public ITerminalNode MIN() { return GetToken(155, 0); }
+		//public ITerminalNode QUARTILE() { return GetToken(156, 0); }
+		//public ITerminalNode MODE() { return GetToken(157, 0); }
+		//public ITerminalNode LARGE() { return GetToken(158, 0); }
+		//public ITerminalNode SMALL() { return GetToken(159, 0); }
+		//public ITerminalNode PERCENTILE() { return GetToken(160, 0); }
+		//public ITerminalNode PERCENTRANK() { return GetToken(161, 0); }
+		//public ITerminalNode AVERAGE() { return GetToken(162, 0); }
+		//public ITerminalNode AVERAGEIF() { return GetToken(163, 0); }
+		//public ITerminalNode GEOMEAN() { return GetToken(164, 0); }
+		//public ITerminalNode HARMEAN() { return GetToken(165, 0); }
+		//public ITerminalNode COUNT() { return GetToken(166, 0); }
+		//public ITerminalNode COUNTIF() { return GetToken(167, 0); }
+		//public ITerminalNode SUM() { return GetToken(168, 0); }
+		//public ITerminalNode SUMIF() { return GetToken(169, 0); }
+		//public ITerminalNode AVEDEV() { return GetToken(170, 0); }
+		//public ITerminalNode STDEV() { return GetToken(171, 0); }
+		//public ITerminalNode STDEVP() { return GetToken(172, 0); }
+		//public ITerminalNode DEVSQ() { return GetToken(173, 0); }
+		//public ITerminalNode VAR() { return GetToken(174, 0); }
+		//public ITerminalNode VARP() { return GetToken(175, 0); }
+		//public ITerminalNode NORMDIST() { return GetToken(176, 0); }
+		//public ITerminalNode NORMINV() { return GetToken(177, 0); }
+		//public ITerminalNode NORMSDIST() { return GetToken(178, 0); }
+		//public ITerminalNode NORMSINV() { return GetToken(179, 0); }
+		//public ITerminalNode BETADIST() { return GetToken(180, 0); }
+		//public ITerminalNode BETAINV() { return GetToken(181, 0); }
+		//public ITerminalNode BINOMDIST() { return GetToken(182, 0); }
+		//public ITerminalNode EXPONDIST() { return GetToken(183, 0); }
+		//public ITerminalNode FDIST() { return GetToken(184, 0); }
+		//public ITerminalNode FINV() { return GetToken(185, 0); }
+		//public ITerminalNode FISHER() { return GetToken(186, 0); }
+		//public ITerminalNode FISHERINV() { return GetToken(187, 0); }
+		//public ITerminalNode GAMMADIST() { return GetToken(188, 0); }
+		//public ITerminalNode GAMMAINV() { return GetToken(189, 0); }
+		//public ITerminalNode GAMMALN() { return GetToken(190, 0); }
+		//public ITerminalNode HYPGEOMDIST() { return GetToken(191, 0); }
+		//public ITerminalNode LOGINV() { return GetToken(192, 0); }
+		//public ITerminalNode LOGNORMDIST() { return GetToken(193, 0); }
+		//public ITerminalNode NEGBINOMDIST() { return GetToken(194, 0); }
+		//public ITerminalNode POISSON() { return GetToken(195, 0); }
+		//public ITerminalNode TDIST() { return GetToken(196, 0); }
+		//public ITerminalNode TINV() { return GetToken(197, 0); }
+		//public ITerminalNode WEIBULL() { return GetToken(198, 0); }
+		//public ITerminalNode URLENCODE() { return GetToken(199, 0); }
+		//public ITerminalNode URLDECODE() { return GetToken(200, 0); }
+		//public ITerminalNode HTMLENCODE() { return GetToken(201, 0); }
+		//public ITerminalNode HTMLDECODE() { return GetToken(202, 0); }
+		//public ITerminalNode BASE64TOTEXT() { return GetToken(203, 0); }
+		//public ITerminalNode BASE64URLTOTEXT() { return GetToken(204, 0); }
+		//public ITerminalNode TEXTTOBASE64() { return GetToken(205, 0); }
+		//public ITerminalNode TEXTTOBASE64URL() { return GetToken(206, 0); }
+		//public ITerminalNode REGEX() { return GetToken(207, 0); }
+		//public ITerminalNode REGEXREPALCE() { return GetToken(208, 0); }
+		//public ITerminalNode ISREGEX() { return GetToken(209, 0); }
+		//public ITerminalNode GUID() { return GetToken(210, 0); }
+		//public ITerminalNode MD5() { return GetToken(211, 0); }
+		//public ITerminalNode SHA1() { return GetToken(212, 0); }
+		//public ITerminalNode SHA256() { return GetToken(213, 0); }
+		//public ITerminalNode SHA512() { return GetToken(214, 0); }
+		//public ITerminalNode CRC32() { return GetToken(215, 0); }
+		//public ITerminalNode HMACMD5() { return GetToken(216, 0); }
+		//public ITerminalNode HMACSHA1() { return GetToken(217, 0); }
+		//public ITerminalNode HMACSHA256() { return GetToken(218, 0); }
+		//public ITerminalNode HMACSHA512() { return GetToken(219, 0); }
+		//public ITerminalNode TRIMSTART() { return GetToken(220, 0); }
+		//public ITerminalNode TRIMEND() { return GetToken(221, 0); }
+		//public ITerminalNode INDEXOF() { return GetToken(222, 0); }
+		//public ITerminalNode LASTINDEXOF() { return GetToken(223, 0); }
+		//public ITerminalNode SPLIT() { return GetToken(224, 0); }
+		//public ITerminalNode JOIN() { return GetToken(225, 0); }
+		//public ITerminalNode SUBSTRING() { return GetToken(226, 0); }
+		//public ITerminalNode STARTSWITH() { return GetToken(227, 0); }
+		//public ITerminalNode ENDSWITH() { return GetToken(228, 0); }
+		//public ITerminalNode ISNULLOREMPTY() { return GetToken(229, 0); }
+		//public ITerminalNode ISNULLORWHITESPACE() { return GetToken(230, 0); }
+		//public ITerminalNode REMOVESTART() { return GetToken(231, 0); }
+		//public ITerminalNode REMOVEEND() { return GetToken(232, 0); }
+		//public ITerminalNode JSON() { return GetToken(233, 0); }
+		//public ITerminalNode VLOOKUP() { return GetToken(234, 0); }
+		//public ITerminalNode LOOKUP() { return GetToken(235, 0); }
+		//public ITerminalNode ADDYEARS() { return GetToken(237, 0); }
+		//public ITerminalNode ADDMONTHS() { return GetToken(238, 0); }
+		//public ITerminalNode ADDDAYS() { return GetToken(239, 0); }
+		//public ITerminalNode ADDHOURS() { return GetToken(240, 0); }
+		//public ITerminalNode ADDMINUTES() { return GetToken(241, 0); }
+		//public ITerminalNode ADDSECONDS() { return GetToken(242, 0); }
+		//public ITerminalNode TIMESTAMP() { return GetToken(243, 0); }
+		//public ITerminalNode NULL() { return GetToken(30, 0); }
+		//public ITerminalNode PARAMETER() { return GetToken(244, 0); }
 		public Parameter2Context(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_parameter2; } }
-		[System.Diagnostics.DebuggerNonUserCode]
+		public override int RuleIndex { get { return 2; } }
+		
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitParameter2(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitParameter2(this);
+			
 		}
 	}
 
-	[RuleVersion(0)]
+	
 	public Parameter2Context parameter2() {
 		Parameter2Context _localctx = new Parameter2Context(Context, State);
-		EnterRule(_localctx, 4, RULE_parameter2);
+		EnterRule(_localctx, 4, 2);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);

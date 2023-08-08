@@ -35,6 +35,14 @@ namespace ToolGood.Algorithm
             // chinese time
             dt = engine.TryEvaluate("DATEVALUE('1691234899',0)", DateTime.Now);
             Assert.AreEqual(dt, new DateTime(2023, 8, 5, 19, 28, 19));
+
+            // chinese time
+            dt = engine.TryEvaluate("DATEVALUE('1691234899000')", DateTime.Now);
+            Assert.AreEqual(dt, new DateTime(2023, 8, 5, 19, 28, 19));
+
+            // chinese time
+            dt = engine.TryEvaluate("DATEVALUE('1691234899')", DateTime.Now);
+            Assert.AreEqual(dt, new DateTime(2023, 8, 5, 19, 28, 19));
         }
         [Test]
         public void TIMESTAMP_Test()

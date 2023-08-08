@@ -28,7 +28,6 @@ using Antlr4.Runtime.Misc;
 using DFA = Antlr4.Runtime.Dfa.DFA;
 
 [System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.13.0")]
-[System.CLSCompliant(false)]
  partial class mathLexer : Lexer {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
