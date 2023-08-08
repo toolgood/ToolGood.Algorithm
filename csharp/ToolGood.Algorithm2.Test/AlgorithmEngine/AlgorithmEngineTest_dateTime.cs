@@ -28,6 +28,24 @@ namespace ToolGood.Algorithm
 
         }
         [Test]
+        public void TIMESTAMP_Test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            engine.UseLocalTime = true;
+
+            // chinese time
+            var dt = engine.TryEvaluate("TIMESTAMP('2016-01-01')", 0L);
+            Assert.AreEqual(dt, 1451577600000L);
+
+            dt = engine.TryEvaluate("TIMESTAMP('2016-01-01',0)", 0L);
+            Assert.AreEqual(dt, 1451577600000L);
+
+            dt = engine.TryEvaluate("TIMESTAMP('2016-01-01',1)", 0L);
+            Assert.AreEqual(dt, 1451577600L);
+        }
+
+
+        [Test]
         public void TIMEVALUE_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
@@ -214,7 +232,7 @@ namespace ToolGood.Algorithm
         public void Add_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            var   dt = engine.TryEvaluate("'2000-02-01'.addYears(1).year()", 0);
+            var dt = engine.TryEvaluate("'2000-02-01'.addYears(1).year()", 0);
             Assert.AreEqual(dt, 2001);
 
             dt = engine.TryEvaluate("'2000-02-01'.AddMonths(1).Month()", 0);
@@ -231,7 +249,7 @@ namespace ToolGood.Algorithm
 
             dt = engine.TryEvaluate("'2000-02-01 12:05:06'.AddSeconds(1).Second()", 0);
             Assert.AreEqual(dt, 7);
- 
+
         }
 
     }
