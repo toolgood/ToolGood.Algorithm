@@ -106,7 +106,7 @@ expr:
 	| expr '[' expr ']'											# GetJsonValue_fun
 	| expr '.' parameter2										# GetJsonValue_fun
  
-// è¿ç®—ç¬¦ä¼˜å…ˆçº§ å¼€å§‹
+// ÔËËã·ûÓÅÏÈ¼¶ ¿ªÊ¼
 	| '(' expr ')'											# Bracket_fun
 	| '!' expr												# NOT_fun
 	| expr '%'												# Percentage_fun
@@ -129,7 +129,7 @@ expr:
 	| expr op = ('&&' | AND) expr								# AndOr_fun
 	| expr op = ('||' | OR) expr								# AndOr_fun
 	| expr '?'  expr ':' expr 									# IF_fun
-// è¿ç®—ç¬¦ä¼˜å…ˆçº§ ç»“æŸ
+// ÔËËã·ûÓÅÏÈ¼¶ ½áÊø
 
 	| ARRAY '(' expr (',' expr)* ')'							# Array_fun
 	| IF '(' expr ',' expr (',' expr)? ')'					# IF_fun
@@ -584,7 +584,7 @@ STRING: '\'' ( ~'\'' | '\\\'')* '\''
 	;
 NULL: 'NULL';
 
-// é€»è¾‘å‡½æ•°
+// Âß¼­º¯Êý
 IF: 'IF';
 IFERROR: 'IFERROR';
 ISNUMBER: 'ISNUMBER';
@@ -601,18 +601,18 @@ OR: 'OR';
 NOT: 'NOT';
 TRUE: 'TRUE';
 FALSE: 'FALSE';
-// æ•°å­¦ä¸Žä¸‰è§’å‡½æ•°
+// ÊýÑ§ÓëÈý½Çº¯Êý
 E: 'E';
 PI: 'PI';
 DEC2BIN: 'DEC2BIN';
 DEC2HEX: 'DEC2HEX';
 DEC2OCT: 'DEC2OCT';
-HEX2BIN: 'HEX2BIN'; //  å°†åå…­è¿›åˆ¶æ•°è½¬æ¢ä¸ºäºŒè¿›åˆ¶æ•°
-HEX2DEC: 'HEX2DEC'; // å°†åå…­è¿›åˆ¶æ•°è½¬æ¢ä¸ºåè¿›åˆ¶æ•°
-HEX2OCT: 'HEX2OCT'; //  å°†åå…­è¿›åˆ¶æ•°è½¬æ¢ä¸ºå…«è¿›åˆ¶æ•°
-OCT2BIN: 'OCT2BIN'; //   å°†å…«è¿›åˆ¶æ•°è½¬æ¢ä¸ºäºŒè¿›åˆ¶æ•°
-OCT2DEC: 'OCT2DEC'; //   å°†å…«è¿›åˆ¶æ•°è½¬æ¢ä¸ºåè¿›åˆ¶æ•°
-OCT2HEX: 'OCT2HEX'; //  å°†å…«è¿›åˆ¶æ•°è½¬æ¢ä¸ºåå…­è¿›åˆ¶æ•°
+HEX2BIN: 'HEX2BIN'; //  ½«Ê®Áù½øÖÆÊý×ª»»Îª¶þ½øÖÆÊý
+HEX2DEC: 'HEX2DEC'; // ½«Ê®Áù½øÖÆÊý×ª»»ÎªÊ®½øÖÆÊý
+HEX2OCT: 'HEX2OCT'; //  ½«Ê®Áù½øÖÆÊý×ª»»Îª°Ë½øÖÆÊý
+OCT2BIN: 'OCT2BIN'; //   ½«°Ë½øÖÆÊý×ª»»Îª¶þ½øÖÆÊý
+OCT2DEC: 'OCT2DEC'; //   ½«°Ë½øÖÆÊý×ª»»ÎªÊ®½øÖÆÊý
+OCT2HEX: 'OCT2HEX'; //  ½«°Ë½øÖÆÊý×ª»»ÎªÊ®Áù½øÖÆÊý
 BIN2OCT: 'BIN2OCT';
 BIN2DEC: 'BIN2DEC';
 BIN2HEX: 'BIN2HEX';
@@ -663,7 +663,7 @@ MULTINOMIAL: 'MULTINOMIAL';
 PRODUCT: 'PRODUCT';
 SQRTPI: 'SQRTPI';
 SUMSQ: 'SUMSQ';
-// æ–‡æœ¬å‡½æ•°
+// ÎÄ±¾º¯Êý
 ASC: 'ASC';
 JIS: 'JIS' | 'WIDECHAR';
 CHAR: 'CHAR';
@@ -689,7 +689,7 @@ TEXT: 'TEXT';
 TRIM: 'TRIM';
 UPPER: 'UPPER' | 'TOUPPER';
 VALUE: 'VALUE';
-// æ—¥æœŸä¸Žæ—¶é—´å‡½æ•°
+// ÈÕÆÚÓëÊ±¼äº¯Êý
 DATEVALUE: 'DATEVALUE';
 TIMEVALUE: 'TIMEVALUE';
 DATE: 'DATE';
@@ -710,7 +710,7 @@ EOMONTH: 'EOMONTH';
 NETWORKDAYS: 'NETWORKDAYS';
 WORKDAY: 'WORKDAY';
 WEEKNUM: 'WEEKNUM';
-// ç»Ÿè®¡å‡½æ•°
+// Í³¼Æº¯Êý
 MAX: 'MAX';
 MEDIAN: 'MEDIAN';
 MIN: 'MIN';
@@ -757,7 +757,7 @@ POISSON: 'POISSON';
 TDIST: 'TDIST';
 TINV: 'TINV';
 WEIBULL: 'WEIBULL';
-// å¢žåŠ å‡½æ•° ç±»C# æ–¹æ³•
+// Ôö¼Óº¯Êý ÀàC# ·½·¨
 URLENCODE: 'URLENCODE';
 URLDECODE: 'URLDECODE';
 HTMLENCODE: 'HTMLENCODE';
@@ -807,7 +807,7 @@ TIMESTAMP:'TIMESTAMP';
 
 PARAMETER: ([A-Z_]| FullWidthLetter)([A-Z0-9_] | FullWidthLetter)*;
 PARAMETER2: '{' (~('{'|'}'))+ '}'
-			| 'ã€' (~('ã€'|'ã€‘'))+ 'ã€‘'
+			| '¡¾' (~('¡¾'|'¡¿'))+ '¡¿'
 			| '#' (~('#'))+ '#'
 			| '@' ([A-Z_]| FullWidthLetter)([A-Z0-9_] | FullWidthLetter)*
 			;

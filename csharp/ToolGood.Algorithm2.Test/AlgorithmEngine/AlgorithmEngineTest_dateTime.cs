@@ -18,6 +18,13 @@ namespace ToolGood.Algorithm
             dt = engine.TryEvaluate("DATEVALUE（'2016-01-01'）", DateTime.MinValue);
             Assert.AreEqual(dt, new DateTime(2016, 1, 1));
 
+            // chinese time
+            dt = engine.TryEvaluate("DATEVALUE('1691234899000',0)", DateTime.Now);
+            Assert.AreEqual(dt.ToLocalTime(), new DateTime(2023, 8, 5, 19, 28, 19));
+
+            // chinese time
+            dt = engine.TryEvaluate("DATEVALUE('1691234899',0)", DateTime.Now);
+            Assert.AreEqual(dt.ToLocalTime(), new DateTime(2023, 8, 5, 19, 28, 19));
 
         }
         [Test]

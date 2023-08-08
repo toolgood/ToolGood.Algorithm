@@ -234,6 +234,14 @@ namespace ToolGood.Algorithm
             return new DateTime(Year ?? 0, Month ?? 0, Day ?? 0, Hour, Minute, Second);
         }
         /// <summary>
+        /// 转DateTime
+        /// </summary>
+        /// <returns></returns>
+        public DateTime ToDateTime(DateTimeKind dateTimeKind)
+        {
+            return new DateTime(Year ?? 0, Month ?? 0, Day ?? 0, Hour, Minute, Second, dateTimeKind);
+        }
+        /// <summary>
         /// 转TimeSpan
         /// </summary>
         /// <returns></returns>

@@ -1157,5 +1157,10 @@ namespace ToolGood.Algorithm.Internals
         {
             return VisitChildren(context);
         }
+
+        public object VisitTIMESTAMP_fun([NotNull] mathParser.TIMESTAMP_funContext context)
+        {
+            return VisitChildren(context);
+        }
     }
 }

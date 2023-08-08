@@ -30,6 +30,10 @@ namespace ToolGood.Algorithm
         /// 是否忽略大小写
         /// </summary>
         public bool IgnoreCase { get; private set; }
+        /// <summary>
+        /// 使用 本地时间， 影响 时间截转化
+        /// </summary>
+        public bool UseLocalTime { get; set; } = false;
 
         private ProgContext _context;
         private readonly Dictionary<string, Operand> _tempdict;
@@ -368,6 +372,7 @@ namespace ToolGood.Algorithm
             visitor.GetParameter += GetDiyParameterInside;
             visitor.excelIndex = UseExcelIndex ? 1 : 0;
             visitor.DiyFunction += ExecuteDiyFunction;
+            visitor.useLocalTime = UseLocalTime;
             return visitor.Visit(_context);
         }
         #endregion

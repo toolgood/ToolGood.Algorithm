@@ -22,6 +22,7 @@ namespace ToolGood.Algorithm.Internals
         public event Func<string, Operand> GetParameter;
         public event Func<string, List<Operand>, Operand> DiyFunction;
         public int excelIndex;
+        public bool useLocalTime;
 
         #region base
 
@@ -1172,8 +1173,8 @@ namespace ToolGood.Algorithm.Internals
         public virtual Operand VisitRAND_fun(mathParser.RAND_funContext context)
         {
 #if NETSTANDARD2_1
-			var tick = DateTime.Now.Ticks;
-			Random rand = new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32));
+            var tick = DateTime.Now.Ticks;
+            Random rand = new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32));
 #else
             Random rand = Random.Shared;
 #endif
@@ -1188,8 +1189,8 @@ namespace ToolGood.Algorithm.Internals
             var secondValue = args[1];
 
 #if NETSTANDARD2_1
-			var tick = DateTime.Now.Ticks;
-			Random rand = new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32));
+            var tick = DateTime.Now.Ticks;
+            Random rand = new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32));
 #else
             Random rand = Random.Shared;
 #endif
@@ -1728,13 +1729,78 @@ namespace ToolGood.Algorithm.Internals
 
         public virtual Operand VisitDATEVALUE_fun(mathParser.DATEVALUE_funContext context)
         {
-            var firstValue = context.expr().Accept(this).ToText("Function DATEVALUE parameter is error!");
-            if (firstValue.IsError) { return firstValue; }
-
-            if (DateTime.TryParse(firstValue.TextValue, cultureInfo, DateTimeStyles.None, out DateTime dt)) {
-                return Operand.Create(dt);
+            var args = new List<Operand>();
+            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
+            int type = 1; // 文本转时间
+            if (args.Count == 2) {
+                var secondValue = args[1].ToNumber("Function DATEVALUE parameter 2 is error!");
+                if (secondValue.IsError) { return secondValue; }
+                type = secondValue.IntValue;
+            }
+            if (type == 0) {
+                if (args[0].Type == OperandType.TEXT) {
+                    if (DateTime.TryParse(args[0].TextValue, cultureInfo, DateTimeStyles.None, out DateTime time)) {
+                        return Operand.Create(time);
+                    }
+                }
+                var firstValue = args[0].ToNumber("Function DATEVALUE parameter 1 is error!");
+                if (firstValue.LongValue <= 2958465L) { // 9999-12-31 日时间在excel的数字为 2958465
+                    return firstValue.ToMyDate();
+                }
+                if (firstValue.LongValue <= 253402232399L) { // 9999-12-31 12:59:59 日时间 转 时间截 为 253402232399L， 
+                    var time = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(firstValue.LongValue);
+                    if (useLocalTime) { return Operand.Create(time.ToLocalTime()); }
+                    return Operand.Create(time);
+                }
+                // 注：时间截 253402232399 ms 转时间 为 1978-01-12 05:30:32
+                var time2 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(firstValue.LongValue);
+                if (useLocalTime) { return Operand.Create(time2.ToLocalTime()); }
+                return Operand.Create(time2);
+            } else if (type == 1) {
+                var firstValue = args[0].ToText("Function DATEVALUE parameter 1 is error!");
+                if (firstValue.IsError) { return firstValue; }
+                if (DateTime.TryParse(firstValue.TextValue, cultureInfo, DateTimeStyles.None, out DateTime dt)) {
+                    return Operand.Create(dt);
+                }
+            } else if (type == 2) {
+                return args[0].ToNumber("Function DATEVALUE parameter is error!").ToMyDate();
+            } else if (type == 3) {
+                var firstValue = args[0].ToNumber("Function DATEVALUE parameter 1 is error!");
+                var time = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(firstValue.LongValue);
+                if (useLocalTime) { return Operand.Create(time.ToLocalTime()); }
+                return Operand.Create(time);
+            } else if (type == 4) {
+                var firstValue = args[0].ToNumber("Function DATEVALUE parameter 1 is error!");
+                var time = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(firstValue.LongValue);
+                if (useLocalTime) { return Operand.Create(time.ToLocalTime()); }
+                return Operand.Create(time);
             }
             return Operand.Error("Function DATEVALUE parameter is error!");
+        }
+        public Operand VisitTIMESTAMP_fun(mathParser.TIMESTAMP_funContext context)
+        {
+            var args = new List<Operand>();
+            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
+            int type = 0; // 毫秒
+            if (args.Count == 2) {
+                var secondValue = args[1].ToNumber("Function TIMESTAMP parameter 2 is error!");
+                if (secondValue.IsError) { return secondValue; }
+                type = secondValue.IntValue;
+            }
+            DateTime firstValue;
+            if (useLocalTime) {
+                firstValue = args[0].ToMyDate("Function TIMESTAMP parameter 1 is error!").DateValue.ToDateTime(DateTimeKind.Local).ToUniversalTime();
+            } else {
+                firstValue = args[0].ToMyDate("Function TIMESTAMP parameter 1 is error!").DateValue.ToDateTime(DateTimeKind.Utc);
+            }
+            if (type == 0) {
+                var ms = (firstValue - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds;
+                return Operand.Create(ms);
+            } else if (type == 1) {
+                var s = (firstValue - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
+                return Operand.Create(s);
+            }
+            return Operand.Error("Function TIMESTAMP parameter is error!");
         }
         public virtual Operand VisitTIMEVALUE_fun(mathParser.TIMEVALUE_funContext context)
         {
@@ -3902,6 +3968,8 @@ namespace ToolGood.Algorithm.Internals
             }
             return Operand.Error("DiyFunction is error!");
         }
+
+
 
 
 

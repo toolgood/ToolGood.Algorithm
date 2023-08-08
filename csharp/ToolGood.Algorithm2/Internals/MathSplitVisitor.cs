@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals
 {
-   sealed class MathSplitVisitor : AbstractParseTreeVisitor<ConditionTree>, ImathVisitor<ConditionTree>
+    sealed class MathSplitVisitor : AbstractParseTreeVisitor<ConditionTree>, ImathVisitor<ConditionTree>
     {
         public ConditionTree VisitProg(mathParser.ProgContext context)
         {
@@ -22,7 +22,7 @@ namespace ToolGood.Algorithm.Internals
             } else {
                 tree.Type = ConditionTreeType.Or;
             }
-            var exprs= context.expr();
+            var exprs = context.expr();
 
             tree.Nodes.Add(exprs[0].Accept(this));
             tree.Nodes.Add(exprs[1].Accept(this));
@@ -1158,6 +1158,11 @@ namespace ToolGood.Algorithm.Internals
         }
 
         public ConditionTree VisitADDHOURS_fun([NotNull] mathParser.ADDHOURS_funContext context)
+        {
+            return Visit_fun(context);
+        }
+
+        public ConditionTree VisitTIMESTAMP_fun([NotNull] mathParser.TIMESTAMP_funContext context)
         {
             return Visit_fun(context);
         }
