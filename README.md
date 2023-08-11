@@ -151,6 +151,7 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
 
 
 注3：函数名带▲，表示受`Excel索引`影响，
+
 #### 逻辑函数
 <table>
     <tr><td>函数名</td><td>说明</td><td>示例</td></tr>
@@ -874,7 +875,7 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
         <td>gammaInv(0.2, 3, 4) <br>>>6.140176811</td>
     </tr>
     <tr>
-        <td>GAMMALN</td><td>gammaLn(数值)<br>返回 γ 累积分布函数的反函数</td>
+        <td>GAMMALN</td><td>gammaLn(数值)<br>返回 γ 的自然对数</td>
         <td>GAMMALN(4) <br>>>1.791759469</td>
     </tr>
     <tr>
@@ -950,7 +951,7 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
         <td>TextToBase64Url ★</td><td>TextToBase64Url(文本[, 编码类型])<br>   将字符串 转换为Url类型的Base64 字符串。</td> <td></td>
     </tr>
 	<tr>
-        <td>Regex ★ ▲</td><td>Regex(文本, 匹配文本)<br>   并返回匹配的字符串。</td> <td></td>
+        <td>Regex ★ ▲</td><td>Regex(文本, 匹配文本])<br>   并返回匹配的字符串。</td> <td></td>
     </tr>
 	<tr>
         <td>RegexRepalce ★</td><td>RegexRepalce(文本, 匹配文本, 替换文本)<br>  匹配替换字符串。</td> <td></td>
@@ -1006,7 +1007,7 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
 	<tr>
         <td>Join ★</td><td>Join(文本1, 文本2....)<br>  合并字符串。</td> <td></td>
     </tr>
-	<tr>
+    <tr style="color:red">
         <td>Substring ★ ▲</td><td>Substring(文本, 位置)<br>Substring(文本, 位置, 数量)<br>  切割字符串。</td> <td></td>
     </tr>
 	<tr>
@@ -1031,3 +1032,4 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
         <td>Json ★</td><td>json(文本)<br>动态json查询。</td> <td></td>
     </tr>
 </table>
+ 

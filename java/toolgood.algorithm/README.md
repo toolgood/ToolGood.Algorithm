@@ -876,7 +876,7 @@ public class Cylinder extends AlgorithmEngine {
         <td>gammaInv(0.2, 3, 4) <br>>>6.140176811</td>
     </tr>
     <tr>
-        <td>GAMMALN</td><td>gammaLn(数值)<br>返回 γ 累积分布函数的反函数</td>
+        <td>GAMMALN</td><td>gammaLn(数值)<br>返回 γ 的自然对数</td>
         <td>GAMMALN(4) <br>>>1.791759469</td>
     </tr>
     <tr>
