@@ -2356,7 +2356,8 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             }
             args.add(aa);
         }
-        int type = 0; 
+        if (args.get(0).Type() == OperandType.DATE) { return args.get(0); }
+        int type = 0;
         if (args.size() == 2) {
             Operand secondValue = args.get(1).ToNumber("Function DATEVALUE parameter 2 is error!");
             if (secondValue.IsError()) {
