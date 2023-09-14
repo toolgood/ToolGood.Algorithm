@@ -192,6 +192,14 @@ public class AlgorithmEngineTest_dateTime {
         dt = engine.TryEvaluate("DATEDIF('1975-1-30','2017-1-7','d')", 0);
         assertEquals(dt, 15318);
 
+        dt = engine.TryEvaluate("DATEDIF('2023-9-30','2023-10-2','d')", 0);
+        assertEquals(dt, 2);
+
+        dt = engine.TryEvaluate("DATEDIF('2023-9-30 11:25','2023-10-2 00:01','d')", 0);
+        assertEquals(dt, 1);
+
+        dt = engine.TryEvaluate("DATEDIF('2023-9-30 11:25:45','2023-10-2 00:01:16','d')", 0);
+        assertEquals(dt, 1);
 
         dt = engine.TryEvaluate("DATEDIF('1975-1-30','2017-1-7','yd')", 0);
         assertEquals(dt, 342);
