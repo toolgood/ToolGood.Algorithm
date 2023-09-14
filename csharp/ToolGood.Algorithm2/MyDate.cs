@@ -119,7 +119,7 @@ namespace ToolGood.Algorithm
         {
             CultureInfo cultureInfo = CultureInfo.GetCultureInfo("en-US");
             String t = txt.Trim();
-            var m = Regex.Match(t, "^(\\d{4})-(10|11|12|0?\\d)-(30|31|[012]?\\d) ([01]\\d?|2[1234]):([012345]?\\d):([012345]?\\d)$", RegexOptions.Compiled);
+            var m = Regex.Match(t, "^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d):([012345]?\\d)$", RegexOptions.Compiled);
             if (m.Success) {
                 MyDate date = new MyDate();
                 date.Year = int.Parse(m.Groups[(1)].Value, cultureInfo);
@@ -130,7 +130,7 @@ namespace ToolGood.Algorithm
                 date.Second = int.Parse(m.Groups[(6)].Value, cultureInfo);
                 return date;
             }
-            m = Regex.Match(t, "^(\\d{4})-(10|11|12|0?\\d)-(30|31|[012]?\\d) ([01]\\d?|2[1234]):([012345]?\\d)$", RegexOptions.Compiled);
+            m = Regex.Match(t, "^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d)$", RegexOptions.Compiled);
             if (m.Success) {
                 MyDate date = new MyDate();
                 date.Year = int.Parse(m.Groups[(1)].Value, cultureInfo);
@@ -140,7 +140,7 @@ namespace ToolGood.Algorithm
                 date.Minute = int.Parse(m.Groups[(5)].Value, cultureInfo);
                 return date;
             }
-            m = Regex.Match(t, "^(\\d{4})-(10|11|12|0?\\d)-(30|31|[012]?\\d)$");
+            m = Regex.Match(t, "^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d)$");
             if (m.Success) {
                 MyDate date = new MyDate();
                 date.Year = int.Parse(m.Groups[(1)].Value, cultureInfo);
@@ -148,7 +148,7 @@ namespace ToolGood.Algorithm
                 date.Day = int.Parse(m.Groups[(3)].Value, cultureInfo);
                 return date;
             }
-            m = Regex.Match(t, "^(\\d+) (2[1234]|[01]?\\d):([012345]?\\d):([012345]?\\d)$", RegexOptions.Compiled);
+            m = Regex.Match(t, "^(\\d+) (2[0123]|[01]?\\d):([012345]?\\d):([012345]?\\d)$", RegexOptions.Compiled);
             if (m.Success) {
                 MyDate date = new MyDate();
                 date.Day = int.Parse(m.Groups[(1)].Value, cultureInfo);
@@ -157,7 +157,7 @@ namespace ToolGood.Algorithm
                 date.Second = int.Parse(m.Groups[(4)].Value, cultureInfo);
                 return date;
             }
-            m = Regex.Match(t, "^(2[1234]|[01]?\\d):([012345]?\\d):([012345]?\\d)$", RegexOptions.Compiled);
+            m = Regex.Match(t, "^(2[0123]|[01]?\\d):([012345]?\\d):([012345]?\\d)$", RegexOptions.Compiled);
             if (m.Success) {
                 MyDate date = new MyDate();
                 date.Hour = int.Parse(m.Groups[(1)].Value, cultureInfo);
@@ -165,7 +165,7 @@ namespace ToolGood.Algorithm
                 date.Second = int.Parse(m.Groups[(3)].Value, cultureInfo);
                 return date;
             }
-            m = Regex.Match(t, "^(2[1234]|[01]?\\d):([012345]?\\d)$", RegexOptions.Compiled);
+            m = Regex.Match(t, "^(2[0123]|[01]?\\d):([012345]?\\d)$", RegexOptions.Compiled);
             if (m.Success) {
                 MyDate date = new MyDate();
                 date.Hour = int.Parse(m.Groups[(1)].Value, cultureInfo);

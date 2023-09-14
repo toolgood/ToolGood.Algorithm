@@ -267,6 +267,31 @@ namespace ToolGood.Algorithm
             dt = engine.TryEvaluate("'2000-02-01 12:05:06'.AddSeconds(1).Second()", 0);
             Assert.AreEqual(dt, 7);
 
+            dt = engine.TryEvaluate("'2000-02-01 10:05:06'.AddSeconds(1).Second()", 0);
+            Assert.AreEqual(dt, 7);
+
+            dt = engine.TryEvaluate("'2000-02-01 20:05:06'.AddSeconds(1).Second()", 0);
+            Assert.AreEqual(dt, 7);
+
+            dt = engine.TryEvaluate("'2000-02-01 9:05:06'.AddSeconds(1).Second()", 0);
+            Assert.AreEqual(dt, 7);
+
+            dt = engine.TryEvaluate("'7:05:06'.AddSeconds(1).Second()", 0);
+            Assert.AreEqual(dt, 7);
+
+            dt = engine.TryEvaluate("'10:05:06'.AddSeconds(1).Second()", 0);
+            Assert.AreEqual(dt, 7);
+
+            dt = engine.TryEvaluate("'20:05:06'.AddSeconds(1).Second()", 0);
+            Assert.AreEqual(dt, 7);
+
+            // 错误 
+            dt = engine.TryEvaluate("'2000-02-01 24:05:06'.AddSeconds(1).Second()", 0);
+            Assert.AreEqual(dt, 0);
+
+            // 
+            //dt = engine.TryEvaluate("'24:05:06'.AddSeconds(1).Second()", 0);
+            //Assert.AreEqual(dt, 0);
         }
 
     }
