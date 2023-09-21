@@ -182,12 +182,12 @@ namespace ToolGood.Algorithm
             t = engine.TryEvaluate("and(true(),1)", false);
             Assert.AreEqual(true, t);
 
-            t = engine.TryEvaluate("and(true(),false(),1=1)", false);
+            t = engine.TryEvaluate("and(true(),false(),1=1)", true);
             Assert.AreEqual(false, t);
-            t = engine.TryEvaluate("and(true(),false(),1)", false);
+            t = engine.TryEvaluate("and(true(),false(),1)", true);
             Assert.AreEqual(false, t);
 
-            t = engine.TryEvaluate("and(true(),0)", false);
+            t = engine.TryEvaluate("and(true(),0)", true);
             Assert.AreEqual(false, t);
         }
 
@@ -208,7 +208,7 @@ namespace ToolGood.Algorithm
             t = engine.TryEvaluate("or(true(),0)", false);
             Assert.AreEqual(true, t);
 
-            t = engine.TryEvaluate("or(false(),1=2)", false);
+            t = engine.TryEvaluate("or(false(),1=2)", true);
             Assert.AreEqual(false, t);
         }
 
@@ -216,7 +216,7 @@ namespace ToolGood.Algorithm
         public void Not_Test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("not(true())", false);
+            var t = engine.TryEvaluate("not(true())", true);
             Assert.AreEqual(false, t);
             t = engine.TryEvaluate("not(false())", false);
             Assert.AreEqual(true, t);
@@ -234,7 +234,7 @@ namespace ToolGood.Algorithm
         public void false_Test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("false()", false);
+            var t = engine.TryEvaluate("false()", true);
             Assert.AreEqual(false, t);
         }
 
@@ -245,7 +245,7 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("1=1 && 2==2 and 3=3", false);
             Assert.AreEqual(true, t);
 
-            t = engine.TryEvaluate("1=1 && 2!=2", false);
+            t = engine.TryEvaluate("1=1 && 2!=2", true);
             Assert.AreEqual(false, t);
 
             t = engine.TryEvaluate("1=1 && 2!=2", true);
@@ -258,7 +258,7 @@ namespace ToolGood.Algorithm
             t = engine.TryEvaluate("1=1 and 2==2", false);
             Assert.AreEqual(true, t);
 
-            t = engine.TryEvaluate("1=1 and 2!=2", false);
+            t = engine.TryEvaluate("1=1 and 2!=2", true);
             Assert.AreEqual(false, t);
 
             t = engine.TryEvaluate("1=1 and 2!=2", true);

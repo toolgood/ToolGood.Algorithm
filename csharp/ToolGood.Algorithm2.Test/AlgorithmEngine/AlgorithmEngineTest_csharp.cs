@@ -98,7 +98,7 @@ namespace ToolGood.Algorithm.Test
             AlgorithmEngine engine = new AlgorithmEngine();
             var r = engine.TryEvaluate("IsRegex('abcd','a.*c')", false);
             Assert.AreEqual(r, true);
-            r = engine.TryEvaluate("IsRegex('abcd','da.*c')", false);
+            r = engine.TryEvaluate("IsRegex('abcd','da.*c')", true);
             Assert.AreEqual(r, false);
         }
 
@@ -203,7 +203,7 @@ namespace ToolGood.Algorithm.Test
             AlgorithmEngine engine = new AlgorithmEngine();
             var dt = engine.TryEvaluate("StartsWith('123456789','12')", false);
             Assert.AreEqual(dt, true);
-            dt = engine.TryEvaluate("StartsWith('123456789','127')", false);
+            dt = engine.TryEvaluate("StartsWith('123456789','127')", true);
             Assert.AreEqual(dt, false);
         }
         [Test]
@@ -212,7 +212,7 @@ namespace ToolGood.Algorithm.Test
             AlgorithmEngine engine = new AlgorithmEngine();
             var dt = engine.TryEvaluate("EndsWith('123456789','89')", false);
             Assert.AreEqual(dt, true);
-            dt = engine.TryEvaluate("EndsWith('123456789','127')", false);
+            dt = engine.TryEvaluate("EndsWith('123456789','127')", true);
             Assert.AreEqual(dt, false);
         }
 
@@ -222,7 +222,7 @@ namespace ToolGood.Algorithm.Test
             AlgorithmEngine engine = new AlgorithmEngine();
             var dt = engine.TryEvaluate("IsNullOrEmpty('')", false);
             Assert.AreEqual(dt, true);
-            dt = engine.TryEvaluate("IsNullOrEmpty(' ')", false);
+            dt = engine.TryEvaluate("IsNullOrEmpty(' ')", true);
             Assert.AreEqual(dt, false);
         }
         [Test]
@@ -233,7 +233,7 @@ namespace ToolGood.Algorithm.Test
             Assert.AreEqual(dt, true);
             dt = engine.TryEvaluate("IsNullOrWhiteSpace('   ')", false);
             Assert.AreEqual(dt, true);
-            dt = engine.TryEvaluate("IsNullOrWhiteSpace(' f ')", false);
+            dt = engine.TryEvaluate("IsNullOrWhiteSpace(' f ')", true);
             Assert.AreEqual(dt, false);
         }
 

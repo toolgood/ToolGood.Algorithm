@@ -50,7 +50,7 @@ namespace ToolGood.Algorithm
 
             var b = engine.TryEvaluate("true", true);
             Assert.AreEqual(true, b);
-            b = engine.TryEvaluate("false", false);
+            b = engine.TryEvaluate("false", true);
             Assert.AreEqual(false, b);
 
             var b1 = engine.TryEvaluate("if(true,1,2)", 0);
@@ -148,7 +148,7 @@ namespace ToolGood.Algorithm
             var b = engine.TryEvaluate("1=1", false);
             Assert.AreEqual(true, b);
 
-            b = engine.TryEvaluate("1=2", false);
+            b = engine.TryEvaluate("1=2", true);
             Assert.AreEqual(false, b);
 
             b = engine.TryEvaluate("1<>2", false);
@@ -157,7 +157,7 @@ namespace ToolGood.Algorithm
             b = engine.TryEvaluate("1!=2", false);
             Assert.AreEqual(true, b);
 
-            b = engine.TryEvaluate("1>2", false);
+            b = engine.TryEvaluate("1>2", true);
             Assert.AreEqual(false, b);
 
             b = engine.TryEvaluate("1<2", false);
@@ -166,14 +166,14 @@ namespace ToolGood.Algorithm
             b = engine.TryEvaluate("1<=2", false);
             Assert.AreEqual(true, b);
 
-            b = engine.TryEvaluate("1>=2", false);
+            b = engine.TryEvaluate("1>=2", true);
             Assert.AreEqual(false, b);
 
             b = engine.TryEvaluate("'1'='1'", false);
             Assert.AreEqual(true, b);
             b = engine.TryEvaluate("'e'='e'", false);
             Assert.AreEqual(true, b);
-            b = engine.TryEvaluate("'1'='2'", false);
+            b = engine.TryEvaluate("'1'='2'", true);
             Assert.AreEqual(false, b);
             b = engine.TryEvaluate("'1'!='2'", false);
             Assert.AreEqual(true, b);
