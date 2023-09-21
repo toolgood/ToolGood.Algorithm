@@ -62,10 +62,14 @@ public class AlgorithmEngineTest_string {
             assertEquals(t, false);
             t = engine.TryEvaluate("EXACT('tt','tt')", true);
             assertEquals(t, true);
-            t = engine.TryEvaluate("EXACT('tt','33')", true);
+            t = engine.TryEvaluate("EXACT('33',33)", true);
             assertEquals(t, false);
-            t = engine.TryEvaluate("EXACT('tt','tt')", false);
+            t = engine.TryEvaluate("EXACT('331.1',331.1)", false);
             assertEquals(t, true);
+            t = engine.TryEvaluate("EXACT('TRUE',TRUE())", false);
+            assertEquals(t, true);
+            t = engine.TryEvaluate("EXACT('1',TRUE())", false);
+            assertEquals(t, false);
         }
         @Test
         public void FIND_test()

@@ -64,6 +64,15 @@ namespace ToolGood.Algorithm
             Assert.AreEqual(t, false);
             t = engine.TryEvaluate("EXACT('tt','tt')", true);
             Assert.AreEqual(t, true);
+            t = engine.TryEvaluate("EXACT('33',33)", true);
+            Assert.AreEqual(t, true);
+            t = engine.TryEvaluate("EXACT('331.1',331.1)", true);
+            Assert.AreEqual(t, true);
+            t = engine.TryEvaluate("EXACT('TRUE',TRUE())", false);
+            Assert.AreEqual(t, true);
+            t = engine.TryEvaluate("EXACT('1',TRUE())", false);
+            Assert.AreEqual(t, false);
+
         }
         [Test]
         public void FIND_test()
