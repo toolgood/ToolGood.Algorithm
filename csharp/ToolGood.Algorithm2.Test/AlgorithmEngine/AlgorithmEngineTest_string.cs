@@ -60,11 +60,7 @@ namespace ToolGood.Algorithm
         public void EXACT_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            var t = engine.TryEvaluate("EXACT('tt','33')", false);
-            Assert.AreEqual(t, false);
-            t = engine.TryEvaluate("EXACT('tt','tt')", true);
-            Assert.AreEqual(t, true);
-            t = engine.TryEvaluate("EXACT('tt','33')", true);
+            var t = engine.TryEvaluate("EXACT('tt','33')", true);
             Assert.AreEqual(t, false);
             t = engine.TryEvaluate("EXACT('tt','tt')", false);
             Assert.AreEqual(t, true);
