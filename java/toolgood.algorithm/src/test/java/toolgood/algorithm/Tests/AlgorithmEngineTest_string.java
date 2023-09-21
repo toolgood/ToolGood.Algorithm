@@ -62,6 +62,10 @@ public class AlgorithmEngineTest_string {
             assertEquals(t, false);
             t = engine.TryEvaluate("EXACT('tt','tt')", true);
             assertEquals(t, true);
+            t = engine.TryEvaluate("EXACT('tt','33')", true);
+            assertEquals(t, false);
+            t = engine.TryEvaluate("EXACT('tt','tt')", false);
+            assertEquals(t, true);
         }
         @Test
         public void FIND_test()

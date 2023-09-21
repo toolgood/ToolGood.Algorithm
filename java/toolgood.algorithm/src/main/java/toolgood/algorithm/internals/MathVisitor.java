@@ -1822,7 +1822,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final List<Operand> args = new ArrayList<Operand>();
         int index = 1;
         for (final ExprContext item : context.expr()) {
-            final Operand aa = item.accept(this).ToNumber("Function EXACT parameter " + (index++) + " is error!");
+            final Operand aa = item.accept(this).ToText("Function EXACT parameter " + (index++) + " is error!");
             if (aa.IsError()) {
                 return aa;
             }
@@ -1832,7 +1832,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         final Operand firstValue = args.get(0);
         final Operand secondValue = args.get(1);
 
-        return Operand.Create(firstValue.TextValue() == secondValue.TextValue());
+        return Operand.Create(firstValue.TextValue().equals(secondValue.TextValue()));
     }
 
     public Operand visitFIND_fun(final FIND_funContext context) {
