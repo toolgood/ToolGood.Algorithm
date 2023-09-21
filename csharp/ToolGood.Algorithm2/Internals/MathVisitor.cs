@@ -1405,7 +1405,7 @@ namespace ToolGood.Algorithm.Internals
         public virtual Operand VisitEXACT_fun(mathParser.EXACT_funContext context)
         {
             var args = new List<Operand>(); var index = 1;
-            foreach (var item in context.expr()) { var aa = item.Accept(this).ToNumber($"Function EXACT parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
+            foreach (var item in context.expr()) { var aa = item.Accept(this).ToText($"Function EXACT parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
 
             var firstValue = args[0];
             var secondValue = args[1];
