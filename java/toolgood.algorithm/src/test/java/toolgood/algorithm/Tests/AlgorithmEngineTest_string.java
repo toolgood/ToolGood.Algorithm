@@ -58,16 +58,12 @@ public class AlgorithmEngineTest_string {
         public void EXACT_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            boolean t = engine.TryEvaluate("EXACT('tt','33')", false);
-            assertEquals(t, false);
-            t = engine.TryEvaluate("EXACT('tt','tt')", true);
-            assertEquals(t, true);
-            t = engine.TryEvaluate("EXACT('tt','33')", true);
+            boolean t = engine.TryEvaluate("EXACT('tt','33')", true);
             assertEquals(t, false);
             t = engine.TryEvaluate("EXACT('tt','tt')", false);
             assertEquals(t, true);
-            t = engine.TryEvaluate("EXACT('33',33)", true);
-            assertEquals(t, false);
+            t = engine.TryEvaluate("EXACT('33',33)", false);
+            assertEquals(t, true);
             t = engine.TryEvaluate("EXACT('331.1',331.1)", false);
             assertEquals(t, true);
             t = engine.TryEvaluate("EXACT('TRUE',TRUE())", false);

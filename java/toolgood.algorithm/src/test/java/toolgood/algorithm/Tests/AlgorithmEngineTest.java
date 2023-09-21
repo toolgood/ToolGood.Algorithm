@@ -48,9 +48,9 @@ public class AlgorithmEngineTest {
         e = engine.TryEvaluate("pi", 0.0);
         assertEquals(Math.PI - e, 0.0, 0.01);
 
-        boolean b = engine.TryEvaluate("true", true);
+        boolean b = engine.TryEvaluate("true", false);
         assertEquals(true, b);
-        b = engine.TryEvaluate("false", false);
+        b = engine.TryEvaluate("false", true);
         assertEquals(false, b);
 
         int b1 = engine.TryEvaluate("if(true,1,2)", 0);
@@ -119,7 +119,7 @@ public class AlgorithmEngineTest {
         boolean b = engine.TryEvaluate("1=1", false);
         assertEquals(true, b);
 
-        b = engine.TryEvaluate("1=2", false);
+        b = engine.TryEvaluate("1=2", true);
         assertEquals(false, b);
 
         b = engine.TryEvaluate("1<>2", false);
@@ -128,7 +128,7 @@ public class AlgorithmEngineTest {
         b = engine.TryEvaluate("1!=2", false);
         assertEquals(true, b);
 
-        b = engine.TryEvaluate("1>2", false);
+        b = engine.TryEvaluate("1>2", true);
         assertEquals(false, b);
 
         b = engine.TryEvaluate("1<2", false);
@@ -137,7 +137,7 @@ public class AlgorithmEngineTest {
         b = engine.TryEvaluate("1<=2", false);
         assertEquals(true, b);
 
-        b = engine.TryEvaluate("1>=2", false);
+        b = engine.TryEvaluate("1>=2", true);
         assertEquals(false, b);
 
         b = engine.TryEvaluate("'1'='1'", false);
@@ -146,7 +146,7 @@ public class AlgorithmEngineTest {
         b = engine.TryEvaluate("'e'='e'", false);
         assertEquals(true, b);
 
-        b = engine.TryEvaluate("'1'='2'", false);
+        b = engine.TryEvaluate("'1'='2'", true);
         assertEquals(false, b);
 
         b = engine.TryEvaluate("'1'!='2'", false);

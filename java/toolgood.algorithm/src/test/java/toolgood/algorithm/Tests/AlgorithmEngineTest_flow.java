@@ -179,12 +179,12 @@ public class AlgorithmEngineTest_flow {
         t = engine.TryEvaluate("and(true(),1)", false);
         assertEquals(true, t);
 
-        t = engine.TryEvaluate("and(true(),false(),1=1)", false);
+        t = engine.TryEvaluate("and(true(),false(),1=1)", true);
         assertEquals(false, t);
-        t = engine.TryEvaluate("and(true(),false(),1)", false);
+        t = engine.TryEvaluate("and(true(),false(),1)", true);
         assertEquals(false, t);
 
-        t = engine.TryEvaluate("and(true(),0)", false);
+        t = engine.TryEvaluate("and(true(),0)", true);
         assertEquals(false, t);
     }
 
@@ -205,7 +205,7 @@ public class AlgorithmEngineTest_flow {
         t = engine.TryEvaluate("or(true(),0)", false);
         assertEquals(true, t);
 
-        t = engine.TryEvaluate("or(false(),1=2)", false);
+        t = engine.TryEvaluate("or(false(),1=2)", true);
         assertEquals(false, t);
     }
 
@@ -213,7 +213,7 @@ public class AlgorithmEngineTest_flow {
     public void Not_Test()
     {
         AlgorithmEngine engine = new AlgorithmEngine();
-        boolean t = engine.TryEvaluate("not(true())", false);
+        boolean t = engine.TryEvaluate("not(true())", true);
         assertEquals(false, t);
         t = engine.TryEvaluate("not(false())", false);
         assertEquals(true, t);
@@ -231,7 +231,7 @@ public class AlgorithmEngineTest_flow {
     public void false_Test()
     {
         AlgorithmEngine engine = new AlgorithmEngine();
-        boolean t = engine.TryEvaluate("false()", false);
+        boolean t = engine.TryEvaluate("false()", true);
         assertEquals(false, t);
     }
 
@@ -242,7 +242,7 @@ public class AlgorithmEngineTest_flow {
         boolean t = engine.TryEvaluate("1=1 && 2==2 and 3=3", false);
         assertEquals(true, t);
 
-        t = engine.TryEvaluate("1=1 && 2!=2", false);
+        t = engine.TryEvaluate("1=1 && 2!=2", true);
         assertEquals(false, t);
 
         t = engine.TryEvaluate("1=1 && 2!=2", true);
@@ -255,7 +255,7 @@ public class AlgorithmEngineTest_flow {
         t = engine.TryEvaluate("1=1 and 2==2", false);
         assertEquals(true, t);
 
-        t = engine.TryEvaluate("1=1 and 2!=2", false);
+        t = engine.TryEvaluate("1=1 and 2!=2", true);
         assertEquals(false, t);
 
         t = engine.TryEvaluate("1=1 and 2!=2", true);

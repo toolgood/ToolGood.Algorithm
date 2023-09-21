@@ -103,7 +103,7 @@ public class AlgorithmEngineTest_csharp {
         AlgorithmEngine engine = new AlgorithmEngine();
         boolean r = engine.TryEvaluate("IsRegex('abcd','a.*c')", false);
         assertEquals(r, true);
-        r = engine.TryEvaluate("IsRegex('abcd','da.*c')", false);
+        r = engine.TryEvaluate("IsRegex('abcd','da.*c')", true);
         assertEquals(r, false);
     }
 
@@ -211,7 +211,7 @@ public class AlgorithmEngineTest_csharp {
         AlgorithmEngine engine = new AlgorithmEngine();
         boolean dt = engine.TryEvaluate("StartsWith('123456789','12')", false);
         assertEquals(dt, true);
-        dt = engine.TryEvaluate("StartsWith('123456789','127')", false);
+        dt = engine.TryEvaluate("StartsWith('123456789','127')", true);
         assertEquals(dt, false);
     }
     @Test
@@ -220,7 +220,7 @@ public class AlgorithmEngineTest_csharp {
         AlgorithmEngine engine = new AlgorithmEngine();
         boolean dt = engine.TryEvaluate("EndsWith('123456789','89')", false);
         assertEquals(dt, true);
-        dt = engine.TryEvaluate("EndsWith('123456789','127')", false);
+        dt = engine.TryEvaluate("EndsWith('123456789','127')", true);
         assertEquals(dt, false);
     }
 
@@ -230,7 +230,7 @@ public class AlgorithmEngineTest_csharp {
         AlgorithmEngine engine = new AlgorithmEngine();
         boolean dt = engine.TryEvaluate("IsNullOrEmpty('')", false);
         assertEquals(dt, true);
-        dt = engine.TryEvaluate("IsNullOrEmpty(' ')", false);
+        dt = engine.TryEvaluate("IsNullOrEmpty(' ')", true);
         assertEquals(dt, false);
     }
     @Test
@@ -241,7 +241,7 @@ public class AlgorithmEngineTest_csharp {
         assertEquals(dt, true);
         dt = engine.TryEvaluate("IsNullOrWhiteSpace('   ')", false);
         assertEquals(dt, true);
-        dt = engine.TryEvaluate("IsNullOrWhiteSpace(' f ')", false);
+        dt = engine.TryEvaluate("IsNullOrWhiteSpace(' f ')", true);
         assertEquals(dt, false);
     }
 
