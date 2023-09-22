@@ -229,15 +229,17 @@ namespace ToolGood.Algorithm
             Cylinder c = new Cylinder(3, 10);
             var t = c.TryEvaluate("[半径]*[半径]*pi()", 0.0);      //圆底面积
             var t2 = c.TryEvaluate("半径*半径*pi()", 0.0);      //圆底面积
-            var t3 = c.TryEvaluate("{半径}*{半径}*pi()", 0.0);      //圆底面积
+
+            // v3.5 后 不支持这类定义  {} 用于定义 数组 或json
+            // var t3 = c.TryEvaluate("{半径}*{半径}*pi()", 0.0);      //圆底面积
+
             var t4 = c.TryEvaluate("@半径*@半径*pi()", 0.0);      //圆底面积
             var t5 = c.TryEvaluate("#半径#*#半径#*pi()", 0.0);      //圆底面积
             var t6 = c.TryEvaluate("【半径】*【半径】*pi()", 0.0);      //圆底面积
             var t7 = c.TryEvaluate("【半径】*【半径】*pi（）", 0.0);      //圆底面积
 
-
             Assert.AreEqual(t, t2);
-            Assert.AreEqual(t, t3);
+            //Assert.AreEqual(t, t3);
             Assert.AreEqual(t, t4);
             Assert.AreEqual(t, t5);
             Assert.AreEqual(t, t6);

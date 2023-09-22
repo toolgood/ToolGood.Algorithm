@@ -335,6 +335,7 @@ expr:
 	| ADDSECONDS '(' expr ',' expr ')'							# ADDSECONDS_fun
 	| TIMESTAMP '(' expr (',' expr)? ')'						# TIMESTAMP_fun
 	| PARAM '(' expr (',' expr)? ')'							# PARAM_fun
+	| ERROR '(' expr? ')'										# ERROR_fun
 	| '{' arrayJson (',' arrayJson)* ','* '}'					# ArrayJson_fun
 	| '{' expr (',' expr)* ','* '}'								# Array_fun
 	| '[' PARAMETER ']'											# PARAMETER_fun

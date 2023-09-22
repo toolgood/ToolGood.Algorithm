@@ -1166,5 +1166,40 @@ namespace ToolGood.Algorithm.Internals
         {
             return Visit_fun(context);
         }
+
+        public ConditionTree VisitPARAM_fun([NotNull] mathParser.PARAM_funContext context)
+        {
+            return Visit_fun(context);
+        }
+
+        public ConditionTree VisitHAS_fun([NotNull] mathParser.HAS_funContext context)
+        {
+            return Visit_fun(context);
+        }
+
+        public ConditionTree VisitArrayJson_fun([NotNull] mathParser.ArrayJson_funContext context)
+        {
+            return Visit_fun(context);
+        }
+
+        public ConditionTree VisitNum([NotNull] mathParser.NumContext context)
+        {
+            return Visit_fun(context);
+        }
+
+        public ConditionTree VisitUnit([NotNull] mathParser.UnitContext context)
+        {
+            return Visit_fun(context);
+        }
+
+        public ConditionTree VisitArrayJson([NotNull] mathParser.ArrayJsonContext context)
+        {
+            return Visit_fun(context);
+        }
+
+        public ConditionTree VisitERROR_fun([NotNull] mathParser.ERROR_funContext context)
+        {
+            return Visit_fun(context);
+        }
     }
 }

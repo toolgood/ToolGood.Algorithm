@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
+using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.LitJson;
 
 namespace ToolGood.Algorithm
 {
-	/// <summary>
-	/// 操作数
-	/// </summary>
-	public abstract class Operand : IDisposable
+    /// <summary>
+    /// 操作数
+    /// </summary>
+    public abstract class Operand : IDisposable
 	{
 		internal static readonly CultureInfo cultureInfo = CultureInfo.GetCultureInfo("en-US");
 		/// <summary>
@@ -750,5 +752,102 @@ namespace ToolGood.Algorithm
 		}
 
 	}
+
+
+    internal class KeyValue
+    {
+        public string Key;
+        public Operand Value;
+    }
+
+    internal sealed class OperandKeyValueList : Operand<KeyValue>
+    {
+        public OperandKeyValueList(KeyValue obj) : base(obj)
+        {
+        }
+
+        public override OperandType Type => OperandType.ARRARYJSON;
+        public override List<Operand> ArrayValue => TextList.Select(q => q.Value).ToList();
+
+        private List<KeyValue> TextList = new List<KeyValue>();
+
+        public override Operand ToArray(string errorMessage = null)
+        {
+            return Create(this.ArrayValue);
+        }
+
+        public void AddValue(KeyValue keyValue)
+        {
+            TextList.Add(keyValue);
+        }
+
+        public bool TryGetValue(int key, out Operand value)
+        {
+            foreach (var item in TextList) {
+                if (item.Key == key.ToString()) {
+                    value = item.Value;
+                    return true;
+                }
+            }
+            value = null;
+            return false;
+        }
+
+        public bool TryGetValue(string key, out Operand value)
+        {
+            foreach (var item in TextList) {
+                if (item.Key == key.ToString()) {
+                    value = item.Value;
+                    return true;
+                }
+            }
+            value = null;
+            return false;
+        }
+
+        public bool ContainsValue(Operand value)
+        {
+            foreach (var item in TextList) {
+                var op = item.Value;
+                if (value.Type != op.Type) { continue; }
+                if (value.Type == OperandType.TEXT) {
+                    if (value.TextValue == op.TextValue) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public bool TryGetValueFloor(decimal key, bool range_lookup, out Operand value)
+        {
+            value = null;
+            foreach (var item in TextList) {
+                if (decimal.TryParse(item.Key, out decimal num) == false) continue;
+                var t = Math.Round(key - num, 10, MidpointRounding.AwayFromZero);
+                if (t == 0) {
+                    value = item.Value;
+                    return true;
+                } else if (range_lookup) {
+                    if (t > 0) {
+                        value = item.Value;
+                    } else if (value != null) {
+                        return true;
+                    }
+                }
+            }
+            return value != null;
+        }
+    }
+
+    internal sealed class OperandKeyValue : Operand<KeyValue>
+    {
+        public OperandKeyValue(KeyValue obj) : base(obj)
+        {
+        }
+ 
+
+        public override OperandType Type => OperandType.ARRARYJSON;
+    }
 
 }

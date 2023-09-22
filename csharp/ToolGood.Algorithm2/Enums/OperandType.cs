@@ -1,4 +1,4 @@
-﻿namespace ToolGood.Algorithm
+﻿namespace ToolGood.Algorithm.Enums
 {
     /// <summary>
     /// 操作数类型
@@ -42,8 +42,11 @@
         /// <summary>
         /// JSON格式
         /// </summary>
-        JSON
+        JSON,
 
-
+        /// <summary>
+        /// JSON格式
+        /// </summary>
+        ARRARYJSON,
     }
 }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
+using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.LitJson;
 using ToolGood.Algorithm.MathNet.Numerics;
 
@@ -23,6 +24,10 @@ namespace ToolGood.Algorithm.Internals
         public event Func<string, List<Operand>, Operand> DiyFunction;
         public int excelIndex;
         public bool useLocalTime;
+        public DistanceUnitType DistanceUnit = DistanceUnitType.M;
+        public AreaUnitType AreaUnit = AreaUnitType.M2;
+        public VolumeUnitType VolumeUnit = VolumeUnitType.M3;
+        public MassUnitType MassUnit = MassUnitType.KG;
 
         #region base
 
@@ -3831,12 +3836,26 @@ namespace ToolGood.Algorithm.Internals
         {
             return context.expr().Accept(this);
         }
+
         public virtual Operand VisitNUM_fun(mathParser.NUM_funContext context)
         {
-            var sub = context.SUB()?.GetText() ?? "";
-            var t = context.NUM().GetText();
-            var d = decimal.Parse(sub + t, NumberStyles.Any, cultureInfo);
+            var d = decimal.Parse(context.num().GetText(), NumberStyles.Any, cultureInfo);
+            if (context.unit() == null) { return Operand.Create(d); }
+
+            var unit = context.unit().GetText();
+            var dict = NumberUnitTypeHelper.GetUnitTypedict();
+            d = NumberUnitTypeHelper.TransformationUnit(d, dict[unit], DistanceUnit, AreaUnit, VolumeUnit, MassUnit);
             return Operand.Create(d);
+        }
+        public Operand VisitNum(mathParser.NumContext context)
+        {
+            var d = decimal.Parse(context.GetText(), NumberStyles.Any, cultureInfo);
+            return Operand.Create(d);
+        }
+        public Operand VisitUnit(mathParser.UnitContext context)
+        {
+            string text = context.GetText();
+            return Operand.Create(text);
         }
         public virtual Operand VisitSTRING_fun(mathParser.STRING_funContext context)
         {
@@ -3970,9 +3989,98 @@ namespace ToolGood.Algorithm.Internals
             return Operand.Error("DiyFunction is error!");
         }
 
+        public Operand VisitPARAM_fun(mathParser.PARAM_funContext context)
+        {
+            var exprs = context.expr();
+            var args1 = this.Visit(exprs[0]); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText(); if (args1.IsError) return args1; }
+            var result = GetParameter(args1.TextValue);
+            if (result.IsError) {
+                if (exprs.Length == 2) {
+                    return this.Visit(exprs[1]);
+                }
+            }
+            return result;
+        }
 
+        public Operand VisitHAS_fun(mathParser.HAS_funContext context)
+        {
+            var exprs = context.expr();
+            var args1 = this.Visit(exprs[0]); if (args1.IsError) { return args1; }
+            var args2 = this.Visit(exprs[1]).ToText("Function HAS parameter 2 is error!"); if (args2.IsError) { return args2; }
 
+            if (args1.Type== OperandType.ARRARYJSON) {
+                var b = ((OperandKeyValueList)args1).ContainsValue(args2);
+                return Operand.Create(b);
+            } else if (args1.Type == OperandType.ARRARY) {
+                var ar = ((OperandArray)args1);
+                foreach (var item in ar.ArrayValue) {
+                    if (item.TextValue == args2.TextValue) {
+                        return Operand.True;
+                    }
+                }
+                return Operand.False;
+            }
+            return Operand.Error("Function HAS parameter 1 is error!");
+        }
 
+        public Operand VisitArrayJson_fun(mathParser.ArrayJson_funContext context)
+        {
+            OperandKeyValueList result = new OperandKeyValueList(null);
+            var js = context.arrayJson();
+            for (int i = 0; i < js.Length; i++) {
+                var item = js[i];
+                var aa = this.Visit(item); if (aa.IsError) { return aa; }
+                result.AddValue((KeyValue)((OperandKeyValue)aa).Value);
+            }
+            return result;
+        }
+
+        public Operand VisitArrayJson(mathParser.ArrayJsonContext context)
+        {
+            KeyValue keyValue = new KeyValue();
+            if (context.NUM() != null) {
+                if (int.TryParse(context.NUM().GetText(),out int key)) {
+                    keyValue.Key = key.ToString();
+                } else {
+                    return Operand.Error("Json key '"+ context.NUM().GetText() + "' is error!");
+                }
+            }
+            if (context.STRING() != null) {
+                var opd = context.STRING().GetText();
+                StringBuilder sb = new StringBuilder(opd.Length - 2);
+                int index = 1;
+                while (index < opd.Length - 1) {
+                    var c = opd[index++];
+                    if (c == '\\') {
+                        var c2 = opd[index++];
+                        if (c2 == 'n') sb.Append('\n');
+                        else if (c2 == 'r') sb.Append('\r');
+                        else if (c2 == 't') sb.Append('\t');
+                        else if (c2 == '0') sb.Append('\0');
+                        else if (c2 == 'v') sb.Append('\v');
+                        else if (c2 == 'a') sb.Append('\a');
+                        else if (c2 == 'b') sb.Append('\b');
+                        else if (c2 == 'f') sb.Append('\f');
+                        else sb.Append(opd[index++]);
+                    } else {
+                        sb.Append(c);
+                    }
+                }
+                keyValue.Key = sb.ToString();
+            }
+            if (context.parameter2() != null) {
+                keyValue.Key = context.parameter2().GetText();
+            }
+            keyValue.Value = Visit(context.expr());
+            return new OperandKeyValue(keyValue);
+        }
+
+        public Operand VisitERROR_fun(mathParser.ERROR_funContext context)
+        {
+            if (context.expr() == null) { return Operand.Error(""); }
+            var args1 = this.Visit(context.expr()); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText(); if (args1.IsError) return args1; }
+            return Operand.Error(args1.TextValue);
+        }
 
         #endregion
     }
