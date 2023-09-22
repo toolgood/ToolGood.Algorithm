@@ -102,7 +102,7 @@ public abstract class Operand {
     }
 
     public static Operand Create(final String obj) {
-        if (obj.equals(null)) {
+        if (null == obj) {
             return CreateNull();
         }
         return new OperandString(obj);
@@ -111,9 +111,9 @@ public abstract class Operand {
     public static Operand CreateJson(final String txt) {
         if ((txt.startsWith("{") && txt.endsWith("}")) || (txt.startsWith("[") && txt.endsWith("]"))) {
             try {
-                JsonData json = (JsonData) JsonMapper.ToObject(txt);
+                JsonData json = JsonMapper.ToObject(txt);
                 return Create(json);
-            } catch (final Exception e) {
+            } catch (Exception e) {
             }
         }
         return Error("string to json is error!");
@@ -566,10 +566,10 @@ public abstract class Operand {
 
         @Override
         public Operand ToBoolean(String errorMessage) {
-            if (TextValue().toLowerCase().equals("true") || TextValue().toLowerCase().equals("yes")) {
+            if (TextValue().equalsIgnoreCase("true") || TextValue().equalsIgnoreCase("yes")) {
                 return True;
             }
-            if (TextValue().toLowerCase().equals("false") || TextValue().toLowerCase().equals("no")) {
+            if (TextValue().equalsIgnoreCase("false") || TextValue().equalsIgnoreCase("no")) {
                 return False;
             }
             if (TextValue().equals("1") || TextValue().equals("是") || TextValue().equals("有")) {
@@ -681,19 +681,10 @@ public abstract class Operand {
             }
             return null;
         }
-        public boolean ContainsKey(String value) {
-            for (KeyValue item : TextList) {
-                if (item.Key.equals(value)) {
-                    return true;
-                }
-            }
-            return false;
-        }
 
-        public boolean ContainsValue(String value) {
+        public boolean ContainsKey(Operand value) {
             for (KeyValue item : TextList) {
-                Operand op = item.Value;
-                if (op.TextValue().equals(value)) {
+                if (item.Key.equals(value.TextValue())) {
                     return true;
                 }
             }
@@ -725,7 +716,7 @@ public abstract class Operand {
             for (KeyValue item : TextList) {
                 try {
                     double num = Double.parseDouble(item.Key);
-                    Double t = Math.round(key - num * 1000000000d) / 1000000000d;
+                    double t = Math.round(key - num * 1000000000d) / 1000000000d;
                     if (t == 0) {
                         return item.Value;
                     } else if (range_lookup) {
