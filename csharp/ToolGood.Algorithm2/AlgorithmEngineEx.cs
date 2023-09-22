@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.LitJson;
 using static mathParser;
@@ -48,6 +49,25 @@ namespace ToolGood.Algorithm
         /// 使用 本地时间， 影响 时间截转化
         /// </summary>
         public bool UseLocalTime { get; set; } = false;
+        /// <summary>
+        /// 长度单位
+        /// </summary>
+        public DistanceUnitType DistanceUnit { get; set; } = DistanceUnitType.M;
+
+        /// <summary>
+        /// 面积单位
+        /// </summary>
+        public AreaUnitType AreaUnit { get; set; } = AreaUnitType.M2;
+
+        /// <summary>
+        /// 体积单位
+        /// </summary>
+        public VolumeUnitType VolumeUnit { get; set; } = VolumeUnitType.M3;
+
+        /// <summary>
+        /// 重量单位
+        /// </summary>
+        public MassUnitType MassUnit { get; set; } = MassUnitType.KG;
         private readonly Dictionary<string, Operand> _tempdict;
 
 
@@ -163,7 +183,7 @@ namespace ToolGood.Algorithm
                     if (b.BooleanValue == false) continue;
                 }
                 if (conditionCache.FormulaProg == null) {
-                    return Operand.Error($"CategoryName [{categoryName}],{conditionCache.Remark} parse formula `{ conditionCache.FormulaString}` is error.\r\n{conditionCache.LastError}");
+                    return Operand.Error($"CategoryName [{categoryName}],{conditionCache.Remark} parse formula `{conditionCache.FormulaString}` is error.\r\n{conditionCache.LastError}");
                 }
                 operand = EvaluateCategory(conditionCache.FormulaProg);
                 if (operand.IsError) {
@@ -186,6 +206,10 @@ namespace ToolGood.Algorithm
                 visitor.excelIndex = UseExcelIndex ? 1 : 0;
                 visitor.DiyFunction += ExecuteDiyFunction;
                 visitor.useLocalTime = UseLocalTime;
+                visitor.MassUnit = MassUnit;
+                visitor.DistanceUnit = DistanceUnit;
+                visitor.AreaUnit = AreaUnit;
+                visitor.VolumeUnit = VolumeUnit;
                 return visitor.Visit(context);
             } catch (Exception ex) {
                 LastError = ex.Message + "\r\n" + ex.StackTrace;
@@ -207,7 +231,7 @@ namespace ToolGood.Algorithm
             foreach (var conditionCache in conditionCaches) {
                 if (string.IsNullOrEmpty(conditionCache.ConditionString) == false) {
                     if (conditionCache.ConditionProg == null) {
-                        throw new Exception($"CategoryName [{categoryName}],{conditionCache.Remark} parse condition `{ conditionCache.ConditionString}` is error.\r\n{conditionCache.LastError}");
+                        throw new Exception($"CategoryName [{categoryName}],{conditionCache.Remark} parse condition `{conditionCache.ConditionString}` is error.\r\n{conditionCache.LastError}");
                     }
                     var b = EvaluateCategory(conditionCache.ConditionProg);
                     if (b.IsError) {
@@ -1093,7 +1117,11 @@ namespace ToolGood.Algorithm
                 visitor.GetParameter += GetDiyParameterInside;
                 visitor.excelIndex = UseExcelIndex ? 1 : 0;
                 visitor.DiyFunction += ExecuteDiyFunction;
-                visitor.useLocalTime=UseLocalTime;
+                visitor.useLocalTime = UseLocalTime;
+                visitor.MassUnit = MassUnit;
+                visitor.DistanceUnit = DistanceUnit;
+                visitor.AreaUnit = AreaUnit;
+                visitor.VolumeUnit = VolumeUnit;
                 Operand obj = visitor.Visit(_context);
                 obj = obj.ToText("It can't be converted to String!");
                 if (obj.IsError) {

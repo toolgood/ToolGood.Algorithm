@@ -3942,6 +3942,16 @@ namespace ToolGood.Algorithm.Internals
                     return obj.ArrayValue[index];
                 return Operand.Error($"ARRARY index {index} greater than maximum length!");
             }
+            if (obj.Type == OperandType.ARRARYJSON) {
+                 if (op.Type == OperandType.NUMBER || op.Type == OperandType.TEXT) {
+                    if (((OperandKeyValueList)obj).TryGetValue(op.TextValue, out Operand operand)) {
+                        return operand;
+                    }
+                    return Operand.Error($"Parameter name `{op.TextValue}` is missing!");
+                }
+                return Operand.Error("Parameter name is missing!");
+            }
+
             if (obj.Type == OperandType.JSON) {
                 var json = obj.JsonValue;
                 if (json.IsArray) {

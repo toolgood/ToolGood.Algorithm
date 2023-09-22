@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.LitJson;
 using static mathParser;
@@ -37,7 +38,25 @@ namespace ToolGood.Algorithm
 
         private ProgContext _context;
         private readonly Dictionary<string, Operand> _tempdict;
+        /// <summary>
+        /// 长度单位
+        /// </summary>
+        public DistanceUnitType DistanceUnit { get; set; } = DistanceUnitType.M;
 
+        /// <summary>
+        /// 面积单位
+        /// </summary>
+        public AreaUnitType AreaUnit { get; set; } = AreaUnitType.M2;
+
+        /// <summary>
+        /// 体积单位
+        /// </summary>
+        public VolumeUnitType VolumeUnit { get; set; } = VolumeUnitType.M3;
+
+        /// <summary>
+        /// 重量单位
+        /// </summary>
+        public MassUnitType MassUnit { get; set; } = MassUnitType.KG;
 
         #region 构造函数
         /// <summary>
@@ -373,6 +392,10 @@ namespace ToolGood.Algorithm
             visitor.excelIndex = UseExcelIndex ? 1 : 0;
             visitor.DiyFunction += ExecuteDiyFunction;
             visitor.useLocalTime = UseLocalTime;
+            visitor.MassUnit = MassUnit;
+            visitor.DistanceUnit = DistanceUnit;
+            visitor.AreaUnit = AreaUnit;
+            visitor.VolumeUnit = VolumeUnit;
             return visitor.Visit(_context);
         }
         #endregion
@@ -733,6 +756,10 @@ namespace ToolGood.Algorithm
                     visitor.excelIndex = UseExcelIndex ? 1 : 0;
                     visitor.DiyFunction += ExecuteDiyFunction;
                     visitor.useLocalTime = UseLocalTime;
+                    visitor.MassUnit = MassUnit;
+                    visitor.DistanceUnit = DistanceUnit;
+                    visitor.AreaUnit = AreaUnit;
+                    visitor.VolumeUnit = VolumeUnit;
 
                     Operand obj = visitor.Visit(_context);
                     obj = obj.ToText("It can't be converted to String!");
