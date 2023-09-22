@@ -17,7 +17,14 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineHelper2
         {
             DiyNameInfo p = AlgorithmEngineHelper.GetDiyNames("[dd]");
             Assert.AreEqual("dd", p.Parameters[0]);
+            p = AlgorithmEngineHelper.GetDiyNames("@dd");
+            Assert.AreEqual("dd", p.Parameters[0]);
+            p = AlgorithmEngineHelper.GetDiyNames("#dd#");
+            Assert.AreEqual("dd", p.Parameters[0]);
+            p = AlgorithmEngineHelper.GetDiyNames("dd");
+            Assert.AreEqual("dd", p.Parameters[0]);
 
+            // 注，这里的 ddd 是数组内有 ddd
             DiyNameInfo p2 = AlgorithmEngineHelper.GetDiyNames("{ddd}");
             Assert.AreEqual("ddd", p2.Parameters[0]);
 
@@ -25,6 +32,8 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineHelper2
             Assert.AreEqual("dd", p3.Parameters[0]);
 
             DiyNameInfo p4 = AlgorithmEngineHelper.GetDiyNames("@ddd+2");
+            Assert.AreEqual("ddd", p4.Parameters[0]);
+            p4 = AlgorithmEngineHelper.GetDiyNames("ddd+2");
             Assert.AreEqual("ddd", p4.Parameters[0]);
 
             DiyNameInfo p5 = AlgorithmEngineHelper.GetDiyNames("ddd(d1,22)");

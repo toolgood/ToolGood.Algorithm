@@ -21,8 +21,13 @@ public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements 
             String str = node.getText();
             if (str.startsWith("@")) {
                 diy.Parameters.add(str.substring(1));
-            }else{
+            } else if ((str.startsWith("【") && str.endsWith("】"))
+                    || (str.startsWith("[") && str.endsWith("]"))
+                    || (str.startsWith("#") && str.endsWith("#"))) {
                 diy.Parameters.add(str.substring(1, str.length() - 1));
+
+            } else {
+                diy.Parameters.add(str);
             }
             return null;
         }

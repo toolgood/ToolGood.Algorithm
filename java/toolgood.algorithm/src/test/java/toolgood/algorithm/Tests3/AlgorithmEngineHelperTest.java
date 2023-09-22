@@ -13,7 +13,14 @@ public class AlgorithmEngineHelperTest {
     public void Test() throws Exception {
         DiyNameInfo p = AlgorithmEngineHelper.GetDiyNames("[dd]");
         assertEquals("dd", p.Parameters.get(0));
+        p = AlgorithmEngineHelper.GetDiyNames("@dd");
+        assertEquals("dd", p.Parameters.get(0));
+        p = AlgorithmEngineHelper.GetDiyNames("#dd#");
+        assertEquals("dd", p.Parameters.get(0));
+        p = AlgorithmEngineHelper.GetDiyNames("dd");
+        assertEquals("dd", p.Parameters.get(0));
 
+        // 注，这里的 ddd 是数组内有 ddd
         DiyNameInfo p2 = AlgorithmEngineHelper.GetDiyNames("{ddd}");
         assertEquals("ddd", p2.Parameters.get(0));
 
@@ -21,6 +28,9 @@ public class AlgorithmEngineHelperTest {
         assertEquals("dd", p3.Parameters.get(0));
 
         DiyNameInfo p4 = AlgorithmEngineHelper.GetDiyNames("@ddd+2");
+        assertEquals("ddd", p4.Parameters.get(0));
+
+        p4 = AlgorithmEngineHelper.GetDiyNames("ddd+2");
         assertEquals("ddd", p4.Parameters.get(0));
 
         DiyNameInfo p5 = AlgorithmEngineHelper.GetDiyNames("ddd(d1,22)");

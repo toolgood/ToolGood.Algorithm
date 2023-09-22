@@ -20,8 +20,13 @@ namespace ToolGood.Algorithm.Internals
                 string str = node.GetText();
                 if (str.StartsWith("@")) {
                     diy.Parameters.Add(str.AsSpan(1).ToString());
-                } else {
+                } else if ((str.StartsWith("【") && str.EndsWith("】"))
+                    || (str.StartsWith("[") && str.EndsWith("]"))
+                    || (str.StartsWith("#") && str.EndsWith("#"))) {
                     diy.Parameters.Add(str.AsSpan(1, str.Length - 2).ToString());
+
+                } else {
+                    diy.Parameters.Add(str);
                 }
             }
 
