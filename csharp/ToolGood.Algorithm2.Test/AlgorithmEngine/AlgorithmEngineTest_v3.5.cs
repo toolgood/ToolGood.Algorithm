@@ -298,6 +298,9 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
             b = engine.TryEvaluate("1m3=1000L", false);
             Assert.AreEqual(b, true);
 
+            b = engine.TryEvaluate("1L=1000ml", false);
+            Assert.AreEqual(b, true);
+
             b = engine.TryEvaluate("1m3=1000ml*1000", false);
             Assert.AreEqual(b, true);
 
