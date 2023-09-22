@@ -68,8 +68,8 @@ expr:
 	| expr '.' REGEX '(' expr ')'								# REGEX_fun
 	| expr '.' REGEXREPALCE '(' expr ',' expr ')'				# REGEXREPALCE_fun
 	| expr '.' ISREGEX '(' expr ')'								# ISREGEX_fun
-	| expr '.' MD5 '(' expr? ')'									# MD5_fun
-	| expr '.' SHA1 '(' expr? ')'									# SHA1_fun
+	| expr '.' MD5 '(' expr? ')'								# MD5_fun
+	| expr '.' SHA1 '(' expr? ')'								# SHA1_fun
 	| expr '.' SHA256 '(' expr? ')'								# SHA256_fun
 	| expr '.' SHA512 '(' expr? ')'								# SHA512_fun
 	| expr '.' CRC32 '(' expr? ')'								# CRC32_fun
@@ -78,16 +78,16 @@ expr:
 	| expr '.' HMACSHA256 '(' expr (',' expr)? ')'				# HMACSHA256_fun
 	| expr '.' HMACSHA512 '(' expr (',' expr)? ')'				# HMACSHA512_fun
 	| expr '.' TRIMSTART '(' expr? ')'							# TRIMSTART_fun
-	| expr '.' TRIMEND '(' expr? ')'								# TRIMEND_fun
+	| expr '.' TRIMEND '(' expr? ')'							# TRIMEND_fun
 	| expr '.' INDEXOF '(' expr (',' expr (',' expr)?)? ')'		# INDEXOF_fun
 	| expr '.' LASTINDEXOF '(' expr (',' expr (',' expr)?)? ')'	# LASTINDEXOF_fun
-	| expr '.' SPLIT '(' expr ')'									# SPLIT_fun
+	| expr '.' SPLIT '(' expr ')'								# SPLIT_fun
 	| expr '.' JOIN '(' expr (',' expr)* ')'					# JOIN_fun
 	| expr '.' SUBSTRING '(' expr (',' expr)? ')'				# SUBSTRING_fun
 	| expr '.' STARTSWITH '(' expr (',' expr)? ')'				# STARTSWITH_fun
 	| expr '.' ENDSWITH '(' expr (',' expr)? ')'				# ENDSWITH_fun
-	| expr '.' ISNULLOREMPTY '(' ')'								# ISNULLOREMPTY_fun
-	| expr '.' ISNULLORWHITESPACE '(' ')'							# ISNULLORWHITESPACE_fun
+	| expr '.' ISNULLOREMPTY '(' ')'							# ISNULLOREMPTY_fun
+	| expr '.' ISNULLORWHITESPACE '(' ')'						# ISNULLORWHITESPACE_fun
 	| expr '.' REMOVESTART '(' expr (',' expr)? ')'				# REMOVESTART_fun
 	| expr '.' REMOVEEND '(' expr (',' expr)? ')'				# REMOVEEND_fun
 	| expr '.' JSON '(' ')'										# JSON_fun
@@ -101,37 +101,24 @@ expr:
 	| expr '.' ADDMINUTES '(' expr ')'							# ADDMINUTES_fun
 	| expr '.' ADDSECONDS '(' expr ')'							# ADDSECONDS_fun
 	| expr '.' TIMESTAMP '(' expr? ')'							# TIMESTAMP_fun
-
+	| expr '.' HAS '(' expr ')'									# HAS_fun
 	| expr '[' parameter2 ']'									# GetJsonValue_fun
 	| expr '[' expr ']'											# GetJsonValue_fun
 	| expr '.' parameter2										# GetJsonValue_fun
- 
-// 运算符优先级 开始
-	| '(' expr ')'											# Bracket_fun
-	| '!' expr												# NOT_fun
-	| expr '%'												# Percentage_fun
-	| expr op = ('*' | '/' | '%' ) expr						# MulDiv_fun
-	| expr op = ('+' | '-' | '&') expr						# AddSub_fun
-	| expr op = (
-		  '>'
-		| '>='
-		| '<'
-		| '<='
-	) expr														# Judge_fun
-	| expr op = (
-		  '='
-		| '=='
-		| '==='
-		| '!=='
-		| '!='
-		| '<>'
-	) expr														# Judge_fun
+
+	// 运算符优先级 开始
+	| '(' expr ')'												# Bracket_fun
+	| '!' expr													# NOT_fun
+	| expr '%'													# Percentage_fun
+	| expr op = ('*' | '/' | '%') expr							# MulDiv_fun
+	| expr op = ('+' | '-' | '&') expr							# AddSub_fun
+	| expr op = ('>' | '>=' | '<' | '<=') expr					# Judge_fun
+	| expr op = ('=' | '==' | '===' | '!==' | '!=' | '<>') expr	# Judge_fun
 	| expr op = ('&&' | AND) expr								# AndOr_fun
 	| expr op = ('||' | OR) expr								# AndOr_fun
-	| expr '?'  expr ':' expr 									# IF_fun
-// 运算符优先级 结束
-
-	| ARRAY '(' expr (',' expr)* ')'							# Array_fun
+	| expr '?' expr ':' expr									# IF_fun
+	// 运算符优先级 结束
+	| ARRAY '(' expr (',' expr)* ')'						# Array_fun
 	| IF '(' expr ',' expr (',' expr)? ')'					# IF_fun
 	| ISNUMBER '(' expr ')'									# ISNUMBER_fun
 	| ISTEXT '(' expr ')'									# ISTEXT_fun
@@ -188,7 +175,7 @@ expr:
 	| ATAN '(' expr ')'										# ATAN_fun
 	| ATANH '(' expr ')'									# ATANH_fun
 	| ATAN2 '(' expr ',' expr ')'							# ATAN2_fun
-	| ROUND '(' expr (',' expr)? ')'							# ROUND_fun
+	| ROUND '(' expr (',' expr)? ')'						# ROUND_fun
 	| ROUNDDOWN '(' expr ',' expr ')'						# ROUNDDOWN_fun
 	| ROUNDUP '(' expr ',' expr ')'							# ROUNDUP_fun
 	| CEILING '(' expr (',' expr)? ')'						# CEILING_fun
@@ -347,16 +334,23 @@ expr:
 	| ADDMINUTES '(' expr ',' expr ')'							# ADDMINUTES_fun
 	| ADDSECONDS '(' expr ',' expr ')'							# ADDSECONDS_fun
 	| TIMESTAMP '(' expr (',' expr)? ')'						# TIMESTAMP_fun
- 	
+	| PARAM '(' expr (',' expr)? ')'							# PARAM_fun
+	| '{' arrayJson (',' arrayJson)* ','* '}'					# ArrayJson_fun
+	| '{' expr (',' expr)* ','* '}'								# Array_fun
 	| '[' PARAMETER ']'											# PARAMETER_fun
 	| '[' expr ']'												# PARAMETER_fun
 	| PARAMETER													# PARAMETER_fun
 	| PARAMETER2												# PARAMETER_fun
-	| '-'? NUM													# NUM_fun
+	| num unit?													# NUM_fun
 	| STRING													# STRING_fun
 	| NULL														# NULL_fun;
 
-parameter2:  
+num: '-'? NUM;
+unit: UNIT | T;
+
+arrayJson: (NUM | STRING | parameter2) ':' expr;
+
+parameter2:
 	E
 	| IF
 	| IFERROR
@@ -571,18 +565,45 @@ parameter2:
 	| ADDSECONDS
 	| TIMESTAMP
 	| NULL
+	| ERROR
+	| UNIT
+	| HAS
+	| PARAM
 	| PARAMETER;
+ 
 
 SUB: '-';
-NUM: '0' ('.' [0-9]+)? 
+NUM:
+	'0' ('.' [0-9]+)?
 	| [1-9][0-9]* ('.' [0-9]+)?
-	| ('0' ('.' [0-9]+)? | [1-9][0-9]* ('.' [0-9]+)?) 'E' [+-]? [0-9][0-9]?
-	;
-STRING: '\'' ( ~'\'' | '\\\'')* '\'' 
+	| ('0' ('.' [0-9]+)? | [1-9][0-9]* ('.' [0-9]+)?) 'E' [+-]? [0-9][0-9]?;
+STRING:
+	'\'' (~'\'' | '\\\'')* '\''
 	| '"' ( ~'"' | '\\"')* '"'
-	| '`' ( ~'`' | '\\`')* '`'
-	;
+	| '`' ( ~'`' | '\\`')* '`';
 NULL: 'NULL';
+ERROR: 'ERROR';
+
+UNIT:
+	'M'
+	| 'KM'
+	| 'DM'
+	| 'CM'
+	| 'MM'
+	| 'M2'
+	| 'KM2'
+	| 'DM2'
+	| 'CM2'
+	| 'MM2'
+	| 'M3'
+	| 'KM3'
+	| 'DM3'
+	| 'CM3'
+	| 'MM3'
+	| 'L'
+	| 'ML'
+	| 'G'
+	| 'KG';
 
 // 逻辑函数
 IF: 'IF';
@@ -795,39 +816,45 @@ REMOVEEND: 'REMOVEEND';
 JSON: 'JSON';
 VLOOKUP: 'VLOOKUP';
 LOOKUP: 'LOOKUP';
-ARRAY:'ARRAY';
+ARRAY: 'ARRAY';
 
-ADDYEARS:'ADDYEARS';
-ADDMONTHS:'ADDMONTHS';
-ADDDAYS:'ADDDAYS';
-ADDHOURS:'ADDHOURS';
-ADDMINUTES:'ADDMINUTES';
-ADDSECONDS:'ADDSECONDS';
-TIMESTAMP:'TIMESTAMP';
+ADDYEARS: 'ADDYEARS';
+ADDMONTHS: 'ADDMONTHS';
+ADDDAYS: 'ADDDAYS';
+ADDHOURS: 'ADDHOURS';
+ADDMINUTES: 'ADDMINUTES';
+ADDSECONDS: 'ADDSECONDS';
+TIMESTAMP: 'TIMESTAMP';
+HAS: 'HAS' | 'CONTAINS';
+PARAM: 'PARAM' | 'PARAMETER' | 'GETPARAMETER';
 
-PARAMETER: ([A-Z_]| FullWidthLetter)([A-Z0-9_] | FullWidthLetter)*;
-PARAMETER2: '{' (~('{'|'}'))+ '}'
-			| '【' (~('【'|'】'))+ '】'
-			| '#' (~('#'))+ '#'
-			| '@' ([A-Z_]| FullWidthLetter)([A-Z0-9_] | FullWidthLetter)*
-			;
+PARAMETER: ([A-Z_] | FullWidthLetter) (
+		[A-Z0-9_]
+		| FullWidthLetter
+	)*;
+PARAMETER2:
+	'【' (~('【' | '】'))+ '】'
+	| '#' (~('#'))+ '#'
+	| '@' ([A-Z_] | FullWidthLetter) (
+		[A-Z0-9_]
+		| FullWidthLetter
+	)*;
 
-fragment FullWidthLetter
-    : '\u00c0'..'\u00d6'
-    | '\u00d8'..'\u00f6'
-    | '\u00f8'..'\u00ff'
-    | '\u0100'..'\u1fff'
-    | '\u2c00'..'\u2fff'
-    | '\u3040'..'\u318f'
-    | '\u3300'..'\u337f'
-    | '\u3400'..'\u3fff'
-    | '\u4e00'..'\u9fff'
-    | '\ua000'..'\ud7ff'
-    | '\uf900'..'\ufaff'
-    | '\uff00'..'\ufff0'
-    // | '\u10000'..'\u1F9FF'  //not support four bytes chars
-    // | '\u20000'..'\u2FA1F'
-    ;
+fragment FullWidthLetter:
+	'\u00c0' ..'\u00d6'
+	| '\u00d8' ..'\u00f6'
+	| '\u00f8' ..'\u00ff'
+	| '\u0100' ..'\u1fff'
+	| '\u2c00' ..'\u2fff'
+	| '\u3040' ..'\u318f'
+	| '\u3300' ..'\u337f'
+	| '\u3400' ..'\u3fff'
+	| '\u4e00' ..'\u9fff'
+	| '\ua000' ..'\ud7ff'
+	| '\uf900' ..'\ufaff'
+	| '\uff00' ..'\ufff0'
+	// | '\u10000'..'\u1F9FF' //not support four bytes chars | '\u20000'..'\u2FA1F'
+	;
 
 WS: [ \t\r\n\u000C]+ -> skip;
 COMMENT: '/*' .*? '*/' -> skip;
