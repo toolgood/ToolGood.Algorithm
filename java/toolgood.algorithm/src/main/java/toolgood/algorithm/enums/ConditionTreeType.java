@@ -1,4 +1,4 @@
-package toolgood.algorithm.internals;
+package toolgood.algorithm.enums;
 
 public enum ConditionTreeType {
     /**

@@ -2,7 +2,7 @@ package toolgood.algorithm.Tests4;
 
 import org.junit.Test;
 import toolgood.algorithm.internals.ConditionTree;
-import toolgood.algorithm.internals.ConditionTreeType;
+import toolgood.algorithm.enums.ConditionTreeType;
 
 import static org.junit.Assert.assertEquals;
 

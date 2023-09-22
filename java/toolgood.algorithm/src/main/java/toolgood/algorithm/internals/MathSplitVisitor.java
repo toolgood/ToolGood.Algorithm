@@ -2,6 +2,7 @@ package toolgood.algorithm.internals;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
+import toolgood.algorithm.enums.ConditionTreeType;
 import toolgood.algorithm.math.mathParser;
 import toolgood.algorithm.math.mathVisitor;
 

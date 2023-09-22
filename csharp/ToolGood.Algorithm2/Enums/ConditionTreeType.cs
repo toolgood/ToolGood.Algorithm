@@ -1,4 +1,4 @@
-﻿namespace ToolGood.Algorithm.Internals
+﻿namespace ToolGood.Algorithm.Enums
 {
     /// <summary>
     /// 条件树类型
