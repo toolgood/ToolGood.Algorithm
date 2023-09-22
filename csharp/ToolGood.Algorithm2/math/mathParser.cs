@@ -31,8 +31,7 @@ using Antlr4.Runtime.Tree;
 using DFA = Antlr4.Runtime.Dfa.DFA;
 
 [System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.13.0")]
-[System.CLSCompliant(false)]
-public partial class mathParser : Parser {
+partial class mathParser : Parser {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
@@ -204,8 +203,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitProg(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitProg(this);
+			
 		}
 	}
 
@@ -257,8 +256,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCEILING_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitCEILING_fun(this);
+			
 		}
 	}
 	public partial class FACT_funContext : ExprContext {
@@ -270,8 +269,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFACT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitFACT_fun(this);
+			
 		}
 	}
 	public partial class REGEXREPALCE_funContext : ExprContext {
@@ -286,8 +285,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitREGEXREPALCE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitREGEXREPALCE_fun(this);
+			
 		}
 	}
 	public partial class HASVALUE_funContext : ExprContext {
@@ -302,8 +301,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHASVALUE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitHASVALUE_fun(this);
+			
 		}
 	}
 	public partial class AddSub_funContext : ExprContext {
@@ -319,8 +318,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitAddSub_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitAddSub_fun(this);
+			
 		}
 	}
 	public partial class AVERAGEIF_funContext : ExprContext {
@@ -335,8 +334,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitAVERAGEIF_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitAVERAGEIF_fun(this);
+			
 		}
 	}
 	public partial class PARAM_funContext : ExprContext {
@@ -351,8 +350,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPARAM_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitPARAM_fun(this);
+			
 		}
 	}
 	public partial class ISNULLORERROR_funContext : ExprContext {
@@ -367,8 +366,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISNULLORERROR_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitISNULLORERROR_fun(this);
+			
 		}
 	}
 	public partial class RIGHT_funContext : ExprContext {
@@ -383,8 +382,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitRIGHT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitRIGHT_fun(this);
+			
 		}
 	}
 	public partial class OCT2BIN_funContext : ExprContext {
@@ -399,8 +398,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitOCT2BIN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitOCT2BIN_fun(this);
+			
 		}
 	}
 	public partial class QUARTILE_funContext : ExprContext {
@@ -415,8 +414,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitQUARTILE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitQUARTILE_fun(this);
+			
 		}
 	}
 	public partial class FINV_funContext : ExprContext {
@@ -431,8 +430,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFINV_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitFINV_fun(this);
+			
 		}
 	}
 	public partial class NOT_funContext : ExprContext {
@@ -444,8 +443,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNOT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitNOT_fun(this);
+			
 		}
 	}
 	public partial class DAYS360_funContext : ExprContext {
@@ -460,8 +459,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDAYS360_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitDAYS360_fun(this);
+			
 		}
 	}
 	public partial class WEEKNUM_funContext : ExprContext {
@@ -476,8 +475,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitWEEKNUM_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitWEEKNUM_fun(this);
+			
 		}
 	}
 	public partial class POISSON_funContext : ExprContext {
@@ -492,8 +491,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPOISSON_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitPOISSON_fun(this);
+			
 		}
 	}
 	public partial class ISREGEX_funContext : ExprContext {
@@ -508,8 +507,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISREGEX_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitISREGEX_fun(this);
+			
 		}
 	}
 	public partial class PERCENTILE_funContext : ExprContext {
@@ -524,8 +523,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPERCENTILE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitPERCENTILE_fun(this);
+			
 		}
 	}
 	public partial class DiyFunction_funContext : ExprContext {
@@ -540,8 +539,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDiyFunction_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitDiyFunction_fun(this);
+			
 		}
 	}
 	public partial class SHA256_funContext : ExprContext {
@@ -556,8 +555,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSHA256_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSHA256_fun(this);
+			
 		}
 	}
 	public partial class HAS_funContext : ExprContext {
@@ -572,8 +571,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHAS_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitHAS_fun(this);
+			
 		}
 	}
 	public partial class HYPGEOMDIST_funContext : ExprContext {
@@ -588,8 +587,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHYPGEOMDIST_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitHYPGEOMDIST_fun(this);
+			
 		}
 	}
 	public partial class PERMUT_funContext : ExprContext {
@@ -604,8 +603,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPERMUT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitPERMUT_fun(this);
+			
 		}
 	}
 	public partial class TRIMSTART_funContext : ExprContext {
@@ -620,8 +619,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTRIMSTART_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTRIMSTART_fun(this);
+			
 		}
 	}
 	public partial class RMB_funContext : ExprContext {
@@ -633,8 +632,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitRMB_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitRMB_fun(this);
+			
 		}
 	}
 	public partial class DEC2HEX_funContext : ExprContext {
@@ -649,8 +648,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDEC2HEX_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitDEC2HEX_fun(this);
+			
 		}
 	}
 	public partial class CLEAN_funContext : ExprContext {
@@ -662,8 +661,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCLEAN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitCLEAN_fun(this);
+			
 		}
 	}
 	public partial class LOWER_funContext : ExprContext {
@@ -675,8 +674,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLOWER_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitLOWER_fun(this);
+			
 		}
 	}
 	public partial class OR_funContext : ExprContext {
@@ -691,8 +690,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitOR_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitOR_fun(this);
+			
 		}
 	}
 	public partial class ADDMONTHS_funContext : ExprContext {
@@ -707,8 +706,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitADDMONTHS_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitADDMONTHS_fun(this);
+			
 		}
 	}
 	public partial class NORMSINV_funContext : ExprContext {
@@ -720,8 +719,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNORMSINV_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitNORMSINV_fun(this);
+			
 		}
 	}
 	public partial class LEFT_funContext : ExprContext {
@@ -736,8 +735,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLEFT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitLEFT_fun(this);
+			
 		}
 	}
 	public partial class ISEVEN_funContext : ExprContext {
@@ -749,8 +748,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISEVEN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitISEVEN_fun(this);
+			
 		}
 	}
 	public partial class LOGINV_funContext : ExprContext {
@@ -765,8 +764,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLOGINV_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitLOGINV_fun(this);
+			
 		}
 	}
 	public partial class WORKDAY_funContext : ExprContext {
@@ -781,8 +780,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitWORKDAY_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitWORKDAY_fun(this);
+			
 		}
 	}
 	public partial class ISERROR_funContext : ExprContext {
@@ -797,8 +796,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISERROR_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitISERROR_fun(this);
+			
 		}
 	}
 	public partial class BIN2DEC_funContext : ExprContext {
@@ -810,8 +809,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitBIN2DEC_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitBIN2DEC_fun(this);
+			
 		}
 	}
 	public partial class JIS_funContext : ExprContext {
@@ -823,8 +822,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitJIS_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitJIS_fun(this);
+			
 		}
 	}
 	public partial class CRC32_funContext : ExprContext {
@@ -839,8 +838,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCRC32_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitCRC32_fun(this);
+			
 		}
 	}
 	public partial class LCM_funContext : ExprContext {
@@ -855,8 +854,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLCM_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitLCM_fun(this);
+			
 		}
 	}
 	public partial class HARMEAN_funContext : ExprContext {
@@ -871,8 +870,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHARMEAN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitHARMEAN_fun(this);
+			
 		}
 	}
 	public partial class NORMINV_funContext : ExprContext {
@@ -887,8 +886,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNORMINV_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitNORMINV_fun(this);
+			
 		}
 	}
 	public partial class GAMMAINV_funContext : ExprContext {
@@ -903,8 +902,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitGAMMAINV_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitGAMMAINV_fun(this);
+			
 		}
 	}
 	public partial class SQRT_funContext : ExprContext {
@@ -916,8 +915,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSQRT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSQRT_fun(this);
+			
 		}
 	}
 	public partial class DEGREES_funContext : ExprContext {
@@ -929,8 +928,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDEGREES_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitDEGREES_fun(this);
+			
 		}
 	}
 	public partial class MROUND_funContext : ExprContext {
@@ -945,8 +944,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMROUND_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitMROUND_fun(this);
+			
 		}
 	}
 	public partial class DATEDIF_funContext : ExprContext {
@@ -961,8 +960,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDATEDIF_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitDATEDIF_fun(this);
+			
 		}
 	}
 	public partial class TRIMEND_funContext : ExprContext {
@@ -977,8 +976,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTRIMEND_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTRIMEND_fun(this);
+			
 		}
 	}
 	public partial class ISLOGICAL_funContext : ExprContext {
@@ -990,8 +989,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISLOGICAL_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitISLOGICAL_fun(this);
+			
 		}
 	}
 	public partial class INT_funContext : ExprContext {
@@ -1003,8 +1002,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitINT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitINT_fun(this);
+			
 		}
 	}
 	public partial class SUMIF_funContext : ExprContext {
@@ -1019,8 +1018,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSUMIF_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSUMIF_fun(this);
+			
 		}
 	}
 	public partial class HEX2OCT_funContext : ExprContext {
@@ -1035,8 +1034,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHEX2OCT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitHEX2OCT_fun(this);
+			
 		}
 	}
 	public partial class PI_funContext : ExprContext {
@@ -1045,8 +1044,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPI_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitPI_fun(this);
+			
 		}
 	}
 	public partial class YEAR_funContext : ExprContext {
@@ -1058,8 +1057,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitYEAR_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitYEAR_fun(this);
+			
 		}
 	}
 	public partial class SQRTPI_funContext : ExprContext {
@@ -1071,8 +1070,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSQRTPI_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSQRTPI_fun(this);
+			
 		}
 	}
 	public partial class CONCATENATE_funContext : ExprContext {
@@ -1087,8 +1086,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCONCATENATE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitCONCATENATE_fun(this);
+			
 		}
 	}
 	public partial class COUNT_funContext : ExprContext {
@@ -1103,8 +1102,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCOUNT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitCOUNT_fun(this);
+			
 		}
 	}
 	public partial class FALSE_funContext : ExprContext {
@@ -1113,8 +1112,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFALSE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitFALSE_fun(this);
+			
 		}
 	}
 	public partial class HTMLENCODE_funContext : ExprContext {
@@ -1126,8 +1125,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHTMLENCODE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitHTMLENCODE_fun(this);
+			
 		}
 	}
 	public partial class BASE64URLTOTEXT_funContext : ExprContext {
@@ -1142,8 +1141,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitBASE64URLTOTEXT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitBASE64URLTOTEXT_fun(this);
+			
 		}
 	}
 	public partial class LOG10_funContext : ExprContext {
@@ -1155,8 +1154,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLOG10_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitLOG10_fun(this);
+			
 		}
 	}
 	public partial class ISTEXT_funContext : ExprContext {
@@ -1168,8 +1167,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISTEXT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitISTEXT_fun(this);
+			
 		}
 	}
 	public partial class NEGBINOMDIST_funContext : ExprContext {
@@ -1184,8 +1183,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNEGBINOMDIST_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitNEGBINOMDIST_fun(this);
+			
 		}
 	}
 	public partial class NETWORKDAYS_funContext : ExprContext {
@@ -1200,8 +1199,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNETWORKDAYS_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitNETWORKDAYS_fun(this);
+			
 		}
 	}
 	public partial class FACTDOUBLE_funContext : ExprContext {
@@ -1213,8 +1212,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFACTDOUBLE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitFACTDOUBLE_fun(this);
+			
 		}
 	}
 	public partial class TIMEVALUE_funContext : ExprContext {
@@ -1226,8 +1225,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTIMEVALUE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTIMEVALUE_fun(this);
+			
 		}
 	}
 	public partial class AVEDEV_funContext : ExprContext {
@@ -1242,8 +1241,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitAVEDEV_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitAVEDEV_fun(this);
+			
 		}
 	}
 	public partial class GUID_funContext : ExprContext {
@@ -1252,8 +1251,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitGUID_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitGUID_fun(this);
+			
 		}
 	}
 	public partial class JSON_funContext : ExprContext {
@@ -1265,8 +1264,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitJSON_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitJSON_fun(this);
+			
 		}
 	}
 	public partial class FIXED_funContext : ExprContext {
@@ -1281,8 +1280,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFIXED_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitFIXED_fun(this);
+			
 		}
 	}
 	public partial class GetJsonValue_funContext : ExprContext {
@@ -1299,8 +1298,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitGetJsonValue_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitGetJsonValue_fun(this);
+			
 		}
 	}
 	public partial class TINV_funContext : ExprContext {
@@ -1315,8 +1314,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTINV_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTINV_fun(this);
+			
 		}
 	}
 	public partial class EDATE_funContext : ExprContext {
@@ -1331,8 +1330,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitEDATE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitEDATE_fun(this);
+			
 		}
 	}
 	public partial class GEOMEAN_funContext : ExprContext {
@@ -1347,8 +1346,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitGEOMEAN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitGEOMEAN_fun(this);
+			
 		}
 	}
 	public partial class VAR_funContext : ExprContext {
@@ -1363,8 +1362,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitVAR_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitVAR_fun(this);
+			
 		}
 	}
 	public partial class SIGN_funContext : ExprContext {
@@ -1376,8 +1375,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSIGN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSIGN_fun(this);
+			
 		}
 	}
 	public partial class EOMONTH_funContext : ExprContext {
@@ -1392,8 +1391,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitEOMONTH_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitEOMONTH_fun(this);
+			
 		}
 	}
 	public partial class FLOOR_funContext : ExprContext {
@@ -1408,8 +1407,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFLOOR_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitFLOOR_fun(this);
+			
 		}
 	}
 	public partial class HOUR_funContext : ExprContext {
@@ -1421,8 +1420,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHOUR_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitHOUR_fun(this);
+			
 		}
 	}
 	public partial class LEN_funContext : ExprContext {
@@ -1434,8 +1433,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLEN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitLEN_fun(this);
+			
 		}
 	}
 	public partial class ACOS_funContext : ExprContext {
@@ -1447,8 +1446,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitACOS_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitACOS_fun(this);
+			
 		}
 	}
 	public partial class ISNULLORWHITESPACE_funContext : ExprContext {
@@ -1460,8 +1459,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISNULLORWHITESPACE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitISNULLORWHITESPACE_fun(this);
+			
 		}
 	}
 	public partial class NUM_funContext : ExprContext {
@@ -1475,8 +1474,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNUM_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitNUM_fun(this);
+			
 		}
 	}
 	public partial class COSH_funContext : ExprContext {
@@ -1488,8 +1487,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCOSH_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitCOSH_fun(this);
+			
 		}
 	}
 	public partial class QUOTIENT_funContext : ExprContext {
@@ -1504,8 +1503,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitQUOTIENT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitQUOTIENT_fun(this);
+			
 		}
 	}
 	public partial class OCT2DEC_funContext : ExprContext {
@@ -1517,8 +1516,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitOCT2DEC_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitOCT2DEC_fun(this);
+			
 		}
 	}
 	public partial class SEARCH_funContext : ExprContext {
@@ -1533,8 +1532,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSEARCH_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSEARCH_fun(this);
+			
 		}
 	}
 	public partial class ROUNDUP_funContext : ExprContext {
@@ -1549,8 +1548,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitROUNDUP_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitROUNDUP_fun(this);
+			
 		}
 	}
 	public partial class COMBIN_funContext : ExprContext {
@@ -1565,8 +1564,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCOMBIN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitCOMBIN_fun(this);
+			
 		}
 	}
 	public partial class CODE_funContext : ExprContext {
@@ -1578,8 +1577,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCODE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitCODE_fun(this);
+			
 		}
 	}
 	public partial class ASINH_funContext : ExprContext {
@@ -1591,8 +1590,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitASINH_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitASINH_fun(this);
+			
 		}
 	}
 	public partial class SIN_funContext : ExprContext {
@@ -1604,8 +1603,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSIN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSIN_fun(this);
+			
 		}
 	}
 	public partial class SUBSTRING_funContext : ExprContext {
@@ -1620,8 +1619,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSUBSTRING_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSUBSTRING_fun(this);
+			
 		}
 	}
 	public partial class RANDBETWEEN_funContext : ExprContext {
@@ -1636,8 +1635,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitRANDBETWEEN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitRANDBETWEEN_fun(this);
+			
 		}
 	}
 	public partial class AVERAGE_funContext : ExprContext {
@@ -1652,8 +1651,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitAVERAGE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitAVERAGE_fun(this);
+			
 		}
 	}
 	public partial class LOG_funContext : ExprContext {
@@ -1668,8 +1667,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLOG_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitLOG_fun(this);
+			
 		}
 	}
 	public partial class HMACSHA512_funContext : ExprContext {
@@ -1684,8 +1683,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHMACSHA512_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitHMACSHA512_fun(this);
+			
 		}
 	}
 	public partial class AndOr_funContext : ExprContext {
@@ -1702,8 +1701,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitAndOr_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitAndOr_fun(this);
+			
 		}
 	}
 	public partial class STDEVP_funContext : ExprContext {
@@ -1718,8 +1717,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSTDEVP_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSTDEVP_fun(this);
+			
 		}
 	}
 	public partial class ADDYEARS_funContext : ExprContext {
@@ -1734,8 +1733,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitADDYEARS_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitADDYEARS_fun(this);
+			
 		}
 	}
 	public partial class ADDSECONDS_funContext : ExprContext {
@@ -1750,8 +1749,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitADDSECONDS_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitADDSECONDS_fun(this);
+			
 		}
 	}
 	public partial class Array_funContext : ExprContext {
@@ -1766,8 +1765,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitArray_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitArray_fun(this);
+			
 		}
 	}
 	public partial class ROUND_funContext : ExprContext {
@@ -1782,8 +1781,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitROUND_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitROUND_fun(this);
+			
 		}
 	}
 	public partial class EXP_funContext : ExprContext {
@@ -1795,8 +1794,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitEXP_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitEXP_fun(this);
+			
 		}
 	}
 	public partial class COUNTIF_funContext : ExprContext {
@@ -1811,8 +1810,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCOUNTIF_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitCOUNTIF_fun(this);
+			
 		}
 	}
 	public partial class VARP_funContext : ExprContext {
@@ -1827,8 +1826,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitVARP_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitVARP_fun(this);
+			
 		}
 	}
 	public partial class REMOVEEND_funContext : ExprContext {
@@ -1843,8 +1842,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitREMOVEEND_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitREMOVEEND_fun(this);
+			
 		}
 	}
 	public partial class DATE_funContext : ExprContext {
@@ -1859,8 +1858,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDATE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitDATE_fun(this);
+			
 		}
 	}
 	public partial class PARAMETER_funContext : ExprContext {
@@ -1873,8 +1872,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPARAMETER_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitPARAMETER_fun(this);
+			
 		}
 	}
 	public partial class SPLIT_funContext : ExprContext {
@@ -1889,8 +1888,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSPLIT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSPLIT_fun(this);
+			
 		}
 	}
 	public partial class URLDECODE_funContext : ExprContext {
@@ -1902,8 +1901,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitURLDECODE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitURLDECODE_fun(this);
+			
 		}
 	}
 	public partial class LARGE_funContext : ExprContext {
@@ -1918,8 +1917,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLARGE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitLARGE_fun(this);
+			
 		}
 	}
 	public partial class TIMESTAMP_funContext : ExprContext {
@@ -1934,8 +1933,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTIMESTAMP_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTIMESTAMP_fun(this);
+			
 		}
 	}
 	public partial class VALUE_funContext : ExprContext {
@@ -1947,8 +1946,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitVALUE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitVALUE_fun(this);
+			
 		}
 	}
 	public partial class DAY_funContext : ExprContext {
@@ -1960,8 +1959,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDAY_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitDAY_fun(this);
+			
 		}
 	}
 	public partial class WEIBULL_funContext : ExprContext {
@@ -1976,8 +1975,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitWEIBULL_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitWEIBULL_fun(this);
+			
 		}
 	}
 	public partial class HMACSHA256_funContext : ExprContext {
@@ -1992,8 +1991,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHMACSHA256_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitHMACSHA256_fun(this);
+			
 		}
 	}
 	public partial class BINOMDIST_funContext : ExprContext {
@@ -2008,8 +2007,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitBINOMDIST_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitBINOMDIST_fun(this);
+			
 		}
 	}
 	public partial class Judge_funContext : ExprContext {
@@ -2024,8 +2023,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitJudge_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitJudge_fun(this);
+			
 		}
 	}
 	public partial class DEVSQ_funContext : ExprContext {
@@ -2040,8 +2039,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDEVSQ_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitDEVSQ_fun(this);
+			
 		}
 	}
 	public partial class MODE_funContext : ExprContext {
@@ -2056,8 +2055,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMODE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitMODE_fun(this);
+			
 		}
 	}
 	public partial class BETAINV_funContext : ExprContext {
@@ -2072,8 +2071,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitBETAINV_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitBETAINV_fun(this);
+			
 		}
 	}
 	public partial class MAX_funContext : ExprContext {
@@ -2088,8 +2087,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMAX_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitMAX_fun(this);
+			
 		}
 	}
 	public partial class MINUTE_funContext : ExprContext {
@@ -2101,8 +2100,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMINUTE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitMINUTE_fun(this);
+			
 		}
 	}
 	public partial class TAN_funContext : ExprContext {
@@ -2114,8 +2113,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTAN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTAN_fun(this);
+			
 		}
 	}
 	public partial class IFERROR_funContext : ExprContext {
@@ -2130,8 +2129,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitIFERROR_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitIFERROR_fun(this);
+			
 		}
 	}
 	public partial class FDIST_funContext : ExprContext {
@@ -2146,8 +2145,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFDIST_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitFDIST_fun(this);
+			
 		}
 	}
 	public partial class INDEXOF_funContext : ExprContext {
@@ -2162,8 +2161,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitINDEXOF_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitINDEXOF_fun(this);
+			
 		}
 	}
 	public partial class UPPER_funContext : ExprContext {
@@ -2175,8 +2174,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitUPPER_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitUPPER_fun(this);
+			
 		}
 	}
 	public partial class HTMLDECODE_funContext : ExprContext {
@@ -2188,8 +2187,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHTMLDECODE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitHTMLDECODE_fun(this);
+			
 		}
 	}
 	public partial class EXPONDIST_funContext : ExprContext {
@@ -2204,8 +2203,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitEXPONDIST_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitEXPONDIST_fun(this);
+			
 		}
 	}
 	public partial class VLOOKUP_funContext : ExprContext {
@@ -2220,8 +2219,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitVLOOKUP_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitVLOOKUP_fun(this);
+			
 		}
 	}
 	public partial class DEC2BIN_funContext : ExprContext {
@@ -2236,8 +2235,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDEC2BIN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitDEC2BIN_fun(this);
+			
 		}
 	}
 	public partial class LOOKUP_funContext : ExprContext {
@@ -2252,8 +2251,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLOOKUP_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitLOOKUP_fun(this);
+			
 		}
 	}
 	public partial class HEX2DEC_funContext : ExprContext {
@@ -2265,8 +2264,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHEX2DEC_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitHEX2DEC_fun(this);
+			
 		}
 	}
 	public partial class SMALL_funContext : ExprContext {
@@ -2281,8 +2280,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSMALL_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSMALL_fun(this);
+			
 		}
 	}
 	public partial class ODD_funContext : ExprContext {
@@ -2294,8 +2293,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitODD_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitODD_fun(this);
+			
 		}
 	}
 	public partial class TEXTTOBASE64_funContext : ExprContext {
@@ -2310,8 +2309,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTEXTTOBASE64_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTEXTTOBASE64_fun(this);
+			
 		}
 	}
 	public partial class MID_funContext : ExprContext {
@@ -2326,8 +2325,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMID_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitMID_fun(this);
+			
 		}
 	}
 	public partial class PERCENTRANK_funContext : ExprContext {
@@ -2342,8 +2341,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPERCENTRANK_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitPERCENTRANK_fun(this);
+			
 		}
 	}
 	public partial class STDEV_funContext : ExprContext {
@@ -2358,8 +2357,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSTDEV_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSTDEV_fun(this);
+			
 		}
 	}
 	public partial class NORMSDIST_funContext : ExprContext {
@@ -2371,8 +2370,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNORMSDIST_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitNORMSDIST_fun(this);
+			
 		}
 	}
 	public partial class ISNUMBER_funContext : ExprContext {
@@ -2384,8 +2383,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISNUMBER_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitISNUMBER_fun(this);
+			
 		}
 	}
 	public partial class LASTINDEXOF_funContext : ExprContext {
@@ -2400,8 +2399,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLASTINDEXOF_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitLASTINDEXOF_fun(this);
+			
 		}
 	}
 	public partial class MOD_funContext : ExprContext {
@@ -2416,8 +2415,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMOD_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitMOD_fun(this);
+			
 		}
 	}
 	public partial class CHAR_funContext : ExprContext {
@@ -2429,8 +2428,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCHAR_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitCHAR_fun(this);
+			
 		}
 	}
 	public partial class REGEX_funContext : ExprContext {
@@ -2445,8 +2444,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitREGEX_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitREGEX_fun(this);
+			
 		}
 	}
 	public partial class TEXTTOBASE64URL_funContext : ExprContext {
@@ -2461,8 +2460,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTEXTTOBASE64URL_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTEXTTOBASE64URL_fun(this);
+			
 		}
 	}
 	public partial class MD5_funContext : ExprContext {
@@ -2477,8 +2476,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMD5_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitMD5_fun(this);
+			
 		}
 	}
 	public partial class REPLACE_funContext : ExprContext {
@@ -2493,8 +2492,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitREPLACE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitREPLACE_fun(this);
+			
 		}
 	}
 	public partial class ACOSH_funContext : ExprContext {
@@ -2506,8 +2505,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitACOSH_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitACOSH_fun(this);
+			
 		}
 	}
 	public partial class ISODD_funContext : ExprContext {
@@ -2519,8 +2518,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISODD_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitISODD_fun(this);
+			
 		}
 	}
 	public partial class ASC_funContext : ExprContext {
@@ -2532,8 +2531,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitASC_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitASC_fun(this);
+			
 		}
 	}
 	public partial class COS_funContext : ExprContext {
@@ -2545,8 +2544,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCOS_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitCOS_fun(this);
+			
 		}
 	}
 	public partial class LN_funContext : ExprContext {
@@ -2558,8 +2557,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitLN_fun(this);
+			
 		}
 	}
 	public partial class STRING_funContext : ExprContext {
@@ -2568,8 +2567,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSTRING_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSTRING_fun(this);
+			
 		}
 	}
 	public partial class HMACMD5_funContext : ExprContext {
@@ -2584,8 +2583,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHMACMD5_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitHMACMD5_fun(this);
+			
 		}
 	}
 	public partial class PRODUCT_funContext : ExprContext {
@@ -2600,8 +2599,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPRODUCT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitPRODUCT_fun(this);
+			
 		}
 	}
 	public partial class EXACT_funContext : ExprContext {
@@ -2616,8 +2615,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitEXACT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitEXACT_fun(this);
+			
 		}
 	}
 	public partial class ADDMINUTES_funContext : ExprContext {
@@ -2632,8 +2631,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitADDMINUTES_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitADDMINUTES_fun(this);
+			
 		}
 	}
 	public partial class SUMSQ_funContext : ExprContext {
@@ -2648,8 +2647,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSUMSQ_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSUMSQ_fun(this);
+			
 		}
 	}
 	public partial class SUM_funContext : ExprContext {
@@ -2664,8 +2663,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSUM_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSUM_fun(this);
+			
 		}
 	}
 	public partial class SECOND_funContext : ExprContext {
@@ -2677,8 +2676,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSECOND_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSECOND_fun(this);
+			
 		}
 	}
 	public partial class GAMMADIST_funContext : ExprContext {
@@ -2693,8 +2692,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitGAMMADIST_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitGAMMADIST_fun(this);
+			
 		}
 	}
 	public partial class OCT2HEX_funContext : ExprContext {
@@ -2709,8 +2708,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitOCT2HEX_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitOCT2HEX_fun(this);
+			
 		}
 	}
 	public partial class TODAY_funContext : ExprContext {
@@ -2719,8 +2718,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTODAY_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTODAY_fun(this);
+			
 		}
 	}
 	public partial class ERROR_funContext : ExprContext {
@@ -2732,8 +2731,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitERROR_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitERROR_fun(this);
+			
 		}
 	}
 	public partial class ATAN_funContext : ExprContext {
@@ -2745,8 +2744,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitATAN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitATAN_fun(this);
+			
 		}
 	}
 	public partial class E_funContext : ExprContext {
@@ -2755,8 +2754,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitE_fun(this);
+			
 		}
 	}
 	public partial class TRIM_funContext : ExprContext {
@@ -2768,8 +2767,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTRIM_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTRIM_fun(this);
+			
 		}
 	}
 	public partial class RADIANS_funContext : ExprContext {
@@ -2781,8 +2780,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitRADIANS_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitRADIANS_fun(this);
+			
 		}
 	}
 	public partial class GAMMALN_funContext : ExprContext {
@@ -2794,8 +2793,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitGAMMALN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitGAMMALN_fun(this);
+			
 		}
 	}
 	public partial class TEXT_funContext : ExprContext {
@@ -2810,8 +2809,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTEXT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTEXT_fun(this);
+			
 		}
 	}
 	public partial class FISHER_funContext : ExprContext {
@@ -2823,8 +2822,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFISHER_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitFISHER_fun(this);
+			
 		}
 	}
 	public partial class AND_funContext : ExprContext {
@@ -2839,8 +2838,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitAND_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitAND_fun(this);
+			
 		}
 	}
 	public partial class ArrayJson_funContext : ExprContext {
@@ -2854,8 +2853,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitArrayJson_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitArrayJson_fun(this);
+			
 		}
 	}
 	public partial class BIN2HEX_funContext : ExprContext {
@@ -2870,8 +2869,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitBIN2HEX_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitBIN2HEX_fun(this);
+			
 		}
 	}
 	public partial class MULTINOMIAL_funContext : ExprContext {
@@ -2886,8 +2885,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMULTINOMIAL_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitMULTINOMIAL_fun(this);
+			
 		}
 	}
 	public partial class MONTH_funContext : ExprContext {
@@ -2899,8 +2898,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMONTH_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitMONTH_fun(this);
+			
 		}
 	}
 	public partial class URLENCODE_funContext : ExprContext {
@@ -2912,8 +2911,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitURLENCODE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitURLENCODE_fun(this);
+			
 		}
 	}
 	public partial class NORMDIST_funContext : ExprContext {
@@ -2928,8 +2927,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNORMDIST_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitNORMDIST_fun(this);
+			
 		}
 	}
 	public partial class HMACSHA1_funContext : ExprContext {
@@ -2944,8 +2943,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHMACSHA1_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitHMACSHA1_fun(this);
+			
 		}
 	}
 	public partial class ENDSWITH_funContext : ExprContext {
@@ -2960,8 +2959,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitENDSWITH_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitENDSWITH_fun(this);
+			
 		}
 	}
 	public partial class Bracket_funContext : ExprContext {
@@ -2972,8 +2971,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitBracket_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitBracket_fun(this);
+			
 		}
 	}
 	public partial class BETADIST_funContext : ExprContext {
@@ -2988,8 +2987,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitBETADIST_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitBETADIST_fun(this);
+			
 		}
 	}
 	public partial class ATANH_funContext : ExprContext {
@@ -3001,8 +3000,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitATANH_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitATANH_fun(this);
+			
 		}
 	}
 	public partial class NOW_funContext : ExprContext {
@@ -3011,8 +3010,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNOW_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitNOW_fun(this);
+			
 		}
 	}
 	public partial class MEDIAN_funContext : ExprContext {
@@ -3027,8 +3026,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMEDIAN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitMEDIAN_fun(this);
+			
 		}
 	}
 	public partial class POWER_funContext : ExprContext {
@@ -3043,8 +3042,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPOWER_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitPOWER_fun(this);
+			
 		}
 	}
 	public partial class DEC2OCT_funContext : ExprContext {
@@ -3059,8 +3058,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDEC2OCT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitDEC2OCT_fun(this);
+			
 		}
 	}
 	public partial class PROPER_funContext : ExprContext {
@@ -3072,8 +3071,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPROPER_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitPROPER_fun(this);
+			
 		}
 	}
 	public partial class TRUNC_funContext : ExprContext {
@@ -3085,8 +3084,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTRUNC_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTRUNC_fun(this);
+			
 		}
 	}
 	public partial class GCD_funContext : ExprContext {
@@ -3101,8 +3100,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitGCD_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitGCD_fun(this);
+			
 		}
 	}
 	public partial class TANH_funContext : ExprContext {
@@ -3114,8 +3113,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTANH_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTANH_fun(this);
+			
 		}
 	}
 	public partial class HEX2BIN_funContext : ExprContext {
@@ -3130,8 +3129,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitHEX2BIN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitHEX2BIN_fun(this);
+			
 		}
 	}
 	public partial class SINH_funContext : ExprContext {
@@ -3143,8 +3142,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSINH_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSINH_fun(this);
+			
 		}
 	}
 	public partial class SHA512_funContext : ExprContext {
@@ -3159,8 +3158,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSHA512_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSHA512_fun(this);
+			
 		}
 	}
 	public partial class MIN_funContext : ExprContext {
@@ -3175,8 +3174,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMIN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitMIN_fun(this);
+			
 		}
 	}
 	public partial class ADDDAYS_funContext : ExprContext {
@@ -3191,8 +3190,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitADDDAYS_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitADDDAYS_fun(this);
+			
 		}
 	}
 	public partial class ISNONTEXT_funContext : ExprContext {
@@ -3204,8 +3203,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISNONTEXT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitISNONTEXT_fun(this);
+			
 		}
 	}
 	public partial class ABS_funContext : ExprContext {
@@ -3217,8 +3216,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitABS_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitABS_fun(this);
+			
 		}
 	}
 	public partial class ROUNDDOWN_funContext : ExprContext {
@@ -3233,8 +3232,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitROUNDDOWN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitROUNDDOWN_fun(this);
+			
 		}
 	}
 	public partial class IF_funContext : ExprContext {
@@ -3249,8 +3248,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitIF_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitIF_fun(this);
+			
 		}
 	}
 	public partial class JOIN_funContext : ExprContext {
@@ -3265,8 +3264,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitJOIN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitJOIN_fun(this);
+			
 		}
 	}
 	public partial class FIND_funContext : ExprContext {
@@ -3281,8 +3280,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFIND_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitFIND_fun(this);
+			
 		}
 	}
 	public partial class SUBSTITUTE_funContext : ExprContext {
@@ -3297,8 +3296,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSUBSTITUTE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSUBSTITUTE_fun(this);
+			
 		}
 	}
 	public partial class Percentage_funContext : ExprContext {
@@ -3309,8 +3308,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitPercentage_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitPercentage_fun(this);
+			
 		}
 	}
 	public partial class REPT_funContext : ExprContext {
@@ -3325,8 +3324,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitREPT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitREPT_fun(this);
+			
 		}
 	}
 	public partial class ISNULL_funContext : ExprContext {
@@ -3341,8 +3340,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISNULL_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitISNULL_fun(this);
+			
 		}
 	}
 	public partial class ASIN_funContext : ExprContext {
@@ -3354,8 +3353,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitASIN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitASIN_fun(this);
+			
 		}
 	}
 	public partial class MulDiv_funContext : ExprContext {
@@ -3370,8 +3369,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitMulDiv_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitMulDiv_fun(this);
+			
 		}
 	}
 	public partial class REMOVESTART_funContext : ExprContext {
@@ -3386,8 +3385,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitREMOVESTART_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitREMOVESTART_fun(this);
+			
 		}
 	}
 	public partial class T_funContext : ExprContext {
@@ -3399,8 +3398,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitT_fun(this);
+			
 		}
 	}
 	public partial class WEEKDAY_funContext : ExprContext {
@@ -3415,8 +3414,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitWEEKDAY_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitWEEKDAY_fun(this);
+			
 		}
 	}
 	public partial class BIN2OCT_funContext : ExprContext {
@@ -3431,8 +3430,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitBIN2OCT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitBIN2OCT_fun(this);
+			
 		}
 	}
 	public partial class NULL_funContext : ExprContext {
@@ -3441,8 +3440,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNULL_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitNULL_fun(this);
+			
 		}
 	}
 	public partial class BASE64TOTEXT_funContext : ExprContext {
@@ -3457,8 +3456,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitBASE64TOTEXT_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitBASE64TOTEXT_fun(this);
+			
 		}
 	}
 	public partial class TDIST_funContext : ExprContext {
@@ -3473,8 +3472,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTDIST_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTDIST_fun(this);
+			
 		}
 	}
 	public partial class DATEVALUE_funContext : ExprContext {
@@ -3489,8 +3488,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitDATEVALUE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitDATEVALUE_fun(this);
+			
 		}
 	}
 	public partial class STARTSWITH_funContext : ExprContext {
@@ -3505,8 +3504,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSTARTSWITH_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSTARTSWITH_fun(this);
+			
 		}
 	}
 	public partial class EVEN_funContext : ExprContext {
@@ -3518,8 +3517,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitEVEN_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitEVEN_fun(this);
+			
 		}
 	}
 	public partial class LOGNORMDIST_funContext : ExprContext {
@@ -3534,8 +3533,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLOGNORMDIST_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitLOGNORMDIST_fun(this);
+			
 		}
 	}
 	public partial class ISNULLOREMPTY_funContext : ExprContext {
@@ -3547,8 +3546,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitISNULLOREMPTY_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitISNULLOREMPTY_fun(this);
+			
 		}
 	}
 	public partial class TRUE_funContext : ExprContext {
@@ -3557,8 +3556,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTRUE_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTRUE_fun(this);
+			
 		}
 	}
 	public partial class FISHERINV_funContext : ExprContext {
@@ -3570,8 +3569,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFISHERINV_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitFISHERINV_fun(this);
+			
 		}
 	}
 	public partial class SHA1_funContext : ExprContext {
@@ -3586,8 +3585,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSHA1_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitSHA1_fun(this);
+			
 		}
 	}
 	public partial class TIME_funContext : ExprContext {
@@ -3602,8 +3601,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitTIME_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitTIME_fun(this);
+			
 		}
 	}
 	public partial class ATAN2_funContext : ExprContext {
@@ -3618,8 +3617,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitATAN2_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitATAN2_fun(this);
+			
 		}
 	}
 	public partial class ADDHOURS_funContext : ExprContext {
@@ -3634,8 +3633,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitADDHOURS_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitADDHOURS_fun(this);
+			
 		}
 	}
 	public partial class RAND_funContext : ExprContext {
@@ -3644,8 +3643,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitRAND_fun(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitRAND_fun(this);
+			
 		}
 	}
 
@@ -11404,8 +11403,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNum(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitNum(this);
+			
 		}
 	}
 
@@ -11453,8 +11452,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitUnit(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitUnit(this);
+			
 		}
 	}
 
@@ -11505,8 +11504,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitArrayJson(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitArrayJson(this);
+			
 		}
 	}
 
@@ -12004,8 +12003,8 @@ public partial class mathParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitParameter2(this);
-			else return visitor.VisitChildren(this);
+			return typedVisitor.VisitParameter2(this);
+			
 		}
 	}
 
