@@ -25,6 +25,15 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
         }
 
         [Test]
+        public void Error_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var num = engine.TryEvaluate("Error('出错了')", "");
+            Assert.AreEqual(num, "");
+            Assert.AreEqual(engine.LastError, "出错了");
+        }
+
+        [Test]
         public void Json_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
