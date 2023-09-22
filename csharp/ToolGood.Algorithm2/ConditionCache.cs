@@ -11,7 +11,7 @@ namespace ToolGood.Algorithm
     /// </summary>
     public sealed class ConditionCache
     {
-        private Dictionary<string, List<ConditionCacheInfo>> conditionCaches = new Dictionary<string, List<ConditionCacheInfo>>();
+        private readonly Dictionary<string, List<ConditionCacheInfo>> conditionCaches = new Dictionary<string, List<ConditionCacheInfo>>();
         /// <summary>
         /// 最后一个错误
         /// </summary>
@@ -64,9 +64,9 @@ namespace ToolGood.Algorithm
                 conditionCache.FormulaProg = formulaProg;
             }
 
-            List<Internals.ConditionCacheInfo> list;
+            List<ConditionCacheInfo> list;
             if (conditionCaches.TryGetValue(categoryName, out list) == false) {
-                list = new List<Internals.ConditionCacheInfo>();
+                list = new List<ConditionCacheInfo>();
                 conditionCaches[categoryName] = list;
             }
 
@@ -92,7 +92,7 @@ namespace ToolGood.Algorithm
                 LastError = "Parameter remark is null or empty.";
                 return false;
             }
-            Internals.ConditionCacheInfo conditionCache = new Internals.ConditionCacheInfo() {
+            ConditionCacheInfo conditionCache = new ConditionCacheInfo() {
                 CategoryName = categoryName,
                 Remark = remark,
                 ConditionString = condition,
@@ -106,9 +106,9 @@ namespace ToolGood.Algorithm
                     conditionCache.ConditionProg = conditionProg;
                 }
             }
-            List<Internals.ConditionCacheInfo> list;
+            List<ConditionCacheInfo> list;
             if (conditionCaches.TryGetValue(categoryName, out list) == false) {
-                list = new List<Internals.ConditionCacheInfo>();
+                list = new List<ConditionCacheInfo>();
                 conditionCaches[categoryName] = list;
             }
 

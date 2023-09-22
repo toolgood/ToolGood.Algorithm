@@ -708,7 +708,7 @@ namespace ToolGood.Algorithm
     {
         public override OperandType Type => OperandType.ERROR;
         public override bool IsError => true;
-        private string _errorMsg;
+        private readonly string _errorMsg;
         public override string ErrorMsg => _errorMsg;
         public OperandError(string msg)
         {
@@ -769,7 +769,7 @@ namespace ToolGood.Algorithm
         public override OperandType Type => OperandType.ARRARYJSON;
         public override List<Operand> ArrayValue => TextList.Select(q => q.Value).ToList();
 
-        private List<KeyValue> TextList = new List<KeyValue>();
+        private readonly List<KeyValue> TextList = new List<KeyValue>();
 
         public override Operand ToArray(string errorMessage = null)
         {

@@ -34,8 +34,7 @@ namespace ToolGood.Algorithm.LitJson
         public JsonData this[string prop_name] {
             get {
                 EnsureDictionary();
-                JsonData data;
-                if (inst_object.TryGetValue(prop_name, out data)) {
+                if (inst_object.TryGetValue(prop_name, out JsonData data)) {
                     return data;
                 }
                 return null;

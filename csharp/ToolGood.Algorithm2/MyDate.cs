@@ -121,55 +121,61 @@ namespace ToolGood.Algorithm
             String t = txt.Trim();
             var m = Regex.Match(t, "^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d):([012345]?\\d)$", RegexOptions.Compiled);
             if (m.Success) {
-                MyDate date = new MyDate();
-                date.Year = int.Parse(m.Groups[(1)].Value, cultureInfo);
-                date.Month = int.Parse(m.Groups[(2)].Value, cultureInfo);
-                date.Day = int.Parse(m.Groups[(3)].Value, cultureInfo);
-                date.Hour = int.Parse(m.Groups[(4)].Value, cultureInfo);
-                date.Minute = int.Parse(m.Groups[(5)].Value, cultureInfo);
-                date.Second = int.Parse(m.Groups[(6)].Value, cultureInfo);
+                MyDate date = new MyDate {
+                    Year = int.Parse(m.Groups[(1)].Value, cultureInfo),
+                    Month = int.Parse(m.Groups[(2)].Value, cultureInfo),
+                    Day = int.Parse(m.Groups[(3)].Value, cultureInfo),
+                    Hour = int.Parse(m.Groups[(4)].Value, cultureInfo),
+                    Minute = int.Parse(m.Groups[(5)].Value, cultureInfo),
+                    Second = int.Parse(m.Groups[(6)].Value, cultureInfo)
+                };
                 return date;
             }
             m = Regex.Match(t, "^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d)$", RegexOptions.Compiled);
             if (m.Success) {
-                MyDate date = new MyDate();
-                date.Year = int.Parse(m.Groups[(1)].Value, cultureInfo);
-                date.Month = int.Parse(m.Groups[(2)].Value, cultureInfo);
-                date.Day = int.Parse(m.Groups[(3)].Value, cultureInfo);
-                date.Hour = int.Parse(m.Groups[(4)].Value, cultureInfo);
-                date.Minute = int.Parse(m.Groups[(5)].Value, cultureInfo);
+                MyDate date = new MyDate {
+                    Year = int.Parse(m.Groups[(1)].Value, cultureInfo),
+                    Month = int.Parse(m.Groups[(2)].Value, cultureInfo),
+                    Day = int.Parse(m.Groups[(3)].Value, cultureInfo),
+                    Hour = int.Parse(m.Groups[(4)].Value, cultureInfo),
+                    Minute = int.Parse(m.Groups[(5)].Value, cultureInfo)
+                };
                 return date;
             }
             m = Regex.Match(t, "^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d)$");
             if (m.Success) {
-                MyDate date = new MyDate();
-                date.Year = int.Parse(m.Groups[(1)].Value, cultureInfo);
-                date.Month = int.Parse(m.Groups[(2)].Value, cultureInfo);
-                date.Day = int.Parse(m.Groups[(3)].Value, cultureInfo);
+                MyDate date = new MyDate {
+                    Year = int.Parse(m.Groups[(1)].Value, cultureInfo),
+                    Month = int.Parse(m.Groups[(2)].Value, cultureInfo),
+                    Day = int.Parse(m.Groups[(3)].Value, cultureInfo)
+                };
                 return date;
             }
             m = Regex.Match(t, "^(\\d+) (2[0123]|[01]?\\d):([012345]?\\d):([012345]?\\d)$", RegexOptions.Compiled);
             if (m.Success) {
-                MyDate date = new MyDate();
-                date.Day = int.Parse(m.Groups[(1)].Value, cultureInfo);
-                date.Hour = int.Parse(m.Groups[(2)].Value, cultureInfo);
-                date.Minute = int.Parse(m.Groups[(3)].Value, cultureInfo);
-                date.Second = int.Parse(m.Groups[(4)].Value, cultureInfo);
+                MyDate date = new MyDate {
+                    Day = int.Parse(m.Groups[(1)].Value, cultureInfo),
+                    Hour = int.Parse(m.Groups[(2)].Value, cultureInfo),
+                    Minute = int.Parse(m.Groups[(3)].Value, cultureInfo),
+                    Second = int.Parse(m.Groups[(4)].Value, cultureInfo)
+                };
                 return date;
             }
             m = Regex.Match(t, "^(2[0123]|[01]?\\d):([012345]?\\d):([012345]?\\d)$", RegexOptions.Compiled);
             if (m.Success) {
-                MyDate date = new MyDate();
-                date.Hour = int.Parse(m.Groups[(1)].Value, cultureInfo);
-                date.Minute = int.Parse(m.Groups[(2)].Value, cultureInfo);
-                date.Second = int.Parse(m.Groups[(3)].Value, cultureInfo);
+                MyDate date = new MyDate {
+                    Hour = int.Parse(m.Groups[(1)].Value, cultureInfo),
+                    Minute = int.Parse(m.Groups[(2)].Value, cultureInfo),
+                    Second = int.Parse(m.Groups[(3)].Value, cultureInfo)
+                };
                 return date;
             }
             m = Regex.Match(t, "^(2[0123]|[01]?\\d):([012345]?\\d)$", RegexOptions.Compiled);
             if (m.Success) {
-                MyDate date = new MyDate();
-                date.Hour = int.Parse(m.Groups[(1)].Value, cultureInfo);
-                date.Minute = int.Parse(m.Groups[(2)].Value, cultureInfo);
+                MyDate date = new MyDate {
+                    Hour = int.Parse(m.Groups[(1)].Value, cultureInfo),
+                    Minute = int.Parse(m.Groups[(2)].Value, cultureInfo)
+                };
                 return date;
             }
             return null;

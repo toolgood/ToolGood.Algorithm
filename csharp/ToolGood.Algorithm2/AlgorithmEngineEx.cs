@@ -36,7 +36,7 @@ namespace ToolGood.Algorithm
         /// <summary>
         /// 自定义 函数
         /// </summary>
-        private ConditionCache MultiConditionCache;
+        private readonly ConditionCache MultiConditionCache;
         /// <summary>
         /// 跳过条件错误 
         /// </summary>
