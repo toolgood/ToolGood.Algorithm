@@ -89,6 +89,143 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
         [Test]
         public void Distance_Test()
         {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            bool b = engine.TryEvaluate("1=1m", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=10dm", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=100cm", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=1000mm", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=0.001km", false);
+            Assert.AreEqual(b, true);
+
+            engine.DistanceUnit = Algorithm.Enums.DistanceUnitType.DM;
+            b = engine.TryEvaluate("1=0.1m", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=1dm", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=10cm", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=100mm", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=0.0001km", false);
+            Assert.AreEqual(b, true);
+
+            engine.DistanceUnit = Algorithm.Enums.DistanceUnitType.CM;
+            b = engine.TryEvaluate("1=0.01m", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=0.1dm", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=1cm", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=10mm", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=0.00001km", false);
+            Assert.AreEqual(b, true);
+
+            engine.DistanceUnit = Algorithm.Enums.DistanceUnitType.MM;
+            b = engine.TryEvaluate("1=0.001m", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=0.01dm", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=0.1cm", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=1mm", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=0.000001km", false);
+            Assert.AreEqual(b, true);
+
+        }
+
+        [Test]
+        public void Area_Test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            bool b = engine.TryEvaluate("1=1m*1m", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1m2=1m*1m", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1m2=10dm*10dm", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1m2=100cm*100cm", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1m2=1000mm*1000mm", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1m2=0.001km*0.001km", false);
+            Assert.AreEqual(b, true);
+        }
+
+        [Test]
+        public void Volume_Test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            bool b = engine.TryEvaluate("1=1m*1m*1m", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1m3=1m*1m*1m", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1m3=10dm*10dm*10dm", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1m3=100cm*100cm*100cm", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1m3=1000mm*1000mm*1000mm", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1m3=0.001km*0.001km*0.001km", false);
+            Assert.AreEqual(b, true);
+        }
+
+
+        [Test]
+        public void Mass_Test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            bool b = engine.TryEvaluate("1=1kg", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=1000g", false);
+            Assert.AreEqual(b, true);
+ 
+            b = engine.TryEvaluate("1=0.001t", false);
+            Assert.AreEqual(b, true);
+        }
+
+        [Test]
+        public void Unit_Error_Test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            bool b = engine.TryEvaluate("1m=1kg", false);
+            Assert.AreEqual(b, true);
+            b = engine.TryEvaluate("1m=1m2", false);
+            Assert.AreEqual(b, true);
+            b = engine.TryEvaluate("1m=1m3", false);
+            Assert.AreEqual(b, true);
 
         }
 

@@ -188,8 +188,8 @@ namespace ToolGood.Algorithm.Internals
             } else if (type1 == NumberUnitType.G) {
                 switch (mass) {
                     case MassUnitType.G: return src;
-                    case MassUnitType.KG: return src * 1000;
-                    case MassUnitType.T: return src * 1000000;
+                    case MassUnitType.KG: return src * 0.001m;
+                    case MassUnitType.T: return src * 0.000001m;
                     default: throw new Exception("Number unit is error!");
                 }
             } else if (type1 == NumberUnitType.KG) {
@@ -201,8 +201,8 @@ namespace ToolGood.Algorithm.Internals
                 }
             } else if (type1 == NumberUnitType.T) {
                 switch (mass) {
-                    case MassUnitType.G: return src * 0.000001m;
-                    case MassUnitType.KG: return src * 0.001m;
+                    case MassUnitType.G: return src * 1000000;
+                    case MassUnitType.KG: return src * 1000;
                     case MassUnitType.T: return src;
                     default: throw new Exception("Number unit is error!");
                 }
