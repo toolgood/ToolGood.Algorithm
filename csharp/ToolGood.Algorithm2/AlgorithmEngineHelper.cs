@@ -237,7 +237,19 @@ namespace ToolGood.Algorithm
 				lexerSet.Add("ADDMINUTES");
 				lexerSet.Add("ADDSECONDS");
 				lexerSet.Add("TIMESTAMP");
-				_lexerSet = lexerSet;
+
+                lexerSet.Add("HAS");
+                lexerSet.Add("HASKEY");
+                lexerSet.Add("CONTAINS");
+                lexerSet.Add("CONTAINSKEY");
+                lexerSet.Add("HASVALUE");
+                lexerSet.Add("CONTAINSVALUE");
+                lexerSet.Add("PARAM");
+                lexerSet.Add("PARAMETER");
+                lexerSet.Add("GETPARAMETER");
+                lexerSet.Add("ERROR");
+
+                _lexerSet = lexerSet;
             }
             return _lexerSet;
         }
