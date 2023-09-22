@@ -8,7 +8,7 @@ import org.joda.time.DateTimeConstants;
 import org.joda.time.DateTimeZone;
 import toolgood.algorithm.MyDate;
 import toolgood.algorithm.Operand;
-import toolgood.algorithm.OperandType;
+import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.litJson.JsonData;
 import toolgood.algorithm.litJson.JsonMapper;
 import toolgood.algorithm.math.mathParser.*;

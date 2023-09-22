@@ -37,6 +37,13 @@ public interface mathVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitREGEXREPALCE_fun(mathParser.REGEXREPALCE_funContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code HASVALUE_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHASVALUE_fun(mathParser.HASVALUE_funContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code AddSub_fun}
 	 * labeled alternative in {@link mathParser#expr}.
 	 * @param ctx the parse tree
@@ -50,6 +57,13 @@ public interface mathVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitAVERAGEIF_fun(mathParser.AVERAGEIF_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code PARAM_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPARAM_fun(mathParser.PARAM_funContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code ISNULLORERROR_fun}
 	 * labeled alternative in {@link mathParser#expr}.
@@ -141,6 +155,13 @@ public interface mathVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitSHA256_fun(mathParser.SHA256_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code HAS_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHAS_fun(mathParser.HAS_funContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code HYPGEOMDIST_fun}
 	 * labeled alternative in {@link mathParser#expr}.
@@ -1157,6 +1178,13 @@ public interface mathVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTODAY_fun(mathParser.TODAY_funContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code ERROR_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitERROR_fun(mathParser.ERROR_funContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code ATAN_fun}
 	 * labeled alternative in {@link mathParser#expr}.
 	 * @param ctx the parse tree
@@ -1212,6 +1240,13 @@ public interface mathVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitAND_fun(mathParser.AND_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ArrayJson_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArrayJson_fun(mathParser.ArrayJson_funContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code BIN2HEX_fun}
 	 * labeled alternative in {@link mathParser#expr}.
@@ -1590,6 +1625,24 @@ public interface mathVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitRAND_fun(mathParser.RAND_funContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link mathParser#num}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNum(mathParser.NumContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link mathParser#unit}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUnit(mathParser.UnitContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link mathParser#arrayJson}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArrayJson(mathParser.ArrayJsonContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link mathParser#parameter2}.
 	 * @param ctx the parse tree

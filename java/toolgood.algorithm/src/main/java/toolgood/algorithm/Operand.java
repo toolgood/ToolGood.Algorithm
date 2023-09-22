@@ -1,6 +1,7 @@
 package toolgood.algorithm;
 
 import org.joda.time.DateTime;
+import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.litJson.JsonData;
 import toolgood.algorithm.litJson.JsonMapper;
 

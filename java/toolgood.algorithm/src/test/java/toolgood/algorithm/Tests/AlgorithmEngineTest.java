@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
-import toolgood.algorithm.OperandType;
+import toolgood.algorithm.enums.OperandType;
 
 public class AlgorithmEngineTest {
 

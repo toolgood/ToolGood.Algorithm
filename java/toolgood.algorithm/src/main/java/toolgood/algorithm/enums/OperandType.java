@@ -1,4 +1,4 @@
-package toolgood.algorithm;
+package toolgood.algorithm.enums;
 
 public enum OperandType {
         NULL,
@@ -8,5 +8,6 @@ public enum OperandType {
         NUMBER,
         BOOLEAN,
         TEXT,
-        JSON
+        JSON,
+        ARRARYJSON,
 }
