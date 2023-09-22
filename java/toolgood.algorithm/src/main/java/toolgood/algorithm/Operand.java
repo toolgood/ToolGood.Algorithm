@@ -622,4 +622,125 @@ public abstract class Operand {
 
     }
 
+    public static class KeyValue {
+        public String Key;
+        public Operand Value;
+    }
+
+    public static class OperandKeyValue extends OperandT<KeyValue> {
+        public OperandKeyValue(KeyValue obj) {
+            super(obj);
+        }
+
+        public OperandType Type() {
+            return OperandType.ARRARYJSON;
+        }
+    }
+
+    public static class OperandKeyValueList extends OperandT<KeyValue> {
+        private final List<KeyValue> TextList = new ArrayList<>();
+
+        public OperandKeyValueList(KeyValue obj) {
+            super(obj);
+        }
+
+        public OperandType Type() {
+            return OperandType.ARRARYJSON;
+        }
+
+        public List<Operand> ArrayValue() {
+            List<Operand> result = new ArrayList<>();
+            for (KeyValue kv : TextList) {
+                result.add(kv.Value);
+            }
+            return result;
+        }
+
+        public Operand ToArray(String errorMessage) {
+            return Create(this.ArrayValue());
+        }
+
+        public void AddValue(KeyValue keyValue) {
+            TextList.add(keyValue);
+        }
+
+        public boolean HasKey(String key) {
+            for (KeyValue item : TextList) {
+                if (item.Key.equals("" + key)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public Operand GetValue(String key) {
+            for (KeyValue item : TextList) {
+                if (item.Key.equals(key)) {
+                    return item.Value;
+                }
+            }
+            return null;
+        }
+        public boolean ContainsKey(String value) {
+            for (KeyValue item : TextList) {
+                if (item.Key.equals(value)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public boolean ContainsValue(String value) {
+            for (KeyValue item : TextList) {
+                Operand op = item.Value;
+                if (op.TextValue().equals(value)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public boolean ContainsValue(Operand value) {
+            for (KeyValue item : TextList) {
+                Operand op = item.Value;
+                if (value.Type() != op.Type()) {
+                    continue;
+                }
+                if (value.Type() == OperandType.TEXT) {
+                    if (value.TextValue().equals(op.TextValue())) {
+                        return true;
+                    }
+                }
+                if (value.Type() == OperandType.NUMBER) {
+                    if (value.TextValue().equals(op.TextValue())) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public Operand TryGetValueFloor(double key, boolean range_lookup) {
+            Operand value = null;
+            for (KeyValue item : TextList) {
+                try {
+                    double num = Double.parseDouble(item.Key);
+                    Double t = Math.round(key - num * 1000000000d) / 1000000000d;
+                    if (t == 0) {
+                        return item.Value;
+                    } else if (range_lookup) {
+                        if (t > 0) {
+                            value = item.Value;
+                        } else if (value != null) {
+                            return value;
+                        }
+                    }
+                } catch (Exception ex) {
+                }
+            }
+            return value;
+        }
+    }
+
+
 }

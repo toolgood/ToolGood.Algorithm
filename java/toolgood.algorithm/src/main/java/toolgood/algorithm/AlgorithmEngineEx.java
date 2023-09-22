@@ -4,6 +4,10 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
+import toolgood.algorithm.enums.AreaUnitType;
+import toolgood.algorithm.enums.DistanceUnitType;
+import toolgood.algorithm.enums.MassUnitType;
+import toolgood.algorithm.enums.VolumeUnitType;
 import toolgood.algorithm.internals.*;
 import toolgood.algorithm.litJson.JsonData;
 import toolgood.algorithm.litJson.JsonMapper;
@@ -53,6 +57,10 @@ public class AlgorithmEngineEx {
     public Boolean UseLocalTime = false;
     private final Map<String, Operand> _tempdict;
     private ConditionCache MultiConditionCache;
+    public DistanceUnitType DistanceUnit = DistanceUnitType.M;
+    public AreaUnitType AreaUnit = AreaUnitType.M2;
+    public VolumeUnitType VolumeUnit = VolumeUnitType.M3;
+    public MassUnitType MassUnit = MassUnitType.KG;
 
     public AlgorithmEngineEx(ConditionCache multiConditionCache) {
         MultiConditionCache = multiConditionCache;
@@ -591,6 +599,10 @@ public class AlgorithmEngineEx {
                 return ExecuteDiyFunction(f.Name, f.OperandList);
             };
             visitor.useLocalTime = UseLocalTime;
+            visitor.DistanceUnit= DistanceUnit;
+            visitor.AreaUnit=AreaUnit;
+            visitor.VolumeUnit=VolumeUnit;
+            visitor.MassUnit=MassUnit;
             return visitor.visit(context);
         } catch (Exception ex) {
             LastError = ex.getMessage();
@@ -619,6 +631,10 @@ public class AlgorithmEngineEx {
                 return ExecuteDiyFunction(f.Name, f.OperandList);
             };
             visitor.useLocalTime = UseLocalTime;
+            visitor.DistanceUnit= DistanceUnit;
+            visitor.AreaUnit=AreaUnit;
+            visitor.VolumeUnit=VolumeUnit;
+            visitor.MassUnit=MassUnit;
             Operand obj = visitor.visit(_context);
             obj = obj.ToText("It can't be converted to String!");
             if (obj.IsError()) {

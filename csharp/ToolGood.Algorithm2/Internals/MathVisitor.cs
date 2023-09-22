@@ -97,8 +97,8 @@ namespace ToolGood.Algorithm.Internals
                 return Operand.Create(args1.NumberValue / args2.NumberValue);
                 //} else if (CharUtil.Equals(t, "%")) {
             } else {
-                if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("% fun right value"); if (args1.IsError) { return args1; } }
-                if (args1.Type != OperandType.NUMBER) { args2 = args2.ToNumber("% fun right value"); if (args2.IsError) { return args2; } }
+                if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function % parameter 1 is error!"); if (args1.IsError) { return args1; } }
+                if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function % parameter 2 is error!"); if (args2.IsError) { return args2; } }
                 if (args2.NumberValue == 0) { return Operand.Error("Div 0 is error!"); }
 
                 return Operand.Create(args1.NumberValue % args2.NumberValue);
@@ -251,6 +251,7 @@ namespace ToolGood.Algorithm.Internals
                 }
             } else if (args1.Type == OperandType.JSON || args2.Type == OperandType.JSON
                   || args1.Type == OperandType.ARRARY || args2.Type == OperandType.ARRARY
+                  || args1.Type == OperandType.ARRARYJSON || args2.Type == OperandType.ARRARYJSON
                   ) {
                 return Operand.Error("Function compare is error.");
             } else {
@@ -3784,6 +3785,18 @@ namespace ToolGood.Algorithm.Internals
             if (firstValue.IsError) { return firstValue; }
             var secondValue = args[1].ToText("Function LOOKUP parameter 2 is error!");
             if (secondValue.IsError) { return secondValue; }
+            if (firstValue.Type == OperandType.ARRARYJSON) {
+                secondValue = secondValue.ToNumber(); if (secondValue.IsError) { return secondValue; }
+                var range = false;
+                if (args.Count == 3) {
+                    var t = args[2].ToBoolean("Function LOOKUP parameter 3 is error!"); if (t.IsError) { return t; }
+                    range = t.BooleanValue;
+                }
+                if (((OperandKeyValueList)firstValue).TryGetValueFloor(secondValue.NumberValue, range, out Operand operand)) {
+                    return operand;
+                }
+                return Operand.Error("Function LOOKUP not find !");
+            }
             var thirdValue = args[2].ToText("Function LOOKUP parameter 3 is error!");
             if (thirdValue.IsError) { return thirdValue; }
 
@@ -3943,7 +3956,12 @@ namespace ToolGood.Algorithm.Internals
                 return Operand.Error($"ARRARY index {index} greater than maximum length!");
             }
             if (obj.Type == OperandType.ARRARYJSON) {
-                if (op.Type == OperandType.NUMBER || op.Type == OperandType.TEXT) {
+                if (op.Type == OperandType.NUMBER) {
+                    if (((OperandKeyValueList)obj).TryGetValue(op.NumberValue.ToString(), out Operand operand)) {
+                        return operand;
+                    }
+                    return Operand.Error($"Parameter name `{op.TextValue}` is missing!");
+                } else if (op.Type == OperandType.TEXT) {
                     if (((OperandKeyValueList)obj).TryGetValue(op.TextValue, out Operand operand)) {
                         return operand;
                     }
@@ -4057,7 +4075,7 @@ namespace ToolGood.Algorithm.Internals
         {
             var exprs = context.expr();
             var args1 = this.Visit(exprs[0]); if (args1.IsError) { return args1; }
-            var args2 = this.Visit(exprs[1]).ToText("Function HAS parameter 2 is error!"); if (args2.IsError) { return args2; }
+            var args2 = this.Visit(exprs[1]).ToText("Function HASVALUE parameter 2 is error!"); if (args2.IsError) { return args2; }
 
             if (args1.Type == OperandType.ARRARYJSON) {
                 return Operand.Create(((OperandKeyValueList)args1).ContainsValue(args2));
@@ -4098,7 +4116,7 @@ namespace ToolGood.Algorithm.Internals
                 }
                 return Operand.False;
             }
-            return Operand.Error("Function HAS parameter 1 is error!");
+            return Operand.Error("Function HASVALUE parameter 1 is error!");
         }
 
         public Operand VisitArrayJson_fun(mathParser.ArrayJson_funContext context)
