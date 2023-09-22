@@ -314,7 +314,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                 if (secondValue.IsError()) {
                     return secondValue;
                 }
-                r = firstValue.NumberValue().compareTo(secondValue.NumberValue());
+                r = firstValue.NumberValue().setScale(12, RoundingMode.HALF_UP).compareTo(secondValue.NumberValue().setScale(12, RoundingMode.HALF_UP));
             }
         } else if ((firstValue.Type() == OperandType.DATE && secondValue.Type() == OperandType.TEXT)
                 || (secondValue.Type() == OperandType.DATE && firstValue.Type() == OperandType.TEXT)
@@ -355,7 +355,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
             if (secondValue.IsError()) {
                 return secondValue;
             }
-            r = firstValue.NumberValue().compareTo(secondValue.NumberValue());
+            r = firstValue.NumberValue().setScale(12, RoundingMode.HALF_UP).compareTo(secondValue.NumberValue().setScale(12, RoundingMode.HALF_UP));
         }
         if (CharUtil.Equals(type, "<")) {
             return Operand.Create(r == -1);
