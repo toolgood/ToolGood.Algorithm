@@ -22,6 +22,10 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
             Assert.AreEqual(num, 10);
             num = engine.TryEvaluate("GETPARAMETER('半径')", 0);
             Assert.AreEqual(num, 10);
+
+            // 参数没有限制了
+            num = engine.TryEvaluate("半径", 0);
+            Assert.AreEqual(num, 10);
         }
 
         [Test]

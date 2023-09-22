@@ -23,6 +23,10 @@ public class AlgorithmEngineTest_v3_5 {
         assertEquals(num, 10);
         num = engine.TryEvaluate("GETPARAMETER('半径')", 0);
         assertEquals(num, 10);
+
+        // 参数名称没有限制了
+        num = engine.TryEvaluate("半径", 0);
+        assertEquals(num, 10);
     }
 
     @Test
