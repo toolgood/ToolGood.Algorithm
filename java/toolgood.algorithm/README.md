@@ -104,33 +104,6 @@ public class Cylinder extends AlgorithmEngine {
 
 注2：使用 `AlgorithmEngineHelper.GetDiyNames` 获取`参数名`、`自定义方法名`。
 
-## 多公式
-``` java
-    ConditionCache multiConditionCache = new ConditionCache();
-    multiConditionCache.LazyLoad = true;
-    multiConditionCache.AddFormula("桌面积", "[圆桌]", "[半径]*[半径]*pi()");
-    multiConditionCache.AddFormula("桌面积", "[方桌]", "[长]*[宽]");
-    multiConditionCache.AddFormula("价格", "[圆桌]&& [半径]<2.5", "[桌面积]*1.3");
-    multiConditionCache.AddFormula("价格", "[圆桌]&& [半径]<5", "[桌面积]*1.5");
-    multiConditionCache.AddFormula("价格", "[圆桌]&& [半径]<7", "[桌面积]*2");
-    multiConditionCache.AddFormula("价格", "[圆桌]", "[桌面积]*2.5");
-    multiConditionCache.AddFormula("价格", "[方桌]&& [长]<1.3", "[桌面积]*1.3+[高]*1.1");
-    multiConditionCache.AddFormula("价格", "[方桌]&& [长]<2", "[桌面积]*1.5+[高]*1.1");
-    multiConditionCache.AddFormula("价格", "[方桌]&& [长]<5", "[桌面积]*2+[高]*1.1");
-    multiConditionCache.AddFormula("价格", "[方桌]&& [长]<7", "[桌面积]*2.5");
-
-    toolgood.algorithm.AlgorithmEngineEx algoEngine = new toolgood.algorithm.AlgorithmEngineEx(multiConditionCache);
-    algoEngine.JumpConditionError = true;
-    algoEngine.AddParameter("方桌", true);
-    algoEngine.AddParameter("长", 3);
-    algoEngine.AddParameter("宽", 1.3);
-    algoEngine.AddParameter("高", 1);
-
-    Double p2 = algoEngine.TryEvaluate("价格", 0.0);
-    assertEquals(3 * 1.3 * 2 + 1 * 1.1, p2, 0.0001);
-```
-更多功能请看一下单元测试。
-
 ## 自定义参数
 ``` csharp
     AlgorithmEngineHelper helper = new AlgorithmEngineHelper();
