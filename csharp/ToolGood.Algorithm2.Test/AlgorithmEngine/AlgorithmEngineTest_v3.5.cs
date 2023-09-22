@@ -80,6 +80,12 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
         public void array_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
+            engine.UseExcelIndex = true;
+            int num = engine.TryEvaluate("{1,2,3,4,}[2]", 0);
+            Assert.AreEqual(num, 2);
+
+            String str = engine.TryEvaluate("{1,2,3,4,'555'}[5]", "");
+            Assert.AreEqual(str, "555");
 
             // 'HAS' | 'HASKEY' |'CONTAINS'|'CONTAINSKEY' 指向同一函数
             // 'HASVALUE' | 'CONTAINSVALUE' 指向同一函数 与上面的逻辑相同

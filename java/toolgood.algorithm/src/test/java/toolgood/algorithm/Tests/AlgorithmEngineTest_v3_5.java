@@ -78,6 +78,11 @@ public class AlgorithmEngineTest_v3_5 {
     @Test
     public void array_test() {
         AlgorithmEngine engine = new AlgorithmEngine();
+        engine.UseExcelIndex = true;
+        int num = engine.TryEvaluate("{1,2,3,4,}[2]", 0);
+        assertEquals(num,2);
+        String str = engine.TryEvaluate("{1,2,3,4,'555'}[5]", "");
+        assertEquals(str,"555");
 
         // 'HAS' | 'HASKEY' |'CONTAINS'|'CONTAINSKEY' 指向同一函数
         // 'HASVALUE' | 'CONTAINSVALUE' 指向同一函数 与上面的逻辑相同
