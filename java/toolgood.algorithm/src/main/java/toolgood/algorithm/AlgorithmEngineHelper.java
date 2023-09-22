@@ -244,6 +244,18 @@ public class AlgorithmEngineHelper {
             lexerSet.add("ADDMINUTES");
             lexerSet.add("ADDSECONDS");
             lexerSet.add("TIMESTAMP");
+
+            lexerSet.add("HAS");
+            lexerSet.add("HASKEY");
+            lexerSet.add("CONTAINS");
+            lexerSet.add("CONTAINSKEY");
+            lexerSet.add("HASVALUE");
+            lexerSet.add("CONTAINSVALUE");
+
+            lexerSet.add("PARAM");
+            lexerSet.add("PARAMETER");
+            lexerSet.add("GETPARAMETER");
+            lexerSet.add("ERROR");
             _lexerSet = lexerSet;
         }
         return _lexerSet;
