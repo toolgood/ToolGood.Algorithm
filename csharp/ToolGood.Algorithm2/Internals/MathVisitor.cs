@@ -4043,7 +4043,9 @@ namespace ToolGood.Algorithm.Internals
             } else if (args1.Type == OperandType.ARRARY) {
                 var ar = ((OperandArray)args1);
                 foreach (var item in ar.ArrayValue) {
-                    if (item.TextValue == args2.TextValue) {
+                    var t = item.ToText();
+                    if (t.IsError) { continue; }
+                    if (t.TextValue == args2.TextValue) {
                         return Operand.True;
                     }
                 }
@@ -4088,7 +4090,9 @@ namespace ToolGood.Algorithm.Internals
             } else if (args1.Type == OperandType.ARRARY) {
                 var ar = ((OperandArray)args1);
                 foreach (var item in ar.ArrayValue) {
-                    if (item.TextValue == args2.TextValue) {
+                    var t = item.ToText();
+                    if (t.IsError) { continue; }
+                    if (t.TextValue == args2.TextValue) {
                         return Operand.True;
                     }
                 }
