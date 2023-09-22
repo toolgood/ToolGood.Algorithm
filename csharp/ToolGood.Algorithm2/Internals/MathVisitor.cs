@@ -3943,7 +3943,7 @@ namespace ToolGood.Algorithm.Internals
                 return Operand.Error($"ARRARY index {index} greater than maximum length!");
             }
             if (obj.Type == OperandType.ARRARYJSON) {
-                 if (op.Type == OperandType.NUMBER || op.Type == OperandType.TEXT) {
+                if (op.Type == OperandType.NUMBER || op.Type == OperandType.TEXT) {
                     if (((OperandKeyValueList)obj).TryGetValue(op.TextValue, out Operand operand)) {
                         return operand;
                     }
@@ -4018,9 +4018,73 @@ namespace ToolGood.Algorithm.Internals
             var args1 = this.Visit(exprs[0]); if (args1.IsError) { return args1; }
             var args2 = this.Visit(exprs[1]).ToText("Function HAS parameter 2 is error!"); if (args2.IsError) { return args2; }
 
-            if (args1.Type== OperandType.ARRARYJSON) {
-                var b = ((OperandKeyValueList)args1).ContainsValue(args2);
-                return Operand.Create(b);
+            if (args1.Type == OperandType.ARRARYJSON) {
+                return Operand.Create(((OperandKeyValueList)args1).ContainsKey(args2));
+            } else if (args1.Type == OperandType.JSON) {
+                var json = args1.JsonValue;
+                if (json.IsArray) {
+                    for (int i = 0; i < json.Count; i++) {
+                        var v = json[i];
+                        if (v.IsString) {
+                            if (v.StringValue == args2.TextValue) { return Operand.True; }
+                        } else if (v.IsDouble) {
+                            if (v.NumberValue.ToString() == args2.TextValue) { return Operand.True; }
+                        } else if (v.IsBoolean) {
+                            if (v.BooleanValue.ToString().ToUpper() == args2.TextValue) { return Operand.True; }
+                        }
+                    }
+                } else {
+                    var v = json[args2.TextValue];
+                    if (v != null) {
+                        return Operand.True;
+                    }
+                }
+                return Operand.False;
+            } else if (args1.Type == OperandType.ARRARY) {
+                var ar = ((OperandArray)args1);
+                foreach (var item in ar.ArrayValue) {
+                    if (item.TextValue == args2.TextValue) {
+                        return Operand.True;
+                    }
+                }
+                return Operand.False;
+            }
+            return Operand.Error("Function HAS parameter 1 is error!");
+        }
+        public Operand VisitHASVALUE_fun([Antlr4.Runtime.Misc.NotNull] mathParser.HASVALUE_funContext context)
+        {
+            var exprs = context.expr();
+            var args1 = this.Visit(exprs[0]); if (args1.IsError) { return args1; }
+            var args2 = this.Visit(exprs[1]).ToText("Function HAS parameter 2 is error!"); if (args2.IsError) { return args2; }
+
+            if (args1.Type == OperandType.ARRARYJSON) {
+                return Operand.Create(((OperandKeyValueList)args1).ContainsValue(args2));
+            } else if (args1.Type == OperandType.JSON) {
+                var json = args1.JsonValue;
+                if (json.IsArray) {
+                    for (int i = 0; i < json.Count; i++) {
+                        var v = json[i];
+                        if (v.IsString) {
+                            if (v.StringValue == args2.TextValue) { return Operand.True; }
+                        } else if (v.IsDouble) {
+                            if (v.NumberValue.ToString() == args2.TextValue) { return Operand.True; }
+                        } else if (v.IsBoolean) {
+                            if (v.BooleanValue.ToString().ToUpper() == args2.TextValue) { return Operand.True; }
+                        }
+                    }
+                } else {
+                    foreach (var item in json.inst_object) {
+                        var v = item.Value;
+                        if (v.IsString) {
+                            if (v.StringValue == args2.TextValue) { return Operand.True; }
+                        } else if (v.IsDouble) {
+                            if (v.NumberValue.ToString() == args2.TextValue) { return Operand.True; }
+                        } else if (v.IsBoolean) {
+                            if (v.BooleanValue.ToString().ToUpper() == args2.TextValue) { return Operand.True; }
+                        }
+                    }
+                }
+                return Operand.False;
             } else if (args1.Type == OperandType.ARRARY) {
                 var ar = ((OperandArray)args1);
                 foreach (var item in ar.ArrayValue) {
@@ -4049,10 +4113,10 @@ namespace ToolGood.Algorithm.Internals
         {
             KeyValue keyValue = new KeyValue();
             if (context.NUM() != null) {
-                if (int.TryParse(context.NUM().GetText(),out int key)) {
+                if (int.TryParse(context.NUM().GetText(), out int key)) {
                     keyValue.Key = key.ToString();
                 } else {
-                    return Operand.Error("Json key '"+ context.NUM().GetText() + "' is error!");
+                    return Operand.Error("Json key '" + context.NUM().GetText() + "' is error!");
                 }
             }
             if (context.STRING() != null) {
@@ -4091,6 +4155,8 @@ namespace ToolGood.Algorithm.Internals
             var args1 = this.Visit(context.expr()); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText(); if (args1.IsError) return args1; }
             return Operand.Error(args1.TextValue);
         }
+
+
 
         #endregion
     }

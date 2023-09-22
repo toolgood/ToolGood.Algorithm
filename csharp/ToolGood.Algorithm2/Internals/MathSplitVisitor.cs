@@ -1132,72 +1132,77 @@ namespace ToolGood.Algorithm.Internals
             return Visit_fun(context);
         }
 
-        public ConditionTree VisitADDMONTHS_fun([NotNull] mathParser.ADDMONTHS_funContext context)
+        public ConditionTree VisitADDMONTHS_fun(mathParser.ADDMONTHS_funContext context)
         {
             return Visit_fun(context);
         }
 
-        public ConditionTree VisitADDYEARS_fun([NotNull] mathParser.ADDYEARS_funContext context)
+        public ConditionTree VisitADDYEARS_fun(mathParser.ADDYEARS_funContext context)
         {
             return Visit_fun(context);
         }
 
-        public ConditionTree VisitADDSECONDS_fun([NotNull] mathParser.ADDSECONDS_funContext context)
+        public ConditionTree VisitADDSECONDS_fun(mathParser.ADDSECONDS_funContext context)
         {
             return Visit_fun(context);
         }
 
-        public ConditionTree VisitADDMINUTES_fun([NotNull] mathParser.ADDMINUTES_funContext context)
+        public ConditionTree VisitADDMINUTES_fun(mathParser.ADDMINUTES_funContext context)
         {
             return Visit_fun(context);
         }
 
-        public ConditionTree VisitADDDAYS_fun([NotNull] mathParser.ADDDAYS_funContext context)
+        public ConditionTree VisitADDDAYS_fun(mathParser.ADDDAYS_funContext context)
         {
             return Visit_fun(context);
         }
 
-        public ConditionTree VisitADDHOURS_fun([NotNull] mathParser.ADDHOURS_funContext context)
+        public ConditionTree VisitADDHOURS_fun(mathParser.ADDHOURS_funContext context)
         {
             return Visit_fun(context);
         }
 
-        public ConditionTree VisitTIMESTAMP_fun([NotNull] mathParser.TIMESTAMP_funContext context)
+        public ConditionTree VisitTIMESTAMP_fun(mathParser.TIMESTAMP_funContext context)
         {
             return Visit_fun(context);
         }
 
-        public ConditionTree VisitPARAM_fun([NotNull] mathParser.PARAM_funContext context)
+        public ConditionTree VisitPARAM_fun(mathParser.PARAM_funContext context)
         {
             return Visit_fun(context);
         }
 
-        public ConditionTree VisitHAS_fun([NotNull] mathParser.HAS_funContext context)
+        public ConditionTree VisitHAS_fun(mathParser.HAS_funContext context)
         {
             return Visit_fun(context);
         }
 
-        public ConditionTree VisitArrayJson_fun([NotNull] mathParser.ArrayJson_funContext context)
+        public ConditionTree VisitArrayJson_fun(mathParser.ArrayJson_funContext context)
         {
             return Visit_fun(context);
         }
 
-        public ConditionTree VisitNum([NotNull] mathParser.NumContext context)
+        public ConditionTree VisitNum(mathParser.NumContext context)
         {
             return Visit_fun(context);
         }
 
-        public ConditionTree VisitUnit([NotNull] mathParser.UnitContext context)
+        public ConditionTree VisitUnit(mathParser.UnitContext context)
         {
             return Visit_fun(context);
         }
 
-        public ConditionTree VisitArrayJson([NotNull] mathParser.ArrayJsonContext context)
+        public ConditionTree VisitArrayJson(mathParser.ArrayJsonContext context)
         {
             return Visit_fun(context);
         }
 
-        public ConditionTree VisitERROR_fun([NotNull] mathParser.ERROR_funContext context)
+        public ConditionTree VisitERROR_fun(mathParser.ERROR_funContext context)
+        {
+            return Visit_fun(context);
+        }
+
+        public ConditionTree VisitHASVALUE_fun(mathParser.HASVALUE_funContext context)
         {
             return Visit_fun(context);
         }

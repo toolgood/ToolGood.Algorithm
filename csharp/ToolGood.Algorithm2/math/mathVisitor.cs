@@ -59,6 +59,13 @@ public interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitREGEXREPALCE_fun([NotNull] mathParser.REGEXREPALCE_funContext context);
 	/// <summary>
+	/// Visit a parse tree produced by the <c>HASVALUE_fun</c>
+	/// labeled alternative in <see cref="mathParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitHASVALUE_fun([NotNull] mathParser.HASVALUE_funContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>AddSub_fun</c>
 	/// labeled alternative in <see cref="mathParser.expr"/>.
 	/// </summary>

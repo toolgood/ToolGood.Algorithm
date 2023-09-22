@@ -102,6 +102,7 @@ expr:
 	| expr '.' ADDSECONDS '(' expr ')'							# ADDSECONDS_fun
 	| expr '.' TIMESTAMP '(' expr? ')'							# TIMESTAMP_fun
 	| expr '.' HAS '(' expr ')'									# HAS_fun
+	| expr '.' HASVALUE '(' expr ')'							# HASVALUE_fun
 	| expr '[' parameter2 ']'									# GetJsonValue_fun
 	| expr '[' expr ']'											# GetJsonValue_fun
 	| expr '.' parameter2										# GetJsonValue_fun
@@ -569,6 +570,7 @@ parameter2:
 	| ERROR
 	| UNIT
 	| HAS
+	| HASVALUE
 	| PARAM
 	| PARAMETER;
  
@@ -826,7 +828,8 @@ ADDHOURS: 'ADDHOURS';
 ADDMINUTES: 'ADDMINUTES';
 ADDSECONDS: 'ADDSECONDS';
 TIMESTAMP: 'TIMESTAMP';
-HAS: 'HAS' | 'CONTAINS';
+HAS: 'HAS' | 'HASKEY' |'CONTAINS'|'CONTAINSKEY';
+HASVALUE: 'HASVALUE' | 'CONTAINSVALUE';
 PARAM: 'PARAM' | 'PARAMETER' | 'GETPARAMETER';
 
 PARAMETER: ([A-Z_] | FullWidthLetter) (
