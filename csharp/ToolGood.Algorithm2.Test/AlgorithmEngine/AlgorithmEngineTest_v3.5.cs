@@ -153,6 +153,22 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
             b = engine.TryEvaluate("1=0.000001km", false);
             Assert.AreEqual(b, true);
 
+            engine.DistanceUnit = Algorithm.Enums.DistanceUnitType.KM;
+
+            b = engine.TryEvaluate("1=1m*1000", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=10dm*1000", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=100cm*1000", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=1000mm*1000", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=0.001km*1000", false);
+            Assert.AreEqual(b, true);
         }
 
         [Test]
@@ -176,6 +192,94 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
 
             b = engine.TryEvaluate("1m2=0.001km*0.001km", false);
             Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=1m2", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=100dm2", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=10000cm2", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=1000000mm2", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=0.000001km2", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1km2=1km*1km", false);
+            Assert.AreEqual(b, true);
+
+            engine.AreaUnit = Algorithm.Enums.AreaUnitType.DM2;
+
+            b = engine.TryEvaluate("1=1m2/100", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=100dm2/100", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=10000cm2/100", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=1000000mm2/100", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=0.000001km2/100", false);
+            Assert.AreEqual(b, true);
+
+            engine.AreaUnit = Algorithm.Enums.AreaUnitType.CM2;
+
+            b = engine.TryEvaluate("1=1m2/100/100", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=100dm2/100/100", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=10000cm2/100/100", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=1000000mm2/100/100", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=0.000001km2/100/100", false);
+            Assert.AreEqual(b, true);
+
+            engine.AreaUnit = Algorithm.Enums.AreaUnitType.MM2;
+
+            b = engine.TryEvaluate("1=1m2/100/100/100", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=100dm2/100/100/100", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=10000cm2/100/100/100", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=1000000mm2/100/100/100", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=0.000001km2/100/100/100", false);
+            Assert.AreEqual(b, true);
+
+            engine.AreaUnit = Algorithm.Enums.AreaUnitType.KM2;
+
+            b = engine.TryEvaluate("1=1m2*1000*1000", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=100dm2*1000*1000", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=10000cm2*1000*1000", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=1000000mm2*1000*1000", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=0.000001km2*1000*1000", false);
+            Assert.AreEqual(b, true);
+
+
         }
 
         [Test]
@@ -186,6 +290,15 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
             Assert.AreEqual(b, true);
 
             b = engine.TryEvaluate("1m3=1m*1m*1m", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1m3=1m2*1m", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1m3=1000L", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1m3=1000ml*1000", false);
             Assert.AreEqual(b, true);
 
             b = engine.TryEvaluate("1m3=10dm*10dm*10dm", false);
@@ -199,6 +312,72 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
 
             b = engine.TryEvaluate("1m3=0.001km*0.001km*0.001km", false);
             Assert.AreEqual(b, true);
+
+
+            b = engine.TryEvaluate("1=1m3", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=1000dm3", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=1000000cm3", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=1000000000mm3", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=1km3/1000/1000/1000", false);
+            Assert.AreEqual(b, true);
+
+            engine.VolumeUnit = Algorithm.Enums.VolumeUnitType.DM3;
+            b = engine.TryEvaluate("1=1m3/1000", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=1000dm3/1000", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=1000000cm3/1000", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=1000000000mm3/1000", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=1km3/1000/1000/1000/1000", false);
+            Assert.AreEqual(b, true);
+
+            engine.VolumeUnit = Algorithm.Enums.VolumeUnitType.CM3;
+            b = engine.TryEvaluate("1=1m3/1000/1000", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=1000dm3/1000/1000", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=1000000cm3/1000/1000", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=1000000000mm3/1000/1000", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=1km3/1000/1000/1000/1000/1000", false);
+            Assert.AreEqual(b, true);
+
+            engine.VolumeUnit = Algorithm.Enums.VolumeUnitType.MM3;
+            b = engine.TryEvaluate("1=1m3/1000/1000/1000", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=1000dm3/1000/1000/1000", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=1000000cm3/1000/1000/1000", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=1000000000mm3/1000/1000/1000", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=1km3/1000/1000/1000/1000/1000/1000", false);
+            Assert.AreEqual(b, true);
+
+
         }
 
 
@@ -219,6 +398,7 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
         [Test]
         public void Unit_Error_Test()
         {
+            // 下面是错误 演示， 因为计算时不会考虑单位，所以下面是正常通过的
             AlgorithmEngine engine = new AlgorithmEngine();
             bool b = engine.TryEvaluate("1m=1kg", false);
             Assert.AreEqual(b, true);
