@@ -377,7 +377,17 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
             b = engine.TryEvaluate("1=1km3/1000/1000/1000/1000/1000/1000", false);
             Assert.AreEqual(b, true);
 
-
+            engine.VolumeUnit = Algorithm.Enums.VolumeUnitType.KM3;
+            b = engine.TryEvaluate("1=1m3*1000*1000*1000", false);
+            Assert.AreEqual(b, true);
+            b = engine.TryEvaluate("1=1000dm3*1000*1000*1000", false);
+            Assert.AreEqual(b, true);
+            b = engine.TryEvaluate("1=1000000cm3*1000*1000*1000", false);
+            Assert.AreEqual(b, true);
+            b = engine.TryEvaluate("1=1000000000mm3*1000*1000*1000", false);
+            Assert.AreEqual(b, true);
+            b = engine.TryEvaluate("1=1km3", false);
+            Assert.AreEqual(b, true);
         }
 
 
@@ -392,6 +402,28 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
             Assert.AreEqual(b, true);
  
             b = engine.TryEvaluate("1=0.001t", false);
+            Assert.AreEqual(b, true);
+
+            engine.MassUnit = Algorithm.Enums.MassUnitType.G;
+
+            b = engine.TryEvaluate("1=1kg/1000", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=1000g/1000", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=0.001t/1000", false);
+            Assert.AreEqual(b, true);
+
+            engine.MassUnit = Algorithm.Enums.MassUnitType.T;
+
+            b = engine.TryEvaluate("1=1kg*1000", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=1000g*1000", false);
+            Assert.AreEqual(b, true);
+
+            b = engine.TryEvaluate("1=0.001t*1000", false);
             Assert.AreEqual(b, true);
         }
 

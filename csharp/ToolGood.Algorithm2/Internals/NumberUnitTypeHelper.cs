@@ -194,9 +194,9 @@ namespace ToolGood.Algorithm.Internals
                 }
             } else if (type1 == NumberUnitType.KG) {
                 switch (mass) {
-                    case MassUnitType.G: return src * 0.001m;
+                    case MassUnitType.G: return src * 1000;
                     case MassUnitType.KG: return src;
-                    case MassUnitType.T: return src * 1000;
+                    case MassUnitType.T: return src * 0.001m;
                     default: throw new Exception("Number unit is error!");
                 }
             } else if (type1 == NumberUnitType.T) {
