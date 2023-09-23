@@ -307,7 +307,7 @@ namespace ToolGood.Algorithm
         /// <param name="name"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public static decimal UnitConversion(decimal src, string oldSrcUnit, string oldTarUnit, string name)
+        public static decimal UnitConversion(decimal src, string oldSrcUnit, string oldTarUnit, string name=null)
         {
             if (string.IsNullOrWhiteSpace(oldSrcUnit) || string.IsNullOrWhiteSpace(oldTarUnit)) { return src; }
             oldSrcUnit = unitRegex.Replace(oldSrcUnit, "");
@@ -328,6 +328,9 @@ namespace ToolGood.Algorithm
             if (VolumeConverter.Exists(oldSrcUnit, oldTarUnit)) {
                 var c = new VolumeConverter(oldSrcUnit, oldTarUnit);
                 return c.LeftToRight(src);
+            }
+            if (string.IsNullOrEmpty( name)) {
+                throw new Exception($"The input item has different units and cannot be converted from [{oldSrcUnit}] to [{oldTarUnit}]");
             }
             throw new Exception($"The input item [{name}] has different units and cannot be converted from [{oldSrcUnit}] to [{oldTarUnit}]");
         }

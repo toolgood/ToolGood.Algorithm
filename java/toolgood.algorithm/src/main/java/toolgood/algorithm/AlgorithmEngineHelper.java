@@ -1,12 +1,7 @@
 package toolgood.algorithm;
 
-import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
-
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
-
 import toolgood.algorithm.internals.AntlrCharStream;
 import toolgood.algorithm.internals.AntlrErrorListener;
 import toolgood.algorithm.internals.CharUtil;
@@ -18,6 +13,10 @@ import toolgood.algorithm.unitConversion.AreaConverter;
 import toolgood.algorithm.unitConversion.DistanceConverter;
 import toolgood.algorithm.unitConversion.MassConverter;
 import toolgood.algorithm.unitConversion.VolumeConverter;
+
+import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 算法引擎助手
@@ -267,6 +266,7 @@ public class AlgorithmEngineHelper {
 
     /**
      * 是否与内置关键字相同
+     *
      * @param parameter
      * @return
      */
@@ -277,6 +277,7 @@ public class AlgorithmEngineHelper {
 
     /**
      * 获取 DIY 名称
+     *
      * @param exp
      * @return
      * @throws Exception
@@ -305,6 +306,20 @@ public class AlgorithmEngineHelper {
 
     /**
      * 单位转换
+     *
+     * @param src
+     * @param oldSrcUnit
+     * @param oldTarUnit
+     * @return
+     * @throws Exception
+     */
+    public static BigDecimal UnitConversion(BigDecimal src, String oldSrcUnit, String oldTarUnit) throws Exception {
+        return UnitConversion(src, oldSrcUnit, oldTarUnit, null);
+    }
+
+    /**
+     * 单位转换
+     *
      * @param src
      * @param oldSrcUnit
      * @param oldTarUnit
@@ -313,7 +328,7 @@ public class AlgorithmEngineHelper {
      * @throws Exception
      */
     public static BigDecimal UnitConversion(BigDecimal src, String oldSrcUnit, String oldTarUnit, String name) throws Exception {
-        if (oldSrcUnit == null || oldSrcUnit.equals("")|| oldTarUnit == null || oldTarUnit.equals("")) {
+        if (oldSrcUnit == null || oldSrcUnit.equals("") || oldTarUnit == null || oldTarUnit.equals("")) {
             return src;
         }
         oldSrcUnit = oldSrcUnit.replaceAll("[\\s \\(\\)（）\\[\\]<>]", "");
@@ -335,6 +350,9 @@ public class AlgorithmEngineHelper {
         if (VolumeConverter.Exists(oldSrcUnit, oldTarUnit)) {
             VolumeConverter c = new VolumeConverter(oldSrcUnit, oldTarUnit);
             return c.LeftToRight(src);
+        }
+        if (name == null || name.equals("")) {
+            throw new Exception("The input item has different units and cannot be converted from [" + oldSrcUnit + "] to [" + oldTarUnit + "]");
         }
         throw new Exception("The input item [" + name + "] has different units and cannot be converted from [" + oldSrcUnit + "] to [" + oldTarUnit + "]");
     }
