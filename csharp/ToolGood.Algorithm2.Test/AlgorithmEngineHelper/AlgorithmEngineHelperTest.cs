@@ -57,6 +57,43 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineHelper2
 
         }
 
+        [Test]
+        public void Test3()
+        {
+            var b = AlgorithmEngineHelper.UnitConversion(1M,"米","千米","测试" );
+            Assert.AreEqual(0.001M,b);
+            b = AlgorithmEngineHelper.UnitConversion(1M, "米", "分米", "测试");
+            Assert.AreEqual(10M, b);
+            b = AlgorithmEngineHelper.UnitConversion(1M, "米", "厘米", "测试");
+            Assert.AreEqual(100M, b);
+            b = AlgorithmEngineHelper.UnitConversion(1M, "米", "mm", "测试");
+            Assert.AreEqual(1000M, b);
+
+
+            b = AlgorithmEngineHelper.UnitConversion(1M, "m2", "dm2", "测试");
+            Assert.AreEqual(100M, b);
+            b = AlgorithmEngineHelper.UnitConversion(1M, "m2", "cm2", "测试");
+            Assert.AreEqual(10000M, b);
+            b = AlgorithmEngineHelper.UnitConversion(1M, "m2", "mm2", "测试");
+            Assert.AreEqual(1000000M, b);
+
+
+            b = AlgorithmEngineHelper.UnitConversion(1M, "m3", "dm3", "测试");
+            Assert.AreEqual(1000M, b);
+            b = AlgorithmEngineHelper.UnitConversion(1M, "m3", "cm3", "测试");
+            Assert.AreEqual(1000000M, b);
+            b = AlgorithmEngineHelper.UnitConversion(1M, "m3", "mm3", "测试");
+            Assert.AreEqual(1000000000M, b);
+
+
+            b = AlgorithmEngineHelper.UnitConversion(1M, "t", "kg", "测试");
+            Assert.AreEqual(1000M, b);
+            b = AlgorithmEngineHelper.UnitConversion(1M, "t", "g", "测试");
+            Assert.AreEqual(1000000M, b);
+ 
+        }
+
+
 
 
     }

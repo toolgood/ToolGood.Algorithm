@@ -2,7 +2,7 @@ package toolgood.algorithm.unitConversion;
 
 import java.math.BigDecimal;
 
-abstract class BaseUnitConverter  {
+public abstract class BaseUnitConverter  {
     public String UnitLeft;
     public String UnitRight;
     protected UnitFactors Units;

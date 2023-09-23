@@ -4,11 +4,11 @@
     {
         private static UnitFactors units = new UnitFactors()
         {
-            { new UnitFactorSynonyms("l", "L", "lt", "ltr", "liter", "litre", "dm³", "dm3", "cubic decimetre","升","立方分米"), 1 },
-            { new UnitFactorSynonyms("m³", "m3", "cubic metre","立方米"), 0.001m },
-            { new UnitFactorSynonyms("km³", "km3", "cubic metre","立方千米"), 0.001m* 0.001m* 0.001m* 0.001m },
-            { new UnitFactorSynonyms("cm³", "cm3", "cubic centimetre","立方厘米","毫升"), 1000 },
-            { new UnitFactorSynonyms("mm³", "mm3", "cubic millimetre","立方毫米"), 1000000 },
+            { new UnitFactorSynonyms("l", "L", "lt", "ltr", "liter", "litre", "dm³", "dm3", "cubic decimetre", "cubic decimeter","升","立方分米"), 1 },
+            { new UnitFactorSynonyms("m³", "m3", "cubic metre","cubic meter", "立方米"), 0.001m },
+            { new UnitFactorSynonyms("km³", "km3", "cubic kilometre","cubic kilometer", "立方千米"), 0.001m* 0.001m* 0.001m* 0.001m },
+            { new UnitFactorSynonyms("cm³", "cm3", "cubic centimetre","cubic centimeter","立方厘米","毫升"), 1000 },
+            { new UnitFactorSynonyms("mm³", "mm3", "cubic millimetre","cubic millimeter", "立方毫米"), 1000000 },
             { new UnitFactorSynonyms("ft³", "ft3", "cubic foot", "cubic feet", "cu ft","立方英尺"), 0.0353147m },
             { new UnitFactorSynonyms("in³", "in3", "cu in", "cubic inch","立方英寸"), 61.0237m },
             { new UnitFactorSynonyms("imperial pint", "imperial pt", "imperial p"), 1.75975m },

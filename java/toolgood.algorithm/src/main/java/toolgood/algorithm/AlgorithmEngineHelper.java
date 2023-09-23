@@ -312,7 +312,7 @@ public class AlgorithmEngineHelper {
      * @return
      * @throws Exception
      */
-    public BigDecimal UnitConversion(BigDecimal src, String oldSrcUnit, String oldTarUnit, String name) throws Exception {
+    public static BigDecimal UnitConversion(BigDecimal src, String oldSrcUnit, String oldTarUnit, String name) throws Exception {
         if (oldSrcUnit == null || oldSrcUnit.equals("")|| oldTarUnit == null || oldTarUnit.equals("")) {
             return src;
         }

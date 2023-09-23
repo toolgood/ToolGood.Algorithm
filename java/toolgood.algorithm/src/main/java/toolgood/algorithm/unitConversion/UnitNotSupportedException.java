@@ -1,6 +1,6 @@
 package toolgood.algorithm.unitConversion;
 
-class UnitNotSupportedException extends Exception {
+public class UnitNotSupportedException extends Exception {
     public UnitNotSupportedException() {
     }
 

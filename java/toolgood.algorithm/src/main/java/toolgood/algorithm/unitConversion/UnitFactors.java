@@ -3,7 +3,7 @@ package toolgood.algorithm.unitConversion;
 import java.math.BigDecimal;
 import java.util.TreeMap;
 
-class UnitFactors extends TreeMap<UnitFactorSynonyms, BigDecimal> {
+public class UnitFactors extends TreeMap<UnitFactorSynonyms, BigDecimal> {
 
     public UnitFactorSynonyms FindUnit(String synonyms) {
         return FindUnit(new UnitFactorSynonyms(synonyms));

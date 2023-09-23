@@ -1,9 +1,10 @@
 package toolgood.algorithm.unitConversion;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-class UnitFactorSynonyms {
+public class UnitFactorSynonyms {
     public List<String> Synonyms = new ArrayList<>();
 
     public UnitFactorSynonyms() {
@@ -14,9 +15,7 @@ class UnitFactorSynonyms {
     }
 
     public UnitFactorSynonyms(String[] items) {
-        for (String item : items) {
-            Synonyms.add(item);
-        }
+        Collections.addAll(Synonyms, items);
     }
 
     public boolean Contains(UnitFactorSynonyms synonyms) {
