@@ -10,7 +10,7 @@ namespace ToolGood.Algorithm
     /// <summary>
     /// 操作数
     /// </summary>
-    public abstract class Operand : IDisposable
+    public abstract class Operand 
     {
         internal static readonly CultureInfo cultureInfo = CultureInfo.InvariantCulture;// CultureInfo.GetCultureInfo("zh-cn");
         /// <summary>
@@ -362,7 +362,7 @@ namespace ToolGood.Algorithm
         /// <param name="errorMessage"></param>
         /// <returns></returns>
         public virtual Operand ToArray(string errorMessage = null) { return Error(errorMessage); }
-        void IDisposable.Dispose() { }
+
 
 
         #region Operand

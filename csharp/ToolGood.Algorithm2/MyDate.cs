@@ -191,31 +191,31 @@ namespace ToolGood.Algorithm
             StringBuilder stringBuffer = new StringBuilder();
             if (Year != null) {
                 stringBuffer.Append(Year);
-                stringBuffer.Append("-");
+                stringBuffer.Append('-');
                 stringBuffer.Append(Month.Value.ToString("D2"));
-                stringBuffer.Append("-");
+                stringBuffer.Append('-');
                 stringBuffer.Append(Day.Value.ToString("D2"));
 
                 if (Second > 0 || Hour > 0 || Minute > 0) {
-                    stringBuffer.Append(" ");
+                    stringBuffer.Append(' ');
                     stringBuffer.Append(Hour.ToString("D2"));
-                    stringBuffer.Append(":");
+                    stringBuffer.Append(':');
                     stringBuffer.Append(Minute.ToString("D2"));
                     if (Second > 0) {
-                        stringBuffer.Append(":");
+                        stringBuffer.Append(':');
                         stringBuffer.Append(Second.ToString("D2"));
                     }
                 }
             } else {
                 if (Day != null) {
                     stringBuffer.Append(Day);
-                    stringBuffer.Append(" ");
+                    stringBuffer.Append(' ');
                 }
                 stringBuffer.Append(Hour.ToString("D2"));
-                stringBuffer.Append(":");
+                stringBuffer.Append(':');
                 stringBuffer.Append(Minute.ToString("D2"));
                 if (Second > 0) {
-                    stringBuffer.Append(":");
+                    stringBuffer.Append(':');
                     stringBuffer.Append(Second.ToString("D2"));
                 }
             }
