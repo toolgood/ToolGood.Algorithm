@@ -1,7 +1,9 @@
 ﻿using Antlr4.Runtime;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using ToolGood.Algorithm.Internals;
+using ToolGood.Algorithm.UnitConversion;
 
 namespace ToolGood.Algorithm
 {
@@ -293,6 +295,44 @@ namespace ToolGood.Algorithm
             visitor.Visit(context);
             return visitor.diy;
         }
+
+
+        private static readonly Regex unitRegex = new Regex(@"[\s \(\)（）\[\]<>]", RegexOptions.Compiled);
+        /// <summary>
+        /// 单位转换
+        /// </summary>
+        /// <param name="src"></param>
+        /// <param name="oldSrcUnit"></param>
+        /// <param name="oldTarUnit"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public static decimal UnitConversion(decimal src, string oldSrcUnit, string oldTarUnit, string name)
+        {
+            if (string.IsNullOrWhiteSpace(oldSrcUnit)) { return src; }
+            if (string.IsNullOrWhiteSpace(oldTarUnit)) { throw new Exception($"The input item [{name}] has different units and cannot be converted from [{oldSrcUnit}] to [{oldTarUnit}]"); }
+            oldSrcUnit = unitRegex.Replace(oldSrcUnit, "");
+            if (oldSrcUnit == oldTarUnit) { return src; }
+
+            if (DistanceConverter.Exists(oldSrcUnit, oldTarUnit)) {
+                var c = new DistanceConverter(oldSrcUnit, oldTarUnit);
+                return c.LeftToRight(src);
+            }
+            if (MassConverter.Exists(oldSrcUnit, oldTarUnit)) {
+                var c = new MassConverter(oldSrcUnit, oldTarUnit);
+                return c.LeftToRight(src);
+            }
+            if (AreaConverter.Exists(oldSrcUnit, oldTarUnit)) {
+                var c = new AreaConverter(oldSrcUnit, oldTarUnit);
+                return c.LeftToRight(src);
+            }
+            if (VolumeConverter.Exists(oldSrcUnit, oldTarUnit)) {
+                var c = new VolumeConverter(oldSrcUnit, oldTarUnit);
+                return c.LeftToRight(src);
+            }
+            throw new Exception($"The input item [{name}] has different units and cannot be converted from [{oldSrcUnit}] to [{oldTarUnit}]");
+        }
+
 
 
     }
