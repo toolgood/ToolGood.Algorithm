@@ -309,8 +309,7 @@ namespace ToolGood.Algorithm
         /// <exception cref="Exception"></exception>
         public static decimal UnitConversion(decimal src, string oldSrcUnit, string oldTarUnit, string name)
         {
-            if (string.IsNullOrWhiteSpace(oldSrcUnit)) { return src; }
-            if (string.IsNullOrWhiteSpace(oldTarUnit)) { throw new Exception($"The input item [{name}] has different units and cannot be converted from [{oldSrcUnit}] to [{oldTarUnit}]"); }
+            if (string.IsNullOrWhiteSpace(oldSrcUnit) || string.IsNullOrWhiteSpace(oldTarUnit)) { return src; }
             oldSrcUnit = unitRegex.Replace(oldSrcUnit, "");
             if (oldSrcUnit == oldTarUnit) { return src; }
 

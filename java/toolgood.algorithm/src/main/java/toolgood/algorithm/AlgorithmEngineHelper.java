@@ -1,5 +1,6 @@
 package toolgood.algorithm;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,6 +14,10 @@ import toolgood.algorithm.internals.DiyNameVisitor;
 import toolgood.algorithm.math.mathLexer;
 import toolgood.algorithm.math.mathParser;
 import toolgood.algorithm.math.mathParser.ProgContext;
+import toolgood.algorithm.unitConversion.AreaConverter;
+import toolgood.algorithm.unitConversion.DistanceConverter;
+import toolgood.algorithm.unitConversion.MassConverter;
+import toolgood.algorithm.unitConversion.VolumeConverter;
 
 /**
  * 算法引擎助手
@@ -251,7 +256,6 @@ public class AlgorithmEngineHelper {
             lexerSet.add("CONTAINSKEY");
             lexerSet.add("HASVALUE");
             lexerSet.add("CONTAINSVALUE");
-
             lexerSet.add("PARAM");
             lexerSet.add("PARAMETER");
             lexerSet.add("GETPARAMETER");
@@ -261,16 +265,22 @@ public class AlgorithmEngineHelper {
         return _lexerSet;
     }
 
-    /// <summary>
-    /// 是否与内置关键字相同
-    /// </summary>
-    /// <param name="parameter"></param>
-    /// <returns></returns>
+    /**
+     * 是否与内置关键字相同
+     * @param parameter
+     * @return
+     */
     public static boolean IsKeywords(String parameter) {
         Set<String> lexerSet = GetLexerSet();
         return lexerSet.contains(CharUtil.StandardString(parameter));
     }
 
+    /**
+     * 获取 DIY 名称
+     * @param exp
+     * @return
+     * @throws Exception
+     */
     public static DiyNameInfo GetDiyNames(String exp) throws Exception {
         if (exp == null || exp.equals("")) {
             throw new Exception("Parameter exp invalid !");
@@ -293,4 +303,39 @@ public class AlgorithmEngineHelper {
         return visitor.diy;
     }
 
+    /**
+     * 单位转换
+     * @param src
+     * @param oldSrcUnit
+     * @param oldTarUnit
+     * @param name
+     * @return
+     * @throws Exception
+     */
+    public BigDecimal UnitConversion(BigDecimal src, String oldSrcUnit, String oldTarUnit, String name) throws Exception {
+        if (oldSrcUnit == null || oldSrcUnit.equals("")|| oldTarUnit == null || oldTarUnit.equals("")) {
+            return src;
+        }
+        oldSrcUnit = oldSrcUnit.replaceAll("[\\s \\(\\)（）\\[\\]<>]", "");
+        if (oldSrcUnit.equals(oldTarUnit)) {
+            return src;
+        }
+        if (DistanceConverter.Exists(oldSrcUnit, oldTarUnit)) {
+            DistanceConverter c = new DistanceConverter(oldSrcUnit, oldTarUnit);
+            return c.LeftToRight(src);
+        }
+        if (MassConverter.Exists(oldSrcUnit, oldTarUnit)) {
+            MassConverter c = new MassConverter(oldSrcUnit, oldTarUnit);
+            return c.LeftToRight(src);
+        }
+        if (AreaConverter.Exists(oldSrcUnit, oldTarUnit)) {
+            AreaConverter c = new AreaConverter(oldSrcUnit, oldTarUnit);
+            return c.LeftToRight(src);
+        }
+        if (VolumeConverter.Exists(oldSrcUnit, oldTarUnit)) {
+            VolumeConverter c = new VolumeConverter(oldSrcUnit, oldTarUnit);
+            return c.LeftToRight(src);
+        }
+        throw new Exception("The input item [" + name + "] has different units and cannot be converted from [" + oldSrcUnit + "] to [" + oldTarUnit + "]");
+    }
 }
