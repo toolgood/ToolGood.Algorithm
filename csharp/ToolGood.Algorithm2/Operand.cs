@@ -12,7 +12,7 @@ namespace ToolGood.Algorithm
     /// </summary>
     public abstract class Operand : IDisposable
     {
-        internal static readonly CultureInfo cultureInfo = CultureInfo.GetCultureInfo("en-US");
+        internal static readonly CultureInfo cultureInfo = CultureInfo.InvariantCulture;// CultureInfo.GetCultureInfo("zh-cn");
         /// <summary>
         /// True
         /// </summary>

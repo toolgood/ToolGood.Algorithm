@@ -19,7 +19,7 @@ namespace ToolGood.Algorithm.Internals
         private static readonly Regex bit_8 = new Regex("^[0-8]+$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
         private static readonly Regex bit_16 = new Regex("^[0-9a-f]+$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
         private static readonly Regex clearRegex = new Regex(@"[\f\n\r\t\v]", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-        private static readonly CultureInfo cultureInfo = CultureInfo.GetCultureInfo("en-US");
+        private static readonly CultureInfo cultureInfo = CultureInfo.InvariantCulture;// CultureInfo.GetCultureInfo("zh-cn");
         public event Func<string, Operand> GetParameter;
         public event Func<string, List<Operand>, Operand> DiyFunction;
         public int excelIndex;
