@@ -57,35 +57,35 @@ public class AlgorithmEngineHelperTest {
     @Test
     public void Test3() throws Exception {
         BigDecimal b = AlgorithmEngineHelper.UnitConversion(new BigDecimal(1),"米","千米","测试" );
-        assertEquals(new BigDecimal(0.001),b);
+        assertEquals(new BigDecimal(0.001).setScale(12,4),b.setScale(12,4));
         b = AlgorithmEngineHelper.UnitConversion(new BigDecimal(1), "米", "分米", "测试");
-        assertEquals(new BigDecimal(10), b);
+        assertEquals(new BigDecimal(10).setScale(12,4), b.setScale(12,4));
         b = AlgorithmEngineHelper.UnitConversion(new BigDecimal(1), "米", "厘米", "测试");
-        assertEquals(new BigDecimal(100), b);
+        assertEquals(new BigDecimal(100).setScale(12,4), b.setScale(12,4));
         b = AlgorithmEngineHelper.UnitConversion(new BigDecimal(1), "米", "mm", "测试");
-        assertEquals(new BigDecimal(1000), b);
+        assertEquals(new BigDecimal(1000).setScale(12,4), b.setScale(12,4));
 
 
         b = AlgorithmEngineHelper.UnitConversion(new BigDecimal(1), "m2", "dm2", "测试");
-        assertEquals(new BigDecimal(100), b);
+        assertEquals(new BigDecimal(100).setScale(12,4), b.setScale(12,4));
         b = AlgorithmEngineHelper.UnitConversion(new BigDecimal(1), "m2", "cm2", "测试");
-        assertEquals(new BigDecimal(10000), b);
+        assertEquals(new BigDecimal(10000).setScale(12,4), b.setScale(12,4));
         b = AlgorithmEngineHelper.UnitConversion(new BigDecimal(1), "m2", "mm2", "测试");
-        assertEquals(new BigDecimal(1000000), b);
+        assertEquals(new BigDecimal(1000000).setScale(12,4), b.setScale(12,4));
 
 
         b = AlgorithmEngineHelper.UnitConversion(new BigDecimal(1), "m3", "dm3", "测试");
-        assertEquals(new BigDecimal(1000), b);
+        assertEquals(new BigDecimal(1000).setScale(12,4), b.setScale(12,4));
         b = AlgorithmEngineHelper.UnitConversion(new BigDecimal(1), "m3", "cm3", "测试");
-        assertEquals(new BigDecimal(1000000), b);
+        assertEquals(new BigDecimal(1000000).setScale(12,4), b.setScale(12,4));
         b = AlgorithmEngineHelper.UnitConversion(new BigDecimal(1), "m3", "mm3", "测试");
-        assertEquals(new BigDecimal(1000000000), b);
+        assertEquals(new BigDecimal(1000000000).setScale(12,4), b.setScale(12,4));
 
 
         b = AlgorithmEngineHelper.UnitConversion(new BigDecimal(1), "t", "kg", "测试");
-        assertEquals(new BigDecimal(1000), b);
+        assertEquals(new BigDecimal(1000).setScale(12,4), b.setScale(12,4));
         b = AlgorithmEngineHelper.UnitConversion(new BigDecimal(1), "t", "g", "测试");
-        assertEquals(new BigDecimal(1000000), b);
+        assertEquals(new BigDecimal(1000000).setScale(12,4), b.setScale(12,4));
 
     }
 }

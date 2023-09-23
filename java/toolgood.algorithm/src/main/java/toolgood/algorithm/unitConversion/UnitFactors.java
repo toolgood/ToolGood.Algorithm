@@ -1,9 +1,10 @@
 package toolgood.algorithm.unitConversion;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.TreeMap;
 
-public class UnitFactors extends TreeMap<UnitFactorSynonyms, BigDecimal> {
+public class UnitFactors extends HashMap<UnitFactorSynonyms, BigDecimal> {
 
     public UnitFactorSynonyms FindUnit(String synonyms) {
         return FindUnit(new UnitFactorSynonyms(synonyms));
