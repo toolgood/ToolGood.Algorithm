@@ -3873,7 +3873,7 @@ namespace ToolGood.Algorithm.Internals
         }
         public virtual Operand VisitSTRING_fun(mathParser.STRING_funContext context)
         {
-            var opd = context.STRING().GetText();
+            var opd = context.GetText();
             StringBuilder sb = new StringBuilder();
             int index = 1;
             while (index < opd.Length - 1) {
