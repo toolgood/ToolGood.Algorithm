@@ -375,16 +375,21 @@ namespace ToolGood.Algorithm
         /// <param name="VolumeUnit"></param>
         /// <param name="MassUnit"></param>
         /// <returns></returns>
-        public static Operand Evaluate(mathParser.ProgContext context, Func<string, Operand> GetParameter, Func<string, List<Operand>, Operand> ExecuteDiyFunction
+        public static Operand Evaluate(mathParser.ProgContext context, Func<string, Operand> GetParameter = null
+            , Func<string, List<Operand>, Operand> ExecuteDiyFunction = null
             , bool UseExcelIndex = true, bool UseLocalTime = false
             , DistanceUnitType DistanceUnit = DistanceUnitType.M, AreaUnitType AreaUnit = AreaUnitType.M2
             , VolumeUnitType VolumeUnit = VolumeUnitType.M3, MassUnitType MassUnit = MassUnitType.KG
             )
         {
             var visitor = new MathVisitor();
-            visitor.GetParameter += GetParameter;
+            if (GetParameter != null ) {
+                visitor.GetParameter += GetParameter;
+            }
+            if (ExecuteDiyFunction != null ) {
+                visitor.DiyFunction += ExecuteDiyFunction;
+            }
             visitor.excelIndex = UseExcelIndex ? 1 : 0;
-            visitor.DiyFunction += ExecuteDiyFunction;
             visitor.useLocalTime = UseLocalTime;
             visitor.MassUnit = MassUnit;
             visitor.DistanceUnit = DistanceUnit;
