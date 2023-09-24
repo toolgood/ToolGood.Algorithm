@@ -32,92 +32,12 @@ namespace ToolGood.Algorithm.math
 partial class mathLexer : Lexer {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
-	public const int
-		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
-		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
-		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, T__22=23, T__23=24, 
-		T__24=25, T__25=26, T__26=27, T__27=28, SUB=29, NUM=30, STRING=31, NULL=32, 
-		ERROR=33, UNIT=34, IF=35, IFERROR=36, ISNUMBER=37, ISTEXT=38, ISERROR=39, 
-		ISNONTEXT=40, ISLOGICAL=41, ISEVEN=42, ISODD=43, ISNULL=44, ISNULLORERROR=45, 
-		AND=46, OR=47, NOT=48, TRUE=49, FALSE=50, E=51, PI=52, DEC2BIN=53, DEC2HEX=54, 
-		DEC2OCT=55, HEX2BIN=56, HEX2DEC=57, HEX2OCT=58, OCT2BIN=59, OCT2DEC=60, 
-		OCT2HEX=61, BIN2OCT=62, BIN2DEC=63, BIN2HEX=64, ABS=65, QUOTIENT=66, MOD=67, 
-		SIGN=68, SQRT=69, TRUNC=70, INT=71, GCD=72, LCM=73, COMBIN=74, PERMUT=75, 
-		DEGREES=76, RADIANS=77, COS=78, COSH=79, SIN=80, SINH=81, TAN=82, TANH=83, 
-		ACOS=84, ACOSH=85, ASIN=86, ASINH=87, ATAN=88, ATANH=89, ATAN2=90, ROUND=91, 
-		ROUNDDOWN=92, ROUNDUP=93, CEILING=94, FLOOR=95, EVEN=96, ODD=97, MROUND=98, 
-		RAND=99, RANDBETWEEN=100, FACT=101, FACTDOUBLE=102, POWER=103, EXP=104, 
-		LN=105, LOG=106, LOG10=107, MULTINOMIAL=108, PRODUCT=109, SQRTPI=110, 
-		SUMSQ=111, ASC=112, JIS=113, CHAR=114, CLEAN=115, CODE=116, CONCATENATE=117, 
-		EXACT=118, FIND=119, FIXED=120, LEFT=121, LEN=122, LOWER=123, MID=124, 
-		PROPER=125, REPLACE=126, REPT=127, RIGHT=128, RMB=129, SEARCH=130, SUBSTITUTE=131, 
-		T=132, TEXT=133, TRIM=134, UPPER=135, VALUE=136, DATEVALUE=137, TIMEVALUE=138, 
-		DATE=139, TIME=140, NOW=141, TODAY=142, YEAR=143, MONTH=144, DAY=145, 
-		HOUR=146, MINUTE=147, SECOND=148, WEEKDAY=149, DATEDIF=150, DAYS360=151, 
-		EDATE=152, EOMONTH=153, NETWORKDAYS=154, WORKDAY=155, WEEKNUM=156, MAX=157, 
-		MEDIAN=158, MIN=159, QUARTILE=160, MODE=161, LARGE=162, SMALL=163, PERCENTILE=164, 
-		PERCENTRANK=165, AVERAGE=166, AVERAGEIF=167, GEOMEAN=168, HARMEAN=169, 
-		COUNT=170, COUNTIF=171, SUM=172, SUMIF=173, AVEDEV=174, STDEV=175, STDEVP=176, 
-		DEVSQ=177, VAR=178, VARP=179, NORMDIST=180, NORMINV=181, NORMSDIST=182, 
-		NORMSINV=183, BETADIST=184, BETAINV=185, BINOMDIST=186, EXPONDIST=187, 
-		FDIST=188, FINV=189, FISHER=190, FISHERINV=191, GAMMADIST=192, GAMMAINV=193, 
-		GAMMALN=194, HYPGEOMDIST=195, LOGINV=196, LOGNORMDIST=197, NEGBINOMDIST=198, 
-		POISSON=199, TDIST=200, TINV=201, WEIBULL=202, URLENCODE=203, URLDECODE=204, 
-		HTMLENCODE=205, HTMLDECODE=206, BASE64TOTEXT=207, BASE64URLTOTEXT=208, 
-		TEXTTOBASE64=209, TEXTTOBASE64URL=210, REGEX=211, REGEXREPALCE=212, ISREGEX=213, 
-		GUID=214, MD5=215, SHA1=216, SHA256=217, SHA512=218, CRC32=219, HMACMD5=220, 
-		HMACSHA1=221, HMACSHA256=222, HMACSHA512=223, TRIMSTART=224, TRIMEND=225, 
-		INDEXOF=226, LASTINDEXOF=227, SPLIT=228, JOIN=229, SUBSTRING=230, STARTSWITH=231, 
-		ENDSWITH=232, ISNULLOREMPTY=233, ISNULLORWHITESPACE=234, REMOVESTART=235, 
-		REMOVEEND=236, JSON=237, VLOOKUP=238, LOOKUP=239, ARRAY=240, ADDYEARS=241, 
-		ADDMONTHS=242, ADDDAYS=243, ADDHOURS=244, ADDMINUTES=245, ADDSECONDS=246, 
-		TIMESTAMP=247, HAS=248, HASVALUE=249, PARAM=250, PARAMETER=251, PARAMETER2=252, 
-		WS=253, COMMENT=254, LINE_COMMENT=255;
-	public static string[] channelNames = {
-		"DEFAULT_TOKEN_CHANNEL", "HIDDEN"
-	};
+ 
+	public static string[] channelNames = null;
 
-	public static string[] modeNames = {
-		"DEFAULT_MODE"
-	};
+	public static string[] modeNames = null;
 
-	public static readonly string[] ruleNames = {
-		"T__0", "T__1", "T__2", "T__3", "T__4", "T__5", "T__6", "T__7", "T__8", 
-		"T__9", "T__10", "T__11", "T__12", "T__13", "T__14", "T__15", "T__16", 
-		"T__17", "T__18", "T__19", "T__20", "T__21", "T__22", "T__23", "T__24", 
-		"T__25", "T__26", "T__27", "SUB", "NUM", "STRING", "NULL", "ERROR", "UNIT", 
-		"IF", "IFERROR", "ISNUMBER", "ISTEXT", "ISERROR", "ISNONTEXT", "ISLOGICAL", 
-		"ISEVEN", "ISODD", "ISNULL", "ISNULLORERROR", "AND", "OR", "NOT", "TRUE", 
-		"FALSE", "E", "PI", "DEC2BIN", "DEC2HEX", "DEC2OCT", "HEX2BIN", "HEX2DEC", 
-		"HEX2OCT", "OCT2BIN", "OCT2DEC", "OCT2HEX", "BIN2OCT", "BIN2DEC", "BIN2HEX", 
-		"ABS", "QUOTIENT", "MOD", "SIGN", "SQRT", "TRUNC", "INT", "GCD", "LCM", 
-		"COMBIN", "PERMUT", "DEGREES", "RADIANS", "COS", "COSH", "SIN", "SINH", 
-		"TAN", "TANH", "ACOS", "ACOSH", "ASIN", "ASINH", "ATAN", "ATANH", "ATAN2", 
-		"ROUND", "ROUNDDOWN", "ROUNDUP", "CEILING", "FLOOR", "EVEN", "ODD", "MROUND", 
-		"RAND", "RANDBETWEEN", "FACT", "FACTDOUBLE", "POWER", "EXP", "LN", "LOG", 
-		"LOG10", "MULTINOMIAL", "PRODUCT", "SQRTPI", "SUMSQ", "ASC", "JIS", "CHAR", 
-		"CLEAN", "CODE", "CONCATENATE", "EXACT", "FIND", "FIXED", "LEFT", "LEN", 
-		"LOWER", "MID", "PROPER", "REPLACE", "REPT", "RIGHT", "RMB", "SEARCH", 
-		"SUBSTITUTE", "T", "TEXT", "TRIM", "UPPER", "VALUE", "DATEVALUE", "TIMEVALUE", 
-		"DATE", "TIME", "NOW", "TODAY", "YEAR", "MONTH", "DAY", "HOUR", "MINUTE", 
-		"SECOND", "WEEKDAY", "DATEDIF", "DAYS360", "EDATE", "EOMONTH", "NETWORKDAYS", 
-		"WORKDAY", "WEEKNUM", "MAX", "MEDIAN", "MIN", "QUARTILE", "MODE", "LARGE", 
-		"SMALL", "PERCENTILE", "PERCENTRANK", "AVERAGE", "AVERAGEIF", "GEOMEAN", 
-		"HARMEAN", "COUNT", "COUNTIF", "SUM", "SUMIF", "AVEDEV", "STDEV", "STDEVP", 
-		"DEVSQ", "VAR", "VARP", "NORMDIST", "NORMINV", "NORMSDIST", "NORMSINV", 
-		"BETADIST", "BETAINV", "BINOMDIST", "EXPONDIST", "FDIST", "FINV", "FISHER", 
-		"FISHERINV", "GAMMADIST", "GAMMAINV", "GAMMALN", "HYPGEOMDIST", "LOGINV", 
-		"LOGNORMDIST", "NEGBINOMDIST", "POISSON", "TDIST", "TINV", "WEIBULL", 
-		"URLENCODE", "URLDECODE", "HTMLENCODE", "HTMLDECODE", "BASE64TOTEXT", 
-		"BASE64URLTOTEXT", "TEXTTOBASE64", "TEXTTOBASE64URL", "REGEX", "REGEXREPALCE", 
-		"ISREGEX", "GUID", "MD5", "SHA1", "SHA256", "SHA512", "CRC32", "HMACMD5", 
-		"HMACSHA1", "HMACSHA256", "HMACSHA512", "TRIMSTART", "TRIMEND", "INDEXOF", 
-		"LASTINDEXOF", "SPLIT", "JOIN", "SUBSTRING", "STARTSWITH", "ENDSWITH", 
-		"ISNULLOREMPTY", "ISNULLORWHITESPACE", "REMOVESTART", "REMOVEEND", "JSON", 
-		"VLOOKUP", "LOOKUP", "ARRAY", "ADDYEARS", "ADDMONTHS", "ADDDAYS", "ADDHOURS", 
-		"ADDMINUTES", "ADDSECONDS", "TIMESTAMP", "HAS", "HASVALUE", "PARAM", "PARAMETER", 
-		"PARAMETER2", "FullWidthLetter", "WS", "COMMENT", "LINE_COMMENT"
-	};
+	public static readonly string[] ruleNames = null;
 
 
 	public mathLexer(ICharStream input)
@@ -129,82 +49,8 @@ partial class mathLexer : Lexer {
 		Interpreter = new LexerATNSimulator(this, _ATN, decisionToDFA, sharedContextCache);
 	}
 
-	private static readonly string[] _LiteralNames = {
-		null, "'.'", "'('", "')'", "','", "'['", "']'", "'!'", "'%'", "'*'", "'/'", 
-		"'+'", "'&'", "'>'", "'>='", "'<'", "'<='", "'='", "'=='", "'==='", "'!=='", 
-		"'!='", "'<>'", "'&&'", "'||'", "'?'", "':'", "'{'", "'}'", "'-'", null, 
-		null, "'NULL'", "'ERROR'", null, "'IF'", "'IFERROR'", "'ISNUMBER'", "'ISTEXT'", 
-		"'ISERROR'", "'ISNONTEXT'", "'ISLOGICAL'", "'ISEVEN'", "'ISODD'", "'ISNULL'", 
-		"'ISNULLORERROR'", "'AND'", "'OR'", "'NOT'", "'TRUE'", "'FALSE'", "'E'", 
-		"'PI'", "'DEC2BIN'", "'DEC2HEX'", "'DEC2OCT'", "'HEX2BIN'", "'HEX2DEC'", 
-		"'HEX2OCT'", "'OCT2BIN'", "'OCT2DEC'", "'OCT2HEX'", "'BIN2OCT'", "'BIN2DEC'", 
-		"'BIN2HEX'", "'ABS'", "'QUOTIENT'", "'MOD'", "'SIGN'", "'SQRT'", "'TRUNC'", 
-		"'INT'", "'GCD'", "'LCM'", "'COMBIN'", "'PERMUT'", "'DEGREES'", "'RADIANS'", 
-		"'COS'", "'COSH'", "'SIN'", "'SINH'", "'TAN'", "'TANH'", "'ACOS'", "'ACOSH'", 
-		"'ASIN'", "'ASINH'", "'ATAN'", "'ATANH'", "'ATAN2'", "'ROUND'", "'ROUNDDOWN'", 
-		"'ROUNDUP'", "'CEILING'", "'FLOOR'", "'EVEN'", "'ODD'", "'MROUND'", "'RAND'", 
-		"'RANDBETWEEN'", "'FACT'", "'FACTDOUBLE'", "'POWER'", "'EXP'", "'LN'", 
-		"'LOG'", "'LOG10'", "'MULTINOMIAL'", "'PRODUCT'", "'SQRTPI'", "'SUMSQ'", 
-		"'ASC'", null, "'CHAR'", "'CLEAN'", "'CODE'", "'CONCATENATE'", "'EXACT'", 
-		"'FIND'", "'FIXED'", "'LEFT'", "'LEN'", null, "'MID'", "'PROPER'", "'REPLACE'", 
-		"'REPT'", "'RIGHT'", "'RMB'", "'SEARCH'", "'SUBSTITUTE'", "'T'", "'TEXT'", 
-		"'TRIM'", null, "'VALUE'", "'DATEVALUE'", "'TIMEVALUE'", "'DATE'", "'TIME'", 
-		"'NOW'", "'TODAY'", "'YEAR'", "'MONTH'", "'DAY'", "'HOUR'", "'MINUTE'", 
-		"'SECOND'", "'WEEKDAY'", "'DATEDIF'", "'DAYS360'", "'EDATE'", "'EOMONTH'", 
-		"'NETWORKDAYS'", "'WORKDAY'", "'WEEKNUM'", "'MAX'", "'MEDIAN'", "'MIN'", 
-		"'QUARTILE'", "'MODE'", "'LARGE'", "'SMALL'", "'PERCENTILE'", "'PERCENTRANK'", 
-		"'AVERAGE'", "'AVERAGEIF'", "'GEOMEAN'", "'HARMEAN'", "'COUNT'", "'COUNTIF'", 
-		"'SUM'", "'SUMIF'", "'AVEDEV'", "'STDEV'", "'STDEVP'", "'DEVSQ'", "'VAR'", 
-		"'VARP'", "'NORMDIST'", "'NORMINV'", "'NORMSDIST'", "'NORMSINV'", "'BETADIST'", 
-		"'BETAINV'", "'BINOMDIST'", "'EXPONDIST'", "'FDIST'", "'FINV'", "'FISHER'", 
-		"'FISHERINV'", "'GAMMADIST'", "'GAMMAINV'", "'GAMMALN'", "'HYPGEOMDIST'", 
-		"'LOGINV'", "'LOGNORMDIST'", "'NEGBINOMDIST'", "'POISSON'", "'TDIST'", 
-		"'TINV'", "'WEIBULL'", "'URLENCODE'", "'URLDECODE'", "'HTMLENCODE'", "'HTMLDECODE'", 
-		"'BASE64TOTEXT'", "'BASE64URLTOTEXT'", "'TEXTTOBASE64'", "'TEXTTOBASE64URL'", 
-		"'REGEX'", "'REGEXREPALCE'", null, "'GUID'", "'MD5'", "'SHA1'", "'SHA256'", 
-		"'SHA512'", "'CRC32'", "'HMACMD5'", "'HMACSHA1'", "'HMACSHA256'", "'HMACSHA512'", 
-		null, null, "'INDEXOF'", "'LASTINDEXOF'", "'SPLIT'", "'JOIN'", "'SUBSTRING'", 
-		"'STARTSWITH'", "'ENDSWITH'", "'ISNULLOREMPTY'", "'ISNULLORWHITESPACE'", 
-		"'REMOVESTART'", "'REMOVEEND'", "'JSON'", "'VLOOKUP'", "'LOOKUP'", "'ARRAY'", 
-		"'ADDYEARS'", "'ADDMONTHS'", "'ADDDAYS'", "'ADDHOURS'", "'ADDMINUTES'", 
-		"'ADDSECONDS'", "'TIMESTAMP'"
-	};
-	private static readonly string[] _SymbolicNames = {
-		null, null, null, null, null, null, null, null, null, null, null, null, 
-		null, null, null, null, null, null, null, null, null, null, null, null, 
-		null, null, null, null, null, "SUB", "NUM", "STRING", "NULL", "ERROR", 
-		"UNIT", "IF", "IFERROR", "ISNUMBER", "ISTEXT", "ISERROR", "ISNONTEXT", 
-		"ISLOGICAL", "ISEVEN", "ISODD", "ISNULL", "ISNULLORERROR", "AND", "OR", 
-		"NOT", "TRUE", "FALSE", "E", "PI", "DEC2BIN", "DEC2HEX", "DEC2OCT", "HEX2BIN", 
-		"HEX2DEC", "HEX2OCT", "OCT2BIN", "OCT2DEC", "OCT2HEX", "BIN2OCT", "BIN2DEC", 
-		"BIN2HEX", "ABS", "QUOTIENT", "MOD", "SIGN", "SQRT", "TRUNC", "INT", "GCD", 
-		"LCM", "COMBIN", "PERMUT", "DEGREES", "RADIANS", "COS", "COSH", "SIN", 
-		"SINH", "TAN", "TANH", "ACOS", "ACOSH", "ASIN", "ASINH", "ATAN", "ATANH", 
-		"ATAN2", "ROUND", "ROUNDDOWN", "ROUNDUP", "CEILING", "FLOOR", "EVEN", 
-		"ODD", "MROUND", "RAND", "RANDBETWEEN", "FACT", "FACTDOUBLE", "POWER", 
-		"EXP", "LN", "LOG", "LOG10", "MULTINOMIAL", "PRODUCT", "SQRTPI", "SUMSQ", 
-		"ASC", "JIS", "CHAR", "CLEAN", "CODE", "CONCATENATE", "EXACT", "FIND", 
-		"FIXED", "LEFT", "LEN", "LOWER", "MID", "PROPER", "REPLACE", "REPT", "RIGHT", 
-		"RMB", "SEARCH", "SUBSTITUTE", "T", "TEXT", "TRIM", "UPPER", "VALUE", 
-		"DATEVALUE", "TIMEVALUE", "DATE", "TIME", "NOW", "TODAY", "YEAR", "MONTH", 
-		"DAY", "HOUR", "MINUTE", "SECOND", "WEEKDAY", "DATEDIF", "DAYS360", "EDATE", 
-		"EOMONTH", "NETWORKDAYS", "WORKDAY", "WEEKNUM", "MAX", "MEDIAN", "MIN", 
-		"QUARTILE", "MODE", "LARGE", "SMALL", "PERCENTILE", "PERCENTRANK", "AVERAGE", 
-		"AVERAGEIF", "GEOMEAN", "HARMEAN", "COUNT", "COUNTIF", "SUM", "SUMIF", 
-		"AVEDEV", "STDEV", "STDEVP", "DEVSQ", "VAR", "VARP", "NORMDIST", "NORMINV", 
-		"NORMSDIST", "NORMSINV", "BETADIST", "BETAINV", "BINOMDIST", "EXPONDIST", 
-		"FDIST", "FINV", "FISHER", "FISHERINV", "GAMMADIST", "GAMMAINV", "GAMMALN", 
-		"HYPGEOMDIST", "LOGINV", "LOGNORMDIST", "NEGBINOMDIST", "POISSON", "TDIST", 
-		"TINV", "WEIBULL", "URLENCODE", "URLDECODE", "HTMLENCODE", "HTMLDECODE", 
-		"BASE64TOTEXT", "BASE64URLTOTEXT", "TEXTTOBASE64", "TEXTTOBASE64URL", 
-		"REGEX", "REGEXREPALCE", "ISREGEX", "GUID", "MD5", "SHA1", "SHA256", "SHA512", 
-		"CRC32", "HMACMD5", "HMACSHA1", "HMACSHA256", "HMACSHA512", "TRIMSTART", 
-		"TRIMEND", "INDEXOF", "LASTINDEXOF", "SPLIT", "JOIN", "SUBSTRING", "STARTSWITH", 
-		"ENDSWITH", "ISNULLOREMPTY", "ISNULLORWHITESPACE", "REMOVESTART", "REMOVEEND", 
-		"JSON", "VLOOKUP", "LOOKUP", "ARRAY", "ADDYEARS", "ADDMONTHS", "ADDDAYS", 
-		"ADDHOURS", "ADDMINUTES", "ADDSECONDS", "TIMESTAMP", "HAS", "HASVALUE", 
-		"PARAM", "PARAMETER", "PARAMETER2", "WS", "COMMENT", "LINE_COMMENT"
-	};
+	private static readonly string[] _LiteralNames = {	};
+	private static readonly string[] _SymbolicNames = {	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
 	[NotNull]
@@ -216,15 +62,15 @@ partial class mathLexer : Lexer {
 		}
 	}
 
-	public override string GrammarFileName { get { return "math.g4"; } }
+	public override string GrammarFileName { get { return null; } }
 
-	public override string[] RuleNames { get { return ruleNames; } }
+	public override string[] RuleNames { get { return null; } }
 
-	public override string[] ChannelNames { get { return channelNames; } }
+	public override string[] ChannelNames { get { return null; } }
 
-	public override string[] ModeNames { get { return modeNames; } }
+	public override string[] ModeNames { get { return null; } }
 
-	public override int[] SerializedAtn { get { return _serializedATN; } }
+	public override int[] SerializedAtn { get { return null; } }
 
 	static mathLexer() {
 		decisionToDFA = new DFA[_ATN.NumberOfDecisions];
