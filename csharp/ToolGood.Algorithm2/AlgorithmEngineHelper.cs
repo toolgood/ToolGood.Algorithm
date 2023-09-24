@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Internals;
+using ToolGood.Algorithm.math;
 using ToolGood.Algorithm.UnitConversion;
 
 namespace ToolGood.Algorithm
@@ -307,7 +309,7 @@ namespace ToolGood.Algorithm
         /// <param name="name"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public static decimal UnitConversion(decimal src, string oldSrcUnit, string oldTarUnit, string name=null)
+        public static decimal UnitConversion(decimal src, string oldSrcUnit, string oldTarUnit, string name = null)
         {
             if (string.IsNullOrWhiteSpace(oldSrcUnit) || string.IsNullOrWhiteSpace(oldTarUnit)) { return src; }
             oldSrcUnit = unitRegex.Replace(oldSrcUnit, "");
@@ -329,13 +331,66 @@ namespace ToolGood.Algorithm
                 var c = new VolumeConverter(oldSrcUnit, oldTarUnit);
                 return c.LeftToRight(src);
             }
-            if (string.IsNullOrEmpty( name)) {
+            if (string.IsNullOrEmpty(name)) {
                 throw new Exception($"The input item has different units and cannot be converted from [{oldSrcUnit}] to [{oldTarUnit}]");
             }
             throw new Exception($"The input item [{name}] has different units and cannot be converted from [{oldSrcUnit}] to [{oldTarUnit}]");
         }
 
+        /// <summary>
+        /// 解析
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public static mathParser.ProgContext Parse(string exp)
+        {
+            if (string.IsNullOrWhiteSpace(exp)) {
+                throw new Exception("Parameter exp invalid !");
+            }
+            var stream = new AntlrCharStream(new AntlrInputStream(exp));
+            var lexer = new mathLexer(stream);
+            var tokens = new CommonTokenStream(lexer);
+            var parser = new mathParser(tokens);
+            var antlrErrorListener = new AntlrErrorListener();
+            parser.RemoveErrorListeners();
+            parser.AddErrorListener(antlrErrorListener);
 
-
+            var context = parser.prog();
+            if (antlrErrorListener.IsError) {
+                throw new Exception(antlrErrorListener.ErrorMsg);
+            }
+            return context;
+        }
+        /// <summary>
+        /// 执行
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="GetParameter"></param>
+        /// <param name="ExecuteDiyFunction"></param>
+        /// <param name="UseExcelIndex"></param>
+        /// <param name="UseLocalTime"></param>
+        /// <param name="DistanceUnit"></param>
+        /// <param name="AreaUnit"></param>
+        /// <param name="VolumeUnit"></param>
+        /// <param name="MassUnit"></param>
+        /// <returns></returns>
+        public static Operand Evaluate(mathParser.ProgContext context, Func<string, Operand> GetParameter, Func<string, List<Operand>, Operand> ExecuteDiyFunction
+            , bool UseExcelIndex = true, bool UseLocalTime = false
+            , DistanceUnitType DistanceUnit = DistanceUnitType.M, AreaUnitType AreaUnit = AreaUnitType.M2
+            , VolumeUnitType VolumeUnit = VolumeUnitType.M3, MassUnitType MassUnit = MassUnitType.KG
+            )
+        {
+            var visitor = new MathVisitor();
+            visitor.GetParameter += GetParameter;
+            visitor.excelIndex = UseExcelIndex ? 1 : 0;
+            visitor.DiyFunction += ExecuteDiyFunction;
+            visitor.useLocalTime = UseLocalTime;
+            visitor.MassUnit = MassUnit;
+            visitor.DistanceUnit = DistanceUnit;
+            visitor.AreaUnit = AreaUnit;
+            visitor.VolumeUnit = VolumeUnit;
+            return visitor.Visit(context);
+        }
     }
 }

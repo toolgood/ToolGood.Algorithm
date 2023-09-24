@@ -4,6 +4,7 @@ using Antlr4.Runtime.Tree;
 using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.math;
 
 namespace ToolGood.Algorithm.Internals
 {

@@ -6,7 +6,7 @@ using System.Text;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.LitJson;
-using static ToolGood.Algorithm.mathParser;
+using ToolGood.Algorithm.math;
 
 namespace ToolGood.Algorithm
 {
@@ -20,43 +20,39 @@ namespace ToolGood.Algorithm
         /// </summary>
         public bool UseExcelIndex { get; set; } = true;
         /// <summary>
-        /// 最后一个错误
-        /// </summary>
-        public string LastError { get; private set; }
-        /// <summary>
         /// 保存到临时文档
         /// </summary>
         public bool UseTempDict { get; set; } = false;
+        /// <summary>
+        /// 使用 本地时间， 影响 时间截转化
+        /// </summary>
+        public bool UseLocalTime { get; set; } = false;
+        /// <summary>
+        /// 长度单位
+        /// </summary>
+        public DistanceUnitType DistanceUnit { get; set; } = DistanceUnitType.M;
+        /// <summary>
+        /// 面积单位
+        /// </summary>
+        public AreaUnitType AreaUnit { get; set; } = AreaUnitType.M2;
+        /// <summary>
+        /// 体积单位
+        /// </summary>
+        public VolumeUnitType VolumeUnit { get; set; } = VolumeUnitType.M3;
+        /// <summary>
+        /// 重量单位
+        /// </summary>
+        public MassUnitType MassUnit { get; set; } = MassUnitType.KG;
+        private mathParser.ProgContext _context;
+        private readonly Dictionary<string, Operand> _tempdict;
         /// <summary>
         /// 是否忽略大小写
         /// </summary>
         public bool IgnoreCase { get; private set; }
         /// <summary>
-        /// 使用 本地时间， 影响 时间截转化
+        /// 最后一个错误
         /// </summary>
-        public bool UseLocalTime { get; set; } = false;
-
-        private ProgContext _context;
-        private readonly Dictionary<string, Operand> _tempdict;
-        /// <summary>
-        /// 长度单位
-        /// </summary>
-        public DistanceUnitType DistanceUnit { get; set; } = DistanceUnitType.M;
-
-        /// <summary>
-        /// 面积单位
-        /// </summary>
-        public AreaUnitType AreaUnit { get; set; } = AreaUnitType.M2;
-
-        /// <summary>
-        /// 体积单位
-        /// </summary>
-        public VolumeUnitType VolumeUnit { get; set; } = VolumeUnitType.M3;
-
-        /// <summary>
-        /// 重量单位
-        /// </summary>
-        public MassUnitType MassUnit { get; set; } = MassUnitType.KG;
+        public string LastError { get; private set; }
 
         #region 构造函数
         /// <summary>
@@ -398,6 +394,7 @@ namespace ToolGood.Algorithm
             visitor.VolumeUnit = VolumeUnit;
             return visitor.Visit(_context);
         }
+
 
         #endregion
 

@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.LitJson;
+using ToolGood.Algorithm.math;
 using ToolGood.Algorithm.MathNet.Numerics;
 
 namespace ToolGood.Algorithm.Internals

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ToolGood.Algorithm.math;
 
 namespace ToolGood.Algorithm.Internals
 {

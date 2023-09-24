@@ -1,6 +1,7 @@
 ﻿using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
 using System;
+using ToolGood.Algorithm.math;
 
 namespace ToolGood.Algorithm.Internals
 {
