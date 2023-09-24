@@ -2,7 +2,6 @@ package toolgood.algorithm.unitConversion;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
-import java.util.TreeMap;
 
 public class UnitFactors extends HashMap<UnitFactorSynonyms, BigDecimal> {
 
