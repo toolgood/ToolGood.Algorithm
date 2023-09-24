@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using static mathParser;
 
 namespace ToolGood.Algorithm.Internals
 {
@@ -8,13 +7,13 @@ namespace ToolGood.Algorithm.Internals
 	{
 		private int inFunctionCount = 0;
 
-		public override Operand VisitProg(ProgContext context)
+		public override Operand VisitProg(mathParser.ProgContext context)
 		{
 			return base.VisitProg(context);
 		}
 
 
-		public override Operand VisitAddSub_fun(AddSub_funContext context)
+		public override Operand VisitAddSub_fun(mathParser.AddSub_funContext context)
 		{
 			if (inFunctionCount > 0) {
 				return base.VisitAddSub_fun(context);
@@ -37,7 +36,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitMulDiv_fun(MulDiv_funContext context)
+		public override Operand VisitMulDiv_fun(mathParser.MulDiv_funContext context)
 		{
 			if (inFunctionCount > 0) {
 				return base.VisitMulDiv_fun(context);
@@ -59,7 +58,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitBracket_fun(Bracket_funContext context)
+		public override Operand VisitBracket_fun(mathParser.Bracket_funContext context)
 		{
 			if (inFunctionCount > 0) {
 				return base.VisitBracket_fun(context);
@@ -72,7 +71,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitABS_fun(ABS_funContext context)
+		public override Operand VisitABS_fun(mathParser.ABS_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitABS_fun(context);
@@ -81,7 +80,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitACOSH_fun(ACOSH_funContext context)
+		public override Operand VisitACOSH_fun(mathParser.ACOSH_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitACOSH_fun(context);
@@ -90,7 +89,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitACOS_fun(ACOS_funContext context)
+		public override Operand VisitACOS_fun(mathParser.ACOS_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitACOS_fun(context);
@@ -99,7 +98,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitAND_fun(AND_funContext context)
+		public override Operand VisitAND_fun(mathParser.AND_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitAND_fun(context);
@@ -108,7 +107,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitASC_fun(ASC_funContext context)
+		public override Operand VisitASC_fun(mathParser.ASC_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitASC_fun(context);
@@ -117,7 +116,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitASINH_fun(ASINH_funContext context)
+		public override Operand VisitASINH_fun(mathParser.ASINH_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitASINH_fun(context);
@@ -126,7 +125,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitASIN_fun(ASIN_funContext context)
+		public override Operand VisitASIN_fun(mathParser.ASIN_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitASIN_fun(context);
@@ -135,7 +134,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitATAN2_fun(ATAN2_funContext context)
+		public override Operand VisitATAN2_fun(mathParser.ATAN2_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitATAN2_fun(context);
@@ -144,7 +143,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitATANH_fun(ATANH_funContext context)
+		public override Operand VisitATANH_fun(mathParser.ATANH_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitATANH_fun(context);
@@ -153,7 +152,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitATAN_fun(ATAN_funContext context)
+		public override Operand VisitATAN_fun(mathParser.ATAN_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitATAN_fun(context);
@@ -162,7 +161,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitAVEDEV_fun(AVEDEV_funContext context)
+		public override Operand VisitAVEDEV_fun(mathParser.AVEDEV_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitAVEDEV_fun(context);
@@ -171,7 +170,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitAVERAGEIF_fun(AVERAGEIF_funContext context)
+		public override Operand VisitAVERAGEIF_fun(mathParser.AVERAGEIF_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitAVERAGEIF_fun(context);
@@ -180,7 +179,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitAVERAGE_fun(AVERAGE_funContext context)
+		public override Operand VisitAVERAGE_fun(mathParser.AVERAGE_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitAVERAGE_fun(context);
@@ -189,7 +188,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitAndOr_fun(AndOr_funContext context)
+		public override Operand VisitAndOr_fun(mathParser.AndOr_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitAndOr_fun(context);
@@ -198,7 +197,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitArray_fun(Array_funContext context)
+		public override Operand VisitArray_fun(mathParser.Array_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitArray_fun(context);
@@ -207,7 +206,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitBASE64TOTEXT_fun(BASE64TOTEXT_funContext context)
+		public override Operand VisitBASE64TOTEXT_fun(mathParser.BASE64TOTEXT_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitBASE64TOTEXT_fun(context);
@@ -216,7 +215,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitBASE64URLTOTEXT_fun(BASE64URLTOTEXT_funContext context)
+		public override Operand VisitBASE64URLTOTEXT_fun(mathParser.BASE64URLTOTEXT_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitBASE64URLTOTEXT_fun(context);
@@ -225,7 +224,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitBETADIST_fun(BETADIST_funContext context)
+		public override Operand VisitBETADIST_fun(mathParser.BETADIST_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitBETADIST_fun(context);
@@ -234,7 +233,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitBETAINV_fun(BETAINV_funContext context)
+		public override Operand VisitBETAINV_fun(mathParser.BETAINV_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitBETAINV_fun(context);
@@ -243,7 +242,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitBIN2DEC_fun(BIN2DEC_funContext context)
+		public override Operand VisitBIN2DEC_fun(mathParser.BIN2DEC_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitBIN2DEC_fun(context);
@@ -252,7 +251,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitBIN2HEX_fun(BIN2HEX_funContext context)
+		public override Operand VisitBIN2HEX_fun(mathParser.BIN2HEX_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitBIN2HEX_fun(context);
@@ -261,7 +260,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitBIN2OCT_fun(BIN2OCT_funContext context)
+		public override Operand VisitBIN2OCT_fun(mathParser.BIN2OCT_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitBIN2OCT_fun(context);
@@ -270,7 +269,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitBINOMDIST_fun(BINOMDIST_funContext context)
+		public override Operand VisitBINOMDIST_fun(mathParser.BINOMDIST_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitBINOMDIST_fun(context);
@@ -279,7 +278,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitCEILING_fun(CEILING_funContext context)
+		public override Operand VisitCEILING_fun(mathParser.CEILING_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitCEILING_fun(context);
@@ -288,7 +287,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitCHAR_fun(CHAR_funContext context)
+		public override Operand VisitCHAR_fun(mathParser.CHAR_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitCHAR_fun(context);
@@ -297,7 +296,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitCLEAN_fun(CLEAN_funContext context)
+		public override Operand VisitCLEAN_fun(mathParser.CLEAN_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitCLEAN_fun(context);
@@ -306,7 +305,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitCODE_fun(CODE_funContext context)
+		public override Operand VisitCODE_fun(mathParser.CODE_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitCODE_fun(context);
@@ -315,7 +314,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitCOMBIN_fun(COMBIN_funContext context)
+		public override Operand VisitCOMBIN_fun(mathParser.COMBIN_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitCOMBIN_fun(context);
@@ -324,7 +323,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitCONCATENATE_fun(CONCATENATE_funContext context)
+		public override Operand VisitCONCATENATE_fun(mathParser.CONCATENATE_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitCONCATENATE_fun(context);
@@ -333,7 +332,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitCOSH_fun(COSH_funContext context)
+		public override Operand VisitCOSH_fun(mathParser.COSH_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitCOSH_fun(context);
@@ -342,7 +341,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitCOS_fun(COS_funContext context)
+		public override Operand VisitCOS_fun(mathParser.COS_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitCOS_fun(context);
@@ -351,7 +350,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitCOUNTIF_fun(COUNTIF_funContext context)
+		public override Operand VisitCOUNTIF_fun(mathParser.COUNTIF_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitCOUNTIF_fun(context);
@@ -360,7 +359,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitCOUNT_fun(COUNT_funContext context)
+		public override Operand VisitCOUNT_fun(mathParser.COUNT_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitCOUNT_fun(context);
@@ -369,7 +368,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitCRC32_fun(CRC32_funContext context)
+		public override Operand VisitCRC32_fun(mathParser.CRC32_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitCRC32_fun(context);
@@ -378,7 +377,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitDATEDIF_fun(DATEDIF_funContext context)
+		public override Operand VisitDATEDIF_fun(mathParser.DATEDIF_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitDATEDIF_fun(context);
@@ -387,7 +386,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitDATEVALUE_fun(DATEVALUE_funContext context)
+		public override Operand VisitDATEVALUE_fun(mathParser.DATEVALUE_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitDATEVALUE_fun(context);
@@ -396,7 +395,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitDATE_fun(DATE_funContext context)
+		public override Operand VisitDATE_fun(mathParser.DATE_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitDATE_fun(context);
@@ -405,7 +404,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitDAYS360_fun(DAYS360_funContext context)
+		public override Operand VisitDAYS360_fun(mathParser.DAYS360_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitDAYS360_fun(context);
@@ -414,7 +413,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitDAY_fun(DAY_funContext context)
+		public override Operand VisitDAY_fun(mathParser.DAY_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitDAY_fun(context);
@@ -423,7 +422,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitDEC2BIN_fun(DEC2BIN_funContext context)
+		public override Operand VisitDEC2BIN_fun(mathParser.DEC2BIN_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitDEC2BIN_fun(context);
@@ -432,7 +431,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitDEC2HEX_fun(DEC2HEX_funContext context)
+		public override Operand VisitDEC2HEX_fun(mathParser.DEC2HEX_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitDEC2HEX_fun(context);
@@ -441,7 +440,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitDEC2OCT_fun(DEC2OCT_funContext context)
+		public override Operand VisitDEC2OCT_fun(mathParser.DEC2OCT_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitDEC2OCT_fun(context);
@@ -450,7 +449,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitDEGREES_fun(DEGREES_funContext context)
+		public override Operand VisitDEGREES_fun(mathParser.DEGREES_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitDEGREES_fun(context);
@@ -459,7 +458,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitDEVSQ_fun(DEVSQ_funContext context)
+		public override Operand VisitDEVSQ_fun(mathParser.DEVSQ_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitDEVSQ_fun(context);
@@ -468,7 +467,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitDiyFunction_fun(DiyFunction_funContext context)
+		public override Operand VisitDiyFunction_fun(mathParser.DiyFunction_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitDiyFunction_fun(context);
@@ -477,7 +476,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitEDATE_fun(EDATE_funContext context)
+		public override Operand VisitEDATE_fun(mathParser.EDATE_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitEDATE_fun(context);
@@ -486,7 +485,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitENDSWITH_fun(ENDSWITH_funContext context)
+		public override Operand VisitENDSWITH_fun(mathParser.ENDSWITH_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitENDSWITH_fun(context);
@@ -495,7 +494,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitEOMONTH_fun(EOMONTH_funContext context)
+		public override Operand VisitEOMONTH_fun(mathParser.EOMONTH_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitEOMONTH_fun(context);
@@ -504,7 +503,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitEVEN_fun(EVEN_funContext context)
+		public override Operand VisitEVEN_fun(mathParser.EVEN_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitEVEN_fun(context);
@@ -513,7 +512,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitEXACT_fun(EXACT_funContext context)
+		public override Operand VisitEXACT_fun(mathParser.EXACT_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitEXACT_fun(context);
@@ -522,7 +521,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitEXPONDIST_fun(EXPONDIST_funContext context)
+		public override Operand VisitEXPONDIST_fun(mathParser.EXPONDIST_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitEXPONDIST_fun(context);
@@ -531,7 +530,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitEXP_fun(EXP_funContext context)
+		public override Operand VisitEXP_fun(mathParser.EXP_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitEXP_fun(context);
@@ -540,7 +539,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitE_fun(E_funContext context)
+		public override Operand VisitE_fun(mathParser.E_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitE_fun(context);
@@ -549,7 +548,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitFACTDOUBLE_fun(FACTDOUBLE_funContext context)
+		public override Operand VisitFACTDOUBLE_fun(mathParser.FACTDOUBLE_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitFACTDOUBLE_fun(context);
@@ -558,7 +557,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitFACT_fun(FACT_funContext context)
+		public override Operand VisitFACT_fun(mathParser.FACT_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitFACT_fun(context);
@@ -567,7 +566,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitFALSE_fun(FALSE_funContext context)
+		public override Operand VisitFALSE_fun(mathParser.FALSE_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitFALSE_fun(context);
@@ -576,7 +575,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitFDIST_fun(FDIST_funContext context)
+		public override Operand VisitFDIST_fun(mathParser.FDIST_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitFDIST_fun(context);
@@ -585,7 +584,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitFIND_fun(FIND_funContext context)
+		public override Operand VisitFIND_fun(mathParser.FIND_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitFIND_fun(context);
@@ -594,7 +593,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitFINV_fun(FINV_funContext context)
+		public override Operand VisitFINV_fun(mathParser.FINV_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitFINV_fun(context);
@@ -603,7 +602,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitFISHERINV_fun(FISHERINV_funContext context)
+		public override Operand VisitFISHERINV_fun(mathParser.FISHERINV_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitFISHERINV_fun(context);
@@ -612,7 +611,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitFISHER_fun(FISHER_funContext context)
+		public override Operand VisitFISHER_fun(mathParser.FISHER_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitFISHER_fun(context);
@@ -621,7 +620,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitFIXED_fun(FIXED_funContext context)
+		public override Operand VisitFIXED_fun(mathParser.FIXED_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitFIXED_fun(context);
@@ -630,7 +629,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitFLOOR_fun(FLOOR_funContext context)
+		public override Operand VisitFLOOR_fun(mathParser.FLOOR_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitFLOOR_fun(context);
@@ -639,7 +638,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitGAMMADIST_fun(GAMMADIST_funContext context)
+		public override Operand VisitGAMMADIST_fun(mathParser.GAMMADIST_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitGAMMADIST_fun(context);
@@ -648,7 +647,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitGAMMAINV_fun(GAMMAINV_funContext context)
+		public override Operand VisitGAMMAINV_fun(mathParser.GAMMAINV_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitGAMMAINV_fun(context);
@@ -657,7 +656,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitGAMMALN_fun(GAMMALN_funContext context)
+		public override Operand VisitGAMMALN_fun(mathParser.GAMMALN_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitGAMMALN_fun(context);
@@ -666,7 +665,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitGCD_fun(GCD_funContext context)
+		public override Operand VisitGCD_fun(mathParser.GCD_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitGCD_fun(context);
@@ -675,7 +674,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitGEOMEAN_fun(GEOMEAN_funContext context)
+		public override Operand VisitGEOMEAN_fun(mathParser.GEOMEAN_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitGEOMEAN_fun(context);
@@ -684,7 +683,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitGUID_fun(GUID_funContext context)
+		public override Operand VisitGUID_fun(mathParser.GUID_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitGUID_fun(context);
@@ -693,7 +692,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitGetJsonValue_fun(GetJsonValue_funContext context)
+		public override Operand VisitGetJsonValue_fun(mathParser.GetJsonValue_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitGetJsonValue_fun(context);
@@ -702,7 +701,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitHARMEAN_fun(HARMEAN_funContext context)
+		public override Operand VisitHARMEAN_fun(mathParser.HARMEAN_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitHARMEAN_fun(context);
@@ -711,7 +710,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitHEX2BIN_fun(HEX2BIN_funContext context)
+		public override Operand VisitHEX2BIN_fun(mathParser.HEX2BIN_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitHEX2BIN_fun(context);
@@ -720,7 +719,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitHEX2DEC_fun(HEX2DEC_funContext context)
+		public override Operand VisitHEX2DEC_fun(mathParser.HEX2DEC_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitHEX2DEC_fun(context);
@@ -729,7 +728,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitHEX2OCT_fun(HEX2OCT_funContext context)
+		public override Operand VisitHEX2OCT_fun(mathParser.HEX2OCT_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitHEX2OCT_fun(context);
@@ -738,7 +737,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitHMACMD5_fun(HMACMD5_funContext context)
+		public override Operand VisitHMACMD5_fun(mathParser.HMACMD5_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitHMACMD5_fun(context);
@@ -747,7 +746,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitHMACSHA1_fun(HMACSHA1_funContext context)
+		public override Operand VisitHMACSHA1_fun(mathParser.HMACSHA1_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitHMACSHA1_fun(context);
@@ -756,7 +755,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitHMACSHA256_fun(HMACSHA256_funContext context)
+		public override Operand VisitHMACSHA256_fun(mathParser.HMACSHA256_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitHMACSHA256_fun(context);
@@ -765,7 +764,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitHMACSHA512_fun(HMACSHA512_funContext context)
+		public override Operand VisitHMACSHA512_fun(mathParser.HMACSHA512_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitHMACSHA512_fun(context);
@@ -774,7 +773,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitHOUR_fun(HOUR_funContext context)
+		public override Operand VisitHOUR_fun(mathParser.HOUR_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitHOUR_fun(context);
@@ -783,7 +782,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitHTMLDECODE_fun(HTMLDECODE_funContext context)
+		public override Operand VisitHTMLDECODE_fun(mathParser.HTMLDECODE_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitHTMLDECODE_fun(context);
@@ -792,7 +791,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitHTMLENCODE_fun(HTMLENCODE_funContext context)
+		public override Operand VisitHTMLENCODE_fun(mathParser.HTMLENCODE_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitHTMLENCODE_fun(context);
@@ -801,7 +800,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitHYPGEOMDIST_fun(HYPGEOMDIST_funContext context)
+		public override Operand VisitHYPGEOMDIST_fun(mathParser.HYPGEOMDIST_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitHYPGEOMDIST_fun(context);
@@ -810,7 +809,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitIFERROR_fun(IFERROR_funContext context)
+		public override Operand VisitIFERROR_fun(mathParser.IFERROR_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitIFERROR_fun(context);
@@ -819,7 +818,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitIF_fun(IF_funContext context)
+		public override Operand VisitIF_fun(mathParser.IF_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitIF_fun(context);
@@ -828,7 +827,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitINDEXOF_fun(INDEXOF_funContext context)
+		public override Operand VisitINDEXOF_fun(mathParser.INDEXOF_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitINDEXOF_fun(context);
@@ -837,7 +836,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitINT_fun(INT_funContext context)
+		public override Operand VisitINT_fun(mathParser.INT_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitINT_fun(context);
@@ -846,7 +845,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitISERROR_fun(ISERROR_funContext context)
+		public override Operand VisitISERROR_fun(mathParser.ISERROR_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitISERROR_fun(context);
@@ -855,7 +854,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitISEVEN_fun(ISEVEN_funContext context)
+		public override Operand VisitISEVEN_fun(mathParser.ISEVEN_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitISEVEN_fun(context);
@@ -864,7 +863,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitISLOGICAL_fun(ISLOGICAL_funContext context)
+		public override Operand VisitISLOGICAL_fun(mathParser.ISLOGICAL_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitISLOGICAL_fun(context);
@@ -873,7 +872,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitISNONTEXT_fun(ISNONTEXT_funContext context)
+		public override Operand VisitISNONTEXT_fun(mathParser.ISNONTEXT_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitISNONTEXT_fun(context);
@@ -882,7 +881,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitISNULLOREMPTY_fun(ISNULLOREMPTY_funContext context)
+		public override Operand VisitISNULLOREMPTY_fun(mathParser.ISNULLOREMPTY_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitISNULLOREMPTY_fun(context);
@@ -891,7 +890,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitISNULLORERROR_fun(ISNULLORERROR_funContext context)
+		public override Operand VisitISNULLORERROR_fun(mathParser.ISNULLORERROR_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitISNULLORERROR_fun(context);
@@ -900,7 +899,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitISNULLORWHITESPACE_fun(ISNULLORWHITESPACE_funContext context)
+		public override Operand VisitISNULLORWHITESPACE_fun(mathParser.ISNULLORWHITESPACE_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitISNULLORWHITESPACE_fun(context);
@@ -909,7 +908,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitISNULL_fun(ISNULL_funContext context)
+		public override Operand VisitISNULL_fun(mathParser.ISNULL_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitISNULL_fun(context);
@@ -918,7 +917,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitISNUMBER_fun(ISNUMBER_funContext context)
+		public override Operand VisitISNUMBER_fun(mathParser.ISNUMBER_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitISNUMBER_fun(context);
@@ -927,7 +926,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitISODD_fun(ISODD_funContext context)
+		public override Operand VisitISODD_fun(mathParser.ISODD_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitISODD_fun(context);
@@ -936,7 +935,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitISREGEX_fun(ISREGEX_funContext context)
+		public override Operand VisitISREGEX_fun(mathParser.ISREGEX_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitISREGEX_fun(context);
@@ -945,7 +944,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitISTEXT_fun(ISTEXT_funContext context)
+		public override Operand VisitISTEXT_fun(mathParser.ISTEXT_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitISTEXT_fun(context);
@@ -954,7 +953,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitJIS_fun(JIS_funContext context)
+		public override Operand VisitJIS_fun(mathParser.JIS_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitJIS_fun(context);
@@ -963,7 +962,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitJOIN_fun(JOIN_funContext context)
+		public override Operand VisitJOIN_fun(mathParser.JOIN_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitJOIN_fun(context);
@@ -972,7 +971,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitJSON_fun(JSON_funContext context)
+		public override Operand VisitJSON_fun(mathParser.JSON_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitJSON_fun(context);
@@ -981,7 +980,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitJudge_fun(Judge_funContext context)
+		public override Operand VisitJudge_fun(mathParser.Judge_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitJudge_fun(context);
@@ -990,7 +989,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitLARGE_fun(LARGE_funContext context)
+		public override Operand VisitLARGE_fun(mathParser.LARGE_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitLARGE_fun(context);
@@ -999,7 +998,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitLASTINDEXOF_fun(LASTINDEXOF_funContext context)
+		public override Operand VisitLASTINDEXOF_fun(mathParser.LASTINDEXOF_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitLASTINDEXOF_fun(context);
@@ -1008,7 +1007,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitLCM_fun(LCM_funContext context)
+		public override Operand VisitLCM_fun(mathParser.LCM_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitLCM_fun(context);
@@ -1017,7 +1016,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitLEFT_fun(LEFT_funContext context)
+		public override Operand VisitLEFT_fun(mathParser.LEFT_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitLEFT_fun(context);
@@ -1026,7 +1025,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitLEN_fun(LEN_funContext context)
+		public override Operand VisitLEN_fun(mathParser.LEN_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitLEN_fun(context);
@@ -1035,7 +1034,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitLN_fun(LN_funContext context)
+		public override Operand VisitLN_fun(mathParser.LN_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitLN_fun(context);
@@ -1044,7 +1043,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitLOG10_fun(LOG10_funContext context)
+		public override Operand VisitLOG10_fun(mathParser.LOG10_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitLOG10_fun(context);
@@ -1053,7 +1052,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitLOGINV_fun(LOGINV_funContext context)
+		public override Operand VisitLOGINV_fun(mathParser.LOGINV_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitLOGINV_fun(context);
@@ -1062,7 +1061,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitLOGNORMDIST_fun(LOGNORMDIST_funContext context)
+		public override Operand VisitLOGNORMDIST_fun(mathParser.LOGNORMDIST_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitLOGNORMDIST_fun(context);
@@ -1071,7 +1070,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitLOG_fun(LOG_funContext context)
+		public override Operand VisitLOG_fun(mathParser.LOG_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitLOG_fun(context);
@@ -1080,7 +1079,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitLOOKUP_fun(LOOKUP_funContext context)
+		public override Operand VisitLOOKUP_fun(mathParser.LOOKUP_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitLOOKUP_fun(context);
@@ -1089,7 +1088,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitLOWER_fun(LOWER_funContext context)
+		public override Operand VisitLOWER_fun(mathParser.LOWER_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitLOWER_fun(context);
@@ -1098,7 +1097,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitMAX_fun(MAX_funContext context)
+		public override Operand VisitMAX_fun(mathParser.MAX_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitMAX_fun(context);
@@ -1107,7 +1106,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitMD5_fun(MD5_funContext context)
+		public override Operand VisitMD5_fun(mathParser.MD5_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitMD5_fun(context);
@@ -1116,7 +1115,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitMEDIAN_fun(MEDIAN_funContext context)
+		public override Operand VisitMEDIAN_fun(mathParser.MEDIAN_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitMEDIAN_fun(context);
@@ -1125,7 +1124,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitMID_fun(MID_funContext context)
+		public override Operand VisitMID_fun(mathParser.MID_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitMID_fun(context);
@@ -1134,7 +1133,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitMINUTE_fun(MINUTE_funContext context)
+		public override Operand VisitMINUTE_fun(mathParser.MINUTE_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitMINUTE_fun(context);
@@ -1143,7 +1142,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitMIN_fun(MIN_funContext context)
+		public override Operand VisitMIN_fun(mathParser.MIN_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitMIN_fun(context);
@@ -1152,7 +1151,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitMODE_fun(MODE_funContext context)
+		public override Operand VisitMODE_fun(mathParser.MODE_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitMODE_fun(context);
@@ -1161,7 +1160,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitMOD_fun(MOD_funContext context)
+		public override Operand VisitMOD_fun(mathParser.MOD_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitMOD_fun(context);
@@ -1170,7 +1169,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitMONTH_fun(MONTH_funContext context)
+		public override Operand VisitMONTH_fun(mathParser.MONTH_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitMONTH_fun(context);
@@ -1179,7 +1178,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitMROUND_fun(MROUND_funContext context)
+		public override Operand VisitMROUND_fun(mathParser.MROUND_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitMROUND_fun(context);
@@ -1188,7 +1187,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitMULTINOMIAL_fun(MULTINOMIAL_funContext context)
+		public override Operand VisitMULTINOMIAL_fun(mathParser.MULTINOMIAL_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitMULTINOMIAL_fun(context);
@@ -1197,7 +1196,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitNEGBINOMDIST_fun(NEGBINOMDIST_funContext context)
+		public override Operand VisitNEGBINOMDIST_fun(mathParser.NEGBINOMDIST_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitNEGBINOMDIST_fun(context);
@@ -1206,7 +1205,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitNETWORKDAYS_fun(NETWORKDAYS_funContext context)
+		public override Operand VisitNETWORKDAYS_fun(mathParser.NETWORKDAYS_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitNETWORKDAYS_fun(context);
@@ -1215,7 +1214,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitNORMDIST_fun(NORMDIST_funContext context)
+		public override Operand VisitNORMDIST_fun(mathParser.NORMDIST_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitNORMDIST_fun(context);
@@ -1224,7 +1223,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitNORMINV_fun(NORMINV_funContext context)
+		public override Operand VisitNORMINV_fun(mathParser.NORMINV_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitNORMINV_fun(context);
@@ -1233,7 +1232,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitNORMSDIST_fun(NORMSDIST_funContext context)
+		public override Operand VisitNORMSDIST_fun(mathParser.NORMSDIST_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitNORMSDIST_fun(context);
@@ -1242,7 +1241,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitNORMSINV_fun(NORMSINV_funContext context)
+		public override Operand VisitNORMSINV_fun(mathParser.NORMSINV_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitNORMSINV_fun(context);
@@ -1251,7 +1250,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitNOT_fun(NOT_funContext context)
+		public override Operand VisitNOT_fun(mathParser.NOT_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitNOT_fun(context);
@@ -1260,7 +1259,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitNOW_fun(NOW_funContext context)
+		public override Operand VisitNOW_fun(mathParser.NOW_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitNOW_fun(context);
@@ -1269,7 +1268,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitNULL_fun(NULL_funContext context)
+		public override Operand VisitNULL_fun(mathParser.NULL_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitNULL_fun(context);
@@ -1278,7 +1277,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitNUM_fun(NUM_funContext context)
+		public override Operand VisitNUM_fun(mathParser.NUM_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitNUM_fun(context);
@@ -1287,7 +1286,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitOCT2BIN_fun(OCT2BIN_funContext context)
+		public override Operand VisitOCT2BIN_fun(mathParser.OCT2BIN_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitOCT2BIN_fun(context);
@@ -1296,7 +1295,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitOCT2DEC_fun(OCT2DEC_funContext context)
+		public override Operand VisitOCT2DEC_fun(mathParser.OCT2DEC_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitOCT2DEC_fun(context);
@@ -1305,7 +1304,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitOCT2HEX_fun(OCT2HEX_funContext context)
+		public override Operand VisitOCT2HEX_fun(mathParser.OCT2HEX_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitOCT2HEX_fun(context);
@@ -1314,7 +1313,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitODD_fun(ODD_funContext context)
+		public override Operand VisitODD_fun(mathParser.ODD_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitODD_fun(context);
@@ -1323,7 +1322,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitOR_fun(OR_funContext context)
+		public override Operand VisitOR_fun(mathParser.OR_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitOR_fun(context);
@@ -1332,7 +1331,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitPARAMETER_fun(PARAMETER_funContext context)
+		public override Operand VisitPARAMETER_fun(mathParser.PARAMETER_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitPARAMETER_fun(context);
@@ -1341,7 +1340,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitPERCENTILE_fun(PERCENTILE_funContext context)
+		public override Operand VisitPERCENTILE_fun(mathParser.PERCENTILE_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitPERCENTILE_fun(context);
@@ -1350,7 +1349,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitPERCENTRANK_fun(PERCENTRANK_funContext context)
+		public override Operand VisitPERCENTRANK_fun(mathParser.PERCENTRANK_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitPERCENTRANK_fun(context);
@@ -1359,7 +1358,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitPERMUT_fun(PERMUT_funContext context)
+		public override Operand VisitPERMUT_fun(mathParser.PERMUT_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitPERMUT_fun(context);
@@ -1368,7 +1367,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitPI_fun(PI_funContext context)
+		public override Operand VisitPI_fun(mathParser.PI_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitPI_fun(context);
@@ -1377,7 +1376,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitPOISSON_fun(POISSON_funContext context)
+		public override Operand VisitPOISSON_fun(mathParser.POISSON_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitPOISSON_fun(context);
@@ -1386,7 +1385,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitPOWER_fun(POWER_funContext context)
+		public override Operand VisitPOWER_fun(mathParser.POWER_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitPOWER_fun(context);
@@ -1395,7 +1394,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitPRODUCT_fun(PRODUCT_funContext context)
+		public override Operand VisitPRODUCT_fun(mathParser.PRODUCT_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitPRODUCT_fun(context);
@@ -1404,7 +1403,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitPROPER_fun(PROPER_funContext context)
+		public override Operand VisitPROPER_fun(mathParser.PROPER_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitPROPER_fun(context);
@@ -1413,7 +1412,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitParameter2(Parameter2Context context)
+		public override Operand VisitParameter2(mathParser.Parameter2Context context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitParameter2(context);
@@ -1422,7 +1421,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitPercentage_fun(Percentage_funContext context)
+		public override Operand VisitPercentage_fun(mathParser.Percentage_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitPercentage_fun(context);
@@ -1431,7 +1430,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitQUARTILE_fun(QUARTILE_funContext context)
+		public override Operand VisitQUARTILE_fun(mathParser.QUARTILE_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitQUARTILE_fun(context);
@@ -1440,7 +1439,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitQUOTIENT_fun(QUOTIENT_funContext context)
+		public override Operand VisitQUOTIENT_fun(mathParser.QUOTIENT_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitQUOTIENT_fun(context);
@@ -1449,7 +1448,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitRADIANS_fun(RADIANS_funContext context)
+		public override Operand VisitRADIANS_fun(mathParser.RADIANS_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitRADIANS_fun(context);
@@ -1458,7 +1457,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitRANDBETWEEN_fun(RANDBETWEEN_funContext context)
+		public override Operand VisitRANDBETWEEN_fun(mathParser.RANDBETWEEN_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitRANDBETWEEN_fun(context);
@@ -1467,7 +1466,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitRAND_fun(RAND_funContext context)
+		public override Operand VisitRAND_fun(mathParser.RAND_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitRAND_fun(context);
@@ -1476,7 +1475,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitREGEXREPALCE_fun(REGEXREPALCE_funContext context)
+		public override Operand VisitREGEXREPALCE_fun(mathParser.REGEXREPALCE_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitREGEXREPALCE_fun(context);
@@ -1485,7 +1484,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitREGEX_fun(REGEX_funContext context)
+		public override Operand VisitREGEX_fun(mathParser.REGEX_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitREGEX_fun(context);
@@ -1494,7 +1493,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitREMOVEEND_fun(REMOVEEND_funContext context)
+		public override Operand VisitREMOVEEND_fun(mathParser.REMOVEEND_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitREMOVEEND_fun(context);
@@ -1503,7 +1502,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitREMOVESTART_fun(REMOVESTART_funContext context)
+		public override Operand VisitREMOVESTART_fun(mathParser.REMOVESTART_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitREMOVESTART_fun(context);
@@ -1512,7 +1511,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitREPLACE_fun(REPLACE_funContext context)
+		public override Operand VisitREPLACE_fun(mathParser.REPLACE_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitREPLACE_fun(context);
@@ -1521,7 +1520,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitREPT_fun(REPT_funContext context)
+		public override Operand VisitREPT_fun(mathParser.REPT_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitREPT_fun(context);
@@ -1530,7 +1529,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitRIGHT_fun(RIGHT_funContext context)
+		public override Operand VisitRIGHT_fun(mathParser.RIGHT_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitRIGHT_fun(context);
@@ -1539,7 +1538,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitRMB_fun(RMB_funContext context)
+		public override Operand VisitRMB_fun(mathParser.RMB_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitRMB_fun(context);
@@ -1548,7 +1547,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitROUNDDOWN_fun(ROUNDDOWN_funContext context)
+		public override Operand VisitROUNDDOWN_fun(mathParser.ROUNDDOWN_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitROUNDDOWN_fun(context);
@@ -1557,7 +1556,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitROUNDUP_fun(ROUNDUP_funContext context)
+		public override Operand VisitROUNDUP_fun(mathParser.ROUNDUP_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitROUNDUP_fun(context);
@@ -1566,7 +1565,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitROUND_fun(ROUND_funContext context)
+		public override Operand VisitROUND_fun(mathParser.ROUND_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitROUND_fun(context);
@@ -1575,7 +1574,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitSEARCH_fun(SEARCH_funContext context)
+		public override Operand VisitSEARCH_fun(mathParser.SEARCH_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitSEARCH_fun(context);
@@ -1584,7 +1583,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitSECOND_fun(SECOND_funContext context)
+		public override Operand VisitSECOND_fun(mathParser.SECOND_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitSECOND_fun(context);
@@ -1593,7 +1592,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitSHA1_fun(SHA1_funContext context)
+		public override Operand VisitSHA1_fun(mathParser.SHA1_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitSHA1_fun(context);
@@ -1602,7 +1601,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitSHA256_fun(SHA256_funContext context)
+		public override Operand VisitSHA256_fun(mathParser.SHA256_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitSHA256_fun(context);
@@ -1611,7 +1610,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitSHA512_fun(SHA512_funContext context)
+		public override Operand VisitSHA512_fun(mathParser.SHA512_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitSHA512_fun(context);
@@ -1620,7 +1619,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitSIGN_fun(SIGN_funContext context)
+		public override Operand VisitSIGN_fun(mathParser.SIGN_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitSIGN_fun(context);
@@ -1629,7 +1628,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitSINH_fun(SINH_funContext context)
+		public override Operand VisitSINH_fun(mathParser.SINH_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitSINH_fun(context);
@@ -1638,7 +1637,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitSIN_fun(SIN_funContext context)
+		public override Operand VisitSIN_fun(mathParser.SIN_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitSIN_fun(context);
@@ -1647,7 +1646,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitSMALL_fun(SMALL_funContext context)
+		public override Operand VisitSMALL_fun(mathParser.SMALL_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitSMALL_fun(context);
@@ -1656,7 +1655,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitSPLIT_fun(SPLIT_funContext context)
+		public override Operand VisitSPLIT_fun(mathParser.SPLIT_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitSPLIT_fun(context);
@@ -1665,7 +1664,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitSQRTPI_fun(SQRTPI_funContext context)
+		public override Operand VisitSQRTPI_fun(mathParser.SQRTPI_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitSQRTPI_fun(context);
@@ -1674,7 +1673,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitSQRT_fun(SQRT_funContext context)
+		public override Operand VisitSQRT_fun(mathParser.SQRT_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitSQRT_fun(context);
@@ -1683,7 +1682,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitSTARTSWITH_fun(STARTSWITH_funContext context)
+		public override Operand VisitSTARTSWITH_fun(mathParser.STARTSWITH_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitSTARTSWITH_fun(context);
@@ -1692,7 +1691,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitSTDEVP_fun(STDEVP_funContext context)
+		public override Operand VisitSTDEVP_fun(mathParser.STDEVP_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitSTDEVP_fun(context);
@@ -1701,7 +1700,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitSTDEV_fun(STDEV_funContext context)
+		public override Operand VisitSTDEV_fun(mathParser.STDEV_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitSTDEV_fun(context);
@@ -1710,7 +1709,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitSTRING_fun(STRING_funContext context)
+		public override Operand VisitSTRING_fun(mathParser.STRING_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitSTRING_fun(context);
@@ -1719,7 +1718,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitSUBSTITUTE_fun(SUBSTITUTE_funContext context)
+		public override Operand VisitSUBSTITUTE_fun(mathParser.SUBSTITUTE_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitSUBSTITUTE_fun(context);
@@ -1728,7 +1727,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitSUBSTRING_fun(SUBSTRING_funContext context)
+		public override Operand VisitSUBSTRING_fun(mathParser.SUBSTRING_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitSUBSTRING_fun(context);
@@ -1737,7 +1736,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitSUMIF_fun(SUMIF_funContext context)
+		public override Operand VisitSUMIF_fun(mathParser.SUMIF_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitSUMIF_fun(context);
@@ -1746,7 +1745,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitSUMSQ_fun(SUMSQ_funContext context)
+		public override Operand VisitSUMSQ_fun(mathParser.SUMSQ_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitSUMSQ_fun(context);
@@ -1755,7 +1754,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitSUM_fun(SUM_funContext context)
+		public override Operand VisitSUM_fun(mathParser.SUM_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitSUM_fun(context);
@@ -1764,7 +1763,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitTANH_fun(TANH_funContext context)
+		public override Operand VisitTANH_fun(mathParser.TANH_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitTANH_fun(context);
@@ -1773,7 +1772,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitTAN_fun(TAN_funContext context)
+		public override Operand VisitTAN_fun(mathParser.TAN_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitTAN_fun(context);
@@ -1782,7 +1781,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitTDIST_fun(TDIST_funContext context)
+		public override Operand VisitTDIST_fun(mathParser.TDIST_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitTDIST_fun(context);
@@ -1791,7 +1790,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitTEXTTOBASE64URL_fun(TEXTTOBASE64URL_funContext context)
+		public override Operand VisitTEXTTOBASE64URL_fun(mathParser.TEXTTOBASE64URL_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitTEXTTOBASE64URL_fun(context);
@@ -1800,7 +1799,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitTEXTTOBASE64_fun(TEXTTOBASE64_funContext context)
+		public override Operand VisitTEXTTOBASE64_fun(mathParser.TEXTTOBASE64_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitTEXTTOBASE64_fun(context);
@@ -1809,7 +1808,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitTEXT_fun(TEXT_funContext context)
+		public override Operand VisitTEXT_fun(mathParser.TEXT_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitTEXT_fun(context);
@@ -1818,7 +1817,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitTIMEVALUE_fun(TIMEVALUE_funContext context)
+		public override Operand VisitTIMEVALUE_fun(mathParser.TIMEVALUE_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitTIMEVALUE_fun(context);
@@ -1827,7 +1826,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitTIME_fun(TIME_funContext context)
+		public override Operand VisitTIME_fun(mathParser.TIME_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitTIME_fun(context);
@@ -1836,7 +1835,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitTINV_fun(TINV_funContext context)
+		public override Operand VisitTINV_fun(mathParser.TINV_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitTINV_fun(context);
@@ -1845,7 +1844,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitTODAY_fun(TODAY_funContext context)
+		public override Operand VisitTODAY_fun(mathParser.TODAY_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitTODAY_fun(context);
@@ -1854,7 +1853,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitTRIMEND_fun(TRIMEND_funContext context)
+		public override Operand VisitTRIMEND_fun(mathParser.TRIMEND_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitTRIMEND_fun(context);
@@ -1863,7 +1862,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitTRIMSTART_fun(TRIMSTART_funContext context)
+		public override Operand VisitTRIMSTART_fun(mathParser.TRIMSTART_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitTRIMSTART_fun(context);
@@ -1872,7 +1871,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitTRIM_fun(TRIM_funContext context)
+		public override Operand VisitTRIM_fun(mathParser.TRIM_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitTRIM_fun(context);
@@ -1881,7 +1880,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitTRUE_fun(TRUE_funContext context)
+		public override Operand VisitTRUE_fun(mathParser.TRUE_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitTRUE_fun(context);
@@ -1890,7 +1889,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitTRUNC_fun(TRUNC_funContext context)
+		public override Operand VisitTRUNC_fun(mathParser.TRUNC_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitTRUNC_fun(context);
@@ -1899,7 +1898,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitT_fun(T_funContext context)
+		public override Operand VisitT_fun(mathParser.T_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitT_fun(context);
@@ -1908,7 +1907,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitUPPER_fun(UPPER_funContext context)
+		public override Operand VisitUPPER_fun(mathParser.UPPER_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitUPPER_fun(context);
@@ -1917,7 +1916,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitURLDECODE_fun(URLDECODE_funContext context)
+		public override Operand VisitURLDECODE_fun(mathParser.URLDECODE_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitURLDECODE_fun(context);
@@ -1926,7 +1925,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitURLENCODE_fun(URLENCODE_funContext context)
+		public override Operand VisitURLENCODE_fun(mathParser.URLENCODE_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitURLENCODE_fun(context);
@@ -1935,7 +1934,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitVALUE_fun(VALUE_funContext context)
+		public override Operand VisitVALUE_fun(mathParser.VALUE_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitVALUE_fun(context);
@@ -1944,7 +1943,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitVARP_fun(VARP_funContext context)
+		public override Operand VisitVARP_fun(mathParser.VARP_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitVARP_fun(context);
@@ -1953,7 +1952,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitVAR_fun(VAR_funContext context)
+		public override Operand VisitVAR_fun(mathParser.VAR_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitVAR_fun(context);
@@ -1962,7 +1961,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitVLOOKUP_fun(VLOOKUP_funContext context)
+		public override Operand VisitVLOOKUP_fun(mathParser.VLOOKUP_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitVLOOKUP_fun(context);
@@ -1971,7 +1970,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitWEEKDAY_fun(WEEKDAY_funContext context)
+		public override Operand VisitWEEKDAY_fun(mathParser.WEEKDAY_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitWEEKDAY_fun(context);
@@ -1980,7 +1979,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitWEEKNUM_fun(WEEKNUM_funContext context)
+		public override Operand VisitWEEKNUM_fun(mathParser.WEEKNUM_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitWEEKNUM_fun(context);
@@ -1989,7 +1988,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitWEIBULL_fun(WEIBULL_funContext context)
+		public override Operand VisitWEIBULL_fun(mathParser.WEIBULL_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitWEIBULL_fun(context);
@@ -1998,7 +1997,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitWORKDAY_fun(WORKDAY_funContext context)
+		public override Operand VisitWORKDAY_fun(mathParser.WORKDAY_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitWORKDAY_fun(context);
@@ -2007,7 +2006,7 @@ namespace ToolGood.Algorithm.Internals
 		}
 
 
-		public override Operand VisitYEAR_fun(YEAR_funContext context)
+		public override Operand VisitYEAR_fun(mathParser.YEAR_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitYEAR_fun(context);
@@ -2015,42 +2014,42 @@ namespace ToolGood.Algorithm.Internals
 			return r;
 		}
 
-		public override Operand VisitADDYEARS_fun(ADDYEARS_funContext context)
+		public override Operand VisitADDYEARS_fun(mathParser.ADDYEARS_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitADDYEARS_fun(context);
 			inFunctionCount--;
 			return r;
 		}
-		public override Operand VisitADDMONTHS_fun(ADDMONTHS_funContext context)
+		public override Operand VisitADDMONTHS_fun(mathParser.ADDMONTHS_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitADDMONTHS_fun(context);
 			inFunctionCount--;
 			return r;
 		}
-		public override Operand VisitADDDAYS_fun(ADDDAYS_funContext context)
+		public override Operand VisitADDDAYS_fun(mathParser.ADDDAYS_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitADDDAYS_fun(context);
 			inFunctionCount--;
 			return r;
 		}
-		public override Operand VisitADDHOURS_fun(ADDHOURS_funContext context)
+		public override Operand VisitADDHOURS_fun(mathParser.ADDHOURS_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitADDHOURS_fun(context);
 			inFunctionCount--;
 			return r;
 		}
-		public override Operand VisitADDMINUTES_fun(ADDMINUTES_funContext context)
+		public override Operand VisitADDMINUTES_fun(mathParser.ADDMINUTES_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitADDMINUTES_fun(context);
 			inFunctionCount--;
 			return r;
 		}
-		public override Operand VisitADDSECONDS_fun(ADDSECONDS_funContext context)
+		public override Operand VisitADDSECONDS_fun(mathParser.ADDSECONDS_funContext context)
 		{
 			inFunctionCount++;
 			Operand r = base.VisitADDSECONDS_fun(context);

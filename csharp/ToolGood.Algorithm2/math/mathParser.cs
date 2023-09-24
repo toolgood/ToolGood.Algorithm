@@ -29,9 +29,9 @@ using Antlr4.Runtime.Atn;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
 using DFA = Antlr4.Runtime.Dfa.DFA;
-
+namespace ToolGood.Algorithm { 
 [System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.13.0")]
-partial class mathParser : Parser {
+public partial class mathParser : Parser {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
@@ -13120,4 +13120,5 @@ partial class mathParser : Parser {
 		new ATNDeserializer().Deserialize(_serializedATN);
 
 
+}
 }

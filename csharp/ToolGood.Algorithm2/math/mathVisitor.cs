@@ -22,7 +22,7 @@
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
 using IToken = Antlr4.Runtime.IToken;
-
+namespace ToolGood.Algorithm { 
 /// <summary>
 /// This interface defines a complete generic visitor for a parse tree produced
 /// by <see cref="mathParser"/>.
@@ -1670,4 +1670,5 @@ interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitParameter2([NotNull] mathParser.Parameter2Context context);
+}
 }
