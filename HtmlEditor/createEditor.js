@@ -3,7 +3,7 @@ ace.config.setModuleUrl('ace/mode/my-mode', 'my-mode.js');
 ace.config.setModuleUrl('ace/worker/my-worker', 'my-worker.js');
 ace.mymodeFirstCreate = true;
 ace.jsmodeFirstCreate = true;
-window.createEditor=function(id, outId) {
+window.createEditor = function (id, outId) {
     var editor = ace.edit(id);
     editor.getSession().setMode('ace/mode/my-mode');
     editor.setTheme("ace/theme/crimson_editor");
@@ -35,7 +35,7 @@ window.createEditor=function(id, outId) {
             getCompletions: function (editor, session, pos, prefix, callback) {
                 if (editor.getSession().getMode().$id != 'ace/mode/my-mode') { callback(null, []); return }
                 if (prefix.length === 0) { callback(null, []); return }
-                callback(null, ace_keywords.map(function (ea) { return { pinyin: ea.pinyin, caption: ea.caption, name: ea.text, value: ea.text, meta: ea.meta } }));
+                callback(null, ace_keywords.map(function (ea) { return { caption: ea.caption, pinyin: ea.pinyin, name: ea.text, value: ea.text, meta: ea.meta } }));
             }
         }
         langTools.addCompleter(rhymeCompleter);

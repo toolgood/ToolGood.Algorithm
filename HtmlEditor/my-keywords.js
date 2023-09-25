@@ -256,8 +256,8 @@ ace_keywords = [{
     "meta": "调和平均值"
 }, {
     "caption": "has",
-    "text": "has(文本)",
-    "meta": "...包含"
+    "text": "has(json/数组,文本)",
+    "meta": "包含"
 }, {
     "caption": "hour",
     "text": "hour(日期)",

@@ -1761,7 +1761,7 @@ define("ace/autocomplete", ["require", "exports", "module", "ace/keyboard/hash_h
                 results.push(item);
             }
             loop2: for (var i = 0, item; item = items[i]; i++) {
-                var caption = item.pinyin;
+                var caption = item.meta;
                 if (!caption)
                     continue;
                 var lastIndex = -1;
@@ -1784,6 +1784,46 @@ define("ace/autocomplete", ["require", "exports", "module", "ace/keyboard/hash_h
                             index = (i1 >= 0) ? ((i2 < 0 || i1 < i2) ? i1 : i2) : i2;
                             if (index < 0)
                                 continue loop2;
+                            distance = index - lastIndex - 1;
+                            if (distance > 0) {
+                                if (lastIndex === -1)
+                                    penalty += 10;
+                                penalty += distance;
+                                matchMask = matchMask | (1 << j);
+                            }
+                            lastIndex = index;
+                        }
+                    }
+                }
+                item.matchMask = matchMask;
+                item.exactMatch = penalty ? 0 : 1;
+                item.$score = (item.score || 0) - penalty;
+                results.push(item);
+            }
+            loop3: for (var i = 0, item; item = items[i]; i++) {
+                var caption = item.pinyin;
+                if (!caption)
+                    continue;
+                var lastIndex = -1;
+                var matchMask = 0;
+                var penalty = 0;
+                var index, distance;
+                if (this.exactMatch) {
+                    if (needle !== caption.substr(0, needle.length))
+                        continue loop3;
+                }
+                else {
+                    var fullMatchIndex = caption.toLowerCase().indexOf(lower);
+                    if (fullMatchIndex > -1) {
+                        penalty = fullMatchIndex;
+                    }
+                    else {
+                        for (var j = 0; j < needle.length; j++) {
+                            var i1 = caption.indexOf(lower[j], lastIndex + 1);
+                            var i2 = caption.indexOf(upper[j], lastIndex + 1);
+                            index = (i1 >= 0) ? ((i2 < 0 || i1 < i2) ? i1 : i2) : i2;
+                            if (index < 0)
+                                continue loop3;
                             distance = index - lastIndex - 1;
                             if (distance > 0) {
                                 if (lastIndex === -1)
