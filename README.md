@@ -36,7 +36,8 @@ ToolGood.Algorithm是一个功能强大、轻量级、兼容`Excel公式`的算�
     var j = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}').Age", null);//Return 51 返回51
     var k = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}')[Name].Trim()", null);//Return to "William Shakespeare"  返回"William Shakespeare" (不带空格)
     var l = engine.TryEvaluate("json('{\"Name1\":\"William Shakespeare \", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}')['Name'& 1].Trim().substring(2, 3)", null);//Return "ill"  返回"ill"
-
+    var n = engine.TryEvaluate("{Name:\"William Shakespeare\", Age:51, Birthday:\"04/26/1564 00:00:00\"}.Age", null);//Return 51 返回51
+    var m = engine.TryEvaluate("{1,2,3,4,5,6}.has(13)", true);//Return false 返回false
 ```
 
 支持常量`pi`, `e`, `true`, `false`。
@@ -47,10 +48,11 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
 
 索引默认为`Excel索引`，如果想用c#索引，请设置`UseExcelIndex`为`false`。
 
-中文符号自动转成英文符号：`括号`, `方括号`, `逗号`, `引号`, `双引号`。
-
+中文符号自动转成英文符号：`括号`, `逗号`, `引号`, `双引号`,`加`，`减`，`乘`,`除`,`等号`。
 
 注：字符串拼接使用`&`。
+
+
 
 
 注：`find`为Excel公式，find(要查找的字符串, 被查找的字符串[, 开始位置])
@@ -96,7 +98,7 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
 
 ```
 
-参数以方括号定义，如 `[参数名]`。 
+参数定义，如 `[参数名]`，`【参数名】`，`#参数名#`，`@参数名`。 
 
 注：还可以使用`AddParameter`、`AddParameterFromJson`添加方法，使用`DiyFunction`+=来自定义函数。
 
@@ -105,15 +107,34 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
 
 ## 自定义参数
 ``` csharp
-    var helper = new ToolGood.Algorithm.AlgorithmEngineHelper();
-    helper.IsKeywords("false"); // return true
-    helper.IsKeywords("true"); // return true
-    helper.IsKeywords("mysql"); // return false
+    AlgorithmEngineHelper.IsKeywords("false"); // return true
+    AlgorithmEngineHelper.IsKeywords("true"); // return true
+    AlgorithmEngineHelper.IsKeywords("mysql"); // return false
 
-    DiyNameInfo p5 = helper.GetDiyNames("ddd(d1, 22)");
+    DiyNameInfo p5 = AlgorithmEngineHelper.GetDiyNames("ddd(d1, 22)");
     Assert.AreEqual("ddd", p5.Functions[0]);
     Assert.AreEqual("d1", p5.Parameters[0]);
 ```
+## 支持单位
+
+可设置标准单位：长度(默认：`m`)、面积(默认：`m2`)、体积(默认：`m3`)、重量(默认：`kg`)。
+
+注：公式计算时，先将带单位的数量转成标准单位，再进行数字计算。
+
+``` csharp
+    AlgorithmEngine engine = new AlgorithmEngine();
+    bool a = engine.TryEvaluate("1=1m", false); // return true
+    bool b = engine.TryEvaluate("1=1m2", false); // return true
+    bool c = engine.TryEvaluate("1=1m3", false); // return true
+    bool d = engine.TryEvaluate("1=1kg", false); // return true
+
+    // 单位转化
+    var num = AlgorithmEngineHelper.UnitConversion(1M,"米","千米"); 
+
+    // 不抛错例子
+    bool error = engine.TryEvaluate("1m=1m2", false); // return true
+```
+
 
 ## Excel公式
 
@@ -122,7 +143,6 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
 注：函数名不分大小写, 带方括号的参数可省略, 示例的返回值, 为近似值。
 
 注2：函数名带★，表示第一个参数可以前置，如`(-1).ISTEXT()`
-
 
 注3：函数名带▲，表示受`Excel索引`影响，
 
