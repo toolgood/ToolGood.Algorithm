@@ -16,12 +16,12 @@ namespace ToolGood.Algorithm.Internals
                 if (o == '”') return '"';
                 if (o == '〔') return '(';
                 if (o == '〕') return ')';
-                //if (o == '＝') return '=';
-                //if (o == '＋') return '+';
-                //if (o == '－') return '-';
+                if (o == '＝') return '=';
+                if (o == '＋') return '+';
+                if (o == '－') return '-';
                 if (o == '×') return '*';
                 if (o == '÷') return '/';
-                //if (o == '／') return '/';
+                if (o == '／') return '/';
                 //if (o == '【') return '[';
                 //if (o == '】') return ']';
                 //if (o == '（') return '(';
