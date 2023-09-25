@@ -30,6 +30,8 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineHelper2
 
             DiyNameInfo p3 = AlgorithmEngineHelper.GetDiyNames("【dd】");
             Assert.AreEqual("dd", p3.Parameters[0]);
+            p3 = AlgorithmEngineHelper.GetDiyNames("【dd.1】");
+            Assert.AreEqual("dd.1", p3.Parameters[0]);
 
             DiyNameInfo p4 = AlgorithmEngineHelper.GetDiyNames("@ddd+2");
             Assert.AreEqual("ddd", p4.Parameters[0]);

@@ -28,6 +28,8 @@ public class AlgorithmEngineHelperTest {
 
         DiyNameInfo p3 = AlgorithmEngineHelper.GetDiyNames("【dd】");
         assertEquals("dd", p3.Parameters.get(0));
+        p3 = AlgorithmEngineHelper.GetDiyNames("【dd.1】");
+        assertEquals("dd.1", p3.Parameters.get(0));
 
         DiyNameInfo p4 = AlgorithmEngineHelper.GetDiyNames("@ddd+2");
         assertEquals("ddd", p4.Parameters.get(0));
