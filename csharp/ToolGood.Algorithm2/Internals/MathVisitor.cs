@@ -3935,7 +3935,7 @@ namespace ToolGood.Algorithm.Internals
             var obj = firstValue;
             Operand op;
             if (context.parameter2() != null) {
-                op = this.Visit(context.parameter2());
+                op = context.parameter2().Accept(this);
             } else {
                 op = exprs[1].Accept(this);
                 if (op.IsError) {
@@ -4016,11 +4016,11 @@ namespace ToolGood.Algorithm.Internals
         public Operand VisitPARAM_fun(mathParser.PARAM_funContext context)
         {
             var exprs = context.expr();
-            var args1 = this.Visit(exprs[0]); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText(); if (args1.IsError) return args1; }
+            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText(); if (args1.IsError) return args1; }
             var result = GetParameter(args1.TextValue);
             if (result.IsError) {
                 if (exprs.Length == 2) {
-                    return this.Visit(exprs[1]);
+                    return exprs[1].Accept(this);
                 }
             }
             return result;
@@ -4029,8 +4029,8 @@ namespace ToolGood.Algorithm.Internals
         public Operand VisitHAS_fun(mathParser.HAS_funContext context)
         {
             var exprs = context.expr();
-            var args1 = this.Visit(exprs[0]); if (args1.IsError) { return args1; }
-            var args2 = this.Visit(exprs[1]).ToText("Function HAS parameter 2 is error!"); if (args2.IsError) { return args2; }
+            var args1 = exprs[0].Accept(this); if (args1.IsError) { return args1; }
+            var args2 = exprs[1].Accept(this).ToText("Function HAS parameter 2 is error!"); if (args2.IsError) { return args2; }
 
             if (args1.Type == OperandType.ARRARYJSON) {
                 return Operand.Create(((OperandKeyValueList)args1).ContainsKey(args2));
@@ -4070,8 +4070,8 @@ namespace ToolGood.Algorithm.Internals
         public Operand VisitHASVALUE_fun([Antlr4.Runtime.Misc.NotNull] mathParser.HASVALUE_funContext context)
         {
             var exprs = context.expr();
-            var args1 = this.Visit(exprs[0]); if (args1.IsError) { return args1; }
-            var args2 = this.Visit(exprs[1]).ToText("Function HASVALUE parameter 2 is error!"); if (args2.IsError) { return args2; }
+            var args1 = exprs[0].Accept(this); if (args1.IsError) { return args1; }
+            var args2 = exprs[1].Accept(this).ToText("Function HASVALUE parameter 2 is error!"); if (args2.IsError) { return args2; }
 
             if (args1.Type == OperandType.ARRARYJSON) {
                 return Operand.Create(((OperandKeyValueList)args1).ContainsValue(args2));
@@ -4121,7 +4121,7 @@ namespace ToolGood.Algorithm.Internals
             var js = context.arrayJson();
             for (int i = 0; i < js.Length; i++) {
                 var item = js[i];
-                var aa = this.Visit(item); if (aa.IsError) { return aa; }
+                var aa = item.Accept(this); if (aa.IsError) { return aa; }
                 result.AddValue((KeyValue)((OperandKeyValue)aa).Value);
             }
             return result;
@@ -4163,14 +4163,14 @@ namespace ToolGood.Algorithm.Internals
             if (context.parameter2() != null) {
                 keyValue.Key = context.parameter2().GetText();
             }
-            keyValue.Value = Visit(context.expr());
+            keyValue.Value = context.expr().Accept(this);
             return new OperandKeyValue(keyValue);
         }
 
         public Operand VisitERROR_fun(mathParser.ERROR_funContext context)
         {
             if (context.expr() == null) { return Operand.Error(""); }
-            var args1 = this.Visit(context.expr()); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText(); if (args1.IsError) return args1; }
+            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText(); if (args1.IsError) return args1; }
             return Operand.Error(args1.TextValue);
         }
 
