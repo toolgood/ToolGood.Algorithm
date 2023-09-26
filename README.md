@@ -52,9 +52,6 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
 
 注：字符串拼接使用`&`。
 
-
-
-
 注：`find`为Excel公式，find(要查找的字符串, 被查找的字符串[, 开始位置])
 
 ## 自定义参数
@@ -117,10 +114,10 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
 ```
 ## 支持单位
 
-可设置标准单位：长度(默认：`m`)、面积(默认：`m2`)、体积(默认：`m3`)、重量(默认：`kg`)。
+可设置标准单位：长度`DistanceUnit`(默认：`m`)、面积`AreaUnit`(默认：`m2`)、体积`VolumeUnit`(默认：`m3`)、重量`MassUnit`(默认：`kg`)。
 
 注：公式计算时，先将带单位的数量转成标准单位，再进行数字计算。
-
+ 
 ``` csharp
     AlgorithmEngine engine = new AlgorithmEngine();
     bool a = engine.TryEvaluate("1=1m", false); // return true

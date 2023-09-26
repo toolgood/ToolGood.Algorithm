@@ -37,6 +37,8 @@ ToolGood.Algorithm is a powerful, lightweight, `Excel formula` compatible algori
     var j = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}').Age", null);//Return 51 返回51
     var k = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}')[Name].Trim()", null);//Return to "William Shakespeare"  返回"William Shakespeare" (不带空格)
     var l = engine.TryEvaluate("json('{\"Name1\":\"William Shakespeare \", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}')['Name'& 1].Trim().substring(2, 3)", null); ;//Return "ill"  返回"ill"
+    var n = engine.TryEvaluate("{Name:\"William Shakespeare\", Age:51, Birthday:\"04/26/1564 00:00:00\"}.Age", null);//Return 51 返回51
+    var m = engine.TryEvaluate("{1,2,3,4,5,6}.has(13)", true);//Return false 返回false
 
 ```
 Constants`pi`, `e`, `true`, `false`are supported.
@@ -52,6 +54,10 @@ The default index is`excel index`. If you want to use c# index, please set`UseEx
 
 
 Chinese symbols are automatically converted to English symbols: `brackets`, `square brackets`, `commas`, `quotation marks`, `double quotation marks`.
+
+
+Chinese symbols are automatically converted into English symbols: `brackets`, `commas`, `quotation marks`, `double quotation marks`，`addition`,`subtraction`, `multiplication`, `division` , `equal sign`.
+
 
 Note: Use `&` for string concatenation. 
 
@@ -99,6 +105,9 @@ Note: `find` is an Excel formula , find (the string to be searched, the string t
 ```
 Parameters are defined in square brackets, such as `[parameter name]`. 
 
+
+Parameter definitions, such as`[parameter name]`, `【parameter name】` , `#parameter name#` , `@parameterName`.
+
 Note: You can also use `AddParameter`, `AddParameterFromJson` to add methods, and use `DiyFunction`+= to customize functions. 
 
 Note 2: use `AlgorithmEngineHelper.GetDiyNames` get `parameter name` and `custom function name`.
@@ -115,6 +124,26 @@ Note 2: use `AlgorithmEngineHelper.GetDiyNames` get `parameter name` and `custom
     Assert.AreEqual("ddd", p5.Functions[0]);
     Assert.AreEqual("d1", p5.Parameters[0]);
 
+```
+
+## Support Unit
+
+Standard units can be set: `DistanceUnit` (default:`m`), `AreaUnit`(default:`m2`), `VolumeUnit`(default:`m3`), `MassUnit`(default:`kg`).
+
+Note: When calculating the formula, first convert the quantity with units into standard units, and then perform numerical calculations.
+
+``` csharp
+    AlgorithmEngine engine = new AlgorithmEngine();
+    bool a = engine.TryEvaluate("1=1m", false); // return true
+    bool b = engine.TryEvaluate("1=1m2", false); // return true
+    bool c = engine.TryEvaluate("1=1m3", false); // return true
+    bool d = engine.TryEvaluate("1=1kg", false); // return true
+
+    // Unit Conversion 单位转化
+    var num = AlgorithmEngineHelper.UnitConversion(1M,"米","千米"); 
+
+    //  Example of not throwing mistakes  不抛错例子
+    bool error = engine.TryEvaluate("1m=1m2", false); // return true
 ```
 
 

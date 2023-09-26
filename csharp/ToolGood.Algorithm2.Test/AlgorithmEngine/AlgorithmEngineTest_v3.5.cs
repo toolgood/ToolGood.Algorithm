@@ -60,6 +60,9 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
             b = engine.TryEvaluate("{name:'toolgood', age:'12',other:{work:'IT'}}.hasKey('age')", false);
             Assert.AreEqual(b, true);
 
+            b = engine.TryEvaluate("{e:'toolgood', pi:'12',other:{work:'IT'}}.hasKey('e')", false);
+            Assert.AreEqual(b, true);
+
             b = engine.TryEvaluate("json(\"{'name':'toolgood', 'age':'12','other':{'work':'IT'}}\").has('age')", false);
             Assert.AreEqual(b, true);
 
@@ -74,6 +77,8 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
 
             b = engine.TryEvaluate("json(\"{'name':'toolgood', 'age':'12','other':{'work':'IT'}}\").hasValue('toolgood')", false);
             Assert.AreEqual(b, true);
+
+ 
         }
 
         [Test]
