@@ -252,3 +252,8 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+
+g4/.antlr/*
+g4/antlr-*-complete.jar
+tools/src/*
+ZipSolution.exe
