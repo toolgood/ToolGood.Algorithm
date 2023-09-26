@@ -20,7 +20,6 @@ namespace ToolGood.Algorithm.Internals
         private static readonly Regex bit_8 = new Regex("^[0-8]+$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
         private static readonly Regex bit_16 = new Regex("^[0-9a-f]+$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
         private static readonly Regex clearRegex = new Regex(@"[\f\n\r\t\v]", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-        private static readonly CultureInfo cultureInfo = CultureInfo.InvariantCulture;// CultureInfo.GetCultureInfo("zh-cn");
         public event Func<string, Operand> GetParameter;
         public event Func<string, List<Operand>, Operand> DiyFunction;
         public int excelIndex;
@@ -44,26 +43,26 @@ namespace ToolGood.Algorithm.Internals
             var args2 = exprs[1].Accept(this); if (args2.IsError) { return args2; }
 
             if (args1.Type == OperandType.TEXT) {
-                if (decimal.TryParse(args1.TextValue, NumberStyles.Any, cultureInfo, out decimal d)) {
+                if (decimal.TryParse(args1.TextValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
                     args1 = Operand.Create(d);
                 } else if (bool.TryParse(args1.TextValue, out bool b)) {
                     args1 = b ? Operand.One : Operand.Zero;
-                } else if (TimeSpan.TryParse(args1.TextValue, cultureInfo, out TimeSpan ts)) {
+                } else if (TimeSpan.TryParse(args1.TextValue, CultureInfo.InvariantCulture, out TimeSpan ts)) {
                     args1 = Operand.Create(ts);
-                } else if (DateTime.TryParse(args1.TextValue, cultureInfo, DateTimeStyles.None, out DateTime dt)) {
+                } else if (DateTime.TryParse(args1.TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dt)) {
                     args1 = Operand.Create(new MyDate(dt));
                 } else {
                     return Operand.Error("Two types cannot be multiplied or divided.");
                 }
             }
             if (args2.Type == OperandType.TEXT) {
-                if (decimal.TryParse(args2.TextValue, NumberStyles.Any, cultureInfo, out decimal d)) {
+                if (decimal.TryParse(args2.TextValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
                     args2 = Operand.Create(d);
                 } else if (bool.TryParse(args2.TextValue, out bool b)) {
                     args2 = b ? Operand.One : Operand.Zero;
-                } else if (TimeSpan.TryParse(args2.TextValue, cultureInfo, out TimeSpan ts)) {
+                } else if (TimeSpan.TryParse(args2.TextValue, CultureInfo.InvariantCulture, out TimeSpan ts)) {
                     args2 = Operand.Create(ts);
-                } else if (DateTime.TryParse(args2.TextValue, cultureInfo, DateTimeStyles.None, out DateTime dt)) {
+                } else if (DateTime.TryParse(args2.TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dt)) {
                     args2 = Operand.Create(new MyDate(dt));
                 } else {
                     return Operand.Error("Two types cannot be multiplied or divided.");
@@ -125,26 +124,26 @@ namespace ToolGood.Algorithm.Internals
                 return Operand.Create(args1.TextValue + args2.TextValue);
             }
             if (args1.Type == OperandType.TEXT) {
-                if (decimal.TryParse(args1.TextValue, NumberStyles.Any, cultureInfo, out decimal d)) {
+                if (decimal.TryParse(args1.TextValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
                     args1 = Operand.Create(d);
                 } else if (bool.TryParse(args1.TextValue, out bool b)) {
                     args1 = b ? Operand.One : Operand.Zero;
-                } else if (TimeSpan.TryParse(args1.TextValue, cultureInfo, out TimeSpan ts)) {
+                } else if (TimeSpan.TryParse(args1.TextValue, CultureInfo.InvariantCulture, out TimeSpan ts)) {
                     args1 = Operand.Create(ts);
-                } else if (DateTime.TryParse(args1.TextValue, cultureInfo, DateTimeStyles.None, out DateTime dt)) {
+                } else if (DateTime.TryParse(args1.TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dt)) {
                     args1 = Operand.Create(new MyDate(dt));
                 } else {
                     return Operand.Error("Function '+' or '-' is error");
                 }
             }
             if (args2.Type == OperandType.TEXT) {
-                if (decimal.TryParse(args2.TextValue, NumberStyles.Any, cultureInfo, out decimal d)) {
+                if (decimal.TryParse(args2.TextValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
                     args2 = Operand.Create(d);
                 } else if (bool.TryParse(args2.TextValue, out bool b)) {
                     args2 = b ? Operand.One : Operand.Zero;
-                } else if (TimeSpan.TryParse(args2.TextValue, cultureInfo, out TimeSpan ts)) {
+                } else if (TimeSpan.TryParse(args2.TextValue, CultureInfo.InvariantCulture, out TimeSpan ts)) {
                     args2 = Operand.Create(ts);
-                } else if (DateTime.TryParse(args2.TextValue, cultureInfo, DateTimeStyles.None, out DateTime dt)) {
+                } else if (DateTime.TryParse(args2.TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dt)) {
                     args2 = Operand.Create(new MyDate(dt));
                 } else {
                     return Operand.Error("Function '+' or '-' is error");
@@ -826,9 +825,9 @@ namespace ToolGood.Algorithm.Internals
                 no = thirdValue.BooleanValue;
             }
             if (no == false) {
-                return Operand.Create(s.ToString('N' + num.ToString(), cultureInfo));
+                return Operand.Create(s.ToString('N' + num.ToString(), CultureInfo.InvariantCulture));
             }
-            return Operand.Create(s.ToString(cultureInfo));
+            return Operand.Create(s.ToString(CultureInfo.InvariantCulture));
         }
 
         #endregion
@@ -1666,7 +1665,7 @@ namespace ToolGood.Algorithm.Internals
             } else if (firstValue.Type == OperandType.BOOLEAN) {
                 return Operand.Create(firstValue.BooleanValue ? "TRUE" : "FALSE");
             } else if (firstValue.Type == OperandType.NUMBER) {
-                return Operand.Create(firstValue.NumberValue.ToString(secondValue.TextValue, cultureInfo));
+                return Operand.Create(firstValue.NumberValue.ToString(secondValue.TextValue, CultureInfo.InvariantCulture));
             } else if (firstValue.Type == OperandType.DATE) {
                 return Operand.Create(firstValue.DateValue.ToString(secondValue.TextValue));
             }
@@ -1691,7 +1690,7 @@ namespace ToolGood.Algorithm.Internals
             var firstValue = context.expr().Accept(this).ToText("Function VALUE parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            if (decimal.TryParse(firstValue.TextValue, NumberStyles.Any, cultureInfo, out decimal d)) {
+            if (decimal.TryParse(firstValue.TextValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
                 return Operand.Create(d);
             }
             return Operand.Error("Function VALUE parameter is error!");
@@ -1726,7 +1725,7 @@ namespace ToolGood.Algorithm.Internals
         }
         private static string F_base_ToChineseRMB(decimal x)
         {
-            string s = x.ToString("#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A", cultureInfo);
+            string s = x.ToString("#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A", CultureInfo.InvariantCulture);
             string d = Regex.Replace(s, @"((?<=-|^)[^1-9]*)|((?'z'0)[0A-E]*((?=[1-9])|(?'-z'(?=[F-L\.]|$))))|((?'b'[F-L])(?'z'0)[0A-L]*((?=[1-9])|(?'-z'(?=[\.]|$))))", "${b}${z}", RegexOptions.Compiled);
             return Regex.Replace(d, ".", m => "负元空零壹贰叁肆伍陆柒捌玖空空空空空空空分角拾佰仟万亿兆京垓秭穰"[m.Value[0] - '-'].ToString(), RegexOptions.Compiled);
         }
@@ -1747,7 +1746,7 @@ namespace ToolGood.Algorithm.Internals
             }
             if (type == 0) {
                 if (args[0].Type == OperandType.TEXT) {
-                    if (DateTime.TryParse(args[0].TextValue, cultureInfo, DateTimeStyles.None, out DateTime time)) {
+                    if (DateTime.TryParse(args[0].TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime time)) {
                         return Operand.Create(time);
                     }
                 }
@@ -1767,7 +1766,7 @@ namespace ToolGood.Algorithm.Internals
             } else if (type == 1) {
                 var firstValue = args[0].ToText("Function DATEVALUE parameter 1 is error!");
                 if (firstValue.IsError) { return firstValue; }
-                if (DateTime.TryParse(firstValue.TextValue, cultureInfo, DateTimeStyles.None, out DateTime dt)) {
+                if (DateTime.TryParse(firstValue.TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dt)) {
                     return Operand.Create(dt);
                 }
             } else if (type == 2) {
@@ -1815,7 +1814,7 @@ namespace ToolGood.Algorithm.Internals
             var firstValue = context.expr().Accept(this).ToText("Function TIMEVALUE parameter is error!");
             if (firstValue.IsError) { return firstValue; }
 
-            if (TimeSpan.TryParse(firstValue.TextValue, cultureInfo, out TimeSpan dt)) {
+            if (TimeSpan.TryParse(firstValue.TextValue, CultureInfo.InvariantCulture, out TimeSpan dt)) {
                 return Operand.Create(dt);
             }
             return Operand.Error("Function TIMEVALUE parameter is error!");
@@ -2449,7 +2448,7 @@ namespace ToolGood.Algorithm.Internals
                 count = MathVisitor.F_base_countif(list, args[1].NumberValue);
                 sum = count * args[1].NumberValue;
             } else {
-                if (decimal.TryParse(args[1].TextValue.Trim(), NumberStyles.Any, cultureInfo, out decimal d)) {
+                if (decimal.TryParse(args[1].TextValue.Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
                     count = MathVisitor.F_base_countif(list, d);
                     sum = MathVisitor.F_base_sumif(list, '=' + args[1].TextValue.Trim(), sumdbs);
                 } else {
@@ -2525,7 +2524,7 @@ namespace ToolGood.Algorithm.Internals
             if (args[1].Type == OperandType.NUMBER) {
                 count = MathVisitor.F_base_countif(list, args[1].NumberValue);
             } else {
-                if (decimal.TryParse(args[1].TextValue.Trim(), NumberStyles.Any, cultureInfo, out decimal d)) {
+                if (decimal.TryParse(args[1].TextValue.Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
                     count = MathVisitor.F_base_countif(list, d);
                 } else {
                     var sunif = args[1].TextValue.Trim();
@@ -2574,7 +2573,7 @@ namespace ToolGood.Algorithm.Internals
             if (args[1].Type == OperandType.NUMBER) {
                 sum = MathVisitor.F_base_countif(list, args[1].NumberValue) * args[1].NumberValue;
             } else {
-                if (decimal.TryParse(args[1].TextValue.Trim(), NumberStyles.Any, cultureInfo, out _)) {
+                if (decimal.TryParse(args[1].TextValue.Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out _)) {
                     sum = MathVisitor.F_base_sumif(list, '=' + args[1].TextValue.Trim(), sumdbs);
                 } else {
                     var sunif = args[1].TextValue.Trim();
@@ -3033,7 +3032,7 @@ namespace ToolGood.Algorithm.Internals
         private static int F_base_countif(List<decimal> dbs, string s)
         {
             var m = sumifRegex.Match(s);
-            var d = decimal.Parse(m.Groups[2].Value, NumberStyles.Any, cultureInfo);
+            var d = decimal.Parse(m.Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture);
             var ss = m.Groups[1].Value;
             int count = 0;
 
@@ -3048,7 +3047,7 @@ namespace ToolGood.Algorithm.Internals
         private static decimal F_base_sumif(List<decimal> dbs, string s, List<decimal> sumdbs)
         {
             var m = sumifRegex.Match(s);
-            var d = decimal.Parse(m.Groups[2].Value, NumberStyles.Any, cultureInfo);
+            var d = decimal.Parse(m.Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture);
             var ss = m.Groups[1].Value;
             decimal sum = 0;
 
@@ -3853,7 +3852,7 @@ namespace ToolGood.Algorithm.Internals
 
         public virtual Operand VisitNUM_fun(mathParser.NUM_funContext context)
         {
-            var d = decimal.Parse(context.num().GetText(), NumberStyles.Any, cultureInfo);
+            var d = decimal.Parse(context.num().GetText(), NumberStyles.Any, CultureInfo.InvariantCulture);
             if (context.unit() == null) { return Operand.Create(d); }
 
             var unit = context.unit().GetText();
@@ -3863,7 +3862,7 @@ namespace ToolGood.Algorithm.Internals
         }
         public Operand VisitNum(mathParser.NumContext context)
         {
-            var d = decimal.Parse(context.GetText(), NumberStyles.Any, cultureInfo);
+            var d = decimal.Parse(context.GetText(), NumberStyles.Any, CultureInfo.InvariantCulture);
             return Operand.Create(d);
         }
         public Operand VisitUnit(mathParser.UnitContext context)

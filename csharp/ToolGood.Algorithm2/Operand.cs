@@ -12,7 +12,6 @@ namespace ToolGood.Algorithm
     /// </summary>
     public abstract class Operand 
     {
-        internal static readonly CultureInfo cultureInfo = CultureInfo.InvariantCulture;// CultureInfo.GetCultureInfo("zh-cn");
         /// <summary>
         /// True
         /// </summary>
@@ -528,7 +527,7 @@ namespace ToolGood.Algorithm
 
         public override Operand ToNumber(string errorMessage = null) { return this; }
         public override Operand ToBoolean(string errorMessage = null) { return NumberValue != 0 ? True : False; }
-        public override Operand ToText(string errorMessage = null) { return Create(NumberValue.ToString(cultureInfo)); }
+        public override Operand ToText(string errorMessage = null) { return Create(NumberValue.ToString(CultureInfo.InvariantCulture)); }
         public override Operand ToMyDate(string errorMessage = null) { return Create((MyDate)NumberValue); }
 
         public override Operand ToArray(string errorMessage = null)
@@ -597,8 +596,8 @@ namespace ToolGood.Algorithm
         }
         public override Operand ToMyDate(string errorMessage = null)
         {
-            if (TimeSpan.TryParse(TextValue, cultureInfo, out TimeSpan t)) { return Create(new MyDate(t)); }
-            if (DateTime.TryParse(TextValue, cultureInfo, DateTimeStyles.None, out DateTime d)) { return Create(new MyDate(d)); }
+            if (TimeSpan.TryParse(TextValue, CultureInfo.InvariantCulture, out TimeSpan t)) { return Create(new MyDate(t)); }
+            if (DateTime.TryParse(TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime d)) { return Create(new MyDate(d)); }
             if (errorMessage == null) {
                 return Error("Convert string to date error!");
             }
