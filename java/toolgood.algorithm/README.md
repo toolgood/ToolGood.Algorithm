@@ -22,7 +22,7 @@ ToolGood.Algorithm是一个功能强大、轻量级、兼容`Excel公式`的算�
     <dependency>
         <groupId>io.github.toolgood</groupId>
         <artifactId>toolgood-algorithm</artifactId>
-        <version>3.0.3.0</version>
+        <version>3.5.0.1</version>
     </dependency>
 ```
 
@@ -45,7 +45,8 @@ ToolGood.Algorithm是一个功能强大、轻量级、兼容`Excel公式`的算�
     String j = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}').Age", "");//返回51
     String k = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}')[Name].Trim()", "");//返回"William Shakespeare" (不带空格)
     String l = engine.TryEvaluate("json('{\"Name1\":\"William Shakespeare \", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}')['Name'& 1].Trim().substring(2, 3)", ""); ;//返回"ill"
-
+    String n = engine.TryEvaluate("{Name:\"William Shakespeare\", Age:51, Birthday:\"04/26/1564 00:00:00\"}.Age", "");//Return 51 返回51
+    boolean m = engine.TryEvaluate("{1,2,3,4,5,6}.has(13)", true);//Return false 返回false
 ```
 支持常量`pi`, `e`, `true`, `false`。
 
@@ -55,7 +56,7 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
 
 索引默认为`Excel索引`，如果想用c#索引，请设置`UseExcelIndex`为`false`。
 
-中文符号自动转成英文符号：`括号`, `方括号`, `逗号`, `引号`, `双引号`。
+中文符号自动转成英文符号：`括号`, `逗号`, `引号`, `双引号`,`加`，`减`，`乘`,`除`,`等号`。
 
 注：字符串拼接使用`&`。
 
@@ -98,14 +99,14 @@ public class Cylinder extends AlgorithmEngine {
     c.EvaluateFormula("'圆'-[半径]-高", '-'); // Return: 圆-3-10
     c.GetSimplifiedFormula("半径*if(半径>2, 1+4, 3)"); // Return: 3 * 5
 ```
-参数以方括号定义，如 `[参数名]`。 
+参数定义，如 `[参数名]`，`【参数名】`，`#参数名#`，`@参数名`。 
 
 注：还可以使用`AddParameter`、`AddParameterFromJson`添加方法，使用`DiyFunction`来自定义函数。
 
 注2：使用 `AlgorithmEngineHelper.GetDiyNames` 获取`参数名`、`自定义方法名`。
 
 ## 自定义参数
-``` csharp
+``` java
     AlgorithmEngineHelper helper = new AlgorithmEngineHelper();
     helper.IsKeywords("false"); // return true
     helper.IsKeywords("true"); // return true
@@ -114,6 +115,26 @@ public class Cylinder extends AlgorithmEngine {
     DiyNameInfo p5 = helper.GetDiyNames("ddd(d1, 22)");
     assertEquals("ddd", p5.Functions.get(0));
     assertEquals("d1", p5.Parameters.get(0));
+```
+
+## 支持单位
+
+可设置标准单位：长度`DistanceUnit`(默认：`m`)、面积`AreaUnit`(默认：`m2`)、体积`VolumeUnit`(默认：`m3`)、重量`MassUnit`(默认：`kg`)。
+
+注：公式计算时，先将带单位的数量转成标准单位，再进行数字计算。
+ 
+``` java
+    AlgorithmEngine engine = new AlgorithmEngine();
+    boolean a = engine.TryEvaluate("1=1m", false); // return true
+    boolean b = engine.TryEvaluate("1=1m2", false); // return true
+    boolean c = engine.TryEvaluate("1=1m3", false); // return true
+    boolean d = engine.TryEvaluate("1=1kg", false); // return true
+
+    // 单位转化
+    var num = AlgorithmEngineHelper.UnitConversion(1M,"米","千米"); 
+
+    // 不抛错例子
+    boolean error = engine.TryEvaluate("1m=1m2", false); // return true
 ```
 
 ## Excel公式
@@ -1004,6 +1025,18 @@ public class Cylinder extends AlgorithmEngine {
     </tr>
 	<tr>
         <td>Json ★</td><td>json(文本)<br>动态json查询。</td> <td></td>
+    </tr>
+	<tr>
+        <td>Error </td><td>Error(文本)<br>主动抛错。</td> <td></td>
+    </tr>
+	<tr>
+        <td>HAS ★<br>HASKEY ★<br>CONTAINS ★<br>CONTAINSKEY ★</td><td>HAS(json/数组,文本)<br>json格式 是否包含Key<br>数组是否包含值</td> <td></td>
+    </tr>
+	<tr>
+        <td>HASVALUE ★<br>CONTAINSVALUE ★</td><td>HASVALUE(json/数组, 文本)<br>json格式 是否包含Value<br>数组是否包含值</td> <td></td>
+    </tr>
+	<tr>
+        <td>PARAM<br>PARAMETER<br>GETPARAMETER </td><td>GETPARAMETER(文本)<br>动态获取参数</td> <td></td>
     </tr>
 </table>
  

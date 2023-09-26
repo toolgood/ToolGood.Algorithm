@@ -1022,5 +1022,17 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
 	<tr>
         <td>Json ★</td><td>json(文本)<br>动态json查询。</td> <td></td>
     </tr>
+	<tr>
+        <td>Error </td><td>Error(文本)<br>主动抛错。</td> <td></td>
+    </tr>
+	<tr>
+        <td>HAS ★<br>HASKEY ★<br>CONTAINS ★<br>CONTAINSKEY ★</td><td>HAS(json/数组,文本)<br>json格式 是否包含Key<br>数组是否包含值</td> <td></td>
+    </tr>
+	<tr>
+        <td>HASVALUE ★<br>CONTAINSVALUE ★</td><td>HASVALUE(json/数组, 文本)<br>json格式 是否包含Value<br>数组是否包含值</td> <td></td>
+    </tr>
+	<tr>
+        <td>PARAM<br>PARAMETER<br>GETPARAMETER </td><td>GETPARAMETER(文本)<br>动态获取参数</td> <td></td>
+    </tr>
 </table>
  

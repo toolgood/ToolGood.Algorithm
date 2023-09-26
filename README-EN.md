@@ -53,9 +53,6 @@ Bool to string, false to`FALSE`, true to`TRUE`.
 The default index is`excel index`. If you want to use c# index, please set`UseExcelIndex`to`false`.
 
 
-Chinese symbols are automatically converted to English symbols: `brackets`, `square brackets`, `commas`, `quotation marks`, `double quotation marks`.
-
-
 Chinese symbols are automatically converted into English symbols: `brackets`, `commas`, `quotation marks`, `double quotation marks`，`addition`,`subtraction`, `multiplication`, `division` , `equal sign`.
 
 
@@ -103,9 +100,6 @@ Note: `find` is an Excel formula , find (the string to be searched, the string t
     c.EvaluateFormula("'圆'-[半径]-高", '-'); // Return: 圆-3-10
     c.GetSimplifiedFormula("半径*if(半径>2, 1+4, 3)"); // Return: 3 * 5
 ```
-Parameters are defined in square brackets, such as `[parameter name]`. 
-
-
 Parameter definitions, such as`[parameter name]`, `【parameter name】` , `#parameter name#` , `@parameterName`.
 
 Note: You can also use `AddParameter`, `AddParameterFromJson` to add methods, and use `DiyFunction`+= to customize functions. 
@@ -1035,6 +1029,18 @@ Note: The `UseLocalTime` attribute affects the conversion of `DateValue`/`Timest
     </tr>
 	<tr>
         <td>Json ★</td><td>json(text)<br>Dynamic json query.</td> <td></td>
+    </tr>
+    <tr>
+        <td>Error </td><td>Error(text)<br> Proactively throwing error. </td> <td></td>
+    </tr>
+	<tr>
+        <td>HAS ★<br>HASKEY ★<br>CONTAINS ★<br>CONTAINSKEY ★</td><td>HAS(json/array,text)<br>Does the JSON format include a Key<br> Does the array contain values </td> <td></td>
+    </tr>
+	<tr>
+        <td>HASVALUE ★<br>CONTAINSVALUE ★</td><td>HASVALUE(json/array, text)<br>Does the JSON format include a Value<br> Does the array contain values</td> <td></td>
+    </tr>
+	<tr>
+        <td>PARAM<br>PARAMETER<br>GETPARAMETER </td><td>GETPARAMETER(text)<br> Dynamically obtaining parameters </td> <td></td>
     </tr>
 </table>
 
