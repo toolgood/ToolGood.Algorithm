@@ -62,8 +62,8 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineHelper2
         [Test]
         public void Test3()
         {
-            var b = AlgorithmEngineHelper.UnitConversion(1M,"米","千米","测试" );
-            Assert.AreEqual(0.001M,b);
+            var b = AlgorithmEngineHelper.UnitConversion(1M, "米", "千米", "测试");
+            Assert.AreEqual(0.001M, b);
             b = AlgorithmEngineHelper.UnitConversion(1M, "米", "分米", "测试");
             Assert.AreEqual(10M, b);
             b = AlgorithmEngineHelper.UnitConversion(1M, "米", "厘米", "测试");
@@ -92,9 +92,15 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineHelper2
             Assert.AreEqual(1000M, b);
             b = AlgorithmEngineHelper.UnitConversion(1M, "t", "g", "测试");
             Assert.AreEqual(1000000M, b);
- 
-        }
 
+        }
+        [Test]
+        public void Test4()
+        {
+            var progContext = AlgorithmEngineHelper.Parse("1+1");
+            var operand = AlgorithmEngineHelper.Evaluate(progContext);
+            Assert.AreEqual(2, operand.IntValue);
+        }
 
 
 

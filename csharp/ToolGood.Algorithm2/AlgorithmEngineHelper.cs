@@ -15,6 +15,7 @@ namespace ToolGood.Algorithm
     public static class AlgorithmEngineHelper
     {
         private static HashSet<string> _lexerSet;
+        private static Regex unitRegex;
 
         private static HashSet<string> GetLexerSet()
         {
@@ -299,7 +300,6 @@ namespace ToolGood.Algorithm
         }
 
 
-        private static readonly Regex unitRegex = new Regex(@"[\s \(\)（）\[\]<>]", RegexOptions.Compiled);
         /// <summary>
         /// 单位转换
         /// </summary>
@@ -312,6 +312,9 @@ namespace ToolGood.Algorithm
         public static decimal UnitConversion(decimal src, string oldSrcUnit, string oldTarUnit, string name = null)
         {
             if (string.IsNullOrWhiteSpace(oldSrcUnit) || string.IsNullOrWhiteSpace(oldTarUnit)) { return src; }
+            if (unitRegex == null) {
+                unitRegex = new Regex(@"[\s \(\)（）\[\]<>]", RegexOptions.Compiled);
+            }
             oldSrcUnit = unitRegex.Replace(oldSrcUnit, "");
             if (oldSrcUnit == oldTarUnit) { return src; }
 
@@ -383,10 +386,10 @@ namespace ToolGood.Algorithm
             )
         {
             var visitor = new MathVisitor();
-            if (GetParameter != null ) {
+            if (GetParameter != null) {
                 visitor.GetParameter += GetParameter;
             }
-            if (ExecuteDiyFunction != null ) {
+            if (ExecuteDiyFunction != null) {
                 visitor.DiyFunction += ExecuteDiyFunction;
             }
             visitor.excelIndex = UseExcelIndex ? 1 : 0;
