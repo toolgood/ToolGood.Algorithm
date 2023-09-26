@@ -15,7 +15,6 @@ namespace ToolGood.Algorithm.Internals
 {
     class MathVisitor : AbstractParseTreeVisitor<Operand>, ImathVisitor<Operand>
     {
-        private static readonly Regex sumifRegex = new Regex(@"(<|<=|>|>=|=|==|===|!=|!==|<>) *([-+]?\d+(\.(\d+)?)?)", RegexOptions.Compiled);
         public event Func<string, Operand> GetParameter;
         public event Func<string, List<Operand>, Operand> DiyFunction;
         public int excelIndex;
@@ -2241,8 +2240,8 @@ namespace ToolGood.Algorithm.Internals
 
         public virtual Operand VisitAVERAGEIF_fun(mathParser.AVERAGEIF_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
+            var exprs = context.expr(); var args = new List<Operand>(exprs.Length);
+            for (int i = 0; i < exprs.Length; i++) { var aa = this.Visit(exprs[i]); if (aa.IsError) { return aa; } args.Add(aa); }
 
             List<decimal> list = new List<decimal>();
             var o = F_base_GetList(args[0], list);
@@ -2260,17 +2259,18 @@ namespace ToolGood.Algorithm.Internals
             decimal sum;
             int count;
             if (args[1].Type == OperandType.NUMBER) {
-                count = MathVisitor.F_base_countif(list, args[1].NumberValue);
+                count = F_base_countif(list, args[1].NumberValue);
                 sum = count * args[1].NumberValue;
             } else {
                 if (decimal.TryParse(args[1].TextValue.Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
-                    count = MathVisitor.F_base_countif(list, d);
-                    sum = MathVisitor.F_base_sumif(list, '=' + args[1].TextValue.Trim(), sumdbs);
+                    count = F_base_countif(list, d);
+                    sum = F_base_sumif(list, d, sumdbs);
                 } else {
                     var sunif = args[1].TextValue.Trim();
-                    if (sumifRegex.IsMatch(sunif)) {
-                        count = MathVisitor.F_base_countif(list, sunif);
-                        sum = MathVisitor.F_base_sumif(list, sunif, sumdbs);
+                    var m2 = sumifMatch(sunif);
+                    if (m2 != null) {
+                        count = F_base_countif(list, m2.Item1, m2.Item2);
+                        sum = F_base_sumif(list, m2.Item1, m2.Item2, sumdbs);
                     } else {
                         return Operand.Error("Function AVERAGE parameter 2 error!");
                     }
@@ -2328,8 +2328,8 @@ namespace ToolGood.Algorithm.Internals
         }
         public virtual Operand VisitCOUNTIF_fun(mathParser.COUNTIF_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
+            var exprs = context.expr(); var args = new List<Operand>(exprs.Length);
+            for (int i = 0; i < exprs.Length; i++) { var aa = this.Visit(exprs[i]); if (aa.IsError) { return aa; } args.Add(aa); }
 
             List<decimal> list = new List<decimal>();
             var o = F_base_GetList(args[0], list);
@@ -2337,14 +2337,15 @@ namespace ToolGood.Algorithm.Internals
 
             int count;
             if (args[1].Type == OperandType.NUMBER) {
-                count = MathVisitor.F_base_countif(list, args[1].NumberValue);
+                count = F_base_countif(list, args[1].NumberValue);
             } else {
                 if (decimal.TryParse(args[1].TextValue.Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
-                    count = MathVisitor.F_base_countif(list, d);
+                    count = F_base_countif(list, d);
                 } else {
                     var sunif = args[1].TextValue.Trim();
-                    if (sumifRegex.IsMatch(sunif)) {
-                        count = MathVisitor.F_base_countif(list, sunif);
+                    var m2 = sumifMatch(sunif);
+                    if (m2 != null) {
+                        count = F_base_countif(list, m2.Item1, m2.Item2);
                     } else {
                         return Operand.Error("Function COUNTIF parameter 2 error!");
                     }
@@ -2368,8 +2369,8 @@ namespace ToolGood.Algorithm.Internals
         }
         public virtual Operand VisitSUMIF_fun(mathParser.SUMIF_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
+            var exprs = context.expr(); var args = new List<Operand>(exprs.Length);
+            for (int i = 0; i < exprs.Length; i++) { var aa = this.Visit(exprs[i]); if (aa.IsError) { return aa; } args.Add(aa); }
 
             List<decimal> list = new List<decimal>();
             var o = F_base_GetList(args[0], list);
@@ -2386,14 +2387,15 @@ namespace ToolGood.Algorithm.Internals
 
             decimal sum;
             if (args[1].Type == OperandType.NUMBER) {
-                sum = MathVisitor.F_base_countif(list, args[1].NumberValue) * args[1].NumberValue;
+                sum = F_base_countif(list, args[1].NumberValue) * args[1].NumberValue;
             } else {
-                if (decimal.TryParse(args[1].TextValue.Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out _)) {
-                    sum = MathVisitor.F_base_sumif(list, '=' + args[1].TextValue.Trim(), sumdbs);
+                if (decimal.TryParse(args[1].TextValue.Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
+                    sum = F_base_sumif(list, d, sumdbs);
                 } else {
                     var sunif = args[1].TextValue.Trim();
-                    if (sumifRegex.IsMatch(sunif)) {
-                        sum = MathVisitor.F_base_sumif(list, sunif, sumdbs);
+                    var m2 = sumifMatch(sunif);
+                    if (m2 != null) {
+                        sum = F_base_sumif(list, m2.Item1, m2.Item2, sumdbs);
                     } else {
                         return Operand.Error("Function SUMIF parameter 2 error!");
                     }
@@ -2809,44 +2811,95 @@ namespace ToolGood.Algorithm.Internals
             return Operand.Create(ExcelFunctions.WEIBULL((double)x, (double)shape, (double)scale, state));
         }
 
+        private static Tuple<string, decimal> sumifMatch(string s)
+        {
+            var c = s[0];
+            if (c == '>' || c == '＞') {
+                if (s.Length > 1 && (s[1] == '=' || s[1] == '＝')) {
+                    if (decimal.TryParse(s.AsSpan(2).Trim(), out decimal d)) {
+                        return Tuple.Create(">=", d);
+                    }
+                } else if (decimal.TryParse(s.AsSpan(1).Trim(), out decimal d)) {
+                    return Tuple.Create(">", d);
+                }
+            } else if (c == '<' || c < '＜') {
+                if (s.Length > 1 && (s[1] == '=' || s[1] == '＝')) {
+                    if (decimal.TryParse(s.AsSpan(2).Trim(), out decimal d)) {
+                        return Tuple.Create("<=", d);
+                    }
+                } else if (s.Length > 1 && (s[1] == '>' || s[1] == '＞')) {
+                    if (decimal.TryParse(s.AsSpan(2).Trim(), out decimal d)) {
+                        return Tuple.Create("!=", d);
+                    }
+                } else if (decimal.TryParse(s.AsSpan(1).Trim(), out decimal d)) {
+                    return Tuple.Create("<", d);
+                }
+            } else if (c == '=' || c == '＝') {
+                var index = 1;
+                if (s.Length > 1 && (s[1] == '=' || s[1] == '＝')) {
+                    index = 2;
+                    if (s.Length > 2 && (s[2] == '=' || s[2] == '＝')) {
+                        index = 3;
+                    }
+                }
+                if (decimal.TryParse(s.AsSpan(index).Trim(), out decimal d)) {
+                    return Tuple.Create("=", d);
+                }
+            } else if (c == '!' || c == '！') {
+                var index = 1;
+                if (s.Length > 1 && (s[1] == '=' || s[1] == '＝')) {
+                    index = 2;
+                    if (s.Length > 2 && (s[2] == '=' || s[2] == '＝')) {
+                        index = 3;
+                    }
+                }
+                if (decimal.TryParse(s.AsSpan(index).Trim(), out decimal d)) {
+                    return Tuple.Create("!=", d);
+                }
+            }
+            return null;
+        }
         private static int F_base_countif(List<decimal> dbs, decimal d)
         {
             int count = 0;
-            //d = Math.Round(d, 12, MidpointRounding.AwayFromZero);
-            foreach (var item in dbs) {
+            for (int i = 0; i < dbs.Count; i++) {
+                var item = dbs[i];
                 if (item == d) {
                     count++;
                 }
-                //if (Math.Round(item, 12, MidpointRounding.AwayFromZero) == d) {
-                //    count++;
-                //}
             }
             return count;
         }
-        private static int F_base_countif(List<decimal> dbs, string s)
+        private static int F_base_countif(List<decimal> dbs, string s, decimal d)
         {
-            var m = sumifRegex.Match(s);
-            var d = decimal.Parse(m.Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture);
-            var ss = m.Groups[1].Value;
             int count = 0;
-
-            foreach (var item in dbs) {
-                if (MathVisitor.F_base_compare(item, d, ss)) {
+            for (int i = 0; i < dbs.Count; i++) {
+                var item = dbs[i];
+                if (F_base_compare(item, d, s)) {
                     count++;
                 }
             }
             return count;
         }
-
-        private static decimal F_base_sumif(List<decimal> dbs, string s, List<decimal> sumdbs)
+        private static decimal F_base_sumif(List<decimal> dbs, decimal d, List<decimal> sumdbs)
         {
-            var m = sumifRegex.Match(s);
-            var d = decimal.Parse(m.Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture);
-            var ss = m.Groups[1].Value;
             decimal sum = 0;
-
             for (int i = 0; i < dbs.Count; i++) {
-                if (MathVisitor.F_base_compare(dbs[i], d, ss)) {
+                var item = dbs[i];
+                if (item == d) {
+                    sum += sumdbs[i];
+                }
+                //if (Math.Round(item, 10, MidpointRounding.AwayFromZero) == d) {
+                //	sum += item;
+                //}
+            }
+            return sum;
+        }
+        private static decimal F_base_sumif(List<decimal> dbs, string s, decimal d, List<decimal> sumdbs)
+        {
+            decimal sum = 0;
+            for (int i = 0; i < dbs.Count; i++) {
+                if (F_base_compare(dbs[i], d, s)) {
                     sum += sumdbs[i];
                 }
             }
@@ -2873,8 +2926,7 @@ namespace ToolGood.Algorithm.Internals
             return a != b;
             //return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) != 0;
         }
-
-        private bool F_base_GetList(List<Operand> args, List<decimal> list)
+        private static bool F_base_GetList(List<Operand> args, List<decimal> list)
         {
             foreach (var item in args) {
                 if (item.Type == OperandType.NUMBER) {
@@ -2895,7 +2947,7 @@ namespace ToolGood.Algorithm.Internals
             }
             return true;
         }
-        private bool F_base_GetList(Operand args, List<decimal> list)
+        private static bool F_base_GetList(Operand args, List<decimal> list)
         {
             if (args.IsError) { return false; }
             if (args.Type == OperandType.NUMBER) {
@@ -2915,8 +2967,7 @@ namespace ToolGood.Algorithm.Internals
             }
             return true;
         }
-
-        private bool F_base_GetList(Operand args, List<string> list)
+        private static bool F_base_GetList(Operand args, List<string> list)
         {
             if (args.IsError) { return false; }
             if (args.Type == OperandType.ARRARY) {
@@ -2934,9 +2985,7 @@ namespace ToolGood.Algorithm.Internals
             }
             return true;
         }
-
-
-        private bool F_base_GetList(List<Operand> args, List<string> list)
+        private static bool F_base_GetList(List<Operand> args, List<string> list)
         {
             foreach (var item in args) {
                 if (item.Type == OperandType.ARRARY) {
