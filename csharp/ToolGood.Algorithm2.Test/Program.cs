@@ -31,7 +31,8 @@ namespace ToolGood.Algorithm2.Test
             var j = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Age", null);//Return 51 返回51
             var k = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')[Name].Trim()", null);//Return to "William Shakespeare"  返回"William Shakespeare" (不带空格)
             var l = engine.TryEvaluate("json('{\"Name1\":\"William Shakespeare \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')['Name'& 1].Trim().substring(2,3)", null); ;//Return "ill"  返回"ill"
-
+            var n = engine.TryEvaluate("{Name:\"William Shakespeare\", Age:51, Birthday:\"04/26/1564 00:00:00\"}.Age", null);//Return 51 返回51
+            var m = engine.TryEvaluate("{1,2,3,4,5,6}.has(13)", true);//Return false 返回false
 
 
             Thread.CurrentThread.CurrentCulture = new CultureInfo("fr-FR");

@@ -1,18 +1,30 @@
 package toolgood.algorithm;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
+import toolgood.algorithm.enums.AreaUnitType;
+import toolgood.algorithm.enums.DistanceUnitType;
+import toolgood.algorithm.enums.MassUnitType;
+import toolgood.algorithm.enums.VolumeUnitType;
 import toolgood.algorithm.internals.AntlrCharStream;
 import toolgood.algorithm.internals.AntlrErrorListener;
 import toolgood.algorithm.internals.CharUtil;
 import toolgood.algorithm.internals.DiyNameVisitor;
+import toolgood.algorithm.internals.MathVisitor;
+import toolgood.algorithm.internals.MyFunction;
 import toolgood.algorithm.math.mathLexer;
 import toolgood.algorithm.math.mathParser;
 import toolgood.algorithm.math.mathParser.ProgContext;
+import toolgood.algorithm.unitConversion.AreaConverter;
+import toolgood.algorithm.unitConversion.DistanceConverter;
+import toolgood.algorithm.unitConversion.MassConverter;
+import toolgood.algorithm.unitConversion.VolumeConverter;
+
+import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.function.Function;
 
 /**
  * 算法引擎助手
@@ -244,21 +256,40 @@ public class AlgorithmEngineHelper {
             lexerSet.add("ADDMINUTES");
             lexerSet.add("ADDSECONDS");
             lexerSet.add("TIMESTAMP");
+
+            lexerSet.add("HAS");
+            lexerSet.add("HASKEY");
+            lexerSet.add("CONTAINS");
+            lexerSet.add("CONTAINSKEY");
+            lexerSet.add("HASVALUE");
+            lexerSet.add("CONTAINSVALUE");
+            lexerSet.add("PARAM");
+            lexerSet.add("PARAMETER");
+            lexerSet.add("GETPARAMETER");
+            lexerSet.add("ERROR");
             _lexerSet = lexerSet;
         }
         return _lexerSet;
     }
 
-    /// <summary>
-    /// 是否与内置关键字相同
-    /// </summary>
-    /// <param name="parameter"></param>
-    /// <returns></returns>
+    /**
+     * 是否与内置关键字相同
+     *
+     * @param parameter
+     * @return
+     */
     public static boolean IsKeywords(String parameter) {
         Set<String> lexerSet = GetLexerSet();
         return lexerSet.contains(CharUtil.StandardString(parameter));
     }
 
+    /**
+     * 获取 DIY 名称
+     *
+     * @param exp
+     * @return
+     * @throws Exception
+     */
     public static DiyNameInfo GetDiyNames(String exp) throws Exception {
         if (exp == null || exp.equals("")) {
             throw new Exception("Parameter exp invalid !");
@@ -279,6 +310,258 @@ public class AlgorithmEngineHelper {
         final DiyNameVisitor visitor = new DiyNameVisitor();
         visitor.visit(context);
         return visitor.diy;
+    }
+
+    /**
+     * 单位转换
+     *
+     * @param src
+     * @param oldSrcUnit
+     * @param oldTarUnit
+     * @return
+     * @throws Exception
+     */
+    public static BigDecimal UnitConversion(BigDecimal src, String oldSrcUnit, String oldTarUnit) throws Exception {
+        return UnitConversion(src, oldSrcUnit, oldTarUnit, null);
+    }
+
+    /**
+     * 单位转换
+     *
+     * @param src
+     * @param oldSrcUnit
+     * @param oldTarUnit
+     * @param name
+     * @return
+     * @throws Exception
+     */
+    public static BigDecimal UnitConversion(BigDecimal src, String oldSrcUnit, String oldTarUnit, String name)
+            throws Exception {
+        if (oldSrcUnit == null || oldSrcUnit.equals("") || oldTarUnit == null || oldTarUnit.equals("")) {
+            return src;
+        }
+        oldSrcUnit = oldSrcUnit.replaceAll("[\\s \\(\\)（）\\[\\]<>]", "");
+        if (oldSrcUnit.equals(oldTarUnit)) {
+            return src;
+        }
+        if (DistanceConverter.Exists(oldSrcUnit, oldTarUnit)) {
+            DistanceConverter c = new DistanceConverter(oldSrcUnit, oldTarUnit);
+            return c.LeftToRight(src);
+        }
+        if (MassConverter.Exists(oldSrcUnit, oldTarUnit)) {
+            MassConverter c = new MassConverter(oldSrcUnit, oldTarUnit);
+            return c.LeftToRight(src);
+        }
+        if (AreaConverter.Exists(oldSrcUnit, oldTarUnit)) {
+            AreaConverter c = new AreaConverter(oldSrcUnit, oldTarUnit);
+            return c.LeftToRight(src);
+        }
+        if (VolumeConverter.Exists(oldSrcUnit, oldTarUnit)) {
+            VolumeConverter c = new VolumeConverter(oldSrcUnit, oldTarUnit);
+            return c.LeftToRight(src);
+        }
+        if (name == null || name.equals("")) {
+            throw new Exception("The input item has different units and cannot be converted from [" + oldSrcUnit
+                    + "] to [" + oldTarUnit + "]");
+        }
+        throw new Exception("The input item [" + name + "] has different units and cannot be converted from ["
+                + oldSrcUnit + "] to [" + oldTarUnit + "]");
+    }
+
+    /**
+     * 解析
+     * 
+     * @param exp
+     * @return
+     * @throws Exception
+     */
+    public static mathParser.ProgContext Parse(String exp) throws Exception {
+        if (null == exp || exp.equals("")) {
+            throw new Exception("Parameter exp invalid !");
+        }
+        final AntlrCharStream stream = new AntlrCharStream(CharStreams.fromString(exp));
+        final mathLexer lexer = new mathLexer(stream);
+        final CommonTokenStream tokens = new CommonTokenStream(lexer);
+        final mathParser parser = new mathParser(tokens);
+        final AntlrErrorListener antlrErrorListener = new AntlrErrorListener();
+        parser.removeErrorListeners();
+        parser.addErrorListener(antlrErrorListener);
+        final ProgContext context = parser.prog();
+
+        if (antlrErrorListener.IsError) {
+            throw new Exception(antlrErrorListener.ErrorMsg);
+        }
+        return context;
+    }
+
+    /**
+     * 执行
+     * 
+     * @param context
+     * @return
+     */
+    public static Operand Evaluate(mathParser.ProgContext context) {
+        return Evaluate(context, null, null, true, false, DistanceUnitType.M, AreaUnitType.M2, VolumeUnitType.M3,
+                MassUnitType.KG);
+    }
+
+    /**
+     * 执行
+     * 
+     * @param context
+     * @param GetParameter
+     * @return
+     */
+    public static Operand Evaluate(mathParser.ProgContext context, Function<String, Operand> GetParameter) {
+        return Evaluate(context, GetParameter, null, true, false, DistanceUnitType.M, AreaUnitType.M2,
+                VolumeUnitType.M3,
+                MassUnitType.KG);
+    }
+
+    /**
+     * 执行
+     * 
+     * @param context
+     * @param GetParameter
+     * @param ExecuteDiyFunction
+     * @return
+     */
+    public static Operand Evaluate(mathParser.ProgContext context, Function<String, Operand> GetParameter,
+            Function<MyFunction, Operand> ExecuteDiyFunction) {
+        return Evaluate(context, GetParameter, ExecuteDiyFunction, true, false, DistanceUnitType.M, AreaUnitType.M2,
+                VolumeUnitType.M3,
+                MassUnitType.KG);
+    }
+
+    /**
+     * 执行
+     * 
+     * @param context
+     * @param GetParameter
+     * @param ExecuteDiyFunction
+     * @param UseExcelIndex
+     * @return
+     */
+    public static Operand Evaluate(mathParser.ProgContext context, Function<String, Operand> GetParameter,
+            Function<MyFunction, Operand> ExecuteDiyFunction, boolean UseExcelIndex) {
+        return Evaluate(context, GetParameter, ExecuteDiyFunction, UseExcelIndex, false, DistanceUnitType.M,
+                AreaUnitType.M2,
+                VolumeUnitType.M3,
+                MassUnitType.KG);
+    }
+
+    /**
+     * 执行
+     * 
+     * @param context
+     * @param GetParameter
+     * @param ExecuteDiyFunction
+     * @param UseExcelIndex
+     * @param UseLocalTime
+     * @return
+     */
+    public static Operand Evaluate(mathParser.ProgContext context, Function<String, Operand> GetParameter,
+            Function<MyFunction, Operand> ExecuteDiyFunction, boolean UseExcelIndex, boolean UseLocalTime) {
+        return Evaluate(context, GetParameter, ExecuteDiyFunction, UseExcelIndex, UseLocalTime, DistanceUnitType.M,
+                AreaUnitType.M2,
+                VolumeUnitType.M3,
+                MassUnitType.KG);
+    }
+
+    /**
+     * 执行
+     * 
+     * @param context
+     * @param GetParameter
+     * @param ExecuteDiyFunction
+     * @param UseExcelIndex
+     * @param UseLocalTime
+     * @param DistanceUnit
+     * @return
+     */
+    public static Operand Evaluate(mathParser.ProgContext context, Function<String, Operand> GetParameter,
+            Function<MyFunction, Operand> ExecuteDiyFunction, boolean UseExcelIndex, boolean UseLocalTime,
+            DistanceUnitType DistanceUnit) {
+        return Evaluate(context, GetParameter, ExecuteDiyFunction, UseExcelIndex, UseLocalTime, DistanceUnit,
+                AreaUnitType.M2,
+                VolumeUnitType.M3,
+                MassUnitType.KG);
+    }
+
+    /**
+     * 执行
+     * 
+     * @param context
+     * @param GetParameter
+     * @param ExecuteDiyFunction
+     * @param UseExcelIndex
+     * @param UseLocalTime
+     * @param DistanceUnit
+     * @param AreaUnit
+     * @return
+     */
+    public static Operand Evaluate(mathParser.ProgContext context, Function<String, Operand> GetParameter,
+            Function<MyFunction, Operand> ExecuteDiyFunction, boolean UseExcelIndex, boolean UseLocalTime,
+            DistanceUnitType DistanceUnit, AreaUnitType AreaUnit) {
+        return Evaluate(context, GetParameter, ExecuteDiyFunction, UseExcelIndex, UseLocalTime, DistanceUnit,
+                AreaUnit,
+                VolumeUnitType.M3,
+                MassUnitType.KG);
+    }
+
+    /**
+     * 执行
+     * 
+     * @param context
+     * @param GetParameter
+     * @param ExecuteDiyFunction
+     * @param UseExcelIndex
+     * @param UseLocalTime
+     * @param DistanceUnit
+     * @param AreaUnit
+     * @param VolumeUnit
+     * @return
+     */
+    public static Operand Evaluate(mathParser.ProgContext context, Function<String, Operand> GetParameter,
+            Function<MyFunction, Operand> ExecuteDiyFunction, boolean UseExcelIndex, boolean UseLocalTime,
+            DistanceUnitType DistanceUnit, AreaUnitType AreaUnit, VolumeUnitType VolumeUnit) {
+        return Evaluate(context, GetParameter, ExecuteDiyFunction, UseExcelIndex, UseLocalTime, DistanceUnit,
+                AreaUnit,
+                VolumeUnit,
+                MassUnitType.KG);
+    }
+
+    /**
+     * 执行
+     * 
+     * @param context
+     * @param GetParameter
+     * @param ExecuteDiyFunction
+     * @param UseExcelIndex
+     * @param UseLocalTime
+     * @param DistanceUnit
+     * @param AreaUnit
+     * @param VolumeUnit
+     * @param MassUnit
+     * @return
+     */
+    public static Operand Evaluate(mathParser.ProgContext context, Function<String, Operand> GetParameter,
+            Function<MyFunction, Operand> ExecuteDiyFunction, boolean UseExcelIndex, boolean UseLocalTime,
+            DistanceUnitType DistanceUnit, AreaUnitType AreaUnit, VolumeUnitType VolumeUnit, MassUnitType MassUnit) {
+        MathVisitor visitor = new MathVisitor();
+        if (GetParameter != null) {
+            visitor.GetParameter = GetParameter;
+        }
+        if (ExecuteDiyFunction != null) {
+            visitor.DiyFunction = ExecuteDiyFunction;
+        }
+        visitor.excelIndex = UseExcelIndex ? 1 : 0;
+        visitor.useLocalTime = UseLocalTime;
+        visitor.MassUnit = MassUnit;
+        visitor.DistanceUnit = DistanceUnit;
+        visitor.AreaUnit = AreaUnit;
+        visitor.VolumeUnit = VolumeUnit;
+        return visitor.visit(context);
     }
 
 }

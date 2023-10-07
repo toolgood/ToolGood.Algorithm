@@ -21,8 +21,13 @@ public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements 
             String str = node.getText();
             if (str.startsWith("@")) {
                 diy.Parameters.add(str.substring(1));
-            }else{
+            } else if ((str.startsWith("【") && str.endsWith("】"))
+                    || (str.startsWith("[") && str.endsWith("]"))
+                    || (str.startsWith("#") && str.endsWith("#"))) {
                 diy.Parameters.add(str.substring(1, str.length() - 1));
+
+            } else {
+                diy.Parameters.add(str);
             }
             return null;
         }
@@ -66,6 +71,11 @@ public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements 
     }
 
     @Override
+    public Object visitHASVALUE_fun(HASVALUE_funContext ctx) {
+        return visitChildren(ctx);
+    }
+
+    @Override
     public Object visitAddSub_fun(AddSub_funContext context) {
 
         return visitChildren(context);
@@ -75,6 +85,11 @@ public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements 
     public Object visitAVERAGEIF_fun(AVERAGEIF_funContext context) {
 
         return visitChildren(context);
+    }
+
+    @Override
+    public Object visitPARAM_fun(PARAM_funContext ctx) {
+        return visitChildren(ctx);
     }
 
     @Override
@@ -141,6 +156,11 @@ public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements 
     public Object visitSHA256_fun(SHA256_funContext context) {
 
         return visitChildren(context);
+    }
+
+    @Override
+    public Object visitHAS_fun(HAS_funContext ctx) {
+        return visitChildren(ctx);
     }
 
     @Override
@@ -991,6 +1011,11 @@ public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements 
     }
 
     @Override
+    public Object visitERROR_fun(ERROR_funContext ctx) {
+        return visitChildren(ctx);
+    }
+
+    @Override
     public Object visitATAN_fun(ATAN_funContext context) {
 
         return visitChildren(context);
@@ -1036,6 +1061,11 @@ public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements 
     public Object visitAND_fun(AND_funContext context) {
 
         return visitChildren(context);
+    }
+
+    @Override
+    public Object visitArrayJson_fun(ArrayJson_funContext ctx) {
+        return visitChildren(ctx);
     }
 
     @Override
@@ -1340,6 +1370,21 @@ public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements 
     public Object visitRAND_fun(RAND_funContext context) {
 
         return visitChildren(context);
+    }
+
+    @Override
+    public Object visitNum(NumContext ctx) {
+        return visitChildren(ctx);
+    }
+
+    @Override
+    public Object visitUnit(UnitContext ctx) {
+        return visitChildren(ctx);
+    }
+
+    @Override
+    public Object visitArrayJson(ArrayJsonContext ctx) {
+        return visitChildren(ctx);
     }
 
     @Override

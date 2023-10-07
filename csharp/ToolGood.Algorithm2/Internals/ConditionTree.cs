@@ -1,6 +1,7 @@
 ﻿using Antlr4.Runtime;
 using System;
 using System.Collections.Generic;
+using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals
 {
@@ -54,9 +55,9 @@ namespace ToolGood.Algorithm.Internals
             }
             try {
                 var stream = new AntlrCharStream(new AntlrInputStream(condition));
-                var lexer = new mathLexer(stream);
+                var lexer = new math.mathLexer(stream);
                 var tokens = new CommonTokenStream(lexer);
-                var parser = new mathParser(tokens);
+                var parser = new math.mathParser(tokens);
                 var antlrErrorListener = new AntlrErrorListener();
                 parser.RemoveErrorListeners();
                 parser.AddErrorListener(antlrErrorListener);

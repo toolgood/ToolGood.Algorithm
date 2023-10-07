@@ -2,6 +2,7 @@ package toolgood.algorithm.internals;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
+import toolgood.algorithm.enums.ConditionTreeType;
 import toolgood.algorithm.math.mathParser;
 import toolgood.algorithm.math.mathVisitor;
 
@@ -58,6 +59,11 @@ public class MathSplitVisitor extends AbstractParseTreeVisitor<ConditionTree> im
     }
 
     @Override
+    public ConditionTree visitHASVALUE_fun(mathParser.HASVALUE_funContext ctx) {
+        return visit_fun(ctx);
+    }
+
+    @Override
     public ConditionTree visitAddSub_fun(mathParser.AddSub_funContext context) {
         return visit_fun(context);
     }
@@ -65,6 +71,11 @@ public class MathSplitVisitor extends AbstractParseTreeVisitor<ConditionTree> im
     @Override
     public ConditionTree visitAVERAGEIF_fun(mathParser.AVERAGEIF_funContext context) {
         return visit_fun(context);
+    }
+
+    @Override
+    public ConditionTree visitPARAM_fun(mathParser.PARAM_funContext ctx) {
+        return visit_fun(ctx);
     }
 
     @Override
@@ -120,6 +131,11 @@ public class MathSplitVisitor extends AbstractParseTreeVisitor<ConditionTree> im
     @Override
     public ConditionTree visitSHA256_fun(mathParser.SHA256_funContext context) {
         return visit_fun(context);
+    }
+
+    @Override
+    public ConditionTree visitHAS_fun(mathParser.HAS_funContext ctx) {
+        return visit_fun(ctx);
     }
 
     @Override
@@ -515,7 +531,7 @@ public class MathSplitVisitor extends AbstractParseTreeVisitor<ConditionTree> im
 
     @Override
     public ConditionTree visitADDSECONDS_fun(mathParser.ADDSECONDS_funContext ctx) {
-        return null;
+        return visit_fun(ctx);
     }
 
     @Override
@@ -834,6 +850,11 @@ public class MathSplitVisitor extends AbstractParseTreeVisitor<ConditionTree> im
     }
 
     @Override
+    public ConditionTree visitERROR_fun(mathParser.ERROR_funContext ctx) {
+        return visit_fun(ctx);
+    }
+
+    @Override
     public ConditionTree visitATAN_fun(mathParser.ATAN_funContext context) {
         return visit_fun(context);
     }
@@ -871,6 +892,11 @@ public class MathSplitVisitor extends AbstractParseTreeVisitor<ConditionTree> im
     @Override
     public ConditionTree visitAND_fun(mathParser.AND_funContext context) {
         return visit_fun(context);
+    }
+
+    @Override
+    public ConditionTree visitArrayJson_fun(mathParser.ArrayJson_funContext ctx) {
+        return visit_fun(ctx);
     }
 
     @Override
@@ -1122,6 +1148,21 @@ public class MathSplitVisitor extends AbstractParseTreeVisitor<ConditionTree> im
     @Override
     public ConditionTree visitRAND_fun(mathParser.RAND_funContext context) {
         return visit_fun(context);
+    }
+
+    @Override
+    public ConditionTree visitNum(mathParser.NumContext ctx) {
+        return visit_fun(ctx);
+    }
+
+    @Override
+    public ConditionTree visitUnit(mathParser.UnitContext ctx) {
+        return visit_fun(ctx);
+    }
+
+    @Override
+    public ConditionTree visitArrayJson(mathParser.ArrayJsonContext ctx) {
+        return visit_fun(ctx);
     }
 
     @Override

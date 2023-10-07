@@ -1,6 +1,7 @@
 package toolgood.algorithm;
 
 import org.joda.time.DateTime;
+import toolgood.algorithm.enums.OperandType;
 import toolgood.algorithm.litJson.JsonData;
 import toolgood.algorithm.litJson.JsonMapper;
 
@@ -101,7 +102,7 @@ public abstract class Operand {
     }
 
     public static Operand Create(final String obj) {
-        if (obj.equals(null)) {
+        if (null == obj) {
             return CreateNull();
         }
         return new OperandString(obj);
@@ -110,9 +111,9 @@ public abstract class Operand {
     public static Operand CreateJson(final String txt) {
         if ((txt.startsWith("{") && txt.endsWith("}")) || (txt.startsWith("[") && txt.endsWith("]"))) {
             try {
-                JsonData json = (JsonData) JsonMapper.ToObject(txt);
+                JsonData json = JsonMapper.ToObject(txt);
                 return Create(json);
-            } catch (final Exception e) {
+            } catch (Exception e) {
             }
         }
         return Error("string to json is error!");
@@ -565,10 +566,10 @@ public abstract class Operand {
 
         @Override
         public Operand ToBoolean(String errorMessage) {
-            if (TextValue().toLowerCase().equals("true") || TextValue().toLowerCase().equals("yes")) {
+            if (TextValue().equalsIgnoreCase("true") || TextValue().equalsIgnoreCase("yes")) {
                 return True;
             }
-            if (TextValue().toLowerCase().equals("false") || TextValue().toLowerCase().equals("no")) {
+            if (TextValue().equalsIgnoreCase("false") || TextValue().equalsIgnoreCase("no")) {
                 return False;
             }
             if (TextValue().equals("1") || TextValue().equals("是") || TextValue().equals("有")) {
@@ -620,5 +621,117 @@ public abstract class Operand {
         }
 
     }
+
+    public static class KeyValue {
+        public String Key;
+        public Operand Value;
+    }
+
+    public static class OperandKeyValue extends OperandT<KeyValue> {
+        public OperandKeyValue(KeyValue obj) {
+            super(obj);
+        }
+
+        public OperandType Type() {
+            return OperandType.ARRARYJSON;
+        }
+    }
+
+    public static class OperandKeyValueList extends OperandT<KeyValue> {
+        private final List<KeyValue> TextList = new ArrayList<>();
+
+        public OperandKeyValueList(KeyValue obj) {
+            super(obj);
+        }
+
+        public OperandType Type() {
+            return OperandType.ARRARYJSON;
+        }
+
+        public List<Operand> ArrayValue() {
+            List<Operand> result = new ArrayList<>();
+            for (KeyValue kv : TextList) {
+                result.add(kv.Value);
+            }
+            return result;
+        }
+
+        public Operand ToArray(String errorMessage) {
+            return Create(this.ArrayValue());
+        }
+
+        public void AddValue(KeyValue keyValue) {
+            TextList.add(keyValue);
+        }
+
+        public boolean HasKey(String key) {
+            for (KeyValue item : TextList) {
+                if (item.Key.equals("" + key)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public Operand GetValue(String key) {
+            for (KeyValue item : TextList) {
+                if (item.Key.equals(key)) {
+                    return item.Value;
+                }
+            }
+            return null;
+        }
+
+        public boolean ContainsKey(Operand value) {
+            for (KeyValue item : TextList) {
+                if (item.Key.equals(value.TextValue())) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public boolean ContainsValue(Operand value) {
+            for (KeyValue item : TextList) {
+                Operand op = item.Value;
+                if (value.Type() != op.Type()) {
+                    continue;
+                }
+                if (value.Type() == OperandType.TEXT) {
+                    if (value.TextValue().equals(op.TextValue())) {
+                        return true;
+                    }
+                }
+                if (value.Type() == OperandType.NUMBER) {
+                    if (value.TextValue().equals(op.TextValue())) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public Operand TryGetValueFloor(double key, boolean range_lookup) {
+            Operand value = null;
+            for (KeyValue item : TextList) {
+                try {
+                    double num = Double.parseDouble(item.Key);
+                    double t = Math.round(key - num * 1000000000d) / 1000000000d;
+                    if (t == 0) {
+                        return item.Value;
+                    } else if (range_lookup) {
+                        if (t > 0) {
+                            value = item.Value;
+                        } else if (value != null) {
+                            return value;
+                        }
+                    }
+                } catch (Exception ex) {
+                }
+            }
+            return value;
+        }
+    }
+
 
 }

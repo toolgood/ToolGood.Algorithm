@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
-import toolgood.algorithm.OperandType;
+import toolgood.algorithm.enums.OperandType;
 
 public class AlgorithmEngineTest {
 
@@ -202,14 +202,15 @@ public class AlgorithmEngineTest {
         double t = c.TryEvaluate("[半径]*[半径]*pi()", 0.0); // 圆底面积
 
         double t2 = c.TryEvaluate("半径*半径*pi()", 0.0); // 圆底面积
-        double t3 = c.TryEvaluate("{半径}*{半径}*pi()", 0.0); // 圆底面积
+        // 3.5版本 取消了这种设置
+        //double t3 = c.TryEvaluate("{半径}*{半径}*pi()", 0.0); // 圆底面积
         double t4 = c.TryEvaluate("@半径*@半径*pi()", 0.0); // 圆底面积
         double t5 = c.TryEvaluate("#半径#*#半径#*pi()", 0.0); // 圆底面积
         double t6 = c.TryEvaluate("【半径】*【半径】*pi()", 0.0); // 圆底面积
         double t7 = c.TryEvaluate("【半径】*【半径】*pi（）", 0.0); // 圆底面积
 
         assertEquals(t, t2, 0.001);
-        assertEquals(t, t3, 0.001);
+        //assertEquals(t, t3, 0.001);
         assertEquals(t, t4, 0.001);
         assertEquals(t, t5, 0.001);
         assertEquals(t, t6, 0.001);

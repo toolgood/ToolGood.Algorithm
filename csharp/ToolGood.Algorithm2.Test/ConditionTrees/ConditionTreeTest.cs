@@ -1,4 +1,5 @@
 ﻿using PetaTest;
+using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm2.Test.ConditionTrees

@@ -2,6 +2,7 @@ package toolgood.algorithm.internals;
 
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
+import toolgood.algorithm.enums.ConditionTreeType;
 import toolgood.algorithm.math.mathLexer;
 import toolgood.algorithm.math.mathParser;
 

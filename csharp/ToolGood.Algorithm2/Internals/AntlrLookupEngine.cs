@@ -1,6 +1,6 @@
 ﻿namespace ToolGood.Algorithm.Internals
 {
-  sealed  class AntlrLookupEngine : AlgorithmEngine
+    sealed class AntlrLookupEngine : AlgorithmEngine
     {
         public Operand Json;
 

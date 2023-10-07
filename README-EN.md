@@ -37,6 +37,8 @@ ToolGood.Algorithm is a powerful, lightweight, `Excel formula` compatible algori
     var j = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}').Age", null);//Return 51 返回51
     var k = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}')[Name].Trim()", null);//Return to "William Shakespeare"  返回"William Shakespeare" (不带空格)
     var l = engine.TryEvaluate("json('{\"Name1\":\"William Shakespeare \", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}')['Name'& 1].Trim().substring(2, 3)", null); ;//Return "ill"  返回"ill"
+    var n = engine.TryEvaluate("{Name:\"William Shakespeare\", Age:51, Birthday:\"04/26/1564 00:00:00\"}.Age", null);//Return 51 返回51
+    var m = engine.TryEvaluate("{1,2,3,4,5,6}.has(13)", true);//Return false 返回false
 
 ```
 Constants`pi`, `e`, `true`, `false`are supported.
@@ -51,7 +53,8 @@ Bool to string, false to`FALSE`, true to`TRUE`.
 The default index is`excel index`. If you want to use c# index, please set`UseExcelIndex`to`false`.
 
 
-Chinese symbols are automatically converted to English symbols: `brackets`, `square brackets`, `commas`, `quotation marks`, `double quotation marks`.
+Chinese symbols are automatically converted into English symbols: `brackets`, `commas`, `quotation marks`, `double quotation marks`，`addition`,`subtraction`, `multiplication`, `division` , `equal sign`.
+
 
 Note: Use `&` for string concatenation. 
 
@@ -97,39 +100,12 @@ Note: `find` is an Excel formula , find (the string to be searched, the string t
     c.EvaluateFormula("'圆'-[半径]-高", '-'); // Return: 圆-3-10
     c.GetSimplifiedFormula("半径*if(半径>2, 1+4, 3)"); // Return: 3 * 5
 ```
-Parameters are defined in square brackets, such as `[parameter name]`. 
+Parameter definitions, such as`[parameter name]`, `【parameter name】` , `#parameter name#` , `@parameterName`.
 
 Note: You can also use `AddParameter`, `AddParameterFromJson` to add methods, and use `DiyFunction`+= to customize functions. 
 
 Note 2: use `AlgorithmEngineHelper.GetDiyNames` get `parameter name` and `custom function name`.
 
-
-## Multi formula
-``` csharp
-    ConditionCache multiConditionCache = new ConditionCache();
-    multiConditionCache.LazyLoad = true;
-    multiConditionCache.AddFormula("桌面积", "[圆桌]", "[半径]*[半径]*pi()");
-    multiConditionCache.AddFormula("桌面积", "[方桌]", "[长]*[宽]");
-    multiConditionCache.AddFormula("价格", "[圆桌]&& [半径]<2.5", "[桌面积]*1.3");
-    multiConditionCache.AddFormula("价格", "[圆桌]&& [半径]<5", "[桌面积]*1.5");
-    multiConditionCache.AddFormula("价格", "[圆桌]&& [半径]<7", "[桌面积]*2");
-    multiConditionCache.AddFormula("价格", "[圆桌]", "[桌面积]*2.5");
-    multiConditionCache.AddFormula("价格", "[方桌]&& [长]<1.3", "[桌面积]*1.3+[高]*1.1");
-    multiConditionCache.AddFormula("价格", "[方桌]&& [长]<2", "[桌面积]*1.5+[高]*1.1");
-    multiConditionCache.AddFormula("价格", "[方桌]&& [长]<5", "[桌面积]*2+[高]*1.1");
-    multiConditionCache.AddFormula("价格", "[方桌]&& [长]<7", "[桌面积]*2.5");
-
-    var algoEngine = new ToolGood.Algorithm.AlgorithmEngineEx(multiConditionCache);
-    algoEngine.JumpConditionError = true;
-    algoEngine.AddParameter("方桌", true);
-    algoEngine.AddParameter("长", 3);
-    algoEngine.AddParameter("宽", 1.3);
-    algoEngine.AddParameter("高", 1);
-
-    var p2 = algoEngine.TryEvaluate("价格", 0.0);
-    Assert.AreEqual(3 * 1.3 * 2 + 1 * 1.1, p2, 0.0001);
-```
-See unit testing for more features.
 
 ## Custom parameters
 ``` csharp
@@ -142,6 +118,26 @@ See unit testing for more features.
     Assert.AreEqual("ddd", p5.Functions[0]);
     Assert.AreEqual("d1", p5.Parameters[0]);
 
+```
+
+## Support Unit
+
+Standard units can be set: `DistanceUnit` (default:`m`), `AreaUnit`(default:`m2`), `VolumeUnit`(default:`m3`), `MassUnit`(default:`kg`).
+
+Note: When calculating the formula, first convert the quantity with units into standard units, and then perform numerical calculations.
+
+``` csharp
+    AlgorithmEngine engine = new AlgorithmEngine();
+    bool a = engine.TryEvaluate("1=1m", false); // return true
+    bool b = engine.TryEvaluate("1=1m2", false); // return true
+    bool c = engine.TryEvaluate("1=1m3", false); // return true
+    bool d = engine.TryEvaluate("1=1kg", false); // return true
+
+    // Unit Conversion 单位转化
+    var num = AlgorithmEngineHelper.UnitConversion(1M,"米","千米"); 
+
+    //  Example of not throwing mistakes  不抛错例子
+    bool error = engine.TryEvaluate("1m=1m2", false); // return true
 ```
 
 
@@ -1033,6 +1029,18 @@ Note: The `UseLocalTime` attribute affects the conversion of `DateValue`/`Timest
     </tr>
 	<tr>
         <td>Json ★</td><td>json(text)<br>Dynamic json query.</td> <td></td>
+    </tr>
+    <tr>
+        <td>Error </td><td>Error(text)<br> Proactively throwing error. </td> <td></td>
+    </tr>
+	<tr>
+        <td>HAS ★<br>HASKEY ★<br>CONTAINS ★<br>CONTAINSKEY ★</td><td>HAS(json/array,text)<br>Does the JSON format include a Key<br> Does the array contain values </td> <td></td>
+    </tr>
+	<tr>
+        <td>HASVALUE ★<br>CONTAINSVALUE ★</td><td>HASVALUE(json/array, text)<br>Does the JSON format include a Value<br> Does the array contain values</td> <td></td>
+    </tr>
+	<tr>
+        <td>PARAM<br>PARAMETER<br>GETPARAMETER </td><td>GETPARAMETER(text)<br> Dynamically obtaining parameters </td> <td></td>
     </tr>
 </table>
 

@@ -3,6 +3,8 @@ using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
 using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.math;
 
 namespace ToolGood.Algorithm.Internals
 {
@@ -14,8 +16,9 @@ namespace ToolGood.Algorithm.Internals
         }
         public ConditionTree VisitAndOr_fun(mathParser.AndOr_funContext context)
         {
-            ConditionTree tree = new ConditionTree();
-            tree.Nodes = new List<ConditionTree>();
+            ConditionTree tree = new ConditionTree {
+                Nodes = new List<ConditionTree>()
+            };
             var t = context.op.Text;
             if (CharUtil.Equals(t, "&&", "and")) {
                 tree.Type = ConditionTreeType.And;
@@ -34,10 +37,11 @@ namespace ToolGood.Algorithm.Internals
         }
         public ConditionTree Visit_fun(ParserRuleContext context)
         {
-            ConditionTree tree = new ConditionTree();
-            tree.Start = context.Start.StartIndex;
-            tree.End = context.Stop.StopIndex;
-            tree.ConditionString = context.GetText();
+            ConditionTree tree = new ConditionTree {
+                Start = context.Start.StartIndex,
+                End = context.Stop.StopIndex,
+                ConditionString = context.GetText()
+            };
             return tree;
         }
 
@@ -1132,37 +1136,77 @@ namespace ToolGood.Algorithm.Internals
             return Visit_fun(context);
         }
 
-        public ConditionTree VisitADDMONTHS_fun([NotNull] mathParser.ADDMONTHS_funContext context)
+        public ConditionTree VisitADDMONTHS_fun(mathParser.ADDMONTHS_funContext context)
         {
             return Visit_fun(context);
         }
 
-        public ConditionTree VisitADDYEARS_fun([NotNull] mathParser.ADDYEARS_funContext context)
+        public ConditionTree VisitADDYEARS_fun(mathParser.ADDYEARS_funContext context)
         {
             return Visit_fun(context);
         }
 
-        public ConditionTree VisitADDSECONDS_fun([NotNull] mathParser.ADDSECONDS_funContext context)
+        public ConditionTree VisitADDSECONDS_fun(mathParser.ADDSECONDS_funContext context)
         {
             return Visit_fun(context);
         }
 
-        public ConditionTree VisitADDMINUTES_fun([NotNull] mathParser.ADDMINUTES_funContext context)
+        public ConditionTree VisitADDMINUTES_fun(mathParser.ADDMINUTES_funContext context)
         {
             return Visit_fun(context);
         }
 
-        public ConditionTree VisitADDDAYS_fun([NotNull] mathParser.ADDDAYS_funContext context)
+        public ConditionTree VisitADDDAYS_fun(mathParser.ADDDAYS_funContext context)
         {
             return Visit_fun(context);
         }
 
-        public ConditionTree VisitADDHOURS_fun([NotNull] mathParser.ADDHOURS_funContext context)
+        public ConditionTree VisitADDHOURS_fun(mathParser.ADDHOURS_funContext context)
         {
             return Visit_fun(context);
         }
 
-        public ConditionTree VisitTIMESTAMP_fun([NotNull] mathParser.TIMESTAMP_funContext context)
+        public ConditionTree VisitTIMESTAMP_fun(mathParser.TIMESTAMP_funContext context)
+        {
+            return Visit_fun(context);
+        }
+
+        public ConditionTree VisitPARAM_fun(mathParser.PARAM_funContext context)
+        {
+            return Visit_fun(context);
+        }
+
+        public ConditionTree VisitHAS_fun(mathParser.HAS_funContext context)
+        {
+            return Visit_fun(context);
+        }
+
+        public ConditionTree VisitArrayJson_fun(mathParser.ArrayJson_funContext context)
+        {
+            return Visit_fun(context);
+        }
+
+        public ConditionTree VisitNum(mathParser.NumContext context)
+        {
+            return Visit_fun(context);
+        }
+
+        public ConditionTree VisitUnit(mathParser.UnitContext context)
+        {
+            return Visit_fun(context);
+        }
+
+        public ConditionTree VisitArrayJson(mathParser.ArrayJsonContext context)
+        {
+            return Visit_fun(context);
+        }
+
+        public ConditionTree VisitERROR_fun(mathParser.ERROR_funContext context)
+        {
+            return Visit_fun(context);
+        }
+
+        public ConditionTree VisitHASVALUE_fun(mathParser.HASVALUE_funContext context)
         {
             return Visit_fun(context);
         }

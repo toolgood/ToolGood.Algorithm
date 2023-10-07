@@ -36,7 +36,8 @@ ToolGood.Algorithm是一个功能强大、轻量级、兼容`Excel公式`的算�
     var j = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}').Age", null);//Return 51 返回51
     var k = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}')[Name].Trim()", null);//Return to "William Shakespeare"  返回"William Shakespeare" (不带空格)
     var l = engine.TryEvaluate("json('{\"Name1\":\"William Shakespeare \", \"Age\":51, \"Birthday\":\"04/26/1564 00:00:00\"}')['Name'& 1].Trim().substring(2, 3)", null);//Return "ill"  返回"ill"
-
+    var n = engine.TryEvaluate("{Name:\"William Shakespeare\", Age:51, Birthday:\"04/26/1564 00:00:00\"}.Age", null);//Return 51 返回51
+    var m = engine.TryEvaluate("{1,2,3,4,5,6}.has(13)", true);//Return false 返回false
 ```
 
 支持常量`pi`, `e`, `true`, `false`。
@@ -47,11 +48,9 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
 
 索引默认为`Excel索引`，如果想用c#索引，请设置`UseExcelIndex`为`false`。
 
-中文符号自动转成英文符号：`括号`, `方括号`, `逗号`, `引号`, `双引号`。
-
+中文符号自动转成英文符号：`括号`, `逗号`, `引号`, `双引号`,`加`，`减`，`乘`,`除`,`等号`。
 
 注：字符串拼接使用`&`。
-
 
 注：`find`为Excel公式，find(要查找的字符串, 被查找的字符串[, 开始位置])
 
@@ -96,50 +95,43 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
 
 ```
 
-参数以方括号定义，如 `[参数名]`。 
+参数定义，如 `[参数名]`，`【参数名】`，`#参数名#`，`@参数名`。 
 
 注：还可以使用`AddParameter`、`AddParameterFromJson`添加方法，使用`DiyFunction`+=来自定义函数。
 
 注2：使用 `AlgorithmEngineHelper.GetDiyNames` 获取`参数名`、`自定义方法名`。
-
-## 多公式
-``` csharp
-    ConditionCache multiConditionCache = new ConditionCache();
-    multiConditionCache.LazyLoad = true;
-    multiConditionCache.AddFormula("桌面积", "[圆桌]", "[半径]*[半径]*pi()");
-    multiConditionCache.AddFormula("桌面积", "[方桌]", "[长]*[宽]");
-    multiConditionCache.AddFormula("价格", "[圆桌]&& [半径]<2.5", "[桌面积]*1.3");
-    multiConditionCache.AddFormula("价格", "[圆桌]&& [半径]<5", "[桌面积]*1.5");
-    multiConditionCache.AddFormula("价格", "[圆桌]&& [半径]<7", "[桌面积]*2");
-    multiConditionCache.AddFormula("价格", "[圆桌]", "[桌面积]*2.5");
-    multiConditionCache.AddFormula("价格", "[方桌]&& [长]<1.3", "[桌面积]*1.3+[高]*1.1");
-    multiConditionCache.AddFormula("价格", "[方桌]&& [长]<2", "[桌面积]*1.5+[高]*1.1");
-    multiConditionCache.AddFormula("价格", "[方桌]&& [长]<5", "[桌面积]*2+[高]*1.1");
-    multiConditionCache.AddFormula("价格", "[方桌]&& [长]<7", "[桌面积]*2.5");
-
-    var algoEngine = new ToolGood.Algorithm.AlgorithmEngineEx(multiConditionCache);
-    algoEngine.JumpConditionError = true;
-    algoEngine.AddParameter("方桌", true);
-    algoEngine.AddParameter("长", 3);
-    algoEngine.AddParameter("宽", 1.3);
-    algoEngine.AddParameter("高", 1);
-
-    var p2 = algoEngine.TryEvaluate("价格", 0.0);
-    Assert.AreEqual(3 * 1.3 * 2 + 1 * 1.1, p2, 0.0001);
-```
-更多功能请看一下单元测试。
+ 
 
 ## 自定义参数
 ``` csharp
-    var helper = new ToolGood.Algorithm.AlgorithmEngineHelper();
-    helper.IsKeywords("false"); // return true
-    helper.IsKeywords("true"); // return true
-    helper.IsKeywords("mysql"); // return false
+    AlgorithmEngineHelper.IsKeywords("false"); // return true
+    AlgorithmEngineHelper.IsKeywords("true"); // return true
+    AlgorithmEngineHelper.IsKeywords("mysql"); // return false
 
-    DiyNameInfo p5 = helper.GetDiyNames("ddd(d1, 22)");
+    DiyNameInfo p5 = AlgorithmEngineHelper.GetDiyNames("ddd(d1, 22)");
     Assert.AreEqual("ddd", p5.Functions[0]);
     Assert.AreEqual("d1", p5.Parameters[0]);
 ```
+## 支持单位
+
+可设置标准单位：长度`DistanceUnit`(默认：`m`)、面积`AreaUnit`(默认：`m2`)、体积`VolumeUnit`(默认：`m3`)、重量`MassUnit`(默认：`kg`)。
+
+注：公式计算时，先将带单位的数量转成标准单位，再进行数字计算。
+ 
+``` csharp
+    AlgorithmEngine engine = new AlgorithmEngine();
+    bool a = engine.TryEvaluate("1=1m", false); // return true
+    bool b = engine.TryEvaluate("1=1m2", false); // return true
+    bool c = engine.TryEvaluate("1=1m3", false); // return true
+    bool d = engine.TryEvaluate("1=1kg", false); // return true
+
+    // 单位转化
+    var num = AlgorithmEngineHelper.UnitConversion(1M,"米","千米"); 
+
+    // 不抛错例子
+    bool error = engine.TryEvaluate("1m=1m2", false); // return true
+```
+
 
 ## Excel公式
 
@@ -148,7 +140,6 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
 注：函数名不分大小写, 带方括号的参数可省略, 示例的返回值, 为近似值。
 
 注2：函数名带★，表示第一个参数可以前置，如`(-1).ISTEXT()`
-
 
 注3：函数名带▲，表示受`Excel索引`影响，
 
@@ -1030,6 +1021,18 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
     </tr>
 	<tr>
         <td>Json ★</td><td>json(文本)<br>动态json查询。</td> <td></td>
+    </tr>
+	<tr>
+        <td>Error </td><td>Error(文本)<br>主动抛错。</td> <td></td>
+    </tr>
+	<tr>
+        <td>HAS ★<br>HASKEY ★<br>CONTAINS ★<br>CONTAINSKEY ★</td><td>HAS(json/数组,文本)<br>json格式 是否包含Key<br>数组是否包含值</td> <td></td>
+    </tr>
+	<tr>
+        <td>HASVALUE ★<br>CONTAINSVALUE ★</td><td>HASVALUE(json/数组, 文本)<br>json格式 是否包含Value<br>数组是否包含值</td> <td></td>
+    </tr>
+	<tr>
+        <td>PARAM<br>PARAMETER<br>GETPARAMETER </td><td>GETPARAMETER(文本)<br>动态获取参数</td> <td></td>
     </tr>
 </table>
  

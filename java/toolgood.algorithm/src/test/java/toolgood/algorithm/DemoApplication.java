@@ -1,6 +1,8 @@
 package toolgood.algorithm;
 
 
+import toolgood.algorithm.Tests3.AlgorithmEngineHelperTest;
+
 public class DemoApplication {
 	public static void main(String[] args) throws Exception {
         AlgorithmEngine e=new AlgorithmEngine();
