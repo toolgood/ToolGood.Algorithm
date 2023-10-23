@@ -357,6 +357,12 @@ namespace ToolGood.Algorithm
             Assert.AreEqual(t, 8.0);
             t = engine.TryEvaluate("COUNTIF(array(1,2,3,4,2,2,1,4),'!=1')", 0.0);
             Assert.AreEqual(t, 6.0);
+            t = engine.TryEvaluate("COUNTIF(array(1,2,3,4,2,2,1,4),'=1')", 0.0);
+            Assert.AreEqual(t, 2.0);
+            t = engine.TryEvaluate("COUNTIF(array(1,2,3,4,2,2,1,4),'<=1')", 0.0);
+            Assert.AreEqual(t, 2.0);
+            t = engine.TryEvaluate("COUNTIF(array(1,2,3,4,2,2,1,4),'<2')", 0.0);
+            Assert.AreEqual(t, 2.0);
         }
 
         [Test]
