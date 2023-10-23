@@ -16,7 +16,7 @@
     <RootNamespace>ToolGood.Algorithm</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageReleaseNotes>3.5版本为新版本，与上一版本有一点不兼容，替换后请测试</PackageReleaseNotes>
     <Product>ToolGood.Algorithm</Product>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <SignAssembly>true</SignAssembly>
