@@ -2822,7 +2822,7 @@ namespace ToolGood.Algorithm.Internals
                 } else if (decimal.TryParse(s.AsSpan(1).Trim(), out decimal d)) {
                     return Tuple.Create(">", d);
                 }
-            } else if (c == '<' || c < '＜') {
+            } else if (c == '<' || c == '＜') {
                 if (s.Length > 1 && (s[1] == '=' || s[1] == '＝')) {
                     if (decimal.TryParse(s.AsSpan(2).Trim(), out decimal d)) {
                         return Tuple.Create("<=", d);
