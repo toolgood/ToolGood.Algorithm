@@ -16,37 +16,37 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineHelper2
         public void Test()
         {
             DiyNameInfo p = AlgorithmEngineHelper.GetDiyNames("[dd]");
-            Assert.AreEqual("dd", p.Parameters[0]);
+            Assert.AreEqual("dd", p.Parameters[0].ToString());
             p = AlgorithmEngineHelper.GetDiyNames("@dd");
-            Assert.AreEqual("dd", p.Parameters[0]);
+            Assert.AreEqual("dd", p.Parameters[0].ToString());
             p = AlgorithmEngineHelper.GetDiyNames("#dd#");
-            Assert.AreEqual("dd", p.Parameters[0]);
+            Assert.AreEqual("dd", p.Parameters[0].ToString());
             p = AlgorithmEngineHelper.GetDiyNames("dd");
-            Assert.AreEqual("dd", p.Parameters[0]);
+            Assert.AreEqual("dd", p.Parameters[0].ToString());
 
             // 注，这里的 ddd 是数组内有 ddd
             DiyNameInfo p2 = AlgorithmEngineHelper.GetDiyNames("{ddd}");
-            Assert.AreEqual("ddd", p2.Parameters[0]);
+            Assert.AreEqual("ddd", p2.Parameters[0].ToString());
 
             DiyNameInfo p3 = AlgorithmEngineHelper.GetDiyNames("【dd】");
-            Assert.AreEqual("dd", p3.Parameters[0]);
+            Assert.AreEqual("dd", p3.Parameters[0].ToString());
             p3 = AlgorithmEngineHelper.GetDiyNames("【dd.1】");
-            Assert.AreEqual("dd.1", p3.Parameters[0]);
+            Assert.AreEqual("dd.1", p3.Parameters[0].ToString());
 
             DiyNameInfo p4 = AlgorithmEngineHelper.GetDiyNames("@ddd+2");
-            Assert.AreEqual("ddd", p4.Parameters[0]);
+            Assert.AreEqual("ddd", p4.Parameters[0].ToString());
             p4 = AlgorithmEngineHelper.GetDiyNames("ddd+2");
-            Assert.AreEqual("ddd", p4.Parameters[0]);
+            Assert.AreEqual("ddd", p4.Parameters[0].ToString());
 
             DiyNameInfo p5 = AlgorithmEngineHelper.GetDiyNames("ddd(d1,22)");
             Assert.AreEqual("ddd", p5.Functions[0]);
-            Assert.AreEqual("d1", p5.Parameters[0]);
+            Assert.AreEqual("d1", p5.Parameters[0].ToString());
 
             DiyNameInfo p6 = AlgorithmEngineHelper.GetDiyNames("长");
-            Assert.AreEqual("长", p6.Parameters[0]);
+            Assert.AreEqual("长", p6.Parameters[0].ToString());
 
             DiyNameInfo p7 = AlgorithmEngineHelper.GetDiyNames("#ddd#+2");
-            Assert.AreEqual("ddd", p7.Parameters[0]);
+            Assert.AreEqual("ddd", p7.Parameters[0].ToString());
 
         }
 

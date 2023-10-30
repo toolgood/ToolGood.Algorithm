@@ -16,7 +16,7 @@ namespace ToolGood.Algorithm.Internals
     /// 'BEGIN' if constructor parameter upper=true but getText() would return
     /// 'BeGiN'.
     /// </summary>
-   sealed class AntlrCharStream : ICharStream
+    public sealed class AntlrCharStream : ICharStream
     {
         private ICharStream stream;
 
@@ -29,36 +29,52 @@ namespace ToolGood.Algorithm.Internals
         {
             this.stream = stream;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public int Index {
             get {
                 return stream.Index;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public int Size {
             get {
                 return stream.Size;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public string SourceName {
             get {
                 return stream.SourceName;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public void Consume()
         {
             stream.Consume();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="interval"></param>
+        /// <returns></returns>
         [return: NotNull]
         public string GetText(Interval interval)
         {
             return stream.GetText(interval);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="i"></param>
+        /// <returns></returns>
         public int LA(int i)
         {
             int c = stream.LA(i);
@@ -66,19 +82,28 @@ namespace ToolGood.Algorithm.Internals
             if (c <= 0) {
                 return c;
             }
-            return CharUtil.StandardChar((char)c);  
+            return CharUtil.StandardChar((char)c);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public int Mark()
         {
             return stream.Mark();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="marker"></param>
         public void Release(int marker)
         {
             stream.Release(marker);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
         public void Seek(int index)
         {
             stream.Seek(index);

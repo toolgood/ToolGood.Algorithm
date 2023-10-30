@@ -13,7 +13,7 @@ using ToolGood.Algorithm.MathNet.Numerics;
 
 namespace ToolGood.Algorithm.Internals
 {
-    class MathVisitor : AbstractParseTreeVisitor<Operand>, ImathVisitor<Operand>
+    public class MathVisitor : AbstractParseTreeVisitor<Operand>, ImathVisitor<Operand>
     {
         public event Func<string, Operand> GetParameter;
         public event Func<string, List<Operand>, Operand> DiyFunction;

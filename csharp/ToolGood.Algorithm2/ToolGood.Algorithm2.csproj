@@ -16,11 +16,11 @@
     <RootNamespace>ToolGood.Algorithm</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>3.5版本为新版本，与上一版本有一点不兼容，替换后请测试</PackageReleaseNotes>
+    <PackageReleaseNotes>3.6版本为新版本，与上一版本有一点不兼容，替换后请测试</PackageReleaseNotes>
     <Product>ToolGood.Algorithm</Product>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <SignAssembly>true</SignAssembly>
-    <Version>3.5.0.1</Version>
+    <Version>3.6.0.1</Version>
     <AssemblyOriginatorKeyFile>ToolGood.Algorithm.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\ToolGood.Algorithm.xml</DocumentationFile>

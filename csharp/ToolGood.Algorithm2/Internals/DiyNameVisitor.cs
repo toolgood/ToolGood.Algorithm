@@ -14,25 +14,26 @@ namespace ToolGood.Algorithm.Internals
         {
             ITerminalNode node = context.PARAMETER();
             if (node != null) {
-                diy.Parameters.Add(node.GetText());
+                diy.Parameters.Add(new ParameterInfo(node.GetText(), node.Symbol.StartIndex, node.Symbol.StopIndex));
             }
             node = context.PARAMETER2();
             if (node != null) {
                 string str = node.GetText();
-                if (str.StartsWith("@")) {
-                    diy.Parameters.Add(str.AsSpan(1).ToString());
+                if (str.StartsWith('@')) {
+                    diy.Parameters.Add(new ParameterInfo(str.AsSpan(1).ToString(), node.Symbol.StartIndex, node.Symbol.StopIndex));
+
                 } else if ((str.StartsWith("【") && str.EndsWith("】"))
                     || (str.StartsWith("[") && str.EndsWith("]"))
                     || (str.StartsWith("#") && str.EndsWith("#"))) {
-                    diy.Parameters.Add(str.AsSpan(1, str.Length - 2).ToString());
-
+                    diy.Parameters.Add(new ParameterInfo(str.AsSpan(1, str.Length - 2).ToString(), node.Symbol.StartIndex, node.Symbol.StopIndex));
                 } else {
-                    diy.Parameters.Add(str);
+                    diy.Parameters.Add(new ParameterInfo(str, node.Symbol.StartIndex, node.Symbol.StopIndex));
                 }
             }
 
             return VisitChildren(context);
         }
+
         public object VisitDiyFunction_fun(mathParser.DiyFunction_funContext context)
         {
             diy.Functions.Add(context.PARAMETER().GetText());
