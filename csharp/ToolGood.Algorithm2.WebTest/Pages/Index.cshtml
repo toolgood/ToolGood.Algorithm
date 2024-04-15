@@ -3,30 +3,192 @@
 @{
     Layout = null;
 }
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8" />
 </head>
 <body>
     编译ToolGood.Algorithm.WebAssembly项目，生成文件夹下的wwwroot文件夹中的_framework文件夹中就是生成的WebAssembly和相关文件
     <br />
-     我们运行前端项目. 由于Blazor会生成blat、dll等不被Web服务器默认接受的文件类型，所以请确保在Web服务器上为如下格式的文件配置MimeType：.pdb、.blat、.dat、.dll、.json、.wasm、.woff、.woff2。
-    
- 
+    我们运行前端项目. 由于Blazor会生成blat、dll等不被Web服务器默认接受的文件类型，所以请确保在Web服务器上为如下格式的文件配置MimeType：.gz、.dat、.wasm
+
+
     <pre>
+AreaUnitType = new class {
+        constructor() {
+            this.MM2 = 11;
+            this.CM2 = 12;
+            this.DM2 = 13;
+            this.M2 = 14;
+            this.KM2 = 15;
+        }
+    }();
+    DistanceUnitType = new class {
+        constructor() {
+            this.MM = 1;
+            this.CM = 2;
+            this.DM = 3;
+            this.M = 4;
+            this.KM = 5;
+        }
+    }();
+    MassUnitType = new class {
+        constructor() {
+            this.G = 31;
+            this.KG = 32;
+            this.T = 33;
+        }
+    }();
+    VolumeUnitType = new class {
+        constructor() {
+            this.MM3 = 21;
+            this.CM3 = 22;
+            this.DM3 = 23;
+            this.M3 = 24;
+            this.KM3 = 25;
+        }
+    }();
+    AlgorithmEngine = new class {
+        constructor() {
+            this.UseExcelIndex = true;
+            this.UseTempDict = false;
+            this.UseLocalTime = false;
+            this.DistanceUnit = DistanceUnitType.M;
+            this.AreaUnit = AreaUnitType.M2;
+            this.VolumeUnit = VolumeUnitType.M3;
+            this.MassUnit = MassUnitType.KG;
+            this.IgnoreCase = false;
+        }
+
+        createOption = function () {
+            var data = {
+                UseExcelIndex: this.UseExcelIndex,
+                UseTempDict: this.UseTempDict,
+                UseLocalTime: this.UseLocalTime,
+                DistanceUnit: this.DistanceUnit,
+                AreaUnit: this.AreaUnit,
+                VolumeUnit: this.VolumeUnit,
+                MassUnit: this.MassUnit,
+                IgnoreCase: this.IgnoreCase,
+            }
+            return JSON.stringify(data);
+        }
+
+        TryEvaluateString = async function (exp, def, data) {
+            return await DotNet.invokeMethodAsync('ToolGood.Algorithm.WebAssembly', 'TryEvaluateString', exp, def, data, this.createOption());
+        }
+        TryEvaluateNumber = async function (exp, def, data) {
+            return await DotNet.invokeMethodAsync('ToolGood.Algorithm.WebAssembly', 'TryEvaluateNumber', exp, def, data, this.createOption());
+        }
+        TryEvaluateBool = async function (exp, def, data) {
+            return await DotNet.invokeMethodAsync('ToolGood.Algorithm.WebAssembly', 'TryEvaluateBool', exp, def, data, this.createOption());
+        }
+        TryEvaluateDateTime = async function (exp, def, data) {
+            return await DotNet.invokeMethodAsync('ToolGood.Algorithm.WebAssembly', 'TryEvaluateDateTime', exp, def, data, this.createOption());
+        }
+    }();
+
+
     window.onload = async function () {
         await Blazor.start();
-        constr = await DotNet.invokeMethodAsync('ToolGood.Algorithm.WebAssembly', 'TryEvaluate', '1+1');
-        alert(constr);
+        r = await AlgorithmEngine.TryEvaluateString("'S' & 1", "")
+        alert("'S' & 1 =>" + r);
+        r = await AlgorithmEngine.TryEvaluateNumber("1+2", 0)
+        alert("1+2 =>" + r);
+        r = await AlgorithmEngine.TryEvaluateBool("1=1", false)
+        alert("1=1 =>" + r);
+        r = await AlgorithmEngine.TryEvaluateDateTime("date(2014,1,2)", '2024-01-11')
+        alert('date(2014,1,2) =>' + r);
     };
     </pre>
 </body>
 <script src="_framework/blazor.webassembly.js" autostart="false"></script>
 <script>
+    AreaUnitType = new class {
+        constructor() {
+            this.MM2 = 11;
+            this.CM2 = 12;
+            this.DM2 = 13;
+            this.M2 = 14;
+            this.KM2 = 15;
+        }
+    }();
+    DistanceUnitType = new class {
+        constructor() {
+            this.MM = 1;
+            this.CM = 2;
+            this.DM = 3;
+            this.M = 4;
+            this.KM = 5;
+        }
+    }();
+    MassUnitType = new class {
+        constructor() {
+            this.G = 31;
+            this.KG = 32;
+            this.T = 33;
+        }
+    }();
+    VolumeUnitType = new class {
+        constructor() {
+            this.MM3 = 21;
+            this.CM3 = 22;
+            this.DM3 = 23;
+            this.M3 = 24;
+            this.KM3 = 25;
+        }
+    }();
+    AlgorithmEngine = new class {
+        constructor() {
+            this.UseExcelIndex = true;
+            this.UseTempDict = false;
+            this.UseLocalTime = false;
+            this.DistanceUnit = DistanceUnitType.M;
+            this.AreaUnit = AreaUnitType.M2;
+            this.VolumeUnit = VolumeUnitType.M3;
+            this.MassUnit = MassUnitType.KG;
+            this.IgnoreCase = false;
+        }
+
+        createOption = function () {
+            var data = {
+                UseExcelIndex: this.UseExcelIndex,
+                UseTempDict: this.UseTempDict,
+                UseLocalTime: this.UseLocalTime,
+                DistanceUnit: this.DistanceUnit,
+                AreaUnit: this.AreaUnit,
+                VolumeUnit: this.VolumeUnit,
+                MassUnit: this.MassUnit,
+                IgnoreCase: this.IgnoreCase,
+            }
+            return JSON.stringify(data);
+        }
+
+        TryEvaluateString = async function (exp, def, data) {
+            return await DotNet.invokeMethodAsync('ToolGood.Algorithm.WebAssembly', 'TryEvaluateString', exp, def, data, this.createOption());
+        }
+        TryEvaluateNumber = async function (exp, def, data) {
+            return await DotNet.invokeMethodAsync('ToolGood.Algorithm.WebAssembly', 'TryEvaluateNumber', exp, def, data, this.createOption());
+        }
+        TryEvaluateBool = async function (exp, def, data) {
+            return await DotNet.invokeMethodAsync('ToolGood.Algorithm.WebAssembly', 'TryEvaluateBool', exp, def, data, this.createOption());
+        }
+        TryEvaluateDateTime = async function (exp, def, data) {
+            return await DotNet.invokeMethodAsync('ToolGood.Algorithm.WebAssembly', 'TryEvaluateDateTime', exp, def, data, this.createOption());
+        }
+    }();
+
+
     window.onload = async function () {
         await Blazor.start();
-        constr = await DotNet.invokeMethodAsync('ToolGood.Algorithm.WebAssembly', 'TryEvaluate', '1+1');
-        alert(constr);
+        r = await AlgorithmEngine.TryEvaluateString("'S' & 1", "")
+        alert("'S' & 1 =>" + r);
+        r = await AlgorithmEngine.TryEvaluateNumber("1+2", 0)
+        alert("1+2 =>" + r);
+        r = await AlgorithmEngine.TryEvaluateBool("1=1", false)
+        alert("1=1 =>" + r);
+        r = await AlgorithmEngine.TryEvaluateDateTime("date(2014,1,2)", '2024-01-11')
+        alert('date(2014,1,2) =>' + r);
     };
 </script>
 </html>

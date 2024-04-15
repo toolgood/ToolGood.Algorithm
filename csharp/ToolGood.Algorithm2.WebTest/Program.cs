@@ -18,12 +18,9 @@ namespace ToolGood.Algorithm2.WebTest
                 app.UseExceptionHandler("/Error");
             }
             var provider = new FileExtensionContentTypeProvider();
-            provider.Mappings[".dll"] = "application/octet-stream";//配置添加新的映射关系
             provider.Mappings[".gz"] = "application/octet-stream";
             provider.Mappings[".dat"] = "application/octet-stream";
-            provider.Mappings[".blat"] = "application/octet-stream";
-            provider.Mappings[".pdb"] = "application/octet-stream";
-            provider.Mappings[".wasm"] = "application/octet-stream";
+            provider.Mappings[".wasm"] = "application/wasm";
             app.UseStaticFiles(new StaticFileOptions {
                 ContentTypeProvider = provider,//应用新的映射关系
             });
