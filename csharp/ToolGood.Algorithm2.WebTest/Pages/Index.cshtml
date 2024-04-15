@@ -1,0 +1,32 @@
+﻿@page
+@model IndexModel
+@{
+    Layout = null;
+}
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+</head>
+<body>
+    编译ToolGood.Algorithm.WebAssembly项目，生成文件夹下的wwwroot文件夹中的_framework文件夹中就是生成的WebAssembly和相关文件
+    <br />
+     我们运行前端项目. 由于Blazor会生成blat、dll等不被Web服务器默认接受的文件类型，所以请确保在Web服务器上为如下格式的文件配置MimeType：.pdb、.blat、.dat、.dll、.json、.wasm、.woff、.woff2。
+    
+ 
+    <pre>
+    window.onload = async function () {
+        await Blazor.start();
+        constr = await DotNet.invokeMethodAsync('ToolGood.Algorithm.WebAssembly', 'TryEvaluate', '1+1');
+        alert(constr);
+    };
+    </pre>
+</body>
+<script src="_framework/blazor.webassembly.js" autostart="false"></script>
+<script>
+    window.onload = async function () {
+        await Blazor.start();
+        constr = await DotNet.invokeMethodAsync('ToolGood.Algorithm.WebAssembly', 'TryEvaluate', '1+1');
+        alert(constr);
+    };
+</script>
+</html>
