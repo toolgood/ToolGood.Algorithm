@@ -14,10 +14,10 @@ AlgorithmEngine = class {
         this.MassUnit = MassUnitType.KG;
         this.IgnoreCase = false;
     }
-    TryEvaluateString = function (exp, def, data) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'TryEvaluateString', exp, def, data, JSON.stringify(this)); }
-    TryEvaluateNumber = function (exp, def, data) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'TryEvaluateNumber', exp, def, data, JSON.stringify(this)); }
-    TryEvaluateBool = function (exp, def, data) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'TryEvaluateBool', exp, def, data, JSON.stringify(this)); }
-    TryEvaluateDateTime = function (exp, def, data) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'TryEvaluateDateTime', exp, def, data, JSON.stringify(this)); }
+    TryEvaluateString = function (exp, def, data) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'TryEvaluateString', exp, def, JSON.stringify(data), JSON.stringify(this)); }
+    TryEvaluateNumber = function (exp, def, data) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'TryEvaluateNumber', exp, def, JSON.stringify(data), JSON.stringify(this)); }
+    TryEvaluateBool = function (exp, def, data) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'TryEvaluateBool', exp, def, JSON.stringify(data), JSON.stringify(this)); }
+    TryEvaluateDateTime = function (exp, def, data) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'TryEvaluateDateTime', exp, def, JSON.stringify(data), JSON.stringify(this)); }
 
     TryEvaluate = function (exp, def, data) {
         if (def == null) { return this.TryEvaluateString(exp, def, data); }
@@ -27,8 +27,8 @@ AlgorithmEngine = class {
         return this.TryEvaluateString(exp, def, data);
     }
 
-    GetSimplifiedFormula = function (exp, data) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'GetSimplifiedFormula', exp, data, JSON.stringify(this)); }
-    EvaluateFormula = function (exp, splitChars, data) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'EvaluateFormula', exp, splitChars, data, JSON.stringify(this)); }
+    GetSimplifiedFormula = function (exp, data) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'GetSimplifiedFormula', exp, JSON.stringify(data), JSON.stringify(this)); }
+    EvaluateFormula = function (exp, splitChars, data) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'EvaluateFormula', exp, splitChars, JSON.stringify(data), JSON.stringify(this)); }
 };
 AlgorithmEngineHelper = new class {
     IsKeywords = function (parameter) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'IsKeywords', parameter); }
