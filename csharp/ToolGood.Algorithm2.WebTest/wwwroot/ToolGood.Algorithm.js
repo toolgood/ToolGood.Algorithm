@@ -24,8 +24,17 @@ AlgorithmEngine = class {
         if (typeof def == "number") { return this.TryEvaluateNumber(exp, def, data); }
         if (typeof def == "boolean") { return this.TryEvaluateBool(exp, def, data); }
         if (typeof def == "object" && def instanceof Date) { return this.TryEvaluateDateTime(exp, def, data); }
-
         return this.TryEvaluateString(exp, def, data);
     }
 
+    GetSimplifiedFormula = function (exp, data) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'GetSimplifiedFormula', exp, data, JSON.stringify(this)); }
+    EvaluateFormula = function (exp, splitChars, data) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'EvaluateFormula', exp, splitChars, data, JSON.stringify(this)); }
 };
+AlgorithmEngineHelper = new class {
+    IsKeywords = function (parameter) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'IsKeywords', parameter); }
+    GetDiyNames = function (exp) { return JSON.parse(DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'GetDiyNames', exp)); }
+    UnitConversion = function (src, oldSrcUnit, oldTarUnit, name) { return JSON.parse(DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'UnitConversion', src, oldSrcUnit, oldTarUnit, name)); }
+
+}();
+
+
