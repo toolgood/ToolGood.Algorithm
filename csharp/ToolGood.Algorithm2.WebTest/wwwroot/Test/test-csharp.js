@@ -121,7 +121,11 @@
         await new Promise(resolve => setTimeout(resolve, 300));
 
         var engine = new AlgorithmEngine();
-        var r = engine.TryEvaluate("Guid()", "");
+        engine.UseExcelIndex = false;
+        var dt = engine.TryEvaluate("IndexOf('abcd','cd')", -1);
+        assert.equal(dt, 2);
+        dt = engine.TryEvaluate("LastIndexOf('abcd','cd')", -1);
+        assert.equal(dt, 2);
     });
 
     QUnit.test('Split', async function (assert) {
