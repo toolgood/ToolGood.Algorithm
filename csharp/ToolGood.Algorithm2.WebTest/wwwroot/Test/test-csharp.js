@@ -92,11 +92,11 @@
         await new Promise(resolve => setTimeout(resolve, 300));
 
         var engine = new AlgorithmEngine();
-        var dt = engine.TryEvaluate("Md5('&=我中国人 >||')", null);
-        assert.equal(dt, "2E1CEFBDFA3677725B7856E02D225819"); //不支持Md5
+        //var dt = engine.TryEvaluate("Md5('&=我中国人 >||')", null);
+        //assert.equal(dt, "2E1CEFBDFA3677725B7856E02D225819"); //不支持Md5
    
 
-        dt = engine.TryEvaluate("Md5('&=我中国人 >||','GGG')", null);
+        var  dt = engine.TryEvaluate("Md5('&=我中国人 >||','GGG')", null);
         assert.equal(dt, null);
         dt = engine.TryEvaluate("Sha1('&=我中国人 >||')", null);
         assert.equal(dt, "F2C250C58F3A40DC54B5A47F0F6B1187AD5AC2EE");
@@ -107,8 +107,8 @@
  
         dt = engine.TryEvaluate("Crc32('&=我中国人 >||')", null);
         assert.equal(dt, "60649EFF");
-        dt = engine.TryEvaluate("HmacMd5('&=我中国人 >||','12')", null);
-        assert.equal(dt, "CF3923196E21B1E270FD72B089B092BB"); //不支持HmacMd5
+        //dt = engine.TryEvaluate("HmacMd5('&=我中国人 >||','12')", null);
+        //assert.equal(dt, "CF3923196E21B1E270FD72B089B092BB"); //不支持HmacMd5
  
 
         dt = engine.TryEvaluate("HmacSha1('&=我中国人 >||','12')", null);
