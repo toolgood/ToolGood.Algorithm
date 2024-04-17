@@ -1,7 +1,6 @@
 ﻿namespace ToolGood.Algorithm.WebAssembly
 {
     using Microsoft.JSInterop;
-    using System.Reflection.Metadata;
     using System.Text.Json;
     using ToolGood.Algorithm;
     using ToolGood.Algorithm.Enums;
@@ -20,7 +19,7 @@
             if (option == null) {
                 ae = new AlgorithmEngine();
             } else {
-                var ops = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, object>>(option);
+                var ops = JsonSerializer.Deserialize<Dictionary<string, object>>(option);
                 ae = new AlgorithmEngine(bool.Parse(ops["IgnoreCase"].ToString()));
                 ae.UseExcelIndex = bool.Parse(ops["UseExcelIndex"].ToString());
                 ae.UseTempDict = bool.Parse(ops["UseTempDict"].ToString());
@@ -33,7 +32,23 @@
             if (data != null) {
                 ae.AddParameterFromJson(data);
             }
-            return ae.TryEvaluate(exp, def);
+            try {
+                if (ae.Parse(exp)) {
+                    var obj = ae.Evaluate();
+                    if (obj.IsNull) {
+                        return null;
+                    }
+                    if (obj.IsError) {
+                        return def;
+                    }
+                    if (obj.Type == OperandType.DATE) {
+                        return obj.DateValue.ToString();
+                    }
+                    obj = obj.ToText("It can't be converted to string!");
+                    return obj.TextValue;
+                }
+            } catch { }
+            return def;
         }
 
         [JSInvokable]
@@ -43,7 +58,7 @@
             if (option == null) {
                 ae = new AlgorithmEngine();
             } else {
-                var ops = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, object>>(option);
+                var ops = JsonSerializer.Deserialize<Dictionary<string, object>>(option);
                 ae = new AlgorithmEngine(bool.Parse(ops["IgnoreCase"].ToString()));
                 ae.UseExcelIndex = bool.Parse(ops["UseExcelIndex"].ToString());
                 ae.UseTempDict = bool.Parse(ops["UseTempDict"].ToString());
@@ -66,7 +81,7 @@
             if (option == null) {
                 ae = new AlgorithmEngine();
             } else {
-                var ops = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, object>>(option);
+                var ops = JsonSerializer.Deserialize<Dictionary<string, object>>(option);
                 ae = new AlgorithmEngine(bool.Parse(ops["IgnoreCase"].ToString()));
                 ae.UseExcelIndex = bool.Parse(ops["UseExcelIndex"].ToString());
                 ae.UseTempDict = bool.Parse(ops["UseTempDict"].ToString());
@@ -89,7 +104,7 @@
             if (option == null) {
                 ae = new AlgorithmEngine();
             } else {
-                var ops = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, object>>(option);
+                var ops = JsonSerializer.Deserialize<Dictionary<string, object>>(option);
                 ae = new AlgorithmEngine(bool.Parse(ops["IgnoreCase"].ToString()));
                 ae.UseExcelIndex = bool.Parse(ops["UseExcelIndex"].ToString());
                 ae.UseTempDict = bool.Parse(ops["UseTempDict"].ToString());
@@ -102,7 +117,22 @@
             if (data != null) {
                 ae.AddParameterFromJson(data);
             }
-            return ae.TryEvaluate(exp, def).ToString("yyyy-MM-dd HH:mm:ss");
+            try {
+                if (ae.Parse(exp)) {
+                    var obj = ae.Evaluate();
+                    if (obj.IsNull) {
+                        return null;
+                    }
+                    if (obj.IsError) {
+                        return def.ToString("yyyy-MM-dd HH:mm:ss");
+                    }
+                    if (obj.Type == OperandType.DATE) {
+                        return obj.DateValue.ToString();
+                    }
+                    return obj.DateValue.ToString();
+                }
+            } catch { }
+            return def.ToString("yyyy-MM-dd HH:mm:ss");
         }
         [JSInvokable]
 
@@ -112,7 +142,7 @@
             if (option == null) {
                 ae = new AlgorithmEngine();
             } else {
-                var ops = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, object>>(option);
+                var ops = JsonSerializer.Deserialize<Dictionary<string, object>>(option);
                 ae = new AlgorithmEngine(bool.Parse(ops["IgnoreCase"].ToString()));
                 ae.UseExcelIndex = bool.Parse(ops["UseExcelIndex"].ToString());
                 ae.UseTempDict = bool.Parse(ops["UseTempDict"].ToString());
@@ -130,13 +160,13 @@
 
 
         [JSInvokable]
-        public static string EvaluateFormula(string exp,string splitChars, string data = null, string option = null)
+        public static string EvaluateFormula(string exp, string splitChars, string data = null, string option = null)
         {
             AlgorithmEngine ae;
             if (option == null) {
                 ae = new AlgorithmEngine();
             } else {
-                var ops = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, object>>(option);
+                var ops = JsonSerializer.Deserialize<Dictionary<string, object>>(option);
                 ae = new AlgorithmEngine(bool.Parse(ops["IgnoreCase"].ToString()));
                 ae.UseExcelIndex = bool.Parse(ops["UseExcelIndex"].ToString());
                 ae.UseTempDict = bool.Parse(ops["UseTempDict"].ToString());
@@ -168,7 +198,7 @@
         [JSInvokable]
         public static string UnitConversion(decimal src, string oldSrcUnit, string oldTarUnit, string name = null)
         {
-            Dictionary<string,object> dic = new Dictionary<string,object>();
+            Dictionary<string, object> dic = new Dictionary<string, object>();
             try {
                 var r = AlgorithmEngineHelper.UnitConversion(src, oldSrcUnit, oldTarUnit, name);
                 dic["code"] = 0;

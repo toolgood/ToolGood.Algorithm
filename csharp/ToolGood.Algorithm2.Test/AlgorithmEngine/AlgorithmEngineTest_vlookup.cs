@@ -39,8 +39,21 @@ namespace ToolGood.Algorithm
     {'蓝色':'XL','canBookCount':973,'saleCount':26,'specId':'27402e07efd89afa50733afa94cd6976'},
     {'蓝色':'XXL','canBookCount':985,'saleCount':14,'specId':'358b6c3b52bf711ac8ecfe7513a4f3ad'}
 ]";
+            var json2 = @"{'jsonArray':[
+    {'灰色':'L','canBookCount':905,'saleCount':91,'specId':'43b0e72e98731aed69e1f0cc7d64bf4d'},
+    {'灰色':'XL','canBookCount':929,'saleCount':70,'specId':'893746f5330dc3273d24aa1ac1a9a8b5'},
+    {'灰色':'XXL','canBookCount':942,'saleCount':57,'specId':'42d994cba0210528142a743d4069700f'},
+    {'白色':'L','canBookCount':862,'saleCount':136,'specId':'82114cbd2c10b5e97b01af1510807e2d'},
+    {'白色':'XL','canBookCount':881,'saleCount':118,'specId':'c45d8408137e34adf8e695250c42a2e9'},
+    {'白色':'XXL','canBookCount':917,'saleCount':82,'specId':'df78564262818d6eb0c428a37ab4a251'},
+    {'蓝色':'L','canBookCount':962,'saleCount':35,'specId':'e959b6ab7c355e403a3312c75bd3d5b4','key':null},
+    {'蓝色':'XL','canBookCount':973,'saleCount':26,'specId':'27402e07efd89afa50733afa94cd6976'},
+    {'蓝色':'XXL','canBookCount':985,'saleCount':14,'specId':'358b6c3b52bf711ac8ecfe7513a4f3ad'}
+]}";
+
             AlgorithmEngine engine = new AlgorithmEngine();
-            engine.AddParameter("jsonArray", json);
+            //engine.AddParameter("jsonArray", json);
+            engine.AddParameterFromJson(json2);
             // 第二种方法
             //engine.AddParameter("jsonArray",Operand.CreateJson( json));
 

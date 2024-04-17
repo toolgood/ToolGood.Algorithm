@@ -3489,7 +3489,9 @@ namespace ToolGood.Algorithm.Internals
         }
         public virtual Operand VisitJSON_fun(mathParser.JSON_funContext context)
         {
-            var args1 = context.expr().Accept(this).ToText("Function JSON parameter is error!");
+            var args1 = context.expr().Accept(this);
+            if (args1.Type == OperandType.JSON) { return args1; }
+            args1 = args1.ToText("Function JSON parameter is error!");
             if (args1.IsError) { return args1; }
             var txt = args1.TextValue;
             if ((txt.StartsWith('{') && txt.EndsWith('}')) || (txt.StartsWith('[') && txt.EndsWith(']'))) {
