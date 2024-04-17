@@ -10,6 +10,7 @@
     {
         private static void Main(string[] args)
         {
+            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
         }
 
         [JSInvokable]
