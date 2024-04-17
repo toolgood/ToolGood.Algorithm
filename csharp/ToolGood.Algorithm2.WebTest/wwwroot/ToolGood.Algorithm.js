@@ -14,6 +14,7 @@ AlgorithmEngine = class {
         this.MassUnit = MassUnitType.KG;
         this.IgnoreCase = false;
     }
+    GetErrorMessage = function (exp, def, data) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'GetErrorMessage', exp, def, JSON.stringify(data), JSON.stringify(this)); }
     TryEvaluateString = function (exp, def, data) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'TryEvaluateString', exp, def, JSON.stringify(data), JSON.stringify(this)); }
     TryEvaluateNumber = function (exp, def, data) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'TryEvaluateNumber', exp, def, JSON.stringify(data), JSON.stringify(this)); }
     TryEvaluateBool = function (exp, def, data) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'TryEvaluateBool', exp, def, JSON.stringify(data), JSON.stringify(this)); }

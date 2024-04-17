@@ -119,7 +119,7 @@ QUnit.module('test', function () {
     });
 
     QUnit.test('base_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         engine = new AlgorithmEngine();
         var t = engine.TryEvaluate("1+(3*2+2)/2", 0);
@@ -166,7 +166,7 @@ QUnit.module('test', function () {
     });
 
     QUnit.test('base_test3', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         engine = new AlgorithmEngine();
 
@@ -181,7 +181,7 @@ QUnit.module('test', function () {
     });
 
     QUnit.test('base_test4', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         engine = new AlgorithmEngine();
 
@@ -190,7 +190,7 @@ QUnit.module('test', function () {
     });
 
     QUnit.test('base_test5', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         engine = new AlgorithmEngine();
 
@@ -199,7 +199,7 @@ QUnit.module('test', function () {
     });
 
     QUnit.test('Cylinder_Test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         c = new AlgorithmEngine();
         var data = { '半径': 3, '直径': 6, '高': 10 };
@@ -242,7 +242,7 @@ QUnit.module('test', function () {
 
 
     QUnit.test('Test5555', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         engine = new AlgorithmEngine();
         var data = { '半径': 3, '直径': 6, '高': 10 };

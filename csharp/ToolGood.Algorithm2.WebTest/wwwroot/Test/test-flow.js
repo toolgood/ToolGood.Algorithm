@@ -1,6 +1,6 @@
 ﻿QUnit.module('test-flow', function () {
     QUnit.test('If_Test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var t = engine.TryEvaluate("if(1=1,1,2)", 0);
         assert.equal(1, t);
@@ -19,7 +19,7 @@
         assert.equal(2, t);
     });
     QUnit.test('iferror_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var t = engine.TryEvaluate("iferror(1/0,1,2)", 0);
         assert.equal(1, t);
@@ -28,7 +28,7 @@
         assert.equal(1, t);
     });
     QUnit.test('iferror_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var t = engine.TryEvaluate("iserror(1/0,1)", 0);
         assert.equal(1, t);
@@ -37,7 +37,7 @@
         assert.equal(1, t);
     });
     QUnit.test('ifnull_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var engine = new AlgorithmEngine();
         var t = engine.TryEvaluate("isnull(null,1)", 0);
@@ -47,7 +47,7 @@
         assert.equal(1, t);
     });
     QUnit.test('isnullorerror_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var t = engine.TryEvaluate("isnullorerror(null,1)", 0);
         assert.equal(1, t);
@@ -59,7 +59,7 @@
         assert.equal(1, t);
     });
     QUnit.test('ISNUMBER_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var t = engine.TryEvaluate("if(ISNUMBER(1),1,2)", 0);
         assert.equal(1, t);
@@ -73,7 +73,7 @@
         assert.equal(2, t);
     });
     QUnit.test('ISTEXT_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var t = engine.TryEvaluate("if(ISTEXT(1),1,2)", 0);
         assert.equal(2, t);
@@ -88,7 +88,7 @@
     });
 
     QUnit.test('ISNONTEXT_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var t = engine.TryEvaluate("if(ISNONTEXT(1),1,2)", 0);
         assert.equal(1, t);
@@ -103,7 +103,7 @@
     });
 
     QUnit.test('ISLOGICAL_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var t = engine.TryEvaluate("if(ISLOGICAL(1),1,2)", 0);
         assert.equal(2, t);
@@ -120,7 +120,7 @@
     });
 
     QUnit.test('ISEVEN_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var t = engine.TryEvaluate("if(ISEVEN(1),1,2)", 0);
         assert.equal(2, t);
@@ -133,7 +133,7 @@
     });
 
     QUnit.test('ISODD_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var t = engine.TryEvaluate("if(ISODD(1),1,2)", 0);
         assert.equal(1, t);
@@ -145,7 +145,7 @@
         assert.equal(2, t);
     });
     QUnit.test('And_Test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var t = engine.TryEvaluate("and(true(),1=1)", false);
         assert.equal(true, t);
@@ -161,7 +161,7 @@
         assert.equal(false, t);
     });
     QUnit.test('Or_Test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var t = engine.TryEvaluate("or(true(),1=1)", false);
         assert.equal(true, t);
@@ -180,7 +180,7 @@
         assert.equal(false, t);
     });
     QUnit.test('Not_Test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var t = engine.TryEvaluate("not(true())", true);
         assert.equal(false, t);
@@ -188,19 +188,19 @@
         assert.equal(true, t);
     });
     QUnit.test('true_Test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var t = engine.TryEvaluate("true()", false);
         assert.equal(true, t);
     });
     QUnit.test('false_Test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var t = engine.TryEvaluate("false()", true);
         assert.equal(false, t);
     });
     QUnit.test('andor_Test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var t = engine.TryEvaluate("1=1 && 2==2 and 3=3", false);
         assert.equal(true, t);

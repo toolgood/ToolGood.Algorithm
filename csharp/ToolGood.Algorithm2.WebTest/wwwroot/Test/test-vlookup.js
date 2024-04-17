@@ -1,6 +1,6 @@
 ﻿QUnit.module('test-vlookup', function () {
     QUnit.test('vlookup_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var num = engine.TryEvaluate("vlookup(array(array(1,2,3),array(2,3,4),array(3,4,5),array(4,5,6)),3,2)", 0);
         assert.equal(num, 4);
@@ -15,7 +15,7 @@
         assert.equal(num, 4);
     });
     QUnit.test('lookup_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var json = {
             'jsonArray': [
                 { '灰色': 'L', 'canBookCount': 905, 'saleCount': 91, 'specId': '43b0e72e98731aed69e1f0cc7d64bf4d' },

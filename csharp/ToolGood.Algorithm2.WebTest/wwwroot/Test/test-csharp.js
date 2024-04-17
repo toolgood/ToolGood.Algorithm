@@ -1,12 +1,12 @@
 ﻿QUnit.module('test-csharp', function () {
     QUnit.test('UrlDecode', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("UrlDecode('%26%3d%e6%88%91%e4%b8%ad%e5%9b%bd%e4%ba%ba+%3e%7c%7c')", null);
         assert.equal(dt, "&=我中国人 >||");
     });
     QUnit.test('UrlEncode', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("UrlEncode('&=我中国人 >||')", null);
         assert.equal(dt, "%26%3d%e6%88%91%e4%b8%ad%e5%9b%bd%e4%ba%ba+%3e%7c%7c");
@@ -23,7 +23,7 @@
     });
 
     QUnit.test('TextToBase64', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         var engine = new AlgorithmEngine();
         var r = engine.TryEvaluate("TextToBase64('&=我中国人 >||')", "");
@@ -34,7 +34,7 @@
     });
 
     QUnit.test('TextToBase64Url', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         var engine = new AlgorithmEngine();
         var r = engine.TryEvaluate("TextToBase64Url('&=我中国人 >||')", null);
@@ -44,7 +44,7 @@
         assert.equal(r, "Jj3O0tbQufrIyyA-fHw");
     });
     QUnit.test('Base64ToText', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         var engine = new AlgorithmEngine();
         var r = engine.TryEvaluate("Base64ToText('Jj3miJHkuK3lm73kurogPnx8')", null);
@@ -54,7 +54,7 @@
         assert.equal(r, "&=我中国人 >||");
     });
     QUnit.test('Base64UrlToText', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         var engine = new AlgorithmEngine();
         var r = engine.TryEvaluate("Base64UrlToText('Jj3miJHkuK3lm73kurogPnx8')", null);
@@ -64,7 +64,7 @@
         assert.equal(r, "&=我中国人 >||");
     });
     QUnit.test('Regex_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         var engine = new AlgorithmEngine();
         engine.UseExcelIndex = false;
@@ -72,7 +72,7 @@
         assert.equal(r, "abc");
     });
     QUnit.test('IsRegex_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         var engine = new AlgorithmEngine();
         var r = engine.TryEvaluate("IsRegex('abcd','a.*c')", false);
@@ -81,7 +81,7 @@
         assert.equal(r, false);
     });
     QUnit.test('Guid', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         var engine = new AlgorithmEngine();
         var r = engine.TryEvaluate("Guid()", "");
@@ -93,7 +93,9 @@
 
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("Md5('&=我中国人 >||')", null);
-        assert.equal(dt, "2E1CEFBDFA3677725B7856E02D225819");
+        assert.equal(dt, "2E1CEFBDFA3677725B7856E02D225819"); //不支持Md5
+   
+
         dt = engine.TryEvaluate("Md5('&=我中国人 >||','GGG')", null);
         assert.equal(dt, null);
         dt = engine.TryEvaluate("Sha1('&=我中国人 >||')", null);
@@ -102,14 +104,13 @@
         assert.equal(dt, "FA5BF04D13AEF750D62040E492479A16B6B10888D0B19923A1E7B9339990632A");
         dt = engine.TryEvaluate("Sha512('&=我中国人 >||')", null);
         assert.equal(dt, "FFEAC98C39D76CD86A3AB8ECEF16BE23166F68E1A3C5C9809A8AD2CE417170465286E4CF6FFA17924613CD7477533B9109A5DD504A2462F9DB693D56AD365C14");
-        //dt = engine.TryEvaluate("Crc8('&=我中国人 >||')", null);
-        //assert.equal(dt, "8F");
-        //dt = engine.TryEvaluate("Crc16('&=我中国人 >||')", null);
-        //assert.equal(dt, "DA5A0000");
+ 
         dt = engine.TryEvaluate("Crc32('&=我中国人 >||')", null);
         assert.equal(dt, "60649EFF");
         dt = engine.TryEvaluate("HmacMd5('&=我中国人 >||','12')", null);
-        assert.equal(dt, "CF3923196E21B1E270FD72B089B092BB");
+        assert.equal(dt, "CF3923196E21B1E270FD72B089B092BB"); //不支持HmacMd5
+ 
+
         dt = engine.TryEvaluate("HmacSha1('&=我中国人 >||','12')", null);
         assert.equal(dt, "EB4D4FC2AA5637060FD12004DF845801D8902105");
         dt = engine.TryEvaluate("HmacSha256('&=我中国人 >||','12')", null);
@@ -118,7 +119,7 @@
         assert.equal(dt, "4E9CE785C46569965C7C712A841EC7382C64D918D49F992EDB3504BED9C3A5EFBB1C8F712968F6B904417E07F9D72E707FCF148D55A4D3EDF1A9866B7BAC2049");
     });
     QUnit.test('IndexOf', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         var engine = new AlgorithmEngine();
         engine.UseExcelIndex = false;
@@ -129,7 +130,7 @@
     });
 
     QUnit.test('Split', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("Split('1,2,3,4',',')[3]", null);
@@ -137,7 +138,7 @@
     });
 
     QUnit.test('TrimStart', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("TrimStart(' 123 ')", null);
@@ -148,7 +149,7 @@
     });
 
     QUnit.test('TrimEnd', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("TrimEnd(' 123 ')", null);
@@ -159,7 +160,7 @@
     });
 
     QUnit.test('Join', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("Join(',',1,2,5,6)", null);
@@ -169,14 +170,14 @@
     });
 
     QUnit.test('Substring', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("Substring('123456789',1,2)", null);
         assert.equal(dt, "12");
     });
     QUnit.test('StartsWith', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("StartsWith('123456789','12')", false);
@@ -185,7 +186,7 @@
         assert.equal(dt, false);
     });
     QUnit.test('EndsWith', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("EndsWith('123456789','89')", false);
@@ -194,7 +195,7 @@
         assert.equal(dt, false);
     });
     QUnit.test('IsNullOrEmpty', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("IsNullOrEmpty('')", false);
@@ -203,7 +204,7 @@
         assert.equal(dt, false);
     });
     QUnit.test('IsNullOrWhiteSpace', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("IsNullOrWhiteSpace('')", false);
@@ -214,7 +215,7 @@
         assert.equal(dt, false);
     });
     QUnit.test('RemoveStart', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("RemoveStart('123456789','12')", null);
@@ -223,7 +224,7 @@
         assert.equal(dt, "123456789");
     });
     QUnit.test('RemoveEnd', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("RemoveEnd('123456789','89')", null);
@@ -232,7 +233,7 @@
         assert.equal(dt, "123456789");
     });
     QUnit.test('Json', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Age", null);

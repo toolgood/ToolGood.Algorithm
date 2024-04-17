@@ -10,8 +10,10 @@
 <body>
     编译ToolGood.Algorithm.WebAssembly项目，生成文件夹下的wwwroot文件夹中的_framework文件夹中就是生成的WebAssembly和相关文件
     <br />
-    我们运行前端项目. 由于Blazor会生成blat、dll等不被Web服务器默认接受的文件类型，所以请确保在Web服务器上为如下格式的文件配置MimeType：.gz、.dat、.wasm
+    我们运行前端项目. 由于Blazor会生成dat、dll等不被Web服务器默认接受的文件类型，所以请确保在Web服务器上为如下格式的文件配置MimeType：.gz、.dat、.wasm
 
+    <br />
+    不支持Md5、HmacMd5 两个公式
 
     <pre>
     DistanceUnitType = new class { constructor() { this.MM = 1; this.CM = 2; this.DM = 3; this.M = 4; this.KM = 5; } }();

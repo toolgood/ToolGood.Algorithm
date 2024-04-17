@@ -18,7 +18,7 @@
 }
 QUnit.module('test-datetime', function () {
     QUnit.test('DATEVALUE_Test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("DATEVALUE('2016-01-01')",new Date());
@@ -57,7 +57,7 @@ QUnit.module('test-datetime', function () {
 
 
     QUnit.test('TIMESTAMP_Test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         var engine = new AlgorithmEngine();
         engine.UseLocalTime = true;
@@ -74,7 +74,7 @@ QUnit.module('test-datetime', function () {
     });
 
     QUnit.test('TIMEVALUE_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("TIMEVALUE('12:12:12')", "");
@@ -82,7 +82,7 @@ QUnit.module('test-datetime', function () {
     });
 
     QUnit.test('DATE_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("DATE(2016,1,1)", new Date());
@@ -90,7 +90,7 @@ QUnit.module('test-datetime', function () {
     });
 
     QUnit.test('time_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("time(11,12,13)", "");
@@ -99,7 +99,7 @@ QUnit.module('test-datetime', function () {
     });
 
     QUnit.test('Now_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("now()", new Date());
@@ -107,56 +107,56 @@ QUnit.module('test-datetime', function () {
     });
 
     QUnit.test('Today_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("Today()", new Date());
         assert.equal(new Date(dt).format('yyyy-MM-dd hh:mm:ss'), new Date().format('yyyy-MM-dd 00:00:00'));
     });
 
     QUnit.test('year_Test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("year(now())", 0);
         assert.equal(dt, new Date().getFullYear());
     });
 
     QUnit.test('Month_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("Month(now())", 0);
         assert.equal(dt, new Date().getMonth()+1);
     });
 
     QUnit.test('Day_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("Day(now())", 0);
         assert.equal(dt, new Date().getDate());
     });
 
     QUnit.test('Hour_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("Hour(now())", 0);
         assert.equal(dt, new Date().getHours());
     });
 
     QUnit.test('Minute_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("Minute(now())", 0);
         assert.equal(dt, new Date().getMinutes());
     });
 
     QUnit.test('Second_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("Second(now())", 0);
         assert.equal(dt, new Date().getSeconds());
     });
 
     QUnit.test('WEEKDAY_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("WEEKDAY(date(2017,1,7))", 0);
@@ -184,7 +184,7 @@ QUnit.module('test-datetime', function () {
     });
 
     QUnit.test('DATEDIF_Test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("DATEDIF('1975-1-30','2017-1-7','y')", 0);
         assert.equal(dt, 41);
@@ -206,37 +206,37 @@ QUnit.module('test-datetime', function () {
         assert.equal(dt, 8);
     });
     QUnit.test('DAYS360_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("DAYS360('1975-1-30','2017-1-7')", 0);
         assert.equal(dt, 15097);
     });
     QUnit.test('EDATE_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("EDATE(\"2012-1-31\",32)", new Date());
         assert.equal(dt, "2014-09-30 00:00:00");
     });
     QUnit.test('EOMONTH_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("EOMONTH(\"2012-2-1\",32)", new Date());
         assert.equal(dt, "2014-10-31 00:00:00");
     });
     QUnit.test('NETWORKDAYS_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("NETWORKDAYS(\"2012-1-1\",\"2013-1-1\")", 0);
         assert.equal(dt, 262);
     });
     QUnit.test('WORKDAY_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("WORKDAY(\"2012-1-2\",145)", new Date());
         assert.equal(dt, "2012-07-23 00:00:00");
     });
     QUnit.test('WEEKNUM_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("WEEKNUM(\"2016-1-3\")", 0);
         assert.equal(dt, 2);
@@ -251,7 +251,7 @@ QUnit.module('test-datetime', function () {
         assert.equal(dt, 1);
     });
     QUnit.test('Add_test', async function (assert) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 250));
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("'2000-02-01'.addYears(1).year()", 0);
         assert.equal(dt, 2001);
