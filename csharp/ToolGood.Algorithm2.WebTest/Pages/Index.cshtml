@@ -18,7 +18,7 @@
     AreaUnitType = new class { constructor() { this.MM2 = 11; this.CM2 = 12; this.DM2 = 13; this.M2 = 14; this.KM2 = 15; } }();
     VolumeUnitType = new class { constructor() { this.MM3 = 21; this.CM3 = 22; this.DM3 = 23; this.M3 = 24; this.KM3 = 25; } }();
     MassUnitType = new class { constructor() { this.G = 31; this.KG = 32; this.T = 33; } }();
-    AlgorithmEngine = new class {
+    AlgorithmEngine = class {
         constructor() {
             this.UseExcelIndex = true;
             this.UseTempDict = false;
@@ -33,17 +33,25 @@
         TryEvaluateNumber = function (exp, def, data) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'TryEvaluateNumber', exp, def, data, JSON.stringify(this)); }
         TryEvaluateBool = function (exp, def, data) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'TryEvaluateBool', exp, def, data, JSON.stringify(this)); }
         TryEvaluateDateTime = function (exp, def, data) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'TryEvaluateDateTime', exp, def, data, JSON.stringify(this)); }
-    }();
+        TryEvaluate = function (exp, def, data) {
+            if (def == null) { return this.TryEvaluateString(exp, def, data); }
+            if (typeof def == "number") { return this.TryEvaluateNumber(exp, def, data); }
+            if (typeof def == "boolean") { return this.TryEvaluateBool(exp, def, data); }
+            if (typeof def == "object" && def instanceof Date) { return this.TryEvaluateDateTime(exp, def, data); }
+            return this.TryEvaluateString(exp, def, data);
+        }
+    };
 
     window.onload = async function () {
         await Blazor.start();
-        r = AlgorithmEngine.TryEvaluateString("'S' & 1", "")
+        var ae = new AlgorithmEngine();
+        r = ae.TryEvaluate("'S' & 1", "")
         alert("'S' & 1 =>" + r);
-        r = AlgorithmEngine.TryEvaluateNumber("1+2", 0)
+        r = ae.TryEvaluate("1+2", 0)
         alert("1+2 =>" + r);
-        r = AlgorithmEngine.TryEvaluateBool("1=1", false)
+        r = ae.TryEvaluate("1=1", false)
         alert("1=1 =>" + r);
-        r = AlgorithmEngine.TryEvaluateDateTime("date(2014,1,2)", '2024-01-11')
+        r = ae.TryEvaluate("date(2014,1,2)", new Date())
         alert('date(2014,1,2) =>' + r);
     };
     </pre>
@@ -54,7 +62,7 @@
     AreaUnitType = new class { constructor() { this.MM2 = 11; this.CM2 = 12; this.DM2 = 13; this.M2 = 14; this.KM2 = 15; } }();
     VolumeUnitType = new class { constructor() { this.MM3 = 21; this.CM3 = 22; this.DM3 = 23; this.M3 = 24; this.KM3 = 25; } }();
     MassUnitType = new class { constructor() { this.G = 31; this.KG = 32; this.T = 33; } }();
-    AlgorithmEngine = new class {
+    AlgorithmEngine = class {
         constructor() {
             this.UseExcelIndex = true;
             this.UseTempDict = false;
@@ -69,17 +77,25 @@
         TryEvaluateNumber = function (exp, def, data) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'TryEvaluateNumber', exp, def, data, JSON.stringify(this)); }
         TryEvaluateBool = function (exp, def, data) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'TryEvaluateBool', exp, def, data, JSON.stringify(this)); }
         TryEvaluateDateTime = function (exp, def, data) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'TryEvaluateDateTime', exp, def, data, JSON.stringify(this)); }
-    }();
+        TryEvaluate = function (exp, def, data) {
+            if (def == null) { return this.TryEvaluateString(exp, def, data); }
+            if (typeof def == "number") { return this.TryEvaluateNumber(exp, def, data); }
+            if (typeof def == "boolean") { return this.TryEvaluateBool(exp, def, data); }
+            if (typeof def == "object" && def instanceof Date) { return this.TryEvaluateDateTime(exp, def, data); }
+            return this.TryEvaluateString(exp, def, data);
+        }
+    };
 
     window.onload = async function () {
         await Blazor.start();
-        r = AlgorithmEngine.TryEvaluateString("'S' & 1", "")
+        var ae = new AlgorithmEngine();
+        r = ae.TryEvaluate("'S' & 1", "")
         alert("'S' & 1 =>" + r);
-        r = AlgorithmEngine.TryEvaluateNumber("1+2", 0)
+        r = ae.TryEvaluate("1+2", 0)
         alert("1+2 =>" + r);
-        r = AlgorithmEngine.TryEvaluateBool("1=1", false)
+        r = ae.TryEvaluate("1=1", false)
         alert("1=1 =>" + r);
-        r = AlgorithmEngine.TryEvaluateDateTime("date(2014,1,2)", '2024-01-11')
+        r = ae.TryEvaluate("date(2014,1,2)", new Date())
         alert('date(2014,1,2) =>' + r);
     };
 </script>
