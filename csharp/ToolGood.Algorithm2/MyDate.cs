@@ -189,7 +189,7 @@ namespace ToolGood.Algorithm
         public override string ToString()
         {
             StringBuilder stringBuffer = new StringBuilder();
-            if (Year != null) {
+            if (Year != null && Year > 0) {
                 stringBuffer.Append(Year);
                 stringBuffer.Append('-');
                 stringBuffer.Append(Month.Value.ToString("D2"));
@@ -207,7 +207,7 @@ namespace ToolGood.Algorithm
                     }
                 }
             } else {
-                if (Day != null) {
+                if (Day != null && Day > 0) {
                     stringBuffer.Append(Day);
                     stringBuffer.Append(' ');
                 }
@@ -225,8 +225,8 @@ namespace ToolGood.Algorithm
 
         internal string ToString(string f)
         {
-            if (Year == null) {
-                return ((DateTime)this).ToString(f);
+            if (Year == null || Year == 0) {
+                return this.ToString(f);
             }
             return ((DateTime)this).ToString(f);
         }

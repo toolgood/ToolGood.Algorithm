@@ -236,7 +236,7 @@
 
         var engine = new AlgorithmEngine();
         var dt = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Age", null);
-        assert.equal(dt.ToString(), "51");
+        assert.equal(dt, "51");
         dt = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')[Birthday]", null);
         assert.equal(dt, "04/26/1564 00:00:00");
 
