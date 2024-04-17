@@ -80,7 +80,7 @@
         }
 
         [JSInvokable]
-        public static DateTime TryEvaluateDateTime(string exp, DateTime def, string data = null, string option = null)
+        public static string TryEvaluateDateTime(string exp, DateTime def, string data = null, string option = null)
         {
             AlgorithmEngine ae;
             if (option == null) {
@@ -99,7 +99,7 @@
             if (data != null) {
                 ae.AddParameterFromJson(data);
             }
-            return ae.TryEvaluate(exp, def);
+            return ae.TryEvaluate(exp, def).ToString("yyyy-MM-dd HH:mm:ss");
         }
 
 

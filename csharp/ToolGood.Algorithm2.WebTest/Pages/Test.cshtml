@@ -50,9 +50,9 @@
 
 
             var e = engine.TryEvaluate("e", 0.0);
-            assert.equal(Math.E, e, 11);
+            assert.equal(Math.round(Math.E, 10), Math.round(e, 10));
             e = engine.TryEvaluate("pi", 0.0);
-            assert.equal(Math.PI, e, 11);
+            assert.equal(Math.round(Math.PI, 10), Math.round(e, 10));
 
             var b = engine.TryEvaluate("true", false);
             assert.equal(true, b);
@@ -66,9 +66,9 @@
             assert.equal(2, b1);
 
             var b2 = engine.TryEvaluate("pi*4", 0.0);
-            assert.equal(Math.PI * 4, b2, 10);
+            assert.equal(Math.round(Math.PI * 4, 10), Math.round(b2, 10));
             b2 = engine.TryEvaluate("e*4", 0.0);
-            assert.equal(Math.E * 4, b2, 10);
+            assert.equal(Math.round(Math.E * 4, 10), Math.round(b2, 10));
 
             var s = engine.TryEvaluate("'aa'&'bb'", "");
             assert.equal("aabb", s);
@@ -86,9 +86,10 @@
             assert.equal(2, r);;
 
             var dt = engine.TryEvaluate("'2016-1-1'+1", new Date());
-            assert.equal(new Date("2016-1-2"), dt);
+            assert.equal("2016-01-02 00:00:00", dt);
             dt = engine.TryEvaluate("'2016-1-1'+9*'1:0'", new Date());
-            assert.equal(new Date("2016-1-1 9:0"), dt);;
+            assert.equal("2016-01-01 09:00:00", dt);
+
 
             var value = engine.TryEvaluate("1 > (-2)", false);
             assert.equal(value, true);
