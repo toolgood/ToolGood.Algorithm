@@ -1,0 +1,151 @@
+﻿@page
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QUnit Test Suite</title>
+    <script src="_framework/blazor.webassembly.js" autostart="false"></script>
+    <script src="/toolgood.algorithm.js"></script>
+    <link href="/qunit/qunit.css" rel="stylesheet" />
+</head>
+<body>
+    <h1 id="qunit-header">QUnit Test Suite</h1>
+    <h2 id="qunit-banner"></h2>
+    <div id="qunit-testrunner-toolbar"></div>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests"></ol>
+</body>
+<script src="/qunit/qunit.js"></script>
+<script>
+
+    QUnit.module('test', function () {
+        QUnit.test('Test', async function (assert) {
+            await new Promise(resolve => setTimeout(resolve, 300));
+
+            engine = new AlgorithmEngine();
+
+            var c = engine.TryEvaluate("2+3", 0);
+            assert.equal(5, c);
+            c = engine.TryEvaluate("(2)+3", 0);
+            assert.equal(5, c);
+            c = engine.TryEvaluate("2+3*2+10/2*4", 0);
+            assert.equal(28, c);
+
+            c = engine.TryEvaluate("if(2+3*2+10/2*4,1", 0);
+            assert.equal(0, c);
+
+            c = engine.TryEvaluate("2.1e3 + 10", 0);
+            assert.equal(2110, c);
+
+            c = engine.TryEvaluate("2.1e+03 + 10", 0);
+            assert.equal(2110, c);
+
+            c = engine.TryEvaluate("2.1e+3 + 10", 0);
+            assert.equal(2110, c);
+
+            var d = engine.TryEvaluate("2.1e-3 + 10", 0.0);
+            assert.equal(10.0021, d);
+
+
+            var e = engine.TryEvaluate("e", 0.0);
+            assert.equal(Math.E, e, 11);
+            e = engine.TryEvaluate("pi", 0.0);
+            assert.equal(Math.PI, e, 11);
+
+            var b = engine.TryEvaluate("true", false);
+            assert.equal(true, b);
+            b = engine.TryEvaluate("false", true);
+            assert.equal(false, b);
+
+            var b1 = engine.TryEvaluate("if(true,1,2)", 0);
+            assert.equal(1, b1);
+
+            b1 = engine.TryEvaluate("if(false,1,2)", 0);
+            assert.equal(2, b1);
+
+            var b2 = engine.TryEvaluate("pi*4", 0.0);
+            assert.equal(Math.PI * 4, b2, 10);
+            b2 = engine.TryEvaluate("e*4", 0.0);
+            assert.equal(Math.E * 4, b2, 10);
+
+            var s = engine.TryEvaluate("'aa'&'bb'", "");
+            assert.equal("aabb", s);
+
+            s = engine.TryEvaluate("'3'+2", "");
+            assert.equal("5", s);
+
+            var r = engine.TryEvaluate("count(Array(1,2,3,4))", 0);
+            assert.equal(4, r);
+
+
+            r = engine.TryEvaluate("(1=1)*9+2", 0);
+            assert.equal(11, r);;
+            r = engine.TryEvaluate("(1=2)*9+2", 0);
+            assert.equal(2, r);;
+
+            var dt = engine.TryEvaluate("'2016-1-1'+1", new Date());
+            assert.equal(new Date("2016-1-2"), dt);
+            dt = engine.TryEvaluate("'2016-1-1'+9*'1:0'", new Date());
+            assert.equal(new Date("2016-1-1 9:0"), dt);;
+
+            var value = engine.TryEvaluate("1 > (-2)", false);
+            assert.equal(value, true);
+
+
+            value = engine.TryEvaluate("(-1) > (-2）", false);
+            assert.equal(value, true);
+
+
+            value = engine.TryEvaluate("-1 > (-2)", false);
+            assert.equal(value, true);
+
+            value = engine.TryEvaluate("-1 > -2", false);
+            assert.equal(value, true);
+
+            var value2 = engine.TryEvaluate("-1 > -2", false);
+            assert.equal(value2, true);
+
+
+            var value3 = engine.TryEvaluate("-7 < -2", false);
+            assert.equal(value3, true);
+
+            var t1 = engine.TryEvaluate("-7 < -2 ?1 : 2", 0);
+            assert.equal(t1, 1);
+            t1 = engine.TryEvaluate("-7 < -2 ?1 ： 2", 0);
+            assert.equal(t1, 1);
+
+            t1 = engine.TryEvaluate("-7 < -2 ?1 ：2", 0);
+            assert.equal(t1, 1);
+            t1 = engine.TryEvaluate("-7 < -2 ？ 1 : 2", 0);
+            assert.equal(t1, 1);
+            t1 = engine.TryEvaluate("-7 < -2 ？1 : 2", 0);
+            assert.equal(t1, 1);
+
+            t1 = engine.TryEvaluate("-7 < -2 ？1 ： 2", 0);
+            assert.equal(t1, 1);
+
+            t1 = engine.TryEvaluate("(!(-7 < -2))？1：2", 0);
+            assert.equal(t1, 2);
+            t1 = engine.TryEvaluate("1>2？1：2", 0);
+            assert.equal(t1, 2);
+
+            t1 = engine.TryEvaluate("1！=2？1：2", 0);
+            assert.equal(t1, 1);
+
+            var t2 = engine.TryEvaluate("Ａsc('ａｂｃＡＢＣ１２３')", "");
+            assert.equal(t2, "abcABC123");
+        });
+    });
+
+
+</script>
+@* <script src="/test/test.js"></script>
+<script src="/test/test-csharp.js"></script>
+<script src="/test/test-datetime.js"></script>
+<script src="/test/test-flow.js"></script>
+<script src="/test/test-math.js"></script>
+<script src="/test/test-string.js"></script>
+<script src="/test/test-vlookup.js"></script> *@
+</html>
