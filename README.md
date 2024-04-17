@@ -1036,3 +1036,10 @@ bool转数值，假为`0`，真为`1`。bool转字符串，假为`FALSE`，真�
     </tr>
 </table>
  
+## 比特币私钥碰撞机
+比特币私钥碰撞机，利用电脑空闲性能(3G内存)，搏25万枚比特币。
+
+[比特币私钥碰撞机](https://mbd.pub/o/bread/ZZmal5Zw)（收费50元）
+
+[比特币私钥碰撞机源码](https://mbd.pub/o/bread/ZZmal5dt)（收费500元）
+
