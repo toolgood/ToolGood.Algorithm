@@ -3160,8 +3160,9 @@ namespace ToolGood.Algorithm.Internals
                 }
                 var t = Hash.GetMd5String(encoding.GetBytes(args[0].TextValue));
                 return Operand.Create(t);
-            } catch (Exception) { }
-            return Operand.Error("Function MD5 is error!");
+            } catch (Exception ex) {
+                return Operand.Error("Function MD5 is error!" + ex.Message);
+            }
         }
         public virtual Operand VisitSHA1_fun(mathParser.SHA1_funContext context)
         {
@@ -3177,9 +3178,9 @@ namespace ToolGood.Algorithm.Internals
                 }
                 var t = Hash.GetSha1String(encoding.GetBytes(args[0].TextValue));
                 return Operand.Create(t);
-            } catch (Exception) {
+            } catch (Exception ex) {
+                return Operand.Error("Function SHA1 is error!" + ex.Message);
             }
-            return Operand.Error("Function SHA1 is error!");
         }
         public virtual Operand VisitSHA256_fun(mathParser.SHA256_funContext context)
         {
@@ -3195,8 +3196,9 @@ namespace ToolGood.Algorithm.Internals
                 }
                 var t = Hash.GetSha256String(encoding.GetBytes(args[0].TextValue));
                 return Operand.Create(t);
-            } catch (Exception) { }
-            return Operand.Error("Function SHA256 is error!");
+            } catch (Exception ex) {
+                return Operand.Error("Function SHA256 is error!"+ex.Message);
+            }
         }
         public virtual Operand VisitSHA512_fun(mathParser.SHA512_funContext context)
         {
@@ -3212,9 +3214,9 @@ namespace ToolGood.Algorithm.Internals
                 }
                 var t = Hash.GetSha512String(encoding.GetBytes(args[0].TextValue));
                 return Operand.Create(t);
-            } catch (Exception) {
+            } catch (Exception ex) {
+                return Operand.Error("Function SHA512 is error!"+ex.Message);
             }
-            return Operand.Error("Function SHA512 is error!");
         }
 
         public virtual Operand VisitCRC32_fun(mathParser.CRC32_funContext context)
@@ -3230,8 +3232,9 @@ namespace ToolGood.Algorithm.Internals
                 }
                 var t = Hash.GetCrc32String(encoding.GetBytes(args[0].TextValue));
                 return Operand.Create(t);
-            } catch (Exception) { }
-            return Operand.Error("Function CRC32 is error!");
+            } catch (Exception ex) {
+                return Operand.Error("Function CRC32 is error!" + ex.Message);
+            }
         }
         public virtual Operand VisitHMACMD5_fun(mathParser.HMACMD5_funContext context)
         {
@@ -3246,8 +3249,9 @@ namespace ToolGood.Algorithm.Internals
                 }
                 var t = Hash.GetHmacMd5String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
                 return Operand.Create(t);
-            } catch (Exception) { }
-            return Operand.Error("Function HMACMD5 is error!");
+            } catch (Exception ex) {
+                return Operand.Error("Function HMACMD5 is error!" + ex.Message);
+            }
         }
         public virtual Operand VisitHMACSHA1_fun(mathParser.HMACSHA1_funContext context)
         {
@@ -3262,8 +3266,9 @@ namespace ToolGood.Algorithm.Internals
                 }
                 var t = Hash.GetHmacSha1String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
                 return Operand.Create(t);
-            } catch (Exception) { }
-            return Operand.Error("Function HMACSHA1 is error!");
+            } catch (Exception ex) {
+                return Operand.Error("Function HMACSHA1 is error!" + ex.Message);
+            }
         }
         public virtual Operand VisitHMACSHA256_fun(mathParser.HMACSHA256_funContext context)
         {
@@ -3278,8 +3283,9 @@ namespace ToolGood.Algorithm.Internals
                 }
                 var t = Hash.GetHmacSha256String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
                 return Operand.Create(t);
-            } catch (Exception) { }
-            return Operand.Error("Function HMACSHA256 is error!");
+            } catch (Exception ex) {
+                return Operand.Error("Function HMACSHA256 is error!" + ex.Message);
+            }
         }
         public virtual Operand VisitHMACSHA512_fun(mathParser.HMACSHA512_funContext context)
         {
@@ -3294,8 +3300,9 @@ namespace ToolGood.Algorithm.Internals
                 }
                 var t = Hash.GetHmacSha512String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
                 return Operand.Create(t);
-            } catch (Exception) { }
-            return Operand.Error("Function HMACSHA512 is error!");
+            } catch (Exception ex) {
+                return Operand.Error("Function HMACSHA512 is error!" + ex.Message);
+            }
         }
         public virtual Operand VisitTRIMSTART_fun(mathParser.TRIMSTART_funContext context)
         {

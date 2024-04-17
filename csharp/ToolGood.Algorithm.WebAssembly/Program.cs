@@ -11,6 +11,29 @@
         {
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
         }
+        [JSInvokable]
+        public static string GetErrorMessage(string exp, string def = null, string data = null, string option = null)
+        {
+            AlgorithmEngine ae;
+            if (option == null) {
+                ae = new AlgorithmEngine();
+            } else {
+                var ops = JsonSerializer.Deserialize<Dictionary<string, object>>(option);
+                ae = new AlgorithmEngine(bool.Parse(ops["IgnoreCase"].ToString()));
+                ae.UseExcelIndex = bool.Parse(ops["UseExcelIndex"].ToString());
+                ae.UseTempDict = bool.Parse(ops["UseTempDict"].ToString());
+                ae.UseLocalTime = bool.Parse(ops["UseLocalTime"].ToString());
+                ae.DistanceUnit = (DistanceUnitType)(int.Parse(ops["DistanceUnit"].ToString()));
+                ae.AreaUnit = (AreaUnitType)(int.Parse(ops["AreaUnit"].ToString()));
+                ae.VolumeUnit = (VolumeUnitType)(int.Parse(ops["VolumeUnit"].ToString()));
+                ae.MassUnit = (MassUnitType)(int.Parse(ops["MassUnit"].ToString()));
+            }
+            if (data != null) {
+                ae.AddParameterFromJson(data);
+            }
+            ae.TryEvaluate(exp,def);
+            return ae.LastError;
+        }
 
         [JSInvokable]
         public static string TryEvaluateString(string exp, string def = null, string data = null, string option = null)

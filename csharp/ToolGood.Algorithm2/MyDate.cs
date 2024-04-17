@@ -196,16 +196,12 @@ namespace ToolGood.Algorithm
                 stringBuffer.Append('-');
                 stringBuffer.Append(Day.Value.ToString("D2"));
 
-                if (Second > 0 || Hour > 0 || Minute > 0) {
-                    stringBuffer.Append(' ');
-                    stringBuffer.Append(Hour.ToString("D2"));
-                    stringBuffer.Append(':');
-                    stringBuffer.Append(Minute.ToString("D2"));
-                    if (Second > 0) {
-                        stringBuffer.Append(':');
-                        stringBuffer.Append(Second.ToString("D2"));
-                    }
-                }
+                stringBuffer.Append(' ');
+                stringBuffer.Append(Hour.ToString("D2"));
+                stringBuffer.Append(':');
+                stringBuffer.Append(Minute.ToString("D2"));
+                stringBuffer.Append(':');
+                stringBuffer.Append(Second.ToString("D2"));
             } else {
                 if (Day != null && Day > 0) {
                     stringBuffer.Append(Day);
@@ -214,10 +210,8 @@ namespace ToolGood.Algorithm
                 stringBuffer.Append(Hour.ToString("D2"));
                 stringBuffer.Append(':');
                 stringBuffer.Append(Minute.ToString("D2"));
-                if (Second > 0) {
-                    stringBuffer.Append(':');
-                    stringBuffer.Append(Second.ToString("D2"));
-                }
+                stringBuffer.Append(':');
+                stringBuffer.Append(Second.ToString("D2"));
             }
             return stringBuffer.ToString();
         }
