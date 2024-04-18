@@ -177,7 +177,7 @@ public class MyDate {
     @Override
     public String toString() {
         StringBuffer stringBuffer = new StringBuffer();
-        if (Year != null) {
+        if (Year != null && Year > 0) {
             stringBuffer.append(Year);
             stringBuffer.append("-");
             if (Month < 10) {
@@ -190,26 +190,22 @@ public class MyDate {
             }
             stringBuffer.append(Day);
 
-            if (Second > 0 || Hour > 0 || Minute > 0) {
-                stringBuffer.append(" ");
-                if (Hour < 10) {
-                    stringBuffer.append("0");
-                }
-                stringBuffer.append(Hour);
-                stringBuffer.append(":");
-                if (Minute < 10) {
-                    stringBuffer.append("0");
-                }
-                stringBuffer.append(Minute);
-                if (Second > 0) {
-                    if (Second < 10) {
-                        stringBuffer.append("0");
-                    }
-                    stringBuffer.append(Second);
-                }
+            stringBuffer.append(" ");
+            if (Hour < 10) {
+                stringBuffer.append("0");
             }
+            stringBuffer.append(Hour);
+            stringBuffer.append(":");
+            if (Minute < 10) {
+                stringBuffer.append("0");
+            }
+            stringBuffer.append(Minute);
+            if (Second < 10) {
+                stringBuffer.append("0");
+            }
+            stringBuffer.append(Second);
         } else {
-            if (Day != null) {
+            if (Day != null && Day > 0) {
                 stringBuffer.append(Day);
                 stringBuffer.append(" ");
             }
@@ -222,12 +218,10 @@ public class MyDate {
                 stringBuffer.append("0");
             }
             stringBuffer.append(Minute);
-            if (Second > 0) {
-                if (Second < 10) {
-                    stringBuffer.append("0");
-                }
-                stringBuffer.append(Second);
+            if (Second < 10) {
+                stringBuffer.append("0");
             }
+            stringBuffer.append(Second);
         }
 
         return stringBuffer.toString();
@@ -237,9 +231,9 @@ public class MyDate {
         Date date;
         if (Year != null && Year > 1900) {
             date = new Date(Year, Month, Day, Hour, Minute, Second);
-        }else if (Day != null){
+        } else if (Day != null) {
             date = new Date(1900, 1, Day, Hour, Minute, Second);
-        }else{
+        } else {
             date = new Date(1900, 1, 0, Hour, Minute, Second);
         }
         SimpleDateFormat sd = new SimpleDateFormat(f);
@@ -249,6 +243,7 @@ public class MyDate {
     public DateTime ToDateTime() {
         return new DateTime(Year, Month, Day, Hour, Minute, Second, DateTimeZone.UTC);
     }
+
     public DateTime ToDateTime(DateTimeZone zoo) {
         return new DateTime(Year, Month, Day, Hour, Minute, Second, zoo);
     }
