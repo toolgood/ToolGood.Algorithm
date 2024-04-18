@@ -43,7 +43,10 @@ AlgorithmEngine = class {
 AlgorithmEngineHelper = new class {
     IsKeywords = function (parameter) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'IsKeywords', parameter); }
     GetDiyNames = function (exp) { return JSON.parse(DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'GetDiyNames', exp)); }
-    UnitConversion = function (src, oldSrcUnit, oldTarUnit, name) { return JSON.parse(DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'UnitConversion', src, oldSrcUnit, oldTarUnit, name)); }
+    UnitConversion = function (src, oldSrcUnit, oldTarUnit, name) {
+        var json = JSON.parse(DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'UnitConversion', src, oldSrcUnit, oldTarUnit, name));
+        return json["result"];
+    }
 
 }();
 
