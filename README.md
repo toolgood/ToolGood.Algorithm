@@ -4,7 +4,7 @@ ToolGood.Algorithm
 
 ToolGood.Algorithm是一个功能强大、轻量级、兼容`Excel公式`的算法类库，旨在提高开发人员在不同业务场景中的生产力。 
 
-WebAssembly版本，请看csharp文件夹下`ToolGood.Algorithm.WebAssembly`,`ToolGood.Algorithm2.WebTest` 两个项目。注意：不支持HmacMd5
+WebAssembly版本，请看csharp文件夹下`ToolGood.Algorithm.WebAssembly`,`ToolGood.Algorithm2.WebTest` 两个项目。
 
 **适用场景：** 代码与算法分离，避免项目强制升级
 

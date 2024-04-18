@@ -277,12 +277,20 @@ namespace ToolGood.Algorithm.Internals
         }
         public static string MDString(byte[] c)
         {
-            byte[] b = new byte[c.Length];
-            for (int i = 0; i < c.Length; i++) {
-                b[i] = (byte)c[i];
-            }
-            byte[] digest = MD5Array(b);
+            //byte[] b = new byte[c.Length];
+            //for (int i = 0; i < c.Length; i++) {
+            //    b[i] = (byte)c[i];
+            //}
+            byte[] digest = MD5Array(c);
             return ArrayToHexString(digest, true);
+        }
+        public static byte[] ComputeHash(byte[] c)
+        {
+            //byte[] b = new byte[c.Length];
+            //for (int i = 0; i < c.Length; i++) {
+            //    b[i] = (byte)c[i];
+            //}
+            return MD5Array(c);
         }
 
         //public static string MDString(string message)
@@ -296,6 +304,48 @@ namespace ToolGood.Algorithm.Internals
         //    return ArrayToHexString(digest, false);
         //}
 
+
+        public static string hmac_md5(byte[] b_tmp1, byte[] source)
+        {
+            byte[] b_tmp;
+            string szRet = string.Empty;
+
+            byte[] digest = new byte[512];
+            byte[] k_ipad = new byte[64];
+            byte[] k_opad = new byte[64];
+            for (int i = 0; i < 64; i++) {
+                k_ipad[i] = 0 ^ 0x36;
+                k_opad[i] = 0 ^ 0x5c;
+            }
+            if (source.Length > 64) {
+                source = ComputeHash(source);
+            }
+            for (int i = 0; i < source.Length; i++) {
+                k_ipad[i] = (byte)(source[i] ^ 0x36);
+                k_opad[i] = (byte)(source[i] ^ 0x5c);
+            }
+
+            //b_tmp1 = System.Text.ASCIIEncoding.ASCII.GetBytes(timespan);
+            b_tmp = adding(k_ipad, b_tmp1);
+            digest = ComputeHash(b_tmp);
+            b_tmp = adding(k_opad, digest);
+            digest = ComputeHash(b_tmp);
+            //             for (int i = 0; i < digest.Length; i++)
+            //             {
+            //outdigest = System.Text.ASCIIEncoding.ASCII.GetString(digest);//[i].ToString();// 
+            //                 
+            return ArrayToHexString(digest, true);                               //             }
+        }
+        /***
+       * * 填充byte
+        ***/
+        public static byte[] adding(byte[] a, byte[] b)
+        {
+            byte[] c = new byte[a.Length + b.Length];
+            a.CopyTo(c, 0);
+            b.CopyTo(c, a.Length);
+            return c;
+        }
     }
 }
 

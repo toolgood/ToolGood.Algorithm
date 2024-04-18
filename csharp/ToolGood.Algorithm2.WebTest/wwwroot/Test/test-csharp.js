@@ -107,8 +107,8 @@
  
         dt = engine.TryEvaluate("Crc32('&=我中国人 >||')", null);
         assert.equal(dt, "60649EFF");
-        //dt = engine.TryEvaluate("HmacMd5('&=我中国人 >||','12')", null);
-        //assert.equal(dt, "CF3923196E21B1E270FD72B089B092BB"); //不支持HmacMd5
+        dt = engine.TryEvaluate("HmacMd5('&=我中国人 >||','12')", null);
+        assert.equal(dt, "CF3923196E21B1E270FD72B089B092BB"); //不支持HmacMd5
  
 
         dt = engine.TryEvaluate("HmacSha1('&=我中国人 >||','12')", null);
