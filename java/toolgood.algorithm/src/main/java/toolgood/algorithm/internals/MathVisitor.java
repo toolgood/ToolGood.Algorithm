@@ -2277,9 +2277,9 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         return sb.toString();
     }
 
-    static final String[] CN_UPPER_NUMBER = { "零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖" };
-    static final String[] CN_UPPER_MONETRAY_UNIT = { "分", "角", "元", "拾", "佰", "仟", "万", "拾", "佰", "仟", "亿", "拾", "佰",
-            "仟", "兆", "拾", "佰", "仟" };
+    static final String[] CN_UPPER_NUMBER = {"零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"};
+    static final String[] CN_UPPER_MONETRAY_UNIT = {"分", "角", "元", "拾", "佰", "仟", "万", "拾", "佰", "仟", "亿", "拾", "佰",
+            "仟", "兆", "拾", "佰", "仟"};
     static final String CN_FULL = "整";
     static final String CN_NEGATIVE = "负";
     static final int MONEY_PRECISION = 2;
@@ -4926,7 +4926,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         String text = args.get(0).TextValue();
         if (args.size() == 2) {
             text = Pattern.compile(
-                    "^[" + args.get(1).TextValue().replace("[", "\\[").replace("]", "\\]").replace("\\", "\\\\") + "]*")
+                            "^[" + args.get(1).TextValue().replace("[", "\\[").replace("]", "\\]").replace("\\", "\\\\") + "]*")
                     .matcher(text).replaceAll("");
             return Operand.Create(text);
         }
@@ -4948,7 +4948,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         String text = args.get(0).TextValue();
         if (args.size() == 2) {
             text = Pattern.compile(
-                    "[" + args.get(1).TextValue().replace("[", "\\[").replace("]", "\\]").replace("\\", "\\\\") + "]*$")
+                            "[" + args.get(1).TextValue().replace("[", "\\[").replace("]", "\\]").replace("\\", "\\\\") + "]*$")
                     .matcher(text).replaceAll("");
             return Operand.Create(text);
         }
@@ -5296,7 +5296,11 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
     }
 
     public Operand visitJSON_fun(final JSON_funContext context) {
-        final Operand firstValue = context.expr().accept(this).ToText("Function JSON parameter is error!");
+        Operand firstValue = context.expr().accept(this);
+        if (firstValue.Type() == OperandType.JSON) {
+            return firstValue;
+        }
+        firstValue = firstValue.ToText("Function JSON parameter is error!");
         if (firstValue.IsError()) {
             return firstValue;
         }
@@ -5733,8 +5737,8 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                     sb.append('\t');
                 else if (c2 == '0')
                     sb.append('\0');
-                // else if (c2 == 'v') sb.append('\v');
-                // else if (c2 == 'a') sb.append('\a');
+                    // else if (c2 == 'v') sb.append('\v');
+                    // else if (c2 == 'a') sb.append('\a');
                 else if (c2 == 'b')
                     sb.append('\b');
                 else if (c2 == 'f')
