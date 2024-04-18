@@ -25,6 +25,11 @@
     <DelaySign>false</DelaySign>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\ToolGood.Algorithm.xml</DocumentationFile>
     <Nullable>disable</Nullable>
+    <Configurations>Debug;Release;WebAssembly</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='WebAssembly'">
+    <DefineConstants>$(DefineConstants);WebAssembly</DefineConstants>
   </PropertyGroup>
 
 

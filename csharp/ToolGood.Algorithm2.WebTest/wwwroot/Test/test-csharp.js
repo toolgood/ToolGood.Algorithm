@@ -92,8 +92,8 @@
         await new Promise(resolve => setTimeout(resolve, 300));
 
         var engine = new AlgorithmEngine();
-        //var dt2 = engine.TryEvaluate("Md5('&=我中国人 >||')", null);
-        //assert.equal(dt2, "2E1CEFBDFA3677725B7856E02D225819"); //不支持Md5
+        var dt2 = engine.TryEvaluate("Md5('&=我中国人 >||')", null);
+        assert.equal(dt2, "2E1CEFBDFA3677725B7856E02D225819"); //不支持Md5
    
 
         var  dt = engine.TryEvaluate("Md5('&=我中国人 >||','GGG')", null);

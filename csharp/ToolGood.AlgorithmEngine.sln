@@ -17,24 +17,33 @@ Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		WebAssembly|Any CPU = WebAssembly|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{DD810514-188F-44BC-BD28-2C0A5C3B9513}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DD810514-188F-44BC-BD28-2C0A5C3B9513}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD810514-188F-44BC-BD28-2C0A5C3B9513}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD810514-188F-44BC-BD28-2C0A5C3B9513}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD810514-188F-44BC-BD28-2C0A5C3B9513}.WebAssembly|Any CPU.ActiveCfg = WebAssembly|Any CPU
+		{DD810514-188F-44BC-BD28-2C0A5C3B9513}.WebAssembly|Any CPU.Build.0 = WebAssembly|Any CPU
 		{B393EF66-13D8-4D9E-BDB7-5F06D7F09651}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B393EF66-13D8-4D9E-BDB7-5F06D7F09651}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B393EF66-13D8-4D9E-BDB7-5F06D7F09651}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B393EF66-13D8-4D9E-BDB7-5F06D7F09651}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B393EF66-13D8-4D9E-BDB7-5F06D7F09651}.WebAssembly|Any CPU.ActiveCfg = Release|Any CPU
+		{B393EF66-13D8-4D9E-BDB7-5F06D7F09651}.WebAssembly|Any CPU.Build.0 = Release|Any CPU
 		{72101087-FFFD-4616-BDC5-751D19170C19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{72101087-FFFD-4616-BDC5-751D19170C19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72101087-FFFD-4616-BDC5-751D19170C19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72101087-FFFD-4616-BDC5-751D19170C19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72101087-FFFD-4616-BDC5-751D19170C19}.WebAssembly|Any CPU.ActiveCfg = Release|Any CPU
+		{72101087-FFFD-4616-BDC5-751D19170C19}.WebAssembly|Any CPU.Build.0 = Release|Any CPU
 		{F2AD750F-274A-4EFA-9071-51C9E8BCAE5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F2AD750F-274A-4EFA-9071-51C9E8BCAE5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2AD750F-274A-4EFA-9071-51C9E8BCAE5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2AD750F-274A-4EFA-9071-51C9E8BCAE5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2AD750F-274A-4EFA-9071-51C9E8BCAE5E}.WebAssembly|Any CPU.ActiveCfg = Release|Any CPU
+		{F2AD750F-274A-4EFA-9071-51C9E8BCAE5E}.WebAssembly|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

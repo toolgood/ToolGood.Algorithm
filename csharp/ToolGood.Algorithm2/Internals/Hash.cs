@@ -103,11 +103,14 @@ namespace ToolGood.Algorithm.Internals
 
         public static string GetMd5String(byte[] buffer)
         {
+#if WebAssembly
+            return MD5.MDString(buffer);
+#else
             System.Security.Cryptography.MD5 md5 = MD5.Create();
-
-			byte[] retVal = md5.ComputeHash(buffer);
+            byte[] retVal = md5.ComputeHash(buffer);
             md5.Dispose();
             return BitConverter.ToString(retVal).Replace("-", "");
+#endif
         }
         #endregion
 
@@ -115,7 +118,7 @@ namespace ToolGood.Algorithm.Internals
         public static string GetSha1String(byte[] buffer)
         {
             SHA1 sha512 = SHA1.Create();
-			byte[] retVal = sha512.ComputeHash(buffer); //计算指定Stream 对象的哈希值
+            byte[] retVal = sha512.ComputeHash(buffer); //计算指定Stream 对象的哈希值
             sha512.Dispose();
             return BitConverter.ToString(retVal).Replace("-", "");
         }
@@ -123,11 +126,11 @@ namespace ToolGood.Algorithm.Internals
         #endregion
 
         #region SHA256
- 
+
         public static string GetSha256String(byte[] buffer)
         {
             SHA256 sha512 = SHA256.Create();
-			byte[] retVal = sha512.ComputeHash(buffer); //计算指定Stream 对象的哈希值
+            byte[] retVal = sha512.ComputeHash(buffer); //计算指定Stream 对象的哈希值
             sha512.Dispose();
             return BitConverter.ToString(retVal).Replace("-", "");
         }
@@ -138,7 +141,7 @@ namespace ToolGood.Algorithm.Internals
         public static string GetSha512String(byte[] buffer)
         {
             SHA512 sha512 = SHA512.Create();
-			byte[] retVal = sha512.ComputeHash(buffer); //计算指定Stream 对象的哈希值
+            byte[] retVal = sha512.ComputeHash(buffer); //计算指定Stream 对象的哈希值
             sha512.Dispose();
             return BitConverter.ToString(retVal).Replace("-", "");
         }
