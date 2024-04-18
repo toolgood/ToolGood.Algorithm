@@ -7,8 +7,8 @@ QUnit.module('test', function () {
 
         var c = engine.TryEvaluate("2+3", 0);
         assert.equal(5, c);
-        c = engine.TryEvaluate("(2)+3", 0);
-        assert.equal(5, c);
+        var ddd = engine.TryEvaluate("(2)+3", 0);
+        assert.equal(5, ddd);
         c = engine.TryEvaluate("2+3*2+10/2*4", 0);
         assert.equal(28, c);
 
@@ -230,7 +230,7 @@ QUnit.module('test', function () {
         //assert.equal(10 * 10 * Math.PI, t, 10, data);
 
 
-        var json = {'灰色':'L','canBookCount':905,'saleCount':91,'specId':'43b0e72e98731aed69e1f0cc7d64bf4d'};
+        var json = { '灰色': 'L', 'canBookCount': 905, 'saleCount': 91, 'specId': '43b0e72e98731aed69e1f0cc7d64bf4d' };
 
         var tt = c.TryEvaluate("['灰色']", "", json); //圆的体积
         assert.equal("L", tt);
@@ -248,15 +248,14 @@ QUnit.module('test', function () {
         var data = { '半径': 3, '直径': 6, '高': 10 };
 
 
-        var t = c.GetSimplifiedFormula("[半径]*[半径]*pi()", data); // 圆底面积
+        var t = engine.GetSimplifiedFormula("[半径]*[半径]*pi()", data); // 圆底面积
         assert.equal("3 * 3 * 3.14159265358979", t);
 
-        var t2 = c.GetSimplifiedFormula("半径*if(半径>2,1,3)", data);
+        var t2 = engine.GetSimplifiedFormula("半径*if(半径>2,1,3)", data);
         assert.equal("3 * 1", t2);
 
-        var t24 = c.GetSimplifiedFormula("半径*if(半径>2,1+4,3)", data);
+        var t24 = engine.GetSimplifiedFormula("半径*if(半径>2,1+4,3)", data);
         assert.equal("3 * 5", t24);
     });
 });
 
- 

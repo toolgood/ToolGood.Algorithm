@@ -14,11 +14,20 @@ AlgorithmEngine = class {
         this.MassUnit = MassUnitType.KG;
         this.IgnoreCase = false;
     }
-    GetErrorMessage = function (exp, def, data) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'GetErrorMessage', exp, def, JSON.stringify(data), JSON.stringify(this)); }
-    TryEvaluateString = function (exp, def, data) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'TryEvaluateString', exp, def, JSON.stringify(data), JSON.stringify(this)); }
-    TryEvaluateNumber = function (exp, def, data) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'TryEvaluateNumber', exp, def, JSON.stringify(data), JSON.stringify(this)); }
-    TryEvaluateBool = function (exp, def, data) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'TryEvaluateBool', exp, def, JSON.stringify(data), JSON.stringify(this)); }
-    TryEvaluateDateTime = function (exp, def, data) { return DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', 'TryEvaluateDateTime', exp, def, JSON.stringify(data), JSON.stringify(this)); }
+    __callResult = function (name, exp, def, data) {
+        var json = DotNet.invokeMethod('ToolGood.Algorithm.WebAssembly', name, exp, def, JSON.stringify(data), JSON.stringify(this));
+        var result = JSON.parse(json);
+        this.LastParse = result["parse"];
+        this.LastUseDef = result["useDef"];
+        this.LastError = result["error"];
+        this.LastResult = result["result"];
+        return this.LastResult;
+    }
+
+    TryEvaluateString = function (exp, def, data) { return this.__callResult('TryEvaluateString', exp, def, data); }
+    TryEvaluateNumber = function (exp, def, data) { return this.__callResult('TryEvaluateNumber', exp, def, data); }
+    TryEvaluateBool = function (exp, def, data) { return this.__callResult('TryEvaluateBool', exp, def, data); }
+    TryEvaluateDateTime = function (exp, def, data) { return this.__callResult('TryEvaluateDateTime', exp, def, data); }
 
     TryEvaluate = function (exp, def, data) {
         if (def == null) { return this.TryEvaluateString(exp, def, data); }

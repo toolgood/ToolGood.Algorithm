@@ -1,6 +1,7 @@
 ﻿namespace ToolGood.Algorithm.WebAssembly
 {
     using Microsoft.JSInterop;
+    using System.Text;
     using System.Text.Json;
     using ToolGood.Algorithm;
     using ToolGood.Algorithm.Enums;
@@ -10,29 +11,6 @@
         private static void Main(string[] args)
         {
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
-        }
-        [JSInvokable]
-        public static string GetErrorMessage(string exp, string def = null, string data = null, string option = null)
-        {
-            AlgorithmEngine ae;
-            if (option == null) {
-                ae = new AlgorithmEngine();
-            } else {
-                var ops = JsonSerializer.Deserialize<Dictionary<string, object>>(option);
-                ae = new AlgorithmEngine(bool.Parse(ops["IgnoreCase"].ToString()));
-                ae.UseExcelIndex = bool.Parse(ops["UseExcelIndex"].ToString());
-                ae.UseTempDict = bool.Parse(ops["UseTempDict"].ToString());
-                ae.UseLocalTime = bool.Parse(ops["UseLocalTime"].ToString());
-                ae.DistanceUnit = (DistanceUnitType)(int.Parse(ops["DistanceUnit"].ToString()));
-                ae.AreaUnit = (AreaUnitType)(int.Parse(ops["AreaUnit"].ToString()));
-                ae.VolumeUnit = (VolumeUnitType)(int.Parse(ops["VolumeUnit"].ToString()));
-                ae.MassUnit = (MassUnitType)(int.Parse(ops["MassUnit"].ToString()));
-            }
-            if (data != null) {
-                ae.AddParameterFromJson(data);
-            }
-            ae.TryEvaluate(exp,def);
-            return ae.LastError;
         }
 
         [JSInvokable]
@@ -55,27 +33,45 @@
             if (data != null) {
                 ae.AddParameterFromJson(data);
             }
+            Dictionary<string, object> result = new Dictionary<string, object>();
+            result["parse"] = false;
+            result["useDef"] = false;
+            result["error"] = null;
             try {
                 if (ae.Parse(exp)) {
+                    result["parse"] = true;
                     var obj = ae.Evaluate();
                     if (obj.IsNull) {
-                        return null;
+                        result["result"] = null;
+                        return JsonSerializer.Serialize(result);
                     }
                     if (obj.IsError) {
-                        return def;
+                        result["result"] = def;
+                        result["useDef"] = true;
+                        result["error"] = obj.ErrorMsg;
+                        return JsonSerializer.Serialize(result);
                     }
                     if (obj.Type == OperandType.DATE) {
-                        return obj.DateValue.ToString();
+                        result["result"] = obj.DateValue.ToString();
+                        result["error"] = ae.LastError;
+                        return JsonSerializer.Serialize(result);
                     }
                     obj = obj.ToText("It can't be converted to string!");
-                    return obj.TextValue;
+                    result["result"] = obj.TextValue;
+                    return JsonSerializer.Serialize(result);
                 }
-            } catch { }
-            return def;
+                result["error"] = "Parameter exp invalid !";
+            } catch (Exception ex) {
+                result["error"] = ex.Message;
+            }
+            result["useDef"] = true;
+            result["result"] = def;
+            return JsonSerializer.Serialize(result);
         }
 
+
         [JSInvokable]
-        public static decimal TryEvaluateNumber(string exp, decimal def, string data = null, string option = null)
+        public static string TryEvaluateNumber(string exp, decimal def, string data = null, string option = null)
         {
             AlgorithmEngine ae;
             if (option == null) {
@@ -94,11 +90,35 @@
             if (data != null) {
                 ae.AddParameterFromJson(data);
             }
-            return ae.TryEvaluate(exp, def);
+            Dictionary<string, object> result = new Dictionary<string, object>();
+            result["parse"] = false;
+            result["useDef"] = false;
+            result["error"] = null;
+            try {
+                if (ae.Parse(exp)) {
+                    result["parse"] = true;
+                    var obj = ae.Evaluate();
+                    obj = obj.ToNumber("It can't be converted to number!");
+                    if (obj.IsError) {
+                        result["result"] = def;
+                        result["useDef"] = true;
+                        result["error"] = obj.ErrorMsg;
+                        return JsonSerializer.Serialize(result);
+                    }
+                    result["result"] = obj.NumberValue;
+                    return JsonSerializer.Serialize(result);
+                }
+                result["error"] = "Parameter exp invalid !";
+            } catch (Exception ex) {
+                result["error"] = ex.Message;
+            }
+            result["useDef"] = true;
+            result["result"] = def;
+            return JsonSerializer.Serialize(result);
         }
 
         [JSInvokable]
-        public static bool TryEvaluateBool(string exp, bool def, string data = null, string option = null)
+        public static string TryEvaluateBool(string exp, bool def, string data = null, string option = null)
         {
             AlgorithmEngine ae;
             if (option == null) {
@@ -117,7 +137,31 @@
             if (data != null) {
                 ae.AddParameterFromJson(data);
             }
-            return ae.TryEvaluate(exp, def);
+            Dictionary<string, object> result = new Dictionary<string, object>();
+            result["parse"] = false;
+            result["useDef"] = false;
+            result["error"] = null;
+            try {
+                if (ae.Parse(exp)) {
+                    result["parse"] = true;
+                    var obj = ae.Evaluate();
+                    obj = obj.ToBoolean("It can't be converted to bool!");
+                    if (obj.IsError) {
+                        result["result"] = def;
+                        result["useDef"] = true;
+                        result["error"] = obj.ErrorMsg;
+                        return JsonSerializer.Serialize(result);
+                    }
+                    result["result"] = obj.BooleanValue;
+                    return JsonSerializer.Serialize(result);
+                }
+                result["error"] = "Parameter exp invalid !";
+            } catch (Exception ex) {
+                result["error"] = ex.Message;
+            }
+            result["useDef"] = true;
+            result["result"] = def;
+            return JsonSerializer.Serialize(result);
         }
 
         [JSInvokable]
@@ -140,22 +184,31 @@
             if (data != null) {
                 ae.AddParameterFromJson(data);
             }
+            Dictionary<string, object> result = new Dictionary<string, object>();
+            result["parse"] = false;
+            result["useDef"] = false;
+            result["error"] = null;
             try {
                 if (ae.Parse(exp)) {
+                    result["parse"] = true;
                     var obj = ae.Evaluate();
-                    if (obj.IsNull) {
-                        return null;
-                    }
+                    obj= obj.ToMyDate("It can't be converted to datetime!");
                     if (obj.IsError) {
+                        result["result"] = def;
+                        result["useDef"] = true;
+                        result["error"] = ae.LastError;
                         return def.ToString("yyyy-MM-dd HH:mm:ss");
                     }
-                    if (obj.Type == OperandType.DATE) {
-                        return obj.DateValue.ToString();
-                    }
-                    return obj.DateValue.ToString();
+                    result["result"] = obj.DateValue.ToString(); 
+                    return JsonSerializer.Serialize(result);
                 }
-            } catch { }
-            return def.ToString("yyyy-MM-dd HH:mm:ss");
+                result["error"] = "Parameter exp invalid !";
+            } catch (Exception ex) {
+                result["error"] = ex.Message;
+            }
+            result["useDef"] = true;
+            result["result"] = def.ToString("yyyy-MM-dd HH:mm:ss");
+            return JsonSerializer.Serialize(result);
         }
         [JSInvokable]
 
