@@ -34,5 +34,14 @@ namespace ToolGood.Algorithm2.Test.Tests
             Assert.AreEqual(dt, 1275);
         }
 
+
+        [Test]
+        public void issues_27()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var dt = engine.TryEvaluate("DATE(2024, 8, 1) + TIME(8, 0, 0)", DateTime.Now);
+            Assert.AreEqual(dt, DateTime.Parse("2024-08-01 8:0"));
+        }
+
     }
 }

@@ -72,7 +72,8 @@ public class MyDate {
         BigDecimal d = num.subtract(new BigDecimal(days));
         Hour = d.multiply(new BigDecimal(24)).intValue();
         Minute = d.multiply(new BigDecimal(24)).subtract(new BigDecimal(Hour)).multiply(new BigDecimal(60)).intValue();
-        Second = d.multiply(new BigDecimal(24)).subtract(new BigDecimal(Hour)).multiply(new BigDecimal(60)).subtract(new BigDecimal(Minute)).multiply(new BigDecimal(60)).intValue();
+        Second = d.multiply(new BigDecimal(24)).subtract(new BigDecimal(Hour)).multiply(new BigDecimal(60))
+                .subtract(new BigDecimal(Minute)).multiply(new BigDecimal(60)).intValue();
         // 防止秒数出错
         if (Second == 60) {
             Second = 0;
@@ -200,6 +201,7 @@ public class MyDate {
                 stringBuffer.append("0");
             }
             stringBuffer.append(Minute);
+            stringBuffer.append(":");
             if (Second < 10) {
                 stringBuffer.append("0");
             }
@@ -218,6 +220,7 @@ public class MyDate {
                 stringBuffer.append("0");
             }
             stringBuffer.append(Minute);
+            stringBuffer.append(":");
             if (Second < 10) {
                 stringBuffer.append("0");
             }
@@ -298,11 +301,37 @@ public class MyDate {
     }
 
     public MyDate ADD(MyDate num) {
-        return new MyDate(this.ToNumber().add(num.ToNumber()));
+        DateTime dt = this.ToDateTime();
+        if (num.Year != null) {
+            dt = dt.plusYears(num.Year);
+        }
+        if (num.Month != null) {
+            dt = dt.plusMonths(num.Month);
+        }
+        if (num.Day != null) {
+            dt = dt.plusDays(num.Day);
+        }
+        dt = dt.plusHours(num.Hour);
+        dt = dt.plusMinutes(num.Minute);
+        dt = dt.plusSeconds(num.Second);
+        return new MyDate(dt);
     }
 
     public MyDate SUB(MyDate num) {
-        return new MyDate(this.ToNumber().subtract(num.ToNumber()));
+        DateTime dt = this.ToDateTime();
+        if (num.Year != null) {
+            dt = dt.plusYears(-num.Year);
+        }
+        if (num.Month != null) {
+            dt = dt.plusMonths(-num.Month);
+        }
+        if (num.Day != null) {
+            dt = dt.plusDays(-num.Day);
+        }
+        dt = dt.plusHours(-num.Hour);
+        dt = dt.plusMinutes(-num.Minute);
+        dt = dt.plusSeconds(-num.Second);
+        return new MyDate(dt);
     }
 
     public MyDate ADD(BigDecimal num) {
@@ -320,6 +349,5 @@ public class MyDate {
     public MyDate DIV(BigDecimal num) {
         return new MyDate(this.ToNumber().divide(num, MathContext.DECIMAL32));
     }
-
 
 }
