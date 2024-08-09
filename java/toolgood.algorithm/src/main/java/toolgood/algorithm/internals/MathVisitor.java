@@ -2693,7 +2693,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                 return Operand.Create((endDate.Year * 12 + endDate.Month - startDate.Year * 12 - startDate.Month - 1));
             }
         } else if (CharUtil.Equals(t, "d")) {
-            return Operand.Create(endDate.SUB(startDate).ToNumber().intValue());
+            return Operand.Create((endDate.ToNumber().subtract(startDate.ToNumber())).intValue());
         } else if (CharUtil.Equals(t, "yd")) {
             int day = endDate.DayOfYear() - startDate.DayOfYear();
             if (endDate.Year > startDate.Year && day < 0) {

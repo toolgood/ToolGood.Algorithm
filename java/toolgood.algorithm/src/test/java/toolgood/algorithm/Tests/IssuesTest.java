@@ -36,6 +36,9 @@ public class IssuesTest {
           AlgorithmEngine engine = new AlgorithmEngine();
           MyDate dt = engine.TryEvaluate("DATE(2024, 8, 1) + TIME(8, 0, 0)", MyDate.now());
           assertEquals(dt.toString(),  "2024-08-01 08:00:00");
+
+          MyDate dt2 = engine.TryEvaluate("DATE(2024, 8, 1, 16,0,0) - TIME(8, 0, 0)", MyDate.now());
+          assertEquals(dt2.toString(),  "2024-08-01 08:00:00");
       }
 
 }
