@@ -126,6 +126,20 @@ public class MyDate {
             date.Second = Integer.parseInt(m.group(6));
             return date;
         }
+        m = Pattern
+                .compile("^(\\d{4})/(1[012]|0?\\d)/(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d):([012345]?\\d)$")
+                .matcher(t);
+        if (m.find()) {
+            MyDate date = new MyDate();
+            date.Year = Integer.parseInt(m.group(1));
+            date.Month = Integer.parseInt(m.group(2));
+            date.Day = Integer.parseInt(m.group(3));
+            date.Hour = Integer.parseInt(m.group(4));
+            date.Minute = Integer.parseInt(m.group(5));
+            date.Second = Integer.parseInt(m.group(6));
+            return date;
+        }
+
         m = Pattern.compile("(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d)").matcher(t);
         if (m.find()) {
             MyDate date = new MyDate();
@@ -136,7 +150,26 @@ public class MyDate {
             date.Minute = Integer.parseInt(m.group(5));
             return date;
         }
+        m = Pattern.compile("(\\d{4})/(1[012]|0?\\d)/(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d)").matcher(t);
+        if (m.find()) {
+            MyDate date = new MyDate();
+            date.Year = Integer.parseInt(m.group(1));
+            date.Month = Integer.parseInt(m.group(2));
+            date.Day = Integer.parseInt(m.group(3));
+            date.Hour = Integer.parseInt(m.group(4));
+            date.Minute = Integer.parseInt(m.group(5));
+            return date;
+        }
+
         m = Pattern.compile("(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d)").matcher(t);
+        if (m.find()) {
+            MyDate date = new MyDate();
+            date.Year = Integer.parseInt(m.group(1));
+            date.Month = Integer.parseInt(m.group(2));
+            date.Day = Integer.parseInt(m.group(3));
+            return date;
+        }
+        m = Pattern.compile("(\\d{4})/(1[012]|0?\\d)/(30|31|[012]?\\d)").matcher(t);
         if (m.find()) {
             MyDate date = new MyDate();
             date.Year = Integer.parseInt(m.group(1));
