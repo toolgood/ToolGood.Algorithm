@@ -18,6 +18,9 @@ namespace ToolGood.Algorithm
             dt = engine.TryEvaluate("DATEVALUE（'2016-01-01'）", DateTime.MinValue);
             Assert.AreEqual(dt, new DateTime(2016, 1, 1));
 
+            dt = engine.TryEvaluate("DATEVALUE('2016/01/01')", DateTime.MinValue);
+            Assert.AreEqual(dt, new DateTime(2016, 1, 1));
+
             // chinese time
             dt = engine.TryEvaluate("DATEVALUE('1691234899000',0)", DateTime.Now);
             Assert.AreEqual(dt.ToLocalTime(), new DateTime(2023, 8, 5, 19, 28, 19));
@@ -52,6 +55,9 @@ namespace ToolGood.Algorithm
 
             // chinese time
             var dt = engine.TryEvaluate("TIMESTAMP('2016-01-01')", 0L);
+            Assert.AreEqual(dt, 1451577600000L);
+
+            dt = engine.TryEvaluate("TIMESTAMP('2016/01/01')", 0L);
             Assert.AreEqual(dt, 1451577600000L);
 
             dt = engine.TryEvaluate("TIMESTAMP('2016-01-01',0)", 0L);
@@ -250,6 +256,9 @@ namespace ToolGood.Algorithm
         {
             AlgorithmEngine engine = new AlgorithmEngine();
             var dt = engine.TryEvaluate("'2000-02-01'.addYears(1).year()", 0);
+            Assert.AreEqual(dt, 2001);
+
+            dt = engine.TryEvaluate("'2000/02/01'.addYears(1).year()", 0);
             Assert.AreEqual(dt, 2001);
 
             dt = engine.TryEvaluate("'2000-02-01'.AddMonths(1).Month()", 0);

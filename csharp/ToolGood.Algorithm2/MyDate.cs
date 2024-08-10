@@ -120,6 +120,9 @@ namespace ToolGood.Algorithm
             CultureInfo cultureInfo = CultureInfo.InvariantCulture;// CultureInfo.GetCultureInfo("zh-cn");
             String t = txt.Trim();
             var m = Regex.Match(t, "^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d):([012345]?\\d)$", RegexOptions.Compiled);
+            if (m.Success == false) {
+                m = Regex.Match(t, "^(\\d{4})/(1[012]|0?\\d)/(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d):([012345]?\\d)$", RegexOptions.Compiled);
+            }
             if (m.Success) {
                 MyDate date = new MyDate {
                     Year = int.Parse(m.Groups[(1)].Value, cultureInfo),
@@ -132,6 +135,9 @@ namespace ToolGood.Algorithm
                 return date;
             }
             m = Regex.Match(t, "^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d)$", RegexOptions.Compiled);
+            if (m.Success == false) {
+                m = Regex.Match(t, "^(\\d{4})/(1[012]|0?\\d)/(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d)$", RegexOptions.Compiled);
+            }
             if (m.Success) {
                 MyDate date = new MyDate {
                     Year = int.Parse(m.Groups[(1)].Value, cultureInfo),
@@ -143,6 +149,9 @@ namespace ToolGood.Algorithm
                 return date;
             }
             m = Regex.Match(t, "^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d)$");
+            if (m.Success == false) {
+                m = Regex.Match(t, "^(\\d{4})/(1[012]|0?\\d)/(30|31|[012]?\\d)$");
+            }
             if (m.Success) {
                 MyDate date = new MyDate {
                     Year = int.Parse(m.Groups[(1)].Value, cultureInfo),
