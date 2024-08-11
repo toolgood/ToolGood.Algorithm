@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using PetaTest;
+﻿using PetaTest;
+using System;
 
 namespace ToolGood.Algorithm
 {
     [TestFixture]
-    class AlgorithmEngineTest_dateTime
+    internal class AlgorithmEngineTest_dateTime
     {
         [Test]
         public void DATEVALUE_Test()
@@ -29,7 +26,6 @@ namespace ToolGood.Algorithm
             dt = engine.TryEvaluate("DATEVALUE('1691234899',0)", DateTime.Now);
             Assert.AreEqual(dt.ToLocalTime(), new DateTime(2023, 8, 5, 19, 28, 19));
 
-
             engine.UseLocalTime = true;
             // chinese time
             dt = engine.TryEvaluate("DATEVALUE('1691234899000',0)", DateTime.Now);
@@ -47,6 +43,7 @@ namespace ToolGood.Algorithm
             dt = engine.TryEvaluate("DATEVALUE('1691234899')", DateTime.Now);
             Assert.AreEqual(dt, new DateTime(2023, 8, 5, 19, 28, 19));
         }
+
         [Test]
         public void TIMESTAMP_Test()
         {
@@ -67,7 +64,6 @@ namespace ToolGood.Algorithm
             Assert.AreEqual(dt, 1451577600L);
         }
 
-
         [Test]
         public void TIMEVALUE_test()
         {
@@ -75,6 +71,7 @@ namespace ToolGood.Algorithm
             var dt = engine.TryEvaluate("TIMEVALUE('12:12:12')", TimeSpan.MinValue);
             Assert.AreEqual(dt, new DateTime(2016, 1, 1, 12, 12, 12).TimeOfDay);
         }
+
         [Test]
         public void DATE_test()
         {
@@ -82,6 +79,7 @@ namespace ToolGood.Algorithm
             var dt = engine.TryEvaluate("DATE(2016,1,1)", DateTime.MinValue);
             Assert.AreEqual(dt, new DateTime(2016, 1, 1));
         }
+
         [Test]
         public void time_test()
         {
@@ -89,6 +87,7 @@ namespace ToolGood.Algorithm
             var dt = engine.TryEvaluate("time(11,12,13)", TimeSpan.MinValue);
             Assert.AreEqual(dt, new DateTime(2016, 1, 1, 11, 12, 13).TimeOfDay);
         }
+
         [Test]
         public void Now_test()
         {
@@ -96,6 +95,7 @@ namespace ToolGood.Algorithm
             var dt = engine.TryEvaluate("now()", DateTime.MinValue);
             Assert.AreEqual(dt.ToString(), DateTime.Now.ToString());
         }
+
         [Test]
         public void Today_test()
         {
@@ -103,6 +103,7 @@ namespace ToolGood.Algorithm
             var dt = engine.TryEvaluate("Today()", DateTime.MinValue);
             Assert.AreEqual(dt.ToString(), DateTime.Today.ToString());
         }
+
         [Test]
         public void Year_test()
         {
@@ -110,6 +111,7 @@ namespace ToolGood.Algorithm
             var dt = engine.TryEvaluate("year(now())", 0);
             Assert.AreEqual(dt, DateTime.Now.Year);
         }
+
         [Test]
         public void Month_test()
         {
@@ -117,6 +119,7 @@ namespace ToolGood.Algorithm
             var dt = engine.TryEvaluate("Month(now())", 0);
             Assert.AreEqual(dt, DateTime.Now.Month);
         }
+
         [Test]
         public void Day_test()
         {
@@ -124,6 +127,7 @@ namespace ToolGood.Algorithm
             var dt = engine.TryEvaluate("Day(now())", 0);
             Assert.AreEqual(dt, DateTime.Now.Day);
         }
+
         [Test]
         public void Hour_test()
         {
@@ -131,6 +135,7 @@ namespace ToolGood.Algorithm
             var dt = engine.TryEvaluate("Hour(now())", 0);
             Assert.AreEqual(dt, DateTime.Now.Hour);
         }
+
         [Test]
         public void Minute_test()
         {
@@ -138,6 +143,7 @@ namespace ToolGood.Algorithm
             var dt = engine.TryEvaluate("Minute(now())", 0);
             Assert.AreEqual(dt, DateTime.Now.Minute);
         }
+
         [Test]
         public void Second_test()
         {
@@ -145,6 +151,7 @@ namespace ToolGood.Algorithm
             var dt = engine.TryEvaluate("Second(now())", 0);
             Assert.AreEqual(dt, DateTime.Now.Second);
         }
+
         [Test]
         public void WEEKDAY_test()
         {
@@ -171,7 +178,6 @@ namespace ToolGood.Algorithm
             Assert.AreEqual(dt, 1);
             dt = engine.TryEvaluate("WEEKDAY(date(2017,1,2),3)", 0);
             Assert.AreEqual(dt, 0);
-
         }
 
         [Test]
@@ -187,7 +193,6 @@ namespace ToolGood.Algorithm
             dt = engine.TryEvaluate("DATEDIF('1975-1-30','2017-1-7','d')", 0);
             Assert.AreEqual(dt, 15318);
 
-
             dt = engine.TryEvaluate("DATEDIF('1975-1-30','2017-1-7','yd')", 0);
             Assert.AreEqual(dt, 342);
 
@@ -197,6 +202,7 @@ namespace ToolGood.Algorithm
             dt = engine.TryEvaluate("DATEDIF('1975-1-30','2017-1-7','md')", 0);
             Assert.AreEqual(dt, 8);
         }
+
         [Test]
         public void DAYS360_test()
         {
@@ -204,6 +210,7 @@ namespace ToolGood.Algorithm
             var dt = engine.TryEvaluate("DAYS360('1975-1-30','2017-1-7')", 0);
             Assert.AreEqual(dt, 15097);
         }
+
         [Test]
         public void EDATE_test()
         {
@@ -211,6 +218,7 @@ namespace ToolGood.Algorithm
             var dt = engine.TryEvaluate("EDATE(\"2012-1-31\",32)", DateTime.MinValue);
             Assert.AreEqual(dt, DateTime.Parse("2014-09-30"));
         }
+
         [Test]
         public void EOMONTH_test()
         {
@@ -226,6 +234,7 @@ namespace ToolGood.Algorithm
             var dt = engine.TryEvaluate("NETWORKDAYS(\"2012-1-1\",\"2013-1-1\")", 0);
             Assert.AreEqual(dt, 262);
         }
+
         [Test]
         public void WORKDAY_test()
         {
@@ -294,14 +303,13 @@ namespace ToolGood.Algorithm
             dt = engine.TryEvaluate("'20:05:06'.AddSeconds(1).Second()", 0);
             Assert.AreEqual(dt, 7);
 
-            // 错误 
+            // 错误
             dt = engine.TryEvaluate("'2000-02-01 24:05:06'.AddSeconds(1).Second()", 0);
             Assert.AreEqual(dt, 0);
 
-            // 
+            //
             //dt = engine.TryEvaluate("'24:05:06'.AddSeconds(1).Second()", 0);
             //Assert.AreEqual(dt, 0);
         }
-
     }
 }

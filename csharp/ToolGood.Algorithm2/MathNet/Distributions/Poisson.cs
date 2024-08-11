@@ -42,7 +42,5 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
 
             return 1.0 - SpecialFunctions.GammaLowerRegularized(x + 1, lambda);
         }
-
-
     }
 }

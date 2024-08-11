@@ -25,7 +25,5 @@
 
             return SpecialFunctions.Binomial(success, k) * SpecialFunctions.Binomial(population - success, draws - k) / SpecialFunctions.Binomial(population, draws);
         }
-
- 
     }
 }

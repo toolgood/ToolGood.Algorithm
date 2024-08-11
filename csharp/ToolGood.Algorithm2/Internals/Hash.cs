@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 
 namespace ToolGood.Algorithm.Internals
 {
-    static class Hash
+    internal static class Hash
     {
         #region CRC32
 
@@ -15,7 +15,7 @@ namespace ToolGood.Algorithm.Internals
             return BitConverter.ToString(retVal).Replace("-", "");
         }
 
-        class Crc32Hash
+        private class Crc32Hash
         {
             private static readonly uint CrcSeed = 0xFFFFFFFF;
 
@@ -97,7 +97,8 @@ namespace ToolGood.Algorithm.Internals
                 return result;
             }
         }
-        #endregion
+
+        #endregion CRC32
 
         #region MD5
 
@@ -112,9 +113,11 @@ namespace ToolGood.Algorithm.Internals
             return BitConverter.ToString(retVal).Replace("-", "");
 #endif
         }
-        #endregion
+
+        #endregion MD5
 
         #region SHA1
+
         public static string GetSha1String(byte[] buffer)
         {
             SHA1 sha512 = SHA1.Create();
@@ -123,7 +126,7 @@ namespace ToolGood.Algorithm.Internals
             return BitConverter.ToString(retVal).Replace("-", "");
         }
 
-        #endregion
+        #endregion SHA1
 
         #region SHA256
 
@@ -134,7 +137,8 @@ namespace ToolGood.Algorithm.Internals
             sha512.Dispose();
             return BitConverter.ToString(retVal).Replace("-", "");
         }
-        #endregion
+
+        #endregion SHA256
 
         #region SHA512
 
@@ -146,27 +150,28 @@ namespace ToolGood.Algorithm.Internals
             return BitConverter.ToString(retVal).Replace("-", "");
         }
 
-        #endregion
+        #endregion SHA512
 
         #region HMACMD5
+
         public static string GetHmacMd5String(byte[] buffer, string secret)
         {
 #if WebAssembly
             byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret ?? "");
             return MD5.hmac_md5(buffer, keyByte);
 #else
-        byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret ?? "");
+            byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret ?? "");
             using (var hmacsha256 = new HMACMD5(keyByte)) {
                 byte[] hashmessage = hmacsha256.ComputeHash(buffer);
                 return BitConverter.ToString(hashmessage).Replace("-", "");
             }
 #endif
-
-
         }
-        #endregion
+
+        #endregion HMACMD5
 
         #region HMACSHA1
+
         public static string GetHmacSha1String(byte[] buffer, string secret)
         {
             byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret ?? "");
@@ -175,9 +180,11 @@ namespace ToolGood.Algorithm.Internals
                 return BitConverter.ToString(hashmessage).Replace("-", "");
             }
         }
-        #endregion
+
+        #endregion HMACSHA1
 
         #region HMACSHA256
+
         public static string GetHmacSha256String(byte[] buffer, string secret)
         {
             byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret ?? "");
@@ -186,9 +193,11 @@ namespace ToolGood.Algorithm.Internals
                 return BitConverter.ToString(hashmessage).Replace("-", "");
             }
         }
-        #endregion
+
+        #endregion HMACSHA256
 
         #region HMACSHA512
+
         public static string GetHmacSha512String(byte[] buffer, string secret)
         {
             byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret ?? "");
@@ -198,8 +207,6 @@ namespace ToolGood.Algorithm.Internals
             }
         }
 
-        #endregion
-
-
+        #endregion HMACSHA512
     }
 }

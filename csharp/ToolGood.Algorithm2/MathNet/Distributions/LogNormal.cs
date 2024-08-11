@@ -7,7 +7,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
     /// For details about this distribution, see
     /// <a href="http://en.wikipedia.org/wiki/Log-normal_distribution">Wikipedia - Log-Normal distribution</a>.
     /// </summary>
-   sealed class LogNormal
+    internal sealed class LogNormal
     {
         public static double CDF(double mu, double sigma, double x)
         {

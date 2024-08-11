@@ -5,7 +5,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
     /// <summary>
     /// Precision
     /// </summary>
-    static partial class Precision
+    internal static partial class Precision
     {
         /// <summary>
         /// Standard epsilon, the maximum relative precision of IEEE 754 double-precision floating numbers (64 bit).
@@ -22,8 +22,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
         /// <summary>
         /// Value representing 10 * 2^(-53) = 1.11022302462516E-15
         /// </summary>
-        static readonly double DefaultDoubleAccuracy = DoublePrecision * 10;
-
+        private static readonly double DefaultDoubleAccuracy = DoublePrecision * 10;
 
         /// <summary>
         /// Increments a floating point number to the next bigger number representable by the data type.
@@ -101,6 +100,5 @@ namespace ToolGood.Algorithm.MathNet.Numerics
         {
             return 2 * EpsilonOf(value);
         }
-
     }
 }

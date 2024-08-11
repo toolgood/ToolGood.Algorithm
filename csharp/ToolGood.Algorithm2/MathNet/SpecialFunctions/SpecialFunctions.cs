@@ -2,7 +2,7 @@
 
 namespace ToolGood.Algorithm.MathNet.Numerics
 {
-    partial class SpecialFunctions
+    internal partial class SpecialFunctions
     {
         private static readonly double[] ErfImpAn = { 0.00337916709551257388990745, -0.00073695653048167948530905, -0.374732337392919607868241, 0.0817442448733587196071743, -0.0421089319936548595203468, 0.0070165709512095756344528, -0.00495091255982435110337458, 0.000871646599037922480317225 };
         private static readonly double[] ErfImpAd = { 1, -0.218088218087924645390535, 0.412542972725442099083918, -0.0841891147873106755410271, 0.0655338856400241519690695, -0.0120019604454941768171266, 0.00408165558926174048329689, -0.000615900721557769691924509 };
@@ -48,8 +48,6 @@ namespace ToolGood.Algorithm.MathNet.Numerics
         private static readonly double[] ErvInvImpGn = { -0.000539042911019078575891, -0.28398759004727721098e-6, 0.899465114892291446442e-6, 0.229345859265920864296e-7, 0.225561444863500149219e-9, 0.947846627503022684216e-12, 0.135880130108924861008e-14, -0.348890393399948882918e-21 };
         private static readonly double[] ErvInvImpGd = { 1, 0.0845746234001899436914, 0.00282092984726264681981, 0.468292921940894236786e-4, 0.399968812193862100054e-6, 0.161809290887904476097e-8, 0.231558608310259605225e-11 };
 
-
-
         public static double Erfc(double x)
         {
             if (x == 0) {
@@ -70,7 +68,8 @@ namespace ToolGood.Algorithm.MathNet.Numerics
 
             return ErfImp(x, true);
         }
-        static double ErfImp(double z, bool invert)
+
+        private static double ErfImp(double z, bool invert)
         {
             if (z < 0) {
                 if (!invert) {
@@ -142,7 +141,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
                     r = Evaluate.Polynomial(z - 24, ErfImpKn) / Evaluate.Polynomial(z - 24, ErfImpKd);
                     b = 0.5638477802F;
                 } else if (z < 60) {
-                    // Worst case absolute error found: 5.896543869e-24 
+                    // Worst case absolute error found: 5.896543869e-24
                     r = Evaluate.Polynomial(z - 38, ErfImpLn) / Evaluate.Polynomial(z - 38, ErfImpLd);
                     b = 0.5640528202F;
                 } else if (z < 85) {
@@ -193,7 +192,8 @@ namespace ToolGood.Algorithm.MathNet.Numerics
 
             return ErfInvImpl(p, q, s);
         }
-        static double ErfInvImpl(double p, double q, double s)
+
+        private static double ErfInvImpl(double p, double q, double s)
         {
             double result;
 
@@ -331,6 +331,5 @@ namespace ToolGood.Algorithm.MathNet.Numerics
 
             return ErfImp(x, false);
         }
-
     }
 }

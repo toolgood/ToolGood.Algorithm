@@ -31,7 +31,6 @@ using System;
 using ToolGood.Algorithm.MathNet.Numerics.Distributions;
 using ToolGood.Algorithm.MathNet.Numerics.Statistics;
 
-
 namespace ToolGood.Algorithm.MathNet.Numerics
 {
     /// <summary>
@@ -40,7 +39,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
     /// We do not recommend to use them except in an intermediate phase when
     /// porting over solutions previously implemented in Excel.
     /// </summary>
-    static partial class ExcelFunctions
+    internal static partial class ExcelFunctions
     {
         /// <summary>
         /// NormSDist
@@ -51,6 +50,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
         {
             return Normal.CDF(0d, 1d, z);
         }
+
         /// <summary>
         /// NormSInv
         /// </summary>
@@ -60,6 +60,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
         {
             return Normal.InvCDF(0d, 1d, probability);
         }
+
         /// <summary>
         /// NormDist
         /// </summary>
@@ -72,6 +73,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
         {
             return cumulative ? Normal.CDF(mean, standardDev, x) : Normal.PDF(mean, standardDev, x);
         }
+
         /// <summary>
         /// NormInv
         /// </summary>
@@ -83,6 +85,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
         {
             return Normal.InvCDF(mean, standardDev, probability);
         }
+
         /// <summary>
         /// TDist
         /// </summary>
@@ -96,12 +99,15 @@ namespace ToolGood.Algorithm.MathNet.Numerics
             switch (tails) {
                 case 1:
                     return 1d - StudentT.CDF(0d, 1d, degreesFreedom, x);
+
                 case 2:
                     return 1d - StudentT.CDF(0d, 1d, degreesFreedom, x) + StudentT.CDF(0d, 1d, degreesFreedom, -x);
+
                 default:
                     throw new ArgumentOutOfRangeException("tails");
             }
         }
+
         /// <summary>
         /// TInv
         /// </summary>
@@ -112,6 +118,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
         {
             return -StudentT.InvCDF(0d, 1d, degreesFreedom, probability / 2);
         }
+
         /// <summary>
         /// FDist
         /// </summary>
@@ -123,6 +130,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
         {
             return 1d - FisherSnedecor.CDF(degreesFreedom1, degreesFreedom2, x);
         }
+
         /// <summary>
         /// FInv
         /// </summary>
@@ -134,6 +142,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
         {
             return FisherSnedecor.InvCDF(degreesFreedom1, degreesFreedom2, 1d - probability);
         }
+
         /// <summary>
         /// BetaDist
         /// </summary>
@@ -145,6 +154,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
         {
             return Beta.CDF(alpha, beta, x);
         }
+
         /// <summary>
         /// BetaInv
         /// </summary>
@@ -172,14 +182,19 @@ namespace ToolGood.Algorithm.MathNet.Numerics
             switch (quant) {
                 case 0:
                     return ArrayStatistics.Minimum(array);
+
                 case 1:
                     return array.QuantileCustom(0.25, QuantileDefinition.Excel);
+
                 case 2:
                     return array.QuantileCustom(0.5, QuantileDefinition.Excel);
+
                 case 3:
                     return array.QuantileCustom(0.75, QuantileDefinition.Excel);
+
                 case 4:
                     return ArrayStatistics.Maximum(array);
+
                 default:
                     throw new ArgumentOutOfRangeException("quant");
             }
@@ -196,4 +211,3 @@ namespace ToolGood.Algorithm.MathNet.Numerics
         }
     }
 }
-

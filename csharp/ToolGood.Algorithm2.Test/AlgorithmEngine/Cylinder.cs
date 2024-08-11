@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ToolGood.Algorithm
 {
@@ -10,6 +8,7 @@ namespace ToolGood.Algorithm
     {
         private int _radius;
         private int _height;
+
         public Cylinder(int radius, int height)
         {
             _radius = radius;
@@ -18,16 +17,13 @@ namespace ToolGood.Algorithm
 
         protected override Operand GetParameter(string parameter)
         {
-            if (parameter == "半径")
-            {
+            if (parameter == "半径") {
                 return Operand.Create(_radius);
             }
-            if (parameter == "直径")
-            {
+            if (parameter == "直径") {
                 return Operand.Create(_radius * 2);
             }
-            if (parameter == "高")
-            {
+            if (parameter == "高") {
                 return Operand.Create(_height);
             }
             return base.GetParameter(parameter);
@@ -35,16 +31,13 @@ namespace ToolGood.Algorithm
 
         protected override Operand ExecuteDiyFunction(string funcName, List<Operand> operands)
         {
-            if (funcName == "求面积")
-            {
-                if (operands.Count == 1)
-                {
+            if (funcName == "求面积") {
+                if (operands.Count == 1) {
                     var r = (double)operands[0].ToNumber().NumberValue;
                     return r * r * Math.PI;
                 }
             }
             return base.ExecuteDiyFunction(funcName, operands);
         }
-
     }
 }

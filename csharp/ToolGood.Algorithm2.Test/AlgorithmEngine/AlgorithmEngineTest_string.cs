@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using PetaTest;
+﻿using PetaTest;
 
 namespace ToolGood.Algorithm
 {
     [TestFixture]
-    class AlgorithmEngineTest_string
+    internal class AlgorithmEngineTest_string
     {
         [Test]
         public void ASC_test()
@@ -16,6 +12,7 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("asc('ａｂｃＡＢＣ１２３')", "");
             Assert.AreEqual(t, "abcABC123");
         }
+
         [Test]
         public void Jis_test()
         {
@@ -41,6 +38,7 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("clean('\\r112\\t')", "");
             Assert.AreEqual(t, "112");
         }
+
         [Test]
         public void code_test()
         {
@@ -56,6 +54,7 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("CONCATENATE('tt','33')", "");
             Assert.AreEqual(t, "tt33");
         }
+
         [Test]
         public void EXACT_test()
         {
@@ -73,8 +72,8 @@ namespace ToolGood.Algorithm
             Assert.AreEqual(t, true);
             t = engine.TryEvaluate("EXACT('1',TRUE())", true);
             Assert.AreEqual(t, false);
-
         }
+
         [Test]
         public void FIND_test()
         {
@@ -104,6 +103,7 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("LEFT('123222',3)", "");
             Assert.AreEqual(t, "123");
         }
+
         [Test]
         public void LEN_test()
         {
@@ -111,6 +111,7 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("LEN('123222')", 0);
             Assert.AreEqual(t, 6);
         }
+
         [Test]
         public void LOWER_test()
         {
@@ -118,6 +119,7 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("LOWER('ABC')", "");
             Assert.AreEqual(t, "abc");
         }
+
         [Test]
         public void MID_test()
         {
@@ -125,6 +127,7 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("MID('ABCDEF',2,3)", "");
             Assert.AreEqual(t, "BCD");
         }
+
         [Test]
         public void PROPER_test()
         {
@@ -132,6 +135,7 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("PROPER('abc abc')", "");
             Assert.AreEqual(t, "Abc Abc");
         }
+
         [Test]
         public void REPLACE_test()
         {
@@ -142,6 +146,7 @@ namespace ToolGood.Algorithm
             var t1 = engine.TryEvaluate("REPLACE(\"abccd\",'bc',\"2\")", "");
             Assert.AreEqual(t1, "a2cd");
         }
+
         [Test]
         public void REPT_test()
         {
@@ -149,6 +154,7 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("REPT(\"q\",3)", "");
             Assert.AreEqual(t, "qqq");
         }
+
         [Test]
         public void RIGHT_test()
         {
@@ -156,6 +162,7 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("RIGHT(\"123q\",3)", "");
             Assert.AreEqual(t, "23q");
         }
+
         [Test]
         public void RMB_test()
         {
@@ -163,6 +170,7 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("rmb(12.3)", "");
             Assert.AreEqual(t, "壹拾贰元叁角");
         }
+
         [Test]
         public void SEARCH_test()
         {
@@ -170,6 +178,7 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("SEARCH(\"aa\",\"abbAaddd\")", 0);
             Assert.AreEqual(t, 4);
         }
+
         [Test]
         public void SUBSTITUTE_test()
         {
@@ -179,6 +188,7 @@ namespace ToolGood.Algorithm
             t = engine.TryEvaluate("SUBSTITUTE(\"ababcc\",\"ab\",\"12\",2)", "");
             Assert.AreEqual(t, "ab12cc");
         }
+
         [Test]
         public void T_test()
         {
@@ -188,6 +198,7 @@ namespace ToolGood.Algorithm
             t = engine.TryEvaluate("T('123')", "");
             Assert.AreEqual(t, "123");
         }
+
         [Test]
         public void TEXT_test()
         {
@@ -195,6 +206,7 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("TEXT(123,\"0.00\")", "");
             Assert.AreEqual(t, "123.00");
         }
+
         [Test]
         public void TRIM_test()
         {
@@ -202,6 +214,7 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("TRIM(\" 123 123 \")", "");
             Assert.AreEqual(t, "123 123");
         }
+
         [Test]
         public void UPPER_test()
         {
@@ -217,7 +230,5 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("VALUE(\"123\")", 0);
             Assert.AreEqual(t, 123);
         }
-
-
     }
 }

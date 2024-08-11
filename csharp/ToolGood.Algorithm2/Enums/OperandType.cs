@@ -9,6 +9,7 @@
         /// NULL
         /// </summary>
         NULL,
+
         /// <summary>
         /// 错误
         /// </summary>

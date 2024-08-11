@@ -2,16 +2,16 @@
 
 namespace ToolGood.Algorithm.MathNet.Numerics
 {
-    static partial class SpecialFunctions
+    internal static partial class SpecialFunctions
     {
-        const int GammaN = 10;
+        private const int GammaN = 10;
 
         /// <summary>
         /// Auxiliary variable when evaluating the <see cref="GammaLn"/> function.
         /// </summary>
-        const double GammaR = 10.900511;
+        private const double GammaR = 10.900511;
 
-        static readonly double[] GammaDk ={
+        private static readonly double[] GammaDk ={
             2.48574089138753565546e-5,
             1.05142378581721974210,
             -3.45687097222016235469,
@@ -120,7 +120,6 @@ namespace ToolGood.Algorithm.MathNet.Numerics
 
             return 1d - (Math.Exp(ax) * ans);
         }
-
 
         public static double GammaLowerRegularizedInv(double a, double y0)
         {
@@ -295,7 +294,5 @@ namespace ToolGood.Algorithm.MathNet.Numerics
                 return s * Constants.TwoSqrtEOverPi * Math.Pow((z - 0.5 + GammaR) / Math.E, z - 0.5);
             }
         }
-
-
     }
 }

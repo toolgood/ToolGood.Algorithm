@@ -1,11 +1,5 @@
 ﻿using PetaTest;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ToolGood.Algorithm;
-
 
 namespace ToolGood.Algorithm2.Test.AlgorithmEngineHelper2
 {
@@ -47,7 +41,6 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineHelper2
 
             DiyNameInfo p7 = AlgorithmEngineHelper.GetDiyNames("#ddd#+2");
             Assert.AreEqual("ddd", p7.Parameters[0].ToString());
-
         }
 
         [Test]
@@ -55,8 +48,6 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineHelper2
         {
             var b = AlgorithmEngineHelper.IsKeywords("false");
             Assert.IsTrue(b);
-
-
         }
 
         [Test]
@@ -71,14 +62,12 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineHelper2
             b = AlgorithmEngineHelper.UnitConversion(1M, "米", "mm", "测试");
             Assert.AreEqual(1000M, b);
 
-
             b = AlgorithmEngineHelper.UnitConversion(1M, "m2", "dm2", "测试");
             Assert.AreEqual(100M, b);
             b = AlgorithmEngineHelper.UnitConversion(1M, "m2", "cm2", "测试");
             Assert.AreEqual(10000M, b);
             b = AlgorithmEngineHelper.UnitConversion(1M, "m2", "mm2", "测试");
             Assert.AreEqual(1000000M, b);
-
 
             b = AlgorithmEngineHelper.UnitConversion(1M, "m3", "dm3", "测试");
             Assert.AreEqual(1000M, b);
@@ -87,13 +76,12 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineHelper2
             b = AlgorithmEngineHelper.UnitConversion(1M, "m3", "mm3", "测试");
             Assert.AreEqual(1000000000M, b);
 
-
             b = AlgorithmEngineHelper.UnitConversion(1M, "t", "kg", "测试");
             Assert.AreEqual(1000M, b);
             b = AlgorithmEngineHelper.UnitConversion(1M, "t", "g", "测试");
             Assert.AreEqual(1000000M, b);
-
         }
+
         [Test]
         public void Test4()
         {
@@ -101,8 +89,5 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineHelper2
             var operand = AlgorithmEngineHelper.Evaluate(progContext);
             Assert.AreEqual(2, operand.IntValue);
         }
-
-
-
     }
 }

@@ -2,7 +2,7 @@
 
 namespace ToolGood.Algorithm.MathNet.Numerics
 {
-    static class Evaluate
+    internal static class Evaluate
     {
         public static double Polynomial(double z, params double[] coefficients)
         {
@@ -37,9 +37,5 @@ namespace ToolGood.Algorithm.MathNet.Numerics
 
             return sum;
         }
-
-
-
     }
-
 }

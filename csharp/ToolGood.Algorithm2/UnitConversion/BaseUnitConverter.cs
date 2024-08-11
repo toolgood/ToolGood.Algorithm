@@ -1,8 +1,7 @@
 ﻿namespace ToolGood.Algorithm.UnitConversion
 {
-    abstract class BaseUnitConverter
+    internal abstract class BaseUnitConverter
     {
-
         /// <summary>
         /// Set Unit conversions and initial Left/Right conversion
         /// </summary>
@@ -18,7 +17,6 @@
         private string unitLeft;
         private string unitRight;
 
-
         /// <summary>
         /// Convert the Unit on the Left to the Unit on the Right
         /// </summary>
@@ -31,7 +29,5 @@
             var result = (value / startFactor) * endFactor;
             return result;//.CheckCloseEnoughValue();
         }
-
     }
-
 }

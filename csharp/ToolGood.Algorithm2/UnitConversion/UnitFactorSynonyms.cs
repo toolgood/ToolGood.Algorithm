@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace ToolGood.Algorithm.UnitConversion
 {
-    sealed class UnitFactorSynonyms
+    internal sealed class UnitFactorSynonyms
     {
         public UnitFactorSynonyms(params string[] items)
         {
@@ -31,7 +30,6 @@ namespace ToolGood.Algorithm.UnitConversion
             return _synonyms.Contains(synonym, StringComparer.CurrentCultureIgnoreCase);
         }
 
-
         public override string ToString()
         {
             return String.Join(", ", _synonyms);
@@ -43,5 +41,4 @@ namespace ToolGood.Algorithm.UnitConversion
             return new UnitFactorSynonyms(synonym);
         }
     }
-
 }

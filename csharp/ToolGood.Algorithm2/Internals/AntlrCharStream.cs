@@ -2,6 +2,7 @@
  * Use of this file is governed by the BSD 3-clause license that
  * can be found in the LICENSE.txt file in the project root.
  */
+
 using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
 
@@ -29,39 +30,44 @@ namespace ToolGood.Algorithm.Internals
         {
             this.stream = stream;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public int Index {
             get {
                 return stream.Index;
             }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public int Size {
             get {
                 return stream.Size;
             }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public string SourceName {
             get {
                 return stream.SourceName;
             }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Consume()
         {
             stream.Consume();
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="interval"></param>
         /// <returns></returns>
@@ -70,8 +76,9 @@ namespace ToolGood.Algorithm.Internals
         {
             return stream.GetText(interval);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="i"></param>
         /// <returns></returns>
@@ -84,24 +91,27 @@ namespace ToolGood.Algorithm.Internals
             }
             return CharUtil.StandardChar((char)c);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public int Mark()
         {
             return stream.Mark();
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="marker"></param>
         public void Release(int marker)
         {
             stream.Release(marker);
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="index"></param>
         public void Seek(int index)

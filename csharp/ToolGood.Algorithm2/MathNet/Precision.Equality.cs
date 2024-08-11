@@ -1,4 +1,4 @@
-// <copyright file="Precision.Equality.cs" company="Math.NET">
+﻿// <copyright file="Precision.Equality.cs" company="Math.NET">
 // Math.NET Numerics, part of the Math.NET Project
 // http://numerics.mathdotnet.com
 // http://github.com/mathnet/mathnet-numerics
@@ -31,7 +31,7 @@ using System;
 
 namespace ToolGood.Algorithm.MathNet.Numerics
 {
-    static partial class Precision
+    internal static partial class Precision
     {
         public static bool AlmostEqualNormRelative(this double a, double b, double diff, double maximumError)
         {
@@ -64,10 +64,12 @@ namespace ToolGood.Algorithm.MathNet.Numerics
         {
             return AlmostEqualNormRelative(a, b, a - b, DefaultDoubleAccuracy);
         }
+
         public static bool AlmostEqual(this double a, double b)
         {
             return AlmostEqualNorm(a, b, a - b, DefaultDoubleAccuracy);
         }
+
         public static bool AlmostEqualNorm(this double a, double b, double diff, double maximumAbsoluteError)
         {
             // If A or B are infinity (positive or negative) then
@@ -85,7 +87,5 @@ namespace ToolGood.Algorithm.MathNet.Numerics
 
             return Math.Abs(diff) < maximumAbsoluteError;
         }
-
-
     }
 }

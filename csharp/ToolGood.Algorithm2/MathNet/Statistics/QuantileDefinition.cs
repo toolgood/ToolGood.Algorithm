@@ -1,6 +1,6 @@
 ﻿namespace ToolGood.Algorithm.MathNet.Numerics.Statistics
 {
-    enum QuantileDefinition
+    internal enum QuantileDefinition
     {
         R1 = 1,// SAS3 = 1, EmpiricalInvCDF = 1,
         R2 = 2,// SAS5 = 2, EmpiricalInvCDFAverage = 2,

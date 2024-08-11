@@ -1,9 +1,5 @@
 ﻿using PetaTest;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ToolGood.Algorithm;
 
 namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
@@ -14,7 +10,7 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
         [Test]
         public void PARAM_test()
         {
-            // PARAM 动态获取参数 
+            // PARAM 动态获取参数
             Cylinder engine = new Cylinder(10, 15);
             var num = engine.TryEvaluate("PARAM('半径')", 0);
             Assert.AreEqual(num, 10);
@@ -47,7 +43,7 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
             str = engine.TryEvaluate("{name:'toolgood', age:'12',other:{work:'IT'}}['other']['work']", "");
             Assert.AreEqual(str, "IT");
 
-            // 使用json 方法 使用比较标准的 json格式， 不然会出错  
+            // 使用json 方法 使用比较标准的 json格式， 不然会出错
             str = engine.TryEvaluate("json(\"{'name':'toolgood', 'age':'12','other':{'work':'IT'}}\")['name']", "");
             Assert.AreEqual(str, "toolgood");
 
@@ -70,15 +66,12 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
             b = engine.TryEvaluate("{name:'toolgood', age:'12',other:{work:'IT'}}.has('work')", true);
             Assert.AreEqual(b, false);
 
-
             // 'HASVALUE' | 'CONTAINSVALUE' 指向同一函数   只支持数组与json类型
             b = engine.TryEvaluate("{name:'toolgood', age:'12',other:{work:'IT'}}.hasValue('toolgood')", false);
             Assert.AreEqual(b, true);
 
             b = engine.TryEvaluate("json(\"{'name':'toolgood', 'age':'12','other':{'work':'IT'}}\").hasValue('toolgood')", false);
             Assert.AreEqual(b, true);
-
- 
         }
 
         [Test]
@@ -106,9 +99,7 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
 
             b = engine.TryEvaluate("json(\"['abc','age']\").hasValue('age')", false);
             Assert.AreEqual(b, true);
-
         }
-
 
         [Test]
         public void Distance_Test()
@@ -302,8 +293,6 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
 
             b = engine.TryEvaluate("1=0.000001km2*1000*1000", false);
             Assert.AreEqual(b, true);
-
-
         }
 
         [Test]
@@ -339,7 +328,6 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
 
             b = engine.TryEvaluate("1m3=0.001km*0.001km*0.001km", false);
             Assert.AreEqual(b, true);
-
 
             b = engine.TryEvaluate("1=1m3", false);
             Assert.AreEqual(b, true);
@@ -417,7 +405,6 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
             Assert.AreEqual(b, true);
         }
 
-
         [Test]
         public void Mass_Test()
         {
@@ -427,7 +414,7 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
 
             b = engine.TryEvaluate("1=1000g", false);
             Assert.AreEqual(b, true);
- 
+
             b = engine.TryEvaluate("1=0.001t", false);
             Assert.AreEqual(b, true);
 
@@ -465,9 +452,6 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngine_V35
             Assert.AreEqual(b, true);
             b = engine.TryEvaluate("1m=1m3", false);
             Assert.AreEqual(b, true);
-
         }
-
-
     }
 }

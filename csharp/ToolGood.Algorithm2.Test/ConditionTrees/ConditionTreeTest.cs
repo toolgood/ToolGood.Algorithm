@@ -48,7 +48,6 @@ namespace ToolGood.Algorithm2.Test.ConditionTrees
             Assert.AreEqual("dd=ss", txt.Substring(t2.Start, t2.End - t2.Start + 1));
         }
 
-
         [Test]
         public void Test4()
         {
@@ -140,7 +139,5 @@ namespace ToolGood.Algorithm2.Test.ConditionTrees
             Assert.AreEqual("dd=ss", txt.Substring(t3.Start, t3.End - t3.Start + 1));
             Assert.AreEqual("[tt]==22", txt.Substring(t4.Start, t4.End - t4.Start + 1));
         }
-
-
     }
 }

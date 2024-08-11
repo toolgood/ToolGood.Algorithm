@@ -1,11 +1,10 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 
-
 namespace ToolGood.Algorithm.LitJson
 {
-    enum JsonToken
+    internal enum JsonToken
     {
         None,
 
@@ -24,10 +23,10 @@ namespace ToolGood.Algorithm.LitJson
         Null
     }
 
-
-   sealed  class JsonReader
+    internal sealed class JsonReader
     {
         #region Fields
+
         private static readonly IDictionary<int, IDictionary<int, int[]>> parse_table;
 
         private Stack<int> automaton_stack;
@@ -41,18 +40,19 @@ namespace ToolGood.Algorithm.LitJson
         private bool read_started;
         private object token_value;
         private JsonToken token;
-        #endregion
 
+        #endregion Fields
 
         #region Public Properties
 
         public JsonToken Token { get { return token; } }
 
         public object Value { get { return token_value; } }
-        #endregion
 
+        #endregion Public Properties
 
         #region Constructors
+
         static JsonReader()
         {
             parse_table = PopulateParseTable();
@@ -74,11 +74,12 @@ namespace ToolGood.Algorithm.LitJson
 
             end_of_input = false;
             end_of_json = false;
-
         }
-        #endregion
+
+        #endregion Constructors
 
         #region Static Methods
+
         private static IDictionary<int, IDictionary<int, int[]>> PopulateParseTable()
         {
             // See section A.2. of the manual for details
@@ -143,10 +144,11 @@ namespace ToolGood.Algorithm.LitJson
         {
             parse_table.Add((int)rule, new Dictionary<int, int[]>());
         }
-        #endregion
 
+        #endregion Static Methods
 
         #region Private Methods
+
         private void ProcessNumber(string number)
         {
             if (number.IndexOf('.') != -1 || number.IndexOf('e') != -1 || number.IndexOf('E') != -1) {
@@ -170,48 +172,40 @@ namespace ToolGood.Algorithm.LitJson
             // Shouldn't happen, but just in case, return something
             token_value = 0;
         }
+
         private void ProcessSymbol()
         {
             if (current_symbol == '[') {
                 token = JsonToken.ArrayStart;
                 parser_return = true;
-
             } else if (current_symbol == ']') {
                 token = JsonToken.ArrayEnd;
                 parser_return = true;
-
             } else if (current_symbol == '{') {
                 token = JsonToken.ObjectStart;
                 parser_return = true;
-
             } else if (current_symbol == '}') {
                 token = JsonToken.ObjectEnd;
                 parser_return = true;
-
             } else if (current_symbol == '"') {
                 if (parser_in_string) {
                     parser_in_string = false;
 
                     parser_return = true;
-
                 } else {
                     if (token == JsonToken.None) token = JsonToken.String;
 
                     parser_in_string = true;
                 }
-
             } else if (current_symbol == (int)ParserToken.CharSeq) {
                 token_value = lexer.StringValue;
-
             } else if (current_symbol == (int)ParserToken.False) {
                 token = JsonToken.Boolean;
                 token_value = false;
                 parser_return = true;
-
             } else if (current_symbol == (int)ParserToken.Null) {
                 token = JsonToken.Null;
                 parser_return = true;
-
             } else if (current_symbol == (int)ParserToken.Number) {
                 ProcessNumber(lexer.StringValue);
                 token = JsonToken.Double;
@@ -224,15 +218,12 @@ namespace ToolGood.Algorithm.LitJson
                 //    token_value = 0;
                 //}
                 parser_return = true;
-
             } else if (current_symbol == (int)ParserToken.Pair) {
                 token = JsonToken.PropertyName;
-
             } else if (current_symbol == (int)ParserToken.True) {
                 token = JsonToken.Boolean;
                 token_value = true;
                 parser_return = true;
-
             }
         }
 
@@ -252,8 +243,8 @@ namespace ToolGood.Algorithm.LitJson
 
             return true;
         }
-        #endregion
 
+        #endregion Private Methods
 
         public void Close()
         {
@@ -289,7 +280,6 @@ namespace ToolGood.Algorithm.LitJson
                     return false;
             }
 
-
             int[] entry_symbols;
 
             while (true) {
@@ -316,9 +306,7 @@ namespace ToolGood.Algorithm.LitJson
                 }
 
                 try {
-
                     entry_symbols = parse_table[current_symbol][current_input];
-
                 } catch (KeyNotFoundException e) {
                     throw new JsonException((ParserToken)current_input, e);
                 }
@@ -329,6 +317,5 @@ namespace ToolGood.Algorithm.LitJson
                     automaton_stack.Push(entry_symbols[i]);
             }
         }
-
     }
 }

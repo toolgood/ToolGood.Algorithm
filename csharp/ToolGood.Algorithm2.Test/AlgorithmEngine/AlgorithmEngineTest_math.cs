@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using PetaTest;
+﻿using PetaTest;
+using System;
 
 namespace ToolGood.Algorithm
 {
     [TestFixture]
-    class AlgorithmEngineTest_math
+    internal class AlgorithmEngineTest_math
     {
         #region 基础数学
+
         [Test]
         public void Pi_test()
         {
@@ -17,6 +15,7 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("pi()", 0.0);
             Assert.AreEqual(3.141592654, Math.Round(t, 9));
         }
+
         [Test]
         public void abs_test()
         {
@@ -24,6 +23,7 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("abs(-1.2)", 0.0);
             Assert.AreEqual(1.2, t);
         }
+
         [Test]
         public void QUOTIENT_test()
         {
@@ -31,6 +31,7 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("QUOTIENT(7,3)", 0.0);
             Assert.AreEqual(2.0, t);
         }
+
         [Test]
         public void MOD_test()
         {
@@ -38,6 +39,7 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("MOD(7,3)", 0.0);
             Assert.AreEqual(1.0, t);
         }
+
         [Test]
         public void SIGN_test()
         {
@@ -49,6 +51,7 @@ namespace ToolGood.Algorithm
             t = engine.TryEvaluate("SIGN(-9)", 0);
             Assert.AreEqual(-1, t);
         }
+
         [Test]
         public void SQRT_test()
         {
@@ -56,6 +59,7 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("SQRT(9)", 0.0);
             Assert.AreEqual(3.0, t);
         }
+
         [Test]
         public void SUM_test()
         {
@@ -63,6 +67,7 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("SUM(1,2,3,4)", 0.0);
             Assert.AreEqual(10.0, t);
         }
+
         [Test]
         public void TRUNC_test()
         {
@@ -72,6 +77,7 @@ namespace ToolGood.Algorithm
             t = engine.TryEvaluate("TRUNC(-9.222)", 0.0);
             Assert.AreEqual(-9.0, t);
         }
+
         [Test]
         public void int_test()
         {
@@ -81,6 +87,7 @@ namespace ToolGood.Algorithm
             t = engine.TryEvaluate("int(-9.222)", 0.0);
             Assert.AreEqual(-9.0, t);
         }
+
         [Test]
         public void GCD_test()
         {
@@ -90,14 +97,15 @@ namespace ToolGood.Algorithm
             t = engine.TryEvaluate("GCD(30,21)", 0.0);
             Assert.AreEqual(3.0, t);
         }
+
         [Test]
         public void LCM_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
             var t = engine.TryEvaluate("LCM(3,5,7)", 0.0);
             Assert.AreEqual(105.0, t);
-
         }
+
         [Test]
         public void combin_test()
         {
@@ -105,18 +113,19 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("combin(10,2)", 0.0);
             Assert.AreEqual(45.0, t);
         }
+
         [Test]
         public void PERMUT_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
             var t = engine.TryEvaluate("PERMUT(10,2)", 0.0);
             Assert.AreEqual(90.0, t);
-
         }
 
-        #endregion
+        #endregion 基础数学
 
         #region 三角函数
+
         [Test]
         public void degrees_test()
         {
@@ -124,13 +133,15 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("degrees(pi())", 0.0);
             Assert.AreEqual(180.0, t);
         }
+
         [Test]
         public void RADIANS_test()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
             var t = engine.TryEvaluate("RADIANS(180)", 0.0);
-            Assert.AreEqual(Math.PI, t,10);
+            Assert.AreEqual(Math.PI, t, 10);
         }
+
         [Test]
         public void cos_test()
         {
@@ -139,6 +150,7 @@ namespace ToolGood.Algorithm
             t = Math.Round(t, 6);
             Assert.AreEqual(Math.Round(0.540302306, 6), t);
         }
+
         [Test]
         public void cosh_test()
         {
@@ -147,6 +159,7 @@ namespace ToolGood.Algorithm
             t = Math.Round(t, 6);
             Assert.AreEqual(Math.Round(1.543080635, 6), t);
         }
+
         [Test]
         public void sin_test()
         {
@@ -155,6 +168,7 @@ namespace ToolGood.Algorithm
             t = Math.Round(t, 6);
             Assert.AreEqual(Math.Round(0.841470985, 6), t);
         }
+
         [Test]
         public void sinh_test()
         {
@@ -163,6 +177,7 @@ namespace ToolGood.Algorithm
             t = Math.Round(t, 6);
             Assert.AreEqual(Math.Round(1.175201194, 6), t);
         }
+
         [Test]
         public void tan_test()
         {
@@ -171,6 +186,7 @@ namespace ToolGood.Algorithm
             t = Math.Round(t, 6);
             Assert.AreEqual(Math.Round(1.557407725, 6), t);
         }
+
         [Test]
         public void tanh_test()
         {
@@ -179,6 +195,7 @@ namespace ToolGood.Algorithm
             t = Math.Round(t, 6);
             Assert.AreEqual(Math.Round(0.761594156, 6), t);
         }
+
         [Test]
         public void acos_test()
         {
@@ -187,6 +204,7 @@ namespace ToolGood.Algorithm
             t = Math.Round(t, 6);
             Assert.AreEqual(Math.Round(1.047197551, 6), t);
         }
+
         [Test]
         public void acosh_test()
         {
@@ -195,6 +213,7 @@ namespace ToolGood.Algorithm
             t = Math.Round(t, 6);
             Assert.AreEqual(Math.Round(0.96242365, 6), t);
         }
+
         [Test]
         public void asin_test()
         {
@@ -203,6 +222,7 @@ namespace ToolGood.Algorithm
             t = Math.Round(t, 6);
             Assert.AreEqual(Math.Round(0.523598776, 6), t);
         }
+
         [Test]
         public void asinh_test()
         {
@@ -211,6 +231,7 @@ namespace ToolGood.Algorithm
             t = Math.Round(t, 6);
             Assert.AreEqual(Math.Round(1.194763217, 6), t);
         }
+
         [Test]
         public void atan_test()
         {
@@ -219,6 +240,7 @@ namespace ToolGood.Algorithm
             t = Math.Round(t, 6);
             Assert.AreEqual(Math.Round(0.785398163, 6), t);
         }
+
         [Test]
         public void atanh_test()
         {
@@ -227,6 +249,7 @@ namespace ToolGood.Algorithm
             t = Math.Round(t, 6);
             Assert.AreEqual(Math.Round(0.549306144, 6), t);
         }
+
         [Test]
         public void atan2_test()
         {
@@ -236,10 +259,10 @@ namespace ToolGood.Algorithm
             Assert.AreEqual(Math.Round(1.107148718, 6), t);
         }
 
-
-        #endregion
+        #endregion 三角函数
 
         #region 四舍五入
+
         [Test]
         public void ROUND_test()
         {
@@ -247,6 +270,7 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("ROUND(4.333,2)", 0.0);
             Assert.AreEqual(4.33, t);
         }
+
         [Test]
         public void ROUNDDOWN_test()
         {
@@ -257,6 +281,7 @@ namespace ToolGood.Algorithm
             t = engine.TryEvaluate("ROUNDDOWN(-3.141592, 3)", 0.0);
             Assert.AreEqual(-3.141, t);
         }
+
         [Test]
         public void ROUNDUP_test()
         {
@@ -267,6 +292,7 @@ namespace ToolGood.Algorithm
             t = engine.TryEvaluate("ROUNDUP(-3.141592, 3)", 0.0);
             Assert.AreEqual(-3.142, t);
         }
+
         [Test]
         public void CEILING_test()
         {
@@ -277,6 +303,7 @@ namespace ToolGood.Algorithm
             t = engine.TryEvaluate("CEILING(4.333)", 0.0);
             Assert.AreEqual(5, t);
         }
+
         [Test]
         public void FLOOR_test()
         {
@@ -287,6 +314,7 @@ namespace ToolGood.Algorithm
             t = engine.TryEvaluate("FLOOR(4.333)", 0.0);
             Assert.AreEqual(4, t);
         }
+
         [Test]
         public void even_test()
         {
@@ -294,6 +322,7 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("even(4.363)", 0.0);
             Assert.AreEqual(6.0, t);
         }
+
         [Test]
         public void odd_test()
         {
@@ -301,6 +330,7 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("odd(4.363)", 0.0);
             Assert.AreEqual(5, t);
         }
+
         [Test]
         public void MROUND_test()
         {
@@ -311,10 +341,10 @@ namespace ToolGood.Algorithm
             Assert.AreEqual(6, t);
         }
 
-
-        #endregion
+        #endregion 四舍五入
 
         #region 随机数
+
         [Test]
         public void Rand_test()
         {
@@ -323,6 +353,7 @@ namespace ToolGood.Algorithm
             Assert.Greater(t, 0);
             Assert.LessOrEqual(t, 1);
         }
+
         [Test]
         public void RANDBETWEEN_test()
         {
@@ -332,9 +363,10 @@ namespace ToolGood.Algorithm
             Assert.LessOrEqual(t, 99);
         }
 
-        #endregion
+        #endregion 随机数
 
         #region 幂/对数/阶乘
+
         [Test]
         public void fact_test()
         {
@@ -344,6 +376,7 @@ namespace ToolGood.Algorithm
             t = engine.TryEvaluate("fact(3)", 0.0);
             Assert.AreEqual(6.0, t);
         }
+
         [Test]
         public void factdouble_test()
         {
@@ -351,6 +384,7 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("factdouble(10)", 0.0);
             Assert.AreEqual(3840.0, t);
         }
+
         [Test]
         public void POWER_test()
         {
@@ -358,6 +392,7 @@ namespace ToolGood.Algorithm
             var t = engine.TryEvaluate("POWER(10,2)", 0.0);
             Assert.AreEqual(100.0, t);
         }
+
         [Test]
         public void exp_test()
         {
@@ -366,6 +401,7 @@ namespace ToolGood.Algorithm
             t = Math.Round(t, 6);
             Assert.AreEqual(Math.Round(7.389056099, 6), t);
         }
+
         [Test]
         public void ln_test()
         {
@@ -374,6 +410,7 @@ namespace ToolGood.Algorithm
             t = Math.Round(t, 6);
             Assert.AreEqual(Math.Round(1.386294361, 6), t);
         }
+
         [Test]
         public void log_test()
         {
@@ -386,6 +423,7 @@ namespace ToolGood.Algorithm
             t = Math.Round(t, 6);
             Assert.AreEqual(Math.Round(3.0, 6), t);
         }
+
         [Test]
         public void log10_test()
         {
@@ -394,6 +432,7 @@ namespace ToolGood.Algorithm
             t = Math.Round(t, 6);
             Assert.AreEqual(Math.Round(1.0, 6), t);
         }
+
         [Test]
         public void MULTINOMIAL_test()
         {
@@ -405,6 +444,7 @@ namespace ToolGood.Algorithm
             t = Math.Round(t, 6);
             Assert.AreEqual(Math.Round(12600.0, 6), t);
         }
+
         [Test]
         public void PRODUCT_test()
         {
@@ -413,6 +453,7 @@ namespace ToolGood.Algorithm
             t = Math.Round(t, 6);
             Assert.AreEqual(Math.Round(24.0, 6), t);
         }
+
         [Test]
         public void SQRTPI_test()
         {
@@ -421,6 +462,7 @@ namespace ToolGood.Algorithm
             t = Math.Round(t, 6);
             Assert.AreEqual(Math.Round(3.069980124, 6), t);
         }
+
         [Test]
         public void SUMSQ_test()
         {
@@ -430,9 +472,10 @@ namespace ToolGood.Algorithm
             Assert.AreEqual(Math.Round(5.0, 6), t);
         }
 
-        #endregion
+        #endregion 幂/对数/阶乘
 
         #region 转化 transformation
+
         [Test]
         public void transformation_test()
         {
@@ -466,12 +509,8 @@ namespace ToolGood.Algorithm
             Assert.AreEqual(t, "7A8A");
             t = engine.TryEvaluate("DEC2HEX(952)", "");
             Assert.AreEqual(t, "3B8");
-
         }
 
-
-        #endregion
-
-
+        #endregion 转化 transformation
     }
 }

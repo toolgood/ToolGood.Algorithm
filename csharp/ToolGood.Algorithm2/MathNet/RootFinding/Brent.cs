@@ -6,7 +6,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.RootFinding
     /// Algorithm by by Brent, Van Wijngaarden, Dekker et al.
     /// Implementation inspired by Press, Teukolsky, Vetterling, and Flannery, "Numerical Recipes in C", 2nd edition, Cambridge University Press
     /// </summary>
-    static class Brent
+    internal static class Brent
     {
         public static double FindRoot(Func<double, double> f, double lowerBound, double upperBound, double accuracy = 1e-8, int maxIterations = 100)
         {
@@ -16,7 +16,6 @@ namespace ToolGood.Algorithm.MathNet.Numerics.RootFinding
 
             throw new Exception("RootFindingFailed");
         }
-
 
         public static bool TryFindRoot(Func<double, double> f, double lowerBound, double upperBound, double accuracy, int maxIterations, out double root)
         {
@@ -116,12 +115,9 @@ namespace ToolGood.Algorithm.MathNet.Numerics.RootFinding
 
         /// <summary>Helper method useful for preventing rounding errors.</summary>
         /// <returns>a*sign(b)</returns>
-        static double Sign(double a, double b)
+        private static double Sign(double a, double b)
         {
             return b >= 0 ? (a >= 0 ? a : -a) : (a >= 0 ? -a : a);
         }
-
-
     }
-
 }

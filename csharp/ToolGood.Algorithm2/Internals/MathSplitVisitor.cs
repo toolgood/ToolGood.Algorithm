@@ -1,19 +1,18 @@
 ﻿using Antlr4.Runtime;
-using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
 using System.Collections.Generic;
-using System.Text;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.math;
 
 namespace ToolGood.Algorithm.Internals
 {
-    sealed class MathSplitVisitor : AbstractParseTreeVisitor<ConditionTree>, ImathVisitor<ConditionTree>
+    internal sealed class MathSplitVisitor : AbstractParseTreeVisitor<ConditionTree>, ImathVisitor<ConditionTree>
     {
         public ConditionTree VisitProg(mathParser.ProgContext context)
         {
             return context.expr().Accept(this);
         }
+
         public ConditionTree VisitAndOr_fun(mathParser.AndOr_funContext context)
         {
             ConditionTree tree = new ConditionTree {
@@ -31,10 +30,12 @@ namespace ToolGood.Algorithm.Internals
             tree.Nodes.Add(exprs[1].Accept(this));
             return tree;
         }
+
         public ConditionTree VisitBracket_fun(mathParser.Bracket_funContext context)
         {
             return context.expr().Accept(this);
         }
+
         public ConditionTree Visit_fun(ParserRuleContext context)
         {
             ConditionTree tree = new ConditionTree {
@@ -45,25 +46,26 @@ namespace ToolGood.Algorithm.Internals
             return tree;
         }
 
-
         public ConditionTree VisitIF_fun(mathParser.IF_funContext context)
         {
             return Visit_fun(context);
         }
 
-
         public ConditionTree VisitAND_fun(mathParser.AND_funContext context)
         {
             return Visit_fun(context);
         }
+
         public ConditionTree VisitOR_fun(mathParser.OR_funContext context)
         {
             return Visit_fun(context);
         }
+
         public ConditionTree VisitNOT_fun(mathParser.NOT_funContext context)
         {
             return Visit_fun(context);
         }
+
         public ConditionTree VisitABS_fun(mathParser.ABS_funContext context)
         {
             return Visit_fun(context);
@@ -83,6 +85,7 @@ namespace ToolGood.Algorithm.Internals
         {
             return Visit_fun(context);
         }
+
         public ConditionTree VisitArray_fun(mathParser.Array_funContext context)
         {
             return Visit_fun(context);
@@ -172,8 +175,6 @@ namespace ToolGood.Algorithm.Internals
         {
             return Visit_fun(context);
         }
-
-
 
         public ConditionTree VisitCEILING_fun(mathParser.CEILING_funContext context)
         {
@@ -475,8 +476,6 @@ namespace ToolGood.Algorithm.Internals
             return Visit_fun(context);
         }
 
-
-
         public ConditionTree VisitINDEXOF_fun(mathParser.INDEXOF_funContext context)
         {
             return Visit_fun(context);
@@ -717,8 +716,6 @@ namespace ToolGood.Algorithm.Internals
             return Visit_fun(context);
         }
 
-
-
         public ConditionTree VisitNOW_fun(mathParser.NOW_funContext context)
         {
             return Visit_fun(context);
@@ -753,8 +750,6 @@ namespace ToolGood.Algorithm.Internals
         {
             return Visit_fun(context);
         }
-
-
 
         public ConditionTree VisitParameter2(mathParser.Parameter2Context context)
         {

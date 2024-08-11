@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Xml.Linq;
 
 namespace ToolGood.Algorithm
 {
@@ -13,6 +12,7 @@ namespace ToolGood.Algorithm
         /// 自定义 参数
         /// </summary>
         public List<ParameterInfo> Parameters { get; private set; }
+
         /// <summary>
         /// 自定义方法
         /// </summary>
@@ -60,6 +60,7 @@ namespace ToolGood.Algorithm
         /// 结束位置
         /// </summary>
         public int End { get; set; }
+
         /// <summary>
         /// 重写
         /// </summary>

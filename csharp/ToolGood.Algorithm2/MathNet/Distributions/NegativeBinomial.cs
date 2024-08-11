@@ -11,7 +11,6 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
     /// </summary>
     public sealed class NegativeBinomial
     {
-
         /// <summary>
         /// Computes the probability mass (PMF) at k, i.e. P(X = k).
         /// </summary>
@@ -43,6 +42,5 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
                    + (r * Math.Log(p))
                    + (k * Math.Log(1.0 - p));
         }
-
     }
 }

@@ -14,28 +14,35 @@ namespace ToolGood.Algorithm
         /// 年
         /// </summary>
         public int? Year { get; private set; }
+
         /// <summary>
         /// 月
         /// </summary>
         public int? Month { get; private set; }
+
         /// <summary>
         /// 日
         /// </summary>
         public int? Day { get; private set; }
+
         /// <summary>
         /// 时
         /// </summary>
         public int Hour { get; private set; }
+
         /// <summary>
         /// 分
         /// </summary>
         public int Minute { get; private set; }
+
         /// <summary>
         /// 秒
         /// </summary>
         public int Second { get; private set; }
 
-        private MyDate() { }
+        private MyDate()
+        { }
+
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -54,6 +61,7 @@ namespace ToolGood.Algorithm
             Minute = minute;
             Second = second;
         }
+
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -67,6 +75,7 @@ namespace ToolGood.Algorithm
             Minute = dt.Minute;
             Second = dt.Second;
         }
+
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -80,6 +89,7 @@ namespace ToolGood.Algorithm
             Minute = dt.Minutes;
             Second = dt.Seconds;
         }
+
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -110,6 +120,7 @@ namespace ToolGood.Algorithm
                 }
             }
         }
+
         /// <summary>
         /// 字符串转MyDate
         /// </summary>
@@ -190,7 +201,6 @@ namespace ToolGood.Algorithm
             return null;
         }
 
-
         /// <summary>
         /// ToString
         /// </summary>
@@ -225,7 +235,6 @@ namespace ToolGood.Algorithm
             return stringBuffer.ToString();
         }
 
-
         internal string ToString(string f)
         {
             if (Year == null || Year == 0) {
@@ -242,6 +251,7 @@ namespace ToolGood.Algorithm
         {
             return new DateTime(Year ?? 0, Month ?? 0, Day ?? 0, Hour, Minute, Second, DateTimeKind.Utc);
         }
+
         /// <summary>
         /// 转DateTime
         /// </summary>
@@ -250,6 +260,7 @@ namespace ToolGood.Algorithm
         {
             return new DateTime(Year ?? 0, Month ?? 0, Day ?? 0, Hour, Minute, Second, dateTimeKind);
         }
+
         /// <summary>
         /// 转TimeSpan
         /// </summary>
@@ -268,6 +279,7 @@ namespace ToolGood.Algorithm
         {
             return new MyDate(ToDateTime().AddYears(year));
         }
+
         /// <summary>
         /// 添加月
         /// </summary>
@@ -277,6 +289,7 @@ namespace ToolGood.Algorithm
         {
             return new MyDate(ToDateTime().AddMonths(month));
         }
+
         /// <summary>
         /// 添加日
         /// </summary>
@@ -289,6 +302,7 @@ namespace ToolGood.Algorithm
             }
             return new MyDate(ToTimeSpan().Add(new TimeSpan(day, 0, 0, 0)));
         }
+
         /// <summary>
         /// 添加时
         /// </summary>
@@ -301,6 +315,7 @@ namespace ToolGood.Algorithm
             }
             return new MyDate(ToTimeSpan().Add(new TimeSpan(hour, 0, 0)));
         }
+
         /// <summary>
         /// 添加分
         /// </summary>
@@ -313,6 +328,7 @@ namespace ToolGood.Algorithm
             }
             return new MyDate(ToTimeSpan().Add(new TimeSpan(0, minute, 0)));
         }
+
         /// <summary>
         /// 添加秒
         /// </summary>
@@ -327,6 +343,7 @@ namespace ToolGood.Algorithm
         }
 
         #region operator
+
         /// <summary>
         /// DateTime=>MyDate
         /// </summary>
@@ -335,14 +352,16 @@ namespace ToolGood.Algorithm
         {
             return new MyDate(myDate);
         }
+
         /// <summary>
-        /// MyDate=>DateTime 
+        /// MyDate=>DateTime
         /// </summary>
         /// <param name="myDate"></param>
         public static implicit operator DateTime(MyDate myDate)
         {
             return myDate.ToDateTime();
         }
+
         /// <summary>
         /// MyDate=>TimeSpan
         /// </summary>
@@ -351,6 +370,7 @@ namespace ToolGood.Algorithm
         {
             return myDate.ToTimeSpan();
         }
+
         /// <summary>
         /// decimal=>MyDate
         /// </summary>
@@ -359,6 +379,7 @@ namespace ToolGood.Algorithm
         {
             return new MyDate(days);
         }
+
         /// <summary>
         /// MyDate=>decimal
         /// </summary>
@@ -390,6 +411,7 @@ namespace ToolGood.Algorithm
             }
             return (MyDate)((decimal)myDate + (decimal)num);
         }
+
         /// <summary>
         /// 减
         /// </summary>
@@ -405,8 +427,9 @@ namespace ToolGood.Algorithm
             }
             return (MyDate)((decimal)myDate - (decimal)num);
         }
+
         /// <summary>加
-        /// 
+        ///
         /// </summary>
         /// <param name="myDate"></param>
         /// <param name="num"></param>
@@ -415,6 +438,7 @@ namespace ToolGood.Algorithm
         {
             return (MyDate)((decimal)myDate + (decimal)num);
         }
+
         /// <summary>
         /// 减
         /// </summary>
@@ -425,6 +449,7 @@ namespace ToolGood.Algorithm
         {
             return (MyDate)((decimal)myDate - (decimal)num);
         }
+
         /// <summary>
         /// 乘
         /// </summary>
@@ -440,6 +465,7 @@ namespace ToolGood.Algorithm
 #endif
             return (MyDate)((decimal)myDate * (decimal)num);
         }
+
         /// <summary>
         /// 除
         /// </summary>
@@ -455,6 +481,7 @@ namespace ToolGood.Algorithm
 #endif
             return (MyDate)((decimal)myDate / (decimal)num);
         }
-        #endregion
+
+        #endregion operator
     }
 }

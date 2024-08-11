@@ -2,7 +2,7 @@
 
 namespace ToolGood.Algorithm.MathNet.Numerics.Statistics
 {
-    static partial class ArrayStatistics
+    internal static partial class ArrayStatistics
     {
         public static double Minimum(double[] data)
         {
@@ -19,6 +19,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Statistics
 
             return min;
         }
+
         public static double Maximum(double[] data)
         {
             if (data.Length == 0) {
@@ -34,7 +35,6 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Statistics
 
             return max;
         }
-
 
         public static double QuantileCustomInplace(double[] data, double tau, QuantileDefinition definition)
         {
@@ -119,7 +119,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Statistics
             }
         }
 
-        static double SelectInplace(double[] workingData, int rank)
+        private static double SelectInplace(double[] workingData, int rank)
         {
             // Numerical Recipes: select
             // http://en.wikipedia.org/wiki/Selection_algorithm
@@ -206,6 +206,5 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Statistics
                 }
             }
         }
-
     }
 }

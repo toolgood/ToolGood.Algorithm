@@ -12,10 +12,12 @@ namespace ToolGood.Algorithm.Internals
         /// 是否出错
         /// </summary>
         public bool IsError { get; private set; }
+
         /// <summary>
         /// 出错信息
         /// </summary>
         public string ErrorMsg { get; private set; }
+
         /// <summary>
         /// 重写
         /// </summary>

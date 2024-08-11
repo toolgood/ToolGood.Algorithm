@@ -1,6 +1,6 @@
 ﻿namespace ToolGood.Algorithm.UnitConversion
 {
-    sealed class VolumeConverter : BaseUnitConverter
+    internal sealed class VolumeConverter : BaseUnitConverter
     {
         private static UnitFactors units = new UnitFactors()
         {
@@ -32,5 +32,4 @@
             return false;
         }
     }
-
 }

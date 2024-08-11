@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using PetaTest;
-using ToolGood.Algorithm;
+﻿using PetaTest;
 
 namespace ToolGood.Algorithm
 {
@@ -25,6 +21,7 @@ namespace ToolGood.Algorithm
             num = engine.TryEvaluate("vlookup(array(array(1,'2',3),array(2,3,4),array('3a','4',5),array(4,'5',6)),'3a',2)", 0);
             Assert.AreEqual(num, 4);
         }
+
         [Test]
         public void lookup_test()
         {
@@ -69,6 +66,5 @@ namespace ToolGood.Algorithm
             num = engine.TryEvaluate("lookup([jsonArray].Json(),'[蓝色]=\"L\"','key')", "1");
             Assert.AreEqual(null, num);
         }
-
     }
 }

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using PetaTest;
+﻿using PetaTest;
+using System;
 using ToolGood.Algorithm;
 
 namespace ToolGood.Algorithm2.Test.Tests
@@ -22,9 +20,7 @@ namespace ToolGood.Algorithm2.Test.Tests
 
             int num = engine.TryEvaluate("date(2011,2,2)", 0);
             Assert.AreEqual(num, 40576);
-
         }
-
 
         [Test]
         public void issues_13()
@@ -34,7 +30,6 @@ namespace ToolGood.Algorithm2.Test.Tests
             Assert.AreEqual(dt, 1275);
         }
 
-
         [Test]
         public void issues_27()
         {
@@ -42,6 +37,5 @@ namespace ToolGood.Algorithm2.Test.Tests
             var dt = engine.TryEvaluate("DATE(2024, 8, 1) + TIME(8, 0, 0)", DateTime.Now);
             Assert.AreEqual(dt, DateTime.Parse("2024-08-01 8:0"));
         }
-
     }
 }

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using PetaTest;
+﻿using PetaTest;
 
 namespace ToolGood.Algorithm
 {
     [TestFixture]
-    class AlgorithmEngineTest_flow
+    internal class AlgorithmEngineTest_flow
     {
         [Test]
         public void If_Test()
@@ -20,7 +16,6 @@ namespace ToolGood.Algorithm
 
             t = engine.TryEvaluate("if(1=1，1)", 0);
             Assert.AreEqual(1, t);
-
 
             t = engine.TryEvaluate("if(3,1,2)", 0);
             Assert.AreEqual(1, t);
@@ -51,6 +46,7 @@ namespace ToolGood.Algorithm
             t = engine.TryEvaluate("iserror(1-'rrr',1)", 0);
             Assert.AreEqual(1, t);
         }
+
         [Test]
         public void ifnull_test()
         {
@@ -75,8 +71,6 @@ namespace ToolGood.Algorithm
             t = engine.TryEvaluate("isnullorerror(1,2)", 0);
             Assert.AreEqual(1, t);
         }
-
-
 
         [Test]
         public void ISNUMBER_test()
@@ -110,7 +104,6 @@ namespace ToolGood.Algorithm
             Assert.AreEqual(1, t);
         }
 
-
         [Test]
         public void ISNONTEXT_test()
         {
@@ -126,7 +119,6 @@ namespace ToolGood.Algorithm
             t = engine.TryEvaluate("if(ISNONTEXT('2016-1-2'),1,2)", 0);
             Assert.AreEqual(2, t);
         }
-
 
         [Test]
         public void ISLOGICAL_test()
@@ -254,7 +246,6 @@ namespace ToolGood.Algorithm
             t = engine.TryEvaluate("1=1 || 2!=2", false);
             Assert.AreEqual(true, t);
 
-
             t = engine.TryEvaluate("1=1 and 2==2", false);
             Assert.AreEqual(true, t);
 
@@ -266,11 +257,6 @@ namespace ToolGood.Algorithm
 
             t = engine.TryEvaluate("1=1 or 2!=2", false);
             Assert.AreEqual(true, t);
-
         }
-
-
-
-
     }
 }

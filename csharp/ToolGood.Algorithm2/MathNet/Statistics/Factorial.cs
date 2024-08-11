@@ -2,9 +2,9 @@
 
 namespace ToolGood.Algorithm.MathNet.Numerics
 {
-    partial class SpecialFunctions
+    internal partial class SpecialFunctions
     {
-        static double[] _factorialCache;
+        private static double[] _factorialCache;
 
         /// <summary>
         /// Initializes static members of the SpecialFunctions class.
@@ -14,7 +14,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
             InitializeFactorial();
         }
 
-        static void InitializeFactorial()
+        private static void InitializeFactorial()
         {
             _factorialCache = new double[171];
             _factorialCache[0] = 1.0;
@@ -31,6 +31,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
 
             return Math.Floor(0.5 + Math.Exp(FactorialLn(n) - FactorialLn(k) - FactorialLn(n - k)));
         }
+
         public static double FactorialLn(int x)
         {
             //if (x < 0) {
@@ -47,6 +48,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
 
             return GammaLn(x + 1.0);
         }
+
         public static double BinomialLn(int n, int k)
         {
             if (k < 0 || n < 0 || k > n) {
@@ -55,7 +57,5 @@ namespace ToolGood.Algorithm.MathNet.Numerics
 
             return FactorialLn(n) - FactorialLn(k) - FactorialLn(n - k);
         }
-
-
     }
 }

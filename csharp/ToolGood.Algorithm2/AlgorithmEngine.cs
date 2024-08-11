@@ -19,42 +19,52 @@ namespace ToolGood.Algorithm
         /// 使用EXCEL索引
         /// </summary>
         public bool UseExcelIndex { get; set; } = true;
+
         /// <summary>
         /// 保存到临时文档
         /// </summary>
         public bool UseTempDict { get; set; } = false;
+
         /// <summary>
         /// 使用 本地时间， 影响 时间截转化
         /// </summary>
         public bool UseLocalTime { get; set; } = false;
+
         /// <summary>
         /// 长度单位
         /// </summary>
         public DistanceUnitType DistanceUnit { get; set; } = DistanceUnitType.M;
+
         /// <summary>
         /// 面积单位
         /// </summary>
         public AreaUnitType AreaUnit { get; set; } = AreaUnitType.M2;
+
         /// <summary>
         /// 体积单位
         /// </summary>
         public VolumeUnitType VolumeUnit { get; set; } = VolumeUnitType.M3;
+
         /// <summary>
         /// 重量单位
         /// </summary>
         public MassUnitType MassUnit { get; set; } = MassUnitType.KG;
+
         private mathParser.ProgContext _context;
         private readonly Dictionary<string, Operand> _tempdict;
+
         /// <summary>
         /// 是否忽略大小写
         /// </summary>
         public bool IgnoreCase { get; private set; }
+
         /// <summary>
         /// 最后一个错误
         /// </summary>
         public string LastError { get; private set; }
 
         #region 构造函数
+
         /// <summary>
         /// 默认不带缓存
         /// </summary>
@@ -62,6 +72,7 @@ namespace ToolGood.Algorithm
         {
             _tempdict = new Dictionary<string, Operand>();
         }
+
         /// <summary>
         /// 带缓存关键字大小写参数
         /// </summary>
@@ -75,10 +86,11 @@ namespace ToolGood.Algorithm
                 _tempdict = new Dictionary<string, Operand>();
             }
         }
-        #endregion
 
+        #endregion 构造函数
 
         #region GetParameter GetDiyParameterInside  ExecuteDiyFunction
+
         private Operand GetDiyParameterInside(string parameter)
         {
             if (_tempdict.TryGetValue(parameter, out Operand operand)) {
@@ -100,6 +112,7 @@ namespace ToolGood.Algorithm
         {
             return Operand.Error($"Parameter [{parameter}] is missing.");
         }
+
         /// <summary>
         /// 自定义 函数
         /// </summary>
@@ -111,10 +124,10 @@ namespace ToolGood.Algorithm
             return Operand.Error($"DiyFunction [{funcName}] is missing.");
         }
 
-        #endregion
-
+        #endregion GetParameter GetDiyParameterInside  ExecuteDiyFunction
 
         #region Parameter
+
         /// <summary>
         /// 清理参数
         /// </summary>
@@ -132,6 +145,7 @@ namespace ToolGood.Algorithm
         {
             _tempdict[key] = obj;
         }
+
         /// <summary>
         /// 添加自定义参数
         /// </summary>
@@ -141,7 +155,9 @@ namespace ToolGood.Algorithm
         {
             _tempdict[key] = Operand.Create(obj);
         }
+
         #region number
+
         /// <summary>
         /// 添加自定义参数
         /// </summary>
@@ -151,6 +167,7 @@ namespace ToolGood.Algorithm
         {
             _tempdict[key] = Operand.Create((int)obj);
         }
+
         /// <summary>
         /// 添加自定义参数
         /// </summary>
@@ -160,6 +177,7 @@ namespace ToolGood.Algorithm
         {
             _tempdict[key] = Operand.Create(obj);
         }
+
         /// <summary>
         /// 添加自定义参数
         /// </summary>
@@ -169,6 +187,7 @@ namespace ToolGood.Algorithm
         {
             _tempdict[key] = Operand.Create((double)obj);
         }
+
         /// <summary>
         /// 添加自定义参数
         /// </summary>
@@ -178,6 +197,7 @@ namespace ToolGood.Algorithm
         {
             _tempdict[key] = Operand.Create((int)obj);
         }
+
         /// <summary>
         /// 添加自定义参数
         /// </summary>
@@ -187,6 +207,7 @@ namespace ToolGood.Algorithm
         {
             _tempdict[key] = Operand.Create((double)obj);
         }
+
         /// <summary>
         /// 添加自定义参数
         /// </summary>
@@ -196,6 +217,7 @@ namespace ToolGood.Algorithm
         {
             _tempdict[key] = Operand.Create((double)obj);
         }
+
         /// <summary>
         /// 添加自定义参数
         /// </summary>
@@ -205,6 +227,7 @@ namespace ToolGood.Algorithm
         {
             _tempdict[key] = Operand.Create((double)obj);
         }
+
         /// <summary>
         /// 添加自定义参数
         /// </summary>
@@ -214,6 +237,7 @@ namespace ToolGood.Algorithm
         {
             _tempdict[key] = Operand.Create(obj);
         }
+
         /// <summary>
         /// 添加自定义参数
         /// </summary>
@@ -223,7 +247,9 @@ namespace ToolGood.Algorithm
         {
             _tempdict[key] = Operand.Create((double)obj);
         }
-        #endregion
+
+        #endregion number
+
         /// <summary>
         /// 添加自定义参数
         /// </summary>
@@ -233,7 +259,9 @@ namespace ToolGood.Algorithm
         {
             _tempdict[key] = Operand.Create(obj);
         }
+
         #region MyDate
+
         /// <summary>
         /// 添加自定义参数
         /// </summary>
@@ -243,6 +271,7 @@ namespace ToolGood.Algorithm
         {
             _tempdict[key] = Operand.Create(obj);
         }
+
         /// <summary>
         /// 添加自定义参数
         /// </summary>
@@ -252,6 +281,7 @@ namespace ToolGood.Algorithm
         {
             _tempdict[key] = Operand.Create(obj);
         }
+
         /// <summary>
         /// 添加自定义参数
         /// </summary>
@@ -261,8 +291,11 @@ namespace ToolGood.Algorithm
         {
             _tempdict[key] = Operand.Create(obj);
         }
-        #endregion
+
+        #endregion MyDate
+
         #region array
+
         /// <summary>
         /// 添加自定义参数
         /// </summary>
@@ -272,6 +305,7 @@ namespace ToolGood.Algorithm
         {
             _tempdict[key] = Operand.Create(obj);
         }
+
         /// <summary>
         /// 添加自定义参数
         /// </summary>
@@ -281,6 +315,7 @@ namespace ToolGood.Algorithm
         {
             _tempdict[key] = Operand.Create(obj);
         }
+
         /// <summary>
         /// 添加自定义参数
         /// </summary>
@@ -289,8 +324,8 @@ namespace ToolGood.Algorithm
         public void AddParameter(string key, ICollection<double> obj)
         {
             _tempdict[key] = Operand.Create(obj);
-
         }
+
         /// <summary>
         /// 添加自定义参数
         /// </summary>
@@ -300,6 +335,7 @@ namespace ToolGood.Algorithm
         {
             _tempdict[key] = Operand.Create(obj);
         }
+
         /// <summary>
         /// 添加自定义参数
         /// </summary>
@@ -309,7 +345,9 @@ namespace ToolGood.Algorithm
         {
             _tempdict[key] = Operand.Create(obj);
         }
-        #endregion
+
+        #endregion array
+
         /// <summary>
         /// 添加自定义参数
         /// </summary>
@@ -340,7 +378,7 @@ namespace ToolGood.Algorithm
             throw new Exception("Parameter is not json string.");
         }
 
-        #endregion
+        #endregion Parameter
 
         #region Parse Evaluate
 
@@ -395,10 +433,10 @@ namespace ToolGood.Algorithm
             return visitor.Visit(_context);
         }
 
-
-        #endregion
+        #endregion Parse Evaluate
 
         #region TryEvaluate
+
         /// <summary>
         /// 执行函数,如果异常，返回默认值
         /// </summary>
@@ -409,7 +447,6 @@ namespace ToolGood.Algorithm
         {
             try {
                 if (Parse(exp)) {
-
                     var obj = Evaluate();
                     obj = obj.ToNumber("It can't be converted to number!");
                     if (obj.IsError) {
@@ -423,6 +460,7 @@ namespace ToolGood.Algorithm
             }
             return def;
         }
+
         /// <summary>
         /// 执行函数,如果异常，返回默认值
         /// </summary>
@@ -433,7 +471,6 @@ namespace ToolGood.Algorithm
         {
             try {
                 if (Parse(exp)) {
-
                     var obj = Evaluate();
                     obj = obj.ToNumber("It can't be converted to number!");
                     if (obj.IsError) {
@@ -447,6 +484,7 @@ namespace ToolGood.Algorithm
             }
             return def;
         }
+
         /// <summary>
         /// 执行函数,如果异常，返回默认值
         /// </summary>
@@ -457,7 +495,6 @@ namespace ToolGood.Algorithm
         {
             try {
                 if (Parse(exp)) {
-
                     var obj = Evaluate();
                     obj = obj.ToNumber("It can't be converted to number!");
                     if (obj.IsError) {
@@ -471,6 +508,7 @@ namespace ToolGood.Algorithm
             }
             return def;
         }
+
         /// <summary>
         /// 执行函数,如果异常，返回默认值
         /// </summary>
@@ -481,7 +519,6 @@ namespace ToolGood.Algorithm
         {
             try {
                 if (Parse(exp)) {
-
                     var obj = Evaluate();
                     obj = obj.ToNumber("It can't be converted to number!");
                     if (obj.IsError) {
@@ -495,6 +532,7 @@ namespace ToolGood.Algorithm
             }
             return def;
         }
+
         /// <summary>
         /// 执行函数,如果异常，返回默认值
         /// </summary>
@@ -505,7 +543,6 @@ namespace ToolGood.Algorithm
         {
             try {
                 if (Parse(exp)) {
-
                     var obj = Evaluate();
                     obj = obj.ToNumber("It can't be converted to number!");
                     if (obj.IsError) {
@@ -519,6 +556,7 @@ namespace ToolGood.Algorithm
             }
             return def;
         }
+
         /// <summary>
         /// 执行函数,如果异常，返回默认值
         /// </summary>
@@ -529,7 +567,6 @@ namespace ToolGood.Algorithm
         {
             try {
                 if (Parse(exp)) {
-
                     var obj = Evaluate();
                     obj = obj.ToNumber("It can't be converted to number!");
                     if (obj.IsError) {
@@ -543,6 +580,7 @@ namespace ToolGood.Algorithm
             }
             return def;
         }
+
         /// <summary>
         /// 执行函数,如果异常，返回默认值
         /// </summary>
@@ -553,7 +591,6 @@ namespace ToolGood.Algorithm
         {
             try {
                 if (Parse(exp)) {
-
                     var obj = Evaluate();
                     obj = obj.ToNumber("It can't be converted to number!");
                     if (obj.IsError) {
@@ -567,6 +604,7 @@ namespace ToolGood.Algorithm
             }
             return def;
         }
+
         /// <summary>
         /// 执行函数,如果异常，返回默认值
         /// </summary>
@@ -577,7 +615,6 @@ namespace ToolGood.Algorithm
         {
             try {
                 if (Parse(exp)) {
-
                     var obj = Evaluate();
                     obj = obj.ToNumber("It can't be converted to number!");
                     if (obj.IsError) {
@@ -591,6 +628,7 @@ namespace ToolGood.Algorithm
             }
             return def;
         }
+
         /// <summary>
         /// 执行函数,如果异常，返回默认值
         /// </summary>
@@ -601,7 +639,6 @@ namespace ToolGood.Algorithm
         {
             try {
                 if (Parse(exp)) {
-
                     var obj = Evaluate();
                     obj = obj.ToNumber("It can't be converted to number!");
                     if (obj.IsError) {
@@ -615,6 +652,7 @@ namespace ToolGood.Algorithm
             }
             return def;
         }
+
         /// <summary>
         /// 执行函数,如果异常，返回默认值
         /// </summary>
@@ -641,6 +679,7 @@ namespace ToolGood.Algorithm
             }
             return def;
         }
+
         /// <summary>
         /// 执行函数,如果异常，返回默认值
         /// </summary>
@@ -664,6 +703,7 @@ namespace ToolGood.Algorithm
             }
             return def;
         }
+
         /// <summary>
         /// 执行函数,如果异常，返回默认值
         /// </summary>
@@ -690,6 +730,7 @@ namespace ToolGood.Algorithm
             }
             return def;
         }
+
         /// <summary>
         /// 执行函数,如果异常，返回默认值
         /// </summary>
@@ -713,6 +754,7 @@ namespace ToolGood.Algorithm
             }
             return def;
         }
+
         /// <summary>
         /// 执行函数,如果异常，返回默认值。
         /// 解决 def 为 null 二义性问题
@@ -737,9 +779,11 @@ namespace ToolGood.Algorithm
             }
             return def;
         }
-        #endregion
+
+        #endregion TryEvaluate
 
         #region GetSimplifiedFormula
+
         /// <summary>
         /// 获取简化公式
         /// </summary>
@@ -772,9 +816,11 @@ namespace ToolGood.Algorithm
             }
             return null;
         }
-        #endregion
+
+        #endregion GetSimplifiedFormula
 
         #region EvaluateFormula
+
         /// <summary>
         /// 计算公式
         /// </summary>
@@ -786,6 +832,7 @@ namespace ToolGood.Algorithm
             if (string.IsNullOrEmpty(formula)) return "";
             return EvaluateFormula(formula, splitChars.ToList());
         }
+
         /// <summary>
         /// 计算公式
         /// </summary>
@@ -811,7 +858,7 @@ namespace ToolGood.Algorithm
             }
             return stringBuilder.ToString();
         }
-        #endregion
 
+        #endregion EvaluateFormula
     }
 }

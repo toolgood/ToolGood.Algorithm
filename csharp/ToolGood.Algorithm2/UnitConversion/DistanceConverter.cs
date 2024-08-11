@@ -1,6 +1,6 @@
 ﻿namespace ToolGood.Algorithm.UnitConversion
 {
-    sealed class DistanceConverter : BaseUnitConverter
+    internal sealed class DistanceConverter : BaseUnitConverter
     {
         private static UnitFactors units = new UnitFactors()
         {
@@ -29,5 +29,4 @@
             return false;
         }
     }
-
 }

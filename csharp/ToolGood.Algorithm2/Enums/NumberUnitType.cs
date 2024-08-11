@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ToolGood.Algorithm.Enums
+﻿namespace ToolGood.Algorithm.Enums
 {
     internal enum NumberUnitType : byte
     {

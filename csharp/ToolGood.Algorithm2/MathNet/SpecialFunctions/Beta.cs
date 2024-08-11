@@ -2,9 +2,8 @@
 
 namespace ToolGood.Algorithm.MathNet.Numerics
 {
-    static partial class SpecialFunctions
+    internal static partial class SpecialFunctions
     {
-
         public static double GammaLn(double z)
         {
             if (z < 0.5) {
@@ -29,8 +28,6 @@ namespace ToolGood.Algorithm.MathNet.Numerics
                        + ((z - 0.5) * Math.Log((z - 0.5 + GammaR) / Math.E));
             }
         }
-
-
 
         public static double BetaRegularized(double a, double b, double x)
         {
@@ -115,6 +112,5 @@ namespace ToolGood.Algorithm.MathNet.Numerics
 
             return symmetryTransformation ? 1.0 - (bt * h / a) : bt * h / a;
         }
-
     }
 }

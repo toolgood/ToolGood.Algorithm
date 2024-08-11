@@ -1,8 +1,7 @@
-namespace ToolGood.Algorithm.LitJson
+﻿namespace ToolGood.Algorithm.LitJson
 {
-   sealed class JsonMapper
+    internal sealed class JsonMapper
     {
-
         #region Private Methods
 
         private static IJsonWrapper ReadValue(JsonReader reader)
@@ -32,7 +31,6 @@ namespace ToolGood.Algorithm.LitJson
                 return instance;
             }
 
-
             if (reader.Token == JsonToken.ArrayStart) {
                 instance.SetJsonType(JsonType.Array);
 
@@ -52,21 +50,17 @@ namespace ToolGood.Algorithm.LitJson
                     string property = (string)reader.Value;
                     instance.Set(property, ReadValue(reader));
                 }
-
             }
 
             return instance;
         }
 
-        #endregion
-
-
+        #endregion Private Methods
 
         public static JsonData ToObject(string json)
         {
             JsonReader reader = new JsonReader(json);
             return ReadValue(reader) as JsonData;
         }
-
     }
 }

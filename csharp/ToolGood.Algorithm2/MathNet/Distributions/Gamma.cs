@@ -2,7 +2,7 @@
 
 namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
 {
-    sealed class Gamma
+    internal sealed class Gamma
     {
         public static double CDF(double shape, double rate, double x)
         {
@@ -45,6 +45,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
 
             return Math.Pow(rate, shape) * Math.Pow(x, shape - 1.0) * Math.Exp(-rate * x) / SpecialFunctions.Gamma(shape);
         }
+
         public static double PDFLn(double shape, double rate, double x)
         {
             //if (shape < 0.0 || rate < 0.0) {

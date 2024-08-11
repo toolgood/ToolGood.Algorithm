@@ -2,7 +2,7 @@
 
 namespace ToolGood.Algorithm.MathNet.Numerics
 {
-    partial class SpecialFunctions
+    internal partial class SpecialFunctions
     {
         public static double ExponentialMinusOne(double power)
         {
@@ -26,7 +26,5 @@ namespace ToolGood.Algorithm.MathNet.Numerics
                     return term;
                 });
         }
-
-
     }
 }

@@ -1,13 +1,13 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 
-
 namespace ToolGood.Algorithm.LitJson
 {
-  sealed  class JsonData : IJsonWrapper, IEnumerable
+    internal sealed class JsonData : IJsonWrapper, IEnumerable
     {
         #region Fields
+
         private IList<JsonData> inst_array;
         private bool inst_boolean;
         private decimal inst_double;
@@ -15,10 +15,11 @@ namespace ToolGood.Algorithm.LitJson
         private string inst_string;
         private JsonType type;
         //private IList<KeyValuePair<string, JsonData>> object_list;
-        #endregion
 
+        #endregion Fields
 
         #region Properties
+
         public int Count { get { return EnsureCollection().Count; } }
         public bool IsArray { get { return type == JsonType.Array; } }
         public bool IsBoolean { get { return type == JsonType.Boolean; } }
@@ -26,11 +27,11 @@ namespace ToolGood.Algorithm.LitJson
         public bool IsObject { get { return type == JsonType.Object; } }
         public bool IsString { get { return type == JsonType.String; } }
         public bool IsNull { get { return type == JsonType.Null; } }
-        #endregion
 
-
+        #endregion Properties
 
         #region Public Indexers
+
         public JsonData this[string prop_name] {
             get {
                 EnsureDictionary();
@@ -51,17 +52,16 @@ namespace ToolGood.Algorithm.LitJson
                 //return object_list[index].Value;
             }
         }
-        #endregion
 
+        #endregion Public Indexers
 
         #region Constructors
+
         public JsonData()
         {
         }
 
-        #endregion
-
-
+        #endregion Constructors
 
         #region IJsonWrapper Methods
 
@@ -82,6 +82,7 @@ namespace ToolGood.Algorithm.LitJson
             type = JsonType.String;
             inst_string = val;
         }
+
         void IJsonWrapper.SetNull()
         {
             type = JsonType.Null;
@@ -100,11 +101,10 @@ namespace ToolGood.Algorithm.LitJson
             //object_list.Add(entry);
         }
 
-        #endregion
-
-
+        #endregion IJsonWrapper Methods
 
         #region Private Methods
+
         private ICollection EnsureCollection()
         {
             if (type == JsonType.Array) return (ICollection)inst_array;
@@ -128,7 +128,7 @@ namespace ToolGood.Algorithm.LitJson
             return (IList)inst_array;
         }
 
-        #endregion
+        #endregion Private Methods
 
         void IJsonWrapper.SetJsonType(JsonType type)
         {
@@ -168,7 +168,6 @@ namespace ToolGood.Algorithm.LitJson
         {
             return EnsureList().GetEnumerator();
         }
-
 
         public bool BooleanValue { get { return inst_boolean; } }
         public decimal NumberValue { get { return inst_double; } }

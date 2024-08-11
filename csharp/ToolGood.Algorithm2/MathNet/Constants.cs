@@ -3,7 +3,7 @@
     /// <summary>
     /// 常量
     /// </summary>
-    static class Constants
+    internal static class Constants
     {
         #region Mathematical Constants
 
@@ -22,11 +22,6 @@
         /// <summary>The number 2 * sqrt(e / pi)</summary>
         public const double TwoSqrtEOverPi = 1.8603827342052657173362492472666631120594218414085755;
 
-
-
-
-        #endregion
-
-
+        #endregion Mathematical Constants
     }
 }

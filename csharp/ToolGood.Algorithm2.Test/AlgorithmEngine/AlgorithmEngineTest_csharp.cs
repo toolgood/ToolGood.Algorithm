@@ -1,15 +1,10 @@
 ﻿using PetaTest;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ToolGood.Algorithm.Test
 {
     [TestFixture]
-    partial class AlgorithmEngineTest_csharp
+    internal partial class AlgorithmEngineTest_csharp
     {
-
         [Test]
         public void UrlDecode()
         {
@@ -17,6 +12,7 @@ namespace ToolGood.Algorithm.Test
             var dt = engine.TryEvaluate("UrlDecode('%26%3d%e6%88%91%e4%b8%ad%e5%9b%bd%e4%ba%ba+%3e%7c%7c')", null);
             Assert.AreEqual(dt, "&=我中国人 >||");
         }
+
         [Test]
         public void UrlEncode()
         {
@@ -24,6 +20,7 @@ namespace ToolGood.Algorithm.Test
             var dt = engine.TryEvaluate("UrlEncode('&=我中国人 >||')", null);
             Assert.AreEqual(dt, "%26%3d%e6%88%91%e4%b8%ad%e5%9b%bd%e4%ba%ba+%3e%7c%7c");
         }
+
         [Test]
         public void HtmlEncode()
         {
@@ -31,6 +28,7 @@ namespace ToolGood.Algorithm.Test
             var dt = engine.TryEvaluate("HtmlEncode('&=我中国人 >||')", null);
             Assert.AreEqual(dt, "&amp;=我中国人 &gt;||");
         }
+
         [Test]
         public void HtmlDecode()
         {
@@ -169,6 +167,7 @@ namespace ToolGood.Algorithm.Test
             dt = engine.TryEvaluate("TrimStart(' 123 ',' 1')", null);
             Assert.AreEqual(dt, "23 ");
         }
+
         [Test]
         public void TrimEnd()
         {
@@ -197,6 +196,7 @@ namespace ToolGood.Algorithm.Test
             var dt = engine.TryEvaluate("Substring('123456789',1,2)", null);
             Assert.AreEqual(dt, "12");
         }
+
         [Test]
         public void StartsWith()
         {
@@ -206,6 +206,7 @@ namespace ToolGood.Algorithm.Test
             dt = engine.TryEvaluate("StartsWith('123456789','127')", true);
             Assert.AreEqual(dt, false);
         }
+
         [Test]
         public void EndsWith()
         {
@@ -225,6 +226,7 @@ namespace ToolGood.Algorithm.Test
             dt = engine.TryEvaluate("IsNullOrEmpty(' ')", true);
             Assert.AreEqual(dt, false);
         }
+
         [Test]
         public void IsNullOrWhiteSpace()
         {
@@ -246,6 +248,7 @@ namespace ToolGood.Algorithm.Test
             dt = engine.TryEvaluate("RemoveStart('123456789','127')", null);
             Assert.AreEqual(dt, "123456789");
         }
+
         [Test]
         public void RemoveEnd()
         {
@@ -255,11 +258,10 @@ namespace ToolGood.Algorithm.Test
             dt = engine.TryEvaluate("RemoveEnd('123456789','127')", null);
             Assert.AreEqual(dt, "123456789");
         }
- 
+
         [Test]
         public void Json()
         {
-
             AlgorithmEngine engine = new AlgorithmEngine();
             var dt = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare\",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}').Age", null);
             Assert.AreEqual(dt.ToString(), "51");
@@ -271,7 +273,6 @@ namespace ToolGood.Algorithm.Test
 
             dt = engine.TryEvaluate("json('{\"Name\":\"William Shakespeare   \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')[Name].Trim()", null);
             Assert.AreEqual(dt, "William Shakespeare");
-
 
             dt = engine.TryEvaluate("json('{\"Name1\":\"William Shakespeare \",\"Age\":51,\"Birthday\":\"04/26/1564 00:00:00\"}')['Name'& 1].Trim().substring(2,3)", null);
             Assert.AreEqual(dt, "ill");

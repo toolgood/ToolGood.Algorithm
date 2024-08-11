@@ -12,7 +12,6 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
     /// </remarks>
     public sealed class Binomial
     {
-
         /// <summary>
         /// Computes the probability mass (PMF) at k, i.e. P(X = k).
         /// </summary>
@@ -40,7 +39,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
 
             return Math.Exp(SpecialFunctions.BinomialLn(n, k) + (k * Math.Log(p)) + ((n - k) * Math.Log(1.0 - p)));
         }
-      
+
         /// <summary>
         /// Computes the cumulative distribution (CDF) of the distribution at x, i.e. P(X ≤ x).
         /// </summary>
@@ -66,8 +65,5 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
             double k = Math.Floor(x);
             return SpecialFunctions.BetaRegularized(n - k, k + 1, 1 - p);
         }
-
-
-
     }
 }

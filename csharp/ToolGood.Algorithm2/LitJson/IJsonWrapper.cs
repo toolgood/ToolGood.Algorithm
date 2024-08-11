@@ -1,7 +1,6 @@
-namespace ToolGood.Algorithm.LitJson
+﻿namespace ToolGood.Algorithm.LitJson
 {
-
-    interface IJsonWrapper
+    internal interface IJsonWrapper
     {
         bool IsArray { get; }
         bool IsBoolean { get; }
@@ -11,15 +10,17 @@ namespace ToolGood.Algorithm.LitJson
         bool IsNull { get; }
 
         void SetBoolean(bool val);
+
         void SetDouble(decimal val);
+
         void SetJsonType(JsonType type);
+
         void SetString(string val);
+
         void SetNull();
 
         void Add(IJsonWrapper val);
 
         void Set(string key, IJsonWrapper val);
-
-
     }
 }

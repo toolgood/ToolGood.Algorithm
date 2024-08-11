@@ -6,14 +6,11 @@ using ToolGood.Algorithm;
 
 namespace ToolGood.Algorithm2.Test
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-
-   
-
 
             decimal a = 0.0m;
             if (engine.Parse("1+2")) {
@@ -21,7 +18,7 @@ namespace ToolGood.Algorithm2.Test
                 a = o.NumberValue;
             }
 
-            var b = engine.TryEvaluate("1=1 && 1<2 and 7-8>1", 0);// Support(支持) && || and or 
+            var b = engine.TryEvaluate("1=1 && 1<2 and 7-8>1", 0);// Support(支持) && || and or
             var c = engine.TryEvaluate("2+3", 0);
             var d = engine.TryEvaluate("count(array(1,2,3,4))", 0);//{} represents array, return: 4 {}代表数组,返回:4
             var s = engine.TryEvaluate("'aa'&'bb'", ""); //String connection, return: AABB 字符串连接,返回:aabb
@@ -34,13 +31,11 @@ namespace ToolGood.Algorithm2.Test
             var n = engine.TryEvaluate("{Name:\"William Shakespeare\", Age:51, Birthday:\"04/26/1564 00:00:00\"}.Age", null);//Return 51 返回51
             var m = engine.TryEvaluate("{1,2,3,4,5,6}.has(13)", true);//Return false 返回false
 
-
             Thread.CurrentThread.CurrentCulture = new CultureInfo("fr-FR");
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("fr-FR");
 
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             PetaTest.Runner.RunMain(args);
-
         }
     }
 }

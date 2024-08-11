@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals

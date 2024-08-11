@@ -1,10 +1,8 @@
 ﻿using ToolGood.Algorithm.MathNet.Numerics.Distributions;
 
-
-
 namespace ToolGood.Algorithm.MathNet.Numerics
 {
-    static partial class ExcelFunctions
+    internal static partial class ExcelFunctions
     {
         public static double GAMMALN(double z)
         {
@@ -22,7 +20,6 @@ namespace ToolGood.Algorithm.MathNet.Numerics
                 return Exponential.CDF(rate, x);
             }
             return Exponential.PDF(rate, x);
-
         }
 
         public static double HypgeomDist(int k, int draws, int success, int population)
@@ -30,11 +27,9 @@ namespace ToolGood.Algorithm.MathNet.Numerics
             return Hypergeometric.PMF(population, success, draws, k);
         }
 
-
         public static double NegbinomDist(int k, double r, double p)
         {
             return NegativeBinomial.PMF(r, p, k);
-
         }
 
         public static double LognormDist(double x, double mu, double sigma)
@@ -62,6 +57,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
             }
             return Poisson.CDF(lambda, k);
         }
+
         public static double WEIBULL(double x, double shape, double scale, bool state)
         {
             if (state == false) {
@@ -69,7 +65,5 @@ namespace ToolGood.Algorithm.MathNet.Numerics
             }
             return Weibull.CDF(shape, scale, x);
         }
-
-
     }
 }

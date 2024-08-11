@@ -2,7 +2,7 @@
 
 namespace ToolGood.Algorithm.MathNet.Numerics
 {
-    sealed class Normal
+    internal sealed class Normal
     {
         public static double CDF(double mean, double stddev, double x)
         {
@@ -12,6 +12,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics
 
             return 0.5 * SpecialFunctions.Erfc((mean - x) / (stddev * Constants.Sqrt2));
         }
+
         public static double InvCDF(double mean, double stddev, double p)
         {
             //if (stddev < 0.0) {
@@ -30,7 +31,5 @@ namespace ToolGood.Algorithm.MathNet.Numerics
             var d = (x - mean) / stddev;
             return Math.Exp(-0.5 * d * d) / (Constants.Sqrt2Pi * stddev);
         }
-
-
     }
 }

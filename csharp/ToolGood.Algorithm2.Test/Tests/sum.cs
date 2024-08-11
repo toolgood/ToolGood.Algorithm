@@ -25,7 +25,6 @@
 //            //dict[index++] = ChiSquared.PDF(3.5, 0.5);
 //            //dict[index++] = ChiSquared.PDFLn(0.5, 3.5);
 
-
 //            //=EXPONDIST(0.6,2,1)
 //            //0.698805788
 //            dict[index++] = ExcelFunctions.ExponDist(0.6, 2, true);
@@ -41,8 +40,7 @@
 //            //0.009164036 0.00916403565521149]}
 //            dict[index++] = ExcelFunctions.NegbinomDist(34, 45, 0.67);
 
-
-//            //=LOGNORMDIST(1,4,7) 
+//            //=LOGNORMDIST(1,4,7)
 //            //0.283854583   0.283854583098676]}
 //            //dict[index++] = LogNormal.CDF(4, 7, 1);
 //            dict[index++] = ExcelFunctions.LognormDist(1, 4, 7);
@@ -55,18 +53,15 @@
 //            //dict[index++] = Binomial.PMF(0.5, 50, 23);
 //            dict[index++] = ExcelFunctions.BinomDist(23, 50, 0.5, false);
 
-
 //            //=BINOMDIST(23,50,0.5,1)
 //            //0.335905517
 //            //dict[index++] = Binomial.CDF(0.5, 50, 23);
 //            dict[index++] = ExcelFunctions.BinomDist(23, 50, 0.5, true);
 
-
 //            //=POISSON(1,5,0)
 //            //0.033689735
 //            //dict[index++] = Poisson.PMF(5, 1);
 //            dict[index++] = ExcelFunctions.POISSON(1, 5, false);
-
 
 //            //=POISSON(1,5,1)
 //            //0.040427682
@@ -78,14 +73,12 @@
 //            //dict[index++] = Weibull.PDF(2, 3, 1);
 //            dict[index++] = ExcelFunctions.WEIBULL(1, 2, 3, false);
 
-
 //            //=WEIBULL(1,2,3,1)
 //            //0.105160683
 //            //dict[index++] = Weibull.CDF(2, 3, 1);
 //            dict[index++] = ExcelFunctions.WEIBULL(1, 2, 3, true);
 
 //        }
-
 
 //    }
 //}

@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace ToolGood.Algorithm.UnitConversion
 {
-    sealed class UnitFactors : Dictionary<UnitFactorSynonyms, decimal>
+    internal sealed class UnitFactors : Dictionary<UnitFactorSynonyms, decimal>
     {
         // Find the key or null for a given unit
         internal UnitFactorSynonyms FindUnit(UnitFactorSynonyms synonyms)
@@ -21,5 +21,4 @@ namespace ToolGood.Algorithm.UnitConversion
             return unit.Value;
         }
     }
-
 }

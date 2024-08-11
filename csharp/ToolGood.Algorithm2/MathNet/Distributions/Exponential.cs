@@ -40,7 +40,5 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
 
             return x < 0.0 ? 0.0 : 1.0 - Math.Exp(-rate * x);
         }
-
-
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals
 {
-   static class CharUtil
+    internal static class CharUtil
     {
         public static char StandardChar(char o)
         {
@@ -56,6 +56,7 @@ namespace ToolGood.Algorithm.Internals
             }
             return true;
         }
+
         public static bool Equals(string left, string right)
         {
             if (left.Length != right.Length) return false;
@@ -67,12 +68,14 @@ namespace ToolGood.Algorithm.Internals
             }
             return true;
         }
+
         public static bool Equals(string left, string arg1, string arg2)
         {
             if (Equals(left, arg1)) return true;
             if (Equals(left, arg2)) return true;
             return false;
         }
+
         public static bool Equals(string left, string arg1, string arg2, string arg3)
         {
             if (Equals(left, arg1)) return true;
@@ -134,9 +137,6 @@ namespace ToolGood.Algorithm.Internals
             if (str.Length > 0)
                 result.Add(str.ToString());
             return result;
-
         }
-
-
     }
 }

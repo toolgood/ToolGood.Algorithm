@@ -5,11 +5,11 @@ namespace ToolGood.Algorithm.Internals
 {
     /// <summary>
     /// Modified Base64 for URL applications ('base64url' encoding)
-    /// 
+    ///
     /// See http://tools.ietf.org/html/rfc4648
     /// For more information see http://en.wikipedia.org/wiki/Base64
     /// </summary>
-    static class Base64
+    internal static class Base64
     {
         public static string ToBase64String(byte[] input)
         {
@@ -23,7 +23,7 @@ namespace ToolGood.Algorithm.Internals
 
         /// <summary>
         /// Modified Base64 for URL applications ('base64url' encoding)
-        /// 
+        ///
         /// See http://tools.ietf.org/html/rfc4648
         /// For more information see http://en.wikipedia.org/wiki/Base64
         /// </summary>
@@ -41,7 +41,7 @@ namespace ToolGood.Algorithm.Internals
 
         /// <summary>
         /// Modified Base64 for URL applications ('base64url' encoding)
-        /// 
+        ///
         /// See http://tools.ietf.org/html/rfc4648
         /// For more information see http://en.wikipedia.org/wiki/Base64
         /// </summary>

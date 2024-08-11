@@ -1,14 +1,12 @@
-﻿using Antlr4.Runtime.Misc;
-using Antlr4.Runtime.Tree;
+﻿using Antlr4.Runtime.Tree;
 using System;
 using ToolGood.Algorithm.math;
 
 namespace ToolGood.Algorithm.Internals
 {
-    sealed class DiyNameVisitor : AbstractParseTreeVisitor<Object>, ImathVisitor<Object>
+    internal sealed class DiyNameVisitor : AbstractParseTreeVisitor<Object>, ImathVisitor<Object>
     {
         internal DiyNameInfo diy = new DiyNameInfo();
-
 
         public object VisitPARAMETER_fun(mathParser.PARAMETER_funContext context)
         {
@@ -21,7 +19,6 @@ namespace ToolGood.Algorithm.Internals
                 string str = node.GetText();
                 if (str.StartsWith('@')) {
                     diy.Parameters.Add(new ParameterInfo(str.AsSpan(1).ToString(), node.Symbol.StartIndex, node.Symbol.StopIndex));
-
                 } else if ((str.StartsWith("【") && str.EndsWith("】"))
                     || (str.StartsWith("[") && str.EndsWith("]"))
                     || (str.StartsWith("#") && str.EndsWith("#"))) {
@@ -269,8 +266,6 @@ namespace ToolGood.Algorithm.Internals
         {
             return VisitChildren(context);
         }
-
-
 
         public object VisitEDATE_fun(mathParser.EDATE_funContext context)
         {
@@ -752,13 +747,10 @@ namespace ToolGood.Algorithm.Internals
             return VisitChildren(context);
         }
 
-
         public object VisitParameter2(mathParser.Parameter2Context context)
         {
             return VisitChildren(context);
         }
-
-
 
         public object VisitPercentage_fun(mathParser.Percentage_funContext context)
         {

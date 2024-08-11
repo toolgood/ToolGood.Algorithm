@@ -1,15 +1,13 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Text;
 
-
 namespace ToolGood.Algorithm.LitJson
 {
-
-
     internal sealed class Lexer
     {
         #region Fields
+
         private delegate bool StateHandler(FsmContext ctx);
 
         private static readonly int[] fsm_return_table;
@@ -27,17 +25,19 @@ namespace ToolGood.Algorithm.LitJson
         private string string_value;
         private int token;
         private int unichar;
-        #endregion
 
+        #endregion Fields
 
         #region Properties
+
         public bool EndOfInput { get { return end_of_input; } }
         public int Token { get { return token; } }
         public string StringValue { get { return string_value; } }
-        #endregion
 
+        #endregion Properties
 
         #region Constructors
+
         static Lexer()
         {
             PopulateFsmTables(out fsm_handler_table, out fsm_return_table);
@@ -57,10 +57,11 @@ namespace ToolGood.Algorithm.LitJson
             fsm_context = new FsmContext();
             fsm_context.L = this;
         }
-        #endregion
 
+        #endregion Constructors
 
         #region Static Methods
+
         private static int HexValue(int digit)
         {
             switch (digit) {
@@ -665,9 +666,7 @@ namespace ToolGood.Algorithm.LitJson
             ctx.L.unichar = 0;
 
             while (ctx.L.GetChar()) {
-
                 if (ctx.L.input_char >= '0' && ctx.L.input_char <= '9' || ctx.L.input_char >= 'A' && ctx.L.input_char <= 'F' || ctx.L.input_char >= 'a' && ctx.L.input_char <= 'f') {
-
                     ctx.L.unichar += HexValue(ctx.L.input_char) * mult;
 
                     counter++;
@@ -786,8 +785,8 @@ namespace ToolGood.Algorithm.LitJson
 
             return true;
         }
-        #endregion
 
+        #endregion Static Methods
 
         private bool GetChar()
         {

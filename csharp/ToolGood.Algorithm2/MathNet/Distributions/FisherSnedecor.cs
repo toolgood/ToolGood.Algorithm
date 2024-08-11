@@ -2,7 +2,7 @@
 
 namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
 {
-    sealed class FisherSnedecor
+    internal sealed class FisherSnedecor
     {
         public static double CDF(double d1, double d2, double x)
         {
@@ -23,6 +23,5 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
                 x => SpecialFunctions.BetaRegularized(d1 / 2.0, d2 / 2.0, d1 * x / (d1 * x + d2)) - p,
                 0, 1000, accuracy: 1e-12);
         }
-
     }
 }

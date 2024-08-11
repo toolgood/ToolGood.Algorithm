@@ -1,11 +1,9 @@
-using System;
-
+﻿using System;
 
 namespace ToolGood.Algorithm.LitJson
 {
-  sealed  class JsonException : ApplicationException
+    internal sealed class JsonException : ApplicationException
     {
-
         internal JsonException(ParserToken token, Exception inner_exception) :
             base(String.Format("Invalid token '{0}' in input string", token), inner_exception)
         {
@@ -16,10 +14,8 @@ namespace ToolGood.Algorithm.LitJson
         {
         }
 
-
         public JsonException(string message) : base(message)
         {
         }
-
     }
 }

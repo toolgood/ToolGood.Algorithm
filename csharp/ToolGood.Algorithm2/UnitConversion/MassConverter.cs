@@ -1,6 +1,6 @@
 ﻿namespace ToolGood.Algorithm.UnitConversion
 {
-    sealed class MassConverter : BaseUnitConverter
+    internal sealed class MassConverter : BaseUnitConverter
     {
         private static UnitFactors units = new UnitFactors()
         {
@@ -28,5 +28,4 @@
             return false;
         }
     }
-
 }

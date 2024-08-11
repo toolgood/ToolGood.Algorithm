@@ -1,6 +1,6 @@
 ﻿namespace ToolGood.Algorithm.Internals
 {
-    sealed class AntlrLookupEngine : AlgorithmEngine
+    internal sealed class AntlrLookupEngine : AlgorithmEngine
     {
         public Operand Json;
 
@@ -18,6 +18,5 @@
             }
             return base.GetParameter(parameter);
         }
-
     }
 }

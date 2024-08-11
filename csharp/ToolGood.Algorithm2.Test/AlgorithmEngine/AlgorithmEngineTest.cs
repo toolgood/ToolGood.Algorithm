@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using PetaTest;
+﻿using PetaTest;
+using System;
 
 namespace ToolGood.Algorithm
 {
@@ -42,11 +39,10 @@ namespace ToolGood.Algorithm
             var d = engine.TryEvaluate("2.1e-3 + 10", 0.0);
             Assert.AreEqual(10.0021, d);
 
-
             var e = engine.TryEvaluate("e", 0.0);
-            Assert.AreEqual(Math.E, e,10);
+            Assert.AreEqual(Math.E, e, 10);
             e = engine.TryEvaluate("pi", 0.0);
-            Assert.AreEqual(Math.PI, e,10);
+            Assert.AreEqual(Math.PI, e, 10);
 
             var b = engine.TryEvaluate("true", false);
             Assert.AreEqual(true, b);
@@ -60,9 +56,9 @@ namespace ToolGood.Algorithm
             Assert.AreEqual(2, b1);
 
             var b2 = engine.TryEvaluate("pi*4", 0.0);
-            Assert.AreEqual(Math.PI * 4, b2,10);
+            Assert.AreEqual(Math.PI * 4, b2, 10);
             b2 = engine.TryEvaluate("e*4", 0.0);
-            Assert.AreEqual(Math.E * 4, b2,10);
+            Assert.AreEqual(Math.E * 4, b2, 10);
 
             var s = engine.TryEvaluate("'aa'&'bb'", "");
             Assert.AreEqual("aabb", s);
@@ -72,7 +68,6 @@ namespace ToolGood.Algorithm
 
             var r = engine.TryEvaluate("count(Array(1,2,3,4))", 0);
             Assert.AreEqual(4, r);
-
 
             r = engine.TryEvaluate("(1=1)*9+2", 0);
             Assert.AreEqual(11, r); ;
@@ -87,10 +82,8 @@ namespace ToolGood.Algorithm
             var value = engine.TryEvaluate("1 > (-2)", false);
             Assert.AreEqual(value, true);
 
-
             value = engine.TryEvaluate("(-1) > (-2）", false);
             Assert.AreEqual(value, true);
-
 
             value = engine.TryEvaluate("-1 > (-2)", false);
             Assert.AreEqual(value, true);
@@ -100,7 +93,6 @@ namespace ToolGood.Algorithm
 
             var value2 = engine.TryEvaluate("-1 > -2", false);
             Assert.AreEqual(value2, true);
-
 
             var value3 = engine.TryEvaluate("-7 < -2", false);
             Assert.AreEqual(value3, true);
@@ -184,7 +176,6 @@ namespace ToolGood.Algorithm
         {
             AlgorithmEngine engine = new AlgorithmEngine();
             var t = engine.TryEvaluate("1+(3*2+2)/2 & '11' & '11:20'*9 & isnumber(22)*3", "");
-
         }
 
         [Test]
@@ -209,7 +200,6 @@ namespace ToolGood.Algorithm
 
             String c = engine.TryEvaluate("'4dd'&'55' rr", "");
             Assert.AreEqual("", c);
-
         }
 
         [Test]
@@ -219,9 +209,7 @@ namespace ToolGood.Algorithm
 
             String c = engine.TryEvaluate("'4dd'&'55'.left(1)", "");
             Assert.AreEqual("4dd5", c);
-
         }
-
 
         [Test]
         public void Cylinder_Test()
@@ -245,7 +233,6 @@ namespace ToolGood.Algorithm
             Assert.AreEqual(t, t6);
             Assert.AreEqual(t, t7);
 
-
             t = c.TryEvaluate("[直径]*pi()", 0.0);            //圆的长
             t = c.TryEvaluate("[半径]*[半径]*pi()*[高]", 0.0); //圆的体积
 
@@ -256,17 +243,13 @@ namespace ToolGood.Algorithm
             t = c.TryEvaluate("['半径']*[半径]*pi()*[高]", 0.0); //圆的体积
 
             t = c.TryEvaluate("求面积（10）", 0.0); //圆的体积
-            Assert.AreEqual(10 * 10 * Math.PI, t,10);
-
-
+            Assert.AreEqual(10 * 10 * Math.PI, t, 10);
 
             var json = "{'灰色':'L','canBookCount':905,'saleCount':91,'specId':'43b0e72e98731aed69e1f0cc7d64bf4d'}";
             c.AddParameterFromJson(json);
 
-
             var tt = c.TryEvaluate("['灰色']", ""); //圆的体积
             Assert.AreEqual("L", tt);
-
 
             String tt2 = c.EvaluateFormula("'圆'-[半径]-高", '-');
             Assert.AreEqual("圆-3-10", tt2);
@@ -284,9 +267,6 @@ namespace ToolGood.Algorithm
 
             String t24 = c.GetSimplifiedFormula("半径*if(半径>2,1+4,3)");
             Assert.AreEqual("3 * 5", t24);
-
         }
-
-
     }
 }

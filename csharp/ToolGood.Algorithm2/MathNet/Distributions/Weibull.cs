@@ -39,7 +39,6 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
 
             return 0.0;
         }
-         
 
         /// <summary>
         /// Computes the cumulative distribution (CDF) of the distribution at x, i.e. P(X ≤ x).
@@ -61,6 +60,5 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
 
             return -SpecialFunctions.ExponentialMinusOne(-Math.Pow(x, shape) * Math.Pow(scale, -shape));
         }
-
     }
 }

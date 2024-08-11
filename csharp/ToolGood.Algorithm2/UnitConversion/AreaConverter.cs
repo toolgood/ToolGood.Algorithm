@@ -1,6 +1,6 @@
 ﻿namespace ToolGood.Algorithm.UnitConversion
 {
-    sealed class AreaConverter : BaseUnitConverter
+    internal sealed class AreaConverter : BaseUnitConverter
     {
         private static UnitFactors units = new UnitFactors()
         {
@@ -31,5 +31,4 @@
             return false;
         }
     }
-
 }

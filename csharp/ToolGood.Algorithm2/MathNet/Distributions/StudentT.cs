@@ -2,7 +2,7 @@
 
 namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
 {
-   sealed class StudentT
+    internal sealed class StudentT
     {
         public static double CDF(double location, double scale, double freedom, double x)
         {
@@ -20,6 +20,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
             var ib = 0.5 * SpecialFunctions.BetaRegularized(freedom / 2.0, 0.5, h);
             return x <= location ? ib : 1.0 - ib;
         }
+
         public static double InvCDF(double location, double scale, double freedom, double p)
         {
             //if (scale <= 0.0 || freedom <= 0.0) {
@@ -43,7 +44,5 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
                 return x <= location ? ib - p : 1.0 - ib - p;
             }, -800, 800, accuracy: 1e-12);
         }
-
-
     }
 }

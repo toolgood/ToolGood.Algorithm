@@ -299,7 +299,6 @@ namespace ToolGood.Algorithm
             return visitor.diy;
         }
 
-
         /// <summary>
         /// 单位转换
         /// </summary>
@@ -365,6 +364,7 @@ namespace ToolGood.Algorithm
             }
             return context;
         }
+
         /// <summary>
         /// 执行
         /// </summary>
