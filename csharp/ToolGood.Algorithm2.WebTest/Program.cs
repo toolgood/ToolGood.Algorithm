@@ -21,13 +21,12 @@ namespace ToolGood.Algorithm2.WebTest
             provider.Mappings[".gz"] = "application/octet-stream";
             provider.Mappings[".dat"] = "application/octet-stream";
             provider.Mappings[".wasm"] = "application/wasm";
+            provider.Mappings[".pdb"] = "application/pdb";
             app.UseStaticFiles(new StaticFileOptions {
                 ContentTypeProvider = provider,//应用新的映射关系
             });
-			
 
-
-			app.UseRouting();
+            app.UseRouting();
 
             app.UseAuthorization();
 

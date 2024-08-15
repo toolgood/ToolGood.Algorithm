@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ToolGood.Algorithm2.WebTest.Pages
 {
@@ -16,5 +15,4 @@ namespace ToolGood.Algorithm2.WebTest.Pages
         {
         }
     }
-
 }

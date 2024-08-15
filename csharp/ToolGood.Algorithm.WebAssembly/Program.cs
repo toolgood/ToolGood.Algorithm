@@ -1,7 +1,6 @@
 ﻿namespace ToolGood.Algorithm.WebAssembly
 {
     using Microsoft.JSInterop;
-    using System.Text;
     using System.Text.Json;
     using ToolGood.Algorithm;
     using ToolGood.Algorithm.Enums;
@@ -68,7 +67,6 @@
             result["result"] = def;
             return JsonSerializer.Serialize(result);
         }
-
 
         [JSInvokable]
         public static string TryEvaluateNumber(string exp, decimal def, string data = null, string option = null)
@@ -192,14 +190,14 @@
                 if (ae.Parse(exp)) {
                     result["parse"] = true;
                     var obj = ae.Evaluate();
-                    obj= obj.ToMyDate("It can't be converted to datetime!");
+                    obj = obj.ToMyDate("It can't be converted to datetime!");
                     if (obj.IsError) {
                         result["result"] = def;
                         result["useDef"] = true;
                         result["error"] = ae.LastError;
                         return def.ToString("yyyy-MM-dd HH:mm:ss");
                     }
-                    result["result"] = obj.DateValue.ToString(); 
+                    result["result"] = obj.DateValue.ToString();
                     return JsonSerializer.Serialize(result);
                 }
                 result["error"] = "Parameter exp invalid !";
@@ -210,8 +208,8 @@
             result["result"] = def.ToString("yyyy-MM-dd HH:mm:ss");
             return JsonSerializer.Serialize(result);
         }
-        [JSInvokable]
 
+        [JSInvokable]
         public static String GetSimplifiedFormula(String formula, string data = null, string option = null)
         {
             AlgorithmEngine ae;
@@ -233,7 +231,6 @@
             }
             return ae.GetSimplifiedFormula(formula);
         }
-
 
         [JSInvokable]
         public static string EvaluateFormula(string exp, string splitChars, string data = null, string option = null)
@@ -270,7 +267,6 @@
             return JsonSerializer.Serialize(AlgorithmEngineHelper.GetDiyNames(exp));
         }
 
-
         [JSInvokable]
         public static string UnitConversion(decimal src, string oldSrcUnit, string oldTarUnit, string name = null)
         {
@@ -279,13 +275,11 @@
                 var r = AlgorithmEngineHelper.UnitConversion(src, oldSrcUnit, oldTarUnit, name);
                 dic["code"] = 0;
                 dic["result"] = r;
-
             } catch (Exception ex) {
                 dic["code"] = 1;
                 dic["error"] = ex.Message;
             }
             return JsonSerializer.Serialize(dic);
         }
-
     }
 }
