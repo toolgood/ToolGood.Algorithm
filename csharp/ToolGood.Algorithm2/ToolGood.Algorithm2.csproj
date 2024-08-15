@@ -26,6 +26,9 @@
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\ToolGood.Algorithm.xml</DocumentationFile>
     <Nullable>disable</Nullable>
     <Configurations>Debug;Release;WebAssembly</Configurations>
+    <Title>ToolGood.Algorithm</Title>
+    <PackageReadmeFile>README-EN.md</PackageReadmeFile>
+    <RepositoryUrl></RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='WebAssembly'">
@@ -46,6 +49,10 @@
     <None Include="..\..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
+    </None>
+    <None Include="..\..\README-EN.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
  
