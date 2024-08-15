@@ -4,7 +4,7 @@ using System;
 namespace ToolGood.Algorithm
 {
     [TestFixture]
-    class AlgorithmEngineTest
+    internal class AlgorithmEngineTest
     {
         [Test]
         public void Test()

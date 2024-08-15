@@ -13,12 +13,13 @@ using ToolGood.Algorithm.MathNet.Numerics;
 
 namespace ToolGood.Algorithm.Internals
 {
+    /// <summary>
+    /// 算法核心
+    /// </summary>
     public class MathVisitor : AbstractParseTreeVisitor<Operand>, ImathVisitor<Operand>
     {
         public event Func<string, Operand> GetParameter;
-
         public event Func<string, List<Operand>, Operand> DiyFunction;
-
         public int excelIndex;
         public bool useLocalTime;
         public DistanceUnitType DistanceUnit = DistanceUnitType.M;
