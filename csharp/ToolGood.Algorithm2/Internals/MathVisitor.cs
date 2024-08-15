@@ -807,7 +807,7 @@ namespace ToolGood.Algorithm.Internals
             var args1 = args[0].ToText("Function BIN2OCT parameter 1 is error!");
             if (args1.IsError) { return args1; }
 
-            if (Regex.IsMatch(args1.TextValue, "^[01]+$") == false) { return Operand.Error("Function BIN2OCT parameter 1 is error!"); }
+            if (Regex.IsMatch(args1.TextValue, "^[01]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function BIN2OCT parameter 1 is error!"); }
             var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 2), 8);
             if (args.Count == 2) {
                 var args2 = args[1].ToNumber("Function BIN2OCT parameter 2 is error!");
@@ -825,7 +825,7 @@ namespace ToolGood.Algorithm.Internals
             var args1 = context.expr().Accept(this).ToText("Function BIN2DEC parameter is error!");
             if (args1.IsError) { return args1; }
 
-            if (Regex.IsMatch(args1.TextValue, "^[01]+$") == false) { return Operand.Error("Function BIN2DEC parameter is error!"); }
+            if (Regex.IsMatch(args1.TextValue, "^[01]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function BIN2DEC parameter is error!"); }
             var num = Convert.ToInt32(args1.TextValue, 2);
             return Operand.Create(num);
         }
@@ -838,7 +838,7 @@ namespace ToolGood.Algorithm.Internals
             var args1 = args[0].ToText("Function BIN2HEX parameter 1 is error!");
             if (args1.IsError) { return args1; }
 
-            if (Regex.IsMatch(args1.TextValue, "^[01]+$") == false) { return Operand.Error("Function BIN2HEX parameter 1 is error!"); }
+            if (Regex.IsMatch(args1.TextValue, "^[01]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function BIN2HEX parameter 1 is error!"); }
             var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 2), 16).ToUpper();
             if (args.Count == 2) {
                 var args2 = args[1].ToNumber("Function BIN2HEX parameter 2 is error!");
@@ -859,7 +859,7 @@ namespace ToolGood.Algorithm.Internals
             var args1 = args[0].ToText("Function OCT2BIN parameter 1 is error!");
             if (args1.IsError) { return args1; }
 
-            if (Regex.IsMatch(args1.TextValue, "^[0-8]+$") == false) { return Operand.Error("Function OCT2BIN parameter 1 is error!"); }
+            if (Regex.IsMatch(args1.TextValue, "^[0-8]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function OCT2BIN parameter 1 is error!"); }
             var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 8), 2);
             if (args.Count == 2) {
                 var args2 = args[1].ToNumber("Function OCT2BIN parameter 2 is error!");
@@ -877,7 +877,7 @@ namespace ToolGood.Algorithm.Internals
             var args1 = context.expr().Accept(this).ToText("Function OCT2DEC parameter is error!");
             if (args1.IsError) { return args1; }
 
-            if (Regex.IsMatch(args1.TextValue, "^[0-8]+$") == false) { return Operand.Error("Function OCT2DEC parameter is error!"); }
+            if (Regex.IsMatch(args1.TextValue, "^[0-8]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function OCT2DEC parameter is error!"); }
             var num = Convert.ToInt32(args1.TextValue, 8);
             return Operand.Create(num);
         }
@@ -889,7 +889,7 @@ namespace ToolGood.Algorithm.Internals
 
             var args1 = args[0].ToText("Function OCT2HEX parameter 1 is error!");
             if (args1.IsError) { return args1; }
-            if (Regex.IsMatch(args1.TextValue, "^[0-8]+$") == false) { return Operand.Error("Function OCT2HEX parameter 1 is error!"); }
+            if (Regex.IsMatch(args1.TextValue, "^[0-8]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function OCT2HEX parameter 1 is error!"); }
             var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 8), 16).ToUpper();
             if (args.Count == 2) {
                 var args2 = args[1].ToNumber("Function OCT2HEX parameter 2 is error!");
