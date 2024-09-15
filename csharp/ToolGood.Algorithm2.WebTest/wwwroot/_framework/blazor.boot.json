@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "ToolGood.Algorithm.WebAssembly",
   "resources": {
-    "hash": "sha256-0OHYhFN6Fcu+xLw2FZ2hq3G0dQ31s95/kZfwk5wIQEI=",
+    "hash": "sha256-95QdCd8iUesQOk0bON2YszDc/hRp/kFEieSEO1K+8Cw=",
     "jsModuleNative": {
       "dotnet.native.8.0.8.hybv0o21t9.js": "sha256-juC5sA7gHTLXFEhAKgdM2/RavswpwCtDfjYGsAz2FXg="
     },
@@ -204,12 +204,12 @@
       "mscorlib.wasm": "sha256-Gz8PyW2/fwihe5ul81OwmRUrU71r+KtbyRw6xlOGD+Q=",
       "netstandard.wasm": "sha256-jMTqIQzoDS810lyhZpMO5eEC36EzntXqSVn+2qwkOMQ=",
       "System.Private.CoreLib.wasm": "sha256-NFj5WE5VLP2LptZIRJCUIc1AMk06FmxpsSILfPISwAw=",
-      "ToolGood.Algorithm.wasm": "sha256-yQBK3bQUScBmuPVrA6Lc4U3xIxYa/SzdAxddIY/qlYs=",
-      "ToolGood.Algorithm.WebAssembly.wasm": "sha256-gtsDHfeKfHJ9yMuSB3k931gsRSwhqNohny/rIu4GlIE="
+      "ToolGood.Algorithm.wasm": "sha256-d/nxvrzO5z8ndfSyPotff4tlvEVWIrw/QQd/RYwJiPQ=",
+      "ToolGood.Algorithm.WebAssembly.wasm": "sha256-z8InHq3CVV/hiiYpNUooGLdgS75QvsShN1SBTeoG6dw="
     },
     "pdb": {
-      "ToolGood.Algorithm.pdb": "sha256-+HAblHipdMrbdh0mpvmF9RHA5MVSRZB4OvzILmY3jUI=",
-      "ToolGood.Algorithm.WebAssembly.pdb": "sha256-8E+Sw+coH8U1ydW9HqbYqqhYIsUhP2IdYgMBXIUaxFQ="
+      "ToolGood.Algorithm.pdb": "sha256-iI1z5y0A+rOhjx4K2wbKLqgCT3GK0SQ39f1Xm4Lxp/M=",
+      "ToolGood.Algorithm.WebAssembly.pdb": "sha256-cXE5m8F6H5vYbLFuLrTOF5mLeps9r/nSQTCZ/cjYkfI="
     }
   },
   "cacheBootResources": true,
