@@ -1,12 +1,17 @@
 ﻿using Antlr4.Runtime;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.LitJson;
 using ToolGood.Algorithm.math;
+
+#if WebAssembly
+using System.Linq2;
+#else
+using System.Linq;
+#endif
 
 namespace ToolGood.Algorithm
 {
