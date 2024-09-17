@@ -99,6 +99,10 @@
         alert("1=1 =>" + r);
         r = ae.TryEvaluate("date(2014,1,2)", new Date())
         alert('date(2014,1,2) =>' + r);
+        r = ae.TryEvaluate("SHA256('123')", "")
+        alert("SHA256('123') =>" + r);
+        r = ae.TryEvaluate("MD5('123')", "")
+        alert("MD5('123') =>" + r);
     };
 </script>
 </html>

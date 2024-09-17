@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -10,6 +9,12 @@ using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.LitJson;
 using ToolGood.Algorithm.math;
 using ToolGood.Algorithm.MathNet.Numerics;
+
+#if WebAssembly
+using System.Linq2;
+#else
+using System.Linq;
+#endif
 
 namespace ToolGood.Algorithm.Internals
 {

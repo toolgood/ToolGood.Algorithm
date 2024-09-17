@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.LitJson;
+#if WebAssembly
+using System.Linq2;
+#else
+using System.Linq;
+#endif
 
 namespace ToolGood.Algorithm
 {

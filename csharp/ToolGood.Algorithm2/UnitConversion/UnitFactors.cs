@@ -1,5 +1,9 @@
 ﻿using System.Collections.Generic;
+#if WebAssembly
+using System.Linq2;
+#else
 using System.Linq;
+#endif
 
 namespace ToolGood.Algorithm.UnitConversion
 {
