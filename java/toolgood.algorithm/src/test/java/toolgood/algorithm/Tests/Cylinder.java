@@ -4,6 +4,7 @@ import java.util.List;
 
 import toolgood.algorithm.AlgorithmEngine;
 import toolgood.algorithm.Operand;
+import toolgood.algorithm.internals.MyParameter;
 
 public class Cylinder extends AlgorithmEngine {
     private int _radius;
@@ -15,15 +16,15 @@ public class Cylinder extends AlgorithmEngine {
     }
 
     @Override
-    protected Operand GetParameter(String parameter) {
-        if (parameter.equals("半径")) {
+    protected Operand GetParameter(MyParameter parameter) {
+        if (parameter.Name.equals("半径")) {
             return Operand.Create(_radius);
         }
-        if (parameter.equals("直径"))
+        if (parameter.Name.equals("直径"))
         {
             return Operand.Create(_radius * 2);
         }
-        if (parameter.equals("高"))
+        if (parameter.Name.equals("高"))
         {
             return Operand.Create(_height);
         }

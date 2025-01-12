@@ -71,18 +71,18 @@ public class AlgorithmEngine {
         }
     }
 
-    private Operand GetDiyParameterInside(String parameter) {
-        if (_tempdict.containsKey(parameter)) {
-            return _tempdict.get(parameter);
+    private Operand GetDiyParameterInside(MyParameter parameter) {
+        if (_tempdict.containsKey(parameter.Name)) {
+            return _tempdict.get(parameter.Name);
         }
         Operand result = GetParameter(parameter);
         if (UseTempDict) {
-            _tempdict.put(parameter, result);
+            _tempdict.put(parameter.Name, result);
         }
         return result;
     }
 
-    protected Operand GetParameter(final String parameter) {
+    protected Operand GetParameter(final MyParameter parameter) {
         return Operand.Error("Parameter [" + parameter + "] is missing.");
     }
 

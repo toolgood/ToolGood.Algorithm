@@ -13,6 +13,7 @@ import toolgood.algorithm.internals.CharUtil;
 import toolgood.algorithm.internals.DiyNameVisitor;
 import toolgood.algorithm.internals.MathVisitor;
 import toolgood.algorithm.internals.MyFunction;
+import toolgood.algorithm.internals.MyParameter;
 import toolgood.algorithm.math.mathLexer;
 import toolgood.algorithm.math.mathParser;
 import toolgood.algorithm.math.mathParser.ProgContext;
@@ -412,7 +413,7 @@ public class AlgorithmEngineHelper {
      * @param GetParameter
      * @return
      */
-    public static Operand Evaluate(mathParser.ProgContext context, Function<String, Operand> GetParameter) {
+    public static Operand Evaluate(mathParser.ProgContext context, Function<MyParameter, Operand> GetParameter) {
         return Evaluate(context, GetParameter, null, true, false, DistanceUnitType.M, AreaUnitType.M2,
                 VolumeUnitType.M3,
                 MassUnitType.KG);
@@ -426,7 +427,7 @@ public class AlgorithmEngineHelper {
      * @param ExecuteDiyFunction
      * @return
      */
-    public static Operand Evaluate(mathParser.ProgContext context, Function<String, Operand> GetParameter,
+    public static Operand Evaluate(mathParser.ProgContext context, Function<MyParameter, Operand> GetParameter,
             Function<MyFunction, Operand> ExecuteDiyFunction) {
         return Evaluate(context, GetParameter, ExecuteDiyFunction, true, false, DistanceUnitType.M, AreaUnitType.M2,
                 VolumeUnitType.M3,
@@ -442,7 +443,7 @@ public class AlgorithmEngineHelper {
      * @param UseExcelIndex
      * @return
      */
-    public static Operand Evaluate(mathParser.ProgContext context, Function<String, Operand> GetParameter,
+    public static Operand Evaluate(mathParser.ProgContext context, Function<MyParameter, Operand> GetParameter,
             Function<MyFunction, Operand> ExecuteDiyFunction, boolean UseExcelIndex) {
         return Evaluate(context, GetParameter, ExecuteDiyFunction, UseExcelIndex, false, DistanceUnitType.M,
                 AreaUnitType.M2,
@@ -460,7 +461,7 @@ public class AlgorithmEngineHelper {
      * @param UseLocalTime
      * @return
      */
-    public static Operand Evaluate(mathParser.ProgContext context, Function<String, Operand> GetParameter,
+    public static Operand Evaluate(mathParser.ProgContext context, Function<MyParameter, Operand> GetParameter,
             Function<MyFunction, Operand> ExecuteDiyFunction, boolean UseExcelIndex, boolean UseLocalTime) {
         return Evaluate(context, GetParameter, ExecuteDiyFunction, UseExcelIndex, UseLocalTime, DistanceUnitType.M,
                 AreaUnitType.M2,
@@ -479,7 +480,7 @@ public class AlgorithmEngineHelper {
      * @param DistanceUnit
      * @return
      */
-    public static Operand Evaluate(mathParser.ProgContext context, Function<String, Operand> GetParameter,
+    public static Operand Evaluate(mathParser.ProgContext context, Function<MyParameter, Operand> GetParameter,
             Function<MyFunction, Operand> ExecuteDiyFunction, boolean UseExcelIndex, boolean UseLocalTime,
             DistanceUnitType DistanceUnit) {
         return Evaluate(context, GetParameter, ExecuteDiyFunction, UseExcelIndex, UseLocalTime, DistanceUnit,
@@ -500,7 +501,7 @@ public class AlgorithmEngineHelper {
      * @param AreaUnit
      * @return
      */
-    public static Operand Evaluate(mathParser.ProgContext context, Function<String, Operand> GetParameter,
+    public static Operand Evaluate(mathParser.ProgContext context, Function<MyParameter, Operand> GetParameter,
             Function<MyFunction, Operand> ExecuteDiyFunction, boolean UseExcelIndex, boolean UseLocalTime,
             DistanceUnitType DistanceUnit, AreaUnitType AreaUnit) {
         return Evaluate(context, GetParameter, ExecuteDiyFunction, UseExcelIndex, UseLocalTime, DistanceUnit,
@@ -522,7 +523,7 @@ public class AlgorithmEngineHelper {
      * @param VolumeUnit
      * @return
      */
-    public static Operand Evaluate(mathParser.ProgContext context, Function<String, Operand> GetParameter,
+    public static Operand Evaluate(mathParser.ProgContext context, Function<MyParameter, Operand> GetParameter,
             Function<MyFunction, Operand> ExecuteDiyFunction, boolean UseExcelIndex, boolean UseLocalTime,
             DistanceUnitType DistanceUnit, AreaUnitType AreaUnit, VolumeUnitType VolumeUnit) {
         return Evaluate(context, GetParameter, ExecuteDiyFunction, UseExcelIndex, UseLocalTime, DistanceUnit,
@@ -545,7 +546,7 @@ public class AlgorithmEngineHelper {
      * @param MassUnit
      * @return
      */
-    public static Operand Evaluate(mathParser.ProgContext context, Function<String, Operand> GetParameter,
+    public static Operand Evaluate(mathParser.ProgContext context, Function<MyParameter, Operand> GetParameter,
             Function<MyFunction, Operand> ExecuteDiyFunction, boolean UseExcelIndex, boolean UseLocalTime,
             DistanceUnitType DistanceUnit, AreaUnitType AreaUnit, VolumeUnitType VolumeUnit, MassUnitType MassUnit) {
         MathVisitor visitor = new MathVisitor();
