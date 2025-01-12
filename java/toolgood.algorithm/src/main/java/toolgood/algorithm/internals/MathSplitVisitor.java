@@ -4,6 +4,8 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 import toolgood.algorithm.enums.ConditionTreeType;
 import toolgood.algorithm.math.mathParser;
+import toolgood.algorithm.math.mathParser.COVARIANCES_funContext;
+import toolgood.algorithm.math.mathParser.COVAR_funContext;
 import toolgood.algorithm.math.mathVisitor;
 
 import java.util.ArrayList;
@@ -1202,6 +1204,16 @@ public class MathSplitVisitor extends AbstractParseTreeVisitor<ConditionTree> im
 
     @Override
     public ConditionTree visitPercentage_fun(mathParser.Percentage_funContext context) {
+        return visit_fun(context);
+    }
+
+    @Override
+    public ConditionTree visitCOVARIANCES_fun(COVARIANCES_funContext context) {
+        return visit_fun(context);
+    }
+
+    @Override
+    public ConditionTree visitCOVAR_fun(COVAR_funContext context) {
         return visit_fun(context);
     }
 }

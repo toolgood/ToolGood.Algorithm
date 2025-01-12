@@ -3464,7 +3464,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                 return args1;
         }
         final MyParameter myParameter = new MyParameter();
-        myParameter.Context=mainContext;
+        myParameter.Context = mainContext;
         myParameter.Name = args1.TextValue();
         Operand result = GetParameter.apply(myParameter);
         if (result.IsError()) {
@@ -5766,7 +5766,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         TerminalNode node = context.PARAMETER();
         if (node != null) {
             final MyParameter myParameter = new MyParameter();
-            myParameter.Context=mainContext;
+            myParameter.Context = mainContext;
             myParameter.Name = node.getText();
             return GetParameter.apply(myParameter);
         }
@@ -5774,13 +5774,13 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         if (node != null) {
             String str = node.getText();
             final MyParameter myParameter = new MyParameter();
-            myParameter.Context=mainContext;
-            myParameter.Name = node.getText();
+            myParameter.Context = mainContext;
             if (str.startsWith("@")) {
-                str=str.substring(1);
-            }else {
-                str=str.substring(1, str.length() - 1);
+                str = str.substring(1);
+            } else {
+                str = str.substring(1, str.length() - 1);
             }
+            myParameter.Name = str;
             return GetParameter.apply(myParameter);
         }
         // 防止 多重引用
@@ -5791,7 +5791,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
 
             if (GetParameter != null) {
                 final MyParameter myParameter = new MyParameter();
-                myParameter.Context=mainContext;
+                myParameter.Context = mainContext;
                 myParameter.Name = p.TextValue();
                 return GetParameter.apply(myParameter);
             }
@@ -5903,7 +5903,7 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
                 args.add(aa);
             }
             final MyFunction myFunction = new MyFunction();
-            myFunction.Context=mainContext;
+            myFunction.Context = mainContext;
             myFunction.Name = funName;
             myFunction.OperandList = args;
             return DiyFunction.apply(myFunction);
@@ -5979,6 +5979,80 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
 
     private double log(final double value, final double base) {
         return Math.log(value) / Math.log(base);
+    }
+
+    @Override
+    public Operand visitCOVARIANCES_fun(COVARIANCES_funContext context) {
+        final List<Operand> args = new ArrayList<Operand>();
+        for (final ExprContext item : context.expr()) {
+            final Operand aa = item.accept(this);
+            if (aa.IsError()) {
+                return aa;
+            }
+            args.add(aa);
+        }
+
+        final List<BigDecimal> list1 = new ArrayList<BigDecimal>();
+        final List<BigDecimal> list2 = new ArrayList<BigDecimal>();
+        final boolean o1 = F_base_GetList_2(args.get(0), list1);
+        final boolean o2 = F_base_GetList_2(args.get(1), list2);
+
+        if (o1 == false) {
+            return Operand.Error("Function COVAR parameter 1 error!");
+        }
+        if (o2 == false) {
+            return Operand.Error("Function COVAR parameter 2 error!");
+        }
+        if (list1.size() != list2.size()) {
+            return Operand.Error("Function COVAR parameter's count error!");
+        }
+
+        BigDecimal avg1 = Average(list1);
+        BigDecimal avg2 = Average(list2);
+        BigDecimal sum = new BigDecimal(0);
+        for (int i = 0; i < list1.size(); i++) {
+            BigDecimal m = (list1.get(i).subtract(avg1)).multiply(list2.get(i).subtract(avg2));
+            sum = sum.add(m);
+        }
+        BigDecimal val = sum.divide(new BigDecimal(list1.size() - 1), MathContext.DECIMAL32);
+        return Operand.Create(val);
+    }
+
+    @Override
+    public Operand visitCOVAR_fun(COVAR_funContext context) {
+        final List<Operand> args = new ArrayList<Operand>();
+        for (final ExprContext item : context.expr()) {
+            final Operand aa = item.accept(this);
+            if (aa.IsError()) {
+                return aa;
+            }
+            args.add(aa);
+        }
+
+        final List<BigDecimal> list1 = new ArrayList<BigDecimal>();
+        final List<BigDecimal> list2 = new ArrayList<BigDecimal>();
+        final boolean o1 = F_base_GetList_2(args.get(0), list1);
+        final boolean o2 = F_base_GetList_2(args.get(1), list2);
+
+        if (o1 == false) {
+            return Operand.Error("Function COVAR parameter 1 error!");
+        }
+        if (o2 == false) {
+            return Operand.Error("Function COVAR parameter 2 error!");
+        }
+        if (list1.size() != list2.size()) {
+            return Operand.Error("Function COVAR parameter's count error!");
+        }
+
+        BigDecimal avg1 = Average(list1);
+        BigDecimal avg2 = Average(list2);
+        BigDecimal sum = new BigDecimal(0);
+        for (int i = 0; i < list1.size(); i++) {
+            BigDecimal m = (list1.get(i).subtract(avg1)).multiply(list2.get(i).subtract(avg2));
+            sum = sum.add(m);
+        }
+        BigDecimal val = sum.divide(new BigDecimal(list1.size()), MathContext.DECIMAL32);
+        return Operand.Create(val);
     }
 
 }

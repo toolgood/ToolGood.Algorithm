@@ -1,4 +1,5 @@
-package toolgood.algorithm.math;// Generated from math.g4 by ANTLR 4.13.0
+// Generated from math.g4 by ANTLR 4.13.2
+package toolgood.algorithm.math;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -134,6 +135,13 @@ public interface mathVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitISREGEX_fun(mathParser.ISREGEX_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code COVARIANCES_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCOVARIANCES_fun(mathParser.COVARIANCES_funContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code PERCENTILE_fun}
 	 * labeled alternative in {@link mathParser#expr}.
@@ -785,6 +793,13 @@ public interface mathVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitSPLIT_fun(mathParser.SPLIT_funContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code COVAR_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCOVAR_fun(mathParser.COVAR_funContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code URLDECODE_fun}
 	 * labeled alternative in {@link mathParser#expr}.

@@ -356,6 +356,23 @@ public class AlgorithmEngineTest_sum {
         assertEquals(t, 1, 0.001);
     }
 
+    @Test
+    public void COVAR_test()
+    {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        double t = engine.TryEvaluate("COVAR(array(3,7,6,11),array(5,15,13,9))", 0.0);
+        double t1 = engine.TryEvaluate("COVARIANCE.P(array(3,7,6,11),array(5,15,13,9))", 0.0);
+        assertEquals(round(t, 6), round(3.375, 6), 0.001);
+        assertEquals(round(t1, 6), round(3.375, 6), 0.001);
+    }
+
+    @Test
+    public void COVARIANCES_test()
+    {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        double t = engine.TryEvaluate("COVARIANCE.S(array(3,7,6,11),array(5,15,13,9))", 0.0);
+        assertEquals(round(t, 6), round(4.5, 6), 0.001);
+    }
     // @SuppressWarnings("deprecation")
     private double round(final double value, final int p) {
         final BigDecimal bigD = new BigDecimal(value);
