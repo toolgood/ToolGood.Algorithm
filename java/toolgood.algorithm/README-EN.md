@@ -907,6 +907,14 @@ Note: The `UseLocalTime` attribute affects the conversion of `DateValue`/`Timest
         <td>WEIBULL</td><td>weibull(number, α, β, returnType：0/1)<br>Returns the Weibull distribution</td>
         <td>WEIBULL(1, 2, 3, 1) <br>>>0.105160683</td>
     </tr>
+    <tr>
+        <td>COVAR</td><td>COVAR(array1, array2)<br>Returns population covariance</td>
+        <td>COVAR(array(3,7,6,11),array(5,15,13,9)) <br>>>3.375</td>
+    </tr>
+    <tr>
+        <td>COVARIANCE.S</td><td>COVARIANCE.S(array1, array2)<br>Returns sample covariance</td>
+        <td>COVARIANCE.S(array(3,7,6,11),array(5,15,13,9)) <br>>>4.5</td>
+    </tr>
 </table>
 
 #### Find references

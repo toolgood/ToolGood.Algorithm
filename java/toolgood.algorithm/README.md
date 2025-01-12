@@ -905,6 +905,14 @@ public class Cylinder extends AlgorithmEngine {
         <td>WEIBULL</td><td>weibull(数值, 分布参数α, 分布参数β, 返回类型：0/1)<br>返回 Weibull 分布</td>
         <td>WEIBULL(1, 2, 3, 1) <br>>>0.105160683</td>
     </tr>
+    <tr>
+        <td>COVAR</td><td>COVAR(数组1, 数组2)<br>返回 总体协方差</td>
+        <td>COVAR(array(3,7,6,11),array(5,15,13,9)) <br>>>3.375</td>
+    </tr>
+    <tr>
+        <td>COVARIANCE.S</td><td>COVARIANCE.S(数组1, 数组2)<br>返回 样本协方差</td>
+        <td>COVARIANCE.S(array(3,7,6,11),array(5,15,13,9)) <br>>>4.5</td>
+    </tr>
 </table>
 
 #### 查找引用
