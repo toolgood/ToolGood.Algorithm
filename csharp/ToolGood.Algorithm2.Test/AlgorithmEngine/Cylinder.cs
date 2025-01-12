@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ToolGood.Algorithm.math;
 
 namespace ToolGood.Algorithm
 {
@@ -29,7 +30,7 @@ namespace ToolGood.Algorithm
             return base.GetParameter(parameter);
         }
 
-        protected override Operand ExecuteDiyFunction(string funcName, List<Operand> operands)
+        protected override Operand ExecuteDiyFunction(mathParser.ProgContext context, string funcName, List<Operand> operands)
         {
             if (funcName == "求面积") {
                 if (operands.Count == 1) {
@@ -37,7 +38,7 @@ namespace ToolGood.Algorithm
                     return r * r * Math.PI;
                 }
             }
-            return base.ExecuteDiyFunction(funcName, operands);
+            return base.ExecuteDiyFunction(context, funcName, operands);
         }
     }
 }
