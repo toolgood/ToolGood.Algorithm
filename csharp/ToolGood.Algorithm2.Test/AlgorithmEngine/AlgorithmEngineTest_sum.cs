@@ -374,6 +374,24 @@ namespace ToolGood.Algorithm
             Assert.AreEqual(Math.Round(t, 6), Math.Round(2.0, 6));
         }
 
+        [Test]
+        public void COVAR_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("COVAR(array(3,7,6,11),array(5,15,13,9))", 0.0);
+            var t1 = engine.TryEvaluate("COVARIANCE.P(array(3,7,6,11),array(5,15,13,9))", 0.0);
+            Assert.AreEqual(Math.Round(t, 6), Math.Round(3.375, 6));
+            Assert.AreEqual(Math.Round(t1, 6), Math.Round(3.375, 6));
+        }
+        [Test]
+        public void COVARIANCES_test()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            var t = engine.TryEvaluate("COVARIANCE.S(array(3,7,6,11),array(5,15,13,9))", 0.0);
+            Assert.AreEqual(Math.Round(t, 6), Math.Round(4.5, 6));
+        }
+
+
         #endregion 统计
 
         #region if

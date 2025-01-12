@@ -1,4 +1,5 @@
-﻿using Antlr4.Runtime.Tree;
+﻿using Antlr4.Runtime.Misc;
+using Antlr4.Runtime.Tree;
 using System;
 using ToolGood.Algorithm.math;
 
@@ -1198,6 +1199,16 @@ namespace ToolGood.Algorithm.Internals
         }
 
         public object VisitHASVALUE_fun(mathParser.HASVALUE_funContext context)
+        {
+            return VisitChildren(context);
+        }
+
+        public object VisitCOVARIANCES_fun(mathParser.COVARIANCES_funContext context)
+        {
+            return VisitChildren(context);
+        }
+
+        public object VisitCOVAR_fun(mathParser.COVAR_funContext context)
         {
             return VisitChildren(context);
         }

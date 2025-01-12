@@ -1172,6 +1172,53 @@ namespace ToolGood.Algorithm.Internals
 
         #region power logarithm factorial
 
+        public Operand VisitCOVARIANCES_fun(mathParser.COVARIANCES_funContext context)
+        {
+            var args = new List<Operand>();
+            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            List<decimal> list1 = new List<decimal>();
+            List<decimal> list2 = new List<decimal>();
+            var o1 = F_base_GetList(args[0], list1);
+            var o2 = F_base_GetList(args[1], list2);
+            if (o1 == false) { return Operand.Error("Function COVARIANCE.S parameter 1 error!"); }
+            if (o2 == false) { return Operand.Error("Function COVARIANCE.S parameter 2 error!"); }
+            if (list1.Count != list2.Count) { return Operand.Error("Function COVARIANCE.S parameter's count error!"); }
+
+            var avg1 = list1.Average();
+            var avg2 = list2.Average();
+            decimal sum = 0;
+            for (int i = 0; i < list1.Count; i++) {
+                sum += (list1[i] - avg1) * (list2[i] - avg2);
+            }
+            var val = sum / (list1.Count - 1);
+            return Operand.Create(val);
+        }
+
+        public Operand VisitCOVAR_fun(mathParser.COVAR_funContext context)
+        {
+            var args = new List<Operand>();
+            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            List<decimal> list1 = new List<decimal>();
+            List<decimal> list2 = new List<decimal>();
+            var o1 = F_base_GetList(args[0], list1);
+            var o2 = F_base_GetList(args[1], list2);
+            if (o1 == false) { return Operand.Error("Function COVAR parameter 1 error!"); }
+            if (o2 == false) { return Operand.Error("Function COVAR parameter 2 error!"); }
+            if (list1.Count != list2.Count) { return Operand.Error("Function COVAR parameter's count error!"); }
+
+            var avg1 = list1.Average();
+            var avg2 = list2.Average();
+            decimal sum = 0;
+            for (int i = 0; i < list1.Count; i++) {
+                sum += (list1[i] - avg1) * (list2[i] - avg2);
+            }
+            var val = sum / list1.Count;
+            return Operand.Create(val);
+        }
+
+
         public virtual Operand VisitFACT_fun(mathParser.FACT_funContext context)
         {
             var args1 = context.expr().Accept(this).ToNumber("Function FACT parameter is error!");

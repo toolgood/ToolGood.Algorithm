@@ -1,4 +1,5 @@
 ﻿using Antlr4.Runtime;
+using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
@@ -1202,6 +1203,16 @@ namespace ToolGood.Algorithm.Internals
         }
 
         public ConditionTree VisitHASVALUE_fun(mathParser.HASVALUE_funContext context)
+        {
+            return Visit_fun(context);
+        }
+
+        public ConditionTree VisitCOVARIANCES_fun(mathParser.COVARIANCES_funContext context)
+        {
+            return Visit_fun(context);
+        }
+
+        public ConditionTree VisitCOVAR_fun(mathParser.COVAR_funContext context)
         {
             return Visit_fun(context);
         }
