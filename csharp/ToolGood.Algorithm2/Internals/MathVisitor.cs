@@ -23,19 +23,21 @@ namespace ToolGood.Algorithm.Internals
     /// </summary>
     public class MathVisitor : AbstractParseTreeVisitor<Operand>, ImathVisitor<Operand>
     {
-        public event Func<string, Operand> GetParameter;
-        public event Func<string, List<Operand>, Operand> DiyFunction;
+        public event Func<mathParser.ProgContext, string, Operand> GetParameter;
+        public event Func<mathParser.ProgContext, string, List<Operand>, Operand> DiyFunction;
         public int excelIndex;
         public bool useLocalTime;
         public DistanceUnitType DistanceUnit = DistanceUnitType.M;
         public AreaUnitType AreaUnit = AreaUnitType.M2;
         public VolumeUnitType VolumeUnit = VolumeUnitType.M3;
         public MassUnitType MassUnit = MassUnitType.KG;
+        private mathParser.ProgContext mainContext;
 
         #region base
 
         public virtual Operand VisitProg(mathParser.ProgContext context)
         {
+            mainContext = context;
             return context.expr().Accept(this);
         }
 
@@ -3942,15 +3944,15 @@ namespace ToolGood.Algorithm.Internals
         {
             ITerminalNode node = context.PARAMETER();
             if (node != null) {
-                return GetParameter(node.GetText());
+                return GetParameter(mainContext, node.GetText());
             }
             node = context.PARAMETER2();
             if (node != null) {
                 string str = node.GetText();
                 if (str.StartsWith('@')) {
-                    return GetParameter(str.AsSpan(1).ToString());
+                    return GetParameter(mainContext, str.AsSpan(1).ToString());
                 }
-                return GetParameter(str.AsSpan(1, str.Length - 2).ToString());
+                return GetParameter(mainContext, str.AsSpan(1, str.Length - 2).ToString());
             }
             //防止 多重引用
             if (context.expr() != null) {
@@ -3958,7 +3960,7 @@ namespace ToolGood.Algorithm.Internals
                 if (p.IsError) return p;
 
                 if (GetParameter != null) {
-                    return GetParameter(p.TextValue);
+                    return GetParameter(mainContext, p.TextValue);
                 }
             }
             return Operand.Error("Function PARAMETER first parameter is error!");
@@ -4050,7 +4052,7 @@ namespace ToolGood.Algorithm.Internals
                 var funName = context.PARAMETER().GetText();
                 var args = new List<Operand>();
                 foreach (var item in context.expr()) { var aa = item.Accept(this); args.Add(aa); }
-                return DiyFunction(funName, args);
+                return DiyFunction(mainContext, funName, args);
             }
             return Operand.Error("DiyFunction is error!");
         }
@@ -4059,7 +4061,7 @@ namespace ToolGood.Algorithm.Internals
         {
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText(); if (args1.IsError) return args1; }
-            var result = GetParameter(args1.TextValue);
+            var result = GetParameter(mainContext, args1.TextValue);
             if (result.IsError) {
                 if (exprs.Length == 2) {
                     return exprs[1].Accept(this);

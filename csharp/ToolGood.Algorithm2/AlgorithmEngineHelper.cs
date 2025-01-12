@@ -378,8 +378,8 @@ namespace ToolGood.Algorithm
         /// <param name="VolumeUnit"></param>
         /// <param name="MassUnit"></param>
         /// <returns></returns>
-        public static Operand Evaluate(mathParser.ProgContext context, Func<string, Operand> GetParameter = null
-            , Func<string, List<Operand>, Operand> ExecuteDiyFunction = null
+        public static Operand Evaluate(mathParser.ProgContext context, Func<mathParser.ProgContext, string, Operand> GetParameter = null
+            , Func<mathParser.ProgContext, string, List<Operand>, Operand> ExecuteDiyFunction = null
             , bool UseExcelIndex = true, bool UseLocalTime = false
             , DistanceUnitType DistanceUnit = DistanceUnitType.M, AreaUnitType AreaUnit = AreaUnitType.M2
             , VolumeUnitType VolumeUnit = VolumeUnitType.M3, MassUnitType MassUnit = MassUnitType.KG

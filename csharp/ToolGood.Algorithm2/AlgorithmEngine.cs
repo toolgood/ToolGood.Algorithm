@@ -96,7 +96,7 @@ namespace ToolGood.Algorithm
 
         #region GetParameter GetDiyParameterInside  ExecuteDiyFunction
 
-        private Operand GetDiyParameterInside(string parameter)
+        private Operand GetDiyParameterInside(mathParser.ProgContext context, string parameter)
         {
             if (_tempdict.TryGetValue(parameter, out Operand operand)) {
                 return operand;
@@ -121,10 +121,11 @@ namespace ToolGood.Algorithm
         /// <summary>
         /// 自定义 函数
         /// </summary>
+        /// <param name="context"></param>
         /// <param name="funcName"></param>
         /// <param name="operands"></param>
         /// <returns></returns>
-        protected virtual Operand ExecuteDiyFunction(string funcName, List<Operand> operands)
+        protected virtual Operand ExecuteDiyFunction(mathParser.ProgContext context, string funcName, List<Operand> operands)
         {
             return Operand.Error($"DiyFunction [{funcName}] is missing.");
         }
