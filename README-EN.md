@@ -1,4 +1,4 @@
-ToolGood.Algorithm
+﻿ToolGood.Algorithm
 ===================
 [中文文档](README.md)
 
@@ -754,11 +754,11 @@ Note: The `UseLocalTime` attribute affects the conversion of `DateValue`/`Timest
         <td>SMALL({1, 2, 3, 4, 2, 2, 1, 4}, 3) <br>>>2</td>
     </tr>
     <tr>
-        <td>PERCENTILE</td><td>percentile(number, K)<br>Returns the k percentile in the area</td>
+        <td>PERCENTILE<br>PERCENTILE.INC</td><td>percentile(number, K)<br>Returns the k percentile in the area</td>
         <td>PERCENTILE({1, 2, 3, 4, 2, 2, 1, 4}, 0.4) <br>>>2</td>
     </tr>
     <tr>
-        <td>PERCENTRANK</td><td>percentRank(number, K)<br>Returns the percentage ranking of the values in the data set</td>
+        <td>PERCENTRANK<br>PERCENTRANK.INC</td><td>percentRank(number, K)<br>Returns the percentage ranking of the values in the data set</td>
         <td>PERCENTRANK({1, 2, 3, 4, 2, 2, 1, 4}, 3) <br>>>0.714</td>
     </tr>
     <tr>
@@ -798,11 +798,11 @@ Note: The `UseLocalTime` attribute affects the conversion of `DateValue`/`Timest
         <td>AVEDEV(1, 2, 3, 4, 2, 2, 1, 4) <br>>>0.96875</td>
     </tr>
     <tr>
-        <td>STDEV</td><td>stDev(number, ...)<br>Estimation of standard deviation based on samples</td>
+        <td>STDEV<br>STDEV.S</td><td>stDev(number, ...)<br>Estimation of standard deviation based on samples</td>
         <td>STDEV(1, 2, 3, 4, 2, 2, 1, 4) <br>>>1.1877349391654208</td>
     </tr>
     <tr>
-        <td>STDEVP</td><td>stDevp(number, ...)<br>Calculate the standard deviation based on the whole sample population</td>
+        <td>STDEVP<br>STDEV.P</td><td>stDevp(number, ...)<br>Calculate the standard deviation based on the whole sample population</td>
         <td>STDEVP(1, 2, 3, 4, 2, 2, 1, 4) <br>>>1.1110243021644486</td>
     </tr>
     <tr>
@@ -810,51 +810,51 @@ Note: The `UseLocalTime` attribute affects the conversion of `DateValue`/`Timest
         <td>DEVSQ(1, 2, 3, 4, 2, 2, 1, 4) <br>>>9.875</td>
     </tr>
     <tr>
-        <td>VAR</td><td>var(number, ...)<br>Estimation of variance based on samples</td>
+        <td>VAR<br>VAR.S</td><td>var(number, ...)<br>Estimation of variance based on samples</td>
         <td>VAR(1, 2, 3, 4, 2, 2, 1, 4) <br>>>1.4107142857142858</td>
     </tr>
     <tr>
-        <td>VARP</td><td>varp(number, ...)<br>Calculate the variance based on the whole sample population</td>
+        <td>VARP<br>VAR.P</td><td>varp(number, ...)<br>Calculate the variance based on the whole sample population</td>
         <td>VARP(1, 2, 3, 4, 2, 2, 1, 4) <br>>>1.234375</td>
     </tr>
     <tr>
-        <td>normDist</td><td>normDist(number, arithmeticMean, StDev, returnType：0/1)<br>Return to normal cumulative distribution</td>
+        <td>normDist<br>NORM.DIST</td><td>normDist(number, arithmeticMean, StDev, returnType：0/1)<br>Return to normal cumulative distribution</td>
         <td>normDist(3, 8, 4, 1) <br>>>0.105649774</td>
     </tr>
     <tr>
-        <td>normInv</td><td>normInv(distributionProbability, arithmeticMean, StDev)<br>Returns the anti-normal cumulative distribution</td>
+        <td>normInv<br>NORM.INV</td><td>normInv(distributionProbability, arithmeticMean, StDev)<br>Returns the anti-normal cumulative distribution</td>
         <td>normInv(0.8, 8, 3) <br>>>10.5248637</td>
     </tr>
     <tr>
-        <td>NormSDist</td><td>normSDist(number)<br>Returns the standard normal cumulative distribution function, with an average of 0 and a standard deviation of 1.</td>
+        <td>NormSDist</td><td>NORM.S.DIST(number)<br>Returns the standard normal cumulative distribution function, with an average of 0 and a standard deviation of 1.</td>
         <td>NORMSDist(1) <br>>>0.841344746</td>
     </tr>
     <tr>
-        <td>normSInv</td><td>normSInv(number)<br>Return anti-standard normal cumulative distribution</td>
+        <td>normSInv<br>NORM.S.INV</td><td>normSInv(number)<br>Return anti-standard normal cumulative distribution</td>
         <td>normSInv(0.3) <br>>>-0.524400513</td>
     </tr>
     <tr>
-        <td>BetaDist</td><td>BetaDist(number, α, β)<br>Returns the Beta cumulative distribution function</td>
+        <td>BetaDist<br>BETA.DIST</td><td>BetaDist(number, α, β)<br>Returns the Beta cumulative distribution function</td>
         <td>BetaDist(0.5, 11, 22) <br>>>0.97494877</td>
     </tr>
     <tr>
-        <td>BetaInv</td><td>BetaInv(number, α, β)<br>Returns the inverse function of the cumulative distribution function of the specified Beta distribution</td>
+        <td>BetaInv<br>BETA.INV</td><td>BetaInv(number, α, β)<br>Returns the inverse function of the cumulative distribution function of the specified Beta distribution</td>
         <td>BetaInv(0.5, 23, 45) <br>>>0.336640759</td>
     </tr>
     <tr>
-        <td>binomDist</td><td>binomDist(successCount, testCount, successProbability, returnType：0/1)<br>Returns the probability of unary binomial distribution</td>
+        <td>binomDist<br>BINOM.DIST</td><td>binomDist(successCount, testCount, successProbability, returnType：0/1)<br>Returns the probability of unary binomial distribution</td>
         <td>binomDist(12, 45, 0.5, 0) <br>>>0.000817409</td>
     </tr>
     <tr>
-        <td>exponDist</td><td>exponDist(number, value, returnType：0/1)<br>Return exponential distribution</td>
+        <td>exponDist<br>EXPON.DIST</td><td>exponDist(number, value, returnType：0/1)<br>Return exponential distribution</td>
         <td>exponDist(3, 1, 0) <br>>>0.049787068</td>
     </tr>
     <tr>
-        <td>FDist</td><td>fDist(numberX, molecularFreedom, denominatorFreedom)<br>Return F probability distribution</td>
+        <td>FDist<br>F.DIST</td><td>fDist(numberX, molecularFreedom, denominatorFreedom)<br>Return F probability distribution</td>
         <td>FDist(0.4, 2, 3) <br>>>0.701465776</td>
     </tr>
     <tr>
-        <td>FInv</td><td>fInv(distributionProbability, molecularFreedom, denominatorFreedom)<br>Returns the inverse function of F probability distribution</td>
+        <td>FInv<br>F.INV</td><td>fInv(distributionProbability, molecularFreedom, denominatorFreedom)<br>Returns the inverse function of F probability distribution</td>
         <td>FInv(0.7, 2, 3) <br>>>0.402651432</td>
     </tr>
     <tr>
@@ -866,43 +866,43 @@ Note: The `UseLocalTime` attribute affects the conversion of `DateValue`/`Timest
         <td>fisherInv(0.6) <br>>>0.537049567</td>
     </tr>
     <tr>
-        <td>gammaDist</td><td>gammaDist(number, α, β, returnType：0/1)<br>Return gamma distribution</td>
+        <td>gammaDist<br>GAMMA.DIST</td><td>gammaDist(number, α, β, returnType：0/1)<br>Return gamma distribution</td>
         <td>gammaDist(0.5, 3, 4, 0) <br>>>0.001723627</td>
     </tr>
     <tr>
-        <td>gammaInv</td><td>gammaInv(distributionProbability, α, β)<br>Returns the inverse function of the gamma cumulative distribution function</td>
+        <td>gammaInv<br>GAMMA.INV</td><td>gammaInv(distributionProbability, α, β)<br>Returns the inverse function of the gamma cumulative distribution function</td>
         <td>gammaInv(0.2, 3, 4) <br>>>6.140176811</td>
     </tr>
     <tr>
-        <td>GAMMALN</td><td>gammaLn(number)<br>Returns the natural logarithm of γ </td>
+        <td>GAMMALN<br>GAMMALN.PRECISE</td><td>gammaLn(number)<br>Returns the natural logarithm of γ </td>
         <td>GAMMALN(4) <br>>>1.791759469</td>
     </tr>
     <tr>
-        <td>hypgeomDist</td><td>hypgeomDist(successCount, testCount, successCountAll, testCountAll)<br>Returns the hypergeometric distribution</td>
+        <td>hypgeomDist<br>HYPGEOM.DIST</td><td>hypgeomDist(successCount, testCount, successCountAll, testCountAll)<br>Returns the hypergeometric distribution</td>
         <td>hypgeomDist(23, 45, 45, 100) <br>>>0.08715016</td>
     </tr>
     <tr>
-        <td>logInv</td><td>logInv(distributionProbability, average, StDev)<br>Returns the inverse function of the logarithmic cumulative distribution function of x </td>
+        <td>logInv<br>LOGNORM.INV</td><td>logInv(distributionProbability, average, StDev)<br>Returns the inverse function of the logarithmic cumulative distribution function of x </td>
         <td>logInv(0.1, 45, 33) <br>>>15.01122624</td>
     </tr>
     <tr>
-        <td>LognormDist</td><td>lognormDist(number, average, StDev)<br>Returns the inverse normal distribution</td>
+        <td>LognormDist<br>LOGNORM.DIST</td><td>lognormDist(number, average, StDev)<br>Returns the inverse normal distribution</td>
         <td>lognormDist(15, 23, 45) <br>>>0.326019201</td>
     </tr>
     <tr>
-        <td>negbinomDist</td><td>negbinomDist(failureCount, successCount, successProbability)<br>Returns negative binomial distribution</td>
+        <td>negbinomDist<br>NEGBINOM.DIST</td><td>negbinomDist(failureCount, successCount, successProbability)<br>Returns negative binomial distribution</td>
         <td>negbinomDist(23, 45, 0.7) <br>>>0.053463314</td>
     </tr>
     <tr>
-        <td>POISSON</td><td>poisson(number, average, returnType：0/1)<br>Returns the Poisson distribution</td>
+        <td>POISSON<br>POISSON.DIST</td><td>poisson(number, average, returnType：0/1)<br>Returns the Poisson distribution</td>
         <td>POISSON(23, 23, 0) <br>>>0.082884384</td>
     </tr>
     <tr>
-        <td>TDist</td><td>tDist(number, freedom, returnType：1/2)<br>Returns the t distribution of students</td>
+        <td>TDist<br>T.DIST</td><td>tDist(number, freedom, returnType：1/2)<br>Returns the t distribution of students</td>
         <td>TDist(1.2, 24, 1) <br>>>0.120925677</td>
     </tr>
     <tr>
-        <td>TInv</td><td>TInv(distributionProbability, freedom)<br>Returns the inverse distribution of students't-distribution</td>
+        <td>TInv<br>T.INV</td><td>TInv(distributionProbability, freedom)<br>Returns the inverse distribution of students't-distribution</td>
         <td>TInv(0.12, 23) <br>>>1.614756561</td>
     </tr>
     <tr>
@@ -910,7 +910,7 @@ Note: The `UseLocalTime` attribute affects the conversion of `DateValue`/`Timest
         <td>WEIBULL(1, 2, 3, 1) <br>>>0.105160683</td>
     </tr>
     <tr>
-        <td>COVAR</td><td>COVAR(array1, array2)<br>Returns population covariance</td>
+        <td>COVAR<br>COVARIANCE.P</td><td>COVAR(array1, array2)<br>Returns population covariance</td>
         <td>COVAR(array(3,7,6,11),array(5,15,13,9)) <br>>>3.375</td>
     </tr>
     <tr>
