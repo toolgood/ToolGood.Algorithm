@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.LitJson;
+using System.Text;
+
 #if WebAssembly
 using System.Linq2;
 #else
@@ -620,6 +622,10 @@ namespace ToolGood.Algorithm
         {
             return Error(errorMessage ?? "Convert number to json error!");
         }
+        public override string ToString()
+        {
+            return NumberValue.ToString(CultureInfo.InvariantCulture);
+        }
     }
 
     internal sealed class OperandBoolean : Operand<bool>
@@ -653,6 +659,10 @@ namespace ToolGood.Algorithm
         public override Operand ToMyDate(string errorMessage = null)
         {
             return Error(errorMessage ?? "Convert bool to date error!");
+        }
+        public override string ToString()
+        {
+            return BooleanValue ? "true" : "false";
         }
     }
 
@@ -724,6 +734,12 @@ namespace ToolGood.Algorithm
         {
             return Error(errorMessage ?? "Convert string to array error!");
         }
+        public override string ToString()
+        {
+            return "\"" + TextValue.Replace("\"", "\\\"").Replace("\n", "\\n").Replace("\r", "\\r")
+                        .Replace("\t", "\\t").Replace("\0", "\\0").Replace("\v", "\\v")
+                        .Replace("\a", "\\a").Replace("\b", "\\b").Replace("\f", "\\f") + "\"";
+        }
     }
 
     internal sealed class OperandMyDate : Operand<MyDate>
@@ -761,6 +777,11 @@ namespace ToolGood.Algorithm
         public override Operand ToJson(string errorMessage = null)
         {
             return Error(errorMessage ?? "Convert date to json error!");
+        }
+
+        public override string ToString()
+        {
+            return "\"" + DateValue.ToString() + "\"";
         }
     }
 
@@ -829,6 +850,17 @@ namespace ToolGood.Algorithm
 
         public override Operand ToArray(string errorMessage = null)
         { return this; }
+        public override string ToString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append('[');
+            for (int i = 0; i < ArrayValue.Count; i++) {
+                if (i > 0) stringBuilder.Append(',');
+                stringBuilder.Append(ArrayValue[i].ToString());
+            }
+            stringBuilder.Append(']');
+            return stringBuilder.ToString();
+        }
     }
 
     internal sealed class OperandError : Operand
@@ -895,6 +927,10 @@ namespace ToolGood.Algorithm
         public override Operand ToMyDate(string errorMessage = null)
         {
             return Error(errorMessage ?? "Convert null to date error!");
+        }
+        public override string ToString()
+        {
+            return "null";
         }
     }
 
@@ -979,6 +1015,22 @@ namespace ToolGood.Algorithm
                 }
             }
             return value != null;
+        }
+
+        public override string ToString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append('{');
+            for (int i = 0; i < TextList.Count; i++) {
+                if (i > 0) stringBuilder.Append(',');
+                stringBuilder.Append('"');
+                stringBuilder.Append(TextList[i].Key);
+                stringBuilder.Append('"');
+                stringBuilder.Append(':');
+                stringBuilder.Append(TextList[i].Value.ToString());
+            }
+            stringBuilder.Append('}');
+            return stringBuilder.ToString();
         }
     }
 
