@@ -1216,5 +1216,10 @@ namespace ToolGood.Algorithm.Internals
         {
             return Visit_fun(context);
         }
+
+        public ConditionTree VisitVersion_fun([NotNull] mathParser.Version_funContext context)
+        {
+            return Visit_fun(context);
+        }
     }
 }

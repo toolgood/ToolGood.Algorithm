@@ -1212,5 +1212,10 @@ namespace ToolGood.Algorithm.Internals
         {
             return VisitChildren(context);
         }
+
+        public object VisitVersion_fun([NotNull] mathParser.Version_funContext context)
+        {
+            return VisitChildren(context);
+        }
     }
 }

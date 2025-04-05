@@ -269,6 +269,16 @@ namespace ToolGood.Algorithm
             Assert.AreEqual("3 * 5", t24);
         }
 
+        [Test]
+        public void TestVersion()
+        {
+            AlgorithmEngine engine = new AlgorithmEngine();
+            String t25 = engine.TryEvaluate("Engineversion", "");
+            Assert.AreEqual("ToolGood.Algorithm 4.0.0.1", t25);
+            String t26 = engine.TryEvaluate("Algorithmversion", "");
+            Assert.AreEqual("ToolGood.Algorithm 4.0.0.1", t26);
+        }
+
 
         [Test]
         public void Test_Json()

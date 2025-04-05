@@ -2,10 +2,10 @@
 
   <PropertyGroup>
     <Description>ToolGood.Algorithm支持四则运算、Excel函数，并支持自定义参数。使用Antlr4解析，函数更容易扩展。</Description>
-    <Copyright>Copyright 2017-20255 ToolGood</Copyright>
+    <Copyright>Copyright 2017-2025 ToolGood</Copyright>
     <AssemblyTitle>ToolGood.Algorithm</AssemblyTitle>
     <Authors>ToolGood</Authors>
-    <TargetFrameworks>netstandard2.1;net6.0;net8.0;net9.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1;net8.0;net9.0</TargetFrameworks>
     <AssemblyName>ToolGood.Algorithm</AssemblyName>
     <PublicSign>true</PublicSign>
     <PackageId>ToolGood.Algorithm</PackageId>

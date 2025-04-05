@@ -2180,9 +2180,9 @@ namespace ToolGood.Algorithm.Internals
             foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
 
             var args1 = args[0].ToMyDate("Function AddMonths parameter 1 is error!");
-            if (args1.IsError) { return args1; };
+            if (args1.IsError) { return args1; }
             var args2 = args[1].ToNumber("Function AddMonths parameter 2 is error!");
-            if (args2.IsError) { return args2; };
+            if (args2.IsError) { return args2; }
 
             var date = args1.DateValue.AddMonths(args2.IntValue);
             return Operand.Create(date);
@@ -2194,9 +2194,9 @@ namespace ToolGood.Algorithm.Internals
             foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
 
             var args1 = args[0].ToMyDate("Function AddYears parameter 1 is error!");
-            if (args1.IsError) { return args1; };
+            if (args1.IsError) { return args1; }
             var args2 = args[1].ToNumber("Function AddYears parameter 2 is error!");
-            if (args2.IsError) { return args2; };
+            if (args2.IsError) { return args2; }
 
             var date = args1.DateValue.AddYears(args2.IntValue);
             return Operand.Create(date);
@@ -2208,9 +2208,9 @@ namespace ToolGood.Algorithm.Internals
             foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
 
             var args1 = args[0].ToMyDate("Function AddSeconds parameter 1 is error!");
-            if (args1.IsError) { return args1; };
+            if (args1.IsError) { return args1; }
             var args2 = args[1].ToNumber("Function AddSeconds parameter 2 is error!");
-            if (args2.IsError) { return args2; };
+            if (args2.IsError) { return args2; }
 
             var date = args1.DateValue.AddSeconds(args2.IntValue);
             return Operand.Create(date);
@@ -2222,9 +2222,9 @@ namespace ToolGood.Algorithm.Internals
             foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
 
             var args1 = args[0].ToMyDate("Function AddMinutes parameter 1 is error!");
-            if (args1.IsError) { return args1; };
+            if (args1.IsError) { return args1; }
             var args2 = args[1].ToNumber("Function AddMinutes parameter 2 is error!");
-            if (args2.IsError) { return args2; };
+            if (args2.IsError) { return args2; }
 
             var date = args1.DateValue.AddMinutes(args2.IntValue);
             return Operand.Create(date);
@@ -2236,9 +2236,9 @@ namespace ToolGood.Algorithm.Internals
             foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
 
             var args1 = args[0].ToMyDate("Function AddDays parameter 1 is error!");
-            if (args1.IsError) { return args1; };
+            if (args1.IsError) { return args1; }
             var args2 = args[1].ToNumber("Function AddDays parameter 2 is error!");
-            if (args2.IsError) { return args2; };
+            if (args2.IsError) { return args2; }
 
             var date = args1.DateValue.AddDays(args2.IntValue);
             return Operand.Create(date);
@@ -2250,9 +2250,9 @@ namespace ToolGood.Algorithm.Internals
             foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
 
             var args1 = args[0].ToMyDate("Function AddHours parameter 1 is error!");
-            if (args1.IsError) { return args1; };
+            if (args1.IsError) { return args1; }
             var args2 = args[1].ToNumber("Function AddHours parameter 2 is error!");
-            if (args2.IsError) { return args2; };
+            if (args2.IsError) { return args2; }
 
             var date = args1.DateValue.AddHours(args2.IntValue);
             return Operand.Create(date);
@@ -4264,6 +4264,11 @@ namespace ToolGood.Algorithm.Internals
             if (context.expr() == null) { return Operand.Error(""); }
             var args1 = context.expr().Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText(); if (args1.IsError) return args1; }
             return Operand.Error(args1.TextValue);
+        }
+
+        public Operand VisitVersion_fun(mathParser.Version_funContext context)
+        {
+            return Operand.Version;
         }
 
         #endregion getValue

@@ -39,7 +39,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\ToolGood.Algorithm2\ToolGood.Algorithm.csproj" />
+		<ProjectReference Include="..\ToolGood.Algorithm\ToolGood.Algorithm.csproj" />
 	</ItemGroup>
 
 </Project>

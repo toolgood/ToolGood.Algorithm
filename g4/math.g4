@@ -343,6 +343,7 @@ expr:
 	| HASVALUE '(' expr ','expr ')'								# HASVALUE_fun
 	| '{' arrayJson (',' arrayJson)* ','* '}'					# ArrayJson_fun
 	| '{' expr (',' expr)* ','* '}'								# Array_fun
+	| ALGORITHMVERSION											# Version_fun
 	| '[' PARAMETER ']'											# PARAMETER_fun
 	| '[' expr ']'												# PARAMETER_fun
 	| PARAMETER													# PARAMETER_fun
@@ -577,6 +578,7 @@ parameter2:
 	| UNIT
 	| HAS
 	| HASVALUE
+	| ALGORITHMVERSION
 	| PARAM
 	| PARAMETER;
  
@@ -828,6 +830,7 @@ JSON: 'JSON';
 VLOOKUP: 'VLOOKUP';
 LOOKUP: 'LOOKUP';
 ARRAY: 'ARRAY';
+ALGORITHMVERSION:'ALGORITHMVERSION'|'ENGINEVERSION';
 
 ADDYEARS: 'ADDYEARS';
 ADDMONTHS: 'ADDMONTHS';
