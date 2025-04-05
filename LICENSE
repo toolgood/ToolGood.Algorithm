@@ -1,3 +1,74 @@
+Software License Agreement
+
+Copyright Notice
+The copyright and intellectual property rights of this software and related documentation are owned by Lin Zhijun (hereinafter referred to as the "Licensor").
+1. Definitions
+
+    "User": Any individual or entity using the software.
+
+    "AGPL": The GNU Affero General Public License, version 3 or later.
+
+    "Commercial Use": Any use that directly or indirectly generates revenue, including but not limited to sales, integration into commercial products, or internal business operations.
+
+2. License Grant
+2.1 Free Use for All Purposes
+
+The software is freely available for all users, including Commercial Use, under the terms of the AGPL.
+
+    Users may freely:
+
+        Use, modify, and distribute the software;
+
+        Integrate the software into commercial products or services.
+
+2.2 AGPL Compliance Requirements
+
+    All Users (including commercial users) must strictly comply with AGPL obligations, including:
+
+        Disclosing the full source code of the software and any derivative works;
+
+        Providing clear instructions for obtaining the source code (e.g., in networked services).
+
+    Users may not circumvent AGPL’s Copyleft requirements (e.g., through technical or legal loopholes).
+
+3. Restrictions
+
+    No Closed-Source Use: Users may not distribute modified versions of the software under proprietary licenses unless a separate commercial agreement is obtained (see Section 4).
+
+    Attribution: All derivative works must retain original copyright notices and license terms.
+
+4. Optional Commercial Licensing
+
+If a User requires closed-source distribution or exemption from AGPL obligations:
+
+    The User may contact the Licensor to negotiate a paid commercial license;
+
+    Terms and fees will be defined in a separate written agreement.
+
+5. Disclaimer
+
+    The software is provided "as-is" without warranties of merchantability, fitness, or defect-free performance;
+
+    The Licensor is not liable for any direct, indirect, or consequential damages arising from the use of the software.
+
+6. Termination
+
+    Violation of AGPL terms automatically terminates all rights granted under this agreement;
+
+    Upon termination, the User must cease all use and distribution of the software.
+
+7. Miscellaneous
+
+    This agreement is subordinate to the AGPL. Conflicts between this document and the AGPL shall be resolved in favor of the AGPL;
+
+    The Licensor reserves the right to update licensing terms, but existing users retain rights under the version they accepted.
+
+Contact: Lin Zhijun
+Email: toolgood@qq.com
+Effective Date: 2025-04-05
+
+
+-------------------------------------------------------------------------------------------------------------
 GNU AFFERO GENERAL PUBLIC LICENSE
 Version 3, 19 November 2007
 
