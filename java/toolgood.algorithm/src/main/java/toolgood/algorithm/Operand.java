@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public abstract class Operand {
+    public final static Operand Version = new OperandString("ToolGood.Algorithm 4.0.0.1");
     public final static Operand True = new OperandBoolean(true);
     public final static Operand False = new OperandBoolean(false);
     public final static Operand One = Operand.Create(1);

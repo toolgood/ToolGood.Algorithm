@@ -263,6 +263,15 @@ public class AlgorithmEngineTest_csharp {
         dt = engine.TryEvaluate("RemoveEnd('123456789','127')", "");
         assertEquals(dt, "123456789");
     }
+    @Test
+    public void TestVersion()
+    {
+        AlgorithmEngine engine = new AlgorithmEngine();
+        String t25 = engine.TryEvaluate("Engineversion", "");
+        assertEquals("ToolGood.Algorithm 4.0.0.1", t25);
+        String t26 = engine.TryEvaluate("Algorithmversion", "");
+        assertEquals("ToolGood.Algorithm 4.0.0.1", t26);
+    }
 
     @Test
     public void Json()

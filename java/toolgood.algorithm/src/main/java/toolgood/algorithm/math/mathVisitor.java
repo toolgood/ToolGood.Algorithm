@@ -1634,6 +1634,13 @@ public interface mathVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitADDHOURS_fun(mathParser.ADDHOURS_funContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code Version_fun}
+	 * labeled alternative in {@link mathParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVersion_fun(mathParser.Version_funContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code RAND_fun}
 	 * labeled alternative in {@link mathParser#expr}.
 	 * @param ctx the parse tree

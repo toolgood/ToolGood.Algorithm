@@ -1430,5 +1430,9 @@ public class DiyNameVisitor extends AbstractParseTreeVisitor<Object> implements 
     public Object visitCOVAR_fun(COVAR_funContext context) {
         return visitChildren(context);
     }
+    @Override
+    public Object visitVersion_fun(Version_funContext context) {
+        return visitChildren(context);
+    }
 
 }

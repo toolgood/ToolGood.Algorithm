@@ -6,6 +6,7 @@ import toolgood.algorithm.enums.ConditionTreeType;
 import toolgood.algorithm.math.mathParser;
 import toolgood.algorithm.math.mathParser.COVARIANCES_funContext;
 import toolgood.algorithm.math.mathParser.COVAR_funContext;
+import toolgood.algorithm.math.mathParser.Version_funContext;
 import toolgood.algorithm.math.mathVisitor;
 
 import java.util.ArrayList;
@@ -1214,6 +1215,10 @@ public class MathSplitVisitor extends AbstractParseTreeVisitor<ConditionTree> im
 
     @Override
     public ConditionTree visitCOVAR_fun(COVAR_funContext context) {
+        return visit_fun(context);
+    }
+    @Override
+    public ConditionTree visitVersion_fun(Version_funContext context) {
         return visit_fun(context);
     }
 }

@@ -6054,5 +6054,8 @@ public class MathVisitor extends AbstractParseTreeVisitor<Operand> implements ma
         BigDecimal val = sum.divide(new BigDecimal(list1.size()), MathContext.DECIMAL32);
         return Operand.Create(val);
     }
-
+    @Override
+    public Operand visitVersion_fun(Version_funContext context) {
+        return Operand.Version;
+    }
 }
