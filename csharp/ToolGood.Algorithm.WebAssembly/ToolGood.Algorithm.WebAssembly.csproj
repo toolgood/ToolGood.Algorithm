@@ -5,22 +5,22 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<!--<PublishTrimmed>true</PublishTrimmed>-->
 
-		<PublishTrimmed>True</PublishTrimmed>
+		<!--<PublishTrimmed>True</PublishTrimmed>-->
 		<!--<TrimMode>link</TrimMode>-->
-		<DebuggerSupport>false</DebuggerSupport>
+		<!--<DebuggerSupport>false</DebuggerSupport>
 		<EnableUnsafeBinaryFormatterSerialization>false</EnableUnsafeBinaryFormatterSerialization>
 		<EnableUnsafeUTF7Encoding>false</EnableUnsafeUTF7Encoding>
 		<EventSourceSupport>false</EventSourceSupport>
 		<HttpActivityPropagationSupport>false</HttpActivityPropagationSupport>
 		<InvariantGlobalization>true</InvariantGlobalization>
 		<UseSystemResourceKeys>true</UseSystemResourceKeys>
-		<TrimmerRemoveSymbols>true</TrimmerRemoveSymbols>
+		<TrimmerRemoveSymbols>true</TrimmerRemoveSymbols>-->
 		<!--<PublishAot>true</PublishAot>-->
 		<!--<RunAOTCompilation>True</RunAOTCompilation>-->
-		<TrimMode>full</TrimMode>
+		<!--<TrimMode>full</TrimMode>
 		<PublishReadyToRunEmitSymbols>false</PublishReadyToRunEmitSymbols>
 		<MetadataUpdaterSupport>false</MetadataUpdaterSupport>
-		<IlcDisableReflection>true</IlcDisableReflection>
+		<IlcDisableReflection>true</IlcDisableReflection>-->
 
 
 
@@ -35,7 +35,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.11" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.14" />
 	</ItemGroup>
 
 	<ItemGroup>
