@@ -18,7 +18,10 @@ namespace ToolGood.Algorithm
     /// </summary>
     public abstract class Operand
     {
-        public static readonly Operand Version = new OperandString("ToolGood.Algorithm 4.0.0.1");
+        /// <summary>
+        /// 版本号
+        /// </summary>
+        public static readonly Operand Version = new OperandString("ToolGood.Algorithm 4.0.0.3");
 
         /// <summary>
         /// True
