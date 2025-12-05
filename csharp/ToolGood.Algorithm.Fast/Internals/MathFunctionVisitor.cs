@@ -230,35 +230,35 @@ namespace ToolGood.Algorithm.Fast.Internals
 
         public virtual FunctionBase VisitABS_fun(mathParser.ABS_funContext context)
         {
-            var args1 = context.expr().Accept(this); 
+            var args1 = context.expr().Accept(this);
             return new Function_ABS(args1);
         }
 
         public virtual FunctionBase VisitQUOTIENT_fun(mathParser.QUOTIENT_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); 
-            var args2 = exprs[1].Accept(this); 
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
             return new Function_QUOTIENT(args1, args2);
         }
 
         public virtual FunctionBase VisitMOD_fun(mathParser.MOD_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); 
+            var args1 = exprs[0].Accept(this);
             var args2 = exprs[1].Accept(this);
             return new Function_Mod(args1, args2);
         }
 
         public virtual FunctionBase VisitSIGN_fun(mathParser.SIGN_funContext context)
         {
-            var args1 = context.expr().Accept(this); 
-            return new Function_SIGN(args1);    
+            var args1 = context.expr().Accept(this);
+            return new Function_SIGN(args1);
         }
 
         public virtual FunctionBase VisitSQRT_fun(mathParser.SQRT_funContext context)
         {
-            var args1 = context.expr().Accept(this); 
+            var args1 = context.expr().Accept(this);
             return new Function_SQRT(args1);
         }
 
@@ -298,7 +298,7 @@ namespace ToolGood.Algorithm.Fast.Internals
         {
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this);
-            var args2 = exprs[1].Accept(this); 
+            var args2 = exprs[1].Accept(this);
             return new Function_COMBIN(args1, args2);
         }
 
@@ -321,7 +321,7 @@ namespace ToolGood.Algorithm.Fast.Internals
 
         public virtual FunctionBase VisitDEGREES_fun(mathParser.DEGREES_funContext context)
         {
-            var args1 = context.expr().Accept(this); 
+            var args1 = context.expr().Accept(this);
             return new Function_DEGREES(args1);
         }
 
@@ -333,37 +333,37 @@ namespace ToolGood.Algorithm.Fast.Internals
 
         public virtual FunctionBase VisitCOS_fun(mathParser.COS_funContext context)
         {
-            var args1 = context.expr().Accept(this); 
+            var args1 = context.expr().Accept(this);
             return new Function_COS(args1);
         }
 
         public virtual FunctionBase VisitCOSH_fun(mathParser.COSH_funContext context)
         {
-            var args1 = context.expr().Accept(this); 
+            var args1 = context.expr().Accept(this);
             return new Function_COSH(args1);
         }
 
         public virtual FunctionBase VisitSIN_fun(mathParser.SIN_funContext context)
         {
-            var args1 = context.expr().Accept(this); 
+            var args1 = context.expr().Accept(this);
             return new Function_SIN(args1);
         }
 
         public virtual FunctionBase VisitSINH_fun(mathParser.SINH_funContext context)
         {
-            var args1 = context.expr().Accept(this); 
+            var args1 = context.expr().Accept(this);
             return new Function_SINH(args1);
         }
 
         public virtual FunctionBase VisitTAN_fun(mathParser.TAN_funContext context)
         {
-            var args1 = context.expr().Accept(this); 
+            var args1 = context.expr().Accept(this);
             return new Function_TAN(args1);
         }
 
         public virtual FunctionBase VisitTANH_fun(mathParser.TANH_funContext context)
         {
-            var args1 = context.expr().Accept(this); 
+            var args1 = context.expr().Accept(this);
             return new Function_TANH(args1);
         }
 
@@ -387,26 +387,26 @@ namespace ToolGood.Algorithm.Fast.Internals
 
         public virtual FunctionBase VisitASINH_fun(mathParser.ASINH_funContext context)
         {
-            var args1 = context.expr().Accept(this); 
+            var args1 = context.expr().Accept(this);
             return new Function_ASINH(args1);
         }
 
         public virtual FunctionBase VisitATAN_fun(mathParser.ATAN_funContext context)
         {
-            var args1 = context.expr().Accept(this); 
+            var args1 = context.expr().Accept(this);
             return new Function_ATAN(args1);
         }
 
         public virtual FunctionBase VisitATANH_fun(mathParser.ATANH_funContext context)
         {
-            var args1 = context.expr().Accept(this); 
+            var args1 = context.expr().Accept(this);
             return new Function_ATANH(args1);
         }
 
         public virtual FunctionBase VisitATAN2_fun(mathParser.ATAN2_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); 
+            var args1 = exprs[0].Accept(this);
             var args2 = exprs[1].Accept(this);
             return new Function_ATAN2(args1, args2);
         }
@@ -544,15 +544,15 @@ namespace ToolGood.Algorithm.Fast.Internals
             if (exprs.Length == 1) {
                 return new Function_ROUND(args1);
             }
-            var args2 = exprs[1].Accept(this); 
-            return new Function_ROUND(args1, args2);    
+            var args2 = exprs[1].Accept(this);
+            return new Function_ROUND(args1, args2);
         }
 
         public virtual FunctionBase VisitROUNDDOWN_fun(mathParser.ROUNDDOWN_funContext context)
         {
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this);
-            var args2 = exprs[1].Accept(this); 
+            var args2 = exprs[1].Accept(this);
             return new Function_ROUNDDOWN(args1, args2);
         }
 
@@ -560,8 +560,8 @@ namespace ToolGood.Algorithm.Fast.Internals
         {
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this);
-            var args2 = exprs[1].Accept(this); 
-            return new Function_ROUNDUP(args1, args2);  
+            var args2 = exprs[1].Accept(this);
+            return new Function_ROUNDUP(args1, args2);
         }
 
         public virtual FunctionBase VisitCEILING_fun(mathParser.CEILING_funContext context)
@@ -578,10 +578,10 @@ namespace ToolGood.Algorithm.Fast.Internals
         {
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this);
-            if (exprs.Length == 1) 
+            if (exprs.Length == 1)
                 return new Function_FLOOR(args1);
 
-            var args2 = exprs[1].Accept(this); 
+            var args2 = exprs[1].Accept(this);
             return new Function_FLOOR(args1, args2);
         }
 
@@ -593,7 +593,7 @@ namespace ToolGood.Algorithm.Fast.Internals
 
         public virtual FunctionBase VisitODD_fun(mathParser.ODD_funContext context)
         {
-            var args1 = context.expr().Accept(this); 
+            var args1 = context.expr().Accept(this);
             return new Function_ODD(args1);
         }
 
@@ -601,7 +601,7 @@ namespace ToolGood.Algorithm.Fast.Internals
         {
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this);
-            var args2 = exprs[1].Accept(this); 
+            var args2 = exprs[1].Accept(this);
             return new Function_MROUND(args1, args2);
         }
 
@@ -611,226 +611,123 @@ namespace ToolGood.Algorithm.Fast.Internals
 
         public virtual FunctionBase VisitRAND_fun(mathParser.RAND_funContext context)
         {
-#if NETSTANDARD2_1
-            var tick = DateTime.Now.Ticks;
-            Random rand = new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32));
-#else
-            Random rand = Random.Shared;
-#endif
-            return Operand.Create(rand.NextDouble());
+            return new Function_RAND();
+
         }
 
         public virtual FunctionBase VisitRANDBETWEEN_fun(mathParser.RANDBETWEEN_funContext context)
         {
-            var args = new List<Operand>(); var index = 1;
-            foreach (var item in context.expr()) { var aa = item.Accept(this).ToNumber($"Function RANDBETWEEN parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            var args1 = args[0];
-            var args2 = args[1];
-
-#if NETSTANDARD2_1
-            var tick = DateTime.Now.Ticks;
-            Random rand = new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32));
-#else
-            Random rand = Random.Shared;
-#endif
-            return Operand.Create((decimal)rand.NextDouble() * (args2.NumberValue - args1.NumberValue) + args1.NumberValue);
+            var exprs = context.expr();
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            return new Function_RANDBETWEEN(args1, args2);
         }
 
         #endregion RAND
 
         #region power logarithm factorial
 
-        public Operand VisitCOVARIANCES_fun(mathParser.COVARIANCES_funContext context)
+        public FunctionBase VisitCOVARIANCES_fun(mathParser.COVARIANCES_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            List<decimal> list1 = new List<decimal>();
-            List<decimal> list2 = new List<decimal>();
-            var o1 = F_base_GetList(args[0], list1);
-            var o2 = F_base_GetList(args[1], list2);
-            if (o1 == false) { return Operand.Error("Function COVARIANCE.S parameter 1 error!"); }
-            if (o2 == false) { return Operand.Error("Function COVARIANCE.S parameter 2 error!"); }
-            if (list1.Count != list2.Count) { return Operand.Error("Function COVARIANCE.S parameter's count error!"); }
-
-            var avg1 = list1.Average();
-            var avg2 = list2.Average();
-            decimal sum = 0;
-            for (int i = 0; i < list1.Count; i++) {
-                sum += (list1[i] - avg1) * (list2[i] - avg2);
-            }
-            var val = sum / (list1.Count - 1);
-            return Operand.Create(val);
+            var exprs = context.expr();
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            return new Function_COVARIANCES(args1, args2);
         }
 
-        public Operand VisitCOVAR_fun(mathParser.COVAR_funContext context)
+        public FunctionBase VisitCOVAR_fun(mathParser.COVAR_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            List<decimal> list1 = new List<decimal>();
-            List<decimal> list2 = new List<decimal>();
-            var o1 = F_base_GetList(args[0], list1);
-            var o2 = F_base_GetList(args[1], list2);
-            if (o1 == false) { return Operand.Error("Function COVAR parameter 1 error!"); }
-            if (o2 == false) { return Operand.Error("Function COVAR parameter 2 error!"); }
-            if (list1.Count != list2.Count) { return Operand.Error("Function COVAR parameter's count error!"); }
-
-            var avg1 = list1.Average();
-            var avg2 = list2.Average();
-            decimal sum = 0;
-            for (int i = 0; i < list1.Count; i++) {
-                sum += (list1[i] - avg1) * (list2[i] - avg2);
-            }
-            var val = sum / list1.Count;
-            return Operand.Create(val);
+            var exprs = context.expr();
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            return new Function_COVAR(args1, args2);
         }
-
 
         public virtual FunctionBase VisitFACT_fun(mathParser.FACT_funContext context)
         {
-            var args1 = context.expr().Accept(this).ToNumber("Function FACT parameter is error!");
-            if (args1.IsError) { return args1; }
-
-            var z = args1.IntValue;
-            if (z < 0) {
-                return Operand.Error("Function FACT parameter is error!");
-            }
-            double d = 1;
-            for (int i = 1; i <= z; i++) {
-                d *= i;
-            }
-            return Operand.Create(d);
+            var args1 = context.expr().Accept(this);
+            return new Function_FACT(args1);
         }
 
         public virtual FunctionBase VisitFACTDOUBLE_fun(mathParser.FACTDOUBLE_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function FACTDOUBLE parameter is error!"); if (args1.IsError) { return args1; } }
-
-            var z = args1.IntValue;
-            if (z < 0) { return Operand.Error("Function FACTDOUBLE parameter is error!"); }
-
-            double d = 1;
-            for (int i = z; i > 0; i -= 2) {
-                d *= i;
-            }
-            return Operand.Create(d);
+            var args1 = context.expr().Accept(this);
+            return new Function_FACTDOUBLE(args1);
         }
 
         public virtual FunctionBase VisitPOWER_fun(mathParser.POWER_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function POWER parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function POWER parameter 2 is error!"); if (args2.IsError) { return args2; } }
-
-            return Operand.Create(Math.Pow((double)args1.NumberValue, (double)args2.NumberValue));
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            return new Function_POWER(args1, args2);
         }
 
         public virtual FunctionBase VisitEXP_fun(mathParser.EXP_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function EXP parameter is error!"); if (args1.IsError) { return args1; } }
-
-            return Operand.Create(Math.Exp((double)args1.NumberValue));
+            var args1 = context.expr().Accept(this);
+            return new Function_EXP(args1);
         }
 
         public virtual FunctionBase VisitLN_fun(mathParser.LN_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function LN parameter is error!"); if (args1.IsError) { return args1; } }
-            return Operand.Create(Math.Log((double)args1.NumberValue));
+            var args1 = context.expr().Accept(this);
+            return new Function_LN(args1);
         }
 
         public virtual FunctionBase VisitLOG_fun(mathParser.LOG_funContext context)
         {
             var exprs = context.expr();
 
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function LOG parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args1 = exprs[0].Accept(this);
             if (exprs.Length > 1) {
-                var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function POWER parameter 2 is error!"); if (args2.IsError) { return args2; } }
-                return Operand.Create(Math.Log((double)args1.NumberValue, (double)args2.NumberValue));
+                var args2 = exprs[1].Accept(this);
+                return new Function_LOG(args1, args2);
             }
-            return Operand.Create(Math.Log((double)args1.NumberValue, 10));
+            return new Function_LOG(args1);
         }
 
         public virtual FunctionBase VisitLOG10_fun(mathParser.LOG10_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function LOG10 parameter is error!"); if (args1.IsError) { return args1; } }
-            return Operand.Create(Math.Log((double)args1.NumberValue, 10));
+            var args1 = context.expr().Accept(this);
+            return new Function_LOG(args1);
         }
 
         public virtual FunctionBase VisitMULTINOMIAL_fun(mathParser.MULTINOMIAL_funContext context)
         {
-            var exprs = context.expr(); var args = new List<Operand>(exprs.Length);
-            for (int i = 0; i < exprs.Length; i++) { var aa = this.Visit(exprs[i]); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args, list);
-            if (o == false) { return Operand.Error("Function MULTINOMIAL parameter is error!"); }
-
-            int sum = 0;
-            int n = 1;
-            for (int i = 0; i < list.Count; i++) {
-                var a = (int)list[i];
-                n *= F_base_Factorial(a);
-                sum += a;
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-
-            var r = F_base_Factorial(sum) / n;
-            return Operand.Create(r);
+            return new Function_MULTINOMIAL(args);
         }
 
         public virtual FunctionBase VisitPRODUCT_fun(mathParser.PRODUCT_funContext context)
         {
-            var exprs = context.expr(); var args = new List<Operand>(exprs.Length);
-            for (int i = 0; i < exprs.Length; i++) { var aa = this.Visit(exprs[i]); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args, list);
-            if (o == false) { return Operand.Error("Function PRODUCT parameter is error!"); }
-
-            decimal d = 1;
-            for (int i = 0; i < list.Count; i++) {
-                var a = list[i];
-                d *= a;
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-
-            return Operand.Create(d);
+            return new Function_PRODUCT(args);
         }
 
         public virtual FunctionBase VisitSQRTPI_fun(mathParser.SQRTPI_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function SQRTPI parameter is error!"); if (args1.IsError) { return args1; } }
-            return Operand.Create(Math.Sqrt((double)args1.NumberValue * Math.PI));
+            var args1 = context.expr().Accept(this);
+            return new Function_SQRTPI(args1);
         }
 
         public virtual FunctionBase VisitSUMSQ_fun(mathParser.SUMSQ_funContext context)
         {
-            var exprs = context.expr(); var args = new List<Operand>(exprs.Length);
-            for (int i = 0; i < exprs.Length; i++) { var aa = this.Visit(exprs[i]); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args, list);
-            if (o == false) { return Operand.Error("Function SUMSQ parameter is error!"); }
-
-            decimal d = 0;
-            for (int i = 0; i < list.Count; i++) {
-                var a = list[i];
-                d += a * a;
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-
-            return Operand.Create(d);
+            return new Function_SUMSQ(args);
         }
-
-        private static int F_base_Factorial(int a)
-        {
-            if (a == 0) { return 1; }
-            int r = 1;
-            for (int i = a; i > 0; i--) {
-                r *= i;
-            }
-            return r;
-        }
-
         #endregion power logarithm factorial
 
         #endregion math
@@ -839,356 +736,201 @@ namespace ToolGood.Algorithm.Fast.Internals
 
         public virtual FunctionBase VisitASC_fun(mathParser.ASC_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function ASC parameter is error!"); if (args1.IsError) { return args1; } }
-
-            return Operand.Create(F_base_ToDBC(args1.TextValue));
+            var args1 = context.expr().Accept(this);
+            return new Function_ASC(args1);
         }
 
         public virtual FunctionBase VisitJIS_fun(mathParser.JIS_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function JIS parameter is error!"); if (args1.IsError) { return args1; } }
-
-            return Operand.Create(F_base_ToSBC(args1.TextValue));
+            var args1 = context.expr().Accept(this);
+            return new Function_JIS(args1);
         }
 
         public virtual FunctionBase VisitCHAR_fun(mathParser.CHAR_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function CHAR parameter is error!"); if (args1.IsError) { return args1; } }
-
-            char c = (char)(int)args1.NumberValue;
-            return Operand.Create(c.ToString());
+            var args1 = context.expr().Accept(this);
+            return new Function_CHAR(args1);
         }
 
         public virtual FunctionBase VisitCLEAN_fun(mathParser.CLEAN_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function CLEAN parameter is error!"); if (args1.IsError) { return args1; } }
-
-            var t = args1.TextValue;
-            StringBuilder sb = new StringBuilder(t.Length);
-            for (int i = 0; i < t.Length; i++) {
-                var c = t[i];
-                if (c != '\f' && c != '\n' && c != '\r' && c != '\t' && c != '\v') {
-                    sb.Append(c);
-                }
-            }
-            return Operand.Create(sb.ToString());
+            var args1 = context.expr().Accept(this);
+            return new Function_CLEAN(args1);
         }
 
         public virtual FunctionBase VisitCODE_fun(mathParser.CODE_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function CODE parameter is error!"); if (args1.IsError) { return args1; } }
-
-            var t = args1.TextValue;
-            if (t.Length == 0) { return Operand.Error("Function CODE parameter is error!"); }
-
-            return Operand.Create((int)t[0]);
+            var args1 = context.expr().Accept(this);
+            return new Function_CODE(args1);
         }
 
         public virtual FunctionBase VisitCONCATENATE_fun(mathParser.CONCATENATE_funContext context)
         {
             var exprs = context.expr();
-            StringBuilder sb = new StringBuilder();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
             for (int i = 0; i < exprs.Length; i++) {
-                var a = this.Visit(exprs[i]); if (a.Type != OperandType.TEXT) { a = a.ToText($"Function CONCATENATE parameter {i + 1} is error!"); if (a.IsError) { return a; } }
-                sb.Append(a.TextValue);
+                args[i] = exprs[i].Accept(this);
             }
-            return Operand.Create(sb.ToString());
+            return new Function_CONCATENATE(args);
         }
 
         public virtual FunctionBase VisitEXACT_fun(mathParser.EXACT_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function EXACT parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function EXACT parameter 2 is error!"); if (args2.IsError) { return args2; } }
-
-            return Operand.Create(args1.TextValue == args2.TextValue);
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            return new Function_EXACT(args1, args2);
         }
 
         public virtual FunctionBase VisitFIND_fun(mathParser.FIND_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function FIND parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function FIND parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
 
             if (exprs.Length == 2) {
-                var p = args2.TextValue.AsSpan().IndexOf(args1.TextValue) + excelIndex;
-                return Operand.Create(p);
+                return new Function_FIND(args1, args2);
             }
-            var count = exprs[2].Accept(this).ToNumber("Function FIND parameter 3 is error!"); if (count.IsError) { return count; }
-            var p2 = args2.TextValue.AsSpan(count.IntValue).IndexOf(args1.TextValue) + count.IntValue + excelIndex;
-            return Operand.Create(p2);
+            var count = exprs[2].Accept(this);
+            return new Function_FIND(args1, args2, count);
         }
 
         public virtual FunctionBase VisitLEFT_fun(mathParser.LEFT_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function LEFT parameter 1 is error!"); if (args1.IsError) { return args1; } }
-
+            var args1 = exprs[0].Accept(this);
             if (exprs.Length == 1) {
-                return Operand.Create(args1.TextValue[0].ToString());
+                return new Function_LEFT(args1);
             }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function LEFT parameter 2 is error!"); if (args2.IsError) { return args2; } }
-            return Operand.Create(args1.TextValue.AsSpan(0, args2.IntValue).ToString());
+            return new Function_LEFT(args1, exprs[1].Accept(this));
         }
 
         public virtual FunctionBase VisitLEN_fun(mathParser.LEN_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function LEN parameter is error!"); if (args1.IsError) { return args1; } }
-
-            return Operand.Create(args1.TextValue.Length);
+            var args1 = context.expr().Accept(this);
+            return new Function_LEN(args1);
         }
 
         public virtual FunctionBase VisitLOWER_fun(mathParser.LOWER_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function LOWER/TOLOWER parameter is error!"); if (args1.IsError) { return args1; } }
-
-            return Operand.Create(args1.TextValue.ToLower());
+            var args1 = context.expr().Accept(this);
+            return new Function_LOWER(args1);
         }
 
         public virtual FunctionBase VisitMID_fun(mathParser.MID_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function MID parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function MID parameter 2 is error!"); if (args2.IsError) { return args2; } }
-            var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function MID parameter 3 is error!"); if (args3.IsError) { return args3; } }
-
-            return Operand.Create(args1.TextValue.AsSpan(args2.IntValue - excelIndex, args3.IntValue).ToString());
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            var args3 = exprs[2].Accept(this);
+            return new Function_MID(args1, args2, args3);
         }
 
         public virtual FunctionBase VisitPROPER_fun(mathParser.PROPER_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function PROPER parameter is error!"); if (args1.IsError) { return args1; } }
-
-            var text = args1.TextValue;
-            StringBuilder sb = new StringBuilder(text);
-            bool isFirst = true;
-            for (int i = 0; i < text.Length; i++) {
-                var t = text[i];
-                if (t == ' ' || t == '\r' || t == '\n' || t == '\t' || t == '.') {
-                    isFirst = true;
-                } else if (isFirst) {
-                    sb[i] = char.ToUpper(t);
-                    isFirst = false;
-                }
-            }
-            return Operand.Create(sb.ToString());
+            var args1 = context.expr().Accept(this);
+            return new Function_PROPER(args1);
         }
 
         public virtual FunctionBase VisitREPLACE_fun(mathParser.REPLACE_funContext context)
         {
             var exprs = context.expr();
 
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function REPLACE parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var oldtext = args1.TextValue;
+            var args1 = exprs[0].Accept(this);
             if (exprs.Length == 3) {
-                var args22 = exprs[1].Accept(this); if (args22.Type != OperandType.TEXT) { args22 = args22.ToText("Function REPLACE parameter 2 is error!"); if (args22.IsError) { return args22; } }
-                var args32 = exprs[2].Accept(this); if (args32.Type != OperandType.TEXT) { args32 = args32.ToText("Function REPLACE parameter 3 is error!"); if (args32.IsError) { return args32; } }
-
-                var old = args22.TextValue;
-                var newstr = args32.TextValue;
-                return Operand.Create(oldtext.Replace(old, newstr));
+                var args22 = exprs[1].Accept(this);
+                var args32 = exprs[2].Accept(this);
+                return new Function_REPLACE(args1, args22, args32, null);
             }
-
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function REPLACE parameter 2 is error!"); if (args2.IsError) { return args2; } }
-            var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function REPLACE parameter 3 is error!"); if (args3.IsError) { return args3; } }
-            var args4 = exprs[3].Accept(this); if (args4.Type != OperandType.TEXT) { args4 = args4.ToText("Function REPLACE parameter 4 is error!"); if (args4.IsError) { return args4; } }
-
-            var start = args2.IntValue - excelIndex;
-            var length = args3.IntValue;
-            var newtext = args4.TextValue;
-
-            StringBuilder sb = new StringBuilder(oldtext.Length + newtext.Length);
-            for (int i = 0; i < oldtext.Length; i++) {
-                if (i < start) {
-                    sb.Append(oldtext[i]);
-                } else if (i == start) {
-                    sb.Append(newtext);
-                } else if (i >= start + length) {
-                    sb.Append(oldtext[i]);
-                }
-            }
-            return Operand.Create(sb.ToString());
+            var args2 = exprs[1].Accept(this);
+            var args3 = exprs[2].Accept(this);
+            var args4 = exprs[3].Accept(this);
+            return new Function_REPLACE(args1, args2, args3, args4);
         }
 
         public virtual FunctionBase VisitREPT_fun(mathParser.REPT_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function REPT parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function REPT parameter 2 is error!"); if (args2.IsError) { return args2; } }
-
-            var newtext = args1.TextValue;
-            var length = args2.IntValue;
-            StringBuilder sb = new StringBuilder(newtext.Length * length);
-            for (int i = 0; i < length; i++) {
-                sb.Append(newtext);
-            }
-            return Operand.Create(sb.ToString());
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            return new Function_REPT(args1, args2);
         }
 
         public virtual FunctionBase VisitRIGHT_fun(mathParser.RIGHT_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function RIGHT parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args1 = exprs[0].Accept(this);
 
             if (exprs.Length == 1) {
-                return Operand.Create(args1.TextValue[args1.TextValue.Length - 1].ToString());
+                return new Function_RIGHT(args1);
             }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function RIGHT parameter 2 is error!"); if (args2.IsError) { return args2; } }
-            return Operand.Create(args1.TextValue.AsSpan(args1.TextValue.Length - args2.IntValue, args2.IntValue).ToString());
+            var args2 = exprs[1].Accept(this);
+            return new Function_RIGHT(args1, args2);
         }
 
         public virtual FunctionBase VisitRMB_fun(mathParser.RMB_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function RMB parameter is error!"); if (args1.IsError) { return args1; } }
-
-            return Operand.Create(MathVisitor.F_base_ToChineseRMB(args1.NumberValue));
+            var args1 = context.expr().Accept(this);
+            return new Function_RMB(args1);
         }
 
         public virtual FunctionBase VisitSEARCH_fun(mathParser.SEARCH_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function SEARCH parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function SEARCH parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
 
             if (exprs.Length == 2) {
-                var p = args2.TextValue.AsSpan().IndexOf(args1.TextValue, StringComparison.OrdinalIgnoreCase) + excelIndex;
-                return Operand.Create(p);
+                return new Function_SEARCH(args1, args2, null);
             }
-            var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function SEARCH parameter 3 is error!"); if (args3.IsError) { return args3; } }
-            var p2 = args2.TextValue.AsSpan(args3.IntValue).IndexOf(args1.TextValue, StringComparison.OrdinalIgnoreCase) + args3.IntValue + excelIndex;
-            return Operand.Create(p2);
+            var args3 = exprs[2].Accept(this);
+            return new Function_SEARCH(args1, args2, args3);
         }
 
         public virtual FunctionBase VisitSUBSTITUTE_fun(mathParser.SUBSTITUTE_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function SUBSTITUTE parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function SUBSTITUTE parameter 2 is error!"); if (args2.IsError) { return args2; } }
-            var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.TEXT) { args3 = args3.ToText("Function SUBSTITUTE parameter 3 is error!"); if (args3.IsError) { return args3; } }
+            var args1 = exprs[0].Accept(this); 
+            var args2 = exprs[1].Accept(this);
+            var args3 = exprs[2].Accept(this); 
             if (exprs.Length == 3) {
-                return Operand.Create(args1.TextValue.Replace(args2.TextValue, args3.TextValue));
+                return new Function_SUBSTITUTE(args1, args2, args3,null);
             }
-            var args4 = exprs[3].Accept(this); if (args4.Type != OperandType.NUMBER) { args4 = args4.ToNumber("Function SUBSTITUTE parameter 4 is error!"); if (args4.IsError) { return args4; } }
-
-            string text = args1.TextValue;
-            string oldtext = args2.TextValue;
-            string newtext = args3.TextValue;
-            int index = args4.IntValue;
-
-            int index2 = 0;
-            StringBuilder sb = new StringBuilder(text.Length + newtext.Length);
-            for (int i = 0; i < text.Length; i++) {
-                bool b = true;
-                for (int j = 0; j < oldtext.Length; j++) {
-                    var t = text[i + j];
-                    var t2 = oldtext[j];
-                    if (t != t2) {
-                        b = false;
-                        break;
-                    }
-                }
-                if (b) {
-                    index2++;
-                }
-                if (b && index2 == index) {
-                    sb.Append(newtext);
-                    i += oldtext.Length - 1;
-                } else {
-                    sb.Append(text[i]);
-                }
-            }
-            return Operand.Create(sb.ToString());
+            var args4 = exprs[3].Accept(this);
+            return new Function_SUBSTITUTE(args1, args2, args3, args4);
         }
 
         public virtual FunctionBase VisitT_fun(mathParser.T_funContext context)
         {
             var args1 = context.expr().Accept(this);
-            if (args1.Type == OperandType.TEXT) {
-                return args1;
-            }
-            return Operand.Create("");
+            return new Function_T(args1);
         }
 
         public virtual FunctionBase VisitTEXT_fun(mathParser.TEXT_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.IsError) { return args1; }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function TEXT parameter 2 is error!"); if (args2.IsError) { return args2; } }
-
-            if (args1.Type == OperandType.TEXT) {
-                return args1;
-            } else if (args1.Type == OperandType.BOOLEAN) {
-                return Operand.Create(args1.BooleanValue ? "TRUE" : "FALSE");
-            } else if (args1.Type == OperandType.NUMBER) {
-                return Operand.Create(args1.NumberValue.ToString(args2.TextValue, CultureInfo.InvariantCulture));
-            } else if (args1.Type == OperandType.DATE) {
-                return Operand.Create(args1.DateValue.ToString(args2.TextValue));
-            }
-            args1 = args1.ToText("Function TEXT parameter 1 is error!"); if (args1.IsError) { return args1; }
-            return Operand.Create(args1.TextValue.ToString());
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this); 
+            return new  Function_TEXT(args1, args2);
         }
 
         public virtual FunctionBase VisitTRIM_fun(mathParser.TRIM_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function TRIM parameter is error!"); if (args1.IsError) { return args1; } }
-            return Operand.Create(args1.TextValue.AsSpan().Trim().ToString());
+            var args1 = context.expr().Accept(this); 
+            return new Function_TRIM(args1);
         }
 
         public virtual FunctionBase VisitUPPER_fun(mathParser.UPPER_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function UPPER/TOUPPER parameter is error!"); if (args1.IsError) { return args1; } }
-            return Operand.Create(args1.TextValue.ToUpper());
+            var args1 = context.expr().Accept(this);
+            return new Function_UPPER(args1);
         }
 
         public virtual FunctionBase VisitVALUE_fun(mathParser.VALUE_funContext context)
         {
             var args1 = context.expr().Accept(this);
-            if (args1.Type == OperandType.NUMBER) { return args1; }
-            if (args1.Type == OperandType.BOOLEAN) { return args1.BooleanValue ? Operand.One : Operand.Zero; }
-            if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function VALUE parameter is error!"); if (args1.IsError) { return args1; } }
-
-            if (decimal.TryParse(args1.TextValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
-                return Operand.Create(d);
-            }
-            return Operand.Error("Function VALUE parameter is error!");
+            return new Function_VALUE(args1);
         }
-
-        private static String F_base_ToSBC(String input)
-        {
-            StringBuilder sb = new StringBuilder(input);
-            for (int i = 0; i < input.Length; i++) {
-                var c = input[i];
-                if (c == ' ') {
-                    sb[i] = (char)12288;
-                } else if (c < 127) {
-                    sb[i] = (char)(c + 65248);
-                }
-            }
-            return sb.ToString();
-        }
-
-        private static String F_base_ToDBC(String input)
-        {
-            StringBuilder sb = new StringBuilder(input);
-            for (int i = 0; i < input.Length; i++) {
-                var c = input[i];
-                if (c == 12288) {
-                    sb[i] = (char)32;
-                    continue;
-                } else if (c > 65280 && c < 65375) {
-                    sb[i] = (char)(c - 65248);
-                }
-            }
-            return sb.ToString();
-        }
-
-        private static string F_base_ToChineseRMB(decimal x)
-        {
-            string s = x.ToString("#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A", CultureInfo.InvariantCulture);
-            string d = Regex.Replace(s, @"((?<=-|^)[^1-9]*)|((?'z'0)[0A-E]*((?=[1-9])|(?'-z'(?=[F-L\.]|$))))|((?'b'[F-L])(?'z'0)[0A-L]*((?=[1-9])|(?'-z'(?=[\.]|$))))", "${b}${z}", RegexOptions.Compiled);
-            return Regex.Replace(d, ".", m => "负元空零壹贰叁肆伍陆柒捌玖空空空空空空空分角拾佰仟万亿兆京垓秭穰"[m.Value[0] - '-'].ToString(), RegexOptions.Compiled);
-        }
-
         #endregion string
 
         #region MyDate time
