@@ -890,11 +890,11 @@ namespace ToolGood.Algorithm.Fast.Internals
         public virtual FunctionBase VisitSUBSTITUTE_fun(mathParser.SUBSTITUTE_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); 
+            var args1 = exprs[0].Accept(this);
             var args2 = exprs[1].Accept(this);
-            var args3 = exprs[2].Accept(this); 
+            var args3 = exprs[2].Accept(this);
             if (exprs.Length == 3) {
-                return new Function_SUBSTITUTE(args1, args2, args3,null);
+                return new Function_SUBSTITUTE(args1, args2, args3, null);
             }
             var args4 = exprs[3].Accept(this);
             return new Function_SUBSTITUTE(args1, args2, args3, args4);
@@ -910,13 +910,13 @@ namespace ToolGood.Algorithm.Fast.Internals
         {
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this);
-            var args2 = exprs[1].Accept(this); 
-            return new  Function_TEXT(args1, args2);
+            var args2 = exprs[1].Accept(this);
+            return new Function_TEXT(args1, args2);
         }
 
         public virtual FunctionBase VisitTRIM_fun(mathParser.TRIM_funContext context)
         {
-            var args1 = context.expr().Accept(this); 
+            var args1 = context.expr().Accept(this);
             return new Function_TRIM(args1);
         }
 
@@ -937,359 +937,125 @@ namespace ToolGood.Algorithm.Fast.Internals
 
         public virtual FunctionBase VisitDATEVALUE_fun(mathParser.DATEVALUE_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-            if (args[0].Type == OperandType.DATE) { return args[0]; }
-            int type = 0;
-            if (args.Count == 2) {
-                var args2 = args[1].ToNumber("Function DATEVALUE parameter 2 is error!");
-                if (args2.IsError) { return args2; }
-                type = args2.IntValue;
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            if (type == 0) {
-                if (args[0].Type == OperandType.TEXT) {
-                    if (DateTime.TryParse(args[0].TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime time)) {
-                        return Operand.Create(time);
-                    }
-                }
-                var args1 = args[0].ToNumber("Function DATEVALUE parameter 1 is error!");
-                if (args1.LongValue <= 2958465L) { // 9999-12-31 日时间在excel的数字为 2958465
-                    return args1.ToMyDate();
-                }
-                if (args1.LongValue <= 253402232399L) { // 9999-12-31 12:59:59 日时间 转 时间截 为 253402232399L，
-                    var time = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(args1.LongValue);
-                    if (useLocalTime) { return Operand.Create(time.ToLocalTime()); }
-                    return Operand.Create(time);
-                }
-                // 注：时间截 253402232399 ms 转时间 为 1978-01-12 05:30:32
-                var time2 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(args1.LongValue);
-                if (useLocalTime) { return Operand.Create(time2.ToLocalTime()); }
-                return Operand.Create(time2);
-            } else if (type == 1) {
-                var args1 = args[0].ToText("Function DATEVALUE parameter 1 is error!");
-                if (args1.IsError) { return args1; }
-                if (DateTime.TryParse(args1.TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dt)) {
-                    return Operand.Create(dt);
-                }
-            } else if (type == 2) {
-                return args[0].ToNumber("Function DATEVALUE parameter is error!").ToMyDate();
-            } else if (type == 3) {
-                var args1 = args[0].ToNumber("Function DATEVALUE parameter 1 is error!");
-                var time = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(args1.LongValue);
-                if (useLocalTime) { return Operand.Create(time.ToLocalTime()); }
-                return Operand.Create(time);
-            } else if (type == 4) {
-                var args1 = args[0].ToNumber("Function DATEVALUE parameter 1 is error!");
-                var time = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(args1.LongValue);
-                if (useLocalTime) { return Operand.Create(time.ToLocalTime()); }
-                return Operand.Create(time);
-            }
-            return Operand.Error("Function DATEVALUE parameter is error!");
+            return new Function_DATEVALUE(args);
         }
 
-        public Operand VisitTIMESTAMP_fun(mathParser.TIMESTAMP_funContext context)
+        public FunctionBase VisitTIMESTAMP_fun(mathParser.TIMESTAMP_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-            int type = 0; // 毫秒
-            if (args.Count == 2) {
-                var args2 = args[1].ToNumber("Function TIMESTAMP parameter 2 is error!");
-                if (args2.IsError) { return args2; }
-                type = args2.IntValue;
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            DateTime args1;
-            if (useLocalTime) {
-                args1 = args[0].ToMyDate("Function TIMESTAMP parameter 1 is error!").DateValue.ToDateTime(DateTimeKind.Local).ToUniversalTime();
-            } else {
-                args1 = args[0].ToMyDate("Function TIMESTAMP parameter 1 is error!").DateValue.ToDateTime(DateTimeKind.Utc);
-            }
-            if (type == 0) {
-                var ms = (args1 - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds;
-                return Operand.Create(ms);
-            } else if (type == 1) {
-                var s = (args1 - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
-                return Operand.Create(s);
-            }
-            return Operand.Error("Function TIMESTAMP parameter is error!");
+            return new Function_TIMESTAMP(args);
         }
 
         public virtual FunctionBase VisitTIMEVALUE_fun(mathParser.TIMEVALUE_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function TIMEVALUE parameter is error!"); if (args1.IsError) { return args1; } }
-
-            if (TimeSpan.TryParse(args1.TextValue, CultureInfo.InvariantCulture, out TimeSpan dt)) {
-                return Operand.Create(dt);
-            }
-            return Operand.Error("Function TIMEVALUE parameter is error!");
+            var args1 = context.expr().Accept(this);
+            return new Function_TIMEVALUE(args1);
         }
 
         public virtual FunctionBase VisitDATE_fun(mathParser.DATE_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function DATE parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function DATE parameter 2 is error!"); if (args2.IsError) { return args2; } }
-            var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function DATE parameter 3 is error!"); if (args3.IsError) { return args3; } }
-
-            MyDate d;
-            if (exprs.Length == 3) {
-                d = new MyDate(args1.IntValue, args2.IntValue, args3.IntValue, 0, 0, 0);
-            } else if (exprs.Length == 4) {
-                var args4 = exprs[3].Accept(this); if (args4.Type != OperandType.NUMBER) { args4 = args4.ToNumber("Function DATE parameter 4 is error!"); if (args4.IsError) { return args4; } }
-
-                d = new MyDate(args1.IntValue, args2.IntValue, args3.IntValue, args4.IntValue, 0, 0);
-            } else if (exprs.Length == 5) {
-                var args4 = exprs[3].Accept(this); if (args4.Type != OperandType.NUMBER) { args4 = args4.ToNumber("Function DATE parameter 4 is error!"); if (args4.IsError) { return args4; } }
-                var args5 = exprs[4].Accept(this); if (args5.Type != OperandType.NUMBER) { args5 = args5.ToNumber("Function DATE parameter 5 is error!"); if (args5.IsError) { return args5; } }
-                d = new MyDate(args1.IntValue, args2.IntValue, args3.IntValue, args4.IntValue, args5.IntValue, 0);
-            } else {
-                var args4 = exprs[3].Accept(this); if (args4.Type != OperandType.NUMBER) { args4 = args4.ToNumber("Function DATE parameter 4 is error!"); if (args4.IsError) { return args4; } }
-                var args5 = exprs[4].Accept(this); if (args5.Type != OperandType.NUMBER) { args5 = args5.ToNumber("Function DATE parameter 5 is error!"); if (args5.IsError) { return args5; } }
-                var args6 = exprs[5].Accept(this); if (args6.Type != OperandType.NUMBER) { args6 = args6.ToNumber("Function DATE parameter 6 is error!"); if (args6.IsError) { return args6; } }
-                d = new MyDate(args1.IntValue, args2.IntValue, args3.IntValue, args4.IntValue, args5.IntValue, args6.IntValue);
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            return Operand.Create(d);
+            return new Function_DATE(args);
         }
 
         public virtual FunctionBase VisitTIME_fun(mathParser.TIME_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function TIME parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function TIME parameter 2 is error!"); if (args2.IsError) { return args2; } }
-
-            MyDate d;
-            if (exprs.Length == 3) {
-                var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function TIME parameter 3 is error!"); if (args3.IsError) { return args3; } }
-                d = new MyDate(0, 0, 0, args1.IntValue, args2.IntValue, args3.IntValue);
-            } else {
-                d = new MyDate(0, 0, 0, args1.IntValue, args2.IntValue, 0);
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            return Operand.Create(d);
+            return new Function_TIME(args);
         }
 
         public virtual FunctionBase VisitNOW_fun(mathParser.NOW_funContext context)
         {
-            return Operand.Create(new MyDate(DateTime.Now));
+            return new Function_NOW();
         }
 
         public virtual FunctionBase VisitTODAY_fun(mathParser.TODAY_funContext context)
         {
-            return Operand.Create(new MyDate(DateTime.Today));
+            return new Function_TODAY();
         }
 
         public virtual FunctionBase VisitYEAR_fun(mathParser.YEAR_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function YEAR parameter is error!"); if (args1.IsError) { return args1; } }
-            if (args1.DateValue.Year == null) {
-                return Operand.Error("Function YEAR is error!");
-            }
-            return Operand.Create(args1.DateValue.Year.Value);
+            var args1 = context.expr().Accept(this);
+            return new Function_YEAR(args1);
         }
 
         public virtual FunctionBase VisitMONTH_fun(mathParser.MONTH_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function MONTH parameter is error!"); if (args1.IsError) { return args1; } }
-            if (args1.DateValue.Month == null) {
-                return Operand.Error("Function MONTH is error!");
-            }
-            return Operand.Create((int)args1.DateValue.Month.Value);
+            var args1 = context.expr().Accept(this);
+            return new Function_MONTH(args1);
         }
 
         public virtual FunctionBase VisitDAY_fun(mathParser.DAY_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function DAY parameter is error!"); if (args1.IsError) { return args1; } }
-            if (args1.DateValue.Day == null) {
-                return Operand.Error("Function DAY is error!");
-            }
-            return Operand.Create(args1.DateValue.Day.Value);
+            var args1 = context.expr().Accept(this);
+            return new Function_DAY(args1);
         }
 
         public virtual FunctionBase VisitHOUR_fun(mathParser.HOUR_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function HOUR parameter is error!"); if (args1.IsError) { return args1; } }
-            return Operand.Create(args1.DateValue.Hour);
+            var args1 = context.expr().Accept(this);
+            return new Function_HOUR(args1);
         }
 
         public virtual FunctionBase VisitMINUTE_fun(mathParser.MINUTE_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function MINUTE parameter is error!"); if (args1.IsError) { return args1; } }
-
-            return Operand.Create(args1.DateValue.Minute);
+            var args1 = context.expr().Accept(this);
+            return new Function_MINUTE(args1);
         }
 
         public virtual FunctionBase VisitSECOND_fun(mathParser.SECOND_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function SECOND parameter is error!"); if (args1.IsError) { return args1; } }
-
-            return Operand.Create(args1.DateValue.Second);
+            var args1 = context.expr().Accept(this);
+            return new Function_SECOND(args1);
         }
 
         public virtual FunctionBase VisitWEEKDAY_fun(mathParser.WEEKDAY_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function WEEKDAY parameter 1 is error!"); if (args1.IsError) { return args1; } }
-
-            var type = 1;
-            if (exprs.Length == 2) {
-                var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function WEEKDAY parameter 2 is error!"); if (args2.IsError) { return args2; } }
-                type = args2.IntValue;
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-
-            var t = ((DateTime)args1.DateValue).DayOfWeek;
-            if (type == 1) {
-                return Operand.Create((double)(t + 1));
-            } else if (type == 2) {
-                if (t == 0) return Operand.Create(7d);
-                return Operand.Create((double)t);
-            }
-            if (t == 0) {
-                return Operand.Create(6d);
-            }
-            return Operand.Create((double)(t - 1));
+            return new Function_WEEKDAY(args);
         }
 
         public virtual FunctionBase VisitDATEDIF_fun(mathParser.DATEDIF_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function DATEDIF parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.DATE) { args2 = args2.ToMyDate("Function DATEDIF parameter 2 is error!"); if (args2.IsError) { return args2; } }
-            var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.TEXT) { args3 = args3.ToText("Function DATEDIF parameter 3 is error!"); if (args3.IsError) { return args3; } }
-
-            var startMyDate = (DateTime)args1.DateValue;
-            var endMyDate = (DateTime)args2.DateValue;
-            var t = args3.TextValue.ToLower();
-
-            if (CharUtil.Equals(t, 'Y')) {
-
-                #region y
-
-                bool b = false;
-                if (startMyDate.Month < endMyDate.Month) {
-                    b = true;
-                } else if (startMyDate.Month == endMyDate.Month) {
-                    if (startMyDate.Day <= endMyDate.Day) b = true;
-                }
-                if (b) {
-                    return Operand.Create((endMyDate.Year - startMyDate.Year));
-                } else {
-                    return Operand.Create((endMyDate.Year - startMyDate.Year - 1));
-                }
-
-                #endregion y
-            } else if (CharUtil.Equals(t, 'M')) {
-
-                #region m
-
-                bool b = false;
-                if (startMyDate.Day <= endMyDate.Day) b = true;
-                if (b) {
-                    return Operand.Create((endMyDate.Year * 12 + endMyDate.Month - startMyDate.Year * 12 - startMyDate.Month));
-                } else {
-                    return Operand.Create((endMyDate.Year * 12 + endMyDate.Month - startMyDate.Year * 12 - startMyDate.Month - 1));
-                }
-
-                #endregion m
-            } else if (CharUtil.Equals(t, 'D')) {
-                return Operand.Create((endMyDate - startMyDate).Days);
-            } else if (CharUtil.Equals(t, "YD")) {
-
-                #region yd
-
-                var day = endMyDate.DayOfYear - startMyDate.DayOfYear;
-                if (endMyDate.Year > startMyDate.Year && day < 0) {
-                    var days = new DateTime(startMyDate.Year, 12, 31).DayOfYear;
-                    day = days + day;
-                }
-                return Operand.Create((day));
-
-                #endregion yd
-            } else if (CharUtil.Equals(t, "MD")) {
-
-                #region md
-
-                var mo = endMyDate.Day - startMyDate.Day;
-                if (mo < 0) {
-                    int days;
-                    if (startMyDate.Month == 12) {
-                        days = new DateTime(startMyDate.Year + 1, 1, 1).AddDays(-1).Day;
-                    } else {
-                        days = new DateTime(startMyDate.Year, startMyDate.Month + 1, 1).AddDays(-1).Day;
-                    }
-                    mo += days;
-                }
-                return Operand.Create((mo));
-
-                #endregion md
-            } else if (CharUtil.Equals(t, "YM")) {
-
-                #region ym
-
-                var mo = endMyDate.Month - startMyDate.Month;
-                if (endMyDate.Day < startMyDate.Day) mo--;
-                if (mo < 0) mo += 12;
-                return Operand.Create((mo));
-
-                #endregion ym
-            }
-            return Operand.Error("Function DATEDIF parameter 3 is error!");
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            var args3 = exprs[2].Accept(this);
+            return new Function_DATEDIF(args1, args2, args3);
         }
 
         public virtual FunctionBase VisitDAYS360_fun(mathParser.DAYS360_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function DAYS360 parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.DATE) { args2 = args2.ToMyDate("Function DAYS360 parameter 2 is error!"); if (args2.IsError) { return args2; } }
-
-            var startMyDate = (DateTime)args1.DateValue;
-            var endMyDate = (DateTime)args2.DateValue;
-
-            var method = false;
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this); 
             if (exprs.Length == 3) {
-                var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.DATE) { args3 = args3.ToMyDate("Function DAYS360 parameter 3 is error!"); if (args3.IsError) { return args3; } }
-                if (args3.IsError) { return args3; }
-                method = args3.BooleanValue;
+                var args3 = exprs[2].Accept(this);
+                return new Function_DAYS360(args1,args2,args3);
             }
-            var days = endMyDate.Year * 360 + (endMyDate.Month - 1) * 30
-                        - startMyDate.Year * 360 - (startMyDate.Month - 1) * 30;
-            if (method) {
-                if (endMyDate.Day == 31) days += 30;
-                if (startMyDate.Day == 31) days -= 30;
-            } else {
-                if (startMyDate.Month == 12) {
-                    if (startMyDate.Day == new DateTime(startMyDate.Year + 1, 1, 1).AddDays(-1).Day) {
-                        days -= 30;
-                    } else {
-                        days -= startMyDate.Day;
-                    }
-                } else {
-                    if (startMyDate.Day == new DateTime(startMyDate.Year, startMyDate.Month + 1, 1).AddDays(-1).Day) {
-                        days -= 30;
-                    } else {
-                        days -= startMyDate.Day;
-                    }
-                }
-                if (endMyDate.Month == 12) {
-                    if (endMyDate.Day == new DateTime(endMyDate.Year + 1, 1, 1).AddDays(-1).Day) {
-                        if (startMyDate.Day < 30) {
-                            days += 31;
-                        } else {
-                            days += 30;
-                        }
-                    } else {
-                        days += endMyDate.Day;
-                    }
-                } else {
-                    if (endMyDate.Day == new DateTime(endMyDate.Year, endMyDate.Month + 1, 1).AddDays(-1).Day) {
-                        if (startMyDate.Day < 30) {
-                            days += 31;
-                        } else {
-                            days += 30;
-                        }
-                    } else {
-                        days += endMyDate.Day;
-                    }
-                }
-            }
-            return Operand.Create(days);
+            return new Function_DAYS360(args1, args2, null);
         }
 
         public virtual FunctionBase VisitEDATE_fun(mathParser.EDATE_funContext context)
