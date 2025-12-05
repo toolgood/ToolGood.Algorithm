@@ -1390,7 +1390,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(1.0 / d);
         }
     }
-    public class Function_COSH: Function_1
+    public class Function_COSH : Function_1
     {
         public Function_COSH(FunctionBase func1) : base(func1)
         {
@@ -1760,36 +1760,177 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(num);
         }
     }
-    public class Function_BASE : Function_N
+
+    #endregion
+
+    #region rounding
+    public class Function_ROUNDUP : Function_2
     {
-        public Function_BASE(FunctionBase[] funcs) : base(funcs)
+        public Function_ROUNDUP(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
         public override Operand Accept(Work work)
         {
-            var args = new List<Operand>();
-            foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
-            var args1 = args[0].ToNumber("Function BASE parameter 1 is error!");
-            if (args1.IsError) { return args1; }
-            var args2 = args[1].ToNumber("Function BASE parameter 2 is error!");
-            if (args2.IsError) { return args2; }
-            if (args2.IntValue < 2 || args2.IntValue > 36) {
-                return Operand.Error("Function BASE parameter 2 is error!");
-            }
-            var num = Convert.ToString(args1.IntValue, args2.IntValue).ToUpper();
-            if (args.Count == 3) {
-                var args3 = args[2].ToNumber("Function BASE parameter 3 is error!");
-                if (args3.IsError) { return args3; }
-                if (num.Length > args3.IntValue) {
-                    return Operand.Create(num.PadLeft(args3.IntValue, '0'));
-                }
-                return Operand.Error("Function BASE parameter 3 is error!");
-            }
-            return Operand.Create(num);
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ROUNDUP parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function ROUNDUP parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            if (args1.NumberValue == 0.0m) { return args1; }
+            var a = Math.Pow(10, args2.IntValue);
+            var b = args1.NumberValue;
+
+            var t = (Math.Ceiling(Math.Abs((double)b) * a)) / a;
+            if (b > 0) return Operand.Create(t);
+            return Operand.Create(-t);
         }
     }
-    #endregion
+    public class Function_ROUNDDOWN : Function_2
+    {
+        public Function_ROUNDDOWN(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ROUNDDOWN parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function ROUNDDOWN parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            if (args1.NumberValue == 0.0m) {
+                return args1;
+            }
+            var a = (decimal)Math.Pow(10, args2.IntValue);
+            var b = args1.NumberValue;
 
+            b = ((int)(b * a)) / a;
+            return Operand.Create(b);
+        }
+    }
+    public class Function_MROUND : Function_2
+    {
+        public Function_MROUND(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function MROUND parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function MROUND parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var a = args2.NumberValue;
+            if (a <= 0) { return Operand.Error("Function MROUND parameter 2 is error!"); }
+
+            var b = args1.NumberValue;
+            var r = Math.Round(b / a, 0, MidpointRounding.AwayFromZero) * a;
+            return Operand.Create(r);
+        }
+    }
+    public class Function_ROUND : Function_2
+    {
+        public Function_ROUND(FunctionBase func1) : base(func1, null)
+        {
+        }
+        public Function_ROUND(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ROUND parameter 1 is error!"); if (args1.IsError) { return args1; } }
+
+            if (func2 == null) {
+                return Operand.Create(Math.Round((decimal)args1.NumberValue, 0, MidpointRounding.AwayFromZero));
+            }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function ROUND parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            return Operand.Create(Math.Round((decimal)args1.NumberValue, args2.IntValue, MidpointRounding.AwayFromZero));
+        }
+    }
+
+    public class Function_CEILING : Function_2
+    {
+        public Function_CEILING(FunctionBase func1) : base(func1, null)
+        {
+        }
+        public Function_CEILING(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function CEILING parameter 1 is error!"); if (args1.IsError) { return args1; } }
+
+            if (func2 == null)
+                return Operand.Create(Math.Ceiling(args1.NumberValue));
+
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function CEILING parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var b = args2.NumberValue;
+            if (b == 0) { return Operand.Create(0); }
+            if (b < 0) { return Operand.Error("Function CEILING parameter 2 is error!"); }
+
+            var a = args1.NumberValue;
+            var d = Math.Ceiling(a / b) * b;
+            return Operand.Create(d);
+        }
+    }
+    public class Function_FLOOR : Function_2
+    {
+        public Function_FLOOR(FunctionBase func1) : base(func1, null)
+        {
+        }
+        public Function_FLOOR(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function FLOOR parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            if (func2 == null) return Operand.Create(Math.Floor(args1.NumberValue));
+
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function FLOOR parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var b = args2.NumberValue;
+            if (b >= 1) { return Operand.Create(args1.IntValue); }
+            if (b <= 0) { return Operand.Error("Function FLOOR parameter 2 is error!"); }
+
+            var a = args1.NumberValue;
+            var d = Math.Floor(a / b) * b;
+            return Operand.Create(d);
+        }
+    }
+    public class Function_INT : Function_1
+    {
+        public Function_INT(FunctionBase func1) : base(func1)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function INT parameter is error!"); if (args1.IsError) { return args1; } }
+            return Operand.Create(Math.Floor(args1.NumberValue));
+        }
+    }
+    public class Function_EVEN: Function_1
+    {
+        public Function_EVEN(FunctionBase func1) : base(func1)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function EVEN parameter is error!"); if (args1.IsError) { return args1; } }
+            var z = args1.NumberValue;
+            if (z % 2 == 0) { return args1; }
+            z = Math.Ceiling(z);
+            if (z % 2 == 0) { return Operand.Create(z); }
+            z++;
+            return Operand.Create(z);
+        }
+    }
+    public class Function_ODD : Function_1
+    {
+        public Function_ODD(FunctionBase func1) : base(func1)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ODD parameter is error!"); if (args1.IsError) { return args1; } }
+            var z = args1.NumberValue;
+            if (z % 2 != 0) { return args1; }
+            z = Math.Ceiling(z);
+            if (z % 2 != 0) { return Operand.Create(z); }
+            z++;
+            return Operand.Create(z);
+        }
+    }
+
+    #endregion
 
     #endregion
 

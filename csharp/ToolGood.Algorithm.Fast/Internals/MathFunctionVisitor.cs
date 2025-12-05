@@ -540,115 +540,69 @@ namespace ToolGood.Algorithm.Fast.Internals
         public virtual FunctionBase VisitROUND_fun(mathParser.ROUND_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ROUND parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args1 = exprs[0].Accept(this);
             if (exprs.Length == 1) {
-                return Operand.Create((double)Math.Round((decimal)args1.NumberValue, 0, MidpointRounding.AwayFromZero));
+                return new Function_ROUND(args1);
             }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function ROUND parameter 2 is error!"); if (args2.IsError) { return args2; } }
-            return Operand.Create((double)Math.Round((decimal)args1.NumberValue, args2.IntValue, MidpointRounding.AwayFromZero));
+            var args2 = exprs[1].Accept(this); 
+            return new Function_ROUND(args1, args2);    
         }
 
         public virtual FunctionBase VisitROUNDDOWN_fun(mathParser.ROUNDDOWN_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ROUNDDOWN parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function ROUNDDOWN parameter 2 is error!"); if (args2.IsError) { return args2; } }
-
-            if (args1.NumberValue == 0.0m) {
-                return args1;
-            }
-            var a = (decimal)Math.Pow(10, args2.IntValue);
-            var b = args1.NumberValue;
-
-            b = ((int)(b * a)) / a;
-            return Operand.Create(b);
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this); 
+            return new Function_ROUNDDOWN(args1, args2);
         }
 
         public virtual FunctionBase VisitROUNDUP_fun(mathParser.ROUNDUP_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ROUNDUP parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function ROUNDUP parameter 2 is error!"); if (args2.IsError) { return args2; } }
-
-            if (args1.NumberValue == 0.0m) { return args1; }
-            var a = Math.Pow(10, args2.IntValue);
-            var b = args1.NumberValue;
-
-            var t = (Math.Ceiling(Math.Abs((double)b) * a)) / a;
-            if (b > 0) return Operand.Create(t);
-            return Operand.Create(-t);
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this); 
+            return new Function_ROUNDUP(args1, args2);  
         }
 
         public virtual FunctionBase VisitCEILING_fun(mathParser.CEILING_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function CEILING parameter 1 is error!"); if (args1.IsError) { return args1; } }
-
+            var args1 = exprs[0].Accept(this);
             if (exprs.Length == 1)
-                return Operand.Create(Math.Ceiling(args1.NumberValue));
-
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function CEILING parameter 2 is error!"); if (args2.IsError) { return args2; } }
-            var b = args2.NumberValue;
-            if (b == 0) { return Operand.Create(0); }
-            if (b < 0) { return Operand.Error("Function CEILING parameter 2 is error!"); }
-
-            var a = args1.NumberValue;
-            var d = Math.Ceiling(a / b) * b;
-            return Operand.Create(d);
+                return new Function_CEILING(args1);
+            var args2 = exprs[1].Accept(this);
+            return new Function_CEILING(args1, args2);
         }
 
         public virtual FunctionBase VisitFLOOR_fun(mathParser.FLOOR_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function FLOOR parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args1 = exprs[0].Accept(this);
+            if (exprs.Length == 1) 
+                return new Function_FLOOR(args1);
 
-            if (exprs.Length == 1) return Operand.Create(Math.Floor(args1.NumberValue));
-
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function FLOOR parameter 2 is error!"); if (args2.IsError) { return args2; } }
-            var b = args2.NumberValue;
-            if (b >= 1) { return Operand.Create(args1.IntValue); }
-            if (b <= 0) { return Operand.Error("Function FLOOR parameter 2 is error!"); }
-
-            var a = args1.NumberValue;
-            var d = Math.Floor(a / b) * b;
-            return Operand.Create(d);
+            var args2 = exprs[1].Accept(this); 
+            return new Function_FLOOR(args1, args2);
         }
 
         public virtual FunctionBase VisitEVEN_fun(mathParser.EVEN_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function EVEN parameter is error!"); if (args1.IsError) { return args1; } }
-
-            var z = args1.NumberValue;
-            if (z % 2 == 0) { return args1; }
-            z = Math.Ceiling(z);
-            if (z % 2 == 0) { return Operand.Create(z); }
-            z++;
-            return Operand.Create(z);
+            var args1 = context.expr().Accept(this);
+            return new Function_EVEN(args1);
         }
 
         public virtual FunctionBase VisitODD_fun(mathParser.ODD_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ODD parameter is error!"); if (args1.IsError) { return args1; } }
-            var z = args1.NumberValue;
-            if (z % 2 == 1) { return args1; }
-            z = Math.Ceiling(z);
-            if (z % 2 == 1) { return Operand.Create(z); }
-            z++;
-            return Operand.Create(z);
+            var args1 = context.expr().Accept(this); 
+            return new Function_ODD(args1);
         }
 
         public virtual FunctionBase VisitMROUND_fun(mathParser.MROUND_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function MROUND parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function MROUND parameter 2 is error!"); if (args2.IsError) { return args2; } }
-
-            var a = args2.NumberValue;
-            if (a <= 0) { return Operand.Error("Function MROUND parameter 2 is error!"); }
-
-            var b = args1.NumberValue;
-            var r = Math.Round(b / a, 0, MidpointRounding.AwayFromZero) * a;
-            return Operand.Create(r);
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this); 
+            return new Function_MROUND(args1, args2);
         }
 
         #endregion rounding
