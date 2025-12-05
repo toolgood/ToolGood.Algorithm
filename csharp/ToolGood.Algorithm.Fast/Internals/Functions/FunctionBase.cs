@@ -3388,4 +3388,159 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create((decimal)result);
         }
     }
+
+
+    public class FunctionUtil
+    {
+        public static bool F_base_GetList(List<Operand> args, List<decimal> list)
+        {
+            foreach (var item in args) {
+                if (item.Type == OperandType.NUMBER) {
+                    list.Add(item.NumberValue);
+                } else if (item.Type == OperandType.ARRARY) {
+                    var o = F_base_GetList(item.ArrayValue, list);
+                    if (o == false) { return false; }
+                } else if (item.Type == OperandType.JSON) {
+                    var i = item.ToArray(null);
+                    if (i.IsError) { return false; }
+                    var o = F_base_GetList(i.ArrayValue, list);
+                    if (o == false) { return false; }
+                } else {
+                    var o = item.ToNumber(null);
+                    if (o.IsError) { return false; }
+                    list.Add(o.NumberValue);
+                }
+            }
+            return true;
+        }
+        public static bool F_base_GetList(Operand args, List<decimal> list)
+        {
+            if (args.IsError) { return false; }
+            if (args.Type == OperandType.NUMBER) {
+                list.Add(args.NumberValue);
+            } else if (args.Type == OperandType.ARRARY) {
+                var o = F_base_GetList(args.ArrayValue, list);
+                if (o == false) { return false; }
+            } else if (args.Type == OperandType.JSON) {
+                var i = args.ToArray(null);
+                if (i.IsError) { return false; }
+                var o = F_base_GetList(i.ArrayValue, list);
+                if (o == false) { return false; }
+            } else {
+                var o = args.ToNumber(null);
+                if (o.IsError) { return false; }
+                list.Add(o.NumberValue);
+            }
+            return true;
+        }
+        public static bool F_base_GetList(Operand args, List<string> list)
+        {
+            if (args.IsError) { return false; }
+            if (args.Type == OperandType.ARRARY) {
+                var o = F_base_GetList(args.ArrayValue, list);
+                if (o == false) { return false; }
+            } else if (args.Type == OperandType.JSON) {
+                var i = args.ToArray(null);
+                if (i.IsError) { return false; }
+                var o = F_base_GetList(i.ArrayValue, list);
+                if (o == false) { return false; }
+            } else {
+                var o = args.ToText(null);
+                if (o.IsError) { return false; }
+                list.Add(o.TextValue);
+            }
+            return true;
+        }
+        public static bool F_base_GetList(List<Operand> args, List<string> list)
+        {
+            foreach (var item in args) {
+                if (item.Type == OperandType.ARRARY) {
+                    var o = F_base_GetList(item.ArrayValue, list);
+                    if (o == false) { return false; }
+                } else if (item.Type == OperandType.JSON) {
+                    var i = item.ToArray(null);
+                    if (i.IsError) { return false; }
+                    var o = F_base_GetList(i.ArrayValue, list);
+                    if (o == false) { return false; }
+                } else {
+                    var o = item.ToText(null);
+                    if (o.IsError) { return false; }
+                    list.Add(o.TextValue);
+                }
+            }
+            return true;
+        }
+
+
+        private static int F_base_countif(List<decimal> dbs, decimal d)
+        {
+            int count = 0;
+            for (int i = 0; i < dbs.Count; i++) {
+                var item = dbs[i];
+                if (item == d) {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        private static int F_base_countif(List<decimal> dbs, string s, decimal d)
+        {
+            int count = 0;
+            for (int i = 0; i < dbs.Count; i++) {
+                var item = dbs[i];
+                if (F_base_compare(item, d, s)) {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        private static decimal F_base_sumif(List<decimal> dbs, decimal d, List<decimal> sumdbs)
+        {
+            decimal sum = 0;
+            for (int i = 0; i < dbs.Count; i++) {
+                var item = dbs[i];
+                if (item == d) {
+                    sum += sumdbs[i];
+                }
+                //if (Math.Round(item, 10, MidpointRounding.AwayFromZero) == d) {
+                //	sum += item;
+                //}
+            }
+            return sum;
+        }
+
+        private static decimal F_base_sumif(List<decimal> dbs, string s, decimal d, List<decimal> sumdbs)
+        {
+            decimal sum = 0;
+            for (int i = 0; i < dbs.Count; i++) {
+                if (F_base_compare(dbs[i], d, s)) {
+                    sum += sumdbs[i];
+                }
+            }
+            return sum;
+        }
+        private static bool F_base_compare(decimal a, decimal b, string ss)
+        {
+            if (CharUtil.Equals(ss, '<')) {
+                return a < b;
+                //return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) < 0;
+            } else if (CharUtil.Equals(ss, "<=")) {
+                return a <= b;
+                //return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) <= 0;
+            } else if (CharUtil.Equals(ss, '>')) {
+                return a > b;
+                //return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) > 0;
+            } else if (CharUtil.Equals(ss, ">=")) {
+                return (a >= b);
+                //return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) >= 0;
+            } else if (CharUtil.Equals(ss, "=", "==", "===")) {
+                return a == b;
+                //return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) == 0;
+            }
+            return a != b;
+            //return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) != 0;
+        }
+    }
 }
