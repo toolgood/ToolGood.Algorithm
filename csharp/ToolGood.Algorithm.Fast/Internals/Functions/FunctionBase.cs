@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.math;
 
-namespace ToolGood.Algorithm.Fast.Internals.Functions
+namespace ToolGood.Algorithm.Internals.Functions
 {
     public class Work
     {
@@ -1492,6 +1493,303 @@ namespace ToolGood.Algorithm.Fast.Internals.Functions
     }
 
     #endregion
+
+    #region transformation
+    public class Function_BIN2OCT : Function_N
+    {
+        public Function_BIN2OCT(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>();
+            foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            var args1 = args[0].ToText("Function BIN2OCT parameter 1 is error!");
+            if (args1.IsError) { return args1; }
+
+            if (Regex.IsMatch(args1.TextValue, "^[01]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function BIN2OCT parameter 1 is error!"); }
+            var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 2), 8);
+            if (args.Count == 2) {
+                var args2 = args[1].ToNumber("Function BIN2OCT parameter 2 is error!");
+                if (args2.IsError) { return args2; }
+                if (num.Length > args2.IntValue) {
+                    return Operand.Create(num.PadLeft(args2.IntValue, '0'));
+                }
+                return Operand.Error("Function BIN2OCT parameter 2 is error!");
+            }
+            return Operand.Create(num);
+        }
+    }
+
+    public class Function_BIN2DEC : Function_1
+    {
+        public Function_BIN2DEC(FunctionBase func1) : base(func1)
+        {
+        }
+
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work).ToText("Function BIN2DEC parameter is error!");
+            if (args1.IsError) { return args1; }
+
+            if (Regex.IsMatch(args1.TextValue, "^[01]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function BIN2DEC parameter is error!"); }
+            var num = Convert.ToInt32(args1.TextValue, 2);
+            return Operand.Create(num);
+        }
+    }
+
+    public class Function_BIN2HEX : Function_N
+    {
+        public Function_BIN2HEX(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>();
+            foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            var args1 = args[0].ToText("Function BIN2HEX parameter 1 is error!");
+            if (args1.IsError) { return args1; }
+
+            if (Regex.IsMatch(args1.TextValue, "^[01]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function BIN2HEX parameter 1 is error!"); }
+            var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 2), 16).ToUpper();
+            if (args.Count == 2) {
+                var args2 = args[1].ToNumber("Function BIN2HEX parameter 2 is error!");
+                if (args2.IsError) { return args2; }
+                if (num.Length > args2.IntValue) {
+                    return Operand.Create(num.PadLeft(args2.IntValue, '0'));
+                }
+                return Operand.Error("Function BIN2HEX parameter 2 is error!");
+            }
+            return Operand.Create(num);
+
+        }
+    }
+    public class Function_OCT2BIN : Function_N
+    {
+        public Function_OCT2BIN(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>();
+            foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
+            var args1 = args[0].ToText("Function OCT2BIN parameter 1 is error!");
+            if (args1.IsError) { return args1; }
+            if (Regex.IsMatch(args1.TextValue, "^[0-7]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function OCT2BIN parameter 1 is error!"); }
+            var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 8), 2);
+            if (args.Count == 2) {
+                var args2 = args[1].ToNumber("Function OCT2BIN parameter 2 is error!");
+                if (args2.IsError) { return args2; }
+                if (num.Length > args2.IntValue) {
+                    return Operand.Create(num.PadLeft(args2.IntValue, '0'));
+                }
+                return Operand.Error("Function OCT2BIN parameter 2 is error!");
+            }
+            return Operand.Create(num);
+        }
+    }
+    public class Function_OCT2DEC : Function_1
+    {
+        public Function_OCT2DEC(FunctionBase func1) : base(func1)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work).ToText("Function OCT2DEC parameter is error!");
+            if (args1.IsError) { return args1; }
+            if (Regex.IsMatch(args1.TextValue, "^[0-7]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function OCT2DEC parameter is error!"); }
+            var num = Convert.ToInt32(args1.TextValue, 8);
+            return Operand.Create(num);
+        }
+    }
+    public class Function_OCT2HEX : Function_N
+    {
+        public Function_OCT2HEX(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>();
+            foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
+            var args1 = args[0].ToText("Function OCT2HEX parameter 1 is error!");
+            if (args1.IsError) { return args1; }
+            if (Regex.IsMatch(args1.TextValue, "^[0-7]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function OCT2HEX parameter 1 is error!"); }
+            var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 8), 16).ToUpper();
+            if (args.Count == 2) {
+                var args2 = args[1].ToNumber("Function OCT2HEX parameter 2 is error!");
+                if (args2.IsError) { return args2; }
+                if (num.Length > args2.IntValue) {
+                    return Operand.Create(num.PadLeft(args2.IntValue, '0'));
+                }
+                return Operand.Error("Function OCT2HEX parameter 2 is error!");
+            }
+            return Operand.Create(num);
+        }
+    }
+    public class Function_HEX2BIN : Function_N
+    {
+        public Function_HEX2BIN(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>();
+            foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
+            var args1 = args[0].ToText("Function HEX2BIN parameter 1 is error!");
+            if (args1.IsError) { return args1; }
+            if (Regex.IsMatch(args1.TextValue, "^[0-9A-Fa-f]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function HEX2BIN parameter 1 is error!"); }
+            var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 16), 2);
+            if (args.Count == 2) {
+                var args2 = args[1].ToNumber("Function HEX2BIN parameter 2 is error!");
+                if (args2.IsError) { return args2; }
+                if (num.Length > args2.IntValue) {
+                    return Operand.Create(num.PadLeft(args2.IntValue, '0'));
+                }
+                return Operand.Error("Function HEX2BIN parameter 2 is error!");
+            }
+            return Operand.Create(num);
+        }
+    }
+    public class Function_HEX2DEC : Function_1
+    {
+        public Function_HEX2DEC(FunctionBase func1) : base(func1)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work).ToText("Function HEX2DEC parameter is error!");
+            if (args1.IsError) { return args1; }
+            if (Regex.IsMatch(args1.TextValue, "^[0-9A-Fa-f]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function HEX2DEC parameter is error!"); }
+            var num = Convert.ToInt32(args1.TextValue, 16);
+            return Operand.Create(num);
+        }
+    }
+    public class Function_HEX2OCT : Function_N
+    {
+        public Function_HEX2OCT(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>();
+            foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
+            var args1 = args[0].ToText("Function HEX2OCT parameter 1 is error!");
+            if (args1.IsError) { return args1; }
+            if (Regex.IsMatch(args1.TextValue, "^[0-9A-Fa-f]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function HEX2OCT parameter 1 is error!"); }
+            var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 16), 8);
+            if (args.Count == 2) {
+                var args2 = args[1].ToNumber("Function HEX2OCT parameter 2 is error!");
+                if (args2.IsError) { return args2; }
+                if (num.Length > args2.IntValue) {
+                    return Operand.Create(num.PadLeft(args2.IntValue, '0'));
+                }
+                return Operand.Error("Function HEX2OCT parameter 2 is error!");
+            }
+            return Operand.Create(num);
+        }
+    }
+    public class Function_DEC2BIN : Function_N
+    {
+        public Function_DEC2BIN(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>();
+            foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
+            var args1 = args[0].ToNumber("Function DEC2BIN parameter 1 is error!");
+            if (args1.IsError) { return args1; }
+            var num = Convert.ToString(args1.IntValue, 2);
+            if (args.Count == 2) {
+                var args2 = args[1].ToNumber("Function DEC2BIN parameter 2 is error!");
+                if (args2.IsError) { return args2; }
+                if (num.Length > args2.IntValue) {
+                    return Operand.Create(num.PadLeft(args2.IntValue, '0'));
+                }
+                return Operand.Error("Function DEC2BIN parameter 2 is error!");
+            }
+            return Operand.Create(num);
+        }
+    }
+    public class Function_DEC2OCT : Function_N
+    {
+        public Function_DEC2OCT(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>();
+            foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
+            var args1 = args[0].ToNumber("Function DEC2OCT parameter 1 is error!");
+            if (args1.IsError) { return args1; }
+            var num = Convert.ToString(args1.IntValue, 8);
+            if (args.Count == 2) {
+                var args2 = args[1].ToNumber("Function DEC2OCT parameter 2 is error!");
+                if (args2.IsError) { return args2; }
+                if (num.Length > args2.IntValue) {
+                    return Operand.Create(num.PadLeft(args2.IntValue, '0'));
+                }
+                return Operand.Error("Function DEC2OCT parameter 2 is error!");
+            }
+            return Operand.Create(num);
+        }
+    }
+    public class Function_DEC2HEX : Function_N
+    {
+        public Function_DEC2HEX(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>();
+            foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
+            var args1 = args[0].ToNumber("Function DEC2HEX parameter 1 is error!");
+            if (args1.IsError) { return args1; }
+            var num = Convert.ToString(args1.IntValue, 16).ToUpper();
+            if (args.Count == 2) {
+                var args2 = args[1].ToNumber("Function DEC2HEX parameter 2 is error!");
+                if (args2.IsError) { return args2; }
+                if (num.Length > args2.IntValue) {
+                    return Operand.Create(num.PadLeft(args2.IntValue, '0'));
+                }
+                return Operand.Error("Function DEC2HEX parameter 2 is error!");
+            }
+            return Operand.Create(num);
+        }
+    }
+    public class Function_BASE : Function_N
+    {
+        public Function_BASE(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>();
+            foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
+            var args1 = args[0].ToNumber("Function BASE parameter 1 is error!");
+            if (args1.IsError) { return args1; }
+            var args2 = args[1].ToNumber("Function BASE parameter 2 is error!");
+            if (args2.IsError) { return args2; }
+            if (args2.IntValue < 2 || args2.IntValue > 36) {
+                return Operand.Error("Function BASE parameter 2 is error!");
+            }
+            var num = Convert.ToString(args1.IntValue, args2.IntValue).ToUpper();
+            if (args.Count == 3) {
+                var args3 = args[2].ToNumber("Function BASE parameter 3 is error!");
+                if (args3.IsError) { return args3; }
+                if (num.Length > args3.IntValue) {
+                    return Operand.Create(num.PadLeft(args3.IntValue, '0'));
+                }
+                return Operand.Error("Function BASE parameter 3 is error!");
+            }
+            return Operand.Create(num);
+        }
+    }
+    #endregion
+
 
     #endregion
 

@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
-using ToolGood.Algorithm.Fast.Internals.Functions;
 using ToolGood.Algorithm.Internals;
+using ToolGood.Algorithm.Internals.Functions;
 using ToolGood.Algorithm.LitJson;
 using ToolGood.Algorithm.math;
 using ToolGood.Algorithm.MathNet.Numerics;
@@ -427,213 +427,110 @@ namespace ToolGood.Algorithm.Fast.Internals
 
         public virtual FunctionBase VisitBIN2OCT_fun(mathParser.BIN2OCT_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            var args1 = args[0].ToText("Function BIN2OCT parameter 1 is error!");
-            if (args1.IsError) { return args1; }
-
-            if (Regex.IsMatch(args1.TextValue, "^[01]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function BIN2OCT parameter 1 is error!"); }
-            var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 2), 8);
-            if (args.Count == 2) {
-                var args2 = args[1].ToNumber("Function BIN2OCT parameter 2 is error!");
-                if (args2.IsError) { return args2; }
-                if (num.Length > args2.IntValue) {
-                    return Operand.Create(num.PadLeft(args2.IntValue, '0'));
-                }
-                return Operand.Error("Function BIN2OCT parameter 2 is error!");
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            return Operand.Create(num);
+            return new Function_BIN2OCT(args);
         }
 
         public virtual FunctionBase VisitBIN2DEC_fun(mathParser.BIN2DEC_funContext context)
         {
-            var args1 = context.expr().Accept(this).ToText("Function BIN2DEC parameter is error!");
-            if (args1.IsError) { return args1; }
-
-            if (Regex.IsMatch(args1.TextValue, "^[01]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function BIN2DEC parameter is error!"); }
-            var num = Convert.ToInt32(args1.TextValue, 2);
-            return Operand.Create(num);
+            var args1 = context.expr().Accept(this);
+            return new Function_BIN2DEC(args1);
         }
 
         public virtual FunctionBase VisitBIN2HEX_fun(mathParser.BIN2HEX_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            var args1 = args[0].ToText("Function BIN2HEX parameter 1 is error!");
-            if (args1.IsError) { return args1; }
-
-            if (Regex.IsMatch(args1.TextValue, "^[01]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function BIN2HEX parameter 1 is error!"); }
-            var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 2), 16).ToUpper();
-            if (args.Count == 2) {
-                var args2 = args[1].ToNumber("Function BIN2HEX parameter 2 is error!");
-                if (args2.IsError) { return args2; }
-                if (num.Length > args2.IntValue) {
-                    return Operand.Create(num.PadLeft(args2.IntValue, '0'));
-                }
-                return Operand.Error("Function BIN2HEX parameter 2 is error!");
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            return Operand.Create(num);
+            return new Function_BIN2HEX(args);
         }
 
         public virtual FunctionBase VisitOCT2BIN_fun(mathParser.OCT2BIN_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            var args1 = args[0].ToText("Function OCT2BIN parameter 1 is error!");
-            if (args1.IsError) { return args1; }
-
-            if (Regex.IsMatch(args1.TextValue, "^[0-8]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function OCT2BIN parameter 1 is error!"); }
-            var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 8), 2);
-            if (args.Count == 2) {
-                var args2 = args[1].ToNumber("Function OCT2BIN parameter 2 is error!");
-                if (args2.IsError) { return args2; }
-                if (num.Length > args2.IntValue) {
-                    return Operand.Create(num.PadLeft(args2.IntValue, '0'));
-                }
-                return Operand.Error("Function OCT2BIN parameter 2 is error!");
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            return Operand.Create(num);
+            return new Function_OCT2BIN(args);
         }
 
         public virtual FunctionBase VisitOCT2DEC_fun(mathParser.OCT2DEC_funContext context)
         {
-            var args1 = context.expr().Accept(this).ToText("Function OCT2DEC parameter is error!");
-            if (args1.IsError) { return args1; }
-
-            if (Regex.IsMatch(args1.TextValue, "^[0-8]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function OCT2DEC parameter is error!"); }
-            var num = Convert.ToInt32(args1.TextValue, 8);
-            return Operand.Create(num);
+            var args1 = context.expr().Accept(this);
+            return new Function_OCT2DEC(args1);
         }
 
         public virtual FunctionBase VisitOCT2HEX_fun(mathParser.OCT2HEX_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            var args1 = args[0].ToText("Function OCT2HEX parameter 1 is error!");
-            if (args1.IsError) { return args1; }
-            if (Regex.IsMatch(args1.TextValue, "^[0-8]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function OCT2HEX parameter 1 is error!"); }
-            var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 8), 16).ToUpper();
-            if (args.Count == 2) {
-                var args2 = args[1].ToNumber("Function OCT2HEX parameter 2 is error!");
-                if (args2.IsError) { return args2; }
-                if (num.Length > args2.IntValue) {
-                    return Operand.Create(num.PadLeft(args2.IntValue, '0'));
-                }
-                return Operand.Error("Function OCT2HEX parameter 2 is error!");
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            return Operand.Create(num);
+            return new Function_OCT2HEX(args);
         }
 
         public virtual FunctionBase VisitDEC2BIN_fun(mathParser.DEC2BIN_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            var args1 = args[0].ToNumber("Function DEC2BIN parameter 1 is error!");
-            if (args1.IsError) { return args1; }
-            var num = System.Convert.ToString(args1.IntValue, 2);
-            if (args.Count == 2) {
-                var args2 = args[1].ToNumber("Function DEC2BIN parameter 2 is error!");
-                if (args2.IsError) { return args2; }
-                if (num.Length > args2.IntValue) {
-                    return Operand.Create(num.PadLeft(args2.IntValue, '0'));
-                }
-                return Operand.Error("Function DEC2BIN parameter 2 is error!");
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            return Operand.Create(num);
+            return new Function_DEC2BIN(args);
         }
 
         public virtual FunctionBase VisitDEC2OCT_fun(mathParser.DEC2OCT_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            var args1 = args[0].ToNumber("Function DEC2OCT parameter 1 is error!");
-            if (args1.IsError) { return args1; }
-            var num = System.Convert.ToString(args1.IntValue, 8);
-            if (args.Count == 2) {
-                var args2 = args[1].ToNumber("Function DEC2OCT parameter 2 is error!");
-                if (args2.IsError) { return args2; }
-                if (num.Length > args2.IntValue) {
-                    return Operand.Create(num.PadLeft(args2.IntValue, '0'));
-                }
-                return Operand.Error("Function DEC2OCT parameter 2 is error!");
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            return Operand.Create(num);
+            return new Function_DEC2OCT(args);
         }
 
         public virtual FunctionBase VisitDEC2HEX_fun(mathParser.DEC2HEX_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            var args1 = args[0].ToNumber("Function DEC2HEX parameter 1 is error!");
-            if (args1.IsError) { return args1; }
-            var num = System.Convert.ToString(args1.IntValue, 16).ToUpper();
-            if (args.Count == 2) {
-                var args2 = args[1].ToNumber("Function DEC2HEX parameter 2 is error!");
-                if (args2.IsError) { return args2; }
-                if (num.Length > args2.IntValue) {
-                    return Operand.Create(num.PadLeft(args2.IntValue, '0'));
-                }
-                return Operand.Error("Function DEC2HEX parameter 2 is error!");
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            return Operand.Create(num);
+            return new Function_DEC2HEX(args);
         }
 
         public virtual FunctionBase VisitHEX2BIN_fun(mathParser.HEX2BIN_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            var args1 = args[0].ToText("Function HEX2BIN parameter 1 is error!");
-            if (args1.IsError) { return args1; }
-            if (Regex.IsMatch(args1.TextValue, "^[0-9a-fA-F]+$") == false) { return Operand.Error("Function HEX2BIN parameter 1 is error!"); }
-
-            var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 16), 2);
-            if (args.Count == 2) {
-                var args2 = args[1].ToNumber("Function HEX2BIN parameter 2 is error!");
-                if (args2.IsError) { return args2; }
-                if (num.Length > args2.IntValue) {
-                    return Operand.Create(num.PadLeft(args2.IntValue, '0'));
-                }
-                return Operand.Error("Function HEX2BIN parameter 2 is error!");
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            return Operand.Create(num);
+            return new Function_HEX2BIN(args);
         }
 
         public virtual FunctionBase VisitHEX2OCT_fun(mathParser.HEX2OCT_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            var args1 = args[0].ToText("Function HEX2OCT parameter 1 is error!");
-            if (args1.IsError) { return args1; }
-            if (Regex.IsMatch(args1.TextValue, "^[0-9a-fA-F]+$") == false) { return Operand.Error("Function HEX2OCT parameter 1 is error!"); }
-            var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 16), 8);
-            if (args.Count == 2) {
-                var args2 = args[1].ToNumber("Function HEX2OCT parameter 2 is error!");
-                if (args2.IsError) { return args2; }
-                if (num.Length > args2.IntValue) {
-                    return Operand.Create(num.PadLeft(args2.IntValue, '0'));
-                }
-                return Operand.Error("Function HEX2OCT parameter 2 is error!");
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            return Operand.Create(num);
+            return new Function_HEX2OCT(args);
         }
 
         public virtual FunctionBase VisitHEX2DEC_fun(mathParser.HEX2DEC_funContext context)
         {
-            var args1 = context.expr().Accept(this).ToText("Function HEX2DEC parameter is error!");
-            if (args1.IsError) { return args1; }
-
-            if (Regex.IsMatch(args1.TextValue, "^[0-9a-fA-F]+$") == false) { return Operand.Error("Function HEX2DEC parameter is error!"); }
-            var num = Convert.ToInt32(args1.TextValue, 16);
-            return Operand.Create(num);
+            var args1 = context.expr().Accept(this);
+            return new Function_HEX2DEC(args1);
         }
 
         #endregion transformation
