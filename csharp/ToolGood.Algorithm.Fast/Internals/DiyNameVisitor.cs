@@ -20,9 +20,9 @@ namespace ToolGood.Algorithm.Internals
                 string str = node.GetText();
                 if (str.StartsWith('@')) {
                     diy.Parameters.Add(new ParameterInfo(str.AsSpan(1).ToString(), node.Symbol.StartIndex, node.Symbol.StopIndex));
-                } else if ((str.StartsWith("【") && str.EndsWith("】"))
-                    || (str.StartsWith("[") && str.EndsWith("]"))
-                    || (str.StartsWith("#") && str.EndsWith("#"))) {
+                } else if ((str.StartsWith('【') && str.EndsWith('】'))
+                    || (str.StartsWith('[') && str.EndsWith(']'))
+                    || (str.StartsWith('#') && str.EndsWith('#'))) {
                     diy.Parameters.Add(new ParameterInfo(str.AsSpan(1, str.Length - 2).ToString(), node.Symbol.StartIndex, node.Symbol.StopIndex));
                 } else {
                     diy.Parameters.Add(new ParameterInfo(str, node.Symbol.StartIndex, node.Symbol.StopIndex));

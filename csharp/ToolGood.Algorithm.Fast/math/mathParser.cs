@@ -32,7 +32,6 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 namespace ToolGood.Algorithm.math
 {
 	[System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.13.2")]
-	[System.CLSCompliant(false)]
 	public partial class mathParser : Parser
 	{
 		protected static DFA[] decisionToDFA;

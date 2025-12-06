@@ -8,7 +8,7 @@ using ToolGood.Algorithm.math;
 
 namespace ToolGood.Algorithm.Fast.Internals
 {
-    public class MathFunctionVisitor : AbstractParseTreeVisitor<FunctionBase>, ImathVisitor<FunctionBase>
+    class MathFunctionVisitor : AbstractParseTreeVisitor<FunctionBase>, ImathVisitor<FunctionBase>
     {
 
         #region base
@@ -1898,7 +1898,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             }
             return new Function_VLOOKUP(args);
         }
-   
+
         #endregion Lookup
 
         #region getValue

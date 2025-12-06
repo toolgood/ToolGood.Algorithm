@@ -236,7 +236,7 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public static Operand CreateJson(string txt)
         {
-            if ((txt.StartsWith("{") && txt.EndsWith("}")) || (txt.StartsWith("[") && txt.EndsWith("]"))) {
+            if ((txt.StartsWith('{') && txt.EndsWith('}')) || (txt.StartsWith('[') && txt.EndsWith(']'))) {
                 try {
                     var json = JsonMapper.ToObject(txt);
                     return Operand.Create(json);

@@ -29,7 +29,6 @@ namespace ToolGood.Algorithm.math {
 /// </summary>
 /// <typeparam name="Result">The return type of the visit operation.</typeparam>
 [System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.13.2")]
-[System.CLSCompliant(false)]
 public interface ImathVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="mathParser.prog"/>.

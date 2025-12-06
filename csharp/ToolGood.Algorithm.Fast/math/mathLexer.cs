@@ -30,7 +30,6 @@ namespace ToolGood.Algorithm.math
 {
 
 	[System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.13.2")]
-	[System.CLSCompliant(false)]
 	public partial class mathLexer : Lexer
 	{
 		protected static DFA[] decisionToDFA;

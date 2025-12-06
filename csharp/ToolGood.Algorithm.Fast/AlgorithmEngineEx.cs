@@ -283,7 +283,7 @@ namespace ToolGood.Algorithm
         /// <param name="json"></param>
         public void AddParameterFromJson(string json)
         {
-            if (json.StartsWith("{") && json.EndsWith("}")) {
+            if (json.StartsWith('{') && json.EndsWith('}')) {
                 var jo = JsonMapper.ToObject(json);
                 if (jo.IsObject) {
                     foreach (var item in jo.inst_object) {

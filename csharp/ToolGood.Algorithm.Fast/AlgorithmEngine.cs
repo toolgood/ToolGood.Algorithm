@@ -9,6 +9,9 @@ using ToolGood.Algorithm.math;
 
 namespace ToolGood.Algorithm
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class AlgorithmEngine
     {
         internal int ExcelIndex = 1;
@@ -66,7 +69,7 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public Operand Evaluate(FunctionBase function)
         {
-            return function.Accept(this);
+            return function.Calculate(this);
         }
         #endregion Parse Evaluate
 
@@ -82,7 +85,7 @@ namespace ToolGood.Algorithm
         {
             try {
                 var function = Parse(exp);
-                var obj = function.Accept(this);
+                var obj = function.Calculate(this);
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -105,7 +108,7 @@ namespace ToolGood.Algorithm
         {
             try {
                 var function = Parse(exp);
-                var obj = function.Accept(this);
+                var obj = function.Calculate(this);
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -128,7 +131,7 @@ namespace ToolGood.Algorithm
         {
             try {
                 var function = Parse(exp);
-                var obj = function.Accept(this);
+                var obj = function.Calculate(this);
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -151,7 +154,7 @@ namespace ToolGood.Algorithm
         {
             try {
                 var function = Parse(exp);
-                var obj = function.Accept(this);
+                var obj = function.Calculate(this);
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -174,7 +177,7 @@ namespace ToolGood.Algorithm
         {
             try {
                 var function = Parse(exp);
-                var obj = function.Accept(this);
+                var obj = function.Calculate(this);
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -197,7 +200,7 @@ namespace ToolGood.Algorithm
         {
             try {
                 var function = Parse(exp);
-                var obj = function.Accept(this);
+                var obj = function.Calculate(this);
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -220,7 +223,7 @@ namespace ToolGood.Algorithm
         {
             try {
                 var function = Parse(exp);
-                var obj = function.Accept(this);
+                var obj = function.Calculate(this);
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -243,7 +246,7 @@ namespace ToolGood.Algorithm
         {
             try {
                 var function = Parse(exp);
-                var obj = function.Accept(this);
+                var obj = function.Calculate(this);
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -266,7 +269,7 @@ namespace ToolGood.Algorithm
         {
             try {
                 var function = Parse(exp);
-                var obj = function.Accept(this);
+                var obj = function.Calculate(this);
                 obj = obj.ToNumber("It can't be converted to number!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -289,7 +292,7 @@ namespace ToolGood.Algorithm
         {
             try {
                 var function = Parse(exp);
-                var obj = function.Accept(this);
+                var obj = function.Calculate(this);
                 obj = obj.ToText("It can't be converted to string!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -312,7 +315,7 @@ namespace ToolGood.Algorithm
         {
             try {
                 var function = Parse(exp);
-                var obj = function.Accept(this);
+                var obj = function.Calculate(this);
                 obj = obj.ToBoolean("It can't be converted to bool!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -335,7 +338,7 @@ namespace ToolGood.Algorithm
         {
             try {
                 var function = Parse(exp);
-                var obj = function.Accept(this);
+                var obj = function.Calculate(this);
                 obj = obj.ToMyDate("It can't be converted to DateTime!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -361,7 +364,7 @@ namespace ToolGood.Algorithm
         {
             try {
                 var function = Parse(exp);
-                var obj = function.Accept(this);
+                var obj = function.Calculate(this);
                 obj = obj.ToMyDate("It can't be converted to DateTime!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
@@ -385,7 +388,7 @@ namespace ToolGood.Algorithm
         {
             try {
                 var function = Parse(exp);
-                var obj = function.Accept(this);
+                var obj = function.Calculate(this);
                 obj = obj.ToMyDate("It can't be converted to DateTime!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
