@@ -2095,7 +2095,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             return Operand.Error("DiyFunction is error!");
         }
 
-        public Operand VisitPARAM_fun(mathParser.PARAM_funContext context)
+        public FunctionBase VisitPARAM_fun(mathParser.PARAM_funContext context)
         {
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText(); if (args1.IsError) return args1; }
@@ -2108,7 +2108,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             return result;
         }
 
-        public Operand VisitHAS_fun(mathParser.HAS_funContext context)
+        public FunctionBase VisitHAS_fun(mathParser.HAS_funContext context)
         {
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this); if (args1.IsError) { return args1; }
@@ -2150,7 +2150,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             return Operand.Error("Function HAS parameter 1 is error!");
         }
 
-        public Operand VisitHASVALUE_fun([Antlr4.Runtime.Misc.NotNull] mathParser.HASVALUE_funContext context)
+        public FunctionBase VisitHASVALUE_fun([Antlr4.Runtime.Misc.NotNull] mathParser.HASVALUE_funContext context)
         {
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this); if (args1.IsError) { return args1; }
@@ -2198,7 +2198,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             return Operand.Error("Function HASVALUE parameter 1 is error!");
         }
 
-        public Operand VisitArrayJson_fun(mathParser.ArrayJson_funContext context)
+        public FunctionBase VisitArrayJson_fun(mathParser.ArrayJson_funContext context)
         {
             OperandKeyValueList result = new OperandKeyValueList(null);
             var js = context.arrayJson();
@@ -2210,7 +2210,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             return result;
         }
 
-        public Operand VisitArrayJson(mathParser.ArrayJsonContext context)
+        public FunctionBase VisitArrayJson(mathParser.ArrayJsonContext context)
         {
             KeyValue keyValue = new KeyValue();
             if (context.NUM() != null) {
@@ -2250,16 +2250,16 @@ namespace ToolGood.Algorithm.Fast.Internals
             return new OperandKeyValue(keyValue);
         }
 
-        public Operand VisitERROR_fun(mathParser.ERROR_funContext context)
+        public FunctionBase VisitERROR_fun(mathParser.ERROR_funContext context)
         {
-            if (context.expr() == null) { return Operand.Error(""); }
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText(); if (args1.IsError) return args1; }
-            return Operand.Error(args1.TextValue);
+            if (context.expr() == null) { return new Function_Value(Operand.Error("")); }
+            var args1 = context.expr().Accept(this);
+            return  new Function_ERROR(args1);
         }
 
-        public Operand VisitVersion_fun(mathParser.Version_funContext context)
+        public FunctionBase VisitVersion_fun(mathParser.Version_funContext context)
         {
-            return Operand.Version;
+            return new Function_Value(Operand.Version);
         }
 
         #endregion getValue

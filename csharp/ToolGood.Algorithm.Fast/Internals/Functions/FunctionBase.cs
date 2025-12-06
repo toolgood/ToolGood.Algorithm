@@ -50,6 +50,11 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
+
+
+
+
+
     public abstract class Function_1 : FunctionBase
     {
         protected FunctionBase func1;
@@ -111,6 +116,18 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
+    public class Function_ERROR : Function_1
+    {
+        public Function_ERROR(FunctionBase func1) : base(func1)
+        {
+        }
+
+        public override Operand Accept(Work work)
+        {
+            var t = func1.Accept(work).TextValue;
+            return Operand.Error(t);
+        }
+    }
 
     #region * / % + - &
     public class Function_Mul : Function_2
