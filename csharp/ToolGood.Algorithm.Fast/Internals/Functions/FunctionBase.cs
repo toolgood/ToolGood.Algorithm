@@ -3985,8 +3985,258 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(ExcelFunctions.FDist((double)x, degreesFreedom, degreesFreedom2));
         }
     }
+    public class Function_FINV : Function_3
+    {
+        public Function_FINV(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function FINV parameter 1 error!"); if (args1.IsError) return args1; }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function FINV parameter 2 error!"); if (args2.IsError) return args2; }
+            var args3 = func3.Accept(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function FINV parameter 3 error!"); if (args3.IsError) return args3; }
+            var p = args1.NumberValue;
+            var degreesFreedom = args2.IntValue;
+            var degreesFreedom2 = args3.IntValue;
+            if (degreesFreedom <= 0.0m || degreesFreedom2 <= 0.0m || p < 0.0m || p > 1.0m) {
+                return Operand.Error("Function FINV parameter error!");
+            }
+            return Operand.Create(ExcelFunctions.FInv((double)p, degreesFreedom, degreesFreedom2));
+        }
+    }
+    public class Function_FISHER : Function_1
+    {
+        public Function_FISHER(FunctionBase func1) : base(func1)
+        {
+        }
 
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function FISHER parameter error!"); if (args1.IsError) { return args1; } }
+            var x = args1.NumberValue;
+            if (x >= 1 || x <= -1) {
+                return Operand.Error("Function FISHER parameter error!");
+            }
+            var n = 0.5 * Math.Log((double)((1 + x) / (1 - x)));
+            return Operand.Create(n);
+        }
+    }
+    public class Function_FISHERINV : Function_1
+    {
+        public Function_FISHERINV(FunctionBase func1) : base(func1)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function FISHERINV parameter error!"); if (args1.IsError) { return args1; } }
+            var x = (double)args1.NumberValue;
+            var n = (Math.Exp((2 * x)) - 1) / (Math.Exp((2 * x)) + 1);
+            return Operand.Create(n);
+        }
+    }
+    public class Function_GAMMADIST: Function_4
+    {
+        public Function_GAMMADIST(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) : base(func1, func2, func3, func4)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function GAMMADIST parameter 1 error!"); if (args1.IsError) return args1; }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function GAMMADIST parameter 2 error!"); if (args2.IsError) return args2; }
+            var args3 = func3.Accept(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function GAMMADIST parameter 3 error!"); if (args3.IsError) return args3; }
+            var args4 = func4.Accept(work); if (args4.Type != OperandType.BOOLEAN) { args4 = args4.ToBoolean("Function GAMMADIST parameter 4 error!"); if (args4.IsError) return args4; }
+            var x = args1.NumberValue;
+            var alpha = args2.NumberValue;
+            var beta = args3.NumberValue;
+            var cumulative = args4.BooleanValue;
+            if (alpha < 0.0m || beta < 0.0m) {
+                return Operand.Error("Function GAMMADIST parameter error!");
+            }
+            return Operand.Create(ExcelFunctions.GammaDist((double)x, (double)alpha, (double)beta, cumulative));
+        }
+    }
+    public class Function_GAMMAINV : Function_3
+    {
+        public Function_GAMMAINV(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function GAMMAINV parameter 1 error!"); if (args1.IsError) return args1; }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function GAMMAINV parameter 2 error!"); if (args2.IsError) return args2; }
+            var args3 = func3.Accept(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function GAMMAINV parameter 3 error!"); if (args3.IsError) return args3; }
+            var probability = args1.NumberValue;
+            var alpha = args2.NumberValue;
+            var beta = args3.NumberValue;
+            if (alpha < 0.0m || beta < 0.0m || probability < 0 || probability > 1.0m) {
+                return Operand.Error("Function GAMMAINV parameter error!");
+            }
+            return Operand.Create(ExcelFunctions.GammaInv((double)probability, (double)alpha, (double)beta));
+        }
+    }
+    public class Function_GAMMALN : Function_1
+    {
+        public Function_GAMMALN(FunctionBase func1) : base(func1)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function GAMMALN parameter error!"); if (args1.IsError) { return args1; } }
+            return Operand.Create(ExcelFunctions.GAMMALN((double)args1.NumberValue));
+        }
+    }
+    public class Function_HYPGEOMDIST:Function_4
+    {
+        public Function_HYPGEOMDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) : base(func1, func2, func3, func4)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function HYPGEOMDIST parameter 1 error!"); if (args1.IsError) return args1; }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function HYPGEOMDIST parameter 2 error!"); if (args2.IsError) return args2; }
+            var args3 = func3.Accept(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function HYPGEOMDIST parameter 3 error!"); if (args3.IsError) return args3; }
+            var args4 = func4.Accept(work); if (args4.Type != OperandType.NUMBER) { args4 = args4.ToNumber("Function HYPGEOMDIST parameter 4 error!"); if (args4.IsError) return args4; }
+            int k = args1.IntValue;
+            int draws = args2.IntValue;
+            int success = args3.IntValue;
+            int population = args4.IntValue;
+            if (!(population >= 0 && success >= 0 && draws >= 0 && success <= population && draws <= population)) {
+                return Operand.Error("Function HYPGEOMDIST parameter error!");
+            }
+            return Operand.Create(ExcelFunctions.HypgeomDist(k, draws, success, population));
+        }
+    }
+    public class Function_LOGINV : Function_3
+    {
+        public Function_LOGINV(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
+        {
+        }
 
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function HYPGEOMDIST parameter 1 error!"); if (args1.IsError) return args1; }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function HYPGEOMDIST parameter 2 error!"); if (args2.IsError) return args2; }
+            var args3 = func3.Accept(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function HYPGEOMDIST parameter 3 error!"); if (args3.IsError) return args3; }
+            if (args3.NumberValue < 0.0m) {
+                return Operand.Error("Function LOGINV parameter error!");
+            }
+            return Operand.Create(ExcelFunctions.LogInv((double)args1.NumberValue, (double)args2.NumberValue, (double)args3.NumberValue));
+        }
+    }
+    public class Function_LOGNORMDIST : Function_3
+    {
+        public Function_LOGNORMDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function LOGNORMDIST parameter 1 error!"); if (args1.IsError) return args1; }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function LOGNORMDIST parameter 2 error!"); if (args2.IsError) return args2; }
+            var args3 = func3.Accept(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function LOGNORMDIST parameter 3 error!"); if (args3.IsError) return args3; }
+            if (args3.NumberValue < 0.0m) {
+                return Operand.Error("Function LOGNORMDIST parameter error!");
+            }
+            return Operand.Create(ExcelFunctions.LognormDist((double)args1.NumberValue, (double)args2.NumberValue, (double)args3.NumberValue));
+        }
+    }
+    public class Function_NEGBINOMDIST:Function_3
+    {
+        public Function_NEGBINOMDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function NEGBINOMDIST parameter 1 error!"); if (args1.IsError) return args1; }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function NEGBINOMDIST parameter 2 error!"); if (args2.IsError) return args2; }
+            var args3 = func3.Accept(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function NEGBINOMDIST parameter 3 error!"); if (args3.IsError) return args3; }
+            int k = args1.IntValue;
+            var r = args2.NumberValue;
+            var p = args3.NumberValue;
+
+            if (!(r >= 0.0m && p >= 0.0m && p <= 1.0m)) {
+                return Operand.Error("Function NEGBINOMDIST parameter error!");
+            }
+            return Operand.Create(ExcelFunctions.NegbinomDist(k, (double)r, (double)p));
+        }
+    }
+    public class Function_POISSON : Function_3
+    {
+        public Function_POISSON(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
+        {
+        }
+
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function NEGBINOMDIST parameter 1 error!"); if (args1.IsError) return args1; }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function NEGBINOMDIST parameter 2 error!"); if (args2.IsError) return args2; }
+            var args3 = func3.Accept(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToNumber("Function NEGBINOMDIST parameter 3 error!"); if (args3.IsError) return args3; }
+            int k = args1.IntValue;
+            var lambda = args2.NumberValue;
+            bool state = args3.BooleanValue;
+            if (!(lambda > 0.0m)) {
+                return Operand.Error("Function POISSON parameter error!");
+            }
+            return Operand.Create(ExcelFunctions.POISSON(k, (double)lambda, state));
+        }
+    }
+    public class Function_TDIST : Function_3
+    {
+        public Function_TDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function TDIST parameter 1 error!"); if (args1.IsError) return args1; }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function TDIST parameter 2 error!"); if (args2.IsError) return args2; }
+            var args3 = func3.Accept(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function TDIST parameter 3 error!"); if (args3.IsError) return args3; }
+            var x = args1.NumberValue;
+            var degreesFreedom = args2.IntValue;
+            var tails = args3.IntValue;
+            if (degreesFreedom <= 0.0m || tails < 1 || tails > 2) {
+                return Operand.Error("Function TDIST parameter error!");
+            }
+            return Operand.Create(ExcelFunctions.TDist((double)x, degreesFreedom, tails));
+        }
+    }
+    public class Function_TINV: Function_2
+    {
+        public Function_TINV(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function TINV parameter 1 error!"); if (args1.IsError) return args1; }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function TINV parameter 2 error!"); if (args2.IsError) return args2; }
+            var p = args1.NumberValue;
+            var degreesFreedom = args2.IntValue;
+            if (degreesFreedom <= 0.0m || p < 0.0m || p > 1.0m) {
+                return Operand.Error("Function TINV parameter error!");
+            }
+            return Operand.Create(ExcelFunctions.TInv((double)p, degreesFreedom));
+        }
+    }
+    public class Function_WEIBULL : Function_4
+    {
+        public Function_WEIBULL(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) : base(func1, func2, func3, func4)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function WEIBULL parameter 1 error!"); if (args1.IsError) return args1; }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function WEIBULL parameter 2 error!"); if (args2.IsError) return args2; }
+            var args3 = func3.Accept(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function WEIBULL parameter 3 error!"); if (args3.IsError) return args3; }
+            var args4 = func4.Accept(work); if (args4.Type != OperandType.BOOLEAN) { args4 = args4.ToBoolean("Function WEIBULL parameter 4 error!"); if (args4.IsError) return args4; }
+            var x = args1.NumberValue;
+            var shape = args2.NumberValue;
+            var scale = args3.NumberValue;
+            var state = args4.BooleanValue;
+            if (shape <= 0.0m || scale <= 0.0m) {
+                return Operand.Error("Function WEIBULL parameter error!");
+            }
+
+            return Operand.Create(ExcelFunctions.WEIBULL((double)x, (double)shape, (double)scale, state));
+        }
+    }
 
     public class Function_QUARTILE : Function_2
     {

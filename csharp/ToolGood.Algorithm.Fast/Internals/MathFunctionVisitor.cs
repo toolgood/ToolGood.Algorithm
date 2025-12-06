@@ -1460,226 +1460,121 @@ namespace ToolGood.Algorithm.Fast.Internals
         public virtual FunctionBase VisitFINV_fun(mathParser.FINV_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function FINV parameter 1 error!"); if (args1.IsError) return args1; }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function FINV parameter 2 error!"); if (args2.IsError) return args2; }
-            var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function FINV parameter 3 error!"); if (args3.IsError) return args3; }
+            var args1 = exprs[0].Accept(this); 
+            var args2 = exprs[1].Accept(this); 
+            var args3 = exprs[2].Accept(this); 
             return new Function_FINV(args1, args2, args3);
-
-            var probability = args1.NumberValue;
-            var degreesFreedom = args2.IntValue;
-            var degreesFreedom2 = args3.IntValue;
-            if (degreesFreedom <= 0.0m || degreesFreedom2 <= 0.0m) {
-                return Operand.Error("Function FINV parameter error!");
-            }
-            return Operand.Create(ExcelFunctions.FInv((double)probability, degreesFreedom, degreesFreedom2));
         }
 
         public virtual FunctionBase VisitFISHER_fun(mathParser.FISHER_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function FISHER parameter error!"); if (args1.IsError) { return args1; } }
+            var args1 = context.expr().Accept(this);
             return new Function_FISHER(args1);
-
-            var x = args1.NumberValue;
-            if (x >= 1 || x <= -1) {
-                return Operand.Error("Function FISHER parameter error!");
-            }
-            var n = 0.5 * Math.Log((double)((1 + x) / (1 - x)));
-            return Operand.Create(n);
         }
 
         public virtual FunctionBase VisitFISHERINV_fun(mathParser.FISHERINV_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function FISHERINV parameter error!"); if (args1.IsError) { return args1; } }
+            var args1 = context.expr().Accept(this);
             return new Function_FISHERINV(args1);
-
-            var x = (double)args1.NumberValue;
-            var n = (Math.Exp((2 * x)) - 1) / (Math.Exp((2 * x)) + 1);
-            return Operand.Create(n);
         }
 
         public virtual FunctionBase VisitGAMMADIST_fun(mathParser.GAMMADIST_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function GAMMADIST parameter 1 error!"); if (args1.IsError) return args1; }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function GAMMADIST parameter 2 error!"); if (args2.IsError) return args2; }
-            var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function GAMMADIST parameter 3 error!"); if (args3.IsError) return args3; }
-            var args4 = exprs[3].Accept(this); if (args4.Type != OperandType.BOOLEAN) { args4 = args4.ToBoolean("Function GAMMADIST parameter 4 error!"); if (args4.IsError) return args4; }
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this); 
+            var args3 = exprs[2].Accept(this);
+            var args4 = exprs[3].Accept(this); 
             return new Function_GAMMADIST(args1, args2, args3, args4);
-
-            var x = args1.NumberValue;
-            var alpha = args2.NumberValue;
-            var beta = args3.NumberValue;
-            var cumulative = args4.BooleanValue;
-            if (alpha < 0.0m || beta < 0.0m) {
-                return Operand.Error("Function GAMMADIST parameter error!");
-            }
-            return Operand.Create(ExcelFunctions.GammaDist((double)x, (double)alpha, (double)beta, cumulative));
         }
 
         public virtual FunctionBase VisitGAMMAINV_fun(mathParser.GAMMAINV_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function GAMMAINV parameter 1 error!"); if (args1.IsError) return args1; }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function GAMMAINV parameter 2 error!"); if (args2.IsError) return args2; }
-            var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function GAMMAINV parameter 3 error!"); if (args3.IsError) return args3; }
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this); 
+            var args3 = exprs[2].Accept(this); 
             return new Function_GAMMAINV(args1, args2, args3);
-
-            var probability = args1.NumberValue;
-            var alpha = args2.NumberValue;
-            var beta = args3.NumberValue;
-            if (alpha < 0.0m || beta < 0.0m || probability < 0 || probability > 1.0m) {
-                return Operand.Error("Function GAMMAINV parameter error!");
-            }
-            return Operand.Create(ExcelFunctions.GammaInv((double)probability, (double)alpha, (double)beta));
         }
 
         public virtual FunctionBase VisitGAMMALN_fun(mathParser.GAMMALN_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function GAMMALN parameter error!"); if (args1.IsError) { return args1; } }
+            var args1 = context.expr().Accept(this); 
             return new Function_GAMMALN(args1);
-
-            return Operand.Create(ExcelFunctions.GAMMALN((double)args1.NumberValue));
         }
 
         public virtual FunctionBase VisitHYPGEOMDIST_fun(mathParser.HYPGEOMDIST_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function HYPGEOMDIST parameter 1 error!"); if (args1.IsError) return args1; }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function HYPGEOMDIST parameter 2 error!"); if (args2.IsError) return args2; }
-            var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function HYPGEOMDIST parameter 3 error!"); if (args3.IsError) return args3; }
-            var args4 = exprs[3].Accept(this); if (args4.Type != OperandType.NUMBER) { args4 = args4.ToNumber("Function HYPGEOMDIST parameter 4 error!"); if (args4.IsError) return args4; }
+            var args1 = exprs[0].Accept(this); 
+            var args2 = exprs[1].Accept(this); 
+            var args3 = exprs[2].Accept(this); 
+            var args4 = exprs[3].Accept(this); 
             return new Function_HYPGEOMDIST(args1, args2, args3, args4);
-
-            int k = args1.IntValue;
-            int draws = args2.IntValue;
-            int success = args3.IntValue;
-            int population = args4.IntValue;
-            if (!(population >= 0 && success >= 0 && draws >= 0 && success <= population && draws <= population)) {
-                return Operand.Error("Function HYPGEOMDIST parameter error!");
-            }
-            return Operand.Create(ExcelFunctions.HypgeomDist(k, draws, success, population));
         }
 
         public virtual FunctionBase VisitLOGINV_fun(mathParser.LOGINV_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function LOGINV parameter 1 error!"); if (args1.IsError) return args1; }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function LOGINV parameter 2 error!"); if (args2.IsError) return args2; }
-            var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function LOGINV parameter 3 error!"); if (args3.IsError) return args3; }
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            var args3 = exprs[2].Accept(this); 
             return new Function_LOGINV(args1, args2, args3);
-
-            if (args3.NumberValue < 0.0m) {
-                return Operand.Error("Function LOGINV parameter error!");
-            }
-            return Operand.Create(ExcelFunctions.LogInv((double)args1.NumberValue, (double)args2.NumberValue, (double)args3.NumberValue));
         }
 
         public virtual FunctionBase VisitLOGNORMDIST_fun(mathParser.LOGNORMDIST_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function LOGNORMDIST parameter 1 error!"); if (args1.IsError) return args1; }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function LOGNORMDIST parameter 2 error!"); if (args2.IsError) return args2; }
-            var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function LOGNORMDIST parameter 3 error!"); if (args3.IsError) return args3; }
+            var args1 = exprs[0].Accept(this); 
+            var args2 = exprs[1].Accept(this);
+            var args3 = exprs[2].Accept(this); 
             return new Function_LOGNORMDIST(args1, args2, args3);
-
-            if (args3.NumberValue < 0.0m) {
-                return Operand.Error("Function LOGNORMDIST parameter error!");
-            }
-            return Operand.Create(ExcelFunctions.LognormDist((double)args1.NumberValue, (double)args2.NumberValue, (double)args3.NumberValue));
         }
 
         public virtual FunctionBase VisitNEGBINOMDIST_fun(mathParser.NEGBINOMDIST_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function NEGBINOMDIST parameter 1 error!"); if (args1.IsError) return args1; }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function NEGBINOMDIST parameter 2 error!"); if (args2.IsError) return args2; }
-            var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function NEGBINOMDIST parameter 3 error!"); if (args3.IsError) return args3; }
+            var args1 = exprs[0].Accept(this); 
+            var args2 = exprs[1].Accept(this); 
+            var args3 = exprs[2].Accept(this); 
             return new Function_NEGBINOMDIST(args1, args2, args3);
-
-            int k = args1.IntValue;
-            var r = args2.NumberValue;
-            var p = args3.NumberValue;
-
-            if (!(r >= 0.0m && p >= 0.0m && p <= 1.0m)) {
-                return Operand.Error("Function NEGBINOMDIST parameter error!");
-            }
-            return Operand.Create(ExcelFunctions.NegbinomDist(k, (double)r, (double)p));
         }
 
         public virtual FunctionBase VisitPOISSON_fun(mathParser.POISSON_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function POISSON parameter 1 error!"); if (args1.IsError) return args1; }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function POISSON parameter 2 error!"); if (args2.IsError) return args2; }
-            var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function POISSON parameter 3 error!"); if (args3.IsError) return args3; }
+            var args1 = exprs[0].Accept(this); 
+            var args2 = exprs[1].Accept(this); 
+            var args3 = exprs[2].Accept(this);
             return new Function_POISSON(args1, args2, args3);
-
-            int k = args1.IntValue;
-            var lambda = args2.NumberValue;
-            bool state = args3.BooleanValue;
-            if (!(lambda > 0.0m)) {
-                return Operand.Error("Function POISSON parameter error!");
-            }
-            return Operand.Create(ExcelFunctions.POISSON(k, (double)lambda, state));
         }
 
         public virtual FunctionBase VisitTDIST_fun(mathParser.TDIST_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function TDIST parameter 1 error!"); if (args1.IsError) return args1; }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function TDIST parameter 2 error!"); if (args2.IsError) return args2; }
-            var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function TDIST parameter 3 error!"); if (args3.IsError) return args3; }
+            var args1 = exprs[0].Accept(this); 
+            var args2 = exprs[1].Accept(this);
+            var args3 = exprs[2].Accept(this); 
             return new Function_TDIST(args1, args2, args3);
-
-            var x = args1.NumberValue;
-            var degreesFreedom = args2.IntValue;
-            var tails = args3.IntValue;
-            if (degreesFreedom <= 0.0m || tails < 1 || tails > 2) {
-                return Operand.Error("Function TDIST parameter error!");
-            }
-            return Operand.Create(ExcelFunctions.TDist((double)x, degreesFreedom, tails));
         }
 
         public virtual FunctionBase VisitTINV_fun(mathParser.TINV_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function TDIST parameter 1 error!"); if (args1.IsError) return args1; }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function TDIST parameter 2 error!"); if (args2.IsError) return args2; }
+            var args1 = exprs[0].Accept(this); 
+            var args2 = exprs[1].Accept(this); 
             return new Function_TINV(args1, args2);
-
-            var probability = args1.NumberValue;
-            var degreesFreedom = args2.IntValue;
-            if (degreesFreedom <= 0.0m) {
-                return Operand.Error("Function TINV parameter error!");
-            }
-            return Operand.Create(ExcelFunctions.TInv((double)probability, degreesFreedom));
         }
 
         public virtual FunctionBase VisitWEIBULL_fun(mathParser.WEIBULL_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function WEIBULL parameter 1 error!"); if (args1.IsError) return args1; }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function WEIBULL parameter 2 error!"); if (args2.IsError) return args2; }
-            var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function WEIBULL parameter 3 error!"); if (args3.IsError) return args3; }
-            var args4 = exprs[3].Accept(this); if (args4.Type != OperandType.BOOLEAN) { args4 = args4.ToBoolean("Function WEIBULL parameter 4 error!"); if (args4.IsError) return args4; }
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            var args3 = exprs[2].Accept(this);
+            var args4 = exprs[3].Accept(this); 
             return new Function_WEIBULL(args1, args2, args3, args4);
-
-            var x = args1.NumberValue;
-            var shape = args2.NumberValue;
-            var scale = args3.NumberValue;
-            var state = args4.BooleanValue;
-            if (shape <= 0.0m || scale <= 0.0m) {
-                return Operand.Error("Function WEIBULL parameter error!");
-            }
-
-            return Operand.Create(ExcelFunctions.WEIBULL((double)x, (double)shape, (double)scale, state));
         }
-
-
-
-
-
-
         #endregion sum
 
         #region csharp
