@@ -2250,11 +2250,11 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function FIND parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function FIND parameter 2 is error!"); if (args2.IsError) { return args2; } }
             if (func3 == null) {
-                var p = args2.TextValue.AsSpan().IndexOf(args1.TextValue) + work.excelIndex;
+                var p = args2.TextValue.AsSpan().IndexOf(args1.TextValue) + work.ExcelIndex;
                 return Operand.Create(p);
             }
             var count = func3.Accept(work).ToNumber("Function FIND parameter 3 is error!"); if (count.IsError) { return count; }
-            var p2 = args2.TextValue.AsSpan(count.IntValue).IndexOf(args1.TextValue) + count.IntValue + work.excelIndex;
+            var p2 = args2.TextValue.AsSpan(count.IntValue).IndexOf(args1.TextValue) + count.IntValue + work.ExcelIndex;
             return Operand.Create(p2);
         }
     }
@@ -2305,7 +2305,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function MID parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function MID parameter 2 is error!"); if (args2.IsError) { return args2; } }
             var args3 = func3.Accept(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function MID parameter 3 is error!"); if (args3.IsError) { return args3; } }
-            return Operand.Create(args1.TextValue.AsSpan(args2.IntValue - work.excelIndex, args3.IntValue).ToString());
+            return Operand.Create(args1.TextValue.AsSpan(args2.IntValue - work.ExcelIndex, args3.IntValue).ToString());
         }
     }
     public class Function_PROPER : Function_1
@@ -2354,7 +2354,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args3 = func3.Accept(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function REPLACE parameter 3 is error!"); if (args3.IsError) { return args3; } }
             var args4 = func4.Accept(work); if (args4.Type != OperandType.TEXT) { args4 = args4.ToText("Function REPLACE parameter 4 is error!"); if (args4.IsError) { return args4; } }
 
-            var start = args2.IntValue - work.excelIndex;
+            var start = args2.IntValue - work.ExcelIndex;
             var length = args3.IntValue;
             var newtext = args4.TextValue;
 
@@ -2438,11 +2438,11 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args2 = func2.Accept(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function SEARCH parameter 2 is error!"); if (args2.IsError) { return args2; } }
 
             if (func3 == null) {
-                var p = args2.TextValue.AsSpan().IndexOf(args1.TextValue, StringComparison.OrdinalIgnoreCase) + work.excelIndex;
+                var p = args2.TextValue.AsSpan().IndexOf(args1.TextValue, StringComparison.OrdinalIgnoreCase) + work.ExcelIndex;
                 return Operand.Create(p);
             }
             var args3 = func3.Accept(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function SEARCH parameter 3 is error!"); if (args3.IsError) { return args3; } }
-            var p2 = args2.TextValue.AsSpan(args3.IntValue).IndexOf(args1.TextValue, StringComparison.OrdinalIgnoreCase) + args3.IntValue + work.excelIndex;
+            var p2 = args2.TextValue.AsSpan(args3.IntValue).IndexOf(args1.TextValue, StringComparison.OrdinalIgnoreCase) + args3.IntValue + work.ExcelIndex;
             return Operand.Create(p2);
         }
     }
@@ -2600,12 +2600,12 @@ namespace ToolGood.Algorithm.Internals.Functions
                 }
                 if (args1.LongValue <= 253402232399L) { // 9999-12-31 12:59:59 日时间 转 时间截 为 253402232399L，
                     var time = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(args1.LongValue);
-                    if (work.useLocalTime) { return Operand.Create(time.ToLocalTime()); }
+                    if (work.UseLocalTime) { return Operand.Create(time.ToLocalTime()); }
                     return Operand.Create(time);
                 }
                 // 注：时间截 253402232399 ms 转时间 为 1978-01-12 05:30:32
                 var time2 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(args1.LongValue);
-                if (work.useLocalTime) { return Operand.Create(time2.ToLocalTime()); }
+                if (work.UseLocalTime) { return Operand.Create(time2.ToLocalTime()); }
                 return Operand.Create(time2);
             } else if (type == 1) {
                 var args1 = args[0].ToText("Function DATEVALUE parameter 1 is error!");
@@ -2618,12 +2618,12 @@ namespace ToolGood.Algorithm.Internals.Functions
             } else if (type == 3) {
                 var args1 = args[0].ToNumber("Function DATEVALUE parameter 1 is error!");
                 var time = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(args1.LongValue);
-                if (work.useLocalTime) { return Operand.Create(time.ToLocalTime()); }
+                if (work.UseLocalTime) { return Operand.Create(time.ToLocalTime()); }
                 return Operand.Create(time);
             } else if (type == 4) {
                 var args1 = args[0].ToNumber("Function DATEVALUE parameter 1 is error!");
                 var time = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(args1.LongValue);
-                if (work.useLocalTime) { return Operand.Create(time.ToLocalTime()); }
+                if (work.UseLocalTime) { return Operand.Create(time.ToLocalTime()); }
                 return Operand.Create(time);
             }
             return Operand.Error("Function DATEVALUE parameter is error!");
@@ -2646,7 +2646,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 type = args2.IntValue;
             }
             DateTime args1;
-            if (work.useLocalTime) {
+            if (work.UseLocalTime) {
                 args1 = args[0].ToMyDate("Function TIMESTAMP parameter 1 is error!").DateValue.ToDateTime(DateTimeKind.Local).ToUniversalTime();
             } else {
                 args1 = args[0].ToMyDate("Function TIMESTAMP parameter 1 is error!").DateValue.ToDateTime(DateTimeKind.Utc);
@@ -2825,7 +2825,7 @@ namespace ToolGood.Algorithm.Internals.Functions
     {
         public override Operand Accept(AlgorithmEngine work)
         {
-            if (work.useLocalTime) {
+            if (work.UseLocalTime) {
                 return Operand.Create(DateTime.Now);
             } else {
                 return Operand.Create(DateTime.UtcNow);
@@ -2837,7 +2837,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Accept(AlgorithmEngine work)
         {
             DateTime now;
-            if (work.useLocalTime) {
+            if (work.UseLocalTime) {
                 now = DateTime.Now;
             } else {
                 now = DateTime.UtcNow;
@@ -3524,10 +3524,10 @@ namespace ToolGood.Algorithm.Internals.Functions
 
             list = list.OrderByDescending(q => q).ToList();
             int k = args2.IntValue;
-            if (k < 1 - work.excelIndex || k > list.Count - work.excelIndex) {
+            if (k < 1 - work.ExcelIndex || k > list.Count - work.ExcelIndex) {
                 return Operand.Error("Function LARGE parameter 2 is error!");
             }
-            return Operand.Create(list[k - work.excelIndex]);
+            return Operand.Create(list[k - work.ExcelIndex]);
         }
     }
     public class Function_SMALL : Function_2
@@ -3544,10 +3544,10 @@ namespace ToolGood.Algorithm.Internals.Functions
             if (o == false) { return Operand.Error("Function SMALL parameter 1 error!"); }
             list = list.OrderBy(q => q).ToList();
             int k = args2.IntValue;
-            if (k < 1 - work.excelIndex || k > list.Count - work.excelIndex) {
+            if (k < 1 - work.ExcelIndex || k > list.Count - work.ExcelIndex) {
                 return Operand.Error("Function SMALL parameter 2 is error!");
             }
-            return Operand.Create(list[k - work.excelIndex]);
+            return Operand.Create(list[k - work.ExcelIndex]);
         }
     }
     public class Function_PERCENTILE : Function_2
@@ -4688,14 +4688,14 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args2 = funcs[1].Accept(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function INDEXOF parameter 2 is error!"); if (args2.IsError) { return args2; } }
             var text = args1.TextValue;
             if (funcs.Length == 2) {
-                return Operand.Create(text.AsSpan().IndexOf(args2.TextValue) + work.excelIndex);
+                return Operand.Create(text.AsSpan().IndexOf(args2.TextValue) + work.ExcelIndex);
             }
             var args3 = funcs[2].Accept(work); if (args3.Type != OperandType.TEXT) { args3 = args3.ToText("Function INDEXOF parameter 3 is error!"); if (args3.IsError) { return args3; } }
             if (funcs.Length == 3) {
-                return Operand.Create(text.AsSpan(args3.IntValue).IndexOf(args2.TextValue) + args3.IntValue + work.excelIndex);
+                return Operand.Create(text.AsSpan(args3.IntValue).IndexOf(args2.TextValue) + args3.IntValue + work.ExcelIndex);
             }
             var args4 = funcs[3].Accept(work); if (args4.Type != OperandType.TEXT) { args4 = args4.ToText("Function INDEXOF parameter 4 is error!"); if (args4.IsError) { return args4; } }
-            return Operand.Create(text.IndexOf(args2.TextValue, args3.IntValue, args4.IntValue) + work.excelIndex);
+            return Operand.Create(text.IndexOf(args2.TextValue, args3.IntValue, args4.IntValue) + work.ExcelIndex);
         }
     }
     public class Function_LASTINDEXOF : Function_N
@@ -4709,14 +4709,14 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args2 = funcs[1].Accept(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function LASTINDEXOF parameter 2 is error!"); if (args2.IsError) { return args2; } }
             var text = args1.TextValue;
             if (funcs.Length == 2) {
-                return Operand.Create(text.AsSpan().LastIndexOf(args2.TextValue) + work.excelIndex);
+                return Operand.Create(text.AsSpan().LastIndexOf(args2.TextValue) + work.ExcelIndex);
             }
             var args3 = funcs[2].Accept(work); if (args3.Type != OperandType.TEXT) { args3 = args3.ToText("Function LASTINDEXOF parameter 3 is error!"); if (args3.IsError) { return args3; } }
             if (funcs.Length == 3) {
-                return Operand.Create(text.AsSpan(0, args3.IntValue).LastIndexOf(args2.TextValue) + work.excelIndex);
+                return Operand.Create(text.AsSpan(0, args3.IntValue).LastIndexOf(args2.TextValue) + work.ExcelIndex);
             }
             var args4 = funcs[3].Accept(work); if (args4.Type != OperandType.TEXT) { args4 = args4.ToText("Function LASTINDEXOF parameter 4 is error!"); if (args4.IsError) { return args4; } }
-            return Operand.Create(text.LastIndexOf(args2.TextValue, args3.IntValue, args4.IntValue) + work.excelIndex);
+            return Operand.Create(text.LastIndexOf(args2.TextValue, args3.IntValue, args4.IntValue) + work.ExcelIndex);
         }
     }
     public class Function_SPLIT : Function_2
@@ -4785,10 +4785,10 @@ namespace ToolGood.Algorithm.Internals.Functions
 
             var text = args1.TextValue;
             if (funcs.Length == 2) {
-                return Operand.Create(text.AsSpan(args2.IntValue - work.excelIndex).ToString());
+                return Operand.Create(text.AsSpan(args2.IntValue - work.ExcelIndex).ToString());
             }
             var args3 = funcs[2].Accept(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function SUBSTRING parameter 3 is error!"); if (args3.IsError) { return args3; } }
-            return Operand.Create(text.AsSpan(args2.IntValue - work.excelIndex, args3.IntValue).ToString());
+            return Operand.Create(text.AsSpan(args2.IntValue - work.ExcelIndex, args3.IntValue).ToString());
         }
     }
 
@@ -4968,7 +4968,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                         }
                     }
                     if (b == 0) {
-                        var index = args3.IntValue - work.excelIndex;
+                        var index = args3.IntValue - work.ExcelIndex;
                         if (index < o.ArrayValue.Count) {
                             return o.ArrayValue[index];
                         }
@@ -4979,7 +4979,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             if (vague) //进行模糊匹配
             {
                 Operand last = null;
-                var index = args3.IntValue - work.excelIndex;
+                var index = args3.IntValue - work.ExcelIndex;
                 foreach (var item in args1.ArrayValue) {
                     var o = item.ToArray(null);
                     if (o.IsError) { return o; }
@@ -5111,6 +5111,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         private FunctionBase func1;
         public Function_PARAMETER(string name)
         {
+            this.name = name;
         }
         public Function_PARAMETER(FunctionBase func1)
         {
@@ -5139,7 +5140,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             if (obj.Type == OperandType.ARRARY) {
                 op = op.ToNumber("ARRARY index is error!");
                 if (op.IsError) { return op; }
-                var index = op.IntValue - work.excelIndex;
+                var index = op.IntValue - work.ExcelIndex;
                 if (index < obj.ArrayValue.Count)
                     return obj.ArrayValue[index];
                 return Operand.Error($"ARRARY index {index} greater than maximum length!");
@@ -5164,7 +5165,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 if (json.IsArray) {
                     op = op.ToNumber("JSON parameter index is error!");
                     if (op.IsError) { return op; }
-                    var index = op.IntValue - work.excelIndex;
+                    var index = op.IntValue - work.ExcelIndex;
                     if (index < json.Count) {
                         var v = json[index];
                         if (v.IsString) return Operand.Create(v.StringValue);
@@ -5206,7 +5207,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Accept(work); args.Add(aa); }
-            return work.DiyFunction(funName, args);
+            return work.ExecuteDiyFunction(funName, args);
         }
     }
     public class Function_PARAM : Function_2
@@ -5227,7 +5228,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             return result;
         }
     }
-    public class Function_HAS:Function_2
+    public class Function_HAS : Function_2
     {
         public Function_HAS(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
@@ -5327,7 +5328,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    public class Function_ArrayJson:Function_N
+    public class Function_ArrayJson : Function_N
     {
         public Function_ArrayJson(FunctionBase[] funcs) : base(funcs)
         {
@@ -5342,10 +5343,10 @@ namespace ToolGood.Algorithm.Internals.Functions
             return result;
         }
     }
-    public class Function_ArrayJsonItem: Function_1
+    public class Function_ArrayJsonItem : Function_1
     {
         private string key;
-        public Function_ArrayJsonItem(string key,FunctionBase func1) : base(func1)
+        public Function_ArrayJsonItem(string key, FunctionBase func1) : base(func1)
         {
             this.key = key;
         }

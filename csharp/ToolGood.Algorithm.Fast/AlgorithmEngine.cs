@@ -11,19 +11,20 @@ namespace ToolGood.Algorithm
 {
     public class AlgorithmEngine
     {
-        public int excelIndex;
-        public bool useLocalTime;
+        internal int ExcelIndex;
+        public bool UseLocalTime;
         public DistanceUnitType DistanceUnit = DistanceUnitType.M;
         public AreaUnitType AreaUnit = AreaUnitType.M2;
         public VolumeUnitType VolumeUnit = VolumeUnitType.M3;
         public MassUnitType MassUnit = MassUnitType.KG;
         public string LastError { get; private set; }
+        public bool UseExcelIndex { set { ExcelIndex = value ? 1 : 0; } }
 
         public virtual Operand GetParameter(string parameter)
         {
             return Operand.Error($"Parameter [{parameter}] is missing.");
         }
-        public virtual Operand DiyFunction(string parameter, List<Operand> args)
+        public virtual Operand ExecuteDiyFunction(string parameter, List<Operand> args)
         {
             return Operand.Error($"DiyFunction [{parameter}] is missing.");
         }
@@ -312,7 +313,7 @@ namespace ToolGood.Algorithm
             try {
                 var function = Parse(exp);
                 var obj = Evaluate(function);
-                obj = obj.ToText("It can't be converted to bool!");
+                obj = obj.ToBoolean("It can't be converted to bool!");
                 if (obj.IsError) {
                     LastError = obj.ErrorMsg;
                     return def;
@@ -340,7 +341,7 @@ namespace ToolGood.Algorithm
                     LastError = obj.ErrorMsg;
                     return def;
                 }
-                if (useLocalTime) {
+                if (UseLocalTime) {
                     return obj.DateValue.ToDateTime(DateTimeKind.Local);
                 }
                 return obj.DateValue.ToDateTime(DateTimeKind.Utc);
