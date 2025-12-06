@@ -3745,7 +3745,7 @@ namespace ToolGood.Algorithm.Internals
 
             StringComparison comparison = StringComparison.Ordinal;
             if (exprs.Length == 3) {
-                var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function REMOVESTART parameter 3 is error!"); if (args3.IsError) { return args3; } }
+                var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function REMOVEEND parameter 3 is error!"); if (args3.IsError) { return args3; } }
                 if (args3.BooleanValue) {
                     comparison = StringComparison.OrdinalIgnoreCase;
                 }

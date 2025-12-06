@@ -80,83 +80,11 @@ namespace ToolGood.Algorithm.math
 		public const int
 			RULE_prog = 0, RULE_expr = 1, RULE_num = 2, RULE_unit = 3, RULE_arrayJson = 4,
 			RULE_parameter2 = 5;
-		public static readonly string[] ruleNames = {
-		"prog", "expr", "num", "unit", "arrayJson", "parameter2"
-	};
+		public static readonly string[] ruleNames = { };
 
-		private static readonly string[] _LiteralNames = {
-		null, "'.'", "'('", "')'", "','", "'['", "']'", "'!'", "'%'", "'*'", "'/'",
-		"'+'", "'&'", "'>'", "'>='", "'<'", "'<='", "'='", "'=='", "'==='", "'!=='",
-		"'!='", "'<>'", "'&&'", "'||'", "'?'", "':'", "'{'", "'}'", "'-'", null,
-		null, "'NULL'", "'ERROR'", null, "'IF'", "'IFERROR'", "'ISNUMBER'", "'ISTEXT'",
-		"'ISERROR'", "'ISNONTEXT'", "'ISLOGICAL'", "'ISEVEN'", "'ISODD'", "'ISNULL'",
-		"'ISNULLORERROR'", "'AND'", "'OR'", "'NOT'", "'TRUE'", "'FALSE'", "'E'",
-		"'PI'", "'DEC2BIN'", "'DEC2HEX'", "'DEC2OCT'", "'HEX2BIN'", "'HEX2DEC'",
-		"'HEX2OCT'", "'OCT2BIN'", "'OCT2DEC'", "'OCT2HEX'", "'BIN2OCT'", "'BIN2DEC'",
-		"'BIN2HEX'", "'ABS'", "'QUOTIENT'", "'MOD'", "'SIGN'", "'SQRT'", "'TRUNC'",
-		"'INT'", "'GCD'", "'LCM'", "'COMBIN'", "'PERMUT'", "'DEGREES'", "'RADIANS'",
-		"'COS'", "'COSH'", "'SIN'", "'SINH'", "'TAN'", "'TANH'", "'ACOS'", "'ACOSH'",
-		"'ASIN'", "'ASINH'", "'ATAN'", "'ATANH'", "'ATAN2'", "'ROUND'", "'ROUNDDOWN'",
-		"'ROUNDUP'", "'CEILING'", "'FLOOR'", "'EVEN'", "'ODD'", "'MROUND'", "'RAND'",
-		"'RANDBETWEEN'", "'FACT'", "'FACTDOUBLE'", "'POWER'", "'EXP'", "'LN'",
-		"'LOG'", "'LOG10'", "'MULTINOMIAL'", "'PRODUCT'", "'SQRTPI'", "'SUMSQ'",
-		"'ASC'", null, "'CHAR'", "'CLEAN'", "'CODE'", "'CONCATENATE'", "'EXACT'",
-		"'FIND'", "'FIXED'", "'LEFT'", "'LEN'", null, "'MID'", "'PROPER'", "'REPLACE'",
-		"'REPT'", "'RIGHT'", "'RMB'", "'SEARCH'", "'SUBSTITUTE'", "'T'", "'TEXT'",
-		"'TRIM'", null, "'VALUE'", "'DATEVALUE'", "'TIMEVALUE'", "'DATE'", "'TIME'",
-		"'NOW'", "'TODAY'", "'YEAR'", "'MONTH'", "'DAY'", "'HOUR'", "'MINUTE'",
-		"'SECOND'", "'WEEKDAY'", "'DATEDIF'", "'DAYS360'", "'EDATE'", "'EOMONTH'",
-		"'NETWORKDAYS'", "'WORKDAY'", "'WEEKNUM'", "'MAX'", "'MEDIAN'", "'MIN'",
-		"'QUARTILE'", "'MODE'", "'LARGE'", "'SMALL'", null, null, "'AVERAGE'",
-		"'AVERAGEIF'", "'GEOMEAN'", "'HARMEAN'", "'COUNT'", "'COUNTIF'", "'SUM'",
-		"'SUMIF'", "'AVEDEV'", null, null, null, "'COVARIANCE.S'", "'DEVSQ'",
-		null, null, null, null, null, null, null, null, null, null, null, null,
-		"'FISHER'", "'FISHERINV'", null, null, null, null, null, null, null, null,
-		null, null, "'WEIBULL'", "'URLENCODE'", "'URLDECODE'", "'HTMLENCODE'",
-		"'HTMLDECODE'", "'BASE64TOTEXT'", "'BASE64URLTOTEXT'", "'TEXTTOBASE64'",
-		"'TEXTTOBASE64URL'", "'REGEX'", "'REGEXREPALCE'", null, "'GUID'", "'MD5'",
-		"'SHA1'", "'SHA256'", "'SHA512'", "'CRC32'", "'HMACMD5'", "'HMACSHA1'",
-		"'HMACSHA256'", "'HMACSHA512'", null, null, "'INDEXOF'", "'LASTINDEXOF'",
-		"'SPLIT'", "'JOIN'", "'SUBSTRING'", "'STARTSWITH'", "'ENDSWITH'", "'ISNULLOREMPTY'",
-		"'ISNULLORWHITESPACE'", "'REMOVESTART'", "'REMOVEEND'", "'JSON'", "'VLOOKUP'",
-		"'ARRAY'", null, "'ADDYEARS'", "'ADDMONTHS'", "'ADDDAYS'", "'ADDHOURS'",
-		"'ADDMINUTES'", "'ADDSECONDS'", "'TIMESTAMP'"
+		private static readonly string[] _LiteralNames = { 
 	};
-		private static readonly string[] _SymbolicNames = {
-		null, null, null, null, null, null, null, null, null, null, null, null,
-		null, null, null, null, null, null, null, null, null, null, null, null,
-		null, null, null, null, null, "SUB", "NUM", "STRING", "NULL", "ERROR",
-		"UNIT", "IF", "IFERROR", "ISNUMBER", "ISTEXT", "ISERROR", "ISNONTEXT",
-		"ISLOGICAL", "ISEVEN", "ISODD", "ISNULL", "ISNULLORERROR", "AND", "OR",
-		"NOT", "TRUE", "FALSE", "E", "PI", "DEC2BIN", "DEC2HEX", "DEC2OCT", "HEX2BIN",
-		"HEX2DEC", "HEX2OCT", "OCT2BIN", "OCT2DEC", "OCT2HEX", "BIN2OCT", "BIN2DEC",
-		"BIN2HEX", "ABS", "QUOTIENT", "MOD", "SIGN", "SQRT", "TRUNC", "INT", "GCD",
-		"LCM", "COMBIN", "PERMUT", "DEGREES", "RADIANS", "COS", "COSH", "SIN",
-		"SINH", "TAN", "TANH", "ACOS", "ACOSH", "ASIN", "ASINH", "ATAN", "ATANH",
-		"ATAN2", "ROUND", "ROUNDDOWN", "ROUNDUP", "CEILING", "FLOOR", "EVEN",
-		"ODD", "MROUND", "RAND", "RANDBETWEEN", "FACT", "FACTDOUBLE", "POWER",
-		"EXP", "LN", "LOG", "LOG10", "MULTINOMIAL", "PRODUCT", "SQRTPI", "SUMSQ",
-		"ASC", "JIS", "CHAR", "CLEAN", "CODE", "CONCATENATE", "EXACT", "FIND",
-		"FIXED", "LEFT", "LEN", "LOWER", "MID", "PROPER", "REPLACE", "REPT", "RIGHT",
-		"RMB", "SEARCH", "SUBSTITUTE", "T", "TEXT", "TRIM", "UPPER", "VALUE",
-		"DATEVALUE", "TIMEVALUE", "DATE", "TIME", "NOW", "TODAY", "YEAR", "MONTH",
-		"DAY", "HOUR", "MINUTE", "SECOND", "WEEKDAY", "DATEDIF", "DAYS360", "EDATE",
-		"EOMONTH", "NETWORKDAYS", "WORKDAY", "WEEKNUM", "MAX", "MEDIAN", "MIN",
-		"QUARTILE", "MODE", "LARGE", "SMALL", "PERCENTILE", "PERCENTRANK", "AVERAGE",
-		"AVERAGEIF", "GEOMEAN", "HARMEAN", "COUNT", "COUNTIF", "SUM", "SUMIF",
-		"AVEDEV", "STDEV", "STDEVP", "COVAR", "COVARIANCES", "DEVSQ", "VAR", "VARP",
-		"NORMDIST", "NORMINV", "NORMSDIST", "NORMSINV", "BETADIST", "BETAINV",
-		"BINOMDIST", "EXPONDIST", "FDIST", "FINV", "FISHER", "FISHERINV", "GAMMADIST",
-		"GAMMAINV", "GAMMALN", "HYPGEOMDIST", "LOGINV", "LOGNORMDIST", "NEGBINOMDIST",
-		"POISSON", "TDIST", "TINV", "WEIBULL", "URLENCODE", "URLDECODE", "HTMLENCODE",
-		"HTMLDECODE", "BASE64TOTEXT", "BASE64URLTOTEXT", "TEXTTOBASE64", "TEXTTOBASE64URL",
-		"REGEX", "REGEXREPALCE", "ISREGEX", "GUID", "MD5", "SHA1", "SHA256", "SHA512",
-		"CRC32", "HMACMD5", "HMACSHA1", "HMACSHA256", "HMACSHA512", "TRIMSTART",
-		"TRIMEND", "INDEXOF", "LASTINDEXOF", "SPLIT", "JOIN", "SUBSTRING", "STARTSWITH",
-		"ENDSWITH", "ISNULLOREMPTY", "ISNULLORWHITESPACE", "REMOVESTART", "REMOVEEND",
-		"JSON", "VLOOKUP", "ARRAY", "ALGORITHMVERSION", "ADDYEARS", "ADDMONTHS",
-		"ADDDAYS", "ADDHOURS", "ADDMINUTES", "ADDSECONDS", "TIMESTAMP", "HAS",
-		"HASVALUE", "PARAM", "PARAMETER", "PARAMETER2", "WS", "COMMENT", "LINE_COMMENT"
+		private static readonly string[] _SymbolicNames = { 
 	};
 		public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
