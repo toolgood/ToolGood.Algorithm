@@ -32,7 +32,7 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 namespace ToolGood.Algorithm.math
 {
 	[System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.13.2")]
-	public partial class mathParser : Parser
+	partial class mathParser : Parser
 	{
 		protected static DFA[] decisionToDFA;
 		protected static PredictionContextCache sharedContextCache = new PredictionContextCache();

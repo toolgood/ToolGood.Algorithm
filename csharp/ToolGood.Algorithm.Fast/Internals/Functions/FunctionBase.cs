@@ -21,12 +21,22 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <returns></returns>
         public abstract Operand Calculate(AlgorithmEngine work);
 
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
         public override string ToString()
         {
             StringBuilder stringBuilder = new StringBuilder();
             ToString(stringBuilder, false);
             return stringBuilder.ToString();
         }
+        /// <summary>
+        /// Appends a string representation of the current object to the specified StringBuilder, optionally including
+        /// brackets.
+        /// </summary>
+        /// <param name="stringBuilder">The StringBuilder to which the string representation will be appended. Cannot be null.</param>
+        /// <param name="addBrackets">true to enclose the string representation in brackets; otherwise, false.</param>
         public abstract void ToString(StringBuilder stringBuilder, bool addBrackets);
 
 
