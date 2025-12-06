@@ -23,6 +23,12 @@ namespace ToolGood.Algorithm.Internals.Functions
             var r = System.Web.HttpUtility.UrlEncode(s);
             return Operand.Create(r);
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("URLENCODE(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_URLDECODE : Function_1
@@ -37,6 +43,12 @@ namespace ToolGood.Algorithm.Internals.Functions
             var s = args1.TextValue;
             var r = System.Web.HttpUtility.UrlDecode(s);
             return Operand.Create(r);
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("URLDECODE(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
         }
     }
 
@@ -53,6 +65,12 @@ namespace ToolGood.Algorithm.Internals.Functions
             var r = System.Web.HttpUtility.HtmlEncode(s);
             return Operand.Create(r);
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("HTMLENCODE(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_HTMLDECODE : Function_1
@@ -67,6 +85,12 @@ namespace ToolGood.Algorithm.Internals.Functions
             var s = args1.TextValue;
             var r = System.Web.HttpUtility.HtmlDecode(s);
             return Operand.Create(r);
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("HTMLDECODE(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
         }
     }
 
@@ -92,6 +116,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             } catch (Exception) { }
             return Operand.Error("Function BASE64TOTEXT is error!");
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("BASE64TOTEXT(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_BASE64URLTOTEXT : Function_N
@@ -103,7 +138,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText($"Function TEXTTOBASE64 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText($"Function BASE64URLTOTEXT parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
             try {
                 Encoding encoding;
                 if (args.Count == 1) {
@@ -115,6 +150,17 @@ namespace ToolGood.Algorithm.Internals.Functions
                 return Operand.Create(t);
             } catch (Exception) { }
             return Operand.Error("Function BASE64URLTOTEXT is error!");
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("BASE64URLTOTEXT(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -142,6 +188,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Error("Function TEXTTOBASE64 is error!");
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("TEXTTOBASE64(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_TEXTTOBASE64URL : Function_N
@@ -167,6 +224,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             } catch (Exception) { }
             return Operand.Error("Function TEXTTOBASE64URL is error!");
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("TEXTTOBASE64URL(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_REGEX : Function_2
@@ -188,6 +256,16 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(b.Value);
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("REGEX(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_REGEXREPALCE : Function_3
@@ -204,6 +282,20 @@ namespace ToolGood.Algorithm.Internals.Functions
             var b = Regex.Replace(args1.TextValue, args2.TextValue, args3.TextValue);
             return Operand.Create(b);
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("REGEXREPALCE(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+                if (func3 != null) {
+                    stringBuilder.Append(", ");
+                    func3.ToString(stringBuilder, false);
+                }
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_ISREGEX : Function_2
@@ -219,6 +311,16 @@ namespace ToolGood.Algorithm.Internals.Functions
             var b = Regex.IsMatch(args1.TextValue, args2.TextValue);
             return Operand.Create(b);
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("ISREGEX(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_GUID : FunctionBase
@@ -230,6 +332,10 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             return Operand.Create(System.Guid.NewGuid().ToString());
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("GUID()");
         }
     }
 
@@ -256,6 +362,17 @@ namespace ToolGood.Algorithm.Internals.Functions
                 return Operand.Error("Function MD5 is error!" + ex.Message);
             }
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("MD5(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_SHA1 : Function_N
@@ -280,6 +397,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             } catch (Exception ex) {
                 return Operand.Error("Function SHA1 is error!" + ex.Message);
             }
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("SHA1(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -306,6 +434,17 @@ namespace ToolGood.Algorithm.Internals.Functions
                 return Operand.Error("Function SHA256 is error!" + ex.Message);
             }
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("SHA256(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_SHA512 : Function_N
@@ -330,6 +469,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             } catch (Exception ex) {
                 return Operand.Error("Function SHA512 is error!" + ex.Message);
             }
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("SHA512(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -356,6 +506,17 @@ namespace ToolGood.Algorithm.Internals.Functions
                 return Operand.Error("Function CRC32 is error!" + ex.Message);
             }
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("CRC32(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_HMACMD5 : Function_N
@@ -380,6 +541,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             } catch (Exception ex) {
                 return Operand.Error("Function HMACMD5 is error!" + ex.Message);
             }
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("HMACMD5(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -406,6 +578,17 @@ namespace ToolGood.Algorithm.Internals.Functions
                 return Operand.Error("Function HMACSHA1 is error!" + ex.Message);
             }
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("HMACSHA1(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_HMACSHA256 : Function_N
@@ -430,6 +613,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             } catch (Exception ex) {
                 return Operand.Error("Function HMACSHA256 is error!" + ex.Message);
             }
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("HMACSHA256(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -456,6 +650,17 @@ namespace ToolGood.Algorithm.Internals.Functions
                 return Operand.Error("Function HMACSHA512 is error!" + ex.Message);
             }
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("HMACSHA512(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_TRIMSTART : Function_N
@@ -475,6 +680,17 @@ namespace ToolGood.Algorithm.Internals.Functions
                 return Operand.Create(args[0].TextValue.TrimStart(trimChars));
             }
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("TRIMSTART(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_TRIMEND : Function_N
@@ -493,6 +709,17 @@ namespace ToolGood.Algorithm.Internals.Functions
                 char[] trimChars = args[1].TextValue.ToCharArray();
                 return Operand.Create(args[0].TextValue.TrimEnd(trimChars));
             }
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("TRIMEND(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -517,6 +744,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args4 = funcs[3].Calculate(work); if (args4.Type != OperandType.TEXT) { args4 = args4.ToText("Function INDEXOF parameter 4 is error!"); if (args4.IsError) { return args4; } }
             return Operand.Create(text.IndexOf(args2.TextValue, args3.IntValue, args4.IntValue) + work.ExcelIndex);
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("INDEXOF(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_LASTINDEXOF : Function_N
@@ -540,6 +778,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args4 = funcs[3].Calculate(work); if (args4.Type != OperandType.TEXT) { args4 = args4.ToText("Function LASTINDEXOF parameter 4 is error!"); if (args4.IsError) { return args4; } }
             return Operand.Create(text.LastIndexOf(args2.TextValue, args3.IntValue, args4.IntValue) + work.ExcelIndex);
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("LASTINDEXOF(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_SPLIT : Function_2
@@ -553,6 +802,16 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function SPLIT parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function SPLIT parameter 2 is error!"); if (args2.IsError) { return args2; } }
             return Operand.Create(args1.TextValue.Split(args2.TextValue.ToArray()));
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("SPLIT(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -594,6 +853,17 @@ namespace ToolGood.Algorithm.Internals.Functions
                 return Operand.Create(string.Join(args1.TextValue, list));
             }
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("JOIN(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_SUBSTRING : Function_N
@@ -613,6 +883,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function SUBSTRING parameter 3 is error!"); if (args3.IsError) { return args3; } }
             return Operand.Create(text.AsSpan(args2.IntValue - work.ExcelIndex, args3.IntValue).ToString());
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("SUBSTRING(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -634,6 +915,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function STARTSWITH parameter 3 is error!"); if (args3.IsError) { return args3; } }
             return Operand.Create(text.AsSpan().StartsWith(args2.TextValue.AsSpan(), args3.BooleanValue ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("STARTSWITH(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_ENDSWITH : Function_N
@@ -653,6 +945,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function ENDSWITH parameter 3 is error!"); if (args3.IsError) { return args3; } }
             return Operand.Create(text.AsSpan().EndsWith(args2.TextValue.AsSpan(), args3.BooleanValue ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("ENDSWITH(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_ISNULLOREMPTY : Function_1
@@ -666,6 +969,12 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function ISNULLOREMPTY parameter 1 is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(string.IsNullOrEmpty(args1.TextValue));
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("ISNULLOREMPTY(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_ISNULLORWHITESPACE : Function_1
@@ -678,6 +987,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function ISNULLORWHITESPACE parameter 1 is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(string.IsNullOrWhiteSpace(args1.TextValue));
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("ISNULLORWHITESPACE(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
         }
     }
 
@@ -704,6 +1019,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return args1;
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("REMOVESTART(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_REMOVEEND : Function_N
@@ -729,6 +1055,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return args1;
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("REMOVEEND(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_JSON : Function_1
@@ -751,6 +1088,12 @@ namespace ToolGood.Algorithm.Internals.Functions
                 } catch (Exception) { }
             }
             return Operand.Error("Function JSON parameter is error!");
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("JSON(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
         }
     }
 
@@ -799,6 +1142,16 @@ namespace ToolGood.Algorithm.Internals.Functions
                 return Operand.False;
             }
             return Operand.Error("Function HAS parameter 1 is error!");
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("HAS(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -853,6 +1206,16 @@ namespace ToolGood.Algorithm.Internals.Functions
                 return Operand.False;
             }
             return Operand.Error("Function HASVALUE parameter 1 is error!");
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("HASVALUE(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 

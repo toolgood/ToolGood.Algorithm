@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.MathNet.Numerics;
 
 namespace ToolGood.Algorithm.Internals.Functions
 {
@@ -25,6 +27,17 @@ namespace ToolGood.Algorithm.Internals.Functions
 
             return Operand.Create(list.Max());
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("MAX(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_MIN : Function_N
@@ -42,6 +55,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             if (o == false) { return Operand.Error("Function MIN parameter error!"); }
             return Operand.Create(list.Min());
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("MIN(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_SUM : Function_N
@@ -58,6 +82,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             var o = FunctionUtil.F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function SUM parameter error!"); }
             return Operand.Create(list.Sum());
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("SUM(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -103,6 +138,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(sum);
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("SUMIF(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_AVEDEV : Function_N
@@ -126,6 +172,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(sum / list.Count);
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("AVEDEV(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_AVERAGE : Function_N
@@ -144,6 +201,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             if (list.Count == 0) { return Operand.Zero; }
             return Operand.Create(list.Average());
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("AVERAGE(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_AVERAGEIF : Function_N
@@ -159,13 +227,13 @@ namespace ToolGood.Algorithm.Internals.Functions
 
             List<decimal> list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args[0], list);
-            if (o == false) { return Operand.Error("Function AVERAGE parameter 1 error!"); }
+            if (o == false) { return Operand.Error("Function AVERAGEIF parameter 1 error!"); }
 
             List<decimal> sumdbs;
             if (args.Count == 3) {
                 sumdbs = new List<decimal>();
                 var o2 = FunctionUtil.F_base_GetList(args[2], sumdbs);
-                if (o2 == false) { return Operand.Error("Function AVERAGE parameter 3 error!"); }
+                if (o2 == false) { return Operand.Error("Function AVERAGEIF parameter 3 error!"); }
             } else {
                 sumdbs = list;
             }
@@ -186,11 +254,22 @@ namespace ToolGood.Algorithm.Internals.Functions
                         count = FunctionUtil.F_base_countif(list, m2.Item1, m2.Item2);
                         sum = FunctionUtil.F_base_sumif(list, m2.Item1, m2.Item2, sumdbs);
                     } else {
-                        return Operand.Error("Function AVERAGE parameter 2 error!");
+                        return Operand.Error("Function AVERAGEIF parameter 2 error!");
                     }
                 }
             }
             return Operand.Create(sum / count);
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("AVERAGEIF(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -208,6 +287,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             var o = FunctionUtil.F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function COUNT parameter error!"); }
             return Operand.Create(list.Count);
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("COUNT(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -242,6 +332,16 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create((decimal)count);
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("COUNTIF(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_COUNTA : Function_N
@@ -258,6 +358,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             var o = FunctionUtil.F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function COUNTA parameter error!"); }
             return Operand.Create((decimal)list.Count);
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("COUNTA(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -279,6 +390,17 @@ namespace ToolGood.Algorithm.Internals.Functions
 
             list = list.OrderBy(q => q).ToList();
             return Operand.Create(list[list.Count / 2]);
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("MEDIAN(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -307,6 +429,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(dict.OrderByDescending(q => q.Value).First().Key);
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("MODE(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_LARGE : Function_2
@@ -330,6 +463,16 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(list[k - work.ExcelIndex]);
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("LARGE(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_SMALL : Function_2
@@ -352,6 +495,16 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(list[k - work.ExcelIndex]);
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("SMALL(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_PERCENTILE : Function_2
@@ -369,6 +522,16 @@ namespace ToolGood.Algorithm.Internals.Functions
             if (o == false) { return Operand.Error("Function PERCENTILE parameter 1 error!"); }
             var k = args2.NumberValue;
             return Operand.Create(ExcelFunctions.Percentile(list.Select(q => (double)q).ToArray(), (double)k));
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("PERCENTILE(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -396,6 +559,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             double geoMean = Math.Pow(product, 1.0 / list.Count);
             return Operand.Create((decimal)geoMean);
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("GEOMEAN(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_HARMEAN : Function_N
@@ -422,6 +596,17 @@ namespace ToolGood.Algorithm.Internals.Functions
                 sum += 1 / db;
             }
             return Operand.Create(list.Count / sum);
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("HARMEAN(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -455,6 +640,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(Math.Round(v, d, MidpointRounding.AwayFromZero));
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("PERCENTRANK(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_RANGE : Function_2
@@ -468,6 +664,16 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function RANGE parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function RANGE parameter 2 is error!"); if (args2.IsError) { return args2; } }
             return Operand.Create(args2.NumberValue - args1.NumberValue);
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("RANGE(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -488,6 +694,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             var avg = list.Average();
             var variance = list.Sum(d => (d - avg) * (d - avg)) / list.Count;
             return Operand.Create(variance);
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("VARIANCE(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -513,6 +730,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(Math.Sqrt((double)sum / (list.Count - 1)));
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("STDEV(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_STDEVP : Function_N
@@ -535,6 +763,17 @@ namespace ToolGood.Algorithm.Internals.Functions
                 sum += (list[i] - avg) * (list[i] - avg);
             }
             return Operand.Create(Math.Sqrt((double)sum / list.Count));
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("STDEVP(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -559,6 +798,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(sum);
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("DEVSQ(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_VAR : Function_N
@@ -570,15 +820,15 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var aa = item.Calculate(work).ToNumber($"Function VARVARP parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
+            foreach (var item in funcs) { var aa = item.Calculate(work).ToNumber($"Function VAR parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
             if (args.Count == 1) {
                 return Operand.Error("Function VAR parameter only one error!");
             }
 
             List<decimal> list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args, list);
-            if (o == false) { return Operand.Error("Function VARVARP parameter error!"); }
-            if (list.Count == 0) { return Operand.Error("Function VARVARP parameter error!"); }
+            if (o == false) { return Operand.Error("Function VAR parameter error!"); }
+            if (list.Count == 0) { return Operand.Error("Function VAR parameter error!"); }
             decimal sum = 0;
             decimal sum2 = 0;
             for (int i = 0; i < list.Count; i++) {
@@ -586,6 +836,17 @@ namespace ToolGood.Algorithm.Internals.Functions
                 sum2 += list[i];
             }
             return Operand.Create((list.Count * sum - sum2 * sum2) / list.Count / (list.Count - 1));
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("VAR(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -614,6 +875,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(sum / list.Count);
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("VARP(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_NORMDIST : Function_4
@@ -635,6 +907,24 @@ namespace ToolGood.Algorithm.Internals.Functions
             var b = args4.BooleanValue;
             return Operand.Create(ExcelFunctions.NormDist((double)num, (double)avg, (double)STDEV, b));
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("NORMDIST(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+                if (func3 != null) {
+                    stringBuilder.Append(", ");
+                    func3.ToString(stringBuilder, false);
+                    if (func4 != null) {
+                        stringBuilder.Append(", ");
+                        func4.ToString(stringBuilder, false);
+                    }
+                }
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_NORMINV : Function_3
@@ -653,6 +943,20 @@ namespace ToolGood.Algorithm.Internals.Functions
             var STDEV = args3.NumberValue;
             return Operand.Create(ExcelFunctions.NormInv((double)p, (double)avg, (double)STDEV));
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("NORMINV(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+                if (func3 != null) {
+                    stringBuilder.Append(", ");
+                    func3.ToString(stringBuilder, false);
+                }
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_NORMSDIST : Function_1
@@ -667,6 +971,12 @@ namespace ToolGood.Algorithm.Internals.Functions
             var num = args1.NumberValue;
             return Operand.Create(ExcelFunctions.NormSDist((double)num));
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("NORMSDIST(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_NORMSINV : Function_1
@@ -680,6 +990,12 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function NORMSINV parameter error!"); if (args1.IsError) return args1; }
             var p = args1.NumberValue;
             return Operand.Create(ExcelFunctions.NormSInv((double)p));
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("NORMSINV(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
         }
     }
 
@@ -703,6 +1019,21 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(ExcelFunctions.BetaDist((double)x, (double)alpha, (double)beta));
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("BETADIST(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+                if (func3 != null) {
+                    stringBuilder.Append(", ");
+                    func3.ToString(stringBuilder, false);
+                }
+            }
+            stringBuilder.Append(')');
+        }
+
     }
 
     internal class Function_BETAINV : Function_3
@@ -724,6 +1055,20 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(ExcelFunctions.BetaInv((double)p, (double)alpha, (double)beta));
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("BETAINV(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+                if (func3 != null) {
+                    stringBuilder.Append(", ");
+                    func3.ToString(stringBuilder, false);
+                }
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_BINOMDIST : Function_4
@@ -744,6 +1089,24 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(ExcelFunctions.BinomDist(args1.IntValue, args2.IntValue, (double)args3.NumberValue, args4.BooleanValue));
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("BINOMDIST(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+                if (func3 != null) {
+                    stringBuilder.Append(", ");
+                    func3.ToString(stringBuilder, false);
+                    if (func4 != null) {
+                        stringBuilder.Append(", ");
+                        func4.ToString(stringBuilder, false);
+                    }
+                }
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_EXPONDIST : Function_3
@@ -762,6 +1125,20 @@ namespace ToolGood.Algorithm.Internals.Functions
                 return Operand.Error("Function EXPONDIST parameter error!");
             }
             return Operand.Create(ExcelFunctions.ExponDist((double)args1.NumberValue, (double)args2.NumberValue, args3.BooleanValue));
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("EXPONDIST(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+                if (func3 != null) {
+                    stringBuilder.Append(", ");
+                    func3.ToString(stringBuilder, false);
+                }
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -785,6 +1162,20 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(ExcelFunctions.FDist((double)x, degreesFreedom, degreesFreedom2));
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("FDIST(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+                if (func3 != null) {
+                    stringBuilder.Append(", ");
+                    func3.ToString(stringBuilder, false);
+                }
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_FINV : Function_3
@@ -806,6 +1197,20 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(ExcelFunctions.FInv((double)p, degreesFreedom, degreesFreedom2));
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("FINV(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+                if (func3 != null) {
+                    stringBuilder.Append(", ");
+                    func3.ToString(stringBuilder, false);
+                }
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_FISHER : Function_1
@@ -824,6 +1229,12 @@ namespace ToolGood.Algorithm.Internals.Functions
             var n = 0.5 * Math.Log((double)((1 + x) / (1 - x)));
             return Operand.Create(n);
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("FISHER(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_FISHERINV : Function_1
@@ -838,6 +1249,12 @@ namespace ToolGood.Algorithm.Internals.Functions
             var x = (double)args1.NumberValue;
             var n = (Math.Exp((2 * x)) - 1) / (Math.Exp((2 * x)) + 1);
             return Operand.Create(n);
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("FISHERINV(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
         }
     }
 
@@ -862,6 +1279,24 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(ExcelFunctions.GammaDist((double)x, (double)alpha, (double)beta, cumulative));
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("GAMMADIST(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+                if (func3 != null) {
+                    stringBuilder.Append(", ");
+                    func3.ToString(stringBuilder, false);
+                    if (func4 != null) {
+                        stringBuilder.Append(", ");
+                        func4.ToString(stringBuilder, false);
+                    }
+                }
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_GAMMAINV : Function_3
@@ -883,6 +1318,20 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(ExcelFunctions.GammaInv((double)probability, (double)alpha, (double)beta));
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("GAMMAINV(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+                if (func3 != null) {
+                    stringBuilder.Append(", ");
+                    func3.ToString(stringBuilder, false);
+                }
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_GAMMALN : Function_1
@@ -895,6 +1344,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function GAMMALN parameter error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(ExcelFunctions.GAMMALN((double)args1.NumberValue));
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("GAMMALN(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
         }
     }
 
@@ -919,6 +1374,24 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(ExcelFunctions.HypgeomDist(k, draws, success, population));
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("HYPGEOMDIST(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+                if (func3 != null) {
+                    stringBuilder.Append(", ");
+                    func3.ToString(stringBuilder, false);
+                    if (func4 != null) {
+                        stringBuilder.Append(", ");
+                        func4.ToString(stringBuilder, false);
+                    }
+                }
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_LOGINV : Function_3
@@ -937,6 +1410,20 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(ExcelFunctions.LogInv((double)args1.NumberValue, (double)args2.NumberValue, (double)args3.NumberValue));
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("HYPGEOMDIST(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+                if (func3 != null) {
+                    stringBuilder.Append(", ");
+                    func3.ToString(stringBuilder, false);
+                }
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_LOGNORMDIST : Function_3
@@ -954,6 +1441,20 @@ namespace ToolGood.Algorithm.Internals.Functions
                 return Operand.Error("Function LOGNORMDIST parameter error!");
             }
             return Operand.Create(ExcelFunctions.LognormDist((double)args1.NumberValue, (double)args2.NumberValue, (double)args3.NumberValue));
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("LOGNORMDIST(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+                if (func3 != null) {
+                    stringBuilder.Append(", ");
+                    func3.ToString(stringBuilder, false);
+                }
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -977,6 +1478,20 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(ExcelFunctions.NegbinomDist(k, (double)r, (double)p));
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("NEGBINOMDIST(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+                if (func3 != null) {
+                    stringBuilder.Append(", ");
+                    func3.ToString(stringBuilder, false);
+                }
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_POISSON : Function_3
@@ -987,9 +1502,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function NEGBINOMDIST parameter 1 error!"); if (args1.IsError) return args1; }
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function NEGBINOMDIST parameter 2 error!"); if (args2.IsError) return args2; }
-            var args3 = func3.Calculate(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function NEGBINOMDIST parameter 3 error!"); if (args3.IsError) return args3; }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function POISSON parameter 1 error!"); if (args1.IsError) return args1; }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function POISSON parameter 2 error!"); if (args2.IsError) return args2; }
+            var args3 = func3.Calculate(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function POISSON parameter 3 error!"); if (args3.IsError) return args3; }
             int k = args1.IntValue;
             var lambda = args2.NumberValue;
             bool state = args3.BooleanValue;
@@ -997,6 +1512,20 @@ namespace ToolGood.Algorithm.Internals.Functions
                 return Operand.Error("Function POISSON parameter error!");
             }
             return Operand.Create(ExcelFunctions.POISSON(k, (double)lambda, state));
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("POISSON(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+                if (func3 != null) {
+                    stringBuilder.Append(", ");
+                    func3.ToString(stringBuilder, false);
+                }
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -1019,6 +1548,20 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(ExcelFunctions.TDist((double)x, degreesFreedom, tails));
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("TDIST(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+                if (func3 != null) {
+                    stringBuilder.Append(", ");
+                    func3.ToString(stringBuilder, false);
+                }
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_TINV : Function_2
@@ -1037,6 +1580,16 @@ namespace ToolGood.Algorithm.Internals.Functions
                 return Operand.Error("Function TINV parameter error!");
             }
             return Operand.Create(ExcelFunctions.TInv((double)p, degreesFreedom));
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("TINV(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -1062,6 +1615,24 @@ namespace ToolGood.Algorithm.Internals.Functions
 
             return Operand.Create(ExcelFunctions.WEIBULL((double)x, (double)shape, (double)scale, state));
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("WEIBULL(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+                if (func3 != null) {
+                    stringBuilder.Append(", ");
+                    func3.ToString(stringBuilder, false);
+                    if (func4 != null) {
+                        stringBuilder.Append(", ");
+                        func4.ToString(stringBuilder, false);
+                    }
+                }
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_QUARTILE : Function_2
@@ -1084,6 +1655,16 @@ namespace ToolGood.Algorithm.Internals.Functions
                 return Operand.Error("Function QUARTILE parameter 2 is error!");
             }
             return Operand.Create(ExcelFunctions.Quartile(list.Select(q => (double)q).ToArray(), quant));
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("QUARTILE(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 

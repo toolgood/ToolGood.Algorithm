@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
+using System.Text.RegularExpressions;
 using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions
@@ -33,6 +34,12 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return sb.ToString();
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("ASC(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_JIS : Function_1
@@ -60,6 +67,12 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return sb.ToString();
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("JIS(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_CHAR : Function_1
@@ -73,6 +86,12 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function CHAR parameter is error!"); if (args1.IsError) { return args1; } }
             char c = (char)(int)args1.NumberValue;
             return Operand.Create(c.ToString());
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("CHAR(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
         }
     }
 
@@ -95,6 +114,12 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(sb.ToString());
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("CLEAN(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_CODE : Function_1
@@ -111,6 +136,12 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             char c = args1.TextValue[0];
             return Operand.Create((decimal)(int)c);
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("CODE(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
         }
     }
 
@@ -129,6 +160,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(sb.ToString());
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("CONCATENATE(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_EXACT : Function_2
@@ -142,6 +184,16 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function EXACT parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function EXACT parameter 2 is error!"); if (args2.IsError) { return args2; } }
             return Operand.Create(args1.TextValue == args2.TextValue);
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("EXACT(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -163,6 +215,20 @@ namespace ToolGood.Algorithm.Internals.Functions
             var p2 = args2.TextValue.AsSpan(count.IntValue).IndexOf(args1.TextValue) + count.IntValue + work.ExcelIndex;
             return Operand.Create(p2);
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("EXACT(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+                if (func3 != null) {
+                    stringBuilder.Append(", ");
+                    func3.ToString(stringBuilder, false);
+                }
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_LEFT : Function_2
@@ -180,6 +246,16 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function LEFT parameter 2 is error!"); if (args2.IsError) { return args2; } }
             return Operand.Create(args1.TextValue.AsSpan(0, args2.IntValue).ToString());
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("LEFT(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_LEN : Function_1
@@ -193,6 +269,12 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function LEN parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create((decimal)args1.TextValue.Length);
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("LEN(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_LOWER : Function_1
@@ -205,6 +287,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function LOWER parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(args1.TextValue.ToLower());
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("LOWER(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
         }
     }
 
@@ -220,6 +308,20 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function MID parameter 2 is error!"); if (args2.IsError) { return args2; } }
             var args3 = func3.Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function MID parameter 3 is error!"); if (args3.IsError) { return args3; } }
             return Operand.Create(args1.TextValue.AsSpan(args2.IntValue - work.ExcelIndex, args3.IntValue).ToString());
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("MID(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+                if (func3 != null) {
+                    stringBuilder.Append(", ");
+                    func3.ToString(stringBuilder, false);
+                }
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -246,6 +348,12 @@ namespace ToolGood.Algorithm.Internals.Functions
                 }
             }
             return Operand.Create(sb.ToString());
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("PROPER(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
         }
     }
 
@@ -288,6 +396,24 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(sb.ToString());
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("IF(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+                if (func3 != null) {
+                    stringBuilder.Append(", ");
+                    func3.ToString(stringBuilder, false);
+                    if (func4 != null) {
+                        stringBuilder.Append(", ");
+                        func4.ToString(stringBuilder, false);
+                    }
+                }
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_REPT : Function_2
@@ -308,6 +434,16 @@ namespace ToolGood.Algorithm.Internals.Functions
                 sb.Append(newtext);
             }
             return Operand.Create(sb.ToString());
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("REPT(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -331,6 +467,16 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function RIGHT parameter 2 is error!"); if (args2.IsError) { return args2; } }
             return Operand.Create(args1.TextValue.AsSpan(args1.TextValue.Length - args2.IntValue, args2.IntValue).ToString());
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("RIGHT(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_RMB : Function_1
@@ -350,6 +496,12 @@ namespace ToolGood.Algorithm.Internals.Functions
             string s = x.ToString("#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A", CultureInfo.InvariantCulture);
             string d = Regex.Replace(s, @"((?<=-|^)[^1-9]*)|((?'z'0)[0A-E]*((?=[1-9])|(?'-z'(?=[F-L\.]|$))))|((?'b'[F-L])(?'z'0)[0A-L]*((?=[1-9])|(?'-z'(?=[\.]|$))))", "${b}${z}", RegexOptions.Compiled);
             return Regex.Replace(d, ".", m => "负元空零壹贰叁肆伍陆柒捌玖空空空空空空空分角拾佰仟万亿兆京垓秭穰"[m.Value[0] - '-'].ToString(), RegexOptions.Compiled);
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("RMB(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
         }
     }
 
@@ -371,6 +523,20 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args3 = func3.Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function SEARCH parameter 3 is error!"); if (args3.IsError) { return args3; } }
             var p2 = args2.TextValue.AsSpan(args3.IntValue).IndexOf(args1.TextValue, StringComparison.OrdinalIgnoreCase) + args3.IntValue + work.ExcelIndex;
             return Operand.Create(p2);
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("SEARCH(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+                if (func3 != null) {
+                    stringBuilder.Append(", ");
+                    func3.ToString(stringBuilder, false);
+                }
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -418,6 +584,24 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(sb.ToString());
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("SUBSTITUTE(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+                if (func3 != null) {
+                    stringBuilder.Append(", ");
+                    func3.ToString(stringBuilder, false);
+                    if (func4 != null) {
+                        stringBuilder.Append(", ");
+                        func4.ToString(stringBuilder, false);
+                    }
+                }
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_T : Function_1
@@ -433,6 +617,12 @@ namespace ToolGood.Algorithm.Internals.Functions
                 return args1;
             }
             return Operand.Create("");
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("T(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
         }
     }
 
@@ -459,6 +649,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             args1 = args1.ToText("Function TEXT parameter 1 is error!"); if (args1.IsError) { return args1; }
             return Operand.Create(args1.TextValue.ToString());
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("TEXT(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
+
     }
 
     internal class Function_TRIM : Function_1
@@ -472,6 +673,12 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function TRIM parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(args1.TextValue.AsSpan().Trim().ToString());
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("TRIM(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_UPPER : Function_1
@@ -484,6 +691,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function UPPER parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(args1.TextValue.ToUpper());
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("UPPER(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
         }
     }
 
@@ -504,6 +717,12 @@ namespace ToolGood.Algorithm.Internals.Functions
                 return Operand.Create(d);
             }
             return Operand.Error("Function VALUE parameter is error!");
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("VALUE(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
         }
     }
 

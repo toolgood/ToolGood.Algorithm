@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using ToolGood.Algorithm.Enums;
-using ToolGood.Algorithm.LitJson;
-using ToolGood.Algorithm.MathNet.Numerics;
 
 namespace ToolGood.Algorithm.Internals.Functions
 {
@@ -1104,6 +1100,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Error("Function VLOOKUP is not match !");
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("VLOOKUP(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     #endregion Lookup
@@ -1121,6 +1128,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Calculate(work); if (aa.IsError) { return aa; } args.Add(aa); }
             return Operand.Create(args);
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("Array(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -1288,6 +1306,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return result;
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("ArrayJson(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_ArrayJsonItem : Function_1
@@ -1306,6 +1335,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             keyValue.Value = func1.Calculate(work);
             return new OperandKeyValue(keyValue);
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append(key);
+            stringBuilder.Append(":");
+            func1.ToString(stringBuilder, false);
+        }
+
     }
 
     #endregion getValue

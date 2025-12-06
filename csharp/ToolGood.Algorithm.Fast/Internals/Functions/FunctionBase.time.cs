@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using ToolGood.Algorithm.Enums;
 
@@ -64,6 +65,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Error("Function DATEVALUE parameter is error!");
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("DATEVALUE(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_TIMESTAMP : Function_N
@@ -97,6 +109,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Error("Function TIMESTAMP parameter is error!");
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("TIMESTAMP(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_TIMEVALUE : Function_1
@@ -113,6 +136,12 @@ namespace ToolGood.Algorithm.Internals.Functions
                 return Operand.Create(dt);
             }
             return Operand.Error("Function TIMEVALUE parameter is error!");
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("TIMEVALUE(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
         }
     }
 
@@ -146,6 +175,17 @@ namespace ToolGood.Algorithm.Internals.Functions
                 d = new MyDate(args1.IntValue, args2.IntValue, args3.IntValue, args4.IntValue, args5.IntValue, args6.IntValue);
             }
             return Operand.Create(d);
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("DATE(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -238,6 +278,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Error("Function DATEDIF parameter 3 is error!");
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("DATEDIF(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
+
     }
 
     internal class Function_TIME : Function_N
@@ -260,6 +311,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(d);
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("TIME(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_NOW : FunctionBase
@@ -271,6 +333,10 @@ namespace ToolGood.Algorithm.Internals.Functions
             } else {
                 return Operand.Create(DateTime.UtcNow);
             }
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("NOW()");
         }
     }
 
@@ -286,6 +352,10 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(new MyDate(now.Year, now.Month, now.Day, 0, 0, 0));
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("TODAY()");
+        }
     }
 
     internal class Function_SECOND : Function_1
@@ -299,6 +369,12 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Calculate(work);
             if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function SECOND parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(args1.DateValue.Second);
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("SECOND(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
         }
     }
 
@@ -314,6 +390,12 @@ namespace ToolGood.Algorithm.Internals.Functions
             if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function MINUTE parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(args1.DateValue.Minute);
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("MINUTE(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_HOUR : Function_1
@@ -327,6 +409,12 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Calculate(work);
             if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function HOUR parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(args1.DateValue.Hour);
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("HOUR(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
         }
     }
 
@@ -345,6 +433,12 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create((int)args1.DateValue.Month.Value);
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("MONTH(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_YEAR : Function_1
@@ -362,6 +456,12 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(args1.DateValue.Year.Value);
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("YEAR(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_DAY : Function_1
@@ -378,6 +478,12 @@ namespace ToolGood.Algorithm.Internals.Functions
                 return Operand.Error("Function DAY is error!");
             }
             return Operand.Create(args1.DateValue.Day.Value);
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("DAY(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
         }
     }
 
@@ -410,6 +516,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create((double)(t - 1));
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("WEEKDAY(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_DAYSINMONTH : Function_2
@@ -427,6 +544,16 @@ namespace ToolGood.Algorithm.Internals.Functions
             if (month < 1 || month > 12) { return Operand.Error("Function DAYSINMONTH parameter 2 is error!"); }
             int days = DateTime.DaysInMonth(year, month);
             return Operand.Create((decimal)days);
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("DAYSINMONTH(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -493,6 +620,20 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(days);
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("DAYS360(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+                if (func3 != null) {
+                    stringBuilder.Append(", ");
+                    func3.ToString(stringBuilder, false);
+                }
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_EDATE : Function_2
@@ -506,6 +647,16 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function EDATE parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function EDATE parameter 2 is error!"); if (args2.IsError) { return args2; } }
             return Operand.Create((MyDate)(((DateTime)args1.DateValue).AddMonths(args2.IntValue)));
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("EDATE(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -522,6 +673,16 @@ namespace ToolGood.Algorithm.Internals.Functions
             var dt = ((DateTime)args1.DateValue).AddMonths(args2.IntValue + 1);
             dt = new DateTime(dt.Year, dt.Month, 1).AddDays(-1);
             return Operand.Create(dt);
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("EOMONTH(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -556,6 +717,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(days);
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("NETWORKDAYS(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_WORKDAY : Function_N
@@ -586,6 +758,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return Operand.Create(startMyDate);
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("WORKDAY(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_WEEKNUM : Function_N
@@ -610,6 +793,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             var week = Math.Ceiling(days / 7.0);
             return Operand.Create(week);
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("WEEKNUM(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_ADDMONTHS : Function_2
@@ -624,6 +818,16 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function ADDMONTHS parameter 2 is error!"); if (args2.IsError) { return args2; } }
             return Operand.Create((MyDate)(((DateTime)args1.DateValue).AddMonths(args2.IntValue)));
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("ADDMONTHS(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_ADDYEARS : Function_2
@@ -637,6 +841,16 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function ADDYEARS parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function ADDYEARS parameter 2 is error!"); if (args2.IsError) { return args2; } }
             return Operand.Create((MyDate)(((DateTime)args1.DateValue).AddYears(args2.IntValue)));
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("ADDYEARS(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -653,6 +867,16 @@ namespace ToolGood.Algorithm.Internals.Functions
             var date = args1.DateValue.AddSeconds(args2.IntValue);
             return Operand.Create(date);
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("ADDSECONDS(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_ADDMINUTES : Function_2
@@ -667,6 +891,16 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function ADDMINUTES parameter 2 is error!"); if (args2.IsError) { return args2; } }
             var date = args1.DateValue.AddMinutes(args2.IntValue);
             return Operand.Create(date);
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("ADDMINUTES(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -683,6 +917,16 @@ namespace ToolGood.Algorithm.Internals.Functions
             var date = args1.DateValue.AddHours(args2.IntValue);
             return Operand.Create(date);
         }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("ADDHOURS(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal class Function_ADDDAYS : Function_2
@@ -696,6 +940,16 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function ADDDAYS parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function ADDDAYS parameter 2 is error!"); if (args2.IsError) { return args2; } }
             return Operand.Create((MyDate)(((DateTime)args1.DateValue).AddDays((double)args2.NumberValue)));
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            stringBuilder.Append("ADDDAYS(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
