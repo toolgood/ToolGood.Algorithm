@@ -21,7 +21,7 @@ namespace ToolGood.Algorithm
         /// <summary>
         /// 版本号
         /// </summary>
-        public static readonly Operand Version = new OperandString("ToolGood.Algorithm 4.0.0.3");
+        public static readonly Operand Version = new OperandString("ToolGood.Algorithm 5.0.0.0");
 
         /// <summary>
         /// True
