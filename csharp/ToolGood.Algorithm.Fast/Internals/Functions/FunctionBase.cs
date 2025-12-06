@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Antlr4.Runtime.Misc;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.math;
+using ToolGood.Algorithm.MathNet.Numerics;
 
 namespace ToolGood.Algorithm.Internals.Functions
 {
@@ -1084,48 +1086,11 @@ namespace ToolGood.Algorithm.Internals.Functions
             for (int i = 0; i < funcs.Length; i++) { var aa = funcs[i].Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
 
             List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args, list);
+            var o = FunctionUtil.F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function GCD parameter is error!"); }
 
-            return Operand.Create(F_base_gcd(list));
+            return Operand.Create(FunctionUtil.F_base_gcd(list));
         }
-        private int F_base_gcd(List<decimal> list)
-        {
-            list = list.OrderBy(q => q).ToList();
-            var g = F_base_gcd((int)list[1], (int)list[0]);
-            for (int i = 2; i < list.Count; i++) {
-                g = F_base_gcd((int)list[i], g);
-            }
-            return g;
-        }
-        private int F_base_gcd(int a, int b)
-        {
-            if (b == 1) { return 1; }
-            if (b == 0) { return a; }
-            return F_base_gcd(b, a % b);
-        }
-        private static bool F_base_GetList(List<Operand> args, List<decimal> list)
-        {
-            foreach (var item in args) {
-                if (item.Type == OperandType.NUMBER) {
-                    list.Add(item.NumberValue);
-                } else if (item.Type == OperandType.ARRARY) {
-                    var o = F_base_GetList(item.ArrayValue, list);
-                    if (o == false) { return false; }
-                } else if (item.Type == OperandType.JSON) {
-                    var i = item.ToArray(null);
-                    if (i.IsError) { return false; }
-                    var o = F_base_GetList(i.ArrayValue, list);
-                    if (o == false) { return false; }
-                } else {
-                    var o = item.ToNumber(null);
-                    if (o.IsError) { return false; }
-                    list.Add(o.NumberValue);
-                }
-            }
-            return true;
-        }
-
     }
 
     public class Function_LCM : Function_N
@@ -1141,53 +1106,11 @@ namespace ToolGood.Algorithm.Internals.Functions
 
 
             List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args, list);
+            var o = FunctionUtil.F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function LCM parameter is error!"); }
 
-            return Operand.Create(F_base_lgm(list));
+            return Operand.Create(FunctionUtil.F_base_lgm(list));
         }
-        private int F_base_lgm(List<decimal> list)
-        {
-            list = list.OrderBy(q => q).ToList();
-            list.RemoveAll(q => q <= 1);
-
-            int a = (int)list[0];
-            for (int i = 1; i < list.Count; i++) {
-                int b = (int)list[i];
-                int g = b > a ? F_base_gcd(b, a) : F_base_gcd(a, b);
-                a = a / g * b;
-            }
-            return a;
-        }
-
-        private int F_base_gcd(int a, int b)
-        {
-            if (b == 1) { return 1; }
-            if (b == 0) { return a; }
-            return F_base_gcd(b, a % b);
-        }
-        private static bool F_base_GetList(List<Operand> args, List<decimal> list)
-        {
-            foreach (var item in args) {
-                if (item.Type == OperandType.NUMBER) {
-                    list.Add(item.NumberValue);
-                } else if (item.Type == OperandType.ARRARY) {
-                    var o = F_base_GetList(item.ArrayValue, list);
-                    if (o == false) { return false; }
-                } else if (item.Type == OperandType.JSON) {
-                    var i = item.ToArray(null);
-                    if (i.IsError) { return false; }
-                    var o = F_base_GetList(i.ArrayValue, list);
-                    if (o == false) { return false; }
-                } else {
-                    var o = item.ToNumber(null);
-                    if (o.IsError) { return false; }
-                    list.Add(o.NumberValue);
-                }
-            }
-            return true;
-        }
-
     }
 
     public class Function_COMBIN : Function_2
@@ -1988,8 +1911,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 
             List<decimal> list1 = new List<decimal>();
             List<decimal> list2 = new List<decimal>();
-            var o1 = F_base_GetList(args1, list1);
-            var o2 = F_base_GetList(args2, list2);
+
+            var o1 = FunctionUtil.F_base_GetList(args1, list1);
+            var o2 = FunctionUtil.F_base_GetList(args2, list2);
             if (o1 == false) { return Operand.Error("Function COVARIANCE.S parameter 1 error!"); }
             if (o2 == false) { return Operand.Error("Function COVARIANCE.S parameter 2 error!"); }
             if (list1.Count != list2.Count) { return Operand.Error("Function COVARIANCE.S parameter's count error!"); }
@@ -2003,47 +1927,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             var val = sum / (list1.Count - 1);
             return Operand.Create(val);
         }
-        private static bool F_base_GetList(Operand args, List<decimal> list)
-        {
-            if (args.IsError) { return false; }
-            if (args.Type == OperandType.NUMBER) {
-                list.Add(args.NumberValue);
-            } else if (args.Type == OperandType.ARRARY) {
-                var o = F_base_GetList(args.ArrayValue, list);
-                if (o == false) { return false; }
-            } else if (args.Type == OperandType.JSON) {
-                var i = args.ToArray(null);
-                if (i.IsError) { return false; }
-                var o = F_base_GetList(i.ArrayValue, list);
-                if (o == false) { return false; }
-            } else {
-                var o = args.ToNumber(null);
-                if (o.IsError) { return false; }
-                list.Add(o.NumberValue);
-            }
-            return true;
-        }
-        private static bool F_base_GetList(List<Operand> args, List<decimal> list)
-        {
-            foreach (var item in args) {
-                if (item.Type == OperandType.NUMBER) {
-                    list.Add(item.NumberValue);
-                } else if (item.Type == OperandType.ARRARY) {
-                    var o = F_base_GetList(item.ArrayValue, list);
-                    if (o == false) { return false; }
-                } else if (item.Type == OperandType.JSON) {
-                    var i = item.ToArray(null);
-                    if (i.IsError) { return false; }
-                    var o = F_base_GetList(i.ArrayValue, list);
-                    if (o == false) { return false; }
-                } else {
-                    var o = item.ToNumber(null);
-                    if (o.IsError) { return false; }
-                    list.Add(o.NumberValue);
-                }
-            }
-            return true;
-        }
+
     }
     public class Function_COVAR : Function_2
     {
@@ -2056,8 +1940,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function COVAR parameter 2 is error!"); if (args2.IsError) { return args2; } }
             List<decimal> list1 = new List<decimal>();
             List<decimal> list2 = new List<decimal>();
-            var o1 = F_base_GetList(args1, list1);
-            var o2 = F_base_GetList(args2, list2);
+            var o1 = FunctionUtil.F_base_GetList(args1, list1);
+            var o2 = FunctionUtil.F_base_GetList(args2, list2);
             if (o1 == false) { return Operand.Error("Function COVAR parameter 1 error!"); }
             if (o2 == false) { return Operand.Error("Function COVAR parameter 2 error!"); }
             if (list1.Count != list2.Count) { return Operand.Error("Function COVAR parameter's count error!"); }
@@ -2071,47 +1955,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             var val = sum / list1.Count;
             return Operand.Create(val);
         }
-        private static bool F_base_GetList(Operand args, List<decimal> list)
-        {
-            if (args.IsError) { return false; }
-            if (args.Type == OperandType.NUMBER) {
-                list.Add(args.NumberValue);
-            } else if (args.Type == OperandType.ARRARY) {
-                var o = F_base_GetList(args.ArrayValue, list);
-                if (o == false) { return false; }
-            } else if (args.Type == OperandType.JSON) {
-                var i = args.ToArray(null);
-                if (i.IsError) { return false; }
-                var o = F_base_GetList(i.ArrayValue, list);
-                if (o == false) { return false; }
-            } else {
-                var o = args.ToNumber(null);
-                if (o.IsError) { return false; }
-                list.Add(o.NumberValue);
-            }
-            return true;
-        }
-        private static bool F_base_GetList(List<Operand> args, List<decimal> list)
-        {
-            foreach (var item in args) {
-                if (item.Type == OperandType.NUMBER) {
-                    list.Add(item.NumberValue);
-                } else if (item.Type == OperandType.ARRARY) {
-                    var o = F_base_GetList(item.ArrayValue, list);
-                    if (o == false) { return false; }
-                } else if (item.Type == OperandType.JSON) {
-                    var i = item.ToArray(null);
-                    if (i.IsError) { return false; }
-                    var o = F_base_GetList(i.ArrayValue, list);
-                    if (o == false) { return false; }
-                } else {
-                    var o = item.ToNumber(null);
-                    if (o.IsError) { return false; }
-                    list.Add(o.NumberValue);
-                }
-            }
-            return true;
-        }
+
     }
     public class Function_FACT : Function_1
     {
@@ -2218,49 +2062,19 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
             List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args, list);
+            var o = FunctionUtil.F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function MULTINOMIAL parameter is error!"); }
 
             int sum = 0;
             int n = 1;
             for (int i = 0; i < list.Count; i++) {
                 var a = (int)list[i];
-                n *= F_base_Factorial(a);
+                n *= FunctionUtil.F_base_Factorial(a);
                 sum += a;
             }
 
-            var r = F_base_Factorial(sum) / n;
+            var r = FunctionUtil.F_base_Factorial(sum) / n;
             return Operand.Create(r);
-        }
-        private static bool F_base_GetList(List<Operand> args, List<decimal> list)
-        {
-            foreach (var item in args) {
-                if (item.Type == OperandType.NUMBER) {
-                    list.Add(item.NumberValue);
-                } else if (item.Type == OperandType.ARRARY) {
-                    var o = F_base_GetList(item.ArrayValue, list);
-                    if (o == false) { return false; }
-                } else if (item.Type == OperandType.JSON) {
-                    var i = item.ToArray(null);
-                    if (i.IsError) { return false; }
-                    var o = F_base_GetList(i.ArrayValue, list);
-                    if (o == false) { return false; }
-                } else {
-                    var o = item.ToNumber(null);
-                    if (o.IsError) { return false; }
-                    list.Add(o.NumberValue);
-                }
-            }
-            return true;
-        }
-        private static int F_base_Factorial(int a)
-        {
-            if (a == 0) { return 1; }
-            int r = 1;
-            for (int i = a; i > 0; i--) {
-                r *= i;
-            }
-            return r;
         }
     }
 
@@ -2275,7 +2089,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             for (int i = 0; i < funcs.Length; i++) { var aa = funcs[i].Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
 
             List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args, list);
+            var o = FunctionUtil.F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function PRODUCT parameter is error!"); }
 
             decimal d = 1;
@@ -2284,27 +2098,6 @@ namespace ToolGood.Algorithm.Internals.Functions
                 d *= a;
             }
             return Operand.Create(d);
-        }
-        private static bool F_base_GetList(List<Operand> args, List<decimal> list)
-        {
-            foreach (var item in args) {
-                if (item.Type == OperandType.NUMBER) {
-                    list.Add(item.NumberValue);
-                } else if (item.Type == OperandType.ARRARY) {
-                    var o = F_base_GetList(item.ArrayValue, list);
-                    if (o == false) { return false; }
-                } else if (item.Type == OperandType.JSON) {
-                    var i = item.ToArray(null);
-                    if (i.IsError) { return false; }
-                    var o = F_base_GetList(i.ArrayValue, list);
-                    if (o == false) { return false; }
-                } else {
-                    var o = item.ToNumber(null);
-                    if (o.IsError) { return false; }
-                    list.Add(o.NumberValue);
-                }
-            }
-            return true;
         }
     }
     public class Function_SQRTPI : Function_1
@@ -2330,7 +2123,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             for (int i = 0; i < funcs.Length; i++) { var aa = funcs[i].Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
 
             List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args, list);
+            var o = FunctionUtil.F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function SUMSQ parameter is error!"); }
 
             decimal d = 0;
@@ -2339,27 +2132,6 @@ namespace ToolGood.Algorithm.Internals.Functions
                 d += a * a;
             }
             return Operand.Create(d);
-        }
-        private static bool F_base_GetList(List<Operand> args, List<decimal> list)
-        {
-            foreach (var item in args) {
-                if (item.Type == OperandType.NUMBER) {
-                    list.Add(item.NumberValue);
-                } else if (item.Type == OperandType.ARRARY) {
-                    var o = F_base_GetList(item.ArrayValue, list);
-                    if (o == false) { return false; }
-                } else if (item.Type == OperandType.JSON) {
-                    var i = item.ToArray(null);
-                    if (i.IsError) { return false; }
-                    var o = F_base_GetList(i.ArrayValue, list);
-                    if (o == false) { return false; }
-                } else {
-                    var o = item.ToNumber(null);
-                    if (o.IsError) { return false; }
-                    list.Add(o.NumberValue);
-                }
-            }
-            return true;
         }
     }
 
@@ -3118,8 +2890,6 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-
-
     public class Function_MINUTE : Function_1
     {
         public Function_MINUTE(FunctionBase func1) : base(func1)
@@ -3144,7 +2914,6 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(args1.DateValue.Hour);
         }
     }
-
 
     public class Function_MONTH : Function_1
     {
@@ -3304,68 +3073,773 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    #endregion
+    public class Function_EDATE : Function_2
+    {
+        public Function_EDATE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function EDATE parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function EDATE parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            return Operand.Create((MyDate)(((DateTime)args1.DateValue).AddMonths(args2.IntValue)));
+        }
+    }
 
-    public class Function_CONCAT : Function_N
+    public class Function_EOMONTH : Function_2
     {
-        public Function_CONCAT(FunctionBase[] funcs) : base(funcs)
+        public Function_EOMONTH(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
         public override Operand Accept(Work work)
         {
-            StringBuilder sb = new StringBuilder();
-            foreach (var item in funcs) {
-                var arg = item.Accept(work);
-                if (arg.IsError) { return arg; }
-                var s = arg.ToText(null);
-                if (s.IsError) { return s; }
-                sb.Append(s.TextValue);
-            }
-            return Operand.Create(sb.ToString());
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function EOMONTH parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function EOMONTH parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var dt = ((DateTime)args1.DateValue).AddMonths(args2.IntValue + 1);
+            dt = new DateTime(dt.Year, dt.Month, 1).AddDays(-1);
+            return Operand.Create(dt);
         }
     }
-    public class Function_TEXTJOIN : Function_N
+    public class Function_NETWORKDAYS : Function_N
     {
-        public Function_TEXTJOIN(FunctionBase[] funcs) : base(funcs)
+        public Function_NETWORKDAYS(FunctionBase[] funcs) : base(funcs)
         {
         }
         public override Operand Accept(Work work)
         {
-            if (funcs.Length < 2) {
-                return Operand.Error("Function TEXTJOIN parameter is error!");
-            }
-            var argSep = funcs[0].Accept(work);
-            if (argSep.IsError) { return argSep; }
-            var sep = argSep.ToText("Function TEXTJOIN parameter 1 is error!");
-            if (sep.IsError) { return sep; }
-            var argIgnoreEmpty = funcs[1].Accept(work);
-            if (argIgnoreEmpty.IsError) { return argIgnoreEmpty; }
-            var ignoreEmpty = argIgnoreEmpty.ToBool("Function TEXTJOIN parameter 2 is error!");
-            if (ignoreEmpty.IsError) { return ignoreEmpty; }
-            List<string> list = new List<string>();
+            var args1 = funcs[0].Accept(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function NETWORKDAYS parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = funcs[1].Accept(work); if (args2.Type != OperandType.DATE) { args2 = args2.ToMyDate("Function NETWORKDAYS parameter 2 is error!"); if (args2.IsError) { return args2; } }
+
+            var startMyDate = (DateTime)args1.DateValue;
+            var endMyDate = (DateTime)args2.DateValue;
+
+            List<DateTime> list = new List<DateTime>();
             for (int i = 2; i < funcs.Length; i++) {
-                var arg = funcs[i].Accept(work);
-                if (arg.IsError) { return arg; }
-                var s = arg.ToText(null);
-                if (s.IsError) { return s; }
-                if (ignoreEmpty.BoolValue && string.IsNullOrEmpty(s.TextValue)) {
-                    continue;
-                }
-                list.Add(s.TextValue);
+                var ar = funcs[i].Accept(work).ToMyDate($"Function NETWORKDAYS parameter {i + 1} is error!");
+                if (ar.IsError) { return ar; }
+                list.Add(ar.DateValue);
             }
-            return Operand.Create(string.Join(sep.TextValue, list));
+            var days = 0;
+            while (startMyDate <= endMyDate) {
+                if (startMyDate.DayOfWeek != DayOfWeek.Sunday && startMyDate.DayOfWeek != DayOfWeek.Saturday) {
+                    if (list.Contains(startMyDate) == false) {
+                        days++;
+                    }
+                }
+                startMyDate = startMyDate.AddDays(1);
+            }
+            return Operand.Create(days);
         }
     }
-    public class Function_UNICHAR : Function_1
+
+    public class Function_WORKDAY : Function_N
     {
-        public Function_UNICHAR(FunctionBase func1) : base(func1)
+        public Function_WORKDAY(FunctionBase[] funcs) : base(funcs)
         {
         }
         public override Operand Accept(Work work)
         {
-            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function UNICHAR parameter is error!"); if (args1.IsError) { return args1; } }
-            char c = (char)(int)args1.NumberValue;
-            return Operand.Create(c.ToString());
+            var args1 = funcs[0].Accept(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function WORKDAY parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = funcs[1].Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function WORKDAY parameter 2 is error!"); if (args2.IsError) { return args2; } }
+
+
+            var startMyDate = (DateTime)args1.DateValue;
+            var days = args2.IntValue;
+            List<DateTime> list = new List<DateTime>();
+            for (int i = 2; i < funcs.Length; i++) {
+                var ar = funcs[i].Accept(work).ToMyDate($"Function WORKDAY parameter {i + 1} is error!");
+                if (ar.IsError) { return ar; }
+                list.Add(ar.DateValue);
+            }
+            while (days > 0) {
+                startMyDate = startMyDate.AddDays(1);
+                if (startMyDate.DayOfWeek == DayOfWeek.Saturday) continue;
+                if (startMyDate.DayOfWeek == DayOfWeek.Sunday) continue;
+                if (list.Contains(startMyDate)) continue;
+                days--;
+            }
+            return Operand.Create(startMyDate);
+        }
+    }
+    public class Function_WEEKNUM : Function_N
+    {
+        public Function_WEEKNUM(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = funcs[0].Accept(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function WEEKNUM parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var startMyDate = (DateTime)args1.DateValue;
+
+            var days = startMyDate.DayOfYear + (int)(new DateTime(startMyDate.Year, 1, 1).DayOfWeek);
+            if (funcs.Length == 2) {
+                var args2 = funcs[1].Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function WEEKNUM parameter 2 is error!"); if (args2.IsError) { return args2; } }
+                if (args2.IntValue == 2) {
+                    days--;
+                }
+            }
+
+            var week = Math.Ceiling(days / 7.0);
+            return Operand.Create(week);
+        }
+    }
+    public class Function_ADDMONTHS : Function_2
+    {
+        public Function_ADDMONTHS(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function ADDMONTHS parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function ADDMONTHS parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            return Operand.Create((MyDate)(((DateTime)args1.DateValue).AddMonths(args2.IntValue)));
+        }
+    }
+    public class Function_ADDYEARS : Function_2
+    {
+        public Function_ADDYEARS(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function ADDYEARS parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function ADDYEARS parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            return Operand.Create((MyDate)(((DateTime)args1.DateValue).AddYears(args2.IntValue)));
+        }
+    }
+    public class Function_ADDSECONDS : Function_2
+    {
+        public Function_ADDSECONDS(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function ADDSECONDS parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function ADDSECONDS parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            return Operand.Create((MyDate)(((DateTime)args1.DateValue).AddSeconds((double)args2.NumberValue)));
+        }
+    }
+    public class Function_ADDMINUTES : Function_2
+    {
+        public Function_ADDMINUTES(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function ADDMINUTES parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function ADDMINUTES parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            return Operand.Create((MyDate)(((DateTime)args1.DateValue).AddMinutes((double)args2.NumberValue)));
+        }
+    }
+    public class Function_ADDHOURS : Function_2
+    {
+        public Function_ADDHOURS(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function ADDHOURS parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function ADDHOURS parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            return Operand.Create((MyDate)(((DateTime)args1.DateValue).AddHours((double)args2.NumberValue)));
+        }
+    }
+    public class Function_ADDDAYS : Function_2
+    {
+        public Function_ADDDAYS(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function ADDDAYS parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function ADDDAYS parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            return Operand.Create((MyDate)(((DateTime)args1.DateValue).AddDays((double)args2.NumberValue)));
+        }
+    }
+
+    #endregion
+    #region sum
+    public class Function_MAX : Function_N
+    {
+        public Function_MAX(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function MAX parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            List<decimal> list = new List<decimal>();
+            var o = FunctionUtil.F_base_GetList(args, list);
+            if (o == false) { return Operand.Error("Function MAX parameter error!"); }
+
+            return Operand.Create(list.Max());
+        }
+    }
+    public class Function_MIN : Function_N
+    {
+        public Function_MIN(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function MIN parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
+            List<decimal> list = new List<decimal>();
+            var o = FunctionUtil.F_base_GetList(args, list);
+            if (o == false) { return Operand.Error("Function MIN parameter error!"); }
+            return Operand.Create(list.Min());
+        }
+    }
+    public class Function_SUM : Function_N
+    {
+        public Function_SUM(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function SUM parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
+            List<decimal> list = new List<decimal>();
+            var o = FunctionUtil.F_base_GetList(args, list);
+            if (o == false) { return Operand.Error("Function SUM parameter error!"); }
+            return Operand.Create(list.Sum());
+        }
+    }
+    public class Function_SUMIF : Function_N
+    {
+        public Function_SUMIF(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function SUMIF parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            List<decimal> list = new List<decimal>();
+            var o = FunctionUtil.F_base_GetList(args[0], list);
+            if (o == false) { return Operand.Error("Function SUMIF parameter 1 error!"); }
+
+            List<decimal> sumdbs;
+            if (args.Count == 3) {
+                sumdbs = new List<decimal>();
+                var o2 = FunctionUtil.F_base_GetList(args[2], sumdbs);
+                if (o2 == false) { return Operand.Error("Function SUMIF parameter 3 error!"); }
+            } else {
+                sumdbs = list;
+            }
+
+            decimal sum;
+            if (args[1].Type == OperandType.NUMBER) {
+                sum = FunctionUtil.F_base_countif(list, args[1].NumberValue) * args[1].NumberValue;
+            } else {
+                if (decimal.TryParse(args[1].TextValue.Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
+                    sum = FunctionUtil.F_base_sumif(list, d, sumdbs);
+                } else {
+                    var sunif = args[1].TextValue.Trim();
+                    var m2 = FunctionUtil.sumifMatch(sunif);
+                    if (m2 != null) {
+                        sum = FunctionUtil.F_base_sumif(list, m2.Item1, m2.Item2, sumdbs);
+                    } else {
+                        return Operand.Error("Function SUMIF parameter 2 error!");
+                    }
+                }
+            }
+            return Operand.Create(sum);
+        }
+    }
+    public class Function_AVEDEV : Function_N
+    {
+        public Function_AVEDEV(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function AVEDEV parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
+            List<decimal> list = new List<decimal>();
+            var o = FunctionUtil.F_base_GetList(args, list);
+            if (o == false) { return Operand.Error("Function AVEDEV parameter error!"); }
+            if (list.Count == 0) { return Operand.Zero; }
+            var avg = list.Average();
+            decimal sum = 0;
+            foreach (var item in list) {
+                sum += Math.Abs(item - avg);
+            }
+            return Operand.Create(sum / list.Count);
+        }
+    }
+    public class Function_AVERAGE : Function_N
+    {
+        public Function_AVERAGE(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function AVERAGE parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
+            List<decimal> list = new List<decimal>();
+            var o = FunctionUtil.F_base_GetList(args, list);
+            if (o == false) { return Operand.Error("Function AVERAGE parameter error!"); }
+            if (list.Count == 0) { return Operand.Zero; }
+            return Operand.Create(list.Average());
+        }
+    }
+    public class Function_AVERAGEIF : Function_N
+    {
+        public Function_AVERAGEIF(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(funcs.Length);
+            for (int i = 0; i < funcs.Length; i++) { var aa = funcs[i].Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            List<decimal> list = new List<decimal>();
+            var o = FunctionUtil.F_base_GetList(args[0], list);
+            if (o == false) { return Operand.Error("Function AVERAGE parameter 1 error!"); }
+
+            List<decimal> sumdbs;
+            if (args.Count == 3) {
+                sumdbs = new List<decimal>();
+                var o2 = FunctionUtil.F_base_GetList(args[2], sumdbs);
+                if (o2 == false) { return Operand.Error("Function AVERAGE parameter 3 error!"); }
+            } else {
+                sumdbs = list;
+            }
+
+            decimal sum;
+            int count;
+            if (args[1].Type == OperandType.NUMBER) {
+                count = FunctionUtil.F_base_countif(list, args[1].NumberValue);
+                sum = count * args[1].NumberValue;
+            } else {
+                if (decimal.TryParse(args[1].TextValue.Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
+                    count = FunctionUtil.F_base_countif(list, d);
+                    sum = FunctionUtil.F_base_sumif(list, d, sumdbs);
+                } else {
+                    var sunif = args[1].TextValue.Trim();
+                    var m2 = FunctionUtil.sumifMatch(sunif);
+                    if (m2 != null) {
+                        count = FunctionUtil.F_base_countif(list, m2.Item1, m2.Item2);
+                        sum = FunctionUtil.F_base_sumif(list, m2.Item1, m2.Item2, sumdbs);
+                    } else {
+                        return Operand.Error("Function AVERAGE parameter 2 error!");
+                    }
+                }
+            }
+            return Operand.Create(sum / count);
+        }
+    }
+    public class Function_COUNT : Function_N
+    {
+        public Function_COUNT(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function COUNT parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
+            List<decimal> list = new List<decimal>();
+            var o = FunctionUtil.F_base_GetList(args, list);
+            if (o == false) { return Operand.Error("Function COUNT parameter error!"); }
+            return Operand.Create(list.Count);
+        }
+    }
+    public class Function_COUNTIF : Function_2
+    {
+        public Function_COUNTIF(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.ARRARY) { args1 = args1.ToNumber("Function COUNTIF parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = func2.Accept(work); if (args2.IsError) { return args2; }
+            List<decimal> list = new List<decimal>();
+            var o = FunctionUtil.F_base_GetList(args1, list);
+            if (o == false) { return Operand.Error("Function COUNTIF parameter 1 error!"); }
+            int count;
+            if (args2.Type == OperandType.NUMBER) {
+                count = FunctionUtil.F_base_countif(list, args2.NumberValue);
+            } else {
+                if (decimal.TryParse(args2.TextValue.Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
+                    count = FunctionUtil.F_base_countif(list, d);
+                } else {
+                    var sunif = args2.TextValue.Trim();
+                    var m2 = FunctionUtil.sumifMatch(sunif);
+                    if (m2 != null) {
+                        count = FunctionUtil.F_base_countif(list, m2.Item1, m2.Item2);
+                    } else {
+                        return Operand.Error("Function COUNTIF parameter 2 error!");
+                    }
+                }
+            }
+            return Operand.Create((decimal)count);
+        }
+    }
+
+
+    public class Function_COUNTA : Function_N
+    {
+        public Function_COUNTA(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
+            List<string> list = new List<string>();
+            var o = FunctionUtil.F_base_GetList(args, list);
+            if (o == false) { return Operand.Error("Function COUNTA parameter error!"); }
+            return Operand.Create((decimal)list.Count);
+        }
+    }
+    public class Function_MEDIAN : Function_N
+    {
+        public Function_MEDIAN(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function MEDIAN parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
+            List<decimal> list = new List<decimal>();
+            var o = FunctionUtil.F_base_GetList(args, list);
+
+            if (o == false) { return Operand.Error("Function MEDIAN parameter error!"); }
+            if (list.Count == 0) { return Operand.Error("Function MEDIAN parameter error!"); }
+
+            list = list.OrderBy(q => q).ToList();
+            return Operand.Create(list[list.Count / 2]);
+        }
+    }
+    public class Function_MODE : Function_N
+    {
+        public Function_MODE(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function MODE parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            List<decimal> list = new List<decimal>();
+            var o = FunctionUtil.F_base_GetList(args, list);
+            if (o == false) { return Operand.Error("Function MODE parameter error!"); }
+
+            Dictionary<decimal, int> dict = new Dictionary<decimal, int>();
+            foreach (var item in list) {
+                if (dict.ContainsKey(item)) {
+                    dict[item] += 1;
+                } else {
+                    dict[item] = 1;
+                }
+            }
+            return Operand.Create(dict.OrderByDescending(q => q.Value).First().Key);
+        }
+    }
+    public class Function_LARGE : Function_2
+    {
+        public Function_LARGE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.ARRARY) { args1 = args1.ToNumber("Function LARGE parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function LARGE parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            List<decimal> list = new List<decimal>();
+            var o = FunctionUtil.F_base_GetList(args1, list);
+            if (o == false) { return Operand.Error("Function LARGE parameter 1 error!"); }
+
+            list = list.OrderByDescending(q => q).ToList();
+            int k = args2.IntValue;
+            if (k < 1 - work.excelIndex || k > list.Count - work.excelIndex) {
+                return Operand.Error("Function LARGE parameter 2 is error!");
+            }
+            return Operand.Create(list[k - work.excelIndex]);
+        }
+    }
+    public class Function_SMALL : Function_2
+    {
+        public Function_SMALL(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.ARRARY) { args1 = args1.ToNumber("Function SMALL parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function SMALL parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            List<decimal> list = new List<decimal>();
+            var o = FunctionUtil.F_base_GetList(args1, list);
+            if (o == false) { return Operand.Error("Function SMALL parameter 1 error!"); }
+            list = list.OrderBy(q => q).ToList();
+            int k = args2.IntValue;
+            if (k < 1 - work.excelIndex || k > list.Count - work.excelIndex) {
+                return Operand.Error("Function SMALL parameter 2 is error!");
+            }
+            return Operand.Create(list[k - work.excelIndex]);
+        }
+    }
+    public class Function_PERCENTILE : Function_2
+    {
+        public Function_PERCENTILE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.ARRARY) { args1 = args1.ToNumber("Function PERCENTILE parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function PERCENTILE parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            List<decimal> list = new List<decimal>();
+            var o = FunctionUtil.F_base_GetList(args1, list);
+            if (o == false) { return Operand.Error("Function PERCENTILE parameter 1 error!"); }
+            var k = args2.NumberValue;
+            return Operand.Create(ExcelFunctions.Percentile(list.Select(q => (double)q).ToArray(), (double)k));
+        }
+    }
+    public class Function_GEOMEAN : Function_N
+    {
+        public Function_GEOMEAN(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function GEOMEAN parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
+            List<decimal> list = new List<decimal>();
+            var o = FunctionUtil.F_base_GetList(args, list);
+            if (o == false) { return Operand.Error("Function GEOMEAN parameter error!"); }
+            if (list.Count == 0) { return Operand.Error("Function GEOMEAN parameter error!"); }
+            double product = 1.0;
+            foreach (var num in list) {
+                if (num <= 0) {
+                    return Operand.Error("Function GEOMEAN parameter error!");
+                }
+                product *= (double)num;
+            }
+            double geoMean = Math.Pow(product, 1.0 / list.Count);
+            return Operand.Create((decimal)geoMean);
+        }
+    }
+    public class Function_HARMEAN : Function_N
+    {
+        public Function_HARMEAN(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function HARMEAN parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
+            if (args.Count == 1) return args[0];
+
+            List<decimal> list = new List<decimal>();
+            var o = FunctionUtil.F_base_GetList(args, list);
+            if (o == false) { return Operand.Error("Function HARMEAN parameter error!"); }
+
+            decimal sum = 0;
+            foreach (var db in list) {
+                if (db == 0) {
+                    return Operand.Error("Function HARMEAN parameter error!");
+                }
+                sum += 1 / db;
+            }
+            return Operand.Create(list.Count / sum);
+        }
+    }
+
+
+    public class Function_PERCENTRANK : Function_N
+    {
+        public Function_PERCENTRANK(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>();
+            foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            var args1 = args[0].ToArray("Function PERCENTRANK parameter 1 is error!");
+            if (args1.IsError) { return args1; }
+            var args2 = args[1].ToNumber("Function PERCENTRANK parameter 2 is error!");
+            if (args2.IsError) { return args2; }
+
+            List<decimal> list = new List<decimal>();
+            var o = FunctionUtil.F_base_GetList(args1, list);
+            if (o == false) { return Operand.Error("Function PERCENTRANK parameter error!"); }
+
+            var k = args2.NumberValue;
+            var v = ExcelFunctions.PercentRank(list.Select(q => (double)q).ToArray(), (double)k);
+            var d = 3;
+            if (args.Count == 3) {
+                var args3 = args[2].ToNumber("Function PERCENTRANK parameter 3 is error!");
+                if (args3.IsError) { return args3; }
+                d = args3.IntValue;
+            }
+            return Operand.Create(Math.Round(v, d, MidpointRounding.AwayFromZero));
+        }
+    }
+    public class Function_QUANTILE : Function_2
+    {
+        public Function_QUANTILE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.ARRARY) { args1 = args1.ToNumber("Function QUANTILE parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function QUANTILE parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            List<decimal> list = new List<decimal>();
+            var o = FunctionUtil.F_base_GetList(args1, list);
+            if (o == false) { return Operand.Error("Function QUANTILE parameter 1 error!"); }
+            var k = args2.NumberValue;
+            return Operand.Create(ExcelFunctions.Quantile(list.Select(q => (double)q).ToArray(), (double)k));
+        }
+    }
+
+
+    public class Function_RANGE : Function_2
+    {
+        public Function_RANGE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function RANGE parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function RANGE parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            return Operand.Create(args2.NumberValue - args1.NumberValue);
+        }
+    }
+    public class Function_VARIANCE : Function_N
+    {
+        public Function_VARIANCE(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function VARIANCE parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
+            List<decimal> list = new List<decimal>();
+            var o = FunctionUtil.F_base_GetList(args, list);
+            if (o == false) { return Operand.Error("Function VARIANCE parameter error!"); }
+            if (list.Count == 0) { return Operand.Error("Function VARIANCE parameter error!"); }
+            var avg = list.Average();
+            var variance = list.Sum(d => (d - avg) * (d - avg)) / list.Count;
+            return Operand.Create(variance);
+        }
+    }
+    public class Function_STDEV : Function_N
+    {
+        public Function_STDEV(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function STDEV parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
+            List<decimal> list = new List<decimal>();
+            var o = FunctionUtil.F_base_GetList(args, list);
+            if (o == false) { return Operand.Error("Function STDEV parameter error!"); }
+            if (list.Count == 0) { return Operand.Error("Function STDEV parameter error!"); }
+
+            var avg = list.Average();
+            decimal sum = 0;
+            for (int i = 0; i < list.Count; i++) {
+                sum += (list[i] - avg) * (list[i] - avg);
+            }
+            return Operand.Create(Math.Sqrt((double)sum / (list.Count - 1)));
+        }
+    }
+    public class Function_STDEVP : Function_N
+    {
+        public Function_STDEVP(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function STDEVP parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
+            List<decimal> list = new List<decimal>();
+            var o = FunctionUtil.F_base_GetList(args, list);
+            if (o == false) { return Operand.Error("Function STDEVP parameter error!"); }
+            if (list.Count == 0) { return Operand.Error("Function STDEVP parameter error!"); }
+            var avg = list.Average();
+            decimal sum = 0;
+            for (int i = 0; i < list.Count; i++) {
+                sum += (list[i] - avg) * (list[i] - avg);
+            }
+            return Operand.Create(Math.Sqrt((double)sum / list.Count));
+        }
+    }
+    public class Function_DEVSQ : Function_N
+    {
+        public Function_DEVSQ(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function DEVSQ parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
+            List<decimal> list = new List<decimal>();
+            var o = FunctionUtil.F_base_GetList(args, list);
+            if (o == false) { return Operand.Error("Function DEVSQ parameter error!"); }
+            if (list.Count == 0) { return Operand.Error("Function DEVSQ parameter error!"); }
+            var avg = list.Average();
+            decimal sum = 0;
+            for (int i = 0; i < list.Count; i++) {
+                sum += (list[i] - avg) * (list[i] - avg);
+            }
+            return Operand.Create(sum);
+        }
+    }
+    public class Function_VAR : Function_N
+    {
+        public Function_VAR(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function VARVARP parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
+            if (args.Count == 1) {
+                return Operand.Error("Function VAR parameter only one error!");
+            }
+
+            List<decimal> list = new List<decimal>();
+            var o = FunctionUtil.F_base_GetList(args, list);
+            if (o == false) { return Operand.Error("Function VARVARP parameter error!"); }
+            if (list.Count == 0) { return Operand.Error("Function VARVARP parameter error!"); }
+            decimal sum = 0;
+            decimal sum2 = 0;
+            for (int i = 0; i < list.Count; i++) {
+                sum += list[i] * list[i];
+                sum2 += list[i];
+            }
+            return Operand.Create((list.Count * sum - sum2 * sum2) / list.Count / (list.Count - 1));
+        }
+    }
+
+
+
+
+    public class Function_QUARTILE : Function_2
+    {
+        public Function_QUARTILE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.ARRARY) { args1 = args1.ToNumber("Function QUARTILE parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function QUARTILE parameter 2 is error!"); if (args2.IsError) { return args2; } }
+
+            List<decimal> list = new List<decimal>();
+            var o = FunctionUtil.F_base_GetList(args1, list);
+            if (o == false) { return Operand.Error("Function QUARTILE parameter 1 error!"); }
+
+            var quant = args2.IntValue;
+            if (quant < 0 || quant > 4) {
+                return Operand.Error("Function QUARTILE parameter 2 is error!");
+            }
+            return Operand.Create(ExcelFunctions.Quartile(list.Select(q => (double)q).ToArray(), quant));
         }
     }
 
@@ -3378,16 +3852,18 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Accept(Work work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function FACTORIAL parameter is error!"); if (args1.IsError) { return args1; } }
-            var n = args1.IntValue;
+            int n = args1.IntValue;
             if (n < 0) { return Operand.Error("Function FACTORIAL parameter is error!"); }
-            if (n > 170) { return Operand.Error("Function FACTORIAL parameter is too large!"); }
-            double result = 1;
-            for (int i = 2; i <= n; i++) {
+            decimal result = 1;
+            for (int i = 1; i <= n; i++) {
                 result *= i;
             }
-            return Operand.Create((decimal)result);
+            return Operand.Create(result);
         }
     }
+
+    #endregion
+
 
 
     public class FunctionUtil
@@ -3472,7 +3948,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
 
 
-        private static int F_base_countif(List<decimal> dbs, decimal d)
+        public static int F_base_countif(List<decimal> dbs, decimal d)
         {
             int count = 0;
             for (int i = 0; i < dbs.Count; i++) {
@@ -3484,7 +3960,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             return count;
         }
 
-        private static int F_base_countif(List<decimal> dbs, string s, decimal d)
+        public static int F_base_countif(List<decimal> dbs, string s, decimal d)
         {
             int count = 0;
             for (int i = 0; i < dbs.Count; i++) {
@@ -3496,7 +3972,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             return count;
         }
 
-        private static decimal F_base_sumif(List<decimal> dbs, decimal d, List<decimal> sumdbs)
+        public static decimal F_base_sumif(List<decimal> dbs, decimal d, List<decimal> sumdbs)
         {
             decimal sum = 0;
             for (int i = 0; i < dbs.Count; i++) {
@@ -3511,7 +3987,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             return sum;
         }
 
-        private static decimal F_base_sumif(List<decimal> dbs, string s, decimal d, List<decimal> sumdbs)
+        public static decimal F_base_sumif(List<decimal> dbs, string s, decimal d, List<decimal> sumdbs)
         {
             decimal sum = 0;
             for (int i = 0; i < dbs.Count; i++) {
@@ -3521,7 +3997,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return sum;
         }
-        private static bool F_base_compare(decimal a, decimal b, string ss)
+        public static bool F_base_compare(decimal a, decimal b, string ss)
         {
             if (CharUtil.Equals(ss, '<')) {
                 return a < b;
@@ -3542,5 +4018,93 @@ namespace ToolGood.Algorithm.Internals.Functions
             return a != b;
             //return Math.Round(a - b, 12, MidpointRounding.AwayFromZero) != 0;
         }
+
+        public static int F_base_gcd(List<decimal> list)
+        {
+            list = list.OrderBy(q => q).ToList();
+            var g = F_base_gcd((int)list[1], (int)list[0]);
+            for (int i = 2; i < list.Count; i++) {
+                g = F_base_gcd((int)list[i], g);
+            }
+            return g;
+        }
+        public static int F_base_gcd(int a, int b)
+        {
+            if (b == 1) { return 1; }
+            if (b == 0) { return a; }
+            return F_base_gcd(b, a % b);
+        }
+        public static int F_base_lgm(List<decimal> list)
+        {
+            list = list.OrderBy(q => q).ToList();
+            list.RemoveAll(q => q <= 1);
+
+            int a = (int)list[0];
+            for (int i = 1; i < list.Count; i++) {
+                int b = (int)list[i];
+                int g = b > a ? F_base_gcd(b, a) : F_base_gcd(a, b);
+                a = a / g * b;
+            }
+            return a;
+        }
+        public static int F_base_Factorial(int a)
+        {
+            if (a == 0) { return 1; }
+            int r = 1;
+            for (int i = a; i > 0; i--) {
+                r *= i;
+            }
+            return r;
+        }
+
+        public static Tuple<string, decimal> sumifMatch(string s)
+        {
+            var c = s[0];
+            if (c == '>' || c == '＞') {
+                if (s.Length > 1 && (s[1] == '=' || s[1] == '＝')) {
+                    if (decimal.TryParse(s.AsSpan(2).Trim(), out decimal d)) {
+                        return Tuple.Create(">=", d);
+                    }
+                } else if (decimal.TryParse(s.AsSpan(1).Trim(), out decimal d)) {
+                    return Tuple.Create(">", d);
+                }
+            } else if (c == '<' || c == '＜') {
+                if (s.Length > 1 && (s[1] == '=' || s[1] == '＝')) {
+                    if (decimal.TryParse(s.AsSpan(2).Trim(), out decimal d)) {
+                        return Tuple.Create("<=", d);
+                    }
+                } else if (s.Length > 1 && (s[1] == '>' || s[1] == '＞')) {
+                    if (decimal.TryParse(s.AsSpan(2).Trim(), out decimal d)) {
+                        return Tuple.Create("!=", d);
+                    }
+                } else if (decimal.TryParse(s.AsSpan(1).Trim(), out decimal d)) {
+                    return Tuple.Create("<", d);
+                }
+            } else if (c == '=' || c == '＝') {
+                var index = 1;
+                if (s.Length > 1 && (s[1] == '=' || s[1] == '＝')) {
+                    index = 2;
+                    if (s.Length > 2 && (s[2] == '=' || s[2] == '＝')) {
+                        index = 3;
+                    }
+                }
+                if (decimal.TryParse(s.AsSpan(index).Trim(), out decimal d)) {
+                    return Tuple.Create("=", d);
+                }
+            } else if (c == '!' || c == '！') {
+                var index = 1;
+                if (s.Length > 1 && (s[1] == '=' || s[1] == '＝')) {
+                    index = 2;
+                    if (s.Length > 2 && (s[2] == '=' || s[2] == '＝')) {
+                        index = 3;
+                    }
+                }
+                if (decimal.TryParse(s.AsSpan(index).Trim(), out decimal d)) {
+                    return Tuple.Create("!=", d);
+                }
+            }
+            return null;
+        }
+
     }
 }

@@ -1050,10 +1050,10 @@ namespace ToolGood.Algorithm.Fast.Internals
         {
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this);
-            var args2 = exprs[1].Accept(this); 
+            var args2 = exprs[1].Accept(this);
             if (exprs.Length == 3) {
                 var args3 = exprs[2].Accept(this);
-                return new Function_DAYS360(args1,args2,args3);
+                return new Function_DAYS360(args1, args2, args3);
             }
             return new Function_DAYS360(args1, args2, null);
         }
@@ -1061,178 +1061,96 @@ namespace ToolGood.Algorithm.Fast.Internals
         public virtual FunctionBase VisitEDATE_fun(mathParser.EDATE_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function EDATE parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function EDATE parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            return new Function_EDATE(args1, args2);
 
-            return Operand.Create((MyDate)(((DateTime)args1.DateValue).AddMonths(args2.IntValue)));
         }
 
         public virtual FunctionBase VisitEOMONTH_fun(mathParser.EOMONTH_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            var args1 = args[0].ToMyDate("Function EOMONTH parameter 1 is error!");
-            if (args1.IsError) { return args1; }
-            var args2 = args[1].ToNumber("Function EOMONTH parameter 2 is error!");
-            if (args2.IsError) { return args2; }
-
-            var dt = ((DateTime)args1.DateValue).AddMonths(args2.IntValue + 1);
-            dt = new DateTime(dt.Year, dt.Month, 1).AddDays(-1);
-            return Operand.Create(dt);
+            var exprs = context.expr();
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            return new Function_EOMONTH(args1, args2);
         }
 
         public virtual FunctionBase VisitNETWORKDAYS_fun(mathParser.NETWORKDAYS_funContext context)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = item.Accept(this).ToMyDate($"Function NETWORKDAYS parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
-
-            var startMyDate = (DateTime)args[0].DateValue;
-            var endMyDate = (DateTime)args[1].DateValue;
-
-            List<DateTime> list = new List<DateTime>();
-            for (int i = 2; i < args.Count; i++) {
-                list.Add(args[i].DateValue);
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-
-            var days = 0;
-            while (startMyDate <= endMyDate) {
-                if (startMyDate.DayOfWeek != DayOfWeek.Sunday && startMyDate.DayOfWeek != DayOfWeek.Saturday) {
-                    if (list.Contains(startMyDate) == false) {
-                        days++;
-                    }
-                }
-                startMyDate = startMyDate.AddDays(1);
-            }
-            return Operand.Create(days);
+            return new Function_NETWORKDAYS(args);
         }
 
         public virtual FunctionBase VisitWORKDAY_fun(mathParser.WORKDAY_funContext context)
         {
-            var exprs = context.expr(); var args = new List<Operand>(exprs.Length);
-            for (int i = 0; i < exprs.Length; i++) { var aa = this.Visit(exprs[i]); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            var args1 = args[0]; if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function WORKDAY parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = args[1]; if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function WORKDAY parameter 2 is error!"); if (args2.IsError) { return args2; } }
-
-            var startMyDate = (DateTime)args1.DateValue;
-            var days = args2.IntValue;
-            List<DateTime> list = new List<DateTime>();
-            for (int i = 2; i < args.Count; i++) {
-                args[i] = args[i].ToMyDate($"Function WORKDAY parameter {i + 1} is error!");
-                if (args[i].IsError) { return args[i]; }
-                list.Add(args[i].DateValue);
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            while (days > 0) {
-                startMyDate = startMyDate.AddDays(1);
-                if (startMyDate.DayOfWeek == DayOfWeek.Saturday) continue;
-                if (startMyDate.DayOfWeek == DayOfWeek.Sunday) continue;
-                if (list.Contains(startMyDate)) continue;
-                days--;
-            }
-            return Operand.Create(startMyDate);
+            return new Function_WORKDAY(args);
         }
 
         public virtual FunctionBase VisitWEEKNUM_fun(mathParser.WEEKNUM_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function WEEKNUM parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var startMyDate = (DateTime)args1.DateValue;
-
-            var days = startMyDate.DayOfYear + (int)(new DateTime(startMyDate.Year, 1, 1).DayOfWeek);
-            if (exprs.Length == 2) {
-                var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function WEEKNUM parameter 2 is error!"); if (args2.IsError) { return args2; } }
-                if (args2.IntValue == 2) {
-                    days--;
-                }
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-
-            var week = Math.Ceiling(days / 7.0);
-            return Operand.Create(week);
+            return new Function_WEEKNUM(args);
         }
 
         public virtual FunctionBase VisitADDMONTHS_fun(mathParser.ADDMONTHS_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            var args1 = args[0].ToMyDate("Function AddMonths parameter 1 is error!");
-            if (args1.IsError) { return args1; }
-            var args2 = args[1].ToNumber("Function AddMonths parameter 2 is error!");
-            if (args2.IsError) { return args2; }
-
-            var date = args1.DateValue.AddMonths(args2.IntValue);
-            return Operand.Create(date);
+            var exprs = context.expr();
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            return new Function_ADDMONTHS(args1, args2);
         }
 
         public virtual FunctionBase VisitADDYEARS_fun(mathParser.ADDYEARS_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            var args1 = args[0].ToMyDate("Function AddYears parameter 1 is error!");
-            if (args1.IsError) { return args1; }
-            var args2 = args[1].ToNumber("Function AddYears parameter 2 is error!");
-            if (args2.IsError) { return args2; }
-
-            var date = args1.DateValue.AddYears(args2.IntValue);
-            return Operand.Create(date);
+            var exprs = context.expr();
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            return new Function_ADDYEARS(args1, args2);
         }
 
         public virtual FunctionBase VisitADDSECONDS_fun(mathParser.ADDSECONDS_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            var args1 = args[0].ToMyDate("Function AddSeconds parameter 1 is error!");
-            if (args1.IsError) { return args1; }
-            var args2 = args[1].ToNumber("Function AddSeconds parameter 2 is error!");
-            if (args2.IsError) { return args2; }
-
-            var date = args1.DateValue.AddSeconds(args2.IntValue);
-            return Operand.Create(date);
+            var exprs = context.expr();
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            return new Function_ADDSECONDS(args1, args2);
         }
 
         public virtual FunctionBase VisitADDMINUTES_fun(mathParser.ADDMINUTES_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            var args1 = args[0].ToMyDate("Function AddMinutes parameter 1 is error!");
-            if (args1.IsError) { return args1; }
-            var args2 = args[1].ToNumber("Function AddMinutes parameter 2 is error!");
-            if (args2.IsError) { return args2; }
-
-            var date = args1.DateValue.AddMinutes(args2.IntValue);
-            return Operand.Create(date);
+            var exprs = context.expr();
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            return new Function_ADDMINUTES(args1, args2);
         }
 
         public virtual FunctionBase VisitADDDAYS_fun(mathParser.ADDDAYS_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            var args1 = args[0].ToMyDate("Function AddDays parameter 1 is error!");
-            if (args1.IsError) { return args1; }
-            var args2 = args[1].ToNumber("Function AddDays parameter 2 is error!");
-            if (args2.IsError) { return args2; }
-
-            var date = args1.DateValue.AddDays(args2.IntValue);
-            return Operand.Create(date);
+            var exprs = context.expr();
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            return new Function_ADDDAYS(args1, args2);
         }
 
         public virtual FunctionBase VisitADDHOURS_fun(mathParser.ADDHOURS_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            var args1 = args[0].ToMyDate("Function AddHours parameter 1 is error!");
-            if (args1.IsError) { return args1; }
-            var args2 = args[1].ToNumber("Function AddHours parameter 2 is error!");
-            if (args2.IsError) { return args2; }
-
-            var date = args1.DateValue.AddHours(args2.IntValue);
-            return Operand.Create(date);
+            var exprs = context.expr();
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            return new Function_ADDHOURS(args1, args2);
         }
 
         #endregion MyDate time
@@ -1241,434 +1159,213 @@ namespace ToolGood.Algorithm.Fast.Internals
 
         public virtual FunctionBase VisitMAX_fun(mathParser.MAX_funContext context)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var aa = item.Accept(this).ToNumber($"Function MAX parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args, list);
-            if (o == false) { return Operand.Error("Function MAX parameter error!"); }
-
-            return Operand.Create(list.Max());
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
+            }
+            return new Function_MAX(args);
         }
 
         public virtual FunctionBase VisitMEDIAN_fun(mathParser.MEDIAN_funContext context)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var aa = item.Accept(this).ToNumber($"Function MEDIAN parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args, list);
-            if (o == false) { return Operand.Error("Function MEDIAN parameter error!"); }
-
-            list = list.OrderBy(q => q).ToList();
-            return Operand.Create(list[list.Count / 2]);
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
+            }
+            return new Function_MEDIAN(args);
         }
 
         public virtual FunctionBase VisitMIN_fun(mathParser.MIN_funContext context)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var aa = item.Accept(this).ToNumber($"Function MIN parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args, list);
-            if (o == false) { return Operand.Error("Function MIN parameter error!"); }
-
-            return Operand.Create(list.Min());
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
+            }
+            return new Function_MIN(args);
         }
 
         public virtual FunctionBase VisitQUARTILE_fun(mathParser.QUARTILE_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.ARRARY) { args1 = args1.ToArray("Function QUARTILE parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function QUARTILE parameter 2 is error!"); if (args2.IsError) { return args2; } }
-
-            List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args1, list);
-            if (o == false) { return Operand.Error("Function QUARTILE parameter 1 error!"); }
-
-            var quant = args2.IntValue;
-            if (quant < 0 || quant > 4) {
-                return Operand.Error("Function QUARTILE parameter 2 is error!");
-            }
-            return Operand.Create(ExcelFunctions.Quartile(list.Select(q => (double)q).ToArray(), quant));
+            var args1 = exprs[0].Accept(this); 
+            var args2 = exprs[1].Accept(this); 
+            return new Function_QUARTILE(args1, args2);
         }
 
         public virtual FunctionBase VisitMODE_fun(mathParser.MODE_funContext context)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var aa = item.Accept(this).ToNumber($"Function MODE parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args, list);
-            if (o == false) { return Operand.Error("Function MODE parameter error!"); }
-
-            Dictionary<decimal, int> dict = new Dictionary<decimal, int>();
-            foreach (var item in list) {
-                if (dict.ContainsKey(item)) {
-                    dict[item] += 1;
-                } else {
-                    dict[item] = 1;
-                }
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            return Operand.Create(dict.OrderByDescending(q => q.Value).First().Key);
+            return new Function_MODE(args);
         }
 
         public virtual FunctionBase VisitLARGE_fun(mathParser.LARGE_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            var args1 = args[0].ToArray("Function LARGE parameter 1 is error!");
-            if (args1.IsError) { return args1; }
-            var args2 = args[1].ToNumber("Function LARGE parameter 2 is error!");
-            if (args2.IsError) { return args2; }
-
-            List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args, list);
-            if (o == false) { return Operand.Error("Function LARGE parameter error!"); }
-
-            list = list.OrderByDescending(q => q).ToList();
-            var quant = args2.IntValue;
-            return Operand.Create(list[args2.IntValue - excelIndex]);
+            var exprs = context.expr();
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            return new Function_LARGE(args1, args2);
         }
 
         public virtual FunctionBase VisitSMALL_fun(mathParser.SMALL_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            var args1 = args[0].ToArray("Function SMALL parameter 1 is error!");
-            if (args1.IsError) { return args1; }
-            var args2 = args[1].ToNumber("Function SMALL parameter 2 is error!");
-            if (args2.IsError) { return args2; }
-
-            List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args, list);
-            if (o == false) { return Operand.Error("Function SMALL parameter error!"); }
-
-            list = list.OrderBy(q => q).ToList();
-            var quant = args2.IntValue;
-            return Operand.Create(list[args2.IntValue - excelIndex]);
+            var exprs = context.expr();
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            return new Function_SMALL(args1, args2);
         }
 
         public virtual FunctionBase VisitPERCENTILE_fun(mathParser.PERCENTILE_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            var args1 = args[0].ToArray("Function PERCENTILE parameter 1 is error!");
-            if (args1.IsError) { return args1; }
-            var args2 = args[1].ToNumber("Function PERCENTILE parameter 2 is error!");
-            if (args2.IsError) { return args2; }
-
-            List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args1, list);
-            if (o == false) { return Operand.Error("Function PERCENTILE parameter error!"); }
-
-            var k = args2.NumberValue;
-            return Operand.Create(ExcelFunctions.Percentile(list.Select(q => (double)q).ToArray(), (double)k));
+            var exprs = context.expr();
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            return new Function_PERCENTILE(args1, args2);
         }
 
         public virtual FunctionBase VisitPERCENTRANK_fun(mathParser.PERCENTRANK_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            var args1 = args[0].ToArray("Function PERCENTRANK parameter 1 is error!");
-            if (args1.IsError) { return args1; }
-            var args2 = args[1].ToNumber("Function PERCENTRANK parameter 2 is error!");
-            if (args2.IsError) { return args2; }
-
-            List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args1, list);
-            if (o == false) { return Operand.Error("Function PERCENTRANK parameter error!"); }
-
-            var k = args2.NumberValue;
-            var v = ExcelFunctions.PercentRank(list.Select(q => (double)q).ToArray(), (double)k);
-            var d = 3;
-            if (args.Count == 3) {
-                var args3 = args[2].ToNumber("Function PERCENTRANK parameter 3 is error!");
-                if (args3.IsError) { return args3; }
-                d = args3.IntValue;
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            return Operand.Create(Math.Round(v, d, MidpointRounding.AwayFromZero));
+            return new Function_PERCENTRANK(args);
         }
 
         public virtual FunctionBase VisitAVERAGE_fun(mathParser.AVERAGE_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
+            }
+            return new Function_AVERAGE(args);
 
-            List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args, list);
-            if (o == false) { return Operand.Error("Function AVERAGE parameter error!"); }
-
-            return Operand.Create(list.Average());
         }
 
         public virtual FunctionBase VisitAVERAGEIF_fun(mathParser.AVERAGEIF_funContext context)
         {
-            var exprs = context.expr(); var args = new List<Operand>(exprs.Length);
-            for (int i = 0; i < exprs.Length; i++) { var aa = this.Visit(exprs[i]); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args[0], list);
-            if (o == false) { return Operand.Error("Function AVERAGE parameter 1 error!"); }
-
-            List<decimal> sumdbs;
-            if (args.Count == 3) {
-                sumdbs = new List<decimal>();
-                var o2 = F_base_GetList(args[2], sumdbs);
-                if (o2 == false) { return Operand.Error("Function AVERAGE parameter 3 error!"); }
-            } else {
-                sumdbs = list;
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-
-            decimal sum;
-            int count;
-            if (args[1].Type == OperandType.NUMBER) {
-                count = F_base_countif(list, args[1].NumberValue);
-                sum = count * args[1].NumberValue;
-            } else {
-                if (decimal.TryParse(args[1].TextValue.Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
-                    count = F_base_countif(list, d);
-                    sum = F_base_sumif(list, d, sumdbs);
-                } else {
-                    var sunif = args[1].TextValue.Trim();
-                    var m2 = sumifMatch(sunif);
-                    if (m2 != null) {
-                        count = F_base_countif(list, m2.Item1, m2.Item2);
-                        sum = F_base_sumif(list, m2.Item1, m2.Item2, sumdbs);
-                    } else {
-                        return Operand.Error("Function AVERAGE parameter 2 error!");
-                    }
-                }
-            }
-            return Operand.Create(sum / count);
+            return new Function_AVERAGEIF(args);
         }
 
         public virtual FunctionBase VisitGEOMEAN_fun(mathParser.GEOMEAN_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            if (args.Count == 1) return args[0];
-
-            List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args, list);
-            if (o == false) { return Operand.Error("Function GEOMEAN parameter error!"); }
-
-            decimal sum = 1;
-            foreach (var db in list) {
-                sum *= db;
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            return Operand.Create(Math.Pow((double)sum, 1.0 / list.Count));
+            return new Function_GEOMEAN(args);
         }
 
         public virtual FunctionBase VisitHARMEAN_fun(mathParser.HARMEAN_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            if (args.Count == 1) return args[0];
-
-            List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args, list);
-            if (o == false) { return Operand.Error("Function HARMEAN parameter error!"); }
-
-            decimal sum = 0;
-            foreach (var db in list) {
-                if (db == 0) {
-                    return Operand.Error("Function HARMEAN parameter error!");
-                }
-                sum += 1 / db;
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            return Operand.Create(list.Count / sum);
+            return new Function_HARMEAN(args);
         }
 
         public virtual FunctionBase VisitCOUNT_fun(mathParser.COUNT_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args, list);
-            if (o == false) { return Operand.Error("Function COUNT parameter error!"); }
-
-            return Operand.Create(list.Count);
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
+            }
+            return new Function_COUNT(args);
         }
 
         public virtual FunctionBase VisitCOUNTIF_fun(mathParser.COUNTIF_funContext context)
         {
-            var exprs = context.expr(); var args = new List<Operand>(exprs.Length);
-            for (int i = 0; i < exprs.Length; i++) { var aa = this.Visit(exprs[i]); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args[0], list);
-            if (o == false) { return Operand.Error("Function COUNTIF parameter error!"); }
-
-            int count;
-            if (args[1].Type == OperandType.NUMBER) {
-                count = F_base_countif(list, args[1].NumberValue);
-            } else {
-                if (decimal.TryParse(args[1].TextValue.Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
-                    count = F_base_countif(list, d);
-                } else {
-                    var sunif = args[1].TextValue.Trim();
-                    var m2 = sumifMatch(sunif);
-                    if (m2 != null) {
-                        count = F_base_countif(list, m2.Item1, m2.Item2);
-                    } else {
-                        return Operand.Error("Function COUNTIF parameter 2 error!");
-                    }
-                }
-            }
-            return Operand.Create(count);
+            var exprs = context.expr();
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            return new Function_COUNTIF(args1, args2);
         }
 
         public virtual FunctionBase VisitSUM_fun(mathParser.SUM_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            if (args.Count == 1) return args[0];
-
-            List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args, list);
-            if (o == false) { return Operand.Error("Function SUM parameter error!"); }
-
-            decimal sum = list.Sum();
-            return Operand.Create(sum);
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
+            }
+            return new Function_SUM(args);
         }
 
         public virtual FunctionBase VisitSUMIF_fun(mathParser.SUMIF_funContext context)
         {
-            var exprs = context.expr(); var args = new List<Operand>(exprs.Length);
-            for (int i = 0; i < exprs.Length; i++) { var aa = this.Visit(exprs[i]); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args[0], list);
-            if (o == false) { return Operand.Error("Function SUMIF parameter 1 error!"); }
-
-            List<decimal> sumdbs;
-            if (args.Count == 3) {
-                sumdbs = new List<decimal>();
-                var o2 = F_base_GetList(args[2], sumdbs);
-                if (o2 == false) { return Operand.Error("Function SUMIF parameter 3 error!"); }
-            } else {
-                sumdbs = list;
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-
-            decimal sum;
-            if (args[1].Type == OperandType.NUMBER) {
-                sum = F_base_countif(list, args[1].NumberValue) * args[1].NumberValue;
-            } else {
-                if (decimal.TryParse(args[1].TextValue.Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
-                    sum = F_base_sumif(list, d, sumdbs);
-                } else {
-                    var sunif = args[1].TextValue.Trim();
-                    var m2 = sumifMatch(sunif);
-                    if (m2 != null) {
-                        sum = F_base_sumif(list, m2.Item1, m2.Item2, sumdbs);
-                    } else {
-                        return Operand.Error("Function SUMIF parameter 2 error!");
-                    }
-                }
-            }
-            return Operand.Create(sum);
+            return new Function_SUMIF(args);
         }
 
         public virtual FunctionBase VisitAVEDEV_fun(mathParser.AVEDEV_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args, list);
-            if (o == false) { return Operand.Error("Function AVEDEV parameter error!"); }
-
-            decimal avg = list.Average();
-            decimal sum = 0;
-            for (int i = 0; i < list.Count; i++) {
-                sum += Math.Abs(list[i] - avg);
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            return Operand.Create(sum / list.Count);
+            return new Function_AVEDEV(args);
         }
 
         public virtual FunctionBase VisitSTDEV_fun(mathParser.STDEV_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            if (args.Count == 1) {
-                return Operand.Error("Function STDEV parameter only one error!");
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args, list);
-            if (o == false) { return Operand.Error("Function STDEV parameter error!"); }
-
-            var avg = list.Average();
-            decimal sum = 0;
-            for (int i = 0; i < list.Count; i++) {
-                sum += (list[i] - avg) * (list[i] - avg);
-            }
-            return Operand.Create(Math.Sqrt((double)sum / (list.Count - 1)));
+            return new Function_STDEV(args);
         }
 
         public virtual FunctionBase VisitSTDEVP_fun(mathParser.STDEVP_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args, list);
-            if (o == false) { return Operand.Error("Function STDEVP parameter error!"); }
-
-            decimal sum = 0;
-            decimal avg = list.Average();
-
-            for (int i = 0; i < list.Count; i++) {
-                sum += (list[i] - avg) * (list[i] - avg);
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            return Operand.Create(Math.Sqrt((double)sum / (list.Count)));
+            return new Function_STDEVP(args);
         }
 
         public virtual FunctionBase VisitDEVSQ_fun(mathParser.DEVSQ_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args, list);
-            if (o == false) { return Operand.Error("Function DEVSQ parameter error!"); }
-
-            decimal avg = list.Average();
-            decimal sum = 0;
-            for (int i = 0; i < list.Count; i++) {
-                sum += (list[i] - avg) * (list[i] - avg);
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            return Operand.Create(sum);
+            return new Function_DEVSQ(args);
         }
 
         public virtual FunctionBase VisitVAR_fun(mathParser.VAR_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            if (args.Count == 1) {
-                return Operand.Error("Function VAR parameter only one error!");
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args, list);
-            if (o == false) { return Operand.Error("Function VAR parameter error!"); }
-
-            decimal sum = 0;
-            decimal sum2 = 0;
-            for (int i = 0; i < list.Count; i++) {
-                sum += list[i] * list[i];
-                sum2 += list[i];
-            }
-            return Operand.Create((list.Count * sum - sum2 * sum2) / list.Count / (list.Count - 1));
+            return new Function_VAR(args);
         }
 
         public virtual FunctionBase VisitVARP_fun(mathParser.VARP_funContext context)
@@ -2012,58 +1709,10 @@ namespace ToolGood.Algorithm.Fast.Internals
             return Operand.Create(ExcelFunctions.WEIBULL((double)x, (double)shape, (double)scale, state));
         }
 
-        private static Tuple<string, decimal> sumifMatch(string s)
-        {
-            var c = s[0];
-            if (c == '>' || c == '＞') {
-                if (s.Length > 1 && (s[1] == '=' || s[1] == '＝')) {
-                    if (decimal.TryParse(s.AsSpan(2).Trim(), out decimal d)) {
-                        return Tuple.Create(">=", d);
-                    }
-                } else if (decimal.TryParse(s.AsSpan(1).Trim(), out decimal d)) {
-                    return Tuple.Create(">", d);
-                }
-            } else if (c == '<' || c == '＜') {
-                if (s.Length > 1 && (s[1] == '=' || s[1] == '＝')) {
-                    if (decimal.TryParse(s.AsSpan(2).Trim(), out decimal d)) {
-                        return Tuple.Create("<=", d);
-                    }
-                } else if (s.Length > 1 && (s[1] == '>' || s[1] == '＞')) {
-                    if (decimal.TryParse(s.AsSpan(2).Trim(), out decimal d)) {
-                        return Tuple.Create("!=", d);
-                    }
-                } else if (decimal.TryParse(s.AsSpan(1).Trim(), out decimal d)) {
-                    return Tuple.Create("<", d);
-                }
-            } else if (c == '=' || c == '＝') {
-                var index = 1;
-                if (s.Length > 1 && (s[1] == '=' || s[1] == '＝')) {
-                    index = 2;
-                    if (s.Length > 2 && (s[2] == '=' || s[2] == '＝')) {
-                        index = 3;
-                    }
-                }
-                if (decimal.TryParse(s.AsSpan(index).Trim(), out decimal d)) {
-                    return Tuple.Create("=", d);
-                }
-            } else if (c == '!' || c == '！') {
-                var index = 1;
-                if (s.Length > 1 && (s[1] == '=' || s[1] == '＝')) {
-                    index = 2;
-                    if (s.Length > 2 && (s[2] == '=' || s[2] == '＝')) {
-                        index = 3;
-                    }
-                }
-                if (decimal.TryParse(s.AsSpan(index).Trim(), out decimal d)) {
-                    return Tuple.Create("!=", d);
-                }
-            }
-            return null;
-        }
 
- 
 
-      
+
+
 
         #endregion sum
 
