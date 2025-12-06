@@ -92,6 +92,7 @@ expr:
 	| expr '.' REMOVEEND '(' expr (',' expr)? ')'				# REMOVEEND_fun
 	| expr '.' JSON '(' ')'										# JSON_fun
 	| expr '.' VLOOKUP '(' expr ',' expr (',' expr)? ')'		# VLOOKUP_fun
+	| expr '.' LOOKUP '(' expr ',' expr ')'						# LOOKUP_fun
 	| expr '.' PARAMETER '(' (expr (',' expr)*)? ')'			# DiyFunction_fun
 	| expr '.' ADDYEARS '(' expr ')'							# ADDYEARS_fun
 	| expr '.' ADDMONTHS '(' expr ')'							# ADDMONTHS_fun
@@ -106,7 +107,7 @@ expr:
 	| expr '[' expr ']'											# GetJsonValue_fun
 	| expr '.' parameter2										# GetJsonValue_fun
 
-	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¼ï¿½ ï¿½ï¿½Ê¼
+	// ÔËËã·ûÓÅÏÈ¼¶ ¿ªÊ¼
 	| '(' expr ')'												# Bracket_fun
 	| '!' expr													# NOT_fun
 	| expr '%'													# Percentage_fun
@@ -117,7 +118,7 @@ expr:
 	| expr op = ('&&' | AND) expr								# AndOr_fun
 	| expr op = ('||' | OR) expr								# AndOr_fun
 	| expr '?' expr ':' expr									# IF_fun
-	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¼ï¿½ ï¿½ï¿½ï¿½ï¿½
+	// ÔËËã·ûÓÅÏÈ¼¶ ½áÊø
 	| ARRAY '(' expr (',' expr)* ')'						# Array_fun
 	| IF '(' expr ',' expr (',' expr)? ')'					# IF_fun
 	| ISNUMBER '(' expr ')'									# ISNUMBER_fun
@@ -327,6 +328,7 @@ expr:
 	| REMOVEEND '(' expr (',' expr (',' expr)?)? ')'			# REMOVEEND_fun
 	| JSON '(' expr ')'											# JSON_fun
 	| VLOOKUP '(' expr ',' expr ',' expr (',' expr)? ')'		# VLOOKUP_fun
+	| LOOKUP '(' expr ',' expr ',' expr ')'						# LOOKUP_fun
 	| PARAMETER '(' (expr (',' expr)*)? ')'						# DiyFunction_fun
 	| ADDYEARS '(' expr ',' expr ')'							# ADDYEARS_fun
 	| ADDMONTHS '(' expr ',' expr ')'							# ADDMONTHS_fun
@@ -563,6 +565,7 @@ parameter2:
 	| REMOVEEND
 	| JSON
 	| VLOOKUP
+	| LOOKUP
 	| ADDYEARS
 	| ADDMONTHS
 	| ADDDAYS
@@ -613,7 +616,7 @@ UNIT:
 	| 'G'
 	| 'KG';
 
-// ï¿½ß¼ï¿½ï¿½ï¿½ï¿½ï¿½
+// Âß¼­º¯Êý
 IF: 'IF';
 IFERROR: 'IFERROR';
 ISNUMBER: 'ISNUMBER';
@@ -630,18 +633,18 @@ OR: 'OR';
 NOT: 'NOT';
 TRUE: 'TRUE';
 FALSE: 'FALSE';
-// ï¿½ï¿½Ñ§ï¿½ï¿½ï¿½ï¿½ï¿½Çºï¿½ï¿½ï¿½
+// ÊýÑ§ÓëÈý½Çº¯Êý
 E: 'E';
 PI: 'PI';
 DEC2BIN: 'DEC2BIN';
 DEC2HEX: 'DEC2HEX';
 DEC2OCT: 'DEC2OCT';
-HEX2BIN: 'HEX2BIN'; //  ï¿½ï¿½Ê®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-HEX2DEC: 'HEX2DEC'; // ï¿½ï¿½Ê®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ÎªÊ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-HEX2OCT: 'HEX2OCT'; //  ï¿½ï¿½Ê®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½Îªï¿½Ë½ï¿½ï¿½ï¿½ï¿½ï¿½
-OCT2BIN: 'OCT2BIN'; //   ï¿½ï¿½ï¿½Ë½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-OCT2DEC: 'OCT2DEC'; //   ï¿½ï¿½ï¿½Ë½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ÎªÊ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-OCT2HEX: 'OCT2HEX'; //  ï¿½ï¿½ï¿½Ë½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ÎªÊ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+HEX2BIN: 'HEX2BIN'; //  ½«Ê®Áù½øÖÆÊý×ª»»Îª¶þ½øÖÆÊý
+HEX2DEC: 'HEX2DEC'; // ½«Ê®Áù½øÖÆÊý×ª»»ÎªÊ®½øÖÆÊý
+HEX2OCT: 'HEX2OCT'; //  ½«Ê®Áù½øÖÆÊý×ª»»Îª°Ë½øÖÆÊý
+OCT2BIN: 'OCT2BIN'; //   ½«°Ë½øÖÆÊý×ª»»Îª¶þ½øÖÆÊý
+OCT2DEC: 'OCT2DEC'; //   ½«°Ë½øÖÆÊý×ª»»ÎªÊ®½øÖÆÊý
+OCT2HEX: 'OCT2HEX'; //  ½«°Ë½øÖÆÊý×ª»»ÎªÊ®Áù½øÖÆÊý
 BIN2OCT: 'BIN2OCT';
 BIN2DEC: 'BIN2DEC';
 BIN2HEX: 'BIN2HEX';
@@ -692,7 +695,7 @@ MULTINOMIAL: 'MULTINOMIAL';
 PRODUCT: 'PRODUCT';
 SQRTPI: 'SQRTPI';
 SUMSQ: 'SUMSQ';
-// ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½
+// ÎÄ±¾º¯Êý
 ASC: 'ASC';
 JIS: 'JIS' | 'WIDECHAR';
 CHAR: 'CHAR';
@@ -718,7 +721,7 @@ TEXT: 'TEXT';
 TRIM: 'TRIM';
 UPPER: 'UPPER' | 'TOUPPER';
 VALUE: 'VALUE';
-// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½äº¯ï¿½ï¿½
+// ÈÕÆÚÓëÊ±¼äº¯Êý
 DATEVALUE: 'DATEVALUE';
 TIMEVALUE: 'TIMEVALUE';
 DATE: 'DATE';
@@ -739,7 +742,7 @@ EOMONTH: 'EOMONTH';
 NETWORKDAYS: 'NETWORKDAYS';
 WORKDAY: 'WORKDAY';
 WEEKNUM: 'WEEKNUM';
-// Í³ï¿½Æºï¿½ï¿½ï¿½
+// Í³¼Æº¯Êý
 MAX: 'MAX';
 MEDIAN: 'MEDIAN';
 MIN: 'MIN';
@@ -788,7 +791,7 @@ POISSON: 'POISSON'|'POISSON.DIST';
 TDIST: 'TDIST'|'T.DIST';
 TINV: 'TINV'|'T.INV';
 WEIBULL: 'WEIBULL';
-// ï¿½ï¿½ï¿½Óºï¿½ï¿½ï¿½ ï¿½ï¿½C# ï¿½ï¿½ï¿½ï¿½
+// Ôö¼Óº¯Êý ÀàC# ·½·¨
 URLENCODE: 'URLENCODE';
 URLDECODE: 'URLDECODE';
 HTMLENCODE: 'HTMLENCODE';
@@ -825,6 +828,7 @@ REMOVESTART: 'REMOVESTART';
 REMOVEEND: 'REMOVEEND';
 JSON: 'JSON';
 VLOOKUP: 'VLOOKUP';
+LOOKUP: 'LOOKUP';
 ARRAY: 'ARRAY';
 ALGORITHMVERSION:'ALGORITHMVERSION'|'ENGINEVERSION';
 
@@ -844,7 +848,7 @@ PARAMETER: ([A-Z_] | FullWidthLetter) (
 		| FullWidthLetter
 	)*;
 PARAMETER2:
-	'ï¿½ï¿½' (~('ï¿½ï¿½' | 'ï¿½ï¿½'))+ 'ï¿½ï¿½'
+	'¡¾' (~('¡¾' | '¡¿'))+ '¡¿'
 	| '#' (~('#'))+ '#'
 	| '@' ([A-Z_] | FullWidthLetter) (
 		[A-Z0-9_]

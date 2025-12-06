@@ -603,11 +603,6 @@ namespace ToolGood.Algorithm.Internals
             return VisitChildren(context);
         }
 
-        public object VisitLOOKUP_fun(mathParser.LOOKUP_funContext context)
-        {
-            return VisitChildren(context);
-        }
-
         public object VisitLOWER_fun(mathParser.LOWER_funContext context)
         {
             return VisitChildren(context);

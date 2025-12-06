@@ -5012,72 +5012,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Error("Function VLOOKUP is not match !");
         }
     }
-
-    public class Function_LOOKUP : Function_N
-    {
-        public Function_LOOKUP(FunctionBase[] funcs) : base(funcs)
-        {
-        }
-        public override Operand Accept(AlgorithmEngine work)
-        {
-            var args = new List<Operand>();
-            foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            var args1 = args[0].ToArray("Function LOOKUP parameter 1 error!");
-            if (args1.IsError) { return args1; }
-            var args2 = args[1].ToText("Function LOOKUP parameter 2 is error!");
-            if (args2.IsError) { return args2; }
-            if (args1.Type == OperandType.ARRARYJSON) {
-                args2 = args2.ToNumber(); if (args2.IsError) { return args2; }
-                var range = false;
-                if (args.Count == 3) {
-                    var t = args[2].ToBoolean("Function LOOKUP parameter 3 is error!"); if (t.IsError) { return t; }
-                    range = t.BooleanValue;
-                }
-                if (((OperandKeyValueList)args1).TryGetValueFloor(args2.NumberValue, range, out Operand operand)) {
-                    return operand;
-                }
-                return Operand.Error("Function LOOKUP not find !");
-            }
-            var args3 = args[2].ToText("Function LOOKUP parameter 3 is error!");
-            if (args3.IsError) { return args3; }
-
-            if (string.IsNullOrWhiteSpace(args2.TextValue)) {
-                return Operand.Error("Function LOOKUP parameter 2 is null!");
-            }
-
-            //var engine = new AntlrLookupEngine();
-            //if (engine.Parse(args2.TextValue) == false) {
-            //    return Operand.Error("Function LOOKUP parameter 2 Parse is error!");
-            //}
-
-            //foreach (var item in args1.ArrayValue) {
-            //    var json = item.ToJson(null);
-            //    if (json.IsError == false) {
-            //        engine.Json = json;
-            //        try {
-            //            var o = engine.Evaluate().ToBoolean(null);
-            //            if (o.IsError == false) {
-            //                if (o.BooleanValue) {
-            //                    var v = json.JsonValue[args3.TextValue];
-            //                    if (v != null) {
-            //                        if (v.IsString) return Operand.Create(v.StringValue);
-            //                        if (v.IsBoolean) return Operand.Create(v.BooleanValue);
-            //                        if (v.IsDouble) return Operand.Create(v.NumberValue);
-            //                        if (v.IsObject) return Operand.Create(v);
-            //                        if (v.IsArray) return Operand.Create(v);
-            //                        if (v.IsNull) return Operand.CreateNull();
-            //                        return Operand.Create(v);
-            //                    }
-            //                }
-            //            }
-            //        } catch (Exception) { }
-            //    }
-            //}
-            return Operand.Error("Function LOOKUP not find!");
-        }
-    }
-
+ 
     #endregion
 
     #region getValue
