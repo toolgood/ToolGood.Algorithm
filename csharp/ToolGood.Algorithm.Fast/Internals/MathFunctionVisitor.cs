@@ -2,11 +2,10 @@
 using System;
 using System.Globalization;
 using System.Text;
-using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.Internals.Functions;
 using ToolGood.Algorithm.math;
 
-namespace ToolGood.Algorithm.Fast.Internals
+namespace ToolGood.Algorithm.Internals
 {
     internal class MathFunctionVisitor : AbstractParseTreeVisitor<FunctionBase>, ImathVisitor<FunctionBase>
     {

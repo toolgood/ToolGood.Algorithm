@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using ToolGood.Algorithm.Enums;
-using ToolGood.Algorithm.Fast.Internals;
 using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.Internals.Functions;
 using ToolGood.Algorithm.math;
