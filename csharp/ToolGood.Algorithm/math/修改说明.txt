@@ -20,7 +20,7 @@
 
 
 删除 State值 保留expr()方法内 expr parameter 前State值
-\bState = \d+;(?! expr| parameter)
+\bState = \d+;(?! expr| parameter| num| unit| arrayJson)
 
 删除 if (!(Precpred(Context,
 State = \d+;\r\n[ \t]+State =    ->   State =
