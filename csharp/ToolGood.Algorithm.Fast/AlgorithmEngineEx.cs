@@ -11,6 +11,7 @@ namespace ToolGood.Algorithm
     public class AlgorithmEngineEx : AlgorithmEngine
     {
         private readonly Dictionary<string, Operand> _tempdict;
+
         /// <summary>
         /// 是否忽略大小写
         /// </summary>

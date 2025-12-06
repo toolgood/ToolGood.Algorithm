@@ -8,14 +8,15 @@ using ToolGood.Algorithm.math;
 
 namespace ToolGood.Algorithm.Fast.Internals
 {
-    class MathFunctionVisitor : AbstractParseTreeVisitor<FunctionBase>, ImathVisitor<FunctionBase>
+    internal class MathFunctionVisitor : AbstractParseTreeVisitor<FunctionBase>, ImathVisitor<FunctionBase>
     {
-
         #region base
+
         public FunctionBase VisitProg(mathParser.ProgContext context)
         {
             return context.expr().Accept(this);
         }
+
         public FunctionBase VisitMulDiv_fun(mathParser.MulDiv_funContext context)
         {
             var exprs = context.expr();
@@ -200,7 +201,6 @@ namespace ToolGood.Algorithm.Fast.Internals
         public FunctionBase VisitTRUE_fun(mathParser.TRUE_funContext context)
         {
             return new Function_Value(Operand.True);
-
         }
 
         public FunctionBase VisitFALSE_fun(mathParser.FALSE_funContext context)
@@ -311,6 +311,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             var args1 = context.expr().Accept(this);
             return new Function_Percentage(args1);
         }
+
         #endregion base
 
         #region trigonometric functions
@@ -608,7 +609,6 @@ namespace ToolGood.Algorithm.Fast.Internals
         public FunctionBase VisitRAND_fun(mathParser.RAND_funContext context)
         {
             return new Function_RAND();
-
         }
 
         public FunctionBase VisitRANDBETWEEN_fun(mathParser.RANDBETWEEN_funContext context)
@@ -724,6 +724,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             }
             return new Function_SUMSQ(args);
         }
+
         #endregion power logarithm factorial
 
         #endregion math
@@ -927,6 +928,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             var args1 = context.expr().Accept(this);
             return new Function_VALUE(args1);
         }
+
         #endregion string
 
         #region MyDate time
@@ -1060,7 +1062,6 @@ namespace ToolGood.Algorithm.Fast.Internals
             var args1 = exprs[0].Accept(this);
             var args2 = exprs[1].Accept(this);
             return new Function_EDATE(args1, args2);
-
         }
 
         public FunctionBase VisitEOMONTH_fun(mathParser.EOMONTH_funContext context)
@@ -1243,7 +1244,6 @@ namespace ToolGood.Algorithm.Fast.Internals
                 args[i] = exprs[i].Accept(this);
             }
             return new Function_AVERAGE(args);
-
         }
 
         public FunctionBase VisitAVERAGEIF_fun(mathParser.AVERAGEIF_funContext context)
@@ -1391,8 +1391,6 @@ namespace ToolGood.Algorithm.Fast.Internals
             var args2 = exprs[1].Accept(this);
             var args3 = exprs[2].Accept(this);
             return new Function_NORMINV(args1, args2, args3);
-
-
         }
 
         public FunctionBase VisitNORMSDIST_fun(mathParser.NORMSDIST_funContext context)
@@ -1571,6 +1569,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             var args4 = exprs[3].Accept(this);
             return new Function_WEIBULL(args1, args2, args3, args4);
         }
+
         #endregion sum
 
         #region csharp
@@ -2108,6 +2107,5 @@ namespace ToolGood.Algorithm.Fast.Internals
         }
 
         #endregion getValue
-
     }
 }

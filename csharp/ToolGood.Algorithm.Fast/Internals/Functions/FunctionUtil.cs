@@ -5,7 +5,7 @@ using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions
 {
-    class FunctionUtil
+    internal class FunctionUtil
     {
         public static bool F_base_GetList(List<Operand> args, List<decimal> list)
         {
@@ -28,6 +28,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return true;
         }
+
         public static bool F_base_GetList(Operand args, List<decimal> list)
         {
             if (args.IsError) { return false; }
@@ -48,6 +49,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return true;
         }
+
         public static bool F_base_GetList(Operand args, List<string> list)
         {
             if (args.IsError) { return false; }
@@ -66,6 +68,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return true;
         }
+
         public static bool F_base_GetList(List<Operand> args, List<string> list)
         {
             foreach (var item in args) {
@@ -85,7 +88,6 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return true;
         }
-
 
         public static int F_base_countif(List<decimal> dbs, decimal d)
         {
@@ -136,6 +138,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return sum;
         }
+
         public static bool F_base_compare(decimal a, decimal b, string ss)
         {
             if (CharUtil.Equals(ss, '<')) {
@@ -167,12 +170,14 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return g;
         }
+
         public static int F_base_gcd(int a, int b)
         {
             if (b == 1) { return 1; }
             if (b == 0) { return a; }
             return F_base_gcd(b, a % b);
         }
+
         public static int F_base_lgm(List<decimal> list)
         {
             list = list.OrderBy(q => q).ToList();
@@ -186,6 +191,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return a;
         }
+
         public static int F_base_Factorial(int a)
         {
             if (a == 0) { return 1; }
@@ -244,6 +250,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return null;
         }
+
         public static int Compare(decimal t1, decimal t2)
         {
             var b = t1 - t2;

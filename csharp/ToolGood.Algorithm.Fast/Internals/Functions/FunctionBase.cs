@@ -26,7 +26,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public abstract Operand Calculate(AlgorithmEngine work);
     }
 
-    class Function_Value : FunctionBase
+    internal class Function_Value : FunctionBase
     {
         private Operand _value;
 
@@ -41,7 +41,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    abstract class Function_1 : FunctionBase
+    internal abstract class Function_1 : FunctionBase
     {
         protected FunctionBase func1;
 
@@ -51,10 +51,11 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    abstract class Function_2 : FunctionBase
+    internal abstract class Function_2 : FunctionBase
     {
         protected FunctionBase func1;
         protected FunctionBase func2;
+
         public Function_2(FunctionBase func1, FunctionBase func2)
         {
             this.func1 = func1;
@@ -62,7 +63,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    abstract class Function_3 : FunctionBase
+    internal abstract class Function_3 : FunctionBase
     {
         protected FunctionBase func1;
         protected FunctionBase func2;
@@ -75,7 +76,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             this.func3 = func3;
         }
     }
-    abstract class Function_4 : FunctionBase
+
+    internal abstract class Function_4 : FunctionBase
     {
         protected FunctionBase func1;
         protected FunctionBase func2;
@@ -91,8 +93,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-
-    abstract class Function_N : FunctionBase
+    internal abstract class Function_N : FunctionBase
     {
         protected FunctionBase[] funcs;
 
@@ -102,7 +103,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_ERROR : Function_1
+    internal class Function_ERROR : Function_1
     {
         public Function_ERROR(FunctionBase func1) : base(func1)
         {
@@ -116,7 +117,8 @@ namespace ToolGood.Algorithm.Internals.Functions
     }
 
     #region * / % + - &
-    class Function_Mul : Function_2
+
+    internal class Function_Mul : Function_2
     {
         public Function_Mul(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
@@ -172,7 +174,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_Div : Function_2
+    internal class Function_Div : Function_2
     {
         public Function_Div(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
@@ -220,7 +222,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_Mod : Function_2
+    internal class Function_Mod : Function_2
     {
         public Function_Mod(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
@@ -265,7 +267,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_Add : Function_2
+    internal class Function_Add : Function_2
     {
         public Function_Add(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
@@ -320,7 +322,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(args1.NumberValue + args2.NumberValue);
         }
     }
-    class Function_Sub : Function_2
+
+    internal class Function_Sub : Function_2
     {
         public Function_Sub(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
@@ -374,7 +377,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_Connect : Function_2
+    internal class Function_Connect : Function_2
     {
         public Function_Connect(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
@@ -397,10 +400,11 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    #endregion
+    #endregion * / % + - &
 
     #region == != >= <= > <
-    class Function_EQ : Function_2
+
+    internal class Function_EQ : Function_2
     {
         public Function_EQ(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
@@ -456,7 +460,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_NE : Function_2
+    internal class Function_NE : Function_2
     {
         public Function_NE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
@@ -512,7 +516,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_GE : Function_2
+    internal class Function_GE : Function_2
     {
         public Function_GE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
@@ -572,7 +576,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_LE : Function_2
+    internal class Function_LE : Function_2
     {
         public Function_LE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
@@ -632,7 +636,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_GT : Function_2
+    internal class Function_GT : Function_2
     {
         public Function_GT(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
@@ -692,7 +696,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_LT : Function_2
+    internal class Function_LT : Function_2
     {
         public Function_LT(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
@@ -752,10 +756,11 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    #endregion
+    #endregion == != >= <= > <
 
     #region AND OR
-    class Function_AND : Function_2
+
+    internal class Function_AND : Function_2
     {
         public Function_AND(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
@@ -772,7 +777,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return func2.Calculate(work).ToBoolean();
         }
     }
-    class Function_OR : Function_2
+
+    internal class Function_OR : Function_2
     {
         public Function_OR(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
@@ -790,7 +796,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_AND_N : Function_N
+    internal class Function_AND_N : Function_N
     {
         public Function_AND_N(FunctionBase[] funcs) : base(funcs)
         {
@@ -808,7 +814,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return b ? Operand.True : Operand.False;
         }
     }
-    class Function_OR_N : Function_N
+
+    internal class Function_OR_N : Function_N
     {
         public Function_OR_N(FunctionBase[] funcs) : base(funcs)
         {
@@ -827,10 +834,11 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    #endregion
+    #endregion AND OR
 
     #region flow
-    class Function_IF : Function_3
+
+    internal class Function_IF : Function_3
     {
         public Function_IF(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
@@ -844,7 +852,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return func3.Calculate(work);
         }
     }
-    class Function_IFERROR : Function_3
+
+    internal class Function_IFERROR : Function_3
     {
         public Function_IFERROR(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
@@ -857,7 +866,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return func3.Calculate(work);
         }
     }
-    class Function_ISNUMBER : Function_1
+
+    internal class Function_ISNUMBER : Function_1
     {
         public Function_ISNUMBER(FunctionBase func1) : base(func1)
         {
@@ -870,7 +880,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.False;
         }
     }
-    class Function_ISTEXT : Function_1
+
+    internal class Function_ISTEXT : Function_1
     {
         public Function_ISTEXT(FunctionBase func1) : base(func1)
         {
@@ -883,7 +894,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.False;
         }
     }
-    class Function_ISERROR : Function_2
+
+    internal class Function_ISERROR : Function_2
     {
         public Function_ISERROR(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
@@ -900,7 +912,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.False;
         }
     }
-    class Function_ISNULL : Function_2
+
+    internal class Function_ISNULL : Function_2
     {
         public Function_ISNULL(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
@@ -917,7 +930,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.False;
         }
     }
-    class Function_ISNULLORERROR : Function_2
+
+    internal class Function_ISNULLORERROR : Function_2
     {
         public Function_ISNULLORERROR(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
@@ -934,7 +948,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.False;
         }
     }
-    class Function_ISEVEN : Function_1
+
+    internal class Function_ISEVEN : Function_1
     {
         public Function_ISEVEN(FunctionBase func1) : base(func1)
         {
@@ -949,7 +964,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.False;
         }
     }
-    class Function_ISODD : Function_1
+
+    internal class Function_ISODD : Function_1
     {
         public Function_ISODD(FunctionBase func1) : base(func1)
         {
@@ -964,7 +980,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.False;
         }
     }
-    class Function_ISLOGICAL : Function_1
+
+    internal class Function_ISLOGICAL : Function_1
     {
         public Function_ISLOGICAL(FunctionBase func1) : base(func1)
         {
@@ -977,7 +994,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.False;
         }
     }
-    class Function_ISNONTEXT : Function_1
+
+    internal class Function_ISNONTEXT : Function_1
     {
         public Function_ISNONTEXT(FunctionBase func1) : base(func1)
         {
@@ -990,7 +1008,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.False;
         }
     }
-    class Function_NOT : Function_1
+
+    internal class Function_NOT : Function_1
     {
         public Function_NOT(FunctionBase func1) : base(func1)
         {
@@ -1003,12 +1022,14 @@ namespace ToolGood.Algorithm.Internals.Functions
             return args1.BooleanValue ? Operand.False : Operand.True;
         }
     }
-    #endregion
+
+    #endregion flow
 
     #region math
 
     #region base
-    class Function_ABS : Function_1
+
+    internal class Function_ABS : Function_1
     {
         public Function_ABS(FunctionBase func1) : base(func1)
         {
@@ -1021,7 +1042,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_QUOTIENT : Function_2
+    internal class Function_QUOTIENT : Function_2
     {
         public Function_QUOTIENT(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
@@ -1039,11 +1060,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_SIGN : Function_1
+    internal class Function_SIGN : Function_1
     {
         public Function_SIGN(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function SIGN parameter is error!"); if (args1.IsError) { return args1; } }
@@ -1051,11 +1073,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_SQRT : Function_1
+    internal class Function_SQRT : Function_1
     {
         public Function_SQRT(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function SIGN parameter is error!"); if (args1.IsError) { return args1; } }
@@ -1063,11 +1086,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_TRUNC : Function_1
+    internal class Function_TRUNC : Function_1
     {
         public Function_TRUNC(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function SIGN parameter is error!"); if (args1.IsError) { return args1; } }
@@ -1075,7 +1099,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_GCD : Function_N
+    internal class Function_GCD : Function_N
     {
         public Function_GCD(FunctionBase[] funcs) : base(funcs)
         {
@@ -1094,7 +1118,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_LCM : Function_N
+    internal class Function_LCM : Function_N
     {
         public Function_LCM(FunctionBase[] funcs) : base(funcs)
         {
@@ -1105,7 +1129,6 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args = new List<Operand>(funcs.Length);
             for (int i = 0; i < funcs.Length; i++) { var aa = funcs[i].Calculate(work); if (aa.IsError) { return aa; } args.Add(aa); }
 
-
             List<decimal> list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function LCM parameter is error!"); }
@@ -1114,7 +1137,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_COMBIN : Function_2
+    internal class Function_COMBIN : Function_2
     {
         public Function_COMBIN(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
@@ -1137,7 +1160,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_PERMUT : Function_2
+    internal class Function_PERMUT : Function_2
     {
         public Function_PERMUT(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
@@ -1159,11 +1182,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_Percentage : Function_1
+    internal class Function_Percentage : Function_1
     {
         public Function_Percentage(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function Percentage parameter is error!"); if (args1.IsError) { return args1; } }
@@ -1171,15 +1195,16 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    #endregion
+    #endregion base
 
     #region trigonometric functions
 
-    class Function_DEGREES : Function_1
+    internal class Function_DEGREES : Function_1
     {
         public Function_DEGREES(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function DEGREES parameter is error!"); if (args1.IsError) { return args1; } }
@@ -1188,11 +1213,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(r);
         }
     }
-    class Function_RADIANS : Function_1
+
+    internal class Function_RADIANS : Function_1
     {
         public Function_RADIANS(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function RADIANS parameter is error!"); if (args1.IsError) { return args1; } }
@@ -1200,44 +1227,52 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(r);
         }
     }
-    class Function_COS : Function_1
+
+    internal class Function_COS : Function_1
     {
         public Function_COS(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function COS parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Cos((double)args1.NumberValue));
         }
     }
-    class Function_SIN : Function_1
+
+    internal class Function_SIN : Function_1
     {
         public Function_SIN(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function SIN parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Sin((double)args1.NumberValue));
         }
     }
-    class Function_TAN : Function_1
+
+    internal class Function_TAN : Function_1
     {
         public Function_TAN(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function TAN parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Tan((double)args1.NumberValue));
         }
     }
-    class Function_ACOS : Function_1
+
+    internal class Function_ACOS : Function_1
     {
         public Function_ACOS(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ACOS parameter is error!"); if (args1.IsError) { return args1; } }
@@ -1248,11 +1283,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(Math.Acos((double)x));
         }
     }
-    class Function_ASIN : Function_1
+
+    internal class Function_ASIN : Function_1
     {
         public Function_ASIN(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ASIN parameter is error!"); if (args1.IsError) { return args1; } }
@@ -1263,22 +1300,26 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(Math.Asin((double)x));
         }
     }
-    class Function_ATAN : Function_1
+
+    internal class Function_ATAN : Function_1
     {
         public Function_ATAN(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ATAN parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Atan((double)args1.NumberValue));
         }
     }
-    class Function_ATAN2 : Function_2
+
+    internal class Function_ATAN2 : Function_2
     {
         public Function_ATAN2(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ATAN2 parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -1286,11 +1327,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(Math.Atan2((double)args2.NumberValue, (double)args1.NumberValue));
         }
     }
-    class Function_COT : Function_1
+
+    internal class Function_COT : Function_1
     {
         public Function_COT(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function COT parameter is error!"); if (args1.IsError) { return args1; } }
@@ -1301,11 +1344,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(1.0 / d);
         }
     }
-    class Function_SEC : Function_1
+
+    internal class Function_SEC : Function_1
     {
         public Function_SEC(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function SEC parameter is error!"); if (args1.IsError) { return args1; } }
@@ -1316,11 +1361,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(1.0 / d);
         }
     }
-    class Function_CSC : Function_1
+
+    internal class Function_CSC : Function_1
     {
         public Function_CSC(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function CSC parameter is error!"); if (args1.IsError) { return args1; } }
@@ -1331,44 +1378,52 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(1.0 / d);
         }
     }
-    class Function_COSH : Function_1
+
+    internal class Function_COSH : Function_1
     {
         public Function_COSH(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function COSH parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Cosh((double)args1.NumberValue));
         }
     }
-    class Function_SINH : Function_1
+
+    internal class Function_SINH : Function_1
     {
         public Function_SINH(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function SINH parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Sinh((double)args1.NumberValue));
         }
     }
-    class Function_TANH : Function_1
+
+    internal class Function_TANH : Function_1
     {
         public Function_TANH(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function TANH parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Tanh((double)args1.NumberValue));
         }
     }
-    class Function_ACOSH : Function_1
+
+    internal class Function_ACOSH : Function_1
     {
         public Function_ACOSH(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ACOSH parameter is error!"); if (args1.IsError) { return args1; } }
@@ -1379,22 +1434,26 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(Math.Acosh((double)z));
         }
     }
-    class Function_ASINH : Function_1
+
+    internal class Function_ASINH : Function_1
     {
         public Function_ASINH(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ASINH parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Asinh((double)args1.NumberValue));
         }
     }
-    class Function_ATANH : Function_1
+
+    internal class Function_ATANH : Function_1
     {
         public Function_ATANH(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ATANH parameter is error!"); if (args1.IsError) { return args1; } }
@@ -1405,7 +1464,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(Math.Atanh((double)x));
         }
     }
-    class Function_FIXED : Function_N
+
+    internal class Function_FIXED : Function_N
     {
         public Function_FIXED(FunctionBase[] funcs) : base(funcs)
         {
@@ -1433,10 +1493,11 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    #endregion
+    #endregion trigonometric functions
 
     #region transformation
-    class Function_BIN2OCT : Function_N
+
+    internal class Function_BIN2OCT : Function_N
     {
         public Function_BIN2OCT(FunctionBase[] funcs) : base(funcs)
         {
@@ -1464,7 +1525,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_BIN2DEC : Function_1
+    internal class Function_BIN2DEC : Function_1
     {
         public Function_BIN2DEC(FunctionBase func1) : base(func1)
         {
@@ -1481,11 +1542,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_BIN2HEX : Function_N
+    internal class Function_BIN2HEX : Function_N
     {
         public Function_BIN2HEX(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>();
@@ -1505,14 +1567,15 @@ namespace ToolGood.Algorithm.Internals.Functions
                 return Operand.Error("Function BIN2HEX parameter 2 is error!");
             }
             return Operand.Create(num);
-
         }
     }
-    class Function_OCT2BIN : Function_N
+
+    internal class Function_OCT2BIN : Function_N
     {
         public Function_OCT2BIN(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>();
@@ -1532,11 +1595,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(num);
         }
     }
-    class Function_OCT2DEC : Function_1
+
+    internal class Function_OCT2DEC : Function_1
     {
         public Function_OCT2DEC(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work).ToText("Function OCT2DEC parameter is error!");
@@ -1546,11 +1611,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(num);
         }
     }
-    class Function_OCT2HEX : Function_N
+
+    internal class Function_OCT2HEX : Function_N
     {
         public Function_OCT2HEX(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>();
@@ -1570,11 +1637,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(num);
         }
     }
-    class Function_HEX2BIN : Function_N
+
+    internal class Function_HEX2BIN : Function_N
     {
         public Function_HEX2BIN(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>();
@@ -1594,11 +1663,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(num);
         }
     }
-    class Function_HEX2DEC : Function_1
+
+    internal class Function_HEX2DEC : Function_1
     {
         public Function_HEX2DEC(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work).ToText("Function HEX2DEC parameter is error!");
@@ -1608,11 +1679,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(num);
         }
     }
-    class Function_HEX2OCT : Function_N
+
+    internal class Function_HEX2OCT : Function_N
     {
         public Function_HEX2OCT(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>();
@@ -1632,11 +1705,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(num);
         }
     }
-    class Function_DEC2BIN : Function_N
+
+    internal class Function_DEC2BIN : Function_N
     {
         public Function_DEC2BIN(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>();
@@ -1655,11 +1730,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(num);
         }
     }
-    class Function_DEC2OCT : Function_N
+
+    internal class Function_DEC2OCT : Function_N
     {
         public Function_DEC2OCT(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>();
@@ -1678,11 +1755,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(num);
         }
     }
-    class Function_DEC2HEX : Function_N
+
+    internal class Function_DEC2HEX : Function_N
     {
         public Function_DEC2HEX(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>();
@@ -1702,14 +1781,16 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    #endregion
+    #endregion transformation
 
     #region rounding
-    class Function_ROUNDUP : Function_2
+
+    internal class Function_ROUNDUP : Function_2
     {
         public Function_ROUNDUP(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ROUNDUP parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -1723,11 +1804,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(-t);
         }
     }
-    class Function_ROUNDDOWN : Function_2
+
+    internal class Function_ROUNDDOWN : Function_2
     {
         public Function_ROUNDDOWN(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ROUNDDOWN parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -1742,11 +1825,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(b);
         }
     }
-    class Function_MROUND : Function_2
+
+    internal class Function_MROUND : Function_2
     {
         public Function_MROUND(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function MROUND parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -1759,11 +1844,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(r);
         }
     }
-    class Function_ROUND : Function_2
+
+    internal class Function_ROUND : Function_2
     {
         public Function_ROUND(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ROUND parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -1776,11 +1863,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_CEILING : Function_2
+    internal class Function_CEILING : Function_2
     {
         public Function_CEILING(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function CEILING parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -1798,11 +1886,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(d);
         }
     }
-    class Function_FLOOR : Function_2
+
+    internal class Function_FLOOR : Function_2
     {
         public Function_FLOOR(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function FLOOR parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -1818,11 +1908,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(d);
         }
     }
-    class Function_EVEN : Function_1
+
+    internal class Function_EVEN : Function_1
     {
         public Function_EVEN(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function EVEN parameter is error!"); if (args1.IsError) { return args1; } }
@@ -1834,11 +1926,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(z);
         }
     }
-    class Function_ODD : Function_1
+
+    internal class Function_ODD : Function_1
     {
         public Function_ODD(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ODD parameter is error!"); if (args1.IsError) { return args1; } }
@@ -1851,14 +1945,16 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    #endregion
+    #endregion rounding
 
     #region RAND
-    class Function_RAND : FunctionBase
+
+    internal class Function_RAND : FunctionBase
     {
         public Function_RAND()
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
 #if NETSTANDARD2_1
@@ -1870,11 +1966,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(rand.NextDouble());
         }
     }
-    class Function_RANDBETWEEN : Function_2
+
+    internal class Function_RANDBETWEEN : Function_2
     {
         public Function_RANDBETWEEN(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function RANDBETWEEN parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -1888,14 +1986,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create((decimal)rand.NextDouble() * (args2.NumberValue - args1.NumberValue) + args1.NumberValue);
         }
     }
-    #endregion
+
+    #endregion RAND
 
     #region power logarithm factorial
-    class Function_COVARIANCES : Function_2
+
+    internal class Function_COVARIANCES : Function_2
     {
         public Function_COVARIANCES(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { if (args1.IsError) { return args1; } }
@@ -1919,13 +2020,14 @@ namespace ToolGood.Algorithm.Internals.Functions
             var val = sum / (list1.Count - 1);
             return Operand.Create(val);
         }
-
     }
-    class Function_COVAR : Function_2
+
+    internal class Function_COVAR : Function_2
     {
         public Function_COVAR(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { if (args1.IsError) { return args1; } }
@@ -1947,13 +2049,14 @@ namespace ToolGood.Algorithm.Internals.Functions
             var val = sum / list1.Count;
             return Operand.Create(val);
         }
-
     }
-    class Function_FACT : Function_1
+
+    internal class Function_FACT : Function_1
     {
         public Function_FACT(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function FACT parameter is error!"); if (args1.IsError) { return args1; } }
@@ -1970,11 +2073,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(d);
         }
     }
-    class Function_FACTDOUBLE : Function_1
+
+    internal class Function_FACTDOUBLE : Function_1
     {
         public Function_FACTDOUBLE(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function FACTDOUBLE parameter is error!"); if (args1.IsError) { return args1; } }
@@ -1988,11 +2093,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(d);
         }
     }
-    class Function_POWER : Function_2
+
+    internal class Function_POWER : Function_2
     {
         public Function_POWER(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function POWER parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -2000,22 +2107,26 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(Math.Pow((double)args1.NumberValue, (double)args2.NumberValue));
         }
     }
-    class Function_EXP : Function_1
+
+    internal class Function_EXP : Function_1
     {
         public Function_EXP(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function EXP parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Exp((double)args1.NumberValue));
         }
     }
-    class Function_LN : Function_1
+
+    internal class Function_LN : Function_1
     {
         public Function_LN(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function LN parameter is error!"); if (args1.IsError) { return args1; } }
@@ -2026,11 +2137,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(Math.Log((double)z));
         }
     }
-    class Function_LOG : Function_2
+
+    internal class Function_LOG : Function_2
     {
         public Function_LOG(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function LOG parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -2041,11 +2154,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(Math.Log((double)args1.NumberValue, 10));
         }
     }
-    class Function_MULTINOMIAL : Function_N
+
+    internal class Function_MULTINOMIAL : Function_N
     {
         public Function_MULTINOMIAL(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>();
@@ -2067,11 +2182,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_PRODUCT : Function_N
+    internal class Function_PRODUCT : Function_N
     {
         public Function_PRODUCT(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(funcs.Length);
@@ -2089,18 +2205,21 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(d);
         }
     }
-    class Function_SQRTPI : Function_1
+
+    internal class Function_SQRTPI : Function_1
     {
         public Function_SQRTPI(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function SQRTPI parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Sqrt((double)args1.NumberValue * Math.PI));
         }
     }
-    class Function_SUMSQ : Function_N
+
+    internal class Function_SUMSQ : Function_N
     {
         public Function_SUMSQ(FunctionBase[] funcs) : base(funcs)
         {
@@ -2124,20 +2243,24 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    #endregion
-    #endregion
+    #endregion power logarithm factorial
+
+    #endregion math
 
     #region string
-    class Function_ASC : Function_1
+
+    internal class Function_ASC : Function_1
     {
         public Function_ASC(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function ASC parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(F_base_ToDBC(args1.TextValue));
         }
+
         private static String F_base_ToDBC(String input)
         {
             StringBuilder sb = new StringBuilder(input);
@@ -2154,16 +2277,18 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_JIS : Function_1
+    internal class Function_JIS : Function_1
     {
         public Function_JIS(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function JIS parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(F_base_ToSBC(args1.TextValue));
         }
+
         private static String F_base_ToSBC(String input)
         {
             StringBuilder sb = new StringBuilder(input);
@@ -2178,11 +2303,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return sb.ToString();
         }
     }
-    class Function_CHAR : Function_1
+
+    internal class Function_CHAR : Function_1
     {
         public Function_CHAR(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function CHAR parameter is error!"); if (args1.IsError) { return args1; } }
@@ -2190,11 +2317,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(c.ToString());
         }
     }
-    class Function_CLEAN : Function_1
+
+    internal class Function_CLEAN : Function_1
     {
         public Function_CLEAN(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function CLEAN parameter is error!"); if (args1.IsError) { return args1; } }
@@ -2209,11 +2338,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(sb.ToString());
         }
     }
-    class Function_CODE : Function_1
+
+    internal class Function_CODE : Function_1
     {
         public Function_CODE(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function CODE parameter is error!"); if (args1.IsError) { return args1; } }
@@ -2224,11 +2355,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create((decimal)(int)c);
         }
     }
-    class Function_CONCATENATE : Function_N
+
+    internal class Function_CONCATENATE : Function_N
     {
         public Function_CONCATENATE(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             StringBuilder sb = new StringBuilder();
@@ -2239,11 +2372,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(sb.ToString());
         }
     }
-    class Function_EXACT : Function_2
+
+    internal class Function_EXACT : Function_2
     {
         public Function_EXACT(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function EXACT parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -2251,11 +2386,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(args1.TextValue == args2.TextValue);
         }
     }
-    class Function_FIND : Function_3
+
+    internal class Function_FIND : Function_3
     {
         public Function_FIND(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function FIND parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -2269,11 +2406,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(p2);
         }
     }
-    class Function_LEFT : Function_2
+
+    internal class Function_LEFT : Function_2
     {
         public Function_LEFT(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function LEFT parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -2284,33 +2423,39 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(args1.TextValue.AsSpan(0, args2.IntValue).ToString());
         }
     }
-    class Function_LEN : Function_1
+
+    internal class Function_LEN : Function_1
     {
         public Function_LEN(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function LEN parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create((decimal)args1.TextValue.Length);
         }
     }
-    class Function_LOWER : Function_1
+
+    internal class Function_LOWER : Function_1
     {
         public Function_LOWER(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function LOWER parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(args1.TextValue.ToLower());
         }
     }
-    class Function_MID : Function_3
+
+    internal class Function_MID : Function_3
     {
         public Function_MID(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function MID parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -2319,11 +2464,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(args1.TextValue.AsSpan(args2.IntValue - work.ExcelIndex, args3.IntValue).ToString());
         }
     }
-    class Function_PROPER : Function_1
+
+    internal class Function_PROPER : Function_1
     {
         public Function_PROPER(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function PROPER parameter is error!"); if (args1.IsError) { return args1; } }
@@ -2343,11 +2490,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(sb.ToString());
         }
     }
-    class Function_REPLACE : Function_4
+
+    internal class Function_REPLACE : Function_4
     {
         public Function_REPLACE(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) : base(func1, func2, func3, func4)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function REPLACE parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -2382,11 +2531,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(sb.ToString());
         }
     }
-    class Function_REPT : Function_2
+
+    internal class Function_REPT : Function_2
     {
         public Function_REPT(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function REPT parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -2401,14 +2552,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(sb.ToString());
         }
     }
-    class Function_RIGHT : Function_2
+
+    internal class Function_RIGHT : Function_2
     {
         public Function_RIGHT(FunctionBase func1) : base(func1, null)
         {
         }
+
         public Function_RIGHT(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function RIGHT parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -2420,16 +2574,19 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(args1.TextValue.AsSpan(args1.TextValue.Length - args2.IntValue, args2.IntValue).ToString());
         }
     }
-    class Function_RMB : Function_1
+
+    internal class Function_RMB : Function_1
     {
         public Function_RMB(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function RMB parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(F_base_ToChineseRMB(args1.NumberValue));
         }
+
         private static string F_base_ToChineseRMB(decimal x)
         {
             string s = x.ToString("#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A", CultureInfo.InvariantCulture);
@@ -2437,7 +2594,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Regex.Replace(d, ".", m => "负元空零壹贰叁肆伍陆柒捌玖空空空空空空空分角拾佰仟万亿兆京垓秭穰"[m.Value[0] - '-'].ToString(), RegexOptions.Compiled);
         }
     }
-    class Function_SEARCH : Function_3
+
+    internal class Function_SEARCH : Function_3
     {
         public Function_SEARCH(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
@@ -2457,11 +2615,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(p2);
         }
     }
-    class Function_SUBSTITUTE : Function_4
+
+    internal class Function_SUBSTITUTE : Function_4
     {
         public Function_SUBSTITUTE(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) : base(func1, func2, func3, func4)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function SUBSTITUTE parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -2502,11 +2662,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_T : Function_1
+    internal class Function_T : Function_1
     {
         public Function_T(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work);
@@ -2516,11 +2677,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create("");
         }
     }
-    class Function_TEXT : Function_2
+
+    internal class Function_TEXT : Function_2
     {
         public Function_TEXT(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.IsError) { return args1; }
@@ -2539,33 +2702,39 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(args1.TextValue.ToString());
         }
     }
-    class Function_TRIM : Function_1
+
+    internal class Function_TRIM : Function_1
     {
         public Function_TRIM(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function TRIM parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(args1.TextValue.AsSpan().Trim().ToString());
         }
     }
-    class Function_UPPER : Function_1
+
+    internal class Function_UPPER : Function_1
     {
         public Function_UPPER(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function UPPER parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(args1.TextValue.ToUpper());
         }
     }
-    class Function_VALUE : Function_1
+
+    internal class Function_VALUE : Function_1
     {
         public Function_VALUE(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work);
@@ -2579,10 +2748,12 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Error("Function VALUE parameter is error!");
         }
     }
-    #endregion
+
+    #endregion string
 
     #region MyDate time
-    class Function_DATEVALUE : Function_N
+
+    internal class Function_DATEVALUE : Function_N
     {
         public Function_DATEVALUE(FunctionBase[] funcs) : base(funcs)
         {
@@ -2640,7 +2811,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Error("Function DATEVALUE parameter is error!");
         }
     }
-    class Function_TIMESTAMP : Function_N
+
+    internal class Function_TIMESTAMP : Function_N
     {
         public Function_TIMESTAMP(FunctionBase[] funcs) : base(funcs)
         {
@@ -2673,11 +2845,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_TIMEVALUE : Function_1
+    internal class Function_TIMEVALUE : Function_1
     {
         public Function_TIMEVALUE(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function TIMEVALUE parameter is error!"); if (args1.IsError) { return args1; } }
@@ -2688,7 +2861,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Error("Function TIMEVALUE parameter is error!");
         }
     }
-    class Function_DATE : Function_N
+
+    internal class Function_DATE : Function_N
     {
         public Function_DATE(FunctionBase[] funcs) : base(funcs)
         {
@@ -2720,11 +2894,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(d);
         }
     }
-    class Function_DATEDIF : Function_3
+
+    internal class Function_DATEDIF : Function_3
     {
         public Function_DATEDIF(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function DATEDIF parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -2810,7 +2986,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_TIME : Function_N
+    internal class Function_TIME : Function_N
     {
         public Function_TIME(FunctionBase[] funcs) : base(funcs)
         {
@@ -2832,7 +3008,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_NOW : FunctionBase
+    internal class Function_NOW : FunctionBase
     {
         public override Operand Calculate(AlgorithmEngine work)
         {
@@ -2843,7 +3019,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
         }
     }
-    class Function_TODAY : FunctionBase
+
+    internal class Function_TODAY : FunctionBase
     {
         public override Operand Calculate(AlgorithmEngine work)
         {
@@ -2857,11 +3034,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_SECOND : Function_1
+    internal class Function_SECOND : Function_1
     {
         public Function_SECOND(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work);
@@ -2870,11 +3048,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_MINUTE : Function_1
+    internal class Function_MINUTE : Function_1
     {
         public Function_MINUTE(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work);
@@ -2882,11 +3061,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(args1.DateValue.Minute);
         }
     }
-    class Function_HOUR : Function_1
+
+    internal class Function_HOUR : Function_1
     {
         public Function_HOUR(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work);
@@ -2895,11 +3076,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_MONTH : Function_1
+    internal class Function_MONTH : Function_1
     {
         public Function_MONTH(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work);
@@ -2910,11 +3092,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create((int)args1.DateValue.Month.Value);
         }
     }
-    class Function_YEAR : Function_1
+
+    internal class Function_YEAR : Function_1
     {
         public Function_YEAR(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work);
@@ -2925,11 +3109,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(args1.DateValue.Year.Value);
         }
     }
-    class Function_DAY : Function_1
+
+    internal class Function_DAY : Function_1
     {
         public Function_DAY(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work);
@@ -2940,7 +3126,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(args1.DateValue.Day.Value);
         }
     }
-    class Function_WEEKDAY : Function_N
+
+    internal class Function_WEEKDAY : Function_N
     {
         public Function_WEEKDAY(FunctionBase[] funcs) : base(funcs)
         {
@@ -2971,11 +3158,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_DAYSINMONTH : Function_2
+    internal class Function_DAYSINMONTH : Function_2
     {
         public Function_DAYSINMONTH(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function DAYSINMONTH parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -2988,7 +3176,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_DAYS360 : Function_3
+    internal class Function_DAYS360 : Function_3
     {
         public Function_DAYS360(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
@@ -3053,11 +3241,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_EDATE : Function_2
+    internal class Function_EDATE : Function_2
     {
         public Function_EDATE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function EDATE parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -3066,11 +3255,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_EOMONTH : Function_2
+    internal class Function_EOMONTH : Function_2
     {
         public Function_EOMONTH(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function EOMONTH parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -3080,11 +3270,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(dt);
         }
     }
-    class Function_NETWORKDAYS : Function_N
+
+    internal class Function_NETWORKDAYS : Function_N
     {
         public Function_NETWORKDAYS(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function NETWORKDAYS parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -3112,16 +3304,16 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_WORKDAY : Function_N
+    internal class Function_WORKDAY : Function_N
     {
         public Function_WORKDAY(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function WORKDAY parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function WORKDAY parameter 2 is error!"); if (args2.IsError) { return args2; } }
-
 
             var startMyDate = (DateTime)args1.DateValue;
             var days = args2.IntValue;
@@ -3141,11 +3333,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(startMyDate);
         }
     }
-    class Function_WEEKNUM : Function_N
+
+    internal class Function_WEEKNUM : Function_N
     {
         public Function_WEEKNUM(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function WEEKNUM parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -3163,11 +3357,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(week);
         }
     }
-    class Function_ADDMONTHS : Function_2
+
+    internal class Function_ADDMONTHS : Function_2
     {
         public Function_ADDMONTHS(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function ADDMONTHS parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -3175,11 +3371,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create((MyDate)(((DateTime)args1.DateValue).AddMonths(args2.IntValue)));
         }
     }
-    class Function_ADDYEARS : Function_2
+
+    internal class Function_ADDYEARS : Function_2
     {
         public Function_ADDYEARS(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function ADDYEARS parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -3187,11 +3385,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create((MyDate)(((DateTime)args1.DateValue).AddYears(args2.IntValue)));
         }
     }
-    class Function_ADDSECONDS : Function_2
+
+    internal class Function_ADDSECONDS : Function_2
     {
         public Function_ADDSECONDS(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function ADDSECONDS parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -3200,11 +3400,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(date);
         }
     }
-    class Function_ADDMINUTES : Function_2
+
+    internal class Function_ADDMINUTES : Function_2
     {
         public Function_ADDMINUTES(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function ADDMINUTES parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -3213,11 +3415,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(date);
         }
     }
-    class Function_ADDHOURS : Function_2
+
+    internal class Function_ADDHOURS : Function_2
     {
         public Function_ADDHOURS(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function ADDHOURS parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -3226,11 +3430,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(date);
         }
     }
-    class Function_ADDDAYS : Function_2
+
+    internal class Function_ADDDAYS : Function_2
     {
         public Function_ADDDAYS(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function ADDDAYS parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -3239,9 +3445,11 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    #endregion
+    #endregion MyDate time
+
     #region sum
-    class Function_MAX : Function_N
+
+    internal class Function_MAX : Function_N
     {
         public Function_MAX(FunctionBase[] funcs) : base(funcs)
         {
@@ -3259,11 +3467,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(list.Max());
         }
     }
-    class Function_MIN : Function_N
+
+    internal class Function_MIN : Function_N
     {
         public Function_MIN(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
@@ -3274,11 +3484,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(list.Min());
         }
     }
-    class Function_SUM : Function_N
+
+    internal class Function_SUM : Function_N
     {
         public Function_SUM(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
@@ -3289,7 +3501,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(list.Sum());
         }
     }
-    class Function_SUMIF : Function_N
+
+    internal class Function_SUMIF : Function_N
     {
         public Function_SUMIF(FunctionBase[] funcs) : base(funcs)
         {
@@ -3332,11 +3545,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(sum);
         }
     }
-    class Function_AVEDEV : Function_N
+
+    internal class Function_AVEDEV : Function_N
     {
         public Function_AVEDEV(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
@@ -3353,11 +3568,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(sum / list.Count);
         }
     }
-    class Function_AVERAGE : Function_N
+
+    internal class Function_AVERAGE : Function_N
     {
         public Function_AVERAGE(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
@@ -3369,7 +3586,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(list.Average());
         }
     }
-    class Function_AVERAGEIF : Function_N
+
+    internal class Function_AVERAGEIF : Function_N
     {
         public Function_AVERAGEIF(FunctionBase[] funcs) : base(funcs)
         {
@@ -3416,11 +3634,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(sum / count);
         }
     }
-    class Function_COUNT : Function_N
+
+    internal class Function_COUNT : Function_N
     {
         public Function_COUNT(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>();
@@ -3431,11 +3651,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(list.Count);
         }
     }
-    class Function_COUNTIF : Function_2
+
+    internal class Function_COUNTIF : Function_2
     {
         public Function_COUNTIF(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.ARRARY) { args1 = args1.ToNumber("Function COUNTIF parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -3463,15 +3685,15 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-
-    class Function_COUNTA : Function_N
+    internal class Function_COUNTA : Function_N
     {
         public Function_COUNTA(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args = new List<Operand>(); 
+            var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Calculate(work); if (aa.IsError) { return aa; } args.Add(aa); }
             List<string> list = new List<string>();
             var o = FunctionUtil.F_base_GetList(args, list);
@@ -3479,11 +3701,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create((decimal)list.Count);
         }
     }
-    class Function_MEDIAN : Function_N
+
+    internal class Function_MEDIAN : Function_N
     {
         public Function_MEDIAN(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
@@ -3498,11 +3722,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(list[list.Count / 2]);
         }
     }
-    class Function_MODE : Function_N
+
+    internal class Function_MODE : Function_N
     {
         public Function_MODE(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
@@ -3523,11 +3749,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(dict.OrderByDescending(q => q.Value).First().Key);
         }
     }
-    class Function_LARGE : Function_2
+
+    internal class Function_LARGE : Function_2
     {
         public Function_LARGE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.ARRARY) { args1 = args1.ToNumber("Function LARGE parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -3544,11 +3772,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(list[k - work.ExcelIndex]);
         }
     }
-    class Function_SMALL : Function_2
+
+    internal class Function_SMALL : Function_2
     {
         public Function_SMALL(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.ARRARY) { args1 = args1.ToNumber("Function SMALL parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -3564,11 +3794,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(list[k - work.ExcelIndex]);
         }
     }
-    class Function_PERCENTILE : Function_2
+
+    internal class Function_PERCENTILE : Function_2
     {
         public Function_PERCENTILE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.ARRARY) { args1 = args1.ToNumber("Function PERCENTILE parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -3580,11 +3812,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(ExcelFunctions.Percentile(list.Select(q => (double)q).ToArray(), (double)k));
         }
     }
-    class Function_GEOMEAN : Function_N
+
+    internal class Function_GEOMEAN : Function_N
     {
         public Function_GEOMEAN(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
@@ -3604,11 +3838,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create((decimal)geoMean);
         }
     }
-    class Function_HARMEAN : Function_N
+
+    internal class Function_HARMEAN : Function_N
     {
         public Function_HARMEAN(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
@@ -3630,8 +3866,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-
-    class Function_PERCENTRANK : Function_N
+    internal class Function_PERCENTRANK : Function_N
     {
         public Function_PERCENTRANK(FunctionBase[] funcs) : base(funcs)
         {
@@ -3663,13 +3898,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-
-
-    class Function_RANGE : Function_2
+    internal class Function_RANGE : Function_2
     {
         public Function_RANGE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function RANGE parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -3677,11 +3911,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(args2.NumberValue - args1.NumberValue);
         }
     }
-    class Function_VARIANCE : Function_N
+
+    internal class Function_VARIANCE : Function_N
     {
         public Function_VARIANCE(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
@@ -3695,11 +3931,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(variance);
         }
     }
-    class Function_STDEV : Function_N
+
+    internal class Function_STDEV : Function_N
     {
         public Function_STDEV(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
@@ -3717,11 +3955,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(Math.Sqrt((double)sum / (list.Count - 1)));
         }
     }
-    class Function_STDEVP : Function_N
+
+    internal class Function_STDEVP : Function_N
     {
         public Function_STDEVP(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
@@ -3738,11 +3978,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(Math.Sqrt((double)sum / list.Count));
         }
     }
-    class Function_DEVSQ : Function_N
+
+    internal class Function_DEVSQ : Function_N
     {
         public Function_DEVSQ(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
@@ -3759,11 +4001,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(sum);
         }
     }
-    class Function_VAR : Function_N
+
+    internal class Function_VAR : Function_N
     {
         public Function_VAR(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
@@ -3785,11 +4029,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create((list.Count * sum - sum2 * sum2) / list.Count / (list.Count - 1));
         }
     }
-    class Function_VARP : Function_N
+
+    internal class Function_VARP : Function_N
     {
         public Function_VARP(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
@@ -3810,7 +4056,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(sum / list.Count);
         }
     }
-    class Function_NORMDIST : Function_4
+
+    internal class Function_NORMDIST : Function_4
     {
         public Function_NORMDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) : base(func1, func2, func3, func4)
         {
@@ -3830,11 +4077,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(ExcelFunctions.NormDist((double)num, (double)avg, (double)STDEV, b));
         }
     }
-    class Function_NORMINV : Function_3
+
+    internal class Function_NORMINV : Function_3
     {
         public Function_NORMINV(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function NORMINV parameter 1 error!"); if (args1.IsError) return args1; }
@@ -3846,11 +4095,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(ExcelFunctions.NormInv((double)p, (double)avg, (double)STDEV));
         }
     }
-    class Function_NORMSDIST : Function_1
+
+    internal class Function_NORMSDIST : Function_1
     {
         public Function_NORMSDIST(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function NORMSDIST parameter error!"); if (args1.IsError) return args1; }
@@ -3858,11 +4109,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(ExcelFunctions.NormSDist((double)num));
         }
     }
-    class Function_NORMSINV : Function_1
+
+    internal class Function_NORMSINV : Function_1
     {
         public Function_NORMSINV(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function NORMSINV parameter error!"); if (args1.IsError) return args1; }
@@ -3870,7 +4123,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(ExcelFunctions.NormSInv((double)p));
         }
     }
-    class Function_BETADIST : Function_3
+
+    internal class Function_BETADIST : Function_3
     {
         public Function_BETADIST(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
@@ -3891,11 +4145,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(ExcelFunctions.BetaDist((double)x, (double)alpha, (double)beta));
         }
     }
-    class Function_BETAINV : Function_3
+
+    internal class Function_BETAINV : Function_3
     {
         public Function_BETAINV(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function BETAINV parameter 1 error!"); if (args1.IsError) return args1; }
@@ -3910,7 +4166,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(ExcelFunctions.BetaInv((double)p, (double)alpha, (double)beta));
         }
     }
-    class Function_BINOMDIST : Function_4
+
+    internal class Function_BINOMDIST : Function_4
     {
         public Function_BINOMDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) : base(func1, func2, func3, func4)
         {
@@ -3927,14 +4184,15 @@ namespace ToolGood.Algorithm.Internals.Functions
                 return Operand.Error("Function BINOMDIST parameter error!");
             }
             return Operand.Create(ExcelFunctions.BinomDist(args1.IntValue, args2.IntValue, (double)args3.NumberValue, args4.BooleanValue));
-
         }
     }
-    class Function_EXPONDIST : Function_3
+
+    internal class Function_EXPONDIST : Function_3
     {
         public Function_EXPONDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function EXPONDIST parameter 1 error!"); if (args1.IsError) return args1; }
@@ -3947,7 +4205,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(ExcelFunctions.ExponDist((double)args1.NumberValue, (double)args2.NumberValue, args3.BooleanValue));
         }
     }
-    class Function_FDIST : Function_3
+
+    internal class Function_FDIST : Function_3
     {
         public Function_FDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
@@ -3968,11 +4227,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(ExcelFunctions.FDist((double)x, degreesFreedom, degreesFreedom2));
         }
     }
-    class Function_FINV : Function_3
+
+    internal class Function_FINV : Function_3
     {
         public Function_FINV(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function FINV parameter 1 error!"); if (args1.IsError) return args1; }
@@ -3987,7 +4248,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(ExcelFunctions.FInv((double)p, degreesFreedom, degreesFreedom2));
         }
     }
-    class Function_FISHER : Function_1
+
+    internal class Function_FISHER : Function_1
     {
         public Function_FISHER(FunctionBase func1) : base(func1)
         {
@@ -4004,11 +4266,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(n);
         }
     }
-    class Function_FISHERINV : Function_1
+
+    internal class Function_FISHERINV : Function_1
     {
         public Function_FISHERINV(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function FISHERINV parameter error!"); if (args1.IsError) { return args1; } }
@@ -4017,11 +4281,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(n);
         }
     }
-    class Function_GAMMADIST : Function_4
+
+    internal class Function_GAMMADIST : Function_4
     {
         public Function_GAMMADIST(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) : base(func1, func2, func3, func4)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function GAMMADIST parameter 1 error!"); if (args1.IsError) return args1; }
@@ -4038,11 +4304,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(ExcelFunctions.GammaDist((double)x, (double)alpha, (double)beta, cumulative));
         }
     }
-    class Function_GAMMAINV : Function_3
+
+    internal class Function_GAMMAINV : Function_3
     {
         public Function_GAMMAINV(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function GAMMAINV parameter 1 error!"); if (args1.IsError) return args1; }
@@ -4057,22 +4325,26 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(ExcelFunctions.GammaInv((double)probability, (double)alpha, (double)beta));
         }
     }
-    class Function_GAMMALN : Function_1
+
+    internal class Function_GAMMALN : Function_1
     {
         public Function_GAMMALN(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function GAMMALN parameter error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(ExcelFunctions.GAMMALN((double)args1.NumberValue));
         }
     }
-    class Function_HYPGEOMDIST : Function_4
+
+    internal class Function_HYPGEOMDIST : Function_4
     {
         public Function_HYPGEOMDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) : base(func1, func2, func3, func4)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function HYPGEOMDIST parameter 1 error!"); if (args1.IsError) return args1; }
@@ -4089,7 +4361,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(ExcelFunctions.HypgeomDist(k, draws, success, population));
         }
     }
-    class Function_LOGINV : Function_3
+
+    internal class Function_LOGINV : Function_3
     {
         public Function_LOGINV(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
@@ -4106,11 +4379,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(ExcelFunctions.LogInv((double)args1.NumberValue, (double)args2.NumberValue, (double)args3.NumberValue));
         }
     }
-    class Function_LOGNORMDIST : Function_3
+
+    internal class Function_LOGNORMDIST : Function_3
     {
         public Function_LOGNORMDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function LOGNORMDIST parameter 1 error!"); if (args1.IsError) return args1; }
@@ -4122,11 +4397,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(ExcelFunctions.LognormDist((double)args1.NumberValue, (double)args2.NumberValue, (double)args3.NumberValue));
         }
     }
-    class Function_NEGBINOMDIST : Function_3
+
+    internal class Function_NEGBINOMDIST : Function_3
     {
         public Function_NEGBINOMDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function NEGBINOMDIST parameter 1 error!"); if (args1.IsError) return args1; }
@@ -4142,7 +4419,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(ExcelFunctions.NegbinomDist(k, (double)r, (double)p));
         }
     }
-    class Function_POISSON : Function_3
+
+    internal class Function_POISSON : Function_3
     {
         public Function_POISSON(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
@@ -4162,11 +4440,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(ExcelFunctions.POISSON(k, (double)lambda, state));
         }
     }
-    class Function_TDIST : Function_3
+
+    internal class Function_TDIST : Function_3
     {
         public Function_TDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function TDIST parameter 1 error!"); if (args1.IsError) return args1; }
@@ -4181,11 +4461,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(ExcelFunctions.TDist((double)x, degreesFreedom, tails));
         }
     }
-    class Function_TINV : Function_2
+
+    internal class Function_TINV : Function_2
     {
         public Function_TINV(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function TINV parameter 1 error!"); if (args1.IsError) return args1; }
@@ -4198,11 +4480,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(ExcelFunctions.TInv((double)p, degreesFreedom));
         }
     }
-    class Function_WEIBULL : Function_4
+
+    internal class Function_WEIBULL : Function_4
     {
         public Function_WEIBULL(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) : base(func1, func2, func3, func4)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function WEIBULL parameter 1 error!"); if (args1.IsError) return args1; }
@@ -4221,11 +4505,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_QUARTILE : Function_2
+    internal class Function_QUARTILE : Function_2
     {
         public Function_QUARTILE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.ARRARY) { args1 = args1.ToNumber("Function QUARTILE parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -4243,13 +4528,16 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    #endregion
+    #endregion sum
+
     #region csharp
-    class Function_URLENCODE : Function_1
+
+    internal class Function_URLENCODE : Function_1
     {
         public Function_URLENCODE(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function URLENCODE parameter error!"); if (args1.IsError) { return args1; } }
@@ -4258,11 +4546,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(r);
         }
     }
-    class Function_URLDECODE : Function_1
+
+    internal class Function_URLDECODE : Function_1
     {
         public Function_URLDECODE(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function URLDECODE parameter error!"); if (args1.IsError) { return args1; } }
@@ -4271,11 +4561,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(r);
         }
     }
-    class Function_HTMLENCODE : Function_1
+
+    internal class Function_HTMLENCODE : Function_1
     {
         public Function_HTMLENCODE(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function HTMLENCODE parameter error!"); if (args1.IsError) { return args1; } }
@@ -4284,11 +4576,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(r);
         }
     }
-    class Function_HTMLDECODE : Function_1
+
+    internal class Function_HTMLDECODE : Function_1
     {
         public Function_HTMLDECODE(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function HTMLDECODE parameter error!"); if (args1.IsError) { return args1; } }
@@ -4297,7 +4591,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(r);
         }
     }
-    class Function_BASE64TOTEXT : Function_N
+
+    internal class Function_BASE64TOTEXT : Function_N
     {
         public Function_BASE64TOTEXT(FunctionBase[] funcs) : base(funcs)
         {
@@ -4320,11 +4615,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Error("Function BASE64TOTEXT is error!");
         }
     }
-    class Function_BASE64URLTOTEXT : Function_N
+
+    internal class Function_BASE64URLTOTEXT : Function_N
     {
         public Function_BASE64URLTOTEXT(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
@@ -4342,11 +4639,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Error("Function BASE64URLTOTEXT is error!");
         }
     }
-    class Function_TEXTTOBASE64 : Function_N
+
+    internal class Function_TEXTTOBASE64 : Function_N
     {
         public Function_TEXTTOBASE64(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
@@ -4366,11 +4665,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Error("Function TEXTTOBASE64 is error!");
         }
     }
-    class Function_TEXTTOBASE64URL : Function_N
+
+    internal class Function_TEXTTOBASE64URL : Function_N
     {
         public Function_TEXTTOBASE64URL(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
@@ -4389,7 +4690,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Error("Function TEXTTOBASE64URL is error!");
         }
     }
-    class Function_REGEX : Function_2
+
+    internal class Function_REGEX : Function_2
     {
         public Function_REGEX(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
@@ -4409,7 +4711,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(b.Value);
         }
     }
-    class Function_REGEXREPALCE : Function_3
+
+    internal class Function_REGEXREPALCE : Function_3
     {
         public Function_REGEXREPALCE(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
@@ -4424,11 +4727,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(b);
         }
     }
-    class Function_ISREGEX : Function_2
+
+    internal class Function_ISREGEX : Function_2
     {
         public Function_ISREGEX(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function ISREGEX parameter 1 error!"); if (args1.IsError) return args1; }
@@ -4438,17 +4743,19 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_GUID : FunctionBase
+    internal class Function_GUID : FunctionBase
     {
         public Function_GUID()
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             return Operand.Create(System.Guid.NewGuid().ToString());
         }
     }
-    class Function_MD5 : Function_N
+
+    internal class Function_MD5 : Function_N
     {
         public Function_MD5(FunctionBase[] funcs) : base(funcs)
         {
@@ -4472,11 +4779,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
         }
     }
-    class Function_SHA1 : Function_N
+
+    internal class Function_SHA1 : Function_N
     {
         public Function_SHA1(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
@@ -4495,11 +4804,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
         }
     }
-    class Function_SHA256 : Function_N
+
+    internal class Function_SHA256 : Function_N
     {
         public Function_SHA256(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
@@ -4518,11 +4829,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
         }
     }
-    class Function_SHA512 : Function_N
+
+    internal class Function_SHA512 : Function_N
     {
         public Function_SHA512(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
@@ -4541,11 +4854,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
         }
     }
-    class Function_CRC32 : Function_N
+
+    internal class Function_CRC32 : Function_N
     {
         public Function_CRC32(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
@@ -4564,11 +4879,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
         }
     }
-    class Function_HMACMD5 : Function_N
+
+    internal class Function_HMACMD5 : Function_N
     {
         public Function_HMACMD5(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
@@ -4587,11 +4904,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
         }
     }
-    class Function_HMACSHA1 : Function_N
+
+    internal class Function_HMACSHA1 : Function_N
     {
         public Function_HMACSHA1(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
@@ -4610,11 +4929,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
         }
     }
-    class Function_HMACSHA256 : Function_N
+
+    internal class Function_HMACSHA256 : Function_N
     {
         public Function_HMACSHA256(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
@@ -4633,11 +4954,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
         }
     }
-    class Function_HMACSHA512 : Function_N
+
+    internal class Function_HMACSHA512 : Function_N
     {
         public Function_HMACSHA512(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
@@ -4656,11 +4979,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
         }
     }
-    class Function_TRIMSTART : Function_N
+
+    internal class Function_TRIMSTART : Function_N
     {
         public Function_TRIMSTART(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
@@ -4673,11 +4998,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
         }
     }
-    class Function_TRIMEND : Function_N
+
+    internal class Function_TRIMEND : Function_N
     {
         public Function_TRIMEND(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
@@ -4690,7 +5017,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
         }
     }
-    class Function_INDEXOF : Function_N
+
+    internal class Function_INDEXOF : Function_N
     {
         public Function_INDEXOF(FunctionBase[] funcs) : base(funcs)
         {
@@ -4712,11 +5040,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(text.IndexOf(args2.TextValue, args3.IntValue, args4.IntValue) + work.ExcelIndex);
         }
     }
-    class Function_LASTINDEXOF : Function_N
+
+    internal class Function_LASTINDEXOF : Function_N
     {
         public Function_LASTINDEXOF(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function LASTINDEXOF parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -4733,7 +5063,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(text.LastIndexOf(args2.TextValue, args3.IntValue, args4.IntValue) + work.ExcelIndex);
         }
     }
-    class Function_SPLIT : Function_2
+
+    internal class Function_SPLIT : Function_2
     {
         public Function_SPLIT(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
@@ -4746,7 +5077,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(args1.TextValue.Split(args2.TextValue.ToArray()));
         }
     }
-    class Function_JOIN : Function_N
+
+    internal class Function_JOIN : Function_N
     {
         public Function_JOIN(FunctionBase[] funcs) : base(funcs)
         {
@@ -4786,7 +5118,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_SUBSTRING : Function_N
+    internal class Function_SUBSTRING : Function_N
     {
         public Function_SUBSTRING(FunctionBase[] funcs) : base(funcs)
         {
@@ -4806,11 +5138,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_STARTSWITH : Function_N
+    internal class Function_STARTSWITH : Function_N
     {
         public Function_STARTSWITH(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function STARTSWITH parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -4824,11 +5157,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(text.AsSpan().StartsWith(args2.TextValue.AsSpan(), args3.BooleanValue ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
         }
     }
-    class Function_ENDSWITH : Function_N
+
+    internal class Function_ENDSWITH : Function_N
     {
         public Function_ENDSWITH(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function ENDSWITH parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -4841,33 +5176,39 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(text.AsSpan().EndsWith(args2.TextValue.AsSpan(), args3.BooleanValue ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
         }
     }
-    class Function_ISNULLOREMPTY : Function_1
+
+    internal class Function_ISNULLOREMPTY : Function_1
     {
         public Function_ISNULLOREMPTY(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function ISNULLOREMPTY parameter 1 is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(string.IsNullOrEmpty(args1.TextValue));
         }
     }
-    class Function_ISNULLORWHITESPACE : Function_1
+
+    internal class Function_ISNULLORWHITESPACE : Function_1
     {
         public Function_ISNULLORWHITESPACE(FunctionBase func1) : base(func1)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function ISNULLORWHITESPACE parameter 1 is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(string.IsNullOrWhiteSpace(args1.TextValue));
         }
     }
-    class Function_REMOVESTART : Function_N
+
+    internal class Function_REMOVESTART : Function_N
     {
         public Function_REMOVESTART(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function REMOVESTART parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -4886,11 +5227,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return args1;
         }
     }
-    class Function_REMOVEEND : Function_N
+
+    internal class Function_REMOVEEND : Function_N
     {
         public Function_REMOVEEND(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function REMOVEEND parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -4909,7 +5252,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return args1;
         }
     }
-    class Function_JSON : Function_1
+
+    internal class Function_JSON : Function_1
     {
         public Function_JSON(FunctionBase func1) : base(func1)
         {
@@ -4932,14 +5276,16 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    #endregion
+    #endregion csharp
 
     #region Lookup
-    class Function_VLOOKUP : Function_N
+
+    internal class Function_VLOOKUP : Function_N
     {
         public Function_VLOOKUP(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>();
@@ -5023,14 +5369,16 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    #endregion
+    #endregion Lookup
 
     #region getValue
-    class Function_Array : Function_N
+
+    internal class Function_Array : Function_N
     {
         public Function_Array(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>();
@@ -5038,15 +5386,18 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(args);
         }
     }
-    class Function_NUM : FunctionBase
+
+    internal class Function_NUM : FunctionBase
     {
         private decimal d;
         private string unit;
+
         public Function_NUM(decimal func1, string func2)
         {
             d = func1;
             unit = func2;
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var dict = NumberUnitTypeHelper.GetUnitTypedict();
@@ -5054,14 +5405,17 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(d2);
         }
     }
-    class Function_PARAMETER : FunctionBase
+
+    internal class Function_PARAMETER : FunctionBase
     {
         private string name;
         private FunctionBase func1;
+
         public Function_PARAMETER(string name)
         {
             this.name = name;
         }
+
         public Function_PARAMETER(FunctionBase func1)
         {
             this.func1 = func1;
@@ -5076,7 +5430,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_GetJsonValue : Function_2
+    internal class Function_GetJsonValue : Function_2
     {
         public Function_GetJsonValue(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
@@ -5145,9 +5499,11 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Error(" Operator is error!");
         }
     }
-    class Function_DiyFunction : Function_N
+
+    internal class Function_DiyFunction : Function_N
     {
         private string funName;
+
         public Function_DiyFunction(string name, FunctionBase[] funcs) : base(funcs)
         {
             this.funName = name;
@@ -5160,7 +5516,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return work.ExecuteDiyFunction(funName, args);
         }
     }
-    class Function_PARAM : Function_2
+
+    internal class Function_PARAM : Function_2
     {
         public Function_PARAM(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
@@ -5178,11 +5535,13 @@ namespace ToolGood.Algorithm.Internals.Functions
             return result;
         }
     }
-    class Function_HAS : Function_2
+
+    internal class Function_HAS : Function_2
     {
         public Function_HAS(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.IsError) { return args1; }
@@ -5224,7 +5583,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Error("Function HAS parameter 1 is error!");
         }
     }
-    class Function_HASVALUE : Function_2
+
+    internal class Function_HASVALUE : Function_2
     {
         public Function_HASVALUE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
@@ -5278,11 +5638,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    class Function_ArrayJson : Function_N
+    internal class Function_ArrayJson : Function_N
     {
         public Function_ArrayJson(FunctionBase[] funcs) : base(funcs)
         {
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             OperandKeyValueList result = new OperandKeyValueList(null);
@@ -5293,13 +5654,16 @@ namespace ToolGood.Algorithm.Internals.Functions
             return result;
         }
     }
-    class Function_ArrayJsonItem : Function_1
+
+    internal class Function_ArrayJsonItem : Function_1
     {
         private string key;
+
         public Function_ArrayJsonItem(string key, FunctionBase func1) : base(func1)
         {
             this.key = key;
         }
+
         public override Operand Calculate(AlgorithmEngine work)
         {
             KeyValue keyValue = new KeyValue();
@@ -5309,5 +5673,5 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    #endregion
+    #endregion getValue
 }
