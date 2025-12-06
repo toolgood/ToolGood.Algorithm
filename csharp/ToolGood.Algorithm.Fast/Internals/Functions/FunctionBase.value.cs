@@ -41,7 +41,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 stringBuilder.Append(_value.DateValue.ToString());
                 stringBuilder.Append('"');
             } else if (_value.Type == OperandType.BOOLEAN) {
-                stringBuilder.Append(_value.BooleanValue? "true" : "false");
+                stringBuilder.Append(_value.BooleanValue ? "true" : "false");
             } else {
                 stringBuilder.Append(_value.ToString());
             }
@@ -63,9 +63,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            stringBuilder.Append("ERROR(");
-            func1.ToString(stringBuilder, false);
-            stringBuilder.Append(")");
+            AddFunction(stringBuilder, "ERROR");
         }
     }
 
@@ -83,14 +81,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            stringBuilder.Append("Array(");
-            for (int i = 0; i < funcs.Length; i++) {
-                if (i > 0) {
-                    stringBuilder.Append(", ");
-                }
-                funcs[i].ToString(stringBuilder, false);
-            }
-            stringBuilder.Append(')');
+            AddFunction(stringBuilder, "Array");
         }
     }
 
@@ -278,13 +269,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            stringBuilder.Append("PARAM(");
-            func1.ToString(stringBuilder, false);
-            if (func2 != null) {
-                stringBuilder.Append(", ");
-                func2.ToString(stringBuilder, false);
-            }
-            stringBuilder.Append(')');
+            AddFunction(stringBuilder, "PARAM");
         }
     }
 

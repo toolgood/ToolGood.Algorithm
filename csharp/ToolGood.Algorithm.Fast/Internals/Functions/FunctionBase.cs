@@ -38,10 +38,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <param name="stringBuilder">The StringBuilder to which the string representation will be appended. Cannot be null.</param>
         /// <param name="addBrackets">true to enclose the string representation in brackets; otherwise, false.</param>
         public abstract void ToString(StringBuilder stringBuilder, bool addBrackets);
-
-
     }
-
  
     internal abstract class Function_1 : FunctionBase
     {
@@ -50,6 +47,13 @@ namespace ToolGood.Algorithm.Internals.Functions
         protected Function_1(FunctionBase func1)
         {
             this.func1 = func1;
+        }
+        protected void AddFunction(StringBuilder stringBuilder, string functionName)
+        {
+            stringBuilder.Append(functionName);
+            stringBuilder.Append("(");
+            func1.ToString(stringBuilder, false);
+            stringBuilder.Append(')');
         }
     }
 
@@ -63,8 +67,19 @@ namespace ToolGood.Algorithm.Internals.Functions
             this.func1 = func1;
             this.func2 = func2;
         }
-    }
 
+        protected void AddFunction(StringBuilder stringBuilder,string functionName)
+        {
+            stringBuilder.Append(functionName);
+            stringBuilder.Append("(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
+        }
+    }
 
     internal abstract class Function_3 : FunctionBase
     {
@@ -77,6 +92,21 @@ namespace ToolGood.Algorithm.Internals.Functions
             this.func1 = func1;
             this.func2 = func2;
             this.func3 = func3;
+        }
+        protected void AddFunction(StringBuilder stringBuilder, string functionName)
+        {
+            stringBuilder.Append(functionName);
+            stringBuilder.Append("(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+                if (func3 != null) {
+                    stringBuilder.Append(", ");
+                    func3.ToString(stringBuilder, false);
+                }
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -94,6 +124,25 @@ namespace ToolGood.Algorithm.Internals.Functions
             this.func3 = func3;
             this.func4 = func4;
         }
+        protected void AddFunction(StringBuilder stringBuilder, string functionName)
+        {
+            stringBuilder.Append(functionName);
+            stringBuilder.Append("(");
+            func1.ToString(stringBuilder, false);
+            if (func2 != null) {
+                stringBuilder.Append(", ");
+                func2.ToString(stringBuilder, false);
+                if (func3 != null) {
+                    stringBuilder.Append(", ");
+                    func3.ToString(stringBuilder, false);
+                    if (func4 != null) {
+                        stringBuilder.Append(", ");
+                        func4.ToString(stringBuilder, false);
+                    }
+                }
+            }
+            stringBuilder.Append(')');
+        }
     }
 
     internal abstract class Function_N : FunctionBase
@@ -103,6 +152,19 @@ namespace ToolGood.Algorithm.Internals.Functions
         protected Function_N(FunctionBase[] funcs)
         {
             this.funcs = funcs;
+        }
+
+        protected void AddFunction(StringBuilder stringBuilder, string functionName)
+        {
+            stringBuilder.Append(functionName);
+            stringBuilder.Append("(");
+            for (int i = 0; i < funcs.Length; i++) {
+                if (i > 0) {
+                    stringBuilder.Append(", ");
+                }
+                funcs[i].ToString(stringBuilder, false);
+            }
+            stringBuilder.Append(')');
         }
     }
 
@@ -925,14 +987,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            stringBuilder.Append("AND(");
-            for (int i = 0; i < funcs.Length; i++) {
-                if (i > 0) {
-                    stringBuilder.Append(", ");
-                }
-                funcs[i].ToString(stringBuilder, false);
-            }
-            stringBuilder.Append(')');
+            AddFunction(stringBuilder, "AND");
         }
     }
 
@@ -955,14 +1010,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            stringBuilder.Append("OR(");
-            for (int i = 0; i < funcs.Length; i++) {
-                if (i > 0) {
-                    stringBuilder.Append(", ");
-                }
-                funcs[i].ToString(stringBuilder, false);
-            }
-            stringBuilder.Append(')');
+            AddFunction(stringBuilder, "OR");
         }
     }
 
@@ -1060,14 +1108,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            stringBuilder.Append("VLOOKUP(");
-            for (int i = 0; i < funcs.Length; i++) {
-                if (i > 0) {
-                    stringBuilder.Append(", ");
-                }
-                funcs[i].ToString(stringBuilder, false);
-            }
-            stringBuilder.Append(')');
+            AddFunction(stringBuilder, "VLOOKUP");
         }
     }
 

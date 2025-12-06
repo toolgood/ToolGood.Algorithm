@@ -22,17 +22,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            stringBuilder.Append("IF(");
-            func1.ToString(stringBuilder, false);
-            if (func2 != null) {
-                stringBuilder.Append(", ");
-                func2.ToString(stringBuilder, false);
-                if (func3 != null) {
-                    stringBuilder.Append(", ");
-                    func3.ToString(stringBuilder, false);
-                }
-            }
-            stringBuilder.Append(')');
+            AddFunction(stringBuilder, "IF");
         }
     }
 
@@ -50,17 +40,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            stringBuilder.Append("IFERROR(");
-            func1.ToString(stringBuilder, false);
-            if (func2 != null) {
-                stringBuilder.Append(", ");
-                func2.ToString(stringBuilder, false);
-                if (func3 != null) {
-                    stringBuilder.Append(", ");
-                    func3.ToString(stringBuilder, false);
-                }
-            }
-            stringBuilder.Append(')');
+            AddFunction(stringBuilder, "IFERROR");
         }
     }
 
@@ -78,9 +58,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            stringBuilder.Append("ISNUMBER(");
-            func1.ToString(stringBuilder, false);
-            stringBuilder.Append(')');
+            AddFunction(stringBuilder, "ISNUMBER");
         }
     }
 
@@ -98,9 +76,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            stringBuilder.Append("ISTEXT(");
-            func1.ToString(stringBuilder, false);
-            stringBuilder.Append(')');
+            AddFunction(stringBuilder, "ISTEXT");
         }
     }
 
@@ -122,13 +98,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            stringBuilder.Append("ISERROR(");
-            func1.ToString(stringBuilder, false);
-            if (func2 != null) {
-                stringBuilder.Append(", ");
-                func2.ToString(stringBuilder, false);
-            }
-            stringBuilder.Append(')');
+            AddFunction(stringBuilder, "ISERROR");
         }
     }
 
@@ -150,13 +120,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            stringBuilder.Append("ISNULL(");
-            func1.ToString(stringBuilder, false);
-            if (func2 != null) {
-                stringBuilder.Append(", ");
-                func2.ToString(stringBuilder, false);
-            }
-            stringBuilder.Append(')');
+            AddFunction(stringBuilder, "ISNULL");
         }
     }
 
@@ -178,13 +142,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            stringBuilder.Append("ISNULLORERROR(");
-            func1.ToString(stringBuilder, false);
-            if (func2 != null) {
-                stringBuilder.Append(", ");
-                func2.ToString(stringBuilder, false);
-            }
-            stringBuilder.Append(')');
+            AddFunction(stringBuilder, "ISNULLORERROR");
         }
     }
 
@@ -204,9 +162,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            stringBuilder.Append("ISEVEN(");
-            func1.ToString(stringBuilder, false);
-            stringBuilder.Append(')');
+            AddFunction(stringBuilder, "ISEVEN");
         }
     }
 
@@ -226,9 +182,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            stringBuilder.Append("ISODD(");
-            func1.ToString(stringBuilder, false);
-            stringBuilder.Append(')');
+            AddFunction(stringBuilder, "ISODD");
         }
     }
 
@@ -246,9 +200,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            stringBuilder.Append("ISLOGICAL(");
-            func1.ToString(stringBuilder, false);
-            stringBuilder.Append(')');
+            AddFunction(stringBuilder, "ISLOGICAL");
         }
     }
 
@@ -266,9 +218,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            stringBuilder.Append("ISNONTEXT(");
-            func1.ToString(stringBuilder, false);
-            stringBuilder.Append(')');
+            AddFunction(stringBuilder, "ISNONTEXT");
         }
     }
 
@@ -286,9 +236,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            stringBuilder.Append("NOT(");
-            func1.ToString(stringBuilder, false);
-            stringBuilder.Append(')');
+            AddFunction(stringBuilder, "NOT");
         }
     }
 
