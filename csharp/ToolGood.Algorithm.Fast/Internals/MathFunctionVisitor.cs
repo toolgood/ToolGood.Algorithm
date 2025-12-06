@@ -1834,102 +1834,59 @@ namespace ToolGood.Algorithm.Fast.Internals
         public virtual FunctionBase VisitSTARTSWITH_fun(mathParser.STARTSWITH_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function STARTSWITH parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function STARTSWITH parameter 2 is error!"); if (args2.IsError) { return args2; } }
-            return new Function_STARTSWITH(args1, args2);
-
-            var text = args1.TextValue;
-            if (exprs.Length == 2) {
-                return Operand.Create(text.AsSpan().StartsWith(args2.TextValue.AsSpan()));
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function STARTSWITH parameter 3 is error!"); if (args3.IsError) { return args3; } }
-            return Operand.Create(text.AsSpan().StartsWith(args2.TextValue.AsSpan(), args3.BooleanValue ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
+            return new Function_STARTSWITH(args);
         }
 
         public virtual FunctionBase VisitENDSWITH_fun(mathParser.ENDSWITH_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function ENDSWITH parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function ENDSWITH parameter 2 is error!"); if (args2.IsError) { return args2; } }
-            return new Function_ENDSWITH(args1, args2);
-            var text = args1.TextValue;
-            if (exprs.Length == 2) {
-                return Operand.Create(text.AsSpan().EndsWith(args2.TextValue.AsSpan()));
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function ENDSWITH parameter 3 is error!"); if (args3.IsError) { return args3; } }
-            return Operand.Create(text.AsSpan().EndsWith(args2.TextValue.AsSpan(), args3.BooleanValue ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
-        }
+            return new Function_ENDSWITH(args);
+   }
 
         public virtual FunctionBase VisitISNULLOREMPTY_fun(mathParser.ISNULLOREMPTY_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function ISNULLOREMPTY parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args1 = context.expr().Accept(this);
             return new Function_ISNULLOREMPTY(args1);
-
-            return Operand.Create(string.IsNullOrEmpty(args1.TextValue));
         }
 
         public virtual FunctionBase VisitISNULLORWHITESPACE_fun(mathParser.ISNULLORWHITESPACE_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function ISNULLORWHITESPACE parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args1 = context.expr().Accept(this);
             return new Function_ISNULLORWHITESPACE(args1);
-            return Operand.Create(string.IsNullOrWhiteSpace(args1.TextValue));
         }
 
         public virtual FunctionBase VisitREMOVESTART_fun(mathParser.REMOVESTART_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function REMOVESTART parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function REMOVESTART parameter 2 is error!"); if (args2.IsError) { return args2; } }
-            return new Function_REMOVESTART(args1, args2);
-            StringComparison comparison = StringComparison.Ordinal;
-            if (exprs.Length == 3) {
-                var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function REMOVESTART parameter 3 is error!"); if (args3.IsError) { return args3; } }
-                if (args3.BooleanValue) {
-                    comparison = StringComparison.OrdinalIgnoreCase;
-                }
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            var text = args1.TextValue;
-            if (text.StartsWith(args2.TextValue, comparison)) {
-                return Operand.Create(text.AsSpan(args2.TextValue.Length).ToString());
-            }
-            return args1;
+            return new Function_REMOVESTART(args);
         }
 
         public virtual FunctionBase VisitREMOVEEND_fun(mathParser.REMOVEEND_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function REMOVEEND parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function REMOVEEND parameter 2 is error!"); if (args2.IsError) { return args2; } }
-            return new Function_REMOVEEND(args1, args2);
-            StringComparison comparison = StringComparison.Ordinal;
-            if (exprs.Length == 3) {
-                var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function REMOVESTART parameter 3 is error!"); if (args3.IsError) { return args3; } }
-                if (args3.BooleanValue) {
-                    comparison = StringComparison.OrdinalIgnoreCase;
-                }
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            var text = args1.TextValue;
-            if (text.EndsWith(args2.TextValue, comparison)) {
-                return Operand.Create(text.AsSpan(0, text.Length - args2.TextValue.Length).ToString());
-            }
-            return args1;
+            return new Function_REMOVEEND(args);
         }
 
         public virtual FunctionBase VisitJSON_fun(mathParser.JSON_funContext context)
         {
             var args1 = context.expr().Accept(this);
             return new Function_JSON(args1);
-            if (args1.Type == OperandType.JSON) { return args1; }
-            args1 = args1.ToText("Function JSON parameter is error!");
-            if (args1.IsError) { return args1; }
-            var txt = args1.TextValue;
-            if ((txt.StartsWith('{') && txt.EndsWith('}')) || (txt.StartsWith('[') && txt.EndsWith(']'))) {
-                try {
-                    var json = JsonMapper.ToObject(txt);
-                    return Operand.Create(json);
-                } catch (Exception) { }
-            }
-            return Operand.Error("Function JSON parameter is error!");
         }
 
         #endregion csharp

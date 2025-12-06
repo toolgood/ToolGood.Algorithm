@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using ToolGood.Algorithm.Enums;
+using ToolGood.Algorithm.LitJson;
 using ToolGood.Algorithm.math;
 using ToolGood.Algorithm.MathNet.Numerics;
 
@@ -4793,6 +4794,131 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
+    public class Function_STARTSWITH : Function_N
+    {
+        public Function_STARTSWITH(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = funcs[0].Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function STARTSWITH parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = funcs[1].Accept(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function STARTSWITH parameter 2 is error!"); if (args2.IsError) { return args2; } }
+
+            var text = args1.TextValue;
+            if (funcs.Length == 2) {
+                return Operand.Create(text.AsSpan().StartsWith(args2.TextValue.AsSpan()));
+            }
+            var args3 = funcs[2].Accept(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function STARTSWITH parameter 3 is error!"); if (args3.IsError) { return args3; } }
+            return Operand.Create(text.AsSpan().StartsWith(args2.TextValue.AsSpan(), args3.BooleanValue ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
+        }
+    }
+    public class Function_ENDSWITH : Function_N
+    {
+        public Function_ENDSWITH(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = funcs[0].Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function ENDSWITH parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = funcs[1].Accept(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function ENDSWITH parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var text = args1.TextValue;
+            if (funcs.Length == 2) {
+                return Operand.Create(text.AsSpan().EndsWith(args2.TextValue.AsSpan()));
+            }
+            var args3 = funcs[2].Accept(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function ENDSWITH parameter 3 is error!"); if (args3.IsError) { return args3; } }
+            return Operand.Create(text.AsSpan().EndsWith(args2.TextValue.AsSpan(), args3.BooleanValue ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
+        }
+    }
+    public class Function_ISNULLOREMPTY : Function_1
+    {
+        public Function_ISNULLOREMPTY(FunctionBase func1) : base(func1)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function ISNULLOREMPTY parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            return Operand.Create(string.IsNullOrEmpty(args1.TextValue));
+        }
+    }
+    public class Function_ISNULLORWHITESPACE : Function_1
+    {
+        public Function_ISNULLORWHITESPACE(FunctionBase func1) : base(func1)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function ISNULLORWHITESPACE parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            return Operand.Create(string.IsNullOrWhiteSpace(args1.TextValue));
+        }
+    }
+    public class Function_REMOVESTART : Function_N
+    {
+        public Function_REMOVESTART(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = funcs[0].Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function REMOVESTART parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = funcs[1].Accept(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function REMOVESTART parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            StringComparison comparison = StringComparison.Ordinal;
+            if (funcs.Length == 3) {
+                var args3 = funcs[2].Accept(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function REMOVESTART parameter 3 is error!"); if (args3.IsError) { return args3; } }
+                if (args3.BooleanValue) {
+                    comparison = StringComparison.OrdinalIgnoreCase;
+                }
+            }
+            var text = args1.TextValue;
+            if (text.StartsWith(args2.TextValue, comparison)) {
+                return Operand.Create(text.AsSpan(args2.TextValue.Length).ToString());
+            }
+            return args1;
+        }
+    }
+    public class Function_REMOVEEND : Function_N
+    {
+        public Function_REMOVEEND(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = funcs[0].Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function REMOVEEND parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = funcs[1].Accept(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function REMOVEEND parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            StringComparison comparison = StringComparison.Ordinal;
+            if (funcs.Length == 3) {
+                var args3 = funcs[2].Accept(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function REMOVEEND parameter 3 is error!"); if (args3.IsError) { return args3; } }
+                if (args3.BooleanValue) {
+                    comparison = StringComparison.OrdinalIgnoreCase;
+                }
+            }
+            var text = args1.TextValue;
+            if (text.EndsWith(args2.TextValue, comparison)) {
+                return Operand.Create(text.AsSpan(0, text.Length - args2.TextValue.Length).ToString());
+            }
+            return args1;
+        }
+    }
+    public class Function_JSON : Function_1
+    {
+        public Function_JSON(FunctionBase func1) : base(func1)
+        {
+        }
+
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work);
+            if (args1.Type == OperandType.JSON) { return args1; }
+            args1 = args1.ToText("Function JSON parameter is error!");
+            if (args1.IsError) { return args1; }
+            var txt = args1.TextValue;
+            if ((txt.StartsWith('{') && txt.EndsWith('}')) || (txt.StartsWith('[') && txt.EndsWith(']'))) {
+                try {
+                    var json = JsonMapper.ToObject(txt);
+                    return Operand.Create(json);
+                } catch (Exception) { }
+            }
+            return Operand.Error("Function JSON parameter is error!");
+        }
+    }
 
     #endregion
 
