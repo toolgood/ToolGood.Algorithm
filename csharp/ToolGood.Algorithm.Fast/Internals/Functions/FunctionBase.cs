@@ -5119,6 +5119,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public Function_PARAMETER(FunctionBase func1)
         {
+            this.func1 = func1;
         }
 
         public override Operand Accept(AlgorithmEngine work)

@@ -245,11 +245,11 @@ namespace ToolGood.Algorithm
             t = c.TryEvaluate("求面积（10）", 0.0); //圆的体积
             Assert.AreEqual(10 * 10 * Math.PI, t, 10);
 
-            //var json = "{'灰色':'L','canBookCount':905,'saleCount':91,'specId':'43b0e72e98731aed69e1f0cc7d64bf4d'}";
-            //c.AddParameterFromJson(json);
+            var json = "{'灰色':'L','canBookCount':905,'saleCount':91,'specId':'43b0e72e98731aed69e1f0cc7d64bf4d'}";
+            c.AddParameterFromJson(json);
 
-            //var tt = c.TryEvaluate("['灰色']", ""); //圆的体积
-            //Assert.AreEqual("L", tt);
+            var tt = c.TryEvaluate("['灰色']", ""); //圆的体积
+            Assert.AreEqual("L", tt);
 
             //String tt2 = c.EvaluateFormula("'圆'-[半径]-高", '-');
             //Assert.AreEqual("圆-3-10", tt2);

@@ -5,7 +5,7 @@ using ToolGood.Algorithm.math;
 namespace ToolGood.Algorithm
 {
     //定义圆柱信息
-    public class Cylinder : AlgorithmEngine
+    public class Cylinder : AlgorithmEngineEx
     {
         private int _radius;
         private int _height;

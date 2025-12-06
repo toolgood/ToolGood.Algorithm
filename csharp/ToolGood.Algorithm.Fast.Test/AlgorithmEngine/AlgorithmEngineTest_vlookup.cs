@@ -48,7 +48,7 @@ namespace ToolGood.Algorithm
     {'蓝色':'XXL','canBookCount':985,'saleCount':14,'specId':'358b6c3b52bf711ac8ecfe7513a4f3ad'}
 ]}";
 
-            //AlgorithmEngine engine = new AlgorithmEngine();
+            //AlgorithmEngineEx engine = new AlgorithmEngineEx();
             ////engine.AddParameter("jsonArray", json);
             //engine.AddParameterFromJson(json2);
             //// 第二种方法
