@@ -3833,7 +3833,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(ExcelFunctions.NormInv((double)p, (double)avg, (double)STDEV));
         }
     }
-    public class Function_NORMSDIST: Function_1
+    public class Function_NORMSDIST : Function_1
     {
         public Function_NORMSDIST(FunctionBase func1) : base(func1)
         {
@@ -3857,7 +3857,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(ExcelFunctions.NormSInv((double)p));
         }
     }
-    public class Function_BETADIST: Function_3
+    public class Function_BETADIST : Function_3
     {
         public Function_BETADIST(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
@@ -3878,7 +3878,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(ExcelFunctions.BetaDist((double)x, (double)alpha, (double)beta));
         }
     }
-    public class Function_BETAINV: Function_3
+    public class Function_BETAINV : Function_3
     {
         public Function_BETAINV(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
@@ -3917,7 +3917,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         }
     }
-    public class Function_EXPONDIST: Function_3
+    public class Function_EXPONDIST : Function_3
     {
         public Function_EXPONDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
@@ -3927,7 +3927,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function EXPONDIST parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function EXPONDIST parameter 2 error!"); if (args2.IsError) return args2; }
             var args3 = func3.Accept(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function EXPONDIST parameter 3 error!"); if (args3.IsError) return args3; }
-          
+
             if (args1.NumberValue < 0.0m) {
                 return Operand.Error("Function EXPONDIST parameter error!");
             }
@@ -4004,7 +4004,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(n);
         }
     }
-    public class Function_GAMMADIST: Function_4
+    public class Function_GAMMADIST : Function_4
     {
         public Function_GAMMADIST(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) : base(func1, func2, func3, func4)
         {
@@ -4055,7 +4055,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(ExcelFunctions.GAMMALN((double)args1.NumberValue));
         }
     }
-    public class Function_HYPGEOMDIST:Function_4
+    public class Function_HYPGEOMDIST : Function_4
     {
         public Function_HYPGEOMDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) : base(func1, func2, func3, func4)
         {
@@ -4109,7 +4109,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(ExcelFunctions.LognormDist((double)args1.NumberValue, (double)args2.NumberValue, (double)args3.NumberValue));
         }
     }
-    public class Function_NEGBINOMDIST:Function_3
+    public class Function_NEGBINOMDIST : Function_3
     {
         public Function_NEGBINOMDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
@@ -4168,7 +4168,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(ExcelFunctions.TDist((double)x, degreesFreedom, tails));
         }
     }
-    public class Function_TINV: Function_2
+    public class Function_TINV : Function_2
     {
         public Function_TINV(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
@@ -4232,7 +4232,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
     #endregion
     #region csharp
-    public class Function_URLENCODE: Function_1
+    public class Function_URLENCODE : Function_1
     {
         public Function_URLENCODE(FunctionBase func1) : base(func1)
         {
@@ -4411,7 +4411,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(b);
         }
     }
-    public class Function_ISREGEX: Function_2
+    public class Function_ISREGEX : Function_2
     {
         public Function_ISREGEX(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
@@ -4427,7 +4427,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
     public class Function_GUID : FunctionBase
     {
-        public Function_GUID()  
+        public Function_GUID()
         {
         }
         public override Operand Accept(Work work)
@@ -4435,6 +4435,364 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(System.Guid.NewGuid().ToString());
         }
     }
+    public class Function_MD5 : Function_N
+    {
+        public Function_MD5(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var a = item.Accept(work).ToText($"Function MD5 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            try {
+                Encoding encoding;
+                if (args.Count == 1) {
+                    encoding = Encoding.UTF8;
+                } else {
+                    encoding = Encoding.GetEncoding(args[1].TextValue);
+                }
+                var t = Hash.GetMd5String(encoding.GetBytes(args[0].TextValue));
+                return Operand.Create(t);
+            } catch (Exception ex) {
+                return Operand.Error("Function MD5 is error!" + ex.Message);
+            }
+        }
+    }
+    public class Function_SHA1 : Function_N
+    {
+        public Function_SHA1(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var a = item.Accept(work).ToText($"Function SHA1 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            try {
+                Encoding encoding;
+                if (args.Count == 1) {
+                    encoding = Encoding.UTF8;
+                } else {
+                    encoding = Encoding.GetEncoding(args[1].TextValue);
+                }
+                var t = Hash.GetSha1String(encoding.GetBytes(args[0].TextValue));
+                return Operand.Create(t);
+            } catch (Exception ex) {
+                return Operand.Error("Function SHA1 is error!" + ex.Message);
+            }
+        }
+    }
+    public class Function_SHA256 : Function_N
+    {
+        public Function_SHA256(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var a = item.Accept(work).ToText($"Function SHA256 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            try {
+                Encoding encoding;
+                if (args.Count == 1) {
+                    encoding = Encoding.UTF8;
+                } else {
+                    encoding = Encoding.GetEncoding(args[1].TextValue);
+                }
+                var t = Hash.GetSha256String(encoding.GetBytes(args[0].TextValue));
+                return Operand.Create(t);
+            } catch (Exception ex) {
+                return Operand.Error("Function SHA256 is error!" + ex.Message);
+            }
+        }
+    }
+    public class Function_SHA512 : Function_N
+    {
+        public Function_SHA512(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var a = item.Accept(work).ToText($"Function SHA512 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            try {
+                Encoding encoding;
+                if (args.Count == 1) {
+                    encoding = Encoding.UTF8;
+                } else {
+                    encoding = Encoding.GetEncoding(args[1].TextValue);
+                }
+                var t = Hash.GetSha512String(encoding.GetBytes(args[0].TextValue));
+                return Operand.Create(t);
+            } catch (Exception ex) {
+                return Operand.Error("Function SHA512 is error!" + ex.Message);
+            }
+        }
+    }
+    public class Function_CRC32 : Function_N
+    {
+        public Function_CRC32(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var a = item.Accept(work).ToText($"Function CRC32 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            try {
+                Encoding encoding;
+                if (args.Count == 1) {
+                    encoding = Encoding.UTF8;
+                } else {
+                    encoding = Encoding.GetEncoding(args[1].TextValue);
+                }
+                var t = Hash.GetCrc32String(encoding.GetBytes(args[0].TextValue));
+                return Operand.Create(t);
+            } catch (Exception ex) {
+                return Operand.Error("Function CRC32 is error!" + ex.Message);
+            }
+        }
+    }
+    public class Function_HMACMD5 : Function_N
+    {
+        public Function_HMACMD5(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var a = item.Accept(work).ToText($"Function HMACMD5 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            try {
+                Encoding encoding;
+                if (args.Count == 2) {
+                    encoding = Encoding.UTF8;
+                } else {
+                    encoding = Encoding.GetEncoding(args[2].TextValue);
+                }
+                var t = Hash.GetHmacMd5String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
+                return Operand.Create(t);
+            } catch (Exception ex) {
+                return Operand.Error("Function HMACMD5 is error!" + ex.Message);
+            }
+        }
+    }
+    public class Function_HMACSHA1 : Function_N
+    {
+        public Function_HMACSHA1(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var a = item.Accept(work).ToText($"Function HMACSHA1 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            try {
+                Encoding encoding;
+                if (args.Count == 2) {
+                    encoding = Encoding.UTF8;
+                } else {
+                    encoding = Encoding.GetEncoding(args[2].TextValue);
+                }
+                var t = Hash.GetHmacSha1String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
+                return Operand.Create(t);
+            } catch (Exception ex) {
+                return Operand.Error("Function HMACSHA1 is error!" + ex.Message);
+            }
+        }
+    }
+    public class Function_HMACSHA256 : Function_N
+    {
+        public Function_HMACSHA256(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var a = item.Accept(work).ToText($"Function HMACSHA256 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            try {
+                Encoding encoding;
+                if (args.Count == 2) {
+                    encoding = Encoding.UTF8;
+                } else {
+                    encoding = Encoding.GetEncoding(args[2].TextValue);
+                }
+                var t = Hash.GetHmacSha256String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
+                return Operand.Create(t);
+            } catch (Exception ex) {
+                return Operand.Error("Function HMACSHA256 is error!" + ex.Message);
+            }
+        }
+    }
+    public class Function_HMACSHA512 : Function_N
+    {
+        public Function_HMACSHA512(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var a = item.Accept(work).ToText($"Function HMACSHA512 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            try {
+                Encoding encoding;
+                if (args.Count == 2) {
+                    encoding = Encoding.UTF8;
+                } else {
+                    encoding = Encoding.GetEncoding(args[2].TextValue);
+                }
+                var t = Hash.GetHmacSha512String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
+                return Operand.Create(t);
+            } catch (Exception ex) {
+                return Operand.Error("Function HMACSHA512 is error!" + ex.Message);
+            }
+        }
+    }
+    public class Function_TRIMSTART : Function_N
+    {
+        public Function_TRIMSTART(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var a = item.Accept(work).ToText($"Function TRIMSTART parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            if (args.Count == 1) {
+                return Operand.Create(args[0].TextValue.TrimStart());
+            } else {
+                char[] trimChars = args[1].TextValue.ToCharArray();
+                return Operand.Create(args[0].TextValue.TrimStart(trimChars));
+            }
+        }
+    }
+    public class Function_TRIMEND : Function_N
+    {
+        public Function_TRIMEND(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var a = item.Accept(work).ToText($"Function TRIMEND parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            if (args.Count == 1) {
+                return Operand.Create(args[0].TextValue.TrimEnd());
+            } else {
+                char[] trimChars = args[1].TextValue.ToCharArray();
+                return Operand.Create(args[0].TextValue.TrimEnd(trimChars));
+            }
+        }
+    }
+    public class Function_INDEXOF : Function_N
+    {
+        public Function_INDEXOF(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+
+        public override Operand Accept(Work work)
+        {
+            var args1 = funcs[0].Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function INDEXOF parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = funcs[1].Accept(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function INDEXOF parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var text = args1.TextValue;
+            if (funcs.Length == 2) {
+                return Operand.Create(text.AsSpan().IndexOf(args2.TextValue) + work.excelIndex);
+            }
+            var args3 = funcs[2].Accept(work); if (args3.Type != OperandType.TEXT) { args3 = args3.ToText("Function INDEXOF parameter 3 is error!"); if (args3.IsError) { return args3; } }
+            if (funcs.Length == 3) {
+                return Operand.Create(text.AsSpan(args3.IntValue).IndexOf(args2.TextValue) + args3.IntValue + work.excelIndex);
+            }
+            var args4 = funcs[3].Accept(work); if (args4.Type != OperandType.TEXT) { args4 = args4.ToText("Function INDEXOF parameter 4 is error!"); if (args4.IsError) { return args4; } }
+            return Operand.Create(text.IndexOf(args2.TextValue, args3.IntValue, args4.IntValue) + work.excelIndex);
+        }
+    }
+    public class Function_LASTINDEXOF : Function_N
+    {
+        public Function_LASTINDEXOF(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = funcs[0].Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function LASTINDEXOF parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = funcs[1].Accept(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function LASTINDEXOF parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var text = args1.TextValue;
+            if (funcs.Length == 2) {
+                return Operand.Create(text.AsSpan().LastIndexOf(args2.TextValue) + work.excelIndex);
+            }
+            var args3 = funcs[2].Accept(work); if (args3.Type != OperandType.TEXT) { args3 = args3.ToText("Function LASTINDEXOF parameter 3 is error!"); if (args3.IsError) { return args3; } }
+            if (funcs.Length == 3) {
+                return Operand.Create(text.AsSpan(0, args3.IntValue).LastIndexOf(args2.TextValue) + work.excelIndex);
+            }
+            var args4 = funcs[3].Accept(work); if (args4.Type != OperandType.TEXT) { args4 = args4.ToText("Function LASTINDEXOF parameter 4 is error!"); if (args4.IsError) { return args4; } }
+            return Operand.Create(text.LastIndexOf(args2.TextValue, args3.IntValue, args4.IntValue) + work.excelIndex);
+        }
+    }
+    public class Function_SPLIT : Function_2
+    {
+        public Function_SPLIT(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+        {
+        }
+
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function SPLIT parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function SPLIT parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            return Operand.Create(args1.TextValue.Split(args2.TextValue.ToArray()));
+        }
+    }
+    public class Function_JOIN : Function_N
+    {
+        public Function_JOIN(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>();
+            foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
+            var args1 = args[0];
+            if (args1.Type == OperandType.JSON) {
+                var o = args1.ToArray(null);
+                if (o.IsError == false) {
+                    args1 = o;
+                }
+            }
+            if (args1.Type == OperandType.ARRARY) {
+                List<string> list = new List<string>();
+                var o = FunctionUtil.F_base_GetList(args1, list);
+                if (o == false) return Operand.Error("Function JOIN parameter 1 is error!");
+
+                var args2 = args[1].ToText("Function JOIN parameter 2 is error!");
+                if (args2.IsError) { return args2; }
+
+                return Operand.Create(string.Join(args2.TextValue, list));
+            } else {
+                args1 = args1.ToText("Function JOIN parameter 1 is error!");
+                if (args1.IsError) { return args1; }
+
+                List<string> list = new List<string>();
+                for (int i = 1; i < args.Count; i++) {
+                    var o = FunctionUtil.F_base_GetList(args[i], list);
+                    if (o == false) return Operand.Error($"Function JOIN parameter {i + 1} is error!");
+                }
+                return Operand.Create(string.Join(args1.TextValue, list));
+            }
+        }
+    }
+
+    public class Function_SUBSTRING : Function_N
+    {
+        public Function_SUBSTRING(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+
+        public override Operand Accept(Work work)
+        {
+            var args1 = funcs[0].Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function SUBSTRING parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = funcs[1].Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function SUBSTRING parameter 2 is error!"); if (args2.IsError) { return args2; } }
+
+            var text = args1.TextValue;
+            if (funcs.Length == 2) {
+                return Operand.Create(text.AsSpan(args2.IntValue - work.excelIndex).ToString());
+            }
+            var args3 = funcs[2].Accept(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function SUBSTRING parameter 3 is error!"); if (args3.IsError) { return args3; } }
+            return Operand.Create(text.AsSpan(args2.IntValue - work.excelIndex, args3.IntValue).ToString());
+        }
+    }
+
 
     #endregion
 

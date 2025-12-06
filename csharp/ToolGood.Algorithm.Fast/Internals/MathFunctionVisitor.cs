@@ -1654,9 +1654,9 @@ namespace ToolGood.Algorithm.Fast.Internals
         public virtual FunctionBase VisitREGEXREPALCE_fun(mathParser.REGEXREPALCE_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); 
+            var args1 = exprs[0].Accept(this);
             var args2 = exprs[1].Accept(this);
-            var args3 = exprs[2].Accept(this); 
+            var args3 = exprs[2].Accept(this);
             return new Function_REGEXREPALCE(args1, args2, args3);
         }
 
@@ -1664,7 +1664,7 @@ namespace ToolGood.Algorithm.Fast.Internals
         {
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this);
-            var args2 = exprs[1].Accept(this); 
+            var args2 = exprs[1].Accept(this);
             return new Function_ISREGEX(args1, args2);
         }
 
@@ -1675,295 +1675,160 @@ namespace ToolGood.Algorithm.Fast.Internals
 
         public virtual FunctionBase VisitMD5_fun(mathParser.MD5_funContext context)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = item.Accept(this).ToText($"Function MD5 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
-            return new Function_MD5(args.ToArray());
-            try {
-                Encoding encoding;
-                if (args.Count == 1) {
-                    encoding = Encoding.UTF8;
-                } else {
-                    encoding = Encoding.GetEncoding(args[1].TextValue);
-                }
-                var t = Hash.GetMd5String(encoding.GetBytes(args[0].TextValue));
-                return Operand.Create(t);
-            } catch (Exception ex) {
-                return Operand.Error("Function MD5 is error!" + ex.Message);
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
+            return new Function_MD5(args);
         }
 
         public virtual FunctionBase VisitSHA1_fun(mathParser.SHA1_funContext context)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = item.Accept(this).ToText($"Function SHA1 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
-            return new Function_SHA1(args.ToArray());
-            try {
-                Encoding encoding;
-                if (args.Count == 1) {
-                    encoding = Encoding.UTF8;
-                } else {
-                    encoding = Encoding.GetEncoding(args[1].TextValue);
-                }
-                var t = Hash.GetSha1String(encoding.GetBytes(args[0].TextValue));
-                return Operand.Create(t);
-            } catch (Exception ex) {
-                return Operand.Error("Function SHA1 is error!" + ex.Message);
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
+            return new Function_SHA1(args);
         }
 
         public virtual FunctionBase VisitSHA256_fun(mathParser.SHA256_funContext context)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = item.Accept(this).ToText($"Function SHA256 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
-            return new Function_SHA256(args.ToArray());
-            try {
-                Encoding encoding;
-                if (args.Count == 1) {
-                    encoding = Encoding.UTF8;
-                } else {
-                    encoding = Encoding.GetEncoding(args[1].TextValue);
-                }
-                var t = Hash.GetSha256String(encoding.GetBytes(args[0].TextValue));
-                return Operand.Create(t);
-            } catch (Exception ex) {
-                return Operand.Error("Function SHA256 is error!" + ex.Message);
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
+            return new Function_SHA256(args);
         }
 
         public virtual FunctionBase VisitSHA512_fun(mathParser.SHA512_funContext context)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = item.Accept(this).ToText($"Function SHA512 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
-            return new Function_SHA512(args.ToArray());
-            try {
-                Encoding encoding;
-                if (args.Count == 1) {
-                    encoding = Encoding.UTF8;
-                } else {
-                    encoding = Encoding.GetEncoding(args[1].TextValue);
-                }
-                var t = Hash.GetSha512String(encoding.GetBytes(args[0].TextValue));
-                return Operand.Create(t);
-            } catch (Exception ex) {
-                return Operand.Error("Function SHA512 is error!" + ex.Message);
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
+            return new Function_SHA512(args);
         }
 
         public virtual FunctionBase VisitCRC32_fun(mathParser.CRC32_funContext context)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = item.Accept(this).ToText($"Function CRC32 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
-            return new Function_CRC32(args.ToArray());
-            try {
-                Encoding encoding;
-                if (args.Count == 1) {
-                    encoding = Encoding.UTF8;
-                } else {
-                    encoding = Encoding.GetEncoding(args[1].TextValue);
-                }
-                var t = Hash.GetCrc32String(encoding.GetBytes(args[0].TextValue));
-                return Operand.Create(t);
-            } catch (Exception ex) {
-                return Operand.Error("Function CRC32 is error!" + ex.Message);
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
+            return new Function_CRC32(args);
         }
 
         public virtual FunctionBase VisitHMACMD5_fun(mathParser.HMACMD5_funContext context)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = item.Accept(this).ToText($"Function HMACMD5 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
-            return new Function_HMACMD5(args.ToArray());
-            try {
-                Encoding encoding;
-                if (args.Count == 2) {
-                    encoding = Encoding.UTF8;
-                } else {
-                    encoding = Encoding.GetEncoding(args[2].TextValue);
-                }
-                var t = Hash.GetHmacMd5String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
-                return Operand.Create(t);
-            } catch (Exception ex) {
-                return Operand.Error("Function HMACMD5 is error!" + ex.Message);
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
+            return new Function_HMACMD5(args);
         }
 
         public virtual FunctionBase VisitHMACSHA1_fun(mathParser.HMACSHA1_funContext context)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = item.Accept(this).ToText($"Function HMACSHA1 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
-            return new Function_HMACSHA1(args.ToArray());
-            try {
-                Encoding encoding;
-                if (args.Count == 2) {
-                    encoding = Encoding.UTF8;
-                } else {
-                    encoding = Encoding.GetEncoding(args[2].TextValue);
-                }
-                var t = Hash.GetHmacSha1String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
-                return Operand.Create(t);
-            } catch (Exception ex) {
-                return Operand.Error("Function HMACSHA1 is error!" + ex.Message);
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
+            return new Function_HMACSHA1(args);
         }
 
         public virtual FunctionBase VisitHMACSHA256_fun(mathParser.HMACSHA256_funContext context)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = item.Accept(this).ToText($"Function HMACSHA256 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
-           return new Function_HMACSHA256(args.ToArray());
-            try {
-                Encoding encoding;
-                if (args.Count == 2) {
-                    encoding = Encoding.UTF8;
-                } else {
-                    encoding = Encoding.GetEncoding(args[2].TextValue);
-                }
-                var t = Hash.GetHmacSha256String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
-                return Operand.Create(t);
-            } catch (Exception ex) {
-                return Operand.Error("Function HMACSHA256 is error!" + ex.Message);
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
+            return new Function_HMACSHA256(args);
         }
 
         public virtual FunctionBase VisitHMACSHA512_fun(mathParser.HMACSHA512_funContext context)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = item.Accept(this).ToText($"Function HMACSHA512 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
-         return new Function_HMACSHA512(args.ToArray());
-            try {
-                Encoding encoding;
-                if (args.Count == 2) {
-                    encoding = Encoding.UTF8;
-                } else {
-                    encoding = Encoding.GetEncoding(args[2].TextValue);
-                }
-                var t = Hash.GetHmacSha512String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
-                return Operand.Create(t);
-            } catch (Exception ex) {
-                return Operand.Error("Function HMACSHA512 is error!" + ex.Message);
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
+            return new Function_HMACSHA512(args);
         }
 
         public virtual FunctionBase VisitTRIMSTART_fun(mathParser.TRIMSTART_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function TRIMSTART parameter 1 error!"); if (args1.IsError) return args1; }
-            return new Function_TRIMSTART(args1);
-
-            var text = args1.TextValue;
-            if (exprs.Length == 2) {
-                var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function TRIMSTART parameter 2 error!"); if (args2.IsError) return args2; }
-                return Operand.Create(text.AsSpan().TrimStart(args2.TextValue.AsSpan()).ToString());
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            return Operand.Create(text.AsSpan().TrimStart().ToString());
+            return new Function_TRIMSTART(args);
         }
 
         public virtual FunctionBase VisitTRIMEND_fun(mathParser.TRIMEND_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function TRIMEND parameter 1 error!"); if (args1.IsError) return args1; }
-            return new Function_TRIMEND(args1);
-
-            var text = args1.TextValue;
-            if (exprs.Length == 2) {
-                var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function TRIMEND parameter 2 error!"); if (args2.IsError) return args2; }
-                return Operand.Create(text.AsSpan().TrimEnd(args2.TextValue.AsSpan()).ToString());
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            return Operand.Create(text.AsSpan().TrimEnd().ToString());
+            return new Function_TRIMEND(args);
         }
 
         public virtual FunctionBase VisitINDEXOF_fun(mathParser.INDEXOF_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function INDEXOF parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function INDEXOF parameter 2 is error!"); if (args2.IsError) { return args2; } }
-            return new Function_INDEXOF(args1, args2);
-            var text = args1.TextValue;
-            if (exprs.Length == 2) {
-                return Operand.Create(text.AsSpan().IndexOf(args2.TextValue) + excelIndex);
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.TEXT) { args3 = args3.ToText("Function INDEXOF parameter 3 is error!"); if (args3.IsError) { return args3; } }
-            if (exprs.Length == 3) {
-                return Operand.Create(text.AsSpan(args3.IntValue).IndexOf(args2.TextValue) + args3.IntValue + excelIndex);
-            }
-            var args4 = exprs[3].Accept(this); if (args4.Type != OperandType.TEXT) { args4 = args4.ToText("Function INDEXOF parameter 4 is error!"); if (args4.IsError) { return args4; } }
-            return Operand.Create(text.IndexOf(args2.TextValue, args3.IntValue, args4.IntValue) + excelIndex);
+            return new Function_INDEXOF(args);
         }
 
         public virtual FunctionBase VisitLASTINDEXOF_fun(mathParser.LASTINDEXOF_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function LASTINDEXOF parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function LASTINDEXOF parameter 2 is error!"); if (args2.IsError) { return args2; } }
-            return new Function_LASTINDEXOF(args1, args2);
-            var text = args1.TextValue;
-            if (exprs.Length == 2) {
-                return Operand.Create(text.AsSpan().LastIndexOf(args2.TextValue) + excelIndex);
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.TEXT) { args3 = args3.ToText("Function LASTINDEXOF parameter 3 is error!"); if (args3.IsError) { return args3; } }
-            if (exprs.Length == 3) {
-                return Operand.Create(text.AsSpan(args3.IntValue).LastIndexOf(args2.TextValue) + args3.IntValue + excelIndex);
-            }
-            var args4 = exprs[3].Accept(this); if (args4.Type != OperandType.TEXT) { args4 = args4.ToText("Function LASTINDEXOF parameter 4 is error!"); if (args4.IsError) { return args4; } }
-            return Operand.Create(text.LastIndexOf(args2.TextValue, args3.IntValue, args4.IntValue) + excelIndex);
+            return new Function_LASTINDEXOF(args);
         }
 
         public virtual FunctionBase VisitSPLIT_fun(mathParser.SPLIT_funContext context)
         {
-            var exprs = context.expr(); var args = new List<Operand>(exprs.Length);
-            for (int i = 0; i < exprs.Length; i++) { var a = this.Visit(exprs[i]); if (a.Type != OperandType.TEXT) { a = a.ToText($"Function SPLIT parameter {i + 1} is error!"); if (a.IsError) { return a; } } args.Add(a); }
-          return new Function_SPLIT(args.ToArray());
-            return Operand.Create(args[0].TextValue.Split(args[1].TextValue.ToArray()));
+            var exprs = context.expr();
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            return new Function_SPLIT(args1, args2);
         }
 
         public virtual FunctionBase VisitJOIN_fun(mathParser.JOIN_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-            return new Function_JOIN(args.ToArray());
-            var args1 = args[0];
-            if (args1.Type == OperandType.JSON) {
-                var o = args1.ToArray(null);
-                if (o.IsError == false) {
-                    args1 = o;
-                }
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            if (args1.Type == OperandType.ARRARY) {
-                List<string> list = new List<string>();
-                var o = F_base_GetList(args1, list);
-                if (o == false) return Operand.Error("Function JOIN parameter 1 is error!");
-
-                var args2 = args[1].ToText("Function JOIN parameter 2 is error!");
-                if (args2.IsError) { return args2; }
-
-                return Operand.Create(string.Join(args2.TextValue, list));
-            } else {
-                args1 = args1.ToText("Function JOIN parameter 1 is error!");
-                if (args1.IsError) { return args1; }
-
-                List<string> list = new List<string>();
-                for (int i = 1; i < args.Count; i++) {
-                    var o = F_base_GetList(args[i], list);
-                    if (o == false) return Operand.Error($"Function JOIN parameter {i + 1} is error!");
-                }
-
-                return Operand.Create(string.Join(args1.TextValue, list));
-            }
+            return new Function_JOIN(args);
         }
 
         public virtual FunctionBase VisitSUBSTRING_fun(mathParser.SUBSTRING_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function SUBSTRING parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function SUBSTRING parameter 2 is error!"); if (args2.IsError) { return args2; } }
-            return new Function_SUBSTRING(args1, args2);
-
-            var text = args1.TextValue;
-            if (exprs.Length == 2) {
-                return Operand.Create(text.AsSpan(args2.IntValue - excelIndex).ToString());
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function SUBSTRING parameter 3 is error!"); if (args3.IsError) { return args3; } }
-            return Operand.Create(text.AsSpan(args2.IntValue - excelIndex, args3.IntValue).ToString());
+            return new Function_SUBSTRING(args);
         }
 
         public virtual FunctionBase VisitSTARTSWITH_fun(mathParser.STARTSWITH_funContext context)
