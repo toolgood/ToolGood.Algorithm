@@ -285,6 +285,10 @@ namespace ToolGood.Algorithm.Internals.Functions
             if (func2 != null) {
                 stringBuilder.Append(", ");
                 func2.ToString(stringBuilder, false);
+                if (func3 != null) {
+                    stringBuilder.Append(", ");
+                    func3.ToString(stringBuilder, false);
+                }
             }
             stringBuilder.Append(')');
         }
@@ -573,7 +577,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
             var method = false;
             if (func3 != null) {
-                var args3 = func3.Calculate(work); if (args3.Type != OperandType.DATE) { args3 = args3.ToMyDate("Function DAYS360 parameter 3 is error!"); if (args3.IsError) { return args3; } }
+                var args3 = func3.Calculate(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function DAYS360 parameter 3 is error!"); if (args3.IsError) { return args3; } }
                 if (args3.IsError) { return args3; }
                 method = args3.BooleanValue;
             }
