@@ -1,4 +1,5 @@
 ﻿using Antlr4.Runtime.Misc;
+using Antlr4.Runtime.Tree;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -14,8 +15,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 {
     public class Work
     {
-        public event Func<mathParser.ProgContext, string, Operand> GetParameter;
-        public event Func<mathParser.ProgContext, string, List<Operand>, Operand> DiyFunction;
+        //public event Func<mathParser.ProgContext, string, Operand> GetParameter;
+        //public event Func<mathParser.ProgContext, string, List<Operand>, Operand> DiyFunction;
         public int excelIndex;
         public bool useLocalTime;
         public DistanceUnitType DistanceUnit = DistanceUnitType.M;
@@ -23,6 +24,10 @@ namespace ToolGood.Algorithm.Internals.Functions
         public VolumeUnitType VolumeUnit = VolumeUnitType.M3;
         public MassUnitType MassUnit = MassUnitType.KG;
 
+        public virtual Operand GetParameter(string parameter)
+        {
+            return Operand.Error($"Parameter [{parameter}] is missing.");
+        }
     }
 
     public abstract class FunctionBase
@@ -4922,7 +4927,212 @@ namespace ToolGood.Algorithm.Internals.Functions
 
     #endregion
 
+    #region Lookup
+    public class Function_VLOOKUP : Function_N
+    {
+        public Function_VLOOKUP(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>();
+            foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
 
+            var args1 = args[0].ToArray("Function VLOOKUP parameter 1 error!");
+            if (args1.IsError) { return args1; }
+            var args2 = args[1];
+
+            var args3 = args[2].ToNumber("Function VLOOKUP parameter 3 is error!");
+            if (args3.IsError) { return args3; }
+
+            var vague = true;
+            if (args.Count == 4) {
+                var args4 = args[2].ToBoolean("Function VLOOKUP parameter 4 is error!");
+                if (args4.IsError) { return args4; }
+                vague = args4.BooleanValue;
+            }
+            if (args2.Type != OperandType.NULL) {
+                var sv = args2.ToText("Function VLOOKUP parameter 2 is error!");
+                if (sv.IsError) { return sv; }
+                args2 = sv;
+            }
+
+            foreach (var item in args1.ArrayValue) {
+                var o = item.ToArray("Function VLOOKUP parameter 1 error!");
+                if (o.IsError) { return o; }
+                if (o.ArrayValue.Count > 0) {
+                    var o1 = o.ArrayValue[0];
+                    int b = -1;
+                    if (args2.Type == OperandType.NUMBER) {
+                        var o2 = o1.ToNumber(null);
+                        if (o2.IsError == false) {
+                            b = FunctionUtil.Compare(o2.NumberValue, args2.NumberValue);
+                        }
+                    } else {
+                        var o2 = o1.ToText(null);
+                        if (o2.IsError == false) {
+                            b = string.CompareOrdinal(o2.TextValue, args2.TextValue);
+                        }
+                    }
+                    if (b == 0) {
+                        var index = args3.IntValue - work.excelIndex;
+                        if (index < o.ArrayValue.Count) {
+                            return o.ArrayValue[index];
+                        }
+                    }
+                }
+            }
+
+            if (vague) //进行模糊匹配
+            {
+                Operand last = null;
+                var index = args3.IntValue - work.excelIndex;
+                foreach (var item in args1.ArrayValue) {
+                    var o = item.ToArray(null);
+                    if (o.IsError) { return o; }
+                    if (o.ArrayValue.Count > 0) {
+                        var o1 = o.ArrayValue[0];
+                        int b = -1;
+                        if (args2.Type == OperandType.NUMBER) {
+                            var o2 = o1.ToNumber(null);
+                            if (o2.IsError == false) {
+                                b = FunctionUtil.Compare(o2.NumberValue, args2.NumberValue);
+                            }
+                        } else {
+                            var o2 = o1.ToText(null);
+                            if (o2.IsError == false) {
+                                b = string.CompareOrdinal(o2.TextValue, args2.TextValue);
+                            }
+                        }
+                        if (b < 0 && index < o.ArrayValue.Count) {
+                            last = o;
+                        } else if (b > 0 && last != null) {
+                            return last.ArrayValue[index];
+                        }
+                    }
+                }
+            }
+            return Operand.Error("Function VLOOKUP is not match !");
+        }
+    }
+
+    public class Function_LOOKUP : Function_N
+    {
+        public Function_LOOKUP(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>();
+            foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
+
+            var args1 = args[0].ToArray("Function LOOKUP parameter 1 error!");
+            if (args1.IsError) { return args1; }
+            var args2 = args[1].ToText("Function LOOKUP parameter 2 is error!");
+            if (args2.IsError) { return args2; }
+            if (args1.Type == OperandType.ARRARYJSON) {
+                args2 = args2.ToNumber(); if (args2.IsError) { return args2; }
+                var range = false;
+                if (args.Count == 3) {
+                    var t = args[2].ToBoolean("Function LOOKUP parameter 3 is error!"); if (t.IsError) { return t; }
+                    range = t.BooleanValue;
+                }
+                if (((OperandKeyValueList)args1).TryGetValueFloor(args2.NumberValue, range, out Operand operand)) {
+                    return operand;
+                }
+                return Operand.Error("Function LOOKUP not find !");
+            }
+            var args3 = args[2].ToText("Function LOOKUP parameter 3 is error!");
+            if (args3.IsError) { return args3; }
+
+            if (string.IsNullOrWhiteSpace(args2.TextValue)) {
+                return Operand.Error("Function LOOKUP parameter 2 is null!");
+            }
+
+            //var engine = new AntlrLookupEngine();
+            //if (engine.Parse(args2.TextValue) == false) {
+            //    return Operand.Error("Function LOOKUP parameter 2 Parse is error!");
+            //}
+
+            //foreach (var item in args1.ArrayValue) {
+            //    var json = item.ToJson(null);
+            //    if (json.IsError == false) {
+            //        engine.Json = json;
+            //        try {
+            //            var o = engine.Evaluate().ToBoolean(null);
+            //            if (o.IsError == false) {
+            //                if (o.BooleanValue) {
+            //                    var v = json.JsonValue[args3.TextValue];
+            //                    if (v != null) {
+            //                        if (v.IsString) return Operand.Create(v.StringValue);
+            //                        if (v.IsBoolean) return Operand.Create(v.BooleanValue);
+            //                        if (v.IsDouble) return Operand.Create(v.NumberValue);
+            //                        if (v.IsObject) return Operand.Create(v);
+            //                        if (v.IsArray) return Operand.Create(v);
+            //                        if (v.IsNull) return Operand.CreateNull();
+            //                        return Operand.Create(v);
+            //                    }
+            //                }
+            //            }
+            //        } catch (Exception) { }
+            //    }
+            //}
+            return Operand.Error("Function LOOKUP not find!");
+        }
+    }
+
+    #endregion
+
+    #region getValue
+    public class Function_Array : Function_N
+    {
+        public Function_Array(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>();
+            foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
+            return Operand.Create(args);
+        }
+    }
+    public class Function_NUM : FunctionBase
+    {
+        private decimal d;
+        private string unit;
+        public Function_NUM(decimal func1, string func2)
+        {
+            d = func1;
+            unit = func2;
+        }
+        public override Operand Accept(Work work)
+        {
+            var dict = NumberUnitTypeHelper.GetUnitTypedict();
+            var d2 = NumberUnitTypeHelper.TransformationUnit(d, dict[unit], work.DistanceUnit, work.AreaUnit, work.VolumeUnit, work.MassUnit);
+            return Operand.Create(d2);
+        }
+    }
+    public class Function_PARAMETER : FunctionBase
+    {
+        private string name;
+        private FunctionBase func1;
+        public Function_PARAMETER(string name)
+        {
+        }
+        public Function_PARAMETER(FunctionBase func1)
+        {
+        }
+
+        public override Operand Accept(Work work)
+        {
+            if (string.IsNullOrEmpty(name)) {
+                return work.GetParameter(func1.Accept(work).TextValue);
+            }
+            return work.GetParameter(name);
+        }
+    }
+
+    #endregion
     public class FunctionUtil
     {
         public static bool F_base_GetList(List<Operand> args, List<decimal> list)
@@ -5162,6 +5372,16 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return null;
         }
-
+        public static int Compare(decimal t1, decimal t2)
+        {
+            var b = t1 - t2;
+            //var b = Math.Round(t1 - t2, 12, MidpointRounding.AwayFromZero);
+            if (b == 0) {
+                return 0;
+            } else if (b > 0) {
+                return 1;
+            }
+            return -1;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -1849,7 +1850,7 @@ namespace ToolGood.Algorithm.Fast.Internals
                 args[i] = exprs[i].Accept(this);
             }
             return new Function_ENDSWITH(args);
-   }
+        }
 
         public virtual FunctionBase VisitISNULLOREMPTY_fun(mathParser.ISNULLOREMPTY_funContext context)
         {
@@ -1895,143 +1896,22 @@ namespace ToolGood.Algorithm.Fast.Internals
 
         public virtual FunctionBase VisitVLOOKUP_fun(mathParser.VLOOKUP_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            var args1 = args[0].ToArray("Function VLOOKUP parameter 1 error!");
-            if (args1.IsError) { return args1; }
-            var args2 = args[1];
-
-            var args3 = args[2].ToNumber("Function VLOOKUP parameter 3 is error!");
-            if (args3.IsError) { return args3; }
-
-            var vague = true;
-            if (args.Count == 4) {
-                var args4 = args[2].ToBoolean("Function VLOOKUP parameter 4 is error!");
-                if (args4.IsError) { return args4; }
-                vague = args4.BooleanValue;
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            if (args2.Type != OperandType.NULL) {
-                var sv = args2.ToText("Function VLOOKUP parameter 2 is error!");
-                if (sv.IsError) { return sv; }
-                args2 = sv;
-            }
-
-            foreach (var item in args1.ArrayValue) {
-                var o = item.ToArray("Function VLOOKUP parameter 1 error!");
-                if (o.IsError) { return o; }
-                if (o.ArrayValue.Count > 0) {
-                    var o1 = o.ArrayValue[0];
-                    int b = -1;
-                    if (args2.Type == OperandType.NUMBER) {
-                        var o2 = o1.ToNumber(null);
-                        if (o2.IsError == false) {
-                            b = MathVisitor.Compare(o2.NumberValue, args2.NumberValue);
-                        }
-                    } else {
-                        var o2 = o1.ToText(null);
-                        if (o2.IsError == false) {
-                            b = string.CompareOrdinal(o2.TextValue, args2.TextValue);
-                        }
-                    }
-                    if (b == 0) {
-                        var index = args3.IntValue - excelIndex;
-                        if (index < o.ArrayValue.Count) {
-                            return o.ArrayValue[index];
-                        }
-                    }
-                }
-            }
-
-            if (vague) //进行模糊匹配
-            {
-                Operand last = null;
-                var index = args3.IntValue - excelIndex;
-                foreach (var item in args1.ArrayValue) {
-                    var o = item.ToArray(null);
-                    if (o.IsError) { return o; }
-                    if (o.ArrayValue.Count > 0) {
-                        var o1 = o.ArrayValue[0];
-                        int b = -1;
-                        if (args2.Type == OperandType.NUMBER) {
-                            var o2 = o1.ToNumber(null);
-                            if (o2.IsError == false) {
-                                b = MathVisitor.Compare(o2.NumberValue, args2.NumberValue);
-                            }
-                        } else {
-                            var o2 = o1.ToText(null);
-                            if (o2.IsError == false) {
-                                b = string.CompareOrdinal(o2.TextValue, args2.TextValue);
-                            }
-                        }
-                        if (b < 0 && index < o.ArrayValue.Count) {
-                            last = o;
-                        } else if (b > 0 && last != null) {
-                            return last.ArrayValue[index];
-                        }
-                    }
-                }
-            }
-            return Operand.Error("Function VLOOKUP is not match !");
+            return new Function_VLOOKUP(args);
         }
 
         public virtual FunctionBase VisitLOOKUP_fun(mathParser.LOOKUP_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            var args1 = args[0].ToArray("Function LOOKUP parameter 1 error!");
-            if (args1.IsError) { return args1; }
-            var args2 = args[1].ToText("Function LOOKUP parameter 2 is error!");
-            if (args2.IsError) { return args2; }
-            if (args1.Type == OperandType.ARRARYJSON) {
-                args2 = args2.ToNumber(); if (args2.IsError) { return args2; }
-                var range = false;
-                if (args.Count == 3) {
-                    var t = args[2].ToBoolean("Function LOOKUP parameter 3 is error!"); if (t.IsError) { return t; }
-                    range = t.BooleanValue;
-                }
-                if (((OperandKeyValueList)args1).TryGetValueFloor(args2.NumberValue, range, out Operand operand)) {
-                    return operand;
-                }
-                return Operand.Error("Function LOOKUP not find !");
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            var args3 = args[2].ToText("Function LOOKUP parameter 3 is error!");
-            if (args3.IsError) { return args3; }
-
-            if (string.IsNullOrWhiteSpace(args2.TextValue)) {
-                return Operand.Error("Function LOOKUP parameter 2 is null!");
-            }
-
-            var engine = new AntlrLookupEngine();
-            if (engine.Parse(args2.TextValue) == false) {
-                return Operand.Error("Function LOOKUP parameter 2 Parse is error!");
-            }
-
-            foreach (var item in args1.ArrayValue) {
-                var json = item.ToJson(null);
-                if (json.IsError == false) {
-                    engine.Json = json;
-                    try {
-                        var o = engine.Evaluate().ToBoolean(null);
-                        if (o.IsError == false) {
-                            if (o.BooleanValue) {
-                                var v = json.JsonValue[args3.TextValue];
-                                if (v != null) {
-                                    if (v.IsString) return Operand.Create(v.StringValue);
-                                    if (v.IsBoolean) return Operand.Create(v.BooleanValue);
-                                    if (v.IsDouble) return Operand.Create(v.NumberValue);
-                                    if (v.IsObject) return Operand.Create(v);
-                                    if (v.IsArray) return Operand.Create(v);
-                                    if (v.IsNull) return Operand.CreateNull();
-                                    return Operand.Create(v);
-                                }
-                            }
-                        }
-                    } catch (Exception) { }
-                }
-            }
-            return Operand.Error("Function LOOKUP not find!");
+            return new Function_LOOKUP(args);
         }
 
         #endregion Lookup
@@ -2040,9 +1920,12 @@ namespace ToolGood.Algorithm.Fast.Internals
 
         public virtual FunctionBase VisitArray_fun(mathParser.Array_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-            return Operand.Create(args);
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
+            }
+            return new Function_Array(args);
         }
 
         public virtual FunctionBase VisitBracket_fun(mathParser.Bracket_funContext context)
@@ -2053,24 +1936,20 @@ namespace ToolGood.Algorithm.Fast.Internals
         public virtual FunctionBase VisitNUM_fun(mathParser.NUM_funContext context)
         {
             var d = decimal.Parse(context.num().GetText(), NumberStyles.Any, CultureInfo.InvariantCulture);
-            if (context.unit() == null) { return Operand.Create(d); }
-
+            if (context.unit() == null) { return new Function_Value(Operand.Create(d)); }
             var unit = context.unit().GetText();
-            var dict = NumberUnitTypeHelper.GetUnitTypedict();
-            d = NumberUnitTypeHelper.TransformationUnit(d, dict[unit], DistanceUnit, AreaUnit, VolumeUnit, MassUnit);
-            return Operand.Create(d);
+            return new Function_NUM(d, unit);
         }
 
-        public Operand VisitNum(mathParser.NumContext context)
+        public FunctionBase VisitNum(mathParser.NumContext context)
         {
             var d = decimal.Parse(context.GetText(), NumberStyles.Any, CultureInfo.InvariantCulture);
-            return Operand.Create(d);
+            return new Function_Value(Operand.Create(d));
         }
 
-        public Operand VisitUnit(mathParser.UnitContext context)
+        public FunctionBase VisitUnit(mathParser.UnitContext context)
         {
-            string text = context.GetText();
-            return Operand.Create(text);
+            return new Function_Value(Operand.Create(context.GetText()));
         }
 
         public virtual FunctionBase VisitSTRING_fun(mathParser.STRING_funContext context)
@@ -2095,43 +1974,39 @@ namespace ToolGood.Algorithm.Fast.Internals
                     sb.Append(c);
                 }
             }
-            return Operand.Create(sb.ToString());
+            return new Function_Value(Operand.Create(sb.ToString()));
         }
 
         public virtual FunctionBase VisitNULL_fun(mathParser.NULL_funContext context)
         {
-            return Operand.CreateNull();
+            return new Function_Value(Operand.CreateNull());
         }
 
         public virtual FunctionBase VisitPARAMETER_fun(mathParser.PARAMETER_funContext context)
         {
             ITerminalNode node = context.PARAMETER();
             if (node != null) {
-                return GetParameter(mainContext, node.GetText());
+                return new Function_PARAMETER(node.GetText());
             }
             node = context.PARAMETER2();
             if (node != null) {
                 string str = node.GetText();
                 if (str.StartsWith('@')) {
-                    return GetParameter(mainContext, str.AsSpan(1).ToString());
+                    return new Function_PARAMETER(str.AsSpan(1).ToString());
                 }
-                return GetParameter(mainContext, str.AsSpan(1, str.Length - 2).ToString());
+                return new Function_PARAMETER(str.AsSpan(1, str.Length - 2).ToString());
             }
             //防止 多重引用
             if (context.expr() != null) {
-                var p = context.expr().Accept(this).ToText("Function PARAMETER first parameter is error!");
-                if (p.IsError) return p;
-
-                if (GetParameter != null) {
-                    return GetParameter(mainContext, p.TextValue);
-                }
+                var p = context.expr().Accept(this);
+                return new Function_PARAMETER(p);
             }
-            return Operand.Error("Function PARAMETER first parameter is error!");
+            return new Function_Value(Operand.Error( "Function PARAMETER first parameter is error!"));
         }
 
         public virtual FunctionBase VisitParameter2(mathParser.Parameter2Context context)
         {
-            return Operand.Create(context.children[0].GetText());
+            return new  Function_Value(Operand.Create(context.children[0].GetText()));
         }
 
         public virtual FunctionBase VisitGetJsonValue_fun(mathParser.GetJsonValue_funContext context)
