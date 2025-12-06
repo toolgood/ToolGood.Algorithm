@@ -20,9 +20,18 @@
 
 
 删除 State值 保留expr()方法内 expr parameter 前State值
-\bState = \d+;(?! expr| parameter| num| unit| arrayJson)
+1   (State = \d+;)\r\n[\t]*  ->  $1
+2   \bState = \d+;(?!expr|parameter|num|unit|arrayJson)
 
 删除 if (!(Precpred(Context,
+删除 public ExprContext expr(int i) 
+1   (public ExprContext expr\(int i\))\r\n\t* ->  $1
+2   (public ExprContext expr\(int i\){)\r\n\t* ->  $1
+3   (public ExprContext expr\(int i\){return GetRuleContext<ExprContext>\(i\);)\r\n\t* ->  $1
+4   (\[System.Diagnostics.DebuggerNonUserCode\])\r\n\t* ->  $1
+5   [System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i)   加 注释
+
+
 State = \d+;\r\n[ \t]+State =    ->   State =
 
 
