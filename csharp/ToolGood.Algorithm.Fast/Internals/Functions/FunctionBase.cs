@@ -1273,7 +1273,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ATAN2 parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function ATAN2 parameter 2 is error!"); if (args2.IsError) { return args2; } }
-            return Operand.Create(Math.Atan2((double)args1.NumberValue, (double)args2.NumberValue));
+            return Operand.Create(Math.Atan2((double)args2.NumberValue, (double)args1.NumberValue));
         }
     }
     public class Function_COT : Function_1
@@ -1833,9 +1833,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ODD parameter is error!"); if (args1.IsError) { return args1; } }
             var z = args1.NumberValue;
-            if (z % 2 != 0) { return args1; }
+            if (z % 2 == 1) { return args1; }
             z = Math.Ceiling(z);
-            if (z % 2 != 0) { return Operand.Create(z); }
+            if (z % 2 == 1) { return Operand.Create(z); }
             z++;
             return Operand.Create(z);
         }
