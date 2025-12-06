@@ -1,6 +1,4 @@
-﻿using Antlr4.Runtime.Misc;
-using Antlr4.Runtime.Tree;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -8,31 +6,14 @@ using System.Text;
 using System.Text.RegularExpressions;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.LitJson;
-using ToolGood.Algorithm.math;
 using ToolGood.Algorithm.MathNet.Numerics;
 
 namespace ToolGood.Algorithm.Internals.Functions
 {
-    public class Work
-    {
-        //public event Func<mathParser.ProgContext, string, Operand> GetParameter;
-        //public event Func<mathParser.ProgContext, string, List<Operand>, Operand> DiyFunction;
-        public int excelIndex;
-        public bool useLocalTime;
-        public DistanceUnitType DistanceUnit = DistanceUnitType.M;
-        public AreaUnitType AreaUnit = AreaUnitType.M2;
-        public VolumeUnitType VolumeUnit = VolumeUnitType.M3;
-        public MassUnitType MassUnit = MassUnitType.KG;
-
-        public virtual Operand GetParameter(string parameter)
-        {
-            return Operand.Error($"Parameter [{parameter}] is missing.");
-        }
-    }
 
     public abstract class FunctionBase
     {
-        public abstract Operand Accept(Work work);
+        public abstract Operand Accept(AlgorithmEngine work);
     }
 
     public class Function_Value : FunctionBase
@@ -44,16 +25,11 @@ namespace ToolGood.Algorithm.Internals.Functions
             _value = value;
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             return _value;
         }
     }
-
-
-
-
-
 
     public abstract class Function_1 : FunctionBase
     {
@@ -122,7 +98,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var t = func1.Accept(work).TextValue;
             return Operand.Error(t);
@@ -136,7 +112,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.IsError) { return args1; }
             var args2 = func2.Accept(work); if (args2.IsError) { return args2; }
@@ -192,7 +168,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.IsError) { return args1; }
             var args2 = func2.Accept(work); if (args2.IsError) { return args2; }
@@ -240,7 +216,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.IsError) { return args1; }
             var args2 = func2.Accept(work); if (args2.IsError) { return args2; }
@@ -285,7 +261,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.IsError) { return args1; }
             var args2 = func2.Accept(work); if (args2.IsError) { return args2; }
@@ -340,7 +316,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.IsError) { return args1; }
             var args2 = func2.Accept(work); if (args2.IsError) { return args2; }
@@ -394,7 +370,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.IsError) { return args1; }
             var args2 = func2.Accept(work); if (args2.IsError) { return args2; }
@@ -420,7 +396,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.IsError) { return args1; }
             var args2 = func2.Accept(work); if (args2.IsError) { return args2; }
@@ -476,7 +452,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.IsError) { return args1; }
             var args2 = func2.Accept(work); if (args2.IsError) { return args2; }
@@ -532,7 +508,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.IsError) { return args1; }
             var args2 = func2.Accept(work); if (args2.IsError) { return args2; }
@@ -592,7 +568,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.IsError) { return args1; }
             var args2 = func2.Accept(work); if (args2.IsError) { return args2; }
@@ -652,7 +628,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.IsError) { return args1; }
             var args2 = func2.Accept(work); if (args2.IsError) { return args2; }
@@ -712,7 +688,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.IsError) { return args1; }
             var args2 = func2.Accept(work); if (args2.IsError) { return args2; }
@@ -775,7 +751,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             // 程序 && and || or 与 excel的  AND(x,y) OR(x,y) 有区别
             // 在excel内 AND(x,y) OR(x,y) 先报错，
@@ -792,7 +768,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             // 程序 && and || or 与 excel的  AND(x,y) OR(x,y) 有区别
             // 在excel内 AND(x,y) OR(x,y) 先报错，
@@ -810,7 +786,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var index = 1;
             bool b = true;
@@ -828,7 +804,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var index = 1;
             bool b = false;
@@ -850,7 +826,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.BOOLEAN) { args1 = args1.ToBoolean("Function IF first parameter is error!"); if (args1.IsError) { return args1; } }
             if (args1.BooleanValue) return func2.Accept(work);
@@ -863,7 +839,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work);
             if (args1.IsError) { return func2.Accept(work); }
@@ -876,7 +852,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work);
             if (args1.Type == OperandType.NUMBER) { return Operand.True; }
@@ -889,7 +865,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work);
             if (args1.Type == OperandType.TEXT) { return Operand.True; }
@@ -902,7 +878,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work);
             if (func2 != null) {
@@ -919,7 +895,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work);
             if (func2 != null) {
@@ -936,7 +912,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work);
             if (func2 != null) {
@@ -953,7 +929,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work);
             if (args1.Type == OperandType.NUMBER) {
@@ -968,7 +944,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work);
             if (args1.Type == OperandType.NUMBER) {
@@ -983,7 +959,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work);
             if (args1.Type == OperandType.BOOLEAN) { return Operand.True; }
@@ -996,7 +972,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work);
             if (args1.Type != OperandType.TEXT) { return Operand.True; }
@@ -1009,7 +985,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work);
             if (args1.IsError) { return args1; }
@@ -1027,7 +1003,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ABS parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Abs(args1.NumberValue));
@@ -1040,7 +1016,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function QUOTIENT parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function QUOTIENT parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -1057,7 +1033,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_SIGN(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function SIGN parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Sign(args1.NumberValue));
@@ -1069,7 +1045,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_SQRT(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function SIGN parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Sqrt((double)args1.NumberValue));
@@ -1081,7 +1057,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_TRUNC(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function SIGN parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create((int)(args1.NumberValue));
@@ -1094,7 +1070,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(funcs.Length);
             for (int i = 0; i < funcs.Length; i++) { var aa = funcs[i].Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -1113,7 +1089,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(funcs.Length);
             for (int i = 0; i < funcs.Length; i++) { var aa = funcs[i].Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -1133,7 +1109,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function COMBIN parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function COMBIN parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -1156,7 +1132,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function PERMUT parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function PERMUT parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -1177,7 +1153,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_Percentage(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function Percentage parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(args1.NumberValue / 100.0m);
@@ -1193,7 +1169,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_DEGREES(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function DEGREES parameter is error!"); if (args1.IsError) { return args1; } }
             var z = (double)args1.NumberValue;
@@ -1206,7 +1182,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_RADIANS(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function RADIANS parameter is error!"); if (args1.IsError) { return args1; } }
             var r = (double)args1.NumberValue / 180 * Math.PI;
@@ -1218,7 +1194,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_COS(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function COS parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Cos((double)args1.NumberValue));
@@ -1229,7 +1205,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_SIN(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function SIN parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Sin((double)args1.NumberValue));
@@ -1240,7 +1216,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_TAN(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function TAN parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Tan((double)args1.NumberValue));
@@ -1251,7 +1227,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_ACOS(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ACOS parameter is error!"); if (args1.IsError) { return args1; } }
             var x = args1.NumberValue;
@@ -1266,7 +1242,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_ASIN(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ASIN parameter is error!"); if (args1.IsError) { return args1; } }
             var x = args1.NumberValue;
@@ -1281,7 +1257,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_ATAN(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ATAN parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Atan((double)args1.NumberValue));
@@ -1292,7 +1268,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_ATAN2(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ATAN2 parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function ATAN2 parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -1304,7 +1280,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_COT(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function COT parameter is error!"); if (args1.IsError) { return args1; } }
             var d = Math.Tan((double)args1.NumberValue);
@@ -1319,7 +1295,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_SEC(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function SEC parameter is error!"); if (args1.IsError) { return args1; } }
             var d = Math.Cos((double)args1.NumberValue);
@@ -1334,7 +1310,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_CSC(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function CSC parameter is error!"); if (args1.IsError) { return args1; } }
             var d = Math.Sin((double)args1.NumberValue);
@@ -1349,7 +1325,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_COSH(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function COSH parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Cosh((double)args1.NumberValue));
@@ -1360,7 +1336,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_SINH(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function SINH parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Sinh((double)args1.NumberValue));
@@ -1371,7 +1347,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_TANH(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function TANH parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Tanh((double)args1.NumberValue));
@@ -1382,7 +1358,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_ACOSH(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ACOSH parameter is error!"); if (args1.IsError) { return args1; } }
             var z = args1.NumberValue;
@@ -1397,7 +1373,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_ASINH(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ASINH parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Asinh((double)args1.NumberValue));
@@ -1408,7 +1384,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_ATANH(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ATANH parameter is error!"); if (args1.IsError) { return args1; } }
             var x = args1.NumberValue;
@@ -1424,7 +1400,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var num = 2;
             if (funcs.Length > 1) {
@@ -1455,7 +1431,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -1483,7 +1459,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work).ToText("Function BIN2DEC parameter is error!");
             if (args1.IsError) { return args1; }
@@ -1499,7 +1475,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_BIN2HEX(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -1526,7 +1502,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_OCT2BIN(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -1550,7 +1526,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_OCT2DEC(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work).ToText("Function OCT2DEC parameter is error!");
             if (args1.IsError) { return args1; }
@@ -1564,7 +1540,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_OCT2HEX(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -1588,7 +1564,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_HEX2BIN(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -1612,7 +1588,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_HEX2DEC(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work).ToText("Function HEX2DEC parameter is error!");
             if (args1.IsError) { return args1; }
@@ -1626,7 +1602,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_HEX2OCT(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -1650,7 +1626,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_DEC2BIN(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -1673,7 +1649,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_DEC2OCT(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -1696,7 +1672,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_DEC2HEX(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -1723,7 +1699,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_ROUNDUP(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ROUNDUP parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function ROUNDUP parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -1741,7 +1717,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_ROUNDDOWN(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ROUNDDOWN parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function ROUNDDOWN parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -1760,7 +1736,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_MROUND(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function MROUND parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function MROUND parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -1777,7 +1753,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_ROUND(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ROUND parameter 1 is error!"); if (args1.IsError) { return args1; } }
 
@@ -1794,7 +1770,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_CEILING(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function CEILING parameter 1 is error!"); if (args1.IsError) { return args1; } }
 
@@ -1816,7 +1792,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_FLOOR(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function FLOOR parameter 1 is error!"); if (args1.IsError) { return args1; } }
             if (func2 == null) return Operand.Create(Math.Floor(args1.NumberValue));
@@ -1836,7 +1812,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_EVEN(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function EVEN parameter is error!"); if (args1.IsError) { return args1; } }
             var z = args1.NumberValue;
@@ -1852,7 +1828,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_ODD(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function ODD parameter is error!"); if (args1.IsError) { return args1; } }
             var z = args1.NumberValue;
@@ -1872,7 +1848,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_RAND()
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
 #if NETSTANDARD2_1
             var tick = DateTime.Now.Ticks;
@@ -1888,7 +1864,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_RANDBETWEEN(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function RANDBETWEEN parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function RANDBETWEEN parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -1909,7 +1885,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_COVARIANCES(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function COVARIANCES parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function COVARIANCES parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -1939,7 +1915,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_COVAR(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function COVAR parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function COVAR parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -1967,7 +1943,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_FACT(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function FACT parameter is error!"); if (args1.IsError) { return args1; } }
             if (args1.IsError) { return args1; }
@@ -1988,7 +1964,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_FACTDOUBLE(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function FACTDOUBLE parameter is error!"); if (args1.IsError) { return args1; } }
             var z = args1.IntValue;
@@ -2006,7 +1982,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_POWER(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function POWER parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function POWER parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -2018,7 +1994,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_EXP(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function EXP parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Exp((double)args1.NumberValue));
@@ -2029,7 +2005,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_LN(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function LN parameter is error!"); if (args1.IsError) { return args1; } }
             var z = args1.NumberValue;
@@ -2044,7 +2020,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_LOG(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function LOG parameter 1 is error!"); if (args1.IsError) { return args1; } }
             if (func2 != null) {
@@ -2059,7 +2035,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_MULTINOMIAL(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -2085,7 +2061,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_PRODUCT(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(funcs.Length);
             for (int i = 0; i < funcs.Length; i++) { var aa = funcs[i].Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -2107,7 +2083,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_SQRTPI(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function SQRTPI parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Sqrt((double)args1.NumberValue * Math.PI));
@@ -2119,7 +2095,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(funcs.Length);
             for (int i = 0; i < funcs.Length; i++) { var aa = funcs[i].Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -2146,7 +2122,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_ASC(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function ASC parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(F_base_ToDBC(args1.TextValue));
@@ -2172,7 +2148,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_JIS(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function JIS parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(F_base_ToSBC(args1.TextValue));
@@ -2196,7 +2172,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_CHAR(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function CHAR parameter is error!"); if (args1.IsError) { return args1; } }
             char c = (char)(int)args1.NumberValue;
@@ -2208,7 +2184,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_CLEAN(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function CLEAN parameter is error!"); if (args1.IsError) { return args1; } }
             var t = args1.TextValue;
@@ -2227,7 +2203,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_CODE(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function CODE parameter is error!"); if (args1.IsError) { return args1; } }
             if (string.IsNullOrEmpty(args1.TextValue)) {
@@ -2242,7 +2218,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_CONCATENATE(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < funcs.Length; i++) {
@@ -2257,7 +2233,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_EXACT(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function EXACT parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function EXACT parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -2269,7 +2245,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_FIND(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function FIND parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function FIND parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -2287,7 +2263,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_LEFT(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function LEFT parameter 1 is error!"); if (args1.IsError) { return args1; } }
             if (func2 == null) {
@@ -2302,7 +2278,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_LEN(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function LEN parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create((decimal)args1.TextValue.Length);
@@ -2313,7 +2289,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_LOWER(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function LOWER parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(args1.TextValue.ToLower());
@@ -2324,7 +2300,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_MID(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function MID parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function MID parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -2337,7 +2313,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_PROPER(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function PROPER parameter is error!"); if (args1.IsError) { return args1; } }
 
@@ -2361,7 +2337,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_REPLACE(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) : base(func1, func2, func3, func4)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function REPLACE parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var oldtext = args1.TextValue;
@@ -2400,7 +2376,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_REPT(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function REPT parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function REPT parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -2422,7 +2398,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_RIGHT(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function RIGHT parameter 1 is error!"); if (args1.IsError) { return args1; } }
 
@@ -2438,7 +2414,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_RMB(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function RMB parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(F_base_ToChineseRMB(args1.NumberValue));
@@ -2456,7 +2432,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function SEARCH parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function SEARCH parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -2475,7 +2451,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_SUBSTITUTE(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) : base(func1, func2, func3, func4)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function SUBSTITUTE parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function SUBSTITUTE parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -2520,7 +2496,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_T(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work);
             if (args1.Type == OperandType.TEXT) {
@@ -2534,7 +2510,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_TEXT(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.IsError) { return args1; }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function TEXT parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -2557,7 +2533,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_TRIM(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function TRIM parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(args1.TextValue.AsSpan().Trim().ToString());
@@ -2568,7 +2544,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_UPPER(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function UPPER parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(args1.TextValue.ToUpper());
@@ -2579,7 +2555,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_VALUE(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work);
             if (args1.Type == OperandType.NUMBER) { return args1; }
@@ -2601,7 +2577,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -2659,7 +2635,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -2691,7 +2667,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_TIMEVALUE(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function TIMEVALUE parameter is error!"); if (args1.IsError) { return args1; } }
 
@@ -2707,7 +2683,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = funcs[0].Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function DATE parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = funcs[1].Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function DATE parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -2738,7 +2714,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_DATEDIF(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function DATEDIF parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.DATE) { args2 = args2.ToMyDate("Function DATEDIF parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -2829,7 +2805,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = funcs[0].Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function TIME parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = funcs[1].Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function TIME parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -2847,7 +2823,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
     public class Function_NOW : FunctionBase
     {
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             if (work.useLocalTime) {
                 return Operand.Create(DateTime.Now);
@@ -2858,7 +2834,7 @@ namespace ToolGood.Algorithm.Internals.Functions
     }
     public class Function_TODAY : FunctionBase
     {
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             DateTime now;
             if (work.useLocalTime) {
@@ -2875,7 +2851,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_SECOND(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work);
             if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function SECOND parameter is error!"); if (args1.IsError) { return args1; } }
@@ -2888,7 +2864,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_MINUTE(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work);
             if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function MINUTE parameter is error!"); if (args1.IsError) { return args1; } }
@@ -2900,7 +2876,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_HOUR(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work);
             if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function HOUR parameter is error!"); if (args1.IsError) { return args1; } }
@@ -2913,7 +2889,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_MONTH(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work);
             if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function MONTH parameter is error!"); if (args1.IsError) { return args1; } }
@@ -2928,7 +2904,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_YEAR(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work);
             if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function YEAR parameter is error!"); if (args1.IsError) { return args1; } }
@@ -2943,7 +2919,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_DAY(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work);
             if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function DAY parameter is error!"); if (args1.IsError) { return args1; } }
@@ -2959,7 +2935,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var exprs = funcs;
             var args1 = exprs[0].Accept(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function WEEKDAY parameter 1 is error!"); if (args1.IsError) { return args1; } }
@@ -2989,7 +2965,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_DAYSINMONTH(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function DAYSINMONTH parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function DAYSINMONTH parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -3007,7 +2983,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function DAYS360 parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.DATE) { args2 = args2.ToMyDate("Function DAYS360 parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -3071,7 +3047,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_EDATE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function EDATE parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function EDATE parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -3084,7 +3060,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_EOMONTH(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function EOMONTH parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function EOMONTH parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -3098,7 +3074,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_NETWORKDAYS(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = funcs[0].Accept(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function NETWORKDAYS parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = funcs[1].Accept(work); if (args2.Type != OperandType.DATE) { args2 = args2.ToMyDate("Function NETWORKDAYS parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -3130,7 +3106,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_WORKDAY(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = funcs[0].Accept(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function WORKDAY parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = funcs[1].Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function WORKDAY parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -3159,7 +3135,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_WEEKNUM(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = funcs[0].Accept(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function WEEKNUM parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var startMyDate = (DateTime)args1.DateValue;
@@ -3181,7 +3157,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_ADDMONTHS(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function ADDMONTHS parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function ADDMONTHS parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -3193,7 +3169,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_ADDYEARS(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function ADDYEARS parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function ADDYEARS parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -3205,7 +3181,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_ADDSECONDS(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function ADDSECONDS parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function ADDSECONDS parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -3217,7 +3193,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_ADDMINUTES(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function ADDMINUTES parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function ADDMINUTES parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -3229,7 +3205,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_ADDHOURS(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function ADDHOURS parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function ADDHOURS parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -3241,7 +3217,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_ADDDAYS(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function ADDDAYS parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function ADDDAYS parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -3257,7 +3233,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function MAX parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -3274,7 +3250,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_MIN(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function MIN parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -3289,7 +3265,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_SUM(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function SUM parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -3305,7 +3281,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function SUMIF parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -3347,7 +3323,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_AVEDEV(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function AVEDEV parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -3368,7 +3344,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_AVERAGE(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function AVERAGE parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -3385,7 +3361,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(funcs.Length);
             for (int i = 0; i < funcs.Length; i++) { var aa = funcs[i].Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -3431,7 +3407,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_COUNT(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function COUNT parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -3446,7 +3422,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_COUNTIF(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.ARRARY) { args1 = args1.ToNumber("Function COUNTIF parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.IsError) { return args2; }
@@ -3479,7 +3455,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_COUNTA(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -3494,7 +3470,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_MEDIAN(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function MEDIAN parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -3513,7 +3489,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_MODE(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function MODE parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -3538,7 +3514,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_LARGE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.ARRARY) { args1 = args1.ToNumber("Function LARGE parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function LARGE parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -3559,7 +3535,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_SMALL(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.ARRARY) { args1 = args1.ToNumber("Function SMALL parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function SMALL parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -3579,7 +3555,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_PERCENTILE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.ARRARY) { args1 = args1.ToNumber("Function PERCENTILE parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function PERCENTILE parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -3595,7 +3571,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_GEOMEAN(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function GEOMEAN parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -3619,7 +3595,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_HARMEAN(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function HARMEAN parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -3647,7 +3623,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -3680,7 +3656,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_RANGE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function RANGE parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function RANGE parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -3692,7 +3668,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_VARIANCE(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function VARIANCE parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -3710,7 +3686,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_STDEV(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function STDEV parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -3732,7 +3708,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_STDEVP(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function STDEVP parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -3753,7 +3729,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_DEVSQ(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function DEVSQ parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -3774,7 +3750,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_VAR(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function VARVARP parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -3800,7 +3776,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_VARP(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function VARP parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -3826,7 +3802,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function NORMDIST parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function NORMDIST parameter 2 error!"); if (args2.IsError) return args2; }
@@ -3845,7 +3821,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_NORMINV(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function NORMINV parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function NORMINV parameter 2 error!"); if (args2.IsError) return args2; }
@@ -3861,7 +3837,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_NORMSDIST(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function NORMSDIST parameter error!"); if (args1.IsError) return args1; }
             var num = args1.NumberValue;
@@ -3873,7 +3849,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_NORMSINV(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function NORMSINV parameter error!"); if (args1.IsError) return args1; }
             var p = args1.NumberValue;
@@ -3886,7 +3862,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function BETADIST parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function BETADIST parameter 2 error!"); if (args2.IsError) return args2; }
@@ -3906,7 +3882,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_BETAINV(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function BETAINV parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function BETAINV parameter 2 error!"); if (args2.IsError) return args2; }
@@ -3926,7 +3902,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function BINOMDIST parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function BINOMDIST parameter 2 error!"); if (args2.IsError) return args2; }
@@ -3945,7 +3921,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_EXPONDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function EXPONDIST parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function EXPONDIST parameter 2 error!"); if (args2.IsError) return args2; }
@@ -3963,7 +3939,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function FDIST parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function FDIST parameter 2 error!"); if (args2.IsError) return args2; }
@@ -3983,7 +3959,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_FINV(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function FINV parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function FINV parameter 2 error!"); if (args2.IsError) return args2; }
@@ -4003,7 +3979,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function FISHER parameter error!"); if (args1.IsError) { return args1; } }
             var x = args1.NumberValue;
@@ -4019,7 +3995,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_FISHERINV(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function FISHERINV parameter error!"); if (args1.IsError) { return args1; } }
             var x = (double)args1.NumberValue;
@@ -4032,7 +4008,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_GAMMADIST(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) : base(func1, func2, func3, func4)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function GAMMADIST parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function GAMMADIST parameter 2 error!"); if (args2.IsError) return args2; }
@@ -4053,7 +4029,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_GAMMAINV(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function GAMMAINV parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function GAMMAINV parameter 2 error!"); if (args2.IsError) return args2; }
@@ -4072,7 +4048,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_GAMMALN(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function GAMMALN parameter error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(ExcelFunctions.GAMMALN((double)args1.NumberValue));
@@ -4083,7 +4059,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_HYPGEOMDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) : base(func1, func2, func3, func4)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function HYPGEOMDIST parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function HYPGEOMDIST parameter 2 error!"); if (args2.IsError) return args2; }
@@ -4105,7 +4081,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function HYPGEOMDIST parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function HYPGEOMDIST parameter 2 error!"); if (args2.IsError) return args2; }
@@ -4121,7 +4097,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_LOGNORMDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function LOGNORMDIST parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function LOGNORMDIST parameter 2 error!"); if (args2.IsError) return args2; }
@@ -4137,7 +4113,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_NEGBINOMDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function NEGBINOMDIST parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function NEGBINOMDIST parameter 2 error!"); if (args2.IsError) return args2; }
@@ -4158,7 +4134,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function NEGBINOMDIST parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function NEGBINOMDIST parameter 2 error!"); if (args2.IsError) return args2; }
@@ -4177,7 +4153,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_TDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function TDIST parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function TDIST parameter 2 error!"); if (args2.IsError) return args2; }
@@ -4196,7 +4172,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_TINV(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function TINV parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function TINV parameter 2 error!"); if (args2.IsError) return args2; }
@@ -4213,7 +4189,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_WEIBULL(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) : base(func1, func2, func3, func4)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function WEIBULL parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function WEIBULL parameter 2 error!"); if (args2.IsError) return args2; }
@@ -4236,7 +4212,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_QUARTILE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.ARRARY) { args1 = args1.ToNumber("Function QUARTILE parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function QUARTILE parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -4260,7 +4236,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_URLENCODE(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function URLENCODE parameter error!"); if (args1.IsError) { return args1; } }
             var s = args1.TextValue;
@@ -4273,7 +4249,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_URLDECODE(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function URLDECODE parameter error!"); if (args1.IsError) { return args1; } }
             var s = args1.TextValue;
@@ -4286,7 +4262,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_HTMLENCODE(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function HTMLENCODE parameter error!"); if (args1.IsError) { return args1; } }
             var s = args1.TextValue;
@@ -4299,7 +4275,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_HTMLDECODE(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function HTMLDECODE parameter error!"); if (args1.IsError) { return args1; } }
             var s = args1.TextValue;
@@ -4313,7 +4289,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var a = item.Accept(work).ToText($"Function BASE64TOTEXT parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
@@ -4335,7 +4311,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_BASE64URLTOTEXT(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var a = item.Accept(work).ToText($"Function TEXTTOBASE64 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
@@ -4357,7 +4333,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_TEXTTOBASE64(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var a = item.Accept(work).ToText($"Function TEXTTOBASE64 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
@@ -4381,7 +4357,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_TEXTTOBASE64URL(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var a = item.Accept(work).ToText($"Function TEXTTOBASE64URL parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
@@ -4405,7 +4381,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work).ToText("Function REGEX parameter 1 is error!");
             if (args1.IsError) { return args1; }
@@ -4425,7 +4401,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function REGEXREPALCE parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function REGEXREPALCE parameter 2 error!"); if (args2.IsError) return args2; }
@@ -4439,7 +4415,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_ISREGEX(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function ISREGEX parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function ISREGEX parameter 2 error!"); if (args2.IsError) return args2; }
@@ -4453,7 +4429,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_GUID()
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             return Operand.Create(System.Guid.NewGuid().ToString());
         }
@@ -4464,7 +4440,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var a = item.Accept(work).ToText($"Function MD5 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
@@ -4487,7 +4463,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_SHA1(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var a = item.Accept(work).ToText($"Function SHA1 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
@@ -4510,7 +4486,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_SHA256(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var a = item.Accept(work).ToText($"Function SHA256 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
@@ -4533,7 +4509,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_SHA512(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var a = item.Accept(work).ToText($"Function SHA512 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
@@ -4556,7 +4532,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_CRC32(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var a = item.Accept(work).ToText($"Function CRC32 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
@@ -4579,7 +4555,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_HMACMD5(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var a = item.Accept(work).ToText($"Function HMACMD5 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
@@ -4602,7 +4578,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_HMACSHA1(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var a = item.Accept(work).ToText($"Function HMACSHA1 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
@@ -4625,7 +4601,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_HMACSHA256(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var a = item.Accept(work).ToText($"Function HMACSHA256 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
@@ -4648,7 +4624,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_HMACSHA512(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var a = item.Accept(work).ToText($"Function HMACSHA512 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
@@ -4671,7 +4647,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_TRIMSTART(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var a = item.Accept(work).ToText($"Function TRIMSTART parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
@@ -4688,7 +4664,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_TRIMEND(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var a = item.Accept(work).ToText($"Function TRIMEND parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
@@ -4706,7 +4682,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = funcs[0].Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function INDEXOF parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = funcs[1].Accept(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function INDEXOF parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -4727,7 +4703,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_LASTINDEXOF(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = funcs[0].Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function LASTINDEXOF parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = funcs[1].Accept(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function LASTINDEXOF parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -4749,7 +4725,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function SPLIT parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function SPLIT parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -4762,7 +4738,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -4802,7 +4778,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = funcs[0].Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function SUBSTRING parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = funcs[1].Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function SUBSTRING parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -4821,7 +4797,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_STARTSWITH(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = funcs[0].Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function STARTSWITH parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = funcs[1].Accept(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function STARTSWITH parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -4839,7 +4815,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_ENDSWITH(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = funcs[0].Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function ENDSWITH parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = funcs[1].Accept(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function ENDSWITH parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -4856,7 +4832,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_ISNULLOREMPTY(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function ISNULLOREMPTY parameter 1 is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(string.IsNullOrEmpty(args1.TextValue));
@@ -4867,7 +4843,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_ISNULLORWHITESPACE(FunctionBase func1) : base(func1)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function ISNULLORWHITESPACE parameter 1 is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(string.IsNullOrWhiteSpace(args1.TextValue));
@@ -4878,7 +4854,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_REMOVESTART(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = funcs[0].Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function REMOVESTART parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = funcs[1].Accept(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function REMOVESTART parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -4901,7 +4877,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_REMOVEEND(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = funcs[0].Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function REMOVEEND parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = funcs[1].Accept(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function REMOVEEND parameter 2 is error!"); if (args2.IsError) { return args2; } }
@@ -4925,7 +4901,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args1 = func1.Accept(work);
             if (args1.Type == OperandType.JSON) { return args1; }
@@ -4950,7 +4926,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_VLOOKUP(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -5038,7 +5014,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_LOOKUP(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -5106,7 +5082,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public Function_Array(FunctionBase[] funcs) : base(funcs)
         {
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
@@ -5122,7 +5098,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             d = func1;
             unit = func2;
         }
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             var dict = NumberUnitTypeHelper.GetUnitTypedict();
             var d2 = NumberUnitTypeHelper.TransformationUnit(d, dict[unit], work.DistanceUnit, work.AreaUnit, work.VolumeUnit, work.MassUnit);
@@ -5140,7 +5116,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Accept(Work work)
+        public override Operand Accept(AlgorithmEngine work)
         {
             if (string.IsNullOrEmpty(name)) {
                 return work.GetParameter(func1.Accept(work).TextValue);
@@ -5149,6 +5125,238 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
+    public class Function_GetJsonValue : Function_2
+    {
+        public Function_GetJsonValue(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+        {
+        }
+
+        public override Operand Accept(AlgorithmEngine work)
+        {
+            var obj = func1.Accept(work); if (obj.IsError) { return obj; }
+            var op = func2.Accept(work); if (op.IsError) { return op; }
+
+            if (obj.Type == OperandType.ARRARY) {
+                op = op.ToNumber("ARRARY index is error!");
+                if (op.IsError) { return op; }
+                var index = op.IntValue - work.excelIndex;
+                if (index < obj.ArrayValue.Count)
+                    return obj.ArrayValue[index];
+                return Operand.Error($"ARRARY index {index} greater than maximum length!");
+            }
+            if (obj.Type == OperandType.ARRARYJSON) {
+                if (op.Type == OperandType.NUMBER) {
+                    if (((OperandKeyValueList)obj).TryGetValue(op.NumberValue.ToString(), out Operand operand)) {
+                        return operand;
+                    }
+                    return Operand.Error($"Parameter name `{op.TextValue}` is missing!");
+                } else if (op.Type == OperandType.TEXT) {
+                    if (((OperandKeyValueList)obj).TryGetValue(op.TextValue, out Operand operand)) {
+                        return operand;
+                    }
+                    return Operand.Error($"Parameter name `{op.TextValue}` is missing!");
+                }
+                return Operand.Error("Parameter name is missing!");
+            }
+
+            if (obj.Type == OperandType.JSON) {
+                var json = obj.JsonValue;
+                if (json.IsArray) {
+                    op = op.ToNumber("JSON parameter index is error!");
+                    if (op.IsError) { return op; }
+                    var index = op.IntValue - work.excelIndex;
+                    if (index < json.Count) {
+                        var v = json[index];
+                        if (v.IsString) return Operand.Create(v.StringValue);
+                        if (v.IsBoolean) return Operand.Create(v.BooleanValue);
+                        if (v.IsDouble) return Operand.Create(v.NumberValue);
+                        if (v.IsObject) return Operand.Create(v);
+                        if (v.IsArray) return Operand.Create(v);
+                        if (v.IsNull) return Operand.CreateNull();
+                        return Operand.Create(v);
+                    }
+                    return Operand.Error($"JSON index {index} greater than maximum length!");
+                } else {
+                    op = op.ToText("JSON parameter name is error!");
+                    if (op.IsError) { return op; }
+                    var v = json[op.TextValue];
+                    if (v != null) {
+                        if (v.IsString) return Operand.Create(v.StringValue);
+                        if (v.IsBoolean) return Operand.Create(v.BooleanValue);
+                        if (v.IsDouble) return Operand.Create(v.NumberValue);
+                        if (v.IsObject) return Operand.Create(v);
+                        if (v.IsArray) return Operand.Create(v);
+                        if (v.IsNull) return Operand.CreateNull();
+                        return Operand.Create(v);
+                    }
+                }
+            }
+            return Operand.Error(" Operator is error!");
+        }
+    }
+    public class Function_DiyFunction : Function_N
+    {
+        private string funName;
+        public Function_DiyFunction(string name, FunctionBase[] funcs) : base(funcs)
+        {
+            this.funName = name;
+        }
+
+        public override Operand Accept(AlgorithmEngine work)
+        {
+            var args = new List<Operand>();
+            foreach (var item in funcs) { var aa = item.Accept(work); args.Add(aa); }
+            return work.DiyFunction(funName, args);
+        }
+    }
+    public class Function_PARAM : Function_2
+    {
+        public Function_PARAM(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+        {
+        }
+
+        public override Operand Accept(AlgorithmEngine work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText(); if (args1.IsError) return args1; }
+            var result = work.GetParameter(args1.TextValue);
+            if (result.IsError) {
+                if (func2 != null) {
+                    return func2.Accept(work);
+                }
+            }
+            return result;
+        }
+    }
+    public class Function_HAS:Function_2
+    {
+        public Function_HAS(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+        {
+        }
+        public override Operand Accept(AlgorithmEngine work)
+        {
+            var args1 = func1.Accept(work); if (args1.IsError) { return args1; }
+            var args2 = func2.Accept(work).ToText("Function HAS parameter 2 is error!"); if (args2.IsError) { return args2; }
+
+            if (args1.Type == OperandType.ARRARYJSON) {
+                return Operand.Create(((OperandKeyValueList)args1).ContainsKey(args2));
+            } else if (args1.Type == OperandType.JSON) {
+                var json = args1.JsonValue;
+                if (json.IsArray) {
+                    for (int i = 0; i < json.Count; i++) {
+                        var v = json[i];
+                        if (v.IsString) {
+                            if (v.StringValue == args2.TextValue) { return Operand.True; }
+                        } else if (v.IsDouble) {
+                            if (v.NumberValue.ToString() == args2.TextValue) { return Operand.True; }
+                        } else if (v.IsBoolean) {
+                            if (v.BooleanValue.ToString().ToUpper() == args2.TextValue) { return Operand.True; }
+                        }
+                    }
+                } else {
+                    var v = json[args2.TextValue];
+                    if (v != null) {
+                        return Operand.True;
+                    }
+                }
+                return Operand.False;
+            } else if (args1.Type == OperandType.ARRARY) {
+                var ar = ((OperandArray)args1);
+                foreach (var item in ar.ArrayValue) {
+                    var t = item.ToText();
+                    if (t.IsError) { continue; }
+                    if (t.TextValue == args2.TextValue) {
+                        return Operand.True;
+                    }
+                }
+                return Operand.False;
+            }
+            return Operand.Error("Function HAS parameter 1 is error!");
+        }
+    }
+    public class Function_HASVALUE : Function_2
+    {
+        public Function_HASVALUE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+        {
+        }
+
+        public override Operand Accept(AlgorithmEngine work)
+        {
+            var args1 = func1.Accept(work); if (args1.IsError) { return args1; }
+            var args2 = func2.Accept(work).ToText("Function HASVALUE parameter 2 is error!"); if (args2.IsError) { return args2; }
+
+            if (args1.Type == OperandType.ARRARYJSON) {
+                return Operand.Create(((OperandKeyValueList)args1).ContainsValue(args2));
+            } else if (args1.Type == OperandType.JSON) {
+                var json = args1.JsonValue;
+                if (json.IsArray) {
+                    for (int i = 0; i < json.Count; i++) {
+                        var v = json[i];
+                        if (v.IsString) {
+                            if (v.StringValue == args2.TextValue) { return Operand.True; }
+                        } else if (v.IsDouble) {
+                            if (v.NumberValue.ToString() == args2.TextValue) { return Operand.True; }
+                        } else if (v.IsBoolean) {
+                            if (v.BooleanValue.ToString().ToUpper() == args2.TextValue) { return Operand.True; }
+                        }
+                    }
+                } else {
+                    foreach (var item in json.inst_object) {
+                        var v = item.Value;
+                        if (v.IsString) {
+                            if (v.StringValue == args2.TextValue) { return Operand.True; }
+                        } else if (v.IsDouble) {
+                            if (v.NumberValue.ToString() == args2.TextValue) { return Operand.True; }
+                        } else if (v.IsBoolean) {
+                            if (v.BooleanValue.ToString().ToUpper() == args2.TextValue) { return Operand.True; }
+                        }
+                    }
+                }
+                return Operand.False;
+            } else if (args1.Type == OperandType.ARRARY) {
+                var ar = ((OperandArray)args1);
+                foreach (var item in ar.ArrayValue) {
+                    var t = item.ToText();
+                    if (t.IsError) { continue; }
+                    if (t.TextValue == args2.TextValue) {
+                        return Operand.True;
+                    }
+                }
+                return Operand.False;
+            }
+            return Operand.Error("Function HASVALUE parameter 1 is error!");
+        }
+    }
+
+    public class Function_ArrayJson:Function_N
+    {
+        public Function_ArrayJson(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(AlgorithmEngine work)
+        {
+            OperandKeyValueList result = new OperandKeyValueList(null);
+            foreach (var item in funcs) {
+                var o = item.Accept(work);
+                result.AddValue((KeyValue)((OperandKeyValue)o).Value);
+            }
+            return result;
+        }
+    }
+    public class Function_ArrayJsonItem: Function_1
+    {
+        private string key;
+        public Function_ArrayJsonItem(string key,FunctionBase func1) : base(func1)
+        {
+            this.key = key;
+        }
+        public override Operand Accept(AlgorithmEngine work)
+        {
+            KeyValue keyValue = new KeyValue();
+            keyValue.Key = key;
+            keyValue.Value = func1.Accept(work);
+            return new OperandKeyValue(keyValue);
+        }
+    }
     #endregion
     public class FunctionUtil
     {

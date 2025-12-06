@@ -2001,223 +2001,83 @@ namespace ToolGood.Algorithm.Fast.Internals
                 var p = context.expr().Accept(this);
                 return new Function_PARAMETER(p);
             }
-            return new Function_Value(Operand.Error( "Function PARAMETER first parameter is error!"));
+            return new Function_Value(Operand.Error("Function PARAMETER first parameter is error!"));
         }
 
         public virtual FunctionBase VisitParameter2(mathParser.Parameter2Context context)
         {
-            return new  Function_Value(Operand.Create(context.children[0].GetText()));
+            return new Function_Value(Operand.Create(context.children[0].GetText()));
         }
 
         public virtual FunctionBase VisitGetJsonValue_fun(mathParser.GetJsonValue_funContext context)
         {
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this);
-            if (args1.IsError) { return args1; }
-
-            var obj = args1;
-            Operand op;
             if (context.parameter2() != null) {
-                op = context.parameter2().Accept(this);
-            } else {
-                op = exprs[1].Accept(this);
-                if (op.IsError) {
-                    op = Operand.Create(exprs[1].GetText());
-                }
+                var op = context.parameter2().Accept(this);
+                return new Function_GetJsonValue(args1, op);
             }
-
-            if (obj.Type == OperandType.ARRARY) {
-                op = op.ToNumber("ARRARY index is error!");
-                if (op.IsError) { return op; }
-                var index = op.IntValue - excelIndex;
-                if (index < obj.ArrayValue.Count)
-                    return obj.ArrayValue[index];
-                return Operand.Error($"ARRARY index {index} greater than maximum length!");
-            }
-            if (obj.Type == OperandType.ARRARYJSON) {
-                if (op.Type == OperandType.NUMBER) {
-                    if (((OperandKeyValueList)obj).TryGetValue(op.NumberValue.ToString(), out Operand operand)) {
-                        return operand;
-                    }
-                    return Operand.Error($"Parameter name `{op.TextValue}` is missing!");
-                } else if (op.Type == OperandType.TEXT) {
-                    if (((OperandKeyValueList)obj).TryGetValue(op.TextValue, out Operand operand)) {
-                        return operand;
-                    }
-                    return Operand.Error($"Parameter name `{op.TextValue}` is missing!");
-                }
-                return Operand.Error("Parameter name is missing!");
-            }
-
-            if (obj.Type == OperandType.JSON) {
-                var json = obj.JsonValue;
-                if (json.IsArray) {
-                    op = op.ToNumber("JSON parameter index is error!");
-                    if (op.IsError) { return op; }
-                    var index = op.IntValue - excelIndex;
-                    if (index < json.Count) {
-                        var v = json[index];
-                        if (v.IsString) return Operand.Create(v.StringValue);
-                        if (v.IsBoolean) return Operand.Create(v.BooleanValue);
-                        if (v.IsDouble) return Operand.Create(v.NumberValue);
-                        if (v.IsObject) return Operand.Create(v);
-                        if (v.IsArray) return Operand.Create(v);
-                        if (v.IsNull) return Operand.CreateNull();
-                        return Operand.Create(v);
-                    }
-                    return Operand.Error($"JSON index {index} greater than maximum length!");
-                } else {
-                    op = op.ToText("JSON parameter name is error!");
-                    if (op.IsError) { return op; }
-                    var v = json[op.TextValue];
-                    if (v != null) {
-                        if (v.IsString) return Operand.Create(v.StringValue);
-                        if (v.IsBoolean) return Operand.Create(v.BooleanValue);
-                        if (v.IsDouble) return Operand.Create(v.NumberValue);
-                        if (v.IsObject) return Operand.Create(v);
-                        if (v.IsArray) return Operand.Create(v);
-                        if (v.IsNull) return Operand.CreateNull();
-                        return Operand.Create(v);
-                    }
-                }
-            }
-            return Operand.Error(" Operator is error!");
+            var op2 = exprs[1].Accept(this);
+            return new Function_GetJsonValue(args1, op2);
         }
 
         public virtual FunctionBase VisitDiyFunction_fun(mathParser.DiyFunction_funContext context)
         {
-            if (DiyFunction != null) {
-                var funName = context.PARAMETER().GetText();
-                var args = new List<Operand>();
-                foreach (var item in context.expr()) { var aa = item.Accept(this); args.Add(aa); }
-                return DiyFunction(mainContext, funName, args);
+            var funName = context.PARAMETER().GetText();
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            return Operand.Error("DiyFunction is error!");
+            return new Function_DiyFunction(funName, args);
         }
 
         public FunctionBase VisitPARAM_fun(mathParser.PARAM_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText(); if (args1.IsError) return args1; }
-            var result = GetParameter(mainContext, args1.TextValue);
-            if (result.IsError) {
-                if (exprs.Length == 2) {
-                    return exprs[1].Accept(this);
-                }
+            var args1 = exprs[0].Accept(this);
+            if (exprs.Length == 1) {
+                return new Function_PARAM(args1, null);
             }
-            return result;
+            var args2 = exprs[1].Accept(this);
+            return new Function_PARAM(args1, args2);
         }
 
         public FunctionBase VisitHAS_fun(mathParser.HAS_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.IsError) { return args1; }
-            var args2 = exprs[1].Accept(this).ToText("Function HAS parameter 2 is error!"); if (args2.IsError) { return args2; }
-
-            if (args1.Type == OperandType.ARRARYJSON) {
-                return Operand.Create(((OperandKeyValueList)args1).ContainsKey(args2));
-            } else if (args1.Type == OperandType.JSON) {
-                var json = args1.JsonValue;
-                if (json.IsArray) {
-                    for (int i = 0; i < json.Count; i++) {
-                        var v = json[i];
-                        if (v.IsString) {
-                            if (v.StringValue == args2.TextValue) { return Operand.True; }
-                        } else if (v.IsDouble) {
-                            if (v.NumberValue.ToString() == args2.TextValue) { return Operand.True; }
-                        } else if (v.IsBoolean) {
-                            if (v.BooleanValue.ToString().ToUpper() == args2.TextValue) { return Operand.True; }
-                        }
-                    }
-                } else {
-                    var v = json[args2.TextValue];
-                    if (v != null) {
-                        return Operand.True;
-                    }
-                }
-                return Operand.False;
-            } else if (args1.Type == OperandType.ARRARY) {
-                var ar = ((OperandArray)args1);
-                foreach (var item in ar.ArrayValue) {
-                    var t = item.ToText();
-                    if (t.IsError) { continue; }
-                    if (t.TextValue == args2.TextValue) {
-                        return Operand.True;
-                    }
-                }
-                return Operand.False;
-            }
-            return Operand.Error("Function HAS parameter 1 is error!");
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            return new Function_HAS(args1, args2);
         }
 
-        public FunctionBase VisitHASVALUE_fun([Antlr4.Runtime.Misc.NotNull] mathParser.HASVALUE_funContext context)
+        public FunctionBase VisitHASVALUE_fun(mathParser.HASVALUE_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.IsError) { return args1; }
-            var args2 = exprs[1].Accept(this).ToText("Function HASVALUE parameter 2 is error!"); if (args2.IsError) { return args2; }
-
-            if (args1.Type == OperandType.ARRARYJSON) {
-                return Operand.Create(((OperandKeyValueList)args1).ContainsValue(args2));
-            } else if (args1.Type == OperandType.JSON) {
-                var json = args1.JsonValue;
-                if (json.IsArray) {
-                    for (int i = 0; i < json.Count; i++) {
-                        var v = json[i];
-                        if (v.IsString) {
-                            if (v.StringValue == args2.TextValue) { return Operand.True; }
-                        } else if (v.IsDouble) {
-                            if (v.NumberValue.ToString() == args2.TextValue) { return Operand.True; }
-                        } else if (v.IsBoolean) {
-                            if (v.BooleanValue.ToString().ToUpper() == args2.TextValue) { return Operand.True; }
-                        }
-                    }
-                } else {
-                    foreach (var item in json.inst_object) {
-                        var v = item.Value;
-                        if (v.IsString) {
-                            if (v.StringValue == args2.TextValue) { return Operand.True; }
-                        } else if (v.IsDouble) {
-                            if (v.NumberValue.ToString() == args2.TextValue) { return Operand.True; }
-                        } else if (v.IsBoolean) {
-                            if (v.BooleanValue.ToString().ToUpper() == args2.TextValue) { return Operand.True; }
-                        }
-                    }
-                }
-                return Operand.False;
-            } else if (args1.Type == OperandType.ARRARY) {
-                var ar = ((OperandArray)args1);
-                foreach (var item in ar.ArrayValue) {
-                    var t = item.ToText();
-                    if (t.IsError) { continue; }
-                    if (t.TextValue == args2.TextValue) {
-                        return Operand.True;
-                    }
-                }
-                return Operand.False;
-            }
-            return Operand.Error("Function HASVALUE parameter 1 is error!");
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            return new Function_HASVALUE(args1, args2);
         }
 
         public FunctionBase VisitArrayJson_fun(mathParser.ArrayJson_funContext context)
         {
-            OperandKeyValueList result = new OperandKeyValueList(null);
-            var js = context.arrayJson();
-            for (int i = 0; i < js.Length; i++) {
-                var item = js[i];
-                var aa = item.Accept(this); if (aa.IsError) { return aa; }
-                result.AddValue((KeyValue)((OperandKeyValue)aa).Value);
+            var exprs = context.arrayJson();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            return result;
+            return new Function_ArrayJson(args);
         }
 
         public FunctionBase VisitArrayJson(mathParser.ArrayJsonContext context)
         {
+            string keyName = null;
             KeyValue keyValue = new KeyValue();
             if (context.NUM() != null) {
                 if (int.TryParse(context.NUM().GetText(), out int key)) {
-                    keyValue.Key = key.ToString();
+                    keyName = key.ToString();
                 } else {
-                    return Operand.Error("Json key '" + context.NUM().GetText() + "' is error!");
+                    return new Function_Value(Operand.Error("Json key '" + context.NUM().GetText() + "' is error!"));
                 }
             }
             if (context.STRING() != null) {
@@ -2241,20 +2101,20 @@ namespace ToolGood.Algorithm.Fast.Internals
                         sb.Append(c);
                     }
                 }
-                keyValue.Key = sb.ToString();
+                keyName = sb.ToString();
             }
             if (context.parameter2() != null) {
-                keyValue.Key = context.parameter2().GetText();
+                keyName = context.parameter2().GetText();
             }
-            keyValue.Value = context.expr().Accept(this);
-            return new OperandKeyValue(keyValue);
+            var f = context.expr().Accept(this);
+            return new Function_ArrayJsonItem(keyName, f);
         }
 
         public FunctionBase VisitERROR_fun(mathParser.ERROR_funContext context)
         {
             if (context.expr() == null) { return new Function_Value(Operand.Error("")); }
             var args1 = context.expr().Accept(this);
-            return  new Function_ERROR(args1);
+            return new Function_ERROR(args1);
         }
 
         public FunctionBase VisitVersion_fun(mathParser.Version_funContext context)
