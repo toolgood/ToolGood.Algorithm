@@ -12,11 +12,11 @@ namespace ToolGood.Algorithm2.Test
         {
             AlgorithmEngine engine = new AlgorithmEngine();
 
-            decimal a = 0.0m;
-            if (engine.Parse("1+2")) {
-                var o = engine.Evaluate();
-                a = o.NumberValue;
-            }
+            //decimal a = 0.0m;
+            //if (engine.Parse("1+2")) {
+            //    var o = engine.Evaluate();
+            //    a = o.NumberValue;
+            //}
 
             var b = engine.TryEvaluate("1=1 && 1<2 and 7-8>1", 0);// Support(支持) && || and or
             var c = engine.TryEvaluate("2+3", 0);

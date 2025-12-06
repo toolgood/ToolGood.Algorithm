@@ -82,12 +82,6 @@ namespace ToolGood.Algorithm2.Test.AlgorithmEngineHelper2
             Assert.AreEqual(1000000M, b);
         }
 
-        [Test]
-        public void Test4()
-        {
-            var progContext = AlgorithmEngineHelper.Parse("1+1");
-            var operand = AlgorithmEngineHelper.Evaluate(progContext);
-            Assert.AreEqual(2, operand.IntValue);
-        }
+      
     }
 }

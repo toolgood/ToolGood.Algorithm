@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Internals;
+using ToolGood.Algorithm.Internals.Functions;
 using ToolGood.Algorithm.math;
 using ToolGood.Algorithm.UnitConversion;
 
@@ -261,7 +261,6 @@ namespace ToolGood.Algorithm
                     "REMOVEEND",
                     "JSON",
                     "VLOOKUP",
-                    "LOOKUP",
                     "ARRAY",
 
                     "ADDYEARS",
@@ -369,65 +368,25 @@ namespace ToolGood.Algorithm
         }
 
         /// <summary>
-        /// 解析
+        /// Creates a logical AND function that combines two specified functions.
         /// </summary>
-        /// <param name="exp"></param>
-        /// <returns></returns>
-        /// <exception cref="Exception"></exception>
-        public static mathParser.ProgContext Parse(string exp)
+        /// <param name="left">The left operand of the AND operation, representing the first function to be combined.</param>
+        /// <param name="right">The right operand of the AND operation, representing the second function to be combined.</param>
+        /// <returns>A new <see cref="FunctionBase"/> instance that represents the logical AND of the specified functions.</returns>
+        public static FunctionBase CreateAnd(FunctionBase left,FunctionBase right)
         {
-            if (string.IsNullOrWhiteSpace(exp)) {
-                throw new Exception("Parameter exp invalid !");
-            }
-            var stream = new AntlrCharStream(new AntlrInputStream(exp));
-            var lexer = new mathLexer(stream);
-            var tokens = new CommonTokenStream(lexer);
-            var parser = new mathParser(tokens);
-            var antlrErrorListener = new AntlrErrorListener();
-            parser.RemoveErrorListeners();
-            parser.AddErrorListener(antlrErrorListener);
-
-            var context = parser.prog();
-            if (antlrErrorListener.IsError) {
-                throw new Exception(antlrErrorListener.ErrorMsg);
-            }
-            return context;
+            return new Function_AND(left, right);
         }
-
         /// <summary>
-        /// 执行
+        /// Creates a logical OR function that combines two specified functions.
         /// </summary>
-        /// <param name="context"></param>
-        /// <param name="GetParameter"></param>
-        /// <param name="ExecuteDiyFunction"></param>
-        /// <param name="UseExcelIndex"></param>
-        /// <param name="UseLocalTime"></param>
-        /// <param name="DistanceUnit"></param>
-        /// <param name="AreaUnit"></param>
-        /// <param name="VolumeUnit"></param>
-        /// <param name="MassUnit"></param>
-        /// <returns></returns>
-        public static Operand Evaluate(mathParser.ProgContext context, Func<mathParser.ProgContext, string, Operand> GetParameter = null
-            , Func<mathParser.ProgContext, string, List<Operand>, Operand> ExecuteDiyFunction = null
-            , bool UseExcelIndex = true, bool UseLocalTime = false
-            , DistanceUnitType DistanceUnit = DistanceUnitType.M, AreaUnitType AreaUnit = AreaUnitType.M2
-            , VolumeUnitType VolumeUnit = VolumeUnitType.M3, MassUnitType MassUnit = MassUnitType.KG
-            )
+        /// <param name="left">The left operand of the OR operation, representing the first function to be combined.</param>
+        /// <param name="right">The right operand of the OR operation, representing the second function to be combined.</param>
+        /// <returns>A new <see cref="FunctionBase"/> instance that represents the logical OR of the specified functions.</returns>
+        public static FunctionBase CreateOr(FunctionBase left, FunctionBase right)
         {
-            var visitor = new MathVisitor();
-            if (GetParameter != null) {
-                visitor.GetParameter += GetParameter;
-            }
-            if (ExecuteDiyFunction != null) {
-                visitor.DiyFunction += ExecuteDiyFunction;
-            }
-            visitor.excelIndex = UseExcelIndex ? 1 : 0;
-            visitor.useLocalTime = UseLocalTime;
-            visitor.MassUnit = MassUnit;
-            visitor.DistanceUnit = DistanceUnit;
-            visitor.AreaUnit = AreaUnit;
-            visitor.VolumeUnit = VolumeUnit;
-            return visitor.Visit(context);
+            return new Function_OR(left, right);
         }
+
     }
 }

@@ -5,7 +5,7 @@ using ToolGood.Algorithm.math;
 namespace ToolGood.Algorithm
 {
     //定义圆柱信息
-    public class Cylinder : AlgorithmEngine
+    public class Cylinder : AlgorithmEngineEx
     {
         private int _radius;
         private int _height;
@@ -16,7 +16,7 @@ namespace ToolGood.Algorithm
             _height = height;
         }
 
-        protected override Operand GetParameter(string parameter)
+        public override Operand GetParameter(string parameter)
         {
             if (parameter == "半径") {
                 return Operand.Create(_radius);
@@ -30,7 +30,8 @@ namespace ToolGood.Algorithm
             return base.GetParameter(parameter);
         }
 
-        protected override Operand ExecuteDiyFunction(mathParser.ProgContext context, string funcName, List<Operand> operands)
+
+        public override Operand ExecuteDiyFunction( string funcName, List<Operand> operands)
         {
             if (funcName == "求面积") {
                 if (operands.Count == 1) {
@@ -38,7 +39,7 @@ namespace ToolGood.Algorithm
                     return r * r * Math.PI;
                 }
             }
-            return base.ExecuteDiyFunction(context, funcName, operands);
+            return base.ExecuteDiyFunction( funcName, operands);
         }
     }
 }

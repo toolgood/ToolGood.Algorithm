@@ -617,11 +617,6 @@ namespace ToolGood.Algorithm.Internals
             return Visit_fun(context);
         }
 
-        public ConditionTree VisitLOOKUP_fun(mathParser.LOOKUP_funContext context)
-        {
-            return Visit_fun(context);
-        }
-
         public ConditionTree VisitLOWER_fun(mathParser.LOWER_funContext context)
         {
             return Visit_fun(context);

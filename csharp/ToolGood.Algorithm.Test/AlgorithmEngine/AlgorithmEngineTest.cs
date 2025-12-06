@@ -11,11 +11,11 @@ namespace ToolGood.Algorithm
         {
             AlgorithmEngine engine = new AlgorithmEngine();
 
-            double t = 0.0;
-            if (engine.Parse("1+2")) {
-                t = (double)engine.Evaluate().NumberValue;
-            }
-            Assert.AreEqual(3.0, t);
+            //double t = 0.0;
+            //if (engine.Parse("1+2")) {
+            //    t = (double)engine.Evaluate().NumberValue;
+            //}
+            //Assert.AreEqual(3.0, t);
 
             var c = engine.TryEvaluate("2+3", 0);
             Assert.AreEqual(5, c);
@@ -236,9 +236,9 @@ namespace ToolGood.Algorithm
             t = c.TryEvaluate("[直径]*pi()", 0.0);            //圆的长
             t = c.TryEvaluate("[半径]*[半径]*pi()*[高]", 0.0); //圆的体积
 
-            if (c.Parse("[直径1]*pi()") == false) {
-                Assert.AreEqual("参数[直径1]无效!", c.LastError);
-            }
+            //if (c.Parse("[直径1]*pi()") == false) {
+            //    Assert.AreEqual("参数[直径1]无效!", c.LastError);
+            //}
 
             t = c.TryEvaluate("['半径']*[半径]*pi()*[高]", 0.0); //圆的体积
 
@@ -251,32 +251,20 @@ namespace ToolGood.Algorithm
             var tt = c.TryEvaluate("['灰色']", ""); //圆的体积
             Assert.AreEqual("L", tt);
 
-            String tt2 = c.EvaluateFormula("'圆'-[半径]-高", '-');
-            Assert.AreEqual("圆-3-10", tt2);
+            //String tt2 = c.EvaluateFormula("'圆'-[半径]-高", '-');
+            //Assert.AreEqual("圆-3-10", tt2);
         }
 
-        [Test]
-        public void Test5555()
-        {
-            Cylinder c = new Cylinder(3, 10);
-            String t = c.GetSimplifiedFormula("[半径]*[半径]*pi()"); // 圆底面积
-            Assert.AreEqual("3 * 3 * 3.14159265358979", t);
 
-            String t2 = c.GetSimplifiedFormula("半径*if(半径>2,1,3)");
-            Assert.AreEqual("3 * 1", t2);
-
-            String t24 = c.GetSimplifiedFormula("半径*if(半径>2,1+4,3)");
-            Assert.AreEqual("3 * 5", t24);
-        }
 
         [Test]
         public void TestVersion()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
             String t25 = engine.TryEvaluate("Engineversion", "");
-            Assert.AreEqual("ToolGood.Algorithm 4.0.0.1", t25);
+            Assert.AreEqual("ToolGood.Algorithm 5.0.0.0", t25);
             String t26 = engine.TryEvaluate("Algorithmversion", "");
-            Assert.AreEqual("ToolGood.Algorithm 4.0.0.1", t26);
+            Assert.AreEqual("ToolGood.Algorithm 5.0.0.0", t26);
         }
 
 
@@ -284,8 +272,8 @@ namespace ToolGood.Algorithm
         public void Test_Json()
         {
             AlgorithmEngine engine = new AlgorithmEngine();
-            engine.Parse(@"{'灰色':'L','canBookCount':905,'saleCount':91,'specId':'43b0e72e98731aed69e1f0cc7d64bf4d'}");
-            var c = engine.Evaluate().ToString();
+            var t = engine.Parse(@"{'灰色':'L','canBookCount':905,'saleCount':91,'specId':'43b0e72e98731aed69e1f0cc7d64bf4d'}");
+            var c = engine.Evaluate(t).ToString();
             Assert.AreEqual("{\"灰色\":\"L\",\"canBookCount\":905,\"saleCount\":91,\"specId\":\"43b0e72e98731aed69e1f0cc7d64bf4d\"}", c);
         }
     }

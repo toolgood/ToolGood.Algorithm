@@ -10,7 +10,7 @@ namespace ToolGood.Algorithm.MathNet.Numerics.Distributions
     /// <remarks>
     /// The distribution is parameterized by a probability (between 0.0 and 1.0).
     /// </remarks>
-    public sealed class Binomial
+    sealed class Binomial
     {
         /// <summary>
         /// Computes the probability mass (PMF) at k, i.e. P(X = k).

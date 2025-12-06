@@ -187,6 +187,15 @@ namespace ToolGood.Algorithm
             Assert.AreEqual(t, "1212cc");
             t = engine.TryEvaluate("SUBSTITUTE(\"ababcc\",\"ab\",\"12\",2)", "");
             Assert.AreEqual(t, "ab12cc");
+
+            t = engine.TryEvaluate("SUBSTITUTE(\"123456789\",\"123\",\"1111111111111111111111\")", "");
+            Assert.AreEqual(t, "1111111111111111111111456789");
+
+            t = engine.TryEvaluate("SUBSTITUTE(\"123456789\",\"1239\",\"1111111111111111111111\")", "");
+            Assert.AreEqual(t, "123456789");
+
+            t = engine.TryEvaluate("SUBSTITUTE(\"123456789\",\"9\",\"1111111111111111111111\")", "");
+            Assert.AreEqual(t, "123456781111111111111111111111");
         }
 
         [Test]

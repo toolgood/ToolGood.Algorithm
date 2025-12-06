@@ -6,7 +6,7 @@ namespace ToolGood.Algorithm.Internals
     /// <summary>
     /// 自定义ErrorListener
     /// </summary>
-    public sealed class AntlrErrorListener : IAntlrErrorListener<IToken>
+    sealed class AntlrErrorListener : IAntlrErrorListener<IToken>
     {
         /// <summary>
         /// 是否出错

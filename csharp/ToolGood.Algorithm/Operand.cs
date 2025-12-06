@@ -21,7 +21,7 @@ namespace ToolGood.Algorithm
         /// <summary>
         /// 版本号
         /// </summary>
-        public static readonly Operand Version = new OperandString("ToolGood.Algorithm 4.0.0.3");
+        public static readonly Operand Version = new OperandString("ToolGood.Algorithm 5.0.0.0");
 
         /// <summary>
         /// True
@@ -236,7 +236,7 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public static Operand CreateJson(string txt)
         {
-            if ((txt.StartsWith("{") && txt.EndsWith("}")) || (txt.StartsWith("[") && txt.EndsWith("]"))) {
+            if ((txt.StartsWith('{') && txt.EndsWith('}')) || (txt.StartsWith('[') && txt.EndsWith(']'))) {
                 try {
                     var json = JsonMapper.ToObject(txt);
                     return Operand.Create(json);
