@@ -1190,8 +1190,8 @@ namespace ToolGood.Algorithm.Fast.Internals
         public virtual FunctionBase VisitQUARTILE_fun(mathParser.QUARTILE_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); 
-            var args2 = exprs[1].Accept(this); 
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
             return new Function_QUARTILE(args1, args2);
         }
 
@@ -1370,139 +1370,91 @@ namespace ToolGood.Algorithm.Fast.Internals
 
         public virtual FunctionBase VisitVARP_fun(mathParser.VARP_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            List<decimal> list = new List<decimal>();
-            var o = F_base_GetList(args, list);
-            if (o == false) { return Operand.Error("Function VARP parameter error!"); }
-
-            decimal sum = 0;
-            decimal avg = list.Average();
-            for (int i = 0; i < list.Count; i++) {
-                sum += (avg - list[i]) * (avg - list[i]);
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            return Operand.Create(sum / list.Count);
+            return new Function_VARP(args);
         }
 
         public virtual FunctionBase VisitNORMDIST_fun(mathParser.NORMDIST_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function NORMDIST parameter 1 error!"); if (args1.IsError) return args1; }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function NORMDIST parameter 2 error!"); if (args2.IsError) return args2; }
-            var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function NORMDIST parameter 3 error!"); if (args3.IsError) return args3; }
-            var args4 = exprs[3].Accept(this); if (args4.Type != OperandType.BOOLEAN) { args4 = args4.ToBoolean("Function NORMDIST parameter 4 error!"); if (args4.IsError) return args4; }
-
-            var num = args1.NumberValue;
-            var avg = args2.NumberValue;
-            var STDEV = args3.NumberValue;
-            var b = args4.BooleanValue;
-            return Operand.Create(ExcelFunctions.NormDist((double)num, (double)avg, (double)STDEV, b));
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            var args3 = exprs[2].Accept(this);
+            var args4 = exprs[3].Accept(this);
+            return new Function_NORMDIST(args1, args2, args3, args4);
         }
 
         public virtual FunctionBase VisitNORMINV_fun(mathParser.NORMINV_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function NORMINV parameter 1 error!"); if (args1.IsError) return args1; }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function NORMINV parameter 2 error!"); if (args2.IsError) return args2; }
-            var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function NORMINV parameter 3 error!"); if (args3.IsError) return args3; }
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this); 
+            var args3 = exprs[2].Accept(this); 
+            return new Function_NORMINV(args1, args2, args3);
 
-            var num = args1.NumberValue;
-            var avg = args2.NumberValue;
-            var STDEV = args3.NumberValue;
-            return Operand.Create(ExcelFunctions.NormInv((double)num, (double)avg, (double)STDEV));
+     
         }
 
         public virtual FunctionBase VisitNORMSDIST_fun(mathParser.NORMSDIST_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function NORMSDIST parameter 1 error!"); if (args1.IsError) { return args1; } }
-
-            var k = args1.NumberValue;
-            return Operand.Create(ExcelFunctions.NormSDist((double)k));
+            var args1 = context.expr().Accept(this);
+            return new Function_NORMSDIST(args1);
         }
 
         public virtual FunctionBase VisitNORMSINV_fun(mathParser.NORMSINV_funContext context)
         {
-            var args1 = context.expr().Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function NORMSINV parameter 1 error!"); if (args1.IsError) { return args1; } }
-
-            var k = args1.NumberValue;
-            return Operand.Create(ExcelFunctions.NormSInv((double)k));
+            var args1 = context.expr().Accept(this);
+            return new Function_NORMSINV(args1);
         }
 
         public virtual FunctionBase VisitBETADIST_fun(mathParser.BETADIST_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function BETADIST parameter 1 error!"); if (args1.IsError) return args1; }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function BETADIST parameter 2 error!"); if (args2.IsError) return args2; }
-            var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function BETADIST parameter 3 error!"); if (args3.IsError) return args3; }
-
-            var x = args1.NumberValue;
-            var alpha = args2.NumberValue;
-            var beta = args3.NumberValue;
-
-            if (alpha < 0.0m || beta < 0.0m) {
-                return Operand.Error("Function BETADIST parameter error!");
-            }
-
-            return Operand.Create(ExcelFunctions.BetaDist((double)x, (double)alpha, (double)beta));
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this); 
+            var args3 = exprs[2].Accept(this); 
+            return new Function_BETADIST(args1, args2, args3);
         }
 
         public virtual FunctionBase VisitBETAINV_fun(mathParser.BETAINV_funContext context)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var aa = item.Accept(this).ToNumber($"Function BETAINV parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            var probability = args[0].NumberValue;
-            var alpha = args[1].NumberValue;
-            var beta = args[2].NumberValue;
-            if (alpha < 0.0m || beta < 0.0m || probability < 0.0m || probability > 1.0m) {
-                return Operand.Error("Function BETAINV parameter error!");
-            }
-            return Operand.Create(ExcelFunctions.BetaInv((double)probability, (double)alpha, (double)beta));
+            var exprs = context.expr();
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            var args3 = exprs[2].Accept(this);
+            return new Function_BETAINV(args1, args2, args3);
         }
 
         public virtual FunctionBase VisitBINOMDIST_fun(mathParser.BINOMDIST_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function BINOMDIST parameter 1 error!"); if (args1.IsError) return args1; }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function BINOMDIST parameter 2 error!"); if (args2.IsError) return args2; }
-            var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function BINOMDIST parameter 3 error!"); if (args3.IsError) return args3; }
-            var args4 = exprs[3].Accept(this); if (args4.Type != OperandType.BOOLEAN) { args4 = args4.ToBoolean("Function BINOMDIST parameter 4 error!"); if (args4.IsError) return args4; }
-
-            if (!(args3.NumberValue >= 0.0m && args3.NumberValue <= 1.0m && args2.NumberValue >= 0)) {
-                return Operand.Error("Function BINOMDIST parameter error!");
-            }
-            return Operand.Create(ExcelFunctions.BinomDist(args1.IntValue, args2.IntValue, (double)args3.NumberValue, args4.BooleanValue));
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this); 
+            var args3 = exprs[2].Accept(this); 
+            var args4 = exprs[3].Accept(this);
+            return new Function_BINOMDIST(args1, args2, args3, args4);
         }
 
         public virtual FunctionBase VisitEXPONDIST_fun(mathParser.EXPONDIST_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function EXPONDIST parameter 1 error!"); if (args1.IsError) return args1; }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function EXPONDIST parameter 2 error!"); if (args2.IsError) return args2; }
-            var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function EXPONDIST parameter 3 error!"); if (args3.IsError) return args3; }
-
-            if (args1.NumberValue < 0.0m) {
-                return Operand.Error("Function EXPONDIST parameter error!");
-            }
-
-            return Operand.Create(ExcelFunctions.ExponDist((double)args1.NumberValue, (double)args2.NumberValue, args3.BooleanValue));
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            var args3 = exprs[2].Accept(this); 
+            return new Function_EXPONDIST(args1, args2, args3);
         }
 
         public virtual FunctionBase VisitFDIST_fun(mathParser.FDIST_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function FDIST parameter 1 error!"); if (args1.IsError) return args1; }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function FDIST parameter 2 error!"); if (args2.IsError) return args2; }
-            var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function FDIST parameter 3 error!"); if (args3.IsError) return args3; }
-
-            var x = args1.NumberValue;
-            var degreesFreedom = args2.IntValue;
-            var degreesFreedom2 = args3.IntValue;
-            if (degreesFreedom <= 0.0m || degreesFreedom2 <= 0.0m) {
-                return Operand.Error("Function FDIST parameter error!");
-            }
-            return Operand.Create(ExcelFunctions.FDist((double)x, degreesFreedom, degreesFreedom2));
+            var args1 = exprs[0].Accept(this); 
+            var args2 = exprs[1].Accept(this); 
+            var args3 = exprs[2].Accept(this);
+            return new Function_FDIST(args1, args2, args3);
         }
 
         public virtual FunctionBase VisitFINV_fun(mathParser.FINV_funContext context)
@@ -1511,6 +1463,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function FINV parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function FINV parameter 2 error!"); if (args2.IsError) return args2; }
             var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function FINV parameter 3 error!"); if (args3.IsError) return args3; }
+            return new Function_FINV(args1, args2, args3);
 
             var probability = args1.NumberValue;
             var degreesFreedom = args2.IntValue;
@@ -1524,6 +1477,7 @@ namespace ToolGood.Algorithm.Fast.Internals
         public virtual FunctionBase VisitFISHER_fun(mathParser.FISHER_funContext context)
         {
             var args1 = context.expr().Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function FISHER parameter error!"); if (args1.IsError) { return args1; } }
+            return new Function_FISHER(args1);
 
             var x = args1.NumberValue;
             if (x >= 1 || x <= -1) {
@@ -1536,6 +1490,7 @@ namespace ToolGood.Algorithm.Fast.Internals
         public virtual FunctionBase VisitFISHERINV_fun(mathParser.FISHERINV_funContext context)
         {
             var args1 = context.expr().Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function FISHERINV parameter error!"); if (args1.IsError) { return args1; } }
+            return new Function_FISHERINV(args1);
 
             var x = (double)args1.NumberValue;
             var n = (Math.Exp((2 * x)) - 1) / (Math.Exp((2 * x)) + 1);
@@ -1549,6 +1504,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function GAMMADIST parameter 2 error!"); if (args2.IsError) return args2; }
             var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function GAMMADIST parameter 3 error!"); if (args3.IsError) return args3; }
             var args4 = exprs[3].Accept(this); if (args4.Type != OperandType.BOOLEAN) { args4 = args4.ToBoolean("Function GAMMADIST parameter 4 error!"); if (args4.IsError) return args4; }
+            return new Function_GAMMADIST(args1, args2, args3, args4);
 
             var x = args1.NumberValue;
             var alpha = args2.NumberValue;
@@ -1566,6 +1522,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function GAMMAINV parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function GAMMAINV parameter 2 error!"); if (args2.IsError) return args2; }
             var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function GAMMAINV parameter 3 error!"); if (args3.IsError) return args3; }
+            return new Function_GAMMAINV(args1, args2, args3);
 
             var probability = args1.NumberValue;
             var alpha = args2.NumberValue;
@@ -1579,6 +1536,7 @@ namespace ToolGood.Algorithm.Fast.Internals
         public virtual FunctionBase VisitGAMMALN_fun(mathParser.GAMMALN_funContext context)
         {
             var args1 = context.expr().Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function GAMMALN parameter error!"); if (args1.IsError) { return args1; } }
+            return new Function_GAMMALN(args1);
 
             return Operand.Create(ExcelFunctions.GAMMALN((double)args1.NumberValue));
         }
@@ -1590,6 +1548,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function HYPGEOMDIST parameter 2 error!"); if (args2.IsError) return args2; }
             var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function HYPGEOMDIST parameter 3 error!"); if (args3.IsError) return args3; }
             var args4 = exprs[3].Accept(this); if (args4.Type != OperandType.NUMBER) { args4 = args4.ToNumber("Function HYPGEOMDIST parameter 4 error!"); if (args4.IsError) return args4; }
+            return new Function_HYPGEOMDIST(args1, args2, args3, args4);
 
             int k = args1.IntValue;
             int draws = args2.IntValue;
@@ -1607,6 +1566,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function LOGINV parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function LOGINV parameter 2 error!"); if (args2.IsError) return args2; }
             var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function LOGINV parameter 3 error!"); if (args3.IsError) return args3; }
+            return new Function_LOGINV(args1, args2, args3);
 
             if (args3.NumberValue < 0.0m) {
                 return Operand.Error("Function LOGINV parameter error!");
@@ -1620,6 +1580,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function LOGNORMDIST parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function LOGNORMDIST parameter 2 error!"); if (args2.IsError) return args2; }
             var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function LOGNORMDIST parameter 3 error!"); if (args3.IsError) return args3; }
+            return new Function_LOGNORMDIST(args1, args2, args3);
 
             if (args3.NumberValue < 0.0m) {
                 return Operand.Error("Function LOGNORMDIST parameter error!");
@@ -1633,6 +1594,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function NEGBINOMDIST parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function NEGBINOMDIST parameter 2 error!"); if (args2.IsError) return args2; }
             var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function NEGBINOMDIST parameter 3 error!"); if (args3.IsError) return args3; }
+            return new Function_NEGBINOMDIST(args1, args2, args3);
 
             int k = args1.IntValue;
             var r = args2.NumberValue;
@@ -1650,6 +1612,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function POISSON parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function POISSON parameter 2 error!"); if (args2.IsError) return args2; }
             var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function POISSON parameter 3 error!"); if (args3.IsError) return args3; }
+            return new Function_POISSON(args1, args2, args3);
 
             int k = args1.IntValue;
             var lambda = args2.NumberValue;
@@ -1666,6 +1629,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function TDIST parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function TDIST parameter 2 error!"); if (args2.IsError) return args2; }
             var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function TDIST parameter 3 error!"); if (args3.IsError) return args3; }
+            return new Function_TDIST(args1, args2, args3);
 
             var x = args1.NumberValue;
             var degreesFreedom = args2.IntValue;
@@ -1681,6 +1645,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function TDIST parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function TDIST parameter 2 error!"); if (args2.IsError) return args2; }
+            return new Function_TINV(args1, args2);
 
             var probability = args1.NumberValue;
             var degreesFreedom = args2.IntValue;
@@ -1697,6 +1662,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function WEIBULL parameter 2 error!"); if (args2.IsError) return args2; }
             var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function WEIBULL parameter 3 error!"); if (args3.IsError) return args3; }
             var args4 = exprs[3].Accept(this); if (args4.Type != OperandType.BOOLEAN) { args4 = args4.ToBoolean("Function WEIBULL parameter 4 error!"); if (args4.IsError) return args4; }
+            return new Function_WEIBULL(args1, args2, args3, args4);
 
             var x = args1.NumberValue;
             var shape = args2.NumberValue;

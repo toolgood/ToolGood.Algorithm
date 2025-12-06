@@ -3679,22 +3679,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create(Math.Round(v, d, MidpointRounding.AwayFromZero));
         }
     }
-    public class Function_QUANTILE : Function_2
-    {
-        public Function_QUANTILE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
-        {
-        }
-        public override Operand Accept(Work work)
-        {
-            var args1 = func1.Accept(work); if (args1.Type != OperandType.ARRARY) { args1 = args1.ToNumber("Function QUANTILE parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function QUANTILE parameter 2 is error!"); if (args2.IsError) { return args2; } }
-            List<decimal> list = new List<decimal>();
-            var o = FunctionUtil.F_base_GetList(args1, list);
-            if (o == false) { return Operand.Error("Function QUANTILE parameter 1 error!"); }
-            var k = args2.NumberValue;
-            return Operand.Create(ExcelFunctions.Quantile(list.Select(q => (double)q).ToArray(), (double)k));
-        }
-    }
+
 
 
     public class Function_RANGE : Function_2
@@ -3817,7 +3802,189 @@ namespace ToolGood.Algorithm.Internals.Functions
             return Operand.Create((list.Count * sum - sum2 * sum2) / list.Count / (list.Count - 1));
         }
     }
+    public class Function_VARP : Function_N
+    {
+        public Function_VARP(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function VARP parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
+            if (args.Count == 1) {
+                return Operand.Error("Function VARP parameter only one error!");
+            }
+            List<decimal> list = new List<decimal>();
+            var o = FunctionUtil.F_base_GetList(args, list);
+            if (o == false) { return Operand.Error("Function VARP parameter error!"); }
+            if (list.Count == 0) { return Operand.Error("Function VARP parameter error!"); }
 
+            decimal sum = 0;
+            decimal avg = list.Average();
+            for (int i = 0; i < list.Count; i++) {
+                sum += (avg - list[i]) * (avg - list[i]);
+            }
+            return Operand.Create(sum / list.Count);
+        }
+    }
+    public class Function_NORMDIST : Function_4
+    {
+        public Function_NORMDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) : base(func1, func2, func3, func4)
+        {
+        }
+
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function NORMDIST parameter 1 error!"); if (args1.IsError) return args1; }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function NORMDIST parameter 2 error!"); if (args2.IsError) return args2; }
+            var args3 = func3.Accept(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function NORMDIST parameter 3 error!"); if (args3.IsError) return args3; }
+            var args4 = func4.Accept(work); if (args4.Type != OperandType.BOOLEAN) { args4 = args4.ToBoolean("Function NORMDIST parameter 4 error!"); if (args4.IsError) return args4; }
+
+            var num = args1.NumberValue;
+            var avg = args2.NumberValue;
+            var STDEV = args3.NumberValue;
+            var b = args4.BooleanValue;
+            return Operand.Create(ExcelFunctions.NormDist((double)num, (double)avg, (double)STDEV, b));
+        }
+    }
+    public class Function_NORMINV : Function_3
+    {
+        public Function_NORMINV(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function NORMINV parameter 1 error!"); if (args1.IsError) return args1; }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function NORMINV parameter 2 error!"); if (args2.IsError) return args2; }
+            var args3 = func3.Accept(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function NORMINV parameter 3 error!"); if (args3.IsError) return args3; }
+            var p = args1.NumberValue;
+            var avg = args2.NumberValue;
+            var STDEV = args3.NumberValue;
+            return Operand.Create(ExcelFunctions.NormInv((double)p, (double)avg, (double)STDEV));
+        }
+    }
+    public class Function_NORMSDIST: Function_1
+    {
+        public Function_NORMSDIST(FunctionBase func1) : base(func1)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function NORMSDIST parameter error!"); if (args1.IsError) return args1; }
+            var num = args1.NumberValue;
+            return Operand.Create(ExcelFunctions.NormSDist((double)num));
+        }
+    }
+    public class Function_NORMSINV : Function_1
+    {
+        public Function_NORMSINV(FunctionBase func1) : base(func1)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function NORMSINV parameter error!"); if (args1.IsError) return args1; }
+            var p = args1.NumberValue;
+            return Operand.Create(ExcelFunctions.NormSInv((double)p));
+        }
+    }
+    public class Function_BETADIST: Function_3
+    {
+        public Function_BETADIST(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
+        {
+        }
+
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function BETADIST parameter 1 error!"); if (args1.IsError) return args1; }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function BETADIST parameter 2 error!"); if (args2.IsError) return args2; }
+            var args3 = func3.Accept(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function BETADIST parameter 3 error!"); if (args3.IsError) return args3; }
+            var x = args1.NumberValue;
+            var alpha = args2.NumberValue;
+            var beta = args3.NumberValue;
+
+            if (alpha < 0.0m || beta < 0.0m) {
+                return Operand.Error("Function BETADIST parameter error!");
+            }
+            return Operand.Create(ExcelFunctions.BetaDist((double)x, (double)alpha, (double)beta));
+        }
+    }
+    public class Function_BETAINV: Function_3
+    {
+        public Function_BETAINV(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function BETAINV parameter 1 error!"); if (args1.IsError) return args1; }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function BETAINV parameter 2 error!"); if (args2.IsError) return args2; }
+            var args3 = func3.Accept(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function BETAINV parameter 3 error!"); if (args3.IsError) return args3; }
+            var p = args1.NumberValue;
+            var alpha = args2.NumberValue;
+            var beta = args3.NumberValue;
+            if (alpha < 0.0m || beta < 0.0m || p < 0.0m || p > 1.0m) {
+                return Operand.Error("Function BETAINV parameter error!");
+            }
+            return Operand.Create(ExcelFunctions.BetaInv((double)p, (double)alpha, (double)beta));
+        }
+    }
+    public class Function_BINOMDIST : Function_4
+    {
+        public Function_BINOMDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) : base(func1, func2, func3, func4)
+        {
+        }
+
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function BINOMDIST parameter 1 error!"); if (args1.IsError) return args1; }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function BINOMDIST parameter 2 error!"); if (args2.IsError) return args2; }
+            var args3 = func3.Accept(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function BINOMDIST parameter 3 error!"); if (args3.IsError) return args3; }
+            var args4 = func4.Accept(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToNumber("Function BINOMDIST parameter 4 error!"); if (args3.IsError) return args3; }
+
+            if (!(args3.NumberValue >= 0.0m && args3.NumberValue <= 1.0m && args2.NumberValue >= 0)) {
+                return Operand.Error("Function BINOMDIST parameter error!");
+            }
+            return Operand.Create(ExcelFunctions.BinomDist(args1.IntValue, args2.IntValue, (double)args3.NumberValue, args4.BooleanValue));
+
+        }
+    }
+    public class Function_EXPONDIST: Function_3
+    {
+        public Function_EXPONDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function EXPONDIST parameter 1 error!"); if (args1.IsError) return args1; }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function EXPONDIST parameter 2 error!"); if (args2.IsError) return args2; }
+            var args3 = func3.Accept(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function EXPONDIST parameter 3 error!"); if (args3.IsError) return args3; }
+          
+            if (args1.NumberValue < 0.0m) {
+                return Operand.Error("Function EXPONDIST parameter error!");
+            }
+            return Operand.Create(ExcelFunctions.ExponDist((double)args1.NumberValue, (double)args2.NumberValue, args3.BooleanValue));
+        }
+    }
+    public class Function_FDIST : Function_3
+    {
+        public Function_FDIST(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
+        {
+        }
+
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function FDIST parameter 1 error!"); if (args1.IsError) return args1; }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function FDIST parameter 2 error!"); if (args2.IsError) return args2; }
+            var args3 = func3.Accept(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function FDIST parameter 3 error!"); if (args3.IsError) return args3; }
+
+            var x = args1.NumberValue;
+            var degreesFreedom = args2.IntValue;
+            var degreesFreedom2 = args3.IntValue;
+            if (degreesFreedom <= 0.0m || degreesFreedom2 <= 0.0m) {
+                return Operand.Error("Function FDIST parameter error!");
+            }
+            return Operand.Create(ExcelFunctions.FDist((double)x, degreesFreedom, degreesFreedom2));
+        }
+    }
 
 
 
