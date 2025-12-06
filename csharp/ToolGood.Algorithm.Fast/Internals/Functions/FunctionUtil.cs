@@ -194,7 +194,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public static int F_base_Factorial(int a)
         {
-            if (a == 0) { return 1; }
+            if (a <= 0) { return 1; }
             int r = 1;
             for (int i = a; i > 0; i--) {
                 r *= i;

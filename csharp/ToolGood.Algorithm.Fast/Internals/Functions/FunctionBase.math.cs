@@ -77,6 +77,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function SQRT parameter is error!"); if (args1.IsError) { return args1; } }
+            if (args1.NumberValue < 0) {
+                return Operand.Error("Function SQRT parameter is error!");
+            }
             return Operand.Create(Math.Sqrt((double)args1.NumberValue));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -161,6 +164,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 
             var total = args1.IntValue;
             var count = args2.IntValue;
+            if (total < 0 || count < 0 || total < count) {
+                return Operand.Error("Function COMBIN parameter is error!");
+            }
             decimal sum = 1;
             decimal sum2 = 1;
             for (int i = 0; i < count; i++) {
@@ -1198,6 +1204,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             if (o1 == false) { return Operand.Error("Function COVARIANCE.S parameter 1 error!"); }
             if (o2 == false) { return Operand.Error("Function COVARIANCE.S parameter 2 error!"); }
             if (list1.Count != list2.Count) { return Operand.Error("Function COVARIANCE.S parameter's count error!"); }
+            if (list1.Count == 1) { return Operand.Error("Function COVARIANCE.S parameter's count error!"); }
 
             var avg1 = list1.Average();
             var avg2 = list2.Average();
@@ -1231,6 +1238,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             if (o1 == false) { return Operand.Error("Function COVAR parameter 1 error!"); }
             if (o2 == false) { return Operand.Error("Function COVAR parameter 2 error!"); }
             if (list1.Count != list2.Count) { return Operand.Error("Function COVAR parameter's count error!"); }
+            if (list1.Count == 0) { return Operand.Error("Function COVAR parameter's count error!"); }
 
             var avg1 = list1.Average();
             var avg2 = list2.Average();
@@ -1392,7 +1400,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             int sum = 0;
             int n = 1;
             for (int i = 0; i < list.Count; i++) {
-                var a = (int)list[i];
+                var a = (int)list[i]; // 小于等于0 时，按0处理
                 n *= FunctionUtil.F_base_Factorial(a);
                 sum += a;
             }

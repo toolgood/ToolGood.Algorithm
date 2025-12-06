@@ -475,6 +475,10 @@ namespace ToolGood.Algorithm.Internals.Functions
             for (int i = 0; i < text.Length; i++) {
                 bool b = true;
                 for (int j = 0; j < oldtext.Length; j++) {
+                    if (i + j >= text.Length) {
+                        b = false;
+                        break;
+                    }
                     var t = text[i + j];
                     var t2 = oldtext[j];
                     if (t != t2) {

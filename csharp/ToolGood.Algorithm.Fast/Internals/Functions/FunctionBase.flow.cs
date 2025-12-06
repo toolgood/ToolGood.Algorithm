@@ -15,7 +15,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.BOOLEAN) { args1 = args1.ToBoolean("Function IF first parameter is error!"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.BOOLEAN) { args1 = args1.ToBoolean("Function IF first parameter must be boolean!"); if (args1.IsError) { return args1; } }
             if (args1.BooleanValue) return func2.Calculate(work);
             if (func3 == null) { return Operand.False; }
             return func3.Calculate(work);

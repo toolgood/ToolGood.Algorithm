@@ -1039,7 +1039,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
             var vague = true;
             if (args.Count == 4) {
-                var args4 = args[2].ToBoolean("Function VLOOKUP parameter 4 is error!");
+                var args4 = args[3].ToBoolean("Function VLOOKUP parameter 4 is error!");
                 if (args4.IsError) { return args4; }
                 vague = args4.BooleanValue;
             }
