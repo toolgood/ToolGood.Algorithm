@@ -86,7 +86,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function SIGN parameter is error!"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function SQRT parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Sqrt((double)args1.NumberValue));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -105,7 +105,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function SIGN parameter is error!"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function TRUNC parameter is error!"); if (args1.IsError) { return args1; } }
             return Operand.Create((int)(args1.NumberValue));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)

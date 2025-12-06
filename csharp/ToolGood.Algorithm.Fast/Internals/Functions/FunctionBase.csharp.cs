@@ -737,11 +737,11 @@ namespace ToolGood.Algorithm.Internals.Functions
             if (funcs.Length == 2) {
                 return Operand.Create(text.AsSpan().IndexOf(args2.TextValue) + work.ExcelIndex);
             }
-            var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.TEXT) { args3 = args3.ToText("Function INDEXOF parameter 3 is error!"); if (args3.IsError) { return args3; } }
+            var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function INDEXOF parameter 3 is error!"); if (args3.IsError) { return args3; } }
             if (funcs.Length == 3) {
                 return Operand.Create(text.AsSpan(args3.IntValue).IndexOf(args2.TextValue) + args3.IntValue + work.ExcelIndex);
             }
-            var args4 = funcs[3].Calculate(work); if (args4.Type != OperandType.TEXT) { args4 = args4.ToText("Function INDEXOF parameter 4 is error!"); if (args4.IsError) { return args4; } }
+            var args4 = funcs[3].Calculate(work); if (args4.Type != OperandType.NUMBER) { args4 = args4.ToNumber("Function INDEXOF parameter 4 is error!"); if (args4.IsError) { return args4; } }
             return Operand.Create(text.IndexOf(args2.TextValue, args3.IntValue, args4.IntValue) + work.ExcelIndex);
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -771,11 +771,11 @@ namespace ToolGood.Algorithm.Internals.Functions
             if (funcs.Length == 2) {
                 return Operand.Create(text.AsSpan().LastIndexOf(args2.TextValue) + work.ExcelIndex);
             }
-            var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.TEXT) { args3 = args3.ToText("Function LASTINDEXOF parameter 3 is error!"); if (args3.IsError) { return args3; } }
+            var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function LASTINDEXOF parameter 3 is error!"); if (args3.IsError) { return args3; } }
             if (funcs.Length == 3) {
                 return Operand.Create(text.AsSpan(0, args3.IntValue).LastIndexOf(args2.TextValue) + work.ExcelIndex);
             }
-            var args4 = funcs[3].Calculate(work); if (args4.Type != OperandType.TEXT) { args4 = args4.ToText("Function LASTINDEXOF parameter 4 is error!"); if (args4.IsError) { return args4; } }
+            var args4 = funcs[3].Calculate(work); if (args4.Type != OperandType.NUMBER) { args4 = args4.ToNumber("Function LASTINDEXOF parameter 4 is error!"); if (args4.IsError) { return args4; } }
             return Operand.Create(text.LastIndexOf(args2.TextValue, args3.IntValue, args4.IntValue) + work.ExcelIndex);
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
