@@ -830,6 +830,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.BOOLEAN) { args1 = args1.ToBoolean("Function IF first parameter is error!"); if (args1.IsError) { return args1; } }
             if (args1.BooleanValue) return func2.Accept(work);
+            if (func3 == null) { return Operand.False; }
             return func3.Accept(work);
         }
     }
@@ -3185,7 +3186,8 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function ADDSECONDS parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function ADDSECONDS parameter 2 is error!"); if (args2.IsError) { return args2; } }
-            return Operand.Create((MyDate)(((DateTime)args1.DateValue).AddSeconds((double)args2.NumberValue)));
+            var date = args1.DateValue.AddSeconds(args2.IntValue);
+            return Operand.Create(date);
         }
     }
     public class Function_ADDMINUTES : Function_2
@@ -3197,7 +3199,8 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function ADDMINUTES parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function ADDMINUTES parameter 2 is error!"); if (args2.IsError) { return args2; } }
-            return Operand.Create((MyDate)(((DateTime)args1.DateValue).AddMinutes((double)args2.NumberValue)));
+            var date = args1.DateValue.AddMinutes(args2.IntValue);
+            return Operand.Create(date);
         }
     }
     public class Function_ADDHOURS : Function_2
@@ -3209,7 +3212,8 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function ADDHOURS parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function ADDHOURS parameter 2 is error!"); if (args2.IsError) { return args2; } }
-            return Operand.Create((MyDate)(((DateTime)args1.DateValue).AddHours((double)args2.NumberValue)));
+            var date = args1.DateValue.AddHours(args2.IntValue);
+            return Operand.Create(date);
         }
     }
     public class Function_ADDDAYS : Function_2
@@ -3409,8 +3413,8 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override Operand Accept(AlgorithmEngine work)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function COUNT parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
+            var args = new List<Operand>();
+            foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
             List<decimal> list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function COUNT parameter error!"); }
@@ -3907,7 +3911,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function BINOMDIST parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function BINOMDIST parameter 2 error!"); if (args2.IsError) return args2; }
             var args3 = func3.Accept(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function BINOMDIST parameter 3 error!"); if (args3.IsError) return args3; }
-            var args4 = func4.Accept(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToNumber("Function BINOMDIST parameter 4 error!"); if (args3.IsError) return args3; }
+            var args4 = func4.Accept(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function BINOMDIST parameter 4 error!"); if (args3.IsError) return args3; }
 
             if (!(args3.NumberValue >= 0.0m && args3.NumberValue <= 1.0m && args2.NumberValue >= 0)) {
                 return Operand.Error("Function BINOMDIST parameter error!");

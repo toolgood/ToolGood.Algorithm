@@ -1,18 +1,10 @@
-﻿using Antlr4.Runtime.Misc;
-using Antlr4.Runtime.Tree;
-using Microsoft.VisualBasic;
+﻿using Antlr4.Runtime.Tree;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Web;
 using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.Internals.Functions;
-using ToolGood.Algorithm.LitJson;
 using ToolGood.Algorithm.math;
-using ToolGood.Algorithm.MathNet.Numerics;
 
 namespace ToolGood.Algorithm.Fast.Internals
 {
@@ -94,8 +86,11 @@ namespace ToolGood.Algorithm.Fast.Internals
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this);
             var args2 = exprs[1].Accept(this);
-            var args3 = exprs[2].Accept(this);
-            return new Function_IF(args1, args2, args3);
+            if (exprs.Length == 3) {
+                var args3 = exprs[2].Accept(this);
+                return new Function_IF(args1, args2, args3);
+            }
+            return new Function_IF(args1, args2, null);
         }
 
         public virtual FunctionBase VisitIFERROR_fun(mathParser.IFERROR_funContext context)

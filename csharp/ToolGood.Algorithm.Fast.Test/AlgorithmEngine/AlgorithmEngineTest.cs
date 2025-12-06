@@ -262,9 +262,9 @@ namespace ToolGood.Algorithm
         {
             AlgorithmEngine engine = new AlgorithmEngine();
             String t25 = engine.TryEvaluate("Engineversion", "");
-            Assert.AreEqual("ToolGood.Algorithm 4.0.0.1", t25);
+            Assert.AreEqual("ToolGood.Algorithm 5.0.0.0", t25);
             String t26 = engine.TryEvaluate("Algorithmversion", "");
-            Assert.AreEqual("ToolGood.Algorithm 4.0.0.1", t26);
+            Assert.AreEqual("ToolGood.Algorithm 5.0.0.0", t26);
         }
 
 

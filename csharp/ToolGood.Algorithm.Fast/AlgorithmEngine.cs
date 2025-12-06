@@ -12,7 +12,7 @@ namespace ToolGood.Algorithm
     public class AlgorithmEngine
     {
         internal int ExcelIndex;
-        public bool UseLocalTime;
+        public bool UseLocalTime = true;
         public DistanceUnitType DistanceUnit = DistanceUnitType.M;
         public AreaUnitType AreaUnit = AreaUnitType.M2;
         public VolumeUnitType VolumeUnit = VolumeUnitType.M3;
