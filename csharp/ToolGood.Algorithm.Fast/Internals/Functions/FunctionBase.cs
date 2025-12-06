@@ -875,9 +875,6 @@ namespace ToolGood.Algorithm.Internals.Functions
     }
     public class Function_ISERROR : Function_2
     {
-        public Function_ISERROR(FunctionBase func1) : base(func1, null)
-        {
-        }
         public Function_ISERROR(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
@@ -895,9 +892,6 @@ namespace ToolGood.Algorithm.Internals.Functions
     }
     public class Function_ISNULL : Function_2
     {
-        public Function_ISNULL(FunctionBase func1) : base(func1, null)
-        {
-        }
         public Function_ISNULL(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
@@ -915,9 +909,6 @@ namespace ToolGood.Algorithm.Internals.Functions
     }
     public class Function_ISNULLORERROR : Function_2
     {
-        public Function_ISNULLORERROR(FunctionBase func1) : base(func1, null)
-        {
-        }
         public Function_ISNULLORERROR(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
@@ -1760,9 +1751,6 @@ namespace ToolGood.Algorithm.Internals.Functions
     }
     public class Function_ROUND : Function_2
     {
-        public Function_ROUND(FunctionBase func1) : base(func1, null)
-        {
-        }
         public Function_ROUND(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
@@ -1780,9 +1768,6 @@ namespace ToolGood.Algorithm.Internals.Functions
 
     public class Function_CEILING : Function_2
     {
-        public Function_CEILING(FunctionBase func1) : base(func1, null)
-        {
-        }
         public Function_CEILING(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
@@ -1805,9 +1790,6 @@ namespace ToolGood.Algorithm.Internals.Functions
     }
     public class Function_FLOOR : Function_2
     {
-        public Function_FLOOR(FunctionBase func1) : base(func1, null)
-        {
-        }
         public Function_FLOOR(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
@@ -2036,9 +2018,6 @@ namespace ToolGood.Algorithm.Internals.Functions
     }
     public class Function_LOG : Function_2
     {
-        public Function_LOG(FunctionBase func1) : base(func1, null)
-        {
-        }
         public Function_LOG(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
@@ -2264,9 +2243,6 @@ namespace ToolGood.Algorithm.Internals.Functions
     }
     public class Function_FIND : Function_3
     {
-        public Function_FIND(FunctionBase func1, FunctionBase func2) : base(func1, func2, null)
-        {
-        }
         public Function_FIND(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
@@ -2285,9 +2261,6 @@ namespace ToolGood.Algorithm.Internals.Functions
     }
     public class Function_LEFT : Function_2
     {
-        public Function_LEFT(FunctionBase func1) : base(func1, null)
-        {
-        }
         public Function_LEFT(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
@@ -2476,9 +2449,6 @@ namespace ToolGood.Algorithm.Internals.Functions
     }
     public class Function_SUBSTITUTE : Function_4
     {
-        public Function_SUBSTITUTE(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3, null)
-        {
-        }
         public Function_SUBSTITUTE(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) : base(func1, func2, func3, func4)
         {
         }
@@ -4260,27 +4230,213 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-
-    public class Function_FACTORIAL : Function_1
+    #endregion
+    #region csharp
+    public class Function_URLENCODE: Function_1
     {
-        public Function_FACTORIAL(FunctionBase func1) : base(func1)
+        public Function_URLENCODE(FunctionBase func1) : base(func1)
         {
         }
         public override Operand Accept(Work work)
         {
-            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function FACTORIAL parameter is error!"); if (args1.IsError) { return args1; } }
-            int n = args1.IntValue;
-            if (n < 0) { return Operand.Error("Function FACTORIAL parameter is error!"); }
-            decimal result = 1;
-            for (int i = 1; i <= n; i++) {
-                result *= i;
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function URLENCODE parameter error!"); if (args1.IsError) { return args1; } }
+            var s = args1.TextValue;
+            var r = System.Web.HttpUtility.UrlEncode(s);
+            return Operand.Create(r);
+        }
+    }
+    public class Function_URLDECODE : Function_1
+    {
+        public Function_URLDECODE(FunctionBase func1) : base(func1)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function URLDECODE parameter error!"); if (args1.IsError) { return args1; } }
+            var s = args1.TextValue;
+            var r = System.Web.HttpUtility.UrlDecode(s);
+            return Operand.Create(r);
+        }
+    }
+    public class Function_HTMLENCODE : Function_1
+    {
+        public Function_HTMLENCODE(FunctionBase func1) : base(func1)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function HTMLENCODE parameter error!"); if (args1.IsError) { return args1; } }
+            var s = args1.TextValue;
+            var r = System.Web.HttpUtility.HtmlEncode(s);
+            return Operand.Create(r);
+        }
+    }
+    public class Function_HTMLDECODE : Function_1
+    {
+        public Function_HTMLDECODE(FunctionBase func1) : base(func1)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function HTMLDECODE parameter error!"); if (args1.IsError) { return args1; } }
+            var s = args1.TextValue;
+            var r = System.Web.HttpUtility.HtmlDecode(s);
+            return Operand.Create(r);
+        }
+    }
+    public class Function_BASE64TOTEXT : Function_N
+    {
+        public Function_BASE64TOTEXT(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var a = item.Accept(work).ToText($"Function BASE64TOTEXT parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            try {
+                Encoding encoding;
+                if (args.Count == 1) {
+                    encoding = Encoding.UTF8;
+                } else {
+                    encoding = Encoding.GetEncoding(args[1].TextValue);
+                }
+                var t = encoding.GetString(Base64.FromBase64String(args[0].TextValue));
+                return Operand.Create(t);
+            } catch (Exception) { }
+            return Operand.Error("Function BASE64TOTEXT is error!");
+        }
+    }
+    public class Function_BASE64URLTOTEXT : Function_N
+    {
+        public Function_BASE64URLTOTEXT(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var a = item.Accept(work).ToText($"Function TEXTTOBASE64 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            try {
+                Encoding encoding;
+                if (args.Count == 1) {
+                    encoding = Encoding.UTF8;
+                } else {
+                    encoding = Encoding.GetEncoding(args[1].TextValue);
+                }
+                var t = encoding.GetString(Base64.FromBase64ForUrlString(args[0].TextValue));
+                return Operand.Create(t);
+            } catch (Exception) { }
+            return Operand.Error("Function BASE64URLTOTEXT is error!");
+        }
+    }
+    public class Function_TEXTTOBASE64 : Function_N
+    {
+        public Function_TEXTTOBASE64(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var a = item.Accept(work).ToText($"Function TEXTTOBASE64 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            try {
+                Encoding encoding;
+                if (args.Count == 1) {
+                    encoding = Encoding.UTF8;
+                } else {
+                    encoding = Encoding.GetEncoding(args[1].TextValue);
+                }
+                var bytes = encoding.GetBytes(args[0].TextValue);
+                var t = Base64.ToBase64String(bytes);
+                return Operand.Create(t);
+            } catch (Exception) {
             }
-            return Operand.Create(result);
+            return Operand.Error("Function TEXTTOBASE64 is error!");
+        }
+    }
+    public class Function_TEXTTOBASE64URL : Function_N
+    {
+        public Function_TEXTTOBASE64URL(FunctionBase[] funcs) : base(funcs)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args = new List<Operand>(); int index = 1;
+            foreach (var item in funcs) { var a = item.Accept(work).ToText($"Function TEXTTOBASE64URL parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            try {
+                Encoding encoding;
+                if (args.Count == 1) {
+                    encoding = Encoding.UTF8;
+                } else {
+                    encoding = Encoding.GetEncoding(args[1].TextValue);
+                }
+                var bytes = encoding.GetBytes(args[0].TextValue);
+                var t = Base64.ToBase64ForUrlString(bytes);
+                return Operand.Create(t);
+            } catch (Exception) { }
+            return Operand.Error("Function TEXTTOBASE64URL is error!");
+        }
+    }
+    public class Function_REGEX : Function_2
+    {
+        public Function_REGEX(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+        {
+        }
+
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work).ToText("Function REGEX parameter 1 is error!");
+            if (args1.IsError) { return args1; }
+            var args2 = func2.Accept(work).ToText("Function REGEX parameter 2 is error!");
+            if (args2.IsError) { return args2; }
+
+            var b = Regex.Match(args1.TextValue, args2.TextValue);
+            if (b.Success == false) {
+                return Operand.Error("Function REGEX is error!");
+            }
+            return Operand.Create(b.Value);
+        }
+    }
+    public class Function_REGEXREPALCE : Function_3
+    {
+        public Function_REGEXREPALCE(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
+        {
+        }
+
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function REGEXREPALCE parameter 1 error!"); if (args1.IsError) return args1; }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function REGEXREPALCE parameter 2 error!"); if (args2.IsError) return args2; }
+            var args3 = func3.Accept(work); if (args3.Type != OperandType.TEXT) { args3 = args3.ToText("Function REGEXREPALCE parameter 3 error!"); if (args3.IsError) return args3; }
+            var b = Regex.Replace(args1.TextValue, args2.TextValue, args3.TextValue);
+            return Operand.Create(b);
+        }
+    }
+    public class Function_ISREGEX: Function_2
+    {
+        public Function_ISREGEX(FunctionBase func1, FunctionBase func2) : base(func1, func2)
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function ISREGEX parameter 1 error!"); if (args1.IsError) return args1; }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function ISREGEX parameter 2 error!"); if (args2.IsError) return args2; }
+            var b = Regex.IsMatch(args1.TextValue, args2.TextValue);
+            return Operand.Create(b);
+        }
+    }
+
+    public class Function_GUID : FunctionBase
+    {
+        public Function_GUID()  
+        {
+        }
+        public override Operand Accept(Work work)
+        {
+            return Operand.Create(System.Guid.NewGuid().ToString());
         }
     }
 
     #endregion
-
 
 
     public class FunctionUtil

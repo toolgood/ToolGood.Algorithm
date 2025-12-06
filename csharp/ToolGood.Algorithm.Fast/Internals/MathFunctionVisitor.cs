@@ -126,7 +126,7 @@ namespace ToolGood.Algorithm.Fast.Internals
                 var args2 = exprs[1].Accept(this);
                 return new Function_ISERROR(args1, args2);
             }
-            return new Function_ISERROR(args1);
+            return new Function_ISERROR(args1, null);
         }
 
         public virtual FunctionBase VisitISNULL_fun(mathParser.ISNULL_funContext context)
@@ -137,7 +137,7 @@ namespace ToolGood.Algorithm.Fast.Internals
                 var args2 = exprs[1].Accept(this);
                 return new Function_ISNULL(args1, args2);
             }
-            return new Function_ISNULL(args1);
+            return new Function_ISNULL(args1, null);
         }
 
         public virtual FunctionBase VisitISNULLORERROR_fun(mathParser.ISNULLORERROR_funContext context)
@@ -148,7 +148,7 @@ namespace ToolGood.Algorithm.Fast.Internals
                 var args2 = exprs[1].Accept(this);
                 return new Function_ISNULLORERROR(args1, args2);
             }
-            return new Function_ISNULLORERROR(args1);
+            return new Function_ISNULLORERROR(args1, null);
         }
 
         public virtual FunctionBase VisitISEVEN_fun(mathParser.ISEVEN_funContext context)
@@ -542,7 +542,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this);
             if (exprs.Length == 1) {
-                return new Function_ROUND(args1);
+                return new Function_ROUND(args1, null);
             }
             var args2 = exprs[1].Accept(this);
             return new Function_ROUND(args1, args2);
@@ -569,7 +569,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this);
             if (exprs.Length == 1)
-                return new Function_CEILING(args1);
+                return new Function_CEILING(args1, null);
             var args2 = exprs[1].Accept(this);
             return new Function_CEILING(args1, args2);
         }
@@ -579,7 +579,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this);
             if (exprs.Length == 1)
-                return new Function_FLOOR(args1);
+                return new Function_FLOOR(args1, null);
 
             var args2 = exprs[1].Accept(this);
             return new Function_FLOOR(args1, args2);
@@ -684,13 +684,13 @@ namespace ToolGood.Algorithm.Fast.Internals
                 var args2 = exprs[1].Accept(this);
                 return new Function_LOG(args1, args2);
             }
-            return new Function_LOG(args1);
+            return new Function_LOG(args1, null);
         }
 
         public virtual FunctionBase VisitLOG10_fun(mathParser.LOG10_funContext context)
         {
             var args1 = context.expr().Accept(this);
-            return new Function_LOG(args1);
+            return new Function_LOG(args1, null);
         }
 
         public virtual FunctionBase VisitMULTINOMIAL_fun(mathParser.MULTINOMIAL_funContext context)
@@ -789,7 +789,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             var args2 = exprs[1].Accept(this);
 
             if (exprs.Length == 2) {
-                return new Function_FIND(args1, args2);
+                return new Function_FIND(args1, args2, null);
             }
             var count = exprs[2].Accept(this);
             return new Function_FIND(args1, args2, count);
@@ -800,7 +800,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this);
             if (exprs.Length == 1) {
-                return new Function_LEFT(args1);
+                return new Function_LEFT(args1, null);
             }
             return new Function_LEFT(args1, exprs[1].Accept(this));
         }
@@ -1392,11 +1392,11 @@ namespace ToolGood.Algorithm.Fast.Internals
         {
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this);
-            var args2 = exprs[1].Accept(this); 
-            var args3 = exprs[2].Accept(this); 
+            var args2 = exprs[1].Accept(this);
+            var args3 = exprs[2].Accept(this);
             return new Function_NORMINV(args1, args2, args3);
 
-     
+
         }
 
         public virtual FunctionBase VisitNORMSDIST_fun(mathParser.NORMSDIST_funContext context)
@@ -1415,8 +1415,8 @@ namespace ToolGood.Algorithm.Fast.Internals
         {
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this);
-            var args2 = exprs[1].Accept(this); 
-            var args3 = exprs[2].Accept(this); 
+            var args2 = exprs[1].Accept(this);
+            var args3 = exprs[2].Accept(this);
             return new Function_BETADIST(args1, args2, args3);
         }
 
@@ -1433,8 +1433,8 @@ namespace ToolGood.Algorithm.Fast.Internals
         {
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this);
-            var args2 = exprs[1].Accept(this); 
-            var args3 = exprs[2].Accept(this); 
+            var args2 = exprs[1].Accept(this);
+            var args3 = exprs[2].Accept(this);
             var args4 = exprs[3].Accept(this);
             return new Function_BINOMDIST(args1, args2, args3, args4);
         }
@@ -1444,15 +1444,15 @@ namespace ToolGood.Algorithm.Fast.Internals
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this);
             var args2 = exprs[1].Accept(this);
-            var args3 = exprs[2].Accept(this); 
+            var args3 = exprs[2].Accept(this);
             return new Function_EXPONDIST(args1, args2, args3);
         }
 
         public virtual FunctionBase VisitFDIST_fun(mathParser.FDIST_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); 
-            var args2 = exprs[1].Accept(this); 
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
             var args3 = exprs[2].Accept(this);
             return new Function_FDIST(args1, args2, args3);
         }
@@ -1460,9 +1460,9 @@ namespace ToolGood.Algorithm.Fast.Internals
         public virtual FunctionBase VisitFINV_fun(mathParser.FINV_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); 
-            var args2 = exprs[1].Accept(this); 
-            var args3 = exprs[2].Accept(this); 
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            var args3 = exprs[2].Accept(this);
             return new Function_FINV(args1, args2, args3);
         }
 
@@ -1482,9 +1482,9 @@ namespace ToolGood.Algorithm.Fast.Internals
         {
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this);
-            var args2 = exprs[1].Accept(this); 
+            var args2 = exprs[1].Accept(this);
             var args3 = exprs[2].Accept(this);
-            var args4 = exprs[3].Accept(this); 
+            var args4 = exprs[3].Accept(this);
             return new Function_GAMMADIST(args1, args2, args3, args4);
         }
 
@@ -1492,24 +1492,24 @@ namespace ToolGood.Algorithm.Fast.Internals
         {
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this);
-            var args2 = exprs[1].Accept(this); 
-            var args3 = exprs[2].Accept(this); 
+            var args2 = exprs[1].Accept(this);
+            var args3 = exprs[2].Accept(this);
             return new Function_GAMMAINV(args1, args2, args3);
         }
 
         public virtual FunctionBase VisitGAMMALN_fun(mathParser.GAMMALN_funContext context)
         {
-            var args1 = context.expr().Accept(this); 
+            var args1 = context.expr().Accept(this);
             return new Function_GAMMALN(args1);
         }
 
         public virtual FunctionBase VisitHYPGEOMDIST_fun(mathParser.HYPGEOMDIST_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); 
-            var args2 = exprs[1].Accept(this); 
-            var args3 = exprs[2].Accept(this); 
-            var args4 = exprs[3].Accept(this); 
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            var args3 = exprs[2].Accept(this);
+            var args4 = exprs[3].Accept(this);
             return new Function_HYPGEOMDIST(args1, args2, args3, args4);
         }
 
@@ -1518,33 +1518,33 @@ namespace ToolGood.Algorithm.Fast.Internals
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this);
             var args2 = exprs[1].Accept(this);
-            var args3 = exprs[2].Accept(this); 
+            var args3 = exprs[2].Accept(this);
             return new Function_LOGINV(args1, args2, args3);
         }
 
         public virtual FunctionBase VisitLOGNORMDIST_fun(mathParser.LOGNORMDIST_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); 
+            var args1 = exprs[0].Accept(this);
             var args2 = exprs[1].Accept(this);
-            var args3 = exprs[2].Accept(this); 
+            var args3 = exprs[2].Accept(this);
             return new Function_LOGNORMDIST(args1, args2, args3);
         }
 
         public virtual FunctionBase VisitNEGBINOMDIST_fun(mathParser.NEGBINOMDIST_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); 
-            var args2 = exprs[1].Accept(this); 
-            var args3 = exprs[2].Accept(this); 
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            var args3 = exprs[2].Accept(this);
             return new Function_NEGBINOMDIST(args1, args2, args3);
         }
 
         public virtual FunctionBase VisitPOISSON_fun(mathParser.POISSON_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); 
-            var args2 = exprs[1].Accept(this); 
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
             var args3 = exprs[2].Accept(this);
             return new Function_POISSON(args1, args2, args3);
         }
@@ -1552,17 +1552,17 @@ namespace ToolGood.Algorithm.Fast.Internals
         public virtual FunctionBase VisitTDIST_fun(mathParser.TDIST_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); 
+            var args1 = exprs[0].Accept(this);
             var args2 = exprs[1].Accept(this);
-            var args3 = exprs[2].Accept(this); 
+            var args3 = exprs[2].Accept(this);
             return new Function_TDIST(args1, args2, args3);
         }
 
         public virtual FunctionBase VisitTINV_fun(mathParser.TINV_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); 
-            var args2 = exprs[1].Accept(this); 
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
             return new Function_TINV(args1, args2);
         }
 
@@ -1572,7 +1572,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             var args1 = exprs[0].Accept(this);
             var args2 = exprs[1].Accept(this);
             var args3 = exprs[2].Accept(this);
-            var args4 = exprs[3].Accept(this); 
+            var args4 = exprs[3].Accept(this);
             return new Function_WEIBULL(args1, args2, args3, args4);
         }
         #endregion sum
@@ -1581,158 +1581,103 @@ namespace ToolGood.Algorithm.Fast.Internals
 
         public virtual FunctionBase VisitURLENCODE_fun(mathParser.URLENCODE_funContext context)
         {
-            var args1 = context.expr().Accept(this).ToText("Function URLENCODE parameter 1 is error!");
-            if (args1.IsError) { return args1; }
-
-            return Operand.Create(HttpUtility.UrlEncode(args1.TextValue));
+            var args1 = context.expr().Accept(this);
+            return new Function_URLENCODE(args1);
         }
 
         public virtual FunctionBase VisitURLDECODE_fun(mathParser.URLDECODE_funContext context)
         {
-            var args1 = context.expr().Accept(this).ToText("Function URLDECODE parameter 1 is error!");
-            if (args1.IsError) { return args1; }
-
-            return Operand.Create(HttpUtility.UrlDecode(args1.TextValue));
+            var args1 = context.expr().Accept(this);
+            return new Function_URLDECODE(args1);
         }
 
         public virtual FunctionBase VisitHTMLENCODE_fun(mathParser.HTMLENCODE_funContext context)
         {
-            var args1 = context.expr().Accept(this).ToText("Function HTMLENCODE parameter 1 is error!");
-            if (args1.IsError) { return args1; }
-
-            return Operand.Create(HttpUtility.HtmlEncode(args1.TextValue));
+            var args1 = context.expr().Accept(this);
+            return new Function_HTMLENCODE(args1);
         }
 
         public virtual FunctionBase VisitHTMLDECODE_fun(mathParser.HTMLDECODE_funContext context)
         {
-            var args1 = context.expr().Accept(this).ToText("Function HTMLDECODE parameter 1 is error!");
-            if (args1.IsError) { return args1; }
-
-            return Operand.Create(HttpUtility.HtmlDecode(args1.TextValue));
+            var args1 = context.expr().Accept(this);
+            return new Function_HTMLDECODE(args1);
         }
 
         public virtual FunctionBase VisitBASE64TOTEXT_fun(mathParser.BASE64TOTEXT_funContext context)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = item.Accept(this).ToText($"Function BASE64TOTEXT parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
-
-            try {
-                Encoding encoding;
-                if (args.Count == 1) {
-                    encoding = Encoding.UTF8;
-                } else {
-                    encoding = Encoding.GetEncoding(args[1].TextValue);
-                }
-                var t = encoding.GetString(Base64.FromBase64String(args[0].TextValue));
-                return Operand.Create(t);
-            } catch (Exception) { }
-            return Operand.Error("Function HTMLDECODE is error!");
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
+            }
+            return new Function_BASE64TOTEXT(args);
         }
 
         public virtual FunctionBase VisitBASE64URLTOTEXT_fun(mathParser.BASE64URLTOTEXT_funContext context)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = item.Accept(this).ToText($"Function BASE64URLTOTEXT parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
-            try {
-                Encoding encoding;
-                if (args.Count == 1) {
-                    encoding = Encoding.UTF8;
-                } else {
-                    encoding = Encoding.GetEncoding(args[1].TextValue);
-                }
-                var t = encoding.GetString(Base64.FromBase64ForUrlString(args[0].TextValue));
-                return Operand.Create(t);
-            } catch (Exception) { }
-            return Operand.Error("Function BASE64URLTOTEXT is error!");
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
+            }
+            return new Function_BASE64URLTOTEXT(args);
         }
 
         public virtual FunctionBase VisitTEXTTOBASE64_fun(mathParser.TEXTTOBASE64_funContext context)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = item.Accept(this).ToText($"Function TEXTTOBASE64 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
-
-            try {
-                Encoding encoding;
-                if (args.Count == 1) {
-                    encoding = Encoding.UTF8;
-                } else {
-                    encoding = Encoding.GetEncoding(args[1].TextValue);
-                }
-                var bytes = encoding.GetBytes(args[0].TextValue);
-                var t = Base64.ToBase64String(bytes);
-                return Operand.Create(t);
-            } catch (Exception) {
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
             }
-            return Operand.Error("Function TEXTTOBASE64 is error!");
+            return new Function_TEXTTOBASE64(args);
         }
 
         public virtual FunctionBase VisitTEXTTOBASE64URL_fun(mathParser.TEXTTOBASE64URL_funContext context)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in context.expr()) { var a = item.Accept(this).ToText($"Function TEXTTOBASE64URL parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
-
-            try {
-                Encoding encoding;
-                if (args.Count == 1) {
-                    encoding = Encoding.UTF8;
-                } else {
-                    encoding = Encoding.GetEncoding(args[1].TextValue);
-                }
-                var bytes = encoding.GetBytes(args[0].TextValue);
-                var t = Base64.ToBase64ForUrlString(bytes);
-                return Operand.Create(t);
-            } catch (Exception) { }
-            return Operand.Error("Function TEXTTOBASE64URL is error!");
+            var exprs = context.expr();
+            FunctionBase[] args = new FunctionBase[exprs.Length];
+            for (int i = 0; i < exprs.Length; i++) {
+                args[i] = exprs[i].Accept(this);
+            }
+            return new Function_TEXTTOBASE64URL(args);
         }
 
         public virtual FunctionBase VisitREGEX_fun(mathParser.REGEX_funContext context)
         {
-            var args = new List<Operand>();
-            foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
-            var args1 = args[0].ToText("Function REGEX parameter 1 is error!");
-            if (args1.IsError) { return args1; }
-            var args2 = args[1].ToText("Function REGEX parameter 2 is error!");
-            if (args2.IsError) { return args2; }
-
-            var b = Regex.Match(args1.TextValue, args2.TextValue);
-            if (b.Success == false) {
-                return Operand.Error("Function REGEX is error!");
-            }
-            return Operand.Create(b.Value);
+            var exprs = context.expr();
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            return new Function_REGEX(args1, args2);
         }
 
         public virtual FunctionBase VisitREGEXREPALCE_fun(mathParser.REGEXREPALCE_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function REGEXREPALCE parameter 1 error!"); if (args1.IsError) return args1; }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function REGEXREPALCE parameter 2 error!"); if (args2.IsError) return args2; }
-            var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.TEXT) { args3 = args3.ToText("Function REGEXREPALCE parameter 3 error!"); if (args3.IsError) return args3; }
-
-            var b = Regex.Replace(args1.TextValue, args2.TextValue, args3.TextValue);
-            return Operand.Create(b);
+            var args1 = exprs[0].Accept(this); 
+            var args2 = exprs[1].Accept(this);
+            var args3 = exprs[2].Accept(this); 
+            return new Function_REGEXREPALCE(args1, args2, args3);
         }
 
         public virtual FunctionBase VisitISREGEX_fun(mathParser.ISREGEX_funContext context)
         {
             var exprs = context.expr();
-            var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function REGEXREPALCE parameter 1 error!"); if (args1.IsError) return args1; }
-            var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function REGEXREPALCE parameter 2 error!"); if (args2.IsError) return args2; }
-
-            var b = Regex.IsMatch(args1.TextValue, args2.TextValue);
-            return Operand.Create(b);
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this); 
+            return new Function_ISREGEX(args1, args2);
         }
 
         public virtual FunctionBase VisitGUID_fun(mathParser.GUID_funContext context)
         {
-            return Operand.Create(System.Guid.NewGuid().ToString());
+            return new Function_GUID();
         }
 
         public virtual FunctionBase VisitMD5_fun(mathParser.MD5_funContext context)
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in context.expr()) { var a = item.Accept(this).ToText($"Function MD5 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
-
+            return new Function_MD5(args.ToArray());
             try {
                 Encoding encoding;
                 if (args.Count == 1) {
@@ -1751,7 +1696,7 @@ namespace ToolGood.Algorithm.Fast.Internals
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in context.expr()) { var a = item.Accept(this).ToText($"Function SHA1 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
-
+            return new Function_SHA1(args.ToArray());
             try {
                 Encoding encoding;
                 if (args.Count == 1) {
@@ -1770,7 +1715,7 @@ namespace ToolGood.Algorithm.Fast.Internals
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in context.expr()) { var a = item.Accept(this).ToText($"Function SHA256 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
-
+            return new Function_SHA256(args.ToArray());
             try {
                 Encoding encoding;
                 if (args.Count == 1) {
@@ -1789,7 +1734,7 @@ namespace ToolGood.Algorithm.Fast.Internals
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in context.expr()) { var a = item.Accept(this).ToText($"Function SHA512 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
-
+            return new Function_SHA512(args.ToArray());
             try {
                 Encoding encoding;
                 if (args.Count == 1) {
@@ -1808,6 +1753,7 @@ namespace ToolGood.Algorithm.Fast.Internals
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in context.expr()) { var a = item.Accept(this).ToText($"Function CRC32 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            return new Function_CRC32(args.ToArray());
             try {
                 Encoding encoding;
                 if (args.Count == 1) {
@@ -1826,6 +1772,7 @@ namespace ToolGood.Algorithm.Fast.Internals
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in context.expr()) { var a = item.Accept(this).ToText($"Function HMACMD5 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            return new Function_HMACMD5(args.ToArray());
             try {
                 Encoding encoding;
                 if (args.Count == 2) {
@@ -1844,6 +1791,7 @@ namespace ToolGood.Algorithm.Fast.Internals
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in context.expr()) { var a = item.Accept(this).ToText($"Function HMACSHA1 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            return new Function_HMACSHA1(args.ToArray());
             try {
                 Encoding encoding;
                 if (args.Count == 2) {
@@ -1862,6 +1810,7 @@ namespace ToolGood.Algorithm.Fast.Internals
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in context.expr()) { var a = item.Accept(this).ToText($"Function HMACSHA256 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+           return new Function_HMACSHA256(args.ToArray());
             try {
                 Encoding encoding;
                 if (args.Count == 2) {
@@ -1880,6 +1829,7 @@ namespace ToolGood.Algorithm.Fast.Internals
         {
             var args = new List<Operand>(); int index = 1;
             foreach (var item in context.expr()) { var a = item.Accept(this).ToText($"Function HMACSHA512 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+         return new Function_HMACSHA512(args.ToArray());
             try {
                 Encoding encoding;
                 if (args.Count == 2) {
@@ -1898,6 +1848,7 @@ namespace ToolGood.Algorithm.Fast.Internals
         {
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function TRIMSTART parameter 1 error!"); if (args1.IsError) return args1; }
+            return new Function_TRIMSTART(args1);
 
             var text = args1.TextValue;
             if (exprs.Length == 2) {
@@ -1911,6 +1862,7 @@ namespace ToolGood.Algorithm.Fast.Internals
         {
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function TRIMEND parameter 1 error!"); if (args1.IsError) return args1; }
+            return new Function_TRIMEND(args1);
 
             var text = args1.TextValue;
             if (exprs.Length == 2) {
@@ -1925,7 +1877,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function INDEXOF parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function INDEXOF parameter 2 is error!"); if (args2.IsError) { return args2; } }
-
+            return new Function_INDEXOF(args1, args2);
             var text = args1.TextValue;
             if (exprs.Length == 2) {
                 return Operand.Create(text.AsSpan().IndexOf(args2.TextValue) + excelIndex);
@@ -1943,7 +1895,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function LASTINDEXOF parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function LASTINDEXOF parameter 2 is error!"); if (args2.IsError) { return args2; } }
-
+            return new Function_LASTINDEXOF(args1, args2);
             var text = args1.TextValue;
             if (exprs.Length == 2) {
                 return Operand.Create(text.AsSpan().LastIndexOf(args2.TextValue) + excelIndex);
@@ -1960,6 +1912,7 @@ namespace ToolGood.Algorithm.Fast.Internals
         {
             var exprs = context.expr(); var args = new List<Operand>(exprs.Length);
             for (int i = 0; i < exprs.Length; i++) { var a = this.Visit(exprs[i]); if (a.Type != OperandType.TEXT) { a = a.ToText($"Function SPLIT parameter {i + 1} is error!"); if (a.IsError) { return a; } } args.Add(a); }
+          return new Function_SPLIT(args.ToArray());
             return Operand.Create(args[0].TextValue.Split(args[1].TextValue.ToArray()));
         }
 
@@ -1967,7 +1920,7 @@ namespace ToolGood.Algorithm.Fast.Internals
         {
             var args = new List<Operand>();
             foreach (var item in context.expr()) { var aa = item.Accept(this); if (aa.IsError) { return aa; } args.Add(aa); }
-
+            return new Function_JOIN(args.ToArray());
             var args1 = args[0];
             if (args1.Type == OperandType.JSON) {
                 var o = args1.ToArray(null);
@@ -2003,6 +1956,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function SUBSTRING parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function SUBSTRING parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            return new Function_SUBSTRING(args1, args2);
 
             var text = args1.TextValue;
             if (exprs.Length == 2) {
@@ -2017,6 +1971,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function STARTSWITH parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function STARTSWITH parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            return new Function_STARTSWITH(args1, args2);
 
             var text = args1.TextValue;
             if (exprs.Length == 2) {
@@ -2031,7 +1986,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function ENDSWITH parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function ENDSWITH parameter 2 is error!"); if (args2.IsError) { return args2; } }
-
+            return new Function_ENDSWITH(args1, args2);
             var text = args1.TextValue;
             if (exprs.Length == 2) {
                 return Operand.Create(text.AsSpan().EndsWith(args2.TextValue.AsSpan()));
@@ -2043,6 +1998,7 @@ namespace ToolGood.Algorithm.Fast.Internals
         public virtual FunctionBase VisitISNULLOREMPTY_fun(mathParser.ISNULLOREMPTY_funContext context)
         {
             var args1 = context.expr().Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function ISNULLOREMPTY parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            return new Function_ISNULLOREMPTY(args1);
 
             return Operand.Create(string.IsNullOrEmpty(args1.TextValue));
         }
@@ -2050,7 +2006,7 @@ namespace ToolGood.Algorithm.Fast.Internals
         public virtual FunctionBase VisitISNULLORWHITESPACE_fun(mathParser.ISNULLORWHITESPACE_funContext context)
         {
             var args1 = context.expr().Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function ISNULLORWHITESPACE parameter 1 is error!"); if (args1.IsError) { return args1; } }
-
+            return new Function_ISNULLORWHITESPACE(args1);
             return Operand.Create(string.IsNullOrWhiteSpace(args1.TextValue));
         }
 
@@ -2059,7 +2015,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function REMOVESTART parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function REMOVESTART parameter 2 is error!"); if (args2.IsError) { return args2; } }
-
+            return new Function_REMOVESTART(args1, args2);
             StringComparison comparison = StringComparison.Ordinal;
             if (exprs.Length == 3) {
                 var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function REMOVESTART parameter 3 is error!"); if (args3.IsError) { return args3; } }
@@ -2079,7 +2035,7 @@ namespace ToolGood.Algorithm.Fast.Internals
             var exprs = context.expr();
             var args1 = exprs[0].Accept(this); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function REMOVEEND parameter 1 is error!"); if (args1.IsError) { return args1; } }
             var args2 = exprs[1].Accept(this); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function REMOVEEND parameter 2 is error!"); if (args2.IsError) { return args2; } }
-
+            return new Function_REMOVEEND(args1, args2);
             StringComparison comparison = StringComparison.Ordinal;
             if (exprs.Length == 3) {
                 var args3 = exprs[2].Accept(this); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function REMOVESTART parameter 3 is error!"); if (args3.IsError) { return args3; } }
@@ -2097,6 +2053,7 @@ namespace ToolGood.Algorithm.Fast.Internals
         public virtual FunctionBase VisitJSON_fun(mathParser.JSON_funContext context)
         {
             var args1 = context.expr().Accept(this);
+            return new Function_JSON(args1);
             if (args1.Type == OperandType.JSON) { return args1; }
             args1 = args1.ToText("Function JSON parameter is error!");
             if (args1.IsError) { return args1; }
