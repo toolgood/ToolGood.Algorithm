@@ -398,7 +398,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            stringBuilder.Append("IF(");
+            stringBuilder.Append("REPLACE(");
             func1.ToString(stringBuilder, false);
             if (func2 != null) {
                 stringBuilder.Append(", ");
@@ -429,6 +429,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 
             var newtext = args1.TextValue;
             var length = args2.IntValue;
+            if (length < 0) {
+                return Operand.Error("Function REPT parameter 2 is error!");
+            }
             StringBuilder sb = new StringBuilder(newtext.Length * length);
             for (int i = 0; i < length; i++) {
                 sb.Append(newtext);

@@ -700,7 +700,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             var startMyDate = (DateTime)args1.DateValue;
             var endMyDate = (DateTime)args2.DateValue;
 
-            List<DateTime> list = new List<DateTime>();
+            HashSet<DateTime> list = new HashSet<DateTime>();
             for (int i = 2; i < funcs.Length; i++) {
                 var ar = funcs[i].Calculate(work).ToMyDate($"Function NETWORKDAYS parameter {i + 1} is error!");
                 if (ar.IsError) { return ar; }
@@ -743,7 +743,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
             var startMyDate = (DateTime)args1.DateValue;
             var days = args2.IntValue;
-            List<DateTime> list = new List<DateTime>();
+            HashSet<DateTime> list = new HashSet<DateTime>();
             for (int i = 2; i < funcs.Length; i++) {
                 var ar = funcs[i].Calculate(work).ToMyDate($"Function WORKDAY parameter {i + 1} is error!");
                 if (ar.IsError) { return ar; }

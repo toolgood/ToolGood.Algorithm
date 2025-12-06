@@ -1402,9 +1402,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function HYPGEOMDIST parameter 1 error!"); if (args1.IsError) return args1; }
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function HYPGEOMDIST parameter 2 error!"); if (args2.IsError) return args2; }
-            var args3 = func3.Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function HYPGEOMDIST parameter 3 error!"); if (args3.IsError) return args3; }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function LOGINV parameter 1 error!"); if (args1.IsError) return args1; }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function LOGINV parameter 2 error!"); if (args2.IsError) return args2; }
+            var args3 = func3.Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function LOGINV parameter 3 error!"); if (args3.IsError) return args3; }
             if (args3.NumberValue < 0.0m) {
                 return Operand.Error("Function LOGINV parameter error!");
             }
@@ -1412,7 +1412,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            stringBuilder.Append("HYPGEOMDIST(");
+            stringBuilder.Append("LOGINV(");
             func1.ToString(stringBuilder, false);
             if (func2 != null) {
                 stringBuilder.Append(", ");
