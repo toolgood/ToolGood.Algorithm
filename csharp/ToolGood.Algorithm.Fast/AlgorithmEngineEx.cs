@@ -4,6 +4,10 @@ using ToolGood.Algorithm.LitJson;
 
 namespace ToolGood.Algorithm
 {
+    /// <summary>
+    /// AlgorithmEngine 扩展类
+    /// 增加自定义参数缓存功能
+    /// </summary>
     public class AlgorithmEngineEx : AlgorithmEngine
     {
         private readonly Dictionary<string, Operand> _tempdict;
@@ -43,6 +47,11 @@ namespace ToolGood.Algorithm
 
         #endregion 构造函数
 
+        /// <summary>
+        /// 自定义参数 请重写此方法
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
         public override Operand GetParameter(string parameter)
         {
             if (_tempdict.TryGetValue(parameter, out Operand operand)) {

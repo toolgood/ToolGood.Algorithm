@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Internals;
+using ToolGood.Algorithm.Internals.Functions;
 using ToolGood.Algorithm.math;
 using ToolGood.Algorithm.UnitConversion;
 
@@ -261,7 +261,6 @@ namespace ToolGood.Algorithm
                     "REMOVEEND",
                     "JSON",
                     "VLOOKUP",
-                    "LOOKUP",
                     "ARRAY",
 
                     "ADDYEARS",
@@ -368,7 +367,26 @@ namespace ToolGood.Algorithm
             throw new Exception($"The input item [{name}] has different units and cannot be converted from [{oldSrcUnit}] to [{oldTarUnit}]");
         }
 
-  
-     
+        /// <summary>
+        /// Creates a logical AND function that combines two specified functions.
+        /// </summary>
+        /// <param name="left">The left operand of the AND operation, representing the first function to be combined.</param>
+        /// <param name="right">The right operand of the AND operation, representing the second function to be combined.</param>
+        /// <returns>A new <see cref="FunctionBase"/> instance that represents the logical AND of the specified functions.</returns>
+        public static FunctionBase CreateAnd(FunctionBase left,FunctionBase right)
+        {
+            return new Function_AND(left, right);
+        }
+        /// <summary>
+        /// Creates a logical OR function that combines two specified functions.
+        /// </summary>
+        /// <param name="left">The left operand of the OR operation, representing the first function to be combined.</param>
+        /// <param name="right">The right operand of the OR operation, representing the second function to be combined.</param>
+        /// <returns>A new <see cref="FunctionBase"/> instance that represents the logical OR of the specified functions.</returns>
+        public static FunctionBase CreateOr(FunctionBase left, FunctionBase right)
+        {
+            return new Function_OR(left, right);
+        }
+
     }
 }

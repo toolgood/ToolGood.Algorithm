@@ -15,18 +15,49 @@ namespace ToolGood.Algorithm
     public class AlgorithmEngine
     {
         internal int ExcelIndex = 1;
+        /// <summary>
+        /// 使用 本地时间， 影响 时间截转化
+        /// </summary>
         public bool UseLocalTime = true;
+        /// <summary>
+        /// 长度单位
+        /// </summary>
         public DistanceUnitType DistanceUnit = DistanceUnitType.M;
+        /// <summary>
+        /// 面积单位
+        /// </summary>
         public AreaUnitType AreaUnit = AreaUnitType.M2;
+        /// <summary>
+        /// 体积单位
+        /// </summary>
         public VolumeUnitType VolumeUnit = VolumeUnitType.M3;
+        /// <summary>
+        /// 重量单位
+        /// </summary>
         public MassUnitType MassUnit = MassUnitType.KG;
+        /// <summary>
+        /// 最后一个错误
+        /// </summary>
         public string LastError { get; private set; }
+        /// <summary>
+        /// 使用EXCEL索引
+        /// </summary>
         public bool UseExcelIndex { set { ExcelIndex = value ? 1 : 0; } }
-
+        /// <summary>
+        /// 自定义参数 请重写此方法
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
         public virtual Operand GetParameter(string parameter)
         {
             return Operand.Error($"Parameter [{parameter}] is missing.");
         }
+        /// <summary>
+        /// 自定义函数 请重写此方法
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>
         public virtual Operand ExecuteDiyFunction(string parameter, List<Operand> args)
         {
             return Operand.Error($"DiyFunction [{parameter}] is missing.");

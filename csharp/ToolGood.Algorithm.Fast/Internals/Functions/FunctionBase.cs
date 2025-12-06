@@ -10,9 +10,19 @@ using ToolGood.Algorithm.MathNet.Numerics;
 
 namespace ToolGood.Algorithm.Internals.Functions
 {
-
+    /// <summary>
+    /// Represents the base class for all function implementations that can be calculated by an algorithm engine.
+    /// </summary>
+    /// <remarks>This abstract class defines a contract for functions that can be evaluated within the context
+    /// of an algorithm engine. Derived classes must implement the <see cref="Calculate"/> method to provide specific
+    /// function logic.</remarks>
     public abstract class FunctionBase
     {
+        /// <summary>
+        /// 进行计算
+        /// </summary>
+        /// <param name="work"></param>
+        /// <returns></returns>
         public abstract Operand Calculate(AlgorithmEngine work);
     }
 
@@ -3461,7 +3471,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args = new List<Operand>(); int index = 1;
+            var args = new List<Operand>(); 
             foreach (var item in funcs) { var aa = item.Calculate(work); if (aa.IsError) { return aa; } args.Add(aa); }
             List<string> list = new List<string>();
             var o = FunctionUtil.F_base_GetList(args, list);
