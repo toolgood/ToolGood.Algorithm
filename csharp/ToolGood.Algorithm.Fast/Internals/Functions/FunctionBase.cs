@@ -1888,8 +1888,8 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override Operand Accept(AlgorithmEngine work)
         {
-            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function COVARIANCES parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function COVARIANCES parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { if (args1.IsError) { return args1; } }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { if (args2.IsError) { return args2; } }
 
             List<decimal> list1 = new List<decimal>();
             List<decimal> list2 = new List<decimal>();
@@ -1918,8 +1918,8 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override Operand Accept(AlgorithmEngine work)
         {
-            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function COVAR parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function COVAR parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { if (args1.IsError) { return args1; } }
+            var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { if (args2.IsError) { return args2; } }
             List<decimal> list1 = new List<decimal>();
             List<decimal> list2 = new List<decimal>();
             var o1 = FunctionUtil.F_base_GetList(args1, list1);
@@ -3287,8 +3287,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Accept(AlgorithmEngine work)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var aa = item.Accept(work).ToNumber($"Function SUMIF parameter {index++} is error!"); if (aa.IsError) { return aa; } args.Add(aa); }
+            var args = new List<Operand>();
+            foreach (var item in funcs) { var aa = item.Accept(work); if (aa.IsError) { return aa; } args.Add(aa); }
 
             List<decimal> list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args[0], list);
@@ -3911,7 +3911,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function BINOMDIST parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function BINOMDIST parameter 2 error!"); if (args2.IsError) return args2; }
             var args3 = func3.Accept(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function BINOMDIST parameter 3 error!"); if (args3.IsError) return args3; }
-            var args4 = func4.Accept(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function BINOMDIST parameter 4 error!"); if (args3.IsError) return args3; }
+            var args4 = func4.Accept(work); if (args3.Type != OperandType.BOOLEAN) { args4 = args4.ToBoolean("Function BINOMDIST parameter 4 error!"); if (args4.IsError) return args4; }
 
             if (!(args3.NumberValue >= 0.0m && args3.NumberValue <= 1.0m && args2.NumberValue >= 0)) {
                 return Operand.Error("Function BINOMDIST parameter error!");
@@ -4142,7 +4142,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var args1 = func1.Accept(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function NEGBINOMDIST parameter 1 error!"); if (args1.IsError) return args1; }
             var args2 = func2.Accept(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function NEGBINOMDIST parameter 2 error!"); if (args2.IsError) return args2; }
-            var args3 = func3.Accept(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToNumber("Function NEGBINOMDIST parameter 3 error!"); if (args3.IsError) return args3; }
+            var args3 = func3.Accept(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function NEGBINOMDIST parameter 3 error!"); if (args3.IsError) return args3; }
             int k = args1.IntValue;
             var lambda = args2.NumberValue;
             bool state = args3.BooleanValue;
