@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 using ToolGood.Algorithm.Enums;
 
@@ -22,12 +23,25 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             if (_value.Type == OperandType.TEXT) {
                 stringBuilder.Append('"');
-                stringBuilder.Append(_value.TextValue.Replace("\"", "\"\""));
+                var stringValue = _value.TextValue;
+                stringValue = stringValue.Replace("\\", "\\\\");
+                stringValue = stringValue.Replace("\r", "\\r");
+                stringValue = stringValue.Replace("\n", "\\n");
+                stringValue = stringValue.Replace("\t", "\\t");
+                stringValue = stringValue.Replace("\0", "\\0");
+                stringValue = stringValue.Replace("\v", "\\v");
+                stringValue = stringValue.Replace("\a", "\\a");
+                stringValue = stringValue.Replace("\b", "\\b");
+                stringValue = stringValue.Replace("\f", "\\f");
+                stringValue = stringValue.Replace("\"", "\\\"");
+                stringBuilder.Append(stringValue);
                 stringBuilder.Append('"');
             } else if (_value.Type == OperandType.DATE) {
                 stringBuilder.Append('"');
                 stringBuilder.Append(_value.DateValue.ToString());
                 stringBuilder.Append('"');
+            } else if (_value.Type == OperandType.BOOLEAN) {
+                stringBuilder.Append(_value.BooleanValue? "true" : "false");
             } else {
                 stringBuilder.Append(_value.ToString());
             }
