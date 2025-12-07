@@ -50,20 +50,20 @@ namespace ToolGood.Algorithm.MathNet.Numerics
             return Binomial.CDF(p, n, k);
         }
 
-        public static double POISSON(int k, double lambda, bool state)
+        public static double Poisson(int k, double lambda, bool state)
         {
             if (state == false) {
-                return Poisson.PMF(lambda, k);
+                return Distributions.Poisson.PMF(lambda, k);
             }
-            return Poisson.CDF(lambda, k);
+            return Distributions.Poisson.CDF(lambda, k);
         }
 
-        public static double WEIBULL(double x, double shape, double scale, bool state)
+        public static double Weibull(double x, double shape, double scale, bool state)
         {
             if (state == false) {
-                return Weibull.PDF(shape, scale, x);
+                return Distributions.Weibull.PDF(shape, scale, x);
             }
-            return Weibull.CDF(shape, scale, x);
+            return Distributions.Weibull.CDF(shape, scale, x);
         }
     }
 }

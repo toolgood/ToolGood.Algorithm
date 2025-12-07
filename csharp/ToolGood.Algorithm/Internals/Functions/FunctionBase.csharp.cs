@@ -18,7 +18,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function URLENCODE parameter error!"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'UrlEncode' parameter error!"); if (args1.IsError) { return args1; } }
             var s = args1.TextValue;
             var r = System.Web.HttpUtility.UrlEncode(s);
             return Operand.Create(r);
@@ -37,7 +37,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function URLDECODE parameter error!"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'UrlDecode' parameter error!"); if (args1.IsError) { return args1; } }
             var s = args1.TextValue;
             var r = System.Web.HttpUtility.UrlDecode(s);
             return Operand.Create(r);
@@ -56,7 +56,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function HTMLENCODE parameter error!"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'HtmlEncode' parameter error!"); if (args1.IsError) { return args1; } }
             var s = args1.TextValue;
             var r = System.Web.HttpUtility.HtmlEncode(s);
             return Operand.Create(r);
@@ -75,7 +75,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function HTMLDECODE parameter error!"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'HtmlDecode' parameter error!"); if (args1.IsError) { return args1; } }
             var s = args1.TextValue;
             var r = System.Web.HttpUtility.HtmlDecode(s);
             return Operand.Create(r);
@@ -95,7 +95,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function BASE64TOTEXT parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function 'Base64ToText' parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
             try {
                 Encoding encoding;
                 if (args.Count == 1) {
@@ -106,7 +106,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 var t = encoding.GetString(Base64.FromBase64String(args[0].TextValue));
                 return Operand.Create(t);
             } catch (Exception) { }
-            return Operand.Error("Function BASE64TOTEXT is error!");
+            return Operand.Error("Function Base64ToText is error!");
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
@@ -123,7 +123,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function BASE64URLTOTEXT parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function 'Base64urlToText' parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
             try {
                 Encoding encoding;
                 if (args.Count == 1) {
@@ -134,7 +134,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 var t = encoding.GetString(Base64.FromBase64ForUrlString(args[0].TextValue));
                 return Operand.Create(t);
             } catch (Exception) { }
-            return Operand.Error("Function BASE64URLTOTEXT is error!");
+            return Operand.Error("Function Base64urlToText is error!");
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
@@ -151,7 +151,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function TEXTTOBASE64 parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function 'TextToBase64' parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
             try {
                 Encoding encoding;
                 if (args.Count == 1) {
@@ -164,7 +164,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 return Operand.Create(t);
             } catch (Exception) {
             }
-            return Operand.Error("Function TEXTTOBASE64 is error!");
+            return Operand.Error("Function TextToBase64 is error!");
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
@@ -181,7 +181,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function TEXTTOBASE64URL parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function 'TextToBase64url' parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
             try {
                 Encoding encoding;
                 if (args.Count == 1) {
@@ -193,7 +193,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 var t = Base64.ToBase64ForUrlString(bytes);
                 return Operand.Create(t);
             } catch (Exception) { }
-            return Operand.Error("Function TEXTTOBASE64URL is error!");
+            return Operand.Error("Function TextToBase64url is error!");
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
@@ -209,14 +209,14 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work).ToText("Function REGEX parameter 1 is error!");
+            var args1 = func1.Calculate(work).ToText("Function 'Regex' parameter 1 is error!");
             if (args1.IsError) { return args1; }
-            var args2 = func2.Calculate(work).ToText("Function REGEX parameter 2 is error!");
+            var args2 = func2.Calculate(work).ToText("Function 'Regex' parameter 2 is error!");
             if (args2.IsError) { return args2; }
 
             var b = Regex.Match(args1.TextValue, args2.TextValue);
             if (b.Success == false) {
-                return Operand.Error("Function REGEX is error!");
+                return Operand.Error("Function Regex is error!");
             }
             return Operand.Create(b.Value);
         }
@@ -234,9 +234,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function REGEXREPALCE parameter 1 error!"); if (args1.IsError) return args1; }
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function REGEXREPALCE parameter 2 error!"); if (args2.IsError) return args2; }
-            var args3 = func3.Calculate(work); if (args3.Type != OperandType.TEXT) { args3 = args3.ToText("Function REGEXREPALCE parameter 3 error!"); if (args3.IsError) return args3; }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'RegexReplace' parameter 1 error!"); if (args1.IsError) return args1; }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function 'RegexReplace' parameter 2 error!"); if (args2.IsError) return args2; }
+            var args3 = func3.Calculate(work); if (args3.Type != OperandType.TEXT) { args3 = args3.ToText("Function 'RegexReplace' parameter 3 error!"); if (args3.IsError) return args3; }
             var b = Regex.Replace(args1.TextValue, args2.TextValue, args3.TextValue);
             return Operand.Create(b);
         }
@@ -254,8 +254,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function ISREGEX parameter 1 error!"); if (args1.IsError) return args1; }
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function ISREGEX parameter 2 error!"); if (args2.IsError) return args2; }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'IsRegex' parameter 1 error!"); if (args1.IsError) return args1; }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function 'IsRegex' parameter 2 error!"); if (args2.IsError) return args2; }
             var b = Regex.IsMatch(args1.TextValue, args2.TextValue);
             return Operand.Create(b);
         }
@@ -290,7 +290,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function MD5 parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function 'MD5' parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
             try {
                 Encoding encoding;
                 if (args.Count == 1) {
@@ -319,7 +319,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function SHA1 parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function 'SHA1' parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
             try {
                 Encoding encoding;
                 if (args.Count == 1) {
@@ -348,7 +348,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function SHA256 parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function 'SHA256' parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
             try {
                 Encoding encoding;
                 if (args.Count == 1) {
@@ -377,7 +377,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function SHA512 parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function 'SHA512' parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
             try {
                 Encoding encoding;
                 if (args.Count == 1) {
@@ -406,7 +406,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function CRC32 parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function 'CRC32' parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
             try {
                 Encoding encoding;
                 if (args.Count == 1) {
@@ -435,7 +435,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function HMACMD5 parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function 'HmacMD5' parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
             try {
                 Encoding encoding;
                 if (args.Count == 2) {
@@ -446,7 +446,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 var t = Hash.GetHmacMd5String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
                 return Operand.Create(t);
             } catch (Exception ex) {
-                return Operand.Error("Function HMACMD5 is error!" + ex.Message);
+                return Operand.Error("Function HmacMD5 is error!" + ex.Message);
             }
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -464,7 +464,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function HMACSHA1 parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function 'HmacSHA1' parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
             try {
                 Encoding encoding;
                 if (args.Count == 2) {
@@ -475,7 +475,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 var t = Hash.GetHmacSha1String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
                 return Operand.Create(t);
             } catch (Exception ex) {
-                return Operand.Error("Function HMACSHA1 is error!" + ex.Message);
+                return Operand.Error("Function HmacSHA1 is error!" + ex.Message);
             }
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -493,7 +493,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function HMACSHA256 parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function 'HmacSHA256' parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
             try {
                 Encoding encoding;
                 if (args.Count == 2) {
@@ -504,7 +504,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 var t = Hash.GetHmacSha256String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
                 return Operand.Create(t);
             } catch (Exception ex) {
-                return Operand.Error("Function HMACSHA256 is error!" + ex.Message);
+                return Operand.Error("Function HmacSHA256 is error!" + ex.Message);
             }
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -522,7 +522,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function HMACSHA512 parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function 'HmacSHA512' parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
             try {
                 Encoding encoding;
                 if (args.Count == 2) {
@@ -533,7 +533,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 var t = Hash.GetHmacSha512String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
                 return Operand.Create(t);
             } catch (Exception ex) {
-                return Operand.Error("Function HMACSHA512 is error!" + ex.Message);
+                return Operand.Error("Function HmacSHA512 is error!" + ex.Message);
             }
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -551,7 +551,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function TRIMSTART parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function 'TrimStart' parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
             if (args.Count == 1) {
                 return Operand.Create(args[0].TextValue.TrimStart());
             } else {
@@ -574,7 +574,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function TRIMEND parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function 'TrimEnd' parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
             if (args.Count == 1) {
                 return Operand.Create(args[0].TextValue.TrimEnd());
             } else {
@@ -596,17 +596,17 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function INDEXOF parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function INDEXOF parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'IndexOf' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function 'IndexOf' parameter 2 is error!"); if (args2.IsError) { return args2; } }
             var text = args1.TextValue;
             if (funcs.Length == 2) {
                 return Operand.Create(text.AsSpan().IndexOf(args2.TextValue) + work.ExcelIndex);
             }
-            var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function INDEXOF parameter 3 is error!"); if (args3.IsError) { return args3; } }
+            var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function 'IndexOf' parameter 3 is error!"); if (args3.IsError) { return args3; } }
             if (funcs.Length == 3) {
                 return Operand.Create(text.AsSpan(args3.IntValue).IndexOf(args2.TextValue) + args3.IntValue + work.ExcelIndex);
             }
-            var args4 = funcs[3].Calculate(work); if (args4.Type != OperandType.NUMBER) { args4 = args4.ToNumber("Function INDEXOF parameter 4 is error!"); if (args4.IsError) { return args4; } }
+            var args4 = funcs[3].Calculate(work); if (args4.Type != OperandType.NUMBER) { args4 = args4.ToNumber("Function 'IndexOf' parameter 4 is error!"); if (args4.IsError) { return args4; } }
             return Operand.Create(text.IndexOf(args2.TextValue, args3.IntValue, args4.IntValue) + work.ExcelIndex);
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -623,17 +623,17 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function LASTINDEXOF parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function LASTINDEXOF parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'LastIndexOf' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function 'LastIndexOf' parameter 2 is error!"); if (args2.IsError) { return args2; } }
             var text = args1.TextValue;
             if (funcs.Length == 2) {
                 return Operand.Create(text.AsSpan().LastIndexOf(args2.TextValue) + work.ExcelIndex);
             }
-            var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function LASTINDEXOF parameter 3 is error!"); if (args3.IsError) { return args3; } }
+            var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function 'LastIndexOf' parameter 3 is error!"); if (args3.IsError) { return args3; } }
             if (funcs.Length == 3) {
                 return Operand.Create(text.AsSpan(0, args3.IntValue).LastIndexOf(args2.TextValue) + work.ExcelIndex);
             }
-            var args4 = funcs[3].Calculate(work); if (args4.Type != OperandType.NUMBER) { args4 = args4.ToNumber("Function LASTINDEXOF parameter 4 is error!"); if (args4.IsError) { return args4; } }
+            var args4 = funcs[3].Calculate(work); if (args4.Type != OperandType.NUMBER) { args4 = args4.ToNumber("Function 'LastIndexOf' parameter 4 is error!"); if (args4.IsError) { return args4; } }
             return Operand.Create(text.LastIndexOf(args2.TextValue, args3.IntValue, args4.IntValue) + work.ExcelIndex);
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -650,8 +650,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function SPLIT parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function SPLIT parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'Split' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function 'Split' parameter 2 is error!"); if (args2.IsError) { return args2; } }
             return Operand.Create(args1.TextValue.Split(args2.TextValue.ToArray()));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -680,20 +680,20 @@ namespace ToolGood.Algorithm.Internals.Functions
             if (args1.Type == OperandType.ARRARY) {
                 List<string> list = new List<string>();
                 var o = FunctionUtil.F_base_GetList(args1, list);
-                if (o == false) return Operand.Error("Function JOIN parameter 1 is error!");
+                if (o == false) return Operand.Error("Function 'Join' parameter 1 is error!");
 
-                var args2 = args[1].ToText("Function JOIN parameter 2 is error!");
+                var args2 = args[1].ToText("Function 'Join' parameter 2 is error!");
                 if (args2.IsError) { return args2; }
 
                 return Operand.Create(string.Join(args2.TextValue, list));
             } else {
-                args1 = args1.ToText("Function JOIN parameter 1 is error!");
+                args1 = args1.ToText("Function 'Join' parameter 1 is error!");
                 if (args1.IsError) { return args1; }
 
                 List<string> list = new List<string>();
                 for (int i = 1; i < args.Count; i++) {
                     var o = FunctionUtil.F_base_GetList(args[i], list);
-                    if (o == false) return Operand.Error("Function JOIN parameter {i + 1} is error!");
+                    if (o == false) return Operand.Error("Function 'Join' parameter {i + 1} is error!");
                 }
                 return Operand.Create(string.Join(args1.TextValue, list));
             }
@@ -712,14 +712,14 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function SUBSTRING parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function SUBSTRING parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'Substring' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'Substring' parameter 2 is error!"); if (args2.IsError) { return args2; } }
             
             var text = args1.TextValue;
             if (funcs.Length == 2) {
                 return Operand.Create(text.AsSpan(args2.IntValue - work.ExcelIndex).ToString());
             }
-            var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function SUBSTRING parameter 3 is error!"); if (args3.IsError) { return args3; } }
+            var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function 'Substring' parameter 3 is error!"); if (args3.IsError) { return args3; } }
             return Operand.Create(text.AsSpan(args2.IntValue - work.ExcelIndex, args3.IntValue).ToString());
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -736,14 +736,14 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function STARTSWITH parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function STARTSWITH parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'StartsWith' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function 'StartsWith' parameter 2 is error!"); if (args2.IsError) { return args2; } }
 
             var text = args1.TextValue;
             if (funcs.Length == 2) {
                 return Operand.Create(text.AsSpan().StartsWith(args2.TextValue.AsSpan()));
             }
-            var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function STARTSWITH parameter 3 is error!"); if (args3.IsError) { return args3; } }
+            var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function 'StartsWith' parameter 3 is error!"); if (args3.IsError) { return args3; } }
             return Operand.Create(text.AsSpan().StartsWith(args2.TextValue.AsSpan(), args3.BooleanValue ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -760,13 +760,13 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function ENDSWITH parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function ENDSWITH parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'EndsWith' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function 'EndsWith' parameter 2 is error!"); if (args2.IsError) { return args2; } }
             var text = args1.TextValue;
             if (funcs.Length == 2) {
                 return Operand.Create(text.AsSpan().EndsWith(args2.TextValue.AsSpan()));
             }
-            var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function ENDSWITH parameter 3 is error!"); if (args3.IsError) { return args3; } }
+            var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function 'EndsWith' parameter 3 is error!"); if (args3.IsError) { return args3; } }
             return Operand.Create(text.AsSpan().EndsWith(args2.TextValue.AsSpan(), args3.BooleanValue ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -783,11 +783,11 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function REMOVESTART parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function REMOVESTART parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'RemoveStart' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function 'RemoveStart' parameter 2 is error!"); if (args2.IsError) { return args2; } }
             StringComparison comparison = StringComparison.Ordinal;
             if (funcs.Length == 3) {
-                var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function REMOVESTART parameter 3 is error!"); if (args3.IsError) { return args3; } }
+                var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function 'RemoveStart' parameter 3 is error!"); if (args3.IsError) { return args3; } }
                 if (args3.BooleanValue) {
                     comparison = StringComparison.OrdinalIgnoreCase;
                 }
@@ -812,11 +812,11 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function REMOVEEND parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function REMOVEEND parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'RemoveEnd' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function 'RemoveEnd' parameter 2 is error!"); if (args2.IsError) { return args2; } }
             StringComparison comparison = StringComparison.Ordinal;
             if (funcs.Length == 3) {
-                var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function REMOVEEND parameter 3 is error!"); if (args3.IsError) { return args3; } }
+                var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function 'RemoveEnd' parameter 3 is error!"); if (args3.IsError) { return args3; } }
                 if (args3.BooleanValue) {
                     comparison = StringComparison.OrdinalIgnoreCase;
                 }
@@ -843,7 +843,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var args1 = func1.Calculate(work);
             if (args1.Type == OperandType.JSON) { return args1; }
-            args1 = args1.ToText("Function JSON parameter is error!");
+            args1 = args1.ToText("Function 'Json' parameter is error!");
             if (args1.IsError) { return args1; }
             var txt = args1.TextValue;
             if ((txt.StartsWith('{') && txt.EndsWith('}')) || (txt.StartsWith('[') && txt.EndsWith(']'))) {
@@ -852,7 +852,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                     return Operand.Create(json);
                 } catch (Exception) { }
             }
-            return Operand.Error("Function JSON parameter is error!");
+            return Operand.Error("Function 'Json' parameter is error!");
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
@@ -869,7 +869,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.IsError) { return args1; }
-            var args2 = func2.Calculate(work).ToText("Function HAS parameter 2 is error!"); if (args2.IsError) { return args2; }
+            var args2 = func2.Calculate(work).ToText("Function 'Has' parameter 2 is error!"); if (args2.IsError) { return args2; }
 
             if (args1.Type == OperandType.ARRARYJSON) {
                 return Operand.Create(((OperandKeyValueList)args1).ContainsKey(args2));
@@ -904,7 +904,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 }
                 return Operand.False;
             }
-            return Operand.Error("Function HAS parameter 1 is error!");
+            return Operand.Error("Function 'Has' parameter 1 is error!");
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
@@ -921,7 +921,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.IsError) { return args1; }
-            var args2 = func2.Calculate(work).ToText("Function HASVALUE parameter 2 is error!"); if (args2.IsError) { return args2; }
+            var args2 = func2.Calculate(work).ToText("Function 'HasValue' parameter 2 is error!"); if (args2.IsError) { return args2; }
 
             if (args1.Type == OperandType.ARRARYJSON) {
                 return Operand.Create(((OperandKeyValueList)args1).ContainsValue(args2));
@@ -962,7 +962,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 }
                 return Operand.False;
             }
-            return Operand.Error("Function HASVALUE parameter 1 is error!");
+            return Operand.Error("Function 'HasValue' parameter 1 is error!");
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
