@@ -420,6 +420,12 @@ namespace ToolGood.Algorithm
         /// <param name="errorMessage"></param>
         /// <returns></returns>
         public virtual Operand ToMyDate(string errorMessage = null) { return Error(errorMessage); }
+        /// <summary>
+        /// 转MyDate类型
+        /// </summary>
+        /// <param name="errorMessage"></param>
+        /// <returns></returns>
+        public virtual Operand ToMyDate(string errorMessage ,int index) { return Error(string.Format(errorMessage, index)); }
 
         /// <summary>
         /// 转Json类型
@@ -631,6 +637,7 @@ namespace ToolGood.Algorithm
         public override Operand ToText(string errorMessage, int index) { return Create(NumberValue.ToString(CultureInfo.InvariantCulture)); }
 
         public override Operand ToMyDate(string errorMessage = null) { return Create((MyDate)NumberValue); }
+        public override Operand ToMyDate(string errorMessage, int index) { return Create((MyDate)NumberValue); }
 
         public override Operand ToArray(string errorMessage = null) { return Error(errorMessage ?? "Convert number to array error!"); }
 
@@ -733,6 +740,15 @@ namespace ToolGood.Algorithm
             }
             return Error(errorMessage);
         }
+        public override Operand ToMyDate(string errorMessage, int index)
+        {
+            if (TimeSpan.TryParse(TextValue, CultureInfo.InvariantCulture, out TimeSpan t)) { return Create(new MyDate(t)); }
+            if (DateTime.TryParse(TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime d)) { return Create(new MyDate(d)); }
+            if (errorMessage == null) {
+                return Error("Convert string to date error!");
+            }
+            return Error(string.Format(errorMessage, index));
+        }
 
         public override Operand ToJson(string errorMessage = null)
         {
@@ -780,6 +796,7 @@ namespace ToolGood.Algorithm
         public override Operand ToText(string errorMessage, int index) { return Create(DateValue.ToString()); }
 
         public override Operand ToMyDate(string errorMessage = null) { return this; }
+        public override Operand ToMyDate(string errorMessage, int index) { return this; }
 
         public override Operand ToArray(string errorMessage = null) { return Error(errorMessage ?? "Convert date to array error!"); }
 
@@ -880,6 +897,7 @@ namespace ToolGood.Algorithm
         public override Operand ToJson(string errorMessage = null) { return this; }
 
         public override Operand ToMyDate(string errorMessage = null) { return this; }
+        public override Operand ToMyDate(string errorMessage, int index) { return this; }
     }
 
     internal sealed class OperandNull : Operand
