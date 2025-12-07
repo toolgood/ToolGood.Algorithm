@@ -377,48 +377,63 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="errorMessage"></param>
         /// <returns></returns>
-        public virtual Operand ToNumber(string errorMessage = null)
-        { return Error(errorMessage); }
+        public virtual Operand ToNumber(string errorMessage = null) { return Error(errorMessage); }
+        /// <summary>
+        /// 转数值类型
+        /// </summary>
+        /// <param name="errorMessage"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public virtual Operand ToNumber(string errorMessage, int index) { return Error(string.Format(errorMessage, index)); }
 
         /// <summary>
         /// 转bool类型
         /// </summary>
         /// <param name="errorMessage"></param>
         /// <returns></returns>
-        public virtual Operand ToBoolean(string errorMessage = null)
-        { return Error(errorMessage); }
+        public virtual Operand ToBoolean(string errorMessage = null) { return Error(errorMessage); }
+        /// <summary>
+        /// 转bool类型
+        /// </summary>
+        /// <param name="errorMessage"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public virtual Operand ToBoolean(string errorMessage, int index) { return Error(string.Format(errorMessage, index)); }
 
         /// <summary>
         /// 转String类型
         /// </summary>
         /// <param name="errorMessage"></param>
         /// <returns></returns>
-        public virtual Operand ToText(string errorMessage = null)
-        { return Error(errorMessage); }
+        public virtual Operand ToText(string errorMessage = null) { return Error(errorMessage); }
+        /// <summary>
+        /// 转String类型
+        /// </summary>
+        /// <param name="errorMessage"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public virtual Operand ToText(string errorMessage, int index) { return Error(string.Format(errorMessage, index)); }
 
         /// <summary>
         /// 转MyDate类型
         /// </summary>
         /// <param name="errorMessage"></param>
         /// <returns></returns>
-        public virtual Operand ToMyDate(string errorMessage = null)
-        { return Error(errorMessage); }
+        public virtual Operand ToMyDate(string errorMessage = null) { return Error(errorMessage); }
 
         /// <summary>
         /// 转Json类型
         /// </summary>
         /// <param name="errorMessage"></param>
         /// <returns></returns>
-        public virtual Operand ToJson(string errorMessage = null)
-        { return Error(errorMessage); }
+        public virtual Operand ToJson(string errorMessage = null) { return Error(errorMessage); }
 
         /// <summary>
         /// 转Array类型
         /// </summary>
         /// <param name="errorMessage"></param>
         /// <returns></returns>
-        public virtual Operand ToArray(string errorMessage = null)
-        { return Error(errorMessage); }
+        public virtual Operand ToArray(string errorMessage = null) { return Error(errorMessage); }
 
         #region Operand
 
@@ -606,31 +621,21 @@ namespace ToolGood.Algorithm
         public override long LongValue => (long)_value;
         public override double DoubleValue => (double)_value;
 
-        public override Operand ToNumber(string errorMessage = null)
-        { return this; }
+        public override Operand ToNumber(string errorMessage = null) { return this; }
+        public override Operand ToNumber(string errorMessage, int index) { return this; }
 
-        public override Operand ToBoolean(string errorMessage = null)
-        { return NumberValue != 0 ? True : False; }
+        public override Operand ToBoolean(string errorMessage = null) { return NumberValue != 0 ? True : False; }
+        public override Operand ToBoolean(string errorMessage, int index) { return NumberValue != 0 ? True : False; }
 
-        public override Operand ToText(string errorMessage = null)
-        { return Create(NumberValue.ToString(CultureInfo.InvariantCulture)); }
+        public override Operand ToText(string errorMessage = null) { return Create(NumberValue.ToString(CultureInfo.InvariantCulture)); }
+        public override Operand ToText(string errorMessage, int index) { return Create(NumberValue.ToString(CultureInfo.InvariantCulture)); }
 
-        public override Operand ToMyDate(string errorMessage = null)
-        { return Create((MyDate)NumberValue); }
+        public override Operand ToMyDate(string errorMessage = null) { return Create((MyDate)NumberValue); }
 
-        public override Operand ToArray(string errorMessage = null)
-        {
-            return Error(errorMessage ?? "Convert number to array error!");
-        }
+        public override Operand ToArray(string errorMessage = null) { return Error(errorMessage ?? "Convert number to array error!"); }
 
-        public override Operand ToJson(string errorMessage = null)
-        {
-            return Error(errorMessage ?? "Convert number to json error!");
-        }
-        public override string ToString()
-        {
-            return NumberValue.ToString(CultureInfo.InvariantCulture);
-        }
+        public override Operand ToJson(string errorMessage = null) { return Error(errorMessage ?? "Convert number to json error!"); }
+        public override string ToString() { return NumberValue.ToString(CultureInfo.InvariantCulture); }
     }
 
     internal sealed class OperandBoolean : Operand<bool>
@@ -642,33 +647,21 @@ namespace ToolGood.Algorithm
         public override OperandType Type => OperandType.BOOLEAN;
         public override bool BooleanValue => _value;
 
-        public override Operand ToNumber(string errorMessage = null)
-        { return BooleanValue ? One : Zero; }
+        public override Operand ToNumber(string errorMessage = null) { return BooleanValue ? One : Zero; }
+        public override Operand ToNumber(string errorMessage, int index) { return BooleanValue ? One : Zero; }
 
-        public override Operand ToBoolean(string errorMessage = null)
-        { return this; }
+        public override Operand ToBoolean(string errorMessage = null) { return this; }
+        public override Operand ToBoolean(string errorMessage, int index) { return this; }
 
-        public override Operand ToText(string errorMessage = null)
-        { return Create(BooleanValue ? "TRUE" : "FALSE"); }
+        public override Operand ToText(string errorMessage = null) { return Create(BooleanValue ? "TRUE" : "FALSE"); }
+        public override Operand ToText(string errorMessage, int index) { return Create(BooleanValue ? "TRUE" : "FALSE"); }
 
-        public override Operand ToArray(string errorMessage = null)
-        {
-            return Error(errorMessage ?? "Convert bool to array error!");
-        }
+        public override Operand ToArray(string errorMessage = null) { return Error(errorMessage ?? "Convert bool to array error!"); }
 
-        public override Operand ToJson(string errorMessage = null)
-        {
-            return Error(errorMessage ?? "Convert bool to json error!");
-        }
+        public override Operand ToJson(string errorMessage = null) { return Error(errorMessage ?? "Convert bool to json error!"); }
 
-        public override Operand ToMyDate(string errorMessage = null)
-        {
-            return Error(errorMessage ?? "Convert bool to date error!");
-        }
-        public override string ToString()
-        {
-            return BooleanValue ? "true" : "false";
-        }
+        public override Operand ToMyDate(string errorMessage = null) { return Error(errorMessage ?? "Convert bool to date error!"); }
+        public override string ToString() { return BooleanValue ? "true" : "false"; }
     }
 
     internal sealed class OperandString : Operand<string>
@@ -690,11 +683,19 @@ namespace ToolGood.Algorithm
             }
             return Error(errorMessage);
         }
-
-        public override Operand ToText(string errorMessage = null)
+        public override Operand ToNumber(string errorMessage, int index)
         {
-            return this;
+            if (decimal.TryParse(TextValue, out decimal d)) {
+                return Operand.Create(d);
+            }
+            if (errorMessage == null) {
+                return Error("Convert string to number error!");
+            }
+            return Error(string.Format(errorMessage, index));
         }
+
+        public override Operand ToText(string errorMessage = null) { return this; }
+        public override Operand ToText(string errorMessage, int index) { return this; }
 
         public override Operand ToBoolean(string errorMessage = null)
         {
@@ -708,6 +709,19 @@ namespace ToolGood.Algorithm
                 return Error("Convert string to bool error!");
             }
             return Error(errorMessage);
+        }
+        public override Operand ToBoolean(string errorMessage, int index)
+        {
+            if (TextValue.Equals("true", StringComparison.OrdinalIgnoreCase)) { return True; }
+            if (TextValue.Equals("yes", StringComparison.OrdinalIgnoreCase)) { return True; }
+            if (TextValue.Equals("false", StringComparison.OrdinalIgnoreCase)) { return False; }
+            if (TextValue.Equals("no", StringComparison.OrdinalIgnoreCase)) { return False; }
+            if (TextValue.Equals("1") || TextValue.Equals("是") || TextValue.Equals("有")) { return True; }
+            if (TextValue.Equals("0") || TextValue.Equals("否") || TextValue.Equals("不是") || TextValue.Equals("无") || TextValue.Equals("没有")) { return False; }
+            if (errorMessage == null) {
+                return Error("Convert string to bool error!");
+            }
+            return Error(string.Format(errorMessage, index));
         }
 
         public override Operand ToMyDate(string errorMessage = null)
@@ -756,38 +770,22 @@ namespace ToolGood.Algorithm
         public override OperandType Type => OperandType.DATE;
         public override MyDate DateValue => _value;
 
-        public override Operand ToNumber(string errorMessage = null)
-        {
-            return Create((decimal)DateValue);
-        }
+        public override Operand ToNumber(string errorMessage = null) { return Create((decimal)DateValue); }
+        public override Operand ToNumber(string errorMessage, int index) { return Create((decimal)DateValue); }
 
-        public override Operand ToBoolean(string errorMessage = null)
-        {
-            return ((decimal)DateValue) != 0 ? True : False;
-        }
+        public override Operand ToBoolean(string errorMessage = null) { return ((decimal)DateValue) != 0 ? True : False; }
+        public override Operand ToBoolean(string errorMessage, int index) { return ((decimal)DateValue) != 0 ? True : False; }
 
-        public override Operand ToText(string errorMessage = null)
-        {
-            return Create(DateValue.ToString());
-        }
+        public override Operand ToText(string errorMessage = null) { return Create(DateValue.ToString()); }
+        public override Operand ToText(string errorMessage, int index) { return Create(DateValue.ToString()); }
 
-        public override Operand ToMyDate(string errorMessage = null)
-        { return this; }
+        public override Operand ToMyDate(string errorMessage = null) { return this; }
 
-        public override Operand ToArray(string errorMessage = null)
-        {
-            return Error(errorMessage ?? "Convert date to array error!");
-        }
+        public override Operand ToArray(string errorMessage = null) { return Error(errorMessage ?? "Convert date to array error!"); }
 
-        public override Operand ToJson(string errorMessage = null)
-        {
-            return Error(errorMessage ?? "Convert date to json error!");
-        }
+        public override Operand ToJson(string errorMessage = null) { return Error(errorMessage ?? "Convert date to json error!"); }
 
-        public override string ToString()
-        {
-            return "\"" + DateValue.ToString() + "\"";
-        }
+        public override string ToString() { return "\"" + DateValue.ToString() + "\""; }
     }
 
     internal sealed class OperandJson : Operand<JsonData>
@@ -823,25 +821,13 @@ namespace ToolGood.Algorithm
             return Error(errorMessage ?? "Convert json to array error!");
         }
 
-        public override Operand ToBoolean(string errorMessage = null)
-        {
-            return Error(errorMessage ?? "Convert json to bool error!");
-        }
+        public override Operand ToBoolean(string errorMessage = null) { return Error(errorMessage ?? "Convert json to bool error!"); }
 
-        public override Operand ToMyDate(string errorMessage = null)
-        {
-            return Error(errorMessage ?? "Convert json to date error!");
-        }
+        public override Operand ToMyDate(string errorMessage = null) { return Error(errorMessage ?? "Convert json to date error!"); }
 
-        public override Operand ToNumber(string errorMessage = null)
-        {
-            return Error(errorMessage ?? "Convert json to number error!");
-        }
+        public override Operand ToNumber(string errorMessage = null) { return Error(errorMessage ?? "Convert json to number error!"); }
 
-        public override Operand ToText(string errorMessage = null)
-        {
-            return Error(errorMessage ?? "Convert json to string error!");
-        }
+        public override Operand ToText(string errorMessage = null) { return Error(errorMessage ?? "Convert json to string error!"); }
     }
 
     internal sealed class OperandArray : Operand<List<Operand>>
@@ -880,23 +866,20 @@ namespace ToolGood.Algorithm
             _errorMsg = msg;
         }
 
-        public override Operand ToNumber(string errorMessage = null)
-        { return this; }
+        public override Operand ToNumber(string errorMessage = null) { return this; }
+        public override Operand ToNumber(string errorMessage, int index) { return this; }
 
-        public override Operand ToBoolean(string errorMessage = null)
-        { return this; }
+        public override Operand ToBoolean(string errorMessage = null) { return this; }
+        public override Operand ToBoolean(string errorMessage, int index) { return this; }
 
-        public override Operand ToText(string errorMessage = null)
-        { return this; }
+        public override Operand ToText(string errorMessage = null) { return this; }
+        public override Operand ToText(string errorMessage, int index) { return this; }
 
-        public override Operand ToArray(string errorMessage = null)
-        { return this; }
+        public override Operand ToArray(string errorMessage = null) { return this; }
 
-        public override Operand ToJson(string errorMessage = null)
-        { return this; }
+        public override Operand ToJson(string errorMessage = null) { return this; }
 
-        public override Operand ToMyDate(string errorMessage = null)
-        { return this; }
+        public override Operand ToMyDate(string errorMessage = null) { return this; }
     }
 
     internal sealed class OperandNull : Operand
@@ -904,39 +887,18 @@ namespace ToolGood.Algorithm
         public override OperandType Type => OperandType.NULL;
         public override bool IsNull => true;
 
-        public override Operand ToArray(string errorMessage = null)
-        {
-            return Error(errorMessage ?? "Convert null to array error!");
-        }
+        public override Operand ToArray(string errorMessage = null) { return Error(errorMessage ?? "Convert null to array error!"); }
 
-        public override Operand ToBoolean(string errorMessage = null)
-        {
-            return Error(errorMessage ?? "Convert null to bool error!");
-        }
+        public override Operand ToBoolean(string errorMessage = null) { return Error(errorMessage ?? "Convert null to bool error!"); }
 
-        public override Operand ToText(string errorMessage = null)
-        {
-            return Error(errorMessage ?? "Convert null to string error!");
-        }
+        public override Operand ToText(string errorMessage = null) { return Error(errorMessage ?? "Convert null to string error!"); }
 
-        public override Operand ToNumber(string errorMessage = null)
-        {
-            return Error(errorMessage ?? "Convert null to number error!");
-        }
+        public override Operand ToNumber(string errorMessage = null) { return Error(errorMessage ?? "Convert null to number error!"); }
 
-        public override Operand ToJson(string errorMessage = null)
-        {
-            return Error(errorMessage ?? "Convert null to json error!");
-        }
+        public override Operand ToJson(string errorMessage = null) { return Error(errorMessage ?? "Convert null to json error!"); }
 
-        public override Operand ToMyDate(string errorMessage = null)
-        {
-            return Error(errorMessage ?? "Convert null to date error!");
-        }
-        public override string ToString()
-        {
-            return "null";
-        }
+        public override Operand ToMyDate(string errorMessage = null) { return Error(errorMessage ?? "Convert null to date error!"); }
+        public override string ToString() { return "null"; }
     }
 
     internal class KeyValue

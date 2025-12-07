@@ -95,7 +95,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText($"Function BASE64TOTEXT parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function BASE64TOTEXT parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
             try {
                 Encoding encoding;
                 if (args.Count == 1) {
@@ -123,7 +123,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText($"Function BASE64URLTOTEXT parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function BASE64URLTOTEXT parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
             try {
                 Encoding encoding;
                 if (args.Count == 1) {
@@ -151,7 +151,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText($"Function TEXTTOBASE64 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function TEXTTOBASE64 parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
             try {
                 Encoding encoding;
                 if (args.Count == 1) {
@@ -181,7 +181,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText($"Function TEXTTOBASE64URL parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function TEXTTOBASE64URL parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
             try {
                 Encoding encoding;
                 if (args.Count == 1) {
@@ -290,7 +290,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText($"Function MD5 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function MD5 parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
             try {
                 Encoding encoding;
                 if (args.Count == 1) {
@@ -319,7 +319,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText($"Function SHA1 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function SHA1 parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
             try {
                 Encoding encoding;
                 if (args.Count == 1) {
@@ -348,7 +348,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText($"Function SHA256 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function SHA256 parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
             try {
                 Encoding encoding;
                 if (args.Count == 1) {
@@ -377,7 +377,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText($"Function SHA512 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function SHA512 parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
             try {
                 Encoding encoding;
                 if (args.Count == 1) {
@@ -406,7 +406,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText($"Function CRC32 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function CRC32 parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
             try {
                 Encoding encoding;
                 if (args.Count == 1) {
@@ -435,7 +435,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText($"Function HMACMD5 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function HMACMD5 parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
             try {
                 Encoding encoding;
                 if (args.Count == 2) {
@@ -464,7 +464,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText($"Function HMACSHA1 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function HMACSHA1 parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
             try {
                 Encoding encoding;
                 if (args.Count == 2) {
@@ -493,7 +493,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText($"Function HMACSHA256 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function HMACSHA256 parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
             try {
                 Encoding encoding;
                 if (args.Count == 2) {
@@ -522,7 +522,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText($"Function HMACSHA512 parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function HMACSHA512 parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
             try {
                 Encoding encoding;
                 if (args.Count == 2) {
@@ -551,7 +551,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText($"Function TRIMSTART parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function TRIMSTART parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
             if (args.Count == 1) {
                 return Operand.Create(args[0].TextValue.TrimStart());
             } else {
@@ -574,7 +574,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText($"Function TRIMEND parameter {index++} is error!"); if (a.IsError) { return a; } args.Add(a); }
+            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function TRIMEND parameter {0} is error!", index++); if (a.IsError) { return a; } args.Add(a); }
             if (args.Count == 1) {
                 return Operand.Create(args[0].TextValue.TrimEnd());
             } else {
@@ -693,7 +693,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 List<string> list = new List<string>();
                 for (int i = 1; i < args.Count; i++) {
                     var o = FunctionUtil.F_base_GetList(args[i], list);
-                    if (o == false) return Operand.Error($"Function JOIN parameter {i + 1} is error!");
+                    if (o == false) return Operand.Error("Function JOIN parameter {i + 1} is error!");
                 }
                 return Operand.Create(string.Join(args1.TextValue, list));
             }

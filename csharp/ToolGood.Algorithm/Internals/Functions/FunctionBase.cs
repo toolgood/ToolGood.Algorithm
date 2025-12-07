@@ -980,7 +980,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             var index = 1;
             bool b = true;
             foreach (var item in funcs) {
-                var a = item.Calculate(work).ToBoolean($"Function AND parameter {index++} is error!");
+                var a = item.Calculate(work).ToBoolean("Function AND parameter {0} is error!", index++);
                 if (a.IsError) { return a; }
                 if (a.BooleanValue == false) b = false;
             }
@@ -1004,7 +1004,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             var index = 1;
             bool b = false;
             foreach (var item in funcs) {
-                var a = item.Calculate(work).ToBoolean($"Function OR parameter {index++} is error!");
+                var a = item.Calculate(work).ToBoolean("Function OR parameter {0} is error!", index++);
                 if (a.IsError) { return a; }
                 if (a.BooleanValue) b = true;
             }
