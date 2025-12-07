@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading;
 using ToolGood.Algorithm;
 
-namespace ToolGood.Algorithm2.Test
+namespace ToolGood.Algorithm.Test
 {
     internal class Program
     {

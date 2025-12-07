@@ -29,7 +29,7 @@ namespace ToolGood.Algorithm.LitJson
 
         private static readonly IDictionary<int, IDictionary<int, int[]>> parse_table;
 
-        private Stack<int> automaton_stack;
+        private readonly Stack<int> automaton_stack;
         private int current_input;
         private int current_symbol;
         private bool end_of_json;
@@ -151,7 +151,7 @@ namespace ToolGood.Algorithm.LitJson
 
         private void ProcessNumber(string number)
         {
-            if (number.IndexOf('.') != -1 || number.IndexOf('e') != -1 || number.IndexOf('E') != -1) {
+            if (number.Contains('.') || number.Contains('e') || number.Contains('E')) {
                 if (decimal.TryParse(number, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal n_double)) {
                     token_value = n_double;
                     return;

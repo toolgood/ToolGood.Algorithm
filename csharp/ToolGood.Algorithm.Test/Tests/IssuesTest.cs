@@ -2,7 +2,7 @@
 using System;
 using ToolGood.Algorithm;
 
-namespace ToolGood.Algorithm2.Test.Tests
+namespace ToolGood.Algorithm.Test
 {
     [TestFixture]
     public class IssuesTest

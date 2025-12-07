@@ -8,10 +8,10 @@ namespace ToolGood.Algorithm.LitJson
     {
         #region Fields
 
-        private IList<JsonData> inst_array;
+        private List<JsonData> inst_array;
         private bool inst_boolean;
         private decimal inst_double;
-        internal IDictionary<string, JsonData> inst_object;
+        internal Dictionary<string, JsonData> inst_object;
         private string inst_string;
         private JsonType type;
         //private IList<KeyValuePair<string, JsonData>> object_list;
@@ -111,21 +111,21 @@ namespace ToolGood.Algorithm.LitJson
             return (ICollection)inst_object;
         }
 
-        private IDictionary EnsureDictionary()
+        private Dictionary<string, JsonData> EnsureDictionary()
         {
-            if (type == JsonType.Object) return (IDictionary)inst_object;
+            if (type == JsonType.Object) return inst_object;
             type = JsonType.Object;
             inst_object = new Dictionary<string, JsonData>();
             //object_list = new List<KeyValuePair<string, JsonData>>();
-            return (IDictionary)inst_object;
+            return inst_object;
         }
 
-        private IList EnsureList()
+        private List<JsonData> EnsureList()
         {
-            if (type == JsonType.Array) return (IList)inst_array;
+            if (type == JsonType.Array) return inst_array;
             type = JsonType.Array;
             inst_array = new List<JsonData>();
-            return (IList)inst_array;
+            return inst_array;
         }
 
         #endregion Private Methods

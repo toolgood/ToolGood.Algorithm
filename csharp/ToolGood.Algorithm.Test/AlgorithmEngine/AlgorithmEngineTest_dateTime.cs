@@ -1,7 +1,7 @@
 ﻿using PetaTest;
 using System;
 
-namespace ToolGood.Algorithm
+namespace ToolGood.Algorithm.Test
 {
     [TestFixture]
     internal class AlgorithmEngineTest_dateTime

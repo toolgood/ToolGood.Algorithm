@@ -1,6 +1,6 @@
 ﻿using PetaTest;
 
-namespace ToolGood.Algorithm
+namespace ToolGood.Algorithm.Test
 {
     [TestFixture]
     internal class AlgorithmEngineTest_string
