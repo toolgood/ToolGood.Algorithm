@@ -15,12 +15,12 @@
         [JSInvokable]
         public static string TryEvaluateString(string exp, string def = null, string data = null, string option = null)
         {
-            AlgorithmEngine ae;
+            AlgorithmEngineEx ae;
             if (option == null) {
-                ae = new AlgorithmEngine();
+                ae = new AlgorithmEngineEx();
             } else {
                 var ops = JsonSerializer.Deserialize<Dictionary<string, object>>(option);
-                ae = new AlgorithmEngine(bool.Parse(ops["IgnoreCase"].ToString()));
+                ae = new AlgorithmEngineEx(bool.Parse(ops["IgnoreCase"].ToString()));
                 ae.UseExcelIndex = bool.Parse(ops["UseExcelIndex"].ToString());
                 ae.UseTempDict = bool.Parse(ops["UseTempDict"].ToString());
                 ae.UseLocalTime = bool.Parse(ops["UseLocalTime"].ToString());
@@ -37,29 +37,27 @@
             result["useDef"] = false;
             result["error"] = null;
             try {
-                if (ae.Parse(exp)) {
-                    result["parse"] = true;
-                    var obj = ae.Evaluate();
-                    if (obj.IsNull) {
-                        result["result"] = null;
-                        return JsonSerializer.Serialize(result);
-                    }
-                    if (obj.IsError) {
-                        result["result"] = def;
-                        result["useDef"] = true;
-                        result["error"] = obj.ErrorMsg;
-                        return JsonSerializer.Serialize(result);
-                    }
-                    if (obj.Type == OperandType.DATE) {
-                        result["result"] = obj.DateValue.ToString();
-                        result["error"] = ae.LastError;
-                        return JsonSerializer.Serialize(result);
-                    }
-                    obj = obj.ToText("It can't be converted to string!");
-                    result["result"] = obj.TextValue;
+                var fun = ae.Parse(exp);
+                result["parse"] = true;
+                var obj = fun.Calculate(ae);
+                if (obj.IsNull) {
+                    result["result"] = null;
                     return JsonSerializer.Serialize(result);
                 }
-                result["error"] = "Parameter exp invalid !";
+                if (obj.IsError) {
+                    result["result"] = def;
+                    result["useDef"] = true;
+                    result["error"] = obj.ErrorMsg;
+                    return JsonSerializer.Serialize(result);
+                }
+                if (obj.Type == OperandType.DATE) {
+                    result["result"] = obj.DateValue.ToString();
+                    result["error"] = ae.LastError;
+                    return JsonSerializer.Serialize(result);
+                }
+                obj = obj.ToText("It can't be converted to string!");
+                result["result"] = obj.TextValue;
+                return JsonSerializer.Serialize(result);
             } catch (Exception ex) {
                 result["error"] = ex.Message;
             }
@@ -71,12 +69,12 @@
         [JSInvokable]
         public static string TryEvaluateNumber(string exp, decimal def, string data = null, string option = null)
         {
-            AlgorithmEngine ae;
+            AlgorithmEngineEx ae;
             if (option == null) {
-                ae = new AlgorithmEngine();
+                ae = new AlgorithmEngineEx();
             } else {
                 var ops = JsonSerializer.Deserialize<Dictionary<string, object>>(option);
-                ae = new AlgorithmEngine(bool.Parse(ops["IgnoreCase"].ToString()));
+                ae = new AlgorithmEngineEx(bool.Parse(ops["IgnoreCase"].ToString()));
                 ae.UseExcelIndex = bool.Parse(ops["UseExcelIndex"].ToString());
                 ae.UseTempDict = bool.Parse(ops["UseTempDict"].ToString());
                 ae.UseLocalTime = bool.Parse(ops["UseLocalTime"].ToString());
@@ -93,20 +91,18 @@
             result["useDef"] = false;
             result["error"] = null;
             try {
-                if (ae.Parse(exp)) {
-                    result["parse"] = true;
-                    var obj = ae.Evaluate();
-                    obj = obj.ToNumber("It can't be converted to number!");
-                    if (obj.IsError) {
-                        result["result"] = def;
-                        result["useDef"] = true;
-                        result["error"] = obj.ErrorMsg;
-                        return JsonSerializer.Serialize(result);
-                    }
-                    result["result"] = obj.NumberValue;
+                var fun = ae.Parse(exp);
+                result["parse"] = true;
+                var obj = fun.Calculate(ae);
+                obj = obj.ToNumber("It can't be converted to bool!");
+                if (obj.IsError) {
+                    result["result"] = def;
+                    result["useDef"] = true;
+                    result["error"] = obj.ErrorMsg;
                     return JsonSerializer.Serialize(result);
                 }
-                result["error"] = "Parameter exp invalid !";
+                result["result"] = obj.NumberValue;
+                return JsonSerializer.Serialize(result);
             } catch (Exception ex) {
                 result["error"] = ex.Message;
             }
@@ -118,12 +114,12 @@
         [JSInvokable]
         public static string TryEvaluateBool(string exp, bool def, string data = null, string option = null)
         {
-            AlgorithmEngine ae;
+            AlgorithmEngineEx ae;
             if (option == null) {
-                ae = new AlgorithmEngine();
+                ae = new AlgorithmEngineEx();
             } else {
                 var ops = JsonSerializer.Deserialize<Dictionary<string, object>>(option);
-                ae = new AlgorithmEngine(bool.Parse(ops["IgnoreCase"].ToString()));
+                ae = new AlgorithmEngineEx(bool.Parse(ops["IgnoreCase"].ToString()));
                 ae.UseExcelIndex = bool.Parse(ops["UseExcelIndex"].ToString());
                 ae.UseTempDict = bool.Parse(ops["UseTempDict"].ToString());
                 ae.UseLocalTime = bool.Parse(ops["UseLocalTime"].ToString());
@@ -140,20 +136,18 @@
             result["useDef"] = false;
             result["error"] = null;
             try {
-                if (ae.Parse(exp)) {
-                    result["parse"] = true;
-                    var obj = ae.Evaluate();
-                    obj = obj.ToBoolean("It can't be converted to bool!");
-                    if (obj.IsError) {
-                        result["result"] = def;
-                        result["useDef"] = true;
-                        result["error"] = obj.ErrorMsg;
-                        return JsonSerializer.Serialize(result);
-                    }
-                    result["result"] = obj.BooleanValue;
+                var fun = ae.Parse(exp);
+                result["parse"] = true;
+                var obj = fun.Calculate(ae);
+                obj = obj.ToBoolean("It can't be converted to bool!");
+                if (obj.IsError) {
+                    result["result"] = def;
+                    result["useDef"] = true;
+                    result["error"] = obj.ErrorMsg;
                     return JsonSerializer.Serialize(result);
                 }
-                result["error"] = "Parameter exp invalid !";
+                result["result"] = obj.BooleanValue;
+                return JsonSerializer.Serialize(result);
             } catch (Exception ex) {
                 result["error"] = ex.Message;
             }
@@ -165,12 +159,12 @@
         [JSInvokable]
         public static string TryEvaluateDateTime(string exp, DateTime def, string data = null, string option = null)
         {
-            AlgorithmEngine ae;
+            AlgorithmEngineEx ae;
             if (option == null) {
-                ae = new AlgorithmEngine();
+                ae = new AlgorithmEngineEx();
             } else {
                 var ops = JsonSerializer.Deserialize<Dictionary<string, object>>(option);
-                ae = new AlgorithmEngine(bool.Parse(ops["IgnoreCase"].ToString()));
+                ae = new AlgorithmEngineEx(bool.Parse(ops["IgnoreCase"].ToString()));
                 ae.UseExcelIndex = bool.Parse(ops["UseExcelIndex"].ToString());
                 ae.UseTempDict = bool.Parse(ops["UseTempDict"].ToString());
                 ae.UseLocalTime = bool.Parse(ops["UseLocalTime"].ToString());
@@ -187,20 +181,18 @@
             result["useDef"] = false;
             result["error"] = null;
             try {
-                if (ae.Parse(exp)) {
-                    result["parse"] = true;
-                    var obj = ae.Evaluate();
-                    obj = obj.ToMyDate("It can't be converted to datetime!");
-                    if (obj.IsError) {
-                        result["result"] = def;
-                        result["useDef"] = true;
-                        result["error"] = ae.LastError;
-                        return def.ToString("yyyy-MM-dd HH:mm:ss");
-                    }
-                    result["result"] = obj.DateValue.ToString();
-                    return JsonSerializer.Serialize(result);
+                var fun = ae.Parse(exp);
+                result["parse"] = true;
+                var obj = fun.Calculate(ae);
+                obj = obj.ToMyDate("It can't be converted to datetime!");
+                if (obj.IsError) {
+                    result["result"] = def;
+                    result["useDef"] = true;
+                    result["error"] = ae.LastError;
+                    return def.ToString("yyyy-MM-dd HH:mm:ss");
                 }
-                result["error"] = "Parameter exp invalid !";
+                result["result"] = obj.DateValue.ToString();
+                return JsonSerializer.Serialize(result);
             } catch (Exception ex) {
                 result["error"] = ex.Message;
             }
@@ -209,51 +201,6 @@
             return JsonSerializer.Serialize(result);
         }
 
-        [JSInvokable]
-        public static String GetSimplifiedFormula(String formula, string data = null, string option = null)
-        {
-            AlgorithmEngine ae;
-            if (option == null) {
-                ae = new AlgorithmEngine();
-            } else {
-                var ops = JsonSerializer.Deserialize<Dictionary<string, object>>(option);
-                ae = new AlgorithmEngine(bool.Parse(ops["IgnoreCase"].ToString()));
-                ae.UseExcelIndex = bool.Parse(ops["UseExcelIndex"].ToString());
-                ae.UseTempDict = bool.Parse(ops["UseTempDict"].ToString());
-                ae.UseLocalTime = bool.Parse(ops["UseLocalTime"].ToString());
-                ae.DistanceUnit = (DistanceUnitType)(int.Parse(ops["DistanceUnit"].ToString()));
-                ae.AreaUnit = (AreaUnitType)(int.Parse(ops["AreaUnit"].ToString()));
-                ae.VolumeUnit = (VolumeUnitType)(int.Parse(ops["VolumeUnit"].ToString()));
-                ae.MassUnit = (MassUnitType)(int.Parse(ops["MassUnit"].ToString()));
-            }
-            if (data != null) {
-                ae.AddParameterFromJson(data);
-            }
-            return ae.GetSimplifiedFormula(formula);
-        }
-
-        [JSInvokable]
-        public static string EvaluateFormula(string exp, string splitChars, string data = null, string option = null)
-        {
-            AlgorithmEngine ae;
-            if (option == null) {
-                ae = new AlgorithmEngine();
-            } else {
-                var ops = JsonSerializer.Deserialize<Dictionary<string, object>>(option);
-                ae = new AlgorithmEngine(bool.Parse(ops["IgnoreCase"].ToString()));
-                ae.UseExcelIndex = bool.Parse(ops["UseExcelIndex"].ToString());
-                ae.UseTempDict = bool.Parse(ops["UseTempDict"].ToString());
-                ae.UseLocalTime = bool.Parse(ops["UseLocalTime"].ToString());
-                ae.DistanceUnit = (DistanceUnitType)(int.Parse(ops["DistanceUnit"].ToString()));
-                ae.AreaUnit = (AreaUnitType)(int.Parse(ops["AreaUnit"].ToString()));
-                ae.VolumeUnit = (VolumeUnitType)(int.Parse(ops["VolumeUnit"].ToString()));
-                ae.MassUnit = (MassUnitType)(int.Parse(ops["MassUnit"].ToString()));
-            }
-            if (data != null) {
-                ae.AddParameterFromJson(data);
-            }
-            return ae.EvaluateFormula(exp, splitChars.ToCharArray());
-        }
 
         [JSInvokable]
         public static bool IsKeywords(string parameter)
