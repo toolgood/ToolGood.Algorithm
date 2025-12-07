@@ -21,7 +21,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             if (args[0].Type == OperandType.DATE) { return args[0]; }
             int type = 0;
             if (args.Count == 2) {
-                var args2 = args[1].ToNumber("Function '{0}' parameter {1} is error!","DateValue",2);
+                var args2 = args[1].ToNumber("Function '{0}' parameter {1} is error!", "DateValue", 2);
                 if (args2.IsError) { return args2; }
                 type = args2.IntValue;
             }
@@ -31,7 +31,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                         return Operand.Create(time);
                     }
                 }
-                var args1 = args[0].ToNumber("Function '{0}' parameter {1} is error!","DateValue",1);
+                var args1 = args[0].ToNumber("Function '{0}' parameter {1} is error!", "DateValue", 1);
                 if (args1.LongValue <= 2958465L) { // 9999-12-31 日时间在excel的数字为 2958465
                     return args1.ToMyDate();
                 }
@@ -45,25 +45,25 @@ namespace ToolGood.Algorithm.Internals.Functions
                 if (work.UseLocalTime) { return Operand.Create(time2.ToLocalTime()); }
                 return Operand.Create(time2);
             } else if (type == 1) {
-                var args1 = args[0].ToText("Function '{0}' parameter {1} is error!","DateValue",1);
+                var args1 = args[0].ToText("Function '{0}' parameter {1} is error!", "DateValue", 1);
                 if (args1.IsError) { return args1; }
                 if (DateTime.TryParse(args1.TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dt)) {
                     return Operand.Create(dt);
                 }
             } else if (type == 2) {
-                return args[0].ToNumber("Function 'DateValue' parameter is error!").ToMyDate();
+                return args[0].ToNumber("Function '{0}' parameter is error!","DateValue").ToMyDate();
             } else if (type == 3) {
-                var args1 = args[0].ToNumber("Function '{0}' parameter {1} is error!","DateValue",1);
+                var args1 = args[0].ToNumber("Function '{0}' parameter {1} is error!", "DateValue", 1);
                 var time = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(args1.LongValue);
                 if (work.UseLocalTime) { return Operand.Create(time.ToLocalTime()); }
                 return Operand.Create(time);
             } else if (type == 4) {
-                var args1 = args[0].ToNumber("Function '{0}' parameter {1} is error!","DateValue",1);
+                var args1 = args[0].ToNumber("Function '{0}' parameter {1} is error!", "DateValue", 1);
                 var time = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(args1.LongValue);
                 if (work.UseLocalTime) { return Operand.Create(time.ToLocalTime()); }
                 return Operand.Create(time);
             }
-            return Operand.Error("Function 'DateValue' parameter is error!");
+            return Operand.Error("Function '{0}' parameter is error!","DateValue");
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
@@ -83,15 +83,15 @@ namespace ToolGood.Algorithm.Internals.Functions
             foreach (var item in funcs) { var aa = item.Calculate(work); if (aa.IsError) { return aa; } args.Add(aa); }
             int type = 0; // 毫秒
             if (args.Count == 2) {
-                var args2 = args[1].ToNumber("Function '{0}' parameter {1} is error!","TimeStamp",2);
+                var args2 = args[1].ToNumber("Function '{0}' parameter {1} is error!", "TimeStamp", 2);
                 if (args2.IsError) { return args2; }
                 type = args2.IntValue;
             }
             DateTime args1;
             if (work.UseLocalTime) {
-                args1 = args[0].ToMyDate("Function '{0}' parameter {1} is error!","TimeStamp",1).DateValue.ToDateTime(DateTimeKind.Local).ToUniversalTime();
+                args1 = args[0].ToMyDate("Function '{0}' parameter {1} is error!", "TimeStamp", 1).DateValue.ToDateTime(DateTimeKind.Local).ToUniversalTime();
             } else {
-                args1 = args[0].ToMyDate("Function '{0}' parameter {1} is error!","TimeStamp",1).DateValue.ToDateTime(DateTimeKind.Utc);
+                args1 = args[0].ToMyDate("Function '{0}' parameter {1} is error!", "TimeStamp", 1).DateValue.ToDateTime(DateTimeKind.Utc);
             }
             if (type == 0) {
                 var ms = (args1 - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds;
@@ -100,7 +100,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 var s = (args1 - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
                 return Operand.Create(s);
             }
-            return Operand.Error("Function 'TimeStamp' parameter is error!");
+            return Operand.Error("Function '{0}' parameter is error!","TimeStamp");
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
@@ -116,12 +116,12 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'TimeValue' parameter is error!"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter is error!","TimeValue"); if (args1.IsError) { return args1; } }
 
             if (TimeSpan.TryParse(args1.TextValue, CultureInfo.InvariantCulture, out TimeSpan dt)) {
                 return Operand.Create(dt);
             }
-            return Operand.Error("Function 'TimeValue' parameter is error!");
+            return Operand.Error("Function '{0}' parameter is error!","TimeValue");
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
@@ -137,25 +137,25 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!","Date",1); if (args1.IsError) { return args1; } }
-            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!","Date",2); if (args2.IsError) { return args2; } }
-            var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function '{0}' parameter {1} is error!","Date",3); if (args3.IsError) { return args3; } }
+            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Date", 1); if (args1.IsError) { return args1; } }
+            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Date", 2); if (args2.IsError) { return args2; } }
+            var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "Date", 3); if (args3.IsError) { return args3; } }
 
             MyDate d;
             if (funcs.Length == 3) {
                 d = new MyDate(args1.IntValue, args2.IntValue, args3.IntValue, 0, 0, 0);
             } else if (funcs.Length == 4) {
-                var args4 = funcs[3].Calculate(work); if (args4.Type != OperandType.NUMBER) { args4 = args4.ToNumber("Function '{0}' parameter {1} is error!","Date",4); if (args4.IsError) { return args4; } }
+                var args4 = funcs[3].Calculate(work); if (args4.Type != OperandType.NUMBER) { args4 = args4.ToNumber("Function '{0}' parameter {1} is error!", "Date", 4); if (args4.IsError) { return args4; } }
 
                 d = new MyDate(args1.IntValue, args2.IntValue, args3.IntValue, args4.IntValue, 0, 0);
             } else if (funcs.Length == 5) {
-                var args4 = funcs[3].Calculate(work); if (args4.Type != OperandType.NUMBER) { args4 = args4.ToNumber("Function '{0}' parameter {1} is error!","Date",4); if (args4.IsError) { return args4; } }
-                var args5 = funcs[4].Calculate(work); if (args5.Type != OperandType.NUMBER) { args5 = args5.ToNumber("Function '{0}' parameter {1} is error!","Date",5); if (args5.IsError) { return args5; } }
+                var args4 = funcs[3].Calculate(work); if (args4.Type != OperandType.NUMBER) { args4 = args4.ToNumber("Function '{0}' parameter {1} is error!", "Date", 4); if (args4.IsError) { return args4; } }
+                var args5 = funcs[4].Calculate(work); if (args5.Type != OperandType.NUMBER) { args5 = args5.ToNumber("Function '{0}' parameter {1} is error!", "Date", 5); if (args5.IsError) { return args5; } }
                 d = new MyDate(args1.IntValue, args2.IntValue, args3.IntValue, args4.IntValue, args5.IntValue, 0);
             } else {
-                var args4 = funcs[3].Calculate(work); if (args4.Type != OperandType.NUMBER) { args4 = args4.ToNumber("Function '{0}' parameter {1} is error!","Date",4); if (args4.IsError) { return args4; } }
-                var args5 = funcs[4].Calculate(work); if (args5.Type != OperandType.NUMBER) { args5 = args5.ToNumber("Function '{0}' parameter {1} is error!","Date",5); if (args5.IsError) { return args5; } }
-                var args6 = funcs[5].Calculate(work); if (args6.Type != OperandType.NUMBER) { args6 = args6.ToNumber("Function '{0}' parameter {1} is error!","Date",6); if (args6.IsError) { return args6; } }
+                var args4 = funcs[3].Calculate(work); if (args4.Type != OperandType.NUMBER) { args4 = args4.ToNumber("Function '{0}' parameter {1} is error!", "Date", 4); if (args4.IsError) { return args4; } }
+                var args5 = funcs[4].Calculate(work); if (args5.Type != OperandType.NUMBER) { args5 = args5.ToNumber("Function '{0}' parameter {1} is error!", "Date", 5); if (args5.IsError) { return args5; } }
+                var args6 = funcs[5].Calculate(work); if (args6.Type != OperandType.NUMBER) { args6 = args6.ToNumber("Function '{0}' parameter {1} is error!", "Date", 6); if (args6.IsError) { return args6; } }
                 d = new MyDate(args1.IntValue, args2.IntValue, args3.IntValue, args4.IntValue, args5.IntValue, args6.IntValue);
             }
             return Operand.Create(d);
@@ -174,9 +174,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!","DateDif",1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.DATE) { args2 = args2.ToMyDate("Function '{0}' parameter {1} is error!","DateDif",2); if (args2.IsError) { return args2; } }
-            var args3 = func3.Calculate(work); if (args3.Type != OperandType.TEXT) { args3 = args3.ToText("Function '{0}' parameter {1} is error!","DateDif",3); if (args3.IsError) { return args3; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "DateDif", 1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.DATE) { args2 = args2.ToMyDate("Function '{0}' parameter {1} is error!", "DateDif", 2); if (args2.IsError) { return args2; } }
+            var args3 = func3.Calculate(work); if (args3.Type != OperandType.TEXT) { args3 = args3.ToText("Function '{0}' parameter {1} is error!", "DateDif", 3); if (args3.IsError) { return args3; } }
             var startMyDate = (DateTime)args1.DateValue;
             var endMyDate = (DateTime)args2.DateValue;
             var t = args3.TextValue.ToLower();
@@ -253,7 +253,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
                 #endregion ym
             }
-            return Operand.Error("Function '{0}' parameter {1} is error!","DateDif",3);
+            return Operand.Error("Function '{0}' parameter {1} is error!", "DateDif", 3);
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
@@ -270,12 +270,12 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!","Time",1); if (args1.IsError) { return args1; } }
-            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!","Time",2); if (args2.IsError) { return args2; } }
+            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Time", 1); if (args1.IsError) { return args1; } }
+            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Time", 2); if (args2.IsError) { return args2; } }
 
             MyDate d;
             if (funcs.Length == 3) {
-                var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function '{0}' parameter {1} is error!","Time",3); if (args3.IsError) { return args3; } }
+                var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "Time", 3); if (args3.IsError) { return args3; } }
                 d = new MyDate(0, 0, 0, args1.IntValue, args2.IntValue, args3.IntValue);
             } else {
                 d = new MyDate(0, 0, 0, args1.IntValue, args2.IntValue, 0);
@@ -331,7 +331,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work);
-            if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function 'Second' parameter is error!"); if (args1.IsError) { return args1; } }
+            if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter is error!","Second"); if (args1.IsError) { return args1; } }
             return Operand.Create(args1.DateValue.Second);
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -349,7 +349,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work);
-            if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function 'Minute' parameter is error!"); if (args1.IsError) { return args1; } }
+            if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter is error!","Minute"); if (args1.IsError) { return args1; } }
             return Operand.Create(args1.DateValue.Minute);
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -367,7 +367,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work);
-            if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function 'Hour' parameter is error!"); if (args1.IsError) { return args1; } }
+            if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter is error!","Hour"); if (args1.IsError) { return args1; } }
             return Operand.Create(args1.DateValue.Hour);
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -385,7 +385,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work);
-            if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function 'Month' parameter is error!"); if (args1.IsError) { return args1; } }
+            if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter is error!","Month"); if (args1.IsError) { return args1; } }
             if (args1.DateValue.Month == null) {
                 return Operand.Error("Function 'Month' is error!");
             }
@@ -406,7 +406,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work);
-            if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function 'Year' parameter is error!"); if (args1.IsError) { return args1; } }
+            if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter is error!","Year"); if (args1.IsError) { return args1; } }
             if (args1.DateValue.Year == null) {
                 return Operand.Error("Function 'Year' is error!");
             }
@@ -427,7 +427,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work);
-            if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function 'Day' parameter is error!"); if (args1.IsError) { return args1; } }
+            if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter is error!","Day"); if (args1.IsError) { return args1; } }
             if (args1.DateValue.Day == null) {
                 return Operand.Error("Function 'Day' is error!");
             }
@@ -448,11 +448,11 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var exprs = funcs;
-            var args1 = exprs[0].Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!","WeekDay",1); if (args1.IsError) { return args1; } }
+            var args1 = exprs[0].Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "WeekDay", 1); if (args1.IsError) { return args1; } }
 
             var type = 1;
             if (exprs.Length == 2) {
-                var args2 = exprs[1].Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!","WeekDay",2); if (args2.IsError) { return args2; } }
+                var args2 = exprs[1].Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "WeekDay", 2); if (args2.IsError) { return args2; } }
                 type = args2.IntValue;
             }
 
@@ -482,11 +482,11 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!","DaysInMonth",1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!","DaysInMonth",2); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "DaysInMonth", 1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "DaysInMonth", 2); if (args2.IsError) { return args2; } }
             int year = args1.IntValue;
             int month = args2.IntValue;
-            if (month < 1 || month > 12) { return Operand.Error("Function '{0}' parameter {1} is error!","DaysInMonth",2); }
+            if (month < 1 || month > 12) { return Operand.Error("Function '{0}' parameter {1} is error!", "DaysInMonth", 2); }
             int days = DateTime.DaysInMonth(year, month);
             return Operand.Create((decimal)days);
         }
@@ -504,15 +504,15 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!","Days360",1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.DATE) { args2 = args2.ToMyDate("Function '{0}' parameter {1} is error!","Days360",2); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "Days360", 1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.DATE) { args2 = args2.ToMyDate("Function '{0}' parameter {1} is error!", "Days360", 2); if (args2.IsError) { return args2; } }
 
             var startMyDate = (DateTime)args1.DateValue;
             var endMyDate = (DateTime)args2.DateValue;
 
             var method = false;
             if (func3 != null) {
-                var args3 = func3.Calculate(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function '{0}' parameter {1} is error!","Days360",3); if (args3.IsError) { return args3; } }
+                var args3 = func3.Calculate(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function '{0}' parameter {1} is error!", "Days360", 3); if (args3.IsError) { return args3; } }
                 if (args3.IsError) { return args3; }
                 method = args3.BooleanValue;
             }
@@ -573,8 +573,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!","EDate",1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!","EDate",2); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "EDate", 1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "EDate", 2); if (args2.IsError) { return args2; } }
             return Operand.Create((MyDate)(((DateTime)args1.DateValue).AddMonths(args2.IntValue)));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -591,8 +591,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!","EoMonth",1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!","EoMonth",2); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "EoMonth", 1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "EoMonth", 2); if (args2.IsError) { return args2; } }
             var dt = ((DateTime)args1.DateValue).AddMonths(args2.IntValue + 1);
             dt = new DateTime(dt.Year, dt.Month, 1).AddDays(-1);
             return Operand.Create(dt);
@@ -611,15 +611,15 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!","NetWorkdays",1); if (args1.IsError) { return args1; } }
-            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.DATE) { args2 = args2.ToMyDate("Function '{0}' parameter {1} is error!","NetWorkdays",2); if (args2.IsError) { return args2; } }
+            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", 1); if (args1.IsError) { return args1; } }
+            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.DATE) { args2 = args2.ToMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", 2); if (args2.IsError) { return args2; } }
 
             var startMyDate = (DateTime)args1.DateValue;
             var endMyDate = (DateTime)args2.DateValue;
 
             HashSet<DateTime> list = new HashSet<DateTime>();
             for (int i = 2; i < funcs.Length; i++) {
-                var ar = funcs[i].Calculate(work).ToMyDate("Function '{0}' parameter {1} is error!","NetWorkdays",i+1);
+                var ar = funcs[i].Calculate(work).ToMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", i + 1);
                 if (ar.IsError) { return ar; }
                 list.Add(ar.DateValue);
             }
@@ -648,14 +648,14 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!","Workday",1); if (args1.IsError) { return args1; } }
-            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!","Workday",2); if (args2.IsError) { return args2; } }
+            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "Workday", 1); if (args1.IsError) { return args1; } }
+            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Workday", 2); if (args2.IsError) { return args2; } }
 
             var startMyDate = (DateTime)args1.DateValue;
             var days = args2.IntValue;
             HashSet<DateTime> list = new HashSet<DateTime>();
             for (int i = 2; i < funcs.Length; i++) {
-                var ar = funcs[i].Calculate(work).ToMyDate("Function '{0}' parameter {1} is error!","Workday",i+1);
+                var ar = funcs[i].Calculate(work).ToMyDate("Function '{0}' parameter {1} is error!", "Workday", i + 1);
                 if (ar.IsError) { return ar; }
                 list.Add(ar.DateValue);
             }
@@ -682,12 +682,12 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!","WeekNum",1); if (args1.IsError) { return args1; } }
+            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "WeekNum", 1); if (args1.IsError) { return args1; } }
             var startMyDate = (DateTime)args1.DateValue;
 
             var days = startMyDate.DayOfYear + (int)(new DateTime(startMyDate.Year, 1, 1).DayOfWeek);
             if (funcs.Length == 2) {
-                var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!","WeekNum",2); if (args2.IsError) { return args2; } }
+                var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "WeekNum", 2); if (args2.IsError) { return args2; } }
                 if (args2.IntValue == 2) {
                     days--;
                 }
@@ -710,8 +710,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!","AddMonths",1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!","AddMonths",2); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "AddMonths", 1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "AddMonths", 2); if (args2.IsError) { return args2; } }
             return Operand.Create((MyDate)(((DateTime)args1.DateValue).AddMonths(args2.IntValue)));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -728,8 +728,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!","AddYears",1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!","AddYears",2); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "AddYears", 1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "AddYears", 2); if (args2.IsError) { return args2; } }
             return Operand.Create((MyDate)(((DateTime)args1.DateValue).AddYears(args2.IntValue)));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -746,8 +746,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!","AddSeconds",1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!","AddSeconds",2); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "AddSeconds", 1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "AddSeconds", 2); if (args2.IsError) { return args2; } }
             var date = args1.DateValue.AddSeconds(args2.IntValue);
             return Operand.Create(date);
         }
@@ -765,8 +765,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!","AddMinutes",1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!","AddMinutes",2); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "AddMinutes", 1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "AddMinutes", 2); if (args2.IsError) { return args2; } }
             var date = args1.DateValue.AddMinutes(args2.IntValue);
             return Operand.Create(date);
         }
@@ -784,8 +784,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!","AddHours",1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!","AddHours",2); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "AddHours", 1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "AddHours", 2); if (args2.IsError) { return args2; } }
             var date = args1.DateValue.AddHours(args2.IntValue);
             return Operand.Create(date);
         }
@@ -803,8 +803,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!","AddDays",1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!","AddDays",2); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "AddDays", 1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "AddDays", 2); if (args2.IsError) { return args2; } }
             return Operand.Create((MyDate)(((DateTime)args1.DateValue).AddDays((double)args2.NumberValue)));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)

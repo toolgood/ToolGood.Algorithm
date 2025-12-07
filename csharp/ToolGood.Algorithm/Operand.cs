@@ -4,6 +4,8 @@ using System.Globalization;
 using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.LitJson;
 using System.Text;
+using System.Reflection;
+
 
 #if WebAssembly
 using System.Linq2;
@@ -359,6 +361,16 @@ namespace ToolGood.Algorithm
         public static Operand Error(string msg)
         {
             return new OperandError(msg);
+        }
+        /// <summary>
+        /// 创建操作数
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <param name="funName"></param>
+        /// <returns></returns>
+        public static Operand Error(string msg, string funName)
+        {
+            return new OperandError(string.Format(msg, funName));
         }
         /// <summary>
         /// 创建操作数

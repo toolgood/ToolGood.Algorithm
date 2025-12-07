@@ -15,7 +15,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.BOOLEAN) { args1 = args1.ToBoolean("Function 'If' first parameter must be boolean!"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.BOOLEAN) { args1 = args1.ToBoolean("Function '{0}' parameter {1} is error!","If",1); if (args1.IsError) { return args1; } }
             if (args1.BooleanValue) return func2.Calculate(work);
             if (func3 == null) { return Operand.False; }
             return func3.Calculate(work);
@@ -255,7 +255,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var args1 = func1.Calculate(work);
             if (args1.IsNull) { return Operand.True; }
-            if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!","IsNullOrEmpty",1); if (args1.IsError) { return args1; } }
+            if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "IsNullOrEmpty", 1); if (args1.IsError) { return args1; } }
             return Operand.Create(string.IsNullOrEmpty(args1.TextValue));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -274,7 +274,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var args1 = func1.Calculate(work);
             if (args1.IsNull) { return Operand.True; }
-            if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!","IsNullOrWhiteSpace",1); if (args1.IsError) { return args1; } }
+            if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "IsNullOrWhiteSpace", 1); if (args1.IsError) { return args1; } }
             return Operand.Create(string.IsNullOrWhiteSpace(args1.TextValue));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)

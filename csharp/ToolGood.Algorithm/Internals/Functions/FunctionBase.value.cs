@@ -56,7 +56,6 @@ namespace ToolGood.Algorithm.Internals.Functions
                 stringBuilder.Append(_value.ToString());
             }
         }
-
     }
 
     internal class Function_ERROR : Function_1
@@ -177,12 +176,12 @@ namespace ToolGood.Algorithm.Internals.Functions
                     if (((OperandKeyValueList)obj).TryGetValue(op.NumberValue.ToString(), out Operand operand)) {
                         return operand;
                     }
-                    return Operand.Error($"Parameter name `{op.TextValue}` is missing!");
+                    return Operand.Error("Parameter name '{0}' is missing!", op.TextValue);
                 } else if (op.Type == OperandType.TEXT) {
                     if (((OperandKeyValueList)obj).TryGetValue(op.TextValue, out Operand operand)) {
                         return operand;
                     }
-                    return Operand.Error($"Parameter name `{op.TextValue}` is missing!");
+                    return Operand.Error("Parameter name '{0}' is missing!", op.TextValue);
                 }
                 return Operand.Error("Parameter name is missing!");
             }
@@ -203,7 +202,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                         if (v.IsNull) return Operand.CreateNull();
                         return Operand.Create(v);
                     }
-                    return Operand.Error($"JSON index {index} greater than maximum length!");
+                    return Operand.Error("JSON index {0} greater than maximum length!", index.ToString());
                 } else {
                     op = op.ToText("JSON parameter name is error!");
                     if (op.IsError) { return op; }
