@@ -1385,8 +1385,8 @@ function setup() {
 
         public Tag AddClass(string className)
         {
-            if (Attributes.ContainsKey("class"))
-                Attributes["class"] = Attributes["class"] + " " + className;
+            if (Attributes.TryGetValue("class", out string value))
+                Attributes["class"] = value + " " + className;
             else
                 Attributes["class"] = className;
             return this;

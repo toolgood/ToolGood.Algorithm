@@ -111,12 +111,13 @@ namespace ToolGood.Algorithm.Internals
 #if WebAssembly
             return MD5.MDString(buffer);
 #else
+#if NETSTANDARD2_1
             System.Security.Cryptography.MD5 md5 = MD5.Create();
             byte[] retVal = md5.ComputeHash(buffer);
             md5.Dispose();
-#if NETSTANDARD2_1
             return BitConverter.ToString(retVal).Replace("-", "");
 #else
+            var retVal = MD5.HashData(buffer);
             return Convert.ToHexString(retVal);
 #endif
 #endif
@@ -128,12 +129,14 @@ namespace ToolGood.Algorithm.Internals
 
         public static string GetSha1String(byte[] buffer)
         {
+
+#if NETSTANDARD2_1
             SHA1 sha512 = SHA1.Create();
             byte[] retVal = sha512.ComputeHash(buffer); //计算指定Stream 对象的哈希值
             sha512.Dispose();
-#if NETSTANDARD2_1
             return BitConverter.ToString(retVal).Replace("-", "");
 #else
+            var retVal = SHA1.HashData(buffer);
             return Convert.ToHexString(retVal);
 #endif
         }
@@ -144,12 +147,13 @@ namespace ToolGood.Algorithm.Internals
 
         public static string GetSha256String(byte[] buffer)
         {
+#if NETSTANDARD2_1
             SHA256 sha512 = SHA256.Create();
             byte[] retVal = sha512.ComputeHash(buffer); //计算指定Stream 对象的哈希值
             sha512.Dispose();
-#if NETSTANDARD2_1
             return BitConverter.ToString(retVal).Replace("-", "");
 #else
+            var retVal = SHA256.HashData(buffer);
             return Convert.ToHexString(retVal);
 #endif
         }
@@ -160,12 +164,13 @@ namespace ToolGood.Algorithm.Internals
 
         public static string GetSha512String(byte[] buffer)
         {
+#if NETSTANDARD2_1
             SHA512 sha512 = SHA512.Create();
             byte[] retVal = sha512.ComputeHash(buffer); //计算指定Stream 对象的哈希值
             sha512.Dispose();
-#if NETSTANDARD2_1
             return BitConverter.ToString(retVal).Replace("-", "");
 #else
+            var retVal = SHA512.HashData(buffer);
             return Convert.ToHexString(retVal);
 #endif
         }
@@ -173,7 +178,6 @@ namespace ToolGood.Algorithm.Internals
         #endregion SHA512
 
         #region HMACMD5
-
         public static string GetHmacMd5String(byte[] buffer, string secret)
         {
 #if WebAssembly
