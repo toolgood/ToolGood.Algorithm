@@ -41,7 +41,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Quotient", 2); if (args2.IsError) { return args2; } }
 
             if (args2.NumberValue == 0) {
-                return Operand.Error("Function 'Quotient' div 0 error!");
+                return Operand.Error("Function '{0}' div 0 error!", "Quotient");
             }
             return Operand.Create((int)(args1.NumberValue / args2.NumberValue));
         }
@@ -405,7 +405,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '{0}' parameter is error!","Cot"); if (args1.IsError) { return args1; } }
             var d = Math.Tan((double)args1.NumberValue);
             if (d == 0) {
-                return Operand.Error("Function 'Cot' div 0 error!");
+                return Operand.Error("Function '{0}' div 0 error!", "Cot");
             }
             return Operand.Create(1.0 / d);
         }
@@ -426,7 +426,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '{0}' parameter is error!","Sec"); if (args1.IsError) { return args1; } }
             var d = Math.Cos((double)args1.NumberValue);
             if (d == 0) {
-                return Operand.Error("Function 'Sec' div 0 error!");
+                return Operand.Error("Function '{0}' div 0 error!", "Sec");
             }
             return Operand.Create(1.0 / d);
         }
@@ -447,7 +447,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '{0}' parameter is error!","Csc"); if (args1.IsError) { return args1; } }
             var d = Math.Sin((double)args1.NumberValue);
             if (d == 0) {
-                return Operand.Error("Function 'Csc' div 0 error!");
+                return Operand.Error("Function '{0}' div 0 error!", "Csc");
             }
             return Operand.Create(1.0 / d);
         }
@@ -1203,8 +1203,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             var o2 = FunctionUtil.F_base_GetList(args2, list2);
             if (o1 == false) { return Operand.Error("Function '{0}' parameter {1} is error!", "CovarIanceS", 1); }
             if (o2 == false) { return Operand.Error("Function '{0}' parameter {1} is error!", "CovarIanceS", 2); }
-            if (list1.Count != list2.Count) { return Operand.Error("Function 'CovarIanceS' parameter's count error!"); }
-            if (list1.Count == 1) { return Operand.Error("Function 'CovarIanceS' parameter's count error!"); }
+            if (list1.Count != list2.Count) { return Operand.Error("Function '{0}' parameter's count error!", "CovarIanceS"); }
+            if (list1.Count == 1) { return Operand.Error("Function '{0}' parameter's count error!", "CovarIanceS"); }
 
             var avg1 = list1.Average();
             var avg2 = list2.Average();
@@ -1237,8 +1237,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             var o2 = FunctionUtil.F_base_GetList(args2, list2);
             if (o1 == false) { return Operand.Error("Function '{0}' parameter {1} is error!", "Covar", 1); }
             if (o2 == false) { return Operand.Error("Function '{0}' parameter {1} is error!", "Covar", 2); }
-            if (list1.Count != list2.Count) { return Operand.Error("Function 'Covar' parameter's count error!"); }
-            if (list1.Count == 0) { return Operand.Error("Function 'Covar' parameter's count error!"); }
+            if (list1.Count != list2.Count) { return Operand.Error("Function '{0}' parameter's count error!", "Covar"); }
+            if (list1.Count == 0) { return Operand.Error("Function '{0}' parameter's count error!", "Covar"); }
 
             var avg1 = list1.Average();
             var avg2 = list2.Average();

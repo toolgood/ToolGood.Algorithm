@@ -169,7 +169,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 var index = op.IntValue - work.ExcelIndex;
                 if (index < obj.ArrayValue.Count)
                     return obj.ArrayValue[index];
-                return Operand.Error($"ARRARY index {index} greater than maximum length!");
+                return Operand.Error("ARRARY index {0} greater than maximum length!", index.ToString());
             }
             if (obj.Type == OperandType.ARRARYJSON) {
                 if (op.Type == OperandType.NUMBER) {

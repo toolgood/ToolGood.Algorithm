@@ -106,7 +106,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 var t = encoding.GetString(Base64.FromBase64String(args[0].TextValue));
                 return Operand.Create(t);
             } catch (Exception) { }
-            return Operand.Error("Function Base64ToText is error!");
+            return Operand.Error("Function 'Base64ToText' is error!");
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
@@ -134,7 +134,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 var t = encoding.GetString(Base64.FromBase64ForUrlString(args[0].TextValue));
                 return Operand.Create(t);
             } catch (Exception) { }
-            return Operand.Error("Function Base64urlToText is error!");
+            return Operand.Error("Function 'Base64urlToText' is error!");
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
@@ -164,7 +164,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 return Operand.Create(t);
             } catch (Exception) {
             }
-            return Operand.Error("Function TextToBase64 is error!");
+            return Operand.Error("Function 'TextToBase64' is error!");
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
@@ -193,7 +193,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 var t = Base64.ToBase64ForUrlString(bytes);
                 return Operand.Create(t);
             } catch (Exception) { }
-            return Operand.Error("Function TextToBase64url is error!");
+            return Operand.Error("Function 'TextToBase64url' is error!");
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
@@ -216,7 +216,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
             var b = Regex.Match(args1.TextValue, args2.TextValue);
             if (b.Success == false) {
-                return Operand.Error("Function Regex is error!");
+                return Operand.Error("Function 'Regex' is error!");
             }
             return Operand.Create(b.Value);
         }
@@ -301,7 +301,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 var t = Hash.GetMd5String(encoding.GetBytes(args[0].TextValue));
                 return Operand.Create(t);
             } catch (Exception ex) {
-                return Operand.Error("Function MD5 is error!" + ex.Message);
+                return Operand.Error("Function 'MD5' is error!" + ex.Message);
             }
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -330,7 +330,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 var t = Hash.GetSha1String(encoding.GetBytes(args[0].TextValue));
                 return Operand.Create(t);
             } catch (Exception ex) {
-                return Operand.Error("Function SHA1 is error!" + ex.Message);
+                return Operand.Error("Function 'SHA1' is error!" + ex.Message);
             }
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -359,7 +359,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 var t = Hash.GetSha256String(encoding.GetBytes(args[0].TextValue));
                 return Operand.Create(t);
             } catch (Exception ex) {
-                return Operand.Error("Function SHA256 is error!" + ex.Message);
+                return Operand.Error("Function 'SHA256' is error!" + ex.Message);
             }
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -388,7 +388,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 var t = Hash.GetSha512String(encoding.GetBytes(args[0].TextValue));
                 return Operand.Create(t);
             } catch (Exception ex) {
-                return Operand.Error("Function SHA512 is error!" + ex.Message);
+                return Operand.Error("Function 'SHA512' is error!" + ex.Message);
             }
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -417,7 +417,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 var t = Hash.GetCrc32String(encoding.GetBytes(args[0].TextValue));
                 return Operand.Create(t);
             } catch (Exception ex) {
-                return Operand.Error("Function CRC32 is error!" + ex.Message);
+                return Operand.Error("Function 'CRC32' is error!" + ex.Message);
             }
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -446,7 +446,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 var t = Hash.GetHmacMd5String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
                 return Operand.Create(t);
             } catch (Exception ex) {
-                return Operand.Error("Function HmacMD5 is error!" + ex.Message);
+                return Operand.Error("Function 'HmacMD5' is error!" + ex.Message);
             }
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -475,7 +475,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 var t = Hash.GetHmacSha1String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
                 return Operand.Create(t);
             } catch (Exception ex) {
-                return Operand.Error("Function HmacSHA1 is error!" + ex.Message);
+                return Operand.Error("Function 'HmacSHA1' is error!" + ex.Message);
             }
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -504,7 +504,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 var t = Hash.GetHmacSha256String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
                 return Operand.Create(t);
             } catch (Exception ex) {
-                return Operand.Error("Function HmacSHA256 is error!" + ex.Message);
+                return Operand.Error("Function 'HmacSHA256' is error!" + ex.Message);
             }
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -533,7 +533,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 var t = Hash.GetHmacSha512String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
                 return Operand.Create(t);
             } catch (Exception ex) {
-                return Operand.Error("Function HmacSHA512 is error!" + ex.Message);
+                return Operand.Error("Function 'HmacSHA512' is error!" + ex.Message);
             }
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)

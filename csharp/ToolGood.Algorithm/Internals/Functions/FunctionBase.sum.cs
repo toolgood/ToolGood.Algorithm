@@ -217,7 +217,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 }
             }
             if (count == 0) {
-                return Operand.Error("Function 'AverageIf' divide by zero error!");
+                return Operand.Error("Function '{0}' div 0 error!", "AverageIf");
             }
             return Operand.Create(sum / count);
         }
@@ -651,7 +651,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var aa = item.Calculate(work).ToNumber("Function '{0}' parameter {1} is error!", "Var", index++); if (aa.IsError) { return aa; } args.Add(aa); }
             if (args.Count == 1) {
-                return Operand.Error("Function 'Var' parameter only one error!");
+                return Operand.Error("Function '{0}}' parameter only one error!", "Var");
             }
 
             List<decimal> list = new List<decimal>();
@@ -683,7 +683,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args = new List<Operand>(); int index = 1;
             foreach (var item in funcs) { var aa = item.Calculate(work).ToNumber("Function '{0}' parameter {1} is error!", "VarP", index++); if (aa.IsError) { return aa; } args.Add(aa); }
             if (args.Count == 1) {
-                return Operand.Error("Function 'VAVarPRP' parameter only one error!");
+                return Operand.Error("Function '{0}}' parameter only one error!", "VarP");
             }
             List<decimal> list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args, list);
