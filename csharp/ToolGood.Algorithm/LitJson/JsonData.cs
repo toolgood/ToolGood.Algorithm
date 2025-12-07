@@ -20,7 +20,10 @@ namespace ToolGood.Algorithm.LitJson
 
         #region Properties
 
-        public int Count { get { return EnsureCollection().Count; } }
+        public int Count { get {
+                if (type == JsonType.Array) return inst_array.Count;
+                return inst_object.Count;
+            } }
         public bool IsArray { get { return type == JsonType.Array; } }
         public bool IsBoolean { get { return type == JsonType.Boolean; } }
         public bool IsDouble { get { return type == JsonType.Double; } }
@@ -34,7 +37,7 @@ namespace ToolGood.Algorithm.LitJson
 
         public JsonData this[string prop_name] {
             get {
-                EnsureDictionary();
+                //EnsureDictionary();
                 if (inst_object.TryGetValue(prop_name, out JsonData data)) {
                     return data;
                 }
@@ -44,8 +47,6 @@ namespace ToolGood.Algorithm.LitJson
 
         public JsonData this[int index] {
             get {
-                EnsureCollection();
-
                 if (type == JsonType.Array)
                     return inst_array[index];
                 return null;
@@ -104,12 +105,6 @@ namespace ToolGood.Algorithm.LitJson
         #endregion IJsonWrapper Methods
 
         #region Private Methods
-
-        private ICollection EnsureCollection()
-        {
-            if (type == JsonType.Array) return (ICollection)inst_array;
-            return (ICollection)inst_object;
-        }
 
         private Dictionary<string, JsonData> EnsureDictionary()
         {
