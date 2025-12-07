@@ -54,7 +54,7 @@ namespace ToolGood.Algorithm.Internals
             ConditionTree tree = new ConditionTree();
             if (string.IsNullOrWhiteSpace(condition)) {
                 tree.Type = ConditionTreeType.Error;
-                tree.ErrorMessage = "condition 为空";
+                tree.ErrorMessage = "condition is null";
                 return tree;
             }
             try {

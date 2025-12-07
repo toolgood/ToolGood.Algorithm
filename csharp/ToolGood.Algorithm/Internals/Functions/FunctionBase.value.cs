@@ -8,8 +8,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 {
     internal class Function_Value : FunctionBase
     {
-        private Operand _value;
-        private string _showName;
+        private readonly Operand _value;
+        private readonly string _showName;
 
         public Function_Value(Operand value)
         {
@@ -97,8 +97,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 
     internal class Function_NUM : FunctionBase
     {
-        private decimal d;
-        private string unit;
+        private readonly decimal d;
+        private readonly string unit;
 
         public Function_NUM(decimal func1, string func2)
         {
@@ -121,8 +121,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 
     internal class Function_PARAMETER : FunctionBase
     {
-        private string name;
-        private FunctionBase func1;
+        private readonly string name;
+        private readonly FunctionBase func1;
 
         public Function_PARAMETER(string name)
         {

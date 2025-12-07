@@ -19,7 +19,7 @@ namespace ToolGood.Algorithm.Internals
     /// </summary>
     sealed class AntlrCharStream : ICharStream
     {
-        private ICharStream stream;
+        private readonly ICharStream stream;
 
         /// <summary>
         /// Constructs a new CaseChangingCharStream wrapping the given <paramref name="stream"/> forcing
