@@ -361,6 +361,12 @@ namespace ToolGood.Algorithm
             return new OperandError(msg);
         }
 
+        public static Operand Error(string msg, int index)
+        {
+            return new OperandError(string.Format(msg, index));
+        }
+
+
         /// <summary>
         /// 创建操作数
         /// </summary>
@@ -424,8 +430,9 @@ namespace ToolGood.Algorithm
         /// 转MyDate类型
         /// </summary>
         /// <param name="errorMessage"></param>
+        /// <param name="index"></param>
         /// <returns></returns>
-        public virtual Operand ToMyDate(string errorMessage ,int index) { return Error(string.Format(errorMessage, index)); }
+        public virtual Operand ToMyDate(string errorMessage, int index) { return Error(string.Format(errorMessage, index)); }
 
         /// <summary>
         /// 转Json类型
@@ -440,6 +447,14 @@ namespace ToolGood.Algorithm
         /// <param name="errorMessage"></param>
         /// <returns></returns>
         public virtual Operand ToArray(string errorMessage = null) { return Error(errorMessage); }
+
+        /// <summary>
+        /// 转Array类型
+        /// </summary>
+        /// <param name="errorMessage"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public virtual Operand ToArray(string errorMessage, int index) { return Error(string.Format(errorMessage, index)); }
 
         #region Operand
 
@@ -856,8 +871,8 @@ namespace ToolGood.Algorithm
         public override OperandType Type => OperandType.ARRARY;
         public override List<Operand> ArrayValue => _value;
 
-        public override Operand ToArray(string errorMessage = null)
-        { return this; }
+        public override Operand ToArray(string errorMessage = null) { return this; }
+        public override Operand ToArray(string errorMessage, int index) { return this; }
         public override string ToString()
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -893,6 +908,7 @@ namespace ToolGood.Algorithm
         public override Operand ToText(string errorMessage, int index) { return this; }
 
         public override Operand ToArray(string errorMessage = null) { return this; }
+        public override Operand ToArray(string errorMessage, int index) { return this; }
 
         public override Operand ToJson(string errorMessage = null) { return this; }
 

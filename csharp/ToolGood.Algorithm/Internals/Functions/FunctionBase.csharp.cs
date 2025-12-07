@@ -209,9 +209,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work).ToText("Function 'Regex' parameter 1 is error!");
+            var args1 = func1.Calculate(work).ToText("Function 'Regex' parameter {0} is error!",1);
             if (args1.IsError) { return args1; }
-            var args2 = func2.Calculate(work).ToText("Function 'Regex' parameter 2 is error!");
+            var args2 = func2.Calculate(work).ToText("Function 'Regex' parameter {0} is error!",2);
             if (args2.IsError) { return args2; }
 
             var b = Regex.Match(args1.TextValue, args2.TextValue);
@@ -234,9 +234,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'RegexReplace' parameter 1 error!"); if (args1.IsError) return args1; }
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function 'RegexReplace' parameter 2 error!"); if (args2.IsError) return args2; }
-            var args3 = func3.Calculate(work); if (args3.Type != OperandType.TEXT) { args3 = args3.ToText("Function 'RegexReplace' parameter 3 error!"); if (args3.IsError) return args3; }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'RegexReplace' parameter {0} is error!", 1); if (args1.IsError) return args1; }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function 'RegexReplace' parameter {0} is error!", 2); if (args2.IsError) return args2; }
+            var args3 = func3.Calculate(work); if (args3.Type != OperandType.TEXT) { args3 = args3.ToText("Function 'RegexReplace' parameter {0} is error!", 3); if (args3.IsError) return args3; }
             var b = Regex.Replace(args1.TextValue, args2.TextValue, args3.TextValue);
             return Operand.Create(b);
         }
@@ -254,8 +254,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'IsRegex' parameter 1 error!"); if (args1.IsError) return args1; }
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function 'IsRegex' parameter 2 error!"); if (args2.IsError) return args2; }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'IsRegex' parameter {0} is error!", 1); if (args1.IsError) return args1; }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function 'IsRegex' parameter {0} is error!", 2); if (args2.IsError) return args2; }
             var b = Regex.IsMatch(args1.TextValue, args2.TextValue);
             return Operand.Create(b);
         }
@@ -596,17 +596,17 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'IndexOf' parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function 'IndexOf' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'IndexOf' parameter {0} is error!",1); if (args1.IsError) { return args1; } }
+            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function 'IndexOf' parameter {0} is error!",2); if (args2.IsError) { return args2; } }
             var text = args1.TextValue;
             if (funcs.Length == 2) {
                 return Operand.Create(text.AsSpan().IndexOf(args2.TextValue) + work.ExcelIndex);
             }
-            var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function 'IndexOf' parameter 3 is error!"); if (args3.IsError) { return args3; } }
+            var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function 'IndexOf' parameter {0} is error!",3); if (args3.IsError) { return args3; } }
             if (funcs.Length == 3) {
                 return Operand.Create(text.AsSpan(args3.IntValue).IndexOf(args2.TextValue) + args3.IntValue + work.ExcelIndex);
             }
-            var args4 = funcs[3].Calculate(work); if (args4.Type != OperandType.NUMBER) { args4 = args4.ToNumber("Function 'IndexOf' parameter 4 is error!"); if (args4.IsError) { return args4; } }
+            var args4 = funcs[3].Calculate(work); if (args4.Type != OperandType.NUMBER) { args4 = args4.ToNumber("Function 'IndexOf' parameter {0} is error!",4); if (args4.IsError) { return args4; } }
             return Operand.Create(text.IndexOf(args2.TextValue, args3.IntValue, args4.IntValue) + work.ExcelIndex);
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -623,17 +623,17 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'LastIndexOf' parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function 'LastIndexOf' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'LastIndexOf' parameter {0} is error!",1); if (args1.IsError) { return args1; } }
+            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function 'LastIndexOf' parameter {0} is error!",2); if (args2.IsError) { return args2; } }
             var text = args1.TextValue;
             if (funcs.Length == 2) {
                 return Operand.Create(text.AsSpan().LastIndexOf(args2.TextValue) + work.ExcelIndex);
             }
-            var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function 'LastIndexOf' parameter 3 is error!"); if (args3.IsError) { return args3; } }
+            var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function 'LastIndexOf' parameter {0} is error!",3); if (args3.IsError) { return args3; } }
             if (funcs.Length == 3) {
                 return Operand.Create(text.AsSpan(0, args3.IntValue).LastIndexOf(args2.TextValue) + work.ExcelIndex);
             }
-            var args4 = funcs[3].Calculate(work); if (args4.Type != OperandType.NUMBER) { args4 = args4.ToNumber("Function 'LastIndexOf' parameter 4 is error!"); if (args4.IsError) { return args4; } }
+            var args4 = funcs[3].Calculate(work); if (args4.Type != OperandType.NUMBER) { args4 = args4.ToNumber("Function 'LastIndexOf' parameter {0} is error!",4); if (args4.IsError) { return args4; } }
             return Operand.Create(text.LastIndexOf(args2.TextValue, args3.IntValue, args4.IntValue) + work.ExcelIndex);
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -650,8 +650,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'Split' parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function 'Split' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'Split' parameter {0} is error!",1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function 'Split' parameter {0} is error!",2); if (args2.IsError) { return args2; } }
             return Operand.Create(args1.TextValue.Split(args2.TextValue.ToArray()));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -680,20 +680,20 @@ namespace ToolGood.Algorithm.Internals.Functions
             if (args1.Type == OperandType.ARRARY) {
                 List<string> list = new List<string>();
                 var o = FunctionUtil.F_base_GetList(args1, list);
-                if (o == false) return Operand.Error("Function 'Join' parameter 1 is error!");
+                if (o == false) return Operand.Error("Function 'Join' parameter {0} is error!",1);
 
-                var args2 = args[1].ToText("Function 'Join' parameter 2 is error!");
+                var args2 = args[1].ToText("Function 'Join' parameter {0} is error!",2);
                 if (args2.IsError) { return args2; }
 
                 return Operand.Create(string.Join(args2.TextValue, list));
             } else {
-                args1 = args1.ToText("Function 'Join' parameter 1 is error!");
+                args1 = args1.ToText("Function 'Join' parameter {0} is error!",1);
                 if (args1.IsError) { return args1; }
 
                 List<string> list = new List<string>();
                 for (int i = 1; i < args.Count; i++) {
                     var o = FunctionUtil.F_base_GetList(args[i], list);
-                    if (o == false) return Operand.Error("Function 'Join' parameter {i + 1} is error!");
+                    if (o == false) return Operand.Error("Function 'Join' parameter {0} is error!",i+1);
                 }
                 return Operand.Create(string.Join(args1.TextValue, list));
             }
@@ -712,14 +712,14 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'Substring' parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'Substring' parameter 2 is error!"); if (args2.IsError) { return args2; } }
-            
+            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'Substring' parameter {0} is error!",1); if (args1.IsError) { return args1; } }
+            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'Substring' parameter {0} is error!",2); if (args2.IsError) { return args2; } }
+
             var text = args1.TextValue;
             if (funcs.Length == 2) {
                 return Operand.Create(text.AsSpan(args2.IntValue - work.ExcelIndex).ToString());
             }
-            var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function 'Substring' parameter 3 is error!"); if (args3.IsError) { return args3; } }
+            var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function 'Substring' parameter {0} is error!",3); if (args3.IsError) { return args3; } }
             return Operand.Create(text.AsSpan(args2.IntValue - work.ExcelIndex, args3.IntValue).ToString());
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -736,14 +736,14 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'StartsWith' parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function 'StartsWith' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'StartsWith' parameter {0} is error!",1); if (args1.IsError) { return args1; } }
+            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function 'StartsWith' parameter {0} is error!",2); if (args2.IsError) { return args2; } }
 
             var text = args1.TextValue;
             if (funcs.Length == 2) {
                 return Operand.Create(text.AsSpan().StartsWith(args2.TextValue.AsSpan()));
             }
-            var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function 'StartsWith' parameter 3 is error!"); if (args3.IsError) { return args3; } }
+            var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function 'StartsWith' parameter {0} is error!",3); if (args3.IsError) { return args3; } }
             return Operand.Create(text.AsSpan().StartsWith(args2.TextValue.AsSpan(), args3.BooleanValue ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -760,13 +760,13 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'EndsWith' parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function 'EndsWith' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'EndsWith' parameter {0} is error!",1); if (args1.IsError) { return args1; } }
+            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function 'EndsWith' parameter {0} is error!",2); if (args2.IsError) { return args2; } }
             var text = args1.TextValue;
             if (funcs.Length == 2) {
                 return Operand.Create(text.AsSpan().EndsWith(args2.TextValue.AsSpan()));
             }
-            var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function 'EndsWith' parameter 3 is error!"); if (args3.IsError) { return args3; } }
+            var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function 'EndsWith' parameter {0} is error!",3); if (args3.IsError) { return args3; } }
             return Operand.Create(text.AsSpan().EndsWith(args2.TextValue.AsSpan(), args3.BooleanValue ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -783,11 +783,11 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'RemoveStart' parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function 'RemoveStart' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'RemoveStart' parameter {0} is error!",1); if (args1.IsError) { return args1; } }
+            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function 'RemoveStart' parameter {0} is error!",2); if (args2.IsError) { return args2; } }
             StringComparison comparison = StringComparison.Ordinal;
             if (funcs.Length == 3) {
-                var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function 'RemoveStart' parameter 3 is error!"); if (args3.IsError) { return args3; } }
+                var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function 'RemoveStart' parameter {0} is error!",3); if (args3.IsError) { return args3; } }
                 if (args3.BooleanValue) {
                     comparison = StringComparison.OrdinalIgnoreCase;
                 }
@@ -812,11 +812,11 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'RemoveEnd' parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function 'RemoveEnd' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function 'RemoveEnd' parameter {0} is error!",1); if (args1.IsError) { return args1; } }
+            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function 'RemoveEnd' parameter {0} is error!",2); if (args2.IsError) { return args2; } }
             StringComparison comparison = StringComparison.Ordinal;
             if (funcs.Length == 3) {
-                var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function 'RemoveEnd' parameter 3 is error!"); if (args3.IsError) { return args3; } }
+                var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function 'RemoveEnd' parameter {0} is error!",3); if (args3.IsError) { return args3; } }
                 if (args3.BooleanValue) {
                     comparison = StringComparison.OrdinalIgnoreCase;
                 }
@@ -869,7 +869,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.IsError) { return args1; }
-            var args2 = func2.Calculate(work).ToText("Function 'Has' parameter 2 is error!"); if (args2.IsError) { return args2; }
+            var args2 = func2.Calculate(work).ToText("Function 'Has' parameter {0} is error!",2); if (args2.IsError) { return args2; }
 
             if (args1.Type == OperandType.ARRARYJSON) {
                 return Operand.Create(((OperandKeyValueList)args1).ContainsKey(args2));
@@ -904,7 +904,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 }
                 return Operand.False;
             }
-            return Operand.Error("Function 'Has' parameter 1 is error!");
+            return Operand.Error("Function 'Has' parameter {0} is error!",1);
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
@@ -921,7 +921,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Calculate(AlgorithmEngine work)
         {
             var args1 = func1.Calculate(work); if (args1.IsError) { return args1; }
-            var args2 = func2.Calculate(work).ToText("Function 'HasValue' parameter 2 is error!"); if (args2.IsError) { return args2; }
+            var args2 = func2.Calculate(work).ToText("Function 'HasValue' parameter {0} is error!",2); if (args2.IsError) { return args2; }
 
             if (args1.Type == OperandType.ARRARYJSON) {
                 return Operand.Create(((OperandKeyValueList)args1).ContainsValue(args2));
@@ -962,7 +962,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 }
                 return Operand.False;
             }
-            return Operand.Error("Function 'HasValue' parameter 1 is error!");
+            return Operand.Error("Function 'HasValue' parameter {0} is error!",1);
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {

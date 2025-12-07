@@ -37,8 +37,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function 'Quotient' parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'Quotient' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function 'Quotient' parameter {0} is error!",1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'Quotient' parameter {0} is error!",2); if (args2.IsError) { return args2; } }
 
             if (args2.NumberValue == 0) {
                 return Operand.Error("Function 'Quotient' div 0 error!");
@@ -159,8 +159,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function 'Combin' parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'Combin' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function 'Combin' parameter {0} is error!",1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'Combin' parameter {0} is error!",2); if (args2.IsError) { return args2; } }
 
             var total = args1.IntValue;
             var count = args2.IntValue;
@@ -189,8 +189,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function 'Permut' parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'Permut' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function 'Permut' parameter {0} is error!",1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'Permut' parameter {0} is error!",2); if (args2.IsError) { return args2; } }
 
             var total = args1.IntValue;
             var count = args2.IntValue;
@@ -384,8 +384,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function 'Atan2' parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'Atan2' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function 'Atan2' parameter {0} is error!",1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'Atan2' parameter {0} is error!",2); if (args2.IsError) { return args2; } }
             return Operand.Create(Math.Atan2((double)args2.NumberValue, (double)args1.NumberValue));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -577,15 +577,15 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var num = 2;
             if (funcs.Length > 1) {
-                var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'Fixed' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+                var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'Fixed' parameter {0} is error!",2); if (args2.IsError) { return args2; } }
                 num = args2.IntValue;
             }
-            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function 'Fixed' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function 'Fixed' parameter {0} is error!",1); if (args1.IsError) { return args1; } }
 
             var s = Math.Round(args1.NumberValue, num, MidpointRounding.AwayFromZero);
             var no = false;
             if (funcs.Length == 3) {
-                var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function 'Fixed' parameter 3 is error!"); if (args3.IsError) { return args3; } }
+                var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function 'Fixed' parameter {0} is error!",3); if (args3.IsError) { return args3; } }
                 no = args3.BooleanValue;
             }
             if (no == false) {
@@ -614,18 +614,18 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Calculate(work); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var args1 = args[0].ToText("Function 'BIN2OCT' parameter 1 is error!");
+            var args1 = args[0].ToText("Function 'BIN2OCT' parameter {0} is error!",1);
             if (args1.IsError) { return args1; }
 
-            if (Regex.IsMatch(args1.TextValue, "^[01]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function 'BIN2OCT' parameter 1 is error!"); }
+            if (Regex.IsMatch(args1.TextValue, "^[01]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function 'BIN2OCT' parameter {0} is error!",1); }
             var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 2), 8);
             if (args.Count == 2) {
-                var args2 = args[1].ToNumber("Function 'BIN2OCT' parameter 2 is error!");
+                var args2 = args[1].ToNumber("Function 'BIN2OCT' parameter {0} is error!",2);
                 if (args2.IsError) { return args2; }
                 if (num.Length > args2.IntValue) {
                     return Operand.Create(num.PadLeft(args2.IntValue, '0'));
                 }
-                return Operand.Error("Function 'BIN2OCT' parameter 2 is error!");
+                return Operand.Error("Function 'BIN2OCT' parameter {0} is error!",2);
             }
             return Operand.Create(num);
         }
@@ -667,18 +667,18 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Calculate(work); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var args1 = args[0].ToText("Function 'BIN2HEX' parameter 1 is error!");
+            var args1 = args[0].ToText("Function 'BIN2HEX' parameter {0} is error!",1);
             if (args1.IsError) { return args1; }
 
-            if (Regex.IsMatch(args1.TextValue, "^[01]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function 'BIN2HEX' parameter 1 is error!"); }
+            if (Regex.IsMatch(args1.TextValue, "^[01]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function 'BIN2HEX' parameter {0} is error!",1); }
             var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 2), 16).ToUpper();
             if (args.Count == 2) {
-                var args2 = args[1].ToNumber("Function 'BIN2HEX' parameter 2 is error!");
+                var args2 = args[1].ToNumber("Function 'BIN2HEX' parameter {0} is error!",2);
                 if (args2.IsError) { return args2; }
                 if (num.Length > args2.IntValue) {
                     return Operand.Create(num.PadLeft(args2.IntValue, '0'));
                 }
-                return Operand.Error("Function 'BIN2HEX' parameter 2 is error!");
+                return Operand.Error("Function 'BIN2HEX' parameter {0} is error!",2);
             }
             return Operand.Create(num);
         }
@@ -698,17 +698,17 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Calculate(work); if (aa.IsError) { return aa; } args.Add(aa); }
-            var args1 = args[0].ToText("Function 'OCT2BIN' parameter 1 is error!");
+            var args1 = args[0].ToText("Function 'OCT2BIN' parameter {0} is error!",1);
             if (args1.IsError) { return args1; }
-            if (Regex.IsMatch(args1.TextValue, "^[0-7]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function 'OCT2BIN' parameter 1 is error!"); }
+            if (Regex.IsMatch(args1.TextValue, "^[0-7]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function 'OCT2BIN' parameter {0} is error!",1); }
             var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 8), 2);
             if (args.Count == 2) {
-                var args2 = args[1].ToNumber("Function 'OCT2BIN' parameter 2 is error!");
+                var args2 = args[1].ToNumber("Function 'OCT2BIN' parameter {0} is error!",2);
                 if (args2.IsError) { return args2; }
                 if (num.Length > args2.IntValue) {
                     return Operand.Create(num.PadLeft(args2.IntValue, '0'));
                 }
-                return Operand.Error("Function 'OCT2BIN' parameter 2 is error!");
+                return Operand.Error("Function 'OCT2BIN' parameter {0} is error!",2);
             }
             return Operand.Create(num);
         }
@@ -748,17 +748,17 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Calculate(work); if (aa.IsError) { return aa; } args.Add(aa); }
-            var args1 = args[0].ToText("Function 'OCT2HEX' parameter 1 is error!");
+            var args1 = args[0].ToText("Function 'OCT2HEX' parameter {0} is error!",1);
             if (args1.IsError) { return args1; }
-            if (Regex.IsMatch(args1.TextValue, "^[0-7]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function 'OCT2HEX' parameter 1 is error!"); }
+            if (Regex.IsMatch(args1.TextValue, "^[0-7]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function 'OCT2HEX' parameter {0} is error!",1); }
             var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 8), 16).ToUpper();
             if (args.Count == 2) {
-                var args2 = args[1].ToNumber("Function 'OCT2HEX' parameter 2 is error!");
+                var args2 = args[1].ToNumber("Function 'OCT2HEX' parameter {0} is error!",2);
                 if (args2.IsError) { return args2; }
                 if (num.Length > args2.IntValue) {
                     return Operand.Create(num.PadLeft(args2.IntValue, '0'));
                 }
-                return Operand.Error("Function 'OCT2HEX' parameter 2 is error!");
+                return Operand.Error("Function 'OCT2HEX' parameter {0} is error!",2);
             }
             return Operand.Create(num);
         }
@@ -778,17 +778,17 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Calculate(work); if (aa.IsError) { return aa; } args.Add(aa); }
-            var args1 = args[0].ToText("Function 'HEX2BIN' parameter 1 is error!");
+            var args1 = args[0].ToText("Function 'HEX2BIN' parameter {0} is error!",1);
             if (args1.IsError) { return args1; }
-            if (Regex.IsMatch(args1.TextValue, "^[0-9A-Fa-f]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function 'HEX2BIN' parameter 1 is error!"); }
+            if (Regex.IsMatch(args1.TextValue, "^[0-9A-Fa-f]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function 'HEX2BIN' parameter {0} is error!",1); }
             var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 16), 2);
             if (args.Count == 2) {
-                var args2 = args[1].ToNumber("Function 'HEX2BIN' parameter 2 is error!");
+                var args2 = args[1].ToNumber("Function 'HEX2BIN' parameter {0} is error!",2);
                 if (args2.IsError) { return args2; }
                 if (num.Length > args2.IntValue) {
                     return Operand.Create(num.PadLeft(args2.IntValue, '0'));
                 }
-                return Operand.Error("Function 'HEX2BIN' parameter 2 is error!");
+                return Operand.Error("Function 'HEX2BIN' parameter {0} is error!",2);
             }
             return Operand.Create(num);
         }
@@ -828,17 +828,17 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Calculate(work); if (aa.IsError) { return aa; } args.Add(aa); }
-            var args1 = args[0].ToText("Function 'HEX2OCT' parameter 1 is error!");
+            var args1 = args[0].ToText("Function 'HEX2OCT' parameter {0} is error!",1);
             if (args1.IsError) { return args1; }
-            if (Regex.IsMatch(args1.TextValue, "^[0-9A-Fa-f]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function 'HEX2OCT' parameter 1 is error!"); }
+            if (Regex.IsMatch(args1.TextValue, "^[0-9A-Fa-f]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function 'HEX2OCT' parameter {0} is error!",1); }
             var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 16), 8);
             if (args.Count == 2) {
-                var args2 = args[1].ToNumber("Function 'HEX2OCT' parameter 2 is error!");
+                var args2 = args[1].ToNumber("Function 'HEX2OCT' parameter {0} is error!",2);
                 if (args2.IsError) { return args2; }
                 if (num.Length > args2.IntValue) {
                     return Operand.Create(num.PadLeft(args2.IntValue, '0'));
                 }
-                return Operand.Error("Function 'HEX2OCT' parameter 2 is error!");
+                return Operand.Error("Function 'HEX2OCT' parameter {0} is error!",2);
             }
             return Operand.Create(num);
         }
@@ -858,16 +858,16 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Calculate(work); if (aa.IsError) { return aa; } args.Add(aa); }
-            var args1 = args[0].ToNumber("Function 'DEC2BIN' parameter 1 is error!");
+            var args1 = args[0].ToNumber("Function 'DEC2BIN' parameter {0} is error!",1);
             if (args1.IsError) { return args1; }
             var num = Convert.ToString(args1.IntValue, 2);
             if (args.Count == 2) {
-                var args2 = args[1].ToNumber("Function 'DEC2BIN' parameter 2 is error!");
+                var args2 = args[1].ToNumber("Function 'DEC2BIN' parameter {0} is error!",2);
                 if (args2.IsError) { return args2; }
                 if (num.Length > args2.IntValue) {
                     return Operand.Create(num.PadLeft(args2.IntValue, '0'));
                 }
-                return Operand.Error("Function 'DEC2BIN' parameter 2 is error!");
+                return Operand.Error("Function 'DEC2BIN' parameter {0} is error!",2);
             }
             return Operand.Create(num);
         }
@@ -887,16 +887,16 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Calculate(work); if (aa.IsError) { return aa; } args.Add(aa); }
-            var args1 = args[0].ToNumber("Function 'DEC2OCT' parameter 1 is error!");
+            var args1 = args[0].ToNumber("Function 'DEC2OCT' parameter {0} is error!",1);
             if (args1.IsError) { return args1; }
             var num = Convert.ToString(args1.IntValue, 8);
             if (args.Count == 2) {
-                var args2 = args[1].ToNumber("Function 'DEC2OCT' parameter 2 is error!");
+                var args2 = args[1].ToNumber("Function 'DEC2OCT' parameter {0} is error!",2);
                 if (args2.IsError) { return args2; }
                 if (num.Length > args2.IntValue) {
                     return Operand.Create(num.PadLeft(args2.IntValue, '0'));
                 }
-                return Operand.Error("Function 'DEC2OCT' parameter 2 is error!");
+                return Operand.Error("Function 'DEC2OCT' parameter {0} is error!",2);
             }
             return Operand.Create(num);
         }
@@ -916,16 +916,16 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Calculate(work); if (aa.IsError) { return aa; } args.Add(aa); }
-            var args1 = args[0].ToNumber("Function 'DEC2HEX' parameter 1 is error!");
+            var args1 = args[0].ToNumber("Function 'DEC2HEX' parameter {0} is error!",1);
             if (args1.IsError) { return args1; }
             var num = Convert.ToString(args1.IntValue, 16).ToUpper();
             if (args.Count == 2) {
-                var args2 = args[1].ToNumber("Function 'DEC2HEX' parameter 2 is error!");
+                var args2 = args[1].ToNumber("Function 'DEC2HEX' parameter {0} is error!",2);
                 if (args2.IsError) { return args2; }
                 if (num.Length > args2.IntValue) {
                     return Operand.Create(num.PadLeft(args2.IntValue, '0'));
                 }
-                return Operand.Error("Function 'DEC2HEX' parameter 2 is error!");
+                return Operand.Error("Function 'DEC2HEX' parameter {0} is error!",2);
             }
             return Operand.Create(num);
         }
@@ -947,8 +947,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function 'RoundUp' parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'RoundUp' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function 'RoundUp' parameter {0} is error!",1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'RoundUp' parameter {0} is error!",2); if (args2.IsError) { return args2; } }
             if (args1.NumberValue == 0.0m) { return args1; }
             var a = Math.Pow(10, args2.IntValue);
             var b = args1.NumberValue;
@@ -971,8 +971,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function 'RoundDown' parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'RoundDown' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function 'RoundDown' parameter {0} is error!",1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'RoundDown' parameter {0} is error!",2); if (args2.IsError) { return args2; } }
             if (args1.NumberValue == 0.0m) {
                 return args1;
             }
@@ -996,10 +996,10 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function 'MRound' parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'MRound' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function 'MRound' parameter {0} is error!",1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'MRound' parameter {0} is error!",2); if (args2.IsError) { return args2; } }
             var a = args2.NumberValue;
-            if (a <= 0) { return Operand.Error("Function 'MRound' parameter 2 is error!"); }
+            if (a <= 0) { return Operand.Error("Function 'MRound' parameter {0} is error!",2); }
 
             var b = args1.NumberValue;
             var r = Math.Round(b / a, 0, MidpointRounding.AwayFromZero) * a;
@@ -1019,12 +1019,12 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function 'Round' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function 'Round' parameter {0} is error!",1); if (args1.IsError) { return args1; } }
 
             if (func2 == null) {
                 return Operand.Create(Math.Round((decimal)args1.NumberValue, 0, MidpointRounding.AwayFromZero));
             }
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'Round' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'Round' parameter {0} is error!",2); if (args2.IsError) { return args2; } }
             return Operand.Create(Math.Round((decimal)args1.NumberValue, args2.IntValue, MidpointRounding.AwayFromZero));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -1041,15 +1041,15 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function 'Ceiling' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function 'Ceiling' parameter {0} is error!",1); if (args1.IsError) { return args1; } }
 
             if (func2 == null)
                 return Operand.Create(Math.Ceiling(args1.NumberValue));
 
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'Ceiling' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'Ceiling' parameter {0} is error!",2); if (args2.IsError) { return args2; } }
             var b = args2.NumberValue;
             if (b == 0) { return Operand.Create(0); }
-            if (b < 0) { return Operand.Error("Function 'Ceiling' parameter 2 is error!"); }
+            if (b < 0) { return Operand.Error("Function 'Ceiling' parameter {0} is error!",2); }
 
             var a = args1.NumberValue;
             var d = Math.Ceiling(a / b) * b;
@@ -1069,13 +1069,13 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function 'Floor' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function 'Floor' parameter {0} is error!",1); if (args1.IsError) { return args1; } }
             if (func2 == null) return Operand.Create(Math.Floor(args1.NumberValue));
 
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'Floor' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'Floor' parameter {0} is error!",2); if (args2.IsError) { return args2; } }
             var b = args2.NumberValue;
             if (b >= 1) { return Operand.Create(args1.IntValue); }
-            if (b <= 0) { return Operand.Error("Function 'Floor' parameter 2 is error!"); }
+            if (b <= 0) { return Operand.Error("Function 'Floor' parameter {0} is error!",2); }
 
             var a = args1.NumberValue;
             var d = Math.Floor(a / b) * b;
@@ -1165,8 +1165,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function 'RandBetween' parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'RandBetween' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function 'RandBetween' parameter {0} is error!",1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'RandBetween' parameter {0} is error!",2); if (args2.IsError) { return args2; } }
 #if NETSTANDARD2_1
             var tick = DateTime.Now.Ticks;
             Random rand = new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32));
@@ -1201,8 +1201,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 
             var o1 = FunctionUtil.F_base_GetList(args1, list1);
             var o2 = FunctionUtil.F_base_GetList(args2, list2);
-            if (o1 == false) { return Operand.Error("Function 'CovarIanceS' parameter 1 error!"); }
-            if (o2 == false) { return Operand.Error("Function 'CovarIanceS' parameter 2 error!"); }
+            if (o1 == false) { return Operand.Error("Function 'CovarIanceS' parameter {0} error!", 1); }
+            if (o2 == false) { return Operand.Error("Function 'CovarIanceS' parameter {0} error!", 2); }
             if (list1.Count != list2.Count) { return Operand.Error("Function 'CovarIanceS' parameter's count error!"); }
             if (list1.Count == 1) { return Operand.Error("Function 'CovarIanceS' parameter's count error!"); }
 
@@ -1235,8 +1235,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             List<decimal> list2 = new List<decimal>();
             var o1 = FunctionUtil.F_base_GetList(args1, list1);
             var o2 = FunctionUtil.F_base_GetList(args2, list2);
-            if (o1 == false) { return Operand.Error("Function 'Covar' parameter 1 error!"); }
-            if (o2 == false) { return Operand.Error("Function 'Covar' parameter 2 error!"); }
+            if (o1 == false) { return Operand.Error("Function 'Covar' parameter {0} error!", 1); }
+            if (o2 == false) { return Operand.Error("Function 'Covar' parameter {0} error!", 2); }
             if (list1.Count != list2.Count) { return Operand.Error("Function 'Covar' parameter's count error!"); }
             if (list1.Count == 0) { return Operand.Error("Function 'Covar' parameter's count error!"); }
 
@@ -1314,8 +1314,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function 'Power' parameter 1 is error!"); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'Power' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function 'Power' parameter {0} is error!",1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'Power' parameter {0} is error!",2); if (args2.IsError) { return args2; } }
             return Operand.Create(Math.Pow((double)args1.NumberValue, (double)args2.NumberValue));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -1370,9 +1370,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function 'Log' parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function 'Log' parameter {0} is error!",1); if (args1.IsError) { return args1; } }
             if (func2 != null) {
-                var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'Log' parameter 2 is error!"); if (args2.IsError) { return args2; } }
+                var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function 'Log' parameter {0} is error!",2); if (args2.IsError) { return args2; } }
                 return Operand.Create(Math.Log((double)args1.NumberValue, (double)args2.NumberValue));
             }
             return Operand.Create(Math.Log((double)args1.NumberValue, 10));
