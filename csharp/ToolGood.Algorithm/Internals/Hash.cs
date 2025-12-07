@@ -12,7 +12,11 @@ namespace ToolGood.Algorithm.Internals
             Crc32Hash crc32 = new Crc32Hash();
             crc32.Append(buffer);
             byte[] retVal = crc32.Finish();
+#if NETSTANDARD2_1
             return BitConverter.ToString(retVal).Replace("-", "");
+#else
+            return Convert.ToHexString(retVal);
+#endif
         }
 
         private class Crc32Hash
@@ -110,7 +114,11 @@ namespace ToolGood.Algorithm.Internals
             System.Security.Cryptography.MD5 md5 = MD5.Create();
             byte[] retVal = md5.ComputeHash(buffer);
             md5.Dispose();
+#if NETSTANDARD2_1
             return BitConverter.ToString(retVal).Replace("-", "");
+#else
+            return Convert.ToHexString(retVal);
+#endif
 #endif
         }
 
@@ -123,7 +131,11 @@ namespace ToolGood.Algorithm.Internals
             SHA1 sha512 = SHA1.Create();
             byte[] retVal = sha512.ComputeHash(buffer); //计算指定Stream 对象的哈希值
             sha512.Dispose();
+#if NETSTANDARD2_1
             return BitConverter.ToString(retVal).Replace("-", "");
+#else
+            return Convert.ToHexString(retVal);
+#endif
         }
 
         #endregion SHA1
@@ -135,7 +147,11 @@ namespace ToolGood.Algorithm.Internals
             SHA256 sha512 = SHA256.Create();
             byte[] retVal = sha512.ComputeHash(buffer); //计算指定Stream 对象的哈希值
             sha512.Dispose();
+#if NETSTANDARD2_1
             return BitConverter.ToString(retVal).Replace("-", "");
+#else
+            return Convert.ToHexString(retVal);
+#endif
         }
 
         #endregion SHA256
@@ -147,7 +163,11 @@ namespace ToolGood.Algorithm.Internals
             SHA512 sha512 = SHA512.Create();
             byte[] retVal = sha512.ComputeHash(buffer); //计算指定Stream 对象的哈希值
             sha512.Dispose();
+#if NETSTANDARD2_1
             return BitConverter.ToString(retVal).Replace("-", "");
+#else
+            return Convert.ToHexString(retVal);
+#endif
         }
 
         #endregion SHA512
@@ -163,7 +183,11 @@ namespace ToolGood.Algorithm.Internals
             byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret ?? "");
             using (var hmacsha256 = new HMACMD5(keyByte)) {
                 byte[] hashmessage = hmacsha256.ComputeHash(buffer);
+#if NETSTANDARD2_1
                 return BitConverter.ToString(hashmessage).Replace("-", "");
+#else
+                return Convert.ToHexString(hashmessage);
+#endif
             }
 #endif
         }
@@ -177,7 +201,11 @@ namespace ToolGood.Algorithm.Internals
             byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret ?? "");
             using (var hmacsha256 = new HMACSHA1(keyByte)) {
                 byte[] hashmessage = hmacsha256.ComputeHash(buffer);
+#if NETSTANDARD2_1
                 return BitConverter.ToString(hashmessage).Replace("-", "");
+#else
+                return Convert.ToHexString(hashmessage);
+#endif
             }
         }
 
@@ -190,7 +218,11 @@ namespace ToolGood.Algorithm.Internals
             byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret ?? "");
             using (var hmacsha256 = new HMACSHA256(keyByte)) {
                 byte[] hashmessage = hmacsha256.ComputeHash(buffer);
+#if NETSTANDARD2_1
                 return BitConverter.ToString(hashmessage).Replace("-", "");
+#else
+                return Convert.ToHexString(hashmessage);
+#endif
             }
         }
 
@@ -203,7 +235,11 @@ namespace ToolGood.Algorithm.Internals
             byte[] keyByte = System.Text.Encoding.UTF8.GetBytes(secret ?? "");
             using (var hmacsha256 = new HMACSHA512(keyByte)) {
                 byte[] hashmessage = hmacsha256.ComputeHash(buffer);
+#if NETSTANDARD2_1
                 return BitConverter.ToString(hashmessage).Replace("-", "");
+#else
+                return Convert.ToHexString(hashmessage);
+#endif
             }
         }
 
