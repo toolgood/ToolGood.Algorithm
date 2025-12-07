@@ -396,6 +396,14 @@ namespace ToolGood.Algorithm
         /// <param name="index"></param>
         /// <returns></returns>
         public virtual Operand ToNumber(string errorMessage, int index) { return Error(string.Format(errorMessage, index)); }
+        /// <summary>
+        /// 转数值类型
+        /// </summary>
+        /// <param name="errorMessage"></param>
+        /// <param name="funName"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public virtual Operand ToNumber(string errorMessage,string funName, int index) { return Error(string.Format(errorMessage, funName, index)); }
 
         /// <summary>
         /// 转bool类型
@@ -410,6 +418,14 @@ namespace ToolGood.Algorithm
         /// <param name="index"></param>
         /// <returns></returns>
         public virtual Operand ToBoolean(string errorMessage, int index) { return Error(string.Format(errorMessage, index)); }
+        /// <summary>
+        /// 转bool类型
+        /// </summary>
+        /// <param name="errorMessage"></param>
+        /// <param name="funName"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public virtual Operand ToBoolean(string errorMessage, string funName, int index) { return Error(string.Format(errorMessage, funName, index)); }
 
         /// <summary>
         /// 转String类型
@@ -424,6 +440,14 @@ namespace ToolGood.Algorithm
         /// <param name="index"></param>
         /// <returns></returns>
         public virtual Operand ToText(string errorMessage, int index) { return Error(string.Format(errorMessage, index)); }
+        /// <summary>
+        /// 转String类型
+        /// </summary>
+        /// <param name="errorMessage"></param>
+        /// <param name="funName"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public virtual Operand ToText(string errorMessage, string funName, int index) { return Error(string.Format(errorMessage, funName, index)); }
 
         /// <summary>
         /// 转MyDate类型
@@ -438,6 +462,14 @@ namespace ToolGood.Algorithm
         /// <param name="index"></param>
         /// <returns></returns>
         public virtual Operand ToMyDate(string errorMessage, int index) { return Error(string.Format(errorMessage, index)); }
+        /// <summary>
+        /// 转MyDate类型
+        /// </summary>
+        /// <param name="errorMessage"></param>
+        /// <param name="funName"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public virtual Operand ToMyDate(string errorMessage, string funName, int index) { return Error(string.Format(errorMessage, funName, index)); }
 
         /// <summary>
         /// 转Json类型
@@ -460,6 +492,15 @@ namespace ToolGood.Algorithm
         /// <param name="index"></param>
         /// <returns></returns>
         public virtual Operand ToArray(string errorMessage, int index) { return Error(string.Format(errorMessage, index)); }
+        /// <summary>
+        /// 转Array类型
+        /// </summary>
+        /// <param name="errorMessage"></param>
+        /// <param name="funName"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public virtual Operand ToArray(string errorMessage, string funName, int index) { return Error(string.Format(errorMessage, funName, index)); }
+
 
         #region Operand
 

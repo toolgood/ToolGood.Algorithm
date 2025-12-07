@@ -1036,7 +1036,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Calculate(work); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var args1 = args[0].ToArray("Function 'VLOOKUP' parameter {0} error!", 1); if (args1.IsError) { return args1; }
+            var args1 = args[0].ToArray("Function 'VLOOKUP' parameter {0} is error!", 1); if (args1.IsError) { return args1; }
             var args2 = args[1];
             var args3 = args[2].ToNumber("Function 'VLOOKUP' parameter {0} is error!", 3); if (args3.IsError) { return args3; }
 
