@@ -73,7 +73,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "ERROR");
+            AddFunction(stringBuilder, "Error");
         }
     }
 
@@ -248,15 +248,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            stringBuilder.Append(funName);
-            stringBuilder.Append('(');
-            for (int i = 0; i < funcs.Length; i++) {
-                if (i > 0) {
-                    stringBuilder.Append(", ");
-                }
-                funcs[i].ToString(stringBuilder, false);
-            }
-            stringBuilder.Append(')');
+            AddFunction(stringBuilder, funName);
         }
     }
 
@@ -279,7 +271,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "PARAM");
+            AddFunction(stringBuilder, "Param");
         }
     }
 

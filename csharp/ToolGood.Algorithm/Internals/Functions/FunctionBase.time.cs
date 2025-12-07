@@ -67,7 +67,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "DATEVALUE");
+            AddFunction(stringBuilder, "DateValue");
         }
     }
 
@@ -104,7 +104,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "TIMESTAMP");
+            AddFunction(stringBuilder, "TimeStamp");
         }
     }
 
@@ -125,7 +125,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "TIMEVALUE");
+            AddFunction(stringBuilder, "TimeValue");
         }
     }
 
@@ -162,7 +162,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "DATE");
+            AddFunction(stringBuilder, "Date");
         }
     }
 
@@ -257,7 +257,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "DATEDIF");
+            AddFunction(stringBuilder, "DateDif");
         }
 
     }
@@ -284,7 +284,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "TIME");
+            AddFunction(stringBuilder, "Time");
         }
     }
 
@@ -300,7 +300,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            stringBuilder.Append("NOW()");
+            stringBuilder.Append("Now()");
         }
     }
 
@@ -318,7 +318,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            stringBuilder.Append("TODAY()");
+            stringBuilder.Append("Today()");
         }
     }
 
@@ -336,7 +336,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "SECOND");
+            AddFunction(stringBuilder, "Second");
         }
     }
 
@@ -354,7 +354,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "MINUTE");
+            AddFunction(stringBuilder, "Minute");
         }
     }
 
@@ -372,7 +372,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "HOUR");
+            AddFunction(stringBuilder, "Hour");
         }
     }
 
@@ -393,7 +393,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "MONTH");
+            AddFunction(stringBuilder, "Month");
         }
     }
 
@@ -414,7 +414,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "YEAR");
+            AddFunction(stringBuilder, "Year");
         }
     }
 
@@ -435,7 +435,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "DAY");
+            AddFunction(stringBuilder, "Day");
         }
     }
 
@@ -470,7 +470,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "WEEKDAY");
+            AddFunction(stringBuilder, "WeekDay");
         }
     }
 
@@ -492,7 +492,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "DAYSINMONTH");
+            AddFunction(stringBuilder, "DaysInMonth");
         }
     }
 
@@ -561,7 +561,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "DAYS360");
+            AddFunction(stringBuilder, "Days360");
         }
     }
 
@@ -579,7 +579,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "EDATE");
+            AddFunction(stringBuilder, "EDate");
         }
     }
 
@@ -599,7 +599,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "EOMONTH");
+            AddFunction(stringBuilder, "EoMonth");
         }
     }
 
@@ -636,7 +636,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "NETWORKDAYS");
+            AddFunction(stringBuilder, "NetWorkdays");
         }
     }
 
@@ -670,7 +670,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "WORKDAY");
+            AddFunction(stringBuilder, "Workday");
         }
     }
 
@@ -698,7 +698,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "WEEKNUM");
+            AddFunction(stringBuilder, "WeekNum");
         }
     }
 
@@ -716,7 +716,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "ADDMONTHS");
+            AddFunction(stringBuilder, "AddMonths");
         }
     }
 
@@ -734,7 +734,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "ADDYEARS");
+            AddFunction(stringBuilder, "AddYears");
         }
     }
 
@@ -753,7 +753,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "ADDSECONDS");
+            AddFunction(stringBuilder, "AddSeconds");
         }
     }
 
@@ -772,7 +772,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "ADDMINUTES");
+            AddFunction(stringBuilder, "AddMinutes");
         }
     }
 
@@ -791,7 +791,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "ADDHOURS");
+            AddFunction(stringBuilder, "AddHours");
         }
     }
 
@@ -809,7 +809,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "ADDDAYS");
+            AddFunction(stringBuilder, "AddDays");
         }
     }
 

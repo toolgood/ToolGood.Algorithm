@@ -22,7 +22,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "IF");
+            AddFunction(stringBuilder, "If");
         }
     }
 
@@ -40,7 +40,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "IFERROR");
+            AddFunction(stringBuilder, "IfError");
         }
     }
 
@@ -58,7 +58,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "ISNUMBER");
+            AddFunction(stringBuilder, "IsNumber");
         }
     }
 
@@ -76,7 +76,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "ISTEXT");
+            AddFunction(stringBuilder, "IsText");
         }
     }
 
@@ -98,7 +98,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "ISERROR");
+            AddFunction(stringBuilder, "IsError");
         }
     }
 
@@ -113,14 +113,16 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Calculate(work);
             if (func2 != null) {
                 if (args1.IsNull) { return func2.Calculate(work); }
+                if (args1.Type == OperandType.TEXT && args1.TextValue == null) { return func2.Calculate(work); }
                 return args1;
             }
             if (args1.IsNull) { return Operand.True; }
+            if (args1.Type == OperandType.TEXT && args1.TextValue == null) { return Operand.True; }
             return Operand.False;
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "ISNULL");
+            AddFunction(stringBuilder, "IsNull");
         }
     }
 
@@ -135,14 +137,16 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Calculate(work);
             if (func2 != null) {
                 if (args1.IsNull || args1.IsError) { return func2.Calculate(work); }
+                if (args1.Type == OperandType.TEXT && args1.TextValue == null) { return func2.Calculate(work); }
                 return args1;
             }
             if (args1.IsNull || args1.IsError) { return Operand.True; }
+            if (args1.Type == OperandType.TEXT && args1.TextValue == null) { return Operand.True; }
             return Operand.False;
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "ISNULLORERROR");
+            AddFunction(stringBuilder, "IsNullOrError");
         }
     }
 
@@ -162,7 +166,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "ISEVEN");
+            AddFunction(stringBuilder, "IsEven");
         }
     }
 
@@ -182,7 +186,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "ISODD");
+            AddFunction(stringBuilder, "IsOdd");
         }
     }
 
@@ -200,7 +204,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "ISLOGICAL");
+            AddFunction(stringBuilder, "IsLogical");
         }
     }
 
@@ -218,7 +222,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "ISNONTEXT");
+            AddFunction(stringBuilder, "IsNontext");
         }
     }
 
@@ -236,7 +240,46 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "NOT");
+            AddFunction(stringBuilder, "Not");
+        }
+    }
+
+
+    internal class Function_ISNULLOREMPTY : Function_1
+    {
+        public Function_ISNULLOREMPTY(FunctionBase func1) : base(func1)
+        {
+        }
+
+        public override Operand Calculate(AlgorithmEngine work)
+        {
+            var args1 = func1.Calculate(work);
+            if (args1.IsNull) { return Operand.True; }
+            if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function ISNULLOREMPTY parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            return Operand.Create(string.IsNullOrEmpty(args1.TextValue));
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            AddFunction(stringBuilder, "IsNullOrEmpty");
+        }
+    }
+
+    internal class Function_ISNULLORWHITESPACE : Function_1
+    {
+        public Function_ISNULLORWHITESPACE(FunctionBase func1) : base(func1)
+        {
+        }
+
+        public override Operand Calculate(AlgorithmEngine work)
+        {
+            var args1 = func1.Calculate(work);
+            if (args1.IsNull) { return Operand.True; }
+            if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function ISNULLORWHITESPACE parameter 1 is error!"); if (args1.IsError) { return args1; } }
+            return Operand.Create(string.IsNullOrWhiteSpace(args1.TextValue));
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            AddFunction(stringBuilder, "IsNullOrWhiteSpace");
         }
     }
 

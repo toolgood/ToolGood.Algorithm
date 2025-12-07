@@ -47,7 +47,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "QUOTIENT");
+            AddFunction(stringBuilder, "Quotient");
         }
     }
 
@@ -84,7 +84,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "SQRT");
+            AddFunction(stringBuilder, "Sqrt");
         }
     }
 
@@ -279,7 +279,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "COS");
+            AddFunction(stringBuilder, "Cos");
         }
     }
 
@@ -296,7 +296,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "SIN");
+            AddFunction(stringBuilder, "Sin");
         }
     }
 
@@ -313,7 +313,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "TAN");
+            AddFunction(stringBuilder, "Tan");
         }
     }
 
@@ -334,7 +334,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "ACOS");
+            AddFunction(stringBuilder, "Acos");
         }
     }
 
@@ -355,7 +355,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "ASIN");
+            AddFunction(stringBuilder, "Asin");
         }
     }
 
@@ -372,7 +372,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "ATAN");
+            AddFunction(stringBuilder, "Atan");
         }
     }
 
@@ -390,7 +390,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "ATAN2");
+            AddFunction(stringBuilder, "Atan2");
         }
     }
 
@@ -470,7 +470,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "COSH");
+            AddFunction(stringBuilder, "Cosh");
         }
     }
 
@@ -487,7 +487,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "SINH");
+            AddFunction(stringBuilder, "Sinh");
         }
     }
 
@@ -504,7 +504,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "TANH");
+            AddFunction(stringBuilder, "Tanh");
         }
     }
 
@@ -525,7 +525,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "ACOSH");
+            AddFunction(stringBuilder, "Acosh");
         }
     }
 
@@ -542,7 +542,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "ASINH");
+            AddFunction(stringBuilder, "Asinh");
         }
     }
 
@@ -563,7 +563,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "ATANH");
+            AddFunction(stringBuilder, "Atanh");
         }
     }
 
@@ -595,7 +595,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "FIXED");
+            AddFunction(stringBuilder, "Fixed");
         }
     }
 
@@ -959,7 +959,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "ROUNDUP");
+            AddFunction(stringBuilder, "RoundUp");
         }
     }
 
@@ -984,7 +984,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "ROUNDDOWN");
+            AddFunction(stringBuilder, "RoundDown");
         }
     }
 
@@ -1007,7 +1007,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "MROUND");
+            AddFunction(stringBuilder, "MRound");
         }
     }
 
@@ -1029,7 +1029,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "ROUND");
+            AddFunction(stringBuilder, "Round");
         }
     }
 
@@ -1057,7 +1057,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "CEILING");
+            AddFunction(stringBuilder, "Ceiling");
         }
     }
 
@@ -1083,7 +1083,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "FLOOR");
+            AddFunction(stringBuilder, "Floor");
         }
     }
 
@@ -1105,7 +1105,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "EVEN");
+            AddFunction(stringBuilder, "Even");
         }
     }
 
@@ -1127,7 +1127,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "ODD");
+            AddFunction(stringBuilder, "Odd");
         }
     }
 
@@ -1153,7 +1153,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            stringBuilder.Append("RAND()");
+            stringBuilder.Append("Rand()");
         }
     }
 
@@ -1177,7 +1177,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "RANDBETWEEN");
+            AddFunction(stringBuilder, "RandBetween");
         }
     }
 
@@ -1217,7 +1217,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "COVARIANCES");
+            AddFunction(stringBuilder, "CovarIanceS");
         }
     }
 
@@ -1251,7 +1251,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "COVAR");
+            AddFunction(stringBuilder, "Covar");
         }
     }
 
@@ -1278,7 +1278,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "FACT");
+            AddFunction(stringBuilder, "Fact");
         }
     }
 
@@ -1302,7 +1302,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "FACTDOUBLE");
+            AddFunction(stringBuilder, "FactDouble");
         }
     }
 
@@ -1320,7 +1320,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "POWER");
+            AddFunction(stringBuilder, "Power");
         }
     }
 
@@ -1337,7 +1337,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "EXP");
+            AddFunction(stringBuilder, "Exp");
         }
     }
 
@@ -1358,7 +1358,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "LN");
+            AddFunction(stringBuilder, "Ln");
         }
     }
 
@@ -1379,7 +1379,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "LOG");
+            AddFunction(stringBuilder, "Log");
         }
     }
 
@@ -1455,7 +1455,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "SQRTPI");
+            AddFunction(stringBuilder, "SqrtPI");
         }
     }
 
@@ -1483,7 +1483,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "SUMSQ");
+            AddFunction(stringBuilder, "SumSQ");
         }
     }
 
