@@ -215,12 +215,12 @@ namespace ToolGood.Algorithm.Internals
 
         public FunctionBase VisitE_fun(mathParser.E_funContext context)
         {
-            return new Function_Value(Operand.Create(Math.E),"E");
+            return new Function_Value(Operand.Create(Math.E), "E");
         }
 
         public FunctionBase VisitPI_fun(mathParser.PI_funContext context)
         {
-            return new Function_Value(Operand.Create(Math.PI),"PI");
+            return new Function_Value(Operand.Create(Math.PI), "PI");
         }
 
         public FunctionBase VisitABS_fun(mathParser.ABS_funContext context)
@@ -1919,7 +1919,7 @@ namespace ToolGood.Algorithm.Internals
         public FunctionBase VisitNUM_fun(mathParser.NUM_funContext context)
         {
             var d = decimal.Parse(context.num().GetText(), NumberStyles.Any, CultureInfo.InvariantCulture);
-            if (context.unit() == null) { return new Function_Value(Operand.Create(d)); }
+            if (context.unit() == null) { return new Function_Value(Operand.Create(d), context.num().GetText()); }
             var unit = context.unit().GetText();
             return new Function_NUM(d, unit);
         }
@@ -1962,7 +1962,7 @@ namespace ToolGood.Algorithm.Internals
 
         public FunctionBase VisitNULL_fun(mathParser.NULL_funContext context)
         {
-            return new Function_Value(Operand.CreateNull(),"NULL");
+            return new Function_Value(Operand.CreateNull(), "NULL");
         }
 
         public FunctionBase VisitPARAMETER_fun(mathParser.PARAMETER_funContext context)
