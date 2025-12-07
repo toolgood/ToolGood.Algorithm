@@ -360,7 +360,12 @@ namespace ToolGood.Algorithm
         {
             return new OperandError(msg);
         }
-
+        /// <summary>
+        /// 创建操作数
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public static Operand Error(string msg, int index)
         {
             return new OperandError(string.Format(msg, index));

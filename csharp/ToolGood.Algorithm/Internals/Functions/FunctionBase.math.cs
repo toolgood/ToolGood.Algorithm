@@ -1201,8 +1201,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 
             var o1 = FunctionUtil.F_base_GetList(args1, list1);
             var o2 = FunctionUtil.F_base_GetList(args2, list2);
-            if (o1 == false) { return Operand.Error("Function 'CovarIanceS' parameter {0} error!", 1); }
-            if (o2 == false) { return Operand.Error("Function 'CovarIanceS' parameter {0} error!", 2); }
+            if (o1 == false) { return Operand.Error("Function 'CovarIanceS' parameter {0} is error!", 1); }
+            if (o2 == false) { return Operand.Error("Function 'CovarIanceS' parameter {0} is error!", 2); }
             if (list1.Count != list2.Count) { return Operand.Error("Function 'CovarIanceS' parameter's count error!"); }
             if (list1.Count == 1) { return Operand.Error("Function 'CovarIanceS' parameter's count error!"); }
 
@@ -1235,8 +1235,8 @@ namespace ToolGood.Algorithm.Internals.Functions
             List<decimal> list2 = new List<decimal>();
             var o1 = FunctionUtil.F_base_GetList(args1, list1);
             var o2 = FunctionUtil.F_base_GetList(args2, list2);
-            if (o1 == false) { return Operand.Error("Function 'Covar' parameter {0} error!", 1); }
-            if (o2 == false) { return Operand.Error("Function 'Covar' parameter {0} error!", 2); }
+            if (o1 == false) { return Operand.Error("Function 'Covar' parameter {0} is error!", 1); }
+            if (o2 == false) { return Operand.Error("Function 'Covar' parameter {0} is error!", 2); }
             if (list1.Count != list2.Count) { return Operand.Error("Function 'Covar' parameter's count error!"); }
             if (list1.Count == 0) { return Operand.Error("Function 'Covar' parameter's count error!"); }
 
