@@ -25,7 +25,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "ABS");
+            AddFunction(stringBuilder, "Abs");
         }
     }
 
@@ -64,7 +64,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "SIGN");
+            AddFunction(stringBuilder, "Sign");
         }
     }
 
@@ -101,7 +101,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "TRUNC");
+            AddFunction(stringBuilder, "Trunc");
         }
     }
 
@@ -124,7 +124,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "GCD");
+            AddFunction(stringBuilder, "Gcd");
         }
     }
 
@@ -147,7 +147,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "LCM");
+            AddFunction(stringBuilder, "Lcm");
         }
     }
 
@@ -177,7 +177,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "COMBIN");
+            AddFunction(stringBuilder, "Combin");
         }
     }
 
@@ -203,7 +203,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "PERMUT");
+            AddFunction(stringBuilder, "Permut");
         }
     }
 
@@ -244,7 +244,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "DEGREES");
+            AddFunction(stringBuilder, "Degrees");
         }
     }
 
@@ -262,7 +262,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "RADIANS");
+            AddFunction(stringBuilder, "Radians");
         }
     }
 
@@ -411,7 +411,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "COT");
+            AddFunction(stringBuilder, "Cot");
         }
     }
 
@@ -432,7 +432,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "SEC");
+            AddFunction(stringBuilder, "Sec");
         }
     }
 
@@ -453,7 +453,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "CSC");
+            AddFunction(stringBuilder, "Csc");
         }
     }
 
@@ -1410,7 +1410,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "MULTINOMIAL");
+            AddFunction(stringBuilder, "Multinomial");
         }
     }
 
@@ -1438,7 +1438,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "PRODUCT");
+            AddFunction(stringBuilder, "Product");
         }
     }
 

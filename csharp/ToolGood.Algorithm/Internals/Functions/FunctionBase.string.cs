@@ -152,7 +152,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            AddFunction(stringBuilder, "CONCATENATE");
+            AddFunction(stringBuilder, "Concatenate");
         }
     }
 
