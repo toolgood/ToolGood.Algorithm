@@ -917,7 +917,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                         } else if (v.IsDouble) {
                             if (v.NumberValue.ToString() == args2.TextValue) { return Operand.True; }
                         } else if (v.IsBoolean) {
-                            if (v.BooleanValue.ToString().ToUpper() == args2.TextValue) { return Operand.True; }
+                            if (v.BooleanValue.ToString().Equals(args2.TextValue, StringComparison.CurrentCultureIgnoreCase)) { return Operand.True; }
                         }
                     }
                 } else {
@@ -969,7 +969,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                         } else if (v.IsDouble) {
                             if (v.NumberValue.ToString() == args2.TextValue) { return Operand.True; }
                         } else if (v.IsBoolean) {
-                            if (v.BooleanValue.ToString().ToUpper() == args2.TextValue) { return Operand.True; }
+                            if (v.BooleanValue.ToString().Equals(args2.TextValue, StringComparison.CurrentCultureIgnoreCase)) { return Operand.True; }
                         }
                     }
                 } else {
@@ -980,7 +980,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                         } else if (v.IsDouble) {
                             if (v.NumberValue.ToString() == args2.TextValue) { return Operand.True; }
                         } else if (v.IsBoolean) {
-                            if (v.BooleanValue.ToString().ToUpper() == args2.TextValue) { return Operand.True; }
+                            if (v.BooleanValue.ToString().Equals(args2.TextValue, StringComparison.CurrentCultureIgnoreCase)) { return Operand.True; }
                         }
                     }
                 }

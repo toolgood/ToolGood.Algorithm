@@ -215,12 +215,12 @@ namespace ToolGood.Algorithm.Internals
 
         public FunctionBase VisitE_fun(mathParser.E_funContext context)
         {
-            return new Function_Value(Operand.Create(Math.E));
+            return new Function_Value(Operand.Create(Math.E),"E");
         }
 
         public FunctionBase VisitPI_fun(mathParser.PI_funContext context)
         {
-            return new Function_Value(Operand.Create(Math.PI));
+            return new Function_Value(Operand.Create(Math.PI),"PI");
         }
 
         public FunctionBase VisitABS_fun(mathParser.ABS_funContext context)
@@ -1927,7 +1927,7 @@ namespace ToolGood.Algorithm.Internals
         public FunctionBase VisitNum(mathParser.NumContext context)
         {
             var d = decimal.Parse(context.GetText(), NumberStyles.Any, CultureInfo.InvariantCulture);
-            return new Function_Value(Operand.Create(d));
+            return new Function_Value(Operand.Create(d), context.GetText());
         }
 
         public FunctionBase VisitUnit(mathParser.UnitContext context)
@@ -1962,7 +1962,7 @@ namespace ToolGood.Algorithm.Internals
 
         public FunctionBase VisitNULL_fun(mathParser.NULL_funContext context)
         {
-            return new Function_Value(Operand.CreateNull());
+            return new Function_Value(Operand.CreateNull(),"NULL");
         }
 
         public FunctionBase VisitPARAMETER_fun(mathParser.PARAMETER_funContext context)
@@ -2055,7 +2055,7 @@ namespace ToolGood.Algorithm.Internals
         public FunctionBase VisitArrayJson(mathParser.ArrayJsonContext context)
         {
             string keyName = null;
-            KeyValue keyValue = new KeyValue();
+            //KeyValue keyValue = new KeyValue();
             if (context.NUM() != null) {
                 if (int.TryParse(context.NUM().GetText(), out int key)) {
                     keyName = key.ToString();

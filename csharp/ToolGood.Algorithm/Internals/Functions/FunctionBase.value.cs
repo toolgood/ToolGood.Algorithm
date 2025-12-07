@@ -9,10 +9,16 @@ namespace ToolGood.Algorithm.Internals.Functions
     internal class Function_Value : FunctionBase
     {
         private Operand _value;
+        private string _showName;
 
         public Function_Value(Operand value)
         {
             _value = value;
+        }
+        public Function_Value(Operand value, string showName)
+        {
+            _value = value;
+            _showName = showName;
         }
 
         public override Operand Calculate(AlgorithmEngine work)
@@ -21,6 +27,10 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
+            if (string.IsNullOrEmpty(_showName) == false) {
+                stringBuilder.Append(_showName);
+                return;
+            }
             if (_value.Type == OperandType.TEXT) {
                 stringBuilder.Append('"');
                 var stringValue = _value.TextValue;
@@ -133,13 +143,13 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            stringBuilder.Append("[");
+            stringBuilder.Append('[');
             if (string.IsNullOrEmpty(name)) {
                 func1.ToString(stringBuilder, false);
             } else {
                 stringBuilder.Append(name);
             }
-            stringBuilder.Append("]");
+            stringBuilder.Append(']');
         }
     }
 
@@ -209,21 +219,21 @@ namespace ToolGood.Algorithm.Internals.Functions
                     }
                 }
             }
-            return Operand.Error(" Operator is error!");
+            return Operand.Error("Operator is error!");
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
             func1.ToString(stringBuilder, false);
-            stringBuilder.Append("[");
+            stringBuilder.Append('[');
             func2.ToString(stringBuilder, false);
-            stringBuilder.Append("]");
+            stringBuilder.Append(']');
         }
     }
 
 
     internal class Function_DiyFunction : Function_N
     {
-        private string funName;
+        private readonly string funName;
 
         public Function_DiyFunction(string name, FunctionBase[] funcs) : base(funcs)
         {
@@ -239,7 +249,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
             stringBuilder.Append(funName);
-            stringBuilder.Append("(");
+            stringBuilder.Append('(');
             for (int i = 0; i < funcs.Length; i++) {
                 if (i > 0) {
                     stringBuilder.Append(", ");
@@ -290,7 +300,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
-            stringBuilder.Append("{");
+            stringBuilder.Append('{');
             for (int i = 0; i < funcs.Length; i++) {
                 if (i > 0) {
                     stringBuilder.Append(", ");
@@ -303,7 +313,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
     internal class Function_ArrayJsonItem : Function_1
     {
-        private string key;
+        private readonly string key;
 
         public Function_ArrayJsonItem(string key, FunctionBase func1) : base(func1)
         {
@@ -320,7 +330,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
             stringBuilder.Append(key);
-            stringBuilder.Append(":");
+            stringBuilder.Append(':');
             func1.ToString(stringBuilder, false);
         }
 

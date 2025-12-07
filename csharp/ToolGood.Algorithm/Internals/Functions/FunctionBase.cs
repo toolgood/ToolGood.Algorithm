@@ -39,7 +39,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <param name="addBrackets">true to enclose the string representation in brackets; otherwise, false.</param>
         public abstract void ToString(StringBuilder stringBuilder, bool addBrackets);
     }
- 
+
+    #region 1 2 3 4 N
+
     internal abstract class Function_1 : FunctionBase
     {
         protected FunctionBase func1;
@@ -51,7 +53,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         protected void AddFunction(StringBuilder stringBuilder, string functionName)
         {
             stringBuilder.Append(functionName);
-            stringBuilder.Append("(");
+            stringBuilder.Append('(');
             func1.ToString(stringBuilder, false);
             stringBuilder.Append(')');
         }
@@ -68,10 +70,10 @@ namespace ToolGood.Algorithm.Internals.Functions
             this.func2 = func2;
         }
 
-        protected void AddFunction(StringBuilder stringBuilder,string functionName)
+        protected void AddFunction(StringBuilder stringBuilder, string functionName)
         {
             stringBuilder.Append(functionName);
-            stringBuilder.Append("(");
+            stringBuilder.Append('(');
             func1.ToString(stringBuilder, false);
             if (func2 != null) {
                 stringBuilder.Append(", ");
@@ -96,7 +98,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         protected void AddFunction(StringBuilder stringBuilder, string functionName)
         {
             stringBuilder.Append(functionName);
-            stringBuilder.Append("(");
+            stringBuilder.Append('(');
             func1.ToString(stringBuilder, false);
             if (func2 != null) {
                 stringBuilder.Append(", ");
@@ -127,7 +129,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         protected void AddFunction(StringBuilder stringBuilder, string functionName)
         {
             stringBuilder.Append(functionName);
-            stringBuilder.Append("(");
+            stringBuilder.Append('(');
             func1.ToString(stringBuilder, false);
             if (func2 != null) {
                 stringBuilder.Append(", ");
@@ -157,7 +159,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         protected void AddFunction(StringBuilder stringBuilder, string functionName)
         {
             stringBuilder.Append(functionName);
-            stringBuilder.Append("(");
+            stringBuilder.Append('(');
             for (int i = 0; i < funcs.Length; i++) {
                 if (i > 0) {
                     stringBuilder.Append(", ");
@@ -167,7 +169,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             stringBuilder.Append(')');
         }
     }
-
+    #endregion
 
     #region * / % + - &
 
@@ -1016,7 +1018,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
     #endregion AND OR
 
- 
+
     #region Lookup
 
     internal class Function_VLOOKUP : Function_N
@@ -1030,28 +1032,22 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args = new List<Operand>();
             foreach (var item in funcs) { var aa = item.Calculate(work); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var args1 = args[0].ToArray("Function VLOOKUP parameter 1 error!");
-            if (args1.IsError) { return args1; }
+            var args1 = args[0].ToArray("Function VLOOKUP parameter 1 error!"); if (args1.IsError) { return args1; }
             var args2 = args[1];
-
-            var args3 = args[2].ToNumber("Function VLOOKUP parameter 3 is error!");
-            if (args3.IsError) { return args3; }
+            var args3 = args[2].ToNumber("Function VLOOKUP parameter 3 is error!"); if (args3.IsError) { return args3; }
 
             var vague = true;
             if (args.Count == 4) {
-                var args4 = args[3].ToBoolean("Function VLOOKUP parameter 4 is error!");
-                if (args4.IsError) { return args4; }
+                var args4 = args[3].ToBoolean("Function VLOOKUP parameter 4 is error!"); if (args4.IsError) { return args4; }
                 vague = args4.BooleanValue;
             }
             if (args2.Type != OperandType.NULL) {
-                var sv = args2.ToText("Function VLOOKUP parameter 2 is error!");
-                if (sv.IsError) { return sv; }
+                var sv = args2.ToText("Function VLOOKUP parameter 2 is error!"); if (sv.IsError) { return sv; }
                 args2 = sv;
             }
 
             foreach (var item in args1.ArrayValue) {
-                var o = item.ToArray("Function VLOOKUP parameter 1 error!");
-                if (o.IsError) { return o; }
+                var o = item.ToArray("Function VLOOKUP parameter 1 error!"); if (o.IsError) { return o; }
                 if (o.ArrayValue.Count > 0) {
                     var o1 = o.ArrayValue[0];
                     int b = -1;
@@ -1114,5 +1110,5 @@ namespace ToolGood.Algorithm.Internals.Functions
 
     #endregion Lookup
 
- 
+
 }
