@@ -1224,11 +1224,11 @@ namespace ToolGood.Algorithm.Internals
         public FunctionBase VisitPERCENTRANK_fun(mathParser.PERCENTRANK_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_PERCENTRANK(args);
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            if (exprs.Length == 2) return new Function_PERCENTRANK(args1, args2, null);
+            var args3 = exprs[2].Accept(this);
+            return new Function_PERCENTRANK(args1, args2, args3);
         }
 
         public FunctionBase VisitAVERAGE_fun(mathParser.AVERAGE_funContext context)
