@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using ToolGood.Algorithm.Enums;
 using ToolGood.Algorithm.Internals;
 using ToolGood.Algorithm.Internals.Functions;
 using ToolGood.Algorithm.math;
@@ -368,12 +369,74 @@ namespace ToolGood.Algorithm
         }
 
         /// <summary>
+        /// 编译公式
+        /// </summary>
+        /// <param name="exp">公式</param>
+        /// <returns></returns>
+        public static FunctionBase ParseFormula(string exp)
+        {
+            if (string.IsNullOrWhiteSpace(exp)) {
+                throw new Exception("Parameter exp invalid !");
+            }
+            var stream = new AntlrCharStream(new AntlrInputStream(exp));
+            var lexer = new mathLexer(stream);
+            var tokens = new CommonTokenStream(lexer);
+            var parser = new mathParser(tokens);
+            var antlrErrorListener = new AntlrErrorListener();
+            parser.RemoveErrorListeners();
+            parser.AddErrorListener(antlrErrorListener);
+
+            var context = parser.prog();
+            if (antlrErrorListener.IsError) {
+                throw new Exception(antlrErrorListener.ErrorMsg);
+            }
+            var visitor = new MathFunctionVisitor();
+            return visitor.Visit(context);
+        }
+
+        /// <summary>
+        /// 解析条件
+        /// </summary>
+        /// <param name="condition"></param>
+        /// <returns></returns>
+        public static ConditionTree ParseCondition(string condition)
+        {
+            ConditionTree tree = new ConditionTree();
+            if (string.IsNullOrWhiteSpace(condition)) {
+                tree.Type = ConditionTreeType.Error;
+                tree.ErrorMessage = "condition is null";
+                return tree;
+            }
+            try {
+                var stream = new AntlrCharStream(new AntlrInputStream(condition));
+                var lexer = new math.mathLexer(stream);
+                var tokens = new CommonTokenStream(lexer);
+                var parser = new math.mathParser(tokens);
+                var antlrErrorListener = new AntlrErrorListener();
+                parser.RemoveErrorListeners();
+                parser.AddErrorListener(antlrErrorListener);
+
+                var context = parser.prog();
+                if (antlrErrorListener.IsError) {
+                    tree.Type = ConditionTreeType.Error;
+                    tree.ErrorMessage = antlrErrorListener.ErrorMsg;
+                    return tree;
+                }
+                var visitor = new MathSplitVisitor();
+                return visitor.Visit(context);
+            } catch (Exception ex) {
+                tree.Type = ConditionTreeType.Error;
+                tree.ErrorMessage = ex.Message + "\r\n" + ex.StackTrace;
+            }
+            return tree;
+        }
+        /// <summary>
         /// Creates a logical AND function that combines two specified functions.
         /// </summary>
         /// <param name="left">The left operand of the AND operation, representing the first function to be combined.</param>
         /// <param name="right">The right operand of the AND operation, representing the second function to be combined.</param>
         /// <returns>A new <see cref="FunctionBase"/> instance that represents the logical AND of the specified functions.</returns>
-        public static FunctionBase CreateAnd(FunctionBase left,FunctionBase right)
+        public static FunctionBase Condition_And(FunctionBase left, FunctionBase right)
         {
             return new Function_AND(left, right);
         }
@@ -383,7 +446,7 @@ namespace ToolGood.Algorithm
         /// <param name="left">The left operand of the OR operation, representing the first function to be combined.</param>
         /// <param name="right">The right operand of the OR operation, representing the second function to be combined.</param>
         /// <returns>A new <see cref="FunctionBase"/> instance that represents the logical OR of the specified functions.</returns>
-        public static FunctionBase CreateOr(FunctionBase left, FunctionBase right)
+        public static FunctionBase Condition_Or(FunctionBase left, FunctionBase right)
         {
             return new Function_OR(left, right);
         }
