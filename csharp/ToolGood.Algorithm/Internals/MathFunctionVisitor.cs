@@ -1821,21 +1821,21 @@ namespace ToolGood.Algorithm.Internals
         public FunctionBase VisitSTARTSWITH_fun(mathParser.STARTSWITH_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_STARTSWITH(args);
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            if (exprs.Length == 2) return new Function_STARTSWITH(args1, args2, null);
+            var args3 = exprs[2].Accept(this);
+            return new Function_STARTSWITH(args1, args2, args3);
         }
 
         public FunctionBase VisitENDSWITH_fun(mathParser.ENDSWITH_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_ENDSWITH(args);
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            if (exprs.Length == 2) return new Function_ENDSWITH(args1, args2, null);
+            var args3 = exprs[2].Accept(this);
+            return new Function_ENDSWITH(args1, args2, args3); 
         }
 
         public FunctionBase VisitISNULLOREMPTY_fun(mathParser.ISNULLOREMPTY_funContext context)
