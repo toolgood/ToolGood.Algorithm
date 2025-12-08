@@ -261,20 +261,20 @@ namespace ToolGood.Algorithm.Internals.Functions
 
     }
 
-    internal class Function_TIME : Function_N
+    internal class Function_TIME : Function_3
     {
-        public Function_TIME(FunctionBase[] funcs) : base(funcs)
+        public Function_TIME(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Time", 1); if (args1.IsError) { return args1; } }
-            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Time", 2); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Time", 1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Time", 2); if (args2.IsError) { return args2; } }
 
             MyDate d;
-            if (funcs.Length == 3) {
-                var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "Time", 3); if (args3.IsError) { return args3; } }
+            if (func3 != null) {
+                var args3 = func3.Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "Time", 3); if (args3.IsError) { return args3; } }
                 d = new MyDate(0, 0, 0, args1.IntValue, args2.IntValue, args3.IntValue);
             } else {
                 d = new MyDate(0, 0, 0, args1.IntValue, args2.IntValue, 0);
@@ -438,20 +438,19 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    internal class Function_WEEKDAY : Function_N
+    internal class Function_WEEKDAY : Function_2
     {
-        public Function_WEEKDAY(FunctionBase[] funcs) : base(funcs)
+        public Function_WEEKDAY(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var exprs = funcs;
-            var args1 = exprs[0].Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "WeekDay", 1); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.DATE) { args1 = args1.ToMyDate("Function '{0}' parameter {1} is error!", "WeekDay", 1); if (args1.IsError) { return args1; } }
 
             var type = 1;
-            if (exprs.Length == 2) {
-                var args2 = exprs[1].Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "WeekDay", 2); if (args2.IsError) { return args2; } }
+            if (func2 != null) {
+                var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "WeekDay", 2); if (args2.IsError) { return args2; } }
                 type = args2.IntValue;
             }
 

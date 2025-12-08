@@ -969,11 +969,11 @@ namespace ToolGood.Algorithm.Internals
         public FunctionBase VisitTIME_fun(mathParser.TIME_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_TIME(args);
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            if (exprs.Length == 2) return new Function_TIME(args1, args2, null);
+            var args3 = exprs[2].Accept(this);
+            return new Function_TIME(args1, args2, args3);
         }
 
         public FunctionBase VisitNOW_fun(mathParser.NOW_funContext context)
@@ -1025,11 +1025,10 @@ namespace ToolGood.Algorithm.Internals
         public FunctionBase VisitWEEKDAY_fun(mathParser.WEEKDAY_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_WEEKDAY(args);
+            var args1 = exprs[0].Accept(this);
+            if (exprs.Length == 1) return new Function_WEEKDAY(args1, null);
+            var args2 = exprs[1].Accept(this);
+            return new Function_WEEKDAY(args1, args2);
         }
 
         public FunctionBase VisitDATEDIF_fun(mathParser.DATEDIF_funContext context)
