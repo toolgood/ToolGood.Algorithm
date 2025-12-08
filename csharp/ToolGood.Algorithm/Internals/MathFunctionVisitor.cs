@@ -1715,41 +1715,41 @@ namespace ToolGood.Algorithm.Internals
         public FunctionBase VisitHMACMD5_fun(mathParser.HMACMD5_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_HMACMD5(args);
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            if (exprs.Length == 2) return new Function_HMACMD5(args1, args2, null);
+            var args3 = exprs[2].Accept(this);
+            return new Function_HMACMD5(args1, args2, args3);
         }
 
         public FunctionBase VisitHMACSHA1_fun(mathParser.HMACSHA1_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_HMACSHA1(args);
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            if (exprs.Length == 2) return new Function_HMACSHA1(args1, args2, null);
+            var args3 = exprs[2].Accept(this);
+            return new Function_HMACSHA1(args1, args2, args3); 
         }
 
         public FunctionBase VisitHMACSHA256_fun(mathParser.HMACSHA256_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_HMACSHA256(args);
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            if (exprs.Length == 2) return new Function_HMACSHA256(args1, args2, null);
+            var args3 = exprs[2].Accept(this);
+            return new Function_HMACSHA256(args1, args2, args3); 
         }
 
         public FunctionBase VisitHMACSHA512_fun(mathParser.HMACSHA512_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_HMACSHA512(args);
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            if (exprs.Length == 2) return new Function_HMACSHA512(args1, args2, null);
+            var args3 = exprs[2].Accept(this);
+            return new Function_HMACSHA512(args1, args2, args3); 
         }
 
         public FunctionBase VisitTRIMSTART_fun(mathParser.TRIMSTART_funContext context)

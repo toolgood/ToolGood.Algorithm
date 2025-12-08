@@ -426,24 +426,25 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    internal class Function_HMACMD5 : Function_N
+    internal class Function_HMACMD5 : Function_3
     {
-        public Function_HMACMD5(FunctionBase[] funcs) : base(funcs)
+        public Function_HMACMD5(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function '{0}' parameter {1} is error!", "HmacMD5", index++); if (a.IsError) { return a; } args.Add(a); }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "HmacMD5", 1); if (args1.IsError) return args1; }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "HmacMD5", 2); if (args2.IsError) return args2; }
             try {
                 Encoding encoding;
-                if (args.Count == 2) {
+                if (func3 == null) {
                     encoding = Encoding.UTF8;
                 } else {
-                    encoding = Encoding.GetEncoding(args[2].TextValue);
+                    var args3 = func3.Calculate(work); if (args3.Type != OperandType.TEXT) { args3 = args3.ToText("Function '{0}' parameter {1} is error!", "HmacMD5", 3); if (args3.IsError) return args3; }
+                    encoding = Encoding.GetEncoding(args3.TextValue);
                 }
-                var t = Hash.GetHmacMd5String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
+                var t = Hash.GetHmacMd5String(encoding.GetBytes(args1.TextValue), args2.TextValue);
                 return Operand.Create(t);
             } catch (Exception ex) {
                 return Operand.Error("Function 'HmacMD5' is error!" + ex.Message);
@@ -455,24 +456,25 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    internal class Function_HMACSHA1 : Function_N
+    internal class Function_HMACSHA1 : Function_3
     {
-        public Function_HMACSHA1(FunctionBase[] funcs) : base(funcs)
+        public Function_HMACSHA1(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function '{0}' parameter {1} is error!", "HmacSHA1", index++); if (a.IsError) { return a; } args.Add(a); }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "HmacSHA1", 1); if (args1.IsError) return args1; }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "HmacSHA1", 2); if (args2.IsError) return args2; }
             try {
                 Encoding encoding;
-                if (args.Count == 2) {
+                if (func3 == null) {
                     encoding = Encoding.UTF8;
                 } else {
-                    encoding = Encoding.GetEncoding(args[2].TextValue);
+                    var args3 = func3.Calculate(work); if (args3.Type != OperandType.TEXT) { args3 = args3.ToText("Function '{0}' parameter {1} is error!", "HmacSHA1", 3); if (args3.IsError) return args3; }
+                    encoding = Encoding.GetEncoding(args3.TextValue);
                 }
-                var t = Hash.GetHmacSha1String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
+                var t = Hash.GetHmacSha1String(encoding.GetBytes(args1.TextValue), args2.TextValue);
                 return Operand.Create(t);
             } catch (Exception ex) {
                 return Operand.Error("Function 'HmacSHA1' is error!" + ex.Message);
@@ -484,24 +486,25 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    internal class Function_HMACSHA256 : Function_N
+    internal class Function_HMACSHA256 : Function_3
     {
-        public Function_HMACSHA256(FunctionBase[] funcs) : base(funcs)
+        public Function_HMACSHA256(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function '{0}' parameter {1} is error!", "HmacSHA256", index++); if (a.IsError) { return a; } args.Add(a); }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "HmacSHA256", 1); if (args1.IsError) return args1; }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "HmacSHA256", 2); if (args2.IsError) return args2; }
             try {
                 Encoding encoding;
-                if (args.Count == 2) {
+                if (func3 == null) {
                     encoding = Encoding.UTF8;
                 } else {
-                    encoding = Encoding.GetEncoding(args[2].TextValue);
+                    var args3 = func3.Calculate(work); if (args3.Type != OperandType.TEXT) { args3 = args3.ToText("Function '{0}' parameter {1} is error!", "HmacSHA256", 3); if (args3.IsError) return args3; }
+                    encoding = Encoding.GetEncoding(args3.TextValue);
                 }
-                var t = Hash.GetHmacSha256String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
+                var t = Hash.GetHmacSha256String(encoding.GetBytes(args1.TextValue), args2.TextValue);
                 return Operand.Create(t);
             } catch (Exception ex) {
                 return Operand.Error("Function 'HmacSHA256' is error!" + ex.Message);
@@ -513,24 +516,25 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    internal class Function_HMACSHA512 : Function_N
+    internal class Function_HMACSHA512 : Function_3
     {
-        public Function_HMACSHA512(FunctionBase[] funcs) : base(funcs)
+        public Function_HMACSHA512(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function '{0}' parameter {1} is error!", "HmacSHA512", index++); if (a.IsError) { return a; } args.Add(a); }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "HmacSHA512", 1); if (args1.IsError) return args1; }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "HmacSHA512", 2); if (args2.IsError) return args2; }
             try {
                 Encoding encoding;
-                if (args.Count == 2) {
+                if (func3 == null) {
                     encoding = Encoding.UTF8;
                 } else {
-                    encoding = Encoding.GetEncoding(args[2].TextValue);
+                    var args3 = func3.Calculate(work); if (args3.Type != OperandType.TEXT) { args3 = args3.ToText("Function '{0}' parameter {1} is error!", "HmacSHA512", 3); if (args3.IsError) return args3; }
+                    encoding = Encoding.GetEncoding(args3.TextValue);
                 }
-                var t = Hash.GetHmacSha512String(encoding.GetBytes(args[0].TextValue), args[1].TextValue);
+                var t = Hash.GetHmacSha512String(encoding.GetBytes(args1.TextValue), args2.TextValue);
                 return Operand.Create(t);
             } catch (Exception ex) {
                 return Operand.Error("Function 'HmacSHA512' is error!" + ex.Message);
