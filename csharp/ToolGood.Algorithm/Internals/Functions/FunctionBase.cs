@@ -1025,24 +1025,25 @@ namespace ToolGood.Algorithm.Internals.Functions
 
     #region Lookup
 
-    internal class Function_VLOOKUP : Function_N
+    internal class Function_VLOOKUP : Function_4
     {
-        public Function_VLOOKUP(FunctionBase[] funcs) : base(funcs)
+        public Function_VLOOKUP(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) : base(func1, func2, func3, func4)
         {
         }
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args = new List<Operand>();
-            foreach (var item in funcs) { var aa = item.Calculate(work); if (aa.IsError) { return aa; } args.Add(aa); }
+            var args1 = func1.Calculate(work);
+            args1 = args1.ToArray("Function '{0}' parameter {1} is error!", "VLOOKUP", 1); if (args1.IsError) { return args1; }
 
-            var args1 = args[0].ToArray("Function '{0}' parameter {1} is error!", "VLOOKUP", 1); if (args1.IsError) { return args1; }
-            var args2 = args[1];
-            var args3 = args[2].ToNumber("Function '{0}' parameter {1} is error!", "VLOOKUP", 3); if (args3.IsError) { return args3; }
+            var args2 = func2.Calculate(work); if (args2.IsError) { return args2; }
+            var args3 = func3.Calculate(work);
+            args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "VLOOKUP", 3); if (args3.IsError) { return args3; }
 
             var vague = true;
-            if (args.Count == 4) {
-                var args4 = args[3].ToBoolean("Function '{0}' parameter {1} is error!", "VLOOKUP", 4); if (args4.IsError) { return args4; }
+            if (func4 != null) {
+                var args4 = func4.Calculate(work);
+                args4 = args4.ToBoolean("Function '{0}' parameter {1} is error!", "VLOOKUP", 4); if (args4.IsError) { return args4; }
                 vague = args4.BooleanValue;
             }
             if (args2.Type != OperandType.NULL) {
@@ -1075,8 +1076,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 }
             }
 
-            if (vague) //进行模糊匹配
-            {
+            if (vague) {//进行模糊匹配
                 Operand last = null;
                 var index = args3.IntValue - work.ExcelIndex;
                 foreach (var item in args1.ArrayValue) {

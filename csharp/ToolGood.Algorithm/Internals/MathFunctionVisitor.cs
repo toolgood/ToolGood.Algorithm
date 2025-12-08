@@ -1879,11 +1879,12 @@ namespace ToolGood.Algorithm.Internals
         public FunctionBase VisitVLOOKUP_fun(mathParser.VLOOKUP_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_VLOOKUP(args);
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            var args3 = exprs[2].Accept(this);
+            if (exprs.Length == 3) return new Function_VLOOKUP(args1, args2, args3, null);
+            var args4 = exprs[3].Accept(this);
+            return new Function_VLOOKUP(args1, args2, args3, args4);
         }
 
         #endregion Lookup
