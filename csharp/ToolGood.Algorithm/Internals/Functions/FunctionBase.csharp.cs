@@ -590,25 +590,25 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    internal class Function_INDEXOF : Function_N
+    internal class Function_INDEXOF : Function_4
     {
-        public Function_INDEXOF(FunctionBase[] funcs) : base(funcs)
+        public Function_INDEXOF(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) : base(func1, func2, func3, func4)
         {
         }
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "IndexOf", 1); if (args1.IsError) { return args1; } }
-            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "IndexOf", 2); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "IndexOf", 1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "IndexOf", 2); if (args2.IsError) { return args2; } }
             var text = args1.TextValue;
-            if (funcs.Length == 2) {
+            if (func3 == null) {
                 return Operand.Create(text.AsSpan().IndexOf(args2.TextValue) + work.ExcelIndex);
             }
-            var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "IndexOf", 3); if (args3.IsError) { return args3; } }
-            if (funcs.Length == 3) {
+            var args3 = func3.Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "IndexOf", 3); if (args3.IsError) { return args3; } }
+            if (func4 == null) {
                 return Operand.Create(text.AsSpan(args3.IntValue).IndexOf(args2.TextValue) + args3.IntValue + work.ExcelIndex);
             }
-            var args4 = funcs[3].Calculate(work); if (args4.Type != OperandType.NUMBER) { args4 = args4.ToNumber("Function '{0}' parameter {1} is error!", "IndexOf", 4); if (args4.IsError) { return args4; } }
+            var args4 = func4.Calculate(work); if (args4.Type != OperandType.NUMBER) { args4 = args4.ToNumber("Function '{0}' parameter {1} is error!", "IndexOf", 4); if (args4.IsError) { return args4; } }
             return Operand.Create(text.IndexOf(args2.TextValue, args3.IntValue, args4.IntValue) + work.ExcelIndex);
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -617,25 +617,25 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    internal class Function_LASTINDEXOF : Function_N
+    internal class Function_LASTINDEXOF : Function_4
     {
-        public Function_LASTINDEXOF(FunctionBase[] funcs) : base(funcs)
+        public Function_LASTINDEXOF(FunctionBase func1, FunctionBase func2, FunctionBase func3, FunctionBase func4) : base(func1, func2, func3, func4)
         {
         }
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "LastIndexOf", 1); if (args1.IsError) { return args1; } }
-            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "LastIndexOf", 2); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "LastIndexOf", 1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "LastIndexOf", 2); if (args2.IsError) { return args2; } }
             var text = args1.TextValue;
-            if (funcs.Length == 2) {
+            if (func3 == null) {
                 return Operand.Create(text.AsSpan().LastIndexOf(args2.TextValue) + work.ExcelIndex);
             }
-            var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "LastIndexOf", 3); if (args3.IsError) { return args3; } }
-            if (funcs.Length == 3) {
+            var args3 = func3.Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "LastIndexOf", 3); if (args3.IsError) { return args3; } }
+            if (func4 == null) {
                 return Operand.Create(text.AsSpan(0, args3.IntValue).LastIndexOf(args2.TextValue) + work.ExcelIndex);
             }
-            var args4 = funcs[3].Calculate(work); if (args4.Type != OperandType.NUMBER) { args4 = args4.ToNumber("Function '{0}' parameter {1} is error!", "LastIndexOf", 4); if (args4.IsError) { return args4; } }
+            var args4 = func4.Calculate(work); if (args4.Type != OperandType.NUMBER) { args4 = args4.ToNumber("Function '{0}' parameter {1} is error!", "LastIndexOf", 4); if (args4.IsError) { return args4; } }
             return Operand.Create(text.LastIndexOf(args2.TextValue, args3.IntValue, args4.IntValue) + work.ExcelIndex);
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)

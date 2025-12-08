@@ -1773,21 +1773,25 @@ namespace ToolGood.Algorithm.Internals
         public FunctionBase VisitINDEXOF_fun(mathParser.INDEXOF_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_INDEXOF(args);
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            if (exprs.Length == 2) return new Function_INDEXOF(args1, args2, null, null);
+            var args3 = exprs[2].Accept(this);
+            if (exprs.Length == 3) return new Function_INDEXOF(args1, args2, args3, null);
+            var args4 = exprs[3].Accept(this);
+            return new Function_INDEXOF(args1, args2, args3, args4);
         }
 
         public FunctionBase VisitLASTINDEXOF_fun(mathParser.LASTINDEXOF_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_LASTINDEXOF(args);
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            if (exprs.Length == 2) return new Function_LASTINDEXOF(args1, args2, null, null);
+            var args3 = exprs[2].Accept(this);
+            if (exprs.Length == 3) return new Function_LASTINDEXOF(args1, args2, args3, null);
+            var args4 = exprs[3].Accept(this);
+            return new Function_LASTINDEXOF(args1, args2, args3, args4);
         }
 
         public FunctionBase VisitSPLIT_fun(mathParser.SPLIT_funContext context)
