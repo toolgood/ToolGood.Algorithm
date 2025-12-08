@@ -1091,11 +1091,10 @@ namespace ToolGood.Algorithm.Internals
         public FunctionBase VisitWEEKNUM_fun(mathParser.WEEKNUM_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_WEEKNUM(args);
+            var args1 = exprs[0].Accept(this);
+            if (exprs.Length == 1) return new Function_WEEKNUM(args1, null);
+            var args2 = exprs[1].Accept(this);
+            return new Function_WEEKNUM(args1, args2);
         }
 
         public FunctionBase VisitADDMONTHS_fun(mathParser.ADDMONTHS_funContext context)
