@@ -410,11 +410,12 @@ namespace ToolGood.Algorithm.Internals
         public FunctionBase VisitFIXED_fun(mathParser.FIXED_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_FIXED(args);
+            var args1 = exprs[0].Accept(this);
+            if (exprs.Length == 1) return new Function_FIXED(args1, null, null);
+            var args2 = exprs[1].Accept(this);
+            if (exprs.Length == 2) return new Function_FIXED(args1, args2, null);
+            var args3 = exprs[2].Accept(this);
+            return new Function_FIXED(args1, args2, args3);
         }
 
         #endregion trigonometric functions
@@ -424,11 +425,10 @@ namespace ToolGood.Algorithm.Internals
         public FunctionBase VisitBIN2OCT_fun(mathParser.BIN2OCT_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_BIN2OCT(args);
+            var args1 = exprs[0].Accept(this);
+            if (exprs.Length == 1) return new Function_BIN2OCT(args1, null);
+            var args2 = exprs[1].Accept(this);
+            return new Function_BIN2OCT(args1, args2);
         }
 
         public FunctionBase VisitBIN2DEC_fun(mathParser.BIN2DEC_funContext context)
@@ -440,11 +440,10 @@ namespace ToolGood.Algorithm.Internals
         public FunctionBase VisitBIN2HEX_fun(mathParser.BIN2HEX_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_BIN2HEX(args);
+            var args1 = exprs[0].Accept(this);
+            if (exprs.Length == 1) return new Function_BIN2HEX(args1, null);
+            var args2 = exprs[1].Accept(this);
+            return new Function_BIN2HEX(args1, args2);
         }
 
         public FunctionBase VisitOCT2BIN_fun(mathParser.OCT2BIN_funContext context)
