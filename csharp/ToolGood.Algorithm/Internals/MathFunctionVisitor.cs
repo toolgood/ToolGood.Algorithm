@@ -1670,51 +1670,46 @@ namespace ToolGood.Algorithm.Internals
         public FunctionBase VisitMD5_fun(mathParser.MD5_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_MD5(args);
+            var args1 = exprs[0].Accept(this);
+            if (exprs.Length == 1) return new Function_MD5(args1, null);
+            var args2 = exprs[1].Accept(this);
+            return new Function_MD5(args1, args2);
         }
 
         public FunctionBase VisitSHA1_fun(mathParser.SHA1_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_SHA1(args);
+            var args1 = exprs[0].Accept(this);
+            if (exprs.Length == 1) return new Function_SHA1(args1, null);
+            var args2 = exprs[1].Accept(this);
+            return new Function_SHA1(args1, args2);
         }
 
         public FunctionBase VisitSHA256_fun(mathParser.SHA256_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_SHA256(args);
+            var args1 = exprs[0].Accept(this);
+            if (exprs.Length == 1) return new Function_SHA256(args1, null);
+            var args2 = exprs[1].Accept(this);
+            return new Function_SHA256(args1, args2);
         }
 
         public FunctionBase VisitSHA512_fun(mathParser.SHA512_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_SHA512(args);
+            var args1 = exprs[0].Accept(this);
+            if (exprs.Length == 1) return new Function_SHA512(args1, null);
+            var args2 = exprs[1].Accept(this);
+            return new Function_SHA512(args1, args2);
         }
 
         public FunctionBase VisitCRC32_fun(mathParser.CRC32_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_CRC32(args);
+            var args1 = exprs[0].Accept(this);
+            if (exprs.Length == 1) return new Function_CRC32(args1, null);
+            var args2 = exprs[1].Accept(this);
+            return new Function_CRC32(args1, args2);
         }
 
         public FunctionBase VisitHMACMD5_fun(mathParser.HMACMD5_funContext context)

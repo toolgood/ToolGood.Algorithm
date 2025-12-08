@@ -18,7 +18,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter is error!","UrlEncode"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter is error!", "UrlEncode"); if (args1.IsError) { return args1; } }
             var s = args1.TextValue;
             var r = System.Web.HttpUtility.UrlEncode(s);
             return Operand.Create(r);
@@ -37,7 +37,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter is error!","UrlDecode"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter is error!", "UrlDecode"); if (args1.IsError) { return args1; } }
             var s = args1.TextValue;
             var r = System.Web.HttpUtility.UrlDecode(s);
             return Operand.Create(r);
@@ -56,7 +56,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter is error!","HtmlEncode"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter is error!", "HtmlEncode"); if (args1.IsError) { return args1; } }
             var s = args1.TextValue;
             var r = System.Web.HttpUtility.HtmlEncode(s);
             return Operand.Create(r);
@@ -75,7 +75,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter is error!","HtmlDecode"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter is error!", "HtmlDecode"); if (args1.IsError) { return args1; } }
             var s = args1.TextValue;
             var r = System.Web.HttpUtility.HtmlDecode(s);
             return Operand.Create(r);
@@ -281,24 +281,24 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    internal class Function_MD5 : Function_N
+    internal class Function_MD5 : Function_2
     {
-        public Function_MD5(FunctionBase[] funcs) : base(funcs)
+        public Function_MD5(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function '{0}' parameter {1} is error!", "MD5", index++); if (a.IsError) { return a; } args.Add(a); }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "MD5", 1); if (args1.IsError) return args1; }
             try {
                 Encoding encoding;
-                if (args.Count == 1) {
+                if (func2 == null) {
                     encoding = Encoding.UTF8;
                 } else {
-                    encoding = Encoding.GetEncoding(args[1].TextValue);
+                    var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "MD5", 2); if (args2.IsError) return args2; }
+                    encoding = Encoding.GetEncoding(args2.TextValue);
                 }
-                var t = Hash.GetMd5String(encoding.GetBytes(args[0].TextValue));
+                var t = Hash.GetMd5String(encoding.GetBytes(args1.TextValue));
                 return Operand.Create(t);
             } catch (Exception ex) {
                 return Operand.Error("Function 'MD5' is error!" + ex.Message);
@@ -310,24 +310,24 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    internal class Function_SHA1 : Function_N
+    internal class Function_SHA1 : Function_2
     {
-        public Function_SHA1(FunctionBase[] funcs) : base(funcs)
+        public Function_SHA1(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function '{0}' parameter {1} is error!", "SHA1", index++); if (a.IsError) { return a; } args.Add(a); }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "SHA1", 1); if (args1.IsError) return args1; }
             try {
                 Encoding encoding;
-                if (args.Count == 1) {
+                if (func2 == null) {
                     encoding = Encoding.UTF8;
                 } else {
-                    encoding = Encoding.GetEncoding(args[1].TextValue);
+                    var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "SHA1", 2); if (args2.IsError) return args2; }
+                    encoding = Encoding.GetEncoding(args2.TextValue);
                 }
-                var t = Hash.GetSha1String(encoding.GetBytes(args[0].TextValue));
+                var t = Hash.GetSha1String(encoding.GetBytes(args1.TextValue));
                 return Operand.Create(t);
             } catch (Exception ex) {
                 return Operand.Error("Function 'SHA1' is error!" + ex.Message);
@@ -339,24 +339,24 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    internal class Function_SHA256 : Function_N
+    internal class Function_SHA256 : Function_2
     {
-        public Function_SHA256(FunctionBase[] funcs) : base(funcs)
+        public Function_SHA256(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function '{0}' parameter {1} is error!", "SHA256", index++); if (a.IsError) { return a; } args.Add(a); }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "SHA256", 1); if (args1.IsError) return args1; }
             try {
                 Encoding encoding;
-                if (args.Count == 1) {
+                if (func2 == null) {
                     encoding = Encoding.UTF8;
                 } else {
-                    encoding = Encoding.GetEncoding(args[1].TextValue);
+                    var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "SHA256", 2); if (args2.IsError) return args2; }
+                    encoding = Encoding.GetEncoding(args2.TextValue);
                 }
-                var t = Hash.GetSha256String(encoding.GetBytes(args[0].TextValue));
+                var t = Hash.GetSha256String(encoding.GetBytes(args1.TextValue));
                 return Operand.Create(t);
             } catch (Exception ex) {
                 return Operand.Error("Function 'SHA256' is error!" + ex.Message);
@@ -368,24 +368,24 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    internal class Function_SHA512 : Function_N
+    internal class Function_SHA512 : Function_2
     {
-        public Function_SHA512(FunctionBase[] funcs) : base(funcs)
+        public Function_SHA512(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function '{0}' parameter {1} is error!", "SHA512", index++); if (a.IsError) { return a; } args.Add(a); }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "SHA512", 1); if (args1.IsError) return args1; }
             try {
                 Encoding encoding;
-                if (args.Count == 1) {
+                if (func2 == null) {
                     encoding = Encoding.UTF8;
                 } else {
-                    encoding = Encoding.GetEncoding(args[1].TextValue);
+                    var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "SHA512", 2); if (args2.IsError) return args2; }
+                    encoding = Encoding.GetEncoding(args2.TextValue);
                 }
-                var t = Hash.GetSha512String(encoding.GetBytes(args[0].TextValue));
+                var t = Hash.GetSha512String(encoding.GetBytes(args1.TextValue));
                 return Operand.Create(t);
             } catch (Exception ex) {
                 return Operand.Error("Function 'SHA512' is error!" + ex.Message);
@@ -397,24 +397,24 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    internal class Function_CRC32 : Function_N
+    internal class Function_CRC32 : Function_2
     {
-        public Function_CRC32(FunctionBase[] funcs) : base(funcs)
+        public Function_CRC32(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function '{0}' parameter {1} is error!", "CRC32", index++); if (a.IsError) { return a; } args.Add(a); }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "CRC32", 1); if (args1.IsError) return args1; }
             try {
                 Encoding encoding;
-                if (args.Count == 1) {
+                if (func2 == null) {
                     encoding = Encoding.UTF8;
                 } else {
-                    encoding = Encoding.GetEncoding(args[1].TextValue);
+                    var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "CRC32", 2); if (args2.IsError) return args2; }
+                    encoding = Encoding.GetEncoding(args2.TextValue);
                 }
-                var t = Hash.GetCrc32String(encoding.GetBytes(args[0].TextValue));
+                var t = Hash.GetCrc32String(encoding.GetBytes(args1.TextValue));
                 return Operand.Create(t);
             } catch (Exception ex) {
                 return Operand.Error("Function 'CRC32' is error!" + ex.Message);
