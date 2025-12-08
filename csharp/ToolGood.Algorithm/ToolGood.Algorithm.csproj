@@ -19,7 +19,7 @@
     <Product>ToolGood.Algorithm</Product>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <SignAssembly>true</SignAssembly>
-    <Version>5.0.0.1</Version>
+    <Version>5.0.0.2</Version>
     <AssemblyOriginatorKeyFile>ToolGood.Algorithm.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\ToolGood.Algorithm.xml</DocumentationFile>
@@ -38,11 +38,6 @@
 	<ItemGroup>
 		<PackageReference Include="Antlr4.Runtime.Standard" Version="4.13.1" />
 	</ItemGroup>
-
-
-	<!--<ItemGroup>
-		<PackageReference Include="Wasi.Sdk" Version="0.1.4-preview.10020" />
-	</ItemGroup>-->
 
 	<ItemGroup>
     <None Include="..\..\LICENSE">
