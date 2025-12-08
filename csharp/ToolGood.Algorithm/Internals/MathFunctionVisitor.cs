@@ -1600,41 +1600,37 @@ namespace ToolGood.Algorithm.Internals
         public FunctionBase VisitBASE64TOTEXT_fun(mathParser.BASE64TOTEXT_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_BASE64TOTEXT(args);
+            var args1 = exprs[0].Accept(this);
+            if (exprs.Length == 1) return new Function_BASE64TOTEXT(args1, null);
+            var args2 = exprs[1].Accept(this);
+            return new Function_BASE64TOTEXT(args1, args2);
         }
 
         public FunctionBase VisitBASE64URLTOTEXT_fun(mathParser.BASE64URLTOTEXT_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_BASE64URLTOTEXT(args);
+            var args1 = exprs[0].Accept(this);
+            if (exprs.Length == 1) return new Function_BASE64URLTOTEXT(args1, null);
+            var args2 = exprs[1].Accept(this);
+            return new Function_BASE64URLTOTEXT(args1, args2);
         }
 
         public FunctionBase VisitTEXTTOBASE64_fun(mathParser.TEXTTOBASE64_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_TEXTTOBASE64(args);
+            var args1 = exprs[0].Accept(this);
+            if (exprs.Length == 1) return new Function_TEXTTOBASE64(args1, null);
+            var args2 = exprs[1].Accept(this);
+            return new Function_TEXTTOBASE64(args1, args2);
         }
 
         public FunctionBase VisitTEXTTOBASE64URL_fun(mathParser.TEXTTOBASE64URL_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_TEXTTOBASE64URL(args);
+            var args1 = exprs[0].Accept(this);
+            if (exprs.Length == 1) return new Function_TEXTTOBASE64URL(args1, null);
+            var args2 = exprs[1].Accept(this);
+            return new Function_TEXTTOBASE64URL(args1, args2);
         }
 
         public FunctionBase VisitREGEX_fun(mathParser.REGEX_funContext context)

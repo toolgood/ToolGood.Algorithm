@@ -86,24 +86,24 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    internal class Function_BASE64TOTEXT : Function_N
+    internal class Function_BASE64TOTEXT : Function_2
     {
-        public Function_BASE64TOTEXT(FunctionBase[] funcs) : base(funcs)
+        public Function_BASE64TOTEXT(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function '{0}' parameter {1} is error!", "Base64ToText", index++); if (a.IsError) { return a; } args.Add(a); }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "Base64ToText", 1); if (args1.IsError) return args1; }
             try {
                 Encoding encoding;
-                if (args.Count == 1) {
+                if (func2 == null) {
                     encoding = Encoding.UTF8;
                 } else {
-                    encoding = Encoding.GetEncoding(args[1].TextValue);
+                    var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "Base64ToText", 2); if (args2.IsError) return args2; }
+                    encoding = Encoding.GetEncoding(args2.TextValue);
                 }
-                var t = encoding.GetString(Base64.FromBase64String(args[0].TextValue));
+                var t = encoding.GetString(Base64.FromBase64String(args1.TextValue));
                 return Operand.Create(t);
             } catch (Exception) { }
             return Operand.Error("Function 'Base64ToText' is error!");
@@ -114,24 +114,24 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    internal class Function_BASE64URLTOTEXT : Function_N
+    internal class Function_BASE64URLTOTEXT : Function_2
     {
-        public Function_BASE64URLTOTEXT(FunctionBase[] funcs) : base(funcs)
+        public Function_BASE64URLTOTEXT(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function '{0}' parameter {1} is error!", "Base64urlToText", index++); if (a.IsError) { return a; } args.Add(a); }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "Base64urlToText", 1); if (args1.IsError) return args1; }
             try {
                 Encoding encoding;
-                if (args.Count == 1) {
+                if (func2 == null) {
                     encoding = Encoding.UTF8;
                 } else {
-                    encoding = Encoding.GetEncoding(args[1].TextValue);
+                    var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "Base64urlToText", 2); if (args2.IsError) return args2; }
+                    encoding = Encoding.GetEncoding(args2.TextValue);
                 }
-                var t = encoding.GetString(Base64.FromBase64ForUrlString(args[0].TextValue));
+                var t = encoding.GetString(Base64.FromBase64ForUrlString(args1.TextValue));
                 return Operand.Create(t);
             } catch (Exception) { }
             return Operand.Error("Function 'Base64urlToText' is error!");
@@ -142,28 +142,27 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    internal class Function_TEXTTOBASE64 : Function_N
+    internal class Function_TEXTTOBASE64 : Function_2
     {
-        public Function_TEXTTOBASE64(FunctionBase[] funcs) : base(funcs)
+        public Function_TEXTTOBASE64(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function '{0}' parameter {1} is error!", "TextToBase64", index++); if (a.IsError) { return a; } args.Add(a); }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "TextToBase64", 1); if (args1.IsError) return args1; }
             try {
                 Encoding encoding;
-                if (args.Count == 1) {
+                if (func2 == null) {
                     encoding = Encoding.UTF8;
                 } else {
-                    encoding = Encoding.GetEncoding(args[1].TextValue);
+                    var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "TextToBase64", 2); if (args2.IsError) return args2; }
+                    encoding = Encoding.GetEncoding(args2.TextValue);
                 }
-                var bytes = encoding.GetBytes(args[0].TextValue);
+                var bytes = encoding.GetBytes(args1.TextValue);
                 var t = Base64.ToBase64String(bytes);
                 return Operand.Create(t);
-            } catch (Exception) {
-            }
+            } catch (Exception) { }
             return Operand.Error("Function 'TextToBase64' is error!");
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -172,28 +171,28 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    internal class Function_TEXTTOBASE64URL : Function_N
+    internal class Function_TEXTTOBASE64URL : Function_2
     {
-        public Function_TEXTTOBASE64URL(FunctionBase[] funcs) : base(funcs)
+        public Function_TEXTTOBASE64URL(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function '{0}' parameter {1} is error!", "TextToBase64url", index++); if (a.IsError) { return a; } args.Add(a); }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "TextToBase64", 1); if (args1.IsError) return args1; }
             try {
                 Encoding encoding;
-                if (args.Count == 1) {
+                if (func2 == null) {
                     encoding = Encoding.UTF8;
                 } else {
-                    encoding = Encoding.GetEncoding(args[1].TextValue);
+                    var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "TextToBase64", 2); if (args2.IsError) return args2; }
+                    encoding = Encoding.GetEncoding(args2.TextValue);
                 }
-                var bytes = encoding.GetBytes(args[0].TextValue);
+                var bytes = encoding.GetBytes(args1.TextValue);
                 var t = Base64.ToBase64ForUrlString(bytes);
                 return Operand.Create(t);
             } catch (Exception) { }
-            return Operand.Error("Function 'TextToBase64url' is error!");
+            return Operand.Error("Function 'TextToBase64' is error!");
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
