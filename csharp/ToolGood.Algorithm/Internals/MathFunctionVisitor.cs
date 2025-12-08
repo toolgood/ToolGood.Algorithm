@@ -449,11 +449,10 @@ namespace ToolGood.Algorithm.Internals
         public FunctionBase VisitOCT2BIN_fun(mathParser.OCT2BIN_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_OCT2BIN(args);
+            var args1 = exprs[0].Accept(this);
+            if (exprs.Length == 1) return new Function_OCT2BIN(args1, null);
+            var args2 = exprs[1].Accept(this);
+            return new Function_OCT2BIN(args1, args2);
         }
 
         public FunctionBase VisitOCT2DEC_fun(mathParser.OCT2DEC_funContext context)
@@ -465,61 +464,55 @@ namespace ToolGood.Algorithm.Internals
         public FunctionBase VisitOCT2HEX_fun(mathParser.OCT2HEX_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_OCT2HEX(args);
+            var args1 = exprs[0].Accept(this);
+            if (exprs.Length == 1) return new Function_OCT2HEX(args1, null);
+            var args2 = exprs[1].Accept(this);
+            return new Function_OCT2HEX(args1, args2);
         }
 
         public FunctionBase VisitDEC2BIN_fun(mathParser.DEC2BIN_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_DEC2BIN(args);
+            var args1 = exprs[0].Accept(this);
+            if (exprs.Length == 1) return new Function_DEC2BIN(args1, null);
+            var args2 = exprs[1].Accept(this);
+            return new Function_DEC2BIN(args1, args2);
         }
 
         public FunctionBase VisitDEC2OCT_fun(mathParser.DEC2OCT_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_DEC2OCT(args);
+            var args1 = exprs[0].Accept(this);
+            if (exprs.Length == 1) return new Function_DEC2OCT(args1, null);
+            var args2 = exprs[1].Accept(this);
+            return new Function_DEC2OCT(args1, args2);
         }
 
         public FunctionBase VisitDEC2HEX_fun(mathParser.DEC2HEX_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_DEC2HEX(args);
+            var args1 = exprs[0].Accept(this);
+            if (exprs.Length == 1) return new Function_DEC2HEX(args1, null);
+            var args2 = exprs[1].Accept(this);
+            return new Function_DEC2HEX(args1, args2);
         }
 
         public FunctionBase VisitHEX2BIN_fun(mathParser.HEX2BIN_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_HEX2BIN(args);
+            var args1 = exprs[0].Accept(this);
+            if (exprs.Length == 1) return new Function_HEX2BIN(args1, null);
+            var args2 = exprs[1].Accept(this);
+            return new Function_HEX2BIN(args1, args2);
         }
 
         public FunctionBase VisitHEX2OCT_fun(mathParser.HEX2OCT_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_HEX2OCT(args);
+            var args1 = exprs[0].Accept(this);
+            if (exprs.Length == 1) return new Function_HEX2OCT(args1, null);
+            var args2 = exprs[1].Accept(this);
+            return new Function_HEX2OCT(args1, args2);
         }
 
         public FunctionBase VisitHEX2DEC_fun(mathParser.HEX2DEC_funContext context)
