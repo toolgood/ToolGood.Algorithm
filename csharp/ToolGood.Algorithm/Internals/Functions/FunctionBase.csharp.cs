@@ -706,22 +706,22 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    internal class Function_SUBSTRING : Function_N
+    internal class Function_SUBSTRING : Function_3
     {
-        public Function_SUBSTRING(FunctionBase[] funcs) : base(funcs)
+        public Function_SUBSTRING(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "Substring", 1); if (args1.IsError) { return args1; } }
-            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Substring", 2); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "Substring", 1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Substring", 2); if (args2.IsError) { return args2; } }
 
             var text = args1.TextValue;
-            if (funcs.Length == 2) {
+            if (func3 == null) {
                 return Operand.Create(text.AsSpan(args2.IntValue - work.ExcelIndex).ToString());
             }
-            var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "Substring", 3); if (args3.IsError) { return args3; } }
+            var args3 = func3.Calculate(work); if (args3.Type != OperandType.NUMBER) { args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "Substring", 3); if (args3.IsError) { return args3; } }
             return Operand.Create(text.AsSpan(args2.IntValue - work.ExcelIndex, args3.IntValue).ToString());
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
