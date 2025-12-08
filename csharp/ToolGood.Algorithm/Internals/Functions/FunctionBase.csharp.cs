@@ -546,22 +546,21 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    internal class Function_TRIMSTART : Function_N
+    internal class Function_TRIMSTART : Function_2
     {
-        public Function_TRIMSTART(FunctionBase[] funcs) : base(funcs)
+        public Function_TRIMSTART(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function '{0}' parameter {1} is error!", "TrimStart", index++); if (a.IsError) { return a; } args.Add(a); }
-            if (args.Count == 1) {
-                return Operand.Create(args[0].TextValue.TrimStart());
-            } else {
-                char[] trimChars = args[1].TextValue.ToCharArray();
-                return Operand.Create(args[0].TextValue.TrimStart(trimChars));
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "TrimStart", 1); if (args1.IsError) return args1; }
+            if (func2 == null) {
+                return Operand.Create(args1.TextValue.TrimStart());
             }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "TrimStart", 2); if (args2.IsError) return args2; }
+            char[] trimChars = args2.TextValue.ToCharArray();
+            return Operand.Create(args1.TextValue.TrimStart(trimChars));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
@@ -569,22 +568,21 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    internal class Function_TRIMEND : Function_N
+    internal class Function_TRIMEND : Function_2
     {
-        public Function_TRIMEND(FunctionBase[] funcs) : base(funcs)
+        public Function_TRIMEND(FunctionBase func1, FunctionBase func2) : base(func1, func2)
         {
         }
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args = new List<Operand>(); int index = 1;
-            foreach (var item in funcs) { var a = item.Calculate(work).ToText("Function '{0}' parameter {1} is error!", "TrimEnd", index++); if (a.IsError) { return a; } args.Add(a); }
-            if (args.Count == 1) {
-                return Operand.Create(args[0].TextValue.TrimEnd());
-            } else {
-                char[] trimChars = args[1].TextValue.ToCharArray();
-                return Operand.Create(args[0].TextValue.TrimEnd(trimChars));
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "TrimEnd", 1); if (args1.IsError) return args1; }
+            if (func2 == null) {
+                return Operand.Create(args1.TextValue.TrimEnd());
             }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "TrimEnd", 2); if (args2.IsError) return args2; }
+            char[] trimChars = args2.TextValue.ToCharArray();
+            return Operand.Create(args1.TextValue.TrimEnd(trimChars));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {

@@ -1729,7 +1729,7 @@ namespace ToolGood.Algorithm.Internals
             var args2 = exprs[1].Accept(this);
             if (exprs.Length == 2) return new Function_HMACSHA1(args1, args2, null);
             var args3 = exprs[2].Accept(this);
-            return new Function_HMACSHA1(args1, args2, args3); 
+            return new Function_HMACSHA1(args1, args2, args3);
         }
 
         public FunctionBase VisitHMACSHA256_fun(mathParser.HMACSHA256_funContext context)
@@ -1739,7 +1739,7 @@ namespace ToolGood.Algorithm.Internals
             var args2 = exprs[1].Accept(this);
             if (exprs.Length == 2) return new Function_HMACSHA256(args1, args2, null);
             var args3 = exprs[2].Accept(this);
-            return new Function_HMACSHA256(args1, args2, args3); 
+            return new Function_HMACSHA256(args1, args2, args3);
         }
 
         public FunctionBase VisitHMACSHA512_fun(mathParser.HMACSHA512_funContext context)
@@ -1749,27 +1749,25 @@ namespace ToolGood.Algorithm.Internals
             var args2 = exprs[1].Accept(this);
             if (exprs.Length == 2) return new Function_HMACSHA512(args1, args2, null);
             var args3 = exprs[2].Accept(this);
-            return new Function_HMACSHA512(args1, args2, args3); 
+            return new Function_HMACSHA512(args1, args2, args3);
         }
 
         public FunctionBase VisitTRIMSTART_fun(mathParser.TRIMSTART_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_TRIMSTART(args);
+            var args1 = exprs[0].Accept(this);
+            if (exprs.Length == 1) return new Function_TRIMSTART(args1, null);
+            var args2 = exprs[1].Accept(this);
+            return new Function_TRIMSTART(args1, args2);
         }
 
         public FunctionBase VisitTRIMEND_fun(mathParser.TRIMEND_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_TRIMEND(args);
+            var args1 = exprs[0].Accept(this);
+            if (exprs.Length == 1) return new Function_TRIMEND(args1, null);
+            var args2 = exprs[1].Accept(this);
+            return new Function_TRIMEND(args1, args2);
         }
 
         public FunctionBase VisitINDEXOF_fun(mathParser.INDEXOF_funContext context)
