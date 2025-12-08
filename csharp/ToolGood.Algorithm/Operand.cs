@@ -383,13 +383,12 @@ namespace ToolGood.Algorithm
         }
 
         #endregion Create
-
         /// <summary>
         /// 转数值类型
         /// </summary>
         /// <param name="errorMessage"></param>
         /// <returns></returns>
-        public virtual Operand ToNumber(string errorMessage = null) { return Error(errorMessage); }
+        public virtual Operand ToNumber(string errorMessage = null) { return Error(errorMessage ?? "Convert to number error!"); }
         /// <summary>
         /// 转数值类型
         /// </summary>
@@ -397,13 +396,13 @@ namespace ToolGood.Algorithm
         /// <param name="args"></param>
         /// <returns></returns>
         public virtual Operand ToNumber(string errorMessage, params object[] args) { return Error(string.Format(errorMessage, args)); }
-    
+
         /// <summary>
         /// 转bool类型
         /// </summary>
         /// <param name="errorMessage"></param>
         /// <returns></returns>
-        public virtual Operand ToBoolean(string errorMessage = null) { return Error(errorMessage); }
+        public virtual Operand ToBoolean(string errorMessage = null) { return Error(errorMessage ?? "Convert to bool error!"); }
         /// <summary>
         /// 转bool类型
         /// </summary>
@@ -416,7 +415,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="errorMessage"></param>
         /// <returns></returns>
-        public virtual Operand ToText(string errorMessage = null) { return Error(errorMessage); }
+        public virtual Operand ToText(string errorMessage = null) { return Error(errorMessage ?? "Convert to string error!"); }
         /// <summary>
         /// 转String类型
         /// </summary>
@@ -424,13 +423,13 @@ namespace ToolGood.Algorithm
         /// <param name="args"></param>
         /// <returns></returns>
         public virtual Operand ToText(string errorMessage, params object[] args) { return Error(string.Format(errorMessage, args)); }
-   
+
         /// <summary>
         /// 转MyDate类型
         /// </summary>
         /// <param name="errorMessage"></param>
         /// <returns></returns>
-        public virtual Operand ToMyDate(string errorMessage = null) { return Error(errorMessage); }
+        public virtual Operand ToMyDate(string errorMessage = null) { return Error(errorMessage ?? "Convert to date error!"); }
         /// <summary>
         /// 转MyDate类型
         /// </summary>
@@ -438,13 +437,13 @@ namespace ToolGood.Algorithm
         /// <param name="args"></param>
         /// <returns></returns>
         public virtual Operand ToMyDate(string errorMessage, params object[] args) { return Error(string.Format(errorMessage, args)); }
-    
+
         /// <summary>
         /// 转Array类型
         /// </summary>
         /// <param name="errorMessage"></param>
         /// <returns></returns>
-        public virtual Operand ToArray(string errorMessage = null) { return Error(errorMessage); }
+        public virtual Operand ToArray(string errorMessage = null) { return Error(errorMessage ?? "Convert to array error!"); }
 
         /// <summary>
         /// 转Array类型
@@ -652,7 +651,6 @@ namespace ToolGood.Algorithm
         public override Operand ToMyDate(string errorMessage) { return Create((MyDate)NumberValue); }
         public override Operand ToMyDate(string errorMessage, params object[] args) { return Create((MyDate)NumberValue); }
 
-        public override Operand ToArray(string errorMessage) { return Error(errorMessage ?? "Convert number to array error!"); }
         public override string ToString() { return NumberValue.ToString(CultureInfo.InvariantCulture); }
     }
 
@@ -674,9 +672,6 @@ namespace ToolGood.Algorithm
         public override Operand ToText(string errorMessage) { return Create(BooleanValue ? "TRUE" : "FALSE"); }
         public override Operand ToText(string errorMessage, params object[] args) { return Create(BooleanValue ? "TRUE" : "FALSE"); }
 
-        public override Operand ToArray(string errorMessage) { return Error(errorMessage ?? "Convert bool to array error!"); }
-
-        public override Operand ToMyDate(string errorMessage) { return Error(errorMessage ?? "Convert bool to date error!"); }
         public override string ToString() { return BooleanValue ? "true" : "false"; }
     }
 
@@ -695,7 +690,7 @@ namespace ToolGood.Algorithm
                 return Operand.Create(d);
             }
             if (errorMessage == null) {
-                return Error("Convert string to number error!");
+                return Error("Convert to number error!");
             }
             return Error(errorMessage);
         }
@@ -705,15 +700,15 @@ namespace ToolGood.Algorithm
                 return Operand.Create(d);
             }
             if (errorMessage == null) {
-                return Error("Convert string to number error!");
+                return Error("Convert to number error!");
             }
             return Error(string.Format(errorMessage, args));
         }
-   
+
 
         public override Operand ToText(string errorMessage) { return this; }
         public override Operand ToText(string errorMessage, params object[] args) { return this; }
-       
+
         public override Operand ToBoolean(string errorMessage)
         {
             if (TextValue.Equals("true", StringComparison.OrdinalIgnoreCase)) { return True; }
@@ -723,7 +718,7 @@ namespace ToolGood.Algorithm
             if (TextValue.Equals("1") || TextValue.Equals("是") || TextValue.Equals("有")) { return True; }
             if (TextValue.Equals("0") || TextValue.Equals("否") || TextValue.Equals("不是") || TextValue.Equals("无") || TextValue.Equals("没有")) { return False; }
             if (errorMessage == null) {
-                return Error("Convert string to bool error!");
+                return Error("Convert to bool error!");
             }
             return Error(errorMessage);
         }
@@ -736,18 +731,18 @@ namespace ToolGood.Algorithm
             if (TextValue.Equals("1") || TextValue.Equals("是") || TextValue.Equals("有")) { return True; }
             if (TextValue.Equals("0") || TextValue.Equals("否") || TextValue.Equals("不是") || TextValue.Equals("无") || TextValue.Equals("没有")) { return False; }
             if (errorMessage == null) {
-                return Error("Convert string to bool error!");
+                return Error("Convert to bool error!");
             }
             return Error(string.Format(errorMessage, args));
         }
-    
+
 
         public override Operand ToMyDate(string errorMessage)
         {
             if (TimeSpan.TryParse(TextValue, CultureInfo.InvariantCulture, out TimeSpan t)) { return Create(new MyDate(t)); }
             if (DateTime.TryParse(TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime d)) { return Create(new MyDate(d)); }
             if (errorMessage == null) {
-                return Error("Convert string to date error!");
+                return Error("Convert to date error!");
             }
             return Error(errorMessage);
         }
@@ -756,14 +751,14 @@ namespace ToolGood.Algorithm
             if (TimeSpan.TryParse(TextValue, CultureInfo.InvariantCulture, out TimeSpan t)) { return Create(new MyDate(t)); }
             if (DateTime.TryParse(TextValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime d)) { return Create(new MyDate(d)); }
             if (errorMessage == null) {
-                return Error("Convert string to date error!");
+                return Error("Convert to date error!");
             }
             return Error(string.Format(errorMessage, args));
         }
- 
+
         public override Operand ToArray(string errorMessage)
         {
-            return Error(errorMessage ?? "Convert string to array error!");
+            return Error(errorMessage ?? "Convert to array error!");
         }
         public override string ToString()
         {
@@ -793,8 +788,6 @@ namespace ToolGood.Algorithm
 
         public override Operand ToMyDate(string errorMessage) { return this; }
         public override Operand ToMyDate(string errorMessage, params object[] args) { return this; }
-
-        public override Operand ToArray(string errorMessage) { return Error(errorMessage ?? "Convert date to array error!"); }
 
         public override string ToString() { return "\"" + DateValue.ToString() + "\""; }
     }
@@ -827,16 +820,8 @@ namespace ToolGood.Algorithm
                 }
                 return Create(list);
             }
-            return Error(errorMessage ?? "Convert json to array error!");
+            return Error(errorMessage ?? "Convert to array error!");
         }
-
-        public override Operand ToBoolean(string errorMessage) { return Error(errorMessage ?? "Convert json to bool error!"); }
-
-        public override Operand ToMyDate(string errorMessage) { return Error(errorMessage ?? "Convert json to date error!"); }
-
-        public override Operand ToNumber(string errorMessage) { return Error(errorMessage ?? "Convert json to number error!"); }
-
-        public override Operand ToText(string errorMessage) { return Error(errorMessage ?? "Convert json to string error!"); }
     }
 
     internal sealed class OperandArray : Operand<List<Operand>>
@@ -895,16 +880,6 @@ namespace ToolGood.Algorithm
     {
         public override OperandType Type => OperandType.NULL;
         public override bool IsNull => true;
-
-        public override Operand ToArray(string errorMessage) { return Error(errorMessage ?? "Convert null to array error!"); }
-
-        public override Operand ToBoolean(string errorMessage) { return Error(errorMessage ?? "Convert null to bool error!"); }
-
-        public override Operand ToText(string errorMessage) { return Error(errorMessage ?? "Convert null to string error!"); }
-
-        public override Operand ToNumber(string errorMessage) { return Error(errorMessage ?? "Convert null to number error!"); }
-
-        public override Operand ToMyDate(string errorMessage) { return Error(errorMessage ?? "Convert null to date error!"); }
         public override string ToString() { return "null"; }
     }
 
