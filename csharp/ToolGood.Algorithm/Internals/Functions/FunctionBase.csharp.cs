@@ -777,19 +777,19 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    internal class Function_REMOVESTART : Function_N
+    internal class Function_REMOVESTART : Function_3
     {
-        public Function_REMOVESTART(FunctionBase[] funcs) : base(funcs)
+        public Function_REMOVESTART(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "RemoveStart", 1); if (args1.IsError) { return args1; } }
-            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "RemoveStart", 2); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "RemoveStart", 1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "RemoveStart", 2); if (args2.IsError) { return args2; } }
             StringComparison comparison = StringComparison.Ordinal;
-            if (funcs.Length == 3) {
-                var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function '{0}' parameter {1} is error!", "RemoveStart", 3); if (args3.IsError) { return args3; } }
+            if (func3 != null) {
+                var args3 = func3.Calculate(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function '{0}' parameter {1} is error!", "RemoveStart", 3); if (args3.IsError) { return args3; } }
                 if (args3.BooleanValue) {
                     comparison = StringComparison.OrdinalIgnoreCase;
                 }
@@ -806,19 +806,19 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    internal class Function_REMOVEEND : Function_N
+    internal class Function_REMOVEEND : Function_3
     {
-        public Function_REMOVEEND(FunctionBase[] funcs) : base(funcs)
+        public Function_REMOVEEND(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
         {
         }
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = funcs[0].Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "RemoveEnd", 1); if (args1.IsError) { return args1; } }
-            var args2 = funcs[1].Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "RemoveEnd", 2); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "RemoveEnd", 1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work); if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "RemoveEnd", 2); if (args2.IsError) { return args2; } }
             StringComparison comparison = StringComparison.Ordinal;
-            if (funcs.Length == 3) {
-                var args3 = funcs[2].Calculate(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function '{0}' parameter {1} is error!", "RemoveEnd", 3); if (args3.IsError) { return args3; } }
+            if (func3 != null) {
+                var args3 = func3.Calculate(work); if (args3.Type != OperandType.BOOLEAN) { args3 = args3.ToBoolean("Function '{0}' parameter {1} is error!", "RemoveEnd", 3); if (args3.IsError) { return args3; } }
                 if (args3.BooleanValue) {
                     comparison = StringComparison.OrdinalIgnoreCase;
                 }

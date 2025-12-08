@@ -1835,7 +1835,7 @@ namespace ToolGood.Algorithm.Internals
             var args2 = exprs[1].Accept(this);
             if (exprs.Length == 2) return new Function_ENDSWITH(args1, args2, null);
             var args3 = exprs[2].Accept(this);
-            return new Function_ENDSWITH(args1, args2, args3); 
+            return new Function_ENDSWITH(args1, args2, args3);
         }
 
         public FunctionBase VisitISNULLOREMPTY_fun(mathParser.ISNULLOREMPTY_funContext context)
@@ -1853,21 +1853,21 @@ namespace ToolGood.Algorithm.Internals
         public FunctionBase VisitREMOVESTART_fun(mathParser.REMOVESTART_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_REMOVESTART(args);
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            if (exprs.Length == 2) return new Function_REMOVESTART(args1, args2, null);
+            var args3 = exprs[2].Accept(this);
+            return new Function_REMOVESTART(args1, args2, args3);
         }
 
         public FunctionBase VisitREMOVEEND_fun(mathParser.REMOVEEND_funContext context)
         {
             var exprs = context.expr();
-            FunctionBase[] args = new FunctionBase[exprs.Length];
-            for (int i = 0; i < exprs.Length; i++) {
-                args[i] = exprs[i].Accept(this);
-            }
-            return new Function_REMOVEEND(args);
+            var args1 = exprs[0].Accept(this);
+            var args2 = exprs[1].Accept(this);
+            if (exprs.Length == 2) return new Function_REMOVEEND(args1, args2, null);
+            var args3 = exprs[2].Accept(this);
+            return new Function_REMOVEEND(args1, args2, args3);
         }
 
         public FunctionBase VisitJSON_fun(mathParser.JSON_funContext context)
