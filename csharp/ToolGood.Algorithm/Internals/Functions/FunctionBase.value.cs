@@ -293,7 +293,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
         {
-            OperandKeyValueList result = new OperandKeyValueList(null);
+            OperandKeyValueList result = new OperandKeyValueList();
             foreach (var item in funcs) {
                 var o = item.Evaluate(work, tempParameter);
                 result.AddValue((KeyValue)((OperandKeyValue)o).Value);

@@ -675,20 +675,13 @@ namespace ToolGood.Algorithm
         #endregion Operand
     }
 
-    internal abstract class Operand<T> : Operand
-    {
-        protected T _value { get; private set; }
 
-        public Operand(T obj)
+    internal sealed class OperandNumber : Operand
+    {
+        private readonly decimal _value;
+        public OperandNumber(decimal obj)
         {
             _value = obj;
-        }
-    }
-
-    internal sealed class OperandNumber : Operand<decimal>
-    {
-        public OperandNumber(decimal obj) : base(obj)
-        {
         }
         public override bool IsNumber => true;
         public override bool IsNotNumber => false;
@@ -713,10 +706,12 @@ namespace ToolGood.Algorithm
         public override string ToString() { return NumberValue.ToString(CultureInfo.InvariantCulture); }
     }
 
-    internal sealed class OperandBoolean : Operand<bool>
+    internal sealed class OperandBoolean : Operand
     {
-        public OperandBoolean(bool obj) : base(obj)
+        private readonly bool _value;
+        public OperandBoolean(bool obj)
         {
+            _value = obj;
         }
         public override bool IsBoolean => true;
         public override bool IsNotBoolean => false;
@@ -735,11 +730,14 @@ namespace ToolGood.Algorithm
         public override string ToString() { return BooleanValue ? "true" : "false"; }
     }
 
-    internal sealed class OperandString : Operand<string>
+    internal sealed class OperandString : Operand
     {
-        public OperandString(string obj) : base(obj)
+        private readonly string _value;
+        public OperandString(string obj)
         {
+            _value = obj;
         }
+
         public override bool IsText => true;
         public override bool IsNotText => false;
         public override OperandType Type => OperandType.TEXT;
@@ -829,10 +827,12 @@ namespace ToolGood.Algorithm
         }
     }
 
-    internal sealed class OperandMyDate : Operand<MyDate>
+    internal sealed class OperandMyDate : Operand
     {
-        public OperandMyDate(MyDate obj) : base(obj)
+        private readonly MyDate _value;
+        public OperandMyDate(MyDate obj)
         {
+            _value = obj;
         }
         public override bool IsDate => true;
         public override bool IsNotDate => false;
@@ -854,10 +854,12 @@ namespace ToolGood.Algorithm
         public override string ToString() { return "\"" + DateValue.ToString() + "\""; }
     }
 
-    internal sealed class OperandJson : Operand<JsonData>
+    internal sealed class OperandJson : Operand
     {
-        public OperandJson(JsonData obj) : base(obj)
+        private readonly JsonData _value;
+        public OperandJson(JsonData obj)
         {
+            _value = obj;
         }
         public override bool IsJson => true;
         public override bool IsNotJson => false;
@@ -887,10 +889,12 @@ namespace ToolGood.Algorithm
         }
     }
 
-    internal sealed class OperandArray : Operand<List<Operand>>
+    internal sealed class OperandArray : Operand 
     {
-        public OperandArray(List<Operand> obj) : base(obj)
+        private readonly List<Operand> _value;
+        public OperandArray(List<Operand> obj)
         {
+            _value = obj;
         }
         public override bool IsArray => true;
         public override bool IsNotArray => false;
@@ -954,18 +958,17 @@ namespace ToolGood.Algorithm
         public Operand Value;
     }
 
-    internal sealed class OperandKeyValueList : Operand<KeyValue>
+    internal sealed class OperandKeyValueList : Operand
     {
-        public OperandKeyValueList(KeyValue obj) : base(obj)
+        private readonly List<KeyValue> TextList = new List<KeyValue>();
+        public OperandKeyValueList()
         {
         }
+
         public override bool IsArrayJson => true;
         public override bool IsNotArrayJson => false;
         public override OperandType Type => OperandType.ARRARYJSON;
         public override List<Operand> ArrayValue => TextList.Select(q => q.Value).ToList();
-
-        private readonly List<KeyValue> TextList = new List<KeyValue>();
-
         public override Operand ToArray(string errorMessage)
         {
             return Create(this.ArrayValue);
@@ -1033,10 +1036,12 @@ namespace ToolGood.Algorithm
         }
     }
 
-    internal sealed class OperandKeyValue : Operand<KeyValue>
+    internal sealed class OperandKeyValue : Operand
     {
-        public OperandKeyValue(KeyValue obj) : base(obj)
+        private readonly KeyValue _value;
+        public OperandKeyValue(KeyValue obj)
         {
+            _value = obj;
         }
         public override bool IsArrayJson => true;
         public override bool IsNotArrayJson => false;
