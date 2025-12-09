@@ -50,7 +50,7 @@
                     result["error"] = obj.ErrorMsg;
                     return JsonSerializer.Serialize(result);
                 }
-                if (obj.Type == OperandType.DATE) {
+                if (obj.IsDate) {
                     result["result"] = obj.DateValue.ToString();
                     result["error"] = ae.LastError;
                     return JsonSerializer.Serialize(result);

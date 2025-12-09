@@ -184,7 +184,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Calculate(work); if (args1.IsError) { return args1; }
             var args2 = func2.Calculate(work); if (args2.IsError) { return args2; }
 
-            if (args1.Type == OperandType.TEXT) {
+            if (args1.IsText) {
                 if (decimal.TryParse(args1.TextValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
                     args1 = Operand.Create(d);
                 } else if (bool.TryParse(args1.TextValue, out bool b)) {
@@ -197,7 +197,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                     return Operand.Error("Two types cannot be multiplied ");
                 }
             }
-            if (args2.Type == OperandType.TEXT) {
+            if (args2.IsText) {
                 if (decimal.TryParse(args2.TextValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
                     args2 = Operand.Create(d);
                 } else if (bool.TryParse(args2.TextValue, out bool b)) {
@@ -210,18 +210,18 @@ namespace ToolGood.Algorithm.Internals.Functions
                     return Operand.Error("Two types cannot be multiplied");
                 }
             }
-            if (args1.Type == OperandType.DATE) {
-                if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "*", 2); if (args2.IsError) { return args2; } }
+            if (args1.IsDate) {
+                if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "*", 2); if (args2.IsError) { return args2; } }
                 if (args2.NumberValue == 1) { return args1; }
                 return Operand.Create((MyDate)(args1.DateValue * args2.NumberValue));
-            } else if (args2.Type == OperandType.DATE) {
-                if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "*", 1); if (args1.IsError) { return args1; } }
+            } else if (args2.IsDate) {
+                if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "*", 1); if (args1.IsError) { return args1; } }
                 if (args1.NumberValue == 1) { return args2; }
                 return Operand.Create((MyDate)(args2.DateValue * args1.NumberValue));
             }
 
-            if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "*", 1); if (args1.IsError) { return args1; } }
-            if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "*", 2); if (args2.IsError) { return args2; } }
+            if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "*", 1); if (args1.IsError) { return args1; } }
+            if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "*", 2); if (args2.IsError) { return args2; } }
 
             if (args1.NumberValue == 1) { return args2; }
             if (args2.NumberValue == 1) { return args1; }
@@ -250,7 +250,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Calculate(work); if (args1.IsError) { return args1; }
             var args2 = func2.Calculate(work); if (args2.IsError) { return args2; }
 
-            if (args1.Type == OperandType.TEXT) {
+            if (args1.IsText) {
                 if (decimal.TryParse(args1.TextValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
                     args1 = Operand.Create(d);
                 } else if (bool.TryParse(args1.TextValue, out bool b)) {
@@ -263,7 +263,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                     return Operand.Error("Two types cannot be divided ");
                 }
             }
-            if (args2.Type == OperandType.TEXT) {
+            if (args2.IsText) {
                 if (decimal.TryParse(args2.TextValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
                     args2 = Operand.Create(d);
                 } else if (bool.TryParse(args2.TextValue, out bool b)) {
@@ -276,12 +276,12 @@ namespace ToolGood.Algorithm.Internals.Functions
                     return Operand.Error("Two types cannot be divided");
                 }
             }
-            if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "/", 2); if (args2.IsError) { return args2; } }
+            if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "/", 2); if (args2.IsError) { return args2; } }
             if (args2.NumberValue == 0) { return Operand.Error("Div 0 is error!"); }
             if (args2.NumberValue == 1) { return args1; }
 
-            if (args1.Type == OperandType.DATE) { return Operand.Create(args1.DateValue / args2.NumberValue); }
-            if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "/", 1); if (args1.IsError) { return args1; } }
+            if (args1.IsDate) { return Operand.Create(args1.DateValue / args2.NumberValue); }
+            if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "/", 1); if (args1.IsError) { return args1; } }
             return Operand.Create(args1.NumberValue / args2.NumberValue);
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -305,7 +305,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Calculate(work); if (args1.IsError) { return args1; }
             var args2 = func2.Calculate(work); if (args2.IsError) { return args2; }
 
-            if (args1.Type == OperandType.TEXT) {
+            if (args1.IsText) {
                 if (decimal.TryParse(args1.TextValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
                     args1 = Operand.Create(d);
                 } else if (bool.TryParse(args1.TextValue, out bool b)) {
@@ -318,7 +318,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                     return Operand.Error("Two types cannot be modulo ");
                 }
             }
-            if (args2.Type == OperandType.TEXT) {
+            if (args2.IsText) {
                 if (decimal.TryParse(args2.TextValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
                     args2 = Operand.Create(d);
                 } else if (bool.TryParse(args2.TextValue, out bool b)) {
@@ -331,8 +331,8 @@ namespace ToolGood.Algorithm.Internals.Functions
                     return Operand.Error("Two types cannot be modulo");
                 }
             }
-            if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "%", 1); if (args1.IsError) { return args1; } }
-            if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "%", 2); if (args2.IsError) { return args2; } }
+            if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "%", 1); if (args1.IsError) { return args1; } }
+            if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "%", 2); if (args2.IsError) { return args2; } }
 
             if (args2.NumberValue == 0) { return Operand.Error("Div 0 is error!"); }
 
@@ -359,7 +359,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Calculate(work); if (args1.IsError) { return args1; }
             var args2 = func2.Calculate(work); if (args2.IsError) { return args2; }
 
-            if (args1.Type == OperandType.TEXT) {
+            if (args1.IsText) {
                 if (decimal.TryParse(args1.TextValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
                     args1 = Operand.Create(d);
                 } else if (bool.TryParse(args1.TextValue, out bool b)) {
@@ -372,7 +372,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                     return Operand.Error("Function '+' is error");
                 }
             }
-            if (args2.Type == OperandType.TEXT) {
+            if (args2.IsText) {
                 if (decimal.TryParse(args2.TextValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
                     args2 = Operand.Create(d);
                 } else if (bool.TryParse(args2.TextValue, out bool b)) {
@@ -385,18 +385,18 @@ namespace ToolGood.Algorithm.Internals.Functions
                     return Operand.Error("Function '+' is error");
                 }
             }
-            if (args1.Type == OperandType.DATE) {
-                if (args2.Type == OperandType.DATE) return Operand.Create(args1.DateValue + args2.DateValue);
-                if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "+", 2); if (args2.IsError) { return args2; } }
+            if (args1.IsDate) {
+                if (args2.IsDate) return Operand.Create(args1.DateValue + args2.DateValue);
+                if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "+", 2); if (args2.IsError) { return args2; } }
                 if (args2.NumberValue == 0) { return args1; }
                 return Operand.Create(args1.DateValue + args2.NumberValue);
-            } else if (args2.Type == OperandType.DATE) {
-                if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "+", 1); if (args1.IsError) { return args1; } }
+            } else if (args2.IsDate) {
+                if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "+", 1); if (args1.IsError) { return args1; } }
                 if (args1.NumberValue == 0) { return args2; }
                 return Operand.Create(args2.DateValue + args1.NumberValue);
             }
-            if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "+", 1); if (args1.IsError) { return args1; } }
-            if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "+", 2); if (args2.IsError) { return args2; } }
+            if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "+", 1); if (args1.IsError) { return args1; } }
+            if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "+", 2); if (args2.IsError) { return args2; } }
 
             if (args1.NumberValue == 0) { return args2; }
             if (args2.NumberValue == 0) { return args1; }
@@ -424,7 +424,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Calculate(work); if (args1.IsError) { return args1; }
             var args2 = func2.Calculate(work); if (args2.IsError) { return args2; }
 
-            if (args1.Type == OperandType.TEXT) {
+            if (args1.IsText) {
                 if (decimal.TryParse(args1.TextValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
                     args1 = Operand.Create(d);
                 } else if (bool.TryParse(args1.TextValue, out bool b)) {
@@ -437,7 +437,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                     return Operand.Error("Function '-' is error");
                 }
             }
-            if (args2.Type == OperandType.TEXT) {
+            if (args2.IsText) {
                 if (decimal.TryParse(args2.TextValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
                     args2 = Operand.Create(d);
                 } else if (bool.TryParse(args2.TextValue, out bool b)) {
@@ -450,17 +450,17 @@ namespace ToolGood.Algorithm.Internals.Functions
                     return Operand.Error("Function '-' is error");
                 }
             }
-            if (args1.Type == OperandType.DATE) {
-                if (args2.Type == OperandType.DATE) return Operand.Create(args1.DateValue - args2.DateValue);
-                if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "-", 2); if (args2.IsError) { return args2; } }
+            if (args1.IsDate) {
+                if (args2.IsDate) return Operand.Create(args1.DateValue - args2.DateValue);
+                if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "-", 2); if (args2.IsError) { return args2; } }
                 if (args2.NumberValue == 0) { return args1; }
                 return Operand.Create(args1.DateValue - args2.NumberValue);
-            } else if (args2.Type == OperandType.DATE) {
-                if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "-", 1); if (args1.IsError) { return args1; } }
+            } else if (args2.IsDate) {
+                if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "-", 1); if (args1.IsError) { return args1; } }
                 return Operand.Create(args1.NumberValue - args2.DateValue);
             }
-            if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "-", 1); if (args1.IsError) { return args1; } }
-            if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "-", 2); if (args2.IsError) { return args2; } }
+            if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "-", 1); if (args1.IsError) { return args1; } }
+            if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "-", 2); if (args2.IsError) { return args2; } }
 
             if (args2.NumberValue == 0) { return args1; }
 
@@ -487,14 +487,14 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Calculate(work); if (args1.IsError) { return args1; }
             var args2 = func2.Calculate(work); if (args2.IsError) { return args2; }
 
-            if (args1.Type == OperandType.NULL) {
-                if (args2.Type == OperandType.NULL) return args1;
+            if (args1.IsNull) {
+                if (args2.IsNull) return args1;
                 return args2.ToText("Function '{0}' parameter {1} is error!", "&", 2);
-            } else if (args2.Type == OperandType.NULL) {
+            } else if (args2.IsNull) {
                 return args1.ToText("Function '{0}' parameter {1} is error!", "&", 1);
             }
-            if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "&", 1); if (args1.IsError) { return args1; } }
-            if (args2.Type != OperandType.TEXT) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "&", 2); if (args2.IsError) { return args2; } }
+            if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "&", 1); if (args1.IsError) { return args1; } }
+            if (args2.IsNotText) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "&", 2); if (args2.IsError) { return args2; } }
 
             return Operand.Create(args1.TextValue + args2.TextValue);
         }
@@ -524,45 +524,45 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args2 = func2.Calculate(work); if (args2.IsError) { return args2; }
 
             if (args1.Type == args2.Type) {
-                if (args1.Type == OperandType.NUMBER) {
+                if (args1.IsNumber) {
                     return Operand.Create(args1.NumberValue == args2.NumberValue);
-                } else if (args1.Type == OperandType.TEXT) {
+                } else if (args1.IsText) {
                     return Operand.Create(args1.TextValue == args2.TextValue);
-                } else if (args1.Type == OperandType.DATE || args1.Type == OperandType.BOOLEAN) {
+                } else if (args1.IsDate || args1.IsBoolean) {
                     args1 = args1.ToNumber();
                     args2 = args2.ToNumber();
                     return Operand.Create(args1.NumberValue == args2.NumberValue);
-                } else if (args1.Type == OperandType.JSON) {
+                } else if (args1.IsJson) {
                     args1 = args1.ToText();
                     args2 = args2.ToText();
                     return Operand.Create(args1.TextValue == args2.TextValue);
-                } else if (args1.Type == OperandType.NULL) {
+                } else if (args1.IsNull) {
                     return Operand.True;
                 } else {
                     return Operand.Error("Function '==' compare is error.");
                 }
-            } else if (args2.Type == OperandType.TEXT) {
-                if (args1.Type == OperandType.BOOLEAN) {
+            } else if (args2.IsText) {
+                if (args1.IsBoolean) {
                     var a = args2.ToBoolean();
                     if (a.IsError == false) {
                         return a.BooleanValue == args1.BooleanValue ? Operand.True : Operand.False;
                     }
                     args1 = args1.ToText();
                     return Operand.Create(args1.TextValue == args2.TextValue);
-                } else if (args1.Type == OperandType.DATE || args1.Type == OperandType.NUMBER || args1.Type == OperandType.JSON) {
+                } else if (args1.IsDate || args1.IsNumber || args1.IsJson) {
                     args1 = args1.ToText();
                     return Operand.Create(args1.TextValue == args2.TextValue);
                 } else {
                     return Operand.Error("Function '==' compare is error.");
                 }
-            } else if (args1.Type == OperandType.JSON || args2.Type == OperandType.JSON
-                  || args1.Type == OperandType.ARRARY || args2.Type == OperandType.ARRARY
-                  || args1.Type == OperandType.ARRARYJSON || args2.Type == OperandType.ARRARYJSON
+            } else if (args1.IsJson || args2.IsJson
+                  || args1.IsArray || args2.IsArray
+                  || args1.IsArrayJson || args2.IsArrayJson
                   ) {
                 return Operand.Error("Function '==' compare is error.");
             }
-            if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "==", 1); if (args1.IsError) { return args1; } }
-            if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "==", 2); if (args2.IsError) { return args2; } }
+            if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "==", 1); if (args1.IsError) { return args1; } }
+            if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "==", 2); if (args2.IsError) { return args2; } }
 
             return Operand.Create(args1.NumberValue == args2.NumberValue);
         }
@@ -589,45 +589,45 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args2 = func2.Calculate(work); if (args2.IsError) { return args2; }
 
             if (args1.Type == args2.Type) {
-                if (args1.Type == OperandType.NUMBER) {
+                if (args1.IsNumber) {
                     return Operand.Create(args1.NumberValue != args2.NumberValue);
-                } else if (args1.Type == OperandType.TEXT) {
+                } else if (args1.IsText) {
                     return Operand.Create(args1.TextValue != args2.TextValue);
-                } else if (args1.Type == OperandType.DATE || args1.Type == OperandType.BOOLEAN) {
+                } else if (args1.IsDate || args1.IsBoolean) {
                     args1 = args1.ToNumber();
                     args2 = args2.ToNumber();
                     return Operand.Create(args1.NumberValue != args2.NumberValue);
-                } else if (args1.Type == OperandType.JSON) {
+                } else if (args1.IsJson) {
                     args1 = args1.ToText();
                     args2 = args2.ToText();
                     return Operand.Create(args1.TextValue != args2.TextValue);
-                } else if (args1.Type == OperandType.NULL) {
+                } else if (args1.IsNull) {
                     return Operand.False;
                 } else {
                     return Operand.Error("Function '!=' compare is error.");
                 }
-            } else if (args2.Type == OperandType.TEXT) {
-                if (args1.Type == OperandType.BOOLEAN) {
+            } else if (args2.IsText) {
+                if (args1.IsBoolean) {
                     var a = args2.ToBoolean();
                     if (a.IsError == false) {
                         return a.BooleanValue != args1.BooleanValue ? Operand.True : Operand.False;
                     }
                     args1 = args1.ToText();
                     return Operand.Create(args1.TextValue != args2.TextValue);
-                } else if (args1.Type == OperandType.DATE || args1.Type == OperandType.NUMBER || args1.Type == OperandType.JSON) {
+                } else if (args1.IsDate || args1.IsNumber || args1.IsJson) {
                     args1 = args1.ToText();
                     return Operand.Create(args1.TextValue != args2.TextValue);
                 } else {
                     return Operand.Error("Function '!=' compare is error.");
                 }
-            } else if (args1.Type == OperandType.JSON || args2.Type == OperandType.JSON
-                  || args1.Type == OperandType.ARRARY || args2.Type == OperandType.ARRARY
-                  || args1.Type == OperandType.ARRARYJSON || args2.Type == OperandType.ARRARYJSON
+            } else if (args1.IsJson || args2.IsJson
+                  || args1.IsArray || args2.IsArray
+                  || args1.IsArrayJson || args2.IsArrayJson
                   ) {
                 return Operand.Error("Function '!=' compare is error.");
             }
-            if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "!=", 1); if (args1.IsError) { return args1; } }
-            if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "!=", 2); if (args2.IsError) { return args2; } }
+            if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "!=", 1); if (args1.IsError) { return args1; } }
+            if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "!=", 2); if (args2.IsError) { return args2; } }
 
             return Operand.Create(args1.NumberValue != args2.NumberValue);
         }
@@ -654,27 +654,27 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args2 = func2.Calculate(work); if (args2.IsError) { return args2; }
 
             if (args1.Type == args2.Type) {
-                if (args1.Type == OperandType.NUMBER) {
+                if (args1.IsNumber) {
                     return Operand.Create(args1.NumberValue >= args2.NumberValue);
-                } else if (args1.Type == OperandType.TEXT) {
+                } else if (args1.IsText) {
                     var r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
                     return r >= 0 ? Operand.True : Operand.False;
-                } else if (args1.Type == OperandType.DATE || args1.Type == OperandType.BOOLEAN) {
+                } else if (args1.IsDate || args1.IsBoolean) {
                     args1 = args1.ToNumber();
                     args2 = args2.ToNumber();
                     return Operand.Create(args1.NumberValue >= args2.NumberValue);
-                } else if (args1.Type == OperandType.JSON) {
+                } else if (args1.IsJson) {
                     args1 = args1.ToText();
                     args2 = args2.ToText();
                     var r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
                     return r >= 0 ? Operand.True : Operand.False;
-                } else if (args1.Type == OperandType.NULL) {
+                } else if (args1.IsNull) {
                     return Operand.True;
                 } else {
                     return Operand.Error("Function '>=' compare is error.");
                 }
-            } else if (args2.Type == OperandType.TEXT) {
-                if (args1.Type == OperandType.BOOLEAN) {
+            } else if (args2.IsText) {
+                if (args1.IsBoolean) {
                     var a = args2.ToBoolean();
                     if (a.IsError == false) {
                         return a.BooleanValue != args1.BooleanValue ? Operand.True : Operand.False;
@@ -682,21 +682,21 @@ namespace ToolGood.Algorithm.Internals.Functions
                     args1 = args1.ToText();
                     var r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
                     return r >= 0 ? Operand.True : Operand.False;
-                } else if (args1.Type == OperandType.DATE || args1.Type == OperandType.NUMBER || args1.Type == OperandType.JSON) {
+                } else if (args1.IsDate || args1.IsNumber || args1.IsJson) {
                     args1 = args1.ToText();
                     var r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
                     return r >= 0 ? Operand.True : Operand.False;
                 } else {
                     return Operand.Error("Function '>=' compare is error.");
                 }
-            } else if (args1.Type == OperandType.JSON || args2.Type == OperandType.JSON
-                  || args1.Type == OperandType.ARRARY || args2.Type == OperandType.ARRARY
-                  || args1.Type == OperandType.ARRARYJSON || args2.Type == OperandType.ARRARYJSON
+            } else if (args1.IsJson || args2.IsJson
+                  || args1.IsArray || args2.IsArray
+                  || args1.IsArrayJson || args2.IsArrayJson
                   ) {
                 return Operand.Error("Function '>=' compare is error.");
             }
-            if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", ">=", 1); if (args1.IsError) { return args1; } }
-            if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", ">=", 2); if (args2.IsError) { return args2; } }
+            if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", ">=", 1); if (args1.IsError) { return args1; } }
+            if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", ">=", 2); if (args2.IsError) { return args2; } }
 
             return Operand.Create(args1.NumberValue >= args2.NumberValue);
         }
@@ -722,27 +722,27 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args2 = func2.Calculate(work); if (args2.IsError) { return args2; }
 
             if (args1.Type == args2.Type) {
-                if (args1.Type == OperandType.NUMBER) {
+                if (args1.IsNumber) {
                     return Operand.Create(args1.NumberValue <= args2.NumberValue);
-                } else if (args1.Type == OperandType.TEXT) {
+                } else if (args1.IsText) {
                     var r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
                     return r <= 0 ? Operand.True : Operand.False;
-                } else if (args1.Type == OperandType.DATE || args1.Type == OperandType.BOOLEAN) {
+                } else if (args1.IsDate || args1.IsBoolean) {
                     args1 = args1.ToNumber();
                     args2 = args2.ToNumber();
                     return Operand.Create(args1.NumberValue <= args2.NumberValue);
-                } else if (args1.Type == OperandType.JSON) {
+                } else if (args1.IsJson) {
                     args1 = args1.ToText();
                     args2 = args2.ToText();
                     var r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
                     return r <= 0 ? Operand.True : Operand.False;
-                } else if (args1.Type == OperandType.NULL) {
+                } else if (args1.IsNull) {
                     return Operand.True;
                 } else {
                     return Operand.Error("Function '<=' compare is error.");
                 }
-            } else if (args2.Type == OperandType.TEXT) {
-                if (args1.Type == OperandType.BOOLEAN) {
+            } else if (args2.IsText) {
+                if (args1.IsBoolean) {
                     var a = args2.ToBoolean();
                     if (a.IsError == false) {
                         return a.BooleanValue != args1.BooleanValue ? Operand.True : Operand.False;
@@ -750,21 +750,21 @@ namespace ToolGood.Algorithm.Internals.Functions
                     args1 = args1.ToText();
                     var r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
                     return r <= 0 ? Operand.True : Operand.False;
-                } else if (args1.Type == OperandType.DATE || args1.Type == OperandType.NUMBER || args1.Type == OperandType.JSON) {
+                } else if (args1.IsDate || args1.IsNumber || args1.IsJson) {
                     args1 = args1.ToText();
                     var r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
                     return r <= 0 ? Operand.True : Operand.False;
                 } else {
                     return Operand.Error("Function '<=' compare is error.");
                 }
-            } else if (args1.Type == OperandType.JSON || args2.Type == OperandType.JSON
-                  || args1.Type == OperandType.ARRARY || args2.Type == OperandType.ARRARY
-                  || args1.Type == OperandType.ARRARYJSON || args2.Type == OperandType.ARRARYJSON
+            } else if (args1.IsJson || args2.IsJson
+                  || args1.IsArray || args2.IsArray
+                  || args1.IsArrayJson || args2.IsArrayJson
                   ) {
                 return Operand.Error("Function '<=' compare is error.");
             }
-            if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "<=", 1); if (args1.IsError) { return args1; } }
-            if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "<=", 2); if (args2.IsError) { return args2; } }
+            if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "<=", 1); if (args1.IsError) { return args1; } }
+            if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "<=", 2); if (args2.IsError) { return args2; } }
 
             return Operand.Create(args1.NumberValue <= args2.NumberValue);
         }
@@ -791,27 +791,27 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args2 = func2.Calculate(work); if (args2.IsError) { return args2; }
 
             if (args1.Type == args2.Type) {
-                if (args1.Type == OperandType.NUMBER) {
+                if (args1.IsNumber) {
                     return Operand.Create(args1.NumberValue > args2.NumberValue);
-                } else if (args1.Type == OperandType.TEXT) {
+                } else if (args1.IsText) {
                     var r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
                     return r > 0 ? Operand.True : Operand.False;
-                } else if (args1.Type == OperandType.DATE || args1.Type == OperandType.BOOLEAN) {
+                } else if (args1.IsDate || args1.IsBoolean) {
                     args1 = args1.ToNumber();
                     args2 = args2.ToNumber();
                     return Operand.Create(args1.NumberValue > args2.NumberValue);
-                } else if (args1.Type == OperandType.JSON) {
+                } else if (args1.IsJson) {
                     args1 = args1.ToText();
                     args2 = args2.ToText();
                     var r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
                     return r > 0 ? Operand.True : Operand.False;
-                } else if (args1.Type == OperandType.NULL) {
+                } else if (args1.IsNull) {
                     return Operand.True;
                 } else {
                     return Operand.Error("Function '>' compare is error.");
                 }
-            } else if (args2.Type == OperandType.TEXT) {
-                if (args1.Type == OperandType.BOOLEAN) {
+            } else if (args2.IsText) {
+                if (args1.IsBoolean) {
                     var a = args2.ToBoolean();
                     if (a.IsError == false) {
                         return a.BooleanValue != args1.BooleanValue ? Operand.True : Operand.False;
@@ -819,21 +819,21 @@ namespace ToolGood.Algorithm.Internals.Functions
                     args1 = args1.ToText();
                     var r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
                     return r > 0 ? Operand.True : Operand.False;
-                } else if (args1.Type == OperandType.DATE || args1.Type == OperandType.NUMBER || args1.Type == OperandType.JSON) {
+                } else if (args1.IsDate || args1.IsNumber || args1.IsJson) {
                     args1 = args1.ToText();
                     var r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
                     return r > 0 ? Operand.True : Operand.False;
                 } else {
                     return Operand.Error("Function '>' compare is error.");
                 }
-            } else if (args1.Type == OperandType.JSON || args2.Type == OperandType.JSON
-                  || args1.Type == OperandType.ARRARY || args2.Type == OperandType.ARRARY
-                  || args1.Type == OperandType.ARRARYJSON || args2.Type == OperandType.ARRARYJSON
+            } else if (args1.IsJson || args2.IsJson
+                  || args1.IsArray || args2.IsArray
+                  || args1.IsArrayJson || args2.IsArrayJson
                   ) {
                 return Operand.Error("Function '>' compare is error.");
             }
-            if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", ">", 1); if (args1.IsError) { return args1; } }
-            if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", ">", 2); if (args2.IsError) { return args2; } }
+            if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", ">", 1); if (args1.IsError) { return args1; } }
+            if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", ">", 2); if (args2.IsError) { return args2; } }
 
             return Operand.Create(args1.NumberValue > args2.NumberValue);
         }
@@ -859,27 +859,27 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args2 = func2.Calculate(work); if (args2.IsError) { return args2; }
 
             if (args1.Type == args2.Type) {
-                if (args1.Type == OperandType.NUMBER) {
+                if (args1.IsNumber) {
                     return Operand.Create(args1.NumberValue < args2.NumberValue);
-                } else if (args1.Type == OperandType.TEXT) {
+                } else if (args1.IsText) {
                     var r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
                     return r < 0 ? Operand.True : Operand.False;
-                } else if (args1.Type == OperandType.DATE || args1.Type == OperandType.BOOLEAN) {
+                } else if (args1.IsDate || args1.IsBoolean) {
                     args1 = args1.ToNumber();
                     args2 = args2.ToNumber();
                     return Operand.Create(args1.NumberValue < args2.NumberValue);
-                } else if (args1.Type == OperandType.JSON) {
+                } else if (args1.IsJson) {
                     args1 = args1.ToText();
                     args2 = args2.ToText();
                     var r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
                     return r < 0 ? Operand.True : Operand.False;
-                } else if (args1.Type == OperandType.NULL) {
+                } else if (args1.IsNull) {
                     return Operand.True;
                 } else {
                     return Operand.Error("Function '<' compare is error.");
                 }
-            } else if (args2.Type == OperandType.TEXT) {
-                if (args1.Type == OperandType.BOOLEAN) {
+            } else if (args2.IsText) {
+                if (args1.IsBoolean) {
                     var a = args2.ToBoolean();
                     if (a.IsError == false) {
                         return a.BooleanValue != args1.BooleanValue ? Operand.True : Operand.False;
@@ -887,21 +887,21 @@ namespace ToolGood.Algorithm.Internals.Functions
                     args1 = args1.ToText();
                     var r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
                     return r < 0 ? Operand.True : Operand.False;
-                } else if (args1.Type == OperandType.DATE || args1.Type == OperandType.NUMBER || args1.Type == OperandType.JSON) {
+                } else if (args1.IsDate || args1.IsNumber || args1.IsJson) {
                     args1 = args1.ToText();
                     var r = string.CompareOrdinal(args1.TextValue, args2.TextValue);
                     return r < 0 ? Operand.True : Operand.False;
                 } else {
                     return Operand.Error("Function '<' compare is error.");
                 }
-            } else if (args1.Type == OperandType.JSON || args2.Type == OperandType.JSON
-                  || args1.Type == OperandType.ARRARY || args2.Type == OperandType.ARRARY
-                  || args1.Type == OperandType.ARRARYJSON || args2.Type == OperandType.ARRARYJSON
+            } else if (args1.IsJson || args2.IsJson
+                  || args1.IsArray || args2.IsArray
+                  || args1.IsArrayJson || args2.IsArrayJson
                   ) {
                 return Operand.Error("Function '<' compare is error.");
             }
-            if (args1.Type != OperandType.NUMBER) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "<", 1); if (args1.IsError) { return args1; } }
-            if (args2.Type != OperandType.NUMBER) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "<", 2); if (args2.IsError) { return args2; } }
+            if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "<", 1); if (args1.IsError) { return args1; } }
+            if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "<", 2); if (args2.IsError) { return args2; } }
 
             return Operand.Create(args1.NumberValue < args2.NumberValue);
         }
@@ -932,7 +932,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             // 在excel内 AND(x,y) OR(x,y) 先报错，
             // 在程序中，&& and  有true 直接返回true 就不会检测下一个会不会报错
             // 在程序中，|| or  有false 直接返回false 就不会检测下一个会不会报错
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.BOOLEAN) { args1 = args1.ToBoolean(); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work); if (args1.IsNotBoolean) { args1 = args1.ToBoolean(); if (args1.IsError) { return args1; } }
             if (args1.BooleanValue == false) return Operand.False;
             return func2.Calculate(work).ToBoolean();
         }
@@ -958,7 +958,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             // 在excel内 AND(x,y) OR(x,y) 先报错，
             // 在程序中，&& and  有true 直接返回true 就不会检测下一个会不会报错
             // 在程序中，|| or  有false 直接返回false 就不会检测下一个会不会报错
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.BOOLEAN) { args1 = args1.ToBoolean(); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work); if (args1.IsNotBoolean) { args1 = args1.ToBoolean(); if (args1.IsError) { return args1; } }
             if (args1.BooleanValue) return Operand.True;
             return func2.Calculate(work).ToBoolean();
         }
@@ -1046,7 +1046,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 args4 = args4.ToBoolean("Function '{0}' parameter {1} is error!", "VLOOKUP", 4); if (args4.IsError) { return args4; }
                 vague = args4.BooleanValue;
             }
-            if (args2.Type != OperandType.NULL) {
+            if (args2.IsNotNull) {
                 var sv = args2.ToText("Function '{0}' parameter {1} is error!", "VLOOKUP", 2); if (sv.IsError) { return sv; }
                 args2 = sv;
             }
@@ -1056,7 +1056,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 if (o.ArrayValue.Count > 0) {
                     var o1 = o.ArrayValue[0];
                     int b = -1;
-                    if (args2.Type == OperandType.NUMBER) {
+                    if (args2.IsNumber) {
                         var o2 = o1.ToNumber(null);
                         if (o2.IsError == false) {
                             b = FunctionUtil.Compare(o2.NumberValue, args2.NumberValue);
@@ -1085,7 +1085,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                     if (o.ArrayValue.Count > 0) {
                         var o1 = o.ArrayValue[0];
                         int b = -1;
-                        if (args2.Type == OperandType.NUMBER) {
+                        if (args2.IsNumber) {
                             var o2 = o1.ToNumber(null);
                             if (o2.IsError == false) {
                                 b = FunctionUtil.Compare(o2.NumberValue, args2.NumberValue);

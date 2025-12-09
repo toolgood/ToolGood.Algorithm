@@ -10,12 +10,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         public static bool F_base_GetList(List<Operand> args, List<decimal> list)
         {
             foreach (var item in args) {
-                if (item.Type == OperandType.NUMBER) {
+                if (item.IsNumber) {
                     list.Add(item.NumberValue);
-                } else if (item.Type == OperandType.ARRARY) {
+                } else if (item.IsArray) {
                     var o = F_base_GetList(item.ArrayValue, list);
                     if (o == false) { return false; }
-                } else if (item.Type == OperandType.JSON) {
+                } else if (item.IsJson) {
                     var i = item.ToArray(null);
                     if (i.IsError) { return false; }
                     var o = F_base_GetList(i.ArrayValue, list);
@@ -32,12 +32,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         public static bool F_base_GetList(Operand args, List<decimal> list)
         {
             if (args.IsError) { return false; }
-            if (args.Type == OperandType.NUMBER) {
+            if (args.IsNumber) {
                 list.Add(args.NumberValue);
-            } else if (args.Type == OperandType.ARRARY) {
+            } else if (args.IsArray) {
                 var o = F_base_GetList(args.ArrayValue, list);
                 if (o == false) { return false; }
-            } else if (args.Type == OperandType.JSON) {
+            } else if (args.IsJson) {
                 var i = args.ToArray(null);
                 if (i.IsError) { return false; }
                 var o = F_base_GetList(i.ArrayValue, list);
@@ -53,10 +53,10 @@ namespace ToolGood.Algorithm.Internals.Functions
         public static bool F_base_GetList(Operand args, List<string> list)
         {
             if (args.IsError) { return false; }
-            if (args.Type == OperandType.ARRARY) {
+            if (args.IsArray) {
                 var o = F_base_GetList(args.ArrayValue, list);
                 if (o == false) { return false; }
-            } else if (args.Type == OperandType.JSON) {
+            } else if (args.IsJson) {
                 var i = args.ToArray(null);
                 if (i.IsError) { return false; }
                 var o = F_base_GetList(i.ArrayValue, list);
@@ -72,10 +72,10 @@ namespace ToolGood.Algorithm.Internals.Functions
         public static bool F_base_GetList(List<Operand> args, List<string> list)
         {
             foreach (var item in args) {
-                if (item.Type == OperandType.ARRARY) {
+                if (item.IsArray) {
                     var o = F_base_GetList(item.ArrayValue, list);
                     if (o == false) { return false; }
-                } else if (item.Type == OperandType.JSON) {
+                } else if (item.IsJson) {
                     var i = item.ToArray(null);
                     if (i.IsError) { return false; }
                     var o = F_base_GetList(i.ArrayValue, list);

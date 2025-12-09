@@ -126,7 +126,7 @@ namespace ToolGood.Algorithm
             try {
                 var function = Parse(exp);
                 var obj = function.Calculate(this);
-                if (obj.Type != OperandType.NUMBER) {
+                if (obj.IsNotNumber) {
                     obj = obj.ToNumber("It can't be converted to number!");
                     if (obj.IsError) {
                         LastError = obj.ErrorMsg;
@@ -151,7 +151,7 @@ namespace ToolGood.Algorithm
             try {
                 var function = Parse(exp);
                 var obj = function.Calculate(this);
-                if (obj.Type != OperandType.NUMBER) {
+                if (obj.IsNotNumber) {
                     obj = obj.ToNumber("It can't be converted to number!");
                     if (obj.IsError) {
                         LastError = obj.ErrorMsg;
@@ -176,7 +176,7 @@ namespace ToolGood.Algorithm
             try {
                 var function = Parse(exp);
                 var obj = function.Calculate(this);
-                if (obj.Type != OperandType.NUMBER) {
+                if (obj.IsNotNumber) {
                     obj = obj.ToNumber("It can't be converted to number!");
                     if (obj.IsError) {
                         LastError = obj.ErrorMsg;
@@ -201,7 +201,7 @@ namespace ToolGood.Algorithm
             try {
                 var function = Parse(exp);
                 var obj = function.Calculate(this);
-                if (obj.Type != OperandType.NUMBER) {
+                if (obj.IsNotNumber) {
                     obj = obj.ToNumber("It can't be converted to number!");
                     if (obj.IsError) {
                         LastError = obj.ErrorMsg;
@@ -226,7 +226,7 @@ namespace ToolGood.Algorithm
             try {
                 var function = Parse(exp);
                 var obj = function.Calculate(this);
-                if (obj.Type != OperandType.NUMBER) {
+                if (obj.IsNotNumber) {
                     obj = obj.ToNumber("It can't be converted to number!");
                     if (obj.IsError) {
                         LastError = obj.ErrorMsg;
@@ -251,7 +251,7 @@ namespace ToolGood.Algorithm
             try {
                 var function = Parse(exp);
                 var obj = function.Calculate(this);
-                if (obj.Type != OperandType.NUMBER) {
+                if (obj.IsNotNumber) {
                     obj = obj.ToNumber("It can't be converted to number!");
                     if (obj.IsError) {
                         LastError = obj.ErrorMsg;
@@ -276,7 +276,7 @@ namespace ToolGood.Algorithm
             try {
                 var function = Parse(exp);
                 var obj = function.Calculate(this);
-                if (obj.Type != OperandType.NUMBER) {
+                if (obj.IsNotNumber) {
                     obj = obj.ToNumber("It can't be converted to number!");
                     if (obj.IsError) {
                         LastError = obj.ErrorMsg;
@@ -301,7 +301,7 @@ namespace ToolGood.Algorithm
             try {
                 var function = Parse(exp);
                 var obj = function.Calculate(this);
-                if (obj.Type != OperandType.NUMBER) {
+                if (obj.IsNotNumber) {
                     obj = obj.ToNumber("It can't be converted to number!");
                     if (obj.IsError) {
                         LastError = obj.ErrorMsg;
@@ -326,7 +326,7 @@ namespace ToolGood.Algorithm
             try {
                 var function = Parse(exp);
                 var obj = function.Calculate(this);
-                if (obj.Type != OperandType.NUMBER) {
+                if (obj.IsNotNumber) {
                     obj = obj.ToNumber("It can't be converted to number!");
                     if (obj.IsError) {
                         LastError = obj.ErrorMsg;
@@ -351,7 +351,7 @@ namespace ToolGood.Algorithm
             try {
                 var function = Parse(exp);
                 var obj = function.Calculate(this);
-                if (obj.Type != OperandType.TEXT) {
+                if (obj.IsNotText) {
                     obj = obj.ToText("It can't be converted to string!");
                     if (obj.IsError) {
                         LastError = obj.ErrorMsg;
@@ -376,7 +376,7 @@ namespace ToolGood.Algorithm
             try {
                 var function = Parse(exp);
                 var obj = function.Calculate(this);
-                if (obj.Type != OperandType.BOOLEAN) {
+                if (obj.IsNotBoolean) {
                     obj = obj.ToBoolean("It can't be converted to bool!");
                     if (obj.IsError) {
                         LastError = obj.ErrorMsg;
@@ -401,7 +401,7 @@ namespace ToolGood.Algorithm
             try {
                 var function = Parse(exp);
                 var obj = function.Calculate(this);
-                if (obj.Type == OperandType.DATE) {
+                if (obj.IsDate) {
                     obj = obj.ToMyDate("It can't be converted to DateTime!");
                     if (obj.IsError) {
                         LastError = obj.ErrorMsg;
@@ -429,7 +429,7 @@ namespace ToolGood.Algorithm
             try {
                 var function = Parse(exp);
                 var obj = function.Calculate(this);
-                if (obj.Type== OperandType.DATE) {
+                if (obj.IsNotDate) {
                     obj = obj.ToMyDate("It can't be converted to DateTime!");
                     if (obj.IsError) {
                         LastError = obj.ErrorMsg;
@@ -455,7 +455,7 @@ namespace ToolGood.Algorithm
             try {
                 var function = Parse(exp);
                 var obj = function.Calculate(this);
-                if (obj.Type != OperandType.DATE) {
+                if (obj.IsNotDate) {
                     obj = obj.ToMyDate("It can't be converted to DateTime!");
                     if (obj.IsError) {
                         LastError = obj.ErrorMsg;

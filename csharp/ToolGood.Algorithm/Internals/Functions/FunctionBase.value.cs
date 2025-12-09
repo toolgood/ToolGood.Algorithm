@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using ToolGood.Algorithm.Enums;
 
 namespace ToolGood.Algorithm.Internals.Functions
 {
@@ -29,7 +28,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 stringBuilder.Append(_showName);
                 return;
             }
-            if (_value.Type == OperandType.TEXT) {
+            if (_value.IsText) {
                 stringBuilder.Append('"');
                 var stringValue = _value.TextValue;
                 stringValue = stringValue.Replace("\\", "\\\\");
@@ -44,11 +43,11 @@ namespace ToolGood.Algorithm.Internals.Functions
                 stringValue = stringValue.Replace("\"", "\\\"");
                 stringBuilder.Append(stringValue);
                 stringBuilder.Append('"');
-            } else if (_value.Type == OperandType.DATE) {
+            } else if (_value.IsDate) {
                 stringBuilder.Append('"');
                 stringBuilder.Append(_value.DateValue.ToString());
                 stringBuilder.Append('"');
-            } else if (_value.Type == OperandType.BOOLEAN) {
+            } else if (_value.IsBoolean) {
                 stringBuilder.Append(_value.BooleanValue ? "true" : "false");
             } else {
                 stringBuilder.Append(_value.ToString());
@@ -161,7 +160,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             var obj = func1.Calculate(work); if (obj.IsError) { return obj; }
             var op = func2.Calculate(work); if (op.IsError) { return op; }
 
-            if (obj.Type == OperandType.ARRARY) {
+            if (obj.IsArray) {
                 op = op.ToNumber("ARRARY index is error!");
                 if (op.IsError) { return op; }
                 var index = op.IntValue - work.ExcelIndex;
@@ -169,13 +168,13 @@ namespace ToolGood.Algorithm.Internals.Functions
                     return obj.ArrayValue[index];
                 return Operand.Error("ARRARY index {0} greater than maximum length!", index);
             }
-            if (obj.Type == OperandType.ARRARYJSON) {
-                if (op.Type == OperandType.NUMBER) {
+            if (obj.IsArrayJson) {
+                if (op.IsNumber) {
                     if (((OperandKeyValueList)obj).TryGetValue(op.NumberValue.ToString(), out Operand operand)) {
                         return operand;
                     }
                     return Operand.Error("Parameter name '{0}' is missing!", op.TextValue);
-                } else if (op.Type == OperandType.TEXT) {
+                } else if (op.IsText) {
                     if (((OperandKeyValueList)obj).TryGetValue(op.TextValue, out Operand operand)) {
                         return operand;
                     }
@@ -184,7 +183,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 return Operand.Error("Parameter name is missing!");
             }
 
-            if (obj.Type == OperandType.JSON) {
+            if (obj.IsJson) {
                 var json = obj.JsonValue;
                 if (json.IsArray) {
                     op = op.ToNumber("JSON parameter index is error!");
@@ -257,7 +256,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Calculate(AlgorithmEngine work)
         {
-            var args1 = func1.Calculate(work); if (args1.Type != OperandType.TEXT) { args1 = args1.ToText(); if (args1.IsError) return args1; }
+            var args1 = func1.Calculate(work); if (args1.IsNotText) { args1 = args1.ToText(); if (args1.IsError) return args1; }
             var result = work.GetParameter(args1.TextValue);
             if (result.IsError) {
                 if (func2 != null) {
