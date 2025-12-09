@@ -540,6 +540,12 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsError) { return args1; }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsError) { return args2; }
 
+            if (args1.IsNumber && args2.IsNumber) { //  优化性能
+                if (args1.NumberValue == 1) { return args2; }
+                if (args2.NumberValue == 1) { return args1; }
+                return Operand.Create(args1.NumberValue * args2.NumberValue);
+            }
+
             if (args1.IsText) {
                 if (decimal.TryParse(args1.TextValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
                     args1 = Operand.Create(d);
@@ -606,6 +612,12 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsError) { return args1; }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsError) { return args2; }
 
+            if (args1.IsNumber && args2.IsNumber) { //  优化性能
+                if (args2.NumberValue == 1) { return args1; }
+                if (args2.NumberValue == 0) { return Operand.Error("Div 0 is error!"); }
+                return Operand.Create(args1.NumberValue / args2.NumberValue);
+            }
+
             if (args1.IsText) {
                 if (decimal.TryParse(args1.TextValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
                     args1 = Operand.Create(d);
@@ -661,6 +673,11 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsError) { return args1; }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsError) { return args2; }
 
+            if (args1.IsNumber && args2.IsNumber) { //  优化性能
+                if (args2.NumberValue == 0) { return Operand.Error("Div 0 is error!"); }
+                return Operand.Create(args1.NumberValue % args2.NumberValue);
+            }
+
             if (args1.IsText) {
                 if (decimal.TryParse(args1.TextValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
                     args1 = Operand.Create(d);
@@ -714,6 +731,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsError) { return args1; }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsError) { return args2; }
+
+            if (args1.IsNumber && args2.IsNumber) { //  优化性能
+                if (args1.NumberValue == 0) { return args2; }
+                if (args2.NumberValue == 0) { return args1; }
+                return Operand.Create(args1.NumberValue + args2.NumberValue);
+            }
 
             if (args1.IsText) {
                 if (decimal.TryParse(args1.TextValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
@@ -779,6 +802,11 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsError) { return args1; }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsError) { return args2; }
+
+            if (args1.IsNumber && args2.IsNumber) { //  优化性能
+                if (args2.NumberValue == 0) { return args1; }
+                return Operand.Create(args1.NumberValue - args2.NumberValue);
+            }
 
             if (args1.IsText) {
                 if (decimal.TryParse(args1.TextValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal d)) {
