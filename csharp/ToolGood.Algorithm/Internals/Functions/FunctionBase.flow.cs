@@ -4,8 +4,8 @@ using System.Text;
 
 namespace ToolGood.Algorithm.Internals.Functions
 {
-    #region flow
 
+    #region if iferror
     internal class Function_IF : Function_3
     {
         public Function_IF(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
@@ -42,6 +42,10 @@ namespace ToolGood.Algorithm.Internals.Functions
             AddFunction(stringBuilder, "IfError");
         }
     }
+
+    #endregion
+
+    #region isXXXX
 
     internal class Function_ISNUMBER : Function_1
     {
@@ -225,23 +229,6 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    internal class Function_NOT : Function_1
-    {
-        public Function_NOT(FunctionBase func1) : base(func1)
-        {
-        }
-
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
-        {
-            var args1 = func1.Evaluate(work, tempParameter);
-            if (args1.IsNotBoolean) { args1 = args1.ToBoolean("Function '{0}' parameter is error!", "Not"); if (args1.IsError) { return args1; } }
-            return args1.BooleanValue ? Operand.False : Operand.True;
-        }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Not");
-        }
-    }
 
 
     internal class Function_ISNULLOREMPTY : Function_1
@@ -280,7 +267,25 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             AddFunction(stringBuilder, "IsNullOrWhiteSpace");
         }
-    }
+    } 
+    #endregion
 
-    #endregion flow
+
+    internal class Function_NOT : Function_1
+    {
+        public Function_NOT(FunctionBase func1) : base(func1)
+        {
+        }
+
+        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        {
+            var args1 = func1.Evaluate(work, tempParameter);
+            if (args1.IsNotBoolean) { args1 = args1.ToBoolean("Function '{0}' parameter is error!", "Not"); if (args1.IsError) { return args1; } }
+            return args1.BooleanValue ? Operand.False : Operand.True;
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            AddFunction(stringBuilder, "Not");
+        }
+    }
 }

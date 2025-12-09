@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ToolGood.Algorithm.LitJson;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace ToolGood.Algorithm.Internals.Functions
@@ -336,6 +337,33 @@ namespace ToolGood.Algorithm.Internals.Functions
             func1.ToString(stringBuilder, false);
         }
 
+    }
+
+    internal class Function_JSON : Function_1
+    {
+        public Function_JSON(FunctionBase func1) : base(func1)
+        {
+        }
+
+        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
+        {
+            var args1 = func1.Evaluate(work, tempParameter);
+            if (args1.IsJson) { return args1; }
+            args1 = args1.ToText("Function '{0}' parameter is error!", "Json");
+            if (args1.IsError) { return args1; }
+            var txt = args1.TextValue;
+            if ((txt.StartsWith('{') && txt.EndsWith('}')) || (txt.StartsWith('[') && txt.EndsWith(']'))) {
+                try {
+                    var json = JsonMapper.ToObject(txt);
+                    return Operand.Create(json);
+                } catch (Exception) { }
+            }
+            return Operand.Error("Function '{0}' parameter is error!", "Json");
+        }
+        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
+        {
+            AddFunction(stringBuilder, "Json");
+        }
     }
 
 }

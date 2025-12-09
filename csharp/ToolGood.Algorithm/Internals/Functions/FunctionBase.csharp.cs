@@ -7,8 +7,8 @@ using ToolGood.Algorithm.LitJson;
 
 namespace ToolGood.Algorithm.Internals.Functions
 {
-    #region csharp
 
+    #region Url html
     internal class Function_URLENCODE : Function_1
     {
         public Function_URLENCODE(FunctionBase func1) : base(func1)
@@ -84,6 +84,10 @@ namespace ToolGood.Algorithm.Internals.Functions
             AddFunction(stringBuilder, "HtmlDecode");
         }
     }
+
+    #endregion
+
+    #region base64
 
     internal class Function_BASE64TOTEXT : Function_2
     {
@@ -198,7 +202,9 @@ namespace ToolGood.Algorithm.Internals.Functions
             AddFunction(stringBuilder, "TextToBase64url");
         }
     }
+    #endregion
 
+    #region regex
     internal class Function_REGEX : Function_2
     {
         public Function_REGEX(FunctionBase func1, FunctionBase func2) : base(func1, func2)
@@ -260,6 +266,10 @@ namespace ToolGood.Algorithm.Internals.Functions
             AddFunction(stringBuilder, "IsRegex");
         }
     }
+
+    #endregion
+
+    #region hash
 
     internal class Function_GUID : FunctionBase
     {
@@ -542,6 +552,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
+    #endregion
+
+    #region string
     internal class Function_TRIMSTART : Function_2
     {
         public Function_TRIMSTART(FunctionBase func1, FunctionBase func2) : base(func1, func2)
@@ -831,33 +844,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    internal class Function_JSON : Function_1
-    {
-        public Function_JSON(FunctionBase func1) : base(func1)
-        {
-        }
+    #endregion
 
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
-        {
-            var args1 = func1.Evaluate(work, tempParameter);
-            if (args1.IsJson) { return args1; }
-            args1 = args1.ToText("Function '{0}' parameter is error!", "Json");
-            if (args1.IsError) { return args1; }
-            var txt = args1.TextValue;
-            if ((txt.StartsWith('{') && txt.EndsWith('}')) || (txt.StartsWith('[') && txt.EndsWith(']'))) {
-                try {
-                    var json = JsonMapper.ToObject(txt);
-                    return Operand.Create(json);
-                } catch (Exception) { }
-            }
-            return Operand.Error("Function '{0}' parameter is error!", "Json");
-        }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "Json");
-        }
-    }
-
+    #region has hasvalue
     internal class Function_HAS : Function_2
     {
         public Function_HAS(FunctionBase func1, FunctionBase func2) : base(func1, func2)
@@ -969,6 +958,6 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
+    #endregion
 
-    #endregion csharp
 }

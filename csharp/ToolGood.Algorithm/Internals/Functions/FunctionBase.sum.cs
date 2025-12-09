@@ -507,48 +507,6 @@ namespace ToolGood.Algorithm.Internals.Functions
 		}
 	}
 
-	internal class Function_RANGE : Function_2
-	{
-		public Function_RANGE(FunctionBase func1, FunctionBase func2) : base(func1, func2)
-		{
-		}
-
-		public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
-		{
-			var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Range", 1); if (args1.IsError) { return args1; } }
-			var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Range", 2); if (args2.IsError) { return args2; } }
-			return Operand.Create(args2.NumberValue - args1.NumberValue);
-		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "Range");
-		}
-	}
-
-	internal class Function_VARIANCE : Function_N
-	{
-		public Function_VARIANCE(FunctionBase[] funcs) : base(funcs)
-		{
-		}
-
-		public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
-		{
-			var args = new List<Operand>(); foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); if (aa.IsError) { return aa; } args.Add(aa); }
-
-			List<decimal> list = new List<decimal>();
-			var o = FunctionUtil.F_base_GetList(args, list);
-			if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "Variance"); }
-			if (list.Count == 0) { return Operand.Error("Function '{0}' parameter is error!", "Variance"); }
-			var avg = list.Average();
-			var variance = list.Sum(d => (d - avg) * (d - avg)) / list.Count;
-			return Operand.Create(variance);
-		}
-		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-		{
-			AddFunction(stringBuilder, "Variance");
-		}
-	}
-
 	internal class Function_STDEV : Function_N
 	{
 		public Function_STDEV(FunctionBase[] funcs) : base(funcs)

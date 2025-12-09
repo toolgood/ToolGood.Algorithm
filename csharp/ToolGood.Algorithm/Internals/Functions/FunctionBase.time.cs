@@ -318,6 +318,8 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
+    #region second minute hour month year day
+
     internal class Function_SECOND : Function_1
     {
         public Function_SECOND(FunctionBase func1) : base(func1)
@@ -435,6 +437,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
+    #endregion
     internal class Function_WEEKDAY : Function_2
     {
         public Function_WEEKDAY(FunctionBase func1, FunctionBase func2) : base(func1, func2)
@@ -695,6 +698,8 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
+    #region Add Date Parts
+
     internal class Function_ADDMONTHS : Function_2
     {
         public Function_ADDMONTHS(FunctionBase func1, FunctionBase func2) : base(func1, func2)
@@ -804,6 +809,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             AddFunction(stringBuilder, "AddDays");
         }
-    }
+    } 
+    #endregion
 
 }
