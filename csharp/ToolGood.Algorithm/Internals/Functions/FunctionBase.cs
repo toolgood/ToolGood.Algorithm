@@ -51,8 +51,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <summary>
         /// 执行函数,如果异常，返回默认值
         /// </summary>
-        /// <param name="exp"></param>
+        /// <param name="work"></param>
         /// <param name="def"></param>
+        /// <param name="tempParameter"></param>
         /// <returns></returns>
         public uint TryEvaluate(AlgorithmEngine work, uint def, Func<string, Operand> tempParameter = null)
         {
@@ -75,8 +76,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <summary>
         /// 执行函数,如果异常，返回默认值
         /// </summary>
-        /// <param name="exp"></param>
+        /// <param name="work"></param>
         /// <param name="def"></param>
+        /// <param name="tempParameter"></param>
         /// <returns></returns>
         public ulong TryEvaluate(AlgorithmEngine work, ulong def, Func<string, Operand> tempParameter = null)
         {
@@ -99,8 +101,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <summary>
         /// 执行函数,如果异常，返回默认值
         /// </summary>
-        /// <param name="exp"></param>
+        /// <param name="work"></param>
         /// <param name="def"></param>
+        /// <param name="tempParameter"></param>
         /// <returns></returns>
         public short TryEvaluate(AlgorithmEngine work, short def, Func<string, Operand> tempParameter = null)
         {
@@ -123,8 +126,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <summary>
         /// 执行函数,如果异常，返回默认值
         /// </summary>
-        /// <param name="exp"></param>
+        /// <param name="work"></param>
         /// <param name="def"></param>
+        /// <param name="tempParameter"></param>
         /// <returns></returns>
         public int TryEvaluate(AlgorithmEngine work, int def, Func<string, Operand> tempParameter = null)
         {
@@ -147,8 +151,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <summary>
         /// 执行函数,如果异常，返回默认值
         /// </summary>
-        /// <param name="exp"></param>
+        /// <param name="work"></param>
         /// <param name="def"></param>
+        /// <param name="tempParameter"></param>
         /// <returns></returns>
         public long TryEvaluate(AlgorithmEngine work, long def, Func<string, Operand> tempParameter = null)
         {
@@ -171,8 +176,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <summary>
         /// 执行函数,如果异常，返回默认值
         /// </summary>
-        /// <param name="exp"></param>
+        /// <param name="work"></param>
         /// <param name="def"></param>
+        /// <param name="tempParameter"></param>
         /// <returns></returns>
         public float TryEvaluate(AlgorithmEngine work, float def, Func<string, Operand> tempParameter = null)
         {
@@ -195,8 +201,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <summary>
         /// 执行函数,如果异常，返回默认值
         /// </summary>
-        /// <param name="exp"></param>
+        /// <param name="work"></param>
         /// <param name="def"></param>
+        /// <param name="tempParameter"></param>
         /// <returns></returns>
         public double TryEvaluate(AlgorithmEngine work, double def, Func<string, Operand> tempParameter = null)
         {
@@ -219,8 +226,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <summary>
         /// 执行函数,如果异常，返回默认值
         /// </summary>
-        /// <param name="exp"></param>
+        /// <param name="work"></param>
         /// <param name="def"></param>
+        /// <param name="tempParameter"></param>
         /// <returns></returns>
         public decimal TryEvaluate(AlgorithmEngine work, decimal def, Func<string, Operand> tempParameter = null)
         {
@@ -243,8 +251,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <summary>
         /// 执行函数,如果异常，返回默认值
         /// </summary>
-        /// <param name="exp"></param>
+        /// <param name="work"></param>
         /// <param name="def"></param>
+        /// <param name="tempParameter"></param>
         /// <returns></returns>
         public string TryEvaluate(AlgorithmEngine work, string def, Func<string, Operand> tempParameter = null)
         {
@@ -267,8 +276,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <summary>
         /// 执行函数,如果异常，返回默认值
         /// </summary>
-        /// <param name="exp"></param>
+        /// <param name="work"></param>
         /// <param name="def"></param>
+        /// <param name="tempParameter"></param>
         /// <returns></returns>
         public bool TryEvaluate(AlgorithmEngine work, bool def, Func<string, Operand> tempParameter = null)
         {
@@ -291,8 +301,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <summary>
         /// 执行函数,如果异常，返回默认值
         /// </summary>
-        /// <param name="exp"></param>
+        /// <param name="work"></param>
         /// <param name="def"></param>
+        /// <param name="tempParameter"></param>
         /// <returns></returns>
         public DateTime TryEvaluate(AlgorithmEngine work, DateTime def, Func<string, Operand> tempParameter = null)
         {
@@ -318,8 +329,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <summary>
         /// 执行函数,如果异常，返回默认值
         /// </summary>
-        /// <param name="exp"></param>
+        /// <param name="work"></param>
         /// <param name="def"></param>
+        /// <param name="tempParameter"></param>
         /// <returns></returns>
         public TimeSpan TryEvaluate(AlgorithmEngine work, TimeSpan def, Func<string, Operand> tempParameter = null)
         {
@@ -343,8 +355,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// 执行函数,如果异常，返回默认值。
         /// 解决 def 为 null 二义性问题
         /// </summary>
-        /// <param name="exp"></param>
+        /// <param name="work"></param>
         /// <param name="def"></param>
+        /// <param name="tempParameter"></param>
         /// <returns></returns>
         public MyDate TryEvaluate_MyDate(AlgorithmEngine work, MyDate def, Func<string, Operand> tempParameter = null)
         {
