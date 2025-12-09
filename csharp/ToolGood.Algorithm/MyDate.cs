@@ -61,6 +61,24 @@ namespace ToolGood.Algorithm
             Minute = minute;
             Second = second;
         }
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="year">年</param>
+        /// <param name="month">月</param>
+        /// <param name="day">日</param>
+        /// <param name="hour">时</param>
+        /// <param name="minute">分</param>
+        /// <param name="second">秒</param>
+        public MyDate(int? year, int? month, int? day, int hour, int minute, int second)
+        {
+            Year = year;
+            Month = month;
+            Day = day;
+            Hour = hour;
+            Minute = minute;
+            Second = second;
+        }
 
         /// <summary>
         /// 构造函数
@@ -331,6 +349,10 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public MyDate AddHours(int hour)
         {
+            var t = this.Hour + hour;
+            if (t >= 0 && t < 24) {
+                return new MyDate(Year, Month, Day, t, Minute, Second);
+            }
             if (Year != null && Year > 1900) {
                 return new MyDate(ToDateTime().AddHours(hour));
             }
@@ -344,6 +366,10 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public MyDate AddMinutes(int minute)
         {
+            var t = this.Minute + minute;
+            if (t >= 0 && t <= 59) {
+                return new MyDate(Year, Month, Day, Hour, t, Second);
+            }
             if (Year != null && Year > 1900) {
                 return new MyDate(ToDateTime().AddMinutes(minute));
             }
@@ -357,6 +383,10 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public MyDate AddSeconds(int second)
         {
+            var t = this.Second + second;
+            if (t >= 0 && t <= 59) {
+                return new MyDate(Year, Month, Day, Hour, Minute, t);
+            }
             if (Year != null && Year > 1900) {
                 return new MyDate(ToDateTime().AddSeconds(second));
             }
