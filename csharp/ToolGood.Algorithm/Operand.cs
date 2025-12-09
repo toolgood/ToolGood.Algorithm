@@ -118,10 +118,6 @@ namespace ToolGood.Algorithm
         /// 是否出错
         /// </summary>
         public virtual bool IsError => false;
-        /// <summary>
-        /// 是否无错误
-        /// </summary>
-        public virtual bool IsNotError => true;
 
         /// <summary>
         /// 错误信息
@@ -920,7 +916,6 @@ namespace ToolGood.Algorithm
     {
         public override OperandType Type => OperandType.ERROR;
         public override bool IsError => true;
-        public override bool IsNotError => false;
         private readonly string _errorMsg;
         public override string ErrorMsg => _errorMsg;
 
