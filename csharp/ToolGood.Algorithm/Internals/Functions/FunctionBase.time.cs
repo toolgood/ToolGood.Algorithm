@@ -472,28 +472,6 @@ namespace ToolGood.Algorithm.Internals.Functions
         }
     }
 
-    internal class Function_DAYSINMONTH : Function_2
-    {
-        public Function_DAYSINMONTH(FunctionBase func1, FunctionBase func2) : base(func1, func2)
-        {
-        }
-
-        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
-        {
-            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "DaysInMonth", 1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "DaysInMonth", 2); if (args2.IsError) { return args2; } }
-            int year = args1.IntValue;
-            int month = args2.IntValue;
-            if (month < 1 || month > 12) { return Operand.Error("Function '{0}' parameter {1} is error!", "DaysInMonth", 2); }
-            int days = DateTime.DaysInMonth(year, month);
-            return Operand.Create((decimal)days);
-        }
-        public override void ToString(StringBuilder stringBuilder, bool addBrackets)
-        {
-            AddFunction(stringBuilder, "DaysInMonth");
-        }
-    }
-
     internal class Function_DAYS360 : Function_3
     {
         public Function_DAYS360(FunctionBase func1, FunctionBase func2, FunctionBase func3) : base(func1, func2, func3)
