@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ToolGood.Algorithm.Internals.Functions
 {
@@ -19,7 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             _showName = showName;
         }
 
-        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
+        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
         {
             return _value;
         }
@@ -62,9 +63,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
+        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
         {
-            var t = func1.Calculate(work).TextValue;
+            var t = func1.Evaluate(work).TextValue;
             return Operand.Error(t);
         }
 
@@ -80,10 +81,10 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
+        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
         {
             var args = new List<Operand>();
-            foreach (var item in funcs) { var aa = item.Calculate(work, parameterFun, diyFun); if (aa.IsError) { return aa; } args.Add(aa); }
+            foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); if (aa.IsError) { return aa; } args.Add(aa); }
             return Operand.Create(args);
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -103,7 +104,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             unit = func2;
         }
 
-        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
+        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
         {
             var dict = NumberUnitTypeHelper.GetUnitTypedict();
             var d2 = NumberUnitTypeHelper.TransformationUnit(d, dict[unit], work.DistanceUnit, work.AreaUnit, work.VolumeUnit, work.MassUnit);
@@ -131,16 +132,16 @@ namespace ToolGood.Algorithm.Internals.Functions
             this.func1 = func1;
         }
 
-        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
+        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
         {
             var txt = name;
             if (string.IsNullOrEmpty(name)) {
-                txt = func1.Calculate(work).TextValue;
+                txt = func1.Evaluate(work).TextValue;
             } else {
                 txt = name;
             }
-            if (parameterFun != null) {
-                var r = parameterFun(txt);
+            if (tempParameter != null) {
+                var r = tempParameter(txt);
                 if (r != null) return r;
             }
             return work.GetParameter(txt);
@@ -163,10 +164,10 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
+        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
         {
-            var obj = func1.Calculate(work, parameterFun, diyFun); if (obj.IsError) { return obj; }
-            var op = func2.Calculate(work, parameterFun, diyFun); if (op.IsError) { return op; }
+            var obj = func1.Evaluate(work, tempParameter); if (obj.IsError) { return obj; }
+            var op = func2.Evaluate(work, tempParameter); if (op.IsError) { return op; }
 
             if (obj.IsArray) {
                 op = op.ToNumber("ARRARY index is error!");
@@ -244,14 +245,10 @@ namespace ToolGood.Algorithm.Internals.Functions
             this.funName = name;
         }
 
-        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
+        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
         {
             var args = new List<Operand>();
-            foreach (var item in funcs) { var aa = item.Calculate(work, parameterFun, diyFun); args.Add(aa); }
-            if (diyFun != null) {
-                var r = diyFun(funName, args);
-                if (r != null) return r;
-            }
+            foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); args.Add(aa); }
             return work.ExecuteDiyFunction(funName, args);
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -266,13 +263,17 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
+        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
         {
-            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotText) { args1 = args1.ToText(); if (args1.IsError) return args1; }
+            var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotText) { args1 = args1.ToText(); if (args1.IsError) return args1; }
+            if (tempParameter != null) {
+                var r = tempParameter(args1.TextValue);
+                if (r != null) return r;
+            }
             var result = work.GetParameter(args1.TextValue);
             if (result.IsError) {
                 if (func2 != null) {
-                    return func2.Calculate(work, parameterFun, diyFun);
+                    return func2.Evaluate(work, tempParameter);
                 }
             }
             return result;
@@ -289,11 +290,11 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
+        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
         {
             OperandKeyValueList result = new OperandKeyValueList(null);
             foreach (var item in funcs) {
-                var o = item.Calculate(work, parameterFun, diyFun);
+                var o = item.Evaluate(work, tempParameter);
                 result.AddValue((KeyValue)((OperandKeyValue)o).Value);
             }
             return result;
@@ -320,11 +321,11 @@ namespace ToolGood.Algorithm.Internals.Functions
             this.key = key;
         }
 
-        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
+        public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
         {
             KeyValue keyValue = new KeyValue();
             keyValue.Key = key;
-            keyValue.Value = func1.Calculate(work, parameterFun, diyFun);
+            keyValue.Value = func1.Evaluate(work, tempParameter);
             return new OperandKeyValue(keyValue);
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)

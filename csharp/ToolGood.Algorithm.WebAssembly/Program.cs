@@ -39,7 +39,7 @@
             try {
                 var fun = ae.Parse(exp);
                 result["parse"] = true;
-                var obj = fun.Calculate(ae);
+                var obj = fun.Evaluate(ae);
                 if (obj.IsNull) {
                     result["result"] = null;
                     return JsonSerializer.Serialize(result);
@@ -93,7 +93,7 @@
             try {
                 var fun = ae.Parse(exp);
                 result["parse"] = true;
-                var obj = fun.Calculate(ae);
+                var obj = fun.Evaluate(ae);
                 obj = obj.ToNumber("It can't be converted to bool!");
                 if (obj.IsError) {
                     result["result"] = def;
@@ -138,7 +138,7 @@
             try {
                 var fun = ae.Parse(exp);
                 result["parse"] = true;
-                var obj = fun.Calculate(ae);
+                var obj = fun.Evaluate(ae);
                 obj = obj.ToBoolean("It can't be converted to bool!");
                 if (obj.IsError) {
                     result["result"] = def;
@@ -183,7 +183,7 @@
             try {
                 var fun = ae.Parse(exp);
                 result["parse"] = true;
-                var obj = fun.Calculate(ae);
+                var obj = fun.Evaluate(ae);
                 obj = obj.ToMyDate("It can't be converted to datetime!");
                 if (obj.IsError) {
                     result["result"] = def;
