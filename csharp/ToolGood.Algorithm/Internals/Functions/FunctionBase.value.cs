@@ -65,8 +65,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
         {
-            var t = func1.Evaluate(work, tempParameter).TextValue;
-            return Operand.Error(t);
+			var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotText) { args1 = args1.ToText(); if (args1.IsError) return args1; }
+            return Operand.Error(args1.TextValue);
         }
 
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -136,7 +136,8 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var txt = name;
             if (string.IsNullOrEmpty(name)) {
-                txt = func1.Evaluate(work, tempParameter).TextValue;
+				var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotText) { args1 = args1.ToText(); if (args1.IsError) return args1; }
+				txt = args1.TextValue;
             } else {
                 txt = name;
             }
