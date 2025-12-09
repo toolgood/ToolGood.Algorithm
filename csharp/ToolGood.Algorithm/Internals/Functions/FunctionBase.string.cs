@@ -187,7 +187,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 var p = args2.TextValue.AsSpan().IndexOf(args1.TextValue) + work.ExcelIndex;
                 return Operand.Create(p);
             }
-            var count = func3.Evaluate(work).ToNumber("Function '{0}' parameter {1} is error!", "Find", 3); if (count.IsError) { return count; }
+            var count = func3.Evaluate(work, tempParameter).ToNumber("Function '{0}' parameter {1} is error!", "Find", 3); if (count.IsError) { return count; }
             var p2 = args2.TextValue.AsSpan(count.IntValue).IndexOf(args1.TextValue) + count.IntValue + work.ExcelIndex;
             return Operand.Create(p2);
         }

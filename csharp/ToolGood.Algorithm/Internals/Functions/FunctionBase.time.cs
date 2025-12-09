@@ -614,7 +614,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
             HashSet<DateTime> list = new HashSet<DateTime>();
             for (int i = 2; i < funcs.Length; i++) {
-                var ar = funcs[i].Evaluate(work).ToMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", i + 1);
+                var ar = funcs[i].Evaluate(work, tempParameter).ToMyDate("Function '{0}' parameter {1} is error!", "NetWorkdays", i + 1);
                 if (ar.IsError) { return ar; }
                 list.Add(ar.DateValue);
             }
@@ -650,7 +650,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             var days = args2.IntValue;
             HashSet<DateTime> list = new HashSet<DateTime>();
             for (int i = 2; i < funcs.Length; i++) {
-                var ar = funcs[i].Evaluate(work).ToMyDate("Function '{0}' parameter {1} is error!", "Workday", i + 1);
+                var ar = funcs[i].Evaluate(work, tempParameter).ToMyDate("Function '{0}' parameter {1} is error!", "Workday", i + 1);
                 if (ar.IsError) { return ar; }
                 list.Add(ar.DateValue);
             }

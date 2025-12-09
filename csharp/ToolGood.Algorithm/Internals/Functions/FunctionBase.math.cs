@@ -636,7 +636,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work).ToText("Function '{0}' parameter is error!", "BIN2DEC");
+            var args1 = func1.Evaluate(work, tempParameter).ToText("Function '{0}' parameter is error!", "BIN2DEC");
             if (args1.IsError) { return args1; }
 
             if (Regex.IsMatch(args1.TextValue, "^[01]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function '{0}' parameter is error!", "BIN2DEC"); }
@@ -710,7 +710,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work).ToText("Function '{0}' parameter is error!", "OCT2DEC");
+            var args1 = func1.Evaluate(work, tempParameter).ToText("Function '{0}' parameter is error!", "OCT2DEC");
             if (args1.IsError) { return args1; }
             if (Regex.IsMatch(args1.TextValue, "^[0-7]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function '{0}' parameter is error!", "OCT2DEC"); }
             var num = Convert.ToInt32(args1.TextValue, 8);
@@ -784,7 +784,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work).ToText("Function '{0}' parameter is error!", "HEX2DEC");
+            var args1 = func1.Evaluate(work, tempParameter).ToText("Function '{0}' parameter is error!", "HEX2DEC");
             if (args1.IsError) { return args1; }
             if (Regex.IsMatch(args1.TextValue, "^[0-9A-Fa-f]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function '{0}' parameter is error!", "HEX2DEC"); }
             var num = Convert.ToInt32(args1.TextValue, 16);

@@ -65,7 +65,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
         {
-            var t = func1.Evaluate(work).TextValue;
+            var t = func1.Evaluate(work, tempParameter).TextValue;
             return Operand.Error(t);
         }
 
@@ -136,7 +136,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var txt = name;
             if (string.IsNullOrEmpty(name)) {
-                txt = func1.Evaluate(work).TextValue;
+                txt = func1.Evaluate(work, tempParameter).TextValue;
             } else {
                 txt = name;
             }

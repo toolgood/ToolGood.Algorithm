@@ -207,9 +207,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
         {
-            var args1 = func1.Evaluate(work).ToText("Function '{0}' parameter {1} is error!", "Regex", 1);
+            var args1 = func1.Evaluate(work, tempParameter).ToText("Function '{0}' parameter {1} is error!", "Regex", 1);
             if (args1.IsError) { return args1; }
-            var args2 = func2.Evaluate(work).ToText("Function '{0}' parameter {1} is error!", "Regex", 2);
+            var args2 = func2.Evaluate(work, tempParameter).ToText("Function '{0}' parameter {1} is error!", "Regex", 2);
             if (args2.IsError) { return args2; }
 
             var b = Regex.Match(args1.TextValue, args2.TextValue);
@@ -869,7 +869,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsError) { return args1; }
-            var args2 = func2.Evaluate(work).ToText("Function '{0}' parameter {1} is error!", "Has", 2); if (args2.IsError) { return args2; }
+            var args2 = func2.Evaluate(work, tempParameter).ToText("Function '{0}' parameter {1} is error!", "Has", 2); if (args2.IsError) { return args2; }
 
             if (args1.IsArrayJson) {
                 return Operand.Create(((OperandKeyValueList)args1).ContainsKey(args2));
@@ -921,7 +921,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsError) { return args1; }
-            var args2 = func2.Evaluate(work).ToText("Function '{0}' parameter {1} is error!", "HasValue", 2); if (args2.IsError) { return args2; }
+            var args2 = func2.Evaluate(work, tempParameter).ToText("Function '{0}' parameter {1} is error!", "HasValue", 2); if (args2.IsError) { return args2; }
 
             if (args1.IsArrayJson) {
                 return Operand.Create(((OperandKeyValueList)args1).ContainsValue(args2));
