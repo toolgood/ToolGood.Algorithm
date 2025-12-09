@@ -52,24 +52,6 @@ namespace ToolGood.Algorithm
         /// <param name="hour">时</param>
         /// <param name="minute">分</param>
         /// <param name="second">秒</param>
-        public MyDate(int year, int month, int day, int hour, int minute, int second)
-        {
-            Year = year;
-            Month = month;
-            Day = day;
-            Hour = hour;
-            Minute = minute;
-            Second = second;
-        }
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        /// <param name="year">年</param>
-        /// <param name="month">月</param>
-        /// <param name="day">日</param>
-        /// <param name="hour">时</param>
-        /// <param name="minute">分</param>
-        /// <param name="second">秒</param>
         public MyDate(int? year, int? month, int? day, int hour, int minute, int second)
         {
             Year = year;
@@ -316,7 +298,9 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public MyDate AddYears(int year)
         {
-            return new MyDate(ToDateTime().AddYears(year));
+            var t = (this.Year ?? 0) + year;
+            return new MyDate(t, Month, Day, Hour, Minute, Second);
+            //return new MyDate(ToDateTime().AddYears(year));
         }
 
         /// <summary>
@@ -326,6 +310,10 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public MyDate AddMonths(int month)
         {
+            var t = (this.Month ?? 0) + month;
+            if (t >= 1 && t <= 12) {
+                return new MyDate(Year, t, Day, Hour, Minute, Second);
+            }
             return new MyDate(ToDateTime().AddMonths(month));
         }
 
@@ -337,6 +325,10 @@ namespace ToolGood.Algorithm
         public MyDate AddDays(int day)
         {
             if (Year != null && Year > 1900) {
+                var d = (this.Day ?? 0) + day;
+                if (d >= 1 && d <= 28) {
+                    return new MyDate(Year, Month, d, Hour, Minute, Second);
+                }
                 return new MyDate(ToDateTime().AddDays(day));
             }
             return new MyDate(ToTimeSpan().Add(new TimeSpan(day, 0, 0, 0)));
