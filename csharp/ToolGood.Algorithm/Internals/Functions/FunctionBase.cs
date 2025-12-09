@@ -543,6 +543,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             if (args1.IsNumber && args2.IsNumber) { //  优化性能
                 if (args1.NumberValue == 1) { return args2; }
                 if (args2.NumberValue == 1) { return args1; }
+                if (args1.NumberValue == 0 || args2.NumberValue == 0) { return Operand.Zero; }
                 return Operand.Create(args1.NumberValue * args2.NumberValue);
             }
 
@@ -939,10 +940,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 } else {
                     return Operand.Error("Function '==' compare is error.");
                 }
-            } else if (args1.IsJson || args2.IsJson
-                  || args1.IsArray || args2.IsArray
-                  || args1.IsArrayJson || args2.IsArrayJson
-                  ) {
+            } else if (args1.IsJson || args2.IsJson || args1.IsArray || args2.IsArray || args1.IsArrayJson || args2.IsArrayJson) {
                 return Operand.Error("Function '==' compare is error.");
             }
             if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "==", 1); if (args1.IsError) { return args1; } }
@@ -1004,10 +1002,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 } else {
                     return Operand.Error("Function '!=' compare is error.");
                 }
-            } else if (args1.IsJson || args2.IsJson
-                  || args1.IsArray || args2.IsArray
-                  || args1.IsArrayJson || args2.IsArrayJson
-                  ) {
+            } else if (args1.IsJson || args2.IsJson || args1.IsArray || args2.IsArray || args1.IsArrayJson || args2.IsArrayJson) {
                 return Operand.Error("Function '!=' compare is error.");
             }
             if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "!=", 1); if (args1.IsError) { return args1; } }
@@ -1073,10 +1068,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 } else {
                     return Operand.Error("Function '>=' compare is error.");
                 }
-            } else if (args1.IsJson || args2.IsJson
-                  || args1.IsArray || args2.IsArray
-                  || args1.IsArrayJson || args2.IsArrayJson
-                  ) {
+            } else if (args1.IsJson || args2.IsJson || args1.IsArray || args2.IsArray || args1.IsArrayJson || args2.IsArrayJson) {
                 return Operand.Error("Function '>=' compare is error.");
             }
             if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", ">=", 1); if (args1.IsError) { return args1; } }
@@ -1141,10 +1133,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 } else {
                     return Operand.Error("Function '<=' compare is error.");
                 }
-            } else if (args1.IsJson || args2.IsJson
-                  || args1.IsArray || args2.IsArray
-                  || args1.IsArrayJson || args2.IsArrayJson
-                  ) {
+            } else if (args1.IsJson || args2.IsJson || args1.IsArray || args2.IsArray || args1.IsArrayJson || args2.IsArrayJson) {
                 return Operand.Error("Function '<=' compare is error.");
             }
             if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "<=", 1); if (args1.IsError) { return args1; } }
@@ -1210,10 +1199,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 } else {
                     return Operand.Error("Function '>' compare is error.");
                 }
-            } else if (args1.IsJson || args2.IsJson
-                  || args1.IsArray || args2.IsArray
-                  || args1.IsArrayJson || args2.IsArrayJson
-                  ) {
+            } else if (args1.IsJson || args2.IsJson || args1.IsArray || args2.IsArray || args1.IsArrayJson || args2.IsArrayJson) {
                 return Operand.Error("Function '>' compare is error.");
             }
             if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", ">", 1); if (args1.IsError) { return args1; } }
