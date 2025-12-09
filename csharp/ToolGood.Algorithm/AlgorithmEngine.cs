@@ -126,10 +126,12 @@ namespace ToolGood.Algorithm
             try {
                 var function = Parse(exp);
                 var obj = function.Calculate(this);
-                obj = obj.ToNumber("It can't be converted to number!");
-                if (obj.IsError) {
-                    LastError = obj.ErrorMsg;
-                    return def;
+                if (obj.Type != OperandType.NUMBER) {
+                    obj = obj.ToNumber("It can't be converted to number!");
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
+                        return def;
+                    }
                 }
                 return (ushort)obj.IntValue;
             } catch (Exception ex) {
@@ -149,10 +151,12 @@ namespace ToolGood.Algorithm
             try {
                 var function = Parse(exp);
                 var obj = function.Calculate(this);
-                obj = obj.ToNumber("It can't be converted to number!");
-                if (obj.IsError) {
-                    LastError = obj.ErrorMsg;
-                    return def;
+                if (obj.Type != OperandType.NUMBER) {
+                    obj = obj.ToNumber("It can't be converted to number!");
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
+                        return def;
+                    }
                 }
                 return (uint)obj.IntValue;
             } catch (Exception ex) {
@@ -172,10 +176,12 @@ namespace ToolGood.Algorithm
             try {
                 var function = Parse(exp);
                 var obj = function.Calculate(this);
-                obj = obj.ToNumber("It can't be converted to number!");
-                if (obj.IsError) {
-                    LastError = obj.ErrorMsg;
-                    return def;
+                if (obj.Type != OperandType.NUMBER) {
+                    obj = obj.ToNumber("It can't be converted to number!");
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
+                        return def;
+                    }
                 }
                 return (ulong)obj.IntValue;
             } catch (Exception ex) {
@@ -195,10 +201,12 @@ namespace ToolGood.Algorithm
             try {
                 var function = Parse(exp);
                 var obj = function.Calculate(this);
-                obj = obj.ToNumber("It can't be converted to number!");
-                if (obj.IsError) {
-                    LastError = obj.ErrorMsg;
-                    return def;
+                if (obj.Type != OperandType.NUMBER) {
+                    obj = obj.ToNumber("It can't be converted to number!");
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
+                        return def;
+                    }
                 }
                 return (short)obj.IntValue;
             } catch (Exception ex) {
@@ -218,10 +226,12 @@ namespace ToolGood.Algorithm
             try {
                 var function = Parse(exp);
                 var obj = function.Calculate(this);
-                obj = obj.ToNumber("It can't be converted to number!");
-                if (obj.IsError) {
-                    LastError = obj.ErrorMsg;
-                    return def;
+                if (obj.Type != OperandType.NUMBER) {
+                    obj = obj.ToNumber("It can't be converted to number!");
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
+                        return def;
+                    }
                 }
                 return obj.IntValue;
             } catch (Exception ex) {
@@ -241,10 +251,12 @@ namespace ToolGood.Algorithm
             try {
                 var function = Parse(exp);
                 var obj = function.Calculate(this);
-                obj = obj.ToNumber("It can't be converted to number!");
-                if (obj.IsError) {
-                    LastError = obj.ErrorMsg;
-                    return def;
+                if (obj.Type != OperandType.NUMBER) {
+                    obj = obj.ToNumber("It can't be converted to number!");
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
+                        return def;
+                    }
                 }
                 return obj.LongValue;
             } catch (Exception ex) {
@@ -264,10 +276,12 @@ namespace ToolGood.Algorithm
             try {
                 var function = Parse(exp);
                 var obj = function.Calculate(this);
-                obj = obj.ToNumber("It can't be converted to number!");
-                if (obj.IsError) {
-                    LastError = obj.ErrorMsg;
-                    return def;
+                if (obj.Type != OperandType.NUMBER) {
+                    obj = obj.ToNumber("It can't be converted to number!");
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
+                        return def;
+                    }
                 }
                 return (float)obj.NumberValue;
             } catch (Exception ex) {
@@ -287,10 +301,12 @@ namespace ToolGood.Algorithm
             try {
                 var function = Parse(exp);
                 var obj = function.Calculate(this);
-                obj = obj.ToNumber("It can't be converted to number!");
-                if (obj.IsError) {
-                    LastError = obj.ErrorMsg;
-                    return def;
+                if (obj.Type != OperandType.NUMBER) {
+                    obj = obj.ToNumber("It can't be converted to number!");
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
+                        return def;
+                    }
                 }
                 return (double)obj.NumberValue;
             } catch (Exception ex) {
@@ -310,10 +326,12 @@ namespace ToolGood.Algorithm
             try {
                 var function = Parse(exp);
                 var obj = function.Calculate(this);
-                obj = obj.ToNumber("It can't be converted to number!");
-                if (obj.IsError) {
-                    LastError = obj.ErrorMsg;
-                    return def;
+                if (obj.Type != OperandType.NUMBER) {
+                    obj = obj.ToNumber("It can't be converted to number!");
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
+                        return def;
+                    }
                 }
                 return (decimal)obj.NumberValue;
             } catch (Exception ex) {
@@ -333,10 +351,12 @@ namespace ToolGood.Algorithm
             try {
                 var function = Parse(exp);
                 var obj = function.Calculate(this);
-                obj = obj.ToText("It can't be converted to string!");
-                if (obj.IsError) {
-                    LastError = obj.ErrorMsg;
-                    return def;
+                if (obj.Type != OperandType.TEXT) {
+                    obj = obj.ToText("It can't be converted to string!");
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
+                        return def;
+                    }
                 }
                 return obj.TextValue;
             } catch (Exception ex) {
@@ -356,10 +376,12 @@ namespace ToolGood.Algorithm
             try {
                 var function = Parse(exp);
                 var obj = function.Calculate(this);
-                obj = obj.ToBoolean("It can't be converted to bool!");
-                if (obj.IsError) {
-                    LastError = obj.ErrorMsg;
-                    return def;
+                if (obj.Type != OperandType.BOOLEAN) {
+                    obj = obj.ToBoolean("It can't be converted to bool!");
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
+                        return def;
+                    }
                 }
                 return obj.BooleanValue;
             } catch (Exception ex) {
@@ -379,10 +401,12 @@ namespace ToolGood.Algorithm
             try {
                 var function = Parse(exp);
                 var obj = function.Calculate(this);
-                obj = obj.ToMyDate("It can't be converted to DateTime!");
-                if (obj.IsError) {
-                    LastError = obj.ErrorMsg;
-                    return def;
+                if (obj.Type == OperandType.DATE) {
+                    obj = obj.ToMyDate("It can't be converted to DateTime!");
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
+                        return def;
+                    }
                 }
                 if (UseLocalTime) {
                     return obj.DateValue.ToDateTime(DateTimeKind.Local);
@@ -405,10 +429,12 @@ namespace ToolGood.Algorithm
             try {
                 var function = Parse(exp);
                 var obj = function.Calculate(this);
-                obj = obj.ToMyDate("It can't be converted to DateTime!");
-                if (obj.IsError) {
-                    LastError = obj.ErrorMsg;
-                    return def;
+                if (obj.Type== OperandType.DATE) {
+                    obj = obj.ToMyDate("It can't be converted to DateTime!");
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
+                        return def;
+                    }
                 }
                 return (TimeSpan)obj.DateValue;
             } catch (Exception ex) {
@@ -429,10 +455,12 @@ namespace ToolGood.Algorithm
             try {
                 var function = Parse(exp);
                 var obj = function.Calculate(this);
-                obj = obj.ToMyDate("It can't be converted to DateTime!");
-                if (obj.IsError) {
-                    LastError = obj.ErrorMsg;
-                    return def;
+                if (obj.Type != OperandType.DATE) {
+                    obj = obj.ToMyDate("It can't be converted to DateTime!");
+                    if (obj.IsError) {
+                        LastError = obj.ErrorMsg;
+                        return def;
+                    }
                 }
                 return obj.DateValue;
             } catch (Exception ex) {
