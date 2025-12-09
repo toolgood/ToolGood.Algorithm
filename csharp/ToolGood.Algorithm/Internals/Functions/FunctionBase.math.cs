@@ -19,9 +19,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Abs"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Abs"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Abs(args1.NumberValue));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -36,10 +36,10 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Quotient", 1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Quotient", 2); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Quotient", 1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work, parameterFun, diyFun); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Quotient", 2); if (args2.IsError) { return args2; } }
 
             if (args2.NumberValue == 0) {
                 return Operand.Error("Function '{0}' div 0 error!", "Quotient");
@@ -58,9 +58,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Sign"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Sign"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Sign(args1.NumberValue));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -75,9 +75,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Sqrt"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Sqrt"); if (args1.IsError) { return args1; } }
             if (args1.NumberValue < 0) {
                 return Operand.Error("Function '{0}' parameter is error!", "Sqrt");
             }
@@ -95,9 +95,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Trunc"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Trunc"); if (args1.IsError) { return args1; } }
             return Operand.Create((int)(args1.NumberValue));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -112,10 +112,10 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
             var args = new List<Operand>(funcs.Length);
-            for (int i = 0; i < funcs.Length; i++) { var aa = funcs[i].Calculate(work); if (aa.IsError) { return aa; } args.Add(aa); }
+            for (int i = 0; i < funcs.Length; i++) { var aa = funcs[i].Calculate(work, parameterFun, diyFun); if (aa.IsError) { return aa; } args.Add(aa); }
 
             List<decimal> list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args, list);
@@ -135,10 +135,10 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
             var args = new List<Operand>(funcs.Length);
-            for (int i = 0; i < funcs.Length; i++) { var aa = funcs[i].Calculate(work); if (aa.IsError) { return aa; } args.Add(aa); }
+            for (int i = 0; i < funcs.Length; i++) { var aa = funcs[i].Calculate(work, parameterFun, diyFun); if (aa.IsError) { return aa; } args.Add(aa); }
 
             List<decimal> list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args, list);
@@ -158,10 +158,10 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Combin", 1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Combin", 2); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Combin", 1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work, parameterFun, diyFun); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Combin", 2); if (args2.IsError) { return args2; } }
 
             var total = args1.IntValue;
             var count = args2.IntValue;
@@ -188,10 +188,10 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Permut", 1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Permut", 2); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Permut", 1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work, parameterFun, diyFun); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Permut", 2); if (args2.IsError) { return args2; } }
 
             var total = args1.IntValue;
             var count = args2.IntValue;
@@ -214,9 +214,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Percentage"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Percentage"); if (args1.IsError) { return args1; } }
             return Operand.Create(args1.NumberValue / 100.0m);
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -236,9 +236,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Degrees"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Degrees"); if (args1.IsError) { return args1; } }
             var z = (double)args1.NumberValue;
             var r = (z / Math.PI * 180);
             return Operand.Create(r);
@@ -255,9 +255,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Radians"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Radians"); if (args1.IsError) { return args1; } }
             var r = (double)args1.NumberValue / 180 * Math.PI;
             return Operand.Create(r);
         }
@@ -273,9 +273,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Cos"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Cos"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Cos((double)args1.NumberValue));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -290,9 +290,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Sin"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Sin"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Sin((double)args1.NumberValue));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -307,9 +307,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Tan"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Tan"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Tan((double)args1.NumberValue));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -324,9 +324,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Acos"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Acos"); if (args1.IsError) { return args1; } }
             var x = args1.NumberValue;
             if (x < -1 || x > 1) {
                 return Operand.Error("Function '{0}' parameter is error!", "Acos");
@@ -345,9 +345,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Asin"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Asin"); if (args1.IsError) { return args1; } }
             var x = args1.NumberValue;
             if (x < -1 || x > 1) {
                 return Operand.Error("Function '{0}' parameter is error!", "Asin");
@@ -366,9 +366,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Atan"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Atan"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Atan((double)args1.NumberValue));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -383,10 +383,10 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Atan2", 1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Atan2", 2); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Atan2", 1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work, parameterFun, diyFun); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Atan2", 2); if (args2.IsError) { return args2; } }
             return Operand.Create(Math.Atan2((double)args2.NumberValue, (double)args1.NumberValue));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -401,9 +401,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Cot"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Cot"); if (args1.IsError) { return args1; } }
             var d = Math.Tan((double)args1.NumberValue);
             if (d == 0) {
                 return Operand.Error("Function '{0}' div 0 error!", "Cot");
@@ -422,9 +422,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Sec"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Sec"); if (args1.IsError) { return args1; } }
             var d = Math.Cos((double)args1.NumberValue);
             if (d == 0) {
                 return Operand.Error("Function '{0}' div 0 error!", "Sec");
@@ -443,9 +443,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Csc"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Csc"); if (args1.IsError) { return args1; } }
             var d = Math.Sin((double)args1.NumberValue);
             if (d == 0) {
                 return Operand.Error("Function '{0}' div 0 error!", "Csc");
@@ -464,9 +464,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Cosh"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Cosh"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Cosh((double)args1.NumberValue));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -481,9 +481,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Sinh"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Sinh"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Sinh((double)args1.NumberValue));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -498,9 +498,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Tanh"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Tanh"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Tanh((double)args1.NumberValue));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -515,9 +515,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Acosh"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Acosh"); if (args1.IsError) { return args1; } }
             var z = args1.NumberValue;
             if (z < 1) {
                 return Operand.Error("Function '{0}' parameter is error!", "Acosh");
@@ -536,9 +536,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Asinh"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Asinh"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Asinh((double)args1.NumberValue));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -553,9 +553,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Atanh"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Atanh"); if (args1.IsError) { return args1; } }
             var x = args1.NumberValue;
             if (x >= 1 || x <= -1) {
                 return Operand.Error("Function '{0}' parameter is error!", "Atanh");
@@ -574,19 +574,19 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
             var num = 2;
             if (func2 != null) {
-                var args2 = func2.Calculate(work); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Fixed", 2); if (args2.IsError) { return args2; } }
+                var args2 = func2.Calculate(work, parameterFun, diyFun); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Fixed", 2); if (args2.IsError) { return args2; } }
                 num = args2.IntValue;
             }
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Fixed", 1); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Fixed", 1); if (args1.IsError) { return args1; } }
 
             var s = Math.Round(args1.NumberValue, num, MidpointRounding.AwayFromZero);
             var no = false;
             if (func3 != null) {
-                var args3 = func3.Calculate(work); if (args3.IsNotBoolean) { args3 = args3.ToBoolean("Function '{0}' parameter {1} is error!", "Fixed", 3); if (args3.IsError) { return args3; } }
+                var args3 = func3.Calculate(work, parameterFun, diyFun); if (args3.IsNotBoolean) { args3 = args3.ToBoolean("Function '{0}' parameter {1} is error!", "Fixed", 3); if (args3.IsError) { return args3; } }
                 no = args3.BooleanValue;
             }
             if (no == false) {
@@ -610,14 +610,14 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "BIN2OCT", 1); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "BIN2OCT", 1); if (args1.IsError) { return args1; } }
 
             if (Regex.IsMatch(args1.TextValue, "^[01]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function '{0}' parameter {1} is error!", "BIN2OCT", 1); }
             var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 2), 8);
             if (func2 != null) {
-                var args2 = func2.Calculate(work); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "BIN2OCT", 2); if (args2.IsError) { return args2; } }
+                var args2 = func2.Calculate(work, parameterFun, diyFun); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "BIN2OCT", 2); if (args2.IsError) { return args2; } }
                 if (num.Length > args2.IntValue) {
                     return Operand.Create(num.PadLeft(args2.IntValue, '0'));
                 }
@@ -637,7 +637,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
             var args1 = func1.Calculate(work).ToText("Function '{0}' parameter is error!", "BIN2DEC");
             if (args1.IsError) { return args1; }
@@ -658,14 +658,14 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "BIN2HEX", 1); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "BIN2HEX", 1); if (args1.IsError) { return args1; } }
 
             if (Regex.IsMatch(args1.TextValue, "^[01]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function '{0}' parameter {1} is error!", "BIN2HEX", 1); }
             var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 2), 16).ToUpper();
             if (func2 != null) {
-                var args2 = func2.Calculate(work); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "BIN2HEX", 2); if (args2.IsError) { return args2; } }
+                var args2 = func2.Calculate(work, parameterFun, diyFun); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "BIN2HEX", 2); if (args2.IsError) { return args2; } }
                 if (num.Length > args2.IntValue) {
                     return Operand.Create(num.PadLeft(args2.IntValue, '0'));
                 }
@@ -685,13 +685,13 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "OCT2BIN", 1); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "OCT2BIN", 1); if (args1.IsError) { return args1; } }
             if (Regex.IsMatch(args1.TextValue, "^[0-7]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function '{0}' parameter {1} is error!", "OCT2BIN", 1); }
             var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 8), 2);
             if (func2 != null) {
-                var args2 = func2.Calculate(work); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "OCT2BIN", 2); if (args2.IsError) { return args2; } }
+                var args2 = func2.Calculate(work, parameterFun, diyFun); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "OCT2BIN", 2); if (args2.IsError) { return args2; } }
                 if (num.Length > args2.IntValue) {
                     return Operand.Create(num.PadLeft(args2.IntValue, '0'));
                 }
@@ -711,7 +711,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
             var args1 = func1.Calculate(work).ToText("Function '{0}' parameter is error!", "OCT2DEC");
             if (args1.IsError) { return args1; }
@@ -731,14 +731,14 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "OCT2HEX", 1); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "OCT2HEX", 1); if (args1.IsError) { return args1; } }
 
             if (Regex.IsMatch(args1.TextValue, "^[0-7]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function '{0}' parameter {1} is error!", "OCT2HEX", 1); }
             var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 8), 16).ToUpper();
             if (func2 != null) {
-                var args2 = func2.Calculate(work); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "OCT2HEX", 2); if (args2.IsError) { return args2; } }
+                var args2 = func2.Calculate(work, parameterFun, diyFun); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "OCT2HEX", 2); if (args2.IsError) { return args2; } }
                 if (num.Length > args2.IntValue) {
                     return Operand.Create(num.PadLeft(args2.IntValue, '0'));
                 }
@@ -758,14 +758,14 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "HEX2BIN", 1); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "HEX2BIN", 1); if (args1.IsError) { return args1; } }
 
             if (Regex.IsMatch(args1.TextValue, "^[0-9A-Fa-f]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function '{0}' parameter {1} is error!", "HEX2BIN", 1); }
             var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 16), 2);
             if (func2 != null) {
-                var args2 = func2.Calculate(work); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "HEX2BIN", 2); if (args2.IsError) { return args2; } }
+                var args2 = func2.Calculate(work, parameterFun, diyFun); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "HEX2BIN", 2); if (args2.IsError) { return args2; } }
                 if (num.Length > args2.IntValue) {
                     return Operand.Create(num.PadLeft(args2.IntValue, '0'));
                 }
@@ -785,7 +785,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
             var args1 = func1.Calculate(work).ToText("Function '{0}' parameter is error!", "HEX2DEC");
             if (args1.IsError) { return args1; }
@@ -805,13 +805,13 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "HEX2OCT", 1); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "HEX2OCT", 1); if (args1.IsError) { return args1; } }
             if (Regex.IsMatch(args1.TextValue, "^[0-9A-Fa-f]+$", RegexOptions.Compiled) == false) { return Operand.Error("Function '{0}' parameter {1} is error!", "HEX2OCT", 1); }
             var num = Convert.ToString(Convert.ToInt32(args1.TextValue, 16), 8);
             if (func2 != null) {
-                var args2 = func2.Calculate(work); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "HEX2OCT", 2); if (args2.IsError) { return args2; } }
+                var args2 = func2.Calculate(work, parameterFun, diyFun); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "HEX2OCT", 2); if (args2.IsError) { return args2; } }
                 if (num.Length > args2.IntValue) {
                     return Operand.Create(num.PadLeft(args2.IntValue, '0'));
                 }
@@ -831,12 +831,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "DEC2BIN", 1); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "DEC2BIN", 1); if (args1.IsError) { return args1; } }
             var num = Convert.ToString(args1.IntValue, 2);
             if (func2 != null) {
-                var args2 = func2.Calculate(work); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "DEC2BIN", 2); if (args2.IsError) { return args2; } }
+                var args2 = func2.Calculate(work, parameterFun, diyFun); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "DEC2BIN", 2); if (args2.IsError) { return args2; } }
                 if (num.Length > args2.IntValue) {
                     return Operand.Create(num.PadLeft(args2.IntValue, '0'));
                 }
@@ -856,12 +856,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "DEC2OCT", 1); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "DEC2OCT", 1); if (args1.IsError) { return args1; } }
             var num = Convert.ToString(args1.IntValue, 8);
             if (func2 != null) {
-                var args2 = func2.Calculate(work); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "DEC2OCT", 2); if (args2.IsError) { return args2; } }
+                var args2 = func2.Calculate(work, parameterFun, diyFun); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "DEC2OCT", 2); if (args2.IsError) { return args2; } }
                 if (num.Length > args2.IntValue) {
                     return Operand.Create(num.PadLeft(args2.IntValue, '0'));
                 }
@@ -881,12 +881,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "DEC2HEX", 1); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "DEC2HEX", 1); if (args1.IsError) { return args1; } }
             var num = Convert.ToString(args1.IntValue, 16).ToUpper();
             if (func2 != null) {
-                var args2 = func2.Calculate(work); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "DEC2HEX", 2); if (args2.IsError) { return args2; } }
+                var args2 = func2.Calculate(work, parameterFun, diyFun); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "DEC2HEX", 2); if (args2.IsError) { return args2; } }
                 if (num.Length > args2.IntValue) {
                     return Operand.Create(num.PadLeft(args2.IntValue, '0'));
                 }
@@ -910,10 +910,10 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "RoundUp", 1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "RoundUp", 2); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "RoundUp", 1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work, parameterFun, diyFun); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "RoundUp", 2); if (args2.IsError) { return args2; } }
             if (args1.NumberValue == 0.0m) { return args1; }
             var a = Math.Pow(10, args2.IntValue);
             var b = args1.NumberValue;
@@ -934,10 +934,10 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "RoundDown", 1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "RoundDown", 2); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "RoundDown", 1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work, parameterFun, diyFun); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "RoundDown", 2); if (args2.IsError) { return args2; } }
             if (args1.NumberValue == 0.0m) {
                 return args1;
             }
@@ -959,10 +959,10 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "MRound", 1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "MRound", 2); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "MRound", 1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work, parameterFun, diyFun); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "MRound", 2); if (args2.IsError) { return args2; } }
             var a = args2.NumberValue;
             if (a <= 0) { return Operand.Error("Function '{0}' parameter {1} is error!", "MRound", 2); }
 
@@ -982,14 +982,14 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Round", 1); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Round", 1); if (args1.IsError) { return args1; } }
 
             if (func2 == null) {
                 return Operand.Create(Math.Round((decimal)args1.NumberValue, 0, MidpointRounding.AwayFromZero));
             }
-            var args2 = func2.Calculate(work); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Round", 2); if (args2.IsError) { return args2; } }
+            var args2 = func2.Calculate(work, parameterFun, diyFun); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Round", 2); if (args2.IsError) { return args2; } }
             return Operand.Create(Math.Round((decimal)args1.NumberValue, args2.IntValue, MidpointRounding.AwayFromZero));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -1004,14 +1004,14 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Ceiling", 1); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Ceiling", 1); if (args1.IsError) { return args1; } }
 
             if (func2 == null)
                 return Operand.Create(Math.Ceiling(args1.NumberValue));
 
-            var args2 = func2.Calculate(work); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Ceiling", 2); if (args2.IsError) { return args2; } }
+            var args2 = func2.Calculate(work, parameterFun, diyFun); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Ceiling", 2); if (args2.IsError) { return args2; } }
             var b = args2.NumberValue;
             if (b == 0) { return Operand.Create(0); }
             if (b < 0) { return Operand.Error("Function '{0}' parameter {1} is error!", "Ceiling", 2); }
@@ -1032,12 +1032,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Floor", 1); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Floor", 1); if (args1.IsError) { return args1; } }
             if (func2 == null) return Operand.Create(Math.Floor(args1.NumberValue));
 
-            var args2 = func2.Calculate(work); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Floor", 2); if (args2.IsError) { return args2; } }
+            var args2 = func2.Calculate(work, parameterFun, diyFun); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Floor", 2); if (args2.IsError) { return args2; } }
             var b = args2.NumberValue;
             if (b >= 1) { return Operand.Create(args1.IntValue); }
             if (b <= 0) { return Operand.Error("Function '{0}' parameter {1} is error!", "Floor", 2); }
@@ -1058,9 +1058,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Even"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Even"); if (args1.IsError) { return args1; } }
             var z = args1.NumberValue;
             if (z % 2 == 0) { return args1; }
             z = Math.Ceiling(z);
@@ -1080,9 +1080,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Odd"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Odd"); if (args1.IsError) { return args1; } }
             var z = args1.NumberValue;
             if (z % 2 == 1) { return args1; }
             z = Math.Ceiling(z);
@@ -1106,7 +1106,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
 #if NETSTANDARD2_1
             var tick = DateTime.Now.Ticks;
@@ -1128,10 +1128,10 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "RandBetween", 1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "RandBetween", 2); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "RandBetween", 1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work, parameterFun, diyFun); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "RandBetween", 2); if (args2.IsError) { return args2; } }
 #if NETSTANDARD2_1
             var tick = DateTime.Now.Ticks;
             Random rand = new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32));
@@ -1156,10 +1156,10 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.IsNotNumber) { if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work, parameterFun, diyFun); if (args2.IsNotNumber) { if (args2.IsError) { return args2; } }
 
             List<decimal> list1 = new List<decimal>();
             List<decimal> list2 = new List<decimal>();
@@ -1192,10 +1192,10 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.IsNotNumber) { if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work, parameterFun, diyFun); if (args2.IsNotNumber) { if (args2.IsError) { return args2; } }
             List<decimal> list1 = new List<decimal>();
             List<decimal> list2 = new List<decimal>();
             var o1 = FunctionUtil.F_base_GetList(args1, list1);
@@ -1226,9 +1226,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Fact"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Fact"); if (args1.IsError) { return args1; } }
             if (args1.IsError) { return args1; }
 
             var z = args1.IntValue;
@@ -1253,9 +1253,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "FactDouble"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "FactDouble"); if (args1.IsError) { return args1; } }
             var z = args1.IntValue;
             if (z < 0) { return Operand.Error("Function '{0}' parameter is error!", "FactDouble"); }
 
@@ -1277,10 +1277,10 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Power", 1); if (args1.IsError) { return args1; } }
-            var args2 = func2.Calculate(work); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Power", 2); if (args2.IsError) { return args2; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Power", 1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Calculate(work, parameterFun, diyFun); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Power", 2); if (args2.IsError) { return args2; } }
             return Operand.Create(Math.Pow((double)args1.NumberValue, (double)args2.NumberValue));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -1295,9 +1295,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Exp"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Exp"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Exp((double)args1.NumberValue));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -1312,9 +1312,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Ln"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Ln"); if (args1.IsError) { return args1; } }
             var z = args1.NumberValue;
             if (z <= 0) {
                 return Operand.Error("Function '{0}' parameter is error!", "Ln");
@@ -1333,11 +1333,11 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Log", 1); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "Log", 1); if (args1.IsError) { return args1; } }
             if (func2 != null) {
-                var args2 = func2.Calculate(work); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Log", 2); if (args2.IsError) { return args2; } }
+                var args2 = func2.Calculate(work, parameterFun, diyFun); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Log", 2); if (args2.IsError) { return args2; } }
                 return Operand.Create(Math.Log((double)args1.NumberValue, (double)args2.NumberValue));
             }
             return Operand.Create(Math.Log((double)args1.NumberValue, 10));
@@ -1354,10 +1354,10 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
             var args = new List<Operand>();
-            foreach (var item in funcs) { var aa = item.Calculate(work); if (aa.IsError) { return aa; } args.Add(aa); }
+            foreach (var item in funcs) { var aa = item.Calculate(work, parameterFun, diyFun); if (aa.IsError) { return aa; } args.Add(aa); }
             List<decimal> list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "Multinomial"); }
@@ -1385,10 +1385,10 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
             var args = new List<Operand>(funcs.Length);
-            for (int i = 0; i < funcs.Length; i++) { var aa = funcs[i].Calculate(work); if (aa.IsError) { return aa; } args.Add(aa); }
+            for (int i = 0; i < funcs.Length; i++) { var aa = funcs[i].Calculate(work, parameterFun, diyFun); if (aa.IsError) { return aa; } args.Add(aa); }
 
             List<decimal> list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args, list);
@@ -1413,9 +1413,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
-            var args1 = func1.Calculate(work); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "SqrtPI"); if (args1.IsError) { return args1; } }
+            var args1 = func1.Calculate(work, parameterFun, diyFun); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "SqrtPI"); if (args1.IsError) { return args1; } }
             return Operand.Create(Math.Sqrt((double)args1.NumberValue * Math.PI));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -1430,10 +1430,10 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
         }
 
-        public override Operand Calculate(AlgorithmEngine work)
+        public override Operand Calculate(AlgorithmEngine work, Func<string, Operand> parameterFun = null, Func<string, List<Operand>, Operand> diyFun = null)
         {
             var args = new List<Operand>(funcs.Length);
-            for (int i = 0; i < funcs.Length; i++) { var aa = funcs[i].Calculate(work); if (aa.IsError) { return aa; } args.Add(aa); }
+            for (int i = 0; i < funcs.Length; i++) { var aa = funcs[i].Calculate(work, parameterFun, diyFun); if (aa.IsError) { return aa; } args.Add(aa); }
 
             List<decimal> list = new List<decimal>();
             var o = FunctionUtil.F_base_GetList(args, list);
