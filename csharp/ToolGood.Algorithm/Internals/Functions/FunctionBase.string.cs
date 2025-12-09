@@ -20,7 +20,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
 		private static String F_base_ToDBC(String input)
 		{
-			StringBuilder sb = new StringBuilder(input);
+			var sb = new StringBuilder(input);
 			for (int i = 0; i < input.Length; i++) {
 				var c = input[i];
 				if (c == 12288) {
@@ -52,7 +52,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
 		private static String F_base_ToSBC(String input)
 		{
-			StringBuilder sb = new StringBuilder(input);
+			var sb = new StringBuilder(input);
 			for (int i = 0; i < input.Length; i++) {
 				var c = input[i];
 				if (c == ' ') {
@@ -97,7 +97,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		{
 			var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter is error!", "Clean"); if (args1.IsError) { return args1; } }
 			var t = args1.TextValue;
-			StringBuilder sb = new StringBuilder(t.Length);
+			var sb = new StringBuilder(t.Length);
 			for (int i = 0; i < t.Length; i++) {
 				var c = t[i];
 				if (c != '\f' && c != '\n' && c != '\r' && c != '\t' && c != '\v') {
@@ -141,7 +141,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 
 		public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
 		{
-			StringBuilder sb = new StringBuilder();
+			var sb = new StringBuilder();
 			for (int i = 0; i < funcs.Length; i++) {
 				var a = funcs[i].Evaluate(work, tempParameter); if (a.IsNotText) { a = a.ToText("Function '{0}' parameter {1} is error!", "Concatenate", i + 1); if (a.IsError) { return a; } }
 				sb.Append(a.TextValue);
@@ -281,7 +281,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 			var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter is error!", "Proper"); if (args1.IsError) { return args1; } }
 
 			var text = args1.TextValue;
-			StringBuilder sb = new StringBuilder(text);
+			var sb = new StringBuilder(text);
 			bool isFirst = true;
 			for (int i = 0; i < text.Length; i++) {
 				var t = text[i];
@@ -327,7 +327,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 			var length = args3.IntValue;
 			var newtext = args4.TextValue;
 
-			StringBuilder sb = new StringBuilder(oldtext.Length + newtext.Length);
+			var sb = new StringBuilder(oldtext.Length + newtext.Length);
 			for (int i = 0; i < oldtext.Length; i++) {
 				if (i < start) {
 					sb.Append(oldtext[i]);
@@ -361,7 +361,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 			if (length < 0) {
 				return Operand.Error("Function '{0}' parameter {1} is error!", "Rept", 2);
 			}
-			StringBuilder sb = new StringBuilder(newtext.Length * length);
+			var sb = new StringBuilder(newtext.Length * length);
 			for (int i = 0; i < length; i++) {
 				sb.Append(newtext);
 			}
@@ -469,7 +469,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 			int index = args4.IntValue;
 
 			int index2 = 0;
-			StringBuilder sb = new StringBuilder(text.Length + newtext.Length);
+			var sb = new StringBuilder(text.Length + newtext.Length);
 			for (int i = 0; i < text.Length; i++) {
 				bool b = true;
 				for (int j = 0; j < oldtext.Length; j++) {

@@ -688,7 +688,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 }
             }
             if (args1.IsArray) {
-                List<string> list = new List<string>();
+                var list = new List<string>();
                 var o = FunctionUtil.F_base_GetList(args1, list);
                 if (o == false) return Operand.Error("Function '{0}' parameter {1} is error!", "Join", 1);
 
@@ -700,7 +700,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 args1 = args1.ToText("Function '{0}' parameter {1} is error!", "Join", 1);
                 if (args1.IsError) { return args1; }
 
-                List<string> list = new List<string>();
+                var list = new List<string>();
                 for (int i = 1; i < args.Count; i++) {
                     var o = FunctionUtil.F_base_GetList(args[i], list);
                     if (o == false) return Operand.Error("Function '{0}' parameter {1} is error!", "Join", i + 1);

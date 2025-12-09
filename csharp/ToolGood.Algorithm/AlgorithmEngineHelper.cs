@@ -323,7 +323,7 @@ namespace ToolGood.Algorithm
             if (antlrErrorListener.IsError) {
                 throw new Exception(antlrErrorListener.ErrorMsg);
             }
-            DiyNameVisitor visitor = new DiyNameVisitor();
+            var visitor = new DiyNameVisitor();
             visitor.Visit(context);
             return visitor.diy;
         }
@@ -401,7 +401,7 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public static ConditionTree ParseCondition(string condition)
         {
-            ConditionTree tree = new ConditionTree();
+            var tree = new ConditionTree();
             if (string.IsNullOrWhiteSpace(condition)) {
                 tree.Type = ConditionTreeType.Error;
                 tree.ErrorMessage = "condition is null";

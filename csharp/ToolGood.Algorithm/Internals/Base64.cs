@@ -49,7 +49,7 @@ namespace ToolGood.Algorithm.Internals
         /// <returns>Input base64ForUrl encoded string as the original byte array</returns>
         public static byte[] FromBase64ForUrlString(string base64ForUrlInput)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             foreach (var c in base64ForUrlInput) {
                 if ((int)c >= 128) continue;
                 var k = base64[c];

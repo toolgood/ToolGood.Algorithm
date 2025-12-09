@@ -114,7 +114,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 			var args = new List<Operand>(funcs.Length);
 			for (int i = 0; i < funcs.Length; i++) { var aa = funcs[i].Evaluate(work, tempParameter); if (aa.IsError) { return aa; } args.Add(aa); }
 
-			List<decimal> list = new List<decimal>();
+			var list = new List<decimal>();
 			var o = FunctionUtil.F_base_GetList(args, list);
 			if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "Gcd"); }
 
@@ -137,7 +137,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 			var args = new List<Operand>(funcs.Length);
 			for (int i = 0; i < funcs.Length; i++) { var aa = funcs[i].Evaluate(work, tempParameter); if (aa.IsError) { return aa; } args.Add(aa); }
 
-			List<decimal> list = new List<decimal>();
+			var list = new List<decimal>();
 			var o = FunctionUtil.F_base_GetList(args, list);
 			if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "Lcm"); }
 
@@ -1157,8 +1157,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 			var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { if (args1.IsError) { return args1; } }
 			var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { if (args2.IsError) { return args2; } }
 
-			List<decimal> list1 = new List<decimal>();
-			List<decimal> list2 = new List<decimal>();
+			var list1 = new List<decimal>();
+			var list2 = new List<decimal>();
 
 			var o1 = FunctionUtil.F_base_GetList(args1, list1);
 			var o2 = FunctionUtil.F_base_GetList(args2, list2);
@@ -1192,8 +1192,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 		{
 			var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { if (args1.IsError) { return args1; } }
 			var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { if (args2.IsError) { return args2; } }
-			List<decimal> list1 = new List<decimal>();
-			List<decimal> list2 = new List<decimal>();
+			var list1 = new List<decimal>();
+			var list2 = new List<decimal>();
 			var o1 = FunctionUtil.F_base_GetList(args1, list1);
 			var o2 = FunctionUtil.F_base_GetList(args2, list2);
 			if (o1 == false) { return Operand.Error("Function '{0}' parameter {1} is error!", "Covar", 1); }
@@ -1354,7 +1354,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		{
 			var args = new List<Operand>();
 			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); if (aa.IsError) { return aa; } args.Add(aa); }
-			List<decimal> list = new List<decimal>();
+			var list = new List<decimal>();
 			var o = FunctionUtil.F_base_GetList(args, list);
 			if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "Multinomial"); }
 
@@ -1386,7 +1386,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 			var args = new List<Operand>(funcs.Length);
 			for (int i = 0; i < funcs.Length; i++) { var aa = funcs[i].Evaluate(work, tempParameter); if (aa.IsError) { return aa; } args.Add(aa); }
 
-			List<decimal> list = new List<decimal>();
+			var list = new List<decimal>();
 			var o = FunctionUtil.F_base_GetList(args, list);
 			if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "Product"); }
 
@@ -1431,7 +1431,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 			var args = new List<Operand>(funcs.Length);
 			for (int i = 0; i < funcs.Length; i++) { var aa = funcs[i].Evaluate(work, tempParameter); if (aa.IsError) { return aa; } args.Add(aa); }
 
-			List<decimal> list = new List<decimal>();
+			var list = new List<decimal>();
 			var o = FunctionUtil.F_base_GetList(args, list);
 			if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "SumSQ"); }
 

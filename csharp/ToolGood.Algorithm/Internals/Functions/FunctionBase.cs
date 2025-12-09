@@ -383,7 +383,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         /// <returns>A string that represents the current object.</returns>
         public override string ToString()
         {
-            StringBuilder stringBuilder = new StringBuilder();
+            var stringBuilder = new StringBuilder();
             ToString(stringBuilder, false);
             return stringBuilder.ToString();
         }

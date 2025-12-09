@@ -870,7 +870,7 @@ namespace ToolGood.Algorithm
         public override Operand ToArray(string errorMessage)
         {
             if (JsonValue.IsArray) {
-                List<Operand> list = new List<Operand>();
+                var list = new List<Operand>();
                 foreach (JsonData v in JsonValue) {
                     if (v.IsString)
                         list.Add(Operand.Create(v.StringValue));
@@ -889,7 +889,7 @@ namespace ToolGood.Algorithm
         }
     }
 
-    internal sealed class OperandArray : Operand 
+    internal sealed class OperandArray : Operand
     {
         private readonly List<Operand> _value;
         public OperandArray(List<Operand> obj)
@@ -905,7 +905,7 @@ namespace ToolGood.Algorithm
         public override Operand ToArray(string errorMessage, params object[] args) { return this; }
         public override string ToString()
         {
-            StringBuilder stringBuilder = new StringBuilder();
+            var stringBuilder = new StringBuilder();
             stringBuilder.Append('[');
             for (int i = 0; i < ArrayValue.Count; i++) {
                 if (i > 0) stringBuilder.Append(',');
@@ -960,9 +960,10 @@ namespace ToolGood.Algorithm
 
     internal sealed class OperandKeyValueList : Operand
     {
-        private readonly List<KeyValue> TextList = new List<KeyValue>();
+        private readonly List<KeyValue> TextList;
         public OperandKeyValueList()
         {
+            TextList = new List<KeyValue>();
         }
 
         public override bool IsArrayJson => true;
@@ -1021,7 +1022,7 @@ namespace ToolGood.Algorithm
 
         public override string ToString()
         {
-            StringBuilder stringBuilder = new StringBuilder();
+            var stringBuilder = new StringBuilder();
             stringBuilder.Append('{');
             for (int i = 0; i < TextList.Count; i++) {
                 if (i > 0) stringBuilder.Append(',');

@@ -1921,7 +1921,7 @@ namespace ToolGood.Algorithm.Internals
         public FunctionBase VisitSTRING_fun(mathParser.STRING_funContext context)
         {
             var opd = context.GetText();
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             int index = 1;
             while (index < opd.Length - 1) {
                 var c = opd[index++];
@@ -2048,7 +2048,7 @@ namespace ToolGood.Algorithm.Internals
             }
             if (context.STRING() != null) {
                 var opd = context.STRING().GetText();
-                StringBuilder sb = new StringBuilder(opd.Length - 2);
+                var sb = new StringBuilder(opd.Length - 2);
                 int index = 1;
                 while (index < opd.Length - 1) {
                     var c = opd[index++];
