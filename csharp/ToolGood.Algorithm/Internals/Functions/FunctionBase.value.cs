@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using ToolGood.Algorithm.LitJson;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ToolGood.Algorithm.Internals.Functions
 {
