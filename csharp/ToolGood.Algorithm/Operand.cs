@@ -46,11 +46,6 @@ namespace ToolGood.Algorithm
         public static readonly Operand Zero = Operand.Create(0);
 
         /// <summary>
-        /// 是否为空
-        /// </summary>
-        public virtual bool IsNull => false;
-
-        /// <summary>
         /// 是否出错
         /// </summary>
         public virtual bool IsError => false;
@@ -64,11 +59,6 @@ namespace ToolGood.Algorithm
         /// 操作数类型
         /// </summary>
         public abstract OperandType Type { get; }
-
-        /// <summary>
-        /// 值
-        /// </summary>
-        public virtual object Value => throw new NotImplementedException();
 
         /// <summary>
         /// 数字值
@@ -619,8 +609,6 @@ namespace ToolGood.Algorithm
     {
         protected T _value { get; private set; }
 
-        public override object Value => _value;
-
         public Operand(T obj)
         {
             _value = obj;
@@ -879,7 +867,6 @@ namespace ToolGood.Algorithm
     internal sealed class OperandNull : Operand
     {
         public override OperandType Type => OperandType.NULL;
-        public override bool IsNull => true;
         public override string ToString() { return "null"; }
     }
 
@@ -974,5 +961,6 @@ namespace ToolGood.Algorithm
         }
 
         public override OperandType Type => OperandType.ARRARYJSON;
+        public KeyValue Value => _value;
     }
 }

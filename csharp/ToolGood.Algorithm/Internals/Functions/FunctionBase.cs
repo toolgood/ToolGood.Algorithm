@@ -487,10 +487,10 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Calculate(work); if (args1.IsError) { return args1; }
             var args2 = func2.Calculate(work); if (args2.IsError) { return args2; }
 
-            if (args1.IsNull) {
-                if (args2.IsNull) return args1;
+            if (args1.Type == OperandType.NULL) {
+                if (args2.Type == OperandType.NULL) return args1;
                 return args2.ToText("Function '{0}' parameter {1} is error!", "&", 2);
-            } else if (args2.IsNull) {
+            } else if (args2.Type == OperandType.NULL) {
                 return args1.ToText("Function '{0}' parameter {1} is error!", "&", 1);
             }
             if (args1.Type != OperandType.TEXT) { args1 = args1.ToText("Function '{0}' parameter {1} is error!", "&", 1); if (args1.IsError) { return args1; } }
