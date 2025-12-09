@@ -16,7 +16,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
 		{
 			var args = new List<Operand>(); int index = 1;
-			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter).ToNumber("Function '{0}' parameter {1} is error!", "Max", index++); if (aa.IsError) { return aa; } args.Add(aa); }
+			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); if (aa.IsNotNumber) { aa = aa.ToNumber("Function '{0}' parameter {1} is error!", "Max", index++); if (aa.IsError) { return aa; } } args.Add(aa); }
 
 			List<decimal> list = new List<decimal>();
 			var o = FunctionUtil.F_base_GetList(args, list);
@@ -39,7 +39,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 		public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
 		{
 			var args = new List<Operand>(); int index = 1;
-			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter).ToNumber("Function '{0}' parameter {1} is error!", "Min", index++); if (aa.IsError) { return aa; } args.Add(aa); }
+			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); if (aa.IsNotNumber) { aa = aa.ToNumber("Function '{0}' parameter {1} is error!", "Min", index++); if (aa.IsError) { return aa; } } args.Add(aa); }
+
 			List<decimal> list = new List<decimal>();
 			var o = FunctionUtil.F_base_GetList(args, list);
 			if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "Min"); }
@@ -60,7 +61,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 		public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
 		{
 			var args = new List<Operand>(); int index = 1;
-			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter).ToNumber("Function '{0}' parameter {1} is error!", "Sum", index++); if (aa.IsError) { return aa; } args.Add(aa); }
+			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); if (aa.IsNotNumber) { aa = aa.ToNumber("Function '{0}' parameter {1} is error!", "Sum", index++); if (aa.IsError) { return aa; } } args.Add(aa); }
+
 			List<decimal> list = new List<decimal>();
 			var o = FunctionUtil.F_base_GetList(args, list);
 			if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "Sum"); }
@@ -130,7 +132,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 		public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
 		{
 			var args = new List<Operand>(); int index = 1;
-			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter).ToNumber("Function '{0}' parameter {1} is error!", "AveDev", index++); if (aa.IsError) { return aa; } args.Add(aa); }
+			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); if (aa.IsNotNumber) { aa = aa.ToNumber("Function '{0}' parameter {1} is error!", "AveDev", index++); if (aa.IsError) { return aa; } } args.Add(aa); }
+
 			List<decimal> list = new List<decimal>();
 			var o = FunctionUtil.F_base_GetList(args, list);
 			if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "AveDev"); }
@@ -157,7 +160,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 		public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
 		{
 			var args = new List<Operand>(); int index = 1;
-			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter).ToNumber("Function '{0}' parameter {1} is error!", "Average", index++); if (aa.IsError) { return aa; } args.Add(aa); }
+			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); if (aa.IsNotNumber) { aa = aa.ToNumber("Function '{0}' parameter {1} is error!", "Average", index++); if (aa.IsError) { return aa; } } args.Add(aa); }
+
 			List<decimal> list = new List<decimal>();
 			var o = FunctionUtil.F_base_GetList(args, list);
 			if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "Average"); }
@@ -293,7 +297,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 		public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
 		{
 			var args = new List<Operand>(); int index = 1;
-			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter).ToNumber("Function '{0}' parameter {1} is error!", "Median", index++); if (aa.IsError) { return aa; } args.Add(aa); }
+			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); if (aa.IsNotNumber) { aa = aa.ToNumber("Function '{0}' parameter {1} is error!", "Median", index++); if (aa.IsError) { return aa; } } args.Add(aa); }
+
 			List<decimal> list = new List<decimal>();
 			var o = FunctionUtil.F_base_GetList(args, list);
 
@@ -318,7 +323,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
 		{
 			var args = new List<Operand>(); int index = 1;
-			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter).ToNumber("Function '{0}' parameter {1} is error!", "Mode", index++); if (aa.IsError) { return aa; } args.Add(aa); }
+			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); if (aa.IsNotNumber) { aa = aa.ToNumber("Function '{0}' parameter {1} is error!", "Mode", index++); if (aa.IsError) { return aa; } } args.Add(aa); }
 
 			List<decimal> list = new List<decimal>();
 			var o = FunctionUtil.F_base_GetList(args, list);
@@ -424,7 +429,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 		public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
 		{
 			var args = new List<Operand>(); int index = 1;
-			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter).ToNumber("Function '{0}' parameter {1} is error!", "GeoMean", index++); if (aa.IsError) { return aa; } args.Add(aa); }
+			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); if (aa.IsNotNumber) { aa = aa.ToNumber("Function '{0}' parameter {1} is error!", "GeoMean", index++); if (aa.IsError) { return aa; } } args.Add(aa); }
+
 			List<decimal> list = new List<decimal>();
 			var o = FunctionUtil.F_base_GetList(args, list);
 			if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "GeoMean"); }
@@ -454,7 +460,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 		public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
 		{
 			var args = new List<Operand>(); int index = 1;
-			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter).ToNumber("Function '{0}' parameter {1} is error!", "HarMean", index++); if (aa.IsError) { return aa; } args.Add(aa); }
+			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); if (aa.IsNotNumber) { aa = aa.ToNumber("Function '{0}' parameter {1} is error!", "HarMean", index++); if (aa.IsError) { return aa; } } args.Add(aa); }
+
 			if (args.Count == 1) return args[0];
 
 			List<decimal> list = new List<decimal>();
@@ -536,7 +543,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 		public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
 		{
 			var args = new List<Operand>(); int index = 1;
-			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter).ToNumber("Function '{0}' parameter {1} is error!", "Variance", index++); if (aa.IsError) { return aa; } args.Add(aa); }
+			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); if (aa.IsNotNumber) { aa = aa.ToNumber("Function '{0}' parameter {1} is error!", "Variance", index++); if (aa.IsError) { return aa; } } args.Add(aa); }
+
 			List<decimal> list = new List<decimal>();
 			var o = FunctionUtil.F_base_GetList(args, list);
 			if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "Variance"); }
@@ -560,7 +568,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 		public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
 		{
 			var args = new List<Operand>(); int index = 1;
-			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter).ToNumber("Function '{0}' parameter {1} is error!", "Stdev", index++); if (aa.IsError) { return aa; } args.Add(aa); }
+			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); if (aa.IsNotNumber) { aa = aa.ToNumber("Function '{0}' parameter {1} is error!", "Stdev", index++); if (aa.IsError) { return aa; } } args.Add(aa); }
+
 			List<decimal> list = new List<decimal>();
 			var o = FunctionUtil.F_base_GetList(args, list);
 			if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "Stdev"); }
@@ -588,7 +597,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 		public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
 		{
 			var args = new List<Operand>(); int index = 1;
-			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter).ToNumber("Function '{0}' parameter {1} is error!", "STDEVP", index++); if (aa.IsError) { return aa; } args.Add(aa); }
+			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); if (aa.IsNotNumber) { aa = aa.ToNumber("Function '{0}' parameter {1} is error!", "StdevP", index++); if (aa.IsError) { return aa; } } args.Add(aa); }
+
 			List<decimal> list = new List<decimal>();
 			var o = FunctionUtil.F_base_GetList(args, list);
 			if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "StdevP"); }
@@ -615,7 +625,8 @@ namespace ToolGood.Algorithm.Internals.Functions
 		public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
 		{
 			var args = new List<Operand>(); int index = 1;
-			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter).ToNumber("Function '{0}' parameter {1} is error!", "DevSQ", index++); if (aa.IsError) { return aa; } args.Add(aa); }
+			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); if (aa.IsNotNumber) { aa = aa.ToNumber("Function '{0}' parameter {1} is error!", "DevSQ", index++); if (aa.IsError) { return aa; } } args.Add(aa); }
+
 			List<decimal> list = new List<decimal>();
 			var o = FunctionUtil.F_base_GetList(args, list);
 			if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "DevSQ"); }
@@ -642,10 +653,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 		public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
 		{
 			var args = new List<Operand>(); int index = 1;
-			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter).ToNumber("Function '{0}' parameter {1} is error!", "Var", index++); if (aa.IsError) { return aa; } args.Add(aa); }
-			if (args.Count == 1) {
-				return Operand.Error("Function '{0}}' parameter only one error!", "Var");
-			}
+			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); if (aa.IsNotNumber) { aa = aa.ToNumber("Function '{0}' parameter {1} is error!", "Var", index++); if (aa.IsError) { return aa; } } args.Add(aa); }
+
+			if (args.Count == 1) { return Operand.Error("Function '{0}}' parameter only one error!", "Var"); }
 
 			List<decimal> list = new List<decimal>();
 			var o = FunctionUtil.F_base_GetList(args, list);
@@ -674,10 +684,9 @@ namespace ToolGood.Algorithm.Internals.Functions
 		public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
 		{
 			var args = new List<Operand>(); int index = 1;
-			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter).ToNumber("Function '{0}' parameter {1} is error!", "VarP", index++); if (aa.IsError) { return aa; } args.Add(aa); }
-			if (args.Count == 1) {
-				return Operand.Error("Function '{0}}' parameter only one error!", "VarP");
-			}
+			foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); if (aa.IsNotNumber) { aa = aa.ToNumber("Function '{0}' parameter {1} is error!", "VarP", index++); if (aa.IsError) { return aa; } } args.Add(aa); }
+
+			if (args.Count == 1) { return Operand.Error("Function '{0}}' parameter only one error!", "VarP"); }
 			List<decimal> list = new List<decimal>();
 			var o = FunctionUtil.F_base_GetList(args, list);
 			if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "VarP"); }
