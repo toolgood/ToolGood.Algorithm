@@ -401,7 +401,7 @@ namespace ToolGood.Algorithm
             try {
                 var function = Parse(exp);
                 var obj = function.Calculate(this);
-                if (obj.IsDate) {
+                if (obj.IsNotDate) {
                     obj = obj.ToMyDate("It can't be converted to DateTime!");
                     if (obj.IsError) {
                         LastError = obj.ErrorMsg;
