@@ -349,6 +349,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Evaluate(work, tempParameter);
             if (args1.IsError) { return args1; }
             if (args1.IsJson) { return args1; }
+            if (args1.IsArrayJson) { args1 = args1.ToText(); }
             if (args1.IsNotText) { return Operand.Error("Function '{0}' parameter is error!", "Json"); }
             var txt = args1.TextValue;
             if ((txt.StartsWith('{') && txt.EndsWith('}')) || (txt.StartsWith('[') && txt.EndsWith(']'))) {
