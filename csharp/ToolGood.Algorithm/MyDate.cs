@@ -143,12 +143,12 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public static MyDate Parse(String txt)
         {
-            CultureInfo cultureInfo = CultureInfo.InvariantCulture;// CultureInfo.GetCultureInfo("zh-cn");
-            String t = txt.Trim();
+            var cultureInfo = CultureInfo.InvariantCulture;// CultureInfo.GetCultureInfo("zh-cn");
+            var t = txt.Trim();
             var m = dateTimeRegex.Match(t); // 年月日 时分秒
             if (m.Success == false) { m = dateTimeRegex2.Match(t); }
             if (m.Success) {
-                MyDate date = new MyDate {
+                var date = new MyDate {
                     Year = int.Parse(m.Groups[(1)].Value, cultureInfo),
                     Month = int.Parse(m.Groups[(2)].Value, cultureInfo),
                     Day = int.Parse(m.Groups[(3)].Value, cultureInfo),
@@ -162,7 +162,7 @@ namespace ToolGood.Algorithm
             m = dateTimeRegex3.Match(t);// 年月日 时分
             if (m.Success == false) { m = dateTimeRegex4.Match(t); }
             if (m.Success) {
-                MyDate date = new MyDate {
+                var date = new MyDate {
                     Year = int.Parse(m.Groups[(1)].Value, cultureInfo),
                     Month = int.Parse(m.Groups[(2)].Value, cultureInfo),
                     Day = int.Parse(m.Groups[(3)].Value, cultureInfo),
@@ -174,7 +174,7 @@ namespace ToolGood.Algorithm
             m = dateRegex.Match(t);// 年月日
             if (m.Success == false) { m = dateRegex2.Match(t); }
             if (m.Success) {
-                MyDate date = new MyDate {
+                var date = new MyDate {
                     Year = int.Parse(m.Groups[(1)].Value, cultureInfo),
                     Month = int.Parse(m.Groups[(2)].Value, cultureInfo),
                     Day = int.Parse(m.Groups[(3)].Value, cultureInfo)
@@ -184,7 +184,7 @@ namespace ToolGood.Algorithm
 
             m = dayTimeRegex.Match(t);// 日 时分秒
             if (m.Success) {
-                MyDate date = new MyDate {
+                var date = new MyDate {
                     Day = int.Parse(m.Groups[(1)].Value, cultureInfo),
                     Hour = int.Parse(m.Groups[(2)].Value, cultureInfo),
                     Minute = int.Parse(m.Groups[(3)].Value, cultureInfo),
@@ -194,7 +194,7 @@ namespace ToolGood.Algorithm
             }
             m = dayTimeRegex2.Match(t);// 日 时分
             if (m.Success) {
-                MyDate date = new MyDate {
+                var date = new MyDate {
                     Day = int.Parse(m.Groups[(1)].Value, cultureInfo),
                     Hour = int.Parse(m.Groups[(2)].Value, cultureInfo),
                     Minute = int.Parse(m.Groups[(3)].Value, cultureInfo),
@@ -204,7 +204,7 @@ namespace ToolGood.Algorithm
 
             m = timeRegex.Match(t);// 时分秒
             if (m.Success) {
-                MyDate date = new MyDate {
+                var date = new MyDate {
                     Hour = int.Parse(m.Groups[(1)].Value, cultureInfo),
                     Minute = int.Parse(m.Groups[(2)].Value, cultureInfo),
                     Second = int.Parse(m.Groups[(3)].Value, cultureInfo)
@@ -213,7 +213,7 @@ namespace ToolGood.Algorithm
             }
             m = timeRegex2.Match(t);// 时分
             if (m.Success) {
-                MyDate date = new MyDate {
+                var date = new MyDate {
                     Hour = int.Parse(m.Groups[(1)].Value, cultureInfo),
                     Minute = int.Parse(m.Groups[(2)].Value, cultureInfo)
                 };
@@ -228,7 +228,7 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public override string ToString()
         {
-            StringBuilder stringBuffer = new StringBuilder();
+            var stringBuffer = new StringBuilder();
             if (Year != null && Year > 0) {
                 stringBuffer.Append(Year);
                 stringBuffer.Append('-');
