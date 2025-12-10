@@ -275,7 +275,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                     }
                 }
             }
-            return Operand.Create((decimal)count);
+            return Operand.Create(count);
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
@@ -435,7 +435,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                 product *= (double)num;
             }
             double geoMean = Math.Pow(product, 1.0 / list.Count);
-            return Operand.Create((decimal)geoMean);
+            return Operand.Create(geoMean);
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {

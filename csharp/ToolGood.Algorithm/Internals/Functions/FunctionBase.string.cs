@@ -125,7 +125,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 				return Operand.Error("Function '{0}' parameter is error!", "CODE");
 			}
 			char c = args1.TextValue[0];
-			return Operand.Create((decimal)(int)c);
+			return Operand.Create((int)c);
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
@@ -226,7 +226,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
 		{
 			var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotText) { args1 = args1.ToText("Function '{0}' parameter is error!", "Len"); if (args1.IsError) { return args1; } }
-			return Operand.Create((decimal)args1.TextValue.Length);
+			return Operand.Create(args1.TextValue.Length);
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
 		{
