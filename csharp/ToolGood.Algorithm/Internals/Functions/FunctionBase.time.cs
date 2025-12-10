@@ -456,15 +456,15 @@ namespace ToolGood.Algorithm.Internals.Functions
 
             var t = ((DateTime)args1.DateValue).DayOfWeek;
             if (type == 1) {
-                return Operand.Create((double)(t + 1));
+                return Operand.Create((int)(t + 1));
             } else if (type == 2) {
-                if (t == 0) return Operand.Create(7d);
-                return Operand.Create((double)t);
+                if (t == 0) return Operand.Create(7);
+                return Operand.Create((int)t);
             }
             if (t == 0) {
-                return Operand.Create(6d);
+                return Operand.Create(6);
             }
-            return Operand.Create((double)(t - 1));
+            return Operand.Create((int)(t - 1));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {

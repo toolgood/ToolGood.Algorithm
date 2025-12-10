@@ -38,12 +38,12 @@ namespace ToolGood.Algorithm
         /// <summary>
         /// One
         /// </summary>
-        public static readonly Operand One = Operand.Create(1);
+        public static readonly Operand One = Operand.Create(1m);
 
         /// <summary>
         /// Zero
         /// </summary>
-        public static readonly Operand Zero = Operand.Create(0);
+        public static readonly Operand Zero = Operand.Create(0m);
 
         #region  IsNull IsNumber IsText IsBoolean IsArray IsDate IsJson IsArrayJson IsError ErrorMsg
         /// <summary>

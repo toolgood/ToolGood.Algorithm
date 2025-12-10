@@ -104,7 +104,7 @@ namespace ToolGood.Algorithm
         /// <param name="obj"></param>
         public void AddParameter(string key, short obj)
         {
-            _tempdict[key] = Operand.Create((int)obj);
+            _tempdict[key] = Operand.Create(obj);
         }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace ToolGood.Algorithm
         /// <param name="obj"></param>
         public void AddParameter(string key, long obj)
         {
-            _tempdict[key] = Operand.Create((double)obj);
+            _tempdict[key] = Operand.Create(obj);
         }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace ToolGood.Algorithm
         /// <param name="obj"></param>
         public void AddParameter(string key, ushort obj)
         {
-            _tempdict[key] = Operand.Create((int)obj);
+            _tempdict[key] = Operand.Create(obj);
         }
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace ToolGood.Algorithm
         /// <param name="obj"></param>
         public void AddParameter(string key, uint obj)
         {
-            _tempdict[key] = Operand.Create((double)obj);
+            _tempdict[key] = Operand.Create(obj);
         }
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace ToolGood.Algorithm
         /// <param name="obj"></param>
         public void AddParameter(string key, ulong obj)
         {
-            _tempdict[key] = Operand.Create((double)obj);
+            _tempdict[key] = Operand.Create(obj);
         }
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace ToolGood.Algorithm
         /// <param name="obj"></param>
         public void AddParameter(string key, float obj)
         {
-            _tempdict[key] = Operand.Create((double)obj);
+            _tempdict[key] = Operand.Create(obj);
         }
 
         /// <summary>
@@ -184,7 +184,7 @@ namespace ToolGood.Algorithm
         /// <param name="obj"></param>
         public void AddParameter(string key, decimal obj)
         {
-            _tempdict[key] = Operand.Create((double)obj);
+            _tempdict[key] = Operand.Create(obj);
         }
 
         #endregion number
