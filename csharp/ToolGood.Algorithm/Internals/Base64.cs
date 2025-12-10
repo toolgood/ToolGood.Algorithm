@@ -31,7 +31,7 @@ namespace ToolGood.Algorithm.Internals
         /// <returns>Input byte array converted to a base64ForUrl encoded string</returns>
         public static string ToBase64ForUrlString(byte[] input)
         {
-            StringBuilder result = new StringBuilder(Convert.ToBase64String(input).TrimEnd('='));
+            var result = new StringBuilder(Convert.ToBase64String(input).TrimEnd('='));
             result.Replace('+', '-');
             result.Replace('/', '_');
             return result.ToString();

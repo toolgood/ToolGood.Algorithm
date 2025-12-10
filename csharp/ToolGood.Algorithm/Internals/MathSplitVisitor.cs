@@ -16,7 +16,7 @@ namespace ToolGood.Algorithm.Internals
 
         public ConditionTree VisitAndOr_fun(mathParser.AndOr_funContext context)
         {
-            ConditionTree tree = new ConditionTree {
+            var tree = new ConditionTree {
                 Nodes = new List<ConditionTree>()
             };
             var t = context.op.Text;
@@ -39,7 +39,7 @@ namespace ToolGood.Algorithm.Internals
 
         public ConditionTree Visit_fun(ParserRuleContext context)
         {
-            ConditionTree tree = new ConditionTree {
+            var tree = new ConditionTree {
                 Start = context.Start.StartIndex,
                 End = context.Stop.StopIndex,
                 ConditionString = context.GetText()

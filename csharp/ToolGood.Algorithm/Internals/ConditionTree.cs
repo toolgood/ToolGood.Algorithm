@@ -51,7 +51,7 @@ namespace ToolGood.Algorithm.Internals
         /// <returns></returns>
         public static ConditionTree Parse(string condition)
         {
-            ConditionTree tree = new ConditionTree();
+            var tree = new ConditionTree();
             if (string.IsNullOrWhiteSpace(condition)) {
                 tree.Type = ConditionTreeType.Error;
                 tree.ErrorMessage = "condition is null";

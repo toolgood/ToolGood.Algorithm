@@ -9,7 +9,7 @@ namespace ToolGood.Algorithm.Internals
 
         public static string GetCrc32String(byte[] buffer)
         {
-            Crc32Hash crc32 = new Crc32Hash();
+            var crc32 = new Crc32Hash();
             crc32.Append(buffer);
             byte[] retVal = crc32.Finish();
 #if NETSTANDARD2_1

@@ -324,9 +324,10 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
         {
-            var keyValue = new KeyValue();
-            keyValue.Key = key;
-            keyValue.Value = func1.Evaluate(work, tempParameter);
+            var keyValue = new KeyValue {
+                Key = key,
+                Value = func1.Evaluate(work, tempParameter)
+            };
             return new OperandKeyValue(keyValue);
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
