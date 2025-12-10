@@ -443,6 +443,9 @@ namespace ToolGood.Algorithm.Test
             t = engine.TryEvaluate("MULTINOMIAL(1,2,3,4)", 0.0);
             t = Math.Round(t, 6);
             Assert.AreEqual(Math.Round(12600.0, 6), t);
+            t = engine.TryEvaluate("MULTINOMIAL(1,2,3,4.1)", 0.0);
+            t = Math.Round(t, 6);
+            Assert.AreEqual(Math.Round(12600.0, 6), t);
         }
 
         [Test]
