@@ -190,7 +190,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                         return def;
                     }
                 }
-                return (float)obj.NumberValue;
+                return (float)obj.DoubleValue;
             } catch (Exception ex) {
                 work.LastError = ex.Message + "\r\n" + ex.StackTrace;
             }
@@ -215,7 +215,7 @@ namespace ToolGood.Algorithm.Internals.Functions
                         return def;
                     }
                 }
-                return (double)obj.NumberValue;
+                return (double)obj.DoubleValue;
             } catch (Exception ex) {
                 work.LastError = ex.Message + "\r\n" + ex.StackTrace;
             }

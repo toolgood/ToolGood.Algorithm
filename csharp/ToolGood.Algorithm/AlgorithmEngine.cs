@@ -283,7 +283,7 @@ namespace ToolGood.Algorithm
                         return def;
                     }
                 }
-                return (float)obj.NumberValue;
+                return (float)obj.DoubleValue;
             } catch (Exception ex) {
                 LastError = ex.Message + "\r\n" + ex.StackTrace;
             }
@@ -308,7 +308,7 @@ namespace ToolGood.Algorithm
                         return def;
                     }
                 }
-                return (double)obj.NumberValue;
+                return (double)obj.DoubleValue;
             } catch (Exception ex) {
                 LastError = ex.Message + "\r\n" + ex.StackTrace;
             }
