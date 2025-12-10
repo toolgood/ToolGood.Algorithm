@@ -8,20 +8,6 @@ namespace ToolGood.Algorithm.Internals.Functions
 {
     internal class FunctionUtil
     {
-        /// <summary>
-        /// new Regex("^[0-9A-Fa-f]+$", RegexOptions.Compiled);
-        /// </summary>
-        public static Regex HexRegex = new Regex("^[0-9A-Fa-f]+$", RegexOptions.Compiled);
-        /// <summary>
-        /// new Regex("^[0-7]+$", RegexOptions.Compiled);
-        /// </summary>
-        public static Regex OctRegex = new Regex("^[0-7]+$", RegexOptions.Compiled);
-        /// <summary>
-        /// new Regex("^[01]+$", RegexOptions.Compiled);
-        /// </summary>
-        public static Regex BinRegex = new Regex("^[01]+$", RegexOptions.Compiled);
-
-
         public static bool F_base_GetList(List<Operand> args, List<decimal> list)
         {
             foreach (var item in args) {

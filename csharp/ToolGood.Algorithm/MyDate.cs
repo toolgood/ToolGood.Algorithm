@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
+using ToolGood.Algorithm.Internals;
 
 namespace ToolGood.Algorithm
 {
@@ -122,20 +123,7 @@ namespace ToolGood.Algorithm
         }
 
 
-        private static readonly Regex dateTimeRegex = new Regex("^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d):([012345]?\\d)$", RegexOptions.Compiled);
-        private static readonly Regex dateTimeRegex2 = new Regex("^(\\d{4})/(1[012]|0?\\d)/(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d):([012345]?\\d)$", RegexOptions.Compiled);
-        private static readonly Regex dateTimeRegex3 = new Regex("^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d)$", RegexOptions.Compiled);
-        private static readonly Regex dateTimeRegex4 = new Regex("^(\\d{4})/(1[012]|0?\\d)/(30|31|[012]?\\d) ([01]?\\d|2[0123]):([012345]?\\d)$", RegexOptions.Compiled);
-
-        private static readonly Regex dateRegex = new Regex("^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d)$", RegexOptions.Compiled);
-        private static readonly Regex dateRegex2 = new Regex("^(\\d{4})-(1[012]|0?\\d)-(30|31|[012]?\\d)$", RegexOptions.Compiled);
-
-        private static readonly Regex dayTimeRegex = new Regex("^(\\d+) (2[0123]|[01]?\\d):([012345]?\\d):([012345]?\\d)$", RegexOptions.Compiled);
-        private static readonly Regex dayTimeRegex2 = new Regex("^(\\d+) (2[0123]|[01]?\\d):([012345]?\\d)$", RegexOptions.Compiled);
-
-        private static readonly Regex timeRegex = new Regex("^(2[0123]|[01]?\\d):([012345]?\\d):([012345]?\\d)$", RegexOptions.Compiled);
-        private static readonly Regex timeRegex2 = new Regex("^(2[0123]|[01]?\\d):([012345]?\\d)$", RegexOptions.Compiled);
-
+  
         /// <summary>
         /// 字符串转MyDate
         /// </summary>
@@ -145,8 +133,8 @@ namespace ToolGood.Algorithm
         {
             var cultureInfo = CultureInfo.InvariantCulture;// CultureInfo.GetCultureInfo("zh-cn");
             var t = txt.Trim();
-            var m = dateTimeRegex.Match(t); // 年月日 时分秒
-            if (m.Success == false) { m = dateTimeRegex2.Match(t); }
+            var m = RegexHelper. dateTimeRegex.Match(t); // 年月日 时分秒
+            if (m.Success == false) { m = RegexHelper.dateTimeRegex2.Match(t); }
             if (m.Success) {
                 var date = new MyDate {
                     Year = int.Parse(m.Groups[(1)].Value, cultureInfo),
@@ -159,8 +147,8 @@ namespace ToolGood.Algorithm
                 return date;
             }
 
-            m = dateTimeRegex3.Match(t);// 年月日 时分
-            if (m.Success == false) { m = dateTimeRegex4.Match(t); }
+            m = RegexHelper.dateTimeRegex3.Match(t);// 年月日 时分
+            if (m.Success == false) { m = RegexHelper.dateTimeRegex4.Match(t); }
             if (m.Success) {
                 var date = new MyDate {
                     Year = int.Parse(m.Groups[(1)].Value, cultureInfo),
@@ -171,8 +159,8 @@ namespace ToolGood.Algorithm
                 };
                 return date;
             }
-            m = dateRegex.Match(t);// 年月日
-            if (m.Success == false) { m = dateRegex2.Match(t); }
+            m = RegexHelper.dateRegex.Match(t);// 年月日
+            if (m.Success == false) { m = RegexHelper.dateRegex2.Match(t); }
             if (m.Success) {
                 var date = new MyDate {
                     Year = int.Parse(m.Groups[(1)].Value, cultureInfo),
@@ -182,7 +170,7 @@ namespace ToolGood.Algorithm
                 return date;
             }
 
-            m = dayTimeRegex.Match(t);// 日 时分秒
+            m = RegexHelper.dayTimeRegex.Match(t);// 日 时分秒
             if (m.Success) {
                 var date = new MyDate {
                     Day = int.Parse(m.Groups[(1)].Value, cultureInfo),
@@ -192,7 +180,7 @@ namespace ToolGood.Algorithm
                 };
                 return date;
             }
-            m = dayTimeRegex2.Match(t);// 日 时分
+            m = RegexHelper.dayTimeRegex2.Match(t);// 日 时分
             if (m.Success) {
                 var date = new MyDate {
                     Day = int.Parse(m.Groups[(1)].Value, cultureInfo),
@@ -202,7 +190,7 @@ namespace ToolGood.Algorithm
                 return date;
             }
 
-            m = timeRegex.Match(t);// 时分秒
+            m = RegexHelper.timeRegex.Match(t);// 时分秒
             if (m.Success) {
                 var date = new MyDate {
                     Hour = int.Parse(m.Groups[(1)].Value, cultureInfo),
@@ -211,7 +199,7 @@ namespace ToolGood.Algorithm
                 };
                 return date;
             }
-            m = timeRegex2.Match(t);// 时分
+            m = RegexHelper.timeRegex2.Match(t);// 时分
             if (m.Success) {
                 var date = new MyDate {
                     Hour = int.Parse(m.Groups[(1)].Value, cultureInfo),

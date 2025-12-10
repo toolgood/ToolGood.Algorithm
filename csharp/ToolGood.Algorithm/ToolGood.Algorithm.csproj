@@ -19,7 +19,7 @@
     <Product>ToolGood.Algorithm</Product>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <SignAssembly>true</SignAssembly>
-    <Version>5.0.0.8</Version>
+    <Version>5.0.0.9</Version>
     <AssemblyOriginatorKeyFile>ToolGood.Algorithm.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\ToolGood.Algorithm.xml</DocumentationFile>

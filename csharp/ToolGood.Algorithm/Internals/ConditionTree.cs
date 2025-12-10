@@ -13,7 +13,7 @@ namespace ToolGood.Algorithm.Internals
         /// <summary>
         /// 子节点
         /// </summary>
-        public IList<ConditionTree> Nodes { get; internal set; }
+        public List<ConditionTree> Nodes { get; internal set; }
 
         /// <summary>
         /// 开始位置
