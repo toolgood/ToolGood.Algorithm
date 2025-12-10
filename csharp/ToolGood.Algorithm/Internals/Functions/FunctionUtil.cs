@@ -43,6 +43,27 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return true;
         }
+        public static bool F_base_GetList(List<Operand> args, List<double> list)
+        {
+            foreach (var item in args) {
+                if (item.IsNumber) {
+                    list.Add(item.DoubleValue);
+                } else if (item.IsArray) {
+                    var o = F_base_GetList(item.ArrayValue, list);
+                    if (o == false) { return false; }
+                } else if (item.IsJson) {
+                    var i = item.ToArray(null);
+                    if (i.IsError) { return false; }
+                    var o = F_base_GetList(i.ArrayValue, list);
+                    if (o == false) { return false; }
+                } else {
+                    var o = item.ToNumber(null);
+                    if (o.IsError) { return false; }
+                    list.Add(o.DoubleValue);
+                }
+            }
+            return true;
+        }
 
         public static bool F_base_GetList(Operand args, List<decimal> list)
         {
@@ -64,7 +85,26 @@ namespace ToolGood.Algorithm.Internals.Functions
             }
             return true;
         }
-
+        public static bool F_base_GetList(Operand args, List<double> list)
+        {
+            if (args.IsError) { return false; }
+            if (args.IsNumber) {
+                list.Add(args.DoubleValue);
+            } else if (args.IsArray) {
+                var o = F_base_GetList(args.ArrayValue, list);
+                if (o == false) { return false; }
+            } else if (args.IsJson) {
+                var i = args.ToArray(null);
+                if (i.IsError) { return false; }
+                var o = F_base_GetList(i.ArrayValue, list);
+                if (o == false) { return false; }
+            } else {
+                var o = args.ToNumber(null);
+                if (o.IsError) { return false; }
+                list.Add(o.DoubleValue);
+            }
+            return true;
+        }
         public static bool F_base_GetList(Operand args, List<string> list)
         {
             if (args.IsError) { return false; }

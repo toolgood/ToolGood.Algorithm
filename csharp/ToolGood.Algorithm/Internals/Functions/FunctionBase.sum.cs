@@ -401,10 +401,10 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotArray) { args1 = args1.ToArray("Function '{0}' parameter {1} is error!", "Percentile", 1); if (args1.IsError) { return args1; } }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Percentile", 2); if (args2.IsError) { return args2; } }
-            var list = new List<decimal>();
+            var list = new List<double>();
             var o = FunctionUtil.F_base_GetList(args1, list);
             if (o == false) { return Operand.Error("Function '{0}' parameter {1} is error!", "Percentile", 1); }
-            var k = args2.NumberValue;
+            var k = args2.DoubleValue;
             return Operand.Create(ExcelFunctions.Percentile(list.Select(q => (double)q).ToArray(), (double)k));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -423,7 +423,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var args = new List<Operand>(); foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var list = new List<decimal>();
+            var list = new List<double>();
             var o = FunctionUtil.F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "GeoMean"); }
             if (list.Count == 0) { return Operand.Error("Function '{0}' parameter is error!", "GeoMean"); }
@@ -488,11 +488,11 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotArray) { args1 = args1.ToArray("Function '{0}' parameter {1} is error!", "PercentRank", 1); if (args1.IsError) { return args1; } }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "PercentRank", 2); if (args2.IsError) { return args2; } }
 
-            var list = new List<decimal>();
+            var list = new List<double>();
             var o = FunctionUtil.F_base_GetList(args1, list);
             if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "PercentRank"); }
 
-            var k = args2.NumberValue;
+            var k = args2.DoubleValue;
             var v = ExcelFunctions.PercentRank(list.Select(q => (double)q).ToArray(), (double)k);
             var d = 3;
             if (func3 != null) {
@@ -517,13 +517,13 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var args = new List<Operand>(); foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var list = new List<decimal>();
+            var list = new List<double>();
             var o = FunctionUtil.F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "Stdev"); }
             if (list.Count == 0) { return Operand.Error("Function '{0}' parameter is error!", "Stdev"); }
 
             var avg = list.Average();
-            decimal sum = 0;
+            double sum = 0;
             for (int i = 0; i < list.Count; i++) {
                 sum += (list[i] - avg) * (list[i] - avg);
             }
@@ -545,12 +545,12 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var args = new List<Operand>(); foreach (var item in funcs) { var aa = item.Evaluate(work, tempParameter); if (aa.IsError) { return aa; } args.Add(aa); }
 
-            var list = new List<decimal>();
+            var list = new List<double>();
             var o = FunctionUtil.F_base_GetList(args, list);
             if (o == false) { return Operand.Error("Function '{0}' parameter is error!", "StdevP"); }
             if (list.Count == 0) { return Operand.Error("Function '{0}' parameter is error!", "StdevP"); }
             var avg = list.Average();
-            decimal sum = 0;
+            double sum = 0;
             for (int i = 0; i < list.Count; i++) {
                 sum += (list[i] - avg) * (list[i] - avg);
             }
@@ -662,9 +662,9 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args3 = func3.Evaluate(work, tempParameter); if (args3.IsNotNumber) { args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "NormDist", 3); if (args3.IsError) return args3; }
             var args4 = func4.Evaluate(work, tempParameter); if (args4.IsNotBoolean) { args4 = args4.ToBoolean("Function '{0}' parameter {1} is error!", "NormDist", 4); if (args4.IsError) return args4; }
 
-            var num = args1.NumberValue;
-            var avg = args2.NumberValue;
-            var STDEV = args3.NumberValue;
+            var num = args1.DoubleValue;
+            var avg = args2.DoubleValue;
+            var STDEV = args3.DoubleValue;
             var b = args4.BooleanValue;
             return Operand.Create(ExcelFunctions.NormDist((double)num, (double)avg, (double)STDEV, b));
         }
@@ -685,9 +685,9 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "NormInv", 1); if (args1.IsError) return args1; }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "NormInv", 2); if (args2.IsError) return args2; }
             var args3 = func3.Evaluate(work, tempParameter); if (args3.IsNotNumber) { args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "NormInv", 3); if (args3.IsError) return args3; }
-            var p = args1.NumberValue;
-            var avg = args2.NumberValue;
-            var STDEV = args3.NumberValue;
+            var p = args1.DoubleValue;
+            var avg = args2.DoubleValue;
+            var STDEV = args3.DoubleValue;
             return Operand.Create(ExcelFunctions.NormInv((double)p, (double)avg, (double)STDEV));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -705,7 +705,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "NormSDist"); if (args1.IsError) return args1; }
-            var num = args1.NumberValue;
+            var num = args1.DoubleValue;
             return Operand.Create(ExcelFunctions.NormSDist((double)num));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -723,7 +723,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "NormSInv"); if (args1.IsError) return args1; }
-            var p = args1.NumberValue;
+            var p = args1.DoubleValue;
             return Operand.Create(ExcelFunctions.NormSInv((double)p));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
@@ -743,11 +743,11 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "BetaDist", 1); if (args1.IsError) return args1; }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "BetaDist", 2); if (args2.IsError) return args2; }
             var args3 = func3.Evaluate(work, tempParameter); if (args3.IsNotNumber) { args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "BetaDist", 3); if (args3.IsError) return args3; }
-            var x = args1.NumberValue;
-            var alpha = args2.NumberValue;
-            var beta = args3.NumberValue;
+            var x = args1.DoubleValue;
+            var alpha = args2.DoubleValue;
+            var beta = args3.DoubleValue;
 
-            if (alpha < 0.0m || beta < 0.0m) {
+            if (alpha < 0.0 || beta < 0.0) {
                 return Operand.Error("Function '{0}' parameter is error!", "BetaDist");
             }
             return Operand.Create(ExcelFunctions.BetaDist((double)x, (double)alpha, (double)beta));
@@ -770,10 +770,10 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "BetaInv", 1); if (args1.IsError) return args1; }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "BetaInv", 2); if (args2.IsError) return args2; }
             var args3 = func3.Evaluate(work, tempParameter); if (args3.IsNotNumber) { args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "BetaInv", 3); if (args3.IsError) return args3; }
-            var p = args1.NumberValue;
-            var alpha = args2.NumberValue;
-            var beta = args3.NumberValue;
-            if (alpha < 0.0m || beta < 0.0m || p < 0.0m || p > 1.0m) {
+            var p = args1.DoubleValue;
+            var alpha = args2.DoubleValue;
+            var beta = args3.DoubleValue;
+            if (alpha < 0.0 || beta < 0.0 || p < 0.0 || p > 1.0) {
                 return Operand.Error("Function '{0}' parameter is error!", "BetaInv");
             }
             return Operand.Create(ExcelFunctions.BetaInv((double)p, (double)alpha, (double)beta));
@@ -826,7 +826,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             if (n1 < 0.0) {
                 return Operand.Error("Function '{0}' parameter is error!", "ExponDist");
             }
-            return Operand.Create(ExcelFunctions.ExponDist(n1, (double)args2.DoubleValue, args3.BooleanValue));
+            return Operand.Create(ExcelFunctions.ExponDist(n1, args2.DoubleValue, args3.BooleanValue));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
@@ -846,10 +846,10 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "FDist", 2); if (args2.IsError) return args2; }
             var args3 = func3.Evaluate(work, tempParameter); if (args3.IsNotNumber) { args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "FDist", 3); if (args3.IsError) return args3; }
 
-            var x = args1.NumberValue;
+            var x = args1.DoubleValue;
             var degreesFreedom = args2.IntValue;
             var degreesFreedom2 = args3.IntValue;
-            if (degreesFreedom <= 0.0m || degreesFreedom2 <= 0.0m) {
+            if (degreesFreedom <= 0.0 || degreesFreedom2 <= 0.0) {
                 return Operand.Error("Function '{0}' parameter is error!", "FDist");
             }
             return Operand.Create(ExcelFunctions.FDist((double)x, degreesFreedom, degreesFreedom2));
@@ -871,10 +871,10 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "FInv", 1); if (args1.IsError) return args1; }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "FInv", 2); if (args2.IsError) return args2; }
             var args3 = func3.Evaluate(work, tempParameter); if (args3.IsNotNumber) { args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "FInv", 3); if (args3.IsError) return args3; }
-            var p = args1.NumberValue;
+            var p = args1.DoubleValue;
             var degreesFreedom = args2.IntValue;
             var degreesFreedom2 = args3.IntValue;
-            if (degreesFreedom <= 0.0m || degreesFreedom2 <= 0.0m || p < 0.0m || p > 1.0m) {
+            if (degreesFreedom <= 0.0 || degreesFreedom2 <= 0.0 || p < 0.0 || p > 1.0) {
                 return Operand.Error("Function '{0}' parameter is error!", "FInv");
             }
             return Operand.Create(ExcelFunctions.FInv((double)p, degreesFreedom, degreesFreedom2));
@@ -894,7 +894,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Fisher"); if (args1.IsError) { return args1; } }
-            var x = args1.NumberValue;
+            var x = args1.DoubleValue;
             if (x >= 1 || x <= -1) {
                 return Operand.Error("Function '{0}' parameter is error!", "Fisher");
             }
@@ -916,7 +916,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "FisherInv"); if (args1.IsError) { return args1; } }
-            var x = (double)args1.DoubleValue;
+            var x = args1.DoubleValue;
             var n = (Math.Exp((2 * x)) - 1) / (Math.Exp((2 * x)) + 1);
             return Operand.Create(n);
         }
@@ -938,11 +938,11 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "GammaDist", 2); if (args2.IsError) return args2; }
             var args3 = func3.Evaluate(work, tempParameter); if (args3.IsNotNumber) { args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "GammaDist", 3); if (args3.IsError) return args3; }
             var args4 = func4.Evaluate(work, tempParameter); if (args4.IsNotBoolean) { args4 = args4.ToBoolean("Function '{0}' parameter {1} is error!", "GammaDist", 4); if (args4.IsError) return args4; }
-            var x = args1.NumberValue;
-            var alpha = args2.NumberValue;
-            var beta = args3.NumberValue;
+            var x = args1.DoubleValue;
+            var alpha = args2.DoubleValue;
+            var beta = args3.DoubleValue;
             var cumulative = args4.BooleanValue;
-            if (alpha < 0.0m || beta < 0.0m) {
+            if (alpha < 0.0 || beta < 0.0) {
                 return Operand.Error("Function '{0}' parameter is error!", "GammaDist");
             }
             return Operand.Create(ExcelFunctions.GammaDist((double)x, (double)alpha, (double)beta, cumulative));
@@ -964,10 +964,10 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "GammaInv", 1); if (args1.IsError) return args1; }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "GammaInv", 2); if (args2.IsError) return args2; }
             var args3 = func3.Evaluate(work, tempParameter); if (args3.IsNotNumber) { args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "GammaInv", 3); if (args3.IsError) return args3; }
-            var probability = args1.NumberValue;
-            var alpha = args2.NumberValue;
-            var beta = args3.NumberValue;
-            if (alpha < 0.0m || beta < 0.0m || probability < 0 || probability > 1.0m) {
+            var probability = args1.DoubleValue;
+            var alpha = args2.DoubleValue;
+            var beta = args3.DoubleValue;
+            if (alpha < 0.0 || beta < 0.0 || probability < 0 || probability > 1.0) {
                 return Operand.Error("Function '{0}' parameter is error!", "GammaInv");
             }
             return Operand.Create(ExcelFunctions.GammaInv((double)probability, (double)alpha, (double)beta));
@@ -987,7 +987,7 @@ namespace ToolGood.Algorithm.Internals.Functions
         public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "GammaLn"); if (args1.IsError) { return args1; } }
-            return Operand.Create(ExcelFunctions.GAMMALN((double)args1.DoubleValue));
+            return Operand.Create(ExcelFunctions.GAMMALN(args1.DoubleValue));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
@@ -1038,7 +1038,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             if (n3 < 0.0) {
                 return Operand.Error("Function '{0}' parameter is error!", "LogInv");
             }
-            return Operand.Create(ExcelFunctions.LogInv((double)args1.DoubleValue, (double)args2.DoubleValue, n3));
+            return Operand.Create(ExcelFunctions.LogInv(args1.DoubleValue, args2.DoubleValue, n3));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
@@ -1057,12 +1057,12 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "LognormDist", 1); if (args1.IsError) return args1; }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "LognormDist", 2); if (args2.IsError) return args2; }
             var args3 = func3.Evaluate(work, tempParameter); if (args3.IsNotNumber) { args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "LognormDist", 3); if (args3.IsError) return args3; }
-            
+
             var n3 = args3.DoubleValue;
             if (n3 < 0.0) {
                 return Operand.Error("Function '{0}' parameter is error!", "LognormDist");
             }
-            return Operand.Create(ExcelFunctions.LognormDist((double)args1.DoubleValue, (double)args2.DoubleValue, n3));
+            return Operand.Create(ExcelFunctions.LognormDist(args1.DoubleValue, args2.DoubleValue, n3));
         }
         public override void ToString(StringBuilder stringBuilder, bool addBrackets)
         {
@@ -1082,10 +1082,10 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "NegbinomDist", 2); if (args2.IsError) return args2; }
             var args3 = func3.Evaluate(work, tempParameter); if (args3.IsNotNumber) { args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "NegbinomDist", 3); if (args3.IsError) return args3; }
             int k = args1.IntValue;
-            var r = args2.NumberValue;
-            var p = args3.NumberValue;
+            var r = args2.DoubleValue;
+            var p = args3.DoubleValue;
 
-            if (!(r >= 0.0m && p >= 0.0m && p <= 1.0m)) {
+            if (!(r >= 0.0 && p >= 0.0 && p <= 1.0)) {
                 return Operand.Error("Function '{0}' parameter is error!", "NegbinomDist");
             }
             return Operand.Create(ExcelFunctions.NegbinomDist(k, (double)r, (double)p));
@@ -1108,9 +1108,9 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Poisson", 2); if (args2.IsError) return args2; }
             var args3 = func3.Evaluate(work, tempParameter); if (args3.IsNotBoolean) { args3 = args3.ToBoolean("Function '{0}' parameter {1} is error!", "Poisson", 3); if (args3.IsError) return args3; }
             int k = args1.IntValue;
-            var lambda = args2.NumberValue;
+            var lambda = args2.DoubleValue;
             bool state = args3.BooleanValue;
-            if (!(lambda > 0.0m)) {
+            if (!(lambda > 0.0)) {
                 return Operand.Error("Function '{0}' parameter is error!", "Poisson");
             }
             return Operand.Create(ExcelFunctions.Poisson(k, (double)lambda, state));
@@ -1132,7 +1132,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "TDist", 1); if (args1.IsError) return args1; }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "TDist", 2); if (args2.IsError) return args2; }
             var args3 = func3.Evaluate(work, tempParameter); if (args3.IsNotNumber) { args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "TDist", 3); if (args3.IsError) return args3; }
-            var x = args1.NumberValue;
+            var x = args1.DoubleValue;
             var degreesFreedom = args2.IntValue;
             var tails = args3.IntValue;
             if (degreesFreedom <= 0.0m || tails < 1 || tails > 2) {
@@ -1156,9 +1156,9 @@ namespace ToolGood.Algorithm.Internals.Functions
         {
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter {1} is error!", "TInv", 1); if (args1.IsError) return args1; }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "TInv", 2); if (args2.IsError) return args2; }
-            var p = args1.NumberValue;
+            var p = args1.DoubleValue;
             var degreesFreedom = args2.IntValue;
-            if (degreesFreedom <= 0.0m || p < 0.0m || p > 1.0m) {
+            if (degreesFreedom <= 0.0 || p < 0.0 || p > 1.0) {
                 return Operand.Error("Function '{0}' parameter is error!", "TInv");
             }
             return Operand.Create(ExcelFunctions.TInv((double)p, degreesFreedom));
@@ -1181,11 +1181,11 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Weibull", 2); if (args2.IsError) return args2; }
             var args3 = func3.Evaluate(work, tempParameter); if (args3.IsNotNumber) { args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "Weibull", 3); if (args3.IsError) return args3; }
             var args4 = func4.Evaluate(work, tempParameter); if (args4.IsNotBoolean) { args4 = args4.ToBoolean("Function '{0}' parameter {1} is error!", "Weibull", 4); if (args4.IsError) return args4; }
-            var x = args1.NumberValue;
-            var shape = args2.NumberValue;
-            var scale = args3.NumberValue;
+            var x = args1.DoubleValue;
+            var shape = args2.DoubleValue;
+            var scale = args3.DoubleValue;
             var state = args4.BooleanValue;
-            if (shape <= 0.0m || scale <= 0.0m) {
+            if (shape <= 0.0 || scale <= 0.0) {
                 return Operand.Error("Function '{0}' parameter is error!", "Weibull");
             }
 
@@ -1208,7 +1208,7 @@ namespace ToolGood.Algorithm.Internals.Functions
             var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotArray) { args1 = args1.ToArray("Function '{0}' parameter {1} is error!", "Quartile", 1); if (args1.IsError) { return args1; } }
             var args2 = func2.Evaluate(work, tempParameter); if (args2.IsNotNumber) { args2 = args2.ToNumber("Function '{0}' parameter {1} is error!", "Quartile", 2); if (args2.IsError) { return args2; } }
 
-            var list = new List<decimal>();
+            var list = new List<double>();
             var o = FunctionUtil.F_base_GetList(args1, list);
             if (o == false) { return Operand.Error("Function '{0}' parameter {1} is error!", "Quartile", 1); }
 

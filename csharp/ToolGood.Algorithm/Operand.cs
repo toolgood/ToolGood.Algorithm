@@ -595,7 +595,7 @@ namespace ToolGood.Algorithm
         /// <param name="obj"></param>
         public static implicit operator Operand(decimal obj)
         {
-            return Operand.Create((double)obj);
+            return Operand.Create(obj);
         }
 
         #endregion number

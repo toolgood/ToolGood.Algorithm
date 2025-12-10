@@ -78,7 +78,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 		public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
 		{
 			var args1 = func1.Evaluate(work, tempParameter); if (args1.IsNotNumber) { args1 = args1.ToNumber("Function '{0}' parameter is error!", "Char"); if (args1.IsError) { return args1; } }
-			char c = (char)(int)args1.NumberValue;
+			char c = (char)args1.IntValue;
 			return Operand.Create(c.ToString());
 		}
 		public override void ToString(StringBuilder stringBuilder, bool addBrackets)
