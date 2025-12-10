@@ -18,7 +18,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 			return Operand.Create(F_base_ToDBC(args1.TextValue));
 		}
 
-		private static String F_base_ToDBC(String input)
+		private static string F_base_ToDBC(string input)
 		{
 			var sb = new StringBuilder(input);
 			for (int i = 0; i < input.Length; i++) {
@@ -50,7 +50,7 @@ namespace ToolGood.Algorithm.Internals.Functions
 			return Operand.Create(F_base_ToSBC(args1.TextValue));
 		}
 
-		private static String F_base_ToSBC(String input)
+		private static string F_base_ToSBC(string input)
 		{
 			var sb = new StringBuilder(input);
 			for (int i = 0; i < input.Length; i++) {

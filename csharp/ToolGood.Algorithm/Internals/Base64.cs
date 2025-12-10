@@ -58,7 +58,7 @@ namespace ToolGood.Algorithm.Internals
             }
             var len = sb.Length;
             int padChars = (len % 4) == 0 ? 0 : (4 - (len % 4));
-            if (padChars > 0) sb.Append(String.Empty.PadRight(padChars, '='));
+            if (padChars > 0) sb.Append(string.Empty.PadRight(padChars, '='));
             return Convert.FromBase64String(sb.ToString());
         }
     }

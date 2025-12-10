@@ -130,6 +130,8 @@ namespace ToolGood.Algorithm
         /// </summary>
         public abstract OperandType Type { get; }
 
+        #region Value
+
         /// <summary>
         /// 数字值
         /// </summary>
@@ -171,6 +173,8 @@ namespace ToolGood.Algorithm
         /// 时间值
         /// </summary>
         public virtual MyDate DateValue => throw new NotImplementedException();
+
+        #endregion
 
         #region Create
 
@@ -443,6 +447,9 @@ namespace ToolGood.Algorithm
         }
 
         #endregion Create
+
+        #region 转化类型
+
         /// <summary>
         /// 转数值类型
         /// </summary>
@@ -471,13 +478,13 @@ namespace ToolGood.Algorithm
         /// <returns></returns>
         public virtual Operand ToBoolean(string errorMessage, params object[] args) { return Error(string.Format(errorMessage, args)); }
         /// <summary>
-        /// 转String类型
+        /// 转string类型
         /// </summary>
         /// <param name="errorMessage"></param>
         /// <returns></returns>
         public virtual Operand ToText(string errorMessage = null) { return Error(errorMessage ?? "Convert to string error!"); }
         /// <summary>
-        /// 转String类型
+        /// 转string类型
         /// </summary>
         /// <param name="errorMessage"></param>
         /// <param name="args"></param>
@@ -512,6 +519,8 @@ namespace ToolGood.Algorithm
         /// <param name="args"></param>
         /// <returns></returns>
         public virtual Operand ToArray(string errorMessage, params object[] args) { return Error(string.Format(errorMessage, args)); }
+
+        #endregion
 
         #region Operand
 
@@ -673,6 +682,7 @@ namespace ToolGood.Algorithm
         }
 
         #endregion Operand
+
     }
 
 

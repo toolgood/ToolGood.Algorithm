@@ -141,7 +141,7 @@ namespace ToolGood.Algorithm
         /// </summary>
         /// <param name="txt"></param>
         /// <returns></returns>
-        public static MyDate Parse(String txt)
+        public static MyDate Parse(string txt)
         {
             var cultureInfo = CultureInfo.InvariantCulture;// CultureInfo.GetCultureInfo("zh-cn");
             var t = txt.Trim();

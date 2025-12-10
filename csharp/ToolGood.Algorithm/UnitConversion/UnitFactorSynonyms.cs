@@ -36,7 +36,7 @@ namespace ToolGood.Algorithm.UnitConversion
 
         public override string ToString()
         {
-            return String.Join(", ", _synonyms);
+            return string.Join(", ", _synonyms);
         }
 
         // Allow strings to be interpreted as a UnitDictionaryKey

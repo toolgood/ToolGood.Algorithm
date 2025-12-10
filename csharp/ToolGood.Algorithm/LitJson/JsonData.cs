@@ -144,7 +144,7 @@ namespace ToolGood.Algorithm.LitJson
                     break;
 
                 case JsonType.String:
-                    inst_string = default(String);
+                    inst_string = default(string);
                     break;
 
                 case JsonType.Double:

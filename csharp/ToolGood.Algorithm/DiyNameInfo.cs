@@ -16,7 +16,7 @@ namespace ToolGood.Algorithm
         /// <summary>
         /// 自定义方法
         /// </summary>
-        public List<String> Functions { get; private set; }
+        public List<string> Functions { get; private set; }
 
         /// <summary>
         /// 自定义类型
@@ -24,7 +24,7 @@ namespace ToolGood.Algorithm
         public DiyNameInfo()
         {
             Parameters = new List<ParameterInfo>();
-            Functions = new List<String>();
+            Functions = new List<string>();
         }
     }
 

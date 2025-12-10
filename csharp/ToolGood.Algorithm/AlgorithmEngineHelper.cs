@@ -306,7 +306,7 @@ namespace ToolGood.Algorithm
         /// <param name="exp"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public static DiyNameInfo GetDiyNames(String exp)
+        public static DiyNameInfo GetDiyNames(string exp)
         {
             if (string.IsNullOrWhiteSpace(exp)) {
                 throw new Exception("Parameter exp invalid !");

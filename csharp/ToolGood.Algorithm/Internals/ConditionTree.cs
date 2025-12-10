@@ -38,7 +38,7 @@ namespace ToolGood.Algorithm.Internals
         /// <summary>
         /// 出错信息
         /// </summary>
-        public String ErrorMessage { get; internal set; }
+        public string ErrorMessage { get; internal set; }
 
         internal ConditionTree()
         {
