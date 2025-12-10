@@ -20,6 +20,9 @@ namespace ToolGood.Algorithm
 
             num = engine.TryEvaluate("vlookup(array(array(1,'2',3),array(2,3,4),array('3a','4',5),array(4,'5',6)),'3a',2)", 0);
             Assert.AreEqual(num, 4);
+
+            num = engine.TryEvaluate("vlookup(array(array(1,'2',3),array(2,3,4),array(5,'4',5),array(6,'5',6)),'3',2,0)", 0);
+            Assert.AreEqual(num, 0);
         }
  
     }

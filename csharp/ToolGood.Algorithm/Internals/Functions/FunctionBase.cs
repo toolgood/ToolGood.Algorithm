@@ -1403,22 +1403,19 @@ namespace ToolGood.Algorithm.Internals.Functions
 
         public override Operand Evaluate(AlgorithmEngine work, Func<string, Operand> tempParameter)
         {
+            //  这个跟excel的vlookup有区别，excel是按列查找，这里是按array查找，参数位置不一样 用json代替吧
             var args1 = func1.Evaluate(work, tempParameter);
-            args1 = args1.ToArray("Function '{0}' parameter {1} is error!", "VLOOKUP", 1); if (args1.IsError) { return args1; }
-
-            var args2 = func2.Evaluate(work, tempParameter); if (args2.IsError) { return args2; }
+            if (args1.IsNotArray) { args1 = args1.ToArray("Function '{0}' parameter {1} is error!", "VLOOKUP", 1); if (args1.IsError) { return args1; } }
+            var args2 = func2.Evaluate(work, tempParameter);
+            if (args2.IsNotText) { args2 = args2.ToText("Function '{0}' parameter {1} is error!", "VLOOKUP", 2); if (args2.IsError) { return args2; } }
             var args3 = func3.Evaluate(work, tempParameter);
-            args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "VLOOKUP", 3); if (args3.IsError) { return args3; }
+            if (args3.IsNotNumber) { args3 = args3.ToNumber("Function '{0}' parameter {1} is error!", "VLOOKUP", 3); if (args3.IsError) { return args3; } }
 
             var vague = true;
             if (func4 != null) {
                 var args4 = func4.Evaluate(work, tempParameter);
-                args4 = args4.ToBoolean("Function '{0}' parameter {1} is error!", "VLOOKUP", 4); if (args4.IsError) { return args4; }
+                if (args4.IsNotBoolean) { args4 = args4.ToBoolean("Function '{0}' parameter {1} is error!", "VLOOKUP", 4); if (args4.IsError) { return args4; } }
                 vague = args4.BooleanValue;
-            }
-            if (args2.IsNotNull) {
-                var sv = args2.ToText("Function '{0}' parameter {1} is error!", "VLOOKUP", 2); if (sv.IsError) { return sv; }
-                args2 = sv;
             }
 
             foreach (var item in args1.ArrayValue) {
