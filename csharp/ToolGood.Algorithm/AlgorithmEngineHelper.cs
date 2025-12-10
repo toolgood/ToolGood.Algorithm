@@ -395,6 +395,29 @@ namespace ToolGood.Algorithm
         }
 
         /// <summary>
+        /// 检查公式是否正确
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <returns></returns>
+        public static bool CheckFormula(string exp)
+        {
+            if (string.IsNullOrWhiteSpace(exp)) { return false; }
+            var stream = new AntlrCharStream(new AntlrInputStream(exp));
+            var lexer = new mathLexer(stream);
+            var tokens = new CommonTokenStream(lexer);
+            var parser = new mathParser(tokens);
+            var antlrErrorListener = new AntlrErrorListener();
+            parser.RemoveErrorListeners();
+            parser.AddErrorListener(antlrErrorListener);
+
+            var context = parser.prog();
+            if (antlrErrorListener.IsError) {
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
         /// 解析条件
         /// </summary>
         /// <param name="condition"></param>
