@@ -16,7 +16,7 @@ namespace ToolGood.Algorithm
     public static class AlgorithmEngineHelper
     {
         private static HashSet<string> _lexerSet;
-        private static Lazy<Regex> unitRegex = new Lazy<Regex>(() => new Regex(@"[\s \(\)（）\[\]<>]", RegexOptions.Compiled));
+        private static Regex unitRegex;
 
         private static HashSet<string> GetLexerSet()
         {
@@ -340,10 +340,10 @@ namespace ToolGood.Algorithm
         public static decimal UnitConversion(decimal src, string oldSrcUnit, string oldTarUnit, string name = null)
         {
             if (string.IsNullOrWhiteSpace(oldSrcUnit) || string.IsNullOrWhiteSpace(oldTarUnit)) { return src; }
-            //if (unitRegex == null) {
-            //    unitRegex = new Regex(@"[\s \(\)（）\[\]<>]", RegexOptions.Compiled);
-            //}
-            oldSrcUnit = unitRegex.Value.Replace(oldSrcUnit, "");
+            if (unitRegex == null) {
+                unitRegex = new Regex(@"[\s \(\)（）\[\]<>]", RegexOptions.Compiled);
+            }
+            oldSrcUnit = unitRegex.Replace(oldSrcUnit, "");
             if (oldSrcUnit == oldTarUnit) { return src; }
 
             if (DistanceConverter.Exists(oldSrcUnit, oldTarUnit)) {
