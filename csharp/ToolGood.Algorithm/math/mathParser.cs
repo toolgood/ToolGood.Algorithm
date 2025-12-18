@@ -34,7 +34,7 @@ namespace ToolGood.Algorithm.math
 
 	[System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.13.2")]
 	[System.CLSCompliant(false)]
-	public partial class mathParser : Parser
+	partial class mathParser : Parser
 	{
 		protected static DFA[] decisionToDFA;
 		protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
@@ -193,8 +193,7 @@ namespace ToolGood.Algorithm.math
 
 		public partial class ProgContext : ParserRuleContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
@@ -204,8 +203,7 @@ namespace ToolGood.Algorithm.math
 			{
 			}
 			public override int RuleIndex { get { return RULE_prog; } }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitProg(this);
@@ -221,9 +219,7 @@ namespace ToolGood.Algorithm.math
 			try {
 				EnterOuterAlt(_localctx, 1);
 				{
-					State = 12;
-					expr(0);
-					State = 13;
+					State = 12;expr(0);
 					Match(Eof);
 				}
 			} catch (RecognitionException re) {
@@ -253,19 +249,13 @@ namespace ToolGood.Algorithm.math
 		public partial class CEILING_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CEILING() { return GetToken(mathParser.CEILING, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public CEILING_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitCEILING_fun(this);
@@ -275,14 +265,12 @@ namespace ToolGood.Algorithm.math
 		public partial class FACT_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FACT() { return GetToken(mathParser.FACT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public FACT_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitFACT_fun(this);
@@ -292,19 +280,13 @@ namespace ToolGood.Algorithm.math
 		public partial class REGEXREPALCE_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REGEXREPALCE() { return GetToken(mathParser.REGEXREPALCE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public REGEXREPALCE_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitREGEXREPALCE_fun(this);
@@ -314,19 +296,13 @@ namespace ToolGood.Algorithm.math
 		public partial class HASVALUE_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HASVALUE() { return GetToken(mathParser.HASVALUE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public HASVALUE_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitHASVALUE_fun(this);
@@ -336,20 +312,14 @@ namespace ToolGood.Algorithm.math
 		public partial class AddSub_funContext : ExprContext
 		{
 			public IToken op;
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUB() { return GetToken(mathParser.SUB, 0); }
 			public AddSub_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitAddSub_fun(this);
@@ -359,19 +329,13 @@ namespace ToolGood.Algorithm.math
 		public partial class AVERAGEIF_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AVERAGEIF() { return GetToken(mathParser.AVERAGEIF, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public AVERAGEIF_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitAVERAGEIF_fun(this);
@@ -381,19 +345,13 @@ namespace ToolGood.Algorithm.math
 		public partial class PARAM_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAM() { return GetToken(mathParser.PARAM, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public PARAM_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitPARAM_fun(this);
@@ -403,19 +361,13 @@ namespace ToolGood.Algorithm.math
 		public partial class ISNULLORERROR_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNULLORERROR() { return GetToken(mathParser.ISNULLORERROR, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public ISNULLORERROR_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitISNULLORERROR_fun(this);
@@ -425,19 +377,13 @@ namespace ToolGood.Algorithm.math
 		public partial class RIGHT_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RIGHT() { return GetToken(mathParser.RIGHT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public RIGHT_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitRIGHT_fun(this);
@@ -447,19 +393,13 @@ namespace ToolGood.Algorithm.math
 		public partial class OCT2BIN_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OCT2BIN() { return GetToken(mathParser.OCT2BIN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public OCT2BIN_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitOCT2BIN_fun(this);
@@ -469,19 +409,13 @@ namespace ToolGood.Algorithm.math
 		public partial class QUARTILE_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode QUARTILE() { return GetToken(mathParser.QUARTILE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public QUARTILE_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitQUARTILE_fun(this);
@@ -491,19 +425,13 @@ namespace ToolGood.Algorithm.math
 		public partial class FINV_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FINV() { return GetToken(mathParser.FINV, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public FINV_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitFINV_fun(this);
@@ -512,15 +440,13 @@ namespace ToolGood.Algorithm.math
 		}
 		public partial class NOT_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NOT() { return GetToken(mathParser.NOT, 0); }
 			public NOT_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitNOT_fun(this);
@@ -530,19 +456,13 @@ namespace ToolGood.Algorithm.math
 		public partial class DAYS360_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DAYS360() { return GetToken(mathParser.DAYS360, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public DAYS360_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitDAYS360_fun(this);
@@ -552,19 +472,13 @@ namespace ToolGood.Algorithm.math
 		public partial class WEEKNUM_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WEEKNUM() { return GetToken(mathParser.WEEKNUM, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public WEEKNUM_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitWEEKNUM_fun(this);
@@ -574,19 +488,13 @@ namespace ToolGood.Algorithm.math
 		public partial class POISSON_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode POISSON() { return GetToken(mathParser.POISSON, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public POISSON_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitPOISSON_fun(this);
@@ -596,19 +504,13 @@ namespace ToolGood.Algorithm.math
 		public partial class ISREGEX_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISREGEX() { return GetToken(mathParser.ISREGEX, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public ISREGEX_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitISREGEX_fun(this);
@@ -618,19 +520,13 @@ namespace ToolGood.Algorithm.math
 		public partial class COVARIANCES_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COVARIANCES() { return GetToken(mathParser.COVARIANCES, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public COVARIANCES_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitCOVARIANCES_fun(this);
@@ -640,19 +536,13 @@ namespace ToolGood.Algorithm.math
 		public partial class PERCENTILE_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PERCENTILE() { return GetToken(mathParser.PERCENTILE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public PERCENTILE_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitPERCENTILE_fun(this);
@@ -662,19 +552,13 @@ namespace ToolGood.Algorithm.math
 		public partial class DiyFunction_funContext : ExprContext
 		{
 			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAMETER() { return GetToken(mathParser.PARAMETER, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public DiyFunction_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitDiyFunction_fun(this);
@@ -684,19 +568,13 @@ namespace ToolGood.Algorithm.math
 		public partial class SHA256_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SHA256() { return GetToken(mathParser.SHA256, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public SHA256_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitSHA256_fun(this);
@@ -706,19 +584,13 @@ namespace ToolGood.Algorithm.math
 		public partial class HAS_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HAS() { return GetToken(mathParser.HAS, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public HAS_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitHAS_fun(this);
@@ -728,19 +600,13 @@ namespace ToolGood.Algorithm.math
 		public partial class HYPGEOMDIST_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HYPGEOMDIST() { return GetToken(mathParser.HYPGEOMDIST, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public HYPGEOMDIST_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitHYPGEOMDIST_fun(this);
@@ -750,19 +616,13 @@ namespace ToolGood.Algorithm.math
 		public partial class PERMUT_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PERMUT() { return GetToken(mathParser.PERMUT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public PERMUT_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitPERMUT_fun(this);
@@ -772,19 +632,13 @@ namespace ToolGood.Algorithm.math
 		public partial class TRIMSTART_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRIMSTART() { return GetToken(mathParser.TRIMSTART, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public TRIMSTART_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitTRIMSTART_fun(this);
@@ -794,14 +648,12 @@ namespace ToolGood.Algorithm.math
 		public partial class RMB_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RMB() { return GetToken(mathParser.RMB, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public RMB_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitRMB_fun(this);
@@ -811,19 +663,13 @@ namespace ToolGood.Algorithm.math
 		public partial class DEC2HEX_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEC2HEX() { return GetToken(mathParser.DEC2HEX, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public DEC2HEX_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitDEC2HEX_fun(this);
@@ -833,14 +679,12 @@ namespace ToolGood.Algorithm.math
 		public partial class CLEAN_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CLEAN() { return GetToken(mathParser.CLEAN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public CLEAN_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitCLEAN_fun(this);
@@ -850,14 +694,12 @@ namespace ToolGood.Algorithm.math
 		public partial class LOWER_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOWER() { return GetToken(mathParser.LOWER, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public LOWER_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitLOWER_fun(this);
@@ -867,19 +709,13 @@ namespace ToolGood.Algorithm.math
 		public partial class OR_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OR() { return GetToken(mathParser.OR, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public OR_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitOR_fun(this);
@@ -889,19 +725,13 @@ namespace ToolGood.Algorithm.math
 		public partial class ADDMONTHS_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDMONTHS() { return GetToken(mathParser.ADDMONTHS, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public ADDMONTHS_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitADDMONTHS_fun(this);
@@ -911,14 +741,12 @@ namespace ToolGood.Algorithm.math
 		public partial class NORMSINV_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NORMSINV() { return GetToken(mathParser.NORMSINV, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public NORMSINV_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitNORMSINV_fun(this);
@@ -928,19 +756,13 @@ namespace ToolGood.Algorithm.math
 		public partial class LEFT_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LEFT() { return GetToken(mathParser.LEFT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public LEFT_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitLEFT_fun(this);
@@ -950,14 +772,12 @@ namespace ToolGood.Algorithm.math
 		public partial class ISEVEN_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISEVEN() { return GetToken(mathParser.ISEVEN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public ISEVEN_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitISEVEN_fun(this);
@@ -967,19 +787,13 @@ namespace ToolGood.Algorithm.math
 		public partial class LOGINV_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOGINV() { return GetToken(mathParser.LOGINV, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public LOGINV_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitLOGINV_fun(this);
@@ -989,19 +803,13 @@ namespace ToolGood.Algorithm.math
 		public partial class WORKDAY_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WORKDAY() { return GetToken(mathParser.WORKDAY, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public WORKDAY_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitWORKDAY_fun(this);
@@ -1011,19 +819,13 @@ namespace ToolGood.Algorithm.math
 		public partial class ISERROR_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISERROR() { return GetToken(mathParser.ISERROR, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public ISERROR_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitISERROR_fun(this);
@@ -1033,14 +835,12 @@ namespace ToolGood.Algorithm.math
 		public partial class BIN2DEC_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BIN2DEC() { return GetToken(mathParser.BIN2DEC, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public BIN2DEC_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitBIN2DEC_fun(this);
@@ -1050,14 +850,12 @@ namespace ToolGood.Algorithm.math
 		public partial class JIS_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode JIS() { return GetToken(mathParser.JIS, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public JIS_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitJIS_fun(this);
@@ -1067,19 +865,13 @@ namespace ToolGood.Algorithm.math
 		public partial class CRC32_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CRC32() { return GetToken(mathParser.CRC32, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public CRC32_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitCRC32_fun(this);
@@ -1089,19 +881,13 @@ namespace ToolGood.Algorithm.math
 		public partial class LCM_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LCM() { return GetToken(mathParser.LCM, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public LCM_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitLCM_fun(this);
@@ -1111,19 +897,13 @@ namespace ToolGood.Algorithm.math
 		public partial class HARMEAN_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HARMEAN() { return GetToken(mathParser.HARMEAN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public HARMEAN_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitHARMEAN_fun(this);
@@ -1133,19 +913,13 @@ namespace ToolGood.Algorithm.math
 		public partial class NORMINV_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NORMINV() { return GetToken(mathParser.NORMINV, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public NORMINV_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitNORMINV_fun(this);
@@ -1155,19 +929,13 @@ namespace ToolGood.Algorithm.math
 		public partial class GAMMAINV_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GAMMAINV() { return GetToken(mathParser.GAMMAINV, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public GAMMAINV_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitGAMMAINV_fun(this);
@@ -1177,14 +945,12 @@ namespace ToolGood.Algorithm.math
 		public partial class SQRT_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SQRT() { return GetToken(mathParser.SQRT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public SQRT_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitSQRT_fun(this);
@@ -1194,14 +960,12 @@ namespace ToolGood.Algorithm.math
 		public partial class DEGREES_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEGREES() { return GetToken(mathParser.DEGREES, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public DEGREES_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitDEGREES_fun(this);
@@ -1211,19 +975,13 @@ namespace ToolGood.Algorithm.math
 		public partial class MROUND_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MROUND() { return GetToken(mathParser.MROUND, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public MROUND_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitMROUND_fun(this);
@@ -1233,19 +991,13 @@ namespace ToolGood.Algorithm.math
 		public partial class DATEDIF_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DATEDIF() { return GetToken(mathParser.DATEDIF, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public DATEDIF_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitDATEDIF_fun(this);
@@ -1255,19 +1007,13 @@ namespace ToolGood.Algorithm.math
 		public partial class TRIMEND_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRIMEND() { return GetToken(mathParser.TRIMEND, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public TRIMEND_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitTRIMEND_fun(this);
@@ -1277,14 +1023,12 @@ namespace ToolGood.Algorithm.math
 		public partial class ISLOGICAL_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISLOGICAL() { return GetToken(mathParser.ISLOGICAL, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public ISLOGICAL_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitISLOGICAL_fun(this);
@@ -1294,14 +1038,12 @@ namespace ToolGood.Algorithm.math
 		public partial class INT_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INT() { return GetToken(mathParser.INT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public INT_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitINT_fun(this);
@@ -1311,19 +1053,13 @@ namespace ToolGood.Algorithm.math
 		public partial class SUMIF_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUMIF() { return GetToken(mathParser.SUMIF, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public SUMIF_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitSUMIF_fun(this);
@@ -1333,19 +1069,13 @@ namespace ToolGood.Algorithm.math
 		public partial class HEX2OCT_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HEX2OCT() { return GetToken(mathParser.HEX2OCT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public HEX2OCT_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitHEX2OCT_fun(this);
@@ -1356,8 +1086,7 @@ namespace ToolGood.Algorithm.math
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PI() { return GetToken(mathParser.PI, 0); }
 			public PI_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitPI_fun(this);
@@ -1367,14 +1096,12 @@ namespace ToolGood.Algorithm.math
 		public partial class YEAR_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode YEAR() { return GetToken(mathParser.YEAR, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public YEAR_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitYEAR_fun(this);
@@ -1384,14 +1111,12 @@ namespace ToolGood.Algorithm.math
 		public partial class SQRTPI_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SQRTPI() { return GetToken(mathParser.SQRTPI, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public SQRTPI_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitSQRTPI_fun(this);
@@ -1401,19 +1126,13 @@ namespace ToolGood.Algorithm.math
 		public partial class CONCATENATE_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CONCATENATE() { return GetToken(mathParser.CONCATENATE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public CONCATENATE_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitCONCATENATE_fun(this);
@@ -1423,19 +1142,13 @@ namespace ToolGood.Algorithm.math
 		public partial class COUNT_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COUNT() { return GetToken(mathParser.COUNT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public COUNT_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitCOUNT_fun(this);
@@ -1446,8 +1159,7 @@ namespace ToolGood.Algorithm.math
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FALSE() { return GetToken(mathParser.FALSE, 0); }
 			public FALSE_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitFALSE_fun(this);
@@ -1457,14 +1169,12 @@ namespace ToolGood.Algorithm.math
 		public partial class HTMLENCODE_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HTMLENCODE() { return GetToken(mathParser.HTMLENCODE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public HTMLENCODE_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitHTMLENCODE_fun(this);
@@ -1474,19 +1184,13 @@ namespace ToolGood.Algorithm.math
 		public partial class BASE64URLTOTEXT_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BASE64URLTOTEXT() { return GetToken(mathParser.BASE64URLTOTEXT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public BASE64URLTOTEXT_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitBASE64URLTOTEXT_fun(this);
@@ -1496,14 +1200,12 @@ namespace ToolGood.Algorithm.math
 		public partial class LOG10_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOG10() { return GetToken(mathParser.LOG10, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public LOG10_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitLOG10_fun(this);
@@ -1513,14 +1215,12 @@ namespace ToolGood.Algorithm.math
 		public partial class ISTEXT_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISTEXT() { return GetToken(mathParser.ISTEXT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public ISTEXT_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitISTEXT_fun(this);
@@ -1530,19 +1230,13 @@ namespace ToolGood.Algorithm.math
 		public partial class NEGBINOMDIST_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NEGBINOMDIST() { return GetToken(mathParser.NEGBINOMDIST, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public NEGBINOMDIST_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitNEGBINOMDIST_fun(this);
@@ -1552,19 +1246,13 @@ namespace ToolGood.Algorithm.math
 		public partial class NETWORKDAYS_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NETWORKDAYS() { return GetToken(mathParser.NETWORKDAYS, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public NETWORKDAYS_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitNETWORKDAYS_fun(this);
@@ -1574,14 +1262,12 @@ namespace ToolGood.Algorithm.math
 		public partial class FACTDOUBLE_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FACTDOUBLE() { return GetToken(mathParser.FACTDOUBLE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public FACTDOUBLE_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitFACTDOUBLE_fun(this);
@@ -1591,14 +1277,12 @@ namespace ToolGood.Algorithm.math
 		public partial class TIMEVALUE_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TIMEVALUE() { return GetToken(mathParser.TIMEVALUE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public TIMEVALUE_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitTIMEVALUE_fun(this);
@@ -1608,19 +1292,13 @@ namespace ToolGood.Algorithm.math
 		public partial class AVEDEV_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AVEDEV() { return GetToken(mathParser.AVEDEV, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public AVEDEV_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitAVEDEV_fun(this);
@@ -1631,8 +1309,7 @@ namespace ToolGood.Algorithm.math
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GUID() { return GetToken(mathParser.GUID, 0); }
 			public GUID_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitGUID_fun(this);
@@ -1642,14 +1319,12 @@ namespace ToolGood.Algorithm.math
 		public partial class JSON_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode JSON() { return GetToken(mathParser.JSON, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public JSON_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitJSON_fun(this);
@@ -1659,19 +1334,13 @@ namespace ToolGood.Algorithm.math
 		public partial class FIXED_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FIXED() { return GetToken(mathParser.FIXED, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public FIXED_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitFIXED_fun(this);
@@ -1680,24 +1349,17 @@ namespace ToolGood.Algorithm.math
 		}
 		public partial class GetJsonValue_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public Parameter2Context parameter2()
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
+			[System.Diagnostics.DebuggerNonUserCode]public Parameter2Context parameter2()
 			{
 				return GetRuleContext<Parameter2Context>(0);
 			}
 			public GetJsonValue_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitGetJsonValue_fun(this);
@@ -1707,19 +1369,13 @@ namespace ToolGood.Algorithm.math
 		public partial class TINV_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TINV() { return GetToken(mathParser.TINV, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public TINV_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitTINV_fun(this);
@@ -1729,19 +1385,13 @@ namespace ToolGood.Algorithm.math
 		public partial class EDATE_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EDATE() { return GetToken(mathParser.EDATE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public EDATE_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitEDATE_fun(this);
@@ -1751,19 +1401,13 @@ namespace ToolGood.Algorithm.math
 		public partial class GEOMEAN_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GEOMEAN() { return GetToken(mathParser.GEOMEAN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public GEOMEAN_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitGEOMEAN_fun(this);
@@ -1773,19 +1417,13 @@ namespace ToolGood.Algorithm.math
 		public partial class VAR_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VAR() { return GetToken(mathParser.VAR, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public VAR_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitVAR_fun(this);
@@ -1795,14 +1433,12 @@ namespace ToolGood.Algorithm.math
 		public partial class SIGN_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SIGN() { return GetToken(mathParser.SIGN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public SIGN_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitSIGN_fun(this);
@@ -1812,19 +1448,13 @@ namespace ToolGood.Algorithm.math
 		public partial class EOMONTH_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EOMONTH() { return GetToken(mathParser.EOMONTH, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public EOMONTH_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitEOMONTH_fun(this);
@@ -1834,19 +1464,13 @@ namespace ToolGood.Algorithm.math
 		public partial class FLOOR_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FLOOR() { return GetToken(mathParser.FLOOR, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public FLOOR_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitFLOOR_fun(this);
@@ -1856,14 +1480,12 @@ namespace ToolGood.Algorithm.math
 		public partial class HOUR_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HOUR() { return GetToken(mathParser.HOUR, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public HOUR_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitHOUR_fun(this);
@@ -1873,14 +1495,12 @@ namespace ToolGood.Algorithm.math
 		public partial class LEN_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LEN() { return GetToken(mathParser.LEN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public LEN_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitLEN_fun(this);
@@ -1890,14 +1510,12 @@ namespace ToolGood.Algorithm.math
 		public partial class ACOS_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ACOS() { return GetToken(mathParser.ACOS, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public ACOS_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitACOS_fun(this);
@@ -1907,14 +1525,12 @@ namespace ToolGood.Algorithm.math
 		public partial class ISNULLORWHITESPACE_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNULLORWHITESPACE() { return GetToken(mathParser.ISNULLORWHITESPACE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public ISNULLORWHITESPACE_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitISNULLORWHITESPACE_fun(this);
@@ -1923,19 +1539,16 @@ namespace ToolGood.Algorithm.math
 		}
 		public partial class NUM_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode]
-			public NumContext num()
+			[System.Diagnostics.DebuggerNonUserCode]public NumContext num()
 			{
 				return GetRuleContext<NumContext>(0);
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public UnitContext unit()
+			[System.Diagnostics.DebuggerNonUserCode]public UnitContext unit()
 			{
 				return GetRuleContext<UnitContext>(0);
 			}
 			public NUM_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitNUM_fun(this);
@@ -1945,14 +1558,12 @@ namespace ToolGood.Algorithm.math
 		public partial class COSH_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COSH() { return GetToken(mathParser.COSH, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public COSH_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitCOSH_fun(this);
@@ -1962,19 +1573,13 @@ namespace ToolGood.Algorithm.math
 		public partial class QUOTIENT_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode QUOTIENT() { return GetToken(mathParser.QUOTIENT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public QUOTIENT_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitQUOTIENT_fun(this);
@@ -1984,14 +1589,12 @@ namespace ToolGood.Algorithm.math
 		public partial class OCT2DEC_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OCT2DEC() { return GetToken(mathParser.OCT2DEC, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public OCT2DEC_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitOCT2DEC_fun(this);
@@ -2001,19 +1604,13 @@ namespace ToolGood.Algorithm.math
 		public partial class SEARCH_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SEARCH() { return GetToken(mathParser.SEARCH, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public SEARCH_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitSEARCH_fun(this);
@@ -2023,19 +1620,13 @@ namespace ToolGood.Algorithm.math
 		public partial class ROUNDUP_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ROUNDUP() { return GetToken(mathParser.ROUNDUP, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public ROUNDUP_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitROUNDUP_fun(this);
@@ -2045,19 +1636,13 @@ namespace ToolGood.Algorithm.math
 		public partial class COMBIN_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COMBIN() { return GetToken(mathParser.COMBIN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public COMBIN_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitCOMBIN_fun(this);
@@ -2067,14 +1652,12 @@ namespace ToolGood.Algorithm.math
 		public partial class CODE_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CODE() { return GetToken(mathParser.CODE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public CODE_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitCODE_fun(this);
@@ -2084,14 +1667,12 @@ namespace ToolGood.Algorithm.math
 		public partial class ASINH_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ASINH() { return GetToken(mathParser.ASINH, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public ASINH_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitASINH_fun(this);
@@ -2101,14 +1682,12 @@ namespace ToolGood.Algorithm.math
 		public partial class SIN_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SIN() { return GetToken(mathParser.SIN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public SIN_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitSIN_fun(this);
@@ -2118,19 +1697,13 @@ namespace ToolGood.Algorithm.math
 		public partial class SUBSTRING_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUBSTRING() { return GetToken(mathParser.SUBSTRING, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public SUBSTRING_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitSUBSTRING_fun(this);
@@ -2140,19 +1713,13 @@ namespace ToolGood.Algorithm.math
 		public partial class RANDBETWEEN_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RANDBETWEEN() { return GetToken(mathParser.RANDBETWEEN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public RANDBETWEEN_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitRANDBETWEEN_fun(this);
@@ -2162,19 +1729,13 @@ namespace ToolGood.Algorithm.math
 		public partial class AVERAGE_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AVERAGE() { return GetToken(mathParser.AVERAGE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public AVERAGE_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitAVERAGE_fun(this);
@@ -2184,19 +1745,13 @@ namespace ToolGood.Algorithm.math
 		public partial class LOG_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOG() { return GetToken(mathParser.LOG, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public LOG_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitLOG_fun(this);
@@ -2206,19 +1761,13 @@ namespace ToolGood.Algorithm.math
 		public partial class HMACSHA512_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HMACSHA512() { return GetToken(mathParser.HMACSHA512, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public HMACSHA512_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitHMACSHA512_fun(this);
@@ -2228,21 +1777,15 @@ namespace ToolGood.Algorithm.math
 		public partial class AndOr_funContext : ExprContext
 		{
 			public IToken op;
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AND() { return GetToken(mathParser.AND, 0); }
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OR() { return GetToken(mathParser.OR, 0); }
 			public AndOr_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitAndOr_fun(this);
@@ -2252,19 +1795,13 @@ namespace ToolGood.Algorithm.math
 		public partial class STDEVP_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STDEVP() { return GetToken(mathParser.STDEVP, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public STDEVP_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitSTDEVP_fun(this);
@@ -2274,19 +1811,13 @@ namespace ToolGood.Algorithm.math
 		public partial class ADDYEARS_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDYEARS() { return GetToken(mathParser.ADDYEARS, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public ADDYEARS_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitADDYEARS_fun(this);
@@ -2296,19 +1827,13 @@ namespace ToolGood.Algorithm.math
 		public partial class ADDSECONDS_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDSECONDS() { return GetToken(mathParser.ADDSECONDS, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public ADDSECONDS_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitADDSECONDS_fun(this);
@@ -2318,19 +1843,13 @@ namespace ToolGood.Algorithm.math
 		public partial class Array_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ARRAY() { return GetToken(mathParser.ARRAY, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public Array_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitArray_fun(this);
@@ -2340,19 +1859,13 @@ namespace ToolGood.Algorithm.math
 		public partial class ROUND_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ROUND() { return GetToken(mathParser.ROUND, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public ROUND_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitROUND_fun(this);
@@ -2362,14 +1875,12 @@ namespace ToolGood.Algorithm.math
 		public partial class EXP_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EXP() { return GetToken(mathParser.EXP, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public EXP_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitEXP_fun(this);
@@ -2379,19 +1890,13 @@ namespace ToolGood.Algorithm.math
 		public partial class COUNTIF_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COUNTIF() { return GetToken(mathParser.COUNTIF, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public COUNTIF_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitCOUNTIF_fun(this);
@@ -2401,19 +1906,13 @@ namespace ToolGood.Algorithm.math
 		public partial class VARP_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VARP() { return GetToken(mathParser.VARP, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public VARP_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitVARP_fun(this);
@@ -2423,19 +1922,13 @@ namespace ToolGood.Algorithm.math
 		public partial class REMOVEEND_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REMOVEEND() { return GetToken(mathParser.REMOVEEND, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public REMOVEEND_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitREMOVEEND_fun(this);
@@ -2445,19 +1938,13 @@ namespace ToolGood.Algorithm.math
 		public partial class DATE_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DATE() { return GetToken(mathParser.DATE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public DATE_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitDATE_fun(this);
@@ -2468,8 +1955,7 @@ namespace ToolGood.Algorithm.math
 		{
 			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PARAMETER() { return GetToken(mathParser.PARAMETER, 0); }
 			public PARAMETER_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitPARAMETER_fun(this);
@@ -2479,19 +1965,13 @@ namespace ToolGood.Algorithm.math
 		public partial class SPLIT_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SPLIT() { return GetToken(mathParser.SPLIT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public SPLIT_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitSPLIT_fun(this);
@@ -2501,19 +1981,13 @@ namespace ToolGood.Algorithm.math
 		public partial class COVAR_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COVAR() { return GetToken(mathParser.COVAR, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public COVAR_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitCOVAR_fun(this);
@@ -2523,14 +1997,12 @@ namespace ToolGood.Algorithm.math
 		public partial class URLDECODE_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode URLDECODE() { return GetToken(mathParser.URLDECODE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public URLDECODE_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitURLDECODE_fun(this);
@@ -2540,19 +2012,13 @@ namespace ToolGood.Algorithm.math
 		public partial class LARGE_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LARGE() { return GetToken(mathParser.LARGE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public LARGE_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitLARGE_fun(this);
@@ -2562,19 +2028,13 @@ namespace ToolGood.Algorithm.math
 		public partial class TIMESTAMP_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TIMESTAMP() { return GetToken(mathParser.TIMESTAMP, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public TIMESTAMP_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitTIMESTAMP_fun(this);
@@ -2584,14 +2044,12 @@ namespace ToolGood.Algorithm.math
 		public partial class VALUE_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VALUE() { return GetToken(mathParser.VALUE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public VALUE_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitVALUE_fun(this);
@@ -2601,14 +2059,12 @@ namespace ToolGood.Algorithm.math
 		public partial class DAY_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DAY() { return GetToken(mathParser.DAY, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public DAY_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitDAY_fun(this);
@@ -2618,19 +2074,13 @@ namespace ToolGood.Algorithm.math
 		public partial class WEIBULL_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WEIBULL() { return GetToken(mathParser.WEIBULL, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public WEIBULL_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitWEIBULL_fun(this);
@@ -2640,19 +2090,13 @@ namespace ToolGood.Algorithm.math
 		public partial class HMACSHA256_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HMACSHA256() { return GetToken(mathParser.HMACSHA256, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public HMACSHA256_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitHMACSHA256_fun(this);
@@ -2662,19 +2106,13 @@ namespace ToolGood.Algorithm.math
 		public partial class BINOMDIST_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BINOMDIST() { return GetToken(mathParser.BINOMDIST, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public BINOMDIST_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitBINOMDIST_fun(this);
@@ -2684,19 +2122,13 @@ namespace ToolGood.Algorithm.math
 		public partial class Judge_funContext : ExprContext
 		{
 			public IToken op;
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public Judge_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitJudge_fun(this);
@@ -2706,19 +2138,13 @@ namespace ToolGood.Algorithm.math
 		public partial class DEVSQ_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEVSQ() { return GetToken(mathParser.DEVSQ, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public DEVSQ_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitDEVSQ_fun(this);
@@ -2728,19 +2154,13 @@ namespace ToolGood.Algorithm.math
 		public partial class MODE_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MODE() { return GetToken(mathParser.MODE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public MODE_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitMODE_fun(this);
@@ -2750,19 +2170,13 @@ namespace ToolGood.Algorithm.math
 		public partial class BETAINV_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BETAINV() { return GetToken(mathParser.BETAINV, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public BETAINV_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitBETAINV_fun(this);
@@ -2772,19 +2186,13 @@ namespace ToolGood.Algorithm.math
 		public partial class MAX_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MAX() { return GetToken(mathParser.MAX, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public MAX_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitMAX_fun(this);
@@ -2794,14 +2202,12 @@ namespace ToolGood.Algorithm.math
 		public partial class MINUTE_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MINUTE() { return GetToken(mathParser.MINUTE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public MINUTE_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitMINUTE_fun(this);
@@ -2811,14 +2217,12 @@ namespace ToolGood.Algorithm.math
 		public partial class TAN_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TAN() { return GetToken(mathParser.TAN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public TAN_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitTAN_fun(this);
@@ -2828,19 +2232,13 @@ namespace ToolGood.Algorithm.math
 		public partial class IFERROR_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IFERROR() { return GetToken(mathParser.IFERROR, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public IFERROR_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitIFERROR_fun(this);
@@ -2850,19 +2248,13 @@ namespace ToolGood.Algorithm.math
 		public partial class FDIST_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FDIST() { return GetToken(mathParser.FDIST, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public FDIST_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitFDIST_fun(this);
@@ -2872,19 +2264,13 @@ namespace ToolGood.Algorithm.math
 		public partial class INDEXOF_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INDEXOF() { return GetToken(mathParser.INDEXOF, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public INDEXOF_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitINDEXOF_fun(this);
@@ -2894,14 +2280,12 @@ namespace ToolGood.Algorithm.math
 		public partial class UPPER_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode UPPER() { return GetToken(mathParser.UPPER, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public UPPER_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitUPPER_fun(this);
@@ -2911,14 +2295,12 @@ namespace ToolGood.Algorithm.math
 		public partial class HTMLDECODE_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HTMLDECODE() { return GetToken(mathParser.HTMLDECODE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public HTMLDECODE_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitHTMLDECODE_fun(this);
@@ -2928,19 +2310,13 @@ namespace ToolGood.Algorithm.math
 		public partial class EXPONDIST_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EXPONDIST() { return GetToken(mathParser.EXPONDIST, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public EXPONDIST_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitEXPONDIST_fun(this);
@@ -2950,19 +2326,13 @@ namespace ToolGood.Algorithm.math
 		public partial class VLOOKUP_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VLOOKUP() { return GetToken(mathParser.VLOOKUP, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public VLOOKUP_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitVLOOKUP_fun(this);
@@ -2972,19 +2342,13 @@ namespace ToolGood.Algorithm.math
 		public partial class DEC2BIN_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEC2BIN() { return GetToken(mathParser.DEC2BIN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public DEC2BIN_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitDEC2BIN_fun(this);
@@ -2994,14 +2358,12 @@ namespace ToolGood.Algorithm.math
 		public partial class HEX2DEC_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HEX2DEC() { return GetToken(mathParser.HEX2DEC, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public HEX2DEC_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitHEX2DEC_fun(this);
@@ -3011,19 +2373,13 @@ namespace ToolGood.Algorithm.math
 		public partial class SMALL_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SMALL() { return GetToken(mathParser.SMALL, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public SMALL_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitSMALL_fun(this);
@@ -3033,14 +2389,12 @@ namespace ToolGood.Algorithm.math
 		public partial class ODD_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ODD() { return GetToken(mathParser.ODD, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public ODD_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitODD_fun(this);
@@ -3050,19 +2404,13 @@ namespace ToolGood.Algorithm.math
 		public partial class TEXTTOBASE64_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TEXTTOBASE64() { return GetToken(mathParser.TEXTTOBASE64, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public TEXTTOBASE64_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitTEXTTOBASE64_fun(this);
@@ -3072,19 +2420,13 @@ namespace ToolGood.Algorithm.math
 		public partial class MID_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MID() { return GetToken(mathParser.MID, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public MID_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitMID_fun(this);
@@ -3094,19 +2436,13 @@ namespace ToolGood.Algorithm.math
 		public partial class PERCENTRANK_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PERCENTRANK() { return GetToken(mathParser.PERCENTRANK, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public PERCENTRANK_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitPERCENTRANK_fun(this);
@@ -3116,19 +2452,13 @@ namespace ToolGood.Algorithm.math
 		public partial class STDEV_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STDEV() { return GetToken(mathParser.STDEV, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public STDEV_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitSTDEV_fun(this);
@@ -3138,14 +2468,12 @@ namespace ToolGood.Algorithm.math
 		public partial class NORMSDIST_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NORMSDIST() { return GetToken(mathParser.NORMSDIST, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public NORMSDIST_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitNORMSDIST_fun(this);
@@ -3155,14 +2483,12 @@ namespace ToolGood.Algorithm.math
 		public partial class ISNUMBER_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNUMBER() { return GetToken(mathParser.ISNUMBER, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public ISNUMBER_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitISNUMBER_fun(this);
@@ -3172,19 +2498,13 @@ namespace ToolGood.Algorithm.math
 		public partial class LASTINDEXOF_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LASTINDEXOF() { return GetToken(mathParser.LASTINDEXOF, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public LASTINDEXOF_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitLASTINDEXOF_fun(this);
@@ -3194,19 +2514,13 @@ namespace ToolGood.Algorithm.math
 		public partial class MOD_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MOD() { return GetToken(mathParser.MOD, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public MOD_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitMOD_fun(this);
@@ -3216,14 +2530,12 @@ namespace ToolGood.Algorithm.math
 		public partial class CHAR_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CHAR() { return GetToken(mathParser.CHAR, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public CHAR_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitCHAR_fun(this);
@@ -3233,19 +2545,13 @@ namespace ToolGood.Algorithm.math
 		public partial class REGEX_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REGEX() { return GetToken(mathParser.REGEX, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public REGEX_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitREGEX_fun(this);
@@ -3255,19 +2561,13 @@ namespace ToolGood.Algorithm.math
 		public partial class TEXTTOBASE64URL_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TEXTTOBASE64URL() { return GetToken(mathParser.TEXTTOBASE64URL, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public TEXTTOBASE64URL_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitTEXTTOBASE64URL_fun(this);
@@ -3277,19 +2577,13 @@ namespace ToolGood.Algorithm.math
 		public partial class MD5_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MD5() { return GetToken(mathParser.MD5, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public MD5_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitMD5_fun(this);
@@ -3299,19 +2593,13 @@ namespace ToolGood.Algorithm.math
 		public partial class REPLACE_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REPLACE() { return GetToken(mathParser.REPLACE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public REPLACE_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitREPLACE_fun(this);
@@ -3321,14 +2609,12 @@ namespace ToolGood.Algorithm.math
 		public partial class ACOSH_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ACOSH() { return GetToken(mathParser.ACOSH, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public ACOSH_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitACOSH_fun(this);
@@ -3338,14 +2624,12 @@ namespace ToolGood.Algorithm.math
 		public partial class ISODD_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISODD() { return GetToken(mathParser.ISODD, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public ISODD_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitISODD_fun(this);
@@ -3355,14 +2639,12 @@ namespace ToolGood.Algorithm.math
 		public partial class ASC_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ASC() { return GetToken(mathParser.ASC, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public ASC_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitASC_fun(this);
@@ -3372,14 +2654,12 @@ namespace ToolGood.Algorithm.math
 		public partial class COS_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COS() { return GetToken(mathParser.COS, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public COS_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitCOS_fun(this);
@@ -3389,14 +2669,12 @@ namespace ToolGood.Algorithm.math
 		public partial class LN_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LN() { return GetToken(mathParser.LN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public LN_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitLN_fun(this);
@@ -3407,8 +2685,7 @@ namespace ToolGood.Algorithm.math
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRING() { return GetToken(mathParser.STRING, 0); }
 			public STRING_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitSTRING_fun(this);
@@ -3418,19 +2695,13 @@ namespace ToolGood.Algorithm.math
 		public partial class HMACMD5_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HMACMD5() { return GetToken(mathParser.HMACMD5, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public HMACMD5_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitHMACMD5_fun(this);
@@ -3440,19 +2711,13 @@ namespace ToolGood.Algorithm.math
 		public partial class PRODUCT_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PRODUCT() { return GetToken(mathParser.PRODUCT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public PRODUCT_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitPRODUCT_fun(this);
@@ -3462,19 +2727,13 @@ namespace ToolGood.Algorithm.math
 		public partial class EXACT_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EXACT() { return GetToken(mathParser.EXACT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public EXACT_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitEXACT_fun(this);
@@ -3484,19 +2743,13 @@ namespace ToolGood.Algorithm.math
 		public partial class ADDMINUTES_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDMINUTES() { return GetToken(mathParser.ADDMINUTES, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public ADDMINUTES_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitADDMINUTES_fun(this);
@@ -3506,19 +2759,13 @@ namespace ToolGood.Algorithm.math
 		public partial class SUMSQ_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUMSQ() { return GetToken(mathParser.SUMSQ, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public SUMSQ_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitSUMSQ_fun(this);
@@ -3528,19 +2775,13 @@ namespace ToolGood.Algorithm.math
 		public partial class SUM_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUM() { return GetToken(mathParser.SUM, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public SUM_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitSUM_fun(this);
@@ -3550,14 +2791,12 @@ namespace ToolGood.Algorithm.math
 		public partial class SECOND_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SECOND() { return GetToken(mathParser.SECOND, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public SECOND_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitSECOND_fun(this);
@@ -3567,19 +2806,13 @@ namespace ToolGood.Algorithm.math
 		public partial class GAMMADIST_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GAMMADIST() { return GetToken(mathParser.GAMMADIST, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public GAMMADIST_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitGAMMADIST_fun(this);
@@ -3589,19 +2822,13 @@ namespace ToolGood.Algorithm.math
 		public partial class OCT2HEX_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OCT2HEX() { return GetToken(mathParser.OCT2HEX, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public OCT2HEX_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitOCT2HEX_fun(this);
@@ -3612,8 +2839,7 @@ namespace ToolGood.Algorithm.math
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TODAY() { return GetToken(mathParser.TODAY, 0); }
 			public TODAY_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitTODAY_fun(this);
@@ -3623,14 +2849,12 @@ namespace ToolGood.Algorithm.math
 		public partial class ERROR_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ERROR() { return GetToken(mathParser.ERROR, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public ERROR_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitERROR_fun(this);
@@ -3640,14 +2864,12 @@ namespace ToolGood.Algorithm.math
 		public partial class ATAN_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ATAN() { return GetToken(mathParser.ATAN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public ATAN_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitATAN_fun(this);
@@ -3658,8 +2880,7 @@ namespace ToolGood.Algorithm.math
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode E() { return GetToken(mathParser.E, 0); }
 			public E_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitE_fun(this);
@@ -3669,14 +2890,12 @@ namespace ToolGood.Algorithm.math
 		public partial class TRIM_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRIM() { return GetToken(mathParser.TRIM, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public TRIM_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitTRIM_fun(this);
@@ -3686,14 +2905,12 @@ namespace ToolGood.Algorithm.math
 		public partial class RADIANS_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RADIANS() { return GetToken(mathParser.RADIANS, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public RADIANS_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitRADIANS_fun(this);
@@ -3703,14 +2920,12 @@ namespace ToolGood.Algorithm.math
 		public partial class GAMMALN_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GAMMALN() { return GetToken(mathParser.GAMMALN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public GAMMALN_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitGAMMALN_fun(this);
@@ -3720,19 +2935,13 @@ namespace ToolGood.Algorithm.math
 		public partial class TEXT_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TEXT() { return GetToken(mathParser.TEXT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public TEXT_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitTEXT_fun(this);
@@ -3742,14 +2951,12 @@ namespace ToolGood.Algorithm.math
 		public partial class FISHER_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FISHER() { return GetToken(mathParser.FISHER, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public FISHER_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitFISHER_fun(this);
@@ -3759,19 +2966,13 @@ namespace ToolGood.Algorithm.math
 		public partial class AND_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AND() { return GetToken(mathParser.AND, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public AND_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitAND_fun(this);
@@ -3780,19 +2981,16 @@ namespace ToolGood.Algorithm.math
 		}
 		public partial class ArrayJson_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ArrayJsonContext[] arrayJson()
+			[System.Diagnostics.DebuggerNonUserCode]public ArrayJsonContext[] arrayJson()
 			{
 				return GetRuleContexts<ArrayJsonContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ArrayJsonContext arrayJson(int i)
+			[System.Diagnostics.DebuggerNonUserCode]public ArrayJsonContext arrayJson(int i)
 			{
 				return GetRuleContext<ArrayJsonContext>(i);
 			}
 			public ArrayJson_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitArrayJson_fun(this);
@@ -3802,19 +3000,13 @@ namespace ToolGood.Algorithm.math
 		public partial class BIN2HEX_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BIN2HEX() { return GetToken(mathParser.BIN2HEX, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public BIN2HEX_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitBIN2HEX_fun(this);
@@ -3824,19 +3016,13 @@ namespace ToolGood.Algorithm.math
 		public partial class MULTINOMIAL_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MULTINOMIAL() { return GetToken(mathParser.MULTINOMIAL, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public MULTINOMIAL_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitMULTINOMIAL_fun(this);
@@ -3846,14 +3032,12 @@ namespace ToolGood.Algorithm.math
 		public partial class MONTH_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MONTH() { return GetToken(mathParser.MONTH, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public MONTH_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitMONTH_fun(this);
@@ -3863,14 +3047,12 @@ namespace ToolGood.Algorithm.math
 		public partial class URLENCODE_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode URLENCODE() { return GetToken(mathParser.URLENCODE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public URLENCODE_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitURLENCODE_fun(this);
@@ -3880,19 +3062,13 @@ namespace ToolGood.Algorithm.math
 		public partial class NORMDIST_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NORMDIST() { return GetToken(mathParser.NORMDIST, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public NORMDIST_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitNORMDIST_fun(this);
@@ -3902,19 +3078,13 @@ namespace ToolGood.Algorithm.math
 		public partial class HMACSHA1_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HMACSHA1() { return GetToken(mathParser.HMACSHA1, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public HMACSHA1_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitHMACSHA1_fun(this);
@@ -3924,19 +3094,13 @@ namespace ToolGood.Algorithm.math
 		public partial class ENDSWITH_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ENDSWITH() { return GetToken(mathParser.ENDSWITH, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public ENDSWITH_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitENDSWITH_fun(this);
@@ -3945,14 +3109,12 @@ namespace ToolGood.Algorithm.math
 		}
 		public partial class Bracket_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public Bracket_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitBracket_fun(this);
@@ -3962,19 +3124,13 @@ namespace ToolGood.Algorithm.math
 		public partial class BETADIST_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BETADIST() { return GetToken(mathParser.BETADIST, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public BETADIST_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitBETADIST_fun(this);
@@ -3984,14 +3140,12 @@ namespace ToolGood.Algorithm.math
 		public partial class ATANH_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ATANH() { return GetToken(mathParser.ATANH, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public ATANH_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitATANH_fun(this);
@@ -4002,8 +3156,7 @@ namespace ToolGood.Algorithm.math
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NOW() { return GetToken(mathParser.NOW, 0); }
 			public NOW_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitNOW_fun(this);
@@ -4013,19 +3166,13 @@ namespace ToolGood.Algorithm.math
 		public partial class MEDIAN_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MEDIAN() { return GetToken(mathParser.MEDIAN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public MEDIAN_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitMEDIAN_fun(this);
@@ -4035,19 +3182,13 @@ namespace ToolGood.Algorithm.math
 		public partial class POWER_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode POWER() { return GetToken(mathParser.POWER, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public POWER_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitPOWER_fun(this);
@@ -4057,19 +3198,13 @@ namespace ToolGood.Algorithm.math
 		public partial class DEC2OCT_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DEC2OCT() { return GetToken(mathParser.DEC2OCT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public DEC2OCT_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitDEC2OCT_fun(this);
@@ -4079,14 +3214,12 @@ namespace ToolGood.Algorithm.math
 		public partial class PROPER_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PROPER() { return GetToken(mathParser.PROPER, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public PROPER_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitPROPER_fun(this);
@@ -4096,14 +3229,12 @@ namespace ToolGood.Algorithm.math
 		public partial class TRUNC_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRUNC() { return GetToken(mathParser.TRUNC, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public TRUNC_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitTRUNC_fun(this);
@@ -4113,19 +3244,13 @@ namespace ToolGood.Algorithm.math
 		public partial class GCD_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GCD() { return GetToken(mathParser.GCD, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public GCD_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitGCD_fun(this);
@@ -4135,14 +3260,12 @@ namespace ToolGood.Algorithm.math
 		public partial class TANH_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TANH() { return GetToken(mathParser.TANH, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public TANH_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitTANH_fun(this);
@@ -4152,19 +3275,13 @@ namespace ToolGood.Algorithm.math
 		public partial class HEX2BIN_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HEX2BIN() { return GetToken(mathParser.HEX2BIN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public HEX2BIN_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitHEX2BIN_fun(this);
@@ -4174,14 +3291,12 @@ namespace ToolGood.Algorithm.math
 		public partial class SINH_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SINH() { return GetToken(mathParser.SINH, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public SINH_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitSINH_fun(this);
@@ -4191,19 +3306,13 @@ namespace ToolGood.Algorithm.math
 		public partial class SHA512_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SHA512() { return GetToken(mathParser.SHA512, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public SHA512_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitSHA512_fun(this);
@@ -4213,19 +3322,13 @@ namespace ToolGood.Algorithm.math
 		public partial class MIN_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MIN() { return GetToken(mathParser.MIN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public MIN_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitMIN_fun(this);
@@ -4235,19 +3338,13 @@ namespace ToolGood.Algorithm.math
 		public partial class ADDDAYS_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDDAYS() { return GetToken(mathParser.ADDDAYS, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public ADDDAYS_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitADDDAYS_fun(this);
@@ -4257,14 +3354,12 @@ namespace ToolGood.Algorithm.math
 		public partial class ISNONTEXT_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNONTEXT() { return GetToken(mathParser.ISNONTEXT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public ISNONTEXT_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitISNONTEXT_fun(this);
@@ -4274,14 +3369,12 @@ namespace ToolGood.Algorithm.math
 		public partial class ABS_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ABS() { return GetToken(mathParser.ABS, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public ABS_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitABS_fun(this);
@@ -4291,19 +3384,13 @@ namespace ToolGood.Algorithm.math
 		public partial class ROUNDDOWN_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ROUNDDOWN() { return GetToken(mathParser.ROUNDDOWN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public ROUNDDOWN_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitROUNDDOWN_fun(this);
@@ -4313,19 +3400,13 @@ namespace ToolGood.Algorithm.math
 		public partial class IF_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IF() { return GetToken(mathParser.IF, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public IF_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitIF_fun(this);
@@ -4335,19 +3416,13 @@ namespace ToolGood.Algorithm.math
 		public partial class JOIN_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode JOIN() { return GetToken(mathParser.JOIN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public JOIN_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitJOIN_fun(this);
@@ -4357,19 +3432,13 @@ namespace ToolGood.Algorithm.math
 		public partial class FIND_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FIND() { return GetToken(mathParser.FIND, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public FIND_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitFIND_fun(this);
@@ -4379,19 +3448,13 @@ namespace ToolGood.Algorithm.math
 		public partial class SUBSTITUTE_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUBSTITUTE() { return GetToken(mathParser.SUBSTITUTE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public SUBSTITUTE_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitSUBSTITUTE_fun(this);
@@ -4400,14 +3463,12 @@ namespace ToolGood.Algorithm.math
 		}
 		public partial class Percentage_funContext : ExprContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public Percentage_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitPercentage_fun(this);
@@ -4417,19 +3478,13 @@ namespace ToolGood.Algorithm.math
 		public partial class REPT_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REPT() { return GetToken(mathParser.REPT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public REPT_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitREPT_fun(this);
@@ -4439,19 +3494,13 @@ namespace ToolGood.Algorithm.math
 		public partial class ISNULL_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNULL() { return GetToken(mathParser.ISNULL, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public ISNULL_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitISNULL_fun(this);
@@ -4461,14 +3510,12 @@ namespace ToolGood.Algorithm.math
 		public partial class ASIN_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ASIN() { return GetToken(mathParser.ASIN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public ASIN_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitASIN_fun(this);
@@ -4478,19 +3525,13 @@ namespace ToolGood.Algorithm.math
 		public partial class MulDiv_funContext : ExprContext
 		{
 			public IToken op;
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public MulDiv_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitMulDiv_fun(this);
@@ -4500,19 +3541,13 @@ namespace ToolGood.Algorithm.math
 		public partial class REMOVESTART_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode REMOVESTART() { return GetToken(mathParser.REMOVESTART, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public REMOVESTART_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitREMOVESTART_fun(this);
@@ -4522,14 +3557,12 @@ namespace ToolGood.Algorithm.math
 		public partial class T_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode T() { return GetToken(mathParser.T, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public T_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitT_fun(this);
@@ -4539,19 +3572,13 @@ namespace ToolGood.Algorithm.math
 		public partial class WEEKDAY_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WEEKDAY() { return GetToken(mathParser.WEEKDAY, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public WEEKDAY_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitWEEKDAY_fun(this);
@@ -4561,19 +3588,13 @@ namespace ToolGood.Algorithm.math
 		public partial class BIN2OCT_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BIN2OCT() { return GetToken(mathParser.BIN2OCT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public BIN2OCT_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitBIN2OCT_fun(this);
@@ -4584,8 +3605,7 @@ namespace ToolGood.Algorithm.math
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NULL() { return GetToken(mathParser.NULL, 0); }
 			public NULL_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitNULL_fun(this);
@@ -4595,19 +3615,13 @@ namespace ToolGood.Algorithm.math
 		public partial class BASE64TOTEXT_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BASE64TOTEXT() { return GetToken(mathParser.BASE64TOTEXT, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public BASE64TOTEXT_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitBASE64TOTEXT_fun(this);
@@ -4617,19 +3631,13 @@ namespace ToolGood.Algorithm.math
 		public partial class TDIST_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TDIST() { return GetToken(mathParser.TDIST, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public TDIST_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitTDIST_fun(this);
@@ -4639,19 +3647,13 @@ namespace ToolGood.Algorithm.math
 		public partial class DATEVALUE_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DATEVALUE() { return GetToken(mathParser.DATEVALUE, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public DATEVALUE_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitDATEVALUE_fun(this);
@@ -4661,19 +3663,13 @@ namespace ToolGood.Algorithm.math
 		public partial class STARTSWITH_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STARTSWITH() { return GetToken(mathParser.STARTSWITH, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public STARTSWITH_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitSTARTSWITH_fun(this);
@@ -4683,14 +3679,12 @@ namespace ToolGood.Algorithm.math
 		public partial class EVEN_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EVEN() { return GetToken(mathParser.EVEN, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public EVEN_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitEVEN_fun(this);
@@ -4700,19 +3694,13 @@ namespace ToolGood.Algorithm.math
 		public partial class LOGNORMDIST_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LOGNORMDIST() { return GetToken(mathParser.LOGNORMDIST, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public LOGNORMDIST_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitLOGNORMDIST_fun(this);
@@ -4722,14 +3710,12 @@ namespace ToolGood.Algorithm.math
 		public partial class ISNULLOREMPTY_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ISNULLOREMPTY() { return GetToken(mathParser.ISNULLOREMPTY, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public ISNULLOREMPTY_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitISNULLOREMPTY_fun(this);
@@ -4740,8 +3726,7 @@ namespace ToolGood.Algorithm.math
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRUE() { return GetToken(mathParser.TRUE, 0); }
 			public TRUE_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitTRUE_fun(this);
@@ -4751,14 +3736,12 @@ namespace ToolGood.Algorithm.math
 		public partial class FISHERINV_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FISHERINV() { return GetToken(mathParser.FISHERINV, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			public FISHERINV_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitFISHERINV_fun(this);
@@ -4768,19 +3751,13 @@ namespace ToolGood.Algorithm.math
 		public partial class SHA1_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SHA1() { return GetToken(mathParser.SHA1, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public SHA1_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitSHA1_fun(this);
@@ -4790,19 +3767,13 @@ namespace ToolGood.Algorithm.math
 		public partial class TIME_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TIME() { return GetToken(mathParser.TIME, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public TIME_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitTIME_fun(this);
@@ -4812,19 +3783,13 @@ namespace ToolGood.Algorithm.math
 		public partial class ATAN2_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ATAN2() { return GetToken(mathParser.ATAN2, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public ATAN2_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitATAN2_fun(this);
@@ -4834,19 +3799,13 @@ namespace ToolGood.Algorithm.math
 		public partial class ADDHOURS_funContext : ExprContext
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADDHOURS() { return GetToken(mathParser.ADDHOURS, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext[] expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext[] expr()
 			{
 				return GetRuleContexts<ExprContext>();
 			}
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr(int i)
-			{
-				return GetRuleContext<ExprContext>(i);
-			}
+			//[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr(int i){return GetRuleContext<ExprContext>(i);}
 			public ADDHOURS_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitADDHOURS_fun(this);
@@ -4857,8 +3816,7 @@ namespace ToolGood.Algorithm.math
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ALGORITHMVERSION() { return GetToken(mathParser.ALGORITHMVERSION, 0); }
 			public Version_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitVersion_fun(this);
@@ -4869,8 +3827,7 @@ namespace ToolGood.Algorithm.math
 		{
 			// [System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RAND() { return GetToken(mathParser.RAND, 0); }
 			public RAND_funContext(ExprContext context) { CopyFrom(context); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitRAND_fun(this);
@@ -4890,14 +3847,12 @@ namespace ToolGood.Algorithm.math
 			int _parentState = State;
 			ExprContext _localctx = new ExprContext(Context, _parentState);
 			ExprContext _prevctx = _localctx;
-			int _startState = 2;
-			EnterRecursionRule(_localctx, 2, RULE_expr, _p);
+			int _startState = 2;EnterRecursionRule(_localctx, 2, RULE_expr, _p);
 			int _la;
 			try {
 				int _alt;
 				EnterOuterAlt(_localctx, 1);
 				{
-					State = 1818;
 					ErrorHandler.Sync(this);
 					switch (Interpreter.AdaptivePredict(TokenStream, 105, Context)) {
 						case 1: {
@@ -4905,11 +3860,8 @@ namespace ToolGood.Algorithm.math
 								Context = _localctx;
 								_prevctx = _localctx;
 
-								State = 16;
 								Match(T__1);
-								State = 17;
-								expr(0);
-								State = 18;
+								State = 17;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -4917,39 +3869,29 @@ namespace ToolGood.Algorithm.math
 								_localctx = new NOT_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 20;
 								Match(T__6);
-								State = 21;
-								expr(235);
+								State = 21;expr(235);
 							}
 							break;
 						case 3: {
 								_localctx = new Array_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 22;
 								Match(ARRAY);
-								State = 23;
 								Match(T__1);
-								State = 24;
-								expr(0);
-								State = 29;
+								State = 24;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								while (_la == T__3) {
 									{
 										{
-											State = 25;
 											Match(T__3);
-											State = 26;
-											expr(0);
+											State = 26;expr(0);
 										}
 									}
-									State = 31;
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 								}
-								State = 32;
 								Match(T__2);
 							}
 							break;
@@ -4957,29 +3899,20 @@ namespace ToolGood.Algorithm.math
 								_localctx = new IF_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 34;
 								Match(IF);
-								State = 35;
 								Match(T__1);
-								State = 36;
-								expr(0);
-								State = 37;
+								State = 36;expr(0);
 								Match(T__3);
-								State = 38;
-								expr(0);
-								State = 41;
+								State = 38;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 39;
 										Match(T__3);
-										State = 40;
-										expr(0);
+										State = 40;expr(0);
 									}
 								}
 
-								State = 43;
 								Match(T__2);
 							}
 							break;
@@ -4987,13 +3920,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ISNUMBER_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 45;
 								Match(ISNUMBER);
-								State = 46;
 								Match(T__1);
-								State = 47;
-								expr(0);
-								State = 48;
+								State = 47;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -5001,13 +3930,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ISTEXT_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 50;
 								Match(ISTEXT);
-								State = 51;
 								Match(T__1);
-								State = 52;
-								expr(0);
-								State = 53;
+								State = 52;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -5015,25 +3940,18 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ISERROR_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 55;
 								Match(ISERROR);
-								State = 56;
 								Match(T__1);
-								State = 57;
-								expr(0);
-								State = 60;
+								State = 57;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 58;
 										Match(T__3);
-										State = 59;
-										expr(0);
+										State = 59;expr(0);
 									}
 								}
 
-								State = 62;
 								Match(T__2);
 							}
 							break;
@@ -5041,13 +3959,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ISNONTEXT_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 64;
 								Match(ISNONTEXT);
-								State = 65;
 								Match(T__1);
-								State = 66;
-								expr(0);
-								State = 67;
+								State = 66;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -5055,13 +3969,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ISLOGICAL_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 69;
 								Match(ISLOGICAL);
-								State = 70;
 								Match(T__1);
-								State = 71;
-								expr(0);
-								State = 72;
+								State = 71;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -5069,13 +3979,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ISEVEN_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 74;
 								Match(ISEVEN);
-								State = 75;
 								Match(T__1);
-								State = 76;
-								expr(0);
-								State = 77;
+								State = 76;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -5083,13 +3989,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ISODD_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 79;
 								Match(ISODD);
-								State = 80;
 								Match(T__1);
-								State = 81;
-								expr(0);
-								State = 82;
+								State = 81;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -5097,29 +3999,20 @@ namespace ToolGood.Algorithm.math
 								_localctx = new IFERROR_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 84;
 								Match(IFERROR);
-								State = 85;
 								Match(T__1);
-								State = 86;
-								expr(0);
-								State = 87;
+								State = 86;expr(0);
 								Match(T__3);
-								State = 88;
-								expr(0);
-								State = 91;
+								State = 88;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 89;
 										Match(T__3);
-										State = 90;
-										expr(0);
+										State = 90;expr(0);
 									}
 								}
 
-								State = 93;
 								Match(T__2);
 							}
 							break;
@@ -5127,25 +4020,18 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ISNULL_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 95;
 								Match(ISNULL);
-								State = 96;
 								Match(T__1);
-								State = 97;
-								expr(0);
-								State = 100;
+								State = 97;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 98;
 										Match(T__3);
-										State = 99;
-										expr(0);
+										State = 99;expr(0);
 									}
 								}
 
-								State = 102;
 								Match(T__2);
 							}
 							break;
@@ -5153,25 +4039,18 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ISNULLORERROR_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 104;
 								Match(ISNULLORERROR);
-								State = 105;
 								Match(T__1);
-								State = 106;
-								expr(0);
-								State = 109;
+								State = 106;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 107;
 										Match(T__3);
-										State = 108;
-										expr(0);
+										State = 108;expr(0);
 									}
 								}
 
-								State = 111;
 								Match(T__2);
 							}
 							break;
@@ -5179,29 +4058,21 @@ namespace ToolGood.Algorithm.math
 								_localctx = new AND_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 113;
 								Match(AND);
-								State = 114;
 								Match(T__1);
-								State = 115;
-								expr(0);
-								State = 120;
+								State = 115;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								while (_la == T__3) {
 									{
 										{
-											State = 116;
 											Match(T__3);
-											State = 117;
-											expr(0);
+											State = 117;expr(0);
 										}
 									}
-									State = 122;
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 								}
-								State = 123;
 								Match(T__2);
 							}
 							break;
@@ -5209,29 +4080,21 @@ namespace ToolGood.Algorithm.math
 								_localctx = new OR_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 125;
 								Match(OR);
-								State = 126;
 								Match(T__1);
-								State = 127;
-								expr(0);
-								State = 132;
+								State = 127;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								while (_la == T__3) {
 									{
 										{
-											State = 128;
 											Match(T__3);
-											State = 129;
-											expr(0);
+											State = 129;expr(0);
 										}
 									}
-									State = 134;
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 								}
-								State = 135;
 								Match(T__2);
 							}
 							break;
@@ -5239,13 +4102,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new NOT_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 137;
 								Match(NOT);
-								State = 138;
 								Match(T__1);
-								State = 139;
-								expr(0);
-								State = 140;
+								State = 139;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -5253,15 +4112,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new TRUE_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 142;
 								Match(TRUE);
-								State = 145;
 								ErrorHandler.Sync(this);
 								switch (Interpreter.AdaptivePredict(TokenStream, 8, Context)) {
 									case 1: {
-											State = 143;
 											Match(T__1);
-											State = 144;
 											Match(T__2);
 										}
 										break;
@@ -5272,15 +4127,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new FALSE_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 147;
 								Match(FALSE);
-								State = 150;
 								ErrorHandler.Sync(this);
 								switch (Interpreter.AdaptivePredict(TokenStream, 9, Context)) {
 									case 1: {
-											State = 148;
 											Match(T__1);
-											State = 149;
 											Match(T__2);
 										}
 										break;
@@ -5291,15 +4142,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new E_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 152;
 								Match(E);
-								State = 155;
 								ErrorHandler.Sync(this);
 								switch (Interpreter.AdaptivePredict(TokenStream, 10, Context)) {
 									case 1: {
-											State = 153;
 											Match(T__1);
-											State = 154;
 											Match(T__2);
 										}
 										break;
@@ -5310,15 +4157,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new PI_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 157;
 								Match(PI);
-								State = 160;
 								ErrorHandler.Sync(this);
 								switch (Interpreter.AdaptivePredict(TokenStream, 11, Context)) {
 									case 1: {
-											State = 158;
 											Match(T__1);
-											State = 159;
 											Match(T__2);
 										}
 										break;
@@ -5329,26 +4172,19 @@ namespace ToolGood.Algorithm.math
 								_localctx = new DEC2BIN_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 162;
 								Match(DEC2BIN);
 								{
-									State = 163;
 									Match(T__1);
-									State = 164;
-									expr(0);
-									State = 167;
+									State = 164;expr(0);
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 									if (_la == T__3) {
 										{
-											State = 165;
 											Match(T__3);
-											State = 166;
-											expr(0);
+											State = 166;expr(0);
 										}
 									}
 
-									State = 169;
 									Match(T__2);
 								}
 							}
@@ -5357,26 +4193,19 @@ namespace ToolGood.Algorithm.math
 								_localctx = new DEC2HEX_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 171;
 								Match(DEC2HEX);
 								{
-									State = 172;
 									Match(T__1);
-									State = 173;
-									expr(0);
-									State = 176;
+									State = 173;expr(0);
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 									if (_la == T__3) {
 										{
-											State = 174;
 											Match(T__3);
-											State = 175;
-											expr(0);
+											State = 175;expr(0);
 										}
 									}
 
-									State = 178;
 									Match(T__2);
 								}
 							}
@@ -5385,26 +4214,19 @@ namespace ToolGood.Algorithm.math
 								_localctx = new DEC2OCT_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 180;
 								Match(DEC2OCT);
 								{
-									State = 181;
 									Match(T__1);
-									State = 182;
-									expr(0);
-									State = 185;
+									State = 182;expr(0);
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 									if (_la == T__3) {
 										{
-											State = 183;
 											Match(T__3);
-											State = 184;
-											expr(0);
+											State = 184;expr(0);
 										}
 									}
 
-									State = 187;
 									Match(T__2);
 								}
 							}
@@ -5413,26 +4235,19 @@ namespace ToolGood.Algorithm.math
 								_localctx = new HEX2BIN_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 189;
 								Match(HEX2BIN);
 								{
-									State = 190;
 									Match(T__1);
-									State = 191;
-									expr(0);
-									State = 194;
+									State = 191;expr(0);
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 									if (_la == T__3) {
 										{
-											State = 192;
 											Match(T__3);
-											State = 193;
-											expr(0);
+											State = 193;expr(0);
 										}
 									}
 
-									State = 196;
 									Match(T__2);
 								}
 							}
@@ -5441,14 +4256,10 @@ namespace ToolGood.Algorithm.math
 								_localctx = new HEX2DEC_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 198;
 								Match(HEX2DEC);
 								{
-									State = 199;
 									Match(T__1);
-									State = 200;
-									expr(0);
-									State = 201;
+									State = 200;expr(0);
 									Match(T__2);
 								}
 							}
@@ -5457,26 +4268,19 @@ namespace ToolGood.Algorithm.math
 								_localctx = new HEX2OCT_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 203;
 								Match(HEX2OCT);
 								{
-									State = 204;
 									Match(T__1);
-									State = 205;
-									expr(0);
-									State = 208;
+									State = 205;expr(0);
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 									if (_la == T__3) {
 										{
-											State = 206;
 											Match(T__3);
-											State = 207;
-											expr(0);
+											State = 207;expr(0);
 										}
 									}
 
-									State = 210;
 									Match(T__2);
 								}
 							}
@@ -5485,26 +4289,19 @@ namespace ToolGood.Algorithm.math
 								_localctx = new OCT2BIN_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 212;
 								Match(OCT2BIN);
 								{
-									State = 213;
 									Match(T__1);
-									State = 214;
-									expr(0);
-									State = 217;
+									State = 214;expr(0);
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 									if (_la == T__3) {
 										{
-											State = 215;
 											Match(T__3);
-											State = 216;
-											expr(0);
+											State = 216;expr(0);
 										}
 									}
 
-									State = 219;
 									Match(T__2);
 								}
 							}
@@ -5513,14 +4310,10 @@ namespace ToolGood.Algorithm.math
 								_localctx = new OCT2DEC_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 221;
 								Match(OCT2DEC);
 								{
-									State = 222;
 									Match(T__1);
-									State = 223;
-									expr(0);
-									State = 224;
+									State = 223;expr(0);
 									Match(T__2);
 								}
 							}
@@ -5529,26 +4322,19 @@ namespace ToolGood.Algorithm.math
 								_localctx = new OCT2HEX_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 226;
 								Match(OCT2HEX);
 								{
-									State = 227;
 									Match(T__1);
-									State = 228;
-									expr(0);
-									State = 231;
+									State = 228;expr(0);
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 									if (_la == T__3) {
 										{
-											State = 229;
 											Match(T__3);
-											State = 230;
-											expr(0);
+											State = 230;expr(0);
 										}
 									}
 
-									State = 233;
 									Match(T__2);
 								}
 							}
@@ -5557,26 +4343,19 @@ namespace ToolGood.Algorithm.math
 								_localctx = new BIN2OCT_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 235;
 								Match(BIN2OCT);
 								{
-									State = 236;
 									Match(T__1);
-									State = 237;
-									expr(0);
-									State = 240;
+									State = 237;expr(0);
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 									if (_la == T__3) {
 										{
-											State = 238;
 											Match(T__3);
-											State = 239;
-											expr(0);
+											State = 239;expr(0);
 										}
 									}
 
-									State = 242;
 									Match(T__2);
 								}
 							}
@@ -5585,14 +4364,10 @@ namespace ToolGood.Algorithm.math
 								_localctx = new BIN2DEC_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 244;
 								Match(BIN2DEC);
 								{
-									State = 245;
 									Match(T__1);
-									State = 246;
-									expr(0);
-									State = 247;
+									State = 246;expr(0);
 									Match(T__2);
 								}
 							}
@@ -5601,26 +4376,19 @@ namespace ToolGood.Algorithm.math
 								_localctx = new BIN2HEX_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 249;
 								Match(BIN2HEX);
 								{
-									State = 250;
 									Match(T__1);
-									State = 251;
-									expr(0);
-									State = 254;
+									State = 251;expr(0);
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 									if (_la == T__3) {
 										{
-											State = 252;
 											Match(T__3);
-											State = 253;
-											expr(0);
+											State = 253;expr(0);
 										}
 									}
 
-									State = 256;
 									Match(T__2);
 								}
 							}
@@ -5629,13 +4397,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ABS_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 258;
 								Match(ABS);
-								State = 259;
 								Match(T__1);
-								State = 260;
-								expr(0);
-								State = 261;
+								State = 260;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -5643,19 +4407,13 @@ namespace ToolGood.Algorithm.math
 								_localctx = new QUOTIENT_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 263;
 								Match(QUOTIENT);
-								State = 264;
 								Match(T__1);
-								State = 265;
-								expr(0);
+								State = 265;expr(0);
 								{
-									State = 266;
 									Match(T__3);
-									State = 267;
-									expr(0);
+									State = 267;expr(0);
 								}
-								State = 269;
 								Match(T__2);
 							}
 							break;
@@ -5663,19 +4421,13 @@ namespace ToolGood.Algorithm.math
 								_localctx = new MOD_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 271;
 								Match(MOD);
-								State = 272;
 								Match(T__1);
-								State = 273;
-								expr(0);
+								State = 273;expr(0);
 								{
-									State = 274;
 									Match(T__3);
-									State = 275;
-									expr(0);
+									State = 275;expr(0);
 								}
-								State = 277;
 								Match(T__2);
 							}
 							break;
@@ -5683,13 +4435,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new SIGN_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 279;
 								Match(SIGN);
-								State = 280;
 								Match(T__1);
-								State = 281;
-								expr(0);
-								State = 282;
+								State = 281;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -5697,13 +4445,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new SQRT_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 284;
 								Match(SQRT);
-								State = 285;
 								Match(T__1);
-								State = 286;
-								expr(0);
-								State = 287;
+								State = 286;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -5711,13 +4455,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new TRUNC_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 289;
 								Match(TRUNC);
-								State = 290;
 								Match(T__1);
-								State = 291;
-								expr(0);
-								State = 292;
+								State = 291;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -5725,13 +4465,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new INT_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 294;
 								Match(INT);
-								State = 295;
 								Match(T__1);
-								State = 296;
-								expr(0);
-								State = 297;
+								State = 296;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -5739,29 +4475,21 @@ namespace ToolGood.Algorithm.math
 								_localctx = new GCD_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 299;
 								Match(GCD);
-								State = 300;
 								Match(T__1);
-								State = 301;
-								expr(0);
-								State = 304;
+								State = 301;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								do {
 									{
 										{
-											State = 302;
 											Match(T__3);
-											State = 303;
-											expr(0);
+											State = 303;expr(0);
 										}
 									}
-									State = 306;
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 								} while (_la == T__3);
-								State = 308;
 								Match(T__2);
 							}
 							break;
@@ -5769,29 +4497,21 @@ namespace ToolGood.Algorithm.math
 								_localctx = new LCM_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 310;
 								Match(LCM);
-								State = 311;
 								Match(T__1);
-								State = 312;
-								expr(0);
-								State = 315;
+								State = 312;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								do {
 									{
 										{
-											State = 313;
 											Match(T__3);
-											State = 314;
-											expr(0);
+											State = 314;expr(0);
 										}
 									}
-									State = 317;
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 								} while (_la == T__3);
-								State = 319;
 								Match(T__2);
 							}
 							break;
@@ -5799,17 +4519,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new COMBIN_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 321;
 								Match(COMBIN);
-								State = 322;
 								Match(T__1);
-								State = 323;
-								expr(0);
-								State = 324;
+								State = 323;expr(0);
 								Match(T__3);
-								State = 325;
-								expr(0);
-								State = 326;
+								State = 325;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -5817,17 +4531,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new PERMUT_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 328;
 								Match(PERMUT);
-								State = 329;
 								Match(T__1);
-								State = 330;
-								expr(0);
-								State = 331;
+								State = 330;expr(0);
 								Match(T__3);
-								State = 332;
-								expr(0);
-								State = 333;
+								State = 332;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -5835,13 +4543,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new DEGREES_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 335;
 								Match(DEGREES);
-								State = 336;
 								Match(T__1);
-								State = 337;
-								expr(0);
-								State = 338;
+								State = 337;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -5849,13 +4553,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new RADIANS_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 340;
 								Match(RADIANS);
-								State = 341;
 								Match(T__1);
-								State = 342;
-								expr(0);
-								State = 343;
+								State = 342;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -5863,13 +4563,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new COS_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 345;
 								Match(COS);
-								State = 346;
 								Match(T__1);
-								State = 347;
-								expr(0);
-								State = 348;
+								State = 347;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -5877,13 +4573,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new COSH_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 350;
 								Match(COSH);
-								State = 351;
 								Match(T__1);
-								State = 352;
-								expr(0);
-								State = 353;
+								State = 352;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -5891,13 +4583,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new SIN_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 355;
 								Match(SIN);
-								State = 356;
 								Match(T__1);
-								State = 357;
-								expr(0);
-								State = 358;
+								State = 357;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -5905,13 +4593,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new SINH_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 360;
 								Match(SINH);
-								State = 361;
 								Match(T__1);
-								State = 362;
-								expr(0);
-								State = 363;
+								State = 362;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -5919,13 +4603,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new TAN_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 365;
 								Match(TAN);
-								State = 366;
 								Match(T__1);
-								State = 367;
-								expr(0);
-								State = 368;
+								State = 367;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -5933,13 +4613,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new TANH_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 370;
 								Match(TANH);
-								State = 371;
 								Match(T__1);
-								State = 372;
-								expr(0);
-								State = 373;
+								State = 372;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -5947,13 +4623,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ACOS_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 375;
 								Match(ACOS);
-								State = 376;
 								Match(T__1);
-								State = 377;
-								expr(0);
-								State = 378;
+								State = 377;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -5961,13 +4633,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ACOSH_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 380;
 								Match(ACOSH);
-								State = 381;
 								Match(T__1);
-								State = 382;
-								expr(0);
-								State = 383;
+								State = 382;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -5975,13 +4643,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ASIN_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 385;
 								Match(ASIN);
-								State = 386;
 								Match(T__1);
-								State = 387;
-								expr(0);
-								State = 388;
+								State = 387;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -5989,13 +4653,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ASINH_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 390;
 								Match(ASINH);
-								State = 391;
 								Match(T__1);
-								State = 392;
-								expr(0);
-								State = 393;
+								State = 392;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6003,13 +4663,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ATAN_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 395;
 								Match(ATAN);
-								State = 396;
 								Match(T__1);
-								State = 397;
-								expr(0);
-								State = 398;
+								State = 397;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6017,13 +4673,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ATANH_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 400;
 								Match(ATANH);
-								State = 401;
 								Match(T__1);
-								State = 402;
-								expr(0);
-								State = 403;
+								State = 402;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6031,17 +4683,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ATAN2_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 405;
 								Match(ATAN2);
-								State = 406;
 								Match(T__1);
-								State = 407;
-								expr(0);
-								State = 408;
+								State = 407;expr(0);
 								Match(T__3);
-								State = 409;
-								expr(0);
-								State = 410;
+								State = 409;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6049,25 +4695,18 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ROUND_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 412;
 								Match(ROUND);
-								State = 413;
 								Match(T__1);
-								State = 414;
-								expr(0);
-								State = 417;
+								State = 414;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 415;
 										Match(T__3);
-										State = 416;
-										expr(0);
+										State = 416;expr(0);
 									}
 								}
 
-								State = 419;
 								Match(T__2);
 							}
 							break;
@@ -6075,17 +4714,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ROUNDDOWN_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 421;
 								Match(ROUNDDOWN);
-								State = 422;
 								Match(T__1);
-								State = 423;
-								expr(0);
-								State = 424;
+								State = 423;expr(0);
 								Match(T__3);
-								State = 425;
-								expr(0);
-								State = 426;
+								State = 425;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6093,17 +4726,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ROUNDUP_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 428;
 								Match(ROUNDUP);
-								State = 429;
 								Match(T__1);
-								State = 430;
-								expr(0);
-								State = 431;
+								State = 430;expr(0);
 								Match(T__3);
-								State = 432;
-								expr(0);
-								State = 433;
+								State = 432;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6111,25 +4738,18 @@ namespace ToolGood.Algorithm.math
 								_localctx = new CEILING_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 435;
 								Match(CEILING);
-								State = 436;
 								Match(T__1);
-								State = 437;
-								expr(0);
-								State = 440;
+								State = 437;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 438;
 										Match(T__3);
-										State = 439;
-										expr(0);
+										State = 439;expr(0);
 									}
 								}
 
-								State = 442;
 								Match(T__2);
 							}
 							break;
@@ -6137,25 +4757,18 @@ namespace ToolGood.Algorithm.math
 								_localctx = new FLOOR_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 444;
 								Match(FLOOR);
-								State = 445;
 								Match(T__1);
-								State = 446;
-								expr(0);
-								State = 449;
+								State = 446;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 447;
 										Match(T__3);
-										State = 448;
-										expr(0);
+										State = 448;expr(0);
 									}
 								}
 
-								State = 451;
 								Match(T__2);
 							}
 							break;
@@ -6163,13 +4776,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new EVEN_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 453;
 								Match(EVEN);
-								State = 454;
 								Match(T__1);
-								State = 455;
-								expr(0);
-								State = 456;
+								State = 455;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6177,13 +4786,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ODD_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 458;
 								Match(ODD);
-								State = 459;
 								Match(T__1);
-								State = 460;
-								expr(0);
-								State = 461;
+								State = 460;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6191,17 +4796,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new MROUND_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 463;
 								Match(MROUND);
-								State = 464;
 								Match(T__1);
-								State = 465;
-								expr(0);
-								State = 466;
+								State = 465;expr(0);
 								Match(T__3);
-								State = 467;
-								expr(0);
-								State = 468;
+								State = 467;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6209,11 +4808,8 @@ namespace ToolGood.Algorithm.math
 								_localctx = new RAND_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 470;
 								Match(RAND);
-								State = 471;
 								Match(T__1);
-								State = 472;
 								Match(T__2);
 							}
 							break;
@@ -6221,17 +4817,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new RANDBETWEEN_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 473;
 								Match(RANDBETWEEN);
-								State = 474;
 								Match(T__1);
-								State = 475;
-								expr(0);
-								State = 476;
+								State = 475;expr(0);
 								Match(T__3);
-								State = 477;
-								expr(0);
-								State = 478;
+								State = 477;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6239,13 +4829,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new FACT_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 480;
 								Match(FACT);
-								State = 481;
 								Match(T__1);
-								State = 482;
-								expr(0);
-								State = 483;
+								State = 482;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6253,13 +4839,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new FACTDOUBLE_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 485;
 								Match(FACTDOUBLE);
-								State = 486;
 								Match(T__1);
-								State = 487;
-								expr(0);
-								State = 488;
+								State = 487;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6267,17 +4849,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new POWER_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 490;
 								Match(POWER);
-								State = 491;
 								Match(T__1);
-								State = 492;
-								expr(0);
-								State = 493;
+								State = 492;expr(0);
 								Match(T__3);
-								State = 494;
-								expr(0);
-								State = 495;
+								State = 494;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6285,13 +4861,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new EXP_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 497;
 								Match(EXP);
-								State = 498;
 								Match(T__1);
-								State = 499;
-								expr(0);
-								State = 500;
+								State = 499;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6299,13 +4871,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new LN_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 502;
 								Match(LN);
-								State = 503;
 								Match(T__1);
-								State = 504;
-								expr(0);
-								State = 505;
+								State = 504;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6313,25 +4881,18 @@ namespace ToolGood.Algorithm.math
 								_localctx = new LOG_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 507;
 								Match(LOG);
-								State = 508;
 								Match(T__1);
-								State = 509;
-								expr(0);
-								State = 512;
+								State = 509;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 510;
 										Match(T__3);
-										State = 511;
-										expr(0);
+										State = 511;expr(0);
 									}
 								}
 
-								State = 514;
 								Match(T__2);
 							}
 							break;
@@ -6339,13 +4900,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new LOG10_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 516;
 								Match(LOG10);
-								State = 517;
 								Match(T__1);
-								State = 518;
-								expr(0);
-								State = 519;
+								State = 518;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6353,29 +4910,21 @@ namespace ToolGood.Algorithm.math
 								_localctx = new MULTINOMIAL_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 521;
 								Match(MULTINOMIAL);
-								State = 522;
 								Match(T__1);
-								State = 523;
-								expr(0);
-								State = 528;
+								State = 523;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								while (_la == T__3) {
 									{
 										{
-											State = 524;
 											Match(T__3);
-											State = 525;
-											expr(0);
+											State = 525;expr(0);
 										}
 									}
-									State = 530;
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 								}
-								State = 531;
 								Match(T__2);
 							}
 							break;
@@ -6383,29 +4932,21 @@ namespace ToolGood.Algorithm.math
 								_localctx = new PRODUCT_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 533;
 								Match(PRODUCT);
-								State = 534;
 								Match(T__1);
-								State = 535;
-								expr(0);
-								State = 540;
+								State = 535;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								while (_la == T__3) {
 									{
 										{
-											State = 536;
 											Match(T__3);
-											State = 537;
-											expr(0);
+											State = 537;expr(0);
 										}
 									}
-									State = 542;
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 								}
-								State = 543;
 								Match(T__2);
 							}
 							break;
@@ -6413,13 +4954,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new SQRTPI_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 545;
 								Match(SQRTPI);
-								State = 546;
 								Match(T__1);
-								State = 547;
-								expr(0);
-								State = 548;
+								State = 547;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6427,29 +4964,21 @@ namespace ToolGood.Algorithm.math
 								_localctx = new SUMSQ_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 550;
 								Match(SUMSQ);
-								State = 551;
 								Match(T__1);
-								State = 552;
-								expr(0);
-								State = 557;
+								State = 552;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								while (_la == T__3) {
 									{
 										{
-											State = 553;
 											Match(T__3);
-											State = 554;
-											expr(0);
+											State = 554;expr(0);
 										}
 									}
-									State = 559;
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 								}
-								State = 560;
 								Match(T__2);
 							}
 							break;
@@ -6457,13 +4986,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ASC_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 562;
 								Match(ASC);
-								State = 563;
 								Match(T__1);
-								State = 564;
-								expr(0);
-								State = 565;
+								State = 564;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6471,13 +4996,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new JIS_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 567;
 								Match(JIS);
-								State = 568;
 								Match(T__1);
-								State = 569;
-								expr(0);
-								State = 570;
+								State = 569;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6485,13 +5006,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new CHAR_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 572;
 								Match(CHAR);
-								State = 573;
 								Match(T__1);
-								State = 574;
-								expr(0);
-								State = 575;
+								State = 574;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6499,13 +5016,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new CLEAN_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 577;
 								Match(CLEAN);
-								State = 578;
 								Match(T__1);
-								State = 579;
-								expr(0);
-								State = 580;
+								State = 579;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6513,13 +5026,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new CODE_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 582;
 								Match(CODE);
-								State = 583;
 								Match(T__1);
-								State = 584;
-								expr(0);
-								State = 585;
+								State = 584;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6527,29 +5036,21 @@ namespace ToolGood.Algorithm.math
 								_localctx = new CONCATENATE_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 587;
 								Match(CONCATENATE);
-								State = 588;
 								Match(T__1);
-								State = 589;
-								expr(0);
-								State = 594;
+								State = 589;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								while (_la == T__3) {
 									{
 										{
-											State = 590;
 											Match(T__3);
-											State = 591;
-											expr(0);
+											State = 591;expr(0);
 										}
 									}
-									State = 596;
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 								}
-								State = 597;
 								Match(T__2);
 							}
 							break;
@@ -6557,17 +5058,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new EXACT_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 599;
 								Match(EXACT);
-								State = 600;
 								Match(T__1);
-								State = 601;
-								expr(0);
-								State = 602;
+								State = 601;expr(0);
 								Match(T__3);
-								State = 603;
-								expr(0);
-								State = 604;
+								State = 603;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6575,29 +5070,20 @@ namespace ToolGood.Algorithm.math
 								_localctx = new FIND_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 606;
 								Match(FIND);
-								State = 607;
 								Match(T__1);
-								State = 608;
-								expr(0);
-								State = 609;
+								State = 608;expr(0);
 								Match(T__3);
-								State = 610;
-								expr(0);
-								State = 613;
+								State = 610;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 611;
 										Match(T__3);
-										State = 612;
-										expr(0);
+										State = 612;expr(0);
 									}
 								}
 
-								State = 615;
 								Match(T__2);
 							}
 							break;
@@ -6605,37 +5091,27 @@ namespace ToolGood.Algorithm.math
 								_localctx = new FIXED_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 617;
 								Match(FIXED);
-								State = 618;
 								Match(T__1);
-								State = 619;
-								expr(0);
-								State = 626;
+								State = 619;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 620;
 										Match(T__3);
-										State = 621;
-										expr(0);
-										State = 624;
+										State = 621;expr(0);
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
 										if (_la == T__3) {
 											{
-												State = 622;
 												Match(T__3);
-												State = 623;
-												expr(0);
+												State = 623;expr(0);
 											}
 										}
 
 									}
 								}
 
-								State = 628;
 								Match(T__2);
 							}
 							break;
@@ -6643,25 +5119,18 @@ namespace ToolGood.Algorithm.math
 								_localctx = new LEFT_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 630;
 								Match(LEFT);
-								State = 631;
 								Match(T__1);
-								State = 632;
-								expr(0);
-								State = 635;
+								State = 632;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 633;
 										Match(T__3);
-										State = 634;
-										expr(0);
+										State = 634;expr(0);
 									}
 								}
 
-								State = 637;
 								Match(T__2);
 							}
 							break;
@@ -6669,13 +5138,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new LEN_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 639;
 								Match(LEN);
-								State = 640;
 								Match(T__1);
-								State = 641;
-								expr(0);
-								State = 642;
+								State = 641;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6683,13 +5148,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new LOWER_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 644;
 								Match(LOWER);
-								State = 645;
 								Match(T__1);
-								State = 646;
-								expr(0);
-								State = 647;
+								State = 646;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6697,21 +5158,13 @@ namespace ToolGood.Algorithm.math
 								_localctx = new MID_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 649;
 								Match(MID);
-								State = 650;
 								Match(T__1);
-								State = 651;
-								expr(0);
-								State = 652;
+								State = 651;expr(0);
 								Match(T__3);
-								State = 653;
-								expr(0);
-								State = 654;
+								State = 653;expr(0);
 								Match(T__3);
-								State = 655;
-								expr(0);
-								State = 656;
+								State = 655;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6719,13 +5172,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new PROPER_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 658;
 								Match(PROPER);
-								State = 659;
 								Match(T__1);
-								State = 660;
-								expr(0);
-								State = 661;
+								State = 660;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6733,33 +5182,22 @@ namespace ToolGood.Algorithm.math
 								_localctx = new REPLACE_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 663;
 								Match(REPLACE);
-								State = 664;
 								Match(T__1);
-								State = 665;
-								expr(0);
-								State = 666;
+								State = 665;expr(0);
 								Match(T__3);
-								State = 667;
-								expr(0);
-								State = 668;
+								State = 667;expr(0);
 								Match(T__3);
-								State = 669;
-								expr(0);
-								State = 672;
+								State = 669;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 670;
 										Match(T__3);
-										State = 671;
-										expr(0);
+										State = 671;expr(0);
 									}
 								}
 
-								State = 674;
 								Match(T__2);
 							}
 							break;
@@ -6767,17 +5205,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new REPT_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 676;
 								Match(REPT);
-								State = 677;
 								Match(T__1);
-								State = 678;
-								expr(0);
-								State = 679;
+								State = 678;expr(0);
 								Match(T__3);
-								State = 680;
-								expr(0);
-								State = 681;
+								State = 680;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6785,25 +5217,18 @@ namespace ToolGood.Algorithm.math
 								_localctx = new RIGHT_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 683;
 								Match(RIGHT);
-								State = 684;
 								Match(T__1);
-								State = 685;
-								expr(0);
-								State = 688;
+								State = 685;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 686;
 										Match(T__3);
-										State = 687;
-										expr(0);
+										State = 687;expr(0);
 									}
 								}
 
-								State = 690;
 								Match(T__2);
 							}
 							break;
@@ -6811,13 +5236,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new RMB_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 692;
 								Match(RMB);
-								State = 693;
 								Match(T__1);
-								State = 694;
-								expr(0);
-								State = 695;
+								State = 694;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6825,29 +5246,20 @@ namespace ToolGood.Algorithm.math
 								_localctx = new SEARCH_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 697;
 								Match(SEARCH);
-								State = 698;
 								Match(T__1);
-								State = 699;
-								expr(0);
-								State = 700;
+								State = 699;expr(0);
 								Match(T__3);
-								State = 701;
-								expr(0);
-								State = 704;
+								State = 701;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 702;
 										Match(T__3);
-										State = 703;
-										expr(0);
+										State = 703;expr(0);
 									}
 								}
 
-								State = 706;
 								Match(T__2);
 							}
 							break;
@@ -6855,33 +5267,22 @@ namespace ToolGood.Algorithm.math
 								_localctx = new SUBSTITUTE_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 708;
 								Match(SUBSTITUTE);
-								State = 709;
 								Match(T__1);
-								State = 710;
-								expr(0);
-								State = 711;
+								State = 710;expr(0);
 								Match(T__3);
-								State = 712;
-								expr(0);
-								State = 713;
+								State = 712;expr(0);
 								Match(T__3);
-								State = 714;
-								expr(0);
-								State = 717;
+								State = 714;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 715;
 										Match(T__3);
-										State = 716;
-										expr(0);
+										State = 716;expr(0);
 									}
 								}
 
-								State = 719;
 								Match(T__2);
 							}
 							break;
@@ -6889,13 +5290,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new T_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 721;
 								Match(T);
-								State = 722;
 								Match(T__1);
-								State = 723;
-								expr(0);
-								State = 724;
+								State = 723;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6903,17 +5300,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new TEXT_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 726;
 								Match(TEXT);
-								State = 727;
 								Match(T__1);
-								State = 728;
-								expr(0);
-								State = 729;
+								State = 728;expr(0);
 								Match(T__3);
-								State = 730;
-								expr(0);
-								State = 731;
+								State = 730;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6921,13 +5312,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new TRIM_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 733;
 								Match(TRIM);
-								State = 734;
 								Match(T__1);
-								State = 735;
-								expr(0);
-								State = 736;
+								State = 735;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6935,13 +5322,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new UPPER_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 738;
 								Match(UPPER);
-								State = 739;
 								Match(T__1);
-								State = 740;
-								expr(0);
-								State = 741;
+								State = 740;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6949,13 +5332,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new VALUE_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 743;
 								Match(VALUE);
-								State = 744;
 								Match(T__1);
-								State = 745;
-								expr(0);
-								State = 746;
+								State = 745;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -6963,25 +5342,18 @@ namespace ToolGood.Algorithm.math
 								_localctx = new DATEVALUE_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 748;
 								Match(DATEVALUE);
-								State = 749;
 								Match(T__1);
-								State = 750;
-								expr(0);
-								State = 753;
+								State = 750;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 751;
 										Match(T__3);
-										State = 752;
-										expr(0);
+										State = 752;expr(0);
 									}
 								}
 
-								State = 755;
 								Match(T__2);
 							}
 							break;
@@ -6989,13 +5361,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new TIMEVALUE_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 757;
 								Match(TIMEVALUE);
-								State = 758;
 								Match(T__1);
-								State = 759;
-								expr(0);
-								State = 760;
+								State = 759;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -7003,47 +5371,31 @@ namespace ToolGood.Algorithm.math
 								_localctx = new DATE_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 762;
 								Match(DATE);
-								State = 763;
 								Match(T__1);
-								State = 764;
-								expr(0);
-								State = 765;
+								State = 764;expr(0);
 								Match(T__3);
-								State = 766;
-								expr(0);
-								State = 767;
+								State = 766;expr(0);
 								Match(T__3);
-								State = 768;
-								expr(0);
-								State = 779;
+								State = 768;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 769;
 										Match(T__3);
-										State = 770;
-										expr(0);
-										State = 777;
+										State = 770;expr(0);
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
 										if (_la == T__3) {
 											{
-												State = 771;
 												Match(T__3);
-												State = 772;
-												expr(0);
-												State = 775;
+												State = 772;expr(0);
 												ErrorHandler.Sync(this);
 												_la = TokenStream.LA(1);
 												if (_la == T__3) {
 													{
-														State = 773;
 														Match(T__3);
-														State = 774;
-														expr(0);
+														State = 774;expr(0);
 													}
 												}
 
@@ -7053,7 +5405,6 @@ namespace ToolGood.Algorithm.math
 									}
 								}
 
-								State = 781;
 								Match(T__2);
 							}
 							break;
@@ -7061,29 +5412,20 @@ namespace ToolGood.Algorithm.math
 								_localctx = new TIME_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 783;
 								Match(TIME);
-								State = 784;
 								Match(T__1);
-								State = 785;
-								expr(0);
-								State = 786;
+								State = 785;expr(0);
 								Match(T__3);
-								State = 787;
-								expr(0);
-								State = 790;
+								State = 787;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 788;
 										Match(T__3);
-										State = 789;
-										expr(0);
+										State = 789;expr(0);
 									}
 								}
 
-								State = 792;
 								Match(T__2);
 							}
 							break;
@@ -7091,11 +5433,8 @@ namespace ToolGood.Algorithm.math
 								_localctx = new NOW_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 794;
 								Match(NOW);
-								State = 795;
 								Match(T__1);
-								State = 796;
 								Match(T__2);
 							}
 							break;
@@ -7103,11 +5442,8 @@ namespace ToolGood.Algorithm.math
 								_localctx = new TODAY_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 797;
 								Match(TODAY);
-								State = 798;
 								Match(T__1);
-								State = 799;
 								Match(T__2);
 							}
 							break;
@@ -7115,13 +5451,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new YEAR_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 800;
 								Match(YEAR);
-								State = 801;
 								Match(T__1);
-								State = 802;
-								expr(0);
-								State = 803;
+								State = 802;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -7129,13 +5461,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new MONTH_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 805;
 								Match(MONTH);
-								State = 806;
 								Match(T__1);
-								State = 807;
-								expr(0);
-								State = 808;
+								State = 807;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -7143,13 +5471,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new DAY_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 810;
 								Match(DAY);
-								State = 811;
 								Match(T__1);
-								State = 812;
-								expr(0);
-								State = 813;
+								State = 812;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -7157,13 +5481,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new HOUR_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 815;
 								Match(HOUR);
-								State = 816;
 								Match(T__1);
-								State = 817;
-								expr(0);
-								State = 818;
+								State = 817;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -7171,13 +5491,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new MINUTE_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 820;
 								Match(MINUTE);
-								State = 821;
 								Match(T__1);
-								State = 822;
-								expr(0);
-								State = 823;
+								State = 822;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -7185,13 +5501,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new SECOND_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 825;
 								Match(SECOND);
-								State = 826;
 								Match(T__1);
-								State = 827;
-								expr(0);
-								State = 828;
+								State = 827;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -7199,25 +5511,18 @@ namespace ToolGood.Algorithm.math
 								_localctx = new WEEKDAY_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 830;
 								Match(WEEKDAY);
-								State = 831;
 								Match(T__1);
-								State = 832;
-								expr(0);
-								State = 835;
+								State = 832;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 833;
 										Match(T__3);
-										State = 834;
-										expr(0);
+										State = 834;expr(0);
 									}
 								}
 
-								State = 837;
 								Match(T__2);
 							}
 							break;
@@ -7225,21 +5530,13 @@ namespace ToolGood.Algorithm.math
 								_localctx = new DATEDIF_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 839;
 								Match(DATEDIF);
-								State = 840;
 								Match(T__1);
-								State = 841;
-								expr(0);
-								State = 842;
+								State = 841;expr(0);
 								Match(T__3);
-								State = 843;
-								expr(0);
-								State = 844;
+								State = 843;expr(0);
 								Match(T__3);
-								State = 845;
-								expr(0);
-								State = 846;
+								State = 845;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -7247,29 +5544,20 @@ namespace ToolGood.Algorithm.math
 								_localctx = new DAYS360_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 848;
 								Match(DAYS360);
-								State = 849;
 								Match(T__1);
-								State = 850;
-								expr(0);
-								State = 851;
+								State = 850;expr(0);
 								Match(T__3);
-								State = 852;
-								expr(0);
-								State = 855;
+								State = 852;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 853;
 										Match(T__3);
-										State = 854;
-										expr(0);
+										State = 854;expr(0);
 									}
 								}
 
-								State = 857;
 								Match(T__2);
 							}
 							break;
@@ -7277,17 +5565,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new EDATE_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 859;
 								Match(EDATE);
-								State = 860;
 								Match(T__1);
-								State = 861;
-								expr(0);
-								State = 862;
+								State = 861;expr(0);
 								Match(T__3);
-								State = 863;
-								expr(0);
-								State = 864;
+								State = 863;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -7295,17 +5577,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new EOMONTH_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 866;
 								Match(EOMONTH);
-								State = 867;
 								Match(T__1);
-								State = 868;
-								expr(0);
-								State = 869;
+								State = 868;expr(0);
 								Match(T__3);
-								State = 870;
-								expr(0);
-								State = 871;
+								State = 870;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -7313,29 +5589,20 @@ namespace ToolGood.Algorithm.math
 								_localctx = new NETWORKDAYS_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 873;
 								Match(NETWORKDAYS);
-								State = 874;
 								Match(T__1);
-								State = 875;
-								expr(0);
-								State = 876;
+								State = 875;expr(0);
 								Match(T__3);
-								State = 877;
-								expr(0);
-								State = 880;
+								State = 877;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 878;
 										Match(T__3);
-										State = 879;
-										expr(0);
+										State = 879;expr(0);
 									}
 								}
 
-								State = 882;
 								Match(T__2);
 							}
 							break;
@@ -7343,29 +5610,20 @@ namespace ToolGood.Algorithm.math
 								_localctx = new WORKDAY_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 884;
 								Match(WORKDAY);
-								State = 885;
 								Match(T__1);
-								State = 886;
-								expr(0);
-								State = 887;
+								State = 886;expr(0);
 								Match(T__3);
-								State = 888;
-								expr(0);
-								State = 891;
+								State = 888;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 889;
 										Match(T__3);
-										State = 890;
-										expr(0);
+										State = 890;expr(0);
 									}
 								}
 
-								State = 893;
 								Match(T__2);
 							}
 							break;
@@ -7373,25 +5631,18 @@ namespace ToolGood.Algorithm.math
 								_localctx = new WEEKNUM_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 895;
 								Match(WEEKNUM);
-								State = 896;
 								Match(T__1);
-								State = 897;
-								expr(0);
-								State = 900;
+								State = 897;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 898;
 										Match(T__3);
-										State = 899;
-										expr(0);
+										State = 899;expr(0);
 									}
 								}
 
-								State = 902;
 								Match(T__2);
 							}
 							break;
@@ -7399,29 +5650,21 @@ namespace ToolGood.Algorithm.math
 								_localctx = new MAX_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 904;
 								Match(MAX);
-								State = 905;
 								Match(T__1);
-								State = 906;
-								expr(0);
-								State = 909;
+								State = 906;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								do {
 									{
 										{
-											State = 907;
 											Match(T__3);
-											State = 908;
-											expr(0);
+											State = 908;expr(0);
 										}
 									}
-									State = 911;
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 								} while (_la == T__3);
-								State = 913;
 								Match(T__2);
 							}
 							break;
@@ -7429,29 +5672,21 @@ namespace ToolGood.Algorithm.math
 								_localctx = new MEDIAN_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 915;
 								Match(MEDIAN);
-								State = 916;
 								Match(T__1);
-								State = 917;
-								expr(0);
-								State = 920;
+								State = 917;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								do {
 									{
 										{
-											State = 918;
 											Match(T__3);
-											State = 919;
-											expr(0);
+											State = 919;expr(0);
 										}
 									}
-									State = 922;
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 								} while (_la == T__3);
-								State = 924;
 								Match(T__2);
 							}
 							break;
@@ -7459,29 +5694,21 @@ namespace ToolGood.Algorithm.math
 								_localctx = new MIN_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 926;
 								Match(MIN);
-								State = 927;
 								Match(T__1);
-								State = 928;
-								expr(0);
-								State = 931;
+								State = 928;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								do {
 									{
 										{
-											State = 929;
 											Match(T__3);
-											State = 930;
-											expr(0);
+											State = 930;expr(0);
 										}
 									}
-									State = 933;
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 								} while (_la == T__3);
-								State = 935;
 								Match(T__2);
 							}
 							break;
@@ -7489,17 +5716,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new QUARTILE_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 937;
 								Match(QUARTILE);
-								State = 938;
 								Match(T__1);
-								State = 939;
-								expr(0);
-								State = 940;
+								State = 939;expr(0);
 								Match(T__3);
-								State = 941;
-								expr(0);
-								State = 942;
+								State = 941;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -7507,29 +5728,21 @@ namespace ToolGood.Algorithm.math
 								_localctx = new MODE_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 944;
 								Match(MODE);
-								State = 945;
 								Match(T__1);
-								State = 946;
-								expr(0);
-								State = 951;
+								State = 946;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								while (_la == T__3) {
 									{
 										{
-											State = 947;
 											Match(T__3);
-											State = 948;
-											expr(0);
+											State = 948;expr(0);
 										}
 									}
-									State = 953;
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 								}
-								State = 954;
 								Match(T__2);
 							}
 							break;
@@ -7537,17 +5750,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new LARGE_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 956;
 								Match(LARGE);
-								State = 957;
 								Match(T__1);
-								State = 958;
-								expr(0);
-								State = 959;
+								State = 958;expr(0);
 								Match(T__3);
-								State = 960;
-								expr(0);
-								State = 961;
+								State = 960;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -7555,17 +5762,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new SMALL_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 963;
 								Match(SMALL);
-								State = 964;
 								Match(T__1);
-								State = 965;
-								expr(0);
-								State = 966;
+								State = 965;expr(0);
 								Match(T__3);
-								State = 967;
-								expr(0);
-								State = 968;
+								State = 967;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -7573,17 +5774,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new PERCENTILE_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 970;
 								Match(PERCENTILE);
-								State = 971;
 								Match(T__1);
-								State = 972;
-								expr(0);
-								State = 973;
+								State = 972;expr(0);
 								Match(T__3);
-								State = 974;
-								expr(0);
-								State = 975;
+								State = 974;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -7591,17 +5786,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new PERCENTRANK_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 977;
 								Match(PERCENTRANK);
-								State = 978;
 								Match(T__1);
-								State = 979;
-								expr(0);
-								State = 980;
+								State = 979;expr(0);
 								Match(T__3);
-								State = 981;
-								expr(0);
-								State = 982;
+								State = 981;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -7609,29 +5798,21 @@ namespace ToolGood.Algorithm.math
 								_localctx = new AVERAGE_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 984;
 								Match(AVERAGE);
-								State = 985;
 								Match(T__1);
-								State = 986;
-								expr(0);
-								State = 991;
+								State = 986;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								while (_la == T__3) {
 									{
 										{
-											State = 987;
 											Match(T__3);
-											State = 988;
-											expr(0);
+											State = 988;expr(0);
 										}
 									}
-									State = 993;
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 								}
-								State = 994;
 								Match(T__2);
 							}
 							break;
@@ -7639,29 +5820,20 @@ namespace ToolGood.Algorithm.math
 								_localctx = new AVERAGEIF_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 996;
 								Match(AVERAGEIF);
-								State = 997;
 								Match(T__1);
-								State = 998;
-								expr(0);
-								State = 999;
+								State = 998;expr(0);
 								Match(T__3);
-								State = 1000;
-								expr(0);
-								State = 1003;
+								State = 1000;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 1001;
 										Match(T__3);
-										State = 1002;
-										expr(0);
+										State = 1002;expr(0);
 									}
 								}
 
-								State = 1005;
 								Match(T__2);
 							}
 							break;
@@ -7669,29 +5841,21 @@ namespace ToolGood.Algorithm.math
 								_localctx = new GEOMEAN_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1007;
 								Match(GEOMEAN);
-								State = 1008;
 								Match(T__1);
-								State = 1009;
-								expr(0);
-								State = 1014;
+								State = 1009;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								while (_la == T__3) {
 									{
 										{
-											State = 1010;
 											Match(T__3);
-											State = 1011;
-											expr(0);
+											State = 1011;expr(0);
 										}
 									}
-									State = 1016;
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 								}
-								State = 1017;
 								Match(T__2);
 							}
 							break;
@@ -7699,29 +5863,21 @@ namespace ToolGood.Algorithm.math
 								_localctx = new HARMEAN_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1019;
 								Match(HARMEAN);
-								State = 1020;
 								Match(T__1);
-								State = 1021;
-								expr(0);
-								State = 1026;
+								State = 1021;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								while (_la == T__3) {
 									{
 										{
-											State = 1022;
 											Match(T__3);
-											State = 1023;
-											expr(0);
+											State = 1023;expr(0);
 										}
 									}
-									State = 1028;
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 								}
-								State = 1029;
 								Match(T__2);
 							}
 							break;
@@ -7729,29 +5885,21 @@ namespace ToolGood.Algorithm.math
 								_localctx = new COUNT_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1031;
 								Match(COUNT);
-								State = 1032;
 								Match(T__1);
-								State = 1033;
-								expr(0);
-								State = 1038;
+								State = 1033;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								while (_la == T__3) {
 									{
 										{
-											State = 1034;
 											Match(T__3);
-											State = 1035;
-											expr(0);
+											State = 1035;expr(0);
 										}
 									}
-									State = 1040;
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 								}
-								State = 1041;
 								Match(T__2);
 							}
 							break;
@@ -7759,29 +5907,21 @@ namespace ToolGood.Algorithm.math
 								_localctx = new COUNTIF_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1043;
 								Match(COUNTIF);
-								State = 1044;
 								Match(T__1);
-								State = 1045;
-								expr(0);
-								State = 1050;
+								State = 1045;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								while (_la == T__3) {
 									{
 										{
-											State = 1046;
 											Match(T__3);
-											State = 1047;
-											expr(0);
+											State = 1047;expr(0);
 										}
 									}
-									State = 1052;
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 								}
-								State = 1053;
 								Match(T__2);
 							}
 							break;
@@ -7789,29 +5929,21 @@ namespace ToolGood.Algorithm.math
 								_localctx = new SUM_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1055;
 								Match(SUM);
-								State = 1056;
 								Match(T__1);
-								State = 1057;
-								expr(0);
-								State = 1062;
+								State = 1057;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								while (_la == T__3) {
 									{
 										{
-											State = 1058;
 											Match(T__3);
-											State = 1059;
-											expr(0);
+											State = 1059;expr(0);
 										}
 									}
-									State = 1064;
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 								}
-								State = 1065;
 								Match(T__2);
 							}
 							break;
@@ -7819,29 +5951,20 @@ namespace ToolGood.Algorithm.math
 								_localctx = new SUMIF_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1067;
 								Match(SUMIF);
-								State = 1068;
 								Match(T__1);
-								State = 1069;
-								expr(0);
-								State = 1070;
+								State = 1069;expr(0);
 								Match(T__3);
-								State = 1071;
-								expr(0);
-								State = 1074;
+								State = 1071;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 1072;
 										Match(T__3);
-										State = 1073;
-										expr(0);
+										State = 1073;expr(0);
 									}
 								}
 
-								State = 1076;
 								Match(T__2);
 							}
 							break;
@@ -7849,29 +5972,21 @@ namespace ToolGood.Algorithm.math
 								_localctx = new AVEDEV_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1078;
 								Match(AVEDEV);
-								State = 1079;
 								Match(T__1);
-								State = 1080;
-								expr(0);
-								State = 1085;
+								State = 1080;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								while (_la == T__3) {
 									{
 										{
-											State = 1081;
 											Match(T__3);
-											State = 1082;
-											expr(0);
+											State = 1082;expr(0);
 										}
 									}
-									State = 1087;
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 								}
-								State = 1088;
 								Match(T__2);
 							}
 							break;
@@ -7879,29 +5994,21 @@ namespace ToolGood.Algorithm.math
 								_localctx = new STDEV_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1090;
 								Match(STDEV);
-								State = 1091;
 								Match(T__1);
-								State = 1092;
-								expr(0);
-								State = 1097;
+								State = 1092;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								while (_la == T__3) {
 									{
 										{
-											State = 1093;
 											Match(T__3);
-											State = 1094;
-											expr(0);
+											State = 1094;expr(0);
 										}
 									}
-									State = 1099;
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 								}
-								State = 1100;
 								Match(T__2);
 							}
 							break;
@@ -7909,29 +6016,21 @@ namespace ToolGood.Algorithm.math
 								_localctx = new STDEVP_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1102;
 								Match(STDEVP);
-								State = 1103;
 								Match(T__1);
-								State = 1104;
-								expr(0);
-								State = 1109;
+								State = 1104;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								while (_la == T__3) {
 									{
 										{
-											State = 1105;
 											Match(T__3);
-											State = 1106;
-											expr(0);
+											State = 1106;expr(0);
 										}
 									}
-									State = 1111;
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 								}
-								State = 1112;
 								Match(T__2);
 							}
 							break;
@@ -7939,17 +6038,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new COVAR_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1114;
 								Match(COVAR);
-								State = 1115;
 								Match(T__1);
-								State = 1116;
-								expr(0);
-								State = 1117;
+								State = 1116;expr(0);
 								Match(T__3);
-								State = 1118;
-								expr(0);
-								State = 1119;
+								State = 1118;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -7957,17 +6050,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new COVARIANCES_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1121;
 								Match(COVARIANCES);
-								State = 1122;
 								Match(T__1);
-								State = 1123;
-								expr(0);
-								State = 1124;
+								State = 1123;expr(0);
 								Match(T__3);
-								State = 1125;
-								expr(0);
-								State = 1126;
+								State = 1125;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -7975,29 +6062,21 @@ namespace ToolGood.Algorithm.math
 								_localctx = new DEVSQ_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1128;
 								Match(DEVSQ);
-								State = 1129;
 								Match(T__1);
-								State = 1130;
-								expr(0);
-								State = 1135;
+								State = 1130;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								while (_la == T__3) {
 									{
 										{
-											State = 1131;
 											Match(T__3);
-											State = 1132;
-											expr(0);
+											State = 1132;expr(0);
 										}
 									}
-									State = 1137;
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 								}
-								State = 1138;
 								Match(T__2);
 							}
 							break;
@@ -8005,29 +6084,21 @@ namespace ToolGood.Algorithm.math
 								_localctx = new VAR_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1140;
 								Match(VAR);
-								State = 1141;
 								Match(T__1);
-								State = 1142;
-								expr(0);
-								State = 1147;
+								State = 1142;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								while (_la == T__3) {
 									{
 										{
-											State = 1143;
 											Match(T__3);
-											State = 1144;
-											expr(0);
+											State = 1144;expr(0);
 										}
 									}
-									State = 1149;
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 								}
-								State = 1150;
 								Match(T__2);
 							}
 							break;
@@ -8035,29 +6106,21 @@ namespace ToolGood.Algorithm.math
 								_localctx = new VARP_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1152;
 								Match(VARP);
-								State = 1153;
 								Match(T__1);
-								State = 1154;
-								expr(0);
-								State = 1159;
+								State = 1154;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								while (_la == T__3) {
 									{
 										{
-											State = 1155;
 											Match(T__3);
-											State = 1156;
-											expr(0);
+											State = 1156;expr(0);
 										}
 									}
-									State = 1161;
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 								}
-								State = 1162;
 								Match(T__2);
 							}
 							break;
@@ -8065,25 +6128,15 @@ namespace ToolGood.Algorithm.math
 								_localctx = new NORMDIST_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1164;
 								Match(NORMDIST);
-								State = 1165;
 								Match(T__1);
-								State = 1166;
-								expr(0);
-								State = 1167;
+								State = 1166;expr(0);
 								Match(T__3);
-								State = 1168;
-								expr(0);
-								State = 1169;
+								State = 1168;expr(0);
 								Match(T__3);
-								State = 1170;
-								expr(0);
-								State = 1171;
+								State = 1170;expr(0);
 								Match(T__3);
-								State = 1172;
-								expr(0);
-								State = 1173;
+								State = 1172;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -8091,21 +6144,13 @@ namespace ToolGood.Algorithm.math
 								_localctx = new NORMINV_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1175;
 								Match(NORMINV);
-								State = 1176;
 								Match(T__1);
-								State = 1177;
-								expr(0);
-								State = 1178;
+								State = 1177;expr(0);
 								Match(T__3);
-								State = 1179;
-								expr(0);
-								State = 1180;
+								State = 1179;expr(0);
 								Match(T__3);
-								State = 1181;
-								expr(0);
-								State = 1182;
+								State = 1181;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -8113,13 +6158,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new NORMSDIST_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1184;
 								Match(NORMSDIST);
-								State = 1185;
 								Match(T__1);
-								State = 1186;
-								expr(0);
-								State = 1187;
+								State = 1186;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -8127,13 +6168,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new NORMSINV_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1189;
 								Match(NORMSINV);
-								State = 1190;
 								Match(T__1);
-								State = 1191;
-								expr(0);
-								State = 1192;
+								State = 1191;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -8141,21 +6178,13 @@ namespace ToolGood.Algorithm.math
 								_localctx = new BETADIST_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1194;
 								Match(BETADIST);
-								State = 1195;
 								Match(T__1);
-								State = 1196;
-								expr(0);
-								State = 1197;
+								State = 1196;expr(0);
 								Match(T__3);
-								State = 1198;
-								expr(0);
-								State = 1199;
+								State = 1198;expr(0);
 								Match(T__3);
-								State = 1200;
-								expr(0);
-								State = 1201;
+								State = 1200;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -8163,21 +6192,13 @@ namespace ToolGood.Algorithm.math
 								_localctx = new BETAINV_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1203;
 								Match(BETAINV);
-								State = 1204;
 								Match(T__1);
-								State = 1205;
-								expr(0);
-								State = 1206;
+								State = 1205;expr(0);
 								Match(T__3);
-								State = 1207;
-								expr(0);
-								State = 1208;
+								State = 1207;expr(0);
 								Match(T__3);
-								State = 1209;
-								expr(0);
-								State = 1210;
+								State = 1209;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -8185,25 +6206,15 @@ namespace ToolGood.Algorithm.math
 								_localctx = new BINOMDIST_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1212;
 								Match(BINOMDIST);
-								State = 1213;
 								Match(T__1);
-								State = 1214;
-								expr(0);
-								State = 1215;
+								State = 1214;expr(0);
 								Match(T__3);
-								State = 1216;
-								expr(0);
-								State = 1217;
+								State = 1216;expr(0);
 								Match(T__3);
-								State = 1218;
-								expr(0);
-								State = 1219;
+								State = 1218;expr(0);
 								Match(T__3);
-								State = 1220;
-								expr(0);
-								State = 1221;
+								State = 1220;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -8211,21 +6222,13 @@ namespace ToolGood.Algorithm.math
 								_localctx = new EXPONDIST_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1223;
 								Match(EXPONDIST);
-								State = 1224;
 								Match(T__1);
-								State = 1225;
-								expr(0);
-								State = 1226;
+								State = 1225;expr(0);
 								Match(T__3);
-								State = 1227;
-								expr(0);
-								State = 1228;
+								State = 1227;expr(0);
 								Match(T__3);
-								State = 1229;
-								expr(0);
-								State = 1230;
+								State = 1229;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -8233,21 +6236,13 @@ namespace ToolGood.Algorithm.math
 								_localctx = new FDIST_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1232;
 								Match(FDIST);
-								State = 1233;
 								Match(T__1);
-								State = 1234;
-								expr(0);
-								State = 1235;
+								State = 1234;expr(0);
 								Match(T__3);
-								State = 1236;
-								expr(0);
-								State = 1237;
+								State = 1236;expr(0);
 								Match(T__3);
-								State = 1238;
-								expr(0);
-								State = 1239;
+								State = 1238;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -8255,21 +6250,13 @@ namespace ToolGood.Algorithm.math
 								_localctx = new FINV_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1241;
 								Match(FINV);
-								State = 1242;
 								Match(T__1);
-								State = 1243;
-								expr(0);
-								State = 1244;
+								State = 1243;expr(0);
 								Match(T__3);
-								State = 1245;
-								expr(0);
-								State = 1246;
+								State = 1245;expr(0);
 								Match(T__3);
-								State = 1247;
-								expr(0);
-								State = 1248;
+								State = 1247;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -8277,13 +6264,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new FISHER_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1250;
 								Match(FISHER);
-								State = 1251;
 								Match(T__1);
-								State = 1252;
-								expr(0);
-								State = 1253;
+								State = 1252;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -8291,13 +6274,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new FISHERINV_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1255;
 								Match(FISHERINV);
-								State = 1256;
 								Match(T__1);
-								State = 1257;
-								expr(0);
-								State = 1258;
+								State = 1257;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -8305,25 +6284,15 @@ namespace ToolGood.Algorithm.math
 								_localctx = new GAMMADIST_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1260;
 								Match(GAMMADIST);
-								State = 1261;
 								Match(T__1);
-								State = 1262;
-								expr(0);
-								State = 1263;
+								State = 1262;expr(0);
 								Match(T__3);
-								State = 1264;
-								expr(0);
-								State = 1265;
+								State = 1264;expr(0);
 								Match(T__3);
-								State = 1266;
-								expr(0);
-								State = 1267;
+								State = 1266;expr(0);
 								Match(T__3);
-								State = 1268;
-								expr(0);
-								State = 1269;
+								State = 1268;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -8331,21 +6300,13 @@ namespace ToolGood.Algorithm.math
 								_localctx = new GAMMAINV_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1271;
 								Match(GAMMAINV);
-								State = 1272;
 								Match(T__1);
-								State = 1273;
-								expr(0);
-								State = 1274;
+								State = 1273;expr(0);
 								Match(T__3);
-								State = 1275;
-								expr(0);
-								State = 1276;
+								State = 1275;expr(0);
 								Match(T__3);
-								State = 1277;
-								expr(0);
-								State = 1278;
+								State = 1277;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -8353,13 +6314,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new GAMMALN_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1280;
 								Match(GAMMALN);
-								State = 1281;
 								Match(T__1);
-								State = 1282;
-								expr(0);
-								State = 1283;
+								State = 1282;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -8367,25 +6324,15 @@ namespace ToolGood.Algorithm.math
 								_localctx = new HYPGEOMDIST_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1285;
 								Match(HYPGEOMDIST);
-								State = 1286;
 								Match(T__1);
-								State = 1287;
-								expr(0);
-								State = 1288;
+								State = 1287;expr(0);
 								Match(T__3);
-								State = 1289;
-								expr(0);
-								State = 1290;
+								State = 1289;expr(0);
 								Match(T__3);
-								State = 1291;
-								expr(0);
-								State = 1292;
+								State = 1291;expr(0);
 								Match(T__3);
-								State = 1293;
-								expr(0);
-								State = 1294;
+								State = 1293;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -8393,21 +6340,13 @@ namespace ToolGood.Algorithm.math
 								_localctx = new LOGINV_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1296;
 								Match(LOGINV);
-								State = 1297;
 								Match(T__1);
-								State = 1298;
-								expr(0);
-								State = 1299;
+								State = 1298;expr(0);
 								Match(T__3);
-								State = 1300;
-								expr(0);
-								State = 1301;
+								State = 1300;expr(0);
 								Match(T__3);
-								State = 1302;
-								expr(0);
-								State = 1303;
+								State = 1302;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -8415,21 +6354,13 @@ namespace ToolGood.Algorithm.math
 								_localctx = new LOGNORMDIST_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1305;
 								Match(LOGNORMDIST);
-								State = 1306;
 								Match(T__1);
-								State = 1307;
-								expr(0);
-								State = 1308;
+								State = 1307;expr(0);
 								Match(T__3);
-								State = 1309;
-								expr(0);
-								State = 1310;
+								State = 1309;expr(0);
 								Match(T__3);
-								State = 1311;
-								expr(0);
-								State = 1312;
+								State = 1311;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -8437,21 +6368,13 @@ namespace ToolGood.Algorithm.math
 								_localctx = new NEGBINOMDIST_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1314;
 								Match(NEGBINOMDIST);
-								State = 1315;
 								Match(T__1);
-								State = 1316;
-								expr(0);
-								State = 1317;
+								State = 1316;expr(0);
 								Match(T__3);
-								State = 1318;
-								expr(0);
-								State = 1319;
+								State = 1318;expr(0);
 								Match(T__3);
-								State = 1320;
-								expr(0);
-								State = 1321;
+								State = 1320;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -8459,21 +6382,13 @@ namespace ToolGood.Algorithm.math
 								_localctx = new POISSON_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1323;
 								Match(POISSON);
-								State = 1324;
 								Match(T__1);
-								State = 1325;
-								expr(0);
-								State = 1326;
+								State = 1325;expr(0);
 								Match(T__3);
-								State = 1327;
-								expr(0);
-								State = 1328;
+								State = 1327;expr(0);
 								Match(T__3);
-								State = 1329;
-								expr(0);
-								State = 1330;
+								State = 1329;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -8481,21 +6396,13 @@ namespace ToolGood.Algorithm.math
 								_localctx = new TDIST_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1332;
 								Match(TDIST);
-								State = 1333;
 								Match(T__1);
-								State = 1334;
-								expr(0);
-								State = 1335;
+								State = 1334;expr(0);
 								Match(T__3);
-								State = 1336;
-								expr(0);
-								State = 1337;
+								State = 1336;expr(0);
 								Match(T__3);
-								State = 1338;
-								expr(0);
-								State = 1339;
+								State = 1338;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -8503,17 +6410,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new TINV_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1341;
 								Match(TINV);
-								State = 1342;
 								Match(T__1);
-								State = 1343;
-								expr(0);
-								State = 1344;
+								State = 1343;expr(0);
 								Match(T__3);
-								State = 1345;
-								expr(0);
-								State = 1346;
+								State = 1345;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -8521,25 +6422,15 @@ namespace ToolGood.Algorithm.math
 								_localctx = new WEIBULL_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1348;
 								Match(WEIBULL);
-								State = 1349;
 								Match(T__1);
-								State = 1350;
-								expr(0);
-								State = 1351;
+								State = 1350;expr(0);
 								Match(T__3);
-								State = 1352;
-								expr(0);
-								State = 1353;
+								State = 1352;expr(0);
 								Match(T__3);
-								State = 1354;
-								expr(0);
-								State = 1355;
+								State = 1354;expr(0);
 								Match(T__3);
-								State = 1356;
-								expr(0);
-								State = 1357;
+								State = 1356;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -8547,13 +6438,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new URLENCODE_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1359;
 								Match(URLENCODE);
-								State = 1360;
 								Match(T__1);
-								State = 1361;
-								expr(0);
-								State = 1362;
+								State = 1361;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -8561,13 +6448,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new URLDECODE_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1364;
 								Match(URLDECODE);
-								State = 1365;
 								Match(T__1);
-								State = 1366;
-								expr(0);
-								State = 1367;
+								State = 1366;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -8575,13 +6458,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new HTMLENCODE_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1369;
 								Match(HTMLENCODE);
-								State = 1370;
 								Match(T__1);
-								State = 1371;
-								expr(0);
-								State = 1372;
+								State = 1371;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -8589,13 +6468,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new HTMLDECODE_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1374;
 								Match(HTMLDECODE);
-								State = 1375;
 								Match(T__1);
-								State = 1376;
-								expr(0);
-								State = 1377;
+								State = 1376;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -8603,25 +6478,18 @@ namespace ToolGood.Algorithm.math
 								_localctx = new BASE64TOTEXT_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1379;
 								Match(BASE64TOTEXT);
-								State = 1380;
 								Match(T__1);
-								State = 1381;
-								expr(0);
-								State = 1384;
+								State = 1381;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 1382;
 										Match(T__3);
-										State = 1383;
-										expr(0);
+										State = 1383;expr(0);
 									}
 								}
 
-								State = 1386;
 								Match(T__2);
 							}
 							break;
@@ -8629,25 +6497,18 @@ namespace ToolGood.Algorithm.math
 								_localctx = new BASE64URLTOTEXT_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1388;
 								Match(BASE64URLTOTEXT);
-								State = 1389;
 								Match(T__1);
-								State = 1390;
-								expr(0);
-								State = 1393;
+								State = 1390;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 1391;
 										Match(T__3);
-										State = 1392;
-										expr(0);
+										State = 1392;expr(0);
 									}
 								}
 
-								State = 1395;
 								Match(T__2);
 							}
 							break;
@@ -8655,25 +6516,18 @@ namespace ToolGood.Algorithm.math
 								_localctx = new TEXTTOBASE64_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1397;
 								Match(TEXTTOBASE64);
-								State = 1398;
 								Match(T__1);
-								State = 1399;
-								expr(0);
-								State = 1402;
+								State = 1399;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 1400;
 										Match(T__3);
-										State = 1401;
-										expr(0);
+										State = 1401;expr(0);
 									}
 								}
 
-								State = 1404;
 								Match(T__2);
 							}
 							break;
@@ -8681,25 +6535,18 @@ namespace ToolGood.Algorithm.math
 								_localctx = new TEXTTOBASE64URL_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1406;
 								Match(TEXTTOBASE64URL);
-								State = 1407;
 								Match(T__1);
-								State = 1408;
-								expr(0);
-								State = 1411;
+								State = 1408;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 1409;
 										Match(T__3);
-										State = 1410;
-										expr(0);
+										State = 1410;expr(0);
 									}
 								}
 
-								State = 1413;
 								Match(T__2);
 							}
 							break;
@@ -8707,17 +6554,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new REGEX_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1415;
 								Match(REGEX);
-								State = 1416;
 								Match(T__1);
-								State = 1417;
-								expr(0);
-								State = 1418;
+								State = 1417;expr(0);
 								Match(T__3);
-								State = 1419;
-								expr(0);
-								State = 1420;
+								State = 1419;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -8725,21 +6566,13 @@ namespace ToolGood.Algorithm.math
 								_localctx = new REGEXREPALCE_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1422;
 								Match(REGEXREPALCE);
-								State = 1423;
 								Match(T__1);
-								State = 1424;
-								expr(0);
-								State = 1425;
+								State = 1424;expr(0);
 								Match(T__3);
-								State = 1426;
-								expr(0);
-								State = 1427;
+								State = 1426;expr(0);
 								Match(T__3);
-								State = 1428;
-								expr(0);
-								State = 1429;
+								State = 1428;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -8747,17 +6580,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ISREGEX_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1431;
 								Match(ISREGEX);
-								State = 1432;
 								Match(T__1);
-								State = 1433;
-								expr(0);
-								State = 1434;
+								State = 1433;expr(0);
 								Match(T__3);
-								State = 1435;
-								expr(0);
-								State = 1436;
+								State = 1435;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -8765,11 +6592,8 @@ namespace ToolGood.Algorithm.math
 								_localctx = new GUID_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1438;
 								Match(GUID);
-								State = 1439;
 								Match(T__1);
-								State = 1440;
 								Match(T__2);
 							}
 							break;
@@ -8777,25 +6601,18 @@ namespace ToolGood.Algorithm.math
 								_localctx = new MD5_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1441;
 								Match(MD5);
-								State = 1442;
 								Match(T__1);
-								State = 1443;
-								expr(0);
-								State = 1446;
+								State = 1443;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 1444;
 										Match(T__3);
-										State = 1445;
-										expr(0);
+										State = 1445;expr(0);
 									}
 								}
 
-								State = 1448;
 								Match(T__2);
 							}
 							break;
@@ -8803,25 +6620,18 @@ namespace ToolGood.Algorithm.math
 								_localctx = new SHA1_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1450;
 								Match(SHA1);
-								State = 1451;
 								Match(T__1);
-								State = 1452;
-								expr(0);
-								State = 1455;
+								State = 1452;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 1453;
 										Match(T__3);
-										State = 1454;
-										expr(0);
+										State = 1454;expr(0);
 									}
 								}
 
-								State = 1457;
 								Match(T__2);
 							}
 							break;
@@ -8829,25 +6639,18 @@ namespace ToolGood.Algorithm.math
 								_localctx = new SHA256_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1459;
 								Match(SHA256);
-								State = 1460;
 								Match(T__1);
-								State = 1461;
-								expr(0);
-								State = 1464;
+								State = 1461;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 1462;
 										Match(T__3);
-										State = 1463;
-										expr(0);
+										State = 1463;expr(0);
 									}
 								}
 
-								State = 1466;
 								Match(T__2);
 							}
 							break;
@@ -8855,25 +6658,18 @@ namespace ToolGood.Algorithm.math
 								_localctx = new SHA512_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1468;
 								Match(SHA512);
-								State = 1469;
 								Match(T__1);
-								State = 1470;
-								expr(0);
-								State = 1473;
+								State = 1470;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 1471;
 										Match(T__3);
-										State = 1472;
-										expr(0);
+										State = 1472;expr(0);
 									}
 								}
 
-								State = 1475;
 								Match(T__2);
 							}
 							break;
@@ -8881,25 +6677,18 @@ namespace ToolGood.Algorithm.math
 								_localctx = new CRC32_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1477;
 								Match(CRC32);
-								State = 1478;
 								Match(T__1);
-								State = 1479;
-								expr(0);
-								State = 1482;
+								State = 1479;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 1480;
 										Match(T__3);
-										State = 1481;
-										expr(0);
+										State = 1481;expr(0);
 									}
 								}
 
-								State = 1484;
 								Match(T__2);
 							}
 							break;
@@ -8907,29 +6696,20 @@ namespace ToolGood.Algorithm.math
 								_localctx = new HMACMD5_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1486;
 								Match(HMACMD5);
-								State = 1487;
 								Match(T__1);
-								State = 1488;
-								expr(0);
-								State = 1489;
+								State = 1488;expr(0);
 								Match(T__3);
-								State = 1490;
-								expr(0);
-								State = 1493;
+								State = 1490;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 1491;
 										Match(T__3);
-										State = 1492;
-										expr(0);
+										State = 1492;expr(0);
 									}
 								}
 
-								State = 1495;
 								Match(T__2);
 							}
 							break;
@@ -8937,29 +6717,20 @@ namespace ToolGood.Algorithm.math
 								_localctx = new HMACSHA1_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1497;
 								Match(HMACSHA1);
-								State = 1498;
 								Match(T__1);
-								State = 1499;
-								expr(0);
-								State = 1500;
+								State = 1499;expr(0);
 								Match(T__3);
-								State = 1501;
-								expr(0);
-								State = 1504;
+								State = 1501;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 1502;
 										Match(T__3);
-										State = 1503;
-										expr(0);
+										State = 1503;expr(0);
 									}
 								}
 
-								State = 1506;
 								Match(T__2);
 							}
 							break;
@@ -8967,29 +6738,20 @@ namespace ToolGood.Algorithm.math
 								_localctx = new HMACSHA256_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1508;
 								Match(HMACSHA256);
-								State = 1509;
 								Match(T__1);
-								State = 1510;
-								expr(0);
-								State = 1511;
+								State = 1510;expr(0);
 								Match(T__3);
-								State = 1512;
-								expr(0);
-								State = 1515;
+								State = 1512;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 1513;
 										Match(T__3);
-										State = 1514;
-										expr(0);
+										State = 1514;expr(0);
 									}
 								}
 
-								State = 1517;
 								Match(T__2);
 							}
 							break;
@@ -8997,29 +6759,20 @@ namespace ToolGood.Algorithm.math
 								_localctx = new HMACSHA512_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1519;
 								Match(HMACSHA512);
-								State = 1520;
 								Match(T__1);
-								State = 1521;
-								expr(0);
-								State = 1522;
+								State = 1521;expr(0);
 								Match(T__3);
-								State = 1523;
-								expr(0);
-								State = 1526;
+								State = 1523;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 1524;
 										Match(T__3);
-										State = 1525;
-										expr(0);
+										State = 1525;expr(0);
 									}
 								}
 
-								State = 1528;
 								Match(T__2);
 							}
 							break;
@@ -9027,25 +6780,18 @@ namespace ToolGood.Algorithm.math
 								_localctx = new TRIMSTART_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1530;
 								Match(TRIMSTART);
-								State = 1531;
 								Match(T__1);
-								State = 1532;
-								expr(0);
-								State = 1535;
+								State = 1532;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 1533;
 										Match(T__3);
-										State = 1534;
-										expr(0);
+										State = 1534;expr(0);
 									}
 								}
 
-								State = 1537;
 								Match(T__2);
 							}
 							break;
@@ -9053,25 +6799,18 @@ namespace ToolGood.Algorithm.math
 								_localctx = new TRIMEND_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1539;
 								Match(TRIMEND);
-								State = 1540;
 								Match(T__1);
-								State = 1541;
-								expr(0);
-								State = 1544;
+								State = 1541;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 1542;
 										Match(T__3);
-										State = 1543;
-										expr(0);
+										State = 1543;expr(0);
 									}
 								}
 
-								State = 1546;
 								Match(T__2);
 							}
 							break;
@@ -9079,41 +6818,29 @@ namespace ToolGood.Algorithm.math
 								_localctx = new INDEXOF_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1548;
 								Match(INDEXOF);
-								State = 1549;
 								Match(T__1);
-								State = 1550;
-								expr(0);
-								State = 1551;
+								State = 1550;expr(0);
 								Match(T__3);
-								State = 1552;
-								expr(0);
-								State = 1559;
+								State = 1552;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 1553;
 										Match(T__3);
-										State = 1554;
-										expr(0);
-										State = 1557;
+										State = 1554;expr(0);
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
 										if (_la == T__3) {
 											{
-												State = 1555;
 												Match(T__3);
-												State = 1556;
-												expr(0);
+												State = 1556;expr(0);
 											}
 										}
 
 									}
 								}
 
-								State = 1561;
 								Match(T__2);
 							}
 							break;
@@ -9121,41 +6848,29 @@ namespace ToolGood.Algorithm.math
 								_localctx = new LASTINDEXOF_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1563;
 								Match(LASTINDEXOF);
-								State = 1564;
 								Match(T__1);
-								State = 1565;
-								expr(0);
-								State = 1566;
+								State = 1565;expr(0);
 								Match(T__3);
-								State = 1567;
-								expr(0);
-								State = 1574;
+								State = 1567;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 1568;
 										Match(T__3);
-										State = 1569;
-										expr(0);
-										State = 1572;
+										State = 1569;expr(0);
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
 										if (_la == T__3) {
 											{
-												State = 1570;
 												Match(T__3);
-												State = 1571;
-												expr(0);
+												State = 1571;expr(0);
 											}
 										}
 
 									}
 								}
 
-								State = 1576;
 								Match(T__2);
 							}
 							break;
@@ -9163,17 +6878,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new SPLIT_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1578;
 								Match(SPLIT);
-								State = 1579;
 								Match(T__1);
-								State = 1580;
-								expr(0);
-								State = 1581;
+								State = 1580;expr(0);
 								Match(T__3);
-								State = 1582;
-								expr(0);
-								State = 1583;
+								State = 1582;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -9181,29 +6890,21 @@ namespace ToolGood.Algorithm.math
 								_localctx = new JOIN_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1585;
 								Match(JOIN);
-								State = 1586;
 								Match(T__1);
-								State = 1587;
-								expr(0);
-								State = 1590;
+								State = 1587;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								do {
 									{
 										{
-											State = 1588;
 											Match(T__3);
-											State = 1589;
-											expr(0);
+											State = 1589;expr(0);
 										}
 									}
-									State = 1592;
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 								} while (_la == T__3);
-								State = 1594;
 								Match(T__2);
 							}
 							break;
@@ -9211,29 +6912,20 @@ namespace ToolGood.Algorithm.math
 								_localctx = new SUBSTRING_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1596;
 								Match(SUBSTRING);
-								State = 1597;
 								Match(T__1);
-								State = 1598;
-								expr(0);
-								State = 1599;
+								State = 1598;expr(0);
 								Match(T__3);
-								State = 1600;
-								expr(0);
-								State = 1603;
+								State = 1600;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 1601;
 										Match(T__3);
-										State = 1602;
-										expr(0);
+										State = 1602;expr(0);
 									}
 								}
 
-								State = 1605;
 								Match(T__2);
 							}
 							break;
@@ -9241,29 +6933,20 @@ namespace ToolGood.Algorithm.math
 								_localctx = new STARTSWITH_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1607;
 								Match(STARTSWITH);
-								State = 1608;
 								Match(T__1);
-								State = 1609;
-								expr(0);
-								State = 1610;
+								State = 1609;expr(0);
 								Match(T__3);
-								State = 1611;
-								expr(0);
-								State = 1614;
+								State = 1611;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 1612;
 										Match(T__3);
-										State = 1613;
-										expr(0);
+										State = 1613;expr(0);
 									}
 								}
 
-								State = 1616;
 								Match(T__2);
 							}
 							break;
@@ -9271,29 +6954,20 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ENDSWITH_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1618;
 								Match(ENDSWITH);
-								State = 1619;
 								Match(T__1);
-								State = 1620;
-								expr(0);
-								State = 1621;
+								State = 1620;expr(0);
 								Match(T__3);
-								State = 1622;
-								expr(0);
-								State = 1625;
+								State = 1622;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 1623;
 										Match(T__3);
-										State = 1624;
-										expr(0);
+										State = 1624;expr(0);
 									}
 								}
 
-								State = 1627;
 								Match(T__2);
 							}
 							break;
@@ -9301,13 +6975,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ISNULLOREMPTY_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1629;
 								Match(ISNULLOREMPTY);
-								State = 1630;
 								Match(T__1);
-								State = 1631;
-								expr(0);
-								State = 1632;
+								State = 1631;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -9315,13 +6985,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ISNULLORWHITESPACE_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1634;
 								Match(ISNULLORWHITESPACE);
-								State = 1635;
 								Match(T__1);
-								State = 1636;
-								expr(0);
-								State = 1637;
+								State = 1636;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -9329,37 +6995,27 @@ namespace ToolGood.Algorithm.math
 								_localctx = new REMOVESTART_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1639;
 								Match(REMOVESTART);
-								State = 1640;
 								Match(T__1);
-								State = 1641;
-								expr(0);
-								State = 1648;
+								State = 1641;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 1642;
 										Match(T__3);
-										State = 1643;
-										expr(0);
-										State = 1646;
+										State = 1643;expr(0);
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
 										if (_la == T__3) {
 											{
-												State = 1644;
 												Match(T__3);
-												State = 1645;
-												expr(0);
+												State = 1645;expr(0);
 											}
 										}
 
 									}
 								}
 
-								State = 1650;
 								Match(T__2);
 							}
 							break;
@@ -9367,37 +7023,27 @@ namespace ToolGood.Algorithm.math
 								_localctx = new REMOVEEND_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1652;
 								Match(REMOVEEND);
-								State = 1653;
 								Match(T__1);
-								State = 1654;
-								expr(0);
-								State = 1661;
+								State = 1654;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 1655;
 										Match(T__3);
-										State = 1656;
-										expr(0);
-										State = 1659;
+										State = 1656;expr(0);
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
 										if (_la == T__3) {
 											{
-												State = 1657;
 												Match(T__3);
-												State = 1658;
-												expr(0);
+												State = 1658;expr(0);
 											}
 										}
 
 									}
 								}
 
-								State = 1663;
 								Match(T__2);
 							}
 							break;
@@ -9405,13 +7051,9 @@ namespace ToolGood.Algorithm.math
 								_localctx = new JSON_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1665;
 								Match(JSON);
-								State = 1666;
 								Match(T__1);
-								State = 1667;
-								expr(0);
-								State = 1668;
+								State = 1667;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -9419,33 +7061,22 @@ namespace ToolGood.Algorithm.math
 								_localctx = new VLOOKUP_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1670;
 								Match(VLOOKUP);
-								State = 1671;
 								Match(T__1);
-								State = 1672;
-								expr(0);
-								State = 1673;
+								State = 1672;expr(0);
 								Match(T__3);
-								State = 1674;
-								expr(0);
-								State = 1675;
+								State = 1674;expr(0);
 								Match(T__3);
-								State = 1676;
-								expr(0);
-								State = 1679;
+								State = 1676;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 1677;
 										Match(T__3);
-										State = 1678;
-										expr(0);
+										State = 1678;expr(0);
 									}
 								}
 
-								State = 1681;
 								Match(T__2);
 							}
 							break;
@@ -9453,37 +7084,28 @@ namespace ToolGood.Algorithm.math
 								_localctx = new DiyFunction_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1683;
 								Match(PARAMETER);
-								State = 1684;
 								Match(T__1);
-								State = 1693;
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 									{
-										State = 1685;
-										expr(0);
-										State = 1690;
+										State = 1685;expr(0);
 										ErrorHandler.Sync(this);
 										_la = TokenStream.LA(1);
 										while (_la == T__3) {
 											{
 												{
-													State = 1686;
 													Match(T__3);
-													State = 1687;
-													expr(0);
+													State = 1687;expr(0);
 												}
 											}
-											State = 1692;
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 										}
 									}
 								}
 
-								State = 1695;
 								Match(T__2);
 							}
 							break;
@@ -9491,17 +7113,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ADDYEARS_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1696;
 								Match(ADDYEARS);
-								State = 1697;
 								Match(T__1);
-								State = 1698;
-								expr(0);
-								State = 1699;
+								State = 1698;expr(0);
 								Match(T__3);
-								State = 1700;
-								expr(0);
-								State = 1701;
+								State = 1700;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -9509,17 +7125,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ADDMONTHS_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1703;
 								Match(ADDMONTHS);
-								State = 1704;
 								Match(T__1);
-								State = 1705;
-								expr(0);
-								State = 1706;
+								State = 1705;expr(0);
 								Match(T__3);
-								State = 1707;
-								expr(0);
-								State = 1708;
+								State = 1707;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -9527,17 +7137,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ADDDAYS_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1710;
 								Match(ADDDAYS);
-								State = 1711;
 								Match(T__1);
-								State = 1712;
-								expr(0);
-								State = 1713;
+								State = 1712;expr(0);
 								Match(T__3);
-								State = 1714;
-								expr(0);
-								State = 1715;
+								State = 1714;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -9545,17 +7149,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ADDHOURS_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1717;
 								Match(ADDHOURS);
-								State = 1718;
 								Match(T__1);
-								State = 1719;
-								expr(0);
-								State = 1720;
+								State = 1719;expr(0);
 								Match(T__3);
-								State = 1721;
-								expr(0);
-								State = 1722;
+								State = 1721;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -9563,17 +7161,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ADDMINUTES_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1724;
 								Match(ADDMINUTES);
-								State = 1725;
 								Match(T__1);
-								State = 1726;
-								expr(0);
-								State = 1727;
+								State = 1726;expr(0);
 								Match(T__3);
-								State = 1728;
-								expr(0);
-								State = 1729;
+								State = 1728;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -9581,17 +7173,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ADDSECONDS_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1731;
 								Match(ADDSECONDS);
-								State = 1732;
 								Match(T__1);
-								State = 1733;
-								expr(0);
-								State = 1734;
+								State = 1733;expr(0);
 								Match(T__3);
-								State = 1735;
-								expr(0);
-								State = 1736;
+								State = 1735;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -9599,25 +7185,18 @@ namespace ToolGood.Algorithm.math
 								_localctx = new TIMESTAMP_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1738;
 								Match(TIMESTAMP);
-								State = 1739;
 								Match(T__1);
-								State = 1740;
-								expr(0);
-								State = 1743;
+								State = 1740;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 1741;
 										Match(T__3);
-										State = 1742;
-										expr(0);
+										State = 1742;expr(0);
 									}
 								}
 
-								State = 1745;
 								Match(T__2);
 							}
 							break;
@@ -9625,25 +7204,18 @@ namespace ToolGood.Algorithm.math
 								_localctx = new PARAM_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1747;
 								Match(PARAM);
-								State = 1748;
 								Match(T__1);
-								State = 1749;
-								expr(0);
-								State = 1752;
+								State = 1749;expr(0);
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if (_la == T__3) {
 									{
-										State = 1750;
 										Match(T__3);
-										State = 1751;
-										expr(0);
+										State = 1751;expr(0);
 									}
 								}
 
-								State = 1754;
 								Match(T__2);
 							}
 							break;
@@ -9651,21 +7223,16 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ERROR_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1756;
 								Match(ERROR);
-								State = 1757;
 								Match(T__1);
-								State = 1759;
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 									{
-										State = 1758;
-										expr(0);
+										State = 1758;expr(0);
 									}
 								}
 
-								State = 1761;
 								Match(T__2);
 							}
 							break;
@@ -9673,17 +7240,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new HAS_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1762;
 								Match(HAS);
-								State = 1763;
 								Match(T__1);
-								State = 1764;
-								expr(0);
-								State = 1765;
+								State = 1764;expr(0);
 								Match(T__3);
-								State = 1766;
-								expr(0);
-								State = 1767;
+								State = 1766;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -9691,17 +7252,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new HASVALUE_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1769;
 								Match(HASVALUE);
-								State = 1770;
 								Match(T__1);
-								State = 1771;
-								expr(0);
-								State = 1772;
+								State = 1771;expr(0);
 								Match(T__3);
-								State = 1773;
-								expr(0);
-								State = 1774;
+								State = 1773;expr(0);
 								Match(T__2);
 							}
 							break;
@@ -9709,43 +7264,33 @@ namespace ToolGood.Algorithm.math
 								_localctx = new ArrayJson_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1776;
 								Match(T__26);
-								State = 1777;
-								arrayJson();
-								State = 1782;
+								State = 1777;arrayJson();
 								ErrorHandler.Sync(this);
 								_alt = Interpreter.AdaptivePredict(TokenStream, 100, Context);
 								while (_alt != 2 && _alt != global::Antlr4.Runtime.Atn.ATN.INVALID_ALT_NUMBER) {
 									if (_alt == 1) {
 										{
 											{
-												State = 1778;
 												Match(T__3);
-												State = 1779;
-												arrayJson();
+												State = 1779;arrayJson();
 											}
 										}
 									}
-									State = 1784;
 									ErrorHandler.Sync(this);
 									_alt = Interpreter.AdaptivePredict(TokenStream, 100, Context);
 								}
-								State = 1788;
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								while (_la == T__3) {
 									{
 										{
-											State = 1785;
 											Match(T__3);
 										}
 									}
-									State = 1790;
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 								}
-								State = 1791;
 								Match(T__27);
 							}
 							break;
@@ -9753,43 +7298,33 @@ namespace ToolGood.Algorithm.math
 								_localctx = new Array_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1793;
 								Match(T__4);
-								State = 1794;
-								expr(0);
-								State = 1799;
+								State = 1794;expr(0);
 								ErrorHandler.Sync(this);
 								_alt = Interpreter.AdaptivePredict(TokenStream, 102, Context);
 								while (_alt != 2 && _alt != global::Antlr4.Runtime.Atn.ATN.INVALID_ALT_NUMBER) {
 									if (_alt == 1) {
 										{
 											{
-												State = 1795;
 												Match(T__3);
-												State = 1796;
-												expr(0);
+												State = 1796;expr(0);
 											}
 										}
 									}
-									State = 1801;
 									ErrorHandler.Sync(this);
 									_alt = Interpreter.AdaptivePredict(TokenStream, 102, Context);
 								}
-								State = 1805;
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
 								while (_la == T__3) {
 									{
 										{
-											State = 1802;
 											Match(T__3);
 										}
 									}
-									State = 1807;
 									ErrorHandler.Sync(this);
 									_la = TokenStream.LA(1);
 								}
-								State = 1808;
 								Match(T__5);
 							}
 							break;
@@ -9797,7 +7332,6 @@ namespace ToolGood.Algorithm.math
 								_localctx = new Version_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1810;
 								Match(ALGORITHMVERSION);
 							}
 							break;
@@ -9805,7 +7339,6 @@ namespace ToolGood.Algorithm.math
 								_localctx = new PARAMETER_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1811;
 								Match(PARAMETER);
 							}
 							break;
@@ -9813,14 +7346,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new NUM_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1812;
-								num();
-								State = 1814;
+								State = 1812;num();
 								ErrorHandler.Sync(this);
 								switch (Interpreter.AdaptivePredict(TokenStream, 104, Context)) {
 									case 1: {
-											State = 1813;
-											unit();
+											State = 1813;unit();
 										}
 										break;
 								}
@@ -9830,7 +7360,6 @@ namespace ToolGood.Algorithm.math
 								_localctx = new STRING_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1816;
 								Match(STRING);
 							}
 							break;
@@ -9838,13 +7367,11 @@ namespace ToolGood.Algorithm.math
 								_localctx = new NULL_funContext(_localctx);
 								Context = _localctx;
 								_prevctx = _localctx;
-								State = 1817;
 								Match(NULL);
 							}
 							break;
 					}
 					Context.Stop = TokenStream.LT(-1);
-					State = 2624;
 					ErrorHandler.Sync(this);
 					_alt = Interpreter.AdaptivePredict(TokenStream, 163, Context);
 					while (_alt != 2 && _alt != global::Antlr4.Runtime.Atn.ATN.INVALID_ALT_NUMBER) {
@@ -9853,15 +7380,12 @@ namespace ToolGood.Algorithm.math
 								TriggerExitRuleEvent();
 							_prevctx = _localctx;
 							{
-								State = 2622;
 								ErrorHandler.Sync(this);
 								switch (Interpreter.AdaptivePredict(TokenStream, 162, Context)) {
 									case 1: {
 											_localctx = new MulDiv_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1820;
-											if (!(Precpred(Context, 233))) throw new FailedPredicateException(this, "Precpred(Context, 233)");
-											State = 1821;
+											//if (!(Precpred(Context, 233))) throw new FailedPredicateException(this, "Precpred(Context, 233)");
 											((MulDiv_funContext)_localctx).op = TokenStream.LT(1);
 											_la = TokenStream.LA(1);
 											if (!((((_la) & ~0x3f) == 0 && ((1L << _la) & 1792L) != 0))) {
@@ -9870,16 +7394,13 @@ namespace ToolGood.Algorithm.math
 												ErrorHandler.ReportMatch(this);
 												Consume();
 											}
-											State = 1822;
-											expr(234);
+											State = 1822;expr(234);
 										}
 										break;
 									case 2: {
 											_localctx = new AddSub_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1823;
-											if (!(Precpred(Context, 232))) throw new FailedPredicateException(this, "Precpred(Context, 232)");
-											State = 1824;
+											//if (!(Precpred(Context, 232))) throw new FailedPredicateException(this, "Precpred(Context, 232)");
 											((AddSub_funContext)_localctx).op = TokenStream.LT(1);
 											_la = TokenStream.LA(1);
 											if (!((((_la) & ~0x3f) == 0 && ((1L << _la) & 536877056L) != 0))) {
@@ -9888,16 +7409,13 @@ namespace ToolGood.Algorithm.math
 												ErrorHandler.ReportMatch(this);
 												Consume();
 											}
-											State = 1825;
-											expr(233);
+											State = 1825;expr(233);
 										}
 										break;
 									case 3: {
 											_localctx = new Judge_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1826;
-											if (!(Precpred(Context, 231))) throw new FailedPredicateException(this, "Precpred(Context, 231)");
-											State = 1827;
+											//if (!(Precpred(Context, 231))) throw new FailedPredicateException(this, "Precpred(Context, 231)");
 											((Judge_funContext)_localctx).op = TokenStream.LT(1);
 											_la = TokenStream.LA(1);
 											if (!((((_la) & ~0x3f) == 0 && ((1L << _la) & 122880L) != 0))) {
@@ -9906,16 +7424,13 @@ namespace ToolGood.Algorithm.math
 												ErrorHandler.ReportMatch(this);
 												Consume();
 											}
-											State = 1828;
-											expr(232);
+											State = 1828;expr(232);
 										}
 										break;
 									case 4: {
 											_localctx = new Judge_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1829;
-											if (!(Precpred(Context, 230))) throw new FailedPredicateException(this, "Precpred(Context, 230)");
-											State = 1830;
+											//if (!(Precpred(Context, 230))) throw new FailedPredicateException(this, "Precpred(Context, 230)");
 											((Judge_funContext)_localctx).op = TokenStream.LT(1);
 											_la = TokenStream.LA(1);
 											if (!((((_la) & ~0x3f) == 0 && ((1L << _la) & 8257536L) != 0))) {
@@ -9924,16 +7439,13 @@ namespace ToolGood.Algorithm.math
 												ErrorHandler.ReportMatch(this);
 												Consume();
 											}
-											State = 1831;
-											expr(231);
+											State = 1831;expr(231);
 										}
 										break;
 									case 5: {
 											_localctx = new AndOr_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1832;
-											if (!(Precpred(Context, 229))) throw new FailedPredicateException(this, "Precpred(Context, 229)");
-											State = 1833;
+											//if (!(Precpred(Context, 229))) throw new FailedPredicateException(this, "Precpred(Context, 229)");
 											((AndOr_funContext)_localctx).op = TokenStream.LT(1);
 											_la = TokenStream.LA(1);
 											if (!(_la == T__22 || _la == AND)) {
@@ -9942,16 +7454,13 @@ namespace ToolGood.Algorithm.math
 												ErrorHandler.ReportMatch(this);
 												Consume();
 											}
-											State = 1834;
-											expr(230);
+											State = 1834;expr(230);
 										}
 										break;
 									case 6: {
 											_localctx = new AndOr_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1835;
-											if (!(Precpred(Context, 228))) throw new FailedPredicateException(this, "Precpred(Context, 228)");
-											State = 1836;
+											//if (!(Precpred(Context, 228))) throw new FailedPredicateException(this, "Precpred(Context, 228)");
 											((AndOr_funContext)_localctx).op = TokenStream.LT(1);
 											_la = TokenStream.LA(1);
 											if (!(_la == T__23 || _la == OR)) {
@@ -9960,213 +7469,149 @@ namespace ToolGood.Algorithm.math
 												ErrorHandler.ReportMatch(this);
 												Consume();
 											}
-											State = 1837;
-											expr(229);
+											State = 1837;expr(229);
 										}
 										break;
 									case 7: {
 											_localctx = new IF_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1838;
-											if (!(Precpred(Context, 227))) throw new FailedPredicateException(this, "Precpred(Context, 227)");
-											State = 1839;
+											//if (!(Precpred(Context, 227))) throw new FailedPredicateException(this, "Precpred(Context, 227)");
 											Match(T__24);
-											State = 1840;
-											expr(0);
-											State = 1841;
+											State = 1840;expr(0);
 											Match(T__25);
-											State = 1842;
-											expr(228);
+											State = 1842;expr(228);
 										}
 										break;
 									case 8: {
 											_localctx = new ISNUMBER_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1844;
-											if (!(Precpred(Context, 338))) throw new FailedPredicateException(this, "Precpred(Context, 338)");
-											State = 1845;
+											//if (!(Precpred(Context, 338))) throw new FailedPredicateException(this, "Precpred(Context, 338)");
 											Match(T__0);
-											State = 1846;
 											Match(ISNUMBER);
-											State = 1847;
 											Match(T__1);
-											State = 1848;
 											Match(T__2);
 										}
 										break;
 									case 9: {
 											_localctx = new ISTEXT_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1849;
-											if (!(Precpred(Context, 337))) throw new FailedPredicateException(this, "Precpred(Context, 337)");
-											State = 1850;
+											//if (!(Precpred(Context, 337))) throw new FailedPredicateException(this, "Precpred(Context, 337)");
 											Match(T__0);
-											State = 1851;
 											Match(ISTEXT);
-											State = 1852;
 											Match(T__1);
-											State = 1853;
 											Match(T__2);
 										}
 										break;
 									case 10: {
 											_localctx = new ISNONTEXT_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1854;
-											if (!(Precpred(Context, 336))) throw new FailedPredicateException(this, "Precpred(Context, 336)");
-											State = 1855;
+											//if (!(Precpred(Context, 336))) throw new FailedPredicateException(this, "Precpred(Context, 336)");
 											Match(T__0);
-											State = 1856;
 											Match(ISNONTEXT);
-											State = 1857;
 											Match(T__1);
-											State = 1858;
 											Match(T__2);
 										}
 										break;
 									case 11: {
 											_localctx = new ISLOGICAL_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1859;
-											if (!(Precpred(Context, 335))) throw new FailedPredicateException(this, "Precpred(Context, 335)");
-											State = 1860;
+											//if (!(Precpred(Context, 335))) throw new FailedPredicateException(this, "Precpred(Context, 335)");
 											Match(T__0);
-											State = 1861;
 											Match(ISLOGICAL);
-											State = 1862;
 											Match(T__1);
-											State = 1863;
 											Match(T__2);
 										}
 										break;
 									case 12: {
 											_localctx = new ISEVEN_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1864;
-											if (!(Precpred(Context, 334))) throw new FailedPredicateException(this, "Precpred(Context, 334)");
-											State = 1865;
+											//if (!(Precpred(Context, 334))) throw new FailedPredicateException(this, "Precpred(Context, 334)");
 											Match(T__0);
-											State = 1866;
 											Match(ISEVEN);
-											State = 1867;
 											Match(T__1);
-											State = 1868;
 											Match(T__2);
 										}
 										break;
 									case 13: {
 											_localctx = new ISODD_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1869;
-											if (!(Precpred(Context, 333))) throw new FailedPredicateException(this, "Precpred(Context, 333)");
-											State = 1870;
+											//if (!(Precpred(Context, 333))) throw new FailedPredicateException(this, "Precpred(Context, 333)");
 											Match(T__0);
-											State = 1871;
 											Match(ISODD);
-											State = 1872;
 											Match(T__1);
-											State = 1873;
 											Match(T__2);
 										}
 										break;
 									case 14: {
 											_localctx = new ISERROR_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1874;
-											if (!(Precpred(Context, 332))) throw new FailedPredicateException(this, "Precpred(Context, 332)");
-											State = 1875;
+											//if (!(Precpred(Context, 332))) throw new FailedPredicateException(this, "Precpred(Context, 332)");
 											Match(T__0);
-											State = 1876;
 											Match(ISERROR);
-											State = 1877;
 											Match(T__1);
-											State = 1879;
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 												{
-													State = 1878;
-													expr(0);
+													State = 1878;expr(0);
 												}
 											}
 
-											State = 1881;
 											Match(T__2);
 										}
 										break;
 									case 15: {
 											_localctx = new ISNULL_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1882;
-											if (!(Precpred(Context, 331))) throw new FailedPredicateException(this, "Precpred(Context, 331)");
-											State = 1883;
+											//if (!(Precpred(Context, 331))) throw new FailedPredicateException(this, "Precpred(Context, 331)");
 											Match(T__0);
-											State = 1884;
 											Match(ISNULL);
-											State = 1885;
 											Match(T__1);
-											State = 1887;
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 												{
-													State = 1886;
-													expr(0);
+													State = 1886;expr(0);
 												}
 											}
 
-											State = 1889;
 											Match(T__2);
 										}
 										break;
 									case 16: {
 											_localctx = new ISNULLORERROR_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1890;
-											if (!(Precpred(Context, 330))) throw new FailedPredicateException(this, "Precpred(Context, 330)");
-											State = 1891;
+											//if (!(Precpred(Context, 330))) throw new FailedPredicateException(this, "Precpred(Context, 330)");
 											Match(T__0);
-											State = 1892;
 											Match(ISNULLORERROR);
-											State = 1893;
 											Match(T__1);
-											State = 1895;
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 												{
-													State = 1894;
-													expr(0);
+													State = 1894;expr(0);
 												}
 											}
 
-											State = 1897;
 											Match(T__2);
 										}
 										break;
 									case 17: {
 											_localctx = new DEC2BIN_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1898;
-											if (!(Precpred(Context, 329))) throw new FailedPredicateException(this, "Precpred(Context, 329)");
-											State = 1899;
+											//if (!(Precpred(Context, 329))) throw new FailedPredicateException(this, "Precpred(Context, 329)");
 											Match(T__0);
-											State = 1900;
 											Match(DEC2BIN);
 											{
-												State = 1901;
 												Match(T__1);
-												State = 1903;
 												ErrorHandler.Sync(this);
 												_la = TokenStream.LA(1);
 												if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 													{
-														State = 1902;
-														expr(0);
+														State = 1902;expr(0);
 													}
 												}
 
-												State = 1905;
 												Match(T__2);
 											}
 										}
@@ -10174,26 +7619,19 @@ namespace ToolGood.Algorithm.math
 									case 18: {
 											_localctx = new DEC2HEX_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1906;
-											if (!(Precpred(Context, 328))) throw new FailedPredicateException(this, "Precpred(Context, 328)");
-											State = 1907;
+											//if (!(Precpred(Context, 328))) throw new FailedPredicateException(this, "Precpred(Context, 328)");
 											Match(T__0);
-											State = 1908;
 											Match(DEC2HEX);
 											{
-												State = 1909;
 												Match(T__1);
-												State = 1911;
 												ErrorHandler.Sync(this);
 												_la = TokenStream.LA(1);
 												if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 													{
-														State = 1910;
-														expr(0);
+														State = 1910;expr(0);
 													}
 												}
 
-												State = 1913;
 												Match(T__2);
 											}
 										}
@@ -10201,26 +7639,19 @@ namespace ToolGood.Algorithm.math
 									case 19: {
 											_localctx = new DEC2OCT_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1914;
-											if (!(Precpred(Context, 327))) throw new FailedPredicateException(this, "Precpred(Context, 327)");
-											State = 1915;
+											//if (!(Precpred(Context, 327))) throw new FailedPredicateException(this, "Precpred(Context, 327)");
 											Match(T__0);
-											State = 1916;
 											Match(DEC2OCT);
 											{
-												State = 1917;
 												Match(T__1);
-												State = 1919;
 												ErrorHandler.Sync(this);
 												_la = TokenStream.LA(1);
 												if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 													{
-														State = 1918;
-														expr(0);
+														State = 1918;expr(0);
 													}
 												}
 
-												State = 1921;
 												Match(T__2);
 											}
 										}
@@ -10228,26 +7659,19 @@ namespace ToolGood.Algorithm.math
 									case 20: {
 											_localctx = new HEX2BIN_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1922;
-											if (!(Precpred(Context, 326))) throw new FailedPredicateException(this, "Precpred(Context, 326)");
-											State = 1923;
+											//if (!(Precpred(Context, 326))) throw new FailedPredicateException(this, "Precpred(Context, 326)");
 											Match(T__0);
-											State = 1924;
 											Match(HEX2BIN);
 											{
-												State = 1925;
 												Match(T__1);
-												State = 1927;
 												ErrorHandler.Sync(this);
 												_la = TokenStream.LA(1);
 												if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 													{
-														State = 1926;
-														expr(0);
+														State = 1926;expr(0);
 													}
 												}
 
-												State = 1929;
 												Match(T__2);
 											}
 										}
@@ -10255,16 +7679,11 @@ namespace ToolGood.Algorithm.math
 									case 21: {
 											_localctx = new HEX2DEC_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1930;
-											if (!(Precpred(Context, 325))) throw new FailedPredicateException(this, "Precpred(Context, 325)");
-											State = 1931;
+											//if (!(Precpred(Context, 325))) throw new FailedPredicateException(this, "Precpred(Context, 325)");
 											Match(T__0);
-											State = 1932;
 											Match(HEX2DEC);
 											{
-												State = 1933;
 												Match(T__1);
-												State = 1934;
 												Match(T__2);
 											}
 										}
@@ -10272,26 +7691,19 @@ namespace ToolGood.Algorithm.math
 									case 22: {
 											_localctx = new HEX2OCT_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1935;
-											if (!(Precpred(Context, 324))) throw new FailedPredicateException(this, "Precpred(Context, 324)");
-											State = 1936;
+											//if (!(Precpred(Context, 324))) throw new FailedPredicateException(this, "Precpred(Context, 324)");
 											Match(T__0);
-											State = 1937;
 											Match(HEX2OCT);
 											{
-												State = 1938;
 												Match(T__1);
-												State = 1940;
 												ErrorHandler.Sync(this);
 												_la = TokenStream.LA(1);
 												if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 													{
-														State = 1939;
-														expr(0);
+														State = 1939;expr(0);
 													}
 												}
 
-												State = 1942;
 												Match(T__2);
 											}
 										}
@@ -10299,26 +7711,19 @@ namespace ToolGood.Algorithm.math
 									case 23: {
 											_localctx = new OCT2BIN_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1943;
-											if (!(Precpred(Context, 323))) throw new FailedPredicateException(this, "Precpred(Context, 323)");
-											State = 1944;
+											//if (!(Precpred(Context, 323))) throw new FailedPredicateException(this, "Precpred(Context, 323)");
 											Match(T__0);
-											State = 1945;
 											Match(OCT2BIN);
 											{
-												State = 1946;
 												Match(T__1);
-												State = 1948;
 												ErrorHandler.Sync(this);
 												_la = TokenStream.LA(1);
 												if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 													{
-														State = 1947;
-														expr(0);
+														State = 1947;expr(0);
 													}
 												}
 
-												State = 1950;
 												Match(T__2);
 											}
 										}
@@ -10326,16 +7731,11 @@ namespace ToolGood.Algorithm.math
 									case 24: {
 											_localctx = new OCT2DEC_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1951;
-											if (!(Precpred(Context, 322))) throw new FailedPredicateException(this, "Precpred(Context, 322)");
-											State = 1952;
+											//if (!(Precpred(Context, 322))) throw new FailedPredicateException(this, "Precpred(Context, 322)");
 											Match(T__0);
-											State = 1953;
 											Match(OCT2DEC);
 											{
-												State = 1954;
 												Match(T__1);
-												State = 1955;
 												Match(T__2);
 											}
 										}
@@ -10343,26 +7743,19 @@ namespace ToolGood.Algorithm.math
 									case 25: {
 											_localctx = new OCT2HEX_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1956;
-											if (!(Precpred(Context, 321))) throw new FailedPredicateException(this, "Precpred(Context, 321)");
-											State = 1957;
+											//if (!(Precpred(Context, 321))) throw new FailedPredicateException(this, "Precpred(Context, 321)");
 											Match(T__0);
-											State = 1958;
 											Match(OCT2HEX);
 											{
-												State = 1959;
 												Match(T__1);
-												State = 1961;
 												ErrorHandler.Sync(this);
 												_la = TokenStream.LA(1);
 												if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 													{
-														State = 1960;
-														expr(0);
+														State = 1960;expr(0);
 													}
 												}
 
-												State = 1963;
 												Match(T__2);
 											}
 										}
@@ -10370,26 +7763,19 @@ namespace ToolGood.Algorithm.math
 									case 26: {
 											_localctx = new BIN2OCT_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1964;
-											if (!(Precpred(Context, 320))) throw new FailedPredicateException(this, "Precpred(Context, 320)");
-											State = 1965;
+											//if (!(Precpred(Context, 320))) throw new FailedPredicateException(this, "Precpred(Context, 320)");
 											Match(T__0);
-											State = 1966;
 											Match(BIN2OCT);
 											{
-												State = 1967;
 												Match(T__1);
-												State = 1969;
 												ErrorHandler.Sync(this);
 												_la = TokenStream.LA(1);
 												if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 													{
-														State = 1968;
-														expr(0);
+														State = 1968;expr(0);
 													}
 												}
 
-												State = 1971;
 												Match(T__2);
 											}
 										}
@@ -10397,16 +7783,11 @@ namespace ToolGood.Algorithm.math
 									case 27: {
 											_localctx = new BIN2DEC_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1972;
-											if (!(Precpred(Context, 319))) throw new FailedPredicateException(this, "Precpred(Context, 319)");
-											State = 1973;
+											//if (!(Precpred(Context, 319))) throw new FailedPredicateException(this, "Precpred(Context, 319)");
 											Match(T__0);
-											State = 1974;
 											Match(BIN2DEC);
 											{
-												State = 1975;
 												Match(T__1);
-												State = 1976;
 												Match(T__2);
 											}
 										}
@@ -10414,26 +7795,19 @@ namespace ToolGood.Algorithm.math
 									case 28: {
 											_localctx = new BIN2HEX_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1977;
-											if (!(Precpred(Context, 318))) throw new FailedPredicateException(this, "Precpred(Context, 318)");
-											State = 1978;
+											//if (!(Precpred(Context, 318))) throw new FailedPredicateException(this, "Precpred(Context, 318)");
 											Match(T__0);
-											State = 1979;
 											Match(BIN2HEX);
 											{
-												State = 1980;
 												Match(T__1);
-												State = 1982;
 												ErrorHandler.Sync(this);
 												_la = TokenStream.LA(1);
 												if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 													{
-														State = 1981;
-														expr(0);
+														State = 1981;expr(0);
 													}
 												}
 
-												State = 1984;
 												Match(T__2);
 											}
 										}
@@ -10441,556 +7815,377 @@ namespace ToolGood.Algorithm.math
 									case 29: {
 											_localctx = new INT_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1985;
-											if (!(Precpred(Context, 317))) throw new FailedPredicateException(this, "Precpred(Context, 317)");
-											State = 1986;
+											//if (!(Precpred(Context, 317))) throw new FailedPredicateException(this, "Precpred(Context, 317)");
 											Match(T__0);
-											State = 1987;
 											Match(INT);
-											State = 1988;
 											Match(T__1);
-											State = 1989;
 											Match(T__2);
 										}
 										break;
 									case 30: {
 											_localctx = new ASC_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1990;
-											if (!(Precpred(Context, 316))) throw new FailedPredicateException(this, "Precpred(Context, 316)");
-											State = 1991;
+											//if (!(Precpred(Context, 316))) throw new FailedPredicateException(this, "Precpred(Context, 316)");
 											Match(T__0);
-											State = 1992;
 											Match(ASC);
-											State = 1993;
 											Match(T__1);
-											State = 1994;
 											Match(T__2);
 										}
 										break;
 									case 31: {
 											_localctx = new JIS_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 1995;
-											if (!(Precpred(Context, 315))) throw new FailedPredicateException(this, "Precpred(Context, 315)");
-											State = 1996;
+											//if (!(Precpred(Context, 315))) throw new FailedPredicateException(this, "Precpred(Context, 315)");
 											Match(T__0);
-											State = 1997;
 											Match(JIS);
-											State = 1998;
 											Match(T__1);
-											State = 1999;
 											Match(T__2);
 										}
 										break;
 									case 32: {
 											_localctx = new CHAR_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2000;
-											if (!(Precpred(Context, 314))) throw new FailedPredicateException(this, "Precpred(Context, 314)");
-											State = 2001;
+											//if (!(Precpred(Context, 314))) throw new FailedPredicateException(this, "Precpred(Context, 314)");
 											Match(T__0);
-											State = 2002;
 											Match(CHAR);
-											State = 2003;
 											Match(T__1);
-											State = 2004;
 											Match(T__2);
 										}
 										break;
 									case 33: {
 											_localctx = new CLEAN_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2005;
-											if (!(Precpred(Context, 313))) throw new FailedPredicateException(this, "Precpred(Context, 313)");
-											State = 2006;
+											//if (!(Precpred(Context, 313))) throw new FailedPredicateException(this, "Precpred(Context, 313)");
 											Match(T__0);
-											State = 2007;
 											Match(CLEAN);
-											State = 2008;
 											Match(T__1);
-											State = 2009;
 											Match(T__2);
 										}
 										break;
 									case 34: {
 											_localctx = new CODE_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2010;
-											if (!(Precpred(Context, 312))) throw new FailedPredicateException(this, "Precpred(Context, 312)");
-											State = 2011;
+											//if (!(Precpred(Context, 312))) throw new FailedPredicateException(this, "Precpred(Context, 312)");
 											Match(T__0);
-											State = 2012;
 											Match(CODE);
-											State = 2013;
 											Match(T__1);
-											State = 2014;
 											Match(T__2);
 										}
 										break;
 									case 35: {
 											_localctx = new CONCATENATE_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2015;
-											if (!(Precpred(Context, 311))) throw new FailedPredicateException(this, "Precpred(Context, 311)");
-											State = 2016;
+											//if (!(Precpred(Context, 311))) throw new FailedPredicateException(this, "Precpred(Context, 311)");
 											Match(T__0);
-											State = 2017;
 											Match(CONCATENATE);
-											State = 2018;
 											Match(T__1);
-											State = 2027;
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 												{
-													State = 2019;
-													expr(0);
-													State = 2024;
+													State = 2019;expr(0);
 													ErrorHandler.Sync(this);
 													_la = TokenStream.LA(1);
 													while (_la == T__3) {
 														{
 															{
-																State = 2020;
 																Match(T__3);
-																State = 2021;
-																expr(0);
+																State = 2021;expr(0);
 															}
 														}
-														State = 2026;
 														ErrorHandler.Sync(this);
 														_la = TokenStream.LA(1);
 													}
 												}
 											}
 
-											State = 2029;
 											Match(T__2);
 										}
 										break;
 									case 36: {
 											_localctx = new EXACT_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2030;
-											if (!(Precpred(Context, 310))) throw new FailedPredicateException(this, "Precpred(Context, 310)");
-											State = 2031;
+											//if (!(Precpred(Context, 310))) throw new FailedPredicateException(this, "Precpred(Context, 310)");
 											Match(T__0);
-											State = 2032;
 											Match(EXACT);
-											State = 2033;
 											Match(T__1);
-											State = 2034;
-											expr(0);
-											State = 2035;
+											State = 2034;expr(0);
 											Match(T__2);
 										}
 										break;
 									case 37: {
 											_localctx = new FIND_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2037;
-											if (!(Precpred(Context, 309))) throw new FailedPredicateException(this, "Precpred(Context, 309)");
-											State = 2038;
+											//if (!(Precpred(Context, 309))) throw new FailedPredicateException(this, "Precpred(Context, 309)");
 											Match(T__0);
-											State = 2039;
 											Match(FIND);
-											State = 2040;
 											Match(T__1);
-											State = 2041;
-											expr(0);
-											State = 2044;
+											State = 2041;expr(0);
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if (_la == T__3) {
 												{
-													State = 2042;
 													Match(T__3);
-													State = 2043;
-													expr(0);
+													State = 2043;expr(0);
 												}
 											}
 
-											State = 2046;
 											Match(T__2);
 										}
 										break;
 									case 38: {
 											_localctx = new LEFT_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2048;
-											if (!(Precpred(Context, 308))) throw new FailedPredicateException(this, "Precpred(Context, 308)");
-											State = 2049;
+											//if (!(Precpred(Context, 308))) throw new FailedPredicateException(this, "Precpred(Context, 308)");
 											Match(T__0);
-											State = 2050;
 											Match(LEFT);
-											State = 2051;
 											Match(T__1);
-											State = 2053;
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 												{
-													State = 2052;
-													expr(0);
+													State = 2052;expr(0);
 												}
 											}
 
-											State = 2055;
 											Match(T__2);
 										}
 										break;
 									case 39: {
 											_localctx = new LEN_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2056;
-											if (!(Precpred(Context, 307))) throw new FailedPredicateException(this, "Precpred(Context, 307)");
-											State = 2057;
+											//if (!(Precpred(Context, 307))) throw new FailedPredicateException(this, "Precpred(Context, 307)");
 											Match(T__0);
-											State = 2058;
 											Match(LEN);
-											State = 2059;
 											Match(T__1);
-											State = 2060;
 											Match(T__2);
 										}
 										break;
 									case 40: {
 											_localctx = new LOWER_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2061;
-											if (!(Precpred(Context, 306))) throw new FailedPredicateException(this, "Precpred(Context, 306)");
-											State = 2062;
+											//if (!(Precpred(Context, 306))) throw new FailedPredicateException(this, "Precpred(Context, 306)");
 											Match(T__0);
-											State = 2063;
 											Match(LOWER);
-											State = 2064;
 											Match(T__1);
-											State = 2065;
 											Match(T__2);
 										}
 										break;
 									case 41: {
 											_localctx = new MID_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2066;
-											if (!(Precpred(Context, 305))) throw new FailedPredicateException(this, "Precpred(Context, 305)");
-											State = 2067;
+											//if (!(Precpred(Context, 305))) throw new FailedPredicateException(this, "Precpred(Context, 305)");
 											Match(T__0);
-											State = 2068;
 											Match(MID);
-											State = 2069;
 											Match(T__1);
-											State = 2070;
-											expr(0);
-											State = 2071;
+											State = 2070;expr(0);
 											Match(T__3);
-											State = 2072;
-											expr(0);
-											State = 2073;
+											State = 2072;expr(0);
 											Match(T__2);
 										}
 										break;
 									case 42: {
 											_localctx = new PROPER_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2075;
-											if (!(Precpred(Context, 304))) throw new FailedPredicateException(this, "Precpred(Context, 304)");
-											State = 2076;
+											//if (!(Precpred(Context, 304))) throw new FailedPredicateException(this, "Precpred(Context, 304)");
 											Match(T__0);
-											State = 2077;
 											Match(PROPER);
-											State = 2078;
 											Match(T__1);
-											State = 2079;
 											Match(T__2);
 										}
 										break;
 									case 43: {
 											_localctx = new REPLACE_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2080;
-											if (!(Precpred(Context, 303))) throw new FailedPredicateException(this, "Precpred(Context, 303)");
-											State = 2081;
+											//if (!(Precpred(Context, 303))) throw new FailedPredicateException(this, "Precpred(Context, 303)");
 											Match(T__0);
-											State = 2082;
 											Match(REPLACE);
-											State = 2083;
 											Match(T__1);
-											State = 2084;
-											expr(0);
-											State = 2085;
+											State = 2084;expr(0);
 											Match(T__3);
-											State = 2086;
-											expr(0);
-											State = 2089;
+											State = 2086;expr(0);
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if (_la == T__3) {
 												{
-													State = 2087;
 													Match(T__3);
-													State = 2088;
-													expr(0);
+													State = 2088;expr(0);
 												}
 											}
 
-											State = 2091;
 											Match(T__2);
 										}
 										break;
 									case 44: {
 											_localctx = new REPT_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2093;
-											if (!(Precpred(Context, 302))) throw new FailedPredicateException(this, "Precpred(Context, 302)");
-											State = 2094;
+											//if (!(Precpred(Context, 302))) throw new FailedPredicateException(this, "Precpred(Context, 302)");
 											Match(T__0);
-											State = 2095;
 											Match(REPT);
-											State = 2096;
 											Match(T__1);
-											State = 2097;
-											expr(0);
-											State = 2098;
+											State = 2097;expr(0);
 											Match(T__2);
 										}
 										break;
 									case 45: {
 											_localctx = new RIGHT_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2100;
-											if (!(Precpred(Context, 301))) throw new FailedPredicateException(this, "Precpred(Context, 301)");
-											State = 2101;
+											//if (!(Precpred(Context, 301))) throw new FailedPredicateException(this, "Precpred(Context, 301)");
 											Match(T__0);
-											State = 2102;
 											Match(RIGHT);
-											State = 2103;
 											Match(T__1);
-											State = 2105;
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 												{
-													State = 2104;
-													expr(0);
+													State = 2104;expr(0);
 												}
 											}
 
-											State = 2107;
 											Match(T__2);
 										}
 										break;
 									case 46: {
 											_localctx = new RMB_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2108;
-											if (!(Precpred(Context, 300))) throw new FailedPredicateException(this, "Precpred(Context, 300)");
-											State = 2109;
+											//if (!(Precpred(Context, 300))) throw new FailedPredicateException(this, "Precpred(Context, 300)");
 											Match(T__0);
-											State = 2110;
 											Match(RMB);
-											State = 2111;
 											Match(T__1);
-											State = 2112;
 											Match(T__2);
 										}
 										break;
 									case 47: {
 											_localctx = new SEARCH_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2113;
-											if (!(Precpred(Context, 299))) throw new FailedPredicateException(this, "Precpred(Context, 299)");
-											State = 2114;
+											//if (!(Precpred(Context, 299))) throw new FailedPredicateException(this, "Precpred(Context, 299)");
 											Match(T__0);
-											State = 2115;
 											Match(SEARCH);
-											State = 2116;
 											Match(T__1);
-											State = 2117;
-											expr(0);
-											State = 2120;
+											State = 2117;expr(0);
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if (_la == T__3) {
 												{
-													State = 2118;
 													Match(T__3);
-													State = 2119;
-													expr(0);
+													State = 2119;expr(0);
 												}
 											}
 
-											State = 2122;
 											Match(T__2);
 										}
 										break;
 									case 48: {
 											_localctx = new SUBSTITUTE_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2124;
-											if (!(Precpred(Context, 298))) throw new FailedPredicateException(this, "Precpred(Context, 298)");
-											State = 2125;
+											//if (!(Precpred(Context, 298))) throw new FailedPredicateException(this, "Precpred(Context, 298)");
 											Match(T__0);
-											State = 2126;
 											Match(SUBSTITUTE);
-											State = 2127;
 											Match(T__1);
-											State = 2128;
-											expr(0);
-											State = 2129;
+											State = 2128;expr(0);
 											Match(T__3);
-											State = 2130;
-											expr(0);
-											State = 2133;
+											State = 2130;expr(0);
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if (_la == T__3) {
 												{
-													State = 2131;
 													Match(T__3);
-													State = 2132;
-													expr(0);
+													State = 2132;expr(0);
 												}
 											}
 
-											State = 2135;
 											Match(T__2);
 										}
 										break;
 									case 49: {
 											_localctx = new T_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2137;
-											if (!(Precpred(Context, 297))) throw new FailedPredicateException(this, "Precpred(Context, 297)");
-											State = 2138;
+											//if (!(Precpred(Context, 297))) throw new FailedPredicateException(this, "Precpred(Context, 297)");
 											Match(T__0);
-											State = 2139;
 											Match(T);
-											State = 2140;
 											Match(T__1);
-											State = 2141;
 											Match(T__2);
 										}
 										break;
 									case 50: {
 											_localctx = new TEXT_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2142;
-											if (!(Precpred(Context, 296))) throw new FailedPredicateException(this, "Precpred(Context, 296)");
-											State = 2143;
+											//if (!(Precpred(Context, 296))) throw new FailedPredicateException(this, "Precpred(Context, 296)");
 											Match(T__0);
-											State = 2144;
 											Match(TEXT);
-											State = 2145;
 											Match(T__1);
-											State = 2146;
-											expr(0);
-											State = 2147;
+											State = 2146;expr(0);
 											Match(T__2);
 										}
 										break;
 									case 51: {
 											_localctx = new TRIM_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2149;
-											if (!(Precpred(Context, 295))) throw new FailedPredicateException(this, "Precpred(Context, 295)");
-											State = 2150;
+											//if (!(Precpred(Context, 295))) throw new FailedPredicateException(this, "Precpred(Context, 295)");
 											Match(T__0);
-											State = 2151;
 											Match(TRIM);
-											State = 2152;
 											Match(T__1);
-											State = 2153;
 											Match(T__2);
 										}
 										break;
 									case 52: {
 											_localctx = new UPPER_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2154;
-											if (!(Precpred(Context, 294))) throw new FailedPredicateException(this, "Precpred(Context, 294)");
-											State = 2155;
+											//if (!(Precpred(Context, 294))) throw new FailedPredicateException(this, "Precpred(Context, 294)");
 											Match(T__0);
-											State = 2156;
 											Match(UPPER);
-											State = 2157;
 											Match(T__1);
-											State = 2158;
 											Match(T__2);
 										}
 										break;
 									case 53: {
 											_localctx = new VALUE_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2159;
-											if (!(Precpred(Context, 293))) throw new FailedPredicateException(this, "Precpred(Context, 293)");
-											State = 2160;
+											//if (!(Precpred(Context, 293))) throw new FailedPredicateException(this, "Precpred(Context, 293)");
 											Match(T__0);
-											State = 2161;
 											Match(VALUE);
-											State = 2162;
 											Match(T__1);
-											State = 2163;
 											Match(T__2);
 										}
 										break;
 									case 54: {
 											_localctx = new DATEVALUE_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2164;
-											if (!(Precpred(Context, 292))) throw new FailedPredicateException(this, "Precpred(Context, 292)");
-											State = 2165;
+											//if (!(Precpred(Context, 292))) throw new FailedPredicateException(this, "Precpred(Context, 292)");
 											Match(T__0);
-											State = 2166;
 											Match(DATEVALUE);
-											State = 2167;
 											Match(T__1);
-											State = 2169;
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 												{
-													State = 2168;
-													expr(0);
+													State = 2168;expr(0);
 												}
 											}
 
-											State = 2171;
 											Match(T__2);
 										}
 										break;
 									case 55: {
 											_localctx = new TIMEVALUE_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2172;
-											if (!(Precpred(Context, 291))) throw new FailedPredicateException(this, "Precpred(Context, 291)");
-											State = 2173;
+											//if (!(Precpred(Context, 291))) throw new FailedPredicateException(this, "Precpred(Context, 291)");
 											Match(T__0);
-											State = 2174;
 											Match(TIMEVALUE);
-											State = 2175;
 											Match(T__1);
-											State = 2176;
 											Match(T__2);
 										}
 										break;
 									case 56: {
 											_localctx = new YEAR_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2177;
-											if (!(Precpred(Context, 290))) throw new FailedPredicateException(this, "Precpred(Context, 290)");
-											State = 2178;
+											//if (!(Precpred(Context, 290))) throw new FailedPredicateException(this, "Precpred(Context, 290)");
 											Match(T__0);
-											State = 2179;
 											Match(YEAR);
-											State = 2182;
 											ErrorHandler.Sync(this);
 											switch (Interpreter.AdaptivePredict(TokenStream, 127, Context)) {
 												case 1: {
-														State = 2180;
 														Match(T__1);
-														State = 2181;
 														Match(T__2);
 													}
 													break;
@@ -11000,19 +8195,13 @@ namespace ToolGood.Algorithm.math
 									case 57: {
 											_localctx = new MONTH_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2184;
-											if (!(Precpred(Context, 289))) throw new FailedPredicateException(this, "Precpred(Context, 289)");
-											State = 2185;
+											//if (!(Precpred(Context, 289))) throw new FailedPredicateException(this, "Precpred(Context, 289)");
 											Match(T__0);
-											State = 2186;
 											Match(MONTH);
-											State = 2189;
 											ErrorHandler.Sync(this);
 											switch (Interpreter.AdaptivePredict(TokenStream, 128, Context)) {
 												case 1: {
-														State = 2187;
 														Match(T__1);
-														State = 2188;
 														Match(T__2);
 													}
 													break;
@@ -11022,19 +8211,13 @@ namespace ToolGood.Algorithm.math
 									case 58: {
 											_localctx = new DAY_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2191;
-											if (!(Precpred(Context, 288))) throw new FailedPredicateException(this, "Precpred(Context, 288)");
-											State = 2192;
+											//if (!(Precpred(Context, 288))) throw new FailedPredicateException(this, "Precpred(Context, 288)");
 											Match(T__0);
-											State = 2193;
 											Match(DAY);
-											State = 2196;
 											ErrorHandler.Sync(this);
 											switch (Interpreter.AdaptivePredict(TokenStream, 129, Context)) {
 												case 1: {
-														State = 2194;
 														Match(T__1);
-														State = 2195;
 														Match(T__2);
 													}
 													break;
@@ -11044,19 +8227,13 @@ namespace ToolGood.Algorithm.math
 									case 59: {
 											_localctx = new HOUR_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2198;
-											if (!(Precpred(Context, 287))) throw new FailedPredicateException(this, "Precpred(Context, 287)");
-											State = 2199;
+											//if (!(Precpred(Context, 287))) throw new FailedPredicateException(this, "Precpred(Context, 287)");
 											Match(T__0);
-											State = 2200;
 											Match(HOUR);
-											State = 2203;
 											ErrorHandler.Sync(this);
 											switch (Interpreter.AdaptivePredict(TokenStream, 130, Context)) {
 												case 1: {
-														State = 2201;
 														Match(T__1);
-														State = 2202;
 														Match(T__2);
 													}
 													break;
@@ -11066,19 +8243,13 @@ namespace ToolGood.Algorithm.math
 									case 60: {
 											_localctx = new MINUTE_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2205;
-											if (!(Precpred(Context, 286))) throw new FailedPredicateException(this, "Precpred(Context, 286)");
-											State = 2206;
+											//if (!(Precpred(Context, 286))) throw new FailedPredicateException(this, "Precpred(Context, 286)");
 											Match(T__0);
-											State = 2207;
 											Match(MINUTE);
-											State = 2210;
 											ErrorHandler.Sync(this);
 											switch (Interpreter.AdaptivePredict(TokenStream, 131, Context)) {
 												case 1: {
-														State = 2208;
 														Match(T__1);
-														State = 2209;
 														Match(T__2);
 													}
 													break;
@@ -11088,19 +8259,13 @@ namespace ToolGood.Algorithm.math
 									case 61: {
 											_localctx = new SECOND_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2212;
-											if (!(Precpred(Context, 285))) throw new FailedPredicateException(this, "Precpred(Context, 285)");
-											State = 2213;
+											//if (!(Precpred(Context, 285))) throw new FailedPredicateException(this, "Precpred(Context, 285)");
 											Match(T__0);
-											State = 2214;
 											Match(SECOND);
-											State = 2217;
 											ErrorHandler.Sync(this);
 											switch (Interpreter.AdaptivePredict(TokenStream, 132, Context)) {
 												case 1: {
-														State = 2215;
 														Match(T__1);
-														State = 2216;
 														Match(T__2);
 													}
 													break;
@@ -11110,1116 +8275,772 @@ namespace ToolGood.Algorithm.math
 									case 62: {
 											_localctx = new URLENCODE_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2219;
-											if (!(Precpred(Context, 284))) throw new FailedPredicateException(this, "Precpred(Context, 284)");
-											State = 2220;
+											//if (!(Precpred(Context, 284))) throw new FailedPredicateException(this, "Precpred(Context, 284)");
 											Match(T__0);
-											State = 2221;
 											Match(URLENCODE);
-											State = 2222;
 											Match(T__1);
-											State = 2223;
 											Match(T__2);
 										}
 										break;
 									case 63: {
 											_localctx = new URLDECODE_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2224;
-											if (!(Precpred(Context, 283))) throw new FailedPredicateException(this, "Precpred(Context, 283)");
-											State = 2225;
+											//if (!(Precpred(Context, 283))) throw new FailedPredicateException(this, "Precpred(Context, 283)");
 											Match(T__0);
-											State = 2226;
 											Match(URLDECODE);
-											State = 2227;
 											Match(T__1);
-											State = 2228;
 											Match(T__2);
 										}
 										break;
 									case 64: {
 											_localctx = new HTMLENCODE_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2229;
-											if (!(Precpred(Context, 282))) throw new FailedPredicateException(this, "Precpred(Context, 282)");
-											State = 2230;
+											//if (!(Precpred(Context, 282))) throw new FailedPredicateException(this, "Precpred(Context, 282)");
 											Match(T__0);
-											State = 2231;
 											Match(HTMLENCODE);
-											State = 2232;
 											Match(T__1);
-											State = 2233;
 											Match(T__2);
 										}
 										break;
 									case 65: {
 											_localctx = new HTMLDECODE_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2234;
-											if (!(Precpred(Context, 281))) throw new FailedPredicateException(this, "Precpred(Context, 281)");
-											State = 2235;
+											//if (!(Precpred(Context, 281))) throw new FailedPredicateException(this, "Precpred(Context, 281)");
 											Match(T__0);
-											State = 2236;
 											Match(HTMLDECODE);
-											State = 2237;
 											Match(T__1);
-											State = 2238;
 											Match(T__2);
 										}
 										break;
 									case 66: {
 											_localctx = new BASE64TOTEXT_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2239;
-											if (!(Precpred(Context, 280))) throw new FailedPredicateException(this, "Precpred(Context, 280)");
-											State = 2240;
+											//if (!(Precpred(Context, 280))) throw new FailedPredicateException(this, "Precpred(Context, 280)");
 											Match(T__0);
-											State = 2241;
 											Match(BASE64TOTEXT);
-											State = 2242;
 											Match(T__1);
-											State = 2244;
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 												{
-													State = 2243;
-													expr(0);
+													State = 2243;expr(0);
 												}
 											}
 
-											State = 2246;
 											Match(T__2);
 										}
 										break;
 									case 67: {
 											_localctx = new BASE64URLTOTEXT_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2247;
-											if (!(Precpred(Context, 279))) throw new FailedPredicateException(this, "Precpred(Context, 279)");
-											State = 2248;
+											//if (!(Precpred(Context, 279))) throw new FailedPredicateException(this, "Precpred(Context, 279)");
 											Match(T__0);
-											State = 2249;
 											Match(BASE64URLTOTEXT);
-											State = 2250;
 											Match(T__1);
-											State = 2252;
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 												{
-													State = 2251;
-													expr(0);
+													State = 2251;expr(0);
 												}
 											}
 
-											State = 2254;
 											Match(T__2);
 										}
 										break;
 									case 68: {
 											_localctx = new TEXTTOBASE64_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2255;
-											if (!(Precpred(Context, 278))) throw new FailedPredicateException(this, "Precpred(Context, 278)");
-											State = 2256;
+											//if (!(Precpred(Context, 278))) throw new FailedPredicateException(this, "Precpred(Context, 278)");
 											Match(T__0);
-											State = 2257;
 											Match(TEXTTOBASE64);
-											State = 2258;
 											Match(T__1);
-											State = 2260;
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 												{
-													State = 2259;
-													expr(0);
+													State = 2259;expr(0);
 												}
 											}
 
-											State = 2262;
 											Match(T__2);
 										}
 										break;
 									case 69: {
 											_localctx = new TEXTTOBASE64URL_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2263;
-											if (!(Precpred(Context, 277))) throw new FailedPredicateException(this, "Precpred(Context, 277)");
-											State = 2264;
+											//if (!(Precpred(Context, 277))) throw new FailedPredicateException(this, "Precpred(Context, 277)");
 											Match(T__0);
-											State = 2265;
 											Match(TEXTTOBASE64URL);
-											State = 2266;
 											Match(T__1);
-											State = 2268;
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 												{
-													State = 2267;
-													expr(0);
+													State = 2267;expr(0);
 												}
 											}
 
-											State = 2270;
 											Match(T__2);
 										}
 										break;
 									case 70: {
 											_localctx = new REGEX_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2271;
-											if (!(Precpred(Context, 276))) throw new FailedPredicateException(this, "Precpred(Context, 276)");
-											State = 2272;
+											//if (!(Precpred(Context, 276))) throw new FailedPredicateException(this, "Precpred(Context, 276)");
 											Match(T__0);
-											State = 2273;
 											Match(REGEX);
-											State = 2274;
 											Match(T__1);
-											State = 2275;
-											expr(0);
-											State = 2276;
+											State = 2275;expr(0);
 											Match(T__2);
 										}
 										break;
 									case 71: {
 											_localctx = new REGEXREPALCE_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2278;
-											if (!(Precpred(Context, 275))) throw new FailedPredicateException(this, "Precpred(Context, 275)");
-											State = 2279;
+											//if (!(Precpred(Context, 275))) throw new FailedPredicateException(this, "Precpred(Context, 275)");
 											Match(T__0);
-											State = 2280;
 											Match(REGEXREPALCE);
-											State = 2281;
 											Match(T__1);
-											State = 2282;
-											expr(0);
-											State = 2283;
+											State = 2282;expr(0);
 											Match(T__3);
-											State = 2284;
-											expr(0);
-											State = 2285;
+											State = 2284;expr(0);
 											Match(T__2);
 										}
 										break;
 									case 72: {
 											_localctx = new ISREGEX_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2287;
-											if (!(Precpred(Context, 274))) throw new FailedPredicateException(this, "Precpred(Context, 274)");
-											State = 2288;
+											//if (!(Precpred(Context, 274))) throw new FailedPredicateException(this, "Precpred(Context, 274)");
 											Match(T__0);
-											State = 2289;
 											Match(ISREGEX);
-											State = 2290;
 											Match(T__1);
-											State = 2291;
-											expr(0);
-											State = 2292;
+											State = 2291;expr(0);
 											Match(T__2);
 										}
 										break;
 									case 73: {
 											_localctx = new MD5_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2294;
-											if (!(Precpred(Context, 273))) throw new FailedPredicateException(this, "Precpred(Context, 273)");
-											State = 2295;
+											//if (!(Precpred(Context, 273))) throw new FailedPredicateException(this, "Precpred(Context, 273)");
 											Match(T__0);
-											State = 2296;
 											Match(MD5);
-											State = 2297;
 											Match(T__1);
-											State = 2299;
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 												{
-													State = 2298;
-													expr(0);
+													State = 2298;expr(0);
 												}
 											}
 
-											State = 2301;
 											Match(T__2);
 										}
 										break;
 									case 74: {
 											_localctx = new SHA1_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2302;
-											if (!(Precpred(Context, 272))) throw new FailedPredicateException(this, "Precpred(Context, 272)");
-											State = 2303;
+											//if (!(Precpred(Context, 272))) throw new FailedPredicateException(this, "Precpred(Context, 272)");
 											Match(T__0);
-											State = 2304;
 											Match(SHA1);
-											State = 2305;
 											Match(T__1);
-											State = 2307;
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 												{
-													State = 2306;
-													expr(0);
+													State = 2306;expr(0);
 												}
 											}
 
-											State = 2309;
 											Match(T__2);
 										}
 										break;
 									case 75: {
 											_localctx = new SHA256_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2310;
-											if (!(Precpred(Context, 271))) throw new FailedPredicateException(this, "Precpred(Context, 271)");
-											State = 2311;
+											//if (!(Precpred(Context, 271))) throw new FailedPredicateException(this, "Precpred(Context, 271)");
 											Match(T__0);
-											State = 2312;
 											Match(SHA256);
-											State = 2313;
 											Match(T__1);
-											State = 2315;
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 												{
-													State = 2314;
-													expr(0);
+													State = 2314;expr(0);
 												}
 											}
 
-											State = 2317;
 											Match(T__2);
 										}
 										break;
 									case 76: {
 											_localctx = new SHA512_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2318;
-											if (!(Precpred(Context, 270))) throw new FailedPredicateException(this, "Precpred(Context, 270)");
-											State = 2319;
+											//if (!(Precpred(Context, 270))) throw new FailedPredicateException(this, "Precpred(Context, 270)");
 											Match(T__0);
-											State = 2320;
 											Match(SHA512);
-											State = 2321;
 											Match(T__1);
-											State = 2323;
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 												{
-													State = 2322;
-													expr(0);
+													State = 2322;expr(0);
 												}
 											}
 
-											State = 2325;
 											Match(T__2);
 										}
 										break;
 									case 77: {
 											_localctx = new CRC32_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2326;
-											if (!(Precpred(Context, 269))) throw new FailedPredicateException(this, "Precpred(Context, 269)");
-											State = 2327;
+											//if (!(Precpred(Context, 269))) throw new FailedPredicateException(this, "Precpred(Context, 269)");
 											Match(T__0);
-											State = 2328;
 											Match(CRC32);
-											State = 2329;
 											Match(T__1);
-											State = 2331;
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 												{
-													State = 2330;
-													expr(0);
+													State = 2330;expr(0);
 												}
 											}
 
-											State = 2333;
 											Match(T__2);
 										}
 										break;
 									case 78: {
 											_localctx = new HMACMD5_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2334;
-											if (!(Precpred(Context, 268))) throw new FailedPredicateException(this, "Precpred(Context, 268)");
-											State = 2335;
+											//if (!(Precpred(Context, 268))) throw new FailedPredicateException(this, "Precpred(Context, 268)");
 											Match(T__0);
-											State = 2336;
 											Match(HMACMD5);
-											State = 2337;
 											Match(T__1);
-											State = 2338;
-											expr(0);
-											State = 2341;
+											State = 2338;expr(0);
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if (_la == T__3) {
 												{
-													State = 2339;
 													Match(T__3);
-													State = 2340;
-													expr(0);
+													State = 2340;expr(0);
 												}
 											}
 
-											State = 2343;
 											Match(T__2);
 										}
 										break;
 									case 79: {
 											_localctx = new HMACSHA1_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2345;
-											if (!(Precpred(Context, 267))) throw new FailedPredicateException(this, "Precpred(Context, 267)");
-											State = 2346;
+											//if (!(Precpred(Context, 267))) throw new FailedPredicateException(this, "Precpred(Context, 267)");
 											Match(T__0);
-											State = 2347;
 											Match(HMACSHA1);
-											State = 2348;
 											Match(T__1);
-											State = 2349;
-											expr(0);
-											State = 2352;
+											State = 2349;expr(0);
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if (_la == T__3) {
 												{
-													State = 2350;
 													Match(T__3);
-													State = 2351;
-													expr(0);
+													State = 2351;expr(0);
 												}
 											}
 
-											State = 2354;
 											Match(T__2);
 										}
 										break;
 									case 80: {
 											_localctx = new HMACSHA256_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2356;
-											if (!(Precpred(Context, 266))) throw new FailedPredicateException(this, "Precpred(Context, 266)");
-											State = 2357;
+											//if (!(Precpred(Context, 266))) throw new FailedPredicateException(this, "Precpred(Context, 266)");
 											Match(T__0);
-											State = 2358;
 											Match(HMACSHA256);
-											State = 2359;
 											Match(T__1);
-											State = 2360;
-											expr(0);
-											State = 2363;
+											State = 2360;expr(0);
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if (_la == T__3) {
 												{
-													State = 2361;
 													Match(T__3);
-													State = 2362;
-													expr(0);
+													State = 2362;expr(0);
 												}
 											}
 
-											State = 2365;
 											Match(T__2);
 										}
 										break;
 									case 81: {
 											_localctx = new HMACSHA512_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2367;
-											if (!(Precpred(Context, 265))) throw new FailedPredicateException(this, "Precpred(Context, 265)");
-											State = 2368;
+											//if (!(Precpred(Context, 265))) throw new FailedPredicateException(this, "Precpred(Context, 265)");
 											Match(T__0);
-											State = 2369;
 											Match(HMACSHA512);
-											State = 2370;
 											Match(T__1);
-											State = 2371;
-											expr(0);
-											State = 2374;
+											State = 2371;expr(0);
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if (_la == T__3) {
 												{
-													State = 2372;
 													Match(T__3);
-													State = 2373;
-													expr(0);
+													State = 2373;expr(0);
 												}
 											}
 
-											State = 2376;
 											Match(T__2);
 										}
 										break;
 									case 82: {
 											_localctx = new TRIMSTART_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2378;
-											if (!(Precpred(Context, 264))) throw new FailedPredicateException(this, "Precpred(Context, 264)");
-											State = 2379;
+											//if (!(Precpred(Context, 264))) throw new FailedPredicateException(this, "Precpred(Context, 264)");
 											Match(T__0);
-											State = 2380;
 											Match(TRIMSTART);
-											State = 2381;
 											Match(T__1);
-											State = 2383;
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 												{
-													State = 2382;
-													expr(0);
+													State = 2382;expr(0);
 												}
 											}
 
-											State = 2385;
 											Match(T__2);
 										}
 										break;
 									case 83: {
 											_localctx = new TRIMEND_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2386;
-											if (!(Precpred(Context, 263))) throw new FailedPredicateException(this, "Precpred(Context, 263)");
-											State = 2387;
+											//if (!(Precpred(Context, 263))) throw new FailedPredicateException(this, "Precpred(Context, 263)");
 											Match(T__0);
-											State = 2388;
 											Match(TRIMEND);
-											State = 2389;
 											Match(T__1);
-											State = 2391;
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 												{
-													State = 2390;
-													expr(0);
+													State = 2390;expr(0);
 												}
 											}
 
-											State = 2393;
 											Match(T__2);
 										}
 										break;
 									case 84: {
 											_localctx = new INDEXOF_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2394;
-											if (!(Precpred(Context, 262))) throw new FailedPredicateException(this, "Precpred(Context, 262)");
-											State = 2395;
+											//if (!(Precpred(Context, 262))) throw new FailedPredicateException(this, "Precpred(Context, 262)");
 											Match(T__0);
-											State = 2396;
 											Match(INDEXOF);
-											State = 2397;
 											Match(T__1);
-											State = 2398;
-											expr(0);
-											State = 2405;
+											State = 2398;expr(0);
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if (_la == T__3) {
 												{
-													State = 2399;
 													Match(T__3);
-													State = 2400;
-													expr(0);
-													State = 2403;
+													State = 2400;expr(0);
 													ErrorHandler.Sync(this);
 													_la = TokenStream.LA(1);
 													if (_la == T__3) {
 														{
-															State = 2401;
 															Match(T__3);
-															State = 2402;
-															expr(0);
+															State = 2402;expr(0);
 														}
 													}
 
 												}
 											}
 
-											State = 2407;
 											Match(T__2);
 										}
 										break;
 									case 85: {
 											_localctx = new LASTINDEXOF_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2409;
-											if (!(Precpred(Context, 261))) throw new FailedPredicateException(this, "Precpred(Context, 261)");
-											State = 2410;
+											//if (!(Precpred(Context, 261))) throw new FailedPredicateException(this, "Precpred(Context, 261)");
 											Match(T__0);
-											State = 2411;
 											Match(LASTINDEXOF);
-											State = 2412;
 											Match(T__1);
-											State = 2413;
-											expr(0);
-											State = 2420;
+											State = 2413;expr(0);
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if (_la == T__3) {
 												{
-													State = 2414;
 													Match(T__3);
-													State = 2415;
-													expr(0);
-													State = 2418;
+													State = 2415;expr(0);
 													ErrorHandler.Sync(this);
 													_la = TokenStream.LA(1);
 													if (_la == T__3) {
 														{
-															State = 2416;
 															Match(T__3);
-															State = 2417;
-															expr(0);
+															State = 2417;expr(0);
 														}
 													}
 
 												}
 											}
 
-											State = 2422;
 											Match(T__2);
 										}
 										break;
 									case 86: {
 											_localctx = new SPLIT_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2424;
-											if (!(Precpred(Context, 260))) throw new FailedPredicateException(this, "Precpred(Context, 260)");
-											State = 2425;
+											//if (!(Precpred(Context, 260))) throw new FailedPredicateException(this, "Precpred(Context, 260)");
 											Match(T__0);
-											State = 2426;
 											Match(SPLIT);
-											State = 2427;
 											Match(T__1);
-											State = 2428;
-											expr(0);
-											State = 2429;
+											State = 2428;expr(0);
 											Match(T__2);
 										}
 										break;
 									case 87: {
 											_localctx = new JOIN_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2431;
-											if (!(Precpred(Context, 259))) throw new FailedPredicateException(this, "Precpred(Context, 259)");
-											State = 2432;
+											//if (!(Precpred(Context, 259))) throw new FailedPredicateException(this, "Precpred(Context, 259)");
 											Match(T__0);
-											State = 2433;
 											Match(JOIN);
-											State = 2434;
 											Match(T__1);
-											State = 2435;
-											expr(0);
-											State = 2440;
+											State = 2435;expr(0);
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											while (_la == T__3) {
 												{
 													{
-														State = 2436;
 														Match(T__3);
-														State = 2437;
-														expr(0);
+														State = 2437;expr(0);
 													}
 												}
-												State = 2442;
 												ErrorHandler.Sync(this);
 												_la = TokenStream.LA(1);
 											}
-											State = 2443;
 											Match(T__2);
 										}
 										break;
 									case 88: {
 											_localctx = new SUBSTRING_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2445;
-											if (!(Precpred(Context, 258))) throw new FailedPredicateException(this, "Precpred(Context, 258)");
-											State = 2446;
+											//if (!(Precpred(Context, 258))) throw new FailedPredicateException(this, "Precpred(Context, 258)");
 											Match(T__0);
-											State = 2447;
 											Match(SUBSTRING);
-											State = 2448;
 											Match(T__1);
-											State = 2449;
-											expr(0);
-											State = 2452;
+											State = 2449;expr(0);
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if (_la == T__3) {
 												{
-													State = 2450;
 													Match(T__3);
-													State = 2451;
-													expr(0);
+													State = 2451;expr(0);
 												}
 											}
 
-											State = 2454;
 											Match(T__2);
 										}
 										break;
 									case 89: {
 											_localctx = new STARTSWITH_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2456;
-											if (!(Precpred(Context, 257))) throw new FailedPredicateException(this, "Precpred(Context, 257)");
-											State = 2457;
+											//if (!(Precpred(Context, 257))) throw new FailedPredicateException(this, "Precpred(Context, 257)");
 											Match(T__0);
-											State = 2458;
 											Match(STARTSWITH);
-											State = 2459;
 											Match(T__1);
-											State = 2460;
-											expr(0);
-											State = 2463;
+											State = 2460;expr(0);
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if (_la == T__3) {
 												{
-													State = 2461;
 													Match(T__3);
-													State = 2462;
-													expr(0);
+													State = 2462;expr(0);
 												}
 											}
 
-											State = 2465;
 											Match(T__2);
 										}
 										break;
 									case 90: {
 											_localctx = new ENDSWITH_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2467;
-											if (!(Precpred(Context, 256))) throw new FailedPredicateException(this, "Precpred(Context, 256)");
-											State = 2468;
+											//if (!(Precpred(Context, 256))) throw new FailedPredicateException(this, "Precpred(Context, 256)");
 											Match(T__0);
-											State = 2469;
 											Match(ENDSWITH);
-											State = 2470;
 											Match(T__1);
-											State = 2471;
-											expr(0);
-											State = 2474;
+											State = 2471;expr(0);
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if (_la == T__3) {
 												{
-													State = 2472;
 													Match(T__3);
-													State = 2473;
-													expr(0);
+													State = 2473;expr(0);
 												}
 											}
 
-											State = 2476;
 											Match(T__2);
 										}
 										break;
 									case 91: {
 											_localctx = new ISNULLOREMPTY_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2478;
-											if (!(Precpred(Context, 255))) throw new FailedPredicateException(this, "Precpred(Context, 255)");
-											State = 2479;
+											//if (!(Precpred(Context, 255))) throw new FailedPredicateException(this, "Precpred(Context, 255)");
 											Match(T__0);
-											State = 2480;
 											Match(ISNULLOREMPTY);
-											State = 2481;
 											Match(T__1);
-											State = 2482;
 											Match(T__2);
 										}
 										break;
 									case 92: {
 											_localctx = new ISNULLORWHITESPACE_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2483;
-											if (!(Precpred(Context, 254))) throw new FailedPredicateException(this, "Precpred(Context, 254)");
-											State = 2484;
+											//if (!(Precpred(Context, 254))) throw new FailedPredicateException(this, "Precpred(Context, 254)");
 											Match(T__0);
-											State = 2485;
 											Match(ISNULLORWHITESPACE);
-											State = 2486;
 											Match(T__1);
-											State = 2487;
 											Match(T__2);
 										}
 										break;
 									case 93: {
 											_localctx = new REMOVESTART_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2488;
-											if (!(Precpred(Context, 253))) throw new FailedPredicateException(this, "Precpred(Context, 253)");
-											State = 2489;
+											//if (!(Precpred(Context, 253))) throw new FailedPredicateException(this, "Precpred(Context, 253)");
 											Match(T__0);
-											State = 2490;
 											Match(REMOVESTART);
-											State = 2491;
 											Match(T__1);
-											State = 2492;
-											expr(0);
-											State = 2495;
+											State = 2492;expr(0);
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if (_la == T__3) {
 												{
-													State = 2493;
 													Match(T__3);
-													State = 2494;
-													expr(0);
+													State = 2494;expr(0);
 												}
 											}
 
-											State = 2497;
 											Match(T__2);
 										}
 										break;
 									case 94: {
 											_localctx = new REMOVEEND_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2499;
-											if (!(Precpred(Context, 252))) throw new FailedPredicateException(this, "Precpred(Context, 252)");
-											State = 2500;
+											//if (!(Precpred(Context, 252))) throw new FailedPredicateException(this, "Precpred(Context, 252)");
 											Match(T__0);
-											State = 2501;
 											Match(REMOVEEND);
-											State = 2502;
 											Match(T__1);
-											State = 2503;
-											expr(0);
-											State = 2506;
+											State = 2503;expr(0);
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if (_la == T__3) {
 												{
-													State = 2504;
 													Match(T__3);
-													State = 2505;
-													expr(0);
+													State = 2505;expr(0);
 												}
 											}
 
-											State = 2508;
 											Match(T__2);
 										}
 										break;
 									case 95: {
 											_localctx = new JSON_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2510;
-											if (!(Precpred(Context, 251))) throw new FailedPredicateException(this, "Precpred(Context, 251)");
-											State = 2511;
+											//if (!(Precpred(Context, 251))) throw new FailedPredicateException(this, "Precpred(Context, 251)");
 											Match(T__0);
-											State = 2512;
 											Match(JSON);
-											State = 2513;
 											Match(T__1);
-											State = 2514;
 											Match(T__2);
 										}
 										break;
 									case 96: {
 											_localctx = new VLOOKUP_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2515;
-											if (!(Precpred(Context, 250))) throw new FailedPredicateException(this, "Precpred(Context, 250)");
-											State = 2516;
+											//if (!(Precpred(Context, 250))) throw new FailedPredicateException(this, "Precpred(Context, 250)");
 											Match(T__0);
-											State = 2517;
 											Match(VLOOKUP);
-											State = 2518;
 											Match(T__1);
-											State = 2519;
-											expr(0);
-											State = 2520;
+											State = 2519;expr(0);
 											Match(T__3);
-											State = 2521;
-											expr(0);
-											State = 2524;
+											State = 2521;expr(0);
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if (_la == T__3) {
 												{
-													State = 2522;
 													Match(T__3);
-													State = 2523;
-													expr(0);
+													State = 2523;expr(0);
 												}
 											}
 
-											State = 2526;
 											Match(T__2);
 										}
 										break;
 									case 97: {
 											_localctx = new DiyFunction_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2528;
-											if (!(Precpred(Context, 249))) throw new FailedPredicateException(this, "Precpred(Context, 249)");
-											State = 2529;
+											//if (!(Precpred(Context, 249))) throw new FailedPredicateException(this, "Precpred(Context, 249)");
 											Match(T__0);
-											State = 2530;
 											Match(PARAMETER);
-											State = 2531;
 											Match(T__1);
-											State = 2540;
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 												{
-													State = 2532;
-													expr(0);
-													State = 2537;
+													State = 2532;expr(0);
 													ErrorHandler.Sync(this);
 													_la = TokenStream.LA(1);
 													while (_la == T__3) {
 														{
 															{
-																State = 2533;
 																Match(T__3);
-																State = 2534;
-																expr(0);
+																State = 2534;expr(0);
 															}
 														}
-														State = 2539;
 														ErrorHandler.Sync(this);
 														_la = TokenStream.LA(1);
 													}
 												}
 											}
 
-											State = 2542;
 											Match(T__2);
 										}
 										break;
 									case 98: {
 											_localctx = new ADDYEARS_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2543;
-											if (!(Precpred(Context, 248))) throw new FailedPredicateException(this, "Precpred(Context, 248)");
-											State = 2544;
+											//if (!(Precpred(Context, 248))) throw new FailedPredicateException(this, "Precpred(Context, 248)");
 											Match(T__0);
-											State = 2545;
 											Match(ADDYEARS);
-											State = 2546;
 											Match(T__1);
-											State = 2547;
-											expr(0);
-											State = 2548;
+											State = 2547;expr(0);
 											Match(T__2);
 										}
 										break;
 									case 99: {
 											_localctx = new ADDMONTHS_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2550;
-											if (!(Precpred(Context, 247))) throw new FailedPredicateException(this, "Precpred(Context, 247)");
-											State = 2551;
+											//if (!(Precpred(Context, 247))) throw new FailedPredicateException(this, "Precpred(Context, 247)");
 											Match(T__0);
-											State = 2552;
 											Match(ADDMONTHS);
-											State = 2553;
 											Match(T__1);
-											State = 2554;
-											expr(0);
-											State = 2555;
+											State = 2554;expr(0);
 											Match(T__2);
 										}
 										break;
 									case 100: {
 											_localctx = new ADDDAYS_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2557;
-											if (!(Precpred(Context, 246))) throw new FailedPredicateException(this, "Precpred(Context, 246)");
-											State = 2558;
+											//if (!(Precpred(Context, 246))) throw new FailedPredicateException(this, "Precpred(Context, 246)");
 											Match(T__0);
-											State = 2559;
 											Match(ADDDAYS);
-											State = 2560;
 											Match(T__1);
-											State = 2561;
-											expr(0);
-											State = 2562;
+											State = 2561;expr(0);
 											Match(T__2);
 										}
 										break;
 									case 101: {
 											_localctx = new ADDHOURS_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2564;
-											if (!(Precpred(Context, 245))) throw new FailedPredicateException(this, "Precpred(Context, 245)");
-											State = 2565;
+											//if (!(Precpred(Context, 245))) throw new FailedPredicateException(this, "Precpred(Context, 245)");
 											Match(T__0);
-											State = 2566;
 											Match(ADDHOURS);
-											State = 2567;
 											Match(T__1);
-											State = 2568;
-											expr(0);
-											State = 2569;
+											State = 2568;expr(0);
 											Match(T__2);
 										}
 										break;
 									case 102: {
 											_localctx = new ADDMINUTES_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2571;
-											if (!(Precpred(Context, 244))) throw new FailedPredicateException(this, "Precpred(Context, 244)");
-											State = 2572;
+											//if (!(Precpred(Context, 244))) throw new FailedPredicateException(this, "Precpred(Context, 244)");
 											Match(T__0);
-											State = 2573;
 											Match(ADDMINUTES);
-											State = 2574;
 											Match(T__1);
-											State = 2575;
-											expr(0);
-											State = 2576;
+											State = 2575;expr(0);
 											Match(T__2);
 										}
 										break;
 									case 103: {
 											_localctx = new ADDSECONDS_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2578;
-											if (!(Precpred(Context, 243))) throw new FailedPredicateException(this, "Precpred(Context, 243)");
-											State = 2579;
+											//if (!(Precpred(Context, 243))) throw new FailedPredicateException(this, "Precpred(Context, 243)");
 											Match(T__0);
-											State = 2580;
 											Match(ADDSECONDS);
-											State = 2581;
 											Match(T__1);
-											State = 2582;
-											expr(0);
-											State = 2583;
+											State = 2582;expr(0);
 											Match(T__2);
 										}
 										break;
 									case 104: {
 											_localctx = new TIMESTAMP_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2585;
-											if (!(Precpred(Context, 242))) throw new FailedPredicateException(this, "Precpred(Context, 242)");
-											State = 2586;
+											//if (!(Precpred(Context, 242))) throw new FailedPredicateException(this, "Precpred(Context, 242)");
 											Match(T__0);
-											State = 2587;
 											Match(TIMESTAMP);
-											State = 2588;
 											Match(T__1);
-											State = 2590;
 											ErrorHandler.Sync(this);
 											_la = TokenStream.LA(1);
 											if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -17582522204L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611686018427387903L) != 0)) {
 												{
-													State = 2589;
-													expr(0);
+													State = 2589;expr(0);
 												}
 											}
 
-											State = 2592;
 											Match(T__2);
 										}
 										break;
 									case 105: {
 											_localctx = new HAS_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2593;
-											if (!(Precpred(Context, 241))) throw new FailedPredicateException(this, "Precpred(Context, 241)");
-											State = 2594;
+											//if (!(Precpred(Context, 241))) throw new FailedPredicateException(this, "Precpred(Context, 241)");
 											Match(T__0);
-											State = 2595;
 											Match(HAS);
-											State = 2596;
 											Match(T__1);
-											State = 2597;
-											expr(0);
-											State = 2598;
+											State = 2597;expr(0);
 											Match(T__2);
 										}
 										break;
 									case 106: {
 											_localctx = new HASVALUE_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2600;
-											if (!(Precpred(Context, 240))) throw new FailedPredicateException(this, "Precpred(Context, 240)");
-											State = 2601;
+											//if (!(Precpred(Context, 240))) throw new FailedPredicateException(this, "Precpred(Context, 240)");
 											Match(T__0);
-											State = 2602;
 											Match(HASVALUE);
-											State = 2603;
 											Match(T__1);
-											State = 2604;
-											expr(0);
-											State = 2605;
+											State = 2604;expr(0);
 											Match(T__2);
 										}
 										break;
 									case 107: {
 											_localctx = new GetJsonValue_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2607;
-											if (!(Precpred(Context, 239))) throw new FailedPredicateException(this, "Precpred(Context, 239)");
-											State = 2608;
+											//if (!(Precpred(Context, 239))) throw new FailedPredicateException(this, "Precpred(Context, 239)");
 											Match(T__4);
-											State = 2609;
-											parameter2();
-											State = 2610;
+											State = 2609;parameter2();
 											Match(T__5);
 										}
 										break;
 									case 108: {
 											_localctx = new GetJsonValue_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2612;
-											if (!(Precpred(Context, 238))) throw new FailedPredicateException(this, "Precpred(Context, 238)");
-											State = 2613;
+											//if (!(Precpred(Context, 238))) throw new FailedPredicateException(this, "Precpred(Context, 238)");
 											Match(T__4);
-											State = 2614;
-											expr(0);
-											State = 2615;
+											State = 2614;expr(0);
 											Match(T__5);
 										}
 										break;
 									case 109: {
 											_localctx = new GetJsonValue_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2617;
-											if (!(Precpred(Context, 237))) throw new FailedPredicateException(this, "Precpred(Context, 237)");
-											State = 2618;
+											//if (!(Precpred(Context, 237))) throw new FailedPredicateException(this, "Precpred(Context, 237)");
 											Match(T__0);
-											State = 2619;
-											parameter2();
+											State = 2619;parameter2();
 										}
 										break;
 									case 110: {
 											_localctx = new Percentage_funContext(new ExprContext(_parentctx, _parentState));
 											PushNewRecursionContext(_localctx, _startState, RULE_expr);
-											State = 2620;
-											if (!(Precpred(Context, 234))) throw new FailedPredicateException(this, "Precpred(Context, 234)");
-											State = 2621;
+											//if (!(Precpred(Context, 234))) throw new FailedPredicateException(this, "Precpred(Context, 234)");
 											Match(T__7);
 										}
 										break;
 								}
 							}
 						}
-						State = 2626;
 						ErrorHandler.Sync(this);
 						_alt = Interpreter.AdaptivePredict(TokenStream, 163, Context);
 					}
@@ -12243,8 +9064,7 @@ namespace ToolGood.Algorithm.math
 			{
 			}
 			public override int RuleIndex { get { return RULE_num; } }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitNum(this);
@@ -12261,17 +9081,14 @@ namespace ToolGood.Algorithm.math
 			try {
 				EnterOuterAlt(_localctx, 1);
 				{
-					State = 2628;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 					if (_la == SUB) {
 						{
-							State = 2627;
 							Match(SUB);
 						}
 					}
 
-					State = 2630;
 					Match(NUM);
 				}
 			} catch (RecognitionException re) {
@@ -12293,8 +9110,7 @@ namespace ToolGood.Algorithm.math
 			{
 			}
 			public override int RuleIndex { get { return RULE_unit; } }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitUnit(this);
@@ -12311,7 +9127,6 @@ namespace ToolGood.Algorithm.math
 			try {
 				EnterOuterAlt(_localctx, 1);
 				{
-					State = 2632;
 					_la = TokenStream.LA(1);
 					if (!(_la == UNIT || _la == T)) {
 						ErrorHandler.RecoverInline(this);
@@ -12332,15 +9147,13 @@ namespace ToolGood.Algorithm.math
 
 		public partial class ArrayJsonContext : ParserRuleContext
 		{
-			[System.Diagnostics.DebuggerNonUserCode]
-			public ExprContext expr()
+			[System.Diagnostics.DebuggerNonUserCode]public ExprContext expr()
 			{
 				return GetRuleContext<ExprContext>(0);
 			}
 			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NUM() { return GetToken(mathParser.NUM, 0); }
 			[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRING() { return GetToken(mathParser.STRING, 0); }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public Parameter2Context parameter2()
+			[System.Diagnostics.DebuggerNonUserCode]public Parameter2Context parameter2()
 			{
 				return GetRuleContext<Parameter2Context>(0);
 			}
@@ -12349,8 +9162,7 @@ namespace ToolGood.Algorithm.math
 			{
 			}
 			public override int RuleIndex { get { return RULE_arrayJson; } }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitArrayJson(this);
@@ -12366,16 +9178,13 @@ namespace ToolGood.Algorithm.math
 			try {
 				EnterOuterAlt(_localctx, 1);
 				{
-					State = 2637;
 					ErrorHandler.Sync(this);
 					switch (TokenStream.LA(1)) {
 						case NUM: {
-								State = 2634;
 								Match(NUM);
 							}
 							break;
 						case STRING: {
-								State = 2635;
 								Match(STRING);
 							}
 							break;
@@ -12600,17 +9409,14 @@ namespace ToolGood.Algorithm.math
 						case HASVALUE:
 						case PARAM:
 						case PARAMETER: {
-								State = 2636;
-								parameter2();
+								State = 2636;parameter2();
 							}
 							break;
 						default:
 							throw new NoViableAltException(this);
 					}
-					State = 2639;
 					Match(T__25);
-					State = 2640;
-					expr(0);
+					State = 2640;expr(0);
 				}
 			} catch (RecognitionException re) {
 				_localctx.exception = re;
@@ -12850,8 +9656,7 @@ namespace ToolGood.Algorithm.math
 			{
 			}
 			public override int RuleIndex { get { return RULE_parameter2; } }
-			[System.Diagnostics.DebuggerNonUserCode]
-			public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
+			[System.Diagnostics.DebuggerNonUserCode]public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor)
 			{
 				ImathVisitor<TResult> typedVisitor = visitor as ImathVisitor<TResult>;
 				return typedVisitor.VisitParameter2(this);
@@ -12868,7 +9673,6 @@ namespace ToolGood.Algorithm.math
 			try {
 				EnterOuterAlt(_localctx, 1);
 				{
-					State = 2642;
 					_la = TokenStream.LA(1);
 					if (!((((_la) & ~0x3f) == 0 && ((1L << _la) & -4294967296L) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & -1L) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & -1L) != 0) || ((((_la - 192)) & ~0x3f) == 0 && ((1L << (_la - 192)) & 4611123068473966591L) != 0))) {
 						ErrorHandler.RecoverInline(this);
